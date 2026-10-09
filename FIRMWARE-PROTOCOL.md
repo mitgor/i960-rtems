@@ -168,3 +168,20 @@ is confirmed intact after all probes.
 - **To finish in-system later:** obtain the DOS `DACFL` flash utility and reverse its
   `StoreImage`/`ProgramImage` mailbox parameter layout, then extend `dac960probe` accordingly
   (dump first, verify, only then flash). The command plumbing is already done here.
+
+### Milestone 2 update — in-system dump blocked on a flash-enable step
+Implemented StoreImage(0x21) with the flasher's exact Type-3D layout (len@2-3 bytes <=0xF000,
+absolute flash offset@4-7, DMA busaddr@8-11) via the proven PG mailbox. Then, per the flasher
+disassembly, implemented the precondition `0x2B subcmd 0x02` (Read Flash Descriptor Table).
+
+Result on the live card: **both `0x2B/02` and `0x21` return `status=0x0000` but DMA zero bytes**
+(buffer stays at the 0xA5 sentinel), whereas `Enquiry2 (0x1C)` on the identical mailbox path
+DMAs its 128 bytes correctly. So the running firmware **acks flash commands but ignores them**
+in its normal operational state — a flash-access enable / maintenance mode / window setup that
+the flasher performs at controller-open is still missing. The flasher's recurring string
+"Mapping Flash to Physical Address %lxH" suggests the PG flash read may be **memory-mapped**
+(flash exposed in a host PCI window the flasher programs) rather than the 0x2B/0x21 mailbox.
+Under investigation.
+
+**Guaranteed dump route remains the external programmer (`REFLASH.md` §3).** The in-system
+command channel is proven (Enquiry); the flash-read path needs the PG open/enable sequence.
