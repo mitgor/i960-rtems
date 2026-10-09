@@ -82,3 +82,32 @@ address placed in the mailbox.
   external-programmer backup (`REFLASH.md`) as the safety net.
 - Driving a bus-master device from userspace is why vfio-pci (not `/dev/mem`) is the right
   tool; a wrong DMA address with an IOMMU off could corrupt host memory.
+
+---
+
+## Progress
+
+### Milestone 0 — read-only register probe: DONE (validated)
+`host/myflash.c probe` mmaps BAR0 (`0xee000000`) read-only via `/dev/mem` and reads the PG
+registers. Live result on the card:
+```
+irq mask [0x34]   = 0xfb   <- exactly the driver's "interrupts enabled" value (Mask1=3,Mask2=0x1F)
+inbound dbell      = 0x00   (mailbox idle, init done)
+outbound dbell     = 0x00   (no status pending)
+error status       = 0x00
+cmd mailbox        = 2b 00 14 00 00 10 fe ff 00 00 fe ff 00  (stale; fe ff = i960 local addrs)
+```
+This confirms BAR0 is the live PG register window and the firmware is up. Safe, non-destructive.
+
+### Blocker before milestone 1 (Enquiry)
+Issuing commands needs the card detached from `myrb` (two masters on one mailbox = corruption).
+But `myrb`'s sysfs **unbind/bind wedges in uninterruptible D-state** on this controller (the
+driver's probe/remove hangs talking to the firmware). Clearing it and freeing the card requires:
+```
+# /etc/modprobe.d/blacklist-myrb.conf
+blacklist myrb
+```
+then `sudo update-initramfs -u && sudo reboot`. The device then comes up driverless; bind it to
+`vfio-pci` (for IOMMU-safe DMA) or drive BAR0 directly. **Rollback:** delete that file,
+`update-initramfs -u`, reboot. (The box has an active Intel IOMMU `dmar0`, so vfio-pci is the
+correct DMA path for the Enquiry/StoreImage data transfers.)
