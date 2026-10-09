@@ -211,3 +211,21 @@ reference images, and the in-system x86 BIOS dump is already captured.
 
 **What in-system access DID achieve:** a proven host→i960 command channel (Enquiry), the full
 PG register map, and the x86 BIOS dump — all without any external hardware.
+
+#### Final confirmation: the flasher has no i960RP memory-mapped flash path
+Symbol-family census of the decoded `DAC960FL.EXE` settles which code serves which chip:
+- `_DACPVX_*` (the DAC960PG / i960RP family): `CtlrInfo`, `InitializeControllerInfo`,
+  `IntializeCtlrFwInfo`, `IssueCommand` — **no flash primitives whatsoever**.
+- `_*FootBridge*` (`Read08/32BitsFromFootBridge`, `Write*2FootBridge`,
+  `GetFootBridgeRemapValue`): **all** memory-mapped flash access lives here, and FootBridge is
+  the Intel 21285 companion for **StrongARM** DAC960s — not the i960RP.
+- `_StoreRoadRunnerImage` / `_ProgramRoadRunnerImage` ("RoadRunner" = the i960RP's codename):
+  the i960 image I/O, which goes through the **mailbox** commands.
+
+So for this card the image path is the mailbox — and those commands are empirically inert in the
+running field firmware. There is no i960RP memory-mapped flash route to find. **Closed.**
+
+*One theoretical avenue, not pursued:* the RoadRunner mailbox commands may only be serviced by
+the card's **boot-block** firmware rather than the full field firmware (which would explain
+ack-but-ignore). Forcing the controller into boot-block/recovery mode is a destabilising act on
+a working card and was deliberately not attempted; the external programmer is the safe route.
