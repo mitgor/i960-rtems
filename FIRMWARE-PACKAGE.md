@@ -74,3 +74,44 @@ RE effort, deferred.
 - **Custom in-system flash:** still blocked (needs the unpack + flasher mailbox disassembly).
 - **External programmer:** remains the guaranteed route; it reads/writes the *raw* flash
   directly, bypassing this packed format entirely.
+
+## UPDATE — GlobalFlash encoding CRACKED + StoreImage dump protocol recovered
+
+The container encoding is solved (decoder: `host/globalflash_decode.py`, verified):
+```
+decoded = PERM(stored XOR 0xC3)        # PERM swaps bit i <-> bit i^6, self-inverse
+```
+Not compression — a fixed bit-permutation after XOR 0xC3. It equals plain XOR 0xC3 only on
+permutation-invariant bytes, which is why whole-file XOR 0xC3 never revealed strings. Cracked
+by crib-dragging the card's plaintext BIOS dump against the encoded `BGJ41041.IMG`.
+
+`.IMG` files have a 512-byte header (`MIMGMYLX` + `"Ver 4.10-41 Released on Feb 02 1999"`),
+raw image at offset 512; `DAC960FL.EXE` has no header. Verified decoded outputs (on the box,
+`~/fwpkg/decoded/`, not committed — vendor binaries):
+- `DAC960FL.EXE` -> `MZ` DOS exe; strings "DAC960 Firmware Upgrade Utility", "StoreImage".
+- `BGJ41041.IMG[512:]` -> `55 AA 38 E9` option ROM; "DAC960 BIOS Version", "Mylex", "PCIR".
+- `407t39b0.img[512:]` -> i960 firmware; the firmware itself is Huffman-packed internally
+  ("Out of Huffman table space!", "Bad CRC %x").
+
+### StoreImage (0x21) — the safe in-system firmware DUMP (from DAC960FL.EXE disassembly)
+`DAC960FL.EXE` carries a symbol table; `_StoreRoadRunnerImage` builds a Type-3D mailbox and
+loops in <=0xF000-byte chunks, card->host (a READ — the safe dump):
+```
+byte 0      opcode       = 0x21
+byte 1      id/unit      = 0x01
+bytes 2-3   WORD         transfer length in bytes (host clamps to <= 0xF000)
+bytes 4-7   DWORD        flash/image byte offset of this chunk
+bytes 8-11  DWORD        32-bit PCI DMA bus address of host buffer
+byte 12     status       (card-filled)
+```
+- `0x2B` = config / Flash-Descriptor-Table DMA (subcommand@byte2, fixed buffer).
+- **Flash WRITE is memory-mapped, not a mailbox opcode**: the flasher maps the flash into a
+  PCI window and does erase-block / write-word directly (strings "Erasing Flash BlockNo %xH",
+  "Writing FlashAddr %lxH with %lxH"). So there is no single destructive "ProgramImage"
+  command — writing means map+erase+write.
+- The flasher's own submission path uses a doorbell write `0xD0`@base+4 / poll base+5 (an older
+  interface variant); our card responds on the **PG** map we already proved works (mailbox
+  @0x1000, doorbell @0x20, status @0x101A), so the dump uses that with the Type-3D layout above.
+
+**Impact:** an in-system firmware DUMP is now fully specified and safe (StoreImage is a
+card->host read). It can be added to `host/kmod/dac960probe.c` using the proven mailbox path.
