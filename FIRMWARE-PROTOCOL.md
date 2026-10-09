@@ -185,3 +185,29 @@ Under investigation.
 
 **Guaranteed dump route remains the external programmer (`REFLASH.md` §3).** The in-system
 command channel is proven (Enquiry); the flash-read path needs the PG open/enable sequence.
+
+### CONCLUSION — an in-system FULL firmware dump is not possible on this card
+Three independent mechanisms were tried and each is definitively closed:
+
+1. **Mailbox flash commands are inert.** `0x2B/02` (Read Flash Descriptor Table) and `0x21`
+   (StoreImage) both return `status=0x0000` with **zero DMA** on the live card, while
+   `Enquiry2 (0x1C)` DMAs correctly on the identical path. The flasher disassembly confirms the
+   PG field firmware does not service these for image transfer.
+2. **No host-visible flash window exists.** The card exposes only BAR0 (8 KB) and the Expansion
+   ROM (32 KB). A read-only scan of all 8 KB of BAR0 shows a sparse *register* window (8087/8192
+   bytes zero, 20 distinct byte values, `+0x60..0x80` all zero) with **no** flash signature
+   (`MIMG`/`Mylex`/`DAC960`/`55AA`). The Expansion ROM aperture exposes only the 28 KB x86 option
+   ROM (already dumped — see `artifacts/`), not the i960 firmware.
+   - Note: the flasher's memory-mapped `window+0x68` flash path lives in its **"FootBridge"**
+     module — FootBridge is the Intel 21285 companion for **StrongARM**-based DAC960s
+     (AcceleRAID/eXtremeRAID), **not** the i960RP. It does not apply to this card.
+3. **ATU remapping is closed.** The i960RP address-translation window registers did not accept
+   host-side writes, so the host cannot create a window onto the i960 local bus where flash lives.
+
+**Therefore:** the full i960 firmware can only be read with an **external programmer**
+(`REFLASH.md` §3). This is not blocking: the decoded official firmware images
+(`407t39b0.bin` for 4.07-0-39, and the PRL package's `Fgj40729.img` for 4.07-0-29) serve as
+reference images, and the in-system x86 BIOS dump is already captured.
+
+**What in-system access DID achieve:** a proven host→i960 command channel (Enquiry), the full
+PG register map, and the x86 BIOS dump — all without any external hardware.

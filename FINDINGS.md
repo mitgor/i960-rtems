@@ -91,9 +91,13 @@ V1 firmware-image opcodes (the Linux/FreeBSD drivers implement none of these):
   "Writing FlashAddr %lxH"). So there is **no single destructive `ProgramImage` command**;
   `0x20`/`0x22` are not used by the utility.
 
-**In-system dump status:** `StoreImage` is accepted on the proven mailbox path (`status=0`) but
-has not yet transferred data — a parameter/precondition is still being pinned down from the
-flasher disassembly. The guaranteed backup route remains the external programmer (REFLASH.md).
+**In-system dump: CLOSED (negative result, well-evidenced).** Flash mailbox commands
+(`0x2B/02`, `0x21`) are inert in field firmware (status=0, zero DMA, while Enquiry2 works on the
+same path); the card exposes no host-visible flash window (BAR0's 8 KB is a sparse register
+window — no flash signatures; the Expansion ROM holds only the x86 BIOS); and ATU remapping
+refuses host writes. The flasher's memory-mapped `window+0x68` path belongs to its "FootBridge"
+(StrongARM) module, not the i960RP. => a full firmware read needs an **external programmer**
+(REFLASH.md §3); the decoded official images serve as reference. See FIRMWARE-PROTOCOL.md.
 
 ## 6. The x86 BIOS (option ROM)
 Plaintext 28 KB option ROM (`55AA`, init `0x3000`, PCIR `1069:0010`, v4.10). It discovers the
