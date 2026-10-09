@@ -138,3 +138,33 @@ to run custom i960 code in RAM, and `ProgramImage` to flash it.
   D-state on this controller — blacklist + reboot is the clean way to free the card.
 - `host/kmod/` builds against the running kernel headers; `insmod` binds, `rmmod` releases
   cleanly (bounded, no wedge).
+
+### Milestone 2 attempt — StoreImage (0x21) in-system dump: BLOCKED (safely)
+Extended `dac960probe.ko` to issue `StoreImage` (0x21) as a Type3 command (BusAddress =
+a 512 KB sentinel-filled DMA buffer), with a hard interlock refusing `0x22` (ProgramImage/
+burn). Result:
+```
+cmd=0x21  status=0x0000 (accepted)  changed=0/524288 bytes   <- nothing transferred
+cmd=0x1c  status=0x0000  changed=128/4096 bytes              <- Enquiry2 control: exactly 128 B
+```
+So `StoreImage` is **benign** (status OK, no flash touched — confirms 0x21 is not the burn)
+but the simple Type3 form does **not** dump: it's either host->card, or needs undocumented
+parameters (transfer length / flash offset / image selector). Those parameters appear in
+**no** open-source driver (Linux and FreeBSD both omit the firmware commands) and were not
+cheaply recoverable from the real-mode x86 ROM. Recovering them means reversing the DOS
+`DACFL`/flash utility (which we don't have) or a much deeper ROM effort.
+
+**Decision:** stop here on the in-system dump. Guessing image-command parameters borders the
+destructive `ProgramImage` (0x22) path, and this is the only card. The firmware (v4.07-29)
+is confirmed intact after all probes.
+
+## Conclusion
+- **Proven:** the in-system host->i960 command channel (BAR0 mailbox + bus-master DMA +
+  completion) works — `Enquiry2` returns correct data every time. This is the hard, reusable
+  part and the basis for any in-system firmware tool.
+- **Not achieved in-system:** the firmware dump, because `StoreImage`'s exact parameters are
+  undocumented. The **guaranteed** firmware backup remains the external programmer
+  (`REFLASH.md` §3).
+- **To finish in-system later:** obtain the DOS `DACFL` flash utility and reverse its
+  `StoreImage`/`ProgramImage` mailbox parameter layout, then extend `dac960probe` accordingly
+  (dump first, verify, only then flash). The command plumbing is already done here.
