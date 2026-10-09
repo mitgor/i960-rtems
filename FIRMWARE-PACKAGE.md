@@ -48,3 +48,29 @@ The DOS flasher and the firmware image the user asked for are **found and archiv
 box**. Flashing stock via DOS is unblocked. Driving custom code in-system still needs the
 GlobalFlash decode + flasher disassembly, or the external-programmer route in `REFLASH.md`
 (for which `407t39b0.img`, once decoded, is a useful reference image).
+
+## GlobalFlash container decode — attempted, partially mapped, not fully cracked
+
+A real decode pass (brute-forcing per-byte transforms + structural analysis):
+- **Padding transform is XOR 0xc3**: the dominant stored byte `0x3c` (10,140× in the BIOS
+  img) = `0xFF ^ 0xc3` (flash erase state); `0xc3` = `0x00 ^ 0xc3`.
+- **Container header is ~512 bytes**: the BIOS and firmware imgs share a 9-byte prefix
+  (`b2 a2 b2 12 b2 a6 f2 e6 c3`); after XOR 0xc3 an option-ROM-style header (`55 aa 2c 6b
+  af f8 …`) appears at offset 512.
+- **But the code/string body does NOT decode** under XOR 0xc3 or any per-byte transform
+  tried (xor 0..255, bit-reverse, rotations, nibble-swap, NOT): no `DAC960`/`Mylex`/`BIOS`/
+  `Version`/`(c)`/`PCIR` strings emerge. The scattered zlib/gzip 2-byte "signatures" are
+  coincidental (no valid streams at them).
+
+**Conclusion:** the `.img` is a **packed vendor update format**, not a raw flash image — the
+flasher decompresses it before writing (confirmed by the fact that the card's *actual* flash,
+dumped via the expansion-ROM aperture, is plain `55AA`+strings, unlike this packed `.img`).
+Fully unpacking it requires reversing the GlobalFlash / `DAC960FL.EXE` decompressor — a large
+RE effort, deferred.
+
+### Practical impact (unchanged bottom line)
+- **Stock reflash / recovery:** use the vendor DOS GlobalFlash flow — it unpacks internally.
+  Works today; no decode needed.
+- **Custom in-system flash:** still blocked (needs the unpack + flasher mailbox disassembly).
+- **External programmer:** remains the guaranteed route; it reads/writes the *raw* flash
+  directly, bypassing this packed format entirely.
