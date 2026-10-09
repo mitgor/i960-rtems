@@ -111,3 +111,30 @@ then `sudo update-initramfs -u && sudo reboot`. The device then comes up driverl
 `vfio-pci` (for IOMMU-safe DMA) or drive BAR0 directly. **Rollback:** delete that file,
 `update-initramfs -u`, reboot. (The box has an active Intel IOMMU `dmar0`, so vfio-pci is the
 correct DMA path for the Enquiry/StoreImage data transfers.)
+
+### Milestone 1 — in-system Enquiry via the mailbox: DONE (end-to-end)
+`host/kmod/dac960probe.ko` binds the (blacklisted-myrb) card and issues the read-only
+`Enquiry2` (0x1C) through the PG hardware mailbox, with the result DMA'd into a
+`dma_alloc_coherent` buffer (IOMMU-correct for the DMA-FQ group). Bounded polling — cannot
+wedge. Live result:
+```
+status = 0x0000 (success)
+result[0..7] = 15 01 02 03 04 07 1d 30
+  HardwareID: submodel=21 model=2    i960 Firmware: v4.07-29
+IOVA = 0xfffeb000 (IOMMU-mapped; 32-bit card DMA succeeded)
+```
+This proves the full host->i960 command path works in-system: mailbox issue + bus-master
+DMA + completion handshake. No BIOS, no external programmer. The same machinery now extends
+to `StoreImage` (0x21, dump firmware — read-only) and later `ProgramImage` (0x22, flash).
+
+**Next:** reverse `StoreImage`'s mailbox params (transfer length / flash offset) from the
+x86 ROM, dump the firmware to a verified backup, then (only after that) explore `LoadImage`
+to run custom i960 code in RAM, and `ProgramImage` to flash it.
+
+### Operational notes
+- `myrb` is blacklisted (`/etc/modprobe.d/blacklist-myrb.conf`); card comes up driverless.
+  Rollback: delete that file, `sudo update-initramfs -u`, reboot.
+- Never let `myrb` and a custom driver both touch the mailbox. `myrb`'s unbind wedges in
+  D-state on this controller — blacklist + reboot is the clean way to free the card.
+- `host/kmod/` builds against the running kernel headers; `insmod` binds, `rmmod` releases
+  cleanly (bounded, no wedge).
