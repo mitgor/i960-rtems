@@ -1,0 +1,6 @@
+*.o
+*.elf
+host/emu
+host/ref
+host/ref_clear
+host/io.h
