@@ -228,6 +228,7 @@ int main(int argc,char**argv){
             switch(opc){
                 case 0x581: setreg(dst, s2 & s1); break;               /* and    */
                 case 0x582: setreg(dst, s2 & ~s1); break;              /* andnot */
+                case 0x583: setreg(dst, s2 | (1u << (s1 & 31))); break; /* setbit */
                 case 0x586: setreg(dst, s2 ^ s1); break;               /* xor    */
                 case 0x587: setreg(dst, s2 | s1); break;               /* or     */
                 case 0x58a: setreg(dst, ~s1); break;                   /* not    */
@@ -260,5 +261,5 @@ done:
     if(interactive) raw_off();
     if(getenv("TRACE")) fprintf(stderr,"END ip=%x halt=%d budget=%ld\n",ip,rd32(HALT),budget);
     if(test) printf("RESULT=%d\n",(i32)rd32(FRAME));
-    return 0;
+    return (ip==HALT_IP || rd32(HALT)) ? 0 : 1;
 }

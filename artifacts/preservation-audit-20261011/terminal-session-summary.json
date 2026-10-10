@@ -1,0 +1,29 @@
+{
+  "frames": 2224,
+  "elapsed_s": 111.38671704,
+  "latency": {
+    "min_ms": 40.758856,
+    "median_ms": 42.338515,
+    "p95_ms": 43.562815,
+    "max_ms": 58.703862,
+    "mean_ms": 42.596613795863306
+  },
+  "late_frames": 105,
+  "max_late_ms": 194.358852,
+  "skipped_render_slots": 4,
+  "dropped_ticks": 0,
+  "input_dropped": 0,
+  "restarts": 0,
+  "controls": {
+    "idle": 2044,
+    "a": 53,
+    "s": 32,
+    "w": 40,
+    "d": 54,
+    "q": 1
+  },
+  "exit_reason": "quit",
+  "restored": true,
+  "unloaded": true,
+  "driver_bound": false
+}

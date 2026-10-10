@@ -122,12 +122,12 @@ static int load_file(uint32_t addr, const char *path)
     if (ferror(f)) { perror("payload read"); fclose(f); return 1; }
     if (fclose(f)) { perror("payload close"); return 1; }
     if (!bytes || bytes > PAYLOAD_END - PAYLOAD_BASE || !payload_word(addr)) {
-        fprintf(stderr, "payload must be nonempty, aligned, and fit internal RAM [0x200,0x400)\n");
+        fprintf(stderr, "payload must be nonempty, aligned, and fit payload RAM [0x%08x,0x%08x)\n", PAYLOAD_BASE, PAYLOAD_END);
         return 1;
     }
     padded = (bytes + 3u) & ~(size_t)3u;
     if (padded > (size_t)(PAYLOAD_END - addr)) {
-        fprintf(stderr, "padded payload exceeds internal RAM at 0x%08" PRIx32 "\n", addr);
+        fprintf(stderr, "padded payload exceeds payload RAM at 0x%08" PRIx32 "\n", addr);
         return 1;
     }
     if (expect(OP_SET_ADDR, addr, ST_OK)) return 1;

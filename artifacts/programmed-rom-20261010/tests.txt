@@ -1,0 +1,14 @@
+test_actual_programming_and_postboot (test_program.ProgramTests.test_actual_programming_and_postboot) ... ok
+test_archived_rehearsal (test_program.ProgramTests.test_archived_rehearsal) ... ok
+test_generated_transaction (test_program.ProgramTests.test_generated_transaction) ... transaction: 122 success/failure scenarios; rollback boundary and fresh-allocation model passed
+ok
+test_postboot_builder_matches_tested_module_sources (test_program.ProgramTests.test_postboot_builder_matches_tested_module_sources) ... ok
+test_transport (test_program.ProgramTests.test_transport) ... one-shot: 64 fault combinations, duplicate rejection, exact mailbox, dry-run and gates passed
+ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.952s
+
+OK
+Prepared fixed 128-byte CPU probe; candidate CRC32=2012d01f
+Generated /var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/tmp084i2ugr/build; program_enable defaults to false

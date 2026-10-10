@@ -1,0 +1,11 @@
+{
+  "stock_table_verified": true,
+  "address": "0xc001f9bc",
+  "value": "0xc001fe98",
+  "commands": 15,
+  "pending": false,
+  "table_write_visibility_proven": false,
+  "rom_instruction_fetch_proven": false,
+  "code_execution": false,
+  "flash_programming": false
+}

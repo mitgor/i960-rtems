@@ -1,0 +1,248 @@
+[
+  {
+    "path": "/home/mit/i960/game/Makefile",
+    "size": 257,
+    "sha256": "69890ccdcbcf7ebdad008de4a6af7e2a0fa912bb3a794ef4c161d9accccfa1dd",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/game/Makefile"
+  },
+  {
+    "path": "/home/mit/i960/game/tetris.c",
+    "size": 5059,
+    "sha256": "4021e1f5c1d6e3d78b21aec84d65b020cf5041360b6c8ace0bbd15116229efbe",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/game/tetris.c"
+  },
+  {
+    "path": "/home/mit/i960/game/tetris.elf",
+    "size": 4628,
+    "sha256": "35fb18363d61d35c1738cce599d5935feb6612844086480a1998153fd0f96945",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/game/tetris.elf"
+  },
+  {
+    "path": "/home/mit/i960/host/emu",
+    "size": 21248,
+    "sha256": "57d2987d70f63652ae8b00b87a0b53e553ad4a3ed7bf5eaeab465cbe052bd805",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/host/emu"
+  },
+  {
+    "path": "/home/mit/i960/host/emu.c",
+    "size": 13250,
+    "sha256": "f7717d7504c18f7787d8d4a5d38426af989e76a5a08894e7e383dbe38f2ab7fd",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/host/emu.c"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/dac960probe.ko",
+    "size": 355960,
+    "sha256": "2e7f27c772be9b06603c20b6af4de4a4ba88ef33406f0f2bf2406c53dfe67580",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/host/kmod/dac960probe.ko"
+  },
+  {
+    "path": "/home/mit/i960/host/myflash",
+    "size": 16472,
+    "sha256": "c38761804884af845e4346194806098ef64e80ac42020d89e5e80d6281f3ed1d",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/host/myflash"
+  },
+  {
+    "path": "/home/mit/i960/host/ref",
+    "size": 15968,
+    "sha256": "791def760097cad04b579fd1efcb5003f30eccf9948571da222ca0a197a4f8a4",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/host/ref"
+  },
+  {
+    "path": "/home/mit/i960/host/ref_clear",
+    "size": 16176,
+    "sha256": "f8a16642f9d894097a96e0167a7dfcdb0133a0ce1d77b0b4da1d6552e106353a",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/host/ref_clear"
+  },
+  {
+    "path": "/home/mit/i960/host/test.elf",
+    "size": 704,
+    "sha256": "9a2c993a47bc7114bdce5d7d1ebdcbb5f0644f5a00e79a38b05fc1cd73462a59",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/host/test.elf"
+  },
+  {
+    "path": "/home/mit/i960/host/test_clear.elf",
+    "size": 1628,
+    "sha256": "aab9a74d637bc0997103f8600b03efc8ec7b168e333d99aa0fb0db054b8f71bb",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/host/test_clear.elf"
+  },
+  {
+    "path": "/home/mit/i960/t/s.elf",
+    "size": 764,
+    "sha256": "a52d5cd608b562abc227b7ba5f69a386233042cadc07e3c8e0e7b1812b9f71d7",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960/t/s.elf"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/Makefile",
+    "size": 157,
+    "sha256": "a9eb6295de18ae36f5238e42c470dfdac4c4eb376c968cfdde4075cde4e02f72",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-analysis.7jVBmy/dump/Makefile"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/dac960dump.c",
+    "size": 10163,
+    "sha256": "330f59a939e41be49e457662dbe151cd3ac029a169f2f869a37e23c87bf5aec5",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-analysis.7jVBmy/dump/dac960dump.c"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/loadctl",
+    "size": 21568,
+    "sha256": "aaf8ad809465f6f39e3410f28a0df12860a5374bfc3c7c1a4287506fefaa8a2a",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-analysis.7jVBmy/loadctl"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/loadctl.c",
+    "size": 10860,
+    "sha256": "0c33aa5f2e8f09a1f5bacb80d1c8d1cea0a27c8b9df78f6fa9248106966bec8d",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-analysis.7jVBmy/loadctl.c"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/loader.c",
+    "size": 2414,
+    "sha256": "0724590cde54231e9ebb7bbd66ff94bb23c483c6c32105c63b8046c5e8582fc4",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-analysis.7jVBmy/loader.c"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/mu.h",
+    "size": 2792,
+    "sha256": "7b4e931bd4a4d614e78924cc98fa9754b97e7f06d167b19dac48dabbc3dde7cc",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-analysis.7jVBmy/mu.h"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/test_protocol",
+    "size": 30912,
+    "sha256": "56e7a47bd1300702051d0781ed6ffd1f6e33d810e543596ae8f6b6cae44100c3",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-analysis.7jVBmy/test_protocol"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/target/buffer_demo.elf",
+    "size": 2120,
+    "sha256": "63e1e29fec9530fbff78a0e85785670fbc0ec9f23107b7d48a6338633399979a",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-buffer-t1/target/buffer_demo.elf"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/probe.elf",
+    "size": 600,
+    "sha256": "564ac6d3fa0abc83abb066329692ad21ee4f4e060e2a4477db3a02b28542e846",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-cpu-stage.1dGG7Y/probe.elf"
+  },
+  {
+    "path": "/home/mit/i960-postinit-20261010/postinit/Makefile",
+    "size": 938,
+    "sha256": "8ef162c1cf225cc6453640e83e9e2fb276f40081b051b78efe7559809abe92e7",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-postinit-20261010/postinit/Makefile"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/flash-ret-probe.elf",
+    "size": 412,
+    "sha256": "bd96a8a7fab20ac4c66a1cb1eb229849e0974dcfb268b1f54473ceb4a2782b2c",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-romfetch.Hmjgt5/flash-ret-probe.elf"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/flash-ret-probe.map",
+    "size": 1068,
+    "sha256": "f9a13cfd0395bf439a46cbd441da8d7ce0feafec888db04101285c18d6c92f51",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-romfetch.Hmjgt5/flash-ret-probe.map"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/icctl-control.elf",
+    "size": 404,
+    "sha256": "b5bbc59bee016065a214840dc9eed18db638936cbe790997734e97faa17c96da",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-romfetch.Hmjgt5/icctl-control.elf"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/icctl-control.map",
+    "size": 1058,
+    "sha256": "00abd3340f11fa5e73b635c9aa49a96cae37db3d695fb397332f129b0a979874",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-romfetch.Hmjgt5/icctl-control.map"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/ram-call-control.elf",
+    "size": 444,
+    "sha256": "c72cc4cab7617702baf50344b606c593c375d10b94bc18e1a3b3f653c798a5b7",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-romfetch.Hmjgt5/ram-call-control.elf"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/ram-call-control.map",
+    "size": 1073,
+    "sha256": "f568926c1a40149d90dbe2202d591fe7cc1731456fb95df7e6b5a487ba57413b",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-romfetch.Hmjgt5/ram-call-control.map"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/target/demo.elf",
+    "size": 660,
+    "sha256": "41106fc04b785492edcecb95e42cae85986baf82bb7f7be51b4032566ffa6c6d",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-runtime-loader/target/demo.elf"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/target/demo.map",
+    "size": 1262,
+    "sha256": "834fe2bb1a317fe6f4119ff9037124b3d220e9652dde090a2e5bc8072a0f0bd6",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-runtime-loader/target/demo.map"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/target/runner.elf",
+    "size": 480,
+    "sha256": "2a0f9b01cd0d6b3bf42153481e3b57f3bd71b3e146f55754c5f4b12eecd34b41",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-runtime-loader/target/runner.elf"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/target/runner.map",
+    "size": 896,
+    "sha256": "8440371c5a647d453b381d5a63fe04ef965d6652d6186e3167a1b07417bf4ff5",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-runtime-loader/target/runner.map"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/Makefile",
+    "size": 157,
+    "sha256": "a9eb6295de18ae36f5238e42c470dfdac4c4eb376c968cfdde4075cde4e02f72",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-staging-analysis-20261010/Makefile"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/emu-build.txt",
+    "size": 1925,
+    "sha256": "cc311712983581fed13fb14dcfc5f0490069648b9c3390956388f8a2c2db9ec2",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-tetris-t2/emu-build.txt"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/emulator-trace.txt",
+    "size": 4099,
+    "sha256": "4b3e9961f8142692bc7a8efaf50986bfaf96a86156d17b328bd57e964d6e53cf",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-tetris-t2/emulator-trace.txt"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/game/Makefile",
+    "size": 266,
+    "sha256": "ba867f38acd30ab9928e1748e25001a36f81b09727fff96cf2413884f47e2f10",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-tetris-t2/game/Makefile"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/game/test_tetris.elf",
+    "size": 8996,
+    "sha256": "bddb888263bfe39a2a88cd706f741a629562c3273cd1912b9d2a61cebe6d4659",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-tetris-t2/game/test_tetris.elf"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/game/tetris.elf",
+    "size": 6412,
+    "sha256": "3c2f667c7c2b08c33df7e4ced47b13478daa76d7a61b3d2e58da3736a5fe49da",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-tetris-t2/game/tetris.elf"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/host/emu",
+    "size": 21248,
+    "sha256": "2374d5c5899bb7b49731afe0b8660ddac93c78299e897755b2fd7970c25e08d1",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-tetris-t2/host/emu"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/loader/runtime/Makefile",
+    "size": 1178,
+    "sha256": "c4085a34085c0a70822be281526627a246e279d8380f9fc99345615025a11ed3",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-tetris-t2/loader/runtime/Makefile"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/loader/runtime/tetris_payload.elf",
+    "size": 7072,
+    "sha256": "d716ef52c73f7a06f5324450d1e718a3c54e9042eed1ef87d0b1a2d9fb68e55e",
+    "preserved_at": "artifacts/preservation-audit-20261011/recovered/i960-tetris-t2/loader/runtime/tetris_payload.elf"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
+  "kernel": "6.8.0-138-generic",
+  "driver_bound": false,
+  "modules": [],
+  "module_sha256": "3fb2cdda3817101eef34c28b18f00fd4cd6ef756f715ca6dea4e6b5d4579143f"
+}

@@ -1,0 +1,16 @@
+test_bounds (test_buffer_io.BufferTests.test_bounds) ... ok
+test_corrupt_responses (test_buffer_io.BufferTests.test_corrupt_responses) ... ok
+test_live_captures (test_buffer_io.BufferTests.test_live_captures) ... ok
+test_maximum_and_error_response (test_buffer_io.BufferTests.test_maximum_and_error_response) ... ok
+test_live_captures (test_loadrun.CliTests.test_live_captures) ... ok
+test_payload_bounds_and_clean_gate (test_loadrun.CliTests.test_payload_bounds_and_clean_gate) ... ok
+test_buffer_target (test_loadrun.LoadRunTests.test_buffer_target) ... ok
+test_transaction_and_policy (test_loadrun.LoadRunTests.test_transaction_and_policy) ... buffer transaction: 230 command-boundary faults passed
+runtime transaction: 194 command-boundary faults plus maximum upload passed
+ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.457s
+
+OK
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075

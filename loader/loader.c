@@ -66,6 +66,10 @@ void loader_main(void)
         if (status == ST_HANDOFF) REG(R_OMR1) = 0;
         REG(R_OMR0) = (s.last << 16) | status;
         if (status == ST_HANDOFF) {
+#ifdef POSTINIT_PROFILE
+            /* D-cache disabled at entry; invalidate I-cache after code upload. */
+            __asm__ volatile ("icctl 2,0,g1" : : : "g1", "memory");
+#endif
             ((void (*)(void))arg)(); /* payload must preserve OMR0 */
             for (;;) ; /* if it returns, park */
         }

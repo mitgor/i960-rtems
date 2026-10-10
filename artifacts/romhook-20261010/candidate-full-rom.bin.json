@@ -1,0 +1,29 @@
+{
+  "experimental": true,
+  "hardware_validated": false,
+  "flash_ready": false,
+  "stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+  "unpacked_sha256": "21f6c1d898a533d7023a53893f03547ed61631016d1b247d3ecbb97b9403c195",
+  "output_sha256": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0",
+  "hook_sha256": "91b445806f67b20ac0b90d4ec72cca63ad56a097759a0f60534f8ecdcb7b821d",
+  "changed_bytes": 48,
+  "metadata_entry": "fefe0000",
+  "metadata_checksum": "3599fb68",
+  "opcode": "6f",
+  "table_slot": "c001f9bc",
+  "old_handler": "c001fe98",
+  "new_handler": "fefe001c",
+  "stock_entry": "c004a2e0",
+  "handler_completion_status": "017e",
+  "boot_block_unchanged": true,
+  "compressed_program_unchanged": true,
+  "handler_storage": "verified zero flash padding inside pinned type-2 component",
+  "dram_handler_copy": false,
+  "outstanding": [
+    "validate instruction fetch from FEFE001C after stock startup",
+    "validate handler lifetime across flash programming",
+    "validate command-table visibility/cache behavior on hardware",
+    "validate serial recovery",
+    "validate packaging and programming route"
+  ]
+}

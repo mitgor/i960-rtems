@@ -1,0 +1,17 @@
+{
+  "steps": 400,
+  "target_hz": 20,
+  "elapsed_s": 19.992644677,
+  "achieved_hz": 20.00735802903401,
+  "latency": {
+    "min_ms": 41.766764,
+    "median_ms": 42.369134,
+    "p95_ms": 42.535234,
+    "max_ms": 55.732782,
+    "mean_ms": 42.780058229999995
+  },
+  "late_frames": 13,
+  "max_late_ms": 5.83633,
+  "restored": true,
+  "unloaded": true
+}

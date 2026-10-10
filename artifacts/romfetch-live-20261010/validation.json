@@ -1,0 +1,49 @@
+{
+  "flash_mapping": {
+    "fefb0200": {
+      "words_checked": 16,
+      "paired": true
+    },
+    "fefc8200": {
+      "words_checked": 16,
+      "paired": true
+    },
+    "fefe0000": {
+      "words_checked": 16,
+      "paired": true
+    }
+  },
+  "runs": [
+    {
+      "attempt": 3,
+      "statuses": [
+        "017e",
+        "017f",
+        "0104"
+      ],
+      "restored": true,
+      "result_sha256": "110beff31f73a299e5be1576b78d7216bd21aacd39296cafc59516a72d9441ef"
+    },
+    {
+      "attempt": 4,
+      "statuses": [
+        "017e",
+        "017f",
+        "0104"
+      ],
+      "restored": true,
+      "result_sha256": "73ae3007109db3628146b526e1e73ec8971e07f5dbb5677d1f34c60e3b5d033b"
+    },
+    {
+      "attempt": 5,
+      "statuses": [
+        "017e",
+        "017f",
+        "0104"
+      ],
+      "restored": true,
+      "result_sha256": "f5e5d7f7557c44ed8cf272c4b3ac0f88e024299911b961d04f10afc2fef48818"
+    }
+  ],
+  "attempt2_timeout": true
+}

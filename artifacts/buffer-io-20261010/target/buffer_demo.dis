@@ -1,0 +1,333 @@
+
+buffer_demo.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c0f2c000 <_buffer_start>:
+c0f2c000:	30 00 00 08 	b	c0f2c030 <_payload>
+	...
+
+c0f2c010 <LC0>:
+c0f2c010:	48 65 6c 6c 	.word	0x6c6c6548
+c0f2c014:	6f 20 66 72 	.word	0x7266206f
+c0f2c018:	6f 6d 20 74 	.word	0x74206d6f
+c0f2c01c:	68 65 20 72 	.word	0x72206568
+c0f2c020:	65 61 6c 20 	testno	13
+c0f2c024:	69 39 36 30 	bbc	6,sf24,c0f2b98c <_buffer_start-0x674>
+c0f2c028:	21 0a 00 00 	.word	0x00000a21
+c0f2c02c:	00 00 00 00 	.word	0x00000000
+
+c0f2c030 <_payload>:
+c0f2c030:	01 20 ac 80 	ldob	0x1(g0),g5
+c0f2c034:	02 20 bc 80 	ldob	0x2(g0),g7
+c0f2c038:	08 4e ad 59 	shlo	8,g5,g5
+c0f2c03c:	00 10 a4 80 	ldob	(g0),g4
+c0f2c040:	03 20 b4 80 	ldob	0x3(g0),g6
+c0f2c044:	10 ce bd 59 	shlo	16,g7,g7
+c0f2c048:	94 43 a5 58 	or	g4,g5,g4
+c0f2c04c:	18 8e b5 59 	shlo	24,g6,g6
+c0f2c050:	94 c3 a5 58 	or	g4,g7,g4
+c0f2c054:	00 34 94 8c 	lda	1050 <_buffer_start-0xc0f2afb0>(g0),g2
+c0f2c058:	50 10 00 00 
+c0f2c05c:	10 16 88 5c 	mov	g0,g1
+c0f2c060:	94 83 a5 58 	or	g4,g6,g4
+c0f2c064:	00 1e e8 5c 	mov	0,g13
+c0f2c068:	00 30 a8 8c 	lda	314f4942 <_buffer_start-0x8fa376be>,g5
+c0f2c06c:	42 49 4f 31 
+c0f2c070:	0c 00 ad 32 	cmpobe	g5,g4,c0f2c07c <L92>
+
+c0f2c074 <L85>:
+c0f2c074:	01 1e 80 5c 	mov	1,g0
+c0f2c078:	00 00 00 0a 	ret
+
+c0f2c07c <L92>:
+c0f2c07c:	10 10 a9 59 	addo	g0,4,g5
+c0f2c080:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c084:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c088:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c08c:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c090:	00 50 a5 80 	ldob	(g5),g4
+c0f2c094:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c098:	94 83 a5 58 	or	g4,g6,g4
+c0f2c09c:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c0a0:	94 03 a4 58 	or	g4,g0,g4
+c0f2c0a4:	97 03 a5 58 	or	g7,g4,g4
+c0f2c0a8:	cc 3f 0d 35 	cmpobne	1,g4,c0f2c074 <L85>
+c0f2c0ac:	11 10 aa 59 	addo	g1,8,g5
+c0f2c0b0:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c0b4:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c0b8:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c0bc:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c0c0:	00 50 a5 80 	ldob	(g5),g4
+c0f2c0c4:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c0c8:	94 83 a5 58 	or	g4,g6,g4
+c0f2c0cc:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c0d0:	94 03 a4 58 	or	g4,g0,g4
+c0f2c0d4:	97 03 a5 58 	or	g7,g4,g4
+c0f2c0d8:	9c 3f 05 32 	cmpobe	0,g4,c0f2c074 <L85>
+c0f2c0dc:	11 10 9b 59 	addo	g1,12,g3
+c0f2c0e0:	01 e0 ac 80 	ldob	0x1(g3),g5
+c0f2c0e4:	02 e0 bc 80 	ldob	0x2(g3),g7
+c0f2c0e8:	08 4e ad 59 	shlo	8,g5,g5
+c0f2c0ec:	00 d0 a4 80 	ldob	(g3),g4
+c0f2c0f0:	03 e0 b4 80 	ldob	0x3(g3),g6
+c0f2c0f4:	10 ce bd 59 	shlo	16,g7,g7
+c0f2c0f8:	94 43 a5 58 	or	g4,g5,g4
+c0f2c0fc:	18 8e b5 59 	shlo	24,g6,g6
+c0f2c100:	94 c3 a5 58 	or	g4,g7,g4
+c0f2c104:	96 03 a5 58 	or	g6,g4,g4
+c0f2c108:	8c 19 a8 58 	setbit	12,0,g5
+c0f2c10c:	68 1f ad 34 	cmpobl	g5,g4,c0f2c074 <L85>
+c0f2c110:	11 10 ac 59 	addo	g1,16,g5
+c0f2c114:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c118:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c11c:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c120:	00 50 a5 80 	ldob	(g5),g4
+c0f2c124:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c128:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c12c:	94 83 a5 58 	or	g4,g6,g4
+c0f2c130:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c134:	94 03 a4 58 	or	g4,g0,g4
+c0f2c138:	97 03 a5 58 	or	g7,g4,g4
+c0f2c13c:	8d 19 a8 58 	setbit	13,0,g5
+c0f2c140:	34 1f ad 34 	cmpobl	g5,g4,c0f2c074 <L85>
+c0f2c144:	11 10 ad 59 	addo	g1,20,g5
+c0f2c148:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c14c:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c150:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c154:	00 50 a5 80 	ldob	(g5),g4
+c0f2c158:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c15c:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c160:	94 83 a5 58 	or	g4,g6,g4
+c0f2c164:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c168:	94 03 a4 58 	or	g4,g0,g4
+c0f2c16c:	97 03 a5 58 	or	g7,g4,g4
+c0f2c170:	01 19 a8 59 	subo	1,0,g5
+c0f2c174:	00 1f ad 35 	cmpobne	g5,g4,c0f2c074 <L85>
+c0f2c178:	11 10 ae 59 	addo	g1,24,g5
+c0f2c17c:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c180:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c184:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c188:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c18c:	00 50 a5 80 	ldob	(g5),g4
+c0f2c190:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c194:	94 83 a5 58 	or	g4,g6,g4
+c0f2c198:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c19c:	94 03 a4 58 	or	g4,g0,g4
+c0f2c1a0:	97 03 a5 58 	or	g7,g4,g4
+c0f2c1a4:	d0 3e 05 35 	cmpobne	0,g4,c0f2c074 <L85>
+c0f2c1a8:	11 10 af 59 	addo	g1,28,g5
+c0f2c1ac:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c1b0:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c1b4:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c1b8:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c1bc:	00 50 a5 80 	ldob	(g5),g4
+c0f2c1c0:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c1c4:	94 83 a5 58 	or	g4,g6,g4
+c0f2c1c8:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c1cc:	94 03 a4 58 	or	g4,g0,g4
+c0f2c1d0:	97 03 a5 58 	or	g7,g4,g4
+c0f2c1d4:	a0 3e 05 35 	cmpobne	0,g4,c0f2c074 <L85>
+c0f2c1d8:	1f 58 a8 59 	addo	31,1,g5
+c0f2c1dc:	Address 0x00000000c0f2c1dc is out of bounds.
+
+
+c0f2c1e0 <L19>:
+c0f2c1e0:	15 5c a4 80 	ldob	(g1)[g5],g4
+c0f2c1e4:	15 50 a8 59 	addo	g5,1,g5
+c0f2c1e8:	8c 3e 05 35 	cmpobne	0,g4,c0f2c074 <L85>
+c0f2c1ec:	f4 5f b5 33 	cmpobge	g6,g5,c0f2c1e0 <L19>
+c0f2c1f0:	01 e0 ac 80 	ldob	0x1(g3),g5
+c0f2c1f4:	02 e0 bc 80 	ldob	0x2(g3),g7
+c0f2c1f8:	08 4e ad 59 	shlo	8,g5,g5
+c0f2c1fc:	03 e0 b4 80 	ldob	0x3(g3),g6
+c0f2c200:	00 d0 a4 80 	ldob	(g3),g4
+c0f2c204:	10 ce bd 59 	shlo	16,g7,g7
+c0f2c208:	94 43 a5 58 	or	g4,g5,g4
+c0f2c20c:	18 8e b5 59 	shlo	24,g6,g6
+c0f2c210:	94 c3 a5 58 	or	g4,g7,g4
+c0f2c214:	96 03 a5 58 	or	g6,g4,g4
+c0f2c218:	40 20 ad 8c 	lda	0x40(g4),g5
+c0f2c21c:	00 30 a0 8c 	lda	103f <_buffer_start-0xc0f2afc1>,g4
+c0f2c220:	3f 10 00 00 
+c0f2c224:	18 40 a5 34 	cmpobl	g4,g5,c0f2c23c <L75>
+c0f2c228:	14 16 b0 5c 	mov	g4,g6
+
+c0f2c22c <L26>:
+c0f2c22c:	15 5c a4 80 	ldob	(g1)[g5],g4
+c0f2c230:	15 50 a8 59 	addo	g5,1,g5
+c0f2c234:	40 3e 05 35 	cmpobne	0,g4,c0f2c074 <L85>
+c0f2c238:	f4 5f b5 33 	cmpobge	g6,g5,c0f2c22c <L26>
+
+c0f2c23c <L75>:
+c0f2c23c:	00 74 b4 8c 	lda	3050 <_buffer_start-0xc0f28fb0>(g1),g6
+c0f2c240:	50 30 00 00 
+c0f2c244:	00 1e a8 5c 	mov	0,g5
+c0f2c248:	a5 00 b8 8c 	lda	0xa5,g7
+c0f2c24c:	Address 0x00000000c0f2c24c is out of bounds.
+
+
+c0f2c250 <L33>:
+c0f2c250:	00 b4 a5 80 	ldob	ffffdff0 <L93+0x3f0d1ba8>(g6),g4
+c0f2c254:	f0 df ff ff 
+c0f2c258:	15 50 a8 59 	addo	g5,1,g5
+c0f2c25c:	18 1e bd 35 	cmpobne	g7,g4,c0f2c074 <L85>
+c0f2c260:	00 90 a5 80 	ldob	(g6),g4
+c0f2c264:	16 50 b0 59 	addo	g6,1,g6
+c0f2c268:	0c 1e 85 35 	cmpobne	g0,g4,c0f2c074 <L85>
+c0f2c26c:	e4 7f 7d 33 	cmpobge	15,g5,c0f2c250 <L33>
+c0f2c270:	00 74 b4 8c 	lda	1050 <_buffer_start-0xc0f2afb0>(g1),g6
+c0f2c274:	50 10 00 00 
+c0f2c278:	00 1e a8 5c 	mov	0,g5
+c0f2c27c:	cc 00 80 8c 	lda	0xcc,g0
+c0f2c280:	00 30 b8 8c 	lda	1fff <_buffer_start-0xc0f2a001>,g7
+c0f2c284:	ff 1f 00 00 
+
+c0f2c288 <L39>:
+c0f2c288:	00 90 a5 80 	ldob	(g6),g4
+c0f2c28c:	15 50 a8 59 	addo	g5,1,g5
+c0f2c290:	16 50 b0 59 	addo	g6,1,g6
+c0f2c294:	e0 1d 85 35 	cmpobne	g0,g4,c0f2c074 <L85>
+c0f2c298:	f0 5f bd 33 	cmpobge	g7,g5,c0f2c288 <L39>
+c0f2c29c:	11 10 ab 59 	addo	g1,12,g5
+c0f2c2a0:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c2a4:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c2a8:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c2ac:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c2b0:	00 50 a5 80 	ldob	(g5),g4
+c0f2c2b4:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c2b8:	94 83 a5 58 	or	g4,g6,g4
+c0f2c2bc:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c2c0:	94 03 a4 58 	or	g4,g0,g4
+c0f2c2c4:	97 03 9d 58 	or	g7,g4,g3
+c0f2c2c8:	0c e0 04 32 	cmpobe	0,g3,c0f2c2d4 <L42>
+c0f2c2cc:	40 60 2c 80 	ldob	0x40(g1),r5
+c0f2c2d0:	90 60 09 33 	cmpobge	1,r5,c0f2c360 <L41>
+
+c0f2c2d4 <L42>:
+c0f2c2d4:	11 10 a5 59 	addo	g1,20,g4
+c0f2c2d8:	01 1e a8 5c 	mov	1,g5
+
+c0f2c2dc <L91>:
+c0f2c2dc:	00 10 ad 82 	stob	g5,(g4)
+c0f2c2e0:	Address 0x00000000c0f2c2e0 is out of bounds.
+
+
+c0f2c2e4 <L44>:
+c0f2c2e4:	01 20 f5 82 	stob	g14,0x1(g4)
+c0f2c2e8:	02 20 f5 82 	stob	g14,0x2(g4)
+c0f2c2ec:	18 4c af 59 	shro	24,g13,g5
+c0f2c2f0:	11 10 a6 59 	addo	g1,24,g4
+c0f2c2f4:	08 4c b7 59 	shro	8,g13,g6
+c0f2c2f8:	10 4c bf 59 	shro	16,g13,g7
+c0f2c2fc:	03 20 ad 82 	stob	g5,0x3(g4)
+c0f2c300:	01 20 b5 82 	stob	g6,0x1(g4)
+c0f2c304:	02 20 bd 82 	stob	g7,0x2(g4)
+c0f2c308:	00 10 ed 82 	stob	g13,(g4)
+c0f2c30c:	11 10 aa 59 	addo	g1,8,g5
+c0f2c310:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c314:	02 60 bd 80 	ldob	0x2(g5),g7
+c0f2c318:	03 60 85 80 	ldob	0x3(g5),g0
+c0f2c31c:	00 50 a5 80 	ldob	(g5),g4
+c0f2c320:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c324:	10 ce bd 59 	shlo	16,g7,g7
+c0f2c328:	94 83 a5 58 	or	g4,g6,g4
+c0f2c32c:	18 0e 84 59 	shlo	24,g0,g0
+c0f2c330:	94 c3 a5 58 	or	g4,g7,g4
+c0f2c334:	90 03 a5 58 	or	g0,g4,g4
+c0f2c338:	10 0c 85 59 	shro	16,g4,g0
+c0f2c33c:	11 10 af 59 	addo	g1,28,g5
+c0f2c340:	18 0c b5 59 	shro	24,g4,g6
+c0f2c344:	08 0c bd 59 	shro	8,g4,g7
+c0f2c348:	02 60 85 82 	stob	g0,0x2(g5)
+c0f2c34c:	03 60 b5 82 	stob	g6,0x3(g5)
+c0f2c350:	01 60 bd 82 	stob	g7,0x1(g5)
+c0f2c354:	00 50 a5 82 	stob	g4,(g5)
+c0f2c358:	00 1e 80 5c 	mov	0,g0
+c0f2c35c:	00 00 00 0a 	ret
+
+c0f2c360 <L41>:
+c0f2c360:	13 50 26 59 	addo	g3,25,r4
+c0f2c364:	08 60 01 32 	cmpobe	0,r5,c0f2c36c <L46>
+c0f2c368:	07 de 23 59 	shlo	7,15,r4
+
+c0f2c36c <L46>:
+c0f2c36c:	11 10 ac 59 	addo	g1,16,g5
+c0f2c370:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c374:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c378:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c37c:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c380:	00 50 a5 80 	ldob	(g5),g4
+c0f2c384:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c388:	94 83 a5 58 	or	g4,g6,g4
+c0f2c38c:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c390:	94 03 a4 58 	or	g4,g0,g4
+c0f2c394:	97 03 a5 58 	or	g7,g4,g4
+c0f2c398:	b0 00 25 31 	cmpobg	r4,g4,c0f2c448 <L93>
+c0f2c39c:	18 4e a1 59 	shlo	24,r5,g4
+c0f2c3a0:	5c 20 05 32 	cmpobe	0,g4,c0f2c3fc <L50>
+c0f2c3a4:	00 1e b0 5c 	mov	0,g6
+c0f2c3a8:	04 5e 81 59 	shlo	4,5,g0
+c0f2c3ac:	4f 00 20 8c 	lda	0x4f,r4
+c0f2c3b0:	Address 0x00000000c0f2c3b0 is out of bounds.
+
+
+c0f2c3b4 <L57>:
+c0f2c3b4:	10 84 ad 70 	remo	g0,g6,g5
+c0f2c3b8:	90 85 a5 70 	divo	g0,g6,g4
+c0f2c3bc:	1f 18 b9 59 	addo	31,4,g7
+c0f2c3c0:	1c 20 05 32 	cmpobe	0,g4,c0f2c3dc <L56>
+c0f2c3c4:	18 20 bd 32 	cmpobe	23,g4,c0f2c3dc <L56>
+c0f2c3c8:	14 60 05 32 	cmpobe	0,g5,c0f2c3dc <L56>
+c0f2c3cc:	14 40 a5 59 	addo	g4,g5,g4
+c0f2c3d0:	1a 0c a5 70 	remo	26,g4,g4
+c0f2c3d4:	08 40 25 32 	cmpobe	r4,g5,c0f2c3dc <L56>
+c0f2c3d8:	Address 0x00000000c0f2c3d8 is out of bounds.
+
+
+c0f2c3dc <L56>:
+c0f2c3dc:	16 9c bc 82 	stob	g7,(g2)[g6]
+c0f2c3e0:	07 de eb 59 	shlo	7,15,g13
+c0f2c3e4:	16 50 b0 59 	addo	g6,1,g6
+c0f2c3e8:	cc 9f 9d 33 	cmpobge	g3,g6,c0f2c3b4 <L57>
+
+c0f2c3ec <L58>:
+c0f2c3ec:	11 10 a5 59 	addo	g1,20,g4
+c0f2c3f0:	03 20 f5 82 	stob	g14,0x3(g4)
+c0f2c3f4:	00 10 f5 82 	stob	g14,(g4)
+c0f2c3f8:	ec fe ff 08 	b	c0f2c2e4 <L44>
+
+c0f2c3fc <L50>:
+c0f2c3fc:	00 30 a8 80 	ldob	c0f2c010 <LC0>,g5
+c0f2c400:	10 c0 f2 c0 
+c0f2c404:	18 60 05 32 	cmpobe	0,g5,c0f2c41c <L83>
+
+c0f2c408 <L62>:
+c0f2c408:	1d 9c ac 82 	stob	g5,(g2)[g13]
+c0f2c40c:	1d 50 e8 59 	addo	g13,1,g13
+c0f2c410:	00 74 af 80 	ldob	c0f2c010 <LC0>(g13),g5
+c0f2c414:	10 c0 f2 c0 
+c0f2c418:	f0 7f 05 35 	cmpobne	0,g5,c0f2c408 <L62>
+
+c0f2c41c <L83>:
+c0f2c41c:	01 1e b0 5c 	mov	1,g6
+c0f2c420:	cc 9f 9d 36 	cmpoble	g3,g6,c0f2c3ec <L58>
+c0f2c424:	Address 0x00000000c0f2c424 is out of bounds.
+
+
+c0f2c428 <L67>:
+c0f2c428:	00 50 a5 80 	ldob	(g5),g4
+c0f2c42c:	16 50 b0 59 	addo	g6,1,g6
+c0f2c430:	05 08 a5 58 	notbit	5,g4,g4
+c0f2c434:	1d 9c a4 82 	stob	g4,(g2)[g13]
+c0f2c438:	1d 50 e8 59 	addo	g13,1,g13
+c0f2c43c:	15 50 a8 59 	addo	g5,1,g5
+c0f2c440:	e8 9f 9d 31 	cmpobg	g3,g6,c0f2c428 <L67>
+c0f2c444:	a8 ff ff 08 	b	c0f2c3ec <L58>
+
+c0f2c448 <L93>:
+c0f2c448:	11 10 a5 59 	addo	g1,20,g4
+c0f2c44c:	02 1e a8 5c 	mov	2,g5
+c0f2c450:	8c fe ff 08 	b	c0f2c2dc <L91>
+	...

@@ -1,0 +1,66 @@
+{
+  "tests": [
+    {
+      "test": "open-001ms",
+      "restored": true
+    },
+    {
+      "test": "open-020ms",
+      "restored": true
+    },
+    {
+      "test": "open-050ms",
+      "restored": true
+    },
+    {
+      "test": "open-075ms",
+      "restored": true
+    },
+    {
+      "test": "step-001ms",
+      "restored": true
+    },
+    {
+      "test": "step-010ms",
+      "restored": true
+    },
+    {
+      "test": "step-025ms",
+      "restored": true
+    },
+    {
+      "test": "step-040ms",
+      "restored": true
+    },
+    {
+      "test": "step-060ms",
+      "restored": true
+    },
+    {
+      "test": "close-001ms",
+      "restored": true
+    },
+    {
+      "test": "close-030ms",
+      "restored": true
+    },
+    {
+      "test": "close-060ms",
+      "restored": true
+    },
+    {
+      "test": "close-100ms",
+      "restored": true
+    },
+    {
+      "test": "protocol-and-module-ownership",
+      "restored": true
+    },
+    {
+      "test": "last-inherited-descriptor",
+      "restored": true
+    }
+  ],
+  "unloaded": true,
+  "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b"
+}

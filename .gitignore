@@ -28,3 +28,16 @@ host/dump/modules.order
 
 # Preserve these exact historical target builds as archaeological evidence.
 !artifacts/remote-audit-20261010/loader-build/*.elf
+loader/postinit/*.bin
+loader/postinit/*.map
+loader/postinit/*.dis
+loader/postinit/loadctl
+loader/postinit/test_profile
+!artifacts/postinit-prototype-20261010/*.elf
+!artifacts/postinit-preflight-20261010/*.elf
+!artifacts/live-handoff-20261010/*.elf
+!artifacts/stockhook-20261010/*.elf
+!artifacts/romhook-20261010/*.elf
+
+# Explicitly preserved historical ELF builds from the final remote audit.
+!artifacts/preservation-audit-20261011/**/*.elf

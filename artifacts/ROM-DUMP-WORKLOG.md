@@ -1,5 +1,55 @@
 # ROM dumping work log and findings
 
+**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](../FIRMWARE-PROGRAMMED.md).**
+One 2B/1 programming command succeeded; paired full flash readbacks match
+candidate SHA256 `a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0`.
+After reboot, table C001F9BC points to FEFE001C and two 6F commands returned
+017E; stock health checks passed. Probe unloaded. The card is no longer stock;
+use the postboot validator, not old stock-preimage rehearsals. Recovery untested.
+Evidence: `artifacts/programmed-rom-20261010/` from repository root. Older
+pre-programming sections below are historical and superseded by this result.
+
+
+Latest: [one-shot programming harness](../ONE-SHOT-PROGRAMMING.md) is implemented in `host/program/`
+(repository-root relative). Native transport/failure tests and a 105-command live
+RAM-only rehearsal passed. Wrong activation token rejected before driver
+registration; no programming doorbell issued. Full stock RAM restored and probe
+unloaded. Exact binaries/captures are in `artifacts/one-shot-harness-20261010/`.
+Actual flash programming, post-program physical readback and patched boot remain
+untested. Recovery testing remains excluded.
+
+
+Latest (2026-10-10): [programming preflight and live CPU verification](../PROGRAMMING-PREFLIGHT.md)
+passed. The CPU read all 512 KiB of the candidate through programmer alias
+C1F2C000 with explicit cache invalidation and matched CRC32 2012D01F. All 105
+commands completed cleanly; original staging/table/code restored, probe unloaded.
+The descriptor policy and bytewise post-program flash-readback route are now
+documented. Next implement the one-shot programming state machine and its
+failure tests. No flash programming or recovery test occurred. Exact evidence
+is in `artifacts/programming-preflight-20261010/` from the repository root.
+
+
+## Live staging rehearsal — 2026-10-10
+
+[Live staging rehearsal — 2026-10-10](../STAGING-REHEARSAL.md) passed: six full 512 KiB captures verify the original
+stock image, the patched candidate in RAM, and complete stock restoration.
+All 74 commands completed cleanly; probe unloaded. Exact binaries, source,
+logs and validation are in `artifacts/staging-rehearsal-20261010/` (relative
+to the repository root). No flash programming or recovery test occurred.
+
+
+## Later live execution result — 2026-10-10
+
+[ROM-FETCH-LIVE.md](../ROM-FETCH-LIVE.md) records the completed RAM-dispatch
+and post-startup flash-fetch work. A wrapped `0x21` offset changed `0x6F`'s
+RAM table word; target-built callbacks returned `017E` and `017F`. One early
+flash call timed out because the disassembly label `FEFC8208` was not the
+physical address of those bytes in the saved 512 KiB image. Read-only live
+windows established the 8-bit flash-bus low-lane mapping. A corrected call to
+the stock `RET` at `FEFB022C` returned successfully after startup; stock
+dispatch and all altered RAM were restored. No flash programming or recovery
+check occurred. The new `FEFE001C` handler remains unflashed.
+
 Current result, 2026-10-10: the card remained installed in the PC and yielded a
 validated 512 KiB software snapshot. The main firmware is exactly 4.07-0-29.
 All source packages, ROMs and capture sessions are now stored locally; start with
@@ -120,3 +170,200 @@ BIOS disassembly, old probe source and exact acquisition/target builds. See
 [the audit report](remote-audit-20261010/README.md). No modified original files
 were found in GCC 3.3.6 or binutils 2.27 sources compared with their upstream
 tarballs. The important firmware and capture data were already local.
+
+## Offline loader prototype
+
+Recovered the installed boot block's metadata-based copy/decompression/handoff
+path and direct DRAM-controller writes. Built a separate experimental loader
+image preserving the stock boot block and compressed program. The prototype
+patches a RAM instruction after early PCI setup, then accepts DRAM payloads.
+Details, validation and outstanding hardware gates: [POSTINIT-LOADER.md](../POSTINIT-LOADER.md). No flash writes or custom execution occurred.
+
+## Live-test preparation, revision 2
+
+Read-only PCI preflight passed on the remote host. Archived the v2 candidate,
+preflight JSON and build evidence in `postinit-preflight-20261010/`; the first
+prototype remains preserved. See [LIVE-TEST-PREFLIGHT.md](../LIVE-TEST-PREFLIGHT.md)
+for the earlier hook, ROM suppression, DMA guard and unresolved installation gates.
+No custom code has executed on the card.
+
+## Programming audit and offline MIMG — 2026-10-10
+
+Archived `postinit-update-20261010/`: experimental firmware component, manifest, programming map and evidence excerpts. The candidate reconstructs exactly; 14 Python tests and the native dispatcher test passed. The matching programming route rewrites lower 496 KiB, with boot block conditional. No remote or flash operation occurred. See [PROGRAMMING-RECOVERY.md](../PROGRAMMING-RECOVERY.md).
+
+## Boot-block recovery analysis — 2026-10-10
+
+`boot-recovery-20261010/` contains the extracted 0x2A00-byte recovery monitor, relocated disassembly, evidence excerpts and offline audit. Descriptor/bootstrap-checksum failures reach this monitor; it sets PCI ID 1069:0011 and supports 20/21/2B commands. No hardware entry or programming was attempted. Native test plus 18 Python tests passed. See [BOOT-RECOVERY.md](../BOOT-RECOVERY.md).
+
+## SSH recovery-entry investigation — 2026-10-10
+
+Archived `ssh-recovery-investigation-20261010/` with read-only live preflight and static evidence. Device remains normal-mode 1069:0010. Traced an unchecked staging-relative address-add lead; staging address and safe handoff remain unknown. No hardware writes or flash. Serial setup instructions and investigation status are in [SSH-RECOVERY-ENTRY.md](../SSH-RECOVERY-ENTRY.md).
+
+## Staging allocator and live control — 2026-10-10
+
+`staging-allocation-20261010/` archives fresh Enquiry2 and paired offset-zero reads, allocator evidence and the checked geometry report. Predicted staging base C0F2C000 remains unobserved directly. Three bounded control runs completed cleanly; the first two exports failed locally, as documented in [STAGING-ALLOCATION.md](../STAGING-ALLOCATION.md). Native test and 21 Python tests passed. No out-of-window read, upload or flash.
+
+## Live staging pointer confirmed — 2026-10-10
+
+`staging-pointer-20261010/` archives the six-command transcript, all captures, exact source/header, compiled module and verification report. Two four-byte reads returned C0F2C000 at the derived C0112A70 address; all statuses and guards clean, pending=0. Module removed, card driverless. No upload/execution/flash. See [STAGING-POINTER-VERIFIED.md](../STAGING-POINTER-VERIFIED.md).
+
+## Runtime code and board callbacks verified — 2026-10-10
+
+`runtime-read-20261010/` preserves initial and hardened captures, exact executed sources and modules. The paired reads verified C004A2E0 entry bytes, board C0110780, alias C1000000 and the active callbacks. Both 13-command runs completed cleanly; module removed, card driverless. Native guard and 17 Python tests passed. No upload, execution, recovery or flash. See [RUNTIME-READ-VERIFIED.md](../RUNTIME-READ-VERIFIED.md).
+
+## Reversible RAM upload verified — 2026-10-10
+
+`ram-scratch-20261010/` archives exact executed source/headers/module, 20 capture blobs, 22-command transcript and verification. Sixteen bytes at C0FAC010 were uploaded, read back and restored; paired surrounding 64-byte reads verified no neighboring changes. Status/guards clean; pending=0, scratch-dirty=0. Module removed; card driverless. Two native guard tests and 20 Python tests passed. No execution/recovery/flash. See [RAM-WRITE-VERIFIED.md](../RAM-WRITE-VERIFIED.md).
+
+## Live execution handoff boundary — 2026-10-10
+
+This historical boundary was superseded by the later wrapped-offset live
+callback experiment at the top of this log.
+
+Reviewed the stock dispatcher and every relevant board callback after the RAM
+write result. Host opcode 0x21 reaches only the staging-relative upload handler;
+the dispatcher uses fixed firmware continuations and offers no live callback-table
+write or branch-to-staging command. `live-handoff-20261010/` preserves a 20-byte
+i960 return-status callback linked at C0FAC100, built with the archived target
+toolchain and verified byte-for-byte. It was not uploaded or executed. See
+[LIVE-EXECUTION-HANDOFF.md](../LIVE-EXECUTION-HANDOFF.md).
+
+## Offline stock-preserving command hook — 2026-10-10
+
+`stockhook-20261010/` preserves an 84-byte target-built metadata hook and a
+524,288-byte candidate image. It copies a returning PING handler to candidate
+DRAM C0120000, replaces unsupported opcode 0x6F in the decompressed RAM
+dispatch table, and branches to the original stock entry. Only padding and
+the metadata entry/checksum differ from the pinned dump (76 bytes). Two offline
+tests passed. No card execution or flash operation occurred. See
+[STOCK-PRESERVING-HOOK.md](../STOCK-PRESERVING-HOOK.md).
+
+## Handler storage audit and ROM successor — 2026-10-10
+
+`dram-hook-audit-20261010/` archives a clean 15-command fixed read, including
+two 64-byte zero snapshots of C0120000. The installed bootstrap clears the
+site before the hook, and the reviewed allocator starts at C0140000, but
+indirect later use is not excluded. Further disassembly found three stock
+flash/error paths that free the staging allocation and clear its pointer,
+so its extra block cannot safely host a permanent dispatch-table target.
+
+Built a second offline image in `romhook-20261010/`: a 48-byte metadata hook
+points opcode 0x6F to a 20-byte PING handler in verified flash padding at
+FEFE001C. The new raw image differs from stock in 48 bytes, preserving the
+boot block, BIOS, descriptor, bootstrap and compressed program. Both image
+test suites passed. Post-startup ROM instruction fetch, cache visibility,
+recovery and programming interaction remain untested; no card write or custom
+execution occurred. See [ROM-HANDLER-STEP3.md](../ROM-HANDLER-STEP3.md).
+
+## 2026-10-10 — Runtime software loader implemented and exercised
+
+Implemented `host/loadrun` and `loader/runtime`; see [SOFTWARE-LOADER.md](../SOFTWARE-LOADER.md).
+Uploaded and ran Fibonacci(10)=55, Fibonacci(20)=6765, then a distinct rotate/XOR
+program returning 0x8c2f3b20, all in boot a9429ca4-0144-452d-8a80-7189608ce99b.
+Each transaction completed 110 commands and restored the complete staging image,
+PING dispatch and temporary code/result RAM. Enquiry2 passed; probes unloaded.
+No reboot or flash programming was needed. Added CLI, bounded 64 KiB payload ABI,
+one-shot execution/self-disarm, failure tests and evidence validation. Native
+ASan/UBSan model covered 194 command-boundary faults. Existing loader tests pass.
+Artifacts: software-loader-20261010/. Recovery remains excluded/untested.
+
+## 2026-10-10 — T1 text/framebuffer output passed on hardware
+
+Added opt-in BIO1 input/output blocks to the returning loader. Four runs returned
+text/transformed input, a full 24×80 frame, a clean insufficient-capacity error,
+and different text after the error. Each completed 128 commands with paired output
+capture, immutable-region checks, full restoration and clean unload. Scalar
+Fibonacci(20)=6765 still passed with the updated module (110 commands). No reboot
+or flash write; same boot as previous loader runs. Independent checks validate all
+returned bytes. Native tests cover 230 buffer and 194 scalar command-boundary
+faults, six response corruptions, request/response bounds and live captures.
+See ../BUFFER-IO.md and buffer-io-20261010/. Next is T2, cooperative Tetris steps.
+
+## 2026-10-10 — T2 bounded Tetris runs on the card
+
+Refactored the game into explicit state/init/update/render with a 20-tick limit.
+BIO1 transports a 256-byte request and 2,160-byte state/frame response. A 4,064-byte
+payload passed nine live transactions: init, left, rotation, drop, quit, restart,
+two-line clear, game over and excessive-tick rejection. Every output byte matched
+a native oracle; all 128-command transactions restored RAM and unloaded. No
+reboot/flash. Native sanitizer and i960 interpreter tests agree over 1,024
+transitions and gameplay/bounds cases. Added missing interpreter setbit support
+and failure exit for unsupported instructions; separate instruction tests pass.
+See ../TETRIS-STEP.md and tetris-t2-20261010/. T3 long live replay and T4 terminal
+play remain planned; nine acceptance calls are not an interactive session.
+
+## 2026-10-10 — T3 long replay and latency passed
+
+Ran 1,000 deterministic returning Tetris calls, then a separate 64-call repeat;
+1,037 were actual updates, the remainder initializations/quits. Every state/frame
+matched native reference bytes, with clean guards, complete restoration and
+unload. Same boot, no flash/reset. Main replay: 466.56 s including evidence
+archive verification; full CLI median 306.27 ms, payload command mean 6.18 ms.
+The conservative path is ~3.26 updates/s, so 20 Hz needs the planned session
+optimization. All captures are preserved losslessly and independently checked
+locally. See ../TETRIS-REPLAY.md and tetris-t3-20261010/. T4 interactive play remains.
+
+## 2026-10-10 — T5 persistent BIO1 session
+
+Implemented kernel-owned OPEN/STEP/CLOSE in `host/session/`, retaining the stock
+firmware between bounded callbacks and exclusive file ownership. The existing
+one-shot module remains available. First conservative persistent smoke averaged
+63.85 ms; narrowing routine audits to the entire code/BIO payload and avoiding
+redundant inter-frame cache handshakes gave 41.52 ms mean in a 1,000-call replay.
+Every returned Tetris state/frame matched the native oracle. A separately paced
+400-call run sustained 20.007 Hz, with 13 late frames, maximum lateness 5.84 ms.
+
+Paired payload/code audits occur every call, full staging audits every 32 calls
+and at close, followed by full paired restoration/hash checks. The tradeoff is
+up to 31 calls' delayed detection outside the payload. All borrowed table/code/
+result regions were restored too. No flash command and no reboot; boot ID stayed
+`a9429ca4-0144-452d-8a80-7189608ce99b`.
+
+Thirteen SIGKILL delay cases during open/step/close, protocol ownership tests and
+last-inherited-descriptor cleanup passed twice. Native ASan/UBSan exercised 292
+command-boundary failures plus stale/malformed and output-corruption cases;
+existing 194 scalar/230 BIO fault cases still pass. Hardware completion failures
+were not deliberately induced. Full Mac reconstruction checked the long replay,
+paced output, and all 30 restoration captures. Module unloaded, card driverless.
+
+Evidence and exact binaries: `artifacts/tetris-t5-20261010/`; design and limits:
+`PERSISTENT-SESSION.md`. STORY.md gained Act XIX; Claude guidance and the Tetris
+plan now mark T5 complete. T4 terminal interaction/30-minute test remains next.
+
+## 2026-10-10 — T4 playable SSH terminal and 30-minute acceptance
+
+Added `host/session/terminal.py` and installed
+`/home/mit/i960-tetris-t4/play.sh`. Letter/arrow controls, Space/drop, restart,
+urgent quit/Ctrl-C, 32-action input queue, elapsed 50 ms ticks with capped
+catch-up, ASCII-only differential rendering and terminal-size pause are working.
+The frontend manages the existing T5 session/module and saves evidence on exit.
+
+Real `ssh -tt` automated play ran for 1,800.236 seconds: 35,846 frames, 68
+restarts, 19.91 Hz. Median call 42.33 ms; p95 43.54 ms; maximum 59.06 ms.
+Host/SSH scheduling was not perfectly periodic: 2,971 late frames, maximum
+lateness 380.43 ms, 159 skipped render slots; no dropped simulation ticks.
+The input flood deliberately dropped 96 actions. Every frame matched the native
+C game independently on the Mac. Phase counts (running/game-over/quit) were
+15,733 / 20,112 / 1; restarts were periodic scripted input, not human play.
+
+Additional native-matching tests: 244-frame smoke/normal quit, 102-frame real
+SSH connection loss (remote EOF), 64-frame reconnect/Ctrl-C, and 124-frame
+installed-launcher resize/pause/resume/quit. All five sessions restored full
+staging/table/helper/runner/result RAM and unloaded. Normal SSH exits preserved
+remote `stty -g`; frontend tests also cover exception restoration on Linux/Mac.
+No flash write or reboot; same boot as T5. Card left driverless and ready to play.
+
+All 36,380 frame comparisons, exact binaries, sources, ANSI/key traces and
+captures are in `artifacts/tetris-t4-20261010/`. TETRIS-TERMINAL.md gives the
+one-line play command. STORY.md gained Act XX, and Claude guidance/plan now mark
+T4 complete. RTEMS and recovery remain separate work.
+
+## Preservation audit — 2026-10-11
+
+[Final audit](preservation-audit-20261011/README.md) reconciles 7,859 remote
+project files and preserves 41 missing historical files. The exact compiler
+installation and original upstream sources are in [toolchain-20261011](toolchain-20261011/README.md).
+A separately observed terminal session completed during collection: all 2,224
+frames independently matched, full RAM restoration and unload passed. No card
+commands, reboot or programming were performed by the audit. See
+[the current findings index](../CURRENT-FINDINGS.md) for remaining unknowns.

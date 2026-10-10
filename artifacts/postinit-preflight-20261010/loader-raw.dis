@@ -1,0 +1,212 @@
+
+/home/mit/i960-postinit-20261010/postinit/loader.bin:     file format binary
+
+
+Disassembly of section .data:
+
+fefe0000 <.data>:
+fefe0000:	00 3a 00 5b 	intdis
+fefe0004:	00 30 80 8c 	lda	0x84003000,g0
+fefe0008:	00 30 00 84 
+fefe000c:	00 30 80 92 	st	g0,0xc004e834
+fefe0010:	34 e8 04 c0 
+fefe0014:	00 30 80 8c 	lda	0xfefe0034,g0
+fefe0018:	34 00 fe fe 
+fefe001c:	00 30 80 92 	st	g0,0xc004e838
+fefe0020:	38 e8 04 c0 
+fefe0024:	82 1d 80 65 	icctl	2,0,g0
+fefe0028:	00 1e f0 5c 	mov	0,g14
+fefe002c:	00 30 00 84 	bx	0xc004a2e0
+fefe0030:	e0 a2 04 c0 
+fefe0034:	00 3a 00 5b 	intdis
+fefe0038:	00 1e f0 5c 	mov	0,g14
+fefe003c:	00 1e 80 65 	dcctl	0,0,g0
+fefe0040:	82 1d 80 65 	icctl	2,0,g0
+fefe0044:	00 30 f0 92 	st	g14,0xff000308
+fefe0048:	08 03 00 ff 
+fefe004c:	00 30 f0 92 	st	g14,0xff000318
+fefe0050:	18 03 00 ff 
+fefe0054:	00 30 f0 92 	st	g14,0x1274
+fefe0058:	74 12 00 00 
+fefe005c:	ff 00 80 8c 	lda	0xff,g0
+fefe0060:	00 30 80 92 	st	g0,0x1334
+fefe0064:	34 13 00 00 
+fefe0068:	00 30 80 90 	ld	0x1404,g0
+fefe006c:	04 14 00 00 
+fefe0070:	00 30 88 90 	ld	0x1444,g1
+fefe0074:	44 14 00 00 
+fefe0078:	00 30 90 90 	ld	0x1484,g2
+fefe007c:	84 14 00 00 
+fefe0080:	90 43 9c 58 	or	g0,g1,g3
+fefe0084:	92 c3 9c 58 	or	g2,g3,g3
+fefe0088:	54 e0 54 37 	bbs	10,g3,0xfefe00dc
+fefe008c:	00 30 f0 92 	st	g14,0x1400
+fefe0090:	00 14 00 00 
+fefe0094:	00 30 f0 92 	st	g14,0x1440
+fefe0098:	40 14 00 00 
+fefe009c:	00 30 f0 92 	st	g14,0x1480
+fefe00a0:	80 14 00 00 
+fefe00a4:	00 30 80 90 	ld	0x1404,g0
+fefe00a8:	04 14 00 00 
+fefe00ac:	00 30 88 90 	ld	0x1444,g1
+fefe00b0:	44 14 00 00 
+fefe00b4:	00 30 90 90 	ld	0x1484,g2
+fefe00b8:	84 14 00 00 
+fefe00bc:	90 43 9c 58 	or	g0,g1,g3
+fefe00c0:	92 c3 9c 58 	or	g2,g3,g3
+fefe00c4:	18 e0 54 37 	bbs	10,g3,0xfefe00dc
+fefe00c8:	08 00 80 8c 	lda	0x8,g0
+fefe00cc:	00 30 80 8a 	stos	g0,0x1040
+fefe00d0:	40 10 00 00 
+fefe00d4:	3c 00 00 09 	call	0xfefe0110
+fefe00d8:	00 00 00 08 	b	0xfefe00d8
+fefe00dc:	00 30 98 92 	st	g3,0x131c
+fefe00e0:	1c 13 00 00 
+fefe00e4:	00 30 80 8c 	lda	0x60ef,g0
+fefe00e8:	ef 60 00 00 
+fefe00ec:	00 30 80 92 	st	g0,0x1318
+fefe00f0:	18 13 00 00 
+fefe00f4:	08 00 80 8c 	lda	0x8,g0
+fefe00f8:	00 30 80 8a 	stos	g0,0x1040
+fefe00fc:	40 10 00 00 
+fefe0100:	d8 ff ff 08 	b	0xfefe00d8
+	...
+fefe0110:	10 48 08 59 	addo	16,sp,sp
+fefe0114:	00 30 a0 90 	ld	0x1314,g4
+fefe0118:	14 13 00 00 
+fefe011c:	00 30 a8 8c 	lda	0x600d,g5
+fefe0120:	0d 60 00 00 
+fefe0124:	10 0c a5 59 	shro	16,g4,g4
+fefe0128:	48 e0 f7 92 	st	g14,0x48(fp)
+fefe012c:	40 e0 a7 92 	st	g4,0x40(fp)
+fefe0130:	44 e0 f7 92 	st	g14,0x44(fp)
+fefe0134:	00 30 f0 92 	st	g14,0x131c
+fefe0138:	1c 13 00 00 
+fefe013c:	40 e0 a7 90 	ld	0x40(fp),g4
+fefe0140:	10 0e a5 59 	shlo	16,g4,g4
+fefe0144:	95 03 a5 58 	or	g5,g4,g4
+fefe0148:	00 30 a0 92 	st	g4,0x1318
+fefe014c:	18 13 00 00 
+fefe0150:	40 e0 a7 90 	ld	0x40(fp),g4
+fefe0154:	00 30 a8 90 	ld	0x1314,g5
+fefe0158:	14 13 00 00 
+fefe015c:	10 4c 25 59 	shro	16,g5,r4
+fefe0160:	f4 1f a1 32 	cmpobe	g4,r4,0xfefe0154
+fefe0164:	00 30 28 90 	ld	0x1310,r5
+fefe0168:	10 13 00 00 
+fefe016c:	00 30 88 8c 	lda	0xffff,g1
+fefe0170:	ff ff 00 00 
+fefe0174:	40 e0 87 8c 	lda	0x40(fp),g0
+fefe0178:	95 40 8c 58 	and	g5,g1,g1
+fefe017c:	05 16 90 5c 	mov	r5,g2
+fefe0180:	00 30 00 86 	callx	0xfefe01d0
+fefe0184:	d0 01 fe fe 
+fefe0188:	40 e0 27 92 	st	r4,0x40(fp)
+fefe018c:	00 30 a8 8c 	lda	0x600e,g5
+fefe0190:	0e 60 00 00 
+fefe0194:	28 00 ac 32 	cmpobe	g5,g0,0xfefe01bc
+fefe0198:	40 e0 a7 90 	ld	0x40(fp),g4
+fefe019c:	10 0e a5 59 	shlo	16,g4,g4
+fefe01a0:	90 03 a5 58 	or	g0,g4,g4
+fefe01a4:	00 30 a0 92 	st	g4,0x1318
+fefe01a8:	18 13 00 00 
+fefe01ac:	a4 1f ac 35 	cmpobne	g5,g0,0xfefe0150
+fefe01b0:	82 1d 88 65 	icctl	2,0,g1
+fefe01b4:	00 50 01 86 	callx	(r5)
+fefe01b8:	00 00 00 08 	b	0xfefe01b8
+fefe01bc:	00 30 f0 92 	st	g14,0x131c
+fefe01c0:	1c 13 00 00 
+fefe01c4:	d4 ff ff 08 	b	0xfefe0198
+	...
+fefe01d0:	00 30 f0 8c 	lda	0xfefe033c,g14
+fefe01d4:	3c 03 fe fe 
+fefe01d8:	1e 16 98 5c 	mov	g14,g3
+fefe01dc:	00 1e f0 5c 	mov	0,g14
+fefe01e0:	84 60 44 34 	cmpobl	8,g1,0xfefe0264
+fefe01e4:	11 39 a0 90 	ld	0xfefe01f0[g1*4],g4
+fefe01e8:	f0 01 fe fe 
+fefe01ec:	00 10 05 84 	bx	(g4)
+fefe01f0:	64 02 fe fe 	.word	0xfefe0264
+fefe01f4:	5c 02 fe fe 	.word	0xfefe025c
+fefe01f8:	14 02 fe fe 	.word	0xfefe0214
+fefe01fc:	6c 02 fe fe 	.word	0xfefe026c
+fefe0200:	04 03 fe fe 	.word	0xfefe0304
+fefe0204:	b4 02 fe fe 	.word	0xfefe02b4
+fefe0208:	14 02 fe fe 	.word	0xfefe0214
+fefe020c:	e8 02 fe fe 	.word	0xfefe02e8
+fefe0210:	04 03 fe fe 	.word	0xfefe0304
+fefe0214:	08 20 f4 92 	st	g14,0x8(g0)
+fefe0218:	04 20 f4 92 	st	g14,0x4(g0)
+fefe021c:	0c 60 14 32 	cmpobe	2,g1,0xfefe0228
+fefe0220:	ef 00 a8 8c 	lda	0xef,g5
+fefe0224:	14 01 00 08 	b	0xfefe0338
+fefe0228:	92 d0 a0 58 	and	g2,3,g4
+fefe022c:	f4 3f 05 35 	cmpobne	0,g4,0xfefe0220
+fefe0230:	00 30 a0 8c 	lda	0xc011ffff,g4
+fefe0234:	ff ff 11 c0 
+fefe0238:	e8 9f a4 33 	cmpobge	g4,g2,0xfefe0220
+fefe023c:	00 30 a0 8c 	lda	0xc012fffc,g4
+fefe0240:	fc ff 12 c0 
+fefe0244:	dc 9f a4 34 	cmpobl	g4,g2,0xfefe0220
+fefe0248:	91 b0 00 5a 	cmpi	g1,2
+fefe024c:	00 00 a0 25 	testne	g4
+fefe0250:	01 08 a5 59 	addo	1,g4,g4
+fefe0254:	08 20 a4 92 	st	g4,0x8(g0)
+fefe0258:	04 20 94 92 	st	g2,0x4(g0)
+fefe025c:	02 1e a8 5c 	mov	2,g5
+fefe0260:	d8 00 00 08 	b	0xfefe0338
+fefe0264:	ee 00 a8 8c 	lda	0xee,g5
+fefe0268:	d0 00 00 08 	b	0xfefe0338
+fefe026c:	08 20 a4 90 	ld	0x8(g0),g4
+fefe0270:	04 de ab 59 	shlo	4,15,g5
+fefe0274:	c4 20 0d 35 	cmpobne	1,g4,0xfefe0338
+fefe0278:	04 20 ac 90 	ld	0x4(g0),g5
+fefe027c:	83 48 a5 58 	and	3,g5,g4
+fefe0280:	a0 3f 05 35 	cmpobne	0,g4,0xfefe0220
+fefe0284:	00 30 a0 8c 	lda	0xc011ffff,g4
+fefe0288:	ff ff 11 c0 
+fefe028c:	94 5f a5 33 	cmpobge	g4,g5,0xfefe0220
+fefe0290:	00 30 a0 8c 	lda	0xc012fffc,g4
+fefe0294:	fc ff 12 c0 
+fefe0298:	88 5f a5 34 	cmpobl	g4,g5,0xfefe0220
+fefe029c:	00 50 95 92 	st	g2,(g5)
+fefe02a0:	04 20 a4 90 	ld	0x4(g0),g4
+fefe02a4:	02 1e a8 5c 	mov	2,g5
+fefe02a8:	14 10 a1 59 	addo	g4,4,g4
+fefe02ac:	04 20 a4 92 	st	g4,0x4(g0)
+fefe02b0:	88 00 00 08 	b	0xfefe0338
+fefe02b4:	92 d0 a0 58 	and	g2,3,g4
+fefe02b8:	24 20 05 35 	cmpobne	0,g4,0xfefe02dc
+fefe02bc:	00 30 a0 8c 	lda	0xc011ffff,g4
+fefe02c0:	ff ff 11 c0 
+fefe02c4:	18 80 a4 33 	cmpobge	g4,g2,0xfefe02dc
+fefe02c8:	00 30 80 8c 	lda	0x600e,g0
+fefe02cc:	0e 60 00 00 
+fefe02d0:	00 30 a0 8c 	lda	0xc012fffc,g4
+fefe02d4:	fc ff 12 c0 
+fefe02d8:	08 80 a4 33 	cmpobge	g4,g2,0xfefe02e0
+fefe02dc:	ef 00 80 8c 	lda	0xef,g0
+fefe02e0:	10 16 a8 5c 	mov	g0,g5
+fefe02e4:	54 00 00 08 	b	0xfefe0338
+fefe02e8:	08 20 a4 90 	ld	0x8(g0),g4
+fefe02ec:	04 de ab 59 	shlo	4,15,g5
+fefe02f0:	48 20 15 35 	cmpobne	2,g4,0xfefe0338
+fefe02f4:	04 20 a4 90 	ld	0x4(g0),g4
+fefe02f8:	02 1e a8 5c 	mov	2,g5
+fefe02fc:	00 10 95 92 	st	g2,(g4)
+fefe0300:	38 00 00 08 	b	0xfefe0338
+fefe0304:	1c 7f 24 35 	cmpobne	4,g1,0xfefe0220
+fefe0308:	92 d0 a0 58 	and	g2,3,g4
+fefe030c:	14 3f 05 35 	cmpobne	0,g4,0xfefe0220
+fefe0310:	00 30 a0 8c 	lda	0xc011ffff,g4
+fefe0314:	ff ff 11 c0 
+fefe0318:	08 9f a4 33 	cmpobge	g4,g2,0xfefe0220
+fefe031c:	00 30 a0 8c 	lda	0xc012fffc,g4
+fefe0320:	fc ff 12 c0 
+fefe0324:	fc 9e a4 34 	cmpobl	g4,g2,0xfefe0220
+fefe0328:	00 90 a4 90 	ld	(g2),g4
+fefe032c:	02 1e a8 5c 	mov	2,g5
+fefe0330:	00 30 a0 92 	st	g4,0x131c
+fefe0334:	1c 13 00 00 
+fefe0338:	15 16 80 5c 	mov	g5,g0
+fefe033c:	00 00 00 0a 	ret

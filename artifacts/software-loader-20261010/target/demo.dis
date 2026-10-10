@@ -1,0 +1,31 @@
+
+demo.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c0f2c000 <_payload>:
+c0f2c000:	00 30 f0 8c 	lda	c0f2c03c <Li960R1>,g14
+c0f2c004:	3c c0 f2 c0 
+
+c0f2c008 <payload.lf>:
+c0f2c008:	1e 16 88 5c 	mov	g14,g1
+c0f2c00c:	00 1e f0 5c 	mov	0,g14
+c0f2c010:	00 1e b8 5c 	mov	0,g7
+c0f2c014:	01 1e b0 5c 	mov	1,g6
+c0f2c018:	90 d0 87 58 	and	g0,31,g0
+c0f2c01c:	00 1e a8 5c 	mov	0,g5
+c0f2c020:	18 c0 85 36 	cmpoble	g0,g7,c0f2c038 <L8>
+
+c0f2c024 <L6>:
+c0f2c024:	17 80 a5 59 	addo	g7,g6,g4
+c0f2c028:	16 16 b8 5c 	mov	g6,g7
+c0f2c02c:	14 16 b0 5c 	mov	g4,g6
+c0f2c030:	15 50 a8 59 	addo	g5,1,g5
+c0f2c034:	f0 5f 85 31 	cmpobg	g0,g5,c0f2c024 <L6>
+
+c0f2c038 <L8>:
+c0f2c038:	17 16 80 5c 	mov	g7,g0
+
+c0f2c03c <Li960R1>:
+c0f2c03c:	00 00 00 0a 	ret

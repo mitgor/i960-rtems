@@ -1,0 +1,3 @@
+Native ASan/UBSan: RESULT=1161671136
+i960 interpreter: RESULT=1161671136 (1024 state/frame transitions plus rule tests)
+setbit literal/register/modulo/bit31 and unsupported-instruction exit: passed

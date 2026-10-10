@@ -1,0 +1,22 @@
+{
+  "valid": true,
+  "frames": 124,
+  "restarts": 0,
+  "phases": {
+    "0": 123,
+    "2": 1
+  },
+  "keys": {
+    "0": 68,
+    "97": 34,
+    "100": 6,
+    "119": 6,
+    "115": 9,
+    "113": 1
+  },
+  "ticks": 120,
+  "trace_sha256": "5578e3e53830492728bf2107ea59d5946e7d144e4c161f8071f8c8e18a072071",
+  "recorded_span_s": 8.14895866,
+  "restored": true,
+  "unloaded": true
+}

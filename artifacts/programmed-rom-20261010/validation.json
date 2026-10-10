@@ -1,0 +1,12 @@
+{
+  "result": "passed",
+  "programming_submissions": 1,
+  "full_readback_bytes": 524288,
+  "sha256": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0",
+  "boot_block_unchanged": true,
+  "postboot_verified": true,
+  "postboot_commands": 54,
+  "rom_handler": "FEFE001C",
+  "ping_status": "017E",
+  "ping_repetitions": 2
+}

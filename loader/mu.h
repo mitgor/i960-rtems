@@ -24,8 +24,14 @@
 #define R_OMR1 0x1C
 
 /* Stage 2 currently supports only the no-DRAM bring-up region. */
+#ifdef POSTINIT_PROFILE
+/* Experimental exclusive-ownership DRAM window; see postinit/README.md. */
+#define PAYLOAD_BASE 0xC0120000u
+#define PAYLOAD_END  0xC0130000u
+#else
 #define PAYLOAD_BASE 0x200u
 #define PAYLOAD_END  0x400u
+#endif
 #define REG_BASE     0x1000u
 #define REG_END      0x2000u
 #define PAYLOAD_MAGIC 0xBEEF00EEu /* OMR1; OMR0 remains the GO acknowledgement */
@@ -37,8 +43,13 @@ static __inline__ int payload_word(unsigned int a)
 
 static __inline__ int register_word(unsigned int a)
 {
+#ifdef POSTINIT_PROFILE
+    (void)a;
+    return 0; /* No arbitrary register access in the experimental loader. */
+#else
     return !(a & 3u) && a >= REG_BASE && a <= REG_END - 4u &&
            !(a >= MU_LOCAL_BASE + R_IMR0 && a <= MU_LOCAL_BASE + R_OMR1);
+#endif
 }
 
 #define OP_PING     1   /* arg ignored; just acks (liveness)                    */

@@ -1,0 +1,29 @@
+{
+  "runtime_reads_verified": true,
+  "commands": 13,
+  "pending": false,
+  "staging_base": "0xc0f2c000",
+  "board": "0xc0110780",
+  "alias": "0xc1000000",
+  "board_fields": {
+    "0x8": "0x80000",
+    "0xc": "0xfef80000",
+    "0x10": "0xfeff9c00",
+    "0xcc": "0xc004d710",
+    "0xd0": "0xc004d670",
+    "0xd4": "0xc004cf20",
+    "0xd8": "0xc004d940",
+    "0xdc": "0xc004d8e0",
+    "0xe0": "0xc004ce90",
+    "0xe4": "0xc004ced0",
+    "0xe8": "0xc004d6d0",
+    "0xec": "0xc004cf80",
+    "0xf0": "0xc00209b0",
+    "0xf4": "0xc0016710",
+    "0x124": "0x739"
+  },
+  "ram_upload": false,
+  "code_execution": false,
+  "recovery_entry": false,
+  "flash_programming": false
+}

@@ -1,0 +1,1926 @@
+[    0.000000] Linux version 6.8.0-138-generic (buildd@lcy02-amd64-008) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC  (Ubuntu 6.8.0-138.138~22.04.1-generic 6.8.12)
+[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-6.8.0-138-generic root=UUID=9160544f-a439-4f43-8cdc-92441821adfb ro quiet splash vt.handoff=7
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Hygon HygonGenuine
+[    0.000000]   Centaur CentaurHauls
+[    0.000000]   zhaoxin   Shanghai  
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x0000000000094fff] usable
+[    0.000000] BIOS-e820: [mem 0x0000000000095000-0x000000000009ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000e8000-0x00000000000fffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x00000000defa57ff] usable
+[    0.000000] BIOS-e820: [mem 0x00000000defa5800-0x00000000dfffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000f0000000-0x00000000f3ffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000fec00000-0x00000000fed3ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000fed45000-0x00000000ffffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000100000000-0x000000061fffffff] usable
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] APIC: Static calls initialized
+[    0.000000] SMBIOS 2.6 present.
+[    0.000000] DMI: Hewlett-Packard HP Z400 Workstation/0B4Ch, BIOS 786G3 v03.15 10/29/2010
+[    0.000000] tsc: Fast TSC calibration using PIT
+[    0.000000] tsc: Detected 3066.755 MHz processor
+[    0.003476] e820: update [mem 0x00000000-0x00000fff] usable ==> reserved
+[    0.003480] e820: remove [mem 0x000a0000-0x000fffff] usable
+[    0.003486] last_pfn = 0x620000 max_arch_pfn = 0x400000000
+[    0.003491] MTRR map: 7 entries (5 fixed + 2 variable; max 25), built from 10 variable MTRRs
+[    0.003493] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+[    0.004641] last_pfn = 0xdefa5 max_arch_pfn = 0x400000000
+[    0.012042] found SMP MP-table at [mem 0x000f9bf0-0x000f9bff]
+[    0.012062] Using GB pages for direct mapping
+[    0.012250] RAMDISK: [mem 0x2e521000-0x33287fff]
+[    0.012258] ACPI: Early table checksum verification disabled
+[    0.012262] ACPI: RSDP 0x00000000000E9010 000024 (v02 HPQOEM)
+[    0.012267] ACPI: XSDT 0x00000000DEFB88E8 00006C (v01 HPQOEM SLIC-WKS 20101029      00000000)
+[    0.012274] ACPI: FACP 0x00000000DEFB8A88 0000F4 (v03 HPQOEM TYLSBURG 00000001      00000000)
+[    0.012280] ACPI BIOS Warning (bug): 32/64X length mismatch in FADT/Pm1aEventBlock: 32/16 (20230628/tbfadt-564)
+[    0.012284] ACPI BIOS Warning (bug): 32/64X length mismatch in FADT/Gpe0Block: 128/32 (20230628/tbfadt-564)
+[    0.012287] ACPI BIOS Warning (bug): Invalid length for FADT/Pm1aEventBlock: 16, using default 32 (20230628/tbfadt-669)
+[    0.012291] ACPI: DSDT 0x00000000DEFB90A3 00A2BD (v01 COMPAQ DSDT_PRJ 00000001 MSFT 0100000E)
+[    0.012296] ACPI: FACS 0x00000000DEFB8800 000040
+[    0.012299] ACPI: FACS 0x00000000DEFB8800 000040
+[    0.012303] ACPI: APIC 0x00000000DEFB8B7C 000108 (v01 HPQOEM TYLSBURG 00000001      00000000)
+[    0.012308] ACPI: ASF! 0x00000000DEFB8C84 000063 (v32 HPQOEM TYLSBURG 00000001      00000000)
+[    0.012312] ACPI: MCFG 0x00000000DEFB8CE7 00003C (v01 HPQOEM TYLSBURG 00000001      00000000)
+[    0.012316] ACPI: TCPA 0x00000000DEFB8D23 000032 (v01 HPQOEM TYLSBURG 00000001      00000000)
+[    0.012320] ACPI: SLIC 0x00000000DEFB8D55 000176 (v01 HPQOEM SLIC-WKS 00000001      00000000)
+[    0.012325] ACPI: HPET 0x00000000DEFB8ECB 000038 (v01 HPQOEM TYLSBURG 00000001      00000000)
+[    0.012329] ACPI: DMAR 0x00000000DEFB8F03 000170 (v01 HPQOEM TYLSBURG 00000001      00000000)
+[    0.012333] ACPI: SSDT 0x00000000DEFC4A4F 003B10 (v01 INTEL  PPM RCM  80000001 INTL 20061109)
+[    0.012337] ACPI: Reserving FACP table memory at [mem 0xdefb8a88-0xdefb8b7b]
+[    0.012339] ACPI: Reserving DSDT table memory at [mem 0xdefb90a3-0xdefc335f]
+[    0.012340] ACPI: Reserving FACS table memory at [mem 0xdefb8800-0xdefb883f]
+[    0.012341] ACPI: Reserving FACS table memory at [mem 0xdefb8800-0xdefb883f]
+[    0.012342] ACPI: Reserving APIC table memory at [mem 0xdefb8b7c-0xdefb8c83]
+[    0.012344] ACPI: Reserving ASF! table memory at [mem 0xdefb8c84-0xdefb8ce6]
+[    0.012345] ACPI: Reserving MCFG table memory at [mem 0xdefb8ce7-0xdefb8d22]
+[    0.012346] ACPI: Reserving TCPA table memory at [mem 0xdefb8d23-0xdefb8d54]
+[    0.012347] ACPI: Reserving SLIC table memory at [mem 0xdefb8d55-0xdefb8eca]
+[    0.012349] ACPI: Reserving HPET table memory at [mem 0xdefb8ecb-0xdefb8f02]
+[    0.012350] ACPI: Reserving DMAR table memory at [mem 0xdefb8f03-0xdefb9072]
+[    0.012351] ACPI: Reserving SSDT table memory at [mem 0xdefc4a4f-0xdefc855e]
+[    0.012487] No NUMA configuration found
+[    0.012488] Faking a node at [mem 0x0000000000000000-0x000000061fffffff]
+[    0.012497] NODE_DATA(0) allocated [mem 0x61ffd5000-0x61fffffff]
+[    0.012780] Zone ranges:
+[    0.012781]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+[    0.012783]   DMA32    [mem 0x0000000001000000-0x00000000ffffffff]
+[    0.012785]   Normal   [mem 0x0000000100000000-0x000000061fffffff]
+[    0.012787]   Device   empty
+[    0.012789] Movable zone start for each node
+[    0.012791] Early memory node ranges
+[    0.012792]   node   0: [mem 0x0000000000001000-0x0000000000094fff]
+[    0.012794]   node   0: [mem 0x0000000000100000-0x00000000defa4fff]
+[    0.012795]   node   0: [mem 0x0000000100000000-0x000000061fffffff]
+[    0.012801] Initmem setup node 0 [mem 0x0000000000001000-0x000000061fffffff]
+[    0.012807] On node 0, zone DMA: 1 pages in unavailable ranges
+[    0.012835] On node 0, zone DMA: 107 pages in unavailable ranges
+[    0.077694] On node 0, zone Normal: 4187 pages in unavailable ranges
+[    0.077922] ACPI: PM-Timer IO Port: 0xf808
+[    0.077936] ACPI: LAPIC_NMI (acpi_id[0x01] high edge lint[0x1])
+[    0.077938] ACPI: LAPIC_NMI (acpi_id[0x02] high edge lint[0x1])
+[    0.077939] ACPI: LAPIC_NMI (acpi_id[0x03] high edge lint[0x1])
+[    0.077940] ACPI: LAPIC_NMI (acpi_id[0x04] high edge lint[0x1])
+[    0.077941] ACPI: LAPIC_NMI (acpi_id[0x05] high edge lint[0x1])
+[    0.077943] ACPI: LAPIC_NMI (acpi_id[0x06] high edge lint[0x1])
+[    0.077944] ACPI: LAPIC_NMI (acpi_id[0x07] high edge lint[0x1])
+[    0.077945] ACPI: LAPIC_NMI (acpi_id[0x08] high edge lint[0x1])
+[    0.077955] IOAPIC[0]: apic_id 1, version 32, address 0xfec00000, GSI 0-23
+[    0.077962] IOAPIC[1]: apic_id 2, version 32, address 0xfec10000, GSI 24-47
+[    0.077965] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.077967] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.077973] ACPI: Using ACPI (MADT) for SMP configuration information
+[    0.077974] ACPI: HPET id: 0x8086a301 base: 0xfed00000
+[    0.077980] smpboot: Allowing 12 CPUs, 0 hotplug CPUs
+[    0.077992] PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+[    0.077994] PM: hibernation: Registered nosave memory: [mem 0x00095000-0x000fffff]
+[    0.077996] PM: hibernation: Registered nosave memory: [mem 0xdefa5000-0xffffffff]
+[    0.077999] [mem 0xe0000000-0xefffffff] available for PCI devices
+[    0.078000] Booting paravirtualized kernel on bare hardware
+[    0.078003] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1910969940391419 ns
+[    0.078012] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:12 nr_cpu_ids:12 nr_node_ids:1
+[    0.079463] percpu: Embedded 86 pages/cpu s229376 r8192 d114688 u524288
+[    0.079470] pcpu-alloc: s229376 r8192 d114688 u524288 alloc=1*2097152
+[    0.079473] pcpu-alloc: [0] 00 01 02 03 [0] 04 05 06 07 
+[    0.079481] pcpu-alloc: [0] 08 09 10 11 
+[    0.079502] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-6.8.0-138-generic root=UUID=9160544f-a439-4f43-8cdc-92441821adfb ro quiet splash vt.handoff=7
+[    0.079604] Unknown kernel command line parameters "splash", will be passed to user space.
+[    0.084452] Dentry cache hash table entries: 4194304 (order: 13, 33554432 bytes, linear)
+[    0.086882] Inode-cache hash table entries: 2097152 (order: 12, 16777216 bytes, linear)
+[    0.087111] Fallback order for Node 0: 0 
+[    0.087116] Built 1 zonelists, mobility grouping on.  Total pages: 6188774
+[    0.087118] Policy zone: Normal
+[    0.087127] mem auto-init: stack:all(zero), heap alloc:on, heap free:off
+[    0.087139] software IO TLB: area num 16.
+[    0.197719] Memory: 24504136K/25148644K available (22528K kernel code, 4438K rwdata, 14008K rodata, 4928K init, 4784K bss, 644248K reserved, 0K cma-reserved)
+[    0.237002] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=12, Nodes=1
+[    0.237122] Kernel/User page tables isolation: enabled
+[    0.237214] ftrace: allocating 58339 entries in 228 pages
+[    0.247168] ftrace: allocated 228 pages with 4 groups
+[    0.248026] Dynamic Preempt: voluntary
+[    0.248340] rcu: Preemptible hierarchical RCU implementation.
+[    0.248342] rcu: 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=12.
+[    0.248344] 	Trampoline variant of Tasks RCU enabled.
+[    0.248345] 	Rude variant of Tasks RCU enabled.
+[    0.248345] 	Tracing variant of Tasks RCU enabled.
+[    0.248346] rcu: RCU calculated value of scheduler-enlistment delay is 100 jiffies.
+[    0.248347] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=12
+[    0.248372] RCU Tasks: Setting shift to 4 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=12.
+[    0.248376] RCU Tasks Rude: Setting shift to 4 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=12.
+[    0.248378] RCU Tasks Trace: Setting shift to 4 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=12.
+[    0.253512] NR_IRQS: 524544, nr_irqs: 928, preallocated irqs: 16
+[    0.253753] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.253899] Console: colour dummy device 80x25
+[    0.253902] printk: legacy console [tty0] enabled
+[    0.254142] ACPI: Core revision 20230628
+[    0.254422] clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 133484882848 ns
+[    0.254436] APIC: Switch to symmetric I/O mode setup
+[    0.254438] DMAR-IR: This system BIOS has enabled interrupt remapping
+               on a chipset that contains an erratum making that
+               feature unstable.  To maintain system stability
+               interrupt remapping is being disabled.  Please
+               contact your BIOS vendor for an update
+[    0.254979] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.259436] clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x2c349a17dca, max_idle_ns: 440795224963 ns
+[    0.259443] Calibrating delay loop (skipped), value calculated using timer frequency.. 6133.51 BogoMIPS (lpj=3066755)
+[    0.259463] CPU0: Thermal monitoring enabled (TM1)
+[    0.259488] process: using mwait in idle threads
+[    0.259492] Last level iTLB entries: 4KB 512, 2MB 7, 4MB 7
+[    0.259494] Last level dTLB entries: 4KB 512, 2MB 32, 4MB 32, 1GB 0
+[    0.259498] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+[    0.259500] Spectre V2 : Mitigation: Retpolines
+[    0.259501] Spectre V2 : Spectre v2 / SpectreRSB: Filling RSB on context switch and VMEXIT
+[    0.259502] Spectre V2 : Enabling Restricted Speculation for firmware calls
+[    0.259505] Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+[    0.259506] Spectre V2 : User space: Mitigation: STIBP via prctl
+[    0.259508] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl
+[    0.259510] MDS: Vulnerable: Clear CPU buffers attempted, no microcode
+[    0.259511] MMIO Stale Data: Unknown: No mitigations
+[    0.259514] x86/fpu: x87 FPU will use FXSAVE
+[    0.284171] Freeing SMP alternatives memory: 48K
+[    0.284177] pid_max: default: 32768 minimum: 301
+[    0.284887] LSM: initializing lsm=lockdown,capability,landlock,yama,apparmor,integrity
+[    0.285105] landlock: Up and running.
+[    0.285106] Yama: becoming mindful.
+[    0.285205] AppArmor: AppArmor initialized
+[    0.285541] Mount-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.285598] Mountpoint-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.388686] smpboot: CPU0: Intel(R) Xeon(R) CPU           X5675  @ 3.07GHz (family: 0x6, model: 0x2c, stepping: 0x2)
+[    0.388999] Performance Events: PEBS fmt1+, Westmere events, 16-deep LBR, Intel PMU driver.
+[    0.389019] core: CPUID marked event: 'bus cycles' unavailable
+[    0.389020] ... version:                3
+[    0.389021] ... bit width:              48
+[    0.389022] ... generic registers:      4
+[    0.389023] ... value mask:             0000ffffffffffff
+[    0.389024] ... max period:             000000007fffffff
+[    0.389025] ... fixed-purpose events:   3
+[    0.389026] ... event mask:             000000070000000f
+[    0.389150] signal: max sigframe size: 1440
+[    0.389177] Estimated ratio of average max frequency by base frequency (times 1024): 1113
+[    0.391986] rcu: Hierarchical SRCU implementation.
+[    0.391989] rcu: 	Max phase no-delay instances is 400.
+[    0.392953] NMI watchdog: Enabled. Permanently consumes one hw-PMU counter.
+[    0.393140] smp: Bringing up secondary CPUs ...
+[    0.393306] smpboot: x86: Booting SMP configuration:
+[    0.393308] .... node  #0, CPUs:        #1  #2  #3  #4  #5  #6  #7  #8  #9 #10 #11
+[    0.403592] Transient Scheduler Attacks: MDS CPU bug present and SMT on, data leak possible. See https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html for more details.
+[    0.408492] smp: Brought up 1 node, 12 CPUs
+[    0.408492] smpboot: Max logical packages: 1
+[    0.408492] smpboot: Total of 12 processors activated (73602.12 BogoMIPS)
+[    0.411647] devtmpfs: initialized
+[    0.411647] x86/mm: Memory block size: 128MB
+[    0.414876] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+[    0.414876] futex hash table entries: 4096 (order: 6, 262144 bytes, linear)
+[    0.415561] pinctrl core: initialized pinctrl subsystem
+[    0.415701] PM: RTC time: 19:05:03, date: 2026-10-10
+[    0.416608] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.417175] DMA: preallocated 4096 KiB GFP_KERNEL pool for atomic allocations
+[    0.417618] DMA: preallocated 4096 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.418061] DMA: preallocated 4096 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.418091] audit: initializing netlink subsys (disabled)
+[    0.418135] audit: type=2000 audit(1791659103.163:1): state=initialized audit_enabled=0 res=1
+[    0.418135] thermal_sys: Registered thermal governor 'fair_share'
+[    0.418135] thermal_sys: Registered thermal governor 'bang_bang'
+[    0.418135] thermal_sys: Registered thermal governor 'step_wise'
+[    0.418135] thermal_sys: Registered thermal governor 'user_space'
+[    0.418135] thermal_sys: Registered thermal governor 'power_allocator'
+[    0.418135] cpuidle: using governor ladder
+[    0.418135] cpuidle: using governor menu
+[    0.418488] ACPI FADT declares the system doesn't support PCIe ASPM, so disable it
+[    0.418491] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[    0.418789] PCI: ECAM [mem 0xf0000000-0xf3ffffff] (base 0xf0000000) for domain 0000 [bus 00-3f]
+[    0.418795] PCI: ECAM [mem 0xf0000000-0xf3ffffff] reserved as E820 entry
+[    0.418805] PCI: Using configuration type 1 for base access
+[    0.418974] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    0.418982] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.418982] HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.418982] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.418982] HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.419623] ACPI: Added _OSI(Module Device)
+[    0.419623] ACPI: Added _OSI(Processor Device)
+[    0.419623] ACPI: Added _OSI(Processor Aggregator Device)
+[    0.424475] ACPI: 2 ACPI AML tables successfully acquired and loaded
+[    0.451764] ACPI: _OSC evaluated successfully for all CPUs
+[    0.451875] ACPI: Interpreter enabled
+[    0.451894] ACPI: PM: (supports S0 S3 S4 S5)
+[    0.451895] ACPI: Using IOAPIC for interrupt routing
+[    0.452314] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+[    0.452316] PCI: Using E820 reservations for host bridge windows
+[    0.453205] ACPI: Enabled 10 GPEs in block 00 to 3F
+[    0.461987] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-3e])
+[    0.461995] acpi PNP0A08:00: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+[    0.462056] ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0._OSC.CAPD], AE_ALREADY_EXISTS (20230628/dsfield-184)
+[    0.462069] ACPI Error: AE_ALREADY_EXISTS, CreateBufferField failure (20230628/dswload2-477)
+
+[    0.462074] 
+               Initialized Local Variables for Method [_OSC]:
+[    0.462075]   Local0: (____ptrval____) <Obj>           Integer 0000000000000001
+[    0.462080]   Local1: (____ptrval____) <Obj>           Integer 0000000000000005
+
+[    0.462085] Initialized Arguments for Method [_OSC]:  (4 arguments defined for method invocation)
+[    0.462086]   Arg0:   (____ptrval____) <Obj>           Buffer(16) 5B 4D DB 33 F7 1F 1C 40
+[    0.462094]   Arg1:   (____ptrval____) <Obj>           Integer 0000000000000001
+[    0.462098]   Arg2:   (____ptrval____) <Obj>           Integer 0000000000000003
+[    0.462102]   Arg3:   (____ptrval____) <Obj>           Buffer(12) 01 00 00 00 9F 01 00 00
+
+[    0.462111] ACPI Error: Aborting method \_SB.PCI0._OSC due to previous error (AE_ALREADY_EXISTS) (20230628/psparse-529)
+[    0.462121] acpi PNP0A08:00: _OSC: OS requested [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+[    0.462123] acpi PNP0A08:00: _OSC: platform willing to grant [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+[    0.462125] acpi PNP0A08:00: _OSC: platform retains control of PCIe features (AE_ALREADY_EXISTS)
+[    0.462293] acpi PNP0A08:00: host bridge window expanded to [io  0x0000-0x03af window]; [io  0x0000-0x03af window] ignored
+[    0.462560] PCI host bridge to bus 0000:00
+[    0.462563] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+[    0.462565] pci_bus 0000:00: root bus resource [mem 0xe0000000-0xefffffff window]
+[    0.462567] pci_bus 0000:00: root bus resource [mem 0xfed00000-0xfed003ff window]
+[    0.462569] pci_bus 0000:00: root bus resource [mem 0xfed40000-0xfed44fff window]
+[    0.462571] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+[    0.462572] pci_bus 0000:00: root bus resource [io  0x0d00-0xefff window]
+[    0.462574] pci_bus 0000:00: root bus resource [bus 00-3e]
+[    0.462604] pci 0000:00:00.0: [8086:3405] type 00 class 0x060000 PCIe Root Port
+[    0.462632] pci 0000:00:00.0: enabling Extended Tags
+[    0.462670] pci 0000:00:00.0: PME# supported from D0 D3hot D3cold
+[    0.462766] pci 0000:00:01.0: [8086:3408] type 01 class 0x060400 PCIe Root Port
+[    0.462782] pci 0000:00:01.0: PCI bridge to [bus 03]
+[    0.462797] pci 0000:00:01.0: enabling Extended Tags
+[    0.462836] pci 0000:00:01.0: PME# supported from D0 D3hot D3cold
+[    0.462954] pci 0000:00:03.0: [8086:340a] type 01 class 0x060400 PCIe Root Port
+[    0.462971] pci 0000:00:03.0: PCI bridge to [bus 0f]
+[    0.462975] pci 0000:00:03.0:   bridge window [io  0xe000-0xefff]
+[    0.462977] pci 0000:00:03.0:   bridge window [mem 0xea000000-0xeb0fffff]
+[    0.462984] pci 0000:00:03.0:   bridge window [mem 0xe0000000-0xe9ffffff 64bit pref]
+[    0.463027] pci 0000:00:03.0: PME# supported from D0 D3hot D3cold
+[    0.463140] pci 0000:00:07.0: [8086:340e] type 01 class 0x060400 PCIe Root Port
+[    0.463157] pci 0000:00:07.0: PCI bridge to [bus 28]
+[    0.463171] pci 0000:00:07.0: enabling Extended Tags
+[    0.463210] pci 0000:00:07.0: PME# supported from D0 D3hot D3cold
+[    0.463319] pci 0000:00:10.0: [8086:3425] type 00 class 0x080000 conventional PCI endpoint
+[    0.463397] pci 0000:00:10.1: [8086:3426] type 00 class 0x080000 conventional PCI endpoint
+[    0.463475] pci 0000:00:11.0: [8086:3427] type 00 class 0x080000 conventional PCI endpoint
+[    0.463558] pci 0000:00:11.1: [8086:3428] type 00 class 0x080000 conventional PCI endpoint
+[    0.463641] pci 0000:00:14.0: [8086:342e] type 00 class 0x080000 PCIe Root Complex Integrated Endpoint
+[    0.463763] pci 0000:00:14.1: [8086:3422] type 00 class 0x080000 PCIe Root Complex Integrated Endpoint
+[    0.463859] pci 0000:00:14.2: [8086:3423] type 00 class 0x080000 PCIe Root Complex Integrated Endpoint
+[    0.463951] pci 0000:00:15.0: [8086:342f] type 00 class 0x080020 conventional PCI endpoint
+[    0.464031] pci 0000:00:1a.0: [8086:3a37] type 00 class 0x0c0300 conventional PCI endpoint
+[    0.464069] pci 0000:00:1a.0: BAR 4 [io  0xd000-0xd01f]
+[    0.464169] pci 0000:00:1a.1: [8086:3a38] type 00 class 0x0c0300 conventional PCI endpoint
+[    0.464207] pci 0000:00:1a.1: BAR 4 [io  0xd020-0xd03f]
+[    0.464313] pci 0000:00:1a.2: [8086:3a39] type 00 class 0x0c0300 conventional PCI endpoint
+[    0.464351] pci 0000:00:1a.2: BAR 4 [io  0xd040-0xd05f]
+[    0.464462] pci 0000:00:1a.7: [8086:3a3c] type 00 class 0x0c0320 conventional PCI endpoint
+[    0.464501] pci 0000:00:1a.7: BAR 0 [mem 0xed004800-0xed004bff]
+[    0.464544] pci 0000:00:1a.7: PME# supported from D0 D3hot D3cold
+[    0.464647] pci 0000:00:1b.0: [8086:3a3e] type 00 class 0x040300 PCIe Root Complex Integrated Endpoint
+[    0.464680] pci 0000:00:1b.0: BAR 0 [mem 0xed000000-0xed003fff 64bit]
+[    0.464728] pci 0000:00:1b.0: PME# supported from D0 D3hot D3cold
+[    0.464811] pci 0000:00:1c.0: [8086:3a40] type 01 class 0x060400 PCIe Root Port
+[    0.464831] pci 0000:00:1c.0: PCI bridge to [bus 1c]
+[    0.464890] pci 0000:00:1c.0: PME# supported from D0 D3hot D3cold
+[    0.465003] pci 0000:00:1c.5: [8086:3a4a] type 01 class 0x060400 PCIe Root Port
+[    0.465025] pci 0000:00:1c.5: PCI bridge to [bus 01]
+[    0.465030] pci 0000:00:1c.5:   bridge window [mem 0xec000000-0xec0fffff]
+[    0.465085] pci 0000:00:1c.5: PME# supported from D0 D3hot D3cold
+[    0.465196] pci 0000:00:1d.0: [8086:3a34] type 00 class 0x0c0300 conventional PCI endpoint
+[    0.465234] pci 0000:00:1d.0: BAR 4 [io  0xd060-0xd07f]
+[    0.465335] pci 0000:00:1d.1: [8086:3a35] type 00 class 0x0c0300 conventional PCI endpoint
+[    0.465373] pci 0000:00:1d.1: BAR 4 [io  0xd080-0xd09f]
+[    0.465481] pci 0000:00:1d.2: [8086:3a36] type 00 class 0x0c0300 conventional PCI endpoint
+[    0.465519] pci 0000:00:1d.2: BAR 4 [io  0xd0a0-0xd0bf]
+[    0.465630] pci 0000:00:1d.7: [8086:3a3a] type 00 class 0x0c0320 conventional PCI endpoint
+[    0.465669] pci 0000:00:1d.7: BAR 0 [mem 0xed004c00-0xed004fff]
+[    0.465711] pci 0000:00:1d.7: PME# supported from D0 D3hot D3cold
+[    0.465800] pci 0000:00:1e.0: [8086:244e] type 01 class 0x060401 conventional PCI bridge
+[    0.465821] pci 0000:00:1e.0: PCI bridge to [bus 37-38] (subtractive decode)
+[    0.465826] pci 0000:00:1e.0:   bridge window [mem 0xef000000-0xef0fffff]
+[    0.465835] pci 0000:00:1e.0:   bridge window [mem 0xee000000-0xee0fffff 64bit pref]
+[    0.465944] pci 0000:00:1f.0: [8086:3a16] type 00 class 0x060100 conventional PCI endpoint
+[    0.466005] pci 0000:00:1f.0: bridge window [io  0xf800-0xf87f]: can't claim; no compatible bridge window
+[    0.466010] pci 0000:00:1f.0: bridge window [io  0xfa00-0xfa3f]: can't claim; no compatible bridge window
+[    0.466013] pci 0000:00:1f.0: ICH7 LPC Generic IO decode 1 PIO at 0400 (mask 007f)
+[    0.466016] pci 0000:00:1f.0: ICH7 LPC Generic IO decode 2 PIO at 0480 (mask 000f)
+[    0.466018] pci 0000:00:1f.0: ICH7 LPC Generic IO decode 3 PIO at 0cb0 (mask 000f)
+[    0.466139] pci 0000:00:1f.2: [8086:2822] type 00 class 0x010400 conventional PCI endpoint
+[    0.466169] pci 0000:00:1f.2: BAR 0 [io  0xd100-0xd107]
+[    0.466171] pci 0000:00:1f.2: BAR 1 [io  0xd110-0xd113]
+[    0.466174] pci 0000:00:1f.2: BAR 2 [io  0xd108-0xd10f]
+[    0.466176] pci 0000:00:1f.2: BAR 3 [io  0xd114-0xd117]
+[    0.466178] pci 0000:00:1f.2: BAR 4 [io  0xd0c0-0xd0df]
+[    0.466180] pci 0000:00:1f.2: BAR 5 [mem 0xed004000-0xed0047ff]
+[    0.466213] pci 0000:00:1f.2: PME# supported from D3hot
+[    0.466316] pci 0000:00:01.0: PCI bridge to [bus 03]
+[    0.466379] pci 0000:0f:00.0: [10de:1048] type 00 class 0x030000 PCIe Endpoint
+[    0.466407] pci 0000:0f:00.0: BAR 0 [mem 0xea000000-0xeaffffff]
+[    0.466410] pci 0000:0f:00.0: BAR 1 [mem 0xe0000000-0xe7ffffff 64bit pref]
+[    0.466413] pci 0000:0f:00.0: BAR 3 [mem 0xe8000000-0xe9ffffff 64bit pref]
+[    0.466415] pci 0000:0f:00.0: BAR 5 [io  0xe000-0xe07f]
+[    0.466418] pci 0000:0f:00.0: ROM [mem 0x00000000-0x0007ffff pref]
+[    0.466446] pci 0000:0f:00.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
+[    0.466589] pci 0000:0f:00.1: [10de:0e08] type 00 class 0x040300 PCIe Endpoint
+[    0.466617] pci 0000:0f:00.1: BAR 0 [mem 0xeb000000-0xeb003fff]
+[    0.466627] pci 0000:0f:00.1: enabling Extended Tags
+[    0.466716] pci 0000:00:03.0: ASPM: current common clock configuration is inconsistent, reconfiguring
+[    0.469466] pci 0000:00:03.0: PCI bridge to [bus 0f]
+[    0.469555] pci 0000:00:07.0: PCI bridge to [bus 28]
+[    0.469611] pci 0000:00:1c.0: PCI bridge to [bus 1c]
+[    0.469692] pci 0000:01:00.0: [14e4:1684] type 00 class 0x020000 PCIe Endpoint
+[    0.469748] pci 0000:01:00.0: BAR 0 [mem 0xec000000-0xec00ffff 64bit]
+[    0.469765] pci 0000:01:00.0: enabling Extended Tags
+[    0.469869] pci 0000:01:00.0: PME# supported from D3hot D3cold
+[    0.470052] pci 0000:00:1c.5: PCI bridge to [bus 01]
+[    0.470075] pci_bus 0000:37: extended config space not accessible
+[    0.470130] pci 0000:37:05.0: [11c1:5811] type 00 class 0x0c0010 conventional PCI endpoint
+[    0.470170] pci 0000:37:05.0: BAR 0 [mem 0xef000000-0xef000fff]
+[    0.470204] pci 0000:37:05.0: supports D1 D2
+[    0.470205] pci 0000:37:05.0: PME# supported from D0 D1 D2 D3hot
+[    0.470263] pci 0000:37:09.0: [8086:0960] type 01 class 0x060400 conventional PCI bridge
+[    0.470302] pci 0000:37:09.0: PCI bridge to [bus 38]
+[    0.470399] pci 0000:37:09.1: [1069:0010] type 00 class 0x010400 conventional PCI endpoint
+[    0.470462] pci 0000:37:09.1: BAR 0 [mem 0xee000000-0xee001fff pref]
+[    0.470473] pci 0000:37:09.1: ROM [mem 0x00000000-0x00007fff pref]
+[    0.470586] pci 0000:00:1e.0: PCI bridge to [bus 37-38] (subtractive decode)
+[    0.470595] pci 0000:00:1e.0:   bridge window [mem 0x000a0000-0x000bffff window] (subtractive decode)
+[    0.470597] pci 0000:00:1e.0:   bridge window [mem 0xe0000000-0xefffffff window] (subtractive decode)
+[    0.470598] pci 0000:00:1e.0:   bridge window [mem 0xfed00000-0xfed003ff window] (subtractive decode)
+[    0.470600] pci 0000:00:1e.0:   bridge window [mem 0xfed40000-0xfed44fff window] (subtractive decode)
+[    0.470601] pci 0000:00:1e.0:   bridge window [io  0x0000-0x0cf7 window] (subtractive decode)
+[    0.470603] pci 0000:00:1e.0:   bridge window [io  0x0d00-0xefff window] (subtractive decode)
+[    0.470615] pci_bus 0000:38: extended config space not accessible
+[    0.470678] pci 0000:37:09.0: PCI bridge to [bus 38]
+[    0.471789] ACPI: PCI: Interrupt link LNKA configured for IRQ 5
+[    0.471854] ACPI: PCI: Interrupt link LNKB configured for IRQ 7
+[    0.471916] ACPI: PCI: Interrupt link LNKC configured for IRQ 5
+[    0.471979] ACPI: PCI: Interrupt link LNKD configured for IRQ 3
+[    0.472042] ACPI: PCI: Interrupt link LNKE configured for IRQ 10
+[    0.472104] ACPI: PCI: Interrupt link LNKF configured for IRQ 5
+[    0.472167] ACPI: PCI: Interrupt link LNKG configured for IRQ 3
+[    0.472229] ACPI: PCI: Interrupt link LNKH configured for IRQ 0
+[    0.472231] ACPI: PCI: Interrupt link LNKH disabled
+[    0.472329] ACPI: PCI Root Bridge [NHL1] (domain 0000 [bus 3f])
+[    0.472335] acpi PNP0A08:02: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+[    0.472340] acpi PNP0A08:02: _OSC: OS requested [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+[    0.472342] acpi PNP0A08:02: _OSC: platform willing to grant [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+[    0.472344] acpi PNP0A08:02: _OSC: platform retains control of PCIe features (AE_NOT_FOUND)
+[    0.472403] PCI host bridge to bus 0000:3f
+[    0.472406] pci_bus 0000:3f: root bus resource [bus 3f]
+[    0.472419] pci 0000:3f:00.0: [8086:2c70] type 00 class 0x060000 conventional PCI endpoint
+[    0.472475] pci 0000:3f:00.1: [8086:2d81] type 00 class 0x060000 conventional PCI endpoint
+[    0.472522] pci 0000:3f:02.0: [8086:2d90] type 00 class 0x060000 conventional PCI endpoint
+[    0.472572] pci 0000:3f:02.1: [8086:2d91] type 00 class 0x060000 conventional PCI endpoint
+[    0.472616] pci 0000:3f:02.2: [8086:2d92] type 00 class 0x060000 conventional PCI endpoint
+[    0.472661] pci 0000:3f:02.3: [8086:2d93] type 00 class 0x060000 conventional PCI endpoint
+[    0.472707] pci 0000:3f:02.4: [8086:2d94] type 00 class 0x060000 conventional PCI endpoint
+[    0.472751] pci 0000:3f:02.5: [8086:2d95] type 00 class 0x060000 conventional PCI endpoint
+[    0.472803] pci 0000:3f:03.0: [8086:2d98] type 00 class 0x060000 conventional PCI endpoint
+[    0.472847] pci 0000:3f:03.1: [8086:2d99] type 00 class 0x060000 conventional PCI endpoint
+[    0.472892] pci 0000:3f:03.2: [8086:2d9a] type 00 class 0x060000 conventional PCI endpoint
+[    0.472943] pci 0000:3f:03.4: [8086:2d9c] type 00 class 0x060000 conventional PCI endpoint
+[    0.472989] pci 0000:3f:04.0: [8086:2da0] type 00 class 0x060000 conventional PCI endpoint
+[    0.473036] pci 0000:3f:04.1: [8086:2da1] type 00 class 0x060000 conventional PCI endpoint
+[    0.473080] pci 0000:3f:04.2: [8086:2da2] type 00 class 0x060000 conventional PCI endpoint
+[    0.473124] pci 0000:3f:04.3: [8086:2da3] type 00 class 0x060000 conventional PCI endpoint
+[    0.473177] pci 0000:3f:05.0: [8086:2da8] type 00 class 0x060000 conventional PCI endpoint
+[    0.473221] pci 0000:3f:05.1: [8086:2da9] type 00 class 0x060000 conventional PCI endpoint
+[    0.473266] pci 0000:3f:05.2: [8086:2daa] type 00 class 0x060000 conventional PCI endpoint
+[    0.473312] pci 0000:3f:05.3: [8086:2dab] type 00 class 0x060000 conventional PCI endpoint
+[    0.473361] pci 0000:3f:06.0: [8086:2db0] type 00 class 0x060000 conventional PCI endpoint
+[    0.473408] pci 0000:3f:06.1: [8086:2db1] type 00 class 0x060000 conventional PCI endpoint
+[    0.473457] pci 0000:3f:06.2: [8086:2db2] type 00 class 0x060000 conventional PCI endpoint
+[    0.473502] pci 0000:3f:06.3: [8086:2db3] type 00 class 0x060000 conventional PCI endpoint
+[    0.474040] iommu: Default domain type: Translated
+[    0.474040] iommu: DMA domain TLB invalidation policy: lazy mode
+[    0.474040] SCSI subsystem initialized
+[    0.474459] libata version 3.00 loaded.
+[    0.474474] ACPI: bus type USB registered
+[    0.474490] usbcore: registered new interface driver usbfs
+[    0.474500] usbcore: registered new interface driver hub
+[    0.474500] usbcore: registered new device driver usb
+[    0.474500] pps_core: LinuxPPS API ver. 1 registered
+[    0.474500] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.474500] PTP clock support registered
+[    0.474500] EDAC MC: Ver: 3.0.0
+[    0.474734] NetLabel: Initializing
+[    0.474736] NetLabel:  domain hash size = 128
+[    0.474737] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    0.474758] NetLabel:  unlabeled traffic allowed by default
+[    0.475486] mctp: management component transport protocol core
+[    0.475486] NET: Registered PF_MCTP protocol family
+[    0.475486] PCI: Using ACPI for IRQ routing
+[    0.476442] PCI: pci_cache_line_size set to 64 bytes
+[    0.476442] e820: reserve RAM buffer [mem 0x00095000-0x0009ffff]
+[    0.476442] e820: reserve RAM buffer [mem 0xdefa5800-0xdfffffff]
+[    0.476452] pci 0000:0f:00.0: vgaarb: setting as boot VGA device
+[    0.476454] pci 0000:0f:00.0: vgaarb: bridge control possible
+[    0.476456] pci 0000:0f:00.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+[    0.476462] vgaarb: loaded
+[    0.476483] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0, 0
+[    0.476489] hpet0: 4 comparators, 64-bit 14.318180 MHz counter
+[    0.478476] clocksource: Switched to clocksource tsc-early
+[    0.479578] VFS: Disk quotas dquot_6.6.0
+[    0.479629] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.479849] AppArmor: AppArmor Filesystem Enabled
+[    0.479867] pnp: PnP ACPI init
+[    0.480208] pnp 00:03: [dma 2]
+[    0.480547] system 00:05: [io  0x0400-0x041f] has been reserved
+[    0.480551] system 00:05: [io  0x0420-0x043f] has been reserved
+[    0.480552] system 00:05: [io  0x0440-0x045f] has been reserved
+[    0.480554] system 00:05: [io  0x0460-0x047f] has been reserved
+[    0.480556] system 00:05: [io  0x0480-0x048f] has been reserved
+[    0.480557] system 00:05: [io  0xf800-0xf81f] has been reserved
+[    0.480559] system 00:05: [io  0xf820-0xf83f] has been reserved
+[    0.480560] system 00:05: [io  0xf840-0xf85f] has been reserved
+[    0.480562] system 00:05: [io  0xf860-0xf87f] has been reserved
+[    0.480564] system 00:05: [io  0xfa00-0xfa3f] has been reserved
+[    0.480565] system 00:05: [io  0xfc00-0xfc7f] has been reserved
+[    0.480567] system 00:05: [io  0xfc80-0xfcff] has been reserved
+[    0.480569] system 00:05: [io  0xfe00-0xfe7f] has been reserved
+[    0.480570] system 00:05: [io  0xfe80-0xfeff] has been reserved
+[    0.480645] system 00:06: [io  0x04d0-0x04d1] has been reserved
+[    0.480648] system 00:06: [io  0x4700-0x470b] has been reserved
+[    0.481005] pnp 00:07: disabling [mem 0x000dd000-0x000e7fff] because it overlaps 0000:0f:00.0 BAR 6 [mem 0x000c0000-0x000dffff]
+[    0.481040] system 00:07: [mem 0x00000000-0x0009ffff] could not be reserved
+[    0.481043] system 00:07: [mem 0x00100000-0xdfffffff] could not be reserved
+[    0.481045] system 00:07: [mem 0x000e8000-0x000fffff] could not be reserved
+[    0.481047] system 00:07: [mem 0xfec01000-0xfecfffff] could not be reserved
+[    0.481049] system 00:07: [mem 0xfed00000-0xfed3ffff] could not be reserved
+[    0.481050] system 00:07: [mem 0xfed40000-0xffffffff] could not be reserved
+[    0.481052] system 00:07: [mem 0xf0000000-0xf3ffffff] has been reserved
+[    0.481066] pnp: PnP ACPI: found 8 devices
+[    0.487327] clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+[    0.487549] NET: Registered PF_INET protocol family
+[    0.487818] IP idents hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.507262] tcp_listen_portaddr_hash hash table entries: 16384 (order: 6, 262144 bytes, linear)
+[    0.507319] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.507570] TCP established hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.508060] TCP bind hash table entries: 65536 (order: 9, 2097152 bytes, linear)
+[    0.508312] TCP: Hash tables configured (established 262144 bind 65536)
+[    0.508507] MPTCP token hash table entries: 32768 (order: 8, 786432 bytes, linear)
+[    0.508640] UDP hash table entries: 16384 (order: 7, 524288 bytes, linear)
+[    0.508758] UDP-Lite hash table entries: 16384 (order: 7, 524288 bytes, linear)
+[    0.508899] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.508907] NET: Registered PF_XDP protocol family
+[    0.508921] pci 0000:00:1c.0: bridge window [io  0x1000-0x0fff] to [bus 1c] add_size 1000
+[    0.508925] pci 0000:00:1c.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 1c] add_size 200000 add_align 100000
+[    0.508928] pci 0000:00:1c.0: bridge window [mem 0x00100000-0x000fffff] to [bus 1c] add_size 200000 add_align 100000
+[    0.508931] pci 0000:00:1c.5: bridge window [io  0x1000-0x0fff] to [bus 01] add_size 1000
+[    0.508933] pci 0000:00:1c.5: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 01] add_size 200000 add_align 100000
+[    0.508947] pci 0000:00:1f.0: BAR 13: [io  size 0x0080] has bogus alignment
+[    0.508949] pci 0000:00:1f.0: BAR 14: [io  size 0x0040] has bogus alignment
+[    0.508954] pci 0000:00:1c.0: bridge window [mem 0xeb100000-0xeb2fffff]: assigned
+[    0.508957] pci 0000:00:1c.0: bridge window [mem 0xeb300000-0xeb4fffff 64bit pref]: assigned
+[    0.508959] pci 0000:00:1c.5: bridge window [mem 0xeb500000-0xeb6fffff 64bit pref]: assigned
+[    0.508962] pci 0000:00:1c.0: bridge window [io  0x1000-0x1fff]: assigned
+[    0.508964] pci 0000:00:1c.5: bridge window [io  0x2000-0x2fff]: assigned
+[    0.508967] pci 0000:00:01.0: PCI bridge to [bus 03]
+[    0.508976] pci 0000:00:03.0: PCI bridge to [bus 0f]
+[    0.508978] pci 0000:00:03.0:   bridge window [io  0xe000-0xefff]
+[    0.508981] pci 0000:00:03.0:   bridge window [mem 0xea000000-0xeb0fffff]
+[    0.508984] pci 0000:00:03.0:   bridge window [mem 0xe0000000-0xe9ffffff 64bit pref]
+[    0.508988] pci 0000:00:07.0: PCI bridge to [bus 28]
+[    0.508995] pci 0000:00:1c.0: PCI bridge to [bus 1c]
+[    0.508997] pci 0000:00:1c.0:   bridge window [io  0x1000-0x1fff]
+[    0.509001] pci 0000:00:1c.0:   bridge window [mem 0xeb100000-0xeb2fffff]
+[    0.509004] pci 0000:00:1c.0:   bridge window [mem 0xeb300000-0xeb4fffff 64bit pref]
+[    0.509009] pci 0000:00:1c.5: PCI bridge to [bus 01]
+[    0.509011] pci 0000:00:1c.5:   bridge window [io  0x2000-0x2fff]
+[    0.509014] pci 0000:00:1c.5:   bridge window [mem 0xec000000-0xec0fffff]
+[    0.509018] pci 0000:00:1c.5:   bridge window [mem 0xeb500000-0xeb6fffff 64bit pref]
+[    0.509023] pci 0000:37:09.1: ROM [mem 0xef008000-0xef00ffff pref]: assigned
+[    0.509026] pci 0000:37:09.0: PCI bridge to [bus 38]
+[    0.509041] pci 0000:00:1e.0: PCI bridge to [bus 37-38]
+[    0.509045] pci 0000:00:1e.0:   bridge window [mem 0xef000000-0xef0fffff]
+[    0.509048] pci 0000:00:1e.0:   bridge window [mem 0xee000000-0xee0fffff 64bit pref]
+[    0.509054] pci_bus 0000:00: resource 4 [mem 0x000a0000-0x000bffff window]
+[    0.509055] pci_bus 0000:00: resource 5 [mem 0xe0000000-0xefffffff window]
+[    0.509057] pci_bus 0000:00: resource 6 [mem 0xfed00000-0xfed003ff window]
+[    0.509059] pci_bus 0000:00: resource 7 [mem 0xfed40000-0xfed44fff window]
+[    0.509060] pci_bus 0000:00: resource 8 [io  0x0000-0x0cf7 window]
+[    0.509062] pci_bus 0000:00: resource 9 [io  0x0d00-0xefff window]
+[    0.509063] pci_bus 0000:0f: resource 0 [io  0xe000-0xefff]
+[    0.509065] pci_bus 0000:0f: resource 1 [mem 0xea000000-0xeb0fffff]
+[    0.509066] pci_bus 0000:0f: resource 2 [mem 0xe0000000-0xe9ffffff 64bit pref]
+[    0.509068] pci_bus 0000:1c: resource 0 [io  0x1000-0x1fff]
+[    0.509070] pci_bus 0000:1c: resource 1 [mem 0xeb100000-0xeb2fffff]
+[    0.509071] pci_bus 0000:1c: resource 2 [mem 0xeb300000-0xeb4fffff 64bit pref]
+[    0.509073] pci_bus 0000:01: resource 0 [io  0x2000-0x2fff]
+[    0.509074] pci_bus 0000:01: resource 1 [mem 0xec000000-0xec0fffff]
+[    0.509076] pci_bus 0000:01: resource 2 [mem 0xeb500000-0xeb6fffff 64bit pref]
+[    0.509078] pci_bus 0000:37: resource 1 [mem 0xef000000-0xef0fffff]
+[    0.509079] pci_bus 0000:37: resource 2 [mem 0xee000000-0xee0fffff 64bit pref]
+[    0.509081] pci_bus 0000:37: resource 4 [mem 0x000a0000-0x000bffff window]
+[    0.509082] pci_bus 0000:37: resource 5 [mem 0xe0000000-0xefffffff window]
+[    0.509084] pci_bus 0000:37: resource 6 [mem 0xfed00000-0xfed003ff window]
+[    0.509085] pci_bus 0000:37: resource 7 [mem 0xfed40000-0xfed44fff window]
+[    0.509087] pci_bus 0000:37: resource 8 [io  0x0000-0x0cf7 window]
+[    0.509088] pci_bus 0000:37: resource 9 [io  0x0d00-0xefff window]
+[    0.511213] pci 0000:0f:00.1: extending delay after power-on from D3hot to 20 msec
+[    0.511248] pci 0000:0f:00.1: D0 power state depends on 0000:0f:00.0
+[    0.511301] PCI: CLS 64 bytes, default 64
+[    0.511346] DMAR: Host address width 39
+[    0.511348] DMAR: DRHD base: 0x000000fed90000 flags: 0x1
+[    0.511357] DMAR: dmar0: reg_base_addr fed90000 ver 1:0 cap c90780106f0462 ecap f02076
+[    0.511360] DMAR: RMRR base: 0x000000defd0000 end: 0x000000defd0fff
+[    0.511362] DMAR: RMRR base: 0x000000defd1000 end: 0x000000defd1fff
+[    0.511363] DMAR: RMRR base: 0x000000defd2000 end: 0x000000defd2fff
+[    0.511364] DMAR: RMRR base: 0x000000defd3000 end: 0x000000defd3fff
+[    0.511365] DMAR: RMRR base: 0x000000defd4000 end: 0x000000defd4fff
+[    0.511366] DMAR: RMRR base: 0x000000defd5000 end: 0x000000defd5fff
+[    0.511367] DMAR: RMRR base: 0x000000defd6000 end: 0x000000defd6fff
+[    0.511368] DMAR: RMRR base: 0x000000defd7000 end: 0x000000defd7fff
+[    0.511369] DMAR: ATSR flags: 0x0
+[    0.511388] DMAR: No SATC found
+[    0.511393] DMAR: dmar0: Using Queued invalidation
+[    0.511408] Trying to unpack rootfs image as initramfs...
+[    0.511506] pci 0000:00:00.0: Adding to iommu group 0
+[    0.511523] pci 0000:00:01.0: Adding to iommu group 1
+[    0.511538] pci 0000:00:03.0: Adding to iommu group 2
+[    0.511555] pci 0000:00:07.0: Adding to iommu group 3
+[    0.511588] pci 0000:00:10.0: Adding to iommu group 4
+[    0.511605] pci 0000:00:10.1: Adding to iommu group 4
+[    0.511636] pci 0000:00:11.0: Adding to iommu group 5
+[    0.511650] pci 0000:00:11.1: Adding to iommu group 5
+[    0.511667] pci 0000:00:14.0: Adding to iommu group 6
+[    0.511686] pci 0000:00:14.1: Adding to iommu group 7
+[    0.511701] pci 0000:00:14.2: Adding to iommu group 8
+[    0.511726] pci 0000:00:15.0: Adding to iommu group 9
+[    0.511774] pci 0000:00:1a.0: Adding to iommu group 10
+[    0.511789] pci 0000:00:1a.1: Adding to iommu group 10
+[    0.511803] pci 0000:00:1a.2: Adding to iommu group 10
+[    0.511818] pci 0000:00:1a.7: Adding to iommu group 10
+[    0.511835] pci 0000:00:1b.0: Adding to iommu group 11
+[    0.511867] pci 0000:00:1c.0: Adding to iommu group 12
+[    0.511883] pci 0000:00:1c.5: Adding to iommu group 12
+[    0.511930] pci 0000:00:1d.0: Adding to iommu group 13
+[    0.511946] pci 0000:00:1d.1: Adding to iommu group 13
+[    0.511964] pci 0000:00:1d.2: Adding to iommu group 13
+[    0.511980] pci 0000:00:1d.7: Adding to iommu group 13
+[    0.511995] pci 0000:00:1e.0: Adding to iommu group 14
+[    0.512031] pci 0000:00:1f.0: Adding to iommu group 15
+[    0.512048] pci 0000:00:1f.2: Adding to iommu group 15
+[    0.512082] pci 0000:0f:00.0: Adding to iommu group 16
+[    0.512100] pci 0000:0f:00.1: Adding to iommu group 16
+[    0.512105] pci 0000:01:00.0: Adding to iommu group 12
+[    0.512109] pci 0000:37:05.0: Adding to iommu group 14
+[    0.512113] pci 0000:37:09.0: Adding to iommu group 14
+[    0.512117] pci 0000:37:09.1: Adding to iommu group 14
+[    0.512151] pci 0000:3f:00.0: Adding to iommu group 17
+[    0.512169] pci 0000:3f:00.1: Adding to iommu group 17
+[    0.512232] pci 0000:3f:02.0: Adding to iommu group 18
+[    0.512254] pci 0000:3f:02.1: Adding to iommu group 18
+[    0.512272] pci 0000:3f:02.2: Adding to iommu group 18
+[    0.512293] pci 0000:3f:02.3: Adding to iommu group 18
+[    0.512311] pci 0000:3f:02.4: Adding to iommu group 18
+[    0.512333] pci 0000:3f:02.5: Adding to iommu group 18
+[    0.512381] pci 0000:3f:03.0: Adding to iommu group 19
+[    0.512404] pci 0000:3f:03.1: Adding to iommu group 19
+[    0.512425] pci 0000:3f:03.2: Adding to iommu group 19
+[    0.512446] pci 0000:3f:03.4: Adding to iommu group 19
+[    0.512494] pci 0000:3f:04.0: Adding to iommu group 20
+[    0.512514] pci 0000:3f:04.1: Adding to iommu group 20
+[    0.512532] pci 0000:3f:04.2: Adding to iommu group 20
+[    0.512555] pci 0000:3f:04.3: Adding to iommu group 20
+[    0.512604] pci 0000:3f:05.0: Adding to iommu group 21
+[    0.512624] pci 0000:3f:05.1: Adding to iommu group 21
+[    0.512644] pci 0000:3f:05.2: Adding to iommu group 21
+[    0.512663] pci 0000:3f:05.3: Adding to iommu group 21
+[    0.512710] pci 0000:3f:06.0: Adding to iommu group 22
+[    0.512731] pci 0000:3f:06.1: Adding to iommu group 22
+[    0.512753] pci 0000:3f:06.2: Adding to iommu group 22
+[    0.512774] pci 0000:3f:06.3: Adding to iommu group 22
+[    0.515651] DMAR: Intel(R) Virtualization Technology for Directed I/O
+[    0.515657] PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
+[    0.515658] software IO TLB: mapped [mem 0x00000000dafa5000-0x00000000defa5000] (64MB)
+[    0.518804] Initialise system trusted keyrings
+[    0.518821] Key type blacklist registered
+[    0.518910] workingset: timestamp_bits=36 max_order=23 bucket_order=0
+[    0.518923] zbud: loaded
+[    0.520358] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.520973] fuse: init (API version 7.39)
+[    0.521243] integrity: Platform Keyring initialized
+[    0.521250] integrity: Machine keyring initialized
+[    0.535677] Key type asymmetric registered
+[    0.535683] Asymmetric key parser 'x509' registered
+[    0.535712] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 243)
+[    0.535802] io scheduler mq-deadline registered
+[    0.536670] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[    0.536800] Monitor-Mwait will be used to enter C-1 state
+[    0.536813] Monitor-Mwait will be used to enter C-2 state
+[    0.536820] Monitor-Mwait will be used to enter C-3 state
+[    0.536826] ACPI: \_PR_.CPU0: Found 3 idle states
+[    0.537893] input: Power Button as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input0
+[    0.537948] ACPI: button: Power Button [PBTN]
+[    0.537984] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input1
+[    0.538030] ACPI: button: Power Button [PWRF]
+[    0.540792] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[    0.544172] Linux agpgart interface v0.103
+[    0.548588] loop: module loaded
+[    0.549100] ACPI: bus type drm_connector registered
+[    0.549406] tun: Universal TUN/TAP device driver, 1.6
+[    0.549516] PPP generic driver version 2.4.2
+[    0.550034] uhci_hcd 0000:00:1a.0: UHCI Host Controller
+[    0.550041] uhci_hcd 0000:00:1a.0: new USB bus registered, assigned bus number 1
+[    0.550048] uhci_hcd 0000:00:1a.0: detected 2 ports
+[    0.550075] uhci_hcd 0000:00:1a.0: irq 20, io port 0x0000d000
+[    0.550168] usb usb1: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+[    0.550171] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.550173] usb usb1: Product: UHCI Host Controller
+[    0.550174] usb usb1: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+[    0.550175] usb usb1: SerialNumber: 0000:00:1a.0
+[    0.550354] hub 1-0:1.0: USB hub found
+[    0.550369] hub 1-0:1.0: 2 ports detected
+[    0.550608] ehci-pci 0000:00:1a.7: EHCI Host Controller
+[    0.550618] ehci-pci 0000:00:1a.7: new USB bus registered, assigned bus number 2
+[    0.550635] ehci-pci 0000:00:1a.7: debug port 1
+[    0.554571] ehci-pci 0000:00:1a.7: irq 22, io mem 0xed004800
+[    0.561207] ehci-pci 0000:00:1a.7: USB 2.0 started, EHCI 1.00
+[    0.561328] usb usb2: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.08
+[    0.561331] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.561333] usb usb2: Product: EHCI Host Controller
+[    0.561338] usb usb2: Manufacturer: Linux 6.8.0-138-generic ehci_hcd
+[    0.561339] usb usb2: SerialNumber: 0000:00:1a.7
+[    0.561485] hub 2-0:1.0: USB hub found
+[    0.561509] hub 2-0:1.0: 6 ports detected
+[    0.583281] hub 1-0:1.0: USB hub found
+[    0.583296] hub 1-0:1.0: 2 ports detected
+[    0.583488] ehci-pci 0000:00:1d.7: EHCI Host Controller
+[    0.583502] ehci-pci 0000:00:1d.7: new USB bus registered, assigned bus number 3
+[    0.583533] ehci-pci 0000:00:1d.7: debug port 1
+[    0.587494] ehci-pci 0000:00:1d.7: irq 20, io mem 0xed004c00
+[    0.594552] ehci-pci 0000:00:1d.7: USB 2.0 started, EHCI 1.00
+[    0.594681] usb usb3: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.08
+[    0.594684] usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.594686] usb usb3: Product: EHCI Host Controller
+[    0.594688] usb usb3: Manufacturer: Linux 6.8.0-138-generic ehci_hcd
+[    0.594689] usb usb3: SerialNumber: 0000:00:1d.7
+[    0.594966] hub 3-0:1.0: USB hub found
+[    0.594989] hub 3-0:1.0: 6 ports detected
+[    0.595225] uhci_hcd 0000:00:1a.1: UHCI Host Controller
+[    0.595233] uhci_hcd 0000:00:1a.1: new USB bus registered, assigned bus number 4
+[    0.595241] uhci_hcd 0000:00:1a.1: detected 2 ports
+[    0.595279] uhci_hcd 0000:00:1a.1: irq 21, io port 0x0000d020
+[    0.595356] usb usb4: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+[    0.595359] usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.595361] usb usb4: Product: UHCI Host Controller
+[    0.595363] usb usb4: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+[    0.595364] usb usb4: SerialNumber: 0000:00:1a.1
+[    0.595592] hub 4-0:1.0: USB hub found
+[    0.595606] hub 4-0:1.0: 2 ports detected
+[    0.595901] uhci_hcd 0000:00:1a.2: UHCI Host Controller
+[    0.595907] uhci_hcd 0000:00:1a.2: new USB bus registered, assigned bus number 5
+[    0.595913] uhci_hcd 0000:00:1a.2: detected 2 ports
+[    0.595930] uhci_hcd 0000:00:1a.2: irq 22, io port 0x0000d040
+[    0.595984] usb usb5: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+[    0.595987] usb usb5: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.595989] usb usb5: Product: UHCI Host Controller
+[    0.595990] usb usb5: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+[    0.595991] usb usb5: SerialNumber: 0000:00:1a.2
+[    0.596197] hub 5-0:1.0: USB hub found
+[    0.596208] hub 5-0:1.0: 2 ports detected
+[    0.596468] uhci_hcd 0000:00:1d.0: UHCI Host Controller
+[    0.596474] uhci_hcd 0000:00:1d.0: new USB bus registered, assigned bus number 6
+[    0.596480] uhci_hcd 0000:00:1d.0: detected 2 ports
+[    0.596497] uhci_hcd 0000:00:1d.0: irq 20, io port 0x0000d060
+[    0.596550] usb usb6: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+[    0.596553] usb usb6: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.596555] usb usb6: Product: UHCI Host Controller
+[    0.596556] usb usb6: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+[    0.596558] usb usb6: SerialNumber: 0000:00:1d.0
+[    0.596756] hub 6-0:1.0: USB hub found
+[    0.596767] hub 6-0:1.0: 2 ports detected
+[    0.597002] uhci_hcd 0000:00:1d.1: UHCI Host Controller
+[    0.597008] uhci_hcd 0000:00:1d.1: new USB bus registered, assigned bus number 7
+[    0.597014] uhci_hcd 0000:00:1d.1: detected 2 ports
+[    0.597030] uhci_hcd 0000:00:1d.1: irq 21, io port 0x0000d080
+[    0.597087] usb usb7: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+[    0.597090] usb usb7: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.597091] usb usb7: Product: UHCI Host Controller
+[    0.597093] usb usb7: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+[    0.597094] usb usb7: SerialNumber: 0000:00:1d.1
+[    0.597301] hub 7-0:1.0: USB hub found
+[    0.597312] hub 7-0:1.0: 2 ports detected
+[    0.597566] uhci_hcd 0000:00:1d.2: UHCI Host Controller
+[    0.597571] uhci_hcd 0000:00:1d.2: new USB bus registered, assigned bus number 8
+[    0.597577] uhci_hcd 0000:00:1d.2: detected 2 ports
+[    0.597594] uhci_hcd 0000:00:1d.2: irq 22, io port 0x0000d0a0
+[    0.597646] usb usb8: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+[    0.597649] usb usb8: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.597651] usb usb8: Product: UHCI Host Controller
+[    0.597652] usb usb8: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+[    0.597654] usb usb8: SerialNumber: 0000:00:1d.2
+[    0.597803] hub 8-0:1.0: USB hub found
+[    0.597810] hub 8-0:1.0: 2 ports detected
+[    0.597989] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f0e:PS2M] at 0x60,0x64 irq 1,12
+[    0.600674] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    0.600680] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    0.600918] mousedev: PS/2 mouse device common for all mice
+[    0.601193] rtc_cmos 00:00: RTC can wake from S4
+[    0.601457] rtc_cmos 00:00: registered as rtc0
+[    0.601487] rtc_cmos 00:00: setting system clock to 2026-10-10T19:05:03 UTC (1791659103)
+[    0.601520] rtc_cmos 00:00: alarms up to one month, y3k, 114 bytes nvram, hpet irqs
+[    0.601530] i2c_dev: i2c /dev entries driver
+[    0.602123] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    0.602156] device-mapper: uevent: version 1.0.3
+[    0.602316] device-mapper: ioctl: 4.48.0-ioctl (2023-03-01) initialised: dm-devel@redhat.com
+[    0.602328] intel_pstate: CPU model not supported
+[    0.603081] ledtrig-cpu: registered to indicate activity on CPUs
+[    0.603086] Relocating firmware framebuffer to offset 0x0000000001000000[d] within [mem 0xe8000000-0xe9ffffff flags 0x14220c]
+[    0.603342] [drm] Initialized simpledrm 1.0.0 20200625 for simple-framebuffer.0 on minor 0
+[    0.603654] fbcon: Deferring console take-over
+[    0.603657] simple-framebuffer simple-framebuffer.0: [drm] fb0: simpledrmdrmfb frame buffer device
+[    0.603876] drop_monitor: Initializing network drop monitor service
+[    0.604150] NET: Registered PF_INET6 protocol family
+[    0.625459] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input2
+[    0.832636] usb 3-1: new high-speed USB device number 2 using ehci-pci
+[    0.962276] usb 3-1: New USB device found, idVendor=a69c, idProduct=5721, bcdDevice= 2.00
+[    0.962283] usb 3-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    0.962285] usb 3-1: Product: Aic MSC
+[    0.962286] usb 3-1: Manufacturer: aicsemi
+[    0.962288] usb 3-1: SerialNumber: 20200203
+[    0.995613] Freeing initrd memory: 79260K
+[    1.003940] Segment Routing with IPv6
+[    1.003975] In-situ OAM (IOAM) with IPv6
+[    1.004032] NET: Registered PF_PACKET protocol family
+[    1.004313] Key type dns_resolver registered
+[    1.006760] ENERGY_PERF_BIAS: Set to 'normal', was 'performance'
+[    1.007785] microcode: Current revision: 0x0000001f
+[    1.007790] microcode: Updated early from: 0x00000013
+[    1.009180] IPI shorthand broadcast: enabled
+[    1.011449] sched_clock: Marking stable (1010736201, 658691)->(1039090152, -27695260)
+[    1.011853] registered taskstats version 1
+[    1.013499] Loading compiled-in X.509 certificates
+[    1.014703] Loaded X.509 cert 'Build time autogenerated kernel key: 03c33e7a3eb9f1bb240db7665813fa030f4400ba'
+[    1.015469] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing 2025 Kmod: d541cef61dc7e793b7eb7e899970a2eef0b5dc8c'
+[    1.016234] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing: 14df34d1a87cf37625abec039ef2bf521249b969'
+[    1.016996] Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing 2025 Kmod: 4627603d2357a2a3f81006370894c221175893e9'
+[    1.017774] Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing: 88f752e560a1e0737e31163a466ad7b70a850c19'
+[    1.017777] blacklist: Loading compiled-in revocation X.509 certificates
+[    1.017801] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing: 61482aa2830d0ab2ad5af10b7250da9033ddcef0'
+[    1.017821] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2017): 242ade75ac4a15e50d50c84b0d45ff3eae707a03'
+[    1.017849] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (ESM 2018): 365188c1d374d6b07c3c8f240f8ef722433d6a8b'
+[    1.017869] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2019): c0746fd6c5da3ae827864651ad66ae47fe24b3e8'
+[    1.017890] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v1): a8d54bbb3825cfb94fa13c9f8a594a195c107b8d'
+[    1.017909] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v2): 4cf046892d6fd3c9a5b03f98d845f90851dc6a8c'
+[    1.017936] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v3): 100437bb6de6e469b581e61cd66bce3ef4ed53af'
+[    1.017956] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (Ubuntu Core 2019): c1d57b8f6b743f23ee41f4f7ee292f06eecadfb9'
+[    1.023052] Key type .fscrypt registered
+[    1.023054] Key type fscrypt-provisioning registered
+[    1.043204] Key type encrypted registered
+[    1.043214] AppArmor: AppArmor sha256 policy hashing enabled
+[    1.043230] ima: No TPM chip found, activating TPM-bypass!
+[    1.043240] Loading compiled-in module X.509 certificates
+[    1.044078] Loaded X.509 cert 'Build time autogenerated kernel key: 03c33e7a3eb9f1bb240db7665813fa030f4400ba'
+[    1.044082] ima: Allocated hash algorithm: sha256
+[    1.044094] ima: No architecture policies found
+[    1.044105] evm: Initialising EVM extended attributes:
+[    1.044106] evm: security.selinux
+[    1.044107] evm: security.SMACK64
+[    1.044108] evm: security.SMACK64EXEC
+[    1.044109] evm: security.SMACK64TRANSMUTE
+[    1.044110] evm: security.SMACK64MMAP
+[    1.044111] evm: security.apparmor
+[    1.044112] evm: security.ima
+[    1.044113] evm: security.capability
+[    1.044113] evm: HMAC attrs: 0x1
+[    1.044800] PM:   Magic number: 14:305:91
+[    1.044896] memory_tiering memory_tier4: hash matches
+[    1.057538] RAS: Correctable Errors collector initialized.
+[    1.057678] clk: Disabling unused clocks
+[    1.060753] Freeing unused decrypted memory: 2028K
+[    1.061771] Freeing unused kernel image (initmem) memory: 4928K
+[    1.061920] Write protecting the kernel read-only data: 36864k
+[    1.062544] Freeing unused kernel image (rodata/data gap) memory: 328K
+[    1.126387] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[    1.126390] x86/mm: Checking user space page tables
+[    1.181398] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[    1.181404] Run /init as init process
+[    1.181405]   with arguments:
+[    1.181407]     /init
+[    1.181408]     splash
+[    1.181409]   with environment:
+[    1.181410]     HOME=/
+[    1.181411]     TERM=linux
+[    1.265671] usb 7-1: new full-speed USB device number 2 using uhci_hcd
+[    1.310243] ahci 0000:00:1f.2: version 3.0
+[    1.310553] ahci 0000:00:1f.2: controller can't do SNTF, turning off CAP_SNTF
+[    1.310696] ahci 0000:00:1f.2: AHCI 0001.0200 32 slots 6 ports 3 Gbps 0x3f impl RAID mode
+[    1.310700] ahci 0000:00:1f.2: flags: 64bit ncq pm led clo pmp pio slum part ccc sxs 
+[    1.311694] FDC 0 is a post-1991 82077
+[    1.312253] scsi host0: ahci
+[    1.312978] scsi host1: ahci
+[    1.313285] scsi host2: ahci
+[    1.313541] scsi host3: ahci
+[    1.313810] scsi host4: ahci
+[    1.314049] scsi host5: ahci
+[    1.314171] ata1: SATA max UDMA/133 abar m2048@0xed004000 port 0xed004100 irq 28 lpm-pol 0
+[    1.314176] ata2: SATA max UDMA/133 abar m2048@0xed004000 port 0xed004180 irq 28 lpm-pol 0
+[    1.314181] ata3: SATA max UDMA/133 abar m2048@0xed004000 port 0xed004200 irq 28 lpm-pol 0
+[    1.314183] ata4: SATA max UDMA/133 abar m2048@0xed004000 port 0xed004280 irq 28 lpm-pol 0
+[    1.314186] ata5: SATA max UDMA/133 abar m2048@0xed004000 port 0xed004300 irq 28 lpm-pol 0
+[    1.314189] ata6: SATA max UDMA/133 abar m2048@0xed004000 port 0xed004380 irq 28 lpm-pol 0
+[    1.319571] tg3 0000:01:00.0 eth0: Tigon3 [partno(BCM95754) rev 5784100] (PCI Express) MAC address 64:31:50:2f:77:13
+[    1.319577] tg3 0000:01:00.0 eth0: attached PHY is 5784 (10/100/1000Base-T Ethernet) (WireSpeed[1], EEE[0])
+[    1.319581] tg3 0000:01:00.0 eth0: RXcsums[1] LinkChgREG[0] MIirq[0] ASF[0] TSOcap[1]
+[    1.319585] tg3 0000:01:00.0 eth0: dma_rwctrl[76180000] dma_mask[64-bit]
+[    1.356200] gpio_ich gpio_ich.2.auto: GPIO from 512 to 572
+[    1.364794] firewire_ohci 0000:37:05.0: added OHCI v1.0 device as card 0, 8 IR + 8 IT contexts, quirks 0x0
+[    1.428723] usb 7-1: New USB device found, idVendor=046d, idProduct=c548, bcdDevice= 5.03
+[    1.428732] usb 7-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[    1.428736] usb 7-1: Product: USB Receiver
+[    1.428739] usb 7-1: Manufacturer: Logitech
+[    1.445977] hid: raw HID events driver (C) Jiri Kosina
+[    1.565713] tsc: Refined TSC clocksource calibration: 3066.666 MHz
+[    1.565725] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x2c34469b3ec, max_idle_ns: 440795286947 ns
+[    1.565816] clocksource: Switched to clocksource tsc
+[    1.619912] ata5: SATA link down (SStatus 0 SControl 300)
+[    1.620214] ata6: SATA link down (SStatus 0 SControl 300)
+[    1.620286] ata3: SATA link down (SStatus 0 SControl 300)
+[    1.620316] ata4: SATA link down (SStatus 0 SControl 300)
+[    1.773751] ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+[    1.773778] ata2: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+[    1.774532] ata2.00: ATA-9: ST1000DM003-1CH162, CC47, max UDMA/133
+[    1.774753] ata2.00: 1953525168 sectors, multi 0: LBA48 NCQ (depth 32), AA
+[    1.775883] ata2.00: configured for UDMA/133
+[    1.778015] ata1.00: ATAPI: hp      DVD-RAM GH60L, RD01, max UDMA/100
+[    1.782946] ata1.00: configured for UDMA/100
+[    1.791992] scsi 0:0:0:0: CD-ROM            hp       DVD-RAM GH60L    RD01 PQ: 0 ANSI: 5
+[    1.831279] sr 0:0:0:0: [sr0] scsi3-mmc drive: 40x/40x writer dvd-ram cd/rw xa/form2 cdda tray
+[    1.834514] cdrom: Uniform CD-ROM driver Revision: 3.20
+[    1.853106] sr 0:0:0:0: Attached scsi CD-ROM sr0
+[    1.853352] sr 0:0:0:0: Attached scsi generic sg0 type 5
+[    1.853804] scsi 1:0:0:0: Direct-Access     ATA      ST1000DM003-1CH1 CC47 PQ: 0 ANSI: 5
+[    1.854205] sd 1:0:0:0: Attached scsi generic sg1 type 0
+[    1.854402] sd 1:0:0:0: [sda] 1953525168 512-byte logical blocks: (1.00 TB/932 GiB)
+[    1.854411] sd 1:0:0:0: [sda] 4096-byte physical blocks
+[    1.854447] sd 1:0:0:0: [sda] Write Protect is off
+[    1.854462] sd 1:0:0:0: [sda] Mode Sense: 00 3a 00 00
+[    1.854512] sd 1:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    1.854544] sd 1:0:0:0: [sda] Preferred minimum I/O size 4096 bytes
+[    1.870044] firewire_core 0000:37:05.0: created device fw0: GUID 0060b000007778f7, S400
+[    1.876615]  sda: sda1 sda2 < sda5 sda6 >
+[    1.877546] sd 1:0:0:0: [sda] Attached SCSI disk
+[    1.890991] usbcore: registered new interface driver usbhid
+[    1.890996] usbhid: USB HID core driver
+[    1.892697] tg3 0000:01:00.0 enp1s0: renamed from eth0
+[    1.894120] input: Logitech USB Receiver as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.0/0003:046D:C548.0001/input/input5
+[    1.946192] hid-generic 0003:046D:C548.0001: input,hidraw0: USB HID v1.11 Keyboard [Logitech USB Receiver] on usb-0000:00:1d.1-1/input0
+[    1.946812] input: Logitech USB Receiver Mouse as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.1/0003:046D:C548.0002/input/input6
+[    1.947292] input: Logitech USB Receiver Consumer Control as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.1/0003:046D:C548.0002/input/input7
+[    1.968711] usb 3-5: new high-speed USB device number 4 using ehci-pci
+[    1.999023] input: Logitech USB Receiver System Control as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.1/0003:046D:C548.0002/input/input8
+[    1.999255] input: Logitech USB Receiver as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.1/0003:046D:C548.0002/input/input9
+[    1.999647] hid-generic 0003:046D:C548.0002: input,hiddev0,hidraw1: USB HID v1.11 Mouse [Logitech USB Receiver] on usb-0000:00:1d.1-1/input1
+[    2.000131] hid-generic 0003:046D:C548.0003: hiddev1,hidraw2: USB HID v1.11 Device [Logitech USB Receiver] on usb-0000:00:1d.1-1/input2
+[    2.001011] input: Logitech USB Receiver as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.3/0003:046D:C548.0004/input/input10
+[    2.001382] hid-generic 0003:046D:C548.0004: input,hidraw3: USB HID v1.11 Device [Logitech USB Receiver] on usb-0000:00:1d.1-1/input3
+[    2.118025] usb 3-5: New USB device found, idVendor=148f, idProduct=5370, bcdDevice= 1.01
+[    2.118033] usb 3-5: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    2.118037] usb 3-5: Product: 802.11 n WLAN
+[    2.118040] usb 3-5: Manufacturer: Ralink
+[    2.118043] usb 3-5: SerialNumber: 1.0
+[    2.237563] usb-storage 3-1:1.0: USB Mass Storage device detected
+[    2.237973] scsi host6: usb-storage 3-1:1.0
+[    2.238157] usbcore: registered new interface driver usb-storage
+[    2.240973] usbcore: registered new interface driver uas
+[    2.476707] fbcon: Taking over console
+[    2.477913] Console: switching to colour frame buffer device 80x30
+[    2.561741] EXT4-fs (sda6): mounted filesystem 9160544f-a439-4f43-8cdc-92441821adfb ro with ordered data mode. Quota mode: none.
+[    3.204981] random: crng init done
+[    3.294746] scsi 6:0:0:0: Direct-Access     AIC      flash            1.0  PQ: 0 ANSI: 4
+[    3.295109] sd 6:0:0:0: Attached scsi generic sg2 type 0
+[    3.296942] sd 6:0:0:0: [sdb] 15840 512-byte logical blocks: (8.11 MB/7.73 MiB)
+[    3.297946] sd 6:0:0:0: [sdb] Write Protect is off
+[    3.297954] sd 6:0:0:0: [sdb] Mode Sense: 03 00 00 00
+[    3.298943] sd 6:0:0:0: [sdb] No Caching mode page found
+[    3.298954] sd 6:0:0:0: [sdb] Assuming drive cache: write through
+[    3.304684]  sdb: sdb1
+[    3.305578] sd 6:0:0:0: [sdb] Attached SCSI removable disk
+[    3.851442] systemd[1]: Inserted module 'autofs4'
+[    4.044851] systemd[1]: systemd 249.11-0ubuntu3.22 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY -P11KIT -QRENCODE +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    4.045082] systemd[1]: Detected architecture x86-64.
+[    4.075060] systemd[1]: Hostname set to <mit-HP-Z400-Workstation>.
+[    5.735018] systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+[    6.045747] systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+[    6.798971] systemd[1]: Queued start job for default target Graphical Interface.
+[    6.808700] systemd[1]: Created slice Slice /system/modprobe.
+[    6.809253] systemd[1]: Created slice User and Session Slice.
+[    6.809401] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[    6.809766] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[    6.809898] systemd[1]: Reached target Remote File Systems.
+[    6.809931] systemd[1]: Reached target Slice Units.
+[    6.809968] systemd[1]: Reached target Mounting snaps.
+[    6.810025] systemd[1]: Reached target Local Verity Protected Volumes.
+[    6.810317] systemd[1]: Listening on Syslog Socket.
+[    6.810519] systemd[1]: Listening on fsck to fsckd communication Socket.
+[    6.810658] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[    6.821202] systemd[1]: Listening on Journal Audit Socket.
+[    6.821421] systemd[1]: Listening on Journal Socket (/dev/log).
+[    6.821689] systemd[1]: Listening on Journal Socket.
+[    6.826542] systemd[1]: Listening on udev Control Socket.
+[    6.826752] systemd[1]: Listening on udev Kernel Socket.
+[    6.835949] systemd[1]: Mounting Huge Pages File System...
+[    6.837502] systemd[1]: Mounting POSIX Message Queue File System...
+[    6.839511] systemd[1]: Mounting Kernel Debug File System...
+[    6.841274] systemd[1]: Mounting Kernel Trace File System...
+[    6.844521] systemd[1]: Starting Journal Service...
+[    6.846172] systemd[1]: Starting Set the console keyboard layout...
+[    6.848048] systemd[1]: Starting Create List of Static Device Nodes...
+[    6.850291] systemd[1]: Starting Load Kernel Module configfs...
+[    6.852191] systemd[1]: Starting Load Kernel Module drm...
+[    6.853696] systemd[1]: Starting Load Kernel Module efi_pstore...
+[    6.855190] systemd[1]: Starting Load Kernel Module fuse...
+[    6.855425] systemd[1]: Condition check resulted in File System Check on Root Device being skipped.
+[    6.911007] systemd[1]: Starting Load Kernel Modules...
+[    6.912667] systemd[1]: Starting Remount Root and Kernel File Systems...
+[    6.914211] systemd[1]: Starting Coldplug All udev Devices...
+[    6.916816] systemd[1]: Mounted Huge Pages File System.
+[    6.916986] systemd[1]: Mounted POSIX Message Queue File System.
+[    6.917139] systemd[1]: Mounted Kernel Debug File System.
+[    6.917276] systemd[1]: Mounted Kernel Trace File System.
+[    6.917770] systemd[1]: Finished Create List of Static Device Nodes.
+[    6.918234] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[    6.918610] systemd[1]: Finished Load Kernel Module configfs.
+[    6.919003] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[    6.919344] systemd[1]: Finished Load Kernel Module drm.
+[    6.919734] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[    6.920051] systemd[1]: Finished Load Kernel Module fuse.
+[    6.921227] systemd[1]: Mounting FUSE Control File System...
+[    6.922323] systemd[1]: Mounting Kernel Configuration File System...
+[    6.923897] systemd[1]: Mounted FUSE Control File System.
+[    6.924515] systemd[1]: Mounted Kernel Configuration File System.
+[    7.010439] EXT4-fs (sda6): re-mounted 9160544f-a439-4f43-8cdc-92441821adfb r/w.
+[    7.012533] systemd[1]: Finished Remount Root and Kernel File Systems.
+[    7.023971] systemd[1]: Starting Load/Save Random Seed...
+[    7.025200] systemd[1]: Starting Create System Users...
+[    7.046484] systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+[    7.046833] systemd[1]: Finished Load Kernel Module efi_pstore.
+[    7.047034] systemd[1]: Condition check resulted in Platform Persistent Storage Archival being skipped.
+[    7.065856] systemd[1]: Started Journal Service.
+[    7.090824] systemd-journald[342]: Received client request to flush runtime journal.
+[    7.229009] lp: driver loaded but no devices found
+[    7.319557] ppdev: user-space parallel port driver
+[    8.030971] loop0: detected capacity change from 0 to 8
+[    8.058247] loop1: detected capacity change from 0 to 213384
+[    8.076616] loop2: detected capacity change from 0 to 215440
+[    8.166877] loop3: detected capacity change from 0 to 113384
+[    8.205741] loop4: detected capacity change from 0 to 113672
+[    8.208144] loop5: detected capacity change from 0 to 130552
+[    8.298508] loop6: detected capacity change from 0 to 130632
+[    8.662911] loop7: detected capacity change from 0 to 151328
+[    8.839221] loop8: detected capacity change from 0 to 136784
+[    8.873201] loop9: detected capacity change from 0 to 135624
+[   13.899002] EDAC MC0: Giving out device to module i7core_edac.c controller i7 core #0: DEV 0000:3f:03.0 (INTERRUPT)
+[   13.899032] EDAC PCI0: Giving out device to module i7core_edac controller EDAC PCI controller: DEV 0000:3f:03.0 (POLLED)
+[   13.899049] EDAC i7core: Driver loaded, 1 memory controller(s) found.
+[   13.973282] cryptd: max_cpu_qlen set to 1000
+[   14.062995] input: HP WMI hotkeys as /devices/virtual/input/input11
+[   14.070093] SSE version of gcm_enc/dec engaged.
+[   14.073577] hp_bioscfg: Unable to set BIOS settings on HP systems
+[   14.488673] snd_hda_intel 0000:0f:00.1: Disabling MSI
+[   14.488692] snd_hda_intel 0000:0f:00.1: Handle vga_switcheroo audio client
+[   15.583817] input: HDA NVidia HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:03.0/0000:0f:00.1/sound/card1/input12
+[   15.583947] input: HDA NVidia HDMI/DP,pcm=7 as /devices/pci0000:00/0000:00:03.0/0000:0f:00.1/sound/card1/input13
+[   15.705231] snd_hda_codec_realtek hdaudioC0D0: ALC262: SKU not ready 0x411111f0
+[   15.706134] snd_hda_codec_realtek hdaudioC0D0: autoconfig for ALC262: line_outs=1 (0x15/0x0/0x0/0x0/0x0) type:line
+[   15.706142] snd_hda_codec_realtek hdaudioC0D0:    speaker_outs=1 (0x16/0x0/0x0/0x0/0x0)
+[   15.706146] snd_hda_codec_realtek hdaudioC0D0:    hp_outs=1 (0x1b/0x0/0x0/0x0/0x0)
+[   15.706150] snd_hda_codec_realtek hdaudioC0D0:    mono: mono_out=0x0
+[   15.706153] snd_hda_codec_realtek hdaudioC0D0:    inputs:
+[   15.706156] snd_hda_codec_realtek hdaudioC0D0:      Rear Mic=0x18
+[   15.706160] snd_hda_codec_realtek hdaudioC0D0:      Front Mic=0x19
+[   15.706163] snd_hda_codec_realtek hdaudioC0D0:      Line=0x1a
+[   15.719881] input: HDA Intel Rear Mic as /devices/pci0000:00/0000:00:1b.0/sound/card0/input14
+[   15.719997] input: HDA Intel Front Mic as /devices/pci0000:00/0000:00:1b.0/sound/card0/input15
+[   15.720114] input: HDA Intel Line as /devices/pci0000:00/0000:00:1b.0/sound/card0/input16
+[   15.720201] input: HDA Intel Line Out as /devices/pci0000:00/0000:00:1b.0/sound/card0/input17
+[   15.720324] input: HDA Intel Front Headphone as /devices/pci0000:00/0000:00:1b.0/sound/card0/input18
+[   16.930618] IPMI message handler: version 39.2
+[   16.964807] ipmi device interface
+[   16.980910] input: Logitech USB Receiver as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.3/0003:046D:C548.0004/input/input19
+[   16.981318] hid-multitouch 0003:046D:C548.0004: input,hidraw3: USB HID v1.11 Device [Logitech USB Receiver] on usb-0000:00:1d.1-1/input3
+[   17.524636] kvm_intel: VM_EXIT_LOAD_IA32_PERF_GLOBAL_CTRL does not work properly. Using workaround
+[   17.551825] nvidia: loading out-of-tree module taints kernel.
+[   17.551843] nvidia: module license 'NVIDIA' taints kernel.
+[   17.551845] Disabling lock debugging due to kernel taint
+[   17.551851] nvidia: module verification failed: signature and/or required key missing - tainting kernel
+[   17.551853] nvidia: module license taints kernel.
+[   17.568008] ------------[ cut here ]------------
+[   17.568015] WARNING: CPU: 9 PID: 441 at arch/x86/kernel/alternative.c:830 patch_retpoline+0x1f8/0x240
+[   17.568030] Modules linked in: libarc4 kvm_intel kvm ipmi_devintf hid_multitouch irqbypass ipmi_msghandler crct10dif_pclmul joydev video polyval_generic ghash_clmulni_intel snd_hda_codec_realtek snd_hda_codec_hdmi snd_hda_codec_generic sha256_ssse3 input_leds serio_raw snd_hda_intel snd_seq_midi snd_seq_midi_event snd_intel_dspcfg snd_intel_sdw_acpi snd_hda_codec snd_hda_core snd_rawmidi snd_hwdep snd_seq snd_pcm sha1_ssse3 snd_seq_device aesni_intel snd_timer hp_wmi firmware_attributes_class sparse_keymap wmi_bmof crypto_simd cryptd snd platform_profile intel_cstate soundcore i7core_edac mac_hid sch_fq_codel msr parport_pc ppdev lp efi_pstore parport ip_tables x_tables autofs4 uas usb_storage hid_generic usbhid hid gpio_ich crc32_pclmul psmouse firewire_ohci ahci firewire_core lpc_ich libahci crc_itu_t tg3 wmi floppy
+[   17.568125] CPU: 9 PID: 441 Comm: systemd-udevd Tainted: P          IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+[   17.568130] Hardware name: Hewlett-Packard HP Z400 Workstation/0B4Ch, BIOS 786G3 v03.15 10/29/2010
+[   17.568132] RIP: 0010:patch_retpoline+0x1f8/0x240
+[   17.568138] Code: d2 31 c9 31 f6 31 ff 45 31 c0 45 31 c9 45 31 d2 45 31 db c3 cc cc cc cc 4d 01 cb 83 fa 07 7e 2c b9 e0 ff ff ff e9 7b ff ff ff <0f> 0b b8 ff ff ff ff 31 d2 31 c9 31 f6 31 ff 45 31 c0 45 31 c9 45
+[   17.568142] RSP: 0018:ffffd45c812d39a8 EFLAGS: 00010212
+[   17.568146] RAX: 0000000000001043 RBX: ffffffffc0a3105b RCX: 0000000000000000
+[   17.568149] RDX: 0000000000e9f70c RSI: ffffd45c812d39d8 RDI: ffffffffc0a3105b
+[   17.568152] RBP: ffffd45c812d3a88 R08: 0000000000000000 R09: ffffd45c812d3a48
+[   17.568154] R10: 0000000000000000 R11: 0000000000000000 R12: ffffd45c812d39d8
+[   17.568157] R13: 0000000000000000 R14: ffffffffc195ba20 R15: ffffffffc195b9e8
+[   17.568160] FS:  0000731b664718c0(0000) GS:ffff8d7547c80000(0000) knlGS:0000000000000000
+[   17.568163] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   17.568166] CR2: 000078a83a3bf423 CR3: 0000000103dc6004 CR4: 00000000000206f0
+[   17.568169] Call Trace:
+[   17.568172]  <TASK>
+[   17.568175]  ? apply_retpolines+0x6a/0x340
+[   17.568182]  ? find_symbol+0x35/0x160
+[   17.568198]  module_finalize+0x1c0/0x360
+[   17.568210]  post_relocation+0xbb/0x100
+[   17.568215]  load_module+0x55a/0xc80
+[   17.568220]  ? security_kernel_post_read_file+0x75/0x90
+[   17.568226]  ? kernel_read_file+0x2b0/0x330
+[   17.568233]  init_module_from_file+0x96/0x100
+[   17.568237]  ? init_module_from_file+0x96/0x100
+[   17.568244]  idempotent_init_module+0x11c/0x310
+[   17.568251]  __x64_sys_finit_module+0x64/0xd0
+[   17.568256]  x64_sys_call+0x15ed/0x2480
+[   17.568262]  do_syscall_64+0x89/0x180
+[   17.568268]  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+[   17.568273]  ? syscall_exit_to_user_mode+0x43/0x1e0
+[   17.568278]  ? do_syscall_64+0x95/0x180
+[   17.568282]  ? do_syscall_64+0x95/0x180
+[   17.568286]  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+[   17.568290]  ? syscall_exit_to_user_mode+0x43/0x1e0
+[   17.568294]  ? do_syscall_64+0x95/0x180
+[   17.568297]  ? exc_page_fault+0x94/0x1b0
+[   17.568302]  entry_SYSCALL_64_after_hwframe+0x78/0x80
+[   17.568309] RIP: 0033:0x731b6631e9dd
+[   17.568324] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 23 b4 0f 00 f7 d8 64 89 01 48
+[   17.568327] RSP: 002b:00007ffe6b6772e8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[   17.568331] RAX: ffffffffffffffda RBX: 000056707559d2d0 RCX: 0000731b6631e9dd
+[   17.568334] RDX: 0000000000000000 RSI: 0000731b66696441 RDI: 0000000000000011
+[   17.568337] RBP: 0000000000020000 R08: 0000000000000000 R09: 0000000000000002
+[   17.568339] R10: 0000000000000011 R11: 0000000000000246 R12: 0000731b66696441
+[   17.568342] R13: 000056707558dcc0 R14: 0000567075592240 R15: 0000567075599a80
+[   17.568347]  </TASK>
+[   17.568349] ---[ end trace 0000000000000000 ]---
+[   17.649821] nvidia-nvlink: Nvlink Core is being initialized, major device number 238
+[   17.650366] nvidia 0000:0f:00.0: vgaarb: VGA decodes changed: olddecodes=io+mem,decodes=none:owns=io+mem
+[   17.650486] NVRM: loading NVIDIA UNIX x86_64 Kernel Module  390.157  Wed Oct 12 09:19:07 UTC 2022 (using threaded interrupts)
+[   17.830121] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[   17.830679] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[   17.830919] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[   17.932519] nvidia-modeset: Loading NVIDIA Kernel Mode Setting Driver for UNIX platforms  390.157  Wed Oct 12 09:15:25 UTC 2022
+[   18.280315] [drm] [nvidia-drm] [GPU ID 0x00000f00] Loading driver
+[   18.280319] [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:0f:00.0 on minor 1
+[   18.382490] Adding 2097148k swap on /dev/sda5.  Priority:-2 extents:1 across:2097148k 
+[   18.388823] nvidia-uvm: Loaded the UVM driver in 8 mode, major device number 237
+[   18.587753] usb 3-5: reset high-speed USB device number 4 using ehci-pci
+[   18.730016] ieee80211 phy0: rt2x00_set_rt: Info - RT chipset 5390, rev 0502 detected
+[   18.775368] ieee80211 phy0: rt2x00_set_rf: Info - RF chipset 5370 detected
+[   18.775839] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[   18.776618] usbcore: registered new interface driver rt2800usb
+[   18.853703] rt2800usb 3-5:1.0 wlx000f55b19b78: renamed from wlan0
+[   19.594422] audit: type=1400 audit(1791659122.491:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="libreoffice-senddoc" pid=748 comm="apparmor_parser"
+[   19.594618] audit: type=1400 audit(1791659122.491:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="libreoffice-oosplash" pid=746 comm="apparmor_parser"
+[   19.595086] audit: type=1400 audit(1791659122.492:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=736 comm="apparmor_parser"
+[   19.595092] audit: type=1400 audit(1791659122.492:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=736 comm="apparmor_parser"
+[   19.606602] audit: type=1400 audit(1791659122.503:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=735 comm="apparmor_parser"
+[   19.613946] audit: type=1400 audit(1791659122.511:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/bin/man" pid=742 comm="apparmor_parser"
+[   19.613953] audit: type=1400 audit(1791659122.511:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="man_filter" pid=742 comm="apparmor_parser"
+[   19.613956] audit: type=1400 audit(1791659122.511:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="man_groff" pid=742 comm="apparmor_parser"
+[   19.656469] audit: type=1400 audit(1791659122.553:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/snapd/snap-confine" pid=755 comm="apparmor_parser"
+[   19.669100] audit: type=1400 audit(1791659122.566:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="libreoffice-xpdfimport" pid=754 comm="apparmor_parser"
+[   20.078751] WARNING: Flushing system-wide workqueues will be prohibited in near future.
+[   20.078754] CPU: 11 PID: 676 Comm: nvidia-smi Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+[   20.078757] Hardware name: Hewlett-Packard HP Z400 Workstation/0B4Ch, BIOS 786G3 v03.15 10/29/2010
+[   20.078759] Call Trace:
+[   20.078761]  <TASK>
+[   20.078763]  dump_stack_lvl+0x76/0xa0
+[   20.078770]  dump_stack+0x10/0x20
+[   20.078772]  __warn_flushing_systemwide_wq+0x1a/0x30
+[   20.078779]  os_flush_work_queue+0x59/0x80 [nvidia]
+[   20.079080]  rm_disable_adapter+0x52/0xd0 [nvidia]
+[   20.079403] WARNING: kernel stack frame pointer at 000000003f424df5 in nvidia-smi:676 has bad value 000000003ff6f7ff
+[   20.079406] unwind stack type:0 next_sp:0000000000000000 mask:0x2 graph_idx:0
+[   20.079407] 00000000f33d18eb: ffffd45c8079fac8 (0xffffd45c8079fac8)
+[   20.079419] 00000000b9d16837: ffffffffa245ca68 (__show_trace_log_lvl+0x268/0x400)
+[   20.079423] 00000000350a2b76: ffffffffa3f9a701 (kallsyms_seqs_of_names+0x9cba9/0xb6248)
+[   20.079428] 000000000cbb0d81: ffff8d704a5c0000 (0xffff8d704a5c0000)
+[   20.079431] 00000000c60782eb: ffffffffa4020f78 (SIGMA2+0x6cd78/0x14ade0)
+[   20.079434] 00000000d249547a: ffffd45c8079fb38 (0xffffd45c8079fb38)
+[   20.079437] 00000000a0977dee: 000000004ba75800 (0x4ba75800)
+[   20.079440] 0000000074de8c30: 0000000000000002 (0x2)
+[   20.079443] 000000004ff6c474: 0000000000000001 (0x1)
+[   20.079446] 000000008daf92f8: ffffd45c8079c000 (0xffffd45c8079c000)
+[   20.079449] 00000000045f6cd1: ffffd45c807a0000 (0xffffd45c807a0000)
+[   20.079452] 00000000787e6407: 0000000000000000 ...
+[   20.079453] 000000001d73d609: ffffd45c8079c000 (0xffffd45c8079c000)
+[   20.079456] 00000000cd93c3fb: ffffd45c807a0000 (0xffffd45c807a0000)
+[   20.079459] 0000000082ab1829: 0000000000000000 ...
+[   20.079459] 000000001ee24d0a: 0000000000000002 (0x2)
+[   20.079462] 00000000fb4a8235: ffff8d704a5c0000 (0xffff8d704a5c0000)
+[   20.079465] 000000008e971caf: 0000000000000000 ...
+[   20.079466] 0000000085c053ba: 0000000000000001 (0x1)
+[   20.079469] 00000000a382440e: ffffd45c8079fb30 (0xffffd45c8079fb30)
+[   20.079472] 0000000006214f14: ffffd45c8079f9c8 (0xffffd45c8079f9c8)
+[   20.079475] 00000000a43261a4: ffffffffc1100302 (rm_disable_adapter+0x52/0xd0 [nvidia])
+[   20.079798] 000000004394b54b: 0000000000000000 ...
+[   20.079799] 00000000279103a7: 9d6c47d3cbc27d00 (0x9d6c47d3cbc27d00)
+[   20.079803] 00000000b4af7725: 0000000000000246 (0x246)
+[   20.079806] 00000000bb064fb9: ffffffffa4020f78 (SIGMA2+0x6cd78/0x14ade0)
+[   20.079809] 000000005235bbeb: ffffd45c8079fc08 (0xffffd45c8079fc08)
+[   20.079812] 00000000e2405ec7: ffff8d704ba75800 (0xffff8d704ba75800)
+[   20.079815] 00000000c5df936a: ffff8d704ba75c80 (0xffff8d704ba75c80)
+[   20.079818] 00000000ca632d94: ffffd45c8079fad8 (0xffffd45c8079fad8)
+[   20.079821] 000000004188c88c: ffffffffa245cd58 (show_stack+0x58/0x70)
+[   20.079823] 00000000e1036750: ffffd45c8079faf8 (0xffffd45c8079faf8)
+[   20.079826] 00000000da8890d4: ffffffffa3585e06 (dump_stack_lvl+0x76/0xa0)
+[   20.079830] 00000000497a017b: ffff8d7042ea0000 (0xffff8d7042ea0000)
+[   20.079833] 000000006b11e167: 0000000000000001 (0x1)
+[   20.079835] 00000000c1c68a93: ffffd45c8079fb08 (0xffffd45c8079fb08)
+[   20.079838] 000000004dd0c097: ffffffffa3585e50 (dump_stack+0x10/0x20)
+[   20.079841] 00000000fef64bdb: ffffd45c8079fb18 (0xffffd45c8079fb18)
+[   20.079844] 000000005c37f194: ffffffffa252e9aa (__warn_flushing_systemwide_wq+0x1a/0x30)
+[   20.079847] 000000001ac75705: ffffd45c8079fb30 (0xffffd45c8079fb30)
+[   20.079850] 00000000f6a5a134: ffffffffc0a41d99 (os_flush_work_queue+0x59/0x80 [nvidia])
+[   20.080087] 000000007d8e7de9: 00000000c1081b17 (0xc1081b17)
+[   20.080092] 000000003f424df5: ffff8d7042ea3000 (0xffff8d7042ea3000)
+[   20.080095] 0000000097f5ee26: ffffffffc1100302 (rm_disable_adapter+0x52/0xd0 [nvidia])
+[   20.080418] 00000000d101422c: 00000000000002a4 (0x2a4)
+[   20.080422] 00000000be606fba: ffffffff00000061 (0xffffffff00000061)
+[   20.080425] 000000004e07df67: 000f41febceff180 (0xf41febceff180)
+[   20.080428] 0000000022b47652: 000f41ffb2a0ac00 (0xf41ffb2a0ac00)
+[   20.080431] 0000000059dd88cf: 000f41ffb2a0ac00 (0xf41ffb2a0ac00)
+[   20.080434] 00000000ac28e28c: 000f41ff3b6b1800 (0xf41ff3b6b1800)
+[   20.080437] 00000000121a2a3a: 0000000000000000 ...
+[   20.080438] 000000007539e184: 0000000000000200 (0x200)
+[   20.080441] 00000000be11a233: 000000200000000b (0x200000000b)
+[   20.080444] 00000000c8fbfb46: 00000000000002a4 (0x2a4)
+[   20.080447] 000000004cefd54a: 0000000000000000 ...
+[   20.080447] 00000000bcb3a332: 9d6c47d3cbc27d00 (0x9d6c47d3cbc27d00)
+[   20.080450] 00000000605538c6: ffff8d704ba75801 (0xffff8d704ba75801)
+[   20.080453] 000000002c718dca: ffff8d7042ea0000 (0xffff8d7042ea0000)
+[   20.080456] 0000000020060698: ffff8d704ba75800 (0xffff8d704ba75800)
+[   20.080459] 00000000fc2291ea: ffff8d704ba75800 (0xffff8d704ba75800)
+[   20.080462] 000000000081093d: ffff8d7042ea0000 (0xffff8d7042ea0000)
+[   20.080465] 000000009357929b: ffff8d7042ea0000 (0xffff8d7042ea0000)
+[   20.080468] 000000006b5c4b3b: ffffffffc0a325ec (nv_shutdown_adapter+0x1c/0xb0 [nvidia])
+[   20.080699] 00000000cede9499: ffff8d704ba75800 (0xffff8d704ba75800)
+[   20.080704] 00000000490444df: ffff8d7042ea0000 (0xffff8d7042ea0000)
+[   20.080707] 000000008486a836: ffff8d704ba75800 (0xffff8d704ba75800)
+[   20.080710] 00000000bd9c8240: ffffd45c8079fc48 (0xffffd45c8079fc48)
+[   20.080713] 000000003d2182ae: ffffffffc0a32b88 (nv_close_device+0x138/0x230 [nvidia])
+[   20.080944] 00000000bd70619c: ffffd45c8079fc28 (0xffffd45c8079fc28)
+[   20.080949] 00000000ebfbdbd8: ffff8d70590e2200 (0xffff8d70590e2200)
+[   20.080952] 000000006d81ed77: ffff8d704ba75800 (0xffff8d704ba75800)
+[   20.080955] 0000000056034bb7: ffff8d7044e94a00 (0xffff8d7044e94a00)
+[   20.080957] 000000007fe4d1a8: ffff8d7042ea0000 (0xffff8d7042ea0000)
+[   20.080960] 00000000a0bb7ab8: ffff8d704ba75c80 (0xffff8d704ba75c80)
+[   20.080963] 00000000c4f544f1: ffffd45c8079fc90 (0xffffd45c8079fc90)
+[   20.080966] 0000000026a6b811: ffffffffc0a37d81 (nvidia_close+0xd1/0x410 [nvidia])
+[   20.081198] 000000006e2db01c: 0000000000000000 ...
+[   20.081199] 00000000e1ae107d: ffffffffc11292e0 (nv_frontend_fops+0x120/0xffffffffffffde40 [nvidia])
+[   20.081508] 00000000c2d25092: ffff8d7054bf1010 (0xffff8d7054bf1010)
+[   20.081513] 000000001cb7b17c: ffff8d7044e94a00 (0xffff8d7044e94a00)
+[   20.081516] 000000008675d974: ffff8d70430ab820 (0xffff8d70430ab820)
+[   20.081519] 000000001cf47523: ffff8d70565b2c00 (0xffff8d70565b2c00)
+[   20.081522] 00000000aefef59c: ffffd45c8079fcb8 (0xffffd45c8079fcb8)
+[   20.081525] 00000000fc407e3e: ffffffffc0a314b7 (nvidia_frontend_close+0x47/0x80 [nvidia])
+[   20.081755] 00000000346bd897: ffff8d7044e94a00 (0xffff8d7044e94a00)
+[   20.081760] 0000000043ea4b4e: 000000000008001b (0x8001b)
+[   20.081762] 00000000e2a3ef63: ffff8d7054bf1010 (0xffff8d7054bf1010)
+[   20.081765] 000000005bf960d4: ffffd45c8079fcf0 (0xffffd45c8079fcf0)
+[   20.081768] 000000006d5884d6: ffffffffa28f56d3 (__fput+0xa3/0x2e0)
+[   20.081773] 00000000476d6ecd: 0000000000000000 ...
+[   20.081773] 000000005ec5bca7: ffff8d7044e94a00 (0xffff8d7044e94a00)
+[   20.081776] 00000000813beb34: 0000000000000003 (0x3)
+[   20.081779] 000000007dc72341: 0000000000000000 ...
+[   20.081780] 0000000000ce0fc9: ffffd45c8079fd00 (0xffffd45c8079fd00)
+[   20.081783] 00000000e83b820c: ffffffffa28f59bc (__fput_sync+0x1c/0x30)
+[   20.081786] 00000000d9904a7d: ffffd45c8079fd20 (0xffffd45c8079fd20)
+[   20.081789] 000000007ecdd5c2: ffffffffa28ec26e (__x64_sys_close+0x3e/0x90)
+[   20.081792] 000000005a475681: ffffd45c8079ff58 (0xffffd45c8079ff58)
+[   20.081795] 0000000041ae2a84: 0000000000000003 (0x3)
+[   20.081798] 0000000044ca6551: ffffd45c8079fd30 (0xffffd45c8079fd30)
+[   20.081801] 000000008b0b551d: ffffffffa24072dd (x64_sys_call+0x19ad/0x2480)
+[   20.081804] 00000000b858df2e: ffffd45c8079ff48 (0xffffd45c8079ff48)
+[   20.081807] 000000009701ab03: ffffffffa362b739 (do_syscall_64+0x89/0x180)
+[   20.081810] 000000002e4c6016: ffff8d70444caf00 (0xffff8d70444caf00)
+[   20.081813] 000000003d5e2ac0: 0000000000000003 (0x3)
+[   20.081815] 00000000e433d8b5: 0000000000000000 ...
+[   20.081816] 00000000f4f1d189: ffffd45c8079fd78 (0xffffd45c8079fd78)
+[   20.081819] 00000000b16456b8: ffffffffa25f648a (arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0)
+[   20.081823] 00000000265e632d: 0000000000000000 ...
+[   20.081824] 0000000055c75cde: ffffd45c8079fda0 (0xffffd45c8079fda0)
+[   20.081827] 0000000025053088: ffffffffa3631ee3 (syscall_exit_to_user_mode+0x43/0x1e0)
+[   20.081829] 00000000ca5ccbe7: ffffd45c8079ff58 (0xffffd45c8079ff58)
+[   20.081832] 0000000054f6a9a5: 0000000000000003 (0x3)
+[   20.081835] 00000000d975a161: 0000000000000003 (0x3)
+[   20.081838] 00000000104277fa: ffffd45c8079ff48 (0xffffd45c8079ff48)
+[   20.081841] 000000008f1a6666: ffffffffa362b745 (do_syscall_64+0x95/0x180)
+[   20.081843] 000000005223f4d7: 9d6c47d3cbc27d00 (0x9d6c47d3cbc27d00)
+[   20.081846] 00000000ef6e18d5: ffffffffa4989180 (use_softirq+0x1c/0x1c)
+[   20.081850] 0000000035cdefce: 0000000000000246 (0x246)
+[   20.081853] 00000000f0becc39: ffffffffa4989180 (use_softirq+0x1c/0x1c)
+[   20.081855] 0000000047452efe: 0000000000000001 (0x1)
+[   20.081858] 00000000a2134d9a: ffffd45c8079fe10 (0xffffd45c8079fe10)
+[   20.081861] 000000000695a143: ffffffffa25dc543 (rcu_report_qs_rnp+0x103/0x170)
+[   20.081865] 00000000384dbe6e: ffff8d7547db5880 (0xffff8d7547db5880)
+[   20.081868] 00000000665d0790: ffffffffa4989180 (use_softirq+0x1c/0x1c)
+[   20.081870] 00000000192e6cbd: 0000000000000246 (0x246)
+[   20.081873] 0000000077a8426b: 0000000000000800 (0x800)
+[   20.081876] 0000000001f3f375: ffffffffa4806108 (softirq_vec+0x48/0x80)
+[   20.081882] 0000000049610cb7: ffffd45c8079fe48 (0xffffd45c8079fe48)
+[   20.081885] 0000000095c90b2e: ffffffffa25e7047 (rcu_report_qs_rdp+0xa7/0x180)
+[   20.081888] 000000008ab7c437: ffff8d7547db5880 (0xffff8d7547db5880)
+[   20.081891] 00000000f329d8ad: 0000000000000002 (0x2)
+[   20.081893] 00000000140da428: ffffffffa4989180 (use_softirq+0x1c/0x1c)
+[   20.081896] 00000000249f47ba: 0000000000000001 (0x1)
+[   20.081899] 00000000fcdafc45: ffffffffa4806108 (softirq_vec+0x48/0x80)
+[   20.081902] 00000000e9d0f7fa: ffffd45c8079fe78 (0xffffd45c8079fe78)
+[   20.081905] 00000000209e82a8: ffffffffa25e7892 (rcu_core+0x1d2/0x390)
+[   20.081907] 0000000046e3301c: 0000000080000100 (0x80000100)
+[   20.081910] 000000000113c493: 0000000000000009 (0x9)
+[   20.081913] 00000000d4a27d9a: 0000000000000200 (0x200)
+[   20.081915] 000000007c070b04: 000000000000000a (0xa)
+[   20.081918] 00000000b85181bf: ffffd45c8079fe88 (0xffffd45c8079fe88)
+[   20.081921] 00000000bb43c326: ffffffffa25e7cde (rcu_core_si+0xe/0x20)
+[   20.081924] 0000000027403747: ffffd45c8079fef8 (0xffffd45c8079fef8)
+[   20.081927] 000000006c37c4a2: ffffffffa251139b (handle_softirqs+0xdb/0x340)
+[   20.081931] 00000000549ab318: 0000000000000002 (0x2)
+[   20.081934] 00000000c451f3de: 0040010000000003 (0x40010000000003)
+[   20.081937] 000000007d5d8570: ffff8d704a5c0000 (0xffff8d704a5c0000)
+[   20.081940] 0000000012be9de2: 00000000fffbb918 (0xfffbb918)
+[   20.081943] 00000000f161e542: 000000040000000a (0x40000000a)
+[   20.081945] 00000000381d5c89: ffff8d7500000009 (0xffff8d7500000009)
+[   20.081948] 0000000065ecb0f1: ffff8d7547da4b38 (0xffff8d7547da4b38)
+[   20.081951] 00000000a346dcc5: ffffd45c8079ff58 (0xffffd45c8079ff58)
+[   20.081954] 0000000042e8e234: ffffd45c8079fef0 (0xffffd45c8079fef0)
+[   20.081957] 000000009b90439b: ffffffffa25f648a (arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0)
+[   20.081960] 00000000c0c1a242: 0000000000000000 ...
+[   20.081961] 00000000f563265f: ffffd45c8079ff18 (0xffffd45c8079ff18)
+[   20.081964] 000000003e9eb0eb: ffffffffa3632188 (irqentry_exit_to_user_mode+0x38/0x1e0)
+[   20.081966] 0000000074a258fb: ffffd45c8079ff58 (0xffffd45c8079ff58)
+[   20.081969] 0000000007ceb7ba: 0000000000000000 ...
+[   20.081969] 0000000099309b02: ffffd45c8079ff28 (0xffffd45c8079ff28)
+[   20.081972] 000000009692be04: ffffffffa3632383 (irqentry_exit+0x43/0x50)
+[   20.081974] 000000002cef872d: ffffd45c8079ff48 (0xffffd45c8079ff48)
+[   20.081977] 000000006af38f50: 0000000000000000 ...
+[   20.081978] 00000000854d0942: ffffffffa3800130 (entry_SYSCALL_64_after_hwframe+0x78/0x80)
+[   20.081982] 000000007647e2b0: 0000000000000000 ...
+[   20.081982] 000000004fab77a7: 000071b6ea9d8680 (0x71b6ea9d8680)
+[   20.081985] 000000005752f128: 000071b6ea9d8680 (0x71b6ea9d8680)
+[   20.081988] 00000000b178e5fb: 0000000000000000 ...
+[   20.081989] 0000000060c82c03: 0000000000000004 (0x4)
+[   20.081992] 000000001c0064ae: 0000000000000000 ...
+[   20.081992] 000000009e6566f0: 0000000000000246 (0x246)
+[   20.081995] 0000000052c70eae: 0000000000000001 (0x1)
+[   20.081998] 00000000fd12e545: 00007fff012deffc (0x7fff012deffc)
+[   20.082001] 0000000049dafeda: 0000000000000000 ...
+[   20.082002] 00000000dad7cebf: ffffffffffffffda (0xffffffffffffffda)
+[   20.082005] 00000000d34cf734: 000071b6eab150b7 (0x71b6eab150b7)
+[   20.082008] 000000002d4ca9e4: 0000000000000000 ...
+[   20.082009] 00000000722febbd: 0000000000000004 (0x4)
+[   20.082012] 000000008547a11c: 0000000000000004 (0x4)
+[   20.082014] 00000000d6884a00: 0000000000000003 (0x3)
+[   20.082017] 00000000ce507414: 000071b6eab150b7 (0x71b6eab150b7)
+[   20.082020] 00000000bcd6b60d: 0000000000000033 (0x33)
+[   20.082023] 00000000ca3c598a: 0000000000000246 (0x246)
+[   20.082026] 000000006ab0594a: 00007fff012dee48 (0x7fff012dee48)
+[   20.082029] 00000000ca0e4bd7: 000000000000002b (0x2b)
+[   20.082033]  ? nv_shutdown_adapter+0x1c/0xb0 [nvidia]
+[   20.082288]  ? nv_close_device+0x138/0x230 [nvidia]
+[   20.082520]  ? nvidia_close+0xd1/0x410 [nvidia]
+[   20.082754]  ? nvidia_frontend_close+0x47/0x80 [nvidia]
+[   20.082984]  ? __fput+0xa3/0x2e0
+[   20.082987]  ? __fput_sync+0x1c/0x30
+[   20.082990]  ? __x64_sys_close+0x3e/0x90
+[   20.082993]  ? x64_sys_call+0x19ad/0x2480
+[   20.082995]  ? do_syscall_64+0x89/0x180
+[   20.082997]  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+[   20.083000]  ? syscall_exit_to_user_mode+0x43/0x1e0
+[   20.083002]  ? do_syscall_64+0x95/0x180
+[   20.083005]  ? rcu_report_qs_rnp+0x103/0x170
+[   20.083008]  ? rcu_report_qs_rdp+0xa7/0x180
+[   20.083010]  ? rcu_core+0x1d2/0x390
+[   20.083013]  ? rcu_core_si+0xe/0x20
+[   20.083015]  ? handle_softirqs+0xdb/0x340
+[   20.083019]  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+[   20.083021]  ? irqentry_exit_to_user_mode+0x38/0x1e0
+[   20.083023]  ? irqentry_exit+0x43/0x50
+[   20.083025]  ? entry_SYSCALL_64_after_hwframe+0x78/0x80
+[   20.083030]  </TASK>
+[   29.374370] ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading firmware file 'rt2870.bin'
+[   29.434315] ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware detected - version: 0.36
+[   29.605161] kauditd_printk_skb: 65 callbacks suppressed
+[   29.605166] audit: type=1400 audit(1791659132.502:77): apparmor="DENIED" operation="capable" class="cap" profile="/usr/sbin/cupsd" pid=934 comm="cupsd" capability=12  capname="net_admin"
+[   31.236964] set_capacity_and_notify: 20 callbacks suppressed
+[   31.236969] loop30: detected capacity change from 0 to 8
+[   32.461345] tg3 0000:01:00.0 enp1s0: Link is up at 1000 Mbps, full duplex
+[   32.461367] tg3 0000:01:00.0 enp1s0: Flow control is on for TX and on for RX
+[   56.357609] rfkill: input handler disabled
+[  212.183812] dac960dump 0000:37:09.1: bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+[  212.183830] dac960dump 0000:37:09.1: submit op=1c id=1 len=0 offset=00000000 dma=fffd0000 pattern=a5 mailbox=0000011c,00000000,fffd0000,00
+[  212.184044] dac960dump 0000:37:09.1: complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  212.184058] dac960dump 0000:37:09.1: submit op=20 id=2 len=512 offset=00000000 dma=fffd0000 pattern=a5 mailbox=02000220,00000000,fffd0000,00
+[  212.549042] dac960dump 0000:37:09.1: complete op=20 id=0002 status=0000 changed=512 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  212.549061] dac960dump 0000:37:09.1: submit op=20 id=3 len=512 offset=00000000 dma=fffd0000 pattern=5a mailbox=02000320,00000000,fffd0000,00
+[  212.549277] dac960dump 0000:37:09.1: complete op=20 id=0003 status=0000 changed=505 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  212.549293] dac960dump 0000:37:09.1: submit op=20 id=4 len=4 offset=ff1e6a70 dma=fffd0000 pattern=a5 mailbox=00040420,ff1e6a70,fffd0000,00
+[  212.549475] dac960dump 0000:37:09.1: complete op=20 id=0004 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.549491] dac960dump 0000:37:09.1: submit op=20 id=5 len=4 offset=ff1e6a70 dma=fffd0000 pattern=5a mailbox=00040520,ff1e6a70,fffd0000,00
+[  212.549649] dac960dump 0000:37:09.1: complete op=20 id=0005 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  212.549664] dac960dump 0000:37:09.1: submit op=1c id=6 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=0000061c,00000000,fffd0000,00
+[  212.549878] dac960dump 0000:37:09.1: complete op=1c id=0006 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  212.549884] dac960dump 0000:37:09.1: VERIFIED staging pointer=c0f2c000 at local=c0112a70
+[  212.549897] dac960dump 0000:37:09.1: submit op=20 id=7 len=16 offset=ff11e2e0 dma=fffd0000 pattern=a5 mailbox=00100720,ff11e2e0,fffd0000,00
+[  212.550054] dac960dump 0000:37:09.1: complete op=20 id=0007 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  212.550069] dac960dump 0000:37:09.1: submit op=20 id=8 len=16 offset=ff11e2e0 dma=fffd0000 pattern=5a mailbox=00100820,ff11e2e0,fffd0000,00
+[  212.550282] dac960dump 0000:37:09.1: complete op=20 id=0008 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  212.550297] dac960dump 0000:37:09.1: submit op=20 id=9 len=8 offset=ff1f222c dma=fffd0000 pattern=a5 mailbox=00080920,ff1f222c,fffd0000,00
+[  212.550510] dac960dump 0000:37:09.1: complete op=20 id=0009 status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.550526] dac960dump 0000:37:09.1: submit op=20 id=10 len=8 offset=ff1f222c dma=fffd0000 pattern=5a mailbox=00080a20,ff1f222c,fffd0000,00
+[  212.550741] dac960dump 0000:37:09.1: complete op=20 id=000a status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 5a 5a 5a 5a 5a 5a 5a 5a
+[  212.550747] dac960dump 0000:37:09.1: runtime board=c0110780 alias=c1000000
+[  212.550760] dac960dump 0000:37:09.1: submit op=20 id=11 len=512 offset=ff1e4780 dma=fffd0000 pattern=a5 mailbox=02000b20,ff1e4780,fffd0000,00
+[  212.550974] dac960dump 0000:37:09.1: complete op=20 id=000b status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  212.550989] dac960dump 0000:37:09.1: submit op=20 id=12 len=512 offset=ff1e4780 dma=fffd0000 pattern=5a mailbox=02000c20,ff1e4780,fffd0000,00
+[  212.551146] dac960dump 0000:37:09.1: complete op=20 id=000c status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  212.551152] dac960dump 0000:37:09.1: runtime callbacks read=c004ce90 write=c004ced0 program=c004cf80
+[  212.551166] dac960dump 0000:37:09.1: submit op=1c id=13 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=00000d1c,00000000,fffd0000,00
+[  212.551392] dac960dump 0000:37:09.1: complete op=1c id=000d status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  212.551408] dac960dump 0000:37:09.1: submit op=20 id=14 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00040e20,ff0f39bc,fffd0000,00
+[  212.551566] dac960dump 0000:37:09.1: complete op=20 id=000e status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.551581] dac960dump 0000:37:09.1: submit op=20 id=15 len=4 offset=ff0f39bc dma=fffd0000 pattern=5a mailbox=00040f20,ff0f39bc,fffd0000,00
+[  212.551739] dac960dump 0000:37:09.1: complete op=20 id=000f status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  212.551755] dac960dump 0000:37:09.1: submit op=20 id=16 len=64 offset=00080100 dma=fffd0000 pattern=a5 mailbox=00401020,00080100,fffd0000,00
+[  212.551912] dac960dump 0000:37:09.1: complete op=20 id=0010 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.551928] dac960dump 0000:37:09.1: submit op=20 id=17 len=64 offset=00080100 dma=fffd0000 pattern=5a mailbox=00401120,00080100,fffd0000,00
+[  212.552084] dac960dump 0000:37:09.1: complete op=20 id=0011 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.552099] dac960dump 0000:37:09.1: submit op=20 id=18 len=64 offset=00080180 dma=fffd0000 pattern=a5 mailbox=00401220,00080180,fffd0000,00
+[  212.552255] dac960dump 0000:37:09.1: complete op=20 id=0012 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.552270] dac960dump 0000:37:09.1: submit op=20 id=19 len=64 offset=00080180 dma=fffd0000 pattern=5a mailbox=00401320,00080180,fffd0000,00
+[  212.552479] dac960dump 0000:37:09.1: complete op=20 id=0013 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.552495] dac960dump 0000:37:09.1: submit op=21 id=20 len=24 offset=00080100 dma=fffd0000 pattern=a5 mailbox=00181421,00080100,fffd0000,00
+[  212.561923] dac960dump 0000:37:09.1: complete op=21 id=0014 status=0000 changed=24 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[  212.561939] dac960dump 0000:37:09.1: submit op=20 id=21 len=64 offset=00080100 dma=fffd0000 pattern=a5 mailbox=00401520,00080100,fffd0000,00
+[  212.562096] dac960dump 0000:37:09.1: complete op=20 id=0015 status=0000 changed=64 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[  212.562112] dac960dump 0000:37:09.1: submit op=20 id=22 len=64 offset=00080100 dma=fffd0000 pattern=5a mailbox=00401620,00080100,fffd0000,00
+[  212.562331] dac960dump 0000:37:09.1: complete op=20 id=0016 status=0000 changed=64 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[  212.562347] dac960dump 0000:37:09.1: submit op=21 id=23 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00041721,ff0f39bc,fffd0000,00
+[  212.573389] dac960dump 0000:37:09.1: complete op=21 id=0017 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.573405] dac960dump 0000:37:09.1: submit op=20 id=24 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00041820,ff0f39bc,fffd0000,00
+[  212.573619] dac960dump 0000:37:09.1: complete op=20 id=0018 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.573634] dac960dump 0000:37:09.1: submit op=20 id=25 len=4 offset=ff0f39bc dma=fffd0000 pattern=5a mailbox=00041920,ff0f39bc,fffd0000,00
+[  212.573847] dac960dump 0000:37:09.1: complete op=20 id=0019 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  212.573863] dac960dump 0000:37:09.1: submit op=6f id=26 len=0 offset=00000000 dma=fffd0000 pattern=a5 mailbox=00001a6f,00000000,fffd0000,00
+[  212.574019] dac960dump 0000:37:09.1: complete op=6f id=001a status=017e changed=0 guard-changed=0 head=a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.574025] dac960dump 0000:37:09.1: VERIFIED changed RAM dispatch word executed returning RAM stub status=017e
+[  212.574038] dac960dump 0000:37:09.1: submit op=21 id=27 len=28 offset=00080180 dma=fffd0000 pattern=a5 mailbox=001c1b21,00080180,fffd0000,00
+[  212.583698] dac960dump 0000:37:09.1: complete op=21 id=001b status=0000 changed=28 guard-changed=0 head=82 1d 80 65 02 1e 90 65 7f 01 88 8c 18 20 8c 8a
+[  212.583714] dac960dump 0000:37:09.1: submit op=20 id=28 len=64 offset=00080180 dma=fffd0000 pattern=a5 mailbox=00401c20,00080180,fffd0000,00
+[  212.583872] dac960dump 0000:37:09.1: complete op=20 id=001c status=0000 changed=64 guard-changed=0 head=82 1d 80 65 02 1e 90 65 7f 01 88 8c 18 20 8c 8a
+[  212.583887] dac960dump 0000:37:09.1: submit op=20 id=29 len=64 offset=00080180 dma=fffd0000 pattern=5a mailbox=00401d20,00080180,fffd0000,00
+[  212.584044] dac960dump 0000:37:09.1: complete op=20 id=001d status=0000 changed=64 guard-changed=0 head=82 1d 80 65 02 1e 90 65 7f 01 88 8c 18 20 8c 8a
+[  212.584060] dac960dump 0000:37:09.1: submit op=21 id=30 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00041e21,ff0f39bc,fffd0000,00
+[  212.595154] dac960dump 0000:37:09.1: complete op=21 id=001e status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.595170] dac960dump 0000:37:09.1: submit op=20 id=31 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00041f20,ff0f39bc,fffd0000,00
+[  212.595334] dac960dump 0000:37:09.1: complete op=20 id=001f status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.595350] dac960dump 0000:37:09.1: submit op=20 id=32 len=4 offset=ff0f39bc dma=fffd0000 pattern=5a mailbox=00042020,ff0f39bc,fffd0000,00
+[  212.595508] dac960dump 0000:37:09.1: complete op=20 id=0020 status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  212.595524] dac960dump 0000:37:09.1: submit op=6f id=33 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=0000216f,00000000,fffd0000,00
+[  212.595681] dac960dump 0000:37:09.1: complete op=6f id=0021 status=017f changed=0 guard-changed=0 head=5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  212.595686] dac960dump 0000:37:09.1: VERIFIED second RAM handler with I-cache invalidation returned status=017f
+[  212.595699] dac960dump 0000:37:09.1: submit op=21 id=34 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00042221,ff0f39bc,fffd0000,00
+[  212.606641] dac960dump 0000:37:09.1: complete op=21 id=0022 status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.606657] dac960dump 0000:37:09.1: submit op=20 id=35 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00042320,ff0f39bc,fffd0000,00
+[  212.606814] dac960dump 0000:37:09.1: complete op=20 id=0023 status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.606829] dac960dump 0000:37:09.1: submit op=20 id=36 len=4 offset=ff0f39bc dma=fffd0000 pattern=5a mailbox=00042420,ff0f39bc,fffd0000,00
+[  212.606986] dac960dump 0000:37:09.1: complete op=20 id=0024 status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  212.607001] dac960dump 0000:37:09.1: submit op=6f id=37 len=0 offset=00000000 dma=fffd0000 pattern=a5 mailbox=0000256f,00000000,fffd0000,00
+[  212.607157] dac960dump 0000:37:09.1: complete op=6f id=0025 status=0104 changed=0 guard-changed=0 head=a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  212.607162] dac960dump 0000:37:09.1: VERIFIED restored stock dispatch status=0104 before clearing RAM stubs
+[  212.607175] dac960dump 0000:37:09.1: submit op=21 id=38 len=24 offset=00080100 dma=fffd0000 pattern=a5 mailbox=00182621,00080100,fffd0000,00
+[  212.616929] dac960dump 0000:37:09.1: complete op=21 id=0026 status=0000 changed=24 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.616946] dac960dump 0000:37:09.1: submit op=20 id=39 len=64 offset=00080100 dma=fffd0000 pattern=a5 mailbox=00402720,00080100,fffd0000,00
+[  212.617103] dac960dump 0000:37:09.1: complete op=20 id=0027 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.617118] dac960dump 0000:37:09.1: submit op=20 id=40 len=64 offset=00080100 dma=fffd0000 pattern=5a mailbox=00402820,00080100,fffd0000,00
+[  212.617274] dac960dump 0000:37:09.1: complete op=20 id=0028 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.617290] dac960dump 0000:37:09.1: submit op=21 id=41 len=28 offset=00080180 dma=fffd0000 pattern=a5 mailbox=001c2921,00080180,fffd0000,00
+[  212.627272] dac960dump 0000:37:09.1: complete op=21 id=0029 status=0000 changed=28 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.627291] dac960dump 0000:37:09.1: submit op=20 id=42 len=64 offset=00080180 dma=fffd0000 pattern=a5 mailbox=00402a20,00080180,fffd0000,00
+[  212.627485] dac960dump 0000:37:09.1: complete op=20 id=002a status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.627503] dac960dump 0000:37:09.1: submit op=20 id=43 len=64 offset=00080180 dma=fffd0000 pattern=5a mailbox=00402b20,00080180,fffd0000,00
+[  212.627661] dac960dump 0000:37:09.1: complete op=20 id=002b status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  212.627667] dac960dump 0000:37:09.1: RESTORED dispatch and both RAM sites to their original bytes
+[  212.627680] dac960dump 0000:37:09.1: submit op=1c id=44 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=00002c1c,00000000,fffd0000,00
+[  212.627896] dac960dump 0000:37:09.1: complete op=1c id=002c status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  212.627903] dac960dump 0000:37:09.1: experiment-result=0 pending=0; exported files are captures, not a physical-flash backup
+[  212.627906] dac960dump 0000:37:09.1: scratch-dirty=0
+[  212.627909] dac960dump 0000:37:09.1: exec-dirty=0
+[  346.928757] dac960dump 0000:37:09.1: bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+[  346.928771] dac960dump 0000:37:09.1: submit op=1c id=1 len=0 offset=00000000 dma=fffc0000 pattern=a5 mailbox=0000011c,00000000,fffc0000,00
+[  346.928942] dac960dump 0000:37:09.1: complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  346.928952] dac960dump 0000:37:09.1: submit op=20 id=2 len=512 offset=00000000 dma=fffc0000 pattern=a5 mailbox=02000220,00000000,fffc0000,00
+[  346.929115] dac960dump 0000:37:09.1: complete op=20 id=0002 status=0000 changed=512 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  346.929126] dac960dump 0000:37:09.1: submit op=20 id=3 len=512 offset=00000000 dma=fffc0000 pattern=5a mailbox=02000320,00000000,fffc0000,00
+[  346.929294] dac960dump 0000:37:09.1: complete op=20 id=0003 status=0000 changed=505 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  346.929304] dac960dump 0000:37:09.1: submit op=20 id=4 len=4 offset=ff1e6a70 dma=fffc0000 pattern=a5 mailbox=00040420,ff1e6a70,fffc0000,00
+[  346.929415] dac960dump 0000:37:09.1: complete op=20 id=0004 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.929425] dac960dump 0000:37:09.1: submit op=20 id=5 len=4 offset=ff1e6a70 dma=fffc0000 pattern=5a mailbox=00040520,ff1e6a70,fffc0000,00
+[  346.929535] dac960dump 0000:37:09.1: complete op=20 id=0005 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  346.929545] dac960dump 0000:37:09.1: submit op=1c id=6 len=0 offset=00000000 dma=fffc0000 pattern=5a mailbox=0000061c,00000000,fffc0000,00
+[  346.929710] dac960dump 0000:37:09.1: complete op=1c id=0006 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  346.929713] dac960dump 0000:37:09.1: VERIFIED staging pointer=c0f2c000 at local=c0112a70
+[  346.929721] dac960dump 0000:37:09.1: submit op=20 id=7 len=16 offset=ff11e2e0 dma=fffc0000 pattern=a5 mailbox=00100720,ff11e2e0,fffc0000,00
+[  346.929833] dac960dump 0000:37:09.1: complete op=20 id=0007 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  346.929842] dac960dump 0000:37:09.1: submit op=20 id=8 len=16 offset=ff11e2e0 dma=fffc0000 pattern=5a mailbox=00100820,ff11e2e0,fffc0000,00
+[  346.930025] dac960dump 0000:37:09.1: complete op=20 id=0008 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  346.930040] dac960dump 0000:37:09.1: submit op=20 id=9 len=8 offset=ff1f222c dma=fffc0000 pattern=a5 mailbox=00080920,ff1f222c,fffc0000,00
+[  346.930155] dac960dump 0000:37:09.1: complete op=20 id=0009 status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.930166] dac960dump 0000:37:09.1: submit op=20 id=10 len=8 offset=ff1f222c dma=fffc0000 pattern=5a mailbox=00080a20,ff1f222c,fffc0000,00
+[  346.930277] dac960dump 0000:37:09.1: complete op=20 id=000a status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 5a 5a 5a 5a 5a 5a 5a 5a
+[  346.930280] dac960dump 0000:37:09.1: runtime board=c0110780 alias=c1000000
+[  346.930288] dac960dump 0000:37:09.1: submit op=20 id=11 len=512 offset=ff1e4780 dma=fffc0000 pattern=a5 mailbox=02000b20,ff1e4780,fffc0000,00
+[  346.930453] dac960dump 0000:37:09.1: complete op=20 id=000b status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  346.930463] dac960dump 0000:37:09.1: submit op=20 id=12 len=512 offset=ff1e4780 dma=fffc0000 pattern=5a mailbox=02000c20,ff1e4780,fffc0000,00
+[  346.930628] dac960dump 0000:37:09.1: complete op=20 id=000c status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  346.930631] dac960dump 0000:37:09.1: runtime callbacks read=c004ce90 write=c004ced0 program=c004cf80
+[  346.930640] dac960dump 0000:37:09.1: submit op=1c id=13 len=0 offset=00000000 dma=fffc0000 pattern=5a mailbox=00000d1c,00000000,fffc0000,00
+[  346.930806] dac960dump 0000:37:09.1: complete op=1c id=000d status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  346.930816] dac960dump 0000:37:09.1: submit op=20 id=14 len=4 offset=ff0f39bc dma=fffc0000 pattern=a5 mailbox=00040e20,ff0f39bc,fffc0000,00
+[  346.930980] dac960dump 0000:37:09.1: complete op=20 id=000e status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.930990] dac960dump 0000:37:09.1: submit op=20 id=15 len=4 offset=ff0f39bc dma=fffc0000 pattern=5a mailbox=00040f20,ff0f39bc,fffc0000,00
+[  346.931111] dac960dump 0000:37:09.1: complete op=20 id=000f status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  346.931121] dac960dump 0000:37:09.1: submit op=20 id=16 len=64 offset=00080100 dma=fffc0000 pattern=a5 mailbox=00401020,00080100,fffc0000,00
+[  346.931235] dac960dump 0000:37:09.1: complete op=20 id=0010 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  346.931244] dac960dump 0000:37:09.1: submit op=20 id=17 len=64 offset=00080100 dma=fffc0000 pattern=5a mailbox=00401120,00080100,fffc0000,00
+[  346.931355] dac960dump 0000:37:09.1: complete op=20 id=0011 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  346.931364] dac960dump 0000:37:09.1: submit op=20 id=18 len=64 offset=00080180 dma=fffc0000 pattern=a5 mailbox=00401220,00080180,fffc0000,00
+[  346.931529] dac960dump 0000:37:09.1: complete op=20 id=0012 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  346.931538] dac960dump 0000:37:09.1: submit op=20 id=19 len=64 offset=00080180 dma=fffc0000 pattern=5a mailbox=00401320,00080180,fffc0000,00
+[  346.931703] dac960dump 0000:37:09.1: complete op=20 id=0013 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  346.931712] dac960dump 0000:37:09.1: submit op=21 id=20 len=24 offset=00080100 dma=fffc0000 pattern=a5 mailbox=00181421,00080100,fffc0000,00
+[  346.941104] dac960dump 0000:37:09.1: complete op=21 id=0014 status=0000 changed=24 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[  346.941115] dac960dump 0000:37:09.1: submit op=20 id=21 len=64 offset=00080100 dma=fffc0000 pattern=a5 mailbox=00401520,00080100,fffc0000,00
+[  346.941281] dac960dump 0000:37:09.1: complete op=20 id=0015 status=0000 changed=64 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[  346.941290] dac960dump 0000:37:09.1: submit op=20 id=22 len=64 offset=00080100 dma=fffc0000 pattern=5a mailbox=00401620,00080100,fffc0000,00
+[  346.941401] dac960dump 0000:37:09.1: complete op=20 id=0016 status=0000 changed=64 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[  346.941411] dac960dump 0000:37:09.1: submit op=21 id=23 len=4 offset=ff0f39bc dma=fffc0000 pattern=a5 mailbox=00041721,ff0f39bc,fffc0000,00
+[  346.952591] dac960dump 0000:37:09.1: complete op=21 id=0017 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.952601] dac960dump 0000:37:09.1: submit op=20 id=24 len=4 offset=ff0f39bc dma=fffc0000 pattern=a5 mailbox=00041820,ff0f39bc,fffc0000,00
+[  346.952767] dac960dump 0000:37:09.1: complete op=20 id=0018 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.952776] dac960dump 0000:37:09.1: submit op=20 id=25 len=4 offset=ff0f39bc dma=fffc0000 pattern=5a mailbox=00041920,ff0f39bc,fffc0000,00
+[  346.952887] dac960dump 0000:37:09.1: complete op=20 id=0019 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  346.952896] dac960dump 0000:37:09.1: submit op=6f id=26 len=0 offset=00000000 dma=fffc0000 pattern=a5 mailbox=00001a6f,00000000,fffc0000,00
+[  346.953024] dac960dump 0000:37:09.1: complete op=6f id=001a status=017e changed=0 guard-changed=0 head=a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.953029] dac960dump 0000:37:09.1: VERIFIED changed RAM dispatch word executed returning RAM stub status=017e
+[  346.953039] dac960dump 0000:37:09.1: submit op=21 id=27 len=40 offset=00080180 dma=fffc0000 pattern=a5 mailbox=00281b21,00080180,fffc0000,00
+[  346.962877] dac960dump 0000:37:09.1: complete op=21 id=001b status=0000 changed=40 guard-changed=0 head=82 1d 80 65 00 30 00 86 a4 c1 fa c0 02 1e 90 65
+[  346.962888] dac960dump 0000:37:09.1: submit op=20 id=28 len=64 offset=00080180 dma=fffc0000 pattern=a5 mailbox=00401c20,00080180,fffc0000,00
+[  346.963058] dac960dump 0000:37:09.1: complete op=20 id=001c status=0000 changed=64 guard-changed=0 head=82 1d 80 65 00 30 00 86 a4 c1 fa c0 02 1e 90 65
+[  346.963068] dac960dump 0000:37:09.1: submit op=20 id=29 len=64 offset=00080180 dma=fffc0000 pattern=5a mailbox=00401d20,00080180,fffc0000,00
+[  346.963182] dac960dump 0000:37:09.1: complete op=20 id=001d status=0000 changed=64 guard-changed=0 head=82 1d 80 65 00 30 00 86 a4 c1 fa c0 02 1e 90 65
+[  346.963191] dac960dump 0000:37:09.1: submit op=21 id=30 len=4 offset=ff0f39bc dma=fffc0000 pattern=a5 mailbox=00041e21,ff0f39bc,fffc0000,00
+[  346.974321] dac960dump 0000:37:09.1: complete op=21 id=001e status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.974331] dac960dump 0000:37:09.1: submit op=20 id=31 len=4 offset=ff0f39bc dma=fffc0000 pattern=a5 mailbox=00041f20,ff0f39bc,fffc0000,00
+[  346.974496] dac960dump 0000:37:09.1: complete op=20 id=001f status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.974505] dac960dump 0000:37:09.1: submit op=20 id=32 len=4 offset=ff0f39bc dma=fffc0000 pattern=5a mailbox=00042020,ff0f39bc,fffc0000,00
+[  346.974619] dac960dump 0000:37:09.1: complete op=20 id=0020 status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  346.974628] dac960dump 0000:37:09.1: submit op=6f id=33 len=0 offset=00000000 dma=fffc0000 pattern=5a mailbox=0000216f,00000000,fffc0000,00
+[  346.974739] dac960dump 0000:37:09.1: complete op=6f id=0021 status=017f changed=0 guard-changed=0 head=5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  346.974742] dac960dump 0000:37:09.1: VERIFIED second RAM handler with callx/ret returned status=017f
+[  346.974750] dac960dump 0000:37:09.1: submit op=21 id=34 len=4 offset=ff0f39bc dma=fffc0000 pattern=a5 mailbox=00042221,ff0f39bc,fffc0000,00
+[  346.985819] dac960dump 0000:37:09.1: complete op=21 id=0022 status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.985830] dac960dump 0000:37:09.1: submit op=20 id=35 len=4 offset=ff0f39bc dma=fffc0000 pattern=a5 mailbox=00042320,ff0f39bc,fffc0000,00
+[  346.986066] dac960dump 0000:37:09.1: complete op=20 id=0023 status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.986083] dac960dump 0000:37:09.1: submit op=20 id=36 len=4 offset=ff0f39bc dma=fffc0000 pattern=5a mailbox=00042420,ff0f39bc,fffc0000,00
+[  346.986200] dac960dump 0000:37:09.1: complete op=20 id=0024 status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  346.986209] dac960dump 0000:37:09.1: submit op=6f id=37 len=0 offset=00000000 dma=fffc0000 pattern=a5 mailbox=0000256f,00000000,fffc0000,00
+[  346.986319] dac960dump 0000:37:09.1: complete op=6f id=0025 status=0104 changed=0 guard-changed=0 head=a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  346.986322] dac960dump 0000:37:09.1: VERIFIED restored stock dispatch status=0104 before clearing RAM stubs
+[  346.986331] dac960dump 0000:37:09.1: submit op=21 id=38 len=24 offset=00080100 dma=fffc0000 pattern=a5 mailbox=00182621,00080100,fffc0000,00
+[  346.996106] dac960dump 0000:37:09.1: complete op=21 id=0026 status=0000 changed=24 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  346.996117] dac960dump 0000:37:09.1: submit op=20 id=39 len=64 offset=00080100 dma=fffc0000 pattern=a5 mailbox=00402720,00080100,fffc0000,00
+[  346.996312] dac960dump 0000:37:09.1: complete op=20 id=0027 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  346.996321] dac960dump 0000:37:09.1: submit op=20 id=40 len=64 offset=00080100 dma=fffc0000 pattern=5a mailbox=00402820,00080100,fffc0000,00
+[  346.996469] dac960dump 0000:37:09.1: complete op=20 id=0028 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  346.996479] dac960dump 0000:37:09.1: submit op=21 id=41 len=40 offset=00080180 dma=fffc0000 pattern=a5 mailbox=00282921,00080180,fffc0000,00
+[  347.006397] dac960dump 0000:37:09.1: complete op=21 id=0029 status=0000 changed=40 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  347.006408] dac960dump 0000:37:09.1: submit op=20 id=42 len=64 offset=00080180 dma=fffc0000 pattern=a5 mailbox=00402a20,00080180,fffc0000,00
+[  347.006552] dac960dump 0000:37:09.1: complete op=20 id=002a status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  347.006561] dac960dump 0000:37:09.1: submit op=20 id=43 len=64 offset=00080180 dma=fffc0000 pattern=5a mailbox=00402b20,00080180,fffc0000,00
+[  347.006705] dac960dump 0000:37:09.1: complete op=20 id=002b status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  347.006708] dac960dump 0000:37:09.1: RESTORED dispatch and both RAM sites to their original bytes
+[  347.006716] dac960dump 0000:37:09.1: submit op=1c id=44 len=0 offset=00000000 dma=fffc0000 pattern=5a mailbox=00002c1c,00000000,fffc0000,00
+[  347.006917] dac960dump 0000:37:09.1: complete op=1c id=002c status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  347.006920] dac960dump 0000:37:09.1: experiment-result=0 pending=0; exported files are captures, not a physical-flash backup
+[  347.006922] dac960dump 0000:37:09.1: scratch-dirty=0
+[  347.006923] dac960dump 0000:37:09.1: exec-dirty=0
+[  591.337824] dac960dump 0000:37:09.1: bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+[  591.337840] dac960dump 0000:37:09.1: submit op=1c id=1 len=0 offset=00000000 dma=fffb0000 pattern=a5 mailbox=0000011c,00000000,fffb0000,00
+[  591.338026] dac960dump 0000:37:09.1: complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  591.338038] dac960dump 0000:37:09.1: submit op=20 id=2 len=512 offset=00000000 dma=fffb0000 pattern=a5 mailbox=02000220,00000000,fffb0000,00
+[  591.338220] dac960dump 0000:37:09.1: complete op=20 id=0002 status=0000 changed=512 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  591.338231] dac960dump 0000:37:09.1: submit op=20 id=3 len=512 offset=00000000 dma=fffb0000 pattern=5a mailbox=02000320,00000000,fffb0000,00
+[  591.338411] dac960dump 0000:37:09.1: complete op=20 id=0003 status=0000 changed=505 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  591.338442] dac960dump 0000:37:09.1: submit op=20 id=4 len=4 offset=ff1e6a70 dma=fffb0000 pattern=a5 mailbox=00040420,ff1e6a70,fffb0000,00
+[  591.338603] dac960dump 0000:37:09.1: complete op=20 id=0004 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  591.338618] dac960dump 0000:37:09.1: submit op=20 id=5 len=4 offset=ff1e6a70 dma=fffb0000 pattern=5a mailbox=00040520,ff1e6a70,fffb0000,00
+[  591.338753] dac960dump 0000:37:09.1: complete op=20 id=0005 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  591.338768] dac960dump 0000:37:09.1: submit op=1c id=6 len=0 offset=00000000 dma=fffb0000 pattern=5a mailbox=0000061c,00000000,fffb0000,00
+[  591.338967] dac960dump 0000:37:09.1: complete op=1c id=0006 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  591.338973] dac960dump 0000:37:09.1: VERIFIED staging pointer=c0f2c000 at local=c0112a70
+[  591.338985] dac960dump 0000:37:09.1: submit op=20 id=7 len=16 offset=ff11e2e0 dma=fffb0000 pattern=a5 mailbox=00100720,ff11e2e0,fffb0000,00
+[  591.339127] dac960dump 0000:37:09.1: complete op=20 id=0007 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  591.339142] dac960dump 0000:37:09.1: submit op=20 id=8 len=16 offset=ff11e2e0 dma=fffb0000 pattern=5a mailbox=00100820,ff11e2e0,fffb0000,00
+[  591.339285] dac960dump 0000:37:09.1: complete op=20 id=0008 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  591.339300] dac960dump 0000:37:09.1: submit op=20 id=9 len=8 offset=ff1f222c dma=fffb0000 pattern=a5 mailbox=00080920,ff1f222c,fffb0000,00
+[  591.339447] dac960dump 0000:37:09.1: complete op=20 id=0009 status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 a5 a5 a5 a5 a5 a5 a5 a5
+[  591.339461] dac960dump 0000:37:09.1: submit op=20 id=10 len=8 offset=ff1f222c dma=fffb0000 pattern=5a mailbox=00080a20,ff1f222c,fffb0000,00
+[  591.339603] dac960dump 0000:37:09.1: complete op=20 id=000a status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 5a 5a 5a 5a 5a 5a 5a 5a
+[  591.339609] dac960dump 0000:37:09.1: runtime board=c0110780 alias=c1000000
+[  591.339620] dac960dump 0000:37:09.1: submit op=20 id=11 len=512 offset=ff1e4780 dma=fffb0000 pattern=a5 mailbox=02000b20,ff1e4780,fffb0000,00
+[  591.339767] dac960dump 0000:37:09.1: complete op=20 id=000b status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  591.339782] dac960dump 0000:37:09.1: submit op=20 id=12 len=512 offset=ff1e4780 dma=fffb0000 pattern=5a mailbox=02000c20,ff1e4780,fffb0000,00
+[  591.339924] dac960dump 0000:37:09.1: complete op=20 id=000c status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  591.339930] dac960dump 0000:37:09.1: runtime callbacks read=c004ce90 write=c004ced0 program=c004cf80
+[  591.339943] dac960dump 0000:37:09.1: submit op=1c id=13 len=0 offset=00000000 dma=fffb0000 pattern=5a mailbox=00000d1c,00000000,fffb0000,00
+[  591.340143] dac960dump 0000:37:09.1: complete op=1c id=000d status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  591.340158] dac960dump 0000:37:09.1: submit op=20 id=14 len=4 offset=3e08422c dma=fffb0000 pattern=a5 mailbox=00040e20,3e08422c,fffb0000,00
+[  591.340299] dac960dump 0000:37:09.1: complete op=20 id=000e status=0000 changed=4 guard-changed=0 head=00 02 fb fe a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  591.340313] dac960dump 0000:37:09.1: submit op=20 id=15 len=4 offset=3e08422c dma=fffb0000 pattern=5a mailbox=00040f20,3e08422c,fffb0000,00
+[  591.340494] dac960dump 0000:37:09.1: complete op=20 id=000f status=0000 changed=4 guard-changed=0 head=00 02 fb fe 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  591.340501] dac960dump 0000:37:09.1: experiment-result=-61 pending=0; exported files are captures, not a physical-flash backup
+[  591.340504] dac960dump 0000:37:09.1: scratch-dirty=0
+[  591.340506] dac960dump 0000:37:09.1: exec-dirty=0
+[  690.377042] dac960dump 0000:37:09.1: bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+[  690.377056] dac960dump 0000:37:09.1: submit op=1c id=1 len=0 offset=00000000 dma=fffa0000 pattern=a5 mailbox=0000011c,00000000,fffa0000,00
+[  690.377226] dac960dump 0000:37:09.1: complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  690.377236] dac960dump 0000:37:09.1: submit op=20 id=2 len=512 offset=00000000 dma=fffa0000 pattern=a5 mailbox=02000220,00000000,fffa0000,00
+[  690.377404] dac960dump 0000:37:09.1: complete op=20 id=0002 status=0000 changed=512 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  690.377414] dac960dump 0000:37:09.1: submit op=20 id=3 len=512 offset=00000000 dma=fffa0000 pattern=5a mailbox=02000320,00000000,fffa0000,00
+[  690.377581] dac960dump 0000:37:09.1: complete op=20 id=0003 status=0000 changed=505 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  690.377590] dac960dump 0000:37:09.1: submit op=20 id=4 len=4 offset=ff1e6a70 dma=fffa0000 pattern=a5 mailbox=00040420,ff1e6a70,fffa0000,00
+[  690.377755] dac960dump 0000:37:09.1: complete op=20 id=0004 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  690.377764] dac960dump 0000:37:09.1: submit op=20 id=5 len=4 offset=ff1e6a70 dma=fffa0000 pattern=5a mailbox=00040520,ff1e6a70,fffa0000,00
+[  690.377898] dac960dump 0000:37:09.1: complete op=20 id=0005 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  690.377914] dac960dump 0000:37:09.1: submit op=1c id=6 len=0 offset=00000000 dma=fffa0000 pattern=5a mailbox=0000061c,00000000,fffa0000,00
+[  690.378096] dac960dump 0000:37:09.1: complete op=1c id=0006 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  690.378100] dac960dump 0000:37:09.1: VERIFIED staging pointer=c0f2c000 at local=c0112a70
+[  690.378110] dac960dump 0000:37:09.1: submit op=20 id=7 len=16 offset=ff11e2e0 dma=fffa0000 pattern=a5 mailbox=00100720,ff11e2e0,fffa0000,00
+[  690.378287] dac960dump 0000:37:09.1: complete op=20 id=0007 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  690.378297] dac960dump 0000:37:09.1: submit op=20 id=8 len=16 offset=ff11e2e0 dma=fffa0000 pattern=5a mailbox=00100820,ff11e2e0,fffa0000,00
+[  690.378473] dac960dump 0000:37:09.1: complete op=20 id=0008 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  690.378484] dac960dump 0000:37:09.1: submit op=20 id=9 len=8 offset=ff1f222c dma=fffa0000 pattern=a5 mailbox=00080920,ff1f222c,fffa0000,00
+[  690.378606] dac960dump 0000:37:09.1: complete op=20 id=0009 status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 a5 a5 a5 a5 a5 a5 a5 a5
+[  690.378616] dac960dump 0000:37:09.1: submit op=20 id=10 len=8 offset=ff1f222c dma=fffa0000 pattern=5a mailbox=00080a20,ff1f222c,fffa0000,00
+[  690.378782] dac960dump 0000:37:09.1: complete op=20 id=000a status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 5a 5a 5a 5a 5a 5a 5a 5a
+[  690.378785] dac960dump 0000:37:09.1: runtime board=c0110780 alias=c1000000
+[  690.378793] dac960dump 0000:37:09.1: submit op=20 id=11 len=512 offset=ff1e4780 dma=fffa0000 pattern=a5 mailbox=02000b20,ff1e4780,fffa0000,00
+[  690.378948] dac960dump 0000:37:09.1: complete op=20 id=000b status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  690.378960] dac960dump 0000:37:09.1: submit op=20 id=12 len=512 offset=ff1e4780 dma=fffa0000 pattern=5a mailbox=02000c20,ff1e4780,fffa0000,00
+[  690.379138] dac960dump 0000:37:09.1: complete op=20 id=000c status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  690.379142] dac960dump 0000:37:09.1: runtime callbacks read=c004ce90 write=c004ced0 program=c004cf80
+[  690.379152] dac960dump 0000:37:09.1: submit op=1c id=13 len=0 offset=00000000 dma=fffa0000 pattern=5a mailbox=00000d1c,00000000,fffa0000,00
+[  690.379328] dac960dump 0000:37:09.1: complete op=1c id=000d status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  690.379339] dac960dump 0000:37:09.1: submit op=20 id=14 len=64 offset=3e084200 dma=fffa0000 pattern=a5 mailbox=00400e20,3e084200,fffa0000,00
+[  690.379468] dac960dump 0000:37:09.1: complete op=20 id=000e status=0000 changed=64 guard-changed=0 head=08 02 fb fe 00 02 fb fe 00 02 fb fe 00 02 fb fe
+[  690.379479] dac960dump 0000:37:09.1: submit op=20 id=15 len=64 offset=3e084200 dma=fffa0000 pattern=5a mailbox=00400f20,3e084200,fffa0000,00
+[  690.379608] dac960dump 0000:37:09.1: complete op=20 id=000f status=0000 changed=64 guard-changed=0 head=08 02 fb fe 00 02 fb fe 00 02 fb fe 00 02 fb fe
+[  690.379619] dac960dump 0000:37:09.1: submit op=20 id=16 len=64 offset=3e09c200 dma=fffa0000 pattern=a5 mailbox=00401020,3e09c200,fffa0000,00
+[  690.379749] dac960dump 0000:37:09.1: complete op=20 id=0010 status=0000 changed=64 guard-changed=0 head=7b 82 fc fe 4e 82 fc fe ec 82 fc fe 5a 82 fc fe
+[  690.379761] dac960dump 0000:37:09.1: submit op=20 id=17 len=64 offset=3e09c200 dma=fffa0000 pattern=5a mailbox=00401120,3e09c200,fffa0000,00
+[  690.379960] dac960dump 0000:37:09.1: complete op=20 id=0011 status=0000 changed=63 guard-changed=0 head=7b 82 fc fe 4e 82 fc fe ec 82 fc fe 5a 82 fc fe
+[  690.379973] dac960dump 0000:37:09.1: submit op=20 id=18 len=64 offset=3e0b4000 dma=fffa0000 pattern=a5 mailbox=00401220,3e0b4000,fffa0000,00
+[  690.380102] dac960dump 0000:37:09.1: complete op=20 id=0012 status=0000 changed=64 guard-changed=0 head=00 00 fe fe 00 00 fe fe 00 00 fe fe 00 00 fe fe
+[  690.380111] dac960dump 0000:37:09.1: submit op=20 id=19 len=64 offset=3e0b4000 dma=fffa0000 pattern=5a mailbox=00401320,3e0b4000,fffa0000,00
+[  690.380308] dac960dump 0000:37:09.1: complete op=20 id=0013 status=0000 changed=64 guard-changed=0 head=00 00 fe fe 00 00 fe fe 00 00 fe fe 00 00 fe fe
+[  690.380313] dac960dump 0000:37:09.1: experiment-result=-61 pending=0; exported files are captures, not a physical-flash backup
+[  690.380316] dac960dump 0000:37:09.1: scratch-dirty=0
+[  690.380317] dac960dump 0000:37:09.1: exec-dirty=0
+[  724.076905] dac960dump 0000:37:09.1: bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+[  724.076918] dac960dump 0000:37:09.1: submit op=1c id=1 len=0 offset=00000000 dma=fff90000 pattern=a5 mailbox=0000011c,00000000,fff90000,00
+[  724.077088] dac960dump 0000:37:09.1: complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  724.077098] dac960dump 0000:37:09.1: submit op=20 id=2 len=512 offset=00000000 dma=fff90000 pattern=a5 mailbox=02000220,00000000,fff90000,00
+[  724.077264] dac960dump 0000:37:09.1: complete op=20 id=0002 status=0000 changed=512 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  724.077274] dac960dump 0000:37:09.1: submit op=20 id=3 len=512 offset=00000000 dma=fff90000 pattern=5a mailbox=02000320,00000000,fff90000,00
+[  724.077385] dac960dump 0000:37:09.1: complete op=20 id=0003 status=0000 changed=505 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  724.077394] dac960dump 0000:37:09.1: submit op=20 id=4 len=4 offset=ff1e6a70 dma=fff90000 pattern=a5 mailbox=00040420,ff1e6a70,fff90000,00
+[  724.077560] dac960dump 0000:37:09.1: complete op=20 id=0004 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  724.077569] dac960dump 0000:37:09.1: submit op=20 id=5 len=4 offset=ff1e6a70 dma=fff90000 pattern=5a mailbox=00040520,ff1e6a70,fff90000,00
+[  724.077748] dac960dump 0000:37:09.1: complete op=20 id=0005 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  724.077762] dac960dump 0000:37:09.1: submit op=1c id=6 len=0 offset=00000000 dma=fff90000 pattern=5a mailbox=0000061c,00000000,fff90000,00
+[  724.077959] dac960dump 0000:37:09.1: complete op=1c id=0006 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  724.077965] dac960dump 0000:37:09.1: VERIFIED staging pointer=c0f2c000 at local=c0112a70
+[  724.077977] dac960dump 0000:37:09.1: submit op=20 id=7 len=16 offset=ff11e2e0 dma=fff90000 pattern=a5 mailbox=00100720,ff11e2e0,fff90000,00
+[  724.078093] dac960dump 0000:37:09.1: complete op=20 id=0007 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  724.078103] dac960dump 0000:37:09.1: submit op=20 id=8 len=16 offset=ff11e2e0 dma=fff90000 pattern=5a mailbox=00100820,ff11e2e0,fff90000,00
+[  724.078268] dac960dump 0000:37:09.1: complete op=20 id=0008 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  724.078277] dac960dump 0000:37:09.1: submit op=20 id=9 len=8 offset=ff1f222c dma=fff90000 pattern=a5 mailbox=00080920,ff1f222c,fff90000,00
+[  724.078389] dac960dump 0000:37:09.1: complete op=20 id=0009 status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 a5 a5 a5 a5 a5 a5 a5 a5
+[  724.078398] dac960dump 0000:37:09.1: submit op=20 id=10 len=8 offset=ff1f222c dma=fff90000 pattern=5a mailbox=00080a20,ff1f222c,fff90000,00
+[  724.078564] dac960dump 0000:37:09.1: complete op=20 id=000a status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 5a 5a 5a 5a 5a 5a 5a 5a
+[  724.078568] dac960dump 0000:37:09.1: runtime board=c0110780 alias=c1000000
+[  724.078576] dac960dump 0000:37:09.1: submit op=20 id=11 len=512 offset=ff1e4780 dma=fff90000 pattern=a5 mailbox=02000b20,ff1e4780,fff90000,00
+[  724.078741] dac960dump 0000:37:09.1: complete op=20 id=000b status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  724.078750] dac960dump 0000:37:09.1: submit op=20 id=12 len=512 offset=ff1e4780 dma=fff90000 pattern=5a mailbox=02000c20,ff1e4780,fff90000,00
+[  724.078902] dac960dump 0000:37:09.1: complete op=20 id=000c status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  724.078908] dac960dump 0000:37:09.1: runtime callbacks read=c004ce90 write=c004ced0 program=c004cf80
+[  724.078920] dac960dump 0000:37:09.1: submit op=1c id=13 len=0 offset=00000000 dma=fff90000 pattern=5a mailbox=00000d1c,00000000,fff90000,00
+[  724.079112] dac960dump 0000:37:09.1: complete op=1c id=000d status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  724.079126] dac960dump 0000:37:09.1: submit op=20 id=14 len=64 offset=3e084200 dma=fff90000 pattern=a5 mailbox=00400e20,3e084200,fff90000,00
+[  724.079297] dac960dump 0000:37:09.1: complete op=20 id=000e status=0000 changed=64 guard-changed=0 head=08 02 fb fe 00 02 fb fe 00 02 fb fe 00 02 fb fe
+[  724.079308] dac960dump 0000:37:09.1: submit op=20 id=15 len=64 offset=3e084200 dma=fff90000 pattern=5a mailbox=00400f20,3e084200,fff90000,00
+[  724.079420] dac960dump 0000:37:09.1: complete op=20 id=000f status=0000 changed=64 guard-changed=0 head=08 02 fb fe 00 02 fb fe 00 02 fb fe 00 02 fb fe
+[  724.079430] dac960dump 0000:37:09.1: submit op=20 id=16 len=64 offset=3e09c200 dma=fff90000 pattern=a5 mailbox=00401020,3e09c200,fff90000,00
+[  724.079596] dac960dump 0000:37:09.1: complete op=20 id=0010 status=0000 changed=64 guard-changed=0 head=7b 82 fc fe 4e 82 fc fe ec 82 fc fe 5a 82 fc fe
+[  724.079605] dac960dump 0000:37:09.1: submit op=20 id=17 len=64 offset=3e09c200 dma=fff90000 pattern=5a mailbox=00401120,3e09c200,fff90000,00
+[  724.079716] dac960dump 0000:37:09.1: complete op=20 id=0011 status=0000 changed=63 guard-changed=0 head=7b 82 fc fe 4e 82 fc fe ec 82 fc fe 5a 82 fc fe
+[  724.079725] dac960dump 0000:37:09.1: submit op=20 id=18 len=64 offset=3e0b4000 dma=fff90000 pattern=a5 mailbox=00401220,3e0b4000,fff90000,00
+[  724.079890] dac960dump 0000:37:09.1: complete op=20 id=0012 status=0000 changed=64 guard-changed=0 head=00 00 fe fe 00 00 fe fe 00 00 fe fe 00 00 fe fe
+[  724.079900] dac960dump 0000:37:09.1: submit op=20 id=19 len=64 offset=3e0b4000 dma=fff90000 pattern=5a mailbox=00401320,3e0b4000,fff90000,00
+[  724.080021] dac960dump 0000:37:09.1: complete op=20 id=0013 status=0000 changed=64 guard-changed=0 head=00 00 fe fe 00 00 fe fe 00 00 fe fe 00 00 fe fe
+[  724.080025] dac960dump 0000:37:09.1: OBSERVED paired live FEFB0200/FEFC8200/FEFE0000 windows; inspect captures against pinned image; instruction fetch untested
+[  724.080027] dac960dump 0000:37:09.1: experiment-result=0 pending=0; exported files are captures, not a physical-flash backup
+[  724.080028] dac960dump 0000:37:09.1: scratch-dirty=0
+[  724.080030] dac960dump 0000:37:09.1: exec-dirty=0
+[  819.281573] dac960dump 0000:37:09.1: bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+[  819.281587] dac960dump 0000:37:09.1: submit op=1c id=1 len=0 offset=00000000 dma=fff80000 pattern=a5 mailbox=0000011c,00000000,fff80000,00
+[  819.281747] dac960dump 0000:37:09.1: complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  819.281757] dac960dump 0000:37:09.1: submit op=20 id=2 len=512 offset=00000000 dma=fff80000 pattern=a5 mailbox=02000220,00000000,fff80000,00
+[  819.281922] dac960dump 0000:37:09.1: complete op=20 id=0002 status=0000 changed=512 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  819.281932] dac960dump 0000:37:09.1: submit op=20 id=3 len=512 offset=00000000 dma=fff80000 pattern=5a mailbox=02000320,00000000,fff80000,00
+[  819.282079] dac960dump 0000:37:09.1: complete op=20 id=0003 status=0000 changed=505 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[  819.282094] dac960dump 0000:37:09.1: submit op=20 id=4 len=4 offset=ff1e6a70 dma=fff80000 pattern=a5 mailbox=00040420,ff1e6a70,fff80000,00
+[  819.282239] dac960dump 0000:37:09.1: complete op=20 id=0004 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.282253] dac960dump 0000:37:09.1: submit op=20 id=5 len=4 offset=ff1e6a70 dma=fff80000 pattern=5a mailbox=00040520,ff1e6a70,fff80000,00
+[  819.282393] dac960dump 0000:37:09.1: complete op=20 id=0005 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  819.282407] dac960dump 0000:37:09.1: submit op=1c id=6 len=0 offset=00000000 dma=fff80000 pattern=5a mailbox=0000061c,00000000,fff80000,00
+[  819.282606] dac960dump 0000:37:09.1: complete op=1c id=0006 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  819.282612] dac960dump 0000:37:09.1: VERIFIED staging pointer=c0f2c000 at local=c0112a70
+[  819.282624] dac960dump 0000:37:09.1: submit op=20 id=7 len=16 offset=ff11e2e0 dma=fff80000 pattern=a5 mailbox=00100720,ff11e2e0,fff80000,00
+[  819.282791] dac960dump 0000:37:09.1: complete op=20 id=0007 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  819.282806] dac960dump 0000:37:09.1: submit op=20 id=8 len=16 offset=ff11e2e0 dma=fff80000 pattern=5a mailbox=00100820,ff11e2e0,fff80000,00
+[  819.282922] dac960dump 0000:37:09.1: complete op=20 id=0008 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[  819.282932] dac960dump 0000:37:09.1: submit op=20 id=9 len=8 offset=ff1f222c dma=fff80000 pattern=a5 mailbox=00080920,ff1f222c,fff80000,00
+[  819.283098] dac960dump 0000:37:09.1: complete op=20 id=0009 status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.283107] dac960dump 0000:37:09.1: submit op=20 id=10 len=8 offset=ff1f222c dma=fff80000 pattern=5a mailbox=00080a20,ff1f222c,fff80000,00
+[  819.283272] dac960dump 0000:37:09.1: complete op=20 id=000a status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 5a 5a 5a 5a 5a 5a 5a 5a
+[  819.283275] dac960dump 0000:37:09.1: runtime board=c0110780 alias=c1000000
+[  819.283283] dac960dump 0000:37:09.1: submit op=20 id=11 len=512 offset=ff1e4780 dma=fff80000 pattern=a5 mailbox=02000b20,ff1e4780,fff80000,00
+[  819.283395] dac960dump 0000:37:09.1: complete op=20 id=000b status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  819.283404] dac960dump 0000:37:09.1: submit op=20 id=12 len=512 offset=ff1e4780 dma=fff80000 pattern=5a mailbox=02000c20,ff1e4780,fff80000,00
+[  819.283571] dac960dump 0000:37:09.1: complete op=20 id=000c status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[  819.283574] dac960dump 0000:37:09.1: runtime callbacks read=c004ce90 write=c004ced0 program=c004cf80
+[  819.283583] dac960dump 0000:37:09.1: submit op=1c id=13 len=0 offset=00000000 dma=fff80000 pattern=5a mailbox=00000d1c,00000000,fff80000,00
+[  819.283749] dac960dump 0000:37:09.1: complete op=1c id=000d status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  819.283764] dac960dump 0000:37:09.1: submit op=20 id=14 len=4 offset=ff0f39bc dma=fff80000 pattern=a5 mailbox=00040e20,ff0f39bc,fff80000,00
+[  819.283880] dac960dump 0000:37:09.1: complete op=20 id=000e status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.283891] dac960dump 0000:37:09.1: submit op=20 id=15 len=4 offset=ff0f39bc dma=fff80000 pattern=5a mailbox=00040f20,ff0f39bc,fff80000,00
+[  819.284002] dac960dump 0000:37:09.1: complete op=20 id=000f status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  819.284011] dac960dump 0000:37:09.1: submit op=20 id=16 len=64 offset=00080100 dma=fff80000 pattern=a5 mailbox=00401020,00080100,fff80000,00
+[  819.284177] dac960dump 0000:37:09.1: complete op=20 id=0010 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.284186] dac960dump 0000:37:09.1: submit op=20 id=17 len=64 offset=00080100 dma=fff80000 pattern=5a mailbox=00401120,00080100,fff80000,00
+[  819.284351] dac960dump 0000:37:09.1: complete op=20 id=0011 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.284361] dac960dump 0000:37:09.1: submit op=20 id=18 len=64 offset=00080180 dma=fff80000 pattern=a5 mailbox=00401220,00080180,fff80000,00
+[  819.284525] dac960dump 0000:37:09.1: complete op=20 id=0012 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.284535] dac960dump 0000:37:09.1: submit op=20 id=19 len=64 offset=00080180 dma=fff80000 pattern=5a mailbox=00401320,00080180,fff80000,00
+[  819.284646] dac960dump 0000:37:09.1: complete op=20 id=0013 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.284655] dac960dump 0000:37:09.1: submit op=21 id=20 len=24 offset=00080100 dma=fff80000 pattern=a5 mailbox=00181421,00080100,fff80000,00
+[  819.294101] dac960dump 0000:37:09.1: complete op=21 id=0014 status=0000 changed=24 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[  819.294112] dac960dump 0000:37:09.1: submit op=20 id=21 len=64 offset=00080100 dma=fff80000 pattern=a5 mailbox=00401520,00080100,fff80000,00
+[  819.294224] dac960dump 0000:37:09.1: complete op=20 id=0015 status=0000 changed=64 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[  819.294233] dac960dump 0000:37:09.1: submit op=20 id=22 len=64 offset=00080100 dma=fff80000 pattern=5a mailbox=00401620,00080100,fff80000,00
+[  819.294398] dac960dump 0000:37:09.1: complete op=20 id=0016 status=0000 changed=64 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[  819.294408] dac960dump 0000:37:09.1: submit op=21 id=23 len=4 offset=ff0f39bc dma=fff80000 pattern=a5 mailbox=00041721,ff0f39bc,fff80000,00
+[  819.305537] dac960dump 0000:37:09.1: complete op=21 id=0017 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.305548] dac960dump 0000:37:09.1: submit op=20 id=24 len=4 offset=ff0f39bc dma=fff80000 pattern=a5 mailbox=00041820,ff0f39bc,fff80000,00
+[  819.305736] dac960dump 0000:37:09.1: complete op=20 id=0018 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.305751] dac960dump 0000:37:09.1: submit op=20 id=25 len=4 offset=ff0f39bc dma=fff80000 pattern=5a mailbox=00041920,ff0f39bc,fff80000,00
+[  819.305890] dac960dump 0000:37:09.1: complete op=20 id=0019 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  819.305905] dac960dump 0000:37:09.1: submit op=6f id=26 len=0 offset=00000000 dma=fff80000 pattern=a5 mailbox=00001a6f,00000000,fff80000,00
+[  819.306048] dac960dump 0000:37:09.1: complete op=6f id=001a status=017e changed=0 guard-changed=0 head=a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.306054] dac960dump 0000:37:09.1: VERIFIED changed RAM dispatch word executed returning RAM stub status=017e
+[  819.306065] dac960dump 0000:37:09.1: submit op=21 id=27 len=36 offset=00080180 dma=fff80000 pattern=a5 mailbox=00241b21,00080180,fff80000,00
+[  819.315850] dac960dump 0000:37:09.1: complete op=21 id=001b status=0000 changed=36 guard-changed=0 head=82 1d 80 65 00 30 00 86 2c 02 fb fe 02 1e 90 65
+[  819.315861] dac960dump 0000:37:09.1: submit op=20 id=28 len=64 offset=00080180 dma=fff80000 pattern=a5 mailbox=00401c20,00080180,fff80000,00
+[  819.315976] dac960dump 0000:37:09.1: complete op=20 id=001c status=0000 changed=64 guard-changed=0 head=82 1d 80 65 00 30 00 86 2c 02 fb fe 02 1e 90 65
+[  819.315986] dac960dump 0000:37:09.1: submit op=20 id=29 len=64 offset=00080180 dma=fff80000 pattern=5a mailbox=00401d20,00080180,fff80000,00
+[  819.316150] dac960dump 0000:37:09.1: complete op=20 id=001d status=0000 changed=64 guard-changed=0 head=82 1d 80 65 00 30 00 86 2c 02 fb fe 02 1e 90 65
+[  819.316159] dac960dump 0000:37:09.1: submit op=21 id=30 len=4 offset=ff0f39bc dma=fff80000 pattern=a5 mailbox=00041e21,ff0f39bc,fff80000,00
+[  819.327283] dac960dump 0000:37:09.1: complete op=21 id=001e status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.327295] dac960dump 0000:37:09.1: submit op=20 id=31 len=4 offset=ff0f39bc dma=fff80000 pattern=a5 mailbox=00041f20,ff0f39bc,fff80000,00
+[  819.327408] dac960dump 0000:37:09.1: complete op=20 id=001f status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.327417] dac960dump 0000:37:09.1: submit op=20 id=32 len=4 offset=ff0f39bc dma=fff80000 pattern=5a mailbox=00042020,ff0f39bc,fff80000,00
+[  819.327529] dac960dump 0000:37:09.1: complete op=20 id=0020 status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  819.327538] dac960dump 0000:37:09.1: submit op=6f id=33 len=0 offset=00000000 dma=fff80000 pattern=5a mailbox=0000216f,00000000,fff80000,00
+[  819.327650] dac960dump 0000:37:09.1: complete op=6f id=0021 status=017f changed=0 guard-changed=0 head=5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  819.327653] dac960dump 0000:37:09.1: VERIFIED post-startup callx to mapped stock flash RET returned status=017f
+[  819.327661] dac960dump 0000:37:09.1: submit op=21 id=34 len=4 offset=ff0f39bc dma=fff80000 pattern=a5 mailbox=00042221,ff0f39bc,fff80000,00
+[  819.338810] dac960dump 0000:37:09.1: complete op=21 id=0022 status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.338821] dac960dump 0000:37:09.1: submit op=20 id=35 len=4 offset=ff0f39bc dma=fff80000 pattern=a5 mailbox=00042320,ff0f39bc,fff80000,00
+[  819.339016] dac960dump 0000:37:09.1: complete op=20 id=0023 status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.339026] dac960dump 0000:37:09.1: submit op=20 id=36 len=4 offset=ff0f39bc dma=fff80000 pattern=5a mailbox=00042420,ff0f39bc,fff80000,00
+[  819.339226] dac960dump 0000:37:09.1: complete op=20 id=0024 status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[  819.339236] dac960dump 0000:37:09.1: submit op=6f id=37 len=0 offset=00000000 dma=fff80000 pattern=a5 mailbox=0000256f,00000000,fff80000,00
+[  819.339374] dac960dump 0000:37:09.1: complete op=6f id=0025 status=0104 changed=0 guard-changed=0 head=a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[  819.339377] dac960dump 0000:37:09.1: VERIFIED restored stock dispatch status=0104 before clearing RAM stubs
+[  819.339385] dac960dump 0000:37:09.1: submit op=21 id=38 len=24 offset=00080100 dma=fff80000 pattern=a5 mailbox=00182621,00080100,fff80000,00
+[  819.349086] dac960dump 0000:37:09.1: complete op=21 id=0026 status=0000 changed=24 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.349097] dac960dump 0000:37:09.1: submit op=20 id=39 len=64 offset=00080100 dma=fff80000 pattern=a5 mailbox=00402720,00080100,fff80000,00
+[  819.349241] dac960dump 0000:37:09.1: complete op=20 id=0027 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.349251] dac960dump 0000:37:09.1: submit op=20 id=40 len=64 offset=00080100 dma=fff80000 pattern=5a mailbox=00402820,00080100,fff80000,00
+[  819.349395] dac960dump 0000:37:09.1: complete op=20 id=0028 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.349404] dac960dump 0000:37:09.1: submit op=21 id=41 len=36 offset=00080180 dma=fff80000 pattern=a5 mailbox=00242921,00080180,fff80000,00
+[  819.359402] dac960dump 0000:37:09.1: complete op=21 id=0029 status=0000 changed=36 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.359413] dac960dump 0000:37:09.1: submit op=20 id=42 len=64 offset=00080180 dma=fff80000 pattern=a5 mailbox=00402a20,00080180,fff80000,00
+[  819.359557] dac960dump 0000:37:09.1: complete op=20 id=002a status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.359567] dac960dump 0000:37:09.1: submit op=20 id=43 len=64 offset=00080180 dma=fff80000 pattern=5a mailbox=00402b20,00080180,fff80000,00
+[  819.359752] dac960dump 0000:37:09.1: complete op=20 id=002b status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  819.359762] dac960dump 0000:37:09.1: RESTORED dispatch and both RAM sites to their original bytes
+[  819.359782] dac960dump 0000:37:09.1: submit op=1c id=44 len=0 offset=00000000 dma=fff80000 pattern=5a mailbox=00002c1c,00000000,fff80000,00
+[  819.359981] dac960dump 0000:37:09.1: complete op=1c id=002c status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[  819.359987] dac960dump 0000:37:09.1: experiment-result=0 pending=0; exported files are captures, not a physical-flash backup
+[  819.359990] dac960dump 0000:37:09.1: scratch-dirty=0
+[  819.359992] dac960dump 0000:37:09.1: exec-dirty=0
+[ 1867.236912] dac960dump 0000:37:09.1: bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+[ 1867.236933] dac960dump 0000:37:09.1: submit op=1c id=1 len=0 offset=00000000 dma=fff70000 pattern=a5 mailbox=0000011c,00000000,fff70000,00
+[ 1867.237160] dac960dump 0000:37:09.1: complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[ 1867.237178] dac960dump 0000:37:09.1: submit op=20 id=2 len=512 offset=00000000 dma=fff70000 pattern=a5 mailbox=02000220,00000000,fff70000,00
+[ 1867.237376] dac960dump 0000:37:09.1: complete op=20 id=0002 status=0000 changed=512 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[ 1867.237392] dac960dump 0000:37:09.1: submit op=20 id=3 len=512 offset=00000000 dma=fff70000 pattern=5a mailbox=02000320,00000000,fff70000,00
+[ 1867.237542] dac960dump 0000:37:09.1: complete op=20 id=0003 status=0000 changed=505 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[ 1867.237554] dac960dump 0000:37:09.1: submit op=20 id=4 len=4 offset=ff1e6a70 dma=fff70000 pattern=a5 mailbox=00040420,ff1e6a70,fff70000,00
+[ 1867.237721] dac960dump 0000:37:09.1: complete op=20 id=0004 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[ 1867.237730] dac960dump 0000:37:09.1: submit op=20 id=5 len=4 offset=ff1e6a70 dma=fff70000 pattern=5a mailbox=00040520,ff1e6a70,fff70000,00
+[ 1867.237895] dac960dump 0000:37:09.1: complete op=20 id=0005 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[ 1867.237904] dac960dump 0000:37:09.1: submit op=1c id=6 len=0 offset=00000000 dma=fff70000 pattern=5a mailbox=0000061c,00000000,fff70000,00
+[ 1867.238070] dac960dump 0000:37:09.1: complete op=1c id=0006 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[ 1867.238073] dac960dump 0000:37:09.1: VERIFIED staging pointer=c0f2c000 at local=c0112a70
+[ 1867.238081] dac960dump 0000:37:09.1: submit op=20 id=7 len=16 offset=ff11e2e0 dma=fff70000 pattern=a5 mailbox=00100720,ff11e2e0,fff70000,00
+[ 1867.238246] dac960dump 0000:37:09.1: complete op=20 id=0007 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[ 1867.238256] dac960dump 0000:37:09.1: submit op=20 id=8 len=16 offset=ff11e2e0 dma=fff70000 pattern=5a mailbox=00100820,ff11e2e0,fff70000,00
+[ 1867.238377] dac960dump 0000:37:09.1: complete op=20 id=0008 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[ 1867.238387] dac960dump 0000:37:09.1: submit op=20 id=9 len=8 offset=ff1f222c dma=fff70000 pattern=a5 mailbox=00080920,ff1f222c,fff70000,00
+[ 1867.238499] dac960dump 0000:37:09.1: complete op=20 id=0009 status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 a5 a5 a5 a5 a5 a5 a5 a5
+[ 1867.238508] dac960dump 0000:37:09.1: submit op=20 id=10 len=8 offset=ff1f222c dma=fff70000 pattern=5a mailbox=00080a20,ff1f222c,fff70000,00
+[ 1867.238619] dac960dump 0000:37:09.1: complete op=20 id=000a status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 5a 5a 5a 5a 5a 5a 5a 5a
+[ 1867.238622] dac960dump 0000:37:09.1: runtime board=c0110780 alias=c1000000
+[ 1867.238630] dac960dump 0000:37:09.1: submit op=20 id=11 len=512 offset=ff1e4780 dma=fff70000 pattern=a5 mailbox=02000b20,ff1e4780,fff70000,00
+[ 1867.238796] dac960dump 0000:37:09.1: complete op=20 id=000b status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[ 1867.238805] dac960dump 0000:37:09.1: submit op=20 id=12 len=512 offset=ff1e4780 dma=fff70000 pattern=5a mailbox=02000c20,ff1e4780,fff70000,00
+[ 1867.238970] dac960dump 0000:37:09.1: complete op=20 id=000c status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[ 1867.238973] dac960dump 0000:37:09.1: runtime callbacks read=c004ce90 write=c004ced0 program=c004cf80
+[ 1867.238981] dac960dump 0000:37:09.1: submit op=1c id=13 len=0 offset=00000000 dma=fff70000 pattern=5a mailbox=00000d1c,00000000,fff70000,00
+[ 1867.239147] dac960dump 0000:37:09.1: complete op=1c id=000d status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[ 1867.239156] dac960dump 0000:37:09.1: submit op=20 id=14 len=61440 offset=00000000 dma=fff70000 pattern=a5 mailbox=f0000e20,00000000,fff70000,00
+[ 1867.239819] dac960dump 0000:37:09.1: complete op=20 id=000e status=0000 changed=61252 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[ 1867.239834] dac960dump 0000:37:09.1: submit op=20 id=15 len=61440 offset=0000f000 dma=fff70000 pattern=a5 mailbox=f0000f20,0000f000,fff70000,00
+[ 1867.240481] dac960dump 0000:37:09.1: complete op=20 id=000f status=0000 changed=61280 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+[ 1867.240496] dac960dump 0000:37:09.1: submit op=20 id=16 len=61440 offset=0001e000 dma=fff70000 pattern=a5 mailbox=f0001020,0001e000,fff70000,00
+[ 1867.241173] dac960dump 0000:37:09.1: complete op=20 id=0010 status=0000 changed=61431 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[ 1867.241188] dac960dump 0000:37:09.1: submit op=20 id=17 len=61440 offset=0002d000 dma=fff70000 pattern=a5 mailbox=f0001120,0002d000,fff70000,00
+[ 1867.241865] dac960dump 0000:37:09.1: complete op=20 id=0011 status=0000 changed=61212 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+[ 1867.241880] dac960dump 0000:37:09.1: submit op=20 id=18 len=61440 offset=0003c000 dma=fff70000 pattern=a5 mailbox=f0001220,0003c000,fff70000,00
+[ 1867.242534] dac960dump 0000:37:09.1: complete op=20 id=0012 status=0000 changed=61256 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+[ 1867.242549] dac960dump 0000:37:09.1: submit op=20 id=19 len=61440 offset=0004b000 dma=fff70000 pattern=a5 mailbox=f0001320,0004b000,fff70000,00
+[ 1867.243223] dac960dump 0000:37:09.1: complete op=20 id=0013 status=0000 changed=61268 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+[ 1867.243238] dac960dump 0000:37:09.1: submit op=20 id=20 len=61440 offset=0005a000 dma=fff70000 pattern=a5 mailbox=f0001420,0005a000,fff70000,00
+[ 1867.243914] dac960dump 0000:37:09.1: complete op=20 id=0014 status=0000 changed=61378 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+[ 1867.243929] dac960dump 0000:37:09.1: submit op=20 id=21 len=61440 offset=00069000 dma=fff70000 pattern=a5 mailbox=f0001520,00069000,fff70000,00
+[ 1867.244599] dac960dump 0000:37:09.1: complete op=20 id=0015 status=0000 changed=61284 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+[ 1867.244622] dac960dump 0000:37:09.1: submit op=20 id=22 len=32768 offset=00078000 dma=fff70000 pattern=a5 mailbox=80001620,00078000,fff70000,00
+[ 1867.245022] dac960dump 0000:37:09.1: complete op=20 id=0016 status=0000 changed=32708 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[ 1867.245034] dac960dump 0000:37:09.1: submit op=20 id=23 len=61440 offset=00000000 dma=fff70000 pattern=5a mailbox=f0001720,00000000,fff70000,00
+[ 1867.245737] dac960dump 0000:37:09.1: complete op=20 id=0017 status=0000 changed=61208 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[ 1867.245753] dac960dump 0000:37:09.1: submit op=20 id=24 len=61440 offset=0000f000 dma=fff70000 pattern=5a mailbox=f0001820,0000f000,fff70000,00
+[ 1867.246427] dac960dump 0000:37:09.1: complete op=20 id=0018 status=0000 changed=61255 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+[ 1867.246442] dac960dump 0000:37:09.1: submit op=20 id=25 len=61440 offset=0001e000 dma=fff70000 pattern=5a mailbox=f0001920,0001e000,fff70000,00
+[ 1867.247088] dac960dump 0000:37:09.1: complete op=20 id=0019 status=0000 changed=61425 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[ 1867.247103] dac960dump 0000:37:09.1: submit op=20 id=26 len=61440 offset=0002d000 dma=fff70000 pattern=5a mailbox=f0001a20,0002d000,fff70000,00
+[ 1867.247794] dac960dump 0000:37:09.1: complete op=20 id=001a status=0000 changed=61189 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+[ 1867.247820] dac960dump 0000:37:09.1: submit op=20 id=27 len=61440 offset=0003c000 dma=fff70000 pattern=5a mailbox=f0001b20,0003c000,fff70000,00
+[ 1867.248482] dac960dump 0000:37:09.1: complete op=20 id=001b status=0000 changed=61195 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+[ 1867.248500] dac960dump 0000:37:09.1: submit op=20 id=28 len=61440 offset=0004b000 dma=fff70000 pattern=5a mailbox=f0001c20,0004b000,fff70000,00
+[ 1867.249181] dac960dump 0000:37:09.1: complete op=20 id=001c status=0000 changed=61209 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+[ 1867.249207] dac960dump 0000:37:09.1: submit op=20 id=29 len=61440 offset=0005a000 dma=fff70000 pattern=5a mailbox=f0001d20,0005a000,fff70000,00
+[ 1867.249889] dac960dump 0000:37:09.1: complete op=20 id=001d status=0000 changed=61345 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+[ 1867.249907] dac960dump 0000:37:09.1: submit op=20 id=30 len=61440 offset=00069000 dma=fff70000 pattern=5a mailbox=f0001e20,00069000,fff70000,00
+[ 1867.250552] dac960dump 0000:37:09.1: complete op=20 id=001e status=0000 changed=61371 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+[ 1867.250570] dac960dump 0000:37:09.1: submit op=20 id=31 len=32768 offset=00078000 dma=fff70000 pattern=5a mailbox=80001f20,00078000,fff70000,00
+[ 1867.251005] dac960dump 0000:37:09.1: complete op=20 id=001f status=0000 changed=32688 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[ 1867.254221] dac960dump 0000:37:09.1: stage before-stock sha256=43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93
+[ 1867.254226] dac960dump 0000:37:09.1: VERIFIED stage before-stock: paired 524288-byte reads and pinned SHA256
+[ 1867.254229] dac960dump 0000:37:09.1: stage apply patch=0 offset=00060000 bytes=48
+[ 1867.254240] dac960dump 0000:37:09.1: submit op=21 id=32 len=48 offset=00060000 dma=fff70000 pattern=a5 mailbox=00302021,00060000,fff70000,00
+[ 1867.263655] dac960dump 0000:37:09.1: complete op=21 id=0020 status=0000 changed=48 guard-changed=0 head=00 30 80 8c 1c 00 fe fe 00 30 80 92 bc f9 01 c0
+[ 1867.263660] dac960dump 0000:37:09.1: stage apply patch=1 offset=00067f68 bytes=4
+[ 1867.263670] dac960dump 0000:37:09.1: submit op=21 id=33 len=4 offset=00067f68 dma=fff70000 pattern=a5 mailbox=00042121,00067f68,fff70000,00
+[ 1867.273397] dac960dump 0000:37:09.1: complete op=21 id=0021 status=0000 changed=4 guard-changed=0 head=00 00 fe fe a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[ 1867.273402] dac960dump 0000:37:09.1: stage apply patch=2 offset=00067fdc bytes=4
+[ 1867.273412] dac960dump 0000:37:09.1: submit op=21 id=34 len=4 offset=00067fdc dma=fff70000 pattern=a5 mailbox=00042221,00067fdc,fff70000,00
+[ 1867.283154] dac960dump 0000:37:09.1: complete op=21 id=0022 status=0000 changed=4 guard-changed=0 head=68 fb 99 35 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[ 1867.283169] dac960dump 0000:37:09.1: submit op=20 id=35 len=61440 offset=00000000 dma=fff70000 pattern=a5 mailbox=f0002320,00000000,fff70000,00
+[ 1867.283836] dac960dump 0000:37:09.1: complete op=20 id=0023 status=0000 changed=61252 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[ 1867.283854] dac960dump 0000:37:09.1: submit op=20 id=36 len=61440 offset=0000f000 dma=fff70000 pattern=a5 mailbox=f0002420,0000f000,fff70000,00
+[ 1867.284550] dac960dump 0000:37:09.1: complete op=20 id=0024 status=0000 changed=61280 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+[ 1867.284568] dac960dump 0000:37:09.1: submit op=20 id=37 len=61440 offset=0001e000 dma=fff70000 pattern=a5 mailbox=f0002520,0001e000,fff70000,00
+[ 1867.285248] dac960dump 0000:37:09.1: complete op=20 id=0025 status=0000 changed=61431 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[ 1867.285274] dac960dump 0000:37:09.1: submit op=20 id=38 len=61440 offset=0002d000 dma=fff70000 pattern=a5 mailbox=f0002620,0002d000,fff70000,00
+[ 1867.285952] dac960dump 0000:37:09.1: complete op=20 id=0026 status=0000 changed=61212 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+[ 1867.285970] dac960dump 0000:37:09.1: submit op=20 id=39 len=61440 offset=0003c000 dma=fff70000 pattern=a5 mailbox=f0002720,0003c000,fff70000,00
+[ 1867.286662] dac960dump 0000:37:09.1: complete op=20 id=0027 status=0000 changed=61256 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+[ 1867.286679] dac960dump 0000:37:09.1: submit op=20 id=40 len=61440 offset=0004b000 dma=fff70000 pattern=a5 mailbox=f0002820,0004b000,fff70000,00
+[ 1867.287378] dac960dump 0000:37:09.1: complete op=20 id=0028 status=0000 changed=61268 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+[ 1867.287404] dac960dump 0000:37:09.1: submit op=20 id=41 len=61440 offset=0005a000 dma=fff70000 pattern=a5 mailbox=f0002920,0005a000,fff70000,00
+[ 1867.288093] dac960dump 0000:37:09.1: complete op=20 id=0029 status=0000 changed=61378 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+[ 1867.288110] dac960dump 0000:37:09.1: submit op=20 id=42 len=61440 offset=00069000 dma=fff70000 pattern=a5 mailbox=f0002a20,00069000,fff70000,00
+[ 1867.288802] dac960dump 0000:37:09.1: complete op=20 id=002a status=0000 changed=61284 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+[ 1867.288821] dac960dump 0000:37:09.1: submit op=20 id=43 len=32768 offset=00078000 dma=fff70000 pattern=a5 mailbox=80002b20,00078000,fff70000,00
+[ 1867.289267] dac960dump 0000:37:09.1: complete op=20 id=002b status=0000 changed=32708 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[ 1867.289281] dac960dump 0000:37:09.1: submit op=20 id=44 len=61440 offset=00000000 dma=fff70000 pattern=5a mailbox=f0002c20,00000000,fff70000,00
+[ 1867.289959] dac960dump 0000:37:09.1: complete op=20 id=002c status=0000 changed=61208 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[ 1867.289977] dac960dump 0000:37:09.1: submit op=20 id=45 len=61440 offset=0000f000 dma=fff70000 pattern=5a mailbox=f0002d20,0000f000,fff70000,00
+[ 1867.290675] dac960dump 0000:37:09.1: complete op=20 id=002d status=0000 changed=61255 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+[ 1867.290699] dac960dump 0000:37:09.1: submit op=20 id=46 len=61440 offset=0001e000 dma=fff70000 pattern=5a mailbox=f0002e20,0001e000,fff70000,00
+[ 1867.291340] dac960dump 0000:37:09.1: complete op=20 id=002e status=0000 changed=61425 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[ 1867.291357] dac960dump 0000:37:09.1: submit op=20 id=47 len=61440 offset=0002d000 dma=fff70000 pattern=5a mailbox=f0002f20,0002d000,fff70000,00
+[ 1867.292044] dac960dump 0000:37:09.1: complete op=20 id=002f status=0000 changed=61189 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+[ 1867.292067] dac960dump 0000:37:09.1: submit op=20 id=48 len=61440 offset=0003c000 dma=fff70000 pattern=5a mailbox=f0003020,0003c000,fff70000,00
+[ 1867.292758] dac960dump 0000:37:09.1: complete op=20 id=0030 status=0000 changed=61195 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+[ 1867.292781] dac960dump 0000:37:09.1: submit op=20 id=49 len=61440 offset=0004b000 dma=fff70000 pattern=5a mailbox=f0003120,0004b000,fff70000,00
+[ 1867.293461] dac960dump 0000:37:09.1: complete op=20 id=0031 status=0000 changed=61209 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+[ 1867.293492] dac960dump 0000:37:09.1: submit op=20 id=50 len=61440 offset=0005a000 dma=fff70000 pattern=5a mailbox=f0003220,0005a000,fff70000,00
+[ 1867.294180] dac960dump 0000:37:09.1: complete op=20 id=0032 status=0000 changed=61345 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+[ 1867.294203] dac960dump 0000:37:09.1: submit op=20 id=51 len=61440 offset=00069000 dma=fff70000 pattern=5a mailbox=f0003320,00069000,fff70000,00
+[ 1867.294873] dac960dump 0000:37:09.1: complete op=20 id=0033 status=0000 changed=61371 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+[ 1867.294896] dac960dump 0000:37:09.1: submit op=20 id=52 len=32768 offset=00078000 dma=fff70000 pattern=5a mailbox=80003420,00078000,fff70000,00
+[ 1867.295332] dac960dump 0000:37:09.1: complete op=20 id=0034 status=0000 changed=32688 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[ 1867.299376] dac960dump 0000:37:09.1: stage candidate sha256=a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0
+[ 1867.299382] dac960dump 0000:37:09.1: VERIFIED stage candidate: paired 524288-byte reads and pinned SHA256
+[ 1867.299386] dac960dump 0000:37:09.1: stage restore patch=0 offset=00060000 bytes=48
+[ 1867.299398] dac960dump 0000:37:09.1: submit op=21 id=53 len=48 offset=00060000 dma=fff70000 pattern=a5 mailbox=00303521,00060000,fff70000,00
+[ 1867.308803] dac960dump 0000:37:09.1: complete op=21 id=0035 status=0000 changed=48 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[ 1867.308810] dac960dump 0000:37:09.1: stage restore patch=1 offset=00067f68 bytes=4
+[ 1867.308822] dac960dump 0000:37:09.1: submit op=21 id=54 len=4 offset=00067f68 dma=fff70000 pattern=a5 mailbox=00043621,00067f68,fff70000,00
+[ 1867.318570] dac960dump 0000:37:09.1: complete op=21 id=0036 status=0000 changed=4 guard-changed=0 head=e0 a2 04 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[ 1867.318576] dac960dump 0000:37:09.1: stage restore patch=2 offset=00067fdc bytes=4
+[ 1867.318589] dac960dump 0000:37:09.1: submit op=21 id=55 len=4 offset=00067fdc dma=fff70000 pattern=a5 mailbox=00043721,00067fdc,fff70000,00
+[ 1867.328309] dac960dump 0000:37:09.1: complete op=21 id=0037 status=0000 changed=4 guard-changed=0 head=48 9e a0 f6 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[ 1867.328325] dac960dump 0000:37:09.1: submit op=20 id=56 len=61440 offset=00000000 dma=fff70000 pattern=a5 mailbox=f0003820,00000000,fff70000,00
+[ 1867.329045] dac960dump 0000:37:09.1: complete op=20 id=0038 status=0000 changed=61252 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[ 1867.329068] dac960dump 0000:37:09.1: submit op=20 id=57 len=61440 offset=0000f000 dma=fff70000 pattern=a5 mailbox=f0003920,0000f000,fff70000,00
+[ 1867.329759] dac960dump 0000:37:09.1: complete op=20 id=0039 status=0000 changed=61280 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+[ 1867.329782] dac960dump 0000:37:09.1: submit op=20 id=58 len=61440 offset=0001e000 dma=fff70000 pattern=a5 mailbox=f0003a20,0001e000,fff70000,00
+[ 1867.330457] dac960dump 0000:37:09.1: complete op=20 id=003a status=0000 changed=61431 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[ 1867.330490] dac960dump 0000:37:09.1: submit op=20 id=59 len=61440 offset=0002d000 dma=fff70000 pattern=a5 mailbox=f0003b20,0002d000,fff70000,00
+[ 1867.331178] dac960dump 0000:37:09.1: complete op=20 id=003b status=0000 changed=61212 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+[ 1867.331201] dac960dump 0000:37:09.1: submit op=20 id=60 len=61440 offset=0003c000 dma=fff70000 pattern=a5 mailbox=f0003c20,0003c000,fff70000,00
+[ 1867.331873] dac960dump 0000:37:09.1: complete op=20 id=003c status=0000 changed=61256 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+[ 1867.331896] dac960dump 0000:37:09.1: submit op=20 id=61 len=61440 offset=0004b000 dma=fff70000 pattern=a5 mailbox=f0003d20,0004b000,fff70000,00
+[ 1867.332591] dac960dump 0000:37:09.1: complete op=20 id=003d status=0000 changed=61268 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+[ 1867.332615] dac960dump 0000:37:09.1: submit op=20 id=62 len=61440 offset=0005a000 dma=fff70000 pattern=a5 mailbox=f0003e20,0005a000,fff70000,00
+[ 1867.333300] dac960dump 0000:37:09.1: complete op=20 id=003e status=0000 changed=61378 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+[ 1867.333322] dac960dump 0000:37:09.1: submit op=20 id=63 len=61440 offset=00069000 dma=fff70000 pattern=a5 mailbox=f0003f20,00069000,fff70000,00
+[ 1867.333993] dac960dump 0000:37:09.1: complete op=20 id=003f status=0000 changed=61284 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+[ 1867.334017] dac960dump 0000:37:09.1: submit op=20 id=64 len=32768 offset=00078000 dma=fff70000 pattern=a5 mailbox=80004020,00078000,fff70000,00
+[ 1867.334453] dac960dump 0000:37:09.1: complete op=20 id=0040 status=0000 changed=32708 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[ 1867.334478] dac960dump 0000:37:09.1: submit op=20 id=65 len=61440 offset=00000000 dma=fff70000 pattern=5a mailbox=f0004120,00000000,fff70000,00
+[ 1867.335159] dac960dump 0000:37:09.1: complete op=20 id=0041 status=0000 changed=61208 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[ 1867.335182] dac960dump 0000:37:09.1: submit op=20 id=66 len=61440 offset=0000f000 dma=fff70000 pattern=5a mailbox=f0004220,0000f000,fff70000,00
+[ 1867.335867] dac960dump 0000:37:09.1: complete op=20 id=0042 status=0000 changed=61255 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+[ 1867.335891] dac960dump 0000:37:09.1: submit op=20 id=67 len=61440 offset=0001e000 dma=fff70000 pattern=5a mailbox=f0004320,0001e000,fff70000,00
+[ 1867.336577] dac960dump 0000:37:09.1: complete op=20 id=0043 status=0000 changed=61425 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[ 1867.336601] dac960dump 0000:37:09.1: submit op=20 id=68 len=61440 offset=0002d000 dma=fff70000 pattern=5a mailbox=f0004420,0002d000,fff70000,00
+[ 1867.337292] dac960dump 0000:37:09.1: complete op=20 id=0044 status=0000 changed=61189 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+[ 1867.337314] dac960dump 0000:37:09.1: submit op=20 id=69 len=61440 offset=0003c000 dma=fff70000 pattern=5a mailbox=f0004520,0003c000,fff70000,00
+[ 1867.338000] dac960dump 0000:37:09.1: complete op=20 id=0045 status=0000 changed=61195 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+[ 1867.338024] dac960dump 0000:37:09.1: submit op=20 id=70 len=61440 offset=0004b000 dma=fff70000 pattern=5a mailbox=f0004620,0004b000,fff70000,00
+[ 1867.338699] dac960dump 0000:37:09.1: complete op=20 id=0046 status=0000 changed=61209 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+[ 1867.338722] dac960dump 0000:37:09.1: submit op=20 id=71 len=61440 offset=0005a000 dma=fff70000 pattern=5a mailbox=f0004720,0005a000,fff70000,00
+[ 1867.339403] dac960dump 0000:37:09.1: complete op=20 id=0047 status=0000 changed=61345 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+[ 1867.339426] dac960dump 0000:37:09.1: submit op=20 id=72 len=61440 offset=00069000 dma=fff70000 pattern=5a mailbox=f0004820,00069000,fff70000,00
+[ 1867.340102] dac960dump 0000:37:09.1: complete op=20 id=0048 status=0000 changed=61371 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+[ 1867.340125] dac960dump 0000:37:09.1: submit op=20 id=73 len=32768 offset=00078000 dma=fff70000 pattern=5a mailbox=80004920,00078000,fff70000,00
+[ 1867.340583] dac960dump 0000:37:09.1: complete op=20 id=0049 status=0000 changed=32688 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[ 1867.344617] dac960dump 0000:37:09.1: stage restored-stock sha256=43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93
+[ 1867.344622] dac960dump 0000:37:09.1: VERIFIED stage restored-stock: paired 524288-byte reads and pinned SHA256
+[ 1867.344734] dac960dump 0000:37:09.1: RESTORED full staging image to exact original stock bytes
+[ 1867.344746] dac960dump 0000:37:09.1: submit op=1c id=74 len=0 offset=00000000 dma=fff70000 pattern=5a mailbox=00004a1c,00000000,fff70000,00
+[ 1867.344960] dac960dump 0000:37:09.1: complete op=1c id=004a status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[ 1867.344966] dac960dump 0000:37:09.1: experiment-result=0 pending=0; exported files are captures, not a physical-flash backup
+[ 1867.344969] dac960dump 0000:37:09.1: scratch-dirty=0
+[ 1867.344971] dac960dump 0000:37:09.1: exec-dirty=0
+[ 1867.344973] dac960dump 0000:37:09.1: stage-dirty=0

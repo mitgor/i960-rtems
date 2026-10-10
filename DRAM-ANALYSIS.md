@@ -1,5 +1,7 @@
 # Memory initialization findings from remote firmware analysis
 
+Update: the actual installed FWTCBBLK directly writes registers 151C–1530; see [POSTINIT-LOADER.md](POSTINIT-LOADER.md). Earlier no-direct-DRAM-setup findings below concern the different FWPJBBLK reference.
+
 Date: 2026-10-10. SSH access to `mit@192.168.2.75` works with the Mac's installed
 key. Work is isolated in `/home/mit/i960-analysis.7jVBmy`. No firmware commands,
 BAR writes, resets, module loads, or driver changes were performed.
@@ -97,7 +99,14 @@ Both PCI functions have no bound driver. Controller BAR0 remains
 `0xFEFA8000`. Bridge EBCR low word is `0x0018`. This host aperture does not give
 an established direct read path to the board register at `0x40800000`.
 
-## Next steps
+## Follow-up status (2026-10-11)
+
+The exact 4.07-0-29 reference is now preserved and external-RAM execution has
+passed repeated hardware tests; see [CURRENT-FINDINGS.md](CURRENT-FINDINGS.md).
+Board identity and timing-field decoding remain unresolved. The list below
+records the investigation plan at the time of this report.
+
+## Historical next steps
 
 - Identify the board register block and the meaning of bit 5 (board/clock/memory
   selection is a hypothesis, not a measured fact).

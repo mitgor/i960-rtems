@@ -1,0 +1,26 @@
+{
+  "experimental": true,
+  "hardware_validated": false,
+  "flash_ready": false,
+  "stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+  "unpacked_sha256": "21f6c1d898a533d7023a53893f03547ed61631016d1b247d3ecbb97b9403c195",
+  "output_sha256": "25dd3cc627096b9e66889d67451edbba199d881084058656bd41ca5ef6778e4b",
+  "hook_sha256": "2a96bc45edd69b665dbd42b4dd17bd6594817ba64b34525c2e88e4e1faf0d16a",
+  "changed_bytes": 76,
+  "metadata_entry": "fefe0000",
+  "metadata_checksum": "3599fb68",
+  "opcode": "6f",
+  "table_slot": "c001f9bc",
+  "old_handler": "c001fe98",
+  "new_handler": "c0120000",
+  "stock_entry": "c004a2e0",
+  "handler_completion_status": "017e",
+  "boot_block_unchanged": true,
+  "compressed_program_unchanged": true,
+  "outstanding": [
+    "prove exclusive DRAM ownership through stock firmware lifetime",
+    "validate cache behavior on hardware",
+    "validate serial recovery",
+    "validate packaging and programming route"
+  ]
+}

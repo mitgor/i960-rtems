@@ -1,0 +1,81 @@
+# Current findings and evidence — 2026-10-11
+
+This is the current-state index. Earlier reports and artifact source snapshots
+record the state at their own milestone; their future-tense plans are historical.
+The preservation audit itself did not load a module, issue a firmware command,
+reboot, program flash or interrupt the running terminal client.
+
+## Established on this card
+
+| Finding | Evidence and usable implementation |
+| --- | --- |
+| A complete 512 KiB ROM can be recovered while the card is installed, without an external programmer. | [ROM inventory](artifacts/ROM-INVENTORY.md), original dumps and Fujitsu packages in `artifacts/private-dumps/` and `artifacts/vendor-fujitsu/`. |
+| Stock DRAM initialization has been traced, including two candidate board-register profiles; decoded timings in nanoseconds have not been established. | [DRAM analysis](DRAM-ANALYSIS.md). Stock initialization is retained. |
+| A stock-preserving patch has been programmed once and validated after reboot. | [Programming result](FIRMWARE-PROGRAMMED.md), paired full readbacks and postboot PING in `artifacts/programmed-rom-20261010/`. |
+| The boot-installed `0x6F` dispatch target is `FEFE001C`; PING returns `017E`. Boot straps remain Mode 3. | Postboot paired table reads and calls; this is software extension of stock firmware, not Mode 0 boot. |
+| Returning i960 programs can be uploaded and executed after the PC has booted, without further flash writes. | [Software loader](SOFTWARE-LOADER.md), `host/loadrun/`, `loader/runtime/`. Cache invalidation and restoration are part of the protocol. |
+| BIO1 returns bounded text/frame data; Tetris has an explicit bounded update/render ABI. | [Buffer I/O](BUFFER-IO.md), [Tetris step](TETRIS-STEP.md), `game/`. 4 KiB input, 8 KiB output; Tetris uses 256-byte requests and 2,160-byte responses. |
+| Repeated execution and persistent sessions are hardware-tested. | [T3 replay](TETRIS-REPLAY.md): 1,000 + 64 calls. [T5 session](PERSISTENT-SESSION.md): 1,000 frames and a separate 400-frame cadence test. |
+| Tetris is playable over SSH. | [Terminal instructions](TETRIS-TERMINAL.md), `host/session/`. T4's five automated SSH runs validated 36,380 frames; the 30-minute run contributed 35,846 at 19.91 Hz. |
+
+Original full-ROM SHA256:
+`43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93`.
+Installed patched candidate SHA256:
+`a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0`.
+The unchanged final 16 KiB boot block is part of the programming validation.
+The known card is `0000:37:09.1`, `1069:0010`, firmware 4.07-0-29, 16 MiB DRAM.
+
+These hashes identify validated images, not every file called `stage-*` or
+`candidate-*`: runtime captures also contain transient RAM overlays. Those
+files must not be used as flash images. Historical stock-preimage rehearsals
+are expected to reject the now-patched card; do not bypass their pinned hashes.
+
+## Limits and unresolved questions
+
+- Recovery has not been demonstrated. The user excluded recovery testing;
+  serial wiring/photos and adapter work remain future work. A spare card does
+  not establish that this card is recoverable.
+- SSH returned late after programming/reboot. The user reported the PC back,
+  but did not confirm a power cycle or explain the delay. Its cause is unknown.
+- No RAID disk-I/O compatibility or general production-stability validation was
+  performed. Tests used an otherwise idle card with its storage driver unbound.
+- DRAM register component identity, bit meanings, clock and timing units remain
+  unresolved. Recovered register literals are not a complete timing specification.
+- Payloads must return cooperatively; there is no preemption, established large
+  stack budget, general OS runtime, or automatic payload BSS initialization.
+- Persistent sessions check the full payload/code/input/output region every
+  frame, and the entire 512 KiB staging image every 32 calls and at close.
+  Corruption outside the per-frame region can remain undetected for 31 calls.
+  Uncertain execution/restoration retains resources rather than retrying code.
+- SIGKILL cleanup, ownership and many command failures were tested, but real
+  hardware command-failure injection and hot unbind were not. Native fault
+  simulation is not evidence of every physical failure mode.
+- T4's half-hour acceptance run used scripted keys, with game-over periods and
+  68 restarts. It is not a human gameplay or uninterrupted-running-game claim.
+- RTEMS, interrupts/timer ownership, independent host transport, TCP/IP and
+  host-routed Internet access are not implemented. See the
+  [RTEMS plan](RTEMS-HOST-NETWORK-PLAN.md); a returning firmware callback alone
+  is not a resident RTEMS execution environment.
+
+## Preservation and current host observation
+
+The [preservation audit](artifacts/preservation-audit-20261011/README.md) maps
+remote files to local files or archive members by SHA256. It preserves missing
+historical builds without replacing current source. The exact Linux cross tools
+and original source packages are in [the toolchain archive](artifacts/toolchain-20261011/README.md).
+Root `toolchain.sh` remains the build recipe. Kernel modules are specific to
+`6.8.0-138-generic`; historical binaries are evidence, not automatically safe
+programs to run on a different card or kernel.
+
+At the start of the October 11 audit a separate terminal session was running
+under `/home/mit/i960-tetris-t4/sessions/20261011-000116/`, PID 17974, on the
+same boot `a9429ca4-0144-452d-8a80-7189608ce99b`. It was left untouched.
+The previous test's “driverless/module unloaded” result describes its cleanup,
+not the machine while this new session is active. See the audit for collection
+status; unfinished traces do not prove final restoration or module unload.
+
+That session subsequently exited normally during the audit. Its complete archive
+and independent validation are now preserved: 2,224 native-matching frames,
+111.387 seconds, successful RAM restoration and unload. The final host snapshot
+again showed no DAC960 module or bound controller driver, on the same boot.
+This session is additional to the five scripted T4 acceptance runs.

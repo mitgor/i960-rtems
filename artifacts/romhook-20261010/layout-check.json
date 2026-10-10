@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0",
+  "hook_sha256": "91b445806f67b20ac0b90d4ec72cca63ad56a097759a0f60534f8ecdcb7b821d",
+  "changed_bytes": 48,
+  "rom_handler": "fefe001c",
+  "metadata_sum_valid": true,
+  "preserved_components": [
+    "boot_block",
+    "pci_bios",
+    "descriptor",
+    "bootstrap",
+    "compressed_program"
+  ],
+  "no_dram_handler_address": true,
+  "hardware_validated": false,
+  "flash_ready": false
+}

@@ -1,0 +1,31 @@
+
+stockhook.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+fefe0000 <_start>:
+fefe0000:	00 30 80 8c 	lda	fefe0040 <_ping_handler>,g0
+fefe0004:	40 00 fe fe 
+fefe0008:	00 30 88 8c 	lda	c0120000 <stock_complete+0xd4530>,g1
+fefe000c:	00 00 12 c0 
+fefe0010:	00 10 a4 b0 	ldq	(g0),g4
+fefe0014:	00 50 a4 b2 	stq	g4,(g1)
+fefe0018:	10 20 a4 90 	ld	0x10(g0),g4
+fefe001c:	10 60 a4 92 	st	g4,0x10(g1)
+fefe0020:	82 1d 80 65 	icctl	2,0,g0
+fefe0024:	00 30 80 8c 	lda	c0120000 <stock_complete+0xd4530>,g0
+fefe0028:	00 00 12 c0 
+fefe002c:	00 30 80 92 	st	g0,c001f9bc <stock_complete-0x2c114>
+fefe0030:	bc f9 01 c0 
+fefe0034:	00 1e f0 5c 	mov	0,g14
+fefe0038:	00 30 00 84 	bx	c004a2e0 <stock_complete-0x17f0>
+fefe003c:	e0 a2 04 c0 
+
+fefe0040 <_ping_handler>:
+fefe0040:	7e 01 88 8c 	lda	0x17e,g1
+fefe0044:	18 20 8c 8a 	stos	g1,0x18(g0)
+fefe0048:	00 30 88 8c 	lda	c004bad0 <stock_complete>,g1
+fefe004c:	d0 ba 04 c0 
+fefe0050:	Address 0x00000000fefe0050 is out of bounds.
+

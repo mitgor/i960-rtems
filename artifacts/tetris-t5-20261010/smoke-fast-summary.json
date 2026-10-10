@@ -1,0 +1,22 @@
+{
+  "steps": 40,
+  "latency": {
+    "min_ms": 40.457611,
+    "median_ms": 41.341894,
+    "p95_ms": 42.667022,
+    "max_ms": 52.872977,
+    "mean_ms": 41.787609825000004
+  },
+  "open_ms": 62.054379,
+  "close_ms": 78.525309,
+  "commands": [
+    12,
+    16,
+    28
+  ],
+  "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
+  "payload_sha256": "a889d8081c702ff1dcf9bb51a95d00b0fbcf12c11fbb4ff4d7d51f368cd096af",
+  "module_sha256": "3fb2cdda3817101eef34c28b18f00fd4cd6ef756f715ca6dea4e6b5d4579143f",
+  "restored": true,
+  "unloaded": true
+}

@@ -1,0 +1,31 @@
+Linux mit-HP-Z400-Workstation 6.8.0-138-generic #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC  x86_64 x86_64 x86_64 GNU/Linux
+PRETTY_NAME="Ubuntu 22.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+GNU assembler (GNU Binutils) 2.27
+Copyright (C) 2016 Free Software Foundation, Inc.
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License version 3 or later.
+This program has absolutely no warranty.
+This assembler was configured for a target of `i960-elf'.
+Reading specs from /home/mit/i960/tools/lib/gcc-lib/i960-coff/3.3.6/specs
+Configured with: ../gcc-3.3.6/configure --target=i960-coff --prefix=/home/mit/i960/tools --with-as=/home/mit/i960/tools/bin/i960-elf-as --with-ld=/home/mit/i960/tools/bin/i960-elf-ld --enable-languages=c --disable-nls --without-headers --with-newlib --disable-shared --disable-threads --enable-obsolete
+Thread model: single
+gcc version 3.3.6
+	linux-vdso.so.1 (0x00007ffcfbdab000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000783092600000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000783092877000)
+	linux-vdso.so.1 (0x00007fff62ff3000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007590d8600000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007590d8d50000)
+369737ce51587f92466041a97ab7d2358c6d9e1b6490b3940eb09fb0a9a6ac88  /home/mit/i960/src/binutils-2.27.tar.bz2
+4f9bee8ac57711508d6b8031d5ecfefc16fcf37ec81568b3f8344ef5f4cdfeb6  /home/mit/i960/src/gcc-core-3.3.6.tar.bz2

@@ -1,0 +1,1556 @@
+[
+  {
+    "path": "/home/mit/i960/game/tetris.o",
+    "size": 5324,
+    "sha256": "ee4b37957f94c2fa945a03e07d648927c89b724f74ce4031e243cfe3b3e27787",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/.Module.symvers.cmd",
+    "size": 194,
+    "sha256": "81a5722f917fd8ecddbc8e33e30e477a31e496c7839cd607e78491b9f8695d83",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/.dac960probe.ko.cmd",
+    "size": 251,
+    "sha256": "76b5cfb6484bed048bb654727c9642434852efae2f4460352390864af9268bfd",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/.dac960probe.mod.cmd",
+    "size": 186,
+    "sha256": "f60a1b7b60f4b7d2619fc64494ffa0044e4855b70351e021a9264e40b74dcee5",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/.dac960probe.mod.o.cmd",
+    "size": 46232,
+    "sha256": "10af6dec7a67b35769e85d9f8dd9a3a76e55f50550befeec15f9f0cccadd3d11",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/.dac960probe.o.cmd",
+    "size": 53374,
+    "sha256": "2ae731e0ecb4cf8b250d0beadadd38fe04a1fe6038d003172e21932a0f4f72fa",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/.modules.order.cmd",
+    "size": 146,
+    "sha256": "ee8d6c02b9cbc217ceaa9c6d521d98fdc7598b1e38b8087c03d87429b9e622cc",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/dac960probe.mod",
+    "size": 39,
+    "sha256": "80908504423fec2d3f55c4298579f1f5a50d7829d9907523546493a078da9d4d",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/dac960probe.mod.c",
+    "size": 1923,
+    "sha256": "d2b28e1c7f8008b1def1d3914e45b842d7cb0cc5bd1d2e6724aa9a6fccf53956",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/dac960probe.mod.o",
+    "size": 149208,
+    "sha256": "708d11f89cf0b3c093c545e4ceaf87e57a5deeed1ac73a7bf2e317aaae556ade",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/dac960probe.o",
+    "size": 208216,
+    "sha256": "a59255aa0137b6950a149cb088ace429521f0bff53ad3a475ce059a3ed37bfe6",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/modules.order",
+    "size": 39,
+    "sha256": "80908504423fec2d3f55c4298579f1f5a50d7829d9907523546493a078da9d4d",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/test.o",
+    "size": 836,
+    "sha256": "a90d9c1227e5845c9cba160076b8857cbba12868136754faf347b308815ddcd5",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/host/test_clear.o",
+    "size": 1788,
+    "sha256": "4375536edf4729d69bfd29e12873b777b70095c3fded2437cafdb6a121a40571",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960/t/s.o",
+    "size": 828,
+    "sha256": "831e46e06f0eb5a4fe89d7593dcad916c0e33398dc593f43a8fe39e117efa4eb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/.Module.symvers.cmd",
+    "size": 229,
+    "sha256": "001e15cf63c199015c56e444cab6d7a82f9240d80e4d714592bdbdf41307351c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/.dac960dump.ko.cmd",
+    "size": 291,
+    "sha256": "b1694aece25529049171c32399d3608f4e58cd9ddbb07df4082acddf1b69b232",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/.dac960dump.mod.cmd",
+    "size": 216,
+    "sha256": "45b5f2cd7041c162b85601af1daefe3b73db2c6e4773f02b8c5e19277f8ba21b",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/.dac960dump.mod.o.cmd",
+    "size": 46430,
+    "sha256": "2eba3d31dccf98152584454646a3d0ec7e024a6d3baad4425130312600c18ebb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/.dac960dump.o.cmd",
+    "size": 53814,
+    "sha256": "863ce93b7f74f05d1390c84a611bf0702839fcf728506e391f7101d95b3df421",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/.modules.order.cmd",
+    "size": 178,
+    "sha256": "d336cffab37f0a7ad741dd7aa4e155191080498cee209189b1ff5b6a1fc002f5",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/dac960dump.mod",
+    "size": 49,
+    "sha256": "71ee68052f9e3cdd972cb315210f2fedf682c8333afc4f3720b633b116321210",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/dac960dump.mod.c",
+    "size": 2427,
+    "sha256": "d61b10ed4135bdd0fe347e9e444f05747887dc65d52c8c1a0efab0fd28ee4ffa",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/dac960dump.mod.o",
+    "size": 149992,
+    "sha256": "1864f0913a9a0d625f362b39a7a48f60a42ed256a1a4c9adcb3ce839e165b54d",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/dac960dump.o",
+    "size": 255072,
+    "sha256": "86c58944ee0b23057b08fae309784eb3e95b6ebb2bd31d00821e0b64b7faefd3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/modules.order",
+    "size": 49,
+    "sha256": "71ee68052f9e3cdd972cb315210f2fedf682c8333afc4f3720b633b116321210",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/hello.o",
+    "size": 668,
+    "sha256": "bcb6de0ea058179245c0dfe56dd93470188495531682940af1561187f07ee909",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/loader.o",
+    "size": 1728,
+    "sha256": "045beb74fd86e2207e1b55054bb1b612d9c03ab83716a12f0519cc3a870dd89a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/start.o",
+    "size": 572,
+    "sha256": "84b3702fedf4341cb9df7bee41b5cbe083c42f46a7f4bd12b2f40ca6cf60f6a3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/.Module.symvers.cmd",
+    "size": 217,
+    "sha256": "83c3647236930c0221246ae1bc9945624b060b7cce3d46d5133405a8ccebd470",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/.dac960loadrun.ko.cmd",
+    "size": 287,
+    "sha256": "34d9f8a35bfc82ba80c98c1895504ac881e3d7e78aab5e207fc4366dd7900d1d",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/.dac960loadrun.mod.cmd",
+    "size": 213,
+    "sha256": "a6d998915ce2b51181dcb67fc7f87802119fbfcfcb51a1267523d92cb392d9a3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/.dac960loadrun.mod.o.cmd",
+    "size": 46429,
+    "sha256": "625ba5893759821c1ca47d4d6f9a8185d8adba619593e90f58405954cb33de40",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/.dac960loadrun.o.cmd",
+    "size": 54377,
+    "sha256": "9977df27b63f288a32143da8e8d80c2a4e9d3d7c2699a3eca60e08b6d0541347",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/.modules.order.cmd",
+    "size": 169,
+    "sha256": "730dfad1fe9ebc762e0229257753c20e66037729503e9e7f927cf0153f2d9ce4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/dac960loadrun.mod",
+    "size": 48,
+    "sha256": "82acf8325d0ae4d0afa8a0e18bbaef6c5baa00c3a706e2aebc41344a29b143bd",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/dac960loadrun.mod.c",
+    "size": 2669,
+    "sha256": "43fd99b78d4ca7ca968eb55f409ebe5d252b1d435e502ca9eed1b647de4ae9ab",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/dac960loadrun.mod.o",
+    "size": 150440,
+    "sha256": "dd4b6fd43239af273494e5c8d239a731639dad0ade7e9a8d9bf34941d4f1f353",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/dac960loadrun.o",
+    "size": 478528,
+    "sha256": "9369d415efce3aa5b375264f79f4e25883bd3ac9f449373e6cac80bfb40ac9bd",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/module/modules.order",
+    "size": 48,
+    "sha256": "82acf8325d0ae4d0afa8a0e18bbaef6c5baa00c3a706e2aebc41344a29b143bd",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/target/buffer_demo.o",
+    "size": 2112,
+    "sha256": "99064d668ecc54d644dbdb5b6d3399f05edbe13d49817aa3479e8dc7a288a626",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-buffer-t1/target/buffer_start.o",
+    "size": 552,
+    "sha256": "35b8b6e4e17e9096da6d67fb14496f09fcb1beb5668059085c30214055fe8f22",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/.Module.symvers.cmd",
+    "size": 217,
+    "sha256": "68d68443f3da53a11ddbd9d75d8a6a929d7ecd94dcf338ff935eacca0fc3539c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/.dac960dump.ko.cmd",
+    "size": 275,
+    "sha256": "86db0be448358160b76a61fce798c382a7c15e063a0ab094bcde0248354a8fda",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/.dac960dump.mod.cmd",
+    "size": 204,
+    "sha256": "7751612fdeb6c3aeaef105969901a86a8ce25f8ab96da27debf20a6ddf6cc260",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/.dac960dump.mod.o.cmd",
+    "size": 46390,
+    "sha256": "f609c1a1b835f7f00faf17b572ffd5599e3007b486b2b6f2ed53f660815556df",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/.dac960dump.o.cmd",
+    "size": 54119,
+    "sha256": "23f63feed4b4a762f6ee36b9f78cbc4f0029c357d68a362a053e3afbe2660c1a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/.modules.order.cmd",
+    "size": 166,
+    "sha256": "26534c8f37588da4d4e78b6814b2c773004844227419b3d5232ad0159f9e0fe5",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/dac960dump.mod",
+    "size": 45,
+    "sha256": "5e43ddc990ad1260c75c05b78cfa1610332cd965e117b52bb4b690c5699a2760",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/dac960dump.mod.c",
+    "size": 2602,
+    "sha256": "c811fcaa207b0b6cdbe16c791af1d6ec9b5ab018e85d562290de4af4984d784e",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/dac960dump.mod.o",
+    "size": 150304,
+    "sha256": "ea4c87f7c4bb3ae55b1893b726745cf964235316323bccf57b9ed98a94bddd3a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/dac960dump.o",
+    "size": 419232,
+    "sha256": "17c3a83ba298f99de14353cd919e5e6fd95c5472ed48c227d7e0bf7c4685da54",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/modules.order",
+    "size": 45,
+    "sha256": "5e43ddc990ad1260c75c05b78cfa1610332cd965e117b52bb4b690c5699a2760",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-cpu-stage.1dGG7Y/start.o",
+    "size": 692,
+    "sha256": "60f92366428c746c56c52770a6db828ef1c7ef2ca3aec0696674b4e4a709db25",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/.Module.symvers.cmd",
+    "size": 217,
+    "sha256": "c82b2295881dec1c1fae98ad15761c13039abb64f07c68881f9dd1a663a093e0",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/.dac960dump.ko.cmd",
+    "size": 275,
+    "sha256": "476db0b7ff6ff4f56c0c11daf44766955b4179e3210d9581a752da3bde4f5949",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/.dac960dump.mod.cmd",
+    "size": 204,
+    "sha256": "081ee2c140b04e381b53942122bccffd2ef296063d16ef208c8ffddb58663923",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/.dac960dump.mod.o.cmd",
+    "size": 46390,
+    "sha256": "5e4db4cc2abe66ec7acee797f314ad01fc6652ef68ed8847cea0c5834d5ad7d9",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/.dac960dump.o.cmd",
+    "size": 53870,
+    "sha256": "0ee0cf8cb6b0d2abc46feb7cf263471ad653dedca523e9f399ca5900048e71f4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/.modules.order.cmd",
+    "size": 166,
+    "sha256": "48c6575144f122cc113904b38ced53d2d10b66fccaf550b7387ca0117e48131e",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/dac960dump.mod",
+    "size": 45,
+    "sha256": "6eae3ded55602f06e4b7d73850e47c822873a067ef394207c448dd54a8e53477",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "c701b9cb421573319ed4a3de247abde458d58764bae2ec4c87f055e284664252",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "0e1d9c270427a517aa63f4d978e447e64e607889cdd66eb497afd60acdeaa3b9",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/dac960dump.o",
+    "size": 307112,
+    "sha256": "228d078338c2a8eaf74de83942c106328a29e5a385d16062b9c5e47654c21a33",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-dram-hook.jeeWsE/modules.order",
+    "size": 45,
+    "sha256": "6eae3ded55602f06e4b7d73850e47c822873a067ef394207c448dd54a8e53477",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/.Module.symvers.cmd",
+    "size": 214,
+    "sha256": "17d0e54a816222b34417148a3010aebf0079283b3c4d16fa456a05feec7f049c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/.dac960dump.ko.cmd",
+    "size": 271,
+    "sha256": "fd433153ace64e0230bc5b20f2e2cd282b736c77960fa707c3c5b65593ee3310",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/.dac960dump.mod.cmd",
+    "size": 201,
+    "sha256": "017b724f827917508345186bb02a76f9134777758832f7b815940c5664a7ca92",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/.dac960dump.mod.o.cmd",
+    "size": 46380,
+    "sha256": "abd1e1e8a41dba05e13a7854775af10421b4e5de3def6d11c85960486b73a771",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/.dac960dump.o.cmd",
+    "size": 53902,
+    "sha256": "39ebb1cafbc960c59d6ff666a1cc3b111913d71ea2b744b73f229514fdefeea8",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/.modules.order.cmd",
+    "size": 163,
+    "sha256": "5582d0ad8073516d116220f8dd82b33f1b654f888f2f0795ace35f88722f24fb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/dac960dump.mod",
+    "size": 44,
+    "sha256": "d1f4a21d4b8465dd88dfffda530d7a4104a1f9fa2490efccb3c31ae30718d6df",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "6273e00e04891e19f444c545ae544d886d8a003e25e68c82e6ba560c68f36034",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "7d6b8e55a05f474d01ec733243d8f1eedd39b9bcf4d51df35f6648292d0416e0",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/dac960dump.o",
+    "size": 373504,
+    "sha256": "9a0dc9d7810b27227acdcc717140cb512f62e08803062258b5ef99899658e3df",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap.3sShem/modules.order",
+    "size": 44,
+    "sha256": "d1f4a21d4b8465dd88dfffda530d7a4104a1f9fa2490efccb3c31ae30718d6df",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/.Module.symvers.cmd",
+    "size": 217,
+    "sha256": "071817418dd3420d0964b8b8418a1c7d6971f7c9e63180d5ff9b22da08358988",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/.dac960dump.ko.cmd",
+    "size": 275,
+    "sha256": "f1b22a91350092b3959b17743c5f64a2f60a2466edcecdc27101808fdb04c9af",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/.dac960dump.mod.cmd",
+    "size": 204,
+    "sha256": "9486cdd50bb1fdfb23298318c3e3fd9712fe9ce83b740a439fdb1b2345d552bf",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/.dac960dump.mod.o.cmd",
+    "size": 46390,
+    "sha256": "416afe9d17ff9809f781cde782e6836385c463638330b05a77fbe4d52e2d697a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/.dac960dump.o.cmd",
+    "size": 53917,
+    "sha256": "7414d07820f876bf2718468533204e76c840e3f3b34b35c750e250d81c8b244c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/.modules.order.cmd",
+    "size": 166,
+    "sha256": "53df1fcb44b19721b13ee8f305d614f1ce9eaf5a9ecc567eb2464edacf8854c5",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/dac960dump.mod",
+    "size": 45,
+    "sha256": "b644628998dcb919c29c65de7b86582fb824e3a8ed9e0828c6f3dfed46365c61",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "f457d818aff2e6ecec38126e19339f44520ce1878a59ab5142537fbc659de046",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "c2d98575ce35036f245324b58da3a36ea09887c0c1742f11c79eb791d47c59f6",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/dac960dump.o",
+    "size": 374600,
+    "sha256": "05ba22d59107ec94de2827b92c3bf1d8f16ce2e0b177e98290a9bd4a871a0cd7",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap2.vJsyn6/modules.order",
+    "size": 45,
+    "sha256": "b644628998dcb919c29c65de7b86582fb824e3a8ed9e0828c6f3dfed46365c61",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/.Module.symvers.cmd",
+    "size": 217,
+    "sha256": "5a0fed2884be0fd7676c2714c1bf9099858023f23718ca0032678f5713558111",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/.dac960dump.ko.cmd",
+    "size": 275,
+    "sha256": "ed8a8432ffd6eb02bae454d75591e6b07fe114466edd46f4dea5bededd183392",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/.dac960dump.mod.cmd",
+    "size": 204,
+    "sha256": "8bb33c8528f491dd7d4103f93b7a0313e87354260a76b2db61812079ac001f57",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/.dac960dump.mod.o.cmd",
+    "size": 46390,
+    "sha256": "778073ea2fee2a78bd50a6df1b43c61721cef356ea3dfdbac41428fa59924abe",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/.dac960dump.o.cmd",
+    "size": 53917,
+    "sha256": "731bc46577b1324fc404f90c4781bfb1f88c5d0aacf57cc351765cb22127707e",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/.modules.order.cmd",
+    "size": 166,
+    "sha256": "3c85de05446c5a67cd8a72dc96aef674bc9e8e21b25a59301903707a2bc376a6",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/dac960dump.mod",
+    "size": 45,
+    "sha256": "902504bf108a69efb2d18d95fc027872adfe64353dbb5a7f8dae47a767b0d0db",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "771e2e8fc0f4ada1c7c4bfb108566d4f7e15dcf6a2eda5a86cf5f30b3c6b271c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "609d49640535e73c284c5613714cda3f9be949e4ecf7f5bd88e85141b8278e22",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/dac960dump.o",
+    "size": 376000,
+    "sha256": "c7d423e65bc00c6a8eedd08a2d8ce37c0569b23d71384b9348105e8bf3fc4f8e",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-flashmap3.CM3Zts/modules.order",
+    "size": 45,
+    "sha256": "902504bf108a69efb2d18d95fc027872adfe64353dbb5a7f8dae47a767b0d0db",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-live-handoff-build/return-status.o",
+    "size": 568,
+    "sha256": "2576126dbea395be411b4ab28447d36daf3dbef8d4cd155ba5e5c7e0f71e8c19",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/.Module.symvers.cmd",
+    "size": 214,
+    "sha256": "d673b5e85c7c1d353183624fe72e83c3b6085ef4e78ea9e12cc7c6d3ecda24e3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/.dac960dump.ko.cmd",
+    "size": 271,
+    "sha256": "f4f63b258fb4155aaa7d62981915626ab938fba8d98567361d2c310fd4675439",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/.dac960dump.mod.cmd",
+    "size": 201,
+    "sha256": "58eebd63407b6f8c3fbdab57e33ca035db24bb74e9f2fcd5a9cf822af7572465",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/.dac960dump.mod.o.cmd",
+    "size": 46380,
+    "sha256": "0e12391ac5d857cbdd2f079d6649de1eae623161c84af7dd62a360c5087f1fc2",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/.dac960dump.o.cmd",
+    "size": 54200,
+    "sha256": "b2869e8a0dfa4f19850947da69946a553e0e8ae15f91d6dc967552e3a7d533a7",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/.modules.order.cmd",
+    "size": 163,
+    "sha256": "9725747907459b93a373b4db5eccd51206dc7f872febc690d4e61745cad09117",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/dac960dump.mod",
+    "size": 44,
+    "sha256": "7b85b25fe102efb0bfd27d5fcdaab1801735fa2d7ef8a39f08b4899f68fadaf4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/dac960dump.mod.c",
+    "size": 2705,
+    "sha256": "a2677ea46d45651588c14201622962f0731b4f88d035b9f14de2ed1be9fc1bbd",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/dac960dump.mod.o",
+    "size": 150496,
+    "sha256": "6fb7b0d14d9f58e8715bc588733225f8cc69ab2a7ab510e5fdf54cac6e48bf66",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/dac960dump.o",
+    "size": 475960,
+    "sha256": "f8a2f97dcc7a4bd3fa88b110b2faec9d249f30ec07d62288be9b07c60d3953f4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-one-shot.niGXKl/modules.order",
+    "size": 44,
+    "sha256": "7b85b25fe102efb0bfd27d5fcdaab1801735fa2d7ef8a39f08b4899f68fadaf4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/.Module.symvers.cmd",
+    "size": 220,
+    "sha256": "91e19ba385ff691e8cf90220f010582db1f7ac836dad1b9acc2de201afcb4ef1",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/.dac960dump.ko.cmd",
+    "size": 279,
+    "sha256": "609be531517b9d6d6dde132786bc9fbedea713b174555b667d63ec5354dce49a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/.dac960dump.mod.cmd",
+    "size": 207,
+    "sha256": "580990a469b75c59a4d0a03051b499c8e9e7d397404151fd6f9a28e5fef7548d",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/.dac960dump.mod.o.cmd",
+    "size": 46400,
+    "sha256": "e1611b487e216bf8692ab8e05f3c6383dab2e41afe7562323ebd0fafa43d8c79",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/.dac960dump.o.cmd",
+    "size": 54136,
+    "sha256": "ed0b6ac6ce5eb5dd470cf47be03d5165722871397f6be05bb9934fc5657d1940",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/.modules.order.cmd",
+    "size": 169,
+    "sha256": "ab902bc6d2667eb1087bf9e1135ab79b306b15e66da9fd1ad33b0e76cac6abc3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/dac960dump.mod",
+    "size": 46,
+    "sha256": "e81a83e64081e3e0c7f67097347dd31f0caf3ff6e56a7ea6158c058595a2c66f",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/dac960dump.mod.c",
+    "size": 2568,
+    "sha256": "e45bf5df6d7ad5263424f43dcf6ac22b8e6667933a8016234ad863ac2d360883",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/dac960dump.mod.o",
+    "size": 150248,
+    "sha256": "6935d337066878355b5a80b97e701299952161fd27d0ea87f5351b1a9e333aac",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/dac960dump.o",
+    "size": 406784,
+    "sha256": "93fd68ea9c07bb10cffed504042f6f774ffb894b5cd924fda0993361a03f1e27",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postboot-20261010/modules.order",
+    "size": 46,
+    "sha256": "e81a83e64081e3e0c7f67097347dd31f0caf3ff6e56a7ea6158c058595a2c66f",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postinit-20261010/postinit/hello.o",
+    "size": 484,
+    "sha256": "ee887d024de5c6aee8dfe5f53e5b4abc6841bf1aa7bdbcb57eb308c2bd85b7ac",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postinit-20261010/postinit/loader.o",
+    "size": 1644,
+    "sha256": "1eae6b34b1c90c57c5f79ba37e27e1cbf83bce71eff051d342b5e1d9c3e2d675",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-postinit-20261010/postinit/start.o",
+    "size": 840,
+    "sha256": "08ae699373d232c030d23a6ba2b14e507ed58caeeec014796545d76f591e8e3d",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/.Module.symvers.cmd",
+    "size": 215,
+    "sha256": "2e87cf49fa68646aee893b89ed26554cbf26725b13aeb7e899ead23f74e080a2",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/.dac960dump.ko.cmd",
+    "size": 275,
+    "sha256": "10a7239206b2a275663ad95875ab6b9bc86f088b17bd9834e09548118a975fee",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/.dac960dump.mod.cmd",
+    "size": 204,
+    "sha256": "93f984855750485b7380d4876e94293eed1a2f61a5d1fea58bc18cd6383ca64b",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/.dac960dump.mod.o.cmd",
+    "size": 46289,
+    "sha256": "77af69ff873aa2ff672dfe85a80cefa52508caf93c7551d71db5a196847019e3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/.dac960dump.o.cmd",
+    "size": 53769,
+    "sha256": "f19f042e884b5785f0eb4be3b129d83166fc3727849c68fa276c9b2866b448db",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/.modules.order.cmd",
+    "size": 166,
+    "sha256": "befc7aba44f4b7d1a7b65b7469cb943adf3d16d2244248460c5db9b31f5cb524",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/dac960dump.mod",
+    "size": 45,
+    "sha256": "a437cdc0909796fa917a003369bc7791c334023a02151c16e10c5dfa803da121",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "1100afa5899ef14de75ead05b8dc0452d161277d0d02f6bb18b5c68ff72ccce1",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "292ec6581d548751aa5e033b50ed939e4250ae07adf3c790929b2888d4f419df",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/dac960dump.o",
+    "size": 313880,
+    "sha256": "3b5d70fa184683fcb5be9a907683d39def44ffecec180463f97edef08e312272",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-rom-table.l2qLP4/modules.order",
+    "size": 45,
+    "sha256": "a437cdc0909796fa917a003369bc7791c334023a02151c16e10c5dfa803da121",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/.Module.symvers.cmd",
+    "size": 211,
+    "sha256": "0e49b54a5f8eee12571abd7c49c45d42d8f3ba828d46747a6fe48245d854a185",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/.dac960dump.ko.cmd",
+    "size": 267,
+    "sha256": "a66eb1d5f11700583a6af01b8c2a0968550452969c9e156508824b160cbd860e",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/.dac960dump.mod.cmd",
+    "size": 198,
+    "sha256": "5eb6218bdb0c1de8cacfedd9c160a80f4a686fa956c35c815b2059139a004317",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/.dac960dump.mod.o.cmd",
+    "size": 46370,
+    "sha256": "5b8c5d568d4df7cdf156d56d608f8437ad1721be35f091699a333d87c215a339",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/.dac960dump.o.cmd",
+    "size": 53887,
+    "sha256": "ede2f700ab0f422ecc35100a4f4d80b097b52a596eb4f26be12e2c3fc654ce8f",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/.modules.order.cmd",
+    "size": 160,
+    "sha256": "c88062e04c58778cc88f5f1738f3f943144ca17ceb9ddb822daac43c7e354b50",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/dac960dump.mod",
+    "size": 43,
+    "sha256": "a6677629a8459892a984cd5fcdc8fd660b312386d92585d4674375a2d6be0f6a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "d4df21679f7556f4738cddfb6d5b315346b3d45ae135b5821b367f3425ae2f6e",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "ac9e3a71020e0dac5ad66865c28a13c7e78962a9bf8fe03869dff6e1ef9df4cb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/dac960dump.o",
+    "size": 361536,
+    "sha256": "48dbabadefb47755b1be826a2da826ac09b24bce432dfcf24213e5280fb86c44",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec.lcFrhC/modules.order",
+    "size": 43,
+    "sha256": "a6677629a8459892a984cd5fcdc8fd660b312386d92585d4674375a2d6be0f6a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/.Module.symvers.cmd",
+    "size": 214,
+    "sha256": "e92338d20b3a16f648eb87df1443e15aa875311d56f599f71ace7df61678b562",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/.dac960dump.ko.cmd",
+    "size": 271,
+    "sha256": "38514758aca317765851b1fb05f748719cd8ddfc1b92b1d44bbd40c87eed3e36",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/.dac960dump.mod.cmd",
+    "size": 201,
+    "sha256": "d862bb5a3416f6a7c695d86fb779cbb4e4d5ff4f11c4cf20b1a3db58619d720d",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/.dac960dump.mod.o.cmd",
+    "size": 46380,
+    "sha256": "fe2500a01aefcce8533a56b88529d5be9d1adb9d2bfa8bb0da8a322963c32ec4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/.dac960dump.o.cmd",
+    "size": 53902,
+    "sha256": "99bcd109ae1b341c6e06afc50e3a7c386a7093a4b74eb617ddff9e96e3732847",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/.modules.order.cmd",
+    "size": 163,
+    "sha256": "054f67a234707aba2a0aba6a381e8be329ea363da7a8786ea14dbed43ea45404",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/dac960dump.mod",
+    "size": 44,
+    "sha256": "e2a974c7bde0ed1ea50d32168a56d7c2a6658d42f2245f62a385084d8d7acfdb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "5896032108dc88c7847ca079f9e47b8817258e507179b763016cf882231ffa43",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "415186e08c5b05ae59360f4ccc1339baa1b54df577cf357cf4a3cc4af1d6bd1a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/dac960dump.o",
+    "size": 363056,
+    "sha256": "550c578567262a6dfa1013648c781c0cbbb0b0f7f254663b3ad72d18b5ac9f3e",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec2.kkxSya/modules.order",
+    "size": 44,
+    "sha256": "e2a974c7bde0ed1ea50d32168a56d7c2a6658d42f2245f62a385084d8d7acfdb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/.Module.symvers.cmd",
+    "size": 214,
+    "sha256": "40150a4529026456158f6cc67a1b6aea710361e0ec332b6cffcef9b7c8976efc",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/.dac960dump.ko.cmd",
+    "size": 271,
+    "sha256": "14de27208ea22adbfd9186c3ac09f9095e510f1a324cf112492c2a664e714dbb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/.dac960dump.mod.cmd",
+    "size": 201,
+    "sha256": "a36b80baa5026867c644552dc8bbe669135f0fdb2ad324828d8c84eee3d59053",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/.dac960dump.mod.o.cmd",
+    "size": 46380,
+    "sha256": "288eebaab6529e28600f654dafd23ba981152fcab38009041ab77b07aa16d861",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/.dac960dump.o.cmd",
+    "size": 53902,
+    "sha256": "beeb549b88ab29b0d33d44cfb4bfcdb0b26f2abc84f9d025c642ef98880a7276",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/.modules.order.cmd",
+    "size": 163,
+    "sha256": "92492a0270ef8ec1b654a3d79056ac7c680b0b2f12b6d7cf4f46351a42138b33",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/dac960dump.mod",
+    "size": 44,
+    "sha256": "47888ca9cdb3f6399d061ebd993ae42a5e25890de3a4ac4ae9ad7a6fc3291da3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "c7d62a99276226bfb01b02801393688cc4989b6d2ed53a43d888ed024d298d12",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "714d4e6f1605ffe5e579223c57f414971bb12cec4e0d279250b6f0568ddf18aa",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/dac960dump.o",
+    "size": 363040,
+    "sha256": "e62db28bfda38f559119b5651105046fc6305d61bb2b9783b2353230bfacdf67",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec3.ja3jnO/modules.order",
+    "size": 44,
+    "sha256": "47888ca9cdb3f6399d061ebd993ae42a5e25890de3a4ac4ae9ad7a6fc3291da3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/.Module.symvers.cmd",
+    "size": 214,
+    "sha256": "6f5bca361ee759a1d3bcf16cf2026924be557bb72e8f2868b7ec1d1f56b2413f",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/.dac960dump.ko.cmd",
+    "size": 271,
+    "sha256": "e90549905ebe46e239784e2700b37709c967ee3db6ae94b330cbca6e6550887b",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/.dac960dump.mod.cmd",
+    "size": 201,
+    "sha256": "51705dc3c8951289529ee7d49ffba211528a13371634c4d49295a6136a4b61b4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/.dac960dump.mod.o.cmd",
+    "size": 46380,
+    "sha256": "6096f3a45109ec9ea071161481397738b074ef9af841f2da333ea2f998433085",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/.dac960dump.o.cmd",
+    "size": 53902,
+    "sha256": "a2dfa74bc4e70557924a9d88d0063f5a888d79419c5d1376db40feda42c5de83",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/.modules.order.cmd",
+    "size": 163,
+    "sha256": "729b2928fe7e661abc91bd5ddde224a72055a5d389c81a643119a4e74e2471c1",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/dac960dump.mod",
+    "size": 44,
+    "sha256": "9f0ed1c84add8c3406abb6f18b7cebea8611f19f74e846b89220d9ea58418087",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "a53f7e55c4c83be1242ee742d777cb54063f5c286f457933cd8f1124dc87bc97",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "e54055c15ed58ce100a3d8f43e49083980af58a1c4c8ee7e30bd3e08e38ebd20",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/dac960dump.o",
+    "size": 363048,
+    "sha256": "f21f43e0000d4a0daa16cc0f8e5d8905aafeb0411502b63f6075c4ca6e40fd1e",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec4.vKgNTR/modules.order",
+    "size": 44,
+    "sha256": "9f0ed1c84add8c3406abb6f18b7cebea8611f19f74e846b89220d9ea58418087",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/.Module.symvers.cmd",
+    "size": 214,
+    "sha256": "f6af44baf6c536b9d5bba73f4febdc60446c4b770ee2ec1c07b423f3b046c47c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/.dac960dump.ko.cmd",
+    "size": 271,
+    "sha256": "ec60553d0a48a434a1635969fcbdd09ad24b079328ceef155f7f96b4566c350c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/.dac960dump.mod.cmd",
+    "size": 201,
+    "sha256": "8446e2ea51c42c9d0f25f1be1d9383a429ba61db31f50e5accafa198ec6d798c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/.dac960dump.mod.o.cmd",
+    "size": 46380,
+    "sha256": "c8fa44e5c47a5162f9694fcc4390448c221f425f513185d8864c8e3c4a00083c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/.dac960dump.o.cmd",
+    "size": 53902,
+    "sha256": "4ede4cc91b411498e646a48aa1eb4beb805dd876c2e3e1df1862b0bbf458263c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/.modules.order.cmd",
+    "size": 163,
+    "sha256": "f1d3beef8c2d9241a3fe1621ee2b55d23c5ab6459216baba02669ef6f00f55a3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/dac960dump.mod",
+    "size": 44,
+    "sha256": "5c4605e03626ee171586ca3c0b174f5e562b51e0390cb877784682c2ef73a868",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "d1c5bb5dd34fafcf26c9f62008007391784355acc96b8814b8b34866055a01d9",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/dac960dump.mod.o",
+    "size": 149856,
+    "sha256": "6de08e455762ae133a2da5e6460c48f6d01de5a62eb502a1b32796bd98eb4df5",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/dac960dump.o",
+    "size": 376008,
+    "sha256": "3474b6bc038d2bf55b8f0d7243654d71c33f2f1f6fe553d49a3cdd0bd13616ac",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romexec5.08zX94/modules.order",
+    "size": 44,
+    "sha256": "5c4605e03626ee171586ca3c0b174f5e562b51e0390cb877784682c2ef73a868",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/flash-ret-probe.o",
+    "size": 500,
+    "sha256": "cd644e907e6971b130b14ba0deae334f1ed4bc8a64a3f15bfc1ecfa848c60014",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/icctl-control.o",
+    "size": 492,
+    "sha256": "dc4a2257bae0ef752b2b2b807349ab1c73a73c027802067c22de232e95e5598f",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/ram-call-control.o",
+    "size": 588,
+    "sha256": "255d3b6f108fad767ae3dc73d292219661249d7ec76352d482a5a3aaf9a1ca43",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/ram-status.o",
+    "size": 488,
+    "sha256": "0e7a83e0143dc3a04ab7028f82c0bd2d0b51b636d2b4bad8eefb9cfdd8727245",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romfetch.Hmjgt5/start.o",
+    "size": 512,
+    "sha256": "3d3eba2bf544485e8e74f9ba35bbc83a219e61593a4288a835a9180268b7eaa4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-romhook.NLhQqF/start.o",
+    "size": 668,
+    "sha256": "e4bc585a9f13d50414ad01032564461019474083608db4fc4a4796bc1afe3d37",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/.Module.symvers.cmd",
+    "size": 232,
+    "sha256": "3afb840add4e8d7c163bac60fda99f9c9942155aae2edd94334b21b4d5b3141f",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/.dac960loadrun.ko.cmd",
+    "size": 307,
+    "sha256": "0a1ce8ad432123b835f3c7863151627b10e48c37edcefb6b2f1b9815b7b5f57b",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/.dac960loadrun.mod.cmd",
+    "size": 228,
+    "sha256": "69986edd28f5a162c3ebc81f8a78c3b7a29cd9e16bf6eaa5420aa3657d8e5374",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/.dac960loadrun.mod.o.cmd",
+    "size": 46479,
+    "sha256": "57ca68d682ac08bacf7e58926f82444b5bd2c9457dc48a938dd4625b757bbff2",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/.dac960loadrun.o.cmd",
+    "size": 54419,
+    "sha256": "b6af97df359a30b5d5e2350f1a206e5304ada6c4ecb52cc73367687fa0812902",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/.modules.order.cmd",
+    "size": 184,
+    "sha256": "233f2945b72b20af85b9f1b7a4e4b1d7e72b28d7af0aab8abc3e3017bc1eadac",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/dac960loadrun.mod",
+    "size": 53,
+    "sha256": "14ddd42d200d2ee58ab64ad63fa5ce06784267ba46598610cfb398b2bdbff335",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/dac960loadrun.mod.o",
+    "size": 150456,
+    "sha256": "02860ca2bfa5ff1639f05ec1f1adf3aa334bfc2559f61acf0d1fbc5b9697b99f",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/dac960loadrun.o",
+    "size": 462800,
+    "sha256": "b934ba77746b7a237f6da7975afd5966cbe64759e3ea9868c332e391214e8187",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/module/modules.order",
+    "size": 53,
+    "sha256": "14ddd42d200d2ee58ab64ad63fa5ce06784267ba46598610cfb398b2bdbff335",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/target/demo.o",
+    "size": 708,
+    "sha256": "a657a7e2f7981027e56ad8247e96d2712c108216f8e69d54497b78c8309f63be",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-runtime-loader/target/runner.o",
+    "size": 568,
+    "sha256": "882c7d65b225debb25963b711695ef28c8f0dcdd90888910b1b4c9f861e3ae56",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/.Module.symvers.cmd",
+    "size": 197,
+    "sha256": "bb1ccccb8d86f9c016b04c664a05facfd15112189d6e7cae9975fbc10a4ae065",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/.dac960session.ko.cmd",
+    "size": 263,
+    "sha256": "d3c0b6d5ac67302941c8c507da90d17d901eed562eb65842ba713317805cb58a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/.dac960session.mod.cmd",
+    "size": 195,
+    "sha256": "dc9b9900913344b8cd88d5ad19d4377c09031c0b5fda2c8af61b63e74606976a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/.dac960session.mod.o.cmd",
+    "size": 46268,
+    "sha256": "629d1919acd8b695ba5d308abe3ca55b38d573c93f3674e0c029287997f1ccfc",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/.dac960session.o.cmd",
+    "size": 54224,
+    "sha256": "4222f31159582fc8702d7798d3d04b7aaf5adca6075eb18a792968a33e2ad1aa",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/.modules.order.cmd",
+    "size": 151,
+    "sha256": "4bf13d3c2e148079e40e6dc94196295d48fbed707cc46750fed2ccd39c47c263",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/dac960session.mod",
+    "size": 42,
+    "sha256": "1727aece531e324c8569e93e4d8cf3ad871b47b6257f86ca99d83f6dea883da1",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/dac960session.mod.c",
+    "size": 2915,
+    "sha256": "db7c1d29167faf4717c4e4bb702eda292acb1f813beaebe38ed90b87eba7da33",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/dac960session.mod.o",
+    "size": 150880,
+    "sha256": "3d9c030e473569531c16364ab99940585c4e86ba54ffc5855a8bf6b76aaebc02",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/dac960session.o",
+    "size": 518288,
+    "sha256": "cda1f249ccdcc545022f3facc3278530cc7bd15bbad18dcef523d00af2573750",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-session-t5/modules.order",
+    "size": 42,
+    "sha256": "1727aece531e324c8569e93e4d8cf3ad871b47b6257f86ca99d83f6dea883da1",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/.Module.symvers.cmd",
+    "size": 205,
+    "sha256": "3ab971edab16843ba83fc03c3f86e531679694c7902e9d0917cf1471f6ca5a24",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/.dac960dump.ko.cmd",
+    "size": 259,
+    "sha256": "5e57f680f13be98f8619317f9ad178322296e16b6ed5d1db8c49ec8e3833aea9",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/.dac960dump.mod.cmd",
+    "size": 192,
+    "sha256": "f8fce937b6dbcd18da4c29d90595a4d91fb03919980bd58c4a0a695c78b769f4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/.dac960dump.mod.o.cmd",
+    "size": 46350,
+    "sha256": "2c7cc01adc7b89d418f6c04466a9c0159651ec84044420945f674867ff8d4ec1",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/.dac960dump.o.cmd",
+    "size": 54051,
+    "sha256": "b58cc2e05effbf9e3e9d801ae41430fe25d31130a16784e78669be52367a6fb9",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/.modules.order.cmd",
+    "size": 154,
+    "sha256": "a688a2eaaa2b793860ad8b4c49f2c1027d5a17cda09dee22f90709bd4a1057e4",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/dac960dump.mod",
+    "size": 41,
+    "sha256": "d7f28634524f7503c0d537dfec24429abdebc23416061e8d453c8f1df31d0d91",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/dac960dump.mod.c",
+    "size": 2602,
+    "sha256": "03cd8019a785bdc4746b79c60dcb277d3c61128ffbaea711f224018628557ce9",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/dac960dump.mod.o",
+    "size": 150296,
+    "sha256": "e2689ba6f851831184efcd8c11b0253f513f73817a1d7b662e75c022970f5965",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/dac960dump.o",
+    "size": 420184,
+    "sha256": "e56463c551e542807cd920a56784e422eabf0806bd3a559137f1cedc9d8265cb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stage.iCb9od/modules.order",
+    "size": 41,
+    "sha256": "d7f28634524f7503c0d537dfec24429abdebc23416061e8d453c8f1df31d0d91",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/.Module.symvers.cmd",
+    "size": 244,
+    "sha256": "43c26596e17c81458de27e6d2a1f08e73457e4c8de68cad211552c6d634456fc",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/.dac960dump.ko.cmd",
+    "size": 311,
+    "sha256": "d5365d282ce9928acd288b45e8b5a33f50e1d4811ddc46eb11cec6dc15c04f1e",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/.dac960dump.mod.cmd",
+    "size": 231,
+    "sha256": "e30c32394b4c7957b5c0c7842e0d17c8d73f7ae476736958a324bb1e8a39d4bd",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/.dac960dump.mod.o.cmd",
+    "size": 46480,
+    "sha256": "14c54e3f08f79ebcd54bd192c84d1f28f1bcc0a0c3f7f4713ab70e4dd3ceeef5",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/.dac960dump.o.cmd",
+    "size": 53996,
+    "sha256": "183859324c801ad466a271e8ca3c6aac9c793cb88290324537dbf3e1a08b7dd3",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/.modules.order.cmd",
+    "size": 193,
+    "sha256": "8589e860716a0e6edf596f4a6165a7d34c79ce089668fdc5aef553a27e5f8b6f",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/dac960dump.mod",
+    "size": 54,
+    "sha256": "d2441a42299eea850989a264691a8ff5501682de17e4da5a76c96cbf08793907",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/dac960dump.mod.c",
+    "size": 2352,
+    "sha256": "5bd2b7fbf5965173adedcdbf8dd7ce0b4ca37f25afb6d097ee48a27e84b5a62c",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/dac960dump.mod.o",
+    "size": 149880,
+    "sha256": "84df40722818e1b81372991f83443cf8626ce6b17c05e73f408276e949778e74",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/dac960dump.o",
+    "size": 300904,
+    "sha256": "61fac622e2182651702322424cca73a88591bad47d1720a7b9ebac907079e205",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-staging-analysis-20261010/modules.order",
+    "size": 54,
+    "sha256": "d2441a42299eea850989a264691a8ff5501682de17e4da5a76c96cbf08793907",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-stockhook-20261010/start.o",
+    "size": 704,
+    "sha256": "696db69a05f6ef976a64223eeaf75e7569604be2d11df29a266679b6e779d6c8",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/game/core.o",
+    "size": 6432,
+    "sha256": "f1bc75a5bb47c2e3c003b0bf821f908484a8418137120f84d35cdf9a194765f6",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/game/test.o",
+    "size": 4220,
+    "sha256": "cab0cebd59d19a1e1aeaac0b9748cc90040437e3e52b35b038837770e092c2fd",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/game/tetris.o",
+    "size": 7056,
+    "sha256": "93339aa3c744fec413cc4e62d129e232c0ffa26af06d53d48ac57dfaee933e60",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/loader/runtime/buffer_start.o",
+    "size": 552,
+    "sha256": "35b8b6e4e17e9096da6d67fb14496f09fcb1beb5668059085c30214055fe8f22",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/loader/runtime/tetris_core.o",
+    "size": 6432,
+    "sha256": "f1bc75a5bb47c2e3c003b0bf821f908484a8418137120f84d35cdf9a194765f6",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t2/loader/runtime/tetris_payload.o",
+    "size": 1636,
+    "sha256": "b89775cf3e05750b6d8b002e03457090a6978ad80a53659f9abba7a82ced1ea0",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/.Module.symvers.cmd",
+    "size": 217,
+    "sha256": "4b383897a5c95c8eaa0b14e6d7a7204e3040b7f4a92b058e4230e9594068704a",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/.dac960loadrun.ko.cmd",
+    "size": 287,
+    "sha256": "fac512d0ed4e2309e9d5d05e88834572ddf42fe9a3e0b0d2636fc6dfc53329af",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/.dac960loadrun.mod.cmd",
+    "size": 213,
+    "sha256": "0e096e7ab2195b2eb5a5bd1f126819ced299e32b508a639c0bcc21a199e57924",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/.dac960loadrun.mod.o.cmd",
+    "size": 46429,
+    "sha256": "66befa7b94182e5a39955b5939b719d759768b767c9c963d69cb16487ebfdabc",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/.dac960loadrun.o.cmd",
+    "size": 54377,
+    "sha256": "cda5eab0781815672c032d6c4a4dd2ef14722150a9b15906b7676acf451fa9e0",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/.modules.order.cmd",
+    "size": 169,
+    "sha256": "f5f265995bfd7e2eeacf159f4a1f0196ba751ad52c773f653243e79bf19e93fe",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/dac960loadrun.mod",
+    "size": 48,
+    "sha256": "27fe0f9d8ecdf6470043a9d8b4ac051ff99d06e817aa0f54adc520c8b4c73fdb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/dac960loadrun.mod.c",
+    "size": 2669,
+    "sha256": "e43d67f4b79e645d18415e01c0836d01c668cd505ee9131815db43b725fb0bb7",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/dac960loadrun.mod.o",
+    "size": 150440,
+    "sha256": "ddeaab399924aa5ba092e3417489512d4679610675b67b514e6b8f1b05969955",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/dac960loadrun.o",
+    "size": 482128,
+    "sha256": "0d70a3029b16efe9fbfe64de10ed2f32002918bcbf2f867b4853a5bffd0f6c75",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  },
+  {
+    "path": "/home/mit/i960-tetris-t3/module/modules.order",
+    "size": 48,
+    "sha256": "27fe0f9d8ecdf6470043a9d8b4ac051ff99d06e817aa0f54adc520c8b4c73fdb",
+    "reason": "Regenerable kernel/compiler build intermediate"
+  }
+]

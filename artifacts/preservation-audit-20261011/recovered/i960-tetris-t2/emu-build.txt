@@ -1,0 +1,22 @@
+/home/mit/i960-tetris-t2/host/emu.c: In function ‘load_elf’:
+/home/mit/i960-tetris-t2/host/emu.c:128:15: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  128 |     u8 h[52]; fread(h,1,52,f);
+      |               ^~~~~~~~~~~~~~~
+/home/mit/i960-tetris-t2/host/emu.c:135:56: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  135 |         u8 p[32]; fseek(f,phoff+i*phentsize,SEEK_SET); fread(p,1,32,f);
+      |                                                        ^~~~~~~~~~~~~~~
+/home/mit/i960-tetris-t2/host/emu.c:142:32: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  142 |         fseek(f,off,SEEK_SET); fread(&ram[vaddr],1,filesz,f);
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/mit/i960-tetris-t2/host/emu.c: In function ‘raw_on’:
+/home/mit/i960-tetris-t2/host/emu.c:121:5: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  121 |     write(1,"\x1b[2J\x1b[?25l",9);               /* clear + hide cursor           */
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/mit/i960-tetris-t2/host/emu.c: In function ‘service’:
+/home/mit/i960-tetris-t2/host/emu.c:104:9: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  104 |         write(1,out,o);
+      |         ^~~~~~~~~~~~~~
+/home/mit/i960-tetris-t2/host/emu.c: In function ‘raw_off’:
+/home/mit/i960-tetris-t2/host/emu.c:123:28: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  123 | static void raw_off(void){ write(1,"\x1b[?25h\n",7); tcsetattr(0,TCSANOW,&saved_tio); }
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~

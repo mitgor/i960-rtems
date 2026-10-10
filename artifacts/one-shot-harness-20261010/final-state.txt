@@ -1,0 +1,6 @@
+2026-10-10T21:50:35+02:00
+module-absent
+debugfs-absent
+37:09.1 RAID bus controller [0104]: Mylex Corporation DAC960PG [1069:0010] (rev 05)
+	Subsystem: Mylex Corporation DAC960PG [1069:0010]
+	Kernel modules: myrb

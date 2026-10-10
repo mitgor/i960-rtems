@@ -1,0 +1,2 @@
+Captured 2160 response bytes in /home/mit/i960-tetris-t2/acceptance/run-quit/response.bin
+Payload returned 0 (0x00000000); RAM restored, module unloaded. Captures: /home/mit/i960-tetris-t2/acceptance/run-quit

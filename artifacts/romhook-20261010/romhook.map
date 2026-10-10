@@ -1,0 +1,37 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x00000000c004bad0                stock_complete = 0xc004bad0
+                0x00000000fefe0000                . = 0xfefe0000
+
+.text           0x00000000fefe0000       0x30
+ *(.text*)
+ .text          0x00000000fefe0000       0x30 start.o
+                0x00000000fefe0000                _start
+                0x00000000fefe001c                _ping_handler
+                0x00000000fefe0030                _ping_handler_end
+
+.rodata
+ *(.rodata*)
+ *(.rdata*)
+
+.data           0x00000000fefe0030        0x0
+ *(.data*)
+ .data          0x00000000fefe0030        0x0 start.o
+
+.bss            0x00000000fefe0030        0x0
+ *(.bss*)
+ .bss           0x00000000fefe0030        0x0 start.o
+ *(COMMON)
+                0x0000000000000001                ASSERT ((_start == 0xfefe0000), unexpected metadata entry)
+                0x0000000000000001                ASSERT (((_ping_handler_end - _ping_handler) == 0x14), handler must be 20 bytes)
+                0x0000000000000001                ASSERT (((_ping_handler >= 0xfefe0000) && (_ping_handler_end <= 0xfefe1000)), handler must stay in verified flash padding)
+                0x0000000000000001                ASSERT ((. <= 0xfefe1000), code exceeds verified zero padding)
+                0x0000000000000001                ASSERT (((SIZEOF (.data) == 0x0) && (SIZEOF (.bss) == 0x0)), runtime storage unsupported)
+LOAD start.o
+OUTPUT(romhook.elf elf32-i960)

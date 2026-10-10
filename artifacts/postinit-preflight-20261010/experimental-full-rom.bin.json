@@ -1,0 +1,23 @@
+{
+  "experimental": true,
+  "hardware_validated": false,
+  "flash_ready": false,
+  "stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+  "output_sha256": "2739ea3e1efbdfec928c9b779317de3025afee3f0c31b20ac7263b9573ecb657",
+  "loader_sha256": "af60e6da3de6ef171a2724f7588193f0da625eb6602bd4ef8d624592961470ad",
+  "prototype_revision": 2,
+  "loader_offset": 393216,
+  "entry_address": 4278059008,
+  "ram_hook_address": 3221547060,
+  "metadata_checksum": 899283816,
+  "changed_bytes": 666,
+  "bootblock_unchanged": true,
+  "compressed_program_unchanged": true,
+  "outstanding": [
+    "cold-boot PCI enumeration with ERLR=0",
+    "downstream bus-master and external watchdog audit",
+    "exclusive DRAM window and inherited stack",
+    "watchdog behavior",
+    "custom flashing and independent recovery"
+  ]
+}

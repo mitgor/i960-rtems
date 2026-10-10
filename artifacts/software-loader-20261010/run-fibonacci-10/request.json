@@ -1,0 +1,8 @@
+{
+  "payload_sha256": "4dbdd6f97ffe48f2a316fbac844a0fdca9e0e4bd6f870817c2f48f76a346a8d2",
+  "argument": 10,
+  "entry": 0,
+  "module_sha256": "812ff6f0d329a20dd5b10165c5566d34e11058d859c9dd2bf9adace9d5bb19dd",
+  "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
+  "collection": "Initial direct insmod run; request metadata recorded after capture."
+}

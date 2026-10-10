@@ -1,0 +1,39 @@
+{
+  "experimental": true,
+  "flash_ready": false,
+  "vendor_acceptance_verified": false,
+  "hardware_validated": false,
+  "package_sha256": "e4dc6ead76e7febc4e7c99ecf43bc2b01b76bbd08e3ce2cff076999f94140579",
+  "vendor_sha256": "660a81acfad40b65e3f45adca59227989652332eb854af2023adaa653c9c54a6",
+  "candidate_sha256": "2739ea3e1efbdfec928c9b779317de3025afee3f0c31b20ac7263b9573ecb657",
+  "stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+  "size": 229898,
+  "component_offset": 196608,
+  "component_length": 229376,
+  "header_and_trailer_unchanged": true,
+  "reconstructs_full_candidate": true,
+  "image_report": {
+    "experimental": true,
+    "hardware_validated": false,
+    "flash_ready": false,
+    "stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+    "output_sha256": "2739ea3e1efbdfec928c9b779317de3025afee3f0c31b20ac7263b9573ecb657",
+    "loader_sha256": "af60e6da3de6ef171a2724f7588193f0da625eb6602bd4ef8d624592961470ad",
+    "prototype_revision": 2,
+    "loader_offset": 393216,
+    "entry_address": 4278059008,
+    "ram_hook_address": 3221547060,
+    "metadata_checksum": 899283816,
+    "changed_bytes": 666,
+    "bootblock_unchanged": true,
+    "compressed_program_unchanged": true,
+    "outstanding": [
+      "cold-boot PCI enumeration with ERLR=0",
+      "downstream bus-master and external watchdog audit",
+      "exclusive DRAM window and inherited stack",
+      "watchdog behavior",
+      "custom flashing and independent recovery"
+    ]
+  },
+  "warning": "MIMG layout checked only. Programming erases broader regions; recovery is unproven."
+}

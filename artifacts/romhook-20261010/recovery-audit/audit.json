@@ -1,0 +1,61 @@
+{
+  "analysis_only": true,
+  "hardware_validated": false,
+  "flash_ready": false,
+  "stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+  "package_sha256": "4c32da1011bcf182b08998a8a00148a665e957d3958593e76d81605a1e72dc2b",
+  "monitor_sha256": "e9950d04dcfa52f89ae5482aeff22ac8bc054fe6112ed71b8be6d7a1d4416533",
+  "monitor_length": 10752,
+  "monitor_flash_offset": 513536,
+  "monitor_ram_entry": 3221291008,
+  "recovery_pci_id": "1069:0011",
+  "staging_ram": 3222536192,
+  "monitor_opcodes": {
+    "0x20": "read staging",
+    "0x21": "upload staging",
+    "0x2b/1": "program lower 496 KiB",
+    "0x2b/2": "read descriptor",
+    "0x2b/3": "upload descriptor"
+  },
+  "descriptor_entries": [
+    {
+      "type": 1,
+      "offset": 507904,
+      "length": 16384
+    },
+    {
+      "type": 2,
+      "offset": 196608,
+      "length": 229376
+    },
+    {
+      "type": 3,
+      "offset": 163840,
+      "length": 28672
+    },
+    {
+      "type": 4,
+      "offset": 0,
+      "length": 112963
+    },
+    {
+      "type": 5,
+      "offset": 425984,
+      "length": 72704
+    }
+  ],
+  "partial_vendor_checks": {
+    "magic": true,
+    "type_2": true,
+    "declared_length": true,
+    "descriptor_length": true,
+    "normal_and_recovery_adapter_comparison": true
+  },
+  "vendor_acceptance_verified": false,
+  "outstanding": [
+    "physical serial trigger and pinout",
+    "cold-boot enumeration and read-only recovery transaction",
+    "complete vendor descriptor mutations and controller discovery",
+    "independent restoration test"
+  ]
+}

@@ -1,5 +1,9 @@
 # Reflashing the DAC960PG boot flash to run your own i960 code
 
+Latest programming audit: [PROGRAMMING-RECOVERY.md](PROGRAMMING-RECOVERY.md). The matching 512 KiB route uses 2B/1 and rewrites the lower 496 KiB; 22 returns an error on this route. An offline experimental MIMG package is archived, but vendor acceptance and recovery remain unverified.
+
+The older image-building and live-flash recipes below are historical, superseded by POSTINIT-LOADER.md and this audit. Do not treat their legacy payload/IBR assumptions or safety claims as a procedure for the recovered full ROM.
+
 This is the **fast, reliable** path to a general-purpose i960: whatever sits in the card's
 boot flash is what the core runs at power-on, in **any** reset mode — so no strap mod
 (MODE0.md) is needed. You replace Mylex's firmware with your own boot record + code.

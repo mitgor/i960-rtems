@@ -1,0 +1,13 @@
+{
+  "ram_write_verified": true,
+  "original_region_restored": true,
+  "surrounding_bytes_unchanged": true,
+  "local_address": "0xc0fac010",
+  "length": 16,
+  "commands": 22,
+  "pending": false,
+  "scratch_dirty": false,
+  "flash_programmed": false,
+  "code_execution": false,
+  "recovery_entered": false
+}

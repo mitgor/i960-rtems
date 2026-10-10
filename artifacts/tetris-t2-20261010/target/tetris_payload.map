@@ -1,0 +1,48 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x00000000c0f2c000                . = 0xc0f2c000
+
+.text           0x00000000c0f2c000      0xfe0
+ *(.text*)
+ .text          0x00000000c0f2c000        0x4 buffer_start.o
+                0x00000000c0f2c000                _buffer_start
+ *fill*         0x00000000c0f2c004        0xc 
+ .text          0x00000000c0f2c010      0x370 tetris_payload.o
+                0x00000000c0f2c010                _payload
+ .text          0x00000000c0f2c380      0xc60 tetris_core.o
+                0x00000000c0f2c590                _tetris_init
+                0x00000000c0f2c5d0                _tetris_valid
+                0x00000000c0f2c810                _tetris_step
+                0x00000000c0f2ca30                _tetris_render
+                0x00000000c0f2ccc0                _tetris_encode
+                0x00000000c0f2cda0                _tetris_decode
+                0x00000000c0f2cec0                _tetris_request
+ *(.rodata*)
+                0x00000000c0f2cfe0                . = ALIGN (0x4)
+
+.data           0x00000000c0f2cfe0        0x0
+ *(.data*)
+ .data          0x00000000c0f2cfe0        0x0 buffer_start.o
+ .data          0x00000000c0f2cfe0        0x0 tetris_payload.o
+ .data          0x00000000c0f2cfe0        0x0 tetris_core.o
+                0x00000000c0f2cfe0                . = ALIGN (0x4)
+
+.bss            0x00000000c0f2cfe0        0x0
+ *(.bss*)
+ .bss           0x00000000c0f2cfe0        0x0 buffer_start.o
+ .bss           0x00000000c0f2cfe0        0x0 tetris_payload.o
+ .bss           0x00000000c0f2cfe0        0x0 tetris_core.o
+ *(COMMON)
+                0x0000000000000001                ASSERT ((_buffer_start == 0xc0f2c000), entry must be first)
+                0x0000000000000001                ASSERT ((SIZEOF (.bss) == 0x0), initialize writable storage explicitly; no implicit BSS)
+                0x0000000000000001                ASSERT (((SIZEOF (.text) + SIZEOF (.data)) <= 0x8000), code overlaps fixed IO block)
+LOAD buffer_start.o
+LOAD tetris_payload.o
+LOAD tetris_core.o
+OUTPUT(tetris_payload.elf elf32-i960)

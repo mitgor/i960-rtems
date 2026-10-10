@@ -1,0 +1,25 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x00000000c0fac100                . = 0xc0fac100
+
+.text           0x00000000c0fac100       0x18
+ *(.text*)
+ .text          0x00000000c0fac100       0x18 ram-status.o
+                0x00000000c0fac100                _start
+                0x0000000000000001                ASSERT ((_start == 0xc0fac100), unexpected RAM control base)
+                0x0000000000000001                ASSERT ((SIZEOF (.text) <= 0x40), RAM control exceeds fixed scratch window)
+                0x0000000000000001                ASSERT (((SIZEOF (.data) == 0x0) && (SIZEOF (.bss) == 0x0)), RAM control needs no runtime storage)
+LOAD ram-status.o
+OUTPUT(ram-status.elf elf32-i960)
+
+.data           0x00000000c0fac118        0x0
+ .data          0x00000000c0fac118        0x0 ram-status.o
+
+.bss            0x00000000c0fac118        0x0
+ .bss           0x00000000c0fac118        0x0 ram-status.o

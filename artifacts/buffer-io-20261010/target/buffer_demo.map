@@ -1,0 +1,37 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x00000000c0f2c000                . = 0xc0f2c000
+
+.text           0x00000000c0f2c000      0x460
+ *(.text*)
+ .text          0x00000000c0f2c000        0x4 buffer_start.o
+                0x00000000c0f2c000                _buffer_start
+ *fill*         0x00000000c0f2c004        0xc 
+ .text          0x00000000c0f2c010      0x450 buffer_demo.o
+                0x00000000c0f2c030                _payload
+ *(.rodata*)
+                0x00000000c0f2c460                . = ALIGN (0x4)
+
+.data           0x00000000c0f2c460        0x0
+ *(.data*)
+ .data          0x00000000c0f2c460        0x0 buffer_start.o
+ .data          0x00000000c0f2c460        0x0 buffer_demo.o
+                0x00000000c0f2c460                . = ALIGN (0x4)
+
+.bss            0x00000000c0f2c460        0x0
+ *(.bss*)
+ .bss           0x00000000c0f2c460        0x0 buffer_start.o
+ .bss           0x00000000c0f2c460        0x0 buffer_demo.o
+ *(COMMON)
+                0x0000000000000001                ASSERT ((_buffer_start == 0xc0f2c000), entry must be first)
+                0x0000000000000001                ASSERT ((SIZEOF (.bss) == 0x0), initialize writable storage explicitly; no implicit BSS)
+                0x0000000000000001                ASSERT (((SIZEOF (.text) + SIZEOF (.data)) <= 0x8000), code overlaps fixed IO block)
+LOAD buffer_start.o
+LOAD buffer_demo.o
+OUTPUT(buffer_demo.elf elf32-i960)

@@ -1,0 +1,47 @@
+{
+  "analysis_only": true,
+  "hardware_executed": false,
+  "firmware_sha256": "21f6c1d898a533d7023a53893f03547ed61631016d1b247d3ecbb97b9403c195",
+  "callback": "0xc004cf80",
+  "erase_helper": "0xc0050690",
+  "program_helper": "0xc00507b0",
+  "unconditional_ranges": [
+    {
+      "offset": "0x0",
+      "length": "0x20000",
+      "end_exclusive": "0x20000"
+    },
+    {
+      "offset": "0x20000",
+      "length": "0x20000",
+      "end_exclusive": "0x40000"
+    },
+    {
+      "offset": "0x40000",
+      "length": "0x20000",
+      "end_exclusive": "0x60000"
+    },
+    {
+      "offset": "0x60000",
+      "length": "0x18000",
+      "end_exclusive": "0x78000"
+    },
+    {
+      "offset": "0x78000",
+      "length": "0x2000",
+      "end_exclusive": "0x7a000"
+    },
+    {
+      "offset": "0x7a000",
+      "length": "0x2000",
+      "end_exclusive": "0x7c000"
+    }
+  ],
+  "conditional_bootblock": {
+    "offset": "0x7c000",
+    "length": "0x4000",
+    "condition": "mailbox byte 3 != 0"
+  },
+  "recovery_verified": false,
+  "flash_ready": false
+}

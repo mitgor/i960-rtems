@@ -1,0 +1,41 @@
+{
+  "offline_only": true,
+  "no_hardware_access": true,
+  "flash_ready": false,
+  "stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+  "candidate_sha256": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0",
+  "patch_count": 3,
+  "patch_bytes": 56,
+  "changed_bytes": 48,
+  "requires_live_full_staging_validation": true,
+  "requires_verified_programming_and_fresh_flash_readback": true,
+  "patches": [
+    {
+      "name": "hook",
+      "offset": 393216,
+      "length": 48,
+      "before_sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
+      "after_sha256": "91b445806f67b20ac0b90d4ec72cca63ad56a097759a0f60534f8ecdcb7b821d",
+      "before_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "after_hex": "0030808c1c00fefe00308092bcf901c0001ef05c00300084e0a204c07e01888c18208c8a0030888cd0ba04c000500484"
+    },
+    {
+      "name": "metadata-entry",
+      "offset": 425832,
+      "length": 4,
+      "before_sha256": "371a1583c2263e744b9db511443d6d1f776cd91fe48fe4cd8362f39561918290",
+      "after_sha256": "c20e8827e425a059e46eae6e905f72ae397ca6b0e951a7f1d1af60d6cdc0f436",
+      "before_hex": "e0a204c0",
+      "after_hex": "0000fefe"
+    },
+    {
+      "name": "metadata-checksum",
+      "offset": 425948,
+      "length": 4,
+      "before_sha256": "56e154a176cfbf943a9af8248be4f1834367799c801163c155ccd5dcf990150a",
+      "after_sha256": "ee77b902cb866f084aa3ced83bdc0f6034e70ab5980c6729e563ca3b753b0571",
+      "before_hex": "489ea0f6",
+      "after_hex": "68fb9935"
+    }
+  ]
+}

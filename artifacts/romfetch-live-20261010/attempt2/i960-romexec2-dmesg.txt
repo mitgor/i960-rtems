@@ -1,0 +1,120 @@
+[   19.799693] 0000000085e54684: 00007ffe2747b038 (0x7ffe2747b038)
+[   19.799696] 000000004e6c1696: 000000000000002b (0x2b)
+[   19.799701]  ? nv_shutdown_adapter+0x1c/0xb0 [nvidia]
+[   19.799945]  ? nv_close_device+0x138/0x230 [nvidia]
+[   19.800177]  ? nvidia_close+0xd1/0x410 [nvidia]
+[   19.800411]  ? nvidia_frontend_close+0x47/0x80 [nvidia]
+[   19.800643]  ? __fput+0xa3/0x2e0
+[   19.800646]  ? __fput_sync+0x1c/0x30
+[   19.800649]  ? __x64_sys_close+0x3e/0x90
+[   19.800652]  ? x64_sys_call+0x19ad/0x2480
+[   19.800654]  ? do_syscall_64+0x89/0x180
+[   19.800657]  ? nvidia_ioctl+0x2e4/0x7d0 [nvidia]
+[   19.800895]  ? nvidia_frontend_unlocked_ioctl+0x5b/0xa0 [nvidia]
+[   19.801127]  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+[   19.801130]  ? syscall_exit_to_user_mode+0x43/0x1e0
+[   19.801133]  ? do_syscall_64+0x95/0x180
+[   19.801135]  ? __count_memcg_events+0x80/0x130
+[   19.801138]  ? count_memcg_events.constprop.0+0x2a/0x50
+[   19.801141]  ? handle_mm_fault+0xad/0x380
+[   19.801143]  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+[   19.801146]  ? irqentry_exit_to_user_mode+0x38/0x1e0
+[   19.801148]  ? irqentry_exit+0x43/0x50
+[   19.801150]  ? exc_page_fault+0x94/0x1b0
+[   19.801152]  ? entry_SYSCALL_64_after_hwframe+0x78/0x80
+[   19.801157]  </TASK>
+[   29.369340] ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading firmware file 'rt2870.bin'
+[   29.450879] ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware detected - version: 0.36
+[   29.939692] kauditd_printk_skb: 65 callbacks suppressed
+[   29.939698] audit: type=1400 audit(1791645743.834:77): apparmor="DENIED" operation="capable" class="cap" profile="/usr/sbin/cupsd" pid=930 comm="cupsd" capability=12  capname="net_admin"
+[   32.120340] set_capacity_and_notify: 20 callbacks suppressed
+[   32.120347] loop30: detected capacity change from 0 to 8
+[   32.528411] tg3 0000:01:00.0 enp1s0: Link is up at 1000 Mbps, full duplex
+[   32.528433] tg3 0000:01:00.0 enp1s0: Flow control is on for TX and on for RX
+[   50.196563] rfkill: input handler disabled
+[ 7843.747404] loop30: detected capacity change from 0 to 284192
+[ 7849.860312] audit: type=1400 audit(1791653563.796:78): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/28254/usr/lib/snapd/snap-confine" pid=2040 comm="apparmor_parser"
+[ 7850.161700] audit: type=1400 audit(1791653564.098:79): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.mc-installer.hook.configure" pid=2043 comm="apparmor_parser"
+[ 7850.383974] audit: type=1400 audit(1791653564.320:80): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap-update-ns.mc-installer" pid=2042 comm="apparmor_parser"
+[ 7850.482337] audit: type=1400 audit(1791653564.418:81): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.mc-installer.mc-installer" pid=2044 comm="apparmor_parser"
+[ 7850.489980] audit: type=1400 audit(1791653564.426:82): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.mesa-2404" pid=2046 comm="apparmor_parser"
+[ 7850.494170] audit: type=1400 audit(1791653564.430:83): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.mesa-2404.component-monitor" pid=2047 comm="apparmor_parser"
+[ 7850.494196] audit: type=1400 audit(1791653564.430:84): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.mesa-2404.hook.connect-plug-kernel-gpu-2404" pid=2048 comm="apparmor_parser"
+[ 7850.494339] audit: type=1400 audit(1791653564.430:85): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.mesa-2404.hook.disconnect-plug-kernel-gpu-2404" pid=2049 comm="apparmor_parser"
+[ 7850.494631] audit: type=1400 audit(1791653564.430:86): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.mesa-2404.hook.install" pid=2050 comm="apparmor_parser"
+[ 7850.498891] audit: type=1400 audit(1791653564.435:87): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap.mesa-2404.hook.post-refresh" pid=2051 comm="apparmor_parser"
+[13300.997661] dac960dump 0000:37:09.1: bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+[13300.997679] dac960dump 0000:37:09.1: submit op=1c id=1 len=0 offset=00000000 dma=fffd0000 pattern=a5 mailbox=0000011c,00000000,fffd0000,00
+[13300.997880] dac960dump 0000:37:09.1: complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[13300.997894] dac960dump 0000:37:09.1: submit op=20 id=2 len=512 offset=00000000 dma=fffd0000 pattern=a5 mailbox=02000220,00000000,fffd0000,00
+[13301.362737] dac960dump 0000:37:09.1: complete op=20 id=0002 status=0000 changed=512 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[13301.362753] dac960dump 0000:37:09.1: submit op=20 id=3 len=512 offset=00000000 dma=fffd0000 pattern=5a mailbox=02000320,00000000,fffd0000,00
+[13301.362902] dac960dump 0000:37:09.1: complete op=20 id=0003 status=0000 changed=505 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+[13301.362915] dac960dump 0000:37:09.1: submit op=20 id=4 len=4 offset=ff1e6a70 dma=fffd0000 pattern=a5 mailbox=00040420,ff1e6a70,fffd0000,00
+[13301.363119] dac960dump 0000:37:09.1: complete op=20 id=0004 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[13301.363132] dac960dump 0000:37:09.1: submit op=20 id=5 len=4 offset=ff1e6a70 dma=fffd0000 pattern=5a mailbox=00040520,ff1e6a70,fffd0000,00
+[13301.363336] dac960dump 0000:37:09.1: complete op=20 id=0005 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[13301.363348] dac960dump 0000:37:09.1: submit op=1c id=6 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=0000061c,00000000,fffd0000,00
+[13301.363543] dac960dump 0000:37:09.1: complete op=1c id=0006 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[13301.363548] dac960dump 0000:37:09.1: VERIFIED staging pointer=c0f2c000 at local=c0112a70
+[13301.363560] dac960dump 0000:37:09.1: submit op=20 id=7 len=16 offset=ff11e2e0 dma=fffd0000 pattern=a5 mailbox=00100720,ff11e2e0,fffd0000,00
+[13301.363752] dac960dump 0000:37:09.1: complete op=20 id=0007 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[13301.363765] dac960dump 0000:37:09.1: submit op=20 id=8 len=16 offset=ff11e2e0 dma=fffd0000 pattern=5a mailbox=00100820,ff11e2e0,fffd0000,00
+[13301.363902] dac960dump 0000:37:09.1: complete op=20 id=0008 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+[13301.363915] dac960dump 0000:37:09.1: submit op=20 id=9 len=8 offset=ff1f222c dma=fffd0000 pattern=a5 mailbox=00080920,ff1f222c,fffd0000,00
+[13301.364052] dac960dump 0000:37:09.1: complete op=20 id=0009 status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 a5 a5 a5 a5 a5 a5 a5 a5
+[13301.364065] dac960dump 0000:37:09.1: submit op=20 id=10 len=8 offset=ff1f222c dma=fffd0000 pattern=5a mailbox=00080a20,ff1f222c,fffd0000,00
+[13301.364257] dac960dump 0000:37:09.1: complete op=20 id=000a status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 5a 5a 5a 5a 5a 5a 5a 5a
+[13301.364262] dac960dump 0000:37:09.1: runtime board=c0110780 alias=c1000000
+[13301.364273] dac960dump 0000:37:09.1: submit op=20 id=11 len=512 offset=ff1e4780 dma=fffd0000 pattern=a5 mailbox=02000b20,ff1e4780,fffd0000,00
+[13301.364446] dac960dump 0000:37:09.1: complete op=20 id=000b status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[13301.364459] dac960dump 0000:37:09.1: submit op=20 id=12 len=512 offset=ff1e4780 dma=fffd0000 pattern=5a mailbox=02000c20,ff1e4780,fffd0000,00
+[13301.364653] dac960dump 0000:37:09.1: complete op=20 id=000c status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+[13301.364658] dac960dump 0000:37:09.1: runtime callbacks read=c004ce90 write=c004ced0 program=c004cf80
+[13301.364669] dac960dump 0000:37:09.1: submit op=1c id=13 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=00000d1c,00000000,fffd0000,00
+[13301.364862] dac960dump 0000:37:09.1: complete op=1c id=000d status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+[13301.364876] dac960dump 0000:37:09.1: submit op=20 id=14 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00040e20,ff0f39bc,fffd0000,00
+[13301.365013] dac960dump 0000:37:09.1: complete op=20 id=000e status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[13301.365026] dac960dump 0000:37:09.1: submit op=20 id=15 len=4 offset=ff0f39bc dma=fffd0000 pattern=5a mailbox=00040f20,ff0f39bc,fffd0000,00
+[13301.365164] dac960dump 0000:37:09.1: complete op=20 id=000f status=0000 changed=4 guard-changed=0 head=98 fe 01 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[13301.365177] dac960dump 0000:37:09.1: submit op=20 id=16 len=64 offset=00080100 dma=fffd0000 pattern=a5 mailbox=00401020,00080100,fffd0000,00
+[13301.365377] dac960dump 0000:37:09.1: complete op=20 id=0010 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[13301.365391] dac960dump 0000:37:09.1: submit op=20 id=17 len=64 offset=00080100 dma=fffd0000 pattern=5a mailbox=00401120,00080100,fffd0000,00
+[13301.365529] dac960dump 0000:37:09.1: complete op=20 id=0011 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[13301.365542] dac960dump 0000:37:09.1: submit op=20 id=18 len=64 offset=00080180 dma=fffd0000 pattern=a5 mailbox=00401220,00080180,fffd0000,00
+[13301.365680] dac960dump 0000:37:09.1: complete op=20 id=0012 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[13301.365693] dac960dump 0000:37:09.1: submit op=20 id=19 len=64 offset=00080180 dma=fffd0000 pattern=5a mailbox=00401320,00080180,fffd0000,00
+[13301.365886] dac960dump 0000:37:09.1: complete op=20 id=0013 status=0000 changed=64 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[13301.365899] dac960dump 0000:37:09.1: submit op=21 id=20 len=24 offset=00080100 dma=fffd0000 pattern=a5 mailbox=00181421,00080100,fffd0000,00
+[13301.375366] dac960dump 0000:37:09.1: complete op=21 id=0014 status=0000 changed=24 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[13301.375380] dac960dump 0000:37:09.1: submit op=20 id=21 len=64 offset=00080100 dma=fffd0000 pattern=a5 mailbox=00401520,00080100,fffd0000,00
+[13301.375518] dac960dump 0000:37:09.1: complete op=20 id=0015 status=0000 changed=64 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[13301.375531] dac960dump 0000:37:09.1: submit op=20 id=22 len=64 offset=00080100 dma=fffd0000 pattern=5a mailbox=00401620,00080100,fffd0000,00
+[13301.375679] dac960dump 0000:37:09.1: complete op=20 id=0016 status=0000 changed=64 guard-changed=0 head=02 1e 90 65 7e 01 88 8c 18 20 8c 8a 00 30 88 8c
+[13301.375692] dac960dump 0000:37:09.1: submit op=21 id=23 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00041721,ff0f39bc,fffd0000,00
+[13301.386796] dac960dump 0000:37:09.1: complete op=21 id=0017 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[13301.386810] dac960dump 0000:37:09.1: submit op=20 id=24 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00041820,ff0f39bc,fffd0000,00
+[13301.386956] dac960dump 0000:37:09.1: complete op=20 id=0018 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[13301.386969] dac960dump 0000:37:09.1: submit op=20 id=25 len=4 offset=ff0f39bc dma=fffd0000 pattern=5a mailbox=00041920,ff0f39bc,fffd0000,00
+[13301.387173] dac960dump 0000:37:09.1: complete op=20 id=0019 status=0000 changed=4 guard-changed=0 head=00 c1 fa c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[13301.387186] dac960dump 0000:37:09.1: submit op=6f id=26 len=0 offset=00000000 dma=fffd0000 pattern=a5 mailbox=00001a6f,00000000,fffd0000,00
+[13301.387332] dac960dump 0000:37:09.1: complete op=6f id=001a status=017e changed=0 guard-changed=0 head=a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[13301.387336] dac960dump 0000:37:09.1: VERIFIED changed RAM dispatch word executed returning RAM stub status=017e
+[13301.387347] dac960dump 0000:37:09.1: submit op=21 id=27 len=48 offset=00080180 dma=fffd0000 pattern=a5 mailbox=00301b21,00080180,fffd0000,00
+[13301.397137] dac960dump 0000:37:09.1: complete op=21 id=001b status=0000 changed=48 guard-changed=0 head=10 16 20 5c 82 1d 80 65 01 1e 80 5c 00 30 00 86
+[13301.397150] dac960dump 0000:37:09.1: submit op=20 id=28 len=64 offset=00080180 dma=fffd0000 pattern=a5 mailbox=00401c20,00080180,fffd0000,00
+[13301.397298] dac960dump 0000:37:09.1: complete op=20 id=001c status=0000 changed=64 guard-changed=0 head=10 16 20 5c 82 1d 80 65 01 1e 80 5c 00 30 00 86
+[13301.397311] dac960dump 0000:37:09.1: submit op=20 id=29 len=64 offset=00080180 dma=fffd0000 pattern=5a mailbox=00401d20,00080180,fffd0000,00
+[13301.397464] dac960dump 0000:37:09.1: complete op=20 id=001d status=0000 changed=64 guard-changed=0 head=10 16 20 5c 82 1d 80 65 01 1e 80 5c 00 30 00 86
+[13301.397481] dac960dump 0000:37:09.1: submit op=21 id=30 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00041e21,ff0f39bc,fffd0000,00
+[13301.408569] dac960dump 0000:37:09.1: complete op=21 id=001e status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[13301.408583] dac960dump 0000:37:09.1: submit op=20 id=31 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00041f20,ff0f39bc,fffd0000,00
+[13301.408731] dac960dump 0000:37:09.1: complete op=20 id=001f status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+[13301.408744] dac960dump 0000:37:09.1: submit op=20 id=32 len=4 offset=ff0f39bc dma=fffd0000 pattern=5a mailbox=00042020,ff0f39bc,fffd0000,00
+[13301.408891] dac960dump 0000:37:09.1: complete op=20 id=0020 status=0000 changed=4 guard-changed=0 head=80 c1 fa c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+[13301.408904] dac960dump 0000:37:09.1: submit op=6f id=33 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=0000216f,00000000,fffd0000,00
+[13303.408942] dac960dump 0000:37:09.1: uncertain completion: timeout ODB=00000000 IDB=00000000; retaining DMA/module
+[13303.408951] dac960dump 0000:37:09.1: experiment-result=-110 pending=1; exported files are captures, not a physical-flash backup
+[13303.408955] dac960dump 0000:37:09.1: scratch-dirty=0
+[13303.408958] dac960dump 0000:37:09.1: exec-dirty=1
+[13303.408961] dac960dump 0000:37:09.1: REBOOT REQUIRED before unloading/unbinding or reusing controller; DMA retained

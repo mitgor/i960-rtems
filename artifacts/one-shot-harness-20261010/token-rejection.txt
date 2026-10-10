@@ -1,0 +1,2 @@
+invalid-token-rejected-before-driver-registration
+insmod: ERROR: could not insert module /home/mit/i960-one-shot.niGXKl/dac960dump.ko: Operation not permitted

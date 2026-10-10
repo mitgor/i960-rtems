@@ -1,0 +1,63 @@
+{
+  "design_only": true,
+  "flash_ready": false,
+  "hardware_programming_executed": false,
+  "stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+  "candidate_sha256": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0",
+  "candidate_crc32": "2012d01f",
+  "staging_cpu_source": "C1F2C000",
+  "requires_explicit_dcache_invalidation": true,
+  "descriptor": {
+    "offset": 498688,
+    "length": 352,
+    "sha256": "0b76542f6528db369b4f4f5466719506ee5cd8ad7e49c9cc47e87f299f0ab4a3",
+    "update_counter": 1,
+    "policy": "preserve exact stock bytes; custom full-image route",
+    "records": [
+      {
+        "type": 1,
+        "offset": 507904,
+        "length": 16384
+      },
+      {
+        "type": 2,
+        "offset": 196608,
+        "length": 229376
+      },
+      {
+        "type": 3,
+        "offset": 163840,
+        "length": 28672
+      },
+      {
+        "type": 4,
+        "offset": 0,
+        "length": 112963
+      },
+      {
+        "type": 5,
+        "offset": 425984,
+        "length": 72704
+      }
+    ]
+  },
+  "program_mailbox_example_id_1": "2b010100000000000000000000",
+  "program_opcode": "2b",
+  "subcommand": 1,
+  "bootblock_flag": 0,
+  "erase_rewrite_range": [
+    0,
+    507904
+  ],
+  "preserved_bootblock_range": [
+    507904,
+    524288
+  ],
+  "required_pre_program_dispatch": "C001FE98 (stock unsupported handler)",
+  "temporary_ram_callbacks_must_be_removed": true,
+  "program_frees_staging_and_clears_pointer": true,
+  "next_20_allocates_and_byte_copies_flash": true,
+  "fresh_readback_expected_sha256": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0",
+  "prohibit_retry_after_uncertain_program_completion": true,
+  "recovery_testing": "excluded by user"
+}

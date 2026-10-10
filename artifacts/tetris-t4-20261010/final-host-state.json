@@ -1,0 +1,13 @@
+{
+  "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
+  "kernel": "6.8.0-138-generic",
+  "driver_bound": false,
+  "modules": [],
+  "sha256": {
+    "terminal.py": "7fff2af48fb9241421105ce61cf7fa3476a9cdcd97f027ac1d54c37526687ca7",
+    "play.sh": "19c768388cb96d0c7073cca61e3d6651b8b385871155484f8e9130d87ecdd859",
+    "session.py": "903e9f1d4227b0720333b00cf0f12fd72bcb2d4afc614bed06cb10e48a92b828",
+    "dac960session.ko": "3fb2cdda3817101eef34c28b18f00fd4cd6ef756f715ca6dea4e6b5d4579143f",
+    "tetris_payload.bin": "a889d8081c702ff1dcf9bb51a95d00b0fbcf12c11fbb4ff4d7d51f368cd096af"
+  }
+}

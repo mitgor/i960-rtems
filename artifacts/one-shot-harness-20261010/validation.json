@@ -1,0 +1,23 @@
+{
+  "result": "passed",
+  "commands": 105,
+  "cpu_source": "C1F2C000",
+  "cpu_bytes": 524288,
+  "cpu_crc32": "2012d01f",
+  "candidate_sha256": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0",
+  "completion_statuses": [
+    "017e",
+    "017f",
+    "0104"
+  ],
+  "full_stock_restored": true,
+  "dispatch_and_code_restored": true,
+  "prior_dcache_invalidation": true,
+  "alias_intrinsically_uncached_proven": false,
+  "flash_programmed": false,
+  "recovery_tested": false,
+  "programming_mode": "disabled",
+  "programming_doorbells": 0,
+  "invalid_program_token_rejected": true,
+  "live_programming_path_tested": false
+}

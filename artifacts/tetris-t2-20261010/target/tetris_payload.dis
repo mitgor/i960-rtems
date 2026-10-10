@@ -1,0 +1,1236 @@
+
+tetris_payload.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c0f2c000 <_buffer_start>:
+c0f2c000:	10 00 00 08 	b	c0f2c010 <_payload>
+	...
+
+c0f2c010 <_payload>:
+c0f2c010:	01 20 ac 80 	ldob	0x1(g0),g5
+c0f2c014:	02 20 bc 80 	ldob	0x2(g0),g7
+c0f2c018:	08 4e ad 59 	shlo	8,g5,g5
+c0f2c01c:	00 10 a4 80 	ldob	(g0),g4
+c0f2c020:	03 20 b4 80 	ldob	0x3(g0),g6
+c0f2c024:	10 ce bd 59 	shlo	16,g7,g7
+c0f2c028:	94 43 a5 58 	or	g4,g5,g4
+c0f2c02c:	18 8e b5 59 	shlo	24,g6,g6
+c0f2c030:	94 c3 a5 58 	or	g4,g7,g4
+c0f2c034:	10 16 28 5c 	mov	g0,r5
+c0f2c038:	94 83 a5 58 	or	g4,g6,g4
+c0f2c03c:	00 30 a8 8c 	lda	314f4942 <_buffer_start-0x8fa376be>,g5
+c0f2c040:	42 49 4f 31 
+c0f2c044:	0c 00 ad 32 	cmpobe	g5,g4,c0f2c050 <L61>
+
+c0f2c048 <L56>:
+c0f2c048:	01 1e 80 5c 	mov	1,g0
+c0f2c04c:	00 00 00 0a 	ret
+
+c0f2c050 <L61>:
+c0f2c050:	10 10 a9 59 	addo	g0,4,g5
+c0f2c054:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c058:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c05c:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c060:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c064:	00 50 a5 80 	ldob	(g5),g4
+c0f2c068:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c06c:	94 83 a5 58 	or	g4,g6,g4
+c0f2c070:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c074:	94 03 a4 58 	or	g4,g0,g4
+c0f2c078:	97 03 a5 58 	or	g7,g4,g4
+c0f2c07c:	cc 3f 0d 35 	cmpobne	1,g4,c0f2c048 <L56>
+c0f2c080:	05 10 aa 59 	addo	r5,8,g5
+c0f2c084:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c088:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c08c:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c090:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c094:	00 50 a5 80 	ldob	(g5),g4
+c0f2c098:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c09c:	94 83 a5 58 	or	g4,g6,g4
+c0f2c0a0:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c0a4:	94 03 a4 58 	or	g4,g0,g4
+c0f2c0a8:	97 03 a5 58 	or	g7,g4,g4
+c0f2c0ac:	9c 3f 05 32 	cmpobe	0,g4,c0f2c048 <L56>
+c0f2c0b0:	05 10 8b 59 	addo	r5,12,g1
+c0f2c0b4:	01 60 ac 80 	ldob	0x1(g1),g5
+c0f2c0b8:	02 60 bc 80 	ldob	0x2(g1),g7
+c0f2c0bc:	08 4e ad 59 	shlo	8,g5,g5
+c0f2c0c0:	00 50 a4 80 	ldob	(g1),g4
+c0f2c0c4:	03 60 b4 80 	ldob	0x3(g1),g6
+c0f2c0c8:	10 ce bd 59 	shlo	16,g7,g7
+c0f2c0cc:	94 43 a5 58 	or	g4,g5,g4
+c0f2c0d0:	18 8e b5 59 	shlo	24,g6,g6
+c0f2c0d4:	94 c3 a5 58 	or	g4,g7,g4
+c0f2c0d8:	96 03 a5 58 	or	g6,g4,g4
+c0f2c0dc:	8c 19 a8 58 	setbit	12,0,g5
+c0f2c0e0:	68 1f ad 34 	cmpobl	g5,g4,c0f2c048 <L56>
+c0f2c0e4:	05 10 ac 59 	addo	r5,16,g5
+c0f2c0e8:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c0ec:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c0f0:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c0f4:	00 50 a5 80 	ldob	(g5),g4
+c0f2c0f8:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c0fc:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c100:	94 83 a5 58 	or	g4,g6,g4
+c0f2c104:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c108:	94 03 a4 58 	or	g4,g0,g4
+c0f2c10c:	97 03 a5 58 	or	g7,g4,g4
+c0f2c110:	8d 19 a8 58 	setbit	13,0,g5
+c0f2c114:	34 1f ad 34 	cmpobl	g5,g4,c0f2c048 <L56>
+c0f2c118:	05 10 ad 59 	addo	r5,20,g5
+c0f2c11c:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c120:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c124:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c128:	00 50 a5 80 	ldob	(g5),g4
+c0f2c12c:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c130:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c134:	94 83 a5 58 	or	g4,g6,g4
+c0f2c138:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c13c:	94 03 a4 58 	or	g4,g0,g4
+c0f2c140:	97 03 a5 58 	or	g7,g4,g4
+c0f2c144:	01 19 a8 59 	subo	1,0,g5
+c0f2c148:	00 1f ad 35 	cmpobne	g5,g4,c0f2c048 <L56>
+c0f2c14c:	05 10 ae 59 	addo	r5,24,g5
+c0f2c150:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c154:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c158:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c15c:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c160:	00 50 a5 80 	ldob	(g5),g4
+c0f2c164:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c168:	94 83 a5 58 	or	g4,g6,g4
+c0f2c16c:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c170:	94 03 a4 58 	or	g4,g0,g4
+c0f2c174:	97 03 a5 58 	or	g7,g4,g4
+c0f2c178:	d0 3e 05 35 	cmpobne	0,g4,c0f2c048 <L56>
+c0f2c17c:	05 10 af 59 	addo	r5,28,g5
+c0f2c180:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c184:	02 60 85 80 	ldob	0x2(g5),g0
+c0f2c188:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c18c:	03 60 bd 80 	ldob	0x3(g5),g7
+c0f2c190:	00 50 a5 80 	ldob	(g5),g4
+c0f2c194:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c198:	94 83 a5 58 	or	g4,g6,g4
+c0f2c19c:	18 ce bd 59 	shlo	24,g7,g7
+c0f2c1a0:	94 03 a4 58 	or	g4,g0,g4
+c0f2c1a4:	97 03 a5 58 	or	g7,g4,g4
+c0f2c1a8:	a0 3e 05 35 	cmpobne	0,g4,c0f2c048 <L56>
+c0f2c1ac:	1f 58 a8 59 	addo	31,1,g5
+c0f2c1b0:	Address 0x00000000c0f2c1b0 is out of bounds.
+
+
+c0f2c1b4 <L19>:
+c0f2c1b4:	15 5c a1 80 	ldob	(r5)[g5],g4
+c0f2c1b8:	15 50 a8 59 	addo	g5,1,g5
+c0f2c1bc:	8c 3e 05 35 	cmpobne	0,g4,c0f2c048 <L56>
+c0f2c1c0:	f4 5f b5 33 	cmpobge	g6,g5,c0f2c1b4 <L19>
+c0f2c1c4:	01 60 ac 80 	ldob	0x1(g1),g5
+c0f2c1c8:	02 60 bc 80 	ldob	0x2(g1),g7
+c0f2c1cc:	08 4e ad 59 	shlo	8,g5,g5
+c0f2c1d0:	03 60 b4 80 	ldob	0x3(g1),g6
+c0f2c1d4:	00 50 a4 80 	ldob	(g1),g4
+c0f2c1d8:	10 ce bd 59 	shlo	16,g7,g7
+c0f2c1dc:	94 43 a5 58 	or	g4,g5,g4
+c0f2c1e0:	18 8e b5 59 	shlo	24,g6,g6
+c0f2c1e4:	94 c3 a5 58 	or	g4,g7,g4
+c0f2c1e8:	96 03 a5 58 	or	g6,g4,g4
+c0f2c1ec:	40 20 ad 8c 	lda	0x40(g4),g5
+c0f2c1f0:	00 30 a0 8c 	lda	103f <_buffer_start-0xc0f2afc1>,g4
+c0f2c1f4:	3f 10 00 00 
+c0f2c1f8:	18 40 a5 34 	cmpobl	g4,g5,c0f2c210 <L51>
+c0f2c1fc:	14 16 b0 5c 	mov	g4,g6
+
+c0f2c200 <L26>:
+c0f2c200:	15 5c a1 80 	ldob	(r5)[g5],g4
+c0f2c204:	15 50 a8 59 	addo	g5,1,g5
+c0f2c208:	40 3e 05 35 	cmpobne	0,g4,c0f2c048 <L56>
+c0f2c20c:	f4 5f b5 33 	cmpobge	g6,g5,c0f2c200 <L26>
+
+c0f2c210 <L51>:
+c0f2c210:	00 74 b1 8c 	lda	3050 <_buffer_start-0xc0f28fb0>(r5),g6
+c0f2c214:	50 30 00 00 
+c0f2c218:	00 1e a8 5c 	mov	0,g5
+c0f2c21c:	a5 00 b8 8c 	lda	0xa5,g7
+c0f2c220:	Address 0x00000000c0f2c220 is out of bounds.
+
+
+c0f2c224 <L33>:
+c0f2c224:	00 b4 a5 80 	ldob	ffffdff0 <Li960R14+0x3f0d101c>(g6),g4
+c0f2c228:	f0 df ff ff 
+c0f2c22c:	15 50 a8 59 	addo	g5,1,g5
+c0f2c230:	18 1e bd 35 	cmpobne	g7,g4,c0f2c048 <L56>
+c0f2c234:	00 90 a5 80 	ldob	(g6),g4
+c0f2c238:	16 50 b0 59 	addo	g6,1,g6
+c0f2c23c:	0c 1e 85 35 	cmpobne	g0,g4,c0f2c048 <L56>
+c0f2c240:	e4 7f 7d 33 	cmpobge	15,g5,c0f2c224 <L33>
+c0f2c244:	00 74 b1 8c 	lda	1050 <_buffer_start-0xc0f2afb0>(r5),g6
+c0f2c248:	50 10 00 00 
+c0f2c24c:	00 1e a8 5c 	mov	0,g5
+c0f2c250:	cc 00 80 8c 	lda	0xcc,g0
+c0f2c254:	00 30 b8 8c 	lda	1fff <_buffer_start-0xc0f2a001>,g7
+c0f2c258:	ff 1f 00 00 
+
+c0f2c25c <L39>:
+c0f2c25c:	00 90 a5 80 	ldob	(g6),g4
+c0f2c260:	15 50 a8 59 	addo	g5,1,g5
+c0f2c264:	16 50 b0 59 	addo	g6,1,g6
+c0f2c268:	e0 1d 85 35 	cmpobne	g0,g4,c0f2c048 <L56>
+c0f2c26c:	f0 5f bd 33 	cmpobge	g7,g5,c0f2c25c <L39>
+c0f2c270:	05 10 a3 59 	addo	r5,12,g4
+c0f2c274:	05 10 ac 59 	addo	r5,16,g5
+c0f2c278:	01 20 b5 80 	ldob	0x1(g4),g6
+c0f2c27c:	01 60 bd 80 	ldob	0x1(g5),g7
+c0f2c280:	02 20 85 80 	ldob	0x2(g4),g0
+c0f2c284:	02 60 95 80 	ldob	0x2(g5),g2
+c0f2c288:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c28c:	08 ce bd 59 	shlo	8,g7,g7
+c0f2c290:	00 10 8d 80 	ldob	(g4),g1
+c0f2c294:	00 50 9d 80 	ldob	(g5),g3
+c0f2c298:	03 20 ed 80 	ldob	0x3(g4),g13
+c0f2c29c:	03 60 25 80 	ldob	0x3(g5),r4
+c0f2c2a0:	10 0e 84 59 	shlo	16,g0,g0
+c0f2c2a4:	10 8e 94 59 	shlo	16,g2,g2
+c0f2c2a8:	91 83 8d 58 	or	g1,g6,g1
+c0f2c2ac:	93 c3 9d 58 	or	g3,g7,g3
+c0f2c2b0:	18 4e ef 59 	shlo	24,g13,g13
+c0f2c2b4:	91 03 8c 58 	or	g1,g0,g1
+c0f2c2b8:	93 83 9c 58 	or	g3,g2,g3
+c0f2c2bc:	18 0e 21 59 	shlo	24,r4,r4
+c0f2c2c0:	40 60 81 8c 	lda	0x40(r5),g0
+c0f2c2c4:	00 74 91 8c 	lda	1050 <_buffer_start-0xc0f2afb0>(r5),g2
+c0f2c2c8:	50 10 00 00 
+c0f2c2cc:	91 43 8f 58 	or	g1,g13,g1
+c0f2c2d0:	93 03 99 58 	or	g3,r4,g3
+c0f2c2d4:	00 30 00 86 	callx	c0f2cec0 <_tetris_request>
+c0f2c2d8:	c0 ce f2 c0 
+c0f2c2dc:	08 0c b4 59 	shro	8,g0,g6
+c0f2c2e0:	18 0c ac 59 	shro	24,g0,g5
+c0f2c2e4:	05 10 a5 59 	addo	r5,20,g4
+c0f2c2e8:	10 0c bc 59 	shro	16,g0,g7
+c0f2c2ec:	03 20 ad 82 	stob	g5,0x3(g4)
+c0f2c2f0:	01 20 b5 82 	stob	g6,0x1(g4)
+c0f2c2f4:	02 20 bd 82 	stob	g7,0x2(g4)
+c0f2c2f8:	00 10 85 82 	stob	g0,(g4)
+c0f2c2fc:	05 10 ae 59 	addo	r5,24,g5
+c0f2c300:	70 08 b0 8c 	lda	0x870,g6
+c0f2c304:	08 20 04 32 	cmpobe	0,g0,c0f2c30c <L44>
+c0f2c308:	00 1e b0 5c 	mov	0,g6
+
+c0f2c30c <L44>:
+c0f2c30c:	08 8c a5 59 	shro	8,g6,g4
+c0f2c310:	00 50 b5 82 	stob	g6,(g5)
+c0f2c314:	01 60 a5 82 	stob	g4,0x1(g5)
+c0f2c318:	03 60 f5 82 	stob	g14,0x3(g5)
+c0f2c31c:	02 60 f5 82 	stob	g14,0x2(g5)
+c0f2c320:	05 10 aa 59 	addo	r5,8,g5
+c0f2c324:	01 60 b5 80 	ldob	0x1(g5),g6
+c0f2c328:	02 60 bd 80 	ldob	0x2(g5),g7
+c0f2c32c:	03 60 85 80 	ldob	0x3(g5),g0
+c0f2c330:	00 50 a5 80 	ldob	(g5),g4
+c0f2c334:	08 8e b5 59 	shlo	8,g6,g6
+c0f2c338:	10 ce bd 59 	shlo	16,g7,g7
+c0f2c33c:	94 83 a5 58 	or	g4,g6,g4
+c0f2c340:	18 0e 84 59 	shlo	24,g0,g0
+c0f2c344:	94 c3 a5 58 	or	g4,g7,g4
+c0f2c348:	90 03 a5 58 	or	g0,g4,g4
+c0f2c34c:	10 0c 85 59 	shro	16,g4,g0
+c0f2c350:	05 10 af 59 	addo	r5,28,g5
+c0f2c354:	18 0c b5 59 	shro	24,g4,g6
+c0f2c358:	08 0c bd 59 	shro	8,g4,g7
+c0f2c35c:	02 60 85 82 	stob	g0,0x2(g5)
+c0f2c360:	03 60 b5 82 	stob	g6,0x3(g5)
+c0f2c364:	01 60 bd 82 	stob	g7,0x1(g5)
+c0f2c368:	00 50 a5 82 	stob	g4,(g5)
+c0f2c36c:	00 1e 80 5c 	mov	0,g0
+c0f2c370:	00 00 00 0a 	ret
+	...
+
+c0f2c380 <_shapes>:
+c0f2c380:	00 01 01 01 	.word	0x01010100
+c0f2c384:	02 01 03 01 	.word	0x01030102
+c0f2c388:	02 00 02 01 	.word	0x01020002
+c0f2c38c:	02 02 02 03 	.word	0x03020202
+c0f2c390:	00 02 01 02 	.word	0x02010200
+c0f2c394:	02 02 03 02 	.word	0x02030202
+c0f2c398:	01 00 01 01 	.word	0x01010001
+c0f2c39c:	01 02 01 03 	.word	0x03010201
+c0f2c3a0:	01 00 02 00 	.word	0x00020001
+c0f2c3a4:	01 01 02 01 	.word	0x01020101
+c0f2c3a8:	01 00 02 00 	.word	0x00020001
+c0f2c3ac:	01 01 02 01 	.word	0x01020101
+c0f2c3b0:	01 00 02 00 	.word	0x00020001
+c0f2c3b4:	01 01 02 01 	.word	0x01020101
+c0f2c3b8:	01 00 02 00 	.word	0x00020001
+c0f2c3bc:	01 01 02 01 	.word	0x01020101
+c0f2c3c0:	01 00 00 01 	.word	0x01000001
+c0f2c3c4:	01 01 02 01 	.word	0x01020101
+c0f2c3c8:	01 00 01 01 	.word	0x01010001
+c0f2c3cc:	02 01 01 02 	.word	0x02010102
+c0f2c3d0:	00 01 01 01 	.word	0x01010100
+c0f2c3d4:	02 01 01 02 	.word	0x02010102
+c0f2c3d8:	01 00 00 01 	.word	0x01000001
+c0f2c3dc:	01 01 01 02 	.word	0x02010101
+c0f2c3e0:	01 00 02 00 	.word	0x00020001
+c0f2c3e4:	00 01 01 01 	.word	0x01010100
+c0f2c3e8:	01 00 01 01 	.word	0x01010001
+c0f2c3ec:	02 01 02 02 	.word	0x02020102
+c0f2c3f0:	01 01 02 01 	.word	0x01020101
+c0f2c3f4:	00 02 01 02 	.word	0x02010200
+c0f2c3f8:	00 00 00 01 	.word	0x01000000
+c0f2c3fc:	01 01 01 02 	.word	0x02010101
+c0f2c400:	00 00 01 00 	.word	0x00010000
+c0f2c404:	01 01 02 01 	.word	0x01020101
+c0f2c408:	02 00 01 01 	.word	0x01010002
+c0f2c40c:	02 01 01 02 	.word	0x02010102
+c0f2c410:	00 01 01 01 	.word	0x01010100
+c0f2c414:	01 02 02 02 	.word	0x02020201
+c0f2c418:	01 00 00 01 	.word	0x01000001
+c0f2c41c:	01 01 00 02 	.word	0x02000101
+c0f2c420:	00 00 00 01 	.word	0x01000000
+c0f2c424:	01 01 02 01 	.word	0x01020101
+c0f2c428:	01 00 02 00 	.word	0x00020001
+c0f2c42c:	01 01 01 02 	.word	0x02010101
+c0f2c430:	00 01 01 01 	.word	0x01010100
+c0f2c434:	02 01 02 02 	.word	0x02020102
+c0f2c438:	01 00 01 01 	.word	0x01010001
+c0f2c43c:	00 02 01 02 	.word	0x02010200
+c0f2c440:	02 00 00 01 	.word	0x01000002
+c0f2c444:	01 01 02 01 	.word	0x01020101
+c0f2c448:	01 00 01 01 	.word	0x01010001
+c0f2c44c:	01 02 02 02 	.word	0x02020201
+c0f2c450:	00 01 01 01 	.word	0x01010100
+c0f2c454:	02 01 00 02 	.word	0x02000102
+c0f2c458:	00 00 01 00 	.word	0x00010000
+c0f2c45c:	01 01 01 02 	.word	0x02010101
+
+c0f2c460 <_piece_ch>:
+c0f2c460:	49 4f 54 53 	.word	0x53544f49
+c0f2c464:	5a 4a 4c 00 	.word	0x004c4a5a
+	...
+
+c0f2c470 <_zero_bytes>:
+c0f2c470:	00 30 f0 8c 	lda	c0f2c4a0 <Li960R1>,g14
+c0f2c474:	a0 c4 f2 c0 
+
+c0f2c478 <zero_bytes.lf>:
+c0f2c478:	1e 16 90 5c 	mov	g14,g2
+c0f2c47c:	00 1e f0 5c 	mov	0,g14
+c0f2c480:	01 49 8c 59 	subo	1,g1,g1
+c0f2c484:	01 19 a0 59 	subo	1,0,g4
+c0f2c488:	14 40 a4 32 	cmpobe	g4,g1,c0f2c49c <L7>
+
+c0f2c48c <L5>:
+c0f2c48c:	00 10 f4 82 	stob	g14,(g0)
+c0f2c490:	10 50 80 59 	addo	g0,1,g0
+c0f2c494:	01 49 8c 59 	subo	1,g1,g1
+c0f2c498:	f4 5f a4 35 	cmpobne	g4,g1,c0f2c48c <L5>
+
+c0f2c49c <L7>:
+c0f2c49c:	Address 0x00000000c0f2c49c is out of bounds.
+
+
+c0f2c4a0 <Li960R1>:
+c0f2c4a0:	00 00 00 0a 	ret
+	...
+
+c0f2c4b0 <_fits>:
+c0f2c4b0:	11 9d 8c 8c 	lda	(g2)[g1*4],g1
+c0f2c4b4:	10 16 20 5c 	mov	g0,r4
+c0f2c4b8:	91 39 88 8c 	lda	c0f2c380 <_shapes>[g1*8],g1
+c0f2c4bc:	80 c3 f2 c0 
+c0f2c4c0:	14 16 e8 5c 	mov	g4,g13
+c0f2c4c4:	11 16 b8 5c 	mov	g1,g7
+c0f2c4c8:	00 1e 90 5c 	mov	0,g2
+c0f2c4cc:	11 50 88 59 	addo	g1,1,g1
+
+c0f2c4d0 <L16>:
+c0f2c4d0:	00 50 ac c0 	ldib	(g1),g5
+c0f2c4d4:	00 d0 b5 c0 	ldib	(g7),g6
+c0f2c4d8:	1d 40 ad 59 	addo	g13,g5,g5
+c0f2c4dc:	15 5d a5 8c 	lda	(g5)[g5*4],g4
+c0f2c4e0:	12 50 90 59 	addo	g2,1,g2
+c0f2c4e4:	94 1c a1 8c 	lda	(r4)[g4*2],g4
+c0f2c4e8:	17 90 b8 59 	addo	g7,2,g7
+c0f2c4ec:	11 90 88 59 	addo	g1,2,g1
+c0f2c4f0:	13 80 b5 59 	addo	g3,g6,g6
+c0f2c4f4:	00 1e 80 5c 	mov	0,g0
+c0f2c4f8:	24 a0 4d 34 	cmpobl	9,g6,c0f2c51c <L14>
+c0f2c4fc:	20 60 9d 3c 	cmpibl	19,g5,c0f2c51c <L14>
+c0f2c500:	10 60 05 39 	cmpibg	0,g5,c0f2c510 <L11>
+c0f2c504:	16 3c a5 80 	ldob	28 <_buffer_start-0xc0f2bfd8>(g4)[g6],g4
+c0f2c508:	28 00 00 00 
+c0f2c50c:	0c 20 05 35 	cmpobne	0,g4,c0f2c518 <L8>
+
+c0f2c510 <L11>:
+c0f2c510:	c0 bf 1c 3b 	cmpibge	3,g2,c0f2c4d0 <L16>
+c0f2c514:	01 1e 80 5c 	mov	1,g0
+
+c0f2c518 <L8>:
+c0f2c518:	00 00 00 0a 	ret
+
+c0f2c51c <L14>:
+c0f2c51c:	00 1e 80 5c 	mov	0,g0
+c0f2c520:	00 00 00 0a 	ret
+	...
+
+c0f2c530 <_spawn>:
+c0f2c530:	04 20 a4 90 	ld	0x4(g0),g4
+c0f2c534:	03 1e a8 5c 	mov	3,g5
+c0f2c538:	0d 0e b5 59 	shlo	13,g4,g6
+c0f2c53c:	14 20 ac 92 	st	g5,0x14(g0)
+c0f2c540:	14 83 a5 58 	xor	g4,g6,g4
+c0f2c544:	11 0c ad 59 	shro	17,g4,g5
+c0f2c548:	10 16 20 5c 	mov	g0,r4
+c0f2c54c:	14 43 a5 58 	xor	g4,g5,g4
+c0f2c550:	05 0e b5 59 	shlo	5,g4,g6
+c0f2c554:	10 20 f4 92 	st	g14,0x10(g0)
+c0f2c558:	14 83 a5 58 	xor	g4,g6,g4
+c0f2c55c:	07 0c 8d 70 	remo	7,g4,g1
+c0f2c560:	04 20 a4 92 	st	g4,0x4(g0)
+c0f2c564:	18 20 f4 92 	st	g14,0x18(g0)
+c0f2c568:	00 1e 90 5c 	mov	0,g2
+c0f2c56c:	03 1e 98 5c 	mov	3,g3
+c0f2c570:	00 1e a0 5c 	mov	0,g4
+c0f2c574:	0c 20 8c 92 	st	g1,0xc(g0)
+c0f2c578:	00 30 00 86 	callx	c0f2c4b0 <_fits>
+c0f2c57c:	b0 c4 f2 c0 
+c0f2c580:	0c 20 04 35 	cmpobne	0,g0,c0f2c58c <L19>
+c0f2c584:	01 1e a0 5c 	mov	1,g4
+c0f2c588:	Address 0x00000000c0f2c588 is out of bounds.
+
+
+c0f2c58c <L19>:
+c0f2c58c:	00 00 00 0a 	ret
+
+c0f2c590 <_tetris_init>:
+c0f2c590:	11 16 20 5c 	mov	g1,r4
+c0f2c594:	10 16 28 5c 	mov	g0,r5
+c0f2c598:	04 de 8b 59 	shlo	4,15,g1
+c0f2c59c:	00 30 00 86 	callx	c0f2c470 <_zero_bytes>
+c0f2c5a0:	70 c4 f2 c0 
+c0f2c5a4:	01 1e a0 5c 	mov	1,g4
+c0f2c5a8:	00 50 a1 92 	st	g4,(r5)
+c0f2c5ac:	05 16 80 5c 	mov	r5,g0
+c0f2c5b0:	04 16 a0 5c 	mov	r4,g4
+c0f2c5b4:	0c 20 01 35 	cmpobne	0,r4,c0f2c5c0 <L22>
+c0f2c5b8:	00 30 a0 8c 	lda	1234567 <_buffer_start-0xbfcf7a99>,g4
+c0f2c5bc:	67 45 23 01 
+
+c0f2c5c0 <L22>:
+c0f2c5c0:	04 60 a1 92 	st	g4,0x4(r5)
+c0f2c5c4:	00 30 00 84 	bx	c0f2c530 <_spawn>
+c0f2c5c8:	30 c5 f2 c0 
+
+c0f2c5cc <Li960R4>:
+c0f2c5cc:	00 00 00 0a 	ret
+
+c0f2c5d0 <_tetris_valid>:
+c0f2c5d0:	00 10 a4 90 	ld	(g0),g4
+c0f2c5d4:	10 16 a8 5c 	mov	g0,g5
+c0f2c5d8:	0c 20 0d 32 	cmpobe	1,g4,c0f2c5e4 <L52>
+
+c0f2c5dc <L25>:
+c0f2c5dc:	00 1e 80 5c 	mov	0,g0
+c0f2c5e0:	00 00 00 0a 	ret
+
+c0f2c5e4 <L52>:
+c0f2c5e4:	04 20 a4 90 	ld	0x4(g0),g4
+c0f2c5e8:	f4 3f 05 32 	cmpobe	0,g4,c0f2c5dc <L25>
+c0f2c5ec:	08 20 b4 90 	ld	0x8(g0),g6
+c0f2c5f0:	00 30 a0 8c 	lda	3b9ac99c <_buffer_start-0x8557f664>,g4
+c0f2c5f4:	9c c9 9a 3b 
+c0f2c5f8:	e4 9f a5 34 	cmpobl	g4,g6,c0f2c5dc <L25>
+c0f2c5fc:	02 5e a6 59 	shlo	2,25,g4
+c0f2c600:	14 84 a5 70 	remo	g4,g6,g4
+c0f2c604:	d8 3f 05 35 	cmpobne	0,g4,c0f2c5dc <L25>
+c0f2c608:	0c 20 8c 90 	ld	0xc(g0),g1
+c0f2c60c:	d0 7f 34 34 	cmpobl	6,g1,c0f2c5dc <L25>
+c0f2c610:	10 20 94 90 	ld	0x10(g0),g2
+c0f2c614:	c8 bf 1c 34 	cmpobl	3,g2,c0f2c5dc <L25>
+c0f2c618:	14 20 9c 90 	ld	0x14(g0),g3
+c0f2c61c:	03 19 a0 59 	subo	3,0,g4
+c0f2c620:	bc df a4 39 	cmpibg	g4,g3,c0f2c5dc <L25>
+c0f2c624:	b8 ff 4c 3c 	cmpibl	9,g3,c0f2c5dc <L25>
+c0f2c628:	18 20 34 90 	ld	0x18(g0),r6
+c0f2c62c:	b0 9f a1 39 	cmpibg	g4,r6,c0f2c5dc <L25>
+c0f2c630:	ac bf 99 3c 	cmpibl	19,r6,c0f2c5dc <L25>
+c0f2c634:	1c 20 a4 90 	ld	0x1c(g0),g4
+c0f2c638:	a4 3f 9d 34 	cmpobl	19,g4,c0f2c5dc <L25>
+c0f2c63c:	20 20 44 90 	ld	0x20(g0),r8
+c0f2c640:	9c 3f 12 34 	cmpobl	2,r8,c0f2c5dc <L25>
+c0f2c644:	24 20 a4 90 	ld	0x24(g0),g4
+c0f2c648:	94 3f 05 35 	cmpobne	0,g4,c0f2c5dc <L25>
+c0f2c64c:	00 1e 38 5c 	mov	0,r7
+c0f2c650:	10 16 28 5c 	mov	g0,r5
+c0f2c654:	1f 58 4a 59 	addo	31,9,r9
+
+c0f2c658 <L43>:
+c0f2c658:	07 dd a1 8c 	lda	(r7)[r7*4],g4
+c0f2c65c:	28 60 19 8c 	lda	0x28(r5),r3
+c0f2c660:	94 5c a5 8c 	lda	(g5)[g4*2],g4
+c0f2c664:	00 1e 20 5c 	mov	0,r4
+c0f2c668:	14 40 ea 59 	addo	g4,r9,g13
+
+c0f2c66c <L42>:
+c0f2c66c:	00 50 a7 80 	ldob	(g13),g4
+c0f2c670:	4c 20 05 35 	cmpobne	0,g4,c0f2c6bc <L53>
+
+c0f2c674 <L32>:
+c0f2c674:	04 50 20 59 	addo	r4,1,r4
+c0f2c678:	03 50 18 59 	addo	r3,1,r3
+c0f2c67c:	1d 50 e8 59 	addo	g13,1,g13
+c0f2c680:	ec 3f 49 33 	cmpobge	9,r4,c0f2c66c <L42>
+c0f2c684:	07 50 38 59 	addo	r7,1,r7
+c0f2c688:	05 90 2a 59 	addo	r5,10,r5
+c0f2c68c:	cc ff 99 33 	cmpobge	19,r7,c0f2c658 <L43>
+c0f2c690:	00 1e 20 5c 	mov	0,r4
+c0f2c694:	10 20 02 32 	cmpobe	0,r8,c0f2c6a4 <L54>
+
+c0f2c698 <L45>:
+c0f2c698:	01 1e 20 5c 	mov	1,r4
+
+c0f2c69c <L44>:
+c0f2c69c:	04 16 80 5c 	mov	r4,g0
+
+c0f2c6a0 <L23>:
+c0f2c6a0:	00 00 00 0a 	ret
+
+c0f2c6a4 <L54>:
+c0f2c6a4:	15 16 80 5c 	mov	g5,g0
+c0f2c6a8:	06 16 a0 5c 	mov	r6,g4
+c0f2c6ac:	00 30 00 86 	callx	c0f2c4b0 <_fits>
+c0f2c6b0:	b0 c4 f2 c0 
+c0f2c6b4:	e8 3f 04 32 	cmpobe	0,g0,c0f2c69c <L44>
+c0f2c6b8:	e0 ff ff 08 	b	c0f2c698 <L45>
+
+c0f2c6bc <L53>:
+c0f2c6bc:	00 d0 b8 80 	ldob	(r3),g7
+c0f2c6c0:	00 1e b0 5c 	mov	0,g6
+
+c0f2c6c4 <L40>:
+c0f2c6c4:	00 b4 a5 80 	ldob	c0f2c460 <_piece_ch>(g6),g4
+c0f2c6c8:	60 c4 f2 c0 
+c0f2c6cc:	0c c0 a5 32 	cmpobe	g4,g7,c0f2c6d8 <L36>
+c0f2c6d0:	16 50 b0 59 	addo	g6,1,g6
+c0f2c6d4:	f0 bf 35 33 	cmpobge	6,g6,c0f2c6c4 <L40>
+
+c0f2c6d8 <L36>:
+c0f2c6d8:	00 1e 80 5c 	mov	0,g0
+c0f2c6dc:	98 bf 3d 35 	cmpobne	7,g6,c0f2c674 <L32>
+c0f2c6e0:	c0 ff ff 08 	b	c0f2c6a0 <L23>
+	...
+
+c0f2c6f0 <_lock_piece>:
+c0f2c6f0:	0c 20 ec 90 	ld	0xc(g0),g13
+c0f2c6f4:	10 20 ac 90 	ld	0x10(g0),g5
+c0f2c6f8:	14 20 1c 90 	ld	0x14(g0),r3
+c0f2c6fc:	1d 5d a5 8c 	lda	(g5)[g13*4],g4
+c0f2c700:	18 20 9c 90 	ld	0x18(g0),g3
+c0f2c704:	94 39 a0 8c 	lda	c0f2c380 <_shapes>[g4*8],g4
+c0f2c708:	80 c3 f2 c0 
+c0f2c70c:	00 1e 90 5c 	mov	0,g2
+c0f2c710:	14 16 b8 5c 	mov	g4,g7
+c0f2c714:	14 50 b0 59 	addo	g4,1,g6
+
+c0f2c718 <L61>:
+c0f2c718:	00 d0 ad c0 	ldib	(g7),g5
+c0f2c71c:	00 90 a5 c0 	ldib	(g6),g4
+c0f2c720:	03 40 8d 59 	addo	r3,g5,g1
+c0f2c724:	13 00 a5 59 	addo	g3,g4,g4
+c0f2c728:	14 1d ad 8c 	lda	(g4)[g4*4],g5
+c0f2c72c:	12 50 90 59 	addo	g2,1,g2
+c0f2c730:	17 90 b8 59 	addo	g7,2,g7
+c0f2c734:	16 90 b0 59 	addo	g6,2,g6
+c0f2c738:	c8 20 05 39 	cmpibg	0,g4,c0f2c800 <L102>
+c0f2c73c:	95 1c ac 8c 	lda	(g0)[g5*2],g5
+c0f2c740:	00 74 a7 80 	ldob	c0f2c460 <_piece_ch>(g13),g4
+c0f2c744:	60 c4 f2 c0 
+c0f2c748:	11 7c a5 82 	stob	g4,28 <_buffer_start-0xc0f2bfd8>(g5)[g1]
+c0f2c74c:	28 00 00 00 
+c0f2c750:	c8 bf 1c 3b 	cmpibge	3,g2,c0f2c718 <L61>
+c0f2c754:	13 1e 88 5c 	mov	19,g1
+c0f2c758:	1f 58 92 59 	addo	31,9,g2
+
+c0f2c75c <L89>:
+c0f2c75c:	11 5d a4 8c 	lda	(g1)[g1*4],g4
+c0f2c760:	01 1e b8 5c 	mov	1,g7
+c0f2c764:	94 1c a4 8c 	lda	(g0)[g4*2],g4
+c0f2c768:	09 1e b0 5c 	mov	9,g6
+c0f2c76c:	14 80 ac 59 	addo	g4,g2,g5
+
+c0f2c770 <L71>:
+c0f2c770:	00 50 a5 80 	ldob	(g5),g4
+c0f2c774:	01 89 b5 59 	subo	1,g6,g6
+c0f2c778:	15 50 a8 59 	addo	g5,1,g5
+c0f2c77c:	08 20 05 35 	cmpobne	0,g4,c0f2c784 <L68>
+c0f2c780:	00 1e b8 5c 	mov	0,g7
+
+c0f2c784 <L68>:
+c0f2c784:	ec bf 05 3e 	cmpible	0,g6,c0f2c770 <L71>
+c0f2c788:	68 e0 05 32 	cmpobe	0,g7,c0f2c7f0 <L64>
+c0f2c78c:	11 16 b8 5c 	mov	g1,g7
+c0f2c790:	2c 60 04 3b 	cmpibge	0,g1,c0f2c7bc <L97>
+
+c0f2c794 <L82>:
+c0f2c794:	17 dd a5 8c 	lda	(g7)[g7*4],g4
+c0f2c798:	09 1e b0 5c 	mov	9,g6
+c0f2c79c:	Address 0x00000000c0f2c79c is out of bounds.
+
+
+c0f2c7a0 <L81>:
+c0f2c7a0:	1e 60 a5 80 	ldob	0x1e(g5),g4
+c0f2c7a4:	01 89 b5 59 	subo	1,g6,g6
+c0f2c7a8:	28 60 a5 82 	stob	g4,0x28(g5)
+c0f2c7ac:	15 50 a8 59 	addo	g5,1,g5
+c0f2c7b0:	f0 bf 05 3e 	cmpible	0,g6,c0f2c7a0 <L81>
+c0f2c7b4:	01 c9 bd 59 	subo	1,g7,g7
+c0f2c7b8:	dc ff 05 3c 	cmpibl	0,g7,c0f2c794 <L82>
+
+c0f2c7bc <L97>:
+c0f2c7bc:	10 80 a4 59 	addo	g0,g2,g4
+c0f2c7c0:	09 1e b0 5c 	mov	9,g6
+
+c0f2c7c4 <L87>:
+c0f2c7c4:	00 10 f5 82 	stob	g14,(g4)
+c0f2c7c8:	01 89 b5 59 	subo	1,g6,g6
+c0f2c7cc:	14 50 a0 59 	addo	g4,1,g4
+c0f2c7d0:	f4 bf 05 3e 	cmpible	0,g6,c0f2c7c4 <L87>
+c0f2c7d4:	08 20 ac 90 	ld	0x8(g0),g5
+c0f2c7d8:	00 30 a0 8c 	lda	3b9ac99b <_buffer_start-0x8557f665>,g4
+c0f2c7dc:	9b c9 9a 3b 
+c0f2c7e0:	0c 40 a5 34 	cmpobl	g4,g5,c0f2c7ec <L88>
+c0f2c7e4:	64 60 a5 8c 	lda	0x64(g5),g4
+c0f2c7e8:	Address 0x00000000c0f2c7e8 is out of bounds.
+
+
+c0f2c7ec <L88>:
+c0f2c7ec:	11 50 88 59 	addo	g1,1,g1
+
+c0f2c7f0 <L64>:
+c0f2c7f0:	01 49 8c 59 	subo	1,g1,g1
+c0f2c7f4:	68 7f 04 3e 	cmpible	0,g1,c0f2c75c <L89>
+c0f2c7f8:	00 30 00 84 	bx	c0f2c530 <_spawn>
+c0f2c7fc:	30 c5 f2 c0 
+
+c0f2c800 <L102>:
+c0f2c800:	01 1e a0 5c 	mov	1,g4
+c0f2c804:	20 20 a4 92 	st	g4,0x20(g0)
+c0f2c808:	00 00 00 0a 	ret
+c0f2c80c:	00 00 00 00 	.word	0x00000000
+
+c0f2c810 <_tetris_step>:
+c0f2c810:	11 16 28 5c 	mov	g1,r5
+c0f2c814:	12 16 38 5c 	mov	g2,r7
+c0f2c818:	10 16 20 5c 	mov	g0,r4
+c0f2c81c:	00 30 00 86 	callx	c0f2c5d0 <_tetris_valid>
+c0f2c820:	d0 c5 f2 c0 
+c0f2c824:	34 20 04 32 	cmpobe	0,g0,c0f2c858 <L105>
+c0f2c828:	30 e0 a1 34 	cmpobl	20,r7,c0f2c858 <L105>
+c0f2c82c:	44 60 01 32 	cmpobe	0,r5,c0f2c870 <L104>
+c0f2c830:	61 00 a0 8c 	lda	0x61,g4
+c0f2c834:	3c 40 a1 32 	cmpobe	g4,r5,c0f2c870 <L104>
+c0f2c838:	14 d0 a0 59 	addo	g4,3,g4
+c0f2c83c:	34 40 a1 32 	cmpobe	g4,r5,c0f2c870 <L104>
+c0f2c840:	14 d0 a4 59 	addo	g4,19,g4
+c0f2c844:	2c 40 a1 32 	cmpobe	g4,r5,c0f2c870 <L104>
+c0f2c848:	04 09 a5 59 	subo	4,g4,g4
+c0f2c84c:	24 40 a1 32 	cmpobe	g4,r5,c0f2c870 <L104>
+c0f2c850:	02 09 a5 59 	subo	2,g4,g4
+c0f2c854:	0c 40 a1 32 	cmpobe	g4,r5,c0f2c860 <L129>
+
+c0f2c858 <L105>:
+c0f2c858:	01 1e 80 5c 	mov	1,g0
+c0f2c85c:	00 00 00 0a 	ret
+
+c0f2c860 <L129>:
+c0f2c860:	02 1e a0 5c 	mov	2,g4
+c0f2c864:	20 20 a1 92 	st	g4,0x20(r4)
+c0f2c868:	00 1e 80 5c 	mov	0,g0
+c0f2c86c:	00 00 00 0a 	ret
+
+c0f2c870 <L104>:
+c0f2c870:	71 00 a0 8c 	lda	0x71,g4
+c0f2c874:	ec 5f a1 32 	cmpobe	g4,r5,c0f2c860 <L129>
+c0f2c878:	20 20 a1 90 	ld	0x20(r4),g4
+c0f2c87c:	00 1e 80 5c 	mov	0,g0
+c0f2c880:	60 20 05 35 	cmpobne	0,g4,c0f2c8e0 <L103>
+c0f2c884:	61 00 a0 8c 	lda	0x61,g4
+c0f2c888:	48 41 a1 32 	cmpobe	g4,r5,c0f2c9d0 <L130>
+
+c0f2c88c <L108>:
+c0f2c88c:	02 5e a6 59 	shlo	2,25,g4
+c0f2c890:	0c 41 a1 32 	cmpobe	g4,r5,c0f2c99c <L131>
+
+c0f2c894 <L109>:
+c0f2c894:	77 00 a0 8c 	lda	0x77,g4
+c0f2c898:	c8 40 a1 32 	cmpobe	g4,r5,c0f2c960 <L132>
+
+c0f2c89c <L110>:
+c0f2c89c:	00 1e 30 5c 	mov	0,r6
+c0f2c8a0:	73 00 a0 8c 	lda	0x73,g4
+c0f2c8a4:	84 40 a1 32 	cmpobe	g4,r5,c0f2c928 <L128>
+
+c0f2c8a8 <L111>:
+c0f2c8a8:	00 1e 30 5c 	mov	0,r6
+c0f2c8ac:	30 80 39 36 	cmpoble	r7,r6,c0f2c8dc <L119>
+c0f2c8b0:	20 20 a1 90 	ld	0x20(r4),g4
+c0f2c8b4:	28 20 05 35 	cmpobne	0,g4,c0f2c8dc <L119>
+
+c0f2c8b8 <L126>:
+c0f2c8b8:	1c 20 a1 90 	ld	0x1c(r4),g4
+c0f2c8bc:	04 16 80 5c 	mov	r4,g0
+c0f2c8c0:	14 50 a0 59 	addo	g4,1,g4
+c0f2c8c4:	1c 20 a1 92 	st	g4,0x1c(r4)
+c0f2c8c8:	1c 20 a5 32 	cmpobe	20,g4,c0f2c8e4 <L133>
+
+c0f2c8cc <L120>:
+c0f2c8cc:	06 50 30 59 	addo	r6,1,r6
+c0f2c8d0:	0c 80 39 36 	cmpoble	r7,r6,c0f2c8dc <L119>
+c0f2c8d4:	20 20 a1 90 	ld	0x20(r4),g4
+c0f2c8d8:	e0 3f 05 32 	cmpobe	0,g4,c0f2c8b8 <L126>
+
+c0f2c8dc <L119>:
+c0f2c8dc:	00 1e 80 5c 	mov	0,g0
+
+c0f2c8e0 <L103>:
+c0f2c8e0:	00 00 00 0a 	ret
+
+c0f2c8e4 <L133>:
+c0f2c8e4:	18 20 a1 90 	ld	0x18(r4),g4
+c0f2c8e8:	0c 20 89 90 	ld	0xc(r4),g1
+c0f2c8ec:	10 20 91 98 	ldl	0x10(r4),g2
+c0f2c8f0:	14 50 a0 59 	addo	g4,1,g4
+c0f2c8f4:	1c 20 f1 92 	st	g14,0x1c(r4)
+c0f2c8f8:	00 30 00 86 	callx	c0f2c4b0 <_fits>
+c0f2c8fc:	b0 c4 f2 c0 
+c0f2c900:	10 16 a0 5c 	mov	g0,g4
+c0f2c904:	04 16 80 5c 	mov	r4,g0
+c0f2c908:	14 20 05 32 	cmpobe	0,g4,c0f2c91c <L124>
+c0f2c90c:	18 20 a1 90 	ld	0x18(r4),g4
+c0f2c910:	01 08 a5 59 	addo	1,g4,g4
+c0f2c914:	18 20 a1 92 	st	g4,0x18(r4)
+c0f2c918:	b4 ff ff 08 	b	c0f2c8cc <L120>
+
+c0f2c91c <L124>:
+c0f2c91c:	00 30 00 86 	callx	c0f2c6f0 <_lock_piece>
+c0f2c920:	f0 c6 f2 c0 
+c0f2c924:	a8 ff ff 08 	b	c0f2c8cc <L120>
+
+c0f2c928 <L128>:
+c0f2c928:	18 20 a1 90 	ld	0x18(r4),g4
+c0f2c92c:	0c 20 89 90 	ld	0xc(r4),g1
+c0f2c930:	10 20 91 98 	ldl	0x10(r4),g2
+c0f2c934:	14 50 a0 59 	addo	g4,1,g4
+c0f2c938:	04 16 80 5c 	mov	r4,g0
+c0f2c93c:	06 50 30 59 	addo	r6,1,r6
+c0f2c940:	00 30 00 86 	callx	c0f2c4b0 <_fits>
+c0f2c944:	b0 c4 f2 c0 
+c0f2c948:	60 3f 04 32 	cmpobe	0,g0,c0f2c8a8 <L111>
+c0f2c94c:	18 20 a1 90 	ld	0x18(r4),g4
+c0f2c950:	01 08 a5 59 	addo	1,g4,g4
+c0f2c954:	18 20 a1 92 	st	g4,0x18(r4)
+c0f2c958:	d0 bf b9 33 	cmpobge	23,r6,c0f2c928 <L128>
+c0f2c95c:	4c ff ff 08 	b	c0f2c8a8 <L111>
+
+c0f2c960 <L132>:
+c0f2c960:	10 20 91 90 	ld	0x10(r4),g2
+c0f2c964:	0c 20 89 90 	ld	0xc(r4),g1
+c0f2c968:	12 50 90 59 	addo	g2,1,g2
+c0f2c96c:	14 20 99 90 	ld	0x14(r4),g3
+c0f2c970:	18 20 a1 90 	ld	0x18(r4),g4
+c0f2c974:	92 d0 90 58 	and	g2,3,g2
+c0f2c978:	04 16 80 5c 	mov	r4,g0
+c0f2c97c:	00 30 00 86 	callx	c0f2c4b0 <_fits>
+c0f2c980:	b0 c4 f2 c0 
+c0f2c984:	18 3f 04 32 	cmpobe	0,g0,c0f2c89c <L110>
+c0f2c988:	10 20 a1 90 	ld	0x10(r4),g4
+c0f2c98c:	01 08 a5 59 	addo	1,g4,g4
+c0f2c990:	83 08 a5 58 	and	3,g4,g4
+c0f2c994:	10 20 a1 92 	st	g4,0x10(r4)
+c0f2c998:	04 ff ff 08 	b	c0f2c89c <L110>
+
+c0f2c99c <L131>:
+c0f2c99c:	14 20 99 90 	ld	0x14(r4),g3
+c0f2c9a0:	0c 20 89 90 	ld	0xc(r4),g1
+c0f2c9a4:	10 20 91 90 	ld	0x10(r4),g2
+c0f2c9a8:	18 20 a1 90 	ld	0x18(r4),g4
+c0f2c9ac:	13 50 98 59 	addo	g3,1,g3
+c0f2c9b0:	04 16 80 5c 	mov	r4,g0
+c0f2c9b4:	00 30 00 86 	callx	c0f2c4b0 <_fits>
+c0f2c9b8:	b0 c4 f2 c0 
+c0f2c9bc:	d8 3e 04 32 	cmpobe	0,g0,c0f2c894 <L109>
+c0f2c9c0:	14 20 a1 90 	ld	0x14(r4),g4
+c0f2c9c4:	01 08 a5 59 	addo	1,g4,g4
+c0f2c9c8:	14 20 a1 92 	st	g4,0x14(r4)
+c0f2c9cc:	c8 fe ff 08 	b	c0f2c894 <L109>
+
+c0f2c9d0 <L130>:
+c0f2c9d0:	14 20 99 90 	ld	0x14(r4),g3
+c0f2c9d4:	0c 20 89 90 	ld	0xc(r4),g1
+c0f2c9d8:	10 20 91 90 	ld	0x10(r4),g2
+c0f2c9dc:	18 20 a1 90 	ld	0x18(r4),g4
+c0f2c9e0:	01 c9 9c 59 	subo	1,g3,g3
+c0f2c9e4:	04 16 80 5c 	mov	r4,g0
+c0f2c9e8:	00 30 00 86 	callx	c0f2c4b0 <_fits>
+c0f2c9ec:	b0 c4 f2 c0 
+c0f2c9f0:	9c 3e 04 32 	cmpobe	0,g0,c0f2c88c <L108>
+c0f2c9f4:	14 20 a1 90 	ld	0x14(r4),g4
+c0f2c9f8:	01 09 a5 59 	subo	1,g4,g4
+c0f2c9fc:	14 20 a1 92 	st	g4,0x14(r4)
+c0f2ca00:	8c fe ff 08 	b	c0f2c88c <L108>
+c0f2ca04:	00 00 00 00 	.word	0x00000000
+
+c0f2ca08 <LC0>:
+c0f2ca08:	53 43 4f 52 	.word	0x524f4353
+c0f2ca0c:	45 3a 00 00 	.word	0x00003a45
+
+c0f2ca10 <LC1>:
+c0f2ca10:	47 41 4d 45 	.word	0x454d4147
+c0f2ca14:	20 4f 56 45 	.word	0x45564f20
+c0f2ca18:	52 00 00 00 	.word	0x00000052
+c0f2ca1c:	00 00 00 00 	.word	0x00000000
+
+c0f2ca20 <LC2>:
+c0f2ca20:	51 55 49 54 	.word	0x54495551
+	...
+
+c0f2ca30 <_tetris_render>:
+c0f2ca30:	10 48 08 59 	addo	16,sp,sp
+c0f2ca34:	08 20 3c 90 	ld	0x8(g0),r7
+c0f2ca38:	10 16 30 5c 	mov	g0,r6
+c0f2ca3c:	00 1e 40 5c 	mov	0,r8
+c0f2ca40:	00 30 48 8c 	lda	c0f2ca08 <LC0>,r9
+c0f2ca44:	08 ca f2 c0 
+c0f2ca48:	00 1e 90 5c 	mov	0,g2
+c0f2ca4c:	7f 07 a8 8c 	lda	0x77f,g5
+c0f2ca50:	1f 58 a0 59 	addo	31,1,g4
+
+c0f2ca54 <L139>:
+c0f2ca54:	12 5c a4 82 	stob	g4,(g1)[g2]
+c0f2ca58:	12 50 90 59 	addo	g2,1,g2
+c0f2ca5c:	f8 9f ac 33 	cmpobge	g5,g2,c0f2ca54 <L139>
+c0f2ca60:	00 1e 20 5c 	mov	0,r4
+c0f2ca64:	02 de 57 59 	shlo	2,31,r10
+c0f2ca68:	1f d8 eb 59 	addo	31,15,g13
+c0f2ca6c:	00 1e 28 5c 	mov	0,r5
+c0f2ca70:	51 00 58 8c 	lda	0x51,r11
+c0f2ca74:	1f 58 62 59 	addo	31,9,r12
+c0f2ca78:	00 1e 98 5c 	mov	0,g3
+
+c0f2ca7c <L152>:
+c0f2ca7c:	04 1d a1 8c 	lda	(r4)[r4*4],g4
+c0f2ca80:	05 7e 54 82 	stob	r10,50 <_buffer_start-0xc0f2bfb0>(g1)[r5*16]
+c0f2ca84:	50 00 00 00 
+c0f2ca88:	94 9c a9 8c 	lda	(r6)[g4*2],g5
+c0f2ca8c:	05 7e 54 82 	stob	r10,65 <_buffer_start-0xc0f2bf9b>(g1)[r5*16]
+c0f2ca90:	65 00 00 00 
+c0f2ca94:	14 5e a4 8c 	lda	(g1)[g4*16],g4
+c0f2ca98:	15 00 ab 59 	addo	g5,r12,g5
+c0f2ca9c:	14 c0 ba 59 	addo	g4,r11,g7
+c0f2caa0:	00 1e 80 5c 	mov	0,g0
+
+c0f2caa4 <L151>:
+c0f2caa4:	00 50 b5 80 	ldob	(g5),g6
+c0f2caa8:	13 00 94 59 	addo	g3,g0,g2
+c0f2caac:	18 8e a5 59 	shlo	24,g6,g4
+c0f2cab0:	10 50 80 59 	addo	g0,1,g0
+c0f2cab4:	15 50 a8 59 	addo	g5,1,g5
+c0f2cab8:	0c 20 05 35 	cmpobne	0,g4,c0f2cac4 <L148>
+c0f2cabc:	1f d8 b3 59 	addo	31,15,g6
+c0f2cac0:	19 de a5 59 	shlo	25,23,g4
+
+c0f2cac4 <L148>:
+c0f2cac4:	00 d0 b5 82 	stob	g6,(g7)
+c0f2cac8:	18 0c a5 59 	shro	24,g4,g4
+c0f2cacc:	17 90 b8 59 	addo	g7,2,g7
+c0f2cad0:	54 01 ed 32 	cmpobe	g13,g4,c0f2cc24 <L198>
+
+c0f2cad4 <L150>:
+c0f2cad4:	92 7c b4 82 	stob	g6,52 <_buffer_start-0xc0f2bfae>(g1)[g2*2]
+c0f2cad8:	52 00 00 00 
+c0f2cadc:	c8 3f 4c 33 	cmpobge	9,g0,c0f2caa4 <L151>
+c0f2cae0:	28 e0 9c 8c 	lda	0x28(g3),g3
+c0f2cae4:	04 50 20 59 	addo	r4,1,r4
+c0f2cae8:	05 50 29 59 	addo	r5,5,r5
+c0f2caec:	90 3f 99 33 	cmpobge	19,r4,c0f2ca7c <L152>
+c0f2caf0:	1f 98 b3 59 	addo	31,14,g6
+c0f2caf4:	11 16 a0 5c 	mov	g1,g4
+c0f2caf8:	11 50 ad 59 	addo	g1,21,g5
+
+c0f2cafc <L157>:
+c0f2cafc:	00 10 b5 82 	stob	g6,(g4)
+c0f2cb00:	90 26 b5 82 	stob	g6,0x690(g4)
+c0f2cb04:	14 50 a0 59 	addo	g4,1,g4
+c0f2cb08:	f4 1f ad 33 	cmpobge	g5,g4,c0f2cafc <L157>
+c0f2cb0c:	00 1e 90 5c 	mov	0,g2
+c0f2cb10:	00 30 e8 8c 	lda	c0f2c380 <_shapes>,g13
+c0f2cb14:	80 c3 f2 c0 
+
+c0f2cb18 <L163>:
+c0f2cb18:	10 a0 a9 90 	ld	0x10(r6),g5
+c0f2cb1c:	0c a0 99 90 	ld	0xc(r6),g3
+c0f2cb20:	14 a0 81 90 	ld	0x14(r6),g0
+c0f2cb24:	13 5d a5 8c 	lda	(g5)[g3*4],g4
+c0f2cb28:	18 a0 b9 90 	ld	0x18(r6),g7
+c0f2cb2c:	14 9d a4 8c 	lda	(g2)[g4*4],g4
+c0f2cb30:	94 7c af c0 	ldib	1 <_buffer_start-0xc0f2bfff>(g13)[g4*2],g5
+c0f2cb34:	01 00 00 00 
+c0f2cb38:	94 38 b0 c0 	ldib	c0f2c380 <_shapes>[g4*2],g6
+c0f2cb3c:	80 c3 f2 c0 
+c0f2cb40:	12 50 90 59 	addo	g2,1,g2
+c0f2cb44:	17 40 bd 59 	addo	g7,g5,g7
+c0f2cb48:	10 80 85 59 	addo	g0,g6,g0
+c0f2cb4c:	38 20 4c 34 	cmpobl	9,g0,c0f2cb84 <L160>
+c0f2cb50:	34 e0 05 39 	cmpibg	0,g7,c0f2cb84 <L160>
+c0f2cb54:	17 dd a5 8c 	lda	(g7)[g7*4],g4
+c0f2cb58:	2c e0 9d 3c 	cmpibl	19,g7,c0f2cb84 <L160>
+c0f2cb5c:	94 1d b4 8c 	lda	(g0)[g4*8],g6
+c0f2cb60:	00 f4 a4 80 	ldob	c0f2c460 <_piece_ch>(g3),g4
+c0f2cb64:	60 c4 f2 c0 
+c0f2cb68:	96 7c a4 82 	stob	g4,51 <_buffer_start-0xc0f2bfaf>(g1)[g6*2]
+c0f2cb6c:	51 00 00 00 
+c0f2cb70:	0c a0 a9 90 	ld	0xc(r6),g5
+c0f2cb74:	00 74 a5 80 	ldob	c0f2c460 <_piece_ch>(g5),g4
+c0f2cb78:	60 c4 f2 c0 
+c0f2cb7c:	96 7c a4 82 	stob	g4,52 <_buffer_start-0xc0f2bfae>(g1)[g6*2]
+c0f2cb80:	52 00 00 00 
+
+c0f2cb84 <L160>:
+c0f2cb84:	94 bf 1c 33 	cmpobge	3,g2,c0f2cb18 <L163>
+c0f2cb88:	00 30 a8 80 	ldob	c0f2ca08 <LC0>,g5
+c0f2cb8c:	08 ca f2 c0 
+c0f2cb90:	40 e0 b7 8c 	lda	0x40(fp),g6
+c0f2cb94:	b9 00 90 8c 	lda	0xb9,g2
+c0f2cb98:	1c 60 05 32 	cmpobe	0,g5,c0f2cbb4 <L168>
+
+c0f2cb9c <L167>:
+c0f2cb9c:	12 5c ac 82 	stob	g5,(g1)[g2]
+c0f2cba0:	09 50 48 59 	addo	r9,1,r9
+c0f2cba4:	00 50 aa 80 	ldob	(r9),g5
+c0f2cba8:	40 e0 b7 8c 	lda	0x40(fp),g6
+c0f2cbac:	12 50 90 59 	addo	g2,1,g2
+c0f2cbb0:	ec 7f 05 35 	cmpobne	0,g5,c0f2cb9c <L167>
+
+c0f2cbb4 <L168>:
+c0f2cbb4:	0a cc a1 70 	remo	10,r7,g4
+c0f2cbb8:	8a cd 39 70 	divo	10,r7,r7
+c0f2cbbc:	30 20 a5 8c 	lda	0x30(g4),g4
+c0f2cbc0:	16 1c a2 82 	stob	g4,(r8)[g6]
+c0f2cbc4:	08 50 40 59 	addo	r8,1,r8
+c0f2cbc8:	ec ff 01 35 	cmpobne	0,r7,c0f2cbb4 <L168>
+c0f2cbcc:	18 20 02 32 	cmpobe	0,r8,c0f2cbe4 <L195>
+
+c0f2cbd0 <L175>:
+c0f2cbd0:	01 09 42 59 	subo	1,r8,r8
+c0f2cbd4:	08 9c a5 80 	ldob	(g6)[r8],g4
+c0f2cbd8:	12 5c a4 82 	stob	g4,(g1)[g2]
+c0f2cbdc:	12 50 90 59 	addo	g2,1,g2
+c0f2cbe0:	f0 3f 02 35 	cmpobne	0,r8,c0f2cbd0 <L175>
+
+c0f2cbe4 <L195>:
+c0f2cbe4:	20 a0 81 90 	ld	0x20(r6),g0
+c0f2cbe8:	38 20 04 32 	cmpobe	0,g0,c0f2cc20 <L134>
+c0f2cbec:	00 30 48 8c 	lda	c0f2ca10 <LC1>,r9
+c0f2cbf0:	10 ca f2 c0 
+c0f2cbf4:	0c 20 0c 32 	cmpobe	1,g0,c0f2cc00 <L178>
+c0f2cbf8:	00 30 48 8c 	lda	c0f2ca20 <LC2>,r9
+c0f2cbfc:	20 ca f2 c0 
+
+c0f2cc00 <L178>:
+c0f2cc00:	00 50 aa 80 	ldob	(r9),g5
+c0f2cc04:	39 03 90 8c 	lda	0x339,g2
+c0f2cc08:	18 60 05 32 	cmpobe	0,g5,c0f2cc20 <L134>
+
+c0f2cc0c <L182>:
+c0f2cc0c:	12 5c ac 82 	stob	g5,(g1)[g2]
+c0f2cc10:	09 50 48 59 	addo	r9,1,r9
+c0f2cc14:	00 50 aa 80 	ldob	(r9),g5
+c0f2cc18:	12 50 90 59 	addo	g2,1,g2
+c0f2cc1c:	f0 7f 05 35 	cmpobne	0,g5,c0f2cc0c <L182>
+
+c0f2cc20 <L134>:
+c0f2cc20:	00 00 00 0a 	ret
+
+c0f2cc24 <L198>:
+c0f2cc24:	1f 58 b0 59 	addo	31,1,g6
+c0f2cc28:	ac fe ff 08 	b	c0f2cad4 <L150>
+c0f2cc2c:	00 00 00 00 	.word	0x00000000
+
+c0f2cc30 <_get32>:
+c0f2cc30:	00 30 f0 8c 	lda	c0f2cc68 <Li960R9>,g14
+c0f2cc34:	68 cc f2 c0 
+
+c0f2cc38 <get32.lf>:
+c0f2cc38:	1e 16 88 5c 	mov	g14,g1
+c0f2cc3c:	00 1e f0 5c 	mov	0,g14
+c0f2cc40:	01 20 a4 80 	ldob	0x1(g0),g4
+c0f2cc44:	02 20 b4 80 	ldob	0x2(g0),g6
+c0f2cc48:	03 20 ac 80 	ldob	0x3(g0),g5
+c0f2cc4c:	08 0e a5 59 	shlo	8,g4,g4
+c0f2cc50:	00 10 84 80 	ldob	(g0),g0
+c0f2cc54:	10 8e b5 59 	shlo	16,g6,g6
+c0f2cc58:	90 03 85 58 	or	g0,g4,g0
+c0f2cc5c:	18 4e ad 59 	shlo	24,g5,g5
+c0f2cc60:	90 83 85 58 	or	g0,g6,g0
+c0f2cc64:	95 03 84 58 	or	g5,g0,g0
+
+c0f2cc68 <Li960R9>:
+c0f2cc68:	00 00 00 0a 	ret
+c0f2cc6c:	00 00 00 00 	.word	0x00000000
+
+c0f2cc70 <_put32>:
+c0f2cc70:	00 30 f0 8c 	lda	c0f2cc9c <Li960R10>,g14
+c0f2cc74:	9c cc f2 c0 
+
+c0f2cc78 <put32.lf>:
+c0f2cc78:	1e 16 90 5c 	mov	g14,g2
+c0f2cc7c:	00 1e f0 5c 	mov	0,g14
+c0f2cc80:	18 4c a4 59 	shro	24,g1,g4
+c0f2cc84:	08 4c ac 59 	shro	8,g1,g5
+c0f2cc88:	10 4c b4 59 	shro	16,g1,g6
+c0f2cc8c:	03 20 a4 82 	stob	g4,0x3(g0)
+c0f2cc90:	01 20 ac 82 	stob	g5,0x1(g0)
+c0f2cc94:	02 20 b4 82 	stob	g6,0x2(g0)
+c0f2cc98:	Address 0x00000000c0f2cc98 is out of bounds.
+
+
+c0f2cc9c <Li960R10>:
+c0f2cc9c:	00 00 00 0a 	ret
+
+c0f2cca0 <_signed32>:
+c0f2cca0:	00 30 f0 8c 	lda	c0f2ccb0 <Li960R11>,g14
+c0f2cca4:	b0 cc f2 c0 
+
+c0f2cca8 <signed32.lf>:
+c0f2cca8:	1e 16 88 5c 	mov	g14,g1
+c0f2ccac:	00 1e f0 5c 	mov	0,g14
+
+c0f2ccb0 <Li960R11>:
+c0f2ccb0:	00 00 00 0a 	ret
+	...
+
+c0f2ccc0 <_tetris_encode>:
+c0f2ccc0:	11 16 20 5c 	mov	g1,r4
+c0f2ccc4:	00 10 8c 90 	ld	(g0),g1
+c0f2ccc8:	10 16 28 5c 	mov	g0,r5
+c0f2cccc:	04 16 80 5c 	mov	r4,g0
+c0f2ccd0:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2ccd4:	70 cc f2 c0 
+c0f2ccd8:	04 60 89 90 	ld	0x4(r5),g1
+c0f2ccdc:	04 10 81 59 	addo	r4,4,g0
+c0f2cce0:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2cce4:	70 cc f2 c0 
+c0f2cce8:	08 60 89 90 	ld	0x8(r5),g1
+c0f2ccec:	04 10 82 59 	addo	r4,8,g0
+c0f2ccf0:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2ccf4:	70 cc f2 c0 
+c0f2ccf8:	0c 60 89 90 	ld	0xc(r5),g1
+c0f2ccfc:	04 10 83 59 	addo	r4,12,g0
+c0f2cd00:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2cd04:	70 cc f2 c0 
+c0f2cd08:	10 60 89 90 	ld	0x10(r5),g1
+c0f2cd0c:	04 10 84 59 	addo	r4,16,g0
+c0f2cd10:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2cd14:	70 cc f2 c0 
+c0f2cd18:	14 60 89 90 	ld	0x14(r5),g1
+c0f2cd1c:	04 10 85 59 	addo	r4,20,g0
+c0f2cd20:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2cd24:	70 cc f2 c0 
+c0f2cd28:	18 60 89 90 	ld	0x18(r5),g1
+c0f2cd2c:	04 10 86 59 	addo	r4,24,g0
+c0f2cd30:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2cd34:	70 cc f2 c0 
+c0f2cd38:	1c 60 89 90 	ld	0x1c(r5),g1
+c0f2cd3c:	04 10 87 59 	addo	r4,28,g0
+c0f2cd40:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2cd44:	70 cc f2 c0 
+c0f2cd48:	20 60 89 90 	ld	0x20(r5),g1
+c0f2cd4c:	20 20 81 8c 	lda	0x20(r4),g0
+c0f2cd50:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2cd54:	70 cc f2 c0 
+c0f2cd58:	24 20 81 8c 	lda	0x24(r4),g0
+c0f2cd5c:	00 1e 88 5c 	mov	0,g1
+c0f2cd60:	00 30 00 86 	callx	c0f2cc70 <_put32>
+c0f2cd64:	70 cc f2 c0 
+c0f2cd68:	28 20 b9 8c 	lda	0x28(r4),g7
+c0f2cd6c:	00 1e 80 5c 	mov	0,g0
+c0f2cd70:	Address 0x00000000c0f2cd70 is out of bounds.
+
+
+c0f2cd74 <L208>:
+c0f2cd74:	8a 0d a4 70 	divo	10,g0,g4
+c0f2cd78:	0a 0c b4 70 	remo	10,g0,g6
+c0f2cd7c:	14 1d a5 8c 	lda	(g4)[g4*4],g4
+c0f2cd80:	10 50 80 59 	addo	g0,1,g0
+c0f2cd84:	94 5c a1 8c 	lda	(r5)[g4*2],g4
+c0f2cd88:	16 3c ad 80 	ldob	28 <_buffer_start-0xc0f2bfd8>(g4)[g6],g5
+c0f2cd8c:	28 00 00 00 
+c0f2cd90:	00 d0 ad 82 	stob	g5,(g7)
+c0f2cd94:	17 50 b8 59 	addo	g7,1,g7
+c0f2cd98:	dc 1f 8c 33 	cmpobge	g1,g0,c0f2cd74 <L208>
+
+c0f2cd9c <Li960R12>:
+c0f2cd9c:	00 00 00 0a 	ret
+
+c0f2cda0 <_tetris_decode>:
+c0f2cda0:	10 16 28 5c 	mov	g0,r5
+c0f2cda4:	11 16 20 5c 	mov	g1,r4
+c0f2cda8:	11 16 80 5c 	mov	g1,g0
+c0f2cdac:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2cdb0:	30 cc f2 c0 
+c0f2cdb4:	04 10 a1 59 	addo	r4,4,g4
+c0f2cdb8:	00 50 81 92 	st	g0,(r5)
+c0f2cdbc:	14 16 80 5c 	mov	g4,g0
+c0f2cdc0:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2cdc4:	30 cc f2 c0 
+c0f2cdc8:	04 10 a2 59 	addo	r4,8,g4
+c0f2cdcc:	04 60 81 92 	st	g0,0x4(r5)
+c0f2cdd0:	14 16 80 5c 	mov	g4,g0
+c0f2cdd4:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2cdd8:	30 cc f2 c0 
+c0f2cddc:	04 10 a3 59 	addo	r4,12,g4
+c0f2cde0:	08 60 81 92 	st	g0,0x8(r5)
+c0f2cde4:	14 16 80 5c 	mov	g4,g0
+c0f2cde8:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2cdec:	30 cc f2 c0 
+c0f2cdf0:	04 10 a4 59 	addo	r4,16,g4
+c0f2cdf4:	0c 60 81 92 	st	g0,0xc(r5)
+c0f2cdf8:	14 16 80 5c 	mov	g4,g0
+c0f2cdfc:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2ce00:	30 cc f2 c0 
+c0f2ce04:	04 10 a5 59 	addo	r4,20,g4
+c0f2ce08:	10 60 81 92 	st	g0,0x10(r5)
+c0f2ce0c:	14 16 80 5c 	mov	g4,g0
+c0f2ce10:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2ce14:	30 cc f2 c0 
+c0f2ce18:	00 30 00 86 	callx	c0f2cca0 <_signed32>
+c0f2ce1c:	a0 cc f2 c0 
+c0f2ce20:	04 10 a6 59 	addo	r4,24,g4
+c0f2ce24:	14 60 81 92 	st	g0,0x14(r5)
+c0f2ce28:	14 16 80 5c 	mov	g4,g0
+c0f2ce2c:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2ce30:	30 cc f2 c0 
+c0f2ce34:	00 30 00 86 	callx	c0f2cca0 <_signed32>
+c0f2ce38:	a0 cc f2 c0 
+c0f2ce3c:	04 10 a7 59 	addo	r4,28,g4
+c0f2ce40:	18 60 81 92 	st	g0,0x18(r5)
+c0f2ce44:	14 16 80 5c 	mov	g4,g0
+c0f2ce48:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2ce4c:	30 cc f2 c0 
+c0f2ce50:	20 20 a1 8c 	lda	0x20(r4),g4
+c0f2ce54:	1c 60 81 92 	st	g0,0x1c(r5)
+c0f2ce58:	14 16 80 5c 	mov	g4,g0
+c0f2ce5c:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2ce60:	30 cc f2 c0 
+c0f2ce64:	24 20 a1 8c 	lda	0x24(r4),g4
+c0f2ce68:	20 60 81 92 	st	g0,0x20(r5)
+c0f2ce6c:	14 16 80 5c 	mov	g4,g0
+c0f2ce70:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2ce74:	30 cc f2 c0 
+c0f2ce78:	24 60 81 92 	st	g0,0x24(r5)
+c0f2ce7c:	28 20 b9 8c 	lda	0x28(r4),g7
+c0f2ce80:	00 1e 80 5c 	mov	0,g0
+c0f2ce84:	Address 0x00000000c0f2ce84 is out of bounds.
+
+
+c0f2ce88 <L216>:
+c0f2ce88:	8a 0d a4 70 	divo	10,g0,g4
+c0f2ce8c:	0a 0c b4 70 	remo	10,g0,g6
+c0f2ce90:	00 d0 ad 80 	ldob	(g7),g5
+c0f2ce94:	17 50 b8 59 	addo	g7,1,g7
+c0f2ce98:	14 1d a5 8c 	lda	(g4)[g4*4],g4
+c0f2ce9c:	10 50 80 59 	addo	g0,1,g0
+c0f2cea0:	94 5c a1 8c 	lda	(r5)[g4*2],g4
+c0f2cea4:	16 3c ad 82 	stob	g5,28 <_buffer_start-0xc0f2bfd8>(g4)[g6]
+c0f2cea8:	28 00 00 00 
+c0f2ceac:	dc 1f 8c 33 	cmpobge	g1,g0,c0f2ce88 <L216>
+
+c0f2ceb0 <Li960R13>:
+c0f2ceb0:	00 00 00 0a 	ret
+	...
+
+c0f2cec0 <_tetris_request>:
+c0f2cec0:	f0 60 08 8c 	lda	0xf0(sp),sp
+c0f2cec4:	11 16 28 5c 	mov	g1,r5
+c0f2cec8:	12 16 40 5c 	mov	g2,r8
+c0f2cecc:	10 16 20 5c 	mov	g0,r4
+c0f2ced0:	01 1e a8 5c 	mov	1,g5
+c0f2ced4:	88 19 a0 58 	setbit	8,0,g4
+c0f2ced8:	f8 40 a4 35 	cmpobne	g4,g1,c0f2cfd0 <L219>
+c0f2cedc:	02 1e a8 5c 	mov	2,g5
+c0f2cee0:	6f 08 a0 8c 	lda	0x86f,g4
+c0f2cee4:	ec c0 a4 33 	cmpobge	g4,g3,c0f2cfd0 <L219>
+c0f2cee8:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2ceec:	30 cc f2 c0 
+c0f2cef0:	10 16 30 5c 	mov	g0,r6
+c0f2cef4:	04 10 82 59 	addo	r4,8,g0
+c0f2cef8:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2cefc:	30 cc f2 c0 
+c0f2cf00:	10 16 38 5c 	mov	g0,r7
+c0f2cf04:	04 10 83 59 	addo	r4,12,g0
+c0f2cf08:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2cf0c:	30 cc f2 c0 
+c0f2cf10:	10 16 48 5c 	mov	g0,r9
+c0f2cf14:	74 a0 09 32 	cmpobe	1,r6,c0f2cf88 <L239>
+c0f2cf18:	01 1e a8 5c 	mov	1,g5
+c0f2cf1c:	b4 a0 01 35 	cmpobne	0,r6,c0f2cfd0 <L219>
+c0f2cf20:	04 10 81 59 	addo	r4,4,g0
+c0f2cf24:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2cf28:	30 cc f2 c0 
+c0f2cf2c:	01 1e a8 5c 	mov	1,g5
+c0f2cf30:	a0 20 04 35 	cmpobne	0,g0,c0f2cfd0 <L219>
+c0f2cf34:	40 e0 87 8c 	lda	0x40(fp),g0
+c0f2cf38:	04 10 8c 59 	addo	r4,16,g1
+c0f2cf3c:	00 30 00 86 	callx	c0f2cda0 <_tetris_decode>
+c0f2cf40:	a0 cd f2 c0 
+c0f2cf44:	40 e0 87 8c 	lda	0x40(fp),g0
+c0f2cf48:	07 16 88 5c 	mov	r7,g1
+c0f2cf4c:	09 16 90 5c 	mov	r9,g2
+c0f2cf50:	00 30 00 86 	callx	c0f2c810 <_tetris_step>
+c0f2cf54:	10 c8 f2 c0 
+c0f2cf58:	01 1e a8 5c 	mov	1,g5
+c0f2cf5c:	74 20 04 35 	cmpobne	0,g0,c0f2cfd0 <L219>
+
+c0f2cf60 <L231>:
+c0f2cf60:	40 e0 87 8c 	lda	0x40(fp),g0
+c0f2cf64:	08 16 88 5c 	mov	r8,g1
+c0f2cf68:	00 30 00 86 	callx	c0f2ccc0 <_tetris_encode>
+c0f2cf6c:	c0 cc f2 c0 
+c0f2cf70:	f0 20 8a 8c 	lda	0xf0(r8),g1
+c0f2cf74:	40 e0 87 8c 	lda	0x40(fp),g0
+c0f2cf78:	00 30 00 86 	callx	c0f2ca30 <_tetris_render>
+c0f2cf7c:	30 ca f2 c0 
+c0f2cf80:	00 1e a8 5c 	mov	0,g5
+c0f2cf84:	4c 00 00 08 	b	c0f2cfd0 <L219>
+
+c0f2cf88 <L239>:
+c0f2cf88:	0c e0 01 35 	cmpobne	0,r7,c0f2cf94 <L224>
+c0f2cf8c:	10 1e b0 5c 	mov	16,g6
+c0f2cf90:	0c 20 04 32 	cmpobe	0,g0,c0f2cf9c <L230>
+
+c0f2cf94 <L224>:
+c0f2cf94:	01 1e a8 5c 	mov	1,g5
+c0f2cf98:	38 00 00 08 	b	c0f2cfd0 <L219>
+
+c0f2cf9c <L230>:
+c0f2cf9c:	16 1c a1 80 	ldob	(r4)[g6],g4
+c0f2cfa0:	01 1e a8 5c 	mov	1,g5
+c0f2cfa4:	16 50 b0 59 	addo	g6,1,g6
+c0f2cfa8:	28 20 05 35 	cmpobne	0,g4,c0f2cfd0 <L219>
+c0f2cfac:	f0 9f 2d 31 	cmpobg	r5,g6,c0f2cf9c <L230>
+c0f2cfb0:	04 10 81 59 	addo	r4,4,g0
+c0f2cfb4:	00 30 00 86 	callx	c0f2cc30 <_get32>
+c0f2cfb8:	30 cc f2 c0 
+c0f2cfbc:	10 16 88 5c 	mov	g0,g1
+c0f2cfc0:	40 e0 87 8c 	lda	0x40(fp),g0
+c0f2cfc4:	00 30 00 86 	callx	c0f2c590 <_tetris_init>
+c0f2cfc8:	90 c5 f2 c0 
+c0f2cfcc:	94 ff ff 08 	b	c0f2cf60 <L231>
+
+c0f2cfd0 <L219>:
+c0f2cfd0:	15 16 80 5c 	mov	g5,g0
+
+c0f2cfd4 <Li960R14>:
+c0f2cfd4:	00 00 00 0a 	ret
+	...

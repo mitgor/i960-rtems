@@ -1,0 +1,22 @@
+
+romhook.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+fefe0000 <_start>:
+fefe0000:	00 30 80 8c 	lda	fefe001c <_ping_handler>,g0
+fefe0004:	1c 00 fe fe 
+fefe0008:	00 30 80 92 	st	g0,c001f9bc <stock_complete-0x2c114>
+fefe000c:	bc f9 01 c0 
+fefe0010:	00 1e f0 5c 	mov	0,g14
+fefe0014:	00 30 00 84 	bx	c004a2e0 <stock_complete-0x17f0>
+fefe0018:	e0 a2 04 c0 
+
+fefe001c <_ping_handler>:
+fefe001c:	7e 01 88 8c 	lda	0x17e,g1
+fefe0020:	18 20 8c 8a 	stos	g1,0x18(g0)
+fefe0024:	00 30 88 8c 	lda	c004bad0 <stock_complete>,g1
+fefe0028:	d0 ba 04 c0 
+fefe002c:	Address 0x00000000fefe002c is out of bounds.
+

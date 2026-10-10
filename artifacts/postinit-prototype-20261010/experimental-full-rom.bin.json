@@ -1,0 +1,22 @@
+{
+  "experimental": true,
+  "hardware_validated": false,
+  "flash_ready": false,
+  "stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+  "output_sha256": "77fbc0fd893971dee19d7a147e3c5eee73983c7541370cae0c522874d72725c8",
+  "loader_sha256": "7dd2fccc8636a5e048261480eb83cae64d964ada8b4e777cc0ab22a23ce2160f",
+  "loader_offset": 393216,
+  "entry_address": 4278059008,
+  "ram_hook_address": 3221547076,
+  "metadata_checksum": 899283816,
+  "changed_bytes": 538,
+  "bootblock_unchanged": true,
+  "compressed_program_unchanged": true,
+  "outstanding": [
+    "PCI/BIOS behavior at hook",
+    "DMA and interrupt quiescence",
+    "exclusive DRAM window and inherited stack",
+    "watchdog behavior",
+    "custom flashing and independent recovery"
+  ]
+}

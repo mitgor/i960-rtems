@@ -1,0 +1,19 @@
+{
+  "enquiry_sha256": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+  "allocation_unit": 8192,
+  "pool_blocks": 1849,
+  "reserved_blocks": 65,
+  "starting_block": 1782,
+  "predicted_staging_base": 3237134336,
+  "allocation_end_exclusive": 3237666816,
+  "pointer_variable": 3222350448,
+  "pointer_read_offset": 4280183408,
+  "predicted_only": true,
+  "pointer_observed": false,
+  "conditions": [
+    "matching 512 KiB startup route",
+    "successful allocator return",
+    "geometry unchanged since allocation",
+    "no upstream offset rejection or DMA alias surprise"
+  ]
+}

@@ -1,0 +1,49 @@
+
+probe.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c0fac180 <_start>:
+c0fac180:	82 1d 90 65 	icctl	2,0,g2
+c0fac184:	00 30 20 8c 	lda	c1f2c000 <complete+0xf7fe14>,r4
+c0fac188:	00 c0 f2 c1 
+c0fac18c:	00 30 28 8c 	lda	80000 <_start-0xc0f2c180>,r5
+c0fac190:	00 00 08 00 
+c0fac194:	00 30 30 8c 	lda	ffffffff <complete+0x3f053e13>,r6
+c0fac198:	ff ff ff ff 
+c0fac19c:	00 30 38 8c 	lda	edb88320 <complete+0x2cbdc134>,r7
+c0fac1a0:	20 83 b8 ed 
+
+c0fac1a4 <byte_loop>:
+c0fac1a4:	00 10 41 80 	ldob	(r4),r8
+c0fac1a8:	08 83 31 58 	xor	r8,r6,r6
+c0fac1ac:	08 1e 48 5c 	mov	8,r9
+
+c0fac1b0 <bit_loop>:
+c0fac1b0:	81 88 51 58 	and	1,r6,r10
+c0fac1b4:	01 8c 31 59 	shro	1,r6,r6
+c0fac1b8:	08 a0 02 32 	cmpobe	0,r10,c0fac1c0 <no_xor>
+c0fac1bc:	07 83 31 58 	xor	r7,r6,r6
+
+c0fac1c0 <no_xor>:
+c0fac1c0:	01 49 4a 59 	subo	1,r9,r9
+c0fac1c4:	ec 7f 02 35 	cmpobne	0,r9,c0fac1b0 <bit_loop>
+c0fac1c8:	01 08 21 59 	addo	1,r4,r4
+c0fac1cc:	01 49 29 59 	subo	1,r5,r5
+c0fac1d0:	d4 7f 01 35 	cmpobne	0,r5,c0fac1a4 <byte_loop>
+c0fac1d4:	06 15 30 58 	not	r6,r6
+c0fac1d8:	00 30 38 8c 	lda	2012d01f <_start-0xa0e7f161>,r7
+c0fac1dc:	1f d0 12 20 
+c0fac1e0:	80 01 88 8c 	lda	0x180,g1
+c0fac1e4:	08 c0 31 35 	cmpobne	r6,r7,c0fac1ec <complete>
+c0fac1e8:	Address 0x00000000c0fac1e8 is out of bounds.
+
+
+c0fac1ec <complete>:
+c0fac1ec:	02 1e 90 65 	dcctl	2,0,g2
+c0fac1f0:	18 20 8c 8a 	stos	g1,0x18(g0)
+c0fac1f4:	00 30 88 8c 	lda	c004bad0 <_start-0xf606b0>,g1
+c0fac1f8:	d0 ba 04 c0 
+c0fac1fc:	Address 0x00000000c0fac1fc is out of bounds.
+

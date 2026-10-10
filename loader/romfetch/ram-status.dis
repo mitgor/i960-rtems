@@ -1,0 +1,14 @@
+
+ram-status.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c0fac100 <_start>:
+c0fac100:	02 1e 90 65 	dcctl	2,0,g2
+c0fac104:	7e 01 88 8c 	lda	0x17e,g1
+c0fac108:	18 20 8c 8a 	stos	g1,0x18(g0)
+c0fac10c:	00 30 88 8c 	lda	c004bad0 <_start-0xf60630>,g1
+c0fac110:	d0 ba 04 c0 
+c0fac114:	Address 0x00000000c0fac114 is out of bounds.
+

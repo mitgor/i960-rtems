@@ -1,5 +1,9 @@
 # DAC960FL.EXE — the DOS flash utility (decoded) + the MIMG image format
 
+Latest programming audit: [PROGRAMMING-RECOVERY.md](PROGRAMMING-RECOVERY.md). The matching 512 KiB route uses 2B/1 and rewrites the lower 496 KiB; 22 returns an error on this route. An offline experimental MIMG package is archived, but vendor acceptance and recovery remain unverified.
+
+The older image-building and live-flash recipes below are historical, superseded by POSTINIT-LOADER.md and this audit. Do not treat their legacy payload/IBR assumptions or safety claims as a procedure for the recovered full ROM.
+
 **Current result:** [In-system recovery succeeded](SNAPSHOT-RECOVERY.md). A paired
 512 KiB capture contains the exact 4.07-0-29 firmware and FWTCBBLK boot block,
 plus the independently verified PCI BIOS. This supersedes older no-dump status

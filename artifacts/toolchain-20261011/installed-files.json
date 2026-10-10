@@ -1,0 +1,589 @@
+[
+  {
+    "path": "tools/bin/i960-coff-ar",
+    "link": "i960-elf-ar"
+  },
+  {
+    "path": "tools/bin/i960-coff-as",
+    "link": "i960-elf-as"
+  },
+  {
+    "path": "tools/bin/i960-coff-cpp",
+    "size": 275672,
+    "sha256": "3df1348c46d01f9768991307e9a87b93465fde51f44ec2a908ed1f17a8781d3a"
+  },
+  {
+    "path": "tools/bin/i960-coff-gcc",
+    "size": 267944,
+    "sha256": "e607498834292e0520f8193d27c5633b2cc453e7091d16d973737b4db1890ae1"
+  },
+  {
+    "path": "tools/bin/i960-coff-gcc-3.3.6",
+    "size": 267944,
+    "sha256": "e607498834292e0520f8193d27c5633b2cc453e7091d16d973737b4db1890ae1"
+  },
+  {
+    "path": "tools/bin/i960-coff-gccbug",
+    "size": 15814,
+    "sha256": "4ee42843ea8612895a6d90192729c94eb1b20f1c09ddc2dc58fa7f35820250e3"
+  },
+  {
+    "path": "tools/bin/i960-coff-gcov",
+    "size": 72616,
+    "sha256": "0f9e16a3d9e3a0850455e4e935182b862b02d6a1c8c789cd3cef7b4bdd20befd"
+  },
+  {
+    "path": "tools/bin/i960-coff-ld",
+    "link": "i960-elf-ld"
+  },
+  {
+    "path": "tools/bin/i960-coff-nm",
+    "link": "i960-elf-nm"
+  },
+  {
+    "path": "tools/bin/i960-coff-objcopy",
+    "link": "i960-elf-objcopy"
+  },
+  {
+    "path": "tools/bin/i960-coff-objdump",
+    "link": "i960-elf-objdump"
+  },
+  {
+    "path": "tools/bin/i960-coff-ranlib",
+    "link": "i960-elf-ranlib"
+  },
+  {
+    "path": "tools/bin/i960-coff-strip",
+    "link": "i960-elf-strip"
+  },
+  {
+    "path": "tools/bin/i960-elf-addr2line",
+    "size": 4259544,
+    "sha256": "afddc55609255f977cac6c27be28f905b625d14892e619409336df4f8e00fc91"
+  },
+  {
+    "path": "tools/bin/i960-elf-ar",
+    "size": 4431264,
+    "sha256": "3590bcd74a2fb2c05f273dc1caf3c10c4433b2ff5bb37704b8ef359847f29c6c"
+  },
+  {
+    "path": "tools/bin/i960-elf-as",
+    "size": 5673576,
+    "sha256": "8bfaf8a0ea17e5532c5352b28951308954c0e6bc8b48fb92929c9315b7e9b6f7"
+  },
+  {
+    "path": "tools/bin/i960-elf-c++filt",
+    "size": 4215584,
+    "sha256": "ec02f3bd0aa59ff0cea285186feab1d577c45b5a477fa39eea03b46d7584c526"
+  },
+  {
+    "path": "tools/bin/i960-elf-elfedit",
+    "size": 105112,
+    "sha256": "6e647cf50e66a2024650f4fd232c3758c0d11c36815869aa5037fe22d909cd98"
+  },
+  {
+    "path": "tools/bin/i960-elf-gprof",
+    "size": 4828208,
+    "sha256": "67500c48961c297b44b1239bcf4236207fbf3bc69c39238e278cef514e525d05"
+  },
+  {
+    "path": "tools/bin/i960-elf-ld",
+    "size": 5510680,
+    "sha256": "a36b72168b623c3a0259c5d7406de91312bdde775377addd79aeae0542280c9d"
+  },
+  {
+    "path": "tools/bin/i960-elf-ld.bfd",
+    "size": 5510680,
+    "sha256": "a36b72168b623c3a0259c5d7406de91312bdde775377addd79aeae0542280c9d"
+  },
+  {
+    "path": "tools/bin/i960-elf-nm",
+    "size": 4300440,
+    "sha256": "3020dd6853598ddb430617fdce5d64de688038bd20c2466cdbe6ad44d98e4a99"
+  },
+  {
+    "path": "tools/bin/i960-elf-objcopy",
+    "size": 5259376,
+    "sha256": "806e8e83ad0970c4cce96805390c8934b2d188492b5b0f91c237a3a2392e0027"
+  },
+  {
+    "path": "tools/bin/i960-elf-objdump",
+    "size": 5978344,
+    "sha256": "d770df946e71a922a20997c08733de2ceaa63fa091a44f10eea407f35b78c044"
+  },
+  {
+    "path": "tools/bin/i960-elf-ranlib",
+    "size": 4431296,
+    "sha256": "4f5c8a1924578d68d1203db2039791e8f689389a70fa113a41a270062675187f"
+  },
+  {
+    "path": "tools/bin/i960-elf-readelf",
+    "size": 1697160,
+    "sha256": "f76d02f2450feea253e36744c2ced5a334d59753c47af393a8d24aba18c51807"
+  },
+  {
+    "path": "tools/bin/i960-elf-size",
+    "size": 4259440,
+    "sha256": "b7400ebc8b78cdeef4cc59ccc41a502b72376002c8ea7272be3dc0bc729b6e21"
+  },
+  {
+    "path": "tools/bin/i960-elf-strings",
+    "size": 4249688,
+    "sha256": "38ce3c9e062ecc494ac5dc5c62b9dab55b39f01fc9eb88be43a07f4340113437"
+  },
+  {
+    "path": "tools/bin/i960-elf-strip",
+    "size": 5259368,
+    "sha256": "f4c56ce4899c50749ed5a012b2927aa44ce086c19c16e739a25ede5ebf46611d"
+  },
+  {
+    "path": "tools/i960-coff/sys-include/COPIED",
+    "size": 3,
+    "sha256": "564739ea8fa5926d4fa5c9734fed462061960a22e6b8d5c06e94969d97891bf2"
+  },
+  {
+    "path": "tools/i960-coff/sys-include/cfg.log",
+    "size": 154,
+    "sha256": "127dd2b1d21d7f44f302f38bf616bba8891b15e3d6692f29b031f0ce45578477"
+  },
+  {
+    "path": "tools/i960-coff/sys-include/config.temp",
+    "size": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "tools/i960-elf/bin/ar",
+    "size": 4431264,
+    "sha256": "3590bcd74a2fb2c05f273dc1caf3c10c4433b2ff5bb37704b8ef359847f29c6c"
+  },
+  {
+    "path": "tools/i960-elf/bin/as",
+    "size": 5673576,
+    "sha256": "8bfaf8a0ea17e5532c5352b28951308954c0e6bc8b48fb92929c9315b7e9b6f7"
+  },
+  {
+    "path": "tools/i960-elf/bin/ld",
+    "size": 5510680,
+    "sha256": "a36b72168b623c3a0259c5d7406de91312bdde775377addd79aeae0542280c9d"
+  },
+  {
+    "path": "tools/i960-elf/bin/ld.bfd",
+    "size": 5510680,
+    "sha256": "a36b72168b623c3a0259c5d7406de91312bdde775377addd79aeae0542280c9d"
+  },
+  {
+    "path": "tools/i960-elf/bin/nm",
+    "size": 4300440,
+    "sha256": "3020dd6853598ddb430617fdce5d64de688038bd20c2466cdbe6ad44d98e4a99"
+  },
+  {
+    "path": "tools/i960-elf/bin/objcopy",
+    "size": 5259376,
+    "sha256": "806e8e83ad0970c4cce96805390c8934b2d188492b5b0f91c237a3a2392e0027"
+  },
+  {
+    "path": "tools/i960-elf/bin/objdump",
+    "size": 5978344,
+    "sha256": "d770df946e71a922a20997c08733de2ceaa63fa091a44f10eea407f35b78c044"
+  },
+  {
+    "path": "tools/i960-elf/bin/ranlib",
+    "size": 4431296,
+    "sha256": "4f5c8a1924578d68d1203db2039791e8f689389a70fa113a41a270062675187f"
+  },
+  {
+    "path": "tools/i960-elf/bin/readelf",
+    "size": 1697160,
+    "sha256": "f76d02f2450feea253e36744c2ced5a334d59753c47af393a8d24aba18c51807"
+  },
+  {
+    "path": "tools/i960-elf/bin/strip",
+    "size": 5259368,
+    "sha256": "f4c56ce4899c50749ed5a012b2927aa44ce086c19c16e739a25ede5ebf46611d"
+  },
+  {
+    "path": "tools/i960-elf/lib/ldscripts/elf32_i960.x",
+    "size": 8845,
+    "sha256": "67631f3b861996d557c3242a8a79bbb7b0b8df00d171123b83193267aa3e7604"
+  },
+  {
+    "path": "tools/i960-elf/lib/ldscripts/elf32_i960.xbn",
+    "size": 8798,
+    "sha256": "ad01c036618d07c94848c806aab160adada1a7a92a017fed169873243bc779ef"
+  },
+  {
+    "path": "tools/i960-elf/lib/ldscripts/elf32_i960.xc",
+    "size": 8572,
+    "sha256": "b391b073d12dfb8c5ac6fd9a302d1fdf043e324f6a65a247ed39a2cdda29222a"
+  },
+  {
+    "path": "tools/i960-elf/lib/ldscripts/elf32_i960.xn",
+    "size": 8845,
+    "sha256": "f9d634985cf1d2149d4d406cc93d0255fcce87631741dab0288682533b215eca"
+  },
+  {
+    "path": "tools/i960-elf/lib/ldscripts/elf32_i960.xr",
+    "size": 5648,
+    "sha256": "72e531807a240df5dc6671b24910bbc89978ee24d09981935869963e0432869d"
+  },
+  {
+    "path": "tools/i960-elf/lib/ldscripts/elf32_i960.xu",
+    "size": 5694,
+    "sha256": "d77050cda4e13496e0e03768bfd90004fa19a9200b9b6bc142a32effc9a6354a"
+  },
+  {
+    "path": "tools/i960-elf/lib/ldscripts/elf32_i960.xw",
+    "size": 8588,
+    "sha256": "b26ed5b6ceb33e78ca5fe0f029044e7856f941604e78b34bb71fcd049f8b3907"
+  },
+  {
+    "path": "tools/info/cpp.info",
+    "size": 216389,
+    "sha256": "55b6a586d97372bb09eaeed8b14187a233cfd1668ffc6af887c27811195faf90"
+  },
+  {
+    "path": "tools/info/cppinternals.info",
+    "size": 50206,
+    "sha256": "2756f23238767feed63741ec65227d25d0419884ce877e312664aea34da0d5e9"
+  },
+  {
+    "path": "tools/info/gcc.info",
+    "size": 1112847,
+    "sha256": "47bee08fee471941a1d680fe5cbdd5ce0cec6001013e139b33575d4664f51033"
+  },
+  {
+    "path": "tools/info/gccint.info",
+    "size": 1193458,
+    "sha256": "496d8a5543c4897e25bde8d7e0063c9798cca87a4d18fdbdd72206fb6b93faf3"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/cc1",
+    "size": 8666320,
+    "sha256": "dfb312980562d80e65ffcf5ba138e483091160cfeaf7a980784d6659f74d67b5"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/collect2",
+    "size": 345648,
+    "sha256": "ad9b352a59cc0a9d30cc8015d78ab65fa1cfc182518c05d050f1cc298553feaf"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/README",
+    "size": 750,
+    "sha256": "32baa94efdf4fb418c20321f14a1b66982a6cd3c2b5bc8fbfbe438f687c528d6"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/fixed",
+    "size": 10,
+    "sha256": "2cd8ec3de6a07e1fd39676100db57ba62372e820c19812fee55899f65746e192"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/float.h",
+    "size": 5372,
+    "sha256": "60c58d253a06e6f121e82f3f6afe686458230414530d6ef4d9f9f8cbbd42ae78"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/iso646.h",
+    "size": 1440,
+    "sha256": "5e00d8022ef15d8fe7312b114abf3f7274bf44cb4edd320caa3a3c85878fa36a"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/limits.h",
+    "size": 2745,
+    "sha256": "64196cc602b945f7ab14da1118f63585f284b5192db2160a950e93456107fc66"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/stdarg.h",
+    "size": 4325,
+    "sha256": "75ef1250b3c4b72602e9fb3d4dc4db2c1ca49244824684eb254b0735b78872c2"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/stdbool.h",
+    "size": 1612,
+    "sha256": "130ff7e93a3efb0e6ba608a45c501e7a1138f16aeac3989fcfb384388fd3d80a"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/stddef.h",
+    "size": 12695,
+    "sha256": "d46c55c3760cc6120042b58d8ae006d63efc710cd355751f2b130e27208a56c7"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/syslimits.h",
+    "size": 330,
+    "sha256": "22dd0ab81baadd5a8d455b445855f341d419c7b0267beca235de00b7ec78e529"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/unwind.h",
+    "size": 8797,
+    "sha256": "73aa6c40fd458db36bc36b694fb7794a96158eb0a57c613c16bd32e27a883836"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/include/varargs.h",
+    "size": 139,
+    "sha256": "f9acb21973be5764aa2fd689c941ad963c1ecdd133f3a6529f279803135f8268"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/fix-header",
+    "size": 666880,
+    "sha256": "e561a1311e63ad9a805e40cd51864410583cf363686a3914a25b25e1634c401a"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/fixinc.sh",
+    "size": 12891,
+    "sha256": "e9298773d4662bae1a9641b444f395e008eabafe23049e99be9320136f8e4f04"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/fixincl",
+    "size": 366864,
+    "sha256": "738b5db537c0ceee0568e81411635944c5f1474b34520b5f23dffaca51457f42"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/fixproto",
+    "size": 10582,
+    "sha256": "67df195623923211c1d57488686517be0080f948cd4cea9ae31b20ab7f55514c"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/gsyslimits.h",
+    "size": 330,
+    "sha256": "22dd0ab81baadd5a8d455b445855f341d419c7b0267beca235de00b7ec78e529"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/include/README",
+    "size": 750,
+    "sha256": "32baa94efdf4fb418c20321f14a1b66982a6cd3c2b5bc8fbfbe438f687c528d6"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/include/float.h",
+    "size": 5372,
+    "sha256": "60c58d253a06e6f121e82f3f6afe686458230414530d6ef4d9f9f8cbbd42ae78"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/include/iso646.h",
+    "size": 1440,
+    "sha256": "5e00d8022ef15d8fe7312b114abf3f7274bf44cb4edd320caa3a3c85878fa36a"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/include/limits.h",
+    "size": 2745,
+    "sha256": "64196cc602b945f7ab14da1118f63585f284b5192db2160a950e93456107fc66"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/include/stdarg.h",
+    "size": 4325,
+    "sha256": "75ef1250b3c4b72602e9fb3d4dc4db2c1ca49244824684eb254b0735b78872c2"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/include/stdbool.h",
+    "size": 1612,
+    "sha256": "130ff7e93a3efb0e6ba608a45c501e7a1138f16aeac3989fcfb384388fd3d80a"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/include/stddef.h",
+    "size": 12695,
+    "sha256": "d46c55c3760cc6120042b58d8ae006d63efc710cd355751f2b130e27208a56c7"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/include/unwind.h",
+    "size": 8797,
+    "sha256": "73aa6c40fd458db36bc36b694fb7794a96158eb0a57c613c16bd32e27a883836"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/include/varargs.h",
+    "size": 139,
+    "sha256": "f9acb21973be5764aa2fd689c941ad963c1ecdd133f3a6529f279803135f8268"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/mkheaders",
+    "size": 3147,
+    "sha256": "a52b5890e423faffa18f7c31050927674c62e8bb51ca8075b30726d450cdd42e"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/mkheaders.conf",
+    "size": 205,
+    "sha256": "09f069e2d68a33e352bfd29ed0e9505964f4457b27293ab59eb8eae163d0665c"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/install-tools/mkinstalldirs",
+    "size": 726,
+    "sha256": "6e2b452d872649d719d09b9979387d825c04672fb86d6c0072acb21321122844"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/ld64/libgcc.a",
+    "size": 654022,
+    "sha256": "77b96b2a6fe44baf1fd89cbdc612d7ff38c2606ff3a06829a650ee13e03533f5"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/libgcc.a",
+    "size": 658620,
+    "sha256": "a2cc760b863fbc5d0fdc537eaf4f6279a09213c81e92afdaeaf03aa963efb95f"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/soft-float/ld64/libgcc.a",
+    "size": 654022,
+    "sha256": "77b96b2a6fe44baf1fd89cbdc612d7ff38c2606ff3a06829a650ee13e03533f5"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/soft-float/libgcc.a",
+    "size": 658620,
+    "sha256": "a2cc760b863fbc5d0fdc537eaf4f6279a09213c81e92afdaeaf03aa963efb95f"
+  },
+  {
+    "path": "tools/lib/gcc-lib/i960-coff/3.3.6/specs",
+    "size": 4304,
+    "sha256": "59bf11a2a0deb70a6561328bdab40553cd2c7ddecee1a5a6a0423b07ab294067"
+  },
+  {
+    "path": "tools/man/man1/cpp.1",
+    "size": 34479,
+    "sha256": "bbff38fb814fbf0d4cc1e26bf0b3d548cdd5dd7cbb09a3badd2c8291a3e1dbda"
+  },
+  {
+    "path": "tools/man/man1/gcov.1",
+    "size": 19044,
+    "sha256": "799bb4fb90e884aa07b05a96211a0b8c537c113bf38e3e048d3d0414ab7aeb67"
+  },
+  {
+    "path": "tools/man/man1/i960-coff-gcc.1",
+    "size": 445037,
+    "sha256": "6a6ffb34a9e8f54aab350b4bdd2203dfb7e9d62bc18db67da86de6b1a743b35c"
+  },
+  {
+    "path": "tools/man/man7/fsf-funding.7",
+    "size": 6396,
+    "sha256": "037fffa646d0a42c982901b18b33572691637021ee4eb848aabd3053e87a843e"
+  },
+  {
+    "path": "tools/man/man7/gfdl.7",
+    "size": 25885,
+    "sha256": "102cd6f24185b2722115d89acef47e4a7a99b8d29dd734ad3e737cc073e22085"
+  },
+  {
+    "path": "tools/man/man7/gpl.7",
+    "size": 24687,
+    "sha256": "a0b139da71bacce3de6ca5d9398b0fcbedf40577a6b227317528607b898360ac"
+  },
+  {
+    "path": "tools/share/info/as.info",
+    "size": 1099912,
+    "sha256": "b4a5626fa676105fef1bd9be2edb0bcf311f1991421847409760aec5b8cf2c95"
+  },
+  {
+    "path": "tools/share/info/bfd.info",
+    "size": 621929,
+    "sha256": "5713282bbccf2a5fe5c58da1069ec1c46f02dd7edc4da78173ce5f8af89fb5cd"
+  },
+  {
+    "path": "tools/share/info/binutils.info",
+    "size": 208729,
+    "sha256": "a2466bfbbf6905323910f01ed92aba3bc2bf74f4352d6868050e51726a7ce402"
+  },
+  {
+    "path": "tools/share/info/dir",
+    "size": 3004,
+    "sha256": "35c7ffcce827f6daab7d2874814955b376f0cf274e1e070278b7013614f9ffe9"
+  },
+  {
+    "path": "tools/share/info/gprof.info",
+    "size": 112836,
+    "sha256": "1f24d5a1f801d09df84d18fbf5aa6b530bbba5989a736caddf8ac9127457c6f4"
+  },
+  {
+    "path": "tools/share/info/ld.info",
+    "size": 396185,
+    "sha256": "ba0ef3425773daaaa2e62acffd32df05ce33dabf714de751ecc62cba8425a120"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-addr2line.1",
+    "size": 10799,
+    "sha256": "13315e7548b99b81b8ef75b2accc4530b5efa7f34a517d481026c75836de7762"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-ar.1",
+    "size": 18996,
+    "sha256": "c8240a732c62f5f19a986d266863118753b62d81345b6207dabc29a0e203a92e"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-as.1",
+    "size": 78582,
+    "sha256": "5f902bade8af3a7ced466731b5b291ea79c38edce0e379e575df19af0d595258"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-c++filt.1",
+    "size": 11089,
+    "sha256": "1f1aa340ac2d859423f155fbffc276e2b1b7d4c3bb72478b1b230fb4569f0865"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-dlltool.1",
+    "size": 20781,
+    "sha256": "b8194921b139cef7cf65576218299d3e8149359c446720f3b6ea1a5197ad3dd6"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-elfedit.1",
+    "size": 8531,
+    "sha256": "dcce449316e10570b39556be65a47cfdcf1f37c5262ee33ba2af74ff75919893"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-gprof.1",
+    "size": 30286,
+    "sha256": "7f0774bfe7135cc556596964669a60349567d0f748e310a68e1df9c4548b4747"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-ld.1",
+    "size": 123214,
+    "sha256": "b5113bb5dcdfd51bf4f606a1055ff5e0cbb8bc61492edff7b33ba3f52deb013d"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-nlmconv.1",
+    "size": 8403,
+    "sha256": "3a41576b85c22bf59694b2c2804de4495b8581bbf987b5476343cd33bb22fdff"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-nm.1",
+    "size": 17898,
+    "sha256": "d71da3234ff59fe945761e6a444b3853636a5ccafe05d78a4011f96157a83964"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-objcopy.1",
+    "size": 51421,
+    "sha256": "e15b57217c0ee7cc39783ef0c483dceb730f07dbe26c237494162e49c3512e17"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-objdump.1",
+    "size": 35345,
+    "sha256": "b71ffaae4f82d67bb046d94897b3332dead24bb05b6cc4e70ca56890fb2103db"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-ranlib.1",
+    "size": 7279,
+    "sha256": "1c442351d7c753b9ed20f7e06fb015875fbcdcbbbda71f915e4e0b7abe22ebd7"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-readelf.1",
+    "size": 15658,
+    "sha256": "3b36ba2998b49624796def93057f15bafe521b8ea87e8bdebef1228575012e72"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-size.1",
+    "size": 9005,
+    "sha256": "2831917d6bf8f16e8f2381bf1b75a852973b90aea77b3d41f248d563097485a3"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-strings.1",
+    "size": 10874,
+    "sha256": "aa4a380db613dcbc94c38058b9b6010eceedc91199408cc2d6f8eab4e4826c6b"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-strip.1",
+    "size": 15665,
+    "sha256": "e279631d7cf35b80c70de3bb3f9771104d3a9c98a23e9e40fe1b284b1ddf264e"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-windmc.1",
+    "size": 10696,
+    "sha256": "8a6de5d58791c3aa7992c31b301e174561539925ef2d738cab9384f1e8933073"
+  },
+  {
+    "path": "tools/share/man/man1/i960-elf-windres.1",
+    "size": 13390,
+    "sha256": "d19615e10e486cddbba78817049c682105b8f8f1bb56bd6d9e4e2add3e076dfc"
+  }
+]

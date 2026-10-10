@@ -1,0 +1,18 @@
+{
+  "result": "passed",
+  "paired_full_images": 3,
+  "image_bytes": 524288,
+  "sha256": {
+    "before": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+    "candidate": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0",
+    "restored": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93"
+  },
+  "completed_commands": 74,
+  "uploads": 6,
+  "patch_bytes": 56,
+  "changed_bytes": 48,
+  "full_stock_restored": true,
+  "flash_programmed": false,
+  "recovery_tested": false,
+  "cpu_view_of_candidate_verified": false
+}

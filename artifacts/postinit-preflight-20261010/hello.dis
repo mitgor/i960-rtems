@@ -1,0 +1,12 @@
+
+hello.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c0120000 <_start>:
+c0120000:	00 30 80 8c 	lda	beef00ee <_start-0x122ff12>,g0
+c0120004:	ee 00 ef be 
+c0120008:	00 30 80 92 	st	g0,131c <_start-0xc011ece4>
+c012000c:	1c 13 00 00 
+c0120010:	00 00 00 08 	b	c0120010 <_start+0x10>

@@ -1,0 +1,52 @@
+{
+  "validated": true,
+  "runs": [
+    {
+      "run": "run-frame",
+      "commands": 128,
+      "return_value": 0,
+      "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
+      "clean_unload": true,
+      "status": 0,
+      "output_bytes": 1920,
+      "output_sha256": "6a2bc7b9bc944b35657aa3b24a169d2e869760d7695bd75905e98d15f2b5e001"
+    },
+    {
+      "run": "run-legacy",
+      "commands": 110,
+      "return_value": 6765,
+      "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
+      "clean_unload": true
+    },
+    {
+      "run": "run-repeat",
+      "commands": 128,
+      "return_value": 0,
+      "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
+      "clean_unload": true,
+      "status": 0,
+      "output_bytes": 37,
+      "output_sha256": "ff6932c51e7b2eee599d7e6b4185550258734a9fb5fa935d77ff454a729597df"
+    },
+    {
+      "run": "run-small-capacity",
+      "commands": 128,
+      "return_value": 0,
+      "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
+      "clean_unload": true,
+      "status": 2,
+      "output_bytes": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "run": "run-text",
+      "commands": 128,
+      "return_value": 0,
+      "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
+      "clean_unload": true,
+      "status": 0,
+      "output_bytes": 36,
+      "output_sha256": "7af1b8b41c6775e6ba285cb8b437aae5ed98ca51bf2810424dbff432b9ca9d8a"
+    }
+  ]
+}

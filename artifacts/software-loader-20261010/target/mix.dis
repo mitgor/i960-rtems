@@ -1,0 +1,23 @@
+
+mix.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c0f2c000 <_payload>:
+c0f2c000:	00 30 f0 8c 	lda	c0f2c028 <Li960R1>,g14
+c0f2c004:	28 c0 f2 c0 
+
+c0f2c008 <payload.lf>:
+c0f2c008:	1e 16 88 5c 	mov	g14,g1
+c0f2c00c:	00 1e f0 5c 	mov	0,g14
+c0f2c010:	19 0c ac 59 	shro	25,g0,g5
+c0f2c014:	00 30 a0 8c 	lda	96040729 <_payload-0x2aeeb8d7>,g4
+c0f2c018:	29 07 04 96 
+c0f2c01c:	07 0e 84 59 	shlo	7,g0,g0
+c0f2c020:	95 03 84 58 	or	g5,g0,g0
+c0f2c024:	14 03 84 58 	xor	g4,g0,g0
+
+c0f2c028 <Li960R1>:
+c0f2c028:	00 00 00 0a 	ret
+c0f2c02c:	00 00 00 00 	.word	0x00000000

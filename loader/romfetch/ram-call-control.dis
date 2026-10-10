@@ -1,0 +1,20 @@
+
+ram-call-control.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c0fac180 <_start>:
+c0fac180:	82 1d 80 65 	icctl	2,0,g0
+c0fac184:	00 30 00 86 	callx	c0fac1a4 <local_return>
+c0fac188:	a4 c1 fa c0 
+c0fac18c:	02 1e 90 65 	dcctl	2,0,g2
+c0fac190:	7f 01 88 8c 	lda	0x17f,g1
+c0fac194:	18 20 8c 8a 	stos	g1,0x18(g0)
+c0fac198:	00 30 88 8c 	lda	c004bad0 <_start-0xf606b0>,g1
+c0fac19c:	d0 ba 04 c0 
+c0fac1a0:	Address 0x00000000c0fac1a0 is out of bounds.
+
+
+c0fac1a4 <local_return>:
+c0fac1a4:	00 00 00 0a 	ret

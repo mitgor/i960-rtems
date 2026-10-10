@@ -1,0 +1,122 @@
+bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+submit op=1c id=1 len=0 offset=00000000 dma=fffd0000 pattern=a5 mailbox=0000011c,00000000,fffd0000,00
+complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+submit op=20 id=2 len=512 offset=00000000 dma=fffd0000 pattern=a5 mailbox=02000220,00000000,fffd0000,00
+complete op=20 id=0002 status=0000 changed=512 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+submit op=20 id=3 len=512 offset=00000000 dma=fffd0000 pattern=5a mailbox=02000320,00000000,fffd0000,00
+complete op=20 id=0003 status=0000 changed=505 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+submit op=20 id=4 len=4 offset=ff1e6a70 dma=fffd0000 pattern=a5 mailbox=00040420,ff1e6a70,fffd0000,00
+complete op=20 id=0004 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+submit op=20 id=5 len=4 offset=ff1e6a70 dma=fffd0000 pattern=5a mailbox=00040520,ff1e6a70,fffd0000,00
+complete op=20 id=0005 status=0000 changed=4 guard-changed=0 head=00 c0 f2 c0 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+submit op=1c id=6 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=0000061c,00000000,fffd0000,00
+complete op=1c id=0006 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+VERIFIED staging pointer=c0f2c000 at local=c0112a70
+submit op=20 id=7 len=16 offset=ff11e2e0 dma=fffd0000 pattern=a5 mailbox=00100720,ff11e2e0,fffd0000,00
+complete op=20 id=0007 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+submit op=20 id=8 len=16 offset=ff11e2e0 dma=fffd0000 pattern=5a mailbox=00100820,ff11e2e0,fffd0000,00
+complete op=20 id=0008 status=0000 changed=16 guard-changed=0 head=06 1e 80 5c 5c 27 00 09 00 30 f0 82 98 5d 0a c0
+submit op=20 id=9 len=8 offset=ff1f222c dma=fffd0000 pattern=a5 mailbox=00080920,ff1f222c,fffd0000,00
+complete op=20 id=0009 status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 a5 a5 a5 a5 a5 a5 a5 a5
+submit op=20 id=10 len=8 offset=ff1f222c dma=fffd0000 pattern=5a mailbox=00080a20,ff1f222c,fffd0000,00
+complete op=20 id=000a status=0000 changed=8 guard-changed=0 head=80 07 11 c0 00 00 00 c1 5a 5a 5a 5a 5a 5a 5a 5a
+runtime board=c0110780 alias=c1000000
+submit op=20 id=11 len=512 offset=ff1e4780 dma=fffd0000 pattern=a5 mailbox=02000b20,ff1e4780,fffd0000,00
+complete op=20 id=000b status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+submit op=20 id=12 len=512 offset=ff1e4780 dma=fffd0000 pattern=5a mailbox=02000c20,ff1e4780,fffd0000,00
+complete op=20 id=000c status=0000 changed=512 guard-changed=0 head=00 80 fa fe 00 00 f8 fe 00 00 08 00 00 00 f8 fe
+runtime callbacks read=c004ce90 write=c004ced0 program=c004cf80
+submit op=1c id=13 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=00000d1c,00000000,fffd0000,00
+complete op=1c id=000d status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+submit op=20 id=14 len=61440 offset=00000000 dma=fffd0000 pattern=a5 mailbox=f0000e20,00000000,fffd0000,00
+complete op=20 id=000e status=0000 changed=61252 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+submit op=20 id=15 len=61440 offset=0000f000 dma=fffd0000 pattern=a5 mailbox=f0000f20,0000f000,fffd0000,00
+complete op=20 id=000f status=0000 changed=61280 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+submit op=20 id=16 len=61440 offset=0001e000 dma=fffd0000 pattern=a5 mailbox=f0001020,0001e000,fffd0000,00
+complete op=20 id=0010 status=0000 changed=61431 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+submit op=20 id=17 len=61440 offset=0002d000 dma=fffd0000 pattern=a5 mailbox=f0001120,0002d000,fffd0000,00
+complete op=20 id=0011 status=0000 changed=61212 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+submit op=20 id=18 len=61440 offset=0003c000 dma=fffd0000 pattern=a5 mailbox=f0001220,0003c000,fffd0000,00
+complete op=20 id=0012 status=0000 changed=61256 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+submit op=20 id=19 len=61440 offset=0004b000 dma=fffd0000 pattern=a5 mailbox=f0001320,0004b000,fffd0000,00
+complete op=20 id=0013 status=0000 changed=61268 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+submit op=20 id=20 len=61440 offset=0005a000 dma=fffd0000 pattern=a5 mailbox=f0001420,0005a000,fffd0000,00
+complete op=20 id=0014 status=0000 changed=61378 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+submit op=20 id=21 len=61440 offset=00069000 dma=fffd0000 pattern=a5 mailbox=f0001520,00069000,fffd0000,00
+complete op=20 id=0015 status=0000 changed=61284 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+submit op=20 id=22 len=32768 offset=00078000 dma=fffd0000 pattern=a5 mailbox=80001620,00078000,fffd0000,00
+complete op=20 id=0016 status=0000 changed=32708 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+submit op=20 id=23 len=61440 offset=00000000 dma=fffd0000 pattern=5a mailbox=f0001720,00000000,fffd0000,00
+complete op=20 id=0017 status=0000 changed=61208 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+submit op=20 id=24 len=61440 offset=0000f000 dma=fffd0000 pattern=5a mailbox=f0001820,0000f000,fffd0000,00
+complete op=20 id=0018 status=0000 changed=61255 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+submit op=20 id=25 len=61440 offset=0001e000 dma=fffd0000 pattern=5a mailbox=f0001920,0001e000,fffd0000,00
+complete op=20 id=0019 status=0000 changed=61425 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+submit op=20 id=26 len=61440 offset=0002d000 dma=fffd0000 pattern=5a mailbox=f0001a20,0002d000,fffd0000,00
+complete op=20 id=001a status=0000 changed=61189 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+submit op=20 id=27 len=61440 offset=0003c000 dma=fffd0000 pattern=5a mailbox=f0001b20,0003c000,fffd0000,00
+complete op=20 id=001b status=0000 changed=61195 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+submit op=20 id=28 len=61440 offset=0004b000 dma=fffd0000 pattern=5a mailbox=f0001c20,0004b000,fffd0000,00
+complete op=20 id=001c status=0000 changed=61209 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+submit op=20 id=29 len=61440 offset=0005a000 dma=fffd0000 pattern=5a mailbox=f0001d20,0005a000,fffd0000,00
+complete op=20 id=001d status=0000 changed=61345 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+submit op=20 id=30 len=61440 offset=00069000 dma=fffd0000 pattern=5a mailbox=f0001e20,00069000,fffd0000,00
+complete op=20 id=001e status=0000 changed=61371 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+submit op=20 id=31 len=32768 offset=00078000 dma=fffd0000 pattern=5a mailbox=80001f20,00078000,fffd0000,00
+complete op=20 id=001f status=0000 changed=32688 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+stage boot-candidate sha256=a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0
+VERIFIED stage boot-candidate: paired 524288-byte reads and pinned SHA256
+submit op=20 id=32 len=4 offset=ff0f39bc dma=fffd0000 pattern=a5 mailbox=00042020,ff0f39bc,fffd0000,00
+complete op=20 id=0020 status=0000 changed=4 guard-changed=0 head=1c 00 fe fe a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+submit op=20 id=33 len=4 offset=ff0f39bc dma=fffd0000 pattern=5a mailbox=00042120,ff0f39bc,fffd0000,00
+complete op=20 id=0021 status=0000 changed=4 guard-changed=0 head=1c 00 fe fe 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+VERIFIED boot-installed dispatch=FEFE001C
+submit op=6f id=34 len=0 offset=00000000 dma=fffd0000 pattern=a5 mailbox=0000226f,00000000,fffd0000,00
+complete op=6f id=0022 status=017e changed=0 guard-changed=0 head=a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5 a5
+submit op=6f id=35 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=0000236f,00000000,fffd0000,00
+complete op=6f id=0023 status=017e changed=0 guard-changed=0 head=5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a 5a
+VERIFIED ROM-resident 6F returned 017E twice after reboot
+submit op=1c id=36 len=0 offset=00000000 dma=fffd0000 pattern=5a mailbox=0000241c,00000000,fffd0000,00
+complete op=1c id=0024 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+submit op=20 id=37 len=61440 offset=00000000 dma=fffd0000 pattern=a5 mailbox=f0002520,00000000,fffd0000,00
+complete op=20 id=0025 status=0000 changed=61252 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+submit op=20 id=38 len=61440 offset=0000f000 dma=fffd0000 pattern=a5 mailbox=f0002620,0000f000,fffd0000,00
+complete op=20 id=0026 status=0000 changed=61280 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+submit op=20 id=39 len=61440 offset=0001e000 dma=fffd0000 pattern=a5 mailbox=f0002720,0001e000,fffd0000,00
+complete op=20 id=0027 status=0000 changed=61431 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+submit op=20 id=40 len=61440 offset=0002d000 dma=fffd0000 pattern=a5 mailbox=f0002820,0002d000,fffd0000,00
+complete op=20 id=0028 status=0000 changed=61212 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+submit op=20 id=41 len=61440 offset=0003c000 dma=fffd0000 pattern=a5 mailbox=f0002920,0003c000,fffd0000,00
+complete op=20 id=0029 status=0000 changed=61256 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+submit op=20 id=42 len=61440 offset=0004b000 dma=fffd0000 pattern=a5 mailbox=f0002a20,0004b000,fffd0000,00
+complete op=20 id=002a status=0000 changed=61268 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+submit op=20 id=43 len=61440 offset=0005a000 dma=fffd0000 pattern=a5 mailbox=f0002b20,0005a000,fffd0000,00
+complete op=20 id=002b status=0000 changed=61378 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+submit op=20 id=44 len=61440 offset=00069000 dma=fffd0000 pattern=a5 mailbox=f0002c20,00069000,fffd0000,00
+complete op=20 id=002c status=0000 changed=61284 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+submit op=20 id=45 len=32768 offset=00078000 dma=fffd0000 pattern=a5 mailbox=80002d20,00078000,fffd0000,00
+complete op=20 id=002d status=0000 changed=32708 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+submit op=20 id=46 len=61440 offset=00000000 dma=fffd0000 pattern=5a mailbox=f0002e20,00000000,fffd0000,00
+complete op=20 id=002e status=0000 changed=61208 guard-changed=0 head=50 4b 03 04 0a 00 00 00 06 00 f4 9d 82 27 90 2a
+submit op=20 id=47 len=61440 offset=0000f000 dma=fffd0000 pattern=5a mailbox=f0002f20,0000f000,fffd0000,00
+complete op=20 id=002f status=0000 changed=61255 guard-changed=0 head=15 48 99 aa 55 56 15 b0 36 17 e9 b0 ba 48 62 41
+submit op=20 id=48 len=61440 offset=0001e000 dma=fffd0000 pattern=5a mailbox=f0003020,0001e000,fffd0000,00
+complete op=20 id=0030 status=0000 changed=61425 guard-changed=0 head=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+submit op=20 id=49 len=61440 offset=0002d000 dma=fffd0000 pattern=5a mailbox=f0003120,0002d000,fffd0000,00
+complete op=20 id=0031 status=0000 changed=61189 guard-changed=0 head=61 62 6c 65 20 65 6e 74 72 69 65 73 20 61 76 61
+submit op=20 id=50 len=61440 offset=0003c000 dma=fffd0000 pattern=5a mailbox=f0003220,0003c000,fffd0000,00
+complete op=20 id=0032 status=0000 changed=61195 guard-changed=0 head=50 20 1b c0 92 36 c2 84 b1 fc ab 4e 2f 1f 20 57
+submit op=20 id=51 len=61440 offset=0004b000 dma=fffd0000 pattern=5a mailbox=f0003320,0004b000,fffd0000,00
+complete op=20 id=0033 status=0000 changed=61209 guard-changed=0 head=07 ea 37 46 f0 67 12 27 b9 b7 1a 99 ad 24 24 46
+submit op=20 id=52 len=61440 offset=0005a000 dma=fffd0000 pattern=5a mailbox=f0003420,0005a000,fffd0000,00
+complete op=20 id=0034 status=0000 changed=61345 guard-changed=0 head=34 87 d1 24 0c 63 ea b1 d1 47 1e 9b 3e f2 d8 f4
+submit op=20 id=53 len=61440 offset=00069000 dma=fffd0000 pattern=5a mailbox=f0003520,00069000,fffd0000,00
+complete op=20 id=0035 status=0000 changed=61371 guard-changed=0 head=00 30 80 82 00 00 60 e0 00 50 04 84 00 00 00 0a
+submit op=20 id=54 len=32768 offset=00078000 dma=fffd0000 pattern=5a mailbox=80003620,00078000,fffd0000,00
+complete op=20 id=0036 status=0000 changed=32688 guard-changed=0 head=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+stage boot-after-ping sha256=a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0
+VERIFIED stage boot-after-ping: paired 524288-byte reads and pinned SHA256
+experiment-result=0 pending=0; exported files are captures, not a physical-flash backup
+scratch-dirty=0
+exec-dirty=0
+stage-dirty=0

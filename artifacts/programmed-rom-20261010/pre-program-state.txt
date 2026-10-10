@@ -1,0 +1,6 @@
+2026-10-10T21:53:19+02:00
+fb8bd36a-68b2-415d-9650-4d83fe6c2f48
+37:09.1 RAID bus controller [0104]: Mylex Corporation DAC960PG [1069:0010] (rev 05)
+	Subsystem: Mylex Corporation DAC960PG [1069:0010]
+	Kernel modules: myrb
+4a213850505f3d7a2408094da0a671628617700f3dba10960a5904ca0a7641a9  /home/mit/i960-one-shot.niGXKl/dac960dump.ko

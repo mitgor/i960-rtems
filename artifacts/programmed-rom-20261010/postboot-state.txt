@@ -1,0 +1,7 @@
+2026-10-10T21:56:14+02:00
+a9429ca4-0144-452d-8a80-7189608ce99b
+ 21:56:14 up 1 min,  1 user,  load average: 4.30, 1.52, 0.54
+37:09.1 RAID bus controller [0104]: Mylex Corporation DAC960PG [1069:0010] (rev 05)
+	Subsystem: Mylex Corporation DAC960PG [1069:0010]
+	Kernel modules: myrb
+module-absent
