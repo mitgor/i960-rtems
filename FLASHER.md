@@ -69,3 +69,69 @@ passthrough — structurally unable to reach the card. QEMU+VFIO passthrough is 
 virtual route, and this card shares a non-isolated IOMMU group (with a FireWire controller
 and a chipset bridge), so it would require binding those to vfio too. Bare-metal FreeDOS is
 the vendor-intended, reliable environment.
+
+## Building a custom i960 image (DONE — tooling + verified)
+
+Tools: [`host/mkimage.py`](host/mkimage.py) (image builder) and
+[`host/i960stub.py`](host/i960stub.py) (proof-of-life payload).
+
+### The stock IBR, located and decoded
+The firmware payload is linked so its **end maps to `0xFF000000`**, so base =
+`0xFF000000 − len(payload)` (stock: payload `0x38000` ⇒ base **`0xFEFC8000`**), and the IBR
+sits at payload offset `len − 0xD0` = `0x37F30` ⇒ address **`0xFEFFFF30`** — exactly the
+architectural IBR address. Stock IBR:
+
+| word | value | meaning |
+|---|---|---|
+| 0–3 | `0x00000000` | PMCON14_15 bytes — **all zero in stock** (nothing to derive) |
+| 4 | `0xFEFC8000` | first instruction = image byte 0 |
+| 5 | `0xFEFC8B10` | PRCB pointer |
+| 6 | `0x0206F4F0` | checksum word |
+| 7 | `0x00000000` | — |
+
+**Boot checksum rule (corrected by measurement): `sum(IBR words 0..7) == 0 (mod 2^32)`**, so
+`word6 = −(word4 + word5)`. Verified: `0xFEFC8000 + 0xFEFC8B10 + 0x0206F4F0 ≡ 0`. (The
+manual's "checksum ... with the constant FFFFFFFF ... passes when sum = 0" reads as ≡1; the
+real images are ≡0. Trust the measurement.)
+
+Stock PRCB (`0xFEFC8B10`): fault table `0xC0000800`, control table `0xFEFC8690`, AC image
+`0x00009000`, fault cfg `0x40000000`, interrupt table `0xFEFC8700`, system procedure table
+`0xFEFE0000`, interrupt stack `0xC0001000`.
+
+### Strategy: redirect, don't rebuild
+`mkimage.py` starts from the **decoded stock image** and changes only the IBR's `firstIP`
+(plus the checksum word), keeping Mylex's known-good PRCB and system tables. The i960 then
+initialises exactly as stock and jumps into our code. Custom code goes in a filler region —
+default payload offset `0x4D44` (8,892 bytes of `0xFF`, addr `0xFEFCCD44`, word-aligned); a
+32 KB zero region near `0x2FF00` is available for something larger. The builder refuses to
+overwrite the control/interrupt/PRCB/system-procedure tables or run into the IBR.
+
+### Verification achieved
+- `--selftest` round-trips the stock image **byte-for-byte**, and the solver independently
+  reproduces the stock checksum word `0x0206F4F0`.
+- A built custom image: size **identical** to stock (229,898 B — matters, the flasher checks
+  "File size expected"), magic `MIMGMYLX`, type `0x02`, length field `0x38200` = size−10,
+  trailer intact, `firstIP` → `0xFEFCCD44`, recomputed checksum, `sum8 = 0`.
+- Diff vs stock: **24 bytes** (20 code + 4 checksum). Minimal, auditable.
+
+### Proof-of-life payload and how the host observes it
+`i960stub.py` emits 20 bytes: `lda 0xC0FFEE01,g0 ; st g0,0x1318 ; b .` — it writes the magic
+to the Messaging Unit **Outbound Message Register 0 (OMR0, i960 local `0x00001318`)** then
+spins. The host reads the same register at **BAR0 + 0x18** (`0xee000018`).
+
+Why that mapping is trustworthy: the card's PG window maps i960 local `0x1300+X → BAR0+X`,
+corroborated by three independent agreements with the Linux PG register map — IDR
+`0x1320→+0x20`, ODR `0x132C→+0x2C`, OIMR `0x1334→+0x34` (and we measured `0xfb` there, the
+driver's "interrupts enabled" value). MU registers are internal MMRs, so the stub needs **no
+memory-controller or DRAM init** — safe as the first instruction after reset. `BAR0+0x18`
+currently reads `0x00000000`, so the magic will be unmistakable.
+
+Build and check:
+```
+python3 host/i960stub.py i960stub.bin
+python3 host/mkimage.py --stock <decoded-stock-fw>.bin --code i960stub.bin --out custom-fw.img
+# flash (DOS):  DAC960FL -c 0=custom-fw.img
+# verify (Linux, read-only):  sudo ./myflash probe 0xee000000   -> BAR0+0x18 == 0xC0FFEE01
+```
+**Still gated on an external-programmer backup first** — the flasher cannot dump, so flashing
+is irreversible without one.
