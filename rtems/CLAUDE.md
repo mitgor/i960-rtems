@@ -1,5 +1,8 @@
 # RTEMS working guidance
 
+**Current development roadmap:** [loader memory extension, RTEMS and remaining gaps](../DEVELOPMENT-PLAN.md). Next: M1, generalize the proven larger RAM profile; preserve scalar/BIO1 compatibility.
+
+
 Read [README.md](README.md) and the dated artifact report before changing this
 port. It already runs real RTEMS Classic tasks and lwIP on the i960RP, with
 card-originated DNS/TCP/HTTP through the Linux host.

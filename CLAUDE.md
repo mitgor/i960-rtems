@@ -1,5 +1,8 @@
 # Repository guidance for Claude Code
 
+**Current development roadmap:** [loader memory extension, RTEMS and remaining gaps](DEVELOPMENT-PLAN.md). Next: M1, generalize the proven larger RAM profile; preserve scalar/BIO1 compatibility.
+
+
 **Current index (2026-10-11): [findings, evidence and unresolved questions](CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
 
 **RTEMS now runs on the card (2026-10-11): [implementation and usage](rtems/README.md).** RTEMS 4.6.6 tasks persist across bounded firmware callbacks; lwIP 2.1.3 provides ICMP, UDP/TCP echo and card-originated DNS/HTTP through a Linux TUN/NAT gateway. This is a cooperative RAM-only port with host-supplied clock ticks; autonomous hardware-clock/preemptive operation remains future work. [Exact artifacts and findings](artifacts/rtems-20261011/README.md). No additional flash programming or reboot.
@@ -17,7 +20,7 @@
 
 **T1 complete (2026-10-10): [bounded text/framebuffer I/O](BUFFER-IO.md) is hardware validated.** BIO1 supports 4 KiB input / 8 KiB output; live text, 24×80 frame, capacity rejection and repeat/scalar regression passed with RAM restored. T2 subsequently converted the blocking game into hardware-tested returning steps.
 
-**Planned next work:** [Tetris with host console](TETRIS-ON-CARD-PLAN.md), then [RTEMS with host-routed networking](RTEMS-HOST-NETWORK-PLAN.md). Tetris T1–T5 are complete. RTEMS now has a working cooperative task/network implementation; independent transport and interrupt ownership are still prerequisites for an autonomous firmware takeover.
+**Next work:** M1 in [the integrated plan](DEVELOPMENT-PLAN.md): generalize the proven larger loader profile inside the existing allocation. Tetris T1–T5 and cooperative RTEMS/networking are already implemented. The older [Tetris plan](TETRIS-ON-CARD-PLAN.md) records its milestone history; [the RTEMS roadmap entry point](RTEMS-HOST-NETWORK-PLAN.md) maps original milestones to the integrated plan.
 
 **Latest hardware milestone (2026-10-10): [runtime software loader](SOFTWARE-LOADER.md) works after PC startup.** Three live executions (two C programs) passed without reboot or another flash write. Use `host/loadrun/` and `loader/runtime/` from the repository root; earlier internal-RAM and pre-programming plans below are historical. Supports cooperative returning functions up to 64 KiB, with one argument and a 32-bit result. RAM restored and module unloaded after each run. Recovery remains untested.
 

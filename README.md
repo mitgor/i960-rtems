@@ -1,5 +1,8 @@
 # Tetris on an Intel i960
 
+**Current development roadmap:** [loader memory extension, RTEMS and remaining gaps](DEVELOPMENT-PLAN.md). Next: M1, generalize the proven larger RAM profile; preserve scalar/BIO1 compatibility.
+
+
 **Current index (2026-10-11): [findings, evidence and unresolved questions](CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
 
 **RTEMS now runs on the card (2026-10-11): [implementation and usage](rtems/README.md).** RTEMS 4.6.6 tasks persist across bounded firmware callbacks; lwIP 2.1.3 provides ICMP, UDP/TCP echo and card-originated DNS/HTTP through a Linux TUN/NAT gateway. This is a cooperative RAM-only port with host-supplied clock ticks; autonomous hardware-clock/preemptive operation remains future work. [Exact artifacts and findings](artifacts/rtems-20261011/README.md). No additional flash programming or reboot.

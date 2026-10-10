@@ -218,18 +218,11 @@ code in this profile. Split long computations into bounded pieces and yield
 back to the host regularly; adding an infinite task loop without blocking can
 stop the firmware command from returning.
 
-The most useful next increments are:
-
-1. Add an application protocol over TCP with explicit limits and host-driven
-   tests, or add more Classic API workload tests while retaining this known
-   execution model. Preserve the exact working image as the baseline.
-2. If sockets are needed, implement/test an RTEMS `sys_arch` with a dedicated
-   lwIP task and correct semaphore/mailbox/time semantics, then evaluate the
-   required libc/socket interface. Do not turn on `NO_SYS=0` without that work.
-3. Separately audit timer frequency, RP interrupt entry/return and nested
-   register preservation before considering a hardware clock. An independent
-   host mailbox and explicit firmware quiescence/return design must precede
-   exclusive CPU ownership. Recovery is still an independent unanswered gate.
+Use the [integrated development plan](../DEVELOPMENT-PLAN.md) as the current
+backlog: M1 generalizes the proven larger loader profile; R1 adds diagnostics
+and application support; M2 rebalances owned memory if needed; R2 covers
+sys_arch/runtime APIs. M3 and A1–A3 separately address new RAM ownership and
+autonomous execution. These stages also account for the unresolved findings.
 
 The complete archived evidence can be checked with:
 

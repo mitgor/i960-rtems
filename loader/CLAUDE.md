@@ -1,5 +1,8 @@
 # Loader guidance for Claude Code
 
+**Current development roadmap:** [loader memory extension, RTEMS and remaining gaps](../DEVELOPMENT-PLAN.md). Next: M1, generalize the proven larger RAM profile; preserve scalar/BIO1 compatibility.
+
+
 **RTEMS extension (2026-10-11):** [cooperative RTEMS + lwIP](../rtems/README.md) uses a separate RIO1 transport and a larger, explicitly bounded private workspace inside the established staging allocation. The original scalar/BIO1/Tetris layouts remain unchanged. See the RTEMS guide for the correct module, memory map and host-routing commands.
 
 

@@ -1,5 +1,8 @@
 # Current findings and evidence — 2026-10-11
 
+The current implementation backlog is [the integrated development plan](DEVELOPMENT-PLAN.md),
+including a gap ledger G01–G12 and the next loader milestone M1.
+
 This is the current-state index. Earlier reports and artifact source snapshots
 record the state at their own milestone; their future-tense plans are historical.
 The earlier preservation audit was read-only. The subsequent RTEMS work loaded
@@ -14,6 +17,7 @@ RAM payloads and exercised the card; it did not reboot, program flash or test re
 | A stock-preserving patch has been programmed once and validated after reboot. | [Programming result](FIRMWARE-PROGRAMMED.md), paired full readbacks and postboot PING in `artifacts/programmed-rom-20261010/`. |
 | The boot-installed `0x6F` dispatch target is `FEFE001C`; PING returns `017E`. Boot straps remain Mode 3. | Postboot paired table reads and calls; this is software extension of stock firmware, not Mode 0 boot. |
 | Returning i960 programs can be uploaded and executed after the PC has booted, without further flash writes. | [Software loader](SOFTWARE-LOADER.md), `host/loadrun/`, `loader/runtime/`. Cache invalidation and restoration are part of the protocol. |
+| The 64 KiB scalar limit is policy, and a larger RAM profile is already proven. | RTEMS uses a 310,772-byte image and 471,136-byte prepared upload inside the existing 512 KiB staging window. [Memory limits and extension stages](DEVELOPMENT-PLAN.md#what-can-be-extended-now). This does not establish ownership of the rest of the card's 16 MiB DRAM. |
 | BIO1 returns bounded text/frame data; Tetris has an explicit bounded update/render ABI. | [Buffer I/O](BUFFER-IO.md), [Tetris step](TETRIS-STEP.md), `game/`. 4 KiB input, 8 KiB output; Tetris uses 256-byte requests and 2,160-byte responses. |
 | Repeated execution and persistent sessions are hardware-tested. | [T3 replay](TETRIS-REPLAY.md): 1,000 + 64 calls. [T5 session](PERSISTENT-SESSION.md): 1,000 frames and a separate 400-frame cadence test. |
 | RTEMS Classic tasks and card TCP/IP execute after PC startup. | [Cooperative RTEMS port](rtems/README.md), [exact artifacts](artifacts/rtems-20261011/README.md). Persistent tasks, lwIP ICMP/UDP/TCP, DNS and HTTP through Linux TUN/NAT; clock/progress depend on host polling. |
@@ -33,6 +37,10 @@ are expected to reject the now-patched card; do not bypass their pinned hashes.
 
 ## Limits and unresolved questions
 
+- General scalar loading is still capped at 64 KiB; BIO1 has a separate 32 KiB
+  code boundary. RIO1 supports larger images but is not yet a shared general
+  loader profile. Memory outside the staging allocation is unowned for application
+  purposes until proved otherwise. See M1–M3 / G12 in the integrated plan.
 - Recovery has not been demonstrated. The user excluded recovery testing;
   serial wiring/photos and adapter work remain future work. A spare card does
   not establish that this card is recoverable.
@@ -57,8 +65,8 @@ are expected to reject the now-patched card; do not bypass their pinned hashes.
   68 restarts. It is not a human gameplay or uninterrupted-running-game claim.
 - RTEMS tasks and host-routed TCP/IP now work in the [cooperative profile](rtems/README.md).
   Autonomous timer/interrupt ownership and independent host transport remain
-  unimplemented. The [original takeover plan](RTEMS-HOST-NETWORK-PLAN.md) describes
-  those additional gates; a working cooperative session does not satisfy them.
+  unimplemented. The [integrated plan](DEVELOPMENT-PLAN.md) describes
+  those additional gates in A1–A3; a working cooperative session does not satisfy them.
 
 ## Preservation and current host observation
 
