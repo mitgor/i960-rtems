@@ -575,6 +575,85 @@ registers still do not have a complete timing decode. RTEMS and networking are
 still plans. Saving a binary does not make an unanswered question disappear;
 it makes it possible for someone else to pick up exactly where we stopped.
 
+## The operating system that learned to come back
+
+“Do as much as possible for RTEMS,” he said. “I'll go to sleep.”
+
+There was a respectable plan on paper. Find an old RTEMS with i960 support,
+write a board support package, take ownership of interrupts and timers, invent
+a transport that would keep working after the RAID firmware stopped answering.
+That is a substantial amount of work to put between a sleeping person and a
+first result. More importantly, the card had already taught us a useful trick:
+a program could borrow the processor, do something, and return it.
+
+Could an operating system learn the same trick?
+
+RTEMS 4.6.6 still had the i960 code. Not a modern port hidden behind a familiar
+name: the actual historical kernel, with Classic tasks, semaphores, message
+queues and the context switch written for this family of processors. Its old
+RP board code also had assumptions we could not borrow. Different timer
+constants. A board-specific write. Interrupt machinery that needed a separate
+audit. So those parts stayed on the shelf. The original firmware kept the
+interrupts, and our RTEMS ran with them masked, inside its borrowed interval.
+
+The first test started a real RTEMS task and shut the executive down again.
+Then two workers changed places, carrying their local cookies intact through
+four hundred iterations. A queue carried two hundred messages. A sleeping
+task woke on the fifth tick we supplied. The CPU context was forty-eight bytes,
+not the forty-four I had initially expected. The card was right; the first
+host-side assertion was not.
+
+The next trick was to stop shutting down. A service task saved its context and
+switched back to the firmware caller. On the next call it resumed where it had
+left off. The kernel, task stacks and counters remained in the same borrowed
+RAM. One thousand calls later, both tasks still agreed about how many times
+they had been there. At the end, the original bytes went back into place.
+
+There was a small lesson in vocabulary along the way. A binary semaphore in
+this old RTEMS could mean an owner-recursive mutex. I had asked it to be a
+signal. The first worker never got its turn. A *simple* binary semaphore was
+the thing I meant, and once I said so, the worker started answering.
+
+Then came lwIP. Its first answer was an assertion: a DNS record that should
+occupy ten bytes occupied sixteen under the i960's aggregate alignment rules.
+One carefully packed wire structure later, DNS could exist. TCP supplied the
+next lesson. A receive callback that could copy one packet was not necessarily
+large enough for the pbuf chain it would eventually receive. The first long
+echo stalled at 9,600 bytes. The capture kept the zero window and retries; the
+fix kept a complete receive window and wrote it atomically.
+
+After that, the card answered ping. It echoed UDP. It accepted a TCP connection
+and returned sixteen thousand bytes without changing one. Linux had a private
+TUN interface for it and passed complete IP packets through the PCI transport.
+The TCP state machine was on the i960. Linux was the road out.
+
+And then the RAID controller asked a DNS server where `example.com` lived,
+opened its own TCP connection and fetched an HTTP page from the Internet.
+Eight hundred and ninety-one bytes came back. The host's packet capture could
+reassemble them independently, and its hash matched the bytes the card handed
+us. No host socket had fetched the page on its behalf.
+
+That deserves a little silence. This was a machine built to be somebody else's
+peripheral. It had just made a request of its own.
+
+We let that connection run for half an hour: 4,430 exchanges, nearly nineteen
+million bytes echoed exactly, and 29,352 trips into the kernel and back. The
+stack guards held. Then we killed the host client on purpose, checked that the
+kernel release restored the card, and used its saved journal to put the host
+networking back. Even an operating system needs to know how to leave.
+
+It also deserves a precise qualification. Time arrived in the host's requests.
+Without polling, RTEMS stopped progressing. There was no autonomous timer,
+no preemptive hardware BSP, no TLS, and no promise that a runaway callback
+could be interrupted. Three guarded stacks and a long test are evidence about
+this program, not a substitute for recovery or a disk-I/O test. We had learned
+to run an operating system cooperatively inside the old bargain, not abolished
+the bargain.
+
+The sources, exact binaries, failed first attempts and packet captures went
+into the same box as the ROM. An operating system is a better trophy when
+someone else can build it, run it, and check why you believe it worked.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -595,12 +674,17 @@ So, the ledger, honestly kept:
   with verified returns, bounded text/framebuffer output and RAM restoration.
   The current loader supports short,
   cooperative functions, not a resident game loop.
+- **RTEMS and TCP/IP run on the card.** Historical RTEMS Classic tasks persist
+  across returning callbacks; lwIP handles ICMP, UDP, TCP, DNS and HTTP through
+  host routing. The host supplies time and polling; autonomous interrupt-driven
+  RTEMS remains future work.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 
 The function contract is deliberately small: one argument in, one result out,
-return well within the two-second command timeout. There is no private OS or
-libc, no automatic BSS initialization, and no established large stack budget.
+return well within the two-second command timeout. The original scalar loader has no OS or automatic BSS initialization. The
+RTEMS profile now supplies its own persistent kernel state, explicit BSS setup,
+guarded task stacks and a small freestanding runtime.
 The host cannot preempt a runaway i960 function. Tetris now uses this path to exchange state, keys and framebuffer data without
 monopolizing the firmware command loop. The long hardware replay and timing measurements have now passed. A
 persistent session now sustains about twenty updates per second. The interactive
@@ -618,5 +702,6 @@ It still has that job. It has also learned to answer fifty-five.
 *For the reproducible version of these last acts, see
 [ROM-FETCH-LIVE.md](ROM-FETCH-LIVE.md),
 [FIRMWARE-PROGRAMMED.md](FIRMWARE-PROGRAMMED.md), and
-[SOFTWARE-LOADER.md](SOFTWARE-LOADER.md). The story ends here for now; the
+[SOFTWARE-LOADER.md](SOFTWARE-LOADER.md), and
+[rtems/README.md](rtems/README.md). The story ends here for now; the
 captures don't.*

@@ -1,0 +1,13 @@
+sigterm passed
+Project firewall rules removed; verified RAM restoration; module unloaded if present.
+sigkill passed
+{"sigterm": {"exit_code": -2, "restored": true, "unloaded": true, "network_restored": true}, "sigkill": {"exit_code": -9, "restored": true, "unloaded": true, "network_restored": true}, "invalid_operation": {"errno": 61, "fatal": "F0050002", "rejected": true}, "invalid_operation_close": {"steps": 1, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 0.0, "max": 0.0, "mean": 0.0}}}
+Payload returned 1180696577 (0x46600001); RAM restored, module unloaded. Captures: /home/mit/i960-rtems-final-20261011/bounded-mode-0
+Payload returned 4026536500 (0xf0001234); RAM restored, module unloaded. Captures: /home/mit/i960-rtems-final-20261011/bounded-mode-1
+Payload returned 1180696624 (0x46600030); RAM restored, module unloaded. Captures: /home/mit/i960-rtems-final-20261011/bounded-mode-2
+Payload returned 1180696579 (0x46600003); RAM restored, module unloaded. Captures: /home/mit/i960-rtems-final-20261011/bounded-mode-3
+Payload returned 1180696580 (0x46600004); RAM restored, module unloaded. Captures: /home/mit/i960-rtems-final-20261011/bounded-mode-4
+Payload returned 1180696581 (0x46600005); RAM restored, module unloaded. Captures: /home/mit/i960-rtems-final-20261011/bounded-mode-5
+Payload returned 1180696582 (0x46600006); RAM restored, module unloaded. Captures: /home/mit/i960-rtems-final-20261011/bounded-mode-6
+{"ping": "PING 10.196.0.2 (10.196.0.2) 56(84) bytes of data.\n64 bytes from 10.196.0.2: icmp_seq=1 ttl=255 time=113 ms\n64 bytes from 10.196.0.2: icmp_seq=2 ttl=255 time=71.9 ms\n64 bytes from 10.196.0.2: icmp_seq=3 ttl=255 time=118 ms\n64 bytes from 10.196.0.2: icmp_seq=4 ttl=255 time=73.6 ms\n\n--- 10.196.0.2 ping statistics ---\n4 packets transmitted, 4 received, 0% packet loss, time 3004ms\nrtt min/avg/max/mdev = 71.935/94.200/117.901/21.505 ms\n", "udp_sizes": [1, 31, 500, 1400], "tcp_bytes": 16000, "tcp_sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8"}
+{"steps": 228, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 53.804934, "max": 100.995366, "mean": 56.21324455263158}}

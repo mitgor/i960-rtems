@@ -1,0 +1,693 @@
+Archive member included to satisfy reference by file (symbol)
+
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+                              /home/mit/i960-rtems-20261011/bounded/app.o (_rtems_initialize_executive)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_extension.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Extension_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_io.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__IO_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__RTEMS_API_Initialize)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(cpu_cpu.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__CPU_Initialize)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_apiext.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__API_extensions_Initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_chain.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Chain_Append)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretod.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__TOD_Handler_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretodtickle.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretod.o) (__TOD_Tickle)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_interr.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Internal_error_Occurred)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_isr.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__ISR_Handler_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_object.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Objects_Handler_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectinitializeinformation.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_extension.o) (__Objects_Initialize_information)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_thread.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Thread_Handler_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadcreateidle.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Thread_Create_idle)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threaddispatch.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Thread_Dispatch)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadidlebody.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadcreateidle.o) (__Thread_Idle_body)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadcreateidle.o) (__Thread_Initialize)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadsetpriority.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o) (__Thread_Set_priority)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstackallocate.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o) (__Thread_Stack_Allocate)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstackfree.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o) (__Thread_Stack_Free)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstart.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadcreateidle.o) (__Thread_Start)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstartmultitasking.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Thread_Start_multitasking)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_userext.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o) (__User_extensions_Thread_create)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdog.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Watchdog_Handler_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdoginsert.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretod.o) (__Watchdog_Insert)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdogtickle.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretodtickle.o) (__Watchdog_Tickle)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_wkspace.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Workspace_Handler_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_dpmem.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Dual_ported_memory_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_event.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Event_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_intr.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Interrupt_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_msg.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Message_queue_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_part.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Partition_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_ratemon.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Rate_monotonic_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_region.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Region_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_rtemstimer.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Timer_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_sem.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Semaphore_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_signal.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__Signal_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_tasks.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o) (__RTEMS_tasks_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_debug.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o) (__Debug_Manager_initialization)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coremutex.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_region.o) (__CORE_mutex_Initialize)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heap.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_wkspace.o) (__Heap_Initialize)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heapallocate.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o) (__Heap_Allocate)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heapfree.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o) (__Heap_Free)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectallocate.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadcreateidle.o) (__Objects_Allocate)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectextendinformation.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectinitializeinformation.o) (__Objects_Extend_information)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadloadenv.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstart.o) (__Thread_Load_environment)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadq.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coremutex.o) (__Thread_queue_Initialize)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadready.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstart.o) (__Thread_Ready)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdogremove.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdogtickle.o) (__Watchdog_Remove)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskinitusers.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_tasks.o) (__RTEMS_tasks_Initialize_user_tasks)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskmode.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_tasks.o) (_rtems_task_mode)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskstart.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskinitusers.o) (_rtems_task_start)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectget.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskstart.o) (__Objects_Get)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadevaluatemode.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskmode.o) (__Thread_Evaluate_mode)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadhandler.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadloadenv.o) (__Thread_Handler)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskcreate.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskinitusers.o) (_rtems_task_create)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectfree.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskcreate.o) (__Objects_Free)
+/home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectshrinkinformation.o)
+                              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectfree.o) (__Objects_Shrink_information)
+
+Allocating common symbols
+Common symbol       size              file
+
+__Watchdog_Sync_level
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__RTEMS_tasks_Number_of_initialization_tasks
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__Context_Switch_necessary
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__CPU_Interrupt_stack_low
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Thread_Ticks_per_timeslice
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Thread_Maximum_extensions
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Internal_Objects  0xc               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__API_Mutex_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Debug_Level       0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__IO_Number_of_devices
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__IO_Number_of_drivers
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Dual_ported_memory_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__Configuration_Table
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__CPU_Interrupt_stack_high
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__RTEMS_tasks_User_initialization_tasks
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__Region_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__TOD_Seconds_since_epoch
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__User_extensions_Switches_list
+                    0x10              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Timer_Server      0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__TOD_Is_set        0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__RTEMS_tasks_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__ISR_Nest_level    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Thread_BSP_context
+                    0x30              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__User_extensions_List
+                    0x10              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__IO_Driver_address_table
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Partition_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__Timer_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__Watchdog_Seconds_chain
+                    0x10              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__TOD_Ticks_per_second
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Thread_Do_post_task_switch_extension
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__IO_Driver_name_table
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Thread_libc_reent
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__ISR_Vector_table  0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Thread_Ready_chain
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+_Internal_errors_What_happened
+                    0x10              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__RTEMS_Allocator_Mutex
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Event_Sync_state  0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__API_extensions_List
+                    0x10              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Priority_Major_bit_map
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Watchdog_Ticks_since_boot
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Extension_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__CPU_Table         0x30              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Semaphore_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__System_state_Is_multiprocessing
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__ISR_Signals_to_thread_executing
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Rate_monotonic_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__Watchdog_Ticks_chain
+                    0x10              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Thread_Executing  0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Watchdog_Sync_count
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Configuration_MP_table
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Objects_Maximum_nodes
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__RTEMS_Objects     0x28              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__Thread_Heir       0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Priority_Bit_map  0x40              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Message_queue_Information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+__Thread_Internal_information
+                    0x60              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+_rtems_ada_self     0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Thread_Dispatch_disable_level
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__TOD_Microseconds_per_tick
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__System_state_Current
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Objects_Local_node
+                    0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Workspace_Area    0x20              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Objects_Information_table
+                    0x14              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__TOD_Current       0x20              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__TOD_Seconds_watchdog
+                    0x30              /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+__Thread_Idle       0x4               /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x00000000c0f2c000                . = 0xc0f2c000
+
+.text           0x00000000c0f2c000     0x3210
+ *(.entry)
+ .entry         0x00000000c0f2c000       0x54 /home/mit/i960-rtems-20261011/bounded/start.o
+                0x00000000c0f2c000                _start
+ *(.text*)
+ *fill*         0x00000000c0f2c054        0xc 
+ .text          0x00000000c0f2c060       0xd0 /home/mit/i960-rtems-20261011/bounded/app.o
+                0x00000000c0f2c080                _bounded_fatal
+                0x00000000c0f2c090                __ISR_Handler
+                0x00000000c0f2c098                _ISR_Handler.lf
+                0x00000000c0f2c0b0                __CPU_ISR_install_raw_handler
+                0x00000000c0f2c0c0                _bounded_main
+ .text          0x00000000c0f2c130       0x40 /home/mit/i960-rtems-20261011/bounded/context.o
+                0x00000000c0f2c130                __CPU_Context_switch
+                0x00000000c0f2c164                __CPU_Context_restore
+                0x00000000c0f2c16c                __CPU_Context_restore_fp
+                0x00000000c0f2c16c                __CPU_Context_save_fp
+ .text          0x00000000c0f2c170      0x190 /home/mit/i960-rtems-20261011/bounded/libc.o
+                0x00000000c0f2c170                _memset
+                0x00000000c0f2c178                memset.lf
+                0x00000000c0f2c1b0                _memcpy
+                0x00000000c0f2c1b8                memcpy.lf
+                0x00000000c0f2c200                _memcmp
+                0x00000000c0f2c208                memcmp.lf
+                0x00000000c0f2c250                _strlen
+                0x00000000c0f2c258                strlen.lf
+                0x00000000c0f2c280                _strcmp
+                0x00000000c0f2c288                strcmp.lf
+                0x00000000c0f2c2d0                _memmove
+ .text          0x00000000c0f2c300       0x2c /home/mit/i960-rtems-20261011/bounded/start.o
+                0x00000000c0f2c300                _bounded_escape
+ *fill*         0x00000000c0f2c32c        0x4 
+ .text          0x00000000c0f2c330      0x430 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+                0x00000000c0f2c330                __TOD_Days_per_month
+                0x00000000c0f2c398                __TOD_Days_to_date
+                0x00000000c0f2c3cc                __TOD_Days_since_last_leap_year
+                0x00000000c0f2c3e0                __Copyright_Notice
+                0x00000000c0f2c430                __Initialization_Default_multiprocessing_table
+                0x00000000c0f2c450                _rtems_initialize_executive
+                0x00000000c0f2c470                _rtems_initialize_executive_early
+                0x00000000c0f2c6f0                _rtems_initialize_executive_late
+                0x00000000c0f2c720                _rtems_shutdown_executive
+ .text          0x00000000c0f2c760       0x30 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_extension.o)
+                0x00000000c0f2c760                __Extension_Manager_initialization
+ .text          0x00000000c0f2c790      0x3a0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_io.o)
+                0x00000000c0f2c790                __IO_Manager_initialization
+                0x00000000c0f2c860                __IO_Initialize_all_drivers
+                0x00000000c0f2c8a0                _rtems_io_register_driver
+                0x00000000c0f2c970                _rtems_io_unregister_driver
+                0x00000000c0f2c9b0                _rtems_io_initialize
+                0x00000000c0f2c9f0                _rtems_io_open
+                0x00000000c0f2ca30                _rtems_io_close
+                0x00000000c0f2ca70                _rtems_io_read
+                0x00000000c0f2cab0                _rtems_io_write
+                0x00000000c0f2caf0                _rtems_io_control
+ .text          0x00000000c0f2cb30       0xa0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+                0x00000000c0f2cb30                __RTEMS_API_Initialize
+ .text          0x00000000c0f2cbd0       0xa0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(cpu_cpu.o)
+                0x00000000c0f2cbd0                __CPU_Initialize
+                0x00000000c0f2cbf0                __CPU_ISR_Get_level
+                0x00000000c0f2cbf8                _CPU_ISR_Get_level.lf
+                0x00000000c0f2cc20                __CPU_ISR_install_vector
+ .text          0x00000000c0f2cc70       0xf0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_apiext.o)
+                0x00000000c0f2cc70                __API_extensions_Initialization
+                0x00000000c0f2cc78                _API_extensions_Initialization.lf
+                0x00000000c0f2cca0                __API_extensions_Add
+                0x00000000c0f2ccc0                __API_extensions_Run_predriver
+                0x00000000c0f2ccf0                __API_extensions_Run_postdriver
+                0x00000000c0f2cd20                __API_extensions_Run_postswitch
+ .text          0x00000000c0f2cd60      0x160 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_chain.o)
+                0x00000000c0f2cd60                __Chain_Initialize
+                0x00000000c0f2cd68                _Chain_Initialize.lf
+                0x00000000c0f2cdb0                __Chain_Get
+                0x00000000c0f2cdb8                _Chain_Get.lf
+                0x00000000c0f2ce00                __Chain_Append
+                0x00000000c0f2ce08                _Chain_Append.lf
+                0x00000000c0f2ce40                __Chain_Extract
+                0x00000000c0f2ce48                _Chain_Extract.lf
+                0x00000000c0f2ce80                __Chain_Insert
+                0x00000000c0f2ce88                _Chain_Insert.lf
+ .text          0x00000000c0f2cec0       0xc0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretod.o)
+                0x00000000c0f2cec0                __TOD_Handler_initialization
+ .text          0x00000000c0f2cf80      0x130 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretodtickle.o)
+                0x00000000c0f2cf80                __TOD_Tickle
+ .text          0x00000000c0f2d0b0       0x40 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_interr.o)
+                0x00000000c0f2d0b0                __Internal_error_Occurred
+ .text          0x00000000c0f2d0f0       0x30 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_isr.o)
+                0x00000000c0f2d0f0                __ISR_Handler_initialization
+ .text          0x00000000c0f2d120       0x40 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_object.o)
+                0x00000000c0f2d120                __Objects_Handler_initialization
+ .text          0x00000000c0f2d160       0xc0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectinitializeinformation.o)
+                0x00000000c0f2d160                __Objects_Initialize_information
+ .text          0x00000000c0f2d220       0xe0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_thread.o)
+                0x00000000c0f2d220                __Thread_Handler_initialization
+ .text          0x00000000c0f2d300       0xd0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadcreateidle.o)
+                0x00000000c0f2d310                __Thread_Create_idle
+ .text          0x00000000c0f2d3d0      0x160 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threaddispatch.o)
+                0x00000000c0f2d3d0                __Thread_Enable_dispatch
+                0x00000000c0f2d400                __Thread_Dispatch
+ .text          0x00000000c0f2d530       0x20 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadidlebody.o)
+                0x00000000c0f2d530                __Thread_Idle_body
+                0x00000000c0f2d538                _Thread_Idle_body.lf
+ .text          0x00000000c0f2d550      0x190 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o)
+                0x00000000c0f2d550                __Thread_Initialize
+ .text          0x00000000c0f2d6e0       0x70 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadsetpriority.o)
+                0x00000000c0f2d6e0                __Thread_Set_priority
+                0x00000000c0f2d6e8                _Thread_Set_priority.lf
+ .text          0x00000000c0f2d750       0x60 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstackallocate.o)
+                0x00000000c0f2d750                __Thread_Stack_Allocate
+ .text          0x00000000c0f2d7b0       0x40 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstackfree.o)
+                0x00000000c0f2d7b0                __Thread_Stack_Free
+ .text          0x00000000c0f2d7f0       0x50 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstart.o)
+                0x00000000c0f2d7f0                __Thread_Start
+ .text          0x00000000c0f2d840       0x40 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstartmultitasking.o)
+                0x00000000c0f2d840                __Thread_Start_multitasking
+ .text          0x00000000c0f2d880      0x1e0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_userext.o)
+                0x00000000c0f2d880                __User_extensions_Thread_create
+                0x00000000c0f2d8d0                __User_extensions_Thread_delete
+                0x00000000c0f2d910                __User_extensions_Thread_start
+                0x00000000c0f2d950                __User_extensions_Thread_restart
+                0x00000000c0f2d990                __User_extensions_Thread_begin
+                0x00000000c0f2d9d0                __User_extensions_Thread_exitted
+                0x00000000c0f2da10                __User_extensions_Fatal
+ .text          0x00000000c0f2da60       0x60 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdog.o)
+                0x00000000c0f2da60                __Watchdog_Handler_initialization
+                0x00000000c0f2da68                _Watchdog_Handler_initialization.lf
+ .text          0x00000000c0f2dac0      0x100 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdoginsert.o)
+                0x00000000c0f2dac0                __Watchdog_Insert
+ .text          0x00000000c0f2dbc0       0x80 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdogtickle.o)
+                0x00000000c0f2dbc0                __Watchdog_Tickle
+ .text          0x00000000c0f2dc40       0xd0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_wkspace.o)
+                0x00000000c0f2dc40                __Workspace_Handler_initialization
+                0x00000000c0f2dcd0                __Workspace_Allocate_or_fatal_error
+ .text          0x00000000c0f2dd10       0x30 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_dpmem.o)
+                0x00000000c0f2dd10                __Dual_ported_memory_Manager_initialization
+ .text          0x00000000c0f2dd40       0x20 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_event.o)
+                0x00000000c0f2dd40                __Event_Manager_initialization
+                0x00000000c0f2dd48                _Event_Manager_initialization.lf
+ .text          0x00000000c0f2dd60       0x20 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_intr.o)
+                0x00000000c0f2dd60                __Interrupt_Manager_initialization
+                0x00000000c0f2dd68                _Interrupt_Manager_initialization.lf
+ .text          0x00000000c0f2dd80       0x30 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_msg.o)
+                0x00000000c0f2dd80                __Message_queue_Manager_initialization
+ .text          0x00000000c0f2ddb0       0x30 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_part.o)
+                0x00000000c0f2ddb0                __Partition_Manager_initialization
+ .text          0x00000000c0f2dde0       0x30 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_ratemon.o)
+                0x00000000c0f2dde0                __Rate_monotonic_Manager_initialization
+ .text          0x00000000c0f2de10       0xb0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_region.o)
+                0x00000000c0f2de10                __Region_Manager_initialization
+ .text          0x00000000c0f2dec0       0x40 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_rtemstimer.o)
+                0x00000000c0f2dec0                __Timer_Manager_initialization
+ .text          0x00000000c0f2df00       0x30 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_sem.o)
+                0x00000000c0f2df00                __Semaphore_Manager_initialization
+ .text          0x00000000c0f2df30       0x20 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_signal.o)
+                0x00000000c0f2df30                __Signal_Manager_initialization
+                0x00000000c0f2df38                _Signal_Manager_initialization.lf
+ .text          0x00000000c0f2df50      0x2b0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_tasks.o)
+                0x00000000c0f2df50                __RTEMS_tasks_Create_extension
+                0x00000000c0f2dfc0                __RTEMS_tasks_Start_extension
+                0x00000000c0f2dfc8                _RTEMS_tasks_Start_extension.lf
+                0x00000000c0f2e000                __RTEMS_tasks_Delete_extension
+                0x00000000c0f2e090                __RTEMS_tasks_Switch_extension
+                0x00000000c0f2e098                _RTEMS_tasks_Switch_extension.lf
+                0x00000000c0f2e0f0                __RTEMS_tasks_Post_switch_extension
+                0x00000000c0f2e170                __RTEMS_tasks_Manager_initialization
+ .text          0x00000000c0f2e200       0xa0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_debug.o)
+                0x00000000c0f2e200                __Debug_Manager_initialization
+                0x00000000c0f2e210                _rtems_debug_enable
+                0x00000000c0f2e218                rtems_debug_enable.lf
+                0x00000000c0f2e240                _rtems_debug_disable
+                0x00000000c0f2e248                rtems_debug_disable.lf
+                0x00000000c0f2e270                __Debug_Is_enabled
+                0x00000000c0f2e278                _Debug_Is_enabled.lf
+ .text          0x00000000c0f2e2a0       0x80 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coremutex.o)
+                0x00000000c0f2e2a0                __CORE_mutex_Initialize
+ .text          0x00000000c0f2e320       0x70 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heap.o)
+                0x00000000c0f2e320                __Heap_Initialize
+ .text          0x00000000c0f2e390       0xd0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heapallocate.o)
+                0x00000000c0f2e390                __Heap_Allocate
+ .text          0x00000000c0f2e460      0x130 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heapfree.o)
+                0x00000000c0f2e460                __Heap_Free
+ .text          0x00000000c0f2e590       0x80 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectallocate.o)
+                0x00000000c0f2e590                __Objects_Allocate
+ .text          0x00000000c0f2e610      0x2e0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectextendinformation.o)
+                0x00000000c0f2e610                __Objects_Extend_information
+ .text          0x00000000c0f2e8f0       0x90 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadloadenv.o)
+                0x00000000c0f2e8f0                __Thread_Load_environment
+                0x00000000c0f2e8f8                _Thread_Load_environment.lf
+ .text          0x00000000c0f2e980       0x70 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadq.o)
+                0x00000000c0f2e980                __Thread_queue_Initialize
+                0x00000000c0f2e988                _Thread_queue_Initialize.lf
+ .text          0x00000000c0f2e9f0       0xf0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadready.o)
+                0x00000000c0f2e9f0                __Thread_Ready
+                0x00000000c0f2e9f8                _Thread_Ready.lf
+ .text          0x00000000c0f2eae0       0xa0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdogremove.o)
+                0x00000000c0f2eae0                __Watchdog_Remove
+                0x00000000c0f2eae8                _Watchdog_Remove.lf
+ .text          0x00000000c0f2eb80       0xb0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskinitusers.o)
+                0x00000000c0f2eb80                __RTEMS_tasks_Initialize_user_tasks
+ .text          0x00000000c0f2ec30      0x110 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskmode.o)
+                0x00000000c0f2ec30                _rtems_task_mode
+ .text          0x00000000c0f2ed40      0x100 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskstart.o)
+                0x00000000c0f2ed40                _rtems_task_start
+ .text          0x00000000c0f2ee40       0x70 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectget.o)
+                0x00000000c0f2ee40                __Objects_Get
+ .text          0x00000000c0f2eeb0       0x60 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadevaluatemode.o)
+                0x00000000c0f2eeb0                __Thread_Evaluate_mode
+                0x00000000c0f2eeb8                _Thread_Evaluate_mode.lf
+ .text          0x00000000c0f2ef10       0xa0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadhandler.o)
+                0x00000000c0f2ef10                __Thread_Handler
+ .text          0x00000000c0f2efb0      0x120 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskcreate.o)
+                0x00000000c0f2efb0                _rtems_task_create
+ .text          0x00000000c0f2f0d0       0x70 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectfree.o)
+                0x00000000c0f2f0d0                __Objects_Free
+ .text          0x00000000c0f2f140       0xd0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectshrinkinformation.o)
+                0x00000000c0f2f140                __Objects_Shrink_information
+ *(.rodata*)
+                0x00000000c0f2f210                . = ALIGN (0x10)
+
+.data           0x00000000c0f2f210      0x190
+ *(.data*)
+ .data          0x00000000c0f2f210       0xc0 /home/mit/i960-rtems-20261011/bounded/app.o
+ .data          0x00000000c0f2f2d0       0x18 /home/mit/i960-rtems-20261011/bounded/context.o
+ .data          0x00000000c0f2f2e8        0x0 /home/mit/i960-rtems-20261011/bounded/libc.o
+ *fill*         0x00000000c0f2f2e8        0x8 
+ .data          0x00000000c0f2f2f0       0x30 /home/mit/i960-rtems-20261011/bounded/start.o
+ .data          0x00000000c0f2f320        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+ .data          0x00000000c0f2f320        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_extension.o)
+ .data          0x00000000c0f2f320        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_io.o)
+ .data          0x00000000c0f2f320       0x10 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+                0x00000000c0f2f320                __Status_Object_name_errors_to_status
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(cpu_cpu.o)
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_apiext.o)
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_chain.o)
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretod.o)
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretodtickle.o)
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_interr.o)
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_isr.o)
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_object.o)
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectinitializeinformation.o)
+ .data          0x00000000c0f2f330        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_thread.o)
+ .data          0x00000000c0f2f330        0x4 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadcreateidle.o)
+                0x00000000c0f2f330                __Thread_Idle_name
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threaddispatch.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadidlebody.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadsetpriority.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstackallocate.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstackfree.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstart.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstartmultitasking.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_userext.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdog.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdoginsert.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdogtickle.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_wkspace.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_dpmem.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_event.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_intr.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_msg.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_part.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_ratemon.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_region.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_rtemstimer.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_sem.o)
+ .data          0x00000000c0f2f334        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_signal.o)
+ *fill*         0x00000000c0f2f334        0xc 
+ .data          0x00000000c0f2f340       0x60 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_tasks.o)
+                0x00000000c0f2f340                __RTEMS_tasks_API_extensions
+                0x00000000c0f2f360                __RTEMS_tasks_User_extensions
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_debug.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coremutex.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heap.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heapallocate.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heapfree.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectallocate.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectextendinformation.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadloadenv.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadq.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadready.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdogremove.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskinitusers.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskmode.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskstart.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectget.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadevaluatemode.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadhandler.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskcreate.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectfree.o)
+ .data          0x00000000c0f2f3a0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectshrinkinformation.o)
+                0x00000000c0f2f3a0                . = ALIGN (0x10)
+                0x00000000c0f2f3a0                __bss_start = .
+
+.bss            0x00000000c0f2f3a0     0x6750
+ *(.bss*)
+ .bss           0x00000000c0f2f3a0     0x6010 /home/mit/i960-rtems-20261011/bounded/app.o
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/context.o
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/libc.o
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/start.o
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_extension.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_io.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(cpu_cpu.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_apiext.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_chain.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretod.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coretodtickle.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_interr.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_isr.o)
+ .bss           0x00000000c0f353b0        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_object.o)
+ .bss           0x00000000c0f353b0        0x4 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectinitializeinformation.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_thread.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadcreateidle.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threaddispatch.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadidlebody.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadinitialize.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadsetpriority.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstackallocate.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstackfree.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstart.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadstartmultitasking.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_userext.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdog.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdoginsert.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdogtickle.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_wkspace.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_dpmem.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_event.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_intr.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_msg.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_part.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_ratemon.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_region.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_rtemstimer.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_sem.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_signal.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_tasks.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_debug.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_coremutex.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heap.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heapallocate.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_heapfree.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectallocate.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectextendinformation.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadloadenv.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadq.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadready.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_watchdogremove.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskinitusers.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskmode.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskstart.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectget.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadevaluatemode.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_threadhandler.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(rtems_taskcreate.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectfree.o)
+ .bss           0x00000000c0f353b4        0x0 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(score_objectshrinkinformation.o)
+ *(COMMON)
+ *fill*         0x00000000c0f353b4        0xc 
+ COMMON         0x00000000c0f353c0      0x3b4 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_exinit.o)
+                0x00000000c0f353c0                __Watchdog_Sync_level
+                0x00000000c0f353c4                __Context_Switch_necessary
+                0x00000000c0f353c8                __CPU_Interrupt_stack_low
+                0x00000000c0f353cc                __Thread_Ticks_per_timeslice
+                0x00000000c0f353d0                __Thread_Maximum_extensions
+                0x00000000c0f353e0                __Internal_Objects
+                0x00000000c0f353f0                __API_Mutex_Information
+                0x00000000c0f35450                __Debug_Level
+                0x00000000c0f35454                __IO_Number_of_devices
+                0x00000000c0f35458                __IO_Number_of_drivers
+                0x00000000c0f3545c                __Configuration_Table
+                0x00000000c0f35460                __CPU_Interrupt_stack_high
+                0x00000000c0f35464                __TOD_Seconds_since_epoch
+                0x00000000c0f35470                __User_extensions_Switches_list
+                0x00000000c0f35480                __TOD_Is_set
+                0x00000000c0f35484                __ISR_Nest_level
+                0x00000000c0f35490                __Thread_BSP_context
+                0x00000000c0f354c0                __User_extensions_List
+                0x00000000c0f354d0                __IO_Driver_address_table
+                0x00000000c0f354e0                __Watchdog_Seconds_chain
+                0x00000000c0f354f0                __TOD_Ticks_per_second
+                0x00000000c0f354f4                __Thread_Do_post_task_switch_extension
+                0x00000000c0f354f8                __IO_Driver_name_table
+                0x00000000c0f354fc                __Thread_libc_reent
+                0x00000000c0f35500                __ISR_Vector_table
+                0x00000000c0f35504                __Thread_Ready_chain
+                0x00000000c0f35510                _Internal_errors_What_happened
+                0x00000000c0f35520                __RTEMS_Allocator_Mutex
+                0x00000000c0f35530                __API_extensions_List
+                0x00000000c0f35540                __Priority_Major_bit_map
+                0x00000000c0f35544                __Watchdog_Ticks_since_boot
+                0x00000000c0f35550                __Extension_Information
+                0x00000000c0f355b0                __CPU_Table
+                0x00000000c0f355e0                __System_state_Is_multiprocessing
+                0x00000000c0f355e4                __ISR_Signals_to_thread_executing
+                0x00000000c0f355f0                __Watchdog_Ticks_chain
+                0x00000000c0f35600                __Thread_Executing
+                0x00000000c0f35604                __Watchdog_Sync_count
+                0x00000000c0f35608                __Configuration_MP_table
+                0x00000000c0f3560c                __Objects_Maximum_nodes
+                0x00000000c0f35610                __Thread_Heir
+                0x00000000c0f35620                __Priority_Bit_map
+                0x00000000c0f35660                __Thread_Internal_information
+                0x00000000c0f356c0                _rtems_ada_self
+                0x00000000c0f356c4                __Thread_Dispatch_disable_level
+                0x00000000c0f356c8                __TOD_Microseconds_per_tick
+                0x00000000c0f356cc                __System_state_Current
+                0x00000000c0f356d0                __Objects_Local_node
+                0x00000000c0f356e0                __Workspace_Area
+                0x00000000c0f35700                __Objects_Information_table
+                0x00000000c0f35720                __TOD_Current
+                0x00000000c0f35740                __TOD_Seconds_watchdog
+                0x00000000c0f35770                __Thread_Idle
+ *fill*         0x00000000c0f35774        0xc 
+ COMMON         0x00000000c0f35780      0x370 /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a(sapi_rtemsapi.o)
+                0x00000000c0f35780                __RTEMS_tasks_Number_of_initialization_tasks
+                0x00000000c0f35790                __Dual_ported_memory_Information
+                0x00000000c0f357f0                __RTEMS_tasks_User_initialization_tasks
+                0x00000000c0f35800                __Region_Information
+                0x00000000c0f35860                __Timer_Server
+                0x00000000c0f35870                __RTEMS_tasks_Information
+                0x00000000c0f358d0                __Partition_Information
+                0x00000000c0f35930                __Timer_Information
+                0x00000000c0f35990                __Event_Sync_state
+                0x00000000c0f359a0                __Semaphore_Information
+                0x00000000c0f35a00                __Rate_monotonic_Information
+                0x00000000c0f35a60                __RTEMS_Objects
+                0x00000000c0f35a90                __Message_queue_Information
+                0x00000000c0f35af0                . = ALIGN (0x10)
+                0x00000000c0f35af0                __bss_end = .
+
+.image_tail     0x00000000c0f35af0        0x4
+                0x00000000c0f35af0        0x1 BYTE 0x0
+                0x00000000c0f35af4                . = ALIGN (0x4)
+ *fill*         0x00000000c0f35af1        0x3 
+                0x0000000000000001                ASSERT ((. <= 0xc0f3c000), bounded image exceeds verified 64 KiB upload)
+LOAD /home/mit/i960-rtems-20261011/bounded/app.o
+LOAD /home/mit/i960-rtems-20261011/bounded/context.o
+LOAD /home/mit/i960-rtems-20261011/bounded/libc.o
+LOAD /home/mit/i960-rtems-20261011/bounded/start.o
+LOAD /home/mit/i960-rtems-20261011/bounded/librtems-bounded.a
+OUTPUT(/home/mit/i960-rtems-20261011/bounded/kernel.elf elf32-i960)

@@ -1,0 +1,8 @@
+{
+  "reproduced": true,
+  "payload_bytes": 310772,
+  "sha256": "a56aedbb32d211dd5dccc2f7a6258c47acf1f11b3fb906f464258abcaf0a504d",
+  "original_build": "/home/mit/i960-rtems-20261011",
+  "independent_build": "/home/mit/i960-rtems-final-20261011",
+  "note": "ABI compile assertions and host-native compatibility macros do not change target bytes; module build path metadata differs."
+}

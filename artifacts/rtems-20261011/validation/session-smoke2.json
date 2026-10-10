@@ -1,0 +1,10 @@
+{
+  "valid": true,
+  "mode": "echo",
+  "steps": 3,
+  "milliseconds_supplied": 30,
+  "ram_audits": 1,
+  "stack_used_lower_bounds": null,
+  "restored": true,
+  "unloaded": true
+}

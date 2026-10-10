@@ -1,6 +1,10 @@
 # Plan: RTEMS on i960, TCP/IP through the Linux host
 
-Date: 2026-10-10. Research and implementation roadmap, not a working RTEMS port.
+Original plan: 2026-10-10. Updated status: 2026-10-11.
+
+**A cooperative RTEMS port and card TCP/IP now work:** see [implementation](rtems/README.md) and [hardware evidence](artifacts/rtems-20261011/README.md). R1 produced RTEMS 4.6.6 with the existing i960 ELF tools. Classic tasks, context switches, semaphores, message queues and software ticks passed live tests. Persistent task state and lwIP 2.1.3 now carry ICMP, UDP, TCP, DNS and HTTP through host TUN/NAT.
+
+The architecture below describes the still-unimplemented **autonomous takeover** path. It is no longer a prerequisite for using RTEMS: the implemented alternative deliberately returns to firmware on every host callback, keeps interrupts masked within RTEMS, and advances time from host polling. It does not satisfy the original exclusive-ownership/preemptive-clock gates. Networking uses TUN/raw IPv4 instead of TAP/Ethernet. Recovery remains untested.
 Build on [TETRIS-ON-CARD-PLAN.md](TETRIS-ON-CARD-PLAN.md), especially proven console
 transport, memory bounds and reproducible target builds.
 

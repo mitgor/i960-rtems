@@ -1,0 +1,12 @@
+RTEMS serve: 12 sequential TCP connections and UDP passed; restored and unloaded.
+verified 100
+verified 200
+verified 300
+verified 400
+verified 500
+verified 600
+verified 700
+verified 800
+verified 900
+verified 1000
+{"steps": 1000, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 49.680105, "max": 71.769362, "mean": 51.589367976999995}}

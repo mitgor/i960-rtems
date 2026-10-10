@@ -41,3 +41,6 @@ loader/postinit/test_profile
 
 # Explicitly preserved historical ELF builds from the final remote audit.
 !artifacts/preservation-audit-20261011/**/*.elf
+
+# Exact RTEMS archaeology builds.
+!artifacts/rtems-20261011/**/*.elf

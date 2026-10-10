@@ -1,0 +1,4 @@
+{"ping": "PING 10.196.0.2 (10.196.0.2) 56(84) bytes of data.\n64 bytes from 10.196.0.2: icmp_seq=1 ttl=255 time=112 ms\n64 bytes from 10.196.0.2: icmp_seq=2 ttl=255 time=64.9 ms\n64 bytes from 10.196.0.2: icmp_seq=3 ttl=255 time=101 ms\n64 bytes from 10.196.0.2: icmp_seq=4 ttl=255 time=110 ms\n\n--- 10.196.0.2 ping statistics ---\n4 packets transmitted, 4 received, 0% packet loss, time 3005ms\nrtt min/avg/max/mdev = 64.936/96.720/111.641/18.798 ms\n", "udp_sizes": [1, 31, 500, 1400], "tcp_bytes": 16000, "tcp_sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8"}
+RTEMS services active: 10.196.0.2 TCP 9600, UDP 9601; Ctrl-C to stop
+{"steps": 139, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 54.323276, "max": 101.950514, "mean": 56.295740956834535}}
+Connection to 192.168.2.75 closed.

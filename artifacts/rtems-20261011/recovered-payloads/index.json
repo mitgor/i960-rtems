@@ -1,0 +1,50 @@
+[
+  {
+    "run": "net-internet",
+    "payload": "ac7bd88c7ca7be01da69e6cecdbb9237e488d034fa12f070c99a3f99851facdb.bin",
+    "bytes": 285796,
+    "prepared_image": "rtems-dbe3534582f56419718b6c8b889c963e0cc6b25e4f6cce4ebc2d74b39cd03d1c.bin"
+  },
+  {
+    "run": "net-local",
+    "payload": "876aa6cf31cddd7e61b1827fc86336b874d8cb6865d29307883230bf0e953df5.bin",
+    "bytes": 280996,
+    "prepared_image": "rtems-5b53c4c390ac72d96facc90ea451e9603913bd69f96400027f5a2167d60e7d68.bin"
+  },
+  {
+    "run": "net-local2",
+    "payload": "4082d53763b18f8ed4944a9965e66f95a42f30a339edc62f052ccc85d34976ef.bin",
+    "bytes": 280996,
+    "prepared_image": "rtems-b8b3cfec60e764b16bdfbe0998323c572d047ded484c4110fc26b334c88ec2b8.bin"
+  },
+  {
+    "run": "net-local3",
+    "payload": "ac7bd88c7ca7be01da69e6cecdbb9237e488d034fa12f070c99a3f99851facdb.bin",
+    "bytes": 285796,
+    "prepared_image": "rtems-dbe3534582f56419718b6c8b889c963e0cc6b25e4f6cce4ebc2d74b39cd03d1c.bin"
+  },
+  {
+    "run": "net-loss",
+    "payload": "59c94cb920da906cc8ad838abefb9e854e7b4bb57248229dcd2408f34bf68690.bin",
+    "bytes": 310772,
+    "prepared_image": "rtems-37f848072035b1b42c06cb65251091d7ac4461eda2b942da12fac8e77ecea36b.bin"
+  },
+  {
+    "run": "session-1000",
+    "payload": "7ab7c09ae770535693387dd553318457a080fc62346bc88ee3275ef0732394cf.bin",
+    "bytes": 182596,
+    "prepared_image": "rtems-40775a1776a788b6e26fd8d2a58e952b6232fc9065bdfe216361a0f21fa66e13.bin"
+  },
+  {
+    "run": "session-smoke",
+    "payload": "86a375d6ebad5fd7311a7bb94414144da8c030059a29e0e4ad9fae83ad7735f1.bin",
+    "bytes": 182596,
+    "prepared_image": "rtems-a9a0caa72197576f15ac290ed0cf60e2f53fa053e15258e2eb2dd56a92eb853f.bin"
+  },
+  {
+    "run": "session-smoke2",
+    "payload": "7ab7c09ae770535693387dd553318457a080fc62346bc88ee3275ef0732394cf.bin",
+    "bytes": 182596,
+    "prepared_image": "rtems-40775a1776a788b6e26fd8d2a58e952b6232fc9065bdfe216361a0f21fa66e13.bin"
+  }
+]

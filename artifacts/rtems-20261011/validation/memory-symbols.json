@@ -1,0 +1,11 @@
+{
+  "_start": "0xc0f2c000",
+  "_escape_context": "0xc0f4c0f0",
+  "__bss_start": "0xc0f4c1e0",
+  "_workspace": "0xc0f4c1f0",
+  "_guarded_stacks": "0xc0f58200",
+  "_stack_count": "0xc0f5e380",
+  "_stack_sizes": "0xc0f5e384",
+  "__Thread_BSP_context": "0xc0f64d80",
+  "__bss_end": "0xc0f77df0"
+}

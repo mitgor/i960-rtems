@@ -1,0 +1,46 @@
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:1: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\5' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\26' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\7' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:5: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\2' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:7: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: syntax error before "OS"
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:17: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\2' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:27: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:37: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:41: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\2' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:45: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\243' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:49: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:91: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\243' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:99: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\230' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:103: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\1' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:123: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\230' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:127: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\25' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:154: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\1' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\2' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:157: warning: null character(s) ignored
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\305' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\346' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\245' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\336' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\353' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\264' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\237' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1: error: stray '\31' in program
+/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c:1:166: warning: no newline at end of file
+Traceback (most recent call last):
+  File "/home/mit/i960-rtems-final-20261011/project/rtems/build.py", line 60, in <module>
+    subprocess.run([a.cross+'gcc',*flags,'-c',str(f),'-o',str(out/(f.stem+'.o'))],check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/mit/i960/tools/bin/i960-coff-gcc', '-DI960_TARGET', '-mrp', '-Os', '-fno-builtin', '-ffreestanding', '-D__rtems__', '-DUSE_INLINES', '-I/home/mit/i960-rtems-final-20261011/net/include', '-I/home/mit/i960-rtems-final-20261011/newlib-1.11.0/newlib/libc/include', '-I/home/mit/i960-rtems-final-20261011/project/rtems/net', '-I/home/mit/i960-rtems-final-20261011/lwip-STABLE-2_1_3_RELEASE/src/include', '-c', '/home/mit/i960-rtems-final-20261011/project/rtems/net/._app.c', '-o', '/home/mit/i960-rtems-final-20261011/net/._app.o']' returned non-zero exit status 1.

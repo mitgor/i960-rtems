@@ -1,0 +1,245 @@
+# RTEMS on the DAC960PG
+
+RTEMS 4.6.6 Classic tasks and lwIP 2.1.3 now execute on the physical i960RP.
+The card answers ICMP, provides UDP/TCP echo services, resolves DNS and fetches
+HTTP through the Linux host. A 30-minute run passed 29,352 callbacks and echoed
+18,896,608 TCP bytes exactly; shutdown, forced-client-exit and full restoration
+checks also passed. Exact images, source packages, captures and results
+are under [artifacts/rtems-20261011](../artifacts/rtems-20261011/README.md).
+
+## Execution model
+
+This is a **cooperative, RAM-only RTEMS port** using the existing programmed
+stock-firmware extension. Each host request resumes RTEMS; a service task
+processes bounded work, exchanges a semaphore signal with another task, and
+switches back to the saved firmware-call context. Task stacks, queues and lwIP
+state persist across calls. The firmware regains control between calls.
+
+The card runs RTEMS scheduling and the TCP/IP implementation. Linux transports
+complete IP packets through a TUN interface, then routes/NATs outbound traffic.
+Clock ticks come from elapsed host monotonic time, in 10 ms units. Task sleeps
+and timeouts advance when requests arrive. Interrupt priority stays at 31
+inside RTEMS and returns to its saved value when the callback finishes. Stock
+interrupt vectors and timers retain their ownership.
+
+This makes practical progress without the original plan's exclusive firmware
+handoff. An autonomous hardware-clock/preemptive BSP, independent mailbox
+transport, CPU takeover, recovery, POSIX sockets, TLS and general libc support
+remain future work. RTEMS pauses when the host stops polling. A callback that
+never returns still cannot be preempted by the host.
+
+## Build from the preserved sources
+
+The tested host is Ubuntu 22.04.5 x86-64, kernel `6.8.0-138-generic`, with the
+existing GCC 3.3.6 / binutils 2.27 tools at `/home/mit/i960/tools/bin`.
+The [exact compiler archive](../artifacts/toolchain-20261011/README.md) is in Git.
+Source URLs and SHA256 identities are pinned in [sources.json](sources.json).
+
+From the repository root on the Mac, choose a new remote build directory:
+
+```sh
+python3 rtems/deploy.py --destination /home/mit/i960-rtems-new-build
+```
+
+This copies the relevant sources/packages, builds the target and generates a
+separate `dac960rtems.ko`. It does not touch the card or host routing. Kernel
+module hashes vary with build paths/debug metadata; compare generated source
+and retain the exact module used in each run. The target image was reproduced
+byte-for-byte in a separate build directory.
+
+`build.py --work <directory> --profile bounded|session|net` can also be used
+on Linux. `bounded` is the one-shot Classic API test, `session` retains two
+tasks and echoes bytes across callbacks, and `net` adds lwIP and guarded task
+stacks. The build uses RTEMS core source files and headers directly, with the
+explicit adaptations below, rather than the old board's BSP startup.
+
+Newlib 1.11.0 plus its matching RTEMS patch supplies compatible headers. The
+application links the small freestanding routines in `libc.c`; it does not
+claim a complete Newlib runtime. Tested applications are integer-only C for
+i960RP; no floating-point library or task FP-state support is provided.
+The compiler's `i960-coff-` command names drive ELF assembler/linker tools.
+
+## Run on the existing PC
+
+The installed working directory is `/home/mit/i960-rtems-final-20261011`.
+Use a **new** output directory for each invocation. The card must be idle and
+unbound; the runner shares Tetris's exclusive `/run/lock/i960-loadrun.lock`.
+It refuses an already-owned card. Finish Tetris before starting RTEMS.
+
+To keep RTEMS services running in the foreground, use the installed launcher:
+
+```sh
+ssh -t mit@192.168.2.75 /home/mit/i960-rtems-final-20261011/serve.sh
+```
+
+It creates a timestamped capture directory. Ctrl-C restores RAM and releases
+the module/interface. Add `--internet` only when host routing/NAT is wanted.
+
+For a finite local host/card ICMP, UDP and TCP test:
+
+```sh
+ssh -t mit@192.168.2.75 'sudo -n python3 /home/mit/i960-rtems-final-20261011/project/rtems/transport/relay.py --payload /home/mit/i960-rtems-final-20261011/net/kernel.bin --module /home/mit/i960-rtems-final-20261011/module/dac960rtems.ko --output /home/mit/i960-rtems-final-20261011/my-local-test'
+```
+
+Add `--internet` to resolve and fetch `example.com` over HTTP, `--faults` to
+inject one dropped TCP data packet and a slow reader, or `--duration 1800`
+for a half-hour local TCP stress test. `--fetch <hostname>` chooses the HTTP
+host when Internet testing is enabled. Add `--serve` to keep services running
+after the tests until Ctrl-C, or `--serve 60` for a bounded service interval.
+From another SSH terminal, try `ping 10.196.0.2` or `nc 10.196.0.2 9600`; TCP
+returns the bytes you send. Results and packet captures go into
+the chosen output folder. The client automatically closes/restores the card,
+unloads its module and removes its routing changes after the test.
+
+The current fixed network profile uses host `10.196.0.1/30`, card
+`10.196.0.2/30`, interface `i960rt0`, DNS `192.168.2.3`, TCP echo port 9600 and
+UDP echo port 9601. The relay checks for overlapping host routes and an existing
+interface/rules before use. To use another network, change the target and host
+configuration together and rebuild. It does not bridge the card onto the LAN.
+
+Internet mode discovers the single default uplink, temporarily enables IPv4
+forwarding and adds address/interface-scoped NAT and forwarding rules. It
+allows replies toward the card and drops unsolicited forwarded input. Cleanup
+removes only its exact rules and restores the saved forwarding value. Loading
+iptables may leave empty default-policy tables/chains initialized; no project
+rules remain after normal cleanup. Snapshots record the actual before/after
+configuration.
+
+SIGTERM/SIGHUP and normal exceptions run cleanup. SIGKILL cannot run Python
+cleanup: the final device-file release restores RAM when the kernel can prove
+it safe, but module unload and routing cleanup require the saved journal:
+
+```sh
+sudo python3 /home/mit/i960-rtems-final-20261011/project/rtems/transport/cleanup.py /path/to/previous-output
+```
+
+The cleanup tool refuses an interface still held by a live client and refuses
+to force-unload an uncertain card. It is not a recovery or reset tool.
+
+## Memory and protocol
+
+| Range | Ownership during a session |
+| --- | --- |
+| `C0F2C000–C0F4BFFF` | Immutable target text/rodata and padding (128 KiB) |
+| `C0F4C000–C0F4C00F` | Immutable lower guard |
+| `C0F4C010–C0F9BFEF` | Explicit RTEMS data, BSS, workspace and guarded task stacks |
+| `C0F9BFF0–C0F9BFFF` | Immutable upper guard |
+| `C0F9C000–C0F9F05F` | RIO1 header, 4 KiB input, 8 KiB output and BIO-style guards |
+| `C0F9F060–C0FABFFF` | Untouched remainder of the original 512 KiB staging image |
+
+The established runner/result slots in the extra 8 KiB allocation are borrowed
+and restored by the existing guarded transport. Nothing extends into arbitrary
+firmware DRAM. The full 512 KiB image and runner/table/result bytes are saved
+before use and independently checked after restoration.
+
+`dac960rtems` is derived from the tested persistent-session transport with a
+separate module, device, debugfs name and wire magic. It uploads 471,136 bytes
+once. Every STEP makes paired reads of that complete prefix, checking immutable
+code/guards and response bounds while allowing the explicitly designated
+private state to change. Every 32 steps and at close, the audit covers the whole
+512 KiB image. User code is never retried. Uncertain execution or restoration
+retains module/DMA ownership for inspection rather than forcing an unload.
+
+RIO1 retains the BIO1 header layout at offset `0x70000`, with magic `0x314f4952`.
+The supplied clients use the full 8 KiB output capacity. A request body starts
+with four little-endian words: `RTM1` magic, operation, elapsed milliseconds
+(0–1000), and body length. Operations are poll (0), IPv4 input (1), DNS/HTTP
+fetch (2), status/poll (3), and fetch-buffer read (4). Fetch takes a little-endian
+16-bit port followed by a hostname; buffer read takes a 32-bit offset.
+
+The network response has twelve words: magic, callback count, worker count,
+tick count, report size (24), RX packets, TX packets, drops, fetch state,
+fetch length, FNV-1a hash and following-byte count. Normally the following bytes
+are length-prefixed IP packets. Bit 31 of the final word marks returned HTTP
+bytes instead. The kernel checks the outer framing; the host checks these
+application fields independently. TCP/IP uses lwIP raw callbacks exclusively
+from one RTEMS task (`NO_SYS=1`); there is no `sys_arch`/socket API claim.
+
+Three stack allocations have lower and upper canaries, checked every callback.
+The normal allocations are 2,048, 8,192 and 4,096 bytes. The profile allows
+two application tasks plus idle; adding tasks requires changing both RTEMS
+configuration and the guarded stack allocator within the established budget. Workspace restoration
+and guards do not establish memory protection between RTEMS tasks; all target
+code is trusted and shares one address space.
+
+## CPU-port and ABI adaptations
+
+- Correct the generic i960 header's big-endian declaration for this little-endian
+  RP build. Assert the context-register offsets used by the assembly switcher.
+- Keep all task contexts and interrupt-level changes masked in this cooperative
+  profile. Disable RTEMS installation of a hardware interrupt stack.
+- Use the historical context-switch/restore assembly, without its ISR wrapper.
+  Save an outer return context so explicit RTEMS/lwIP fatal errors can return
+  an error to the guarded loader. Hardware faults/runaway code are a separate gap.
+- Clear BSS explicitly on first entry; retain private state on later calls.
+- Reconcile Newlib's signed integer typedefs with RTEMS's `stdint.h` adapter.
+- Pack lwIP's ten-byte DNS answer structure explicitly: i960's aggregate ABI
+  otherwise rounds it to sixteen bytes and trips lwIP's sanity assertion.
+- Use simple binary semaphores for signals. The historical mutex-style binary
+  semaphore permits recursive ownership, which is unsuitable for this exchange.
+
+The historical RP BSP cannot safely be copied wholesale: its raw-vector
+installer uses `&Prcb`, its vector-cache handling needs review, the generic ISR
+assembly has stale symbol naming and a shared global-register save area, and
+the old clock ISR writes a board-specific address (`0xFED00000`). The clock
+reload constants also assume a different board frequency. These paths are not
+used by this implementation; full interrupt/preemption work remains separate.
+
+## Offline verification
+
+```sh
+make -C rtems test
+python3 rtems/transport/validate_run.py /extracted/run --payload /exact/kernel.bin --symbols /exact/kernel.symbols
+python3 rtems/transport/validate_packets.py /extracted/run/packets.pcap
+python3 host/audit/artifacts.py --check-git
+```
+
+Native tests cover the actual generated transaction under injected command
+failures, C/Python wire guards, and the actual lwIP virtual interface under
+ASan/UBSan. Capture validators check trace state/ticks, image immutability,
+stack guards, restoration and packet checksums/streams. Native tests supplement
+the physical-card evidence; they do not emulate all i960 faults or DMA failures.
+
+Original RTEMS and lwIP notices are preserved in `LICENSE-RTEMS`,
+`COPYING-RTEMS`, `COPYING-lwIP` and their complete source archives. The source
+manifest records primary upstream URLs, including the
+[RTEMS release archive](https://ftp.rtems.org/pub/rtems/releases/4.6/4.6.6/) and
+[lwIP source](https://github.com/lwip-tcpip/lwip/tree/STABLE-2_1_3_RELEASE).
+The single-context integration follows lwIP's
+[raw main-loop API](https://www.nongnu.org/lwip/2_1_x/group__lwip__nosys.html).
+
+## Continuing development
+
+Start application work in `net/app.c`: bounded input handling runs in the RTEMS
+service task, and semaphore exchange demonstrates a second independent task.
+Keep lwIP raw calls in that service task. RTEMS's scheduler can change tasks at
+kernel operations, but no hardware tick can interrupt arbitrary application
+code in this profile. Split long computations into bounded pieces and yield
+back to the host regularly; adding an infinite task loop without blocking can
+stop the firmware command from returning.
+
+The most useful next increments are:
+
+1. Add an application protocol over TCP with explicit limits and host-driven
+   tests, or add more Classic API workload tests while retaining this known
+   execution model. Preserve the exact working image as the baseline.
+2. If sockets are needed, implement/test an RTEMS `sys_arch` with a dedicated
+   lwIP task and correct semaphore/mailbox/time semantics, then evaluate the
+   required libc/socket interface. Do not turn on `NO_SYS=0` without that work.
+3. Separately audit timer frequency, RP interrupt entry/return and nested
+   register preservation before considering a hardware clock. An independent
+   host mailbox and explicit firmware quiescence/return design must precede
+   exclusive CPU ownership. Recovery is still an independent unanswered gate.
+
+The complete archived evidence can be checked with:
+
+```sh
+python3 rtems/verify_artifacts.py
+```
+
+`transport/live_service_test.py` checks repeated TCP connections and UDP through
+the foreground service mode. `transport/live_cleanup_test.py` is an **explicit hardware test** for process
+termination and a malformed application request. It also enables temporary
+Internet routing to exercise journal cleanup. It is separate from `make test`,
+which remains offline. Its SIGKILL case targets an established session, not
+every instruction boundary during firewall setup or teardown.

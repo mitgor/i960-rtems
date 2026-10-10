@@ -1,0 +1,65 @@
+{
+  "valid": true,
+  "packets": 73,
+  "protocols": {
+    "host_ipv6_ignored": 2,
+    "1": 8,
+    "17": 10,
+    "6": 53
+  },
+  "streams": [
+    {
+      "src": "10.196.0.1",
+      "sport": 59120,
+      "dst": "10.196.0.2",
+      "dport": 9600,
+      "bytes": 16000,
+      "sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8",
+      "prefix": "\u0000\u0007\u000e\u0015\u001c#*18?FMT[bipw~\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\b\u000f\u0016\u001d$+29@GNU\\cjqx\u007f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0002\t\u0010\u0017\u001e%,3:AHOV]dkry\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "src": "10.196.0.2",
+      "sport": 9600,
+      "dst": "10.196.0.1",
+      "dport": 59120,
+      "bytes": 16000,
+      "sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8",
+      "prefix": "\u0000\u0007\u000e\u0015\u001c#*18?FMT[bipw~\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\b\u000f\u0016\u001d$+29@GNU\\cjqx\u007f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0002\t\u0010\u0017\u001e%,3:AHOV]dkry\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "src": "10.196.0.2",
+      "sport": 60853,
+      "dst": "104.20.23.154",
+      "dport": 80,
+      "bytes": 56,
+      "sha256": "b935cf488f7eb0a4cc7d1093607dadb4e1cfc7e1d222db11558ced2c103b0a52",
+      "prefix": "GET / HTTP/1.0\r\nHost: example.com\r\nConnection: close\r\n\r\n"
+    },
+    {
+      "src": "104.20.23.154",
+      "sport": 80,
+      "dst": "10.196.0.2",
+      "dport": 60853,
+      "bytes": 891,
+      "sha256": "ec206ac89a078703181d46346395bd4e36a37bc5220621b7b6e94450ad4a318d",
+      "prefix": "HTTP/1.1 200 OK\r\nDate: Sat, 10 Oct 2026 22:23:59 GMT\r\nContent-Type: text/html; charset=utf-8\r\nConnec"
+    }
+  ],
+  "dns": [
+    {
+      "src": "10.196.0.2",
+      "dst": "192.168.2.3",
+      "source_port": 52900,
+      "dest_port": 53,
+      "payload_hex": "fd1601000001000000000000076578616d706c6503636f6d0000010001"
+    },
+    {
+      "src": "192.168.2.3",
+      "dst": "10.196.0.2",
+      "source_port": 53,
+      "dest_port": 52900,
+      "payload_hex": "fd1681800001000200000000076578616d706c6503636f6d0000010001c00c000100010000001f00046814179ac00c000100010000001f0004ac4293f3"
+    }
+  ],
+  "retransmitted_segments": 1
+}

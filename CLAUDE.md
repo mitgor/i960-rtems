@@ -2,6 +2,9 @@
 
 **Current index (2026-10-11): [findings, evidence and unresolved questions](CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
 
+**RTEMS now runs on the card (2026-10-11): [implementation and usage](rtems/README.md).** RTEMS 4.6.6 tasks persist across bounded firmware callbacks; lwIP 2.1.3 provides ICMP, UDP/TCP echo and card-originated DNS/HTTP through a Linux TUN/NAT gateway. This is a cooperative RAM-only port with host-supplied clock ticks; autonomous hardware-clock/preemptive operation remains future work. [Exact artifacts and findings](artifacts/rtems-20261011/README.md). No additional flash programming or reboot.
+
+
 **T4 complete (2026-10-10): [play Tetris over SSH](TETRIS-TERMINAL.md).** The terminal client passed a 30-minute real-SSH test: 35,846 native-matching frames, 68 restarts, 19.91 Hz. Quit, Ctrl-C, connection loss/reconnect and resize cleanup passed. Use `ssh -t mit@192.168.2.75 /home/mit/i960-tetris-t4/play.sh`. Full RAM restored, module unloaded; no reboot or flash.
 
 
@@ -14,7 +17,7 @@
 
 **T1 complete (2026-10-10): [bounded text/framebuffer I/O](BUFFER-IO.md) is hardware validated.** BIO1 supports 4 KiB input / 8 KiB output; live text, 24×80 frame, capacity rejection and repeat/scalar regression passed with RAM restored. T2 subsequently converted the blocking game into hardware-tested returning steps.
 
-**Planned next work:** [Tetris with host console](TETRIS-ON-CARD-PLAN.md), then [RTEMS with host-routed networking](RTEMS-HOST-NETWORK-PLAN.md). Tetris T1–T5 are complete; RTEMS remains planned. RTEMS needs a historical i960/toolchain audit and independent transport before firmware takeover.
+**Planned next work:** [Tetris with host console](TETRIS-ON-CARD-PLAN.md), then [RTEMS with host-routed networking](RTEMS-HOST-NETWORK-PLAN.md). Tetris T1–T5 are complete. RTEMS now has a working cooperative task/network implementation; independent transport and interrupt ownership are still prerequisites for an autonomous firmware takeover.
 
 **Latest hardware milestone (2026-10-10): [runtime software loader](SOFTWARE-LOADER.md) works after PC startup.** Three live executions (two C programs) passed without reboot or another flash write. Use `host/loadrun/` and `loader/runtime/` from the repository root; earlier internal-RAM and pre-programming plans below are historical. Supports cooperative returning functions up to 64 KiB, with one argument and a 32-bit result. RAM restored and module unloaded after each run. Recovery remains untested.
 

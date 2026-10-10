@@ -1,0 +1,4131 @@
+
+/home/mit/i960-rtems-20261011/bounded/kernel.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c0f2c000 <_start>:
+c0f2c000:	10 16 20 5c 	mov	g0,r4
+c0f2c004:	00 30 98 8c 	lda	c0f2f2f0 <_escape_context>,g3
+c0f2c008:	f0 f2 f2 c0 
+c0f2c00c:	80 1a 90 65 	modpc	0,0,g2
+c0f2c010:	08 e0 94 92 	st	g2,0x8(g3)
+c0f2c014:	0c e0 c4 b2 	stq	g8,0xc(g3)
+c0f2c018:	1c e0 e4 b2 	stq	g12,0x1c(g3)
+c0f2c01c:	00 d0 04 9a 	stl	pfp,(g3)
+c0f2c020:	00 30 80 8c 	lda	1f0000 <SIZE_REGS+0x1effd4>,g0
+c0f2c024:	00 00 1f 00 
+c0f2c028:	80 0a 84 65 	modpc	0,g0,g0
+c0f2c02c:	10 16 28 5c 	mov	g0,r5
+c0f2c030:	04 16 80 5c 	mov	r4,g0
+c0f2c034:	8c 00 00 09 	call	c0f2c0c0 <_bounded_main>
+c0f2c038:	10 16 20 5c 	mov	g0,r4
+c0f2c03c:	00 30 88 8c 	lda	1f0000 <SIZE_REGS+0x1effd4>,g1
+c0f2c040:	00 00 1f 00 
+c0f2c044:	05 16 90 5c 	mov	r5,g2
+c0f2c048:	80 4a 94 65 	modpc	0,g1,g2
+c0f2c04c:	04 16 80 5c 	mov	r4,g0
+c0f2c050:	00 00 00 0a 	ret
+	...
+
+c0f2c060 <_Init>:
+c0f2c060:	00 30 a0 8c 	lda	46600001 <SIZE_REGS+0x465fffd5>,g4
+c0f2c064:	01 00 60 46 
+c0f2c068:	00 30 a0 92 	st	g4,c0f353a0 <_result>
+c0f2c06c:	a0 53 f3 c0 
+c0f2c070:	00 1e 80 5c 	mov	0,g0
+c0f2c074:	00 30 00 84 	bx	c0f2c720 <_rtems_shutdown_executive>
+c0f2c078:	20 c7 f2 c0 
+
+c0f2c07c <Li960R1>:
+c0f2c07c:	00 00 00 0a 	ret
+
+c0f2c080 <_bounded_fatal>:
+c0f2c080:	1c de a3 59 	shlo	28,15,g4
+c0f2c084:	90 03 85 58 	or	g0,g4,g0
+c0f2c088:	00 30 00 84 	bx	c0f2c300 <_bounded_escape>
+c0f2c08c:	00 c3 f2 c0 
+
+c0f2c090 <__ISR_Handler>:
+c0f2c090:	00 30 f0 8c 	lda	c0f2c0a0 <Li960R3>,g14
+c0f2c094:	a0 c0 f2 c0 
+
+c0f2c098 <_ISR_Handler.lf>:
+c0f2c098:	1e 16 80 5c 	mov	g14,g0
+c0f2c09c:	00 1e f0 5c 	mov	0,g14
+
+c0f2c0a0 <Li960R3>:
+c0f2c0a0:	00 00 00 0a 	ret
+	...
+
+c0f2c0b0 <__CPU_ISR_install_raw_handler>:
+c0f2c0b0:	90 09 84 58 	setbit	16,g0,g0
+c0f2c0b4:	00 30 00 84 	bx	c0f2c080 <_bounded_fatal>
+c0f2c0b8:	80 c0 f2 c0 
+
+c0f2c0bc <Li960R4>:
+c0f2c0bc:	00 00 00 0a 	ret
+
+c0f2c0c0 <_bounded_main>:
+c0f2c0c0:	10 16 20 5c 	mov	g0,r4
+c0f2c0c4:	00 30 a0 8c 	lda	c0f2f3a0 <__bss_start>,g4
+c0f2c0c8:	a0 f3 f2 c0 
+c0f2c0cc:	00 30 a8 8c 	lda	c0f35af0 <__bss_end>,g5
+c0f2c0d0:	f0 5a f3 c0 
+c0f2c0d4:	10 00 ad 36 	cmpoble	g5,g4,c0f2c0e4 <L24>
+
+c0f2c0d8 <L20>:
+c0f2c0d8:	00 10 f5 82 	stob	g14,(g4)
+c0f2c0dc:	14 50 a0 59 	addo	g4,1,g4
+c0f2c0e0:	f8 1f ad 31 	cmpobg	g5,g4,c0f2c0d8 <L20>
+
+c0f2c0e4 <L24>:
+c0f2c0e4:	14 20 09 35 	cmpobne	1,r4,c0f2c0f8 <L21>
+c0f2c0e8:	00 30 80 8c 	lda	1234 <SIZE_REGS+0x1208>,g0
+c0f2c0ec:	34 12 00 00 
+c0f2c0f0:	00 30 00 86 	callx	c0f2c080 <_bounded_fatal>
+c0f2c0f4:	80 c0 f2 c0 
+
+c0f2c0f8 <L21>:
+c0f2c0f8:	00 30 80 8c 	lda	46600030 <SIZE_REGS+0x46600004>,g0
+c0f2c0fc:	30 00 60 46 
+c0f2c100:	24 20 11 32 	cmpobe	2,r4,c0f2c124 <L15>
+c0f2c104:	00 30 80 8c 	lda	c0f2f260 <_config>,g0
+c0f2c108:	60 f2 f2 c0 
+c0f2c10c:	00 30 88 8c 	lda	c0f2f2a0 <_cpu>,g1
+c0f2c110:	a0 f2 f2 c0 
+c0f2c114:	00 30 00 86 	callx	c0f2c450 <_rtems_initialize_executive>
+c0f2c118:	50 c4 f2 c0 
+c0f2c11c:	00 30 80 90 	ld	c0f353a0 <_result>,g0
+c0f2c120:	a0 53 f3 c0 
+
+c0f2c124 <L15>:
+c0f2c124:	00 00 00 0a 	ret
+	...
+
+c0f2c130 <__CPU_Context_switch>:
+c0f2c130:	80 1a 90 65 	modpc	0,0,g2
+c0f2c134:	08 20 94 92 	st	g2,0x8(g0)
+c0f2c138:	0c 20 c4 b2 	stq	g8,0xc(g0)
+c0f2c13c:	1c 20 e4 b2 	stq	g12,0x1c(g0)
+c0f2c140:	Address 0x00000000c0f2c140 is out of bounds.
+
+
+c0f2c144 <restore>:
+c0f2c144:	80 3e 00 66 	flushreg
+c0f2c148:	10 de 97 59 	shlo	16,31,g2
+c0f2c14c:	08 60 9c 90 	ld	0x8(g1),g3
+c0f2c150:	1c 60 e4 b0 	ldq	0x1c(g1),g12
+c0f2c154:	00 60 04 98 	ldl	0x0(g1),pfp
+c0f2c158:	0c 60 c4 b0 	ldq	0xc(g1),g8
+c0f2c15c:	80 8a 9c 65 	modpc	0,g2,g3
+c0f2c160:	00 00 00 0a 	ret
+
+c0f2c164 <__CPU_Context_restore>:
+c0f2c164:	10 16 88 5c 	mov	g0,g1
+c0f2c168:	dc ff ff 08 	b	c0f2c144 <restore>
+
+c0f2c16c <__CPU_Context_restore_fp>:
+c0f2c16c:	00 00 00 0a 	ret
+
+c0f2c170 <_memset>:
+c0f2c170:	00 30 f0 8c 	lda	c0f2c1a8 <Li960R1>,g14
+c0f2c174:	a8 c1 f2 c0 
+
+c0f2c178 <memset.lf>:
+c0f2c178:	1e 16 98 5c 	mov	g14,g3
+c0f2c17c:	00 1e f0 5c 	mov	0,g14
+c0f2c180:	10 16 a8 5c 	mov	g0,g5
+c0f2c184:	01 89 94 59 	subo	1,g2,g2
+c0f2c188:	01 19 a0 59 	subo	1,0,g4
+c0f2c18c:	18 80 a4 32 	cmpobe	g4,g2,c0f2c1a4 <L7>
+
+c0f2c190 <L5>:
+c0f2c190:	00 50 8d 82 	stob	g1,(g5)
+c0f2c194:	15 50 a8 59 	addo	g5,1,g5
+c0f2c198:	01 89 94 59 	subo	1,g2,g2
+c0f2c19c:	01 19 a0 59 	subo	1,0,g4
+c0f2c1a0:	f0 9f a4 35 	cmpobne	g4,g2,c0f2c190 <L5>
+
+c0f2c1a4 <L7>:
+c0f2c1a4:	Address 0x00000000c0f2c1a4 is out of bounds.
+
+
+c0f2c1a8 <Li960R1>:
+c0f2c1a8:	00 00 00 0a 	ret
+c0f2c1ac:	00 00 00 00 	.word	0x00000000
+
+c0f2c1b0 <_memcpy>:
+c0f2c1b0:	00 30 f0 8c 	lda	c0f2c1f0 <Li960R2>,g14
+c0f2c1b4:	f0 c1 f2 c0 
+
+c0f2c1b8 <memcpy.lf>:
+c0f2c1b8:	1e 16 98 5c 	mov	g14,g3
+c0f2c1bc:	00 1e f0 5c 	mov	0,g14
+c0f2c1c0:	10 16 a8 5c 	mov	g0,g5
+c0f2c1c4:	01 89 94 59 	subo	1,g2,g2
+c0f2c1c8:	01 19 a0 59 	subo	1,0,g4
+c0f2c1cc:	20 80 a4 32 	cmpobe	g4,g2,c0f2c1ec <L14>
+
+c0f2c1d0 <L12>:
+c0f2c1d0:	00 50 a4 80 	ldob	(g1),g4
+c0f2c1d4:	01 89 94 59 	subo	1,g2,g2
+c0f2c1d8:	00 50 a5 82 	stob	g4,(g5)
+c0f2c1dc:	11 50 88 59 	addo	g1,1,g1
+c0f2c1e0:	15 50 a8 59 	addo	g5,1,g5
+c0f2c1e4:	01 19 a0 59 	subo	1,0,g4
+c0f2c1e8:	e8 9f a4 35 	cmpobne	g4,g2,c0f2c1d0 <L12>
+
+c0f2c1ec <L14>:
+c0f2c1ec:	Address 0x00000000c0f2c1ec is out of bounds.
+
+
+c0f2c1f0 <Li960R2>:
+c0f2c1f0:	00 00 00 0a 	ret
+	...
+
+c0f2c200 <_memcmp>:
+c0f2c200:	00 30 f0 8c 	lda	c0f2c24c <Li960R3>,g14
+c0f2c204:	4c c2 f2 c0 
+
+c0f2c208 <memcmp.lf>:
+c0f2c208:	1e 16 98 5c 	mov	g14,g3
+c0f2c20c:	00 1e f0 5c 	mov	0,g14
+c0f2c210:	10 16 b0 5c 	mov	g0,g6
+c0f2c214:	01 89 94 59 	subo	1,g2,g2
+c0f2c218:	01 19 a0 59 	subo	1,0,g4
+c0f2c21c:	28 80 a4 32 	cmpobe	g4,g2,c0f2c244 <L22>
+
+c0f2c220 <L20>:
+c0f2c220:	00 90 ad 80 	ldob	(g6),g5
+c0f2c224:	00 50 a4 80 	ldob	(g1),g4
+c0f2c228:	16 50 b0 59 	addo	g6,1,g6
+c0f2c22c:	11 50 88 59 	addo	g1,1,g1
+c0f2c230:	01 89 94 59 	subo	1,g2,g2
+c0f2c234:	14 41 85 59 	subo	g4,g5,g0
+c0f2c238:	10 40 a5 35 	cmpobne	g4,g5,c0f2c248 <L15>
+c0f2c23c:	01 19 a0 59 	subo	1,0,g4
+c0f2c240:	e0 9f a4 35 	cmpobne	g4,g2,c0f2c220 <L20>
+
+c0f2c244 <L22>:
+c0f2c244:	00 1e 80 5c 	mov	0,g0
+
+c0f2c248 <L15>:
+c0f2c248:	Address 0x00000000c0f2c248 is out of bounds.
+
+
+c0f2c24c <Li960R3>:
+c0f2c24c:	00 00 00 0a 	ret
+
+c0f2c250 <_strlen>:
+c0f2c250:	00 30 f0 8c 	lda	c0f2c27c <Li960R4>,g14
+c0f2c254:	7c c2 f2 c0 
+
+c0f2c258 <strlen.lf>:
+c0f2c258:	1e 16 88 5c 	mov	g14,g1
+c0f2c25c:	00 1e f0 5c 	mov	0,g14
+c0f2c260:	00 10 a4 80 	ldob	(g0),g4
+c0f2c264:	10 16 a8 5c 	mov	g0,g5
+c0f2c268:	10 20 05 32 	cmpobe	0,g4,c0f2c278 <L29>
+
+c0f2c26c <L27>:
+c0f2c26c:	10 50 80 59 	addo	g0,1,g0
+c0f2c270:	00 10 a4 80 	ldob	(g0),g4
+c0f2c274:	f8 3f 05 35 	cmpobne	0,g4,c0f2c26c <L27>
+
+c0f2c278 <L29>:
+c0f2c278:	15 01 84 59 	subo	g5,g0,g0
+
+c0f2c27c <Li960R4>:
+c0f2c27c:	00 00 00 0a 	ret
+
+c0f2c280 <_strcmp>:
+c0f2c280:	00 30 f0 8c 	lda	c0f2c2c4 <Li960R5>,g14
+c0f2c284:	c4 c2 f2 c0 
+
+c0f2c288 <strcmp.lf>:
+c0f2c288:	1e 16 90 5c 	mov	g14,g2
+c0f2c28c:	00 1e f0 5c 	mov	0,g14
+c0f2c290:	00 10 ac 80 	ldob	(g0),g5
+c0f2c294:	24 60 05 32 	cmpobe	0,g5,c0f2c2b8 <L32>
+c0f2c298:	00 50 a4 80 	ldob	(g1),g4
+c0f2c29c:	1c 40 a5 35 	cmpobne	g4,g5,c0f2c2b8 <L32>
+
+c0f2c2a0 <L35>:
+c0f2c2a0:	10 50 80 59 	addo	g0,1,g0
+c0f2c2a4:	00 10 ac 80 	ldob	(g0),g5
+c0f2c2a8:	11 50 88 59 	addo	g1,1,g1
+c0f2c2ac:	0c 60 05 32 	cmpobe	0,g5,c0f2c2b8 <L32>
+c0f2c2b0:	00 50 a4 80 	ldob	(g1),g4
+c0f2c2b4:	ec 5f a5 32 	cmpobe	g4,g5,c0f2c2a0 <L35>
+
+c0f2c2b8 <L32>:
+c0f2c2b8:	00 10 84 80 	ldob	(g0),g0
+c0f2c2bc:	00 50 a4 80 	ldob	(g1),g4
+c0f2c2c0:	14 01 84 59 	subo	g4,g0,g0
+
+c0f2c2c4 <Li960R5>:
+c0f2c2c4:	00 00 00 0a 	ret
+	...
+
+c0f2c2d0 <_memmove>:
+c0f2c2d0:	10 16 b0 5d 	movl	g0,g6
+c0f2c2d4:	12 16 a8 5c 	mov	g2,g5
+c0f2c2d8:	0c 00 8c 36 	cmpoble	g1,g0,c0f2c2e4 <L38>
+c0f2c2dc:	00 30 00 84 	bx	c0f2c1b0 <_memcpy>
+c0f2c2e0:	b0 c1 f2 c0 
+
+c0f2c2e4 <L38>:
+c0f2c2e4:	14 a0 04 32 	cmpobe	0,g2,c0f2c2f8 <L44>
+
+c0f2c2e8 <L42>:
+c0f2c2e8:	01 49 ad 59 	subo	1,g5,g5
+c0f2c2ec:	15 dc a5 80 	ldob	(g7)[g5],g4
+c0f2c2f0:	15 9c a5 82 	stob	g4,(g6)[g5]
+c0f2c2f4:	f4 7f 05 35 	cmpobne	0,g5,c0f2c2e8 <L42>
+
+c0f2c2f8 <L44>:
+c0f2c2f8:	16 16 80 5c 	mov	g6,g0
+c0f2c2fc:	00 00 00 0a 	ret
+
+c0f2c300 <_bounded_escape>:
+c0f2c300:	00 30 88 8c 	lda	c0f2f2f0 <_escape_context>,g1
+c0f2c304:	f0 f2 f2 c0 
+c0f2c308:	80 3e 00 66 	flushreg
+c0f2c30c:	00 30 90 8c 	lda	1f0000 <SIZE_REGS+0x1effd4>,g2
+c0f2c310:	00 00 1f 00 
+c0f2c314:	08 60 9c 90 	ld	0x8(g1),g3
+c0f2c318:	1c 60 e4 b0 	ldq	0x1c(g1),g12
+c0f2c31c:	00 50 04 98 	ldl	(g1),pfp
+c0f2c320:	0c 60 c4 b0 	ldq	0xc(g1),g8
+c0f2c324:	80 8a 9c 65 	modpc	0,g2,g3
+c0f2c328:	00 00 00 0a 	ret
+c0f2c32c:	00 00 00 00 	.word	0x00000000
+
+c0f2c330 <__TOD_Days_per_month>:
+c0f2c330:	00 00 00 00 	.word	0x00000000
+c0f2c334:	1f 00 00 00 	.word	0x0000001f
+c0f2c338:	1c 00 00 00 	.word	0x0000001c
+c0f2c33c:	1f 00 00 00 	.word	0x0000001f
+c0f2c340:	1e 00 00 00 	.word	0x0000001e
+c0f2c344:	1f 00 00 00 	.word	0x0000001f
+c0f2c348:	1e 00 00 00 	.word	0x0000001e
+c0f2c34c:	1f 00 00 00 	.word	0x0000001f
+c0f2c350:	1f 00 00 00 	.word	0x0000001f
+c0f2c354:	1e 00 00 00 	.word	0x0000001e
+c0f2c358:	1f 00 00 00 	.word	0x0000001f
+c0f2c35c:	1e 00 00 00 	.word	0x0000001e
+c0f2c360:	1f 00 00 00 	.word	0x0000001f
+c0f2c364:	00 00 00 00 	.word	0x00000000
+c0f2c368:	1f 00 00 00 	.word	0x0000001f
+c0f2c36c:	1d 00 00 00 	.word	0x0000001d
+c0f2c370:	1f 00 00 00 	.word	0x0000001f
+c0f2c374:	1e 00 00 00 	.word	0x0000001e
+c0f2c378:	1f 00 00 00 	.word	0x0000001f
+c0f2c37c:	1e 00 00 00 	.word	0x0000001e
+c0f2c380:	1f 00 00 00 	.word	0x0000001f
+c0f2c384:	1f 00 00 00 	.word	0x0000001f
+c0f2c388:	1e 00 00 00 	.word	0x0000001e
+c0f2c38c:	1f 00 00 00 	.word	0x0000001f
+c0f2c390:	1e 00 00 00 	.word	0x0000001e
+c0f2c394:	1f 00 00 00 	.word	0x0000001f
+
+c0f2c398 <__TOD_Days_to_date>:
+c0f2c398:	00 00 00 00 	.word	0x00000000
+c0f2c39c:	1f 00 3b 00 	.word	0x003b001f
+c0f2c3a0:	5a 00 78 00 	.word	0x0078005a
+c0f2c3a4:	97 00 b5 00 	.word	0x00b50097
+c0f2c3a8:	d4 00 f3 00 	.word	0x00f300d4
+c0f2c3ac:	11 01 30 01 	.word	0x01300111
+c0f2c3b0:	4e 01 00 00 	.word	0x0000014e
+c0f2c3b4:	00 00 1f 00 	.word	0x001f0000
+c0f2c3b8:	3c 00 5b 00 	.word	0x005b003c
+c0f2c3bc:	79 00 98 00 	.word	0x00980079
+c0f2c3c0:	b6 00 d5 00 	.word	0x00d500b6
+c0f2c3c4:	f4 00 12 01 	.word	0x011200f4
+c0f2c3c8:	31 01 4f 01 	.word	0x014f0131
+
+c0f2c3cc <__TOD_Days_since_last_leap_year>:
+c0f2c3cc:	00 00 6e 01 	.word	0x016e0000
+c0f2c3d0:	db 02 48 04 	.word	0x044802db
+	...
+
+c0f2c3e0 <__Copyright_Notice>:
+c0f2c3e0:	43 4f 50 59 	shli	3,sf1,r10
+c0f2c3e4:	52 49 47 48 	.word	0x48474952
+c0f2c3e8:	54 20 28 63 	sdma	g4,sf0,sf5
+c0f2c3ec:	29 20 31 39 	cmpibg	6,sf4,c0f2c414 <__Copyright_Notice+0x34>
+c0f2c3f0:	38 39 2d 31 	cmpobg	5,g4,c0f2bd28 <SIZE_REGS+0xc0f2bcfc>
+c0f2c3f4:	39 39 39 2e 	.word	0x2e393939
+c0f2c3f8:	0a 4f 6e 2d 	.word	0x2d6e4f0a
+c0f2c3fc:	4c 69 6e 65 	.word	0x656e694c
+c0f2c400:	20 41 70 70 	.word	0x70704120
+c0f2c404:	6c 69 63 61 	atadd	12,sf13,sf12
+c0f2c408:	74 69 6f 6e 	cpysre	?,g13,?
+c0f2c40c:	73 20 52 65 	modify	sf19,sf8,sf10
+c0f2c410:	73 65 61 72 	.word	0x72616573
+c0f2c414:	63 68 20 43 	.word	0x43206863
+c0f2c418:	6f 72 70 6f 	.word	0x6f70726f
+c0f2c41c:	72 61 74 69 	logrl	g2,g1,?
+c0f2c420:	6f 6e 20 28 	.word	0x28206e6f
+c0f2c424:	4f 41 52 29 	.word	0x2952414f
+c0f2c428:	2e 0a 00 00 	.word	0x00000a2e
+c0f2c42c:	00 00 00 00 	.word	0x00000000
+
+c0f2c430 <__Initialization_Default_multiprocessing_table>:
+c0f2c430:	01 00 00 00 	.word	0x00000001
+c0f2c434:	01 00 00 00 	.word	0x00000001
+	...
+
+c0f2c450 <_rtems_initialize_executive>:
+c0f2c450:	00 30 00 86 	callx	c0f2c470 <_rtems_initialize_executive_early>
+c0f2c454:	70 c4 f2 c0 
+c0f2c458:	00 30 00 84 	bx	c0f2c6f0 <_rtems_initialize_executive_late>
+c0f2c45c:	f0 c6 f2 c0 
+
+c0f2c460 <Li960R1>:
+c0f2c460:	00 00 00 0a 	ret
+	...
+
+c0f2c470 <_rtems_initialize_executive_early>:
+c0f2c470:	11 16 50 5c 	mov	g1,r10
+c0f2c474:	10 16 30 5c 	mov	g0,r6
+c0f2c478:	10 de 5f 59 	shlo	16,31,r11
+c0f2c47c:	80 ca 5a 65 	modpc	0,r11,r11
+c0f2c480:	14 20 04 35 	cmpobne	0,g0,c0f2c494 <L48>
+c0f2c484:	01 1e 88 5c 	mov	1,g1
+c0f2c488:	00 1e 90 5c 	mov	0,g2
+c0f2c48c:	00 30 00 86 	callx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2c490:	b0 d0 f2 c0 
+
+c0f2c494 <L48>:
+c0f2c494:	00 30 f0 92 	st	g14,c0f356cc <__System_state_Current>
+c0f2c498:	cc 56 f3 c0 
+c0f2c49c:	00 30 f0 92 	st	g14,c0f355e0 <__System_state_Is_multiprocessing>
+c0f2c4a0:	e0 55 f3 c0 
+c0f2c4a4:	00 30 30 92 	st	r6,c0f3545c <__Configuration_Table>
+c0f2c4a8:	5c 54 f3 c0 
+c0f2c4ac:	00 30 f0 92 	st	g14,c0f35608 <__Configuration_MP_table>
+c0f2c4b0:	08 56 f3 c0 
+c0f2c4b4:	18 a0 02 35 	cmpobne	0,r10,c0f2c4cc <L51>
+c0f2c4b8:	00 1e 80 5c 	mov	0,g0
+c0f2c4bc:	01 1e 88 5c 	mov	1,g1
+c0f2c4c0:	01 1e 90 5c 	mov	1,g2
+c0f2c4c4:	00 30 00 86 	callx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2c4c8:	b0 d0 f2 c0 
+
+c0f2c4cc <L51>:
+c0f2c4cc:	0a 16 80 5c 	mov	r10,g0
+c0f2c4d0:	00 30 88 8c 	lda	c0f2d400 <__Thread_Dispatch>,g1
+c0f2c4d4:	00 d4 f2 c0 
+c0f2c4d8:	00 30 00 86 	callx	c0f2cbd0 <__CPU_Initialize>
+c0f2c4dc:	d0 cb f2 c0 
+c0f2c4e0:	00 30 00 86 	callx	c0f2e200 <__Debug_Manager_initialization>
+c0f2c4e4:	00 e2 f2 c0 
+c0f2c4e8:	00 30 00 86 	callx	c0f2cc70 <__API_extensions_Initialization>
+c0f2c4ec:	70 cc f2 c0 
+c0f2c4f0:	04 a0 89 90 	ld	0x4(r6),g1
+c0f2c4f4:	01 1e a0 5c 	mov	1,g4
+c0f2c4f8:	00 90 81 90 	ld	(r6),g0
+c0f2c4fc:	00 30 a0 92 	st	g4,c0f356c4 <__Thread_Dispatch_disable_level>
+c0f2c500:	c4 56 f3 c0 
+c0f2c504:	00 30 00 86 	callx	c0f2dc40 <__Workspace_Handler_initialization>
+c0f2c508:	40 dc f2 c0 
+c0f2c50c:	00 30 a0 8c 	lda	c0f354c0 <__User_extensions_List>,g4
+c0f2c510:	c0 54 f3 c0 
+c0f2c514:	00 30 a8 8c 	lda	c0f35470 <__User_extensions_Switches_list>,g5
+c0f2c518:	70 54 f3 c0 
+c0f2c51c:	14 10 b1 59 	addo	g4,4,g6
+c0f2c520:	15 10 b9 59 	addo	g5,4,g7
+c0f2c524:	08 20 a5 92 	st	g4,0x8(g4)
+c0f2c528:	24 a0 39 90 	ld	0x24(r6),r7
+c0f2c52c:	28 a0 49 90 	ld	0x28(r6),r9
+c0f2c530:	00 30 b0 92 	st	g6,c0f354c0 <__User_extensions_List>
+c0f2c534:	c0 54 f3 c0 
+c0f2c538:	00 30 b8 92 	st	g7,c0f35470 <__User_extensions_Switches_list>
+c0f2c53c:	70 54 f3 c0 
+c0f2c540:	08 60 ad 92 	st	g5,0x8(g5)
+c0f2c544:	00 30 f0 92 	st	g14,c0f354c4 <__User_extensions_List+0x4>
+c0f2c548:	c4 54 f3 c0 
+c0f2c54c:	00 30 f0 92 	st	g14,c0f35474 <__User_extensions_Switches_list+0x4>
+c0f2c550:	74 54 f3 c0 
+c0f2c554:	88 60 02 32 	cmpobe	0,r9,c0f2c5dc <L67>
+c0f2c558:	06 ce 21 59 	shlo	6,r7,r4
+c0f2c55c:	00 1e 40 5c 	mov	0,r8
+c0f2c560:	04 16 80 5c 	mov	r4,g0
+c0f2c564:	00 30 00 86 	callx	c0f2dcd0 <__Workspace_Allocate_or_fatal_error>
+c0f2c568:	d0 dc f2 c0 
+c0f2c56c:	10 16 28 5c 	mov	g0,r5
+c0f2c570:	04 16 90 5c 	mov	r4,g2
+c0f2c574:	00 1e 88 5c 	mov	0,g1
+c0f2c578:	00 30 00 86 	callx	c0f2c170 <_memset>
+c0f2c57c:	70 c1 f2 c0 
+c0f2c580:	5c 00 3a 36 	cmpoble	r7,r8,c0f2c5dc <L67>
+c0f2c584:	09 16 20 5c 	mov	r9,r4
+
+c0f2c588 <L66>:
+c0f2c588:	00 10 a1 b0 	ldq	(r4),g4
+c0f2c58c:	05 16 88 5c 	mov	r5,g1
+c0f2c590:	20 60 a1 b2 	stq	g4,0x20(r5)
+c0f2c594:	10 20 a1 b0 	ldq	0x10(r4),g4
+c0f2c598:	00 30 80 8c 	lda	c0f354c0 <__User_extensions_List>,g0
+c0f2c59c:	c0 54 f3 c0 
+c0f2c5a0:	30 60 a1 b2 	stq	g4,0x30(r5)
+c0f2c5a4:	00 30 00 86 	callx	c0f2ce00 <__Chain_Append>
+c0f2c5a8:	00 ce f2 c0 
+c0f2c5ac:	10 20 a1 90 	ld	0x10(r4),g4
+c0f2c5b0:	08 50 40 59 	addo	r8,1,r8
+c0f2c5b4:	20 20 21 8c 	lda	0x20(r4),r4
+c0f2c5b8:	05 10 8c 59 	addo	r5,16,g1
+c0f2c5bc:	00 30 80 8c 	lda	c0f35470 <__User_extensions_Switches_list>,g0
+c0f2c5c0:	70 54 f3 c0 
+c0f2c5c4:	10 20 05 32 	cmpobe	0,g4,c0f2c5d4 <L65>
+c0f2c5c8:	18 60 a1 92 	st	g4,0x18(r5)
+c0f2c5cc:	00 30 00 86 	callx	c0f2ce00 <__Chain_Append>
+c0f2c5d0:	00 ce f2 c0 
+
+c0f2c5d4 <L65>:
+c0f2c5d4:	40 60 29 8c 	lda	0x40(r5),r5
+c0f2c5d8:	b0 1f 3a 31 	cmpobg	r7,r8,c0f2c588 <L66>
+
+c0f2c5dc <L67>:
+c0f2c5dc:	00 30 00 86 	callx	c0f2d0f0 <__ISR_Handler_initialization>
+c0f2c5e0:	f0 d0 f2 c0 
+c0f2c5e4:	00 30 80 90 	ld	c0f2c430 <__Initialization_Default_multiprocessing_table>,g0
+c0f2c5e8:	30 c4 f2 c0 
+c0f2c5ec:	00 30 88 90 	ld	c0f2c434 <__Initialization_Default_multiprocessing_table+0x4>,g1
+c0f2c5f0:	34 c4 f2 c0 
+c0f2c5f4:	00 30 90 90 	ld	c0f2c438 <__Initialization_Default_multiprocessing_table+0x8>,g2
+c0f2c5f8:	38 c4 f2 c0 
+c0f2c5fc:	00 30 00 86 	callx	c0f2d120 <__Objects_Handler_initialization>
+c0f2c600:	20 d1 f2 c0 
+c0f2c604:	00 30 a8 8c 	lda	c0f35620 <__Priority_Bit_map>,g5
+c0f2c608:	20 56 f3 c0 
+c0f2c60c:	00 30 a0 8c 	lda	c0f353e0 <__Internal_Objects>,g4
+c0f2c610:	e0 53 f3 c0 
+c0f2c614:	3c 60 b5 8c 	lda	0x3c(g5),g6
+c0f2c618:	00 30 a0 92 	st	g4,c0f35704 <__Objects_Information_table+0x4>
+c0f2c61c:	04 57 f3 c0 
+c0f2c620:	00 30 f0 92 	st	g14,c0f35540 <__Priority_Major_bit_map>
+c0f2c624:	40 55 f3 c0 
+
+c0f2c628 <L72>:
+c0f2c628:	00 50 f5 92 	st	g14,(g5)
+c0f2c62c:	15 10 a9 59 	addo	g5,4,g5
+c0f2c630:	f8 5f b5 33 	cmpobge	g6,g5,c0f2c628 <L72>
+c0f2c634:	00 30 00 86 	callx	c0f2da60 <__Watchdog_Handler_initialization>
+c0f2c638:	60 da f2 c0 
+c0f2c63c:	0c a0 81 90 	ld	0xc(r6),g0
+c0f2c640:	00 30 00 86 	callx	c0f2cec0 <__TOD_Handler_initialization>
+c0f2c644:	c0 ce f2 c0 
+c0f2c648:	08 a0 89 90 	ld	0x8(r6),g1
+c0f2c64c:	00 30 90 90 	ld	c0f2c43c <__Initialization_Default_multiprocessing_table+0xc>,g2
+c0f2c650:	3c c4 f2 c0 
+c0f2c654:	10 a0 81 90 	ld	0x10(r6),g0
+c0f2c658:	00 30 00 86 	callx	c0f2d220 <__Thread_Handler_initialization>
+c0f2c65c:	20 d2 f2 c0 
+c0f2c660:	06 16 80 5c 	mov	r6,g0
+c0f2c664:	00 30 00 86 	callx	c0f2cb30 <__RTEMS_API_Initialize>
+c0f2c668:	30 cb f2 c0 
+c0f2c66c:	08 a0 81 90 	ld	0x8(r6),g0
+c0f2c670:	00 30 00 86 	callx	c0f2c760 <__Extension_Manager_initialization>
+c0f2c674:	60 c7 f2 c0 
+c0f2c678:	20 a0 81 90 	ld	0x20(r6),g0
+c0f2c67c:	14 a0 99 90 	ld	0x14(r6),g3
+c0f2c680:	1c a0 89 90 	ld	0x1c(r6),g1
+c0f2c684:	18 a0 91 90 	ld	0x18(r6),g2
+c0f2c688:	00 30 00 86 	callx	c0f2c790 <__IO_Manager_initialization>
+c0f2c68c:	90 c7 f2 c0 
+c0f2c690:	01 1e a0 5c 	mov	1,g4
+c0f2c694:	00 30 a0 92 	st	g4,c0f356cc <__System_state_Current>
+c0f2c698:	cc 56 f3 c0 
+c0f2c69c:	00 30 00 86 	callx	c0f2d310 <__Thread_Create_idle>
+c0f2c6a0:	10 d3 f2 c0 
+c0f2c6a4:	00 90 82 90 	ld	(r10),g0
+c0f2c6a8:	08 20 04 32 	cmpobe	0,g0,c0f2c6b0 <L75>
+c0f2c6ac:	Address 0x00000000c0f2c6ac is out of bounds.
+
+
+c0f2c6b0 <L75>:
+c0f2c6b0:	00 30 00 86 	callx	c0f2ccc0 <__API_extensions_Run_predriver>
+c0f2c6b4:	c0 cc f2 c0 
+c0f2c6b8:	00 30 a0 90 	ld	c0f355b4 <__CPU_Table+0x4>,g4
+c0f2c6bc:	b4 55 f3 c0 
+c0f2c6c0:	08 20 05 32 	cmpobe	0,g4,c0f2c6c8 <L76>
+c0f2c6c4:	Address 0x00000000c0f2c6c4 is out of bounds.
+
+
+c0f2c6c8 <L76>:
+c0f2c6c8:	00 30 00 86 	callx	c0f2c860 <__IO_Initialize_all_drivers>
+c0f2c6cc:	60 c8 f2 c0 
+c0f2c6d0:	00 30 00 86 	callx	c0f2ccf0 <__API_extensions_Run_postdriver>
+c0f2c6d4:	f0 cc f2 c0 
+c0f2c6d8:	00 30 a0 90 	ld	c0f355b8 <__CPU_Table+0x8>,g4
+c0f2c6dc:	b8 55 f3 c0 
+c0f2c6e0:	08 20 05 32 	cmpobe	0,g4,c0f2c6e8 <L77>
+c0f2c6e4:	Address 0x00000000c0f2c6e4 is out of bounds.
+
+
+c0f2c6e8 <L77>:
+c0f2c6e8:	0b 16 80 5c 	mov	r11,g0
+
+c0f2c6ec <Li960R2>:
+c0f2c6ec:	00 00 00 0a 	ret
+
+c0f2c6f0 <_rtems_initialize_executive_late>:
+c0f2c6f0:	02 1e a0 5c 	mov	2,g4
+c0f2c6f4:	00 30 a0 92 	st	g4,c0f356cc <__System_state_Current>
+c0f2c6f8:	cc 56 f3 c0 
+c0f2c6fc:	10 16 20 5c 	mov	g0,r4
+c0f2c700:	00 30 00 86 	callx	c0f2d840 <__Thread_Start_multitasking>
+c0f2c704:	40 d8 f2 c0 
+c0f2c708:	10 de a7 59 	shlo	16,31,g4
+c0f2c70c:	80 0a 25 65 	modpc	0,g4,r4
+
+c0f2c710 <Li960R3>:
+c0f2c710:	00 00 00 0a 	ret
+	...
+
+c0f2c720 <_rtems_shutdown_executive>:
+c0f2c720:	00 30 a0 90 	ld	c0f356cc <__System_state_Current>,g4
+c0f2c724:	cc 56 f3 c0 
+c0f2c728:	00 30 88 8c 	lda	c0f35490 <__Thread_BSP_context>,g1
+c0f2c72c:	90 54 f3 c0 
+c0f2c730:	24 20 25 32 	cmpobe	4,g4,c0f2c754 <L84>
+c0f2c734:	00 30 80 90 	ld	c0f35600 <__Thread_Executing>,g0
+c0f2c738:	00 56 f3 c0 
+c0f2c73c:	04 1e a0 5c 	mov	4,g4
+c0f2c740:	20 21 84 8c 	lda	0x120(g0),g0
+c0f2c744:	00 30 a0 92 	st	g4,c0f356cc <__System_state_Current>
+c0f2c748:	cc 56 f3 c0 
+c0f2c74c:	00 30 00 84 	bx	c0f2c130 <__CPU_Context_switch>
+c0f2c750:	30 c1 f2 c0 
+
+c0f2c754 <L84>:
+c0f2c754:	00 00 00 0a 	ret
+	...
+
+c0f2c760 <__Extension_Manager_initialization>:
+c0f2c760:	10 16 98 5c 	mov	g0,g3
+c0f2c764:	00 30 80 8c 	lda	c0f35550 <__Extension_Information>,g0
+c0f2c768:	50 55 f3 c0 
+c0f2c76c:	04 5e a1 59 	shlo	4,5,g4
+c0f2c770:	02 1e 88 5c 	mov	2,g1
+c0f2c774:	09 1e 90 5c 	mov	9,g2
+c0f2c778:	00 1e a8 5c 	mov	0,g5
+c0f2c77c:	04 1e b0 5c 	mov	4,g6
+c0f2c780:	00 30 00 84 	bx	c0f2d160 <__Objects_Initialize_information>
+c0f2c784:	60 d1 f2 c0 
+
+c0f2c788 <Li960R1>:
+c0f2c788:	00 00 00 0a 	ret
+c0f2c78c:	00 00 00 00 	.word	0x00000000
+
+c0f2c790 <__IO_Manager_initialization>:
+c0f2c790:	10 16 40 5c 	mov	g0,r8
+c0f2c794:	11 16 28 5c 	mov	g1,r5
+c0f2c798:	12 16 30 5d 	movl	g2,r6
+c0f2c79c:	08 80 8c 36 	cmpoble	g1,g2,c0f2c7a4 <L12>
+c0f2c7a0:	11 16 30 5c 	mov	g1,r6
+
+c0f2c7a4 <L12>:
+c0f2c7a4:	05 8e 21 59 	shlo	5,r6,r4
+c0f2c7a8:	04 16 80 5c 	mov	r4,g0
+c0f2c7ac:	00 30 00 86 	callx	c0f2dcd0 <__Workspace_Allocate_or_fatal_error>
+c0f2c7b0:	d0 dc f2 c0 
+c0f2c7b4:	00 30 80 92 	st	g0,c0f354d0 <__IO_Driver_address_table>
+c0f2c7b8:	d0 54 f3 c0 
+c0f2c7bc:	04 16 90 5c 	mov	r4,g2
+c0f2c7c0:	00 1e 88 5c 	mov	0,g1
+c0f2c7c4:	00 30 00 86 	callx	c0f2c170 <_memset>
+c0f2c7c8:	70 c1 f2 c0 
+c0f2c7cc:	38 60 01 32 	cmpobe	0,r5,c0f2c804 <L13>
+c0f2c7d0:	00 1e 90 5c 	mov	0,g2
+c0f2c7d4:	30 80 2c 36 	cmpoble	r5,g2,c0f2c804 <L13>
+c0f2c7d8:	00 30 98 90 	ld	c0f354d0 <__IO_Driver_address_table>,g3
+c0f2c7dc:	d0 54 f3 c0 
+
+c0f2c7e0 <L18>:
+c0f2c7e0:	05 8e 84 59 	shlo	5,g2,g0
+c0f2c7e4:	08 00 8c 59 	addo	r8,g0,g1
+c0f2c7e8:	00 50 a4 b0 	ldq	(g1),g4
+c0f2c7ec:	10 c0 84 59 	addo	g0,g3,g0
+c0f2c7f0:	00 10 a4 b2 	stq	g4,(g0)
+c0f2c7f4:	10 60 a4 b0 	ldq	0x10(g1),g4
+c0f2c7f8:	12 50 90 59 	addo	g2,1,g2
+c0f2c7fc:	10 20 a4 b2 	stq	g4,0x10(g0)
+c0f2c800:	e0 9f 2c 31 	cmpobg	r5,g2,c0f2c7e0 <L18>
+
+c0f2c804 <L13>:
+c0f2c804:	07 3a 80 8c 	lda	10 <REG_G9>[r7*16],g0
+c0f2c808:	10 00 00 00 
+c0f2c80c:	00 30 30 92 	st	r6,c0f35458 <__IO_Number_of_drivers>
+c0f2c810:	58 54 f3 c0 
+c0f2c814:	00 30 38 92 	st	r7,c0f35454 <__IO_Number_of_devices>
+c0f2c818:	54 54 f3 c0 
+c0f2c81c:	00 30 00 86 	callx	c0f2dcd0 <__Workspace_Allocate_or_fatal_error>
+c0f2c820:	d0 dc f2 c0 
+c0f2c824:	00 30 a8 90 	ld	c0f35454 <__IO_Number_of_devices>,g5
+c0f2c828:	54 54 f3 c0 
+c0f2c82c:	00 30 80 92 	st	g0,c0f354f8 <__IO_Driver_name_table>
+c0f2c830:	f8 54 f3 c0 
+c0f2c834:	00 1e 90 5c 	mov	0,g2
+c0f2c838:	20 80 ac 36 	cmpoble	g5,g2,c0f2c858 <L26>
+
+c0f2c83c <L23>:
+c0f2c83c:	00 10 f4 92 	st	g14,(g0)
+c0f2c840:	04 20 f4 92 	st	g14,0x4(g0)
+c0f2c844:	08 20 f4 92 	st	g14,0x8(g0)
+c0f2c848:	0c 20 f4 92 	st	g14,0xc(g0)
+c0f2c84c:	12 50 90 59 	addo	g2,1,g2
+c0f2c850:	10 10 84 59 	addo	g0,16,g0
+c0f2c854:	e8 9f ac 31 	cmpobg	g5,g2,c0f2c83c <L23>
+
+c0f2c858 <L26>:
+c0f2c858:	00 00 00 0a 	ret
+c0f2c85c:	00 00 00 00 	.word	0x00000000
+
+c0f2c860 <__IO_Initialize_all_drivers>:
+c0f2c860:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2c864:	58 54 f3 c0 
+c0f2c868:	00 1e 20 5c 	mov	0,r4
+c0f2c86c:	28 00 a1 36 	cmpoble	g4,r4,c0f2c894 <L34>
+
+c0f2c870 <L32>:
+c0f2c870:	04 16 80 5c 	mov	r4,g0
+c0f2c874:	00 1e 88 5c 	mov	0,g1
+c0f2c878:	00 1e 90 5c 	mov	0,g2
+c0f2c87c:	00 30 00 86 	callx	c0f2c9b0 <_rtems_io_initialize>
+c0f2c880:	b0 c9 f2 c0 
+c0f2c884:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2c888:	58 54 f3 c0 
+c0f2c88c:	04 50 20 59 	addo	r4,1,r4
+c0f2c890:	e0 1f a1 31 	cmpobg	g4,r4,c0f2c870 <L32>
+
+c0f2c894 <L34>:
+c0f2c894:	00 00 00 0a 	ret
+	...
+
+c0f2c8a0 <_rtems_io_register_driver>:
+c0f2c8a0:	00 90 f4 92 	st	g14,(g2)
+c0f2c8a4:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2c8a8:	58 54 f3 c0 
+c0f2c8ac:	0a 1e a8 5c 	mov	10,g5
+c0f2c8b0:	ac 00 a4 36 	cmpoble	g4,g0,c0f2c95c <L35>
+c0f2c8b4:	58 20 04 35 	cmpobne	0,g0,c0f2c90c <L37>
+c0f2c8b8:	01 09 85 59 	subo	1,g4,g0
+c0f2c8bc:	34 20 04 32 	cmpobe	0,g0,c0f2c8f0 <L47>
+c0f2c8c0:	00 30 b0 90 	ld	c0f354d0 <__IO_Driver_address_table>,g6
+c0f2c8c4:	d0 54 f3 c0 
+
+c0f2c8c8 <L43>:
+c0f2c8c8:	05 0e a4 59 	shlo	5,g0,g4
+c0f2c8cc:	16 00 ad 59 	addo	g6,g4,g5
+c0f2c8d0:	00 50 a5 90 	ld	(g5),g4
+c0f2c8d4:	0c 20 05 35 	cmpobne	0,g4,c0f2c8e0 <L40>
+c0f2c8d8:	04 60 a5 90 	ld	0x4(g5),g4
+c0f2c8dc:	10 20 05 32 	cmpobe	0,g4,c0f2c8ec <L39>
+
+c0f2c8e0 <L40>:
+c0f2c8e0:	01 09 84 59 	subo	1,g0,g0
+c0f2c8e4:	e4 3f 04 35 	cmpobne	0,g0,c0f2c8c8 <L43>
+c0f2c8e8:	08 00 00 08 	b	c0f2c8f0 <L47>
+
+c0f2c8ec <L39>:
+c0f2c8ec:	20 20 04 35 	cmpobne	0,g0,c0f2c90c <L37>
+
+c0f2c8f0 <L47>:
+c0f2c8f0:	00 30 a8 90 	ld	c0f354d0 <__IO_Driver_address_table>,g5
+c0f2c8f4:	d0 54 f3 c0 
+c0f2c8f8:	00 50 a5 90 	ld	(g5),g4
+c0f2c8fc:	10 20 05 35 	cmpobne	0,g4,c0f2c90c <L37>
+c0f2c900:	04 60 a5 90 	ld	0x4(g5),g4
+c0f2c904:	05 1e a8 5c 	mov	5,g5
+c0f2c908:	54 20 05 32 	cmpobe	0,g4,c0f2c95c <L35>
+
+c0f2c90c <L37>:
+c0f2c90c:	05 0e a4 59 	shlo	5,g0,g4
+c0f2c910:	00 30 a8 90 	ld	c0f354d0 <__IO_Driver_address_table>,g5
+c0f2c914:	d0 54 f3 c0 
+c0f2c918:	14 40 9d 59 	addo	g4,g5,g3
+c0f2c91c:	00 d0 a4 90 	ld	(g3),g4
+c0f2c920:	38 20 05 35 	cmpobne	0,g4,c0f2c958 <L45>
+c0f2c924:	04 e0 a4 90 	ld	0x4(g3),g4
+c0f2c928:	30 20 05 35 	cmpobne	0,g4,c0f2c958 <L45>
+c0f2c92c:	00 50 a4 b0 	ldq	(g1),g4
+c0f2c930:	00 90 84 92 	st	g0,(g2)
+c0f2c934:	00 d0 a4 b2 	stq	g4,(g3)
+c0f2c938:	10 60 a4 b0 	ldq	0x10(g1),g4
+c0f2c93c:	00 1e 90 5c 	mov	0,g2
+c0f2c940:	10 e0 a4 b2 	stq	g4,0x10(g3)
+c0f2c944:	00 1e 88 5c 	mov	0,g1
+c0f2c948:	00 30 00 86 	callx	c0f2c9b0 <_rtems_io_initialize>
+c0f2c94c:	b0 c9 f2 c0 
+c0f2c950:	00 1e a8 5c 	mov	0,g5
+c0f2c954:	08 00 00 08 	b	c0f2c95c <L35>
+
+c0f2c958 <L45>:
+c0f2c958:	0c 1e a8 5c 	mov	12,g5
+
+c0f2c95c <L35>:
+c0f2c95c:	15 16 80 5c 	mov	g5,g0
+
+c0f2c960 <Li960R3>:
+c0f2c960:	00 00 00 0a 	ret
+	...
+
+c0f2c970 <_rtems_io_unregister_driver>:
+c0f2c970:	05 0e ac 59 	shlo	5,g0,g5
+c0f2c974:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2c978:	58 54 f3 c0 
+c0f2c97c:	00 1e 88 5c 	mov	0,g1
+c0f2c980:	1f 58 90 59 	addo	31,1,g2
+c0f2c984:	0d 1e b0 5c 	mov	13,g6
+c0f2c988:	1c 00 a4 36 	cmpoble	g4,g0,c0f2c9a4 <L48>
+c0f2c98c:	00 30 80 90 	ld	c0f354d0 <__IO_Driver_address_table>,g0
+c0f2c990:	d0 54 f3 c0 
+c0f2c994:	15 00 84 59 	addo	g5,g0,g0
+c0f2c998:	00 30 00 86 	callx	c0f2c170 <_memset>
+c0f2c99c:	70 c1 f2 c0 
+c0f2c9a0:	00 1e b0 5c 	mov	0,g6
+
+c0f2c9a4 <L48>:
+c0f2c9a4:	16 16 80 5c 	mov	g6,g0
+
+c0f2c9a8 <Li960R4>:
+c0f2c9a8:	00 00 00 0a 	ret
+c0f2c9ac:	00 00 00 00 	.word	0x00000000
+
+c0f2c9b0 <_rtems_io_initialize>:
+c0f2c9b0:	05 0e b4 59 	shlo	5,g0,g6
+c0f2c9b4:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2c9b8:	58 54 f3 c0 
+c0f2c9bc:	0a 1e b8 5c 	mov	10,g7
+c0f2c9c0:	00 1e 98 5c 	mov	0,g3
+c0f2c9c4:	20 00 a4 36 	cmpoble	g4,g0,c0f2c9e4 <L50>
+c0f2c9c8:	00 30 a0 90 	ld	c0f354d0 <__IO_Driver_address_table>,g4
+c0f2c9cc:	d0 54 f3 c0 
+c0f2c9d0:	14 9c ad 90 	ld	(g6)[g4],g5
+c0f2c9d4:	0c 60 05 32 	cmpobe	0,g5,c0f2c9e0 <L53>
+c0f2c9d8:	00 50 05 86 	callx	(g5)
+c0f2c9dc:	10 16 98 5c 	mov	g0,g3
+
+c0f2c9e0 <L53>:
+c0f2c9e0:	13 16 b8 5c 	mov	g3,g7
+
+c0f2c9e4 <L50>:
+c0f2c9e4:	17 16 80 5c 	mov	g7,g0
+
+c0f2c9e8 <Li960R5>:
+c0f2c9e8:	00 00 00 0a 	ret
+c0f2c9ec:	00 00 00 00 	.word	0x00000000
+
+c0f2c9f0 <_rtems_io_open>:
+c0f2c9f0:	05 0e b4 59 	shlo	5,g0,g6
+c0f2c9f4:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2c9f8:	58 54 f3 c0 
+c0f2c9fc:	0a 1e b8 5c 	mov	10,g7
+c0f2ca00:	00 1e 98 5c 	mov	0,g3
+c0f2ca04:	24 00 a4 36 	cmpoble	g4,g0,c0f2ca28 <L54>
+c0f2ca08:	00 30 a0 90 	ld	c0f354d0 <__IO_Driver_address_table>,g4
+c0f2ca0c:	d0 54 f3 c0 
+c0f2ca10:	14 bc ad 90 	ld	4 <REG_R1_SP>(g6)[g4],g5
+c0f2ca14:	04 00 00 00 
+c0f2ca18:	0c 60 05 32 	cmpobe	0,g5,c0f2ca24 <L57>
+c0f2ca1c:	00 50 05 86 	callx	(g5)
+c0f2ca20:	10 16 98 5c 	mov	g0,g3
+
+c0f2ca24 <L57>:
+c0f2ca24:	13 16 b8 5c 	mov	g3,g7
+
+c0f2ca28 <L54>:
+c0f2ca28:	17 16 80 5c 	mov	g7,g0
+
+c0f2ca2c <Li960R6>:
+c0f2ca2c:	00 00 00 0a 	ret
+
+c0f2ca30 <_rtems_io_close>:
+c0f2ca30:	05 0e b4 59 	shlo	5,g0,g6
+c0f2ca34:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2ca38:	58 54 f3 c0 
+c0f2ca3c:	0a 1e b8 5c 	mov	10,g7
+c0f2ca40:	00 1e 98 5c 	mov	0,g3
+c0f2ca44:	24 00 a4 36 	cmpoble	g4,g0,c0f2ca68 <L58>
+c0f2ca48:	00 30 a0 90 	ld	c0f354d0 <__IO_Driver_address_table>,g4
+c0f2ca4c:	d0 54 f3 c0 
+c0f2ca50:	14 bc ad 90 	ld	8 <REG_PC>(g6)[g4],g5
+c0f2ca54:	08 00 00 00 
+c0f2ca58:	0c 60 05 32 	cmpobe	0,g5,c0f2ca64 <L61>
+c0f2ca5c:	00 50 05 86 	callx	(g5)
+c0f2ca60:	10 16 98 5c 	mov	g0,g3
+
+c0f2ca64 <L61>:
+c0f2ca64:	13 16 b8 5c 	mov	g3,g7
+
+c0f2ca68 <L58>:
+c0f2ca68:	17 16 80 5c 	mov	g7,g0
+
+c0f2ca6c <Li960R7>:
+c0f2ca6c:	00 00 00 0a 	ret
+
+c0f2ca70 <_rtems_io_read>:
+c0f2ca70:	05 0e b4 59 	shlo	5,g0,g6
+c0f2ca74:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2ca78:	58 54 f3 c0 
+c0f2ca7c:	0a 1e b8 5c 	mov	10,g7
+c0f2ca80:	00 1e 98 5c 	mov	0,g3
+c0f2ca84:	24 00 a4 36 	cmpoble	g4,g0,c0f2caa8 <L62>
+c0f2ca88:	00 30 a0 90 	ld	c0f354d0 <__IO_Driver_address_table>,g4
+c0f2ca8c:	d0 54 f3 c0 
+c0f2ca90:	14 bc ad 90 	ld	c <REG_G8>(g6)[g4],g5
+c0f2ca94:	0c 00 00 00 
+c0f2ca98:	0c 60 05 32 	cmpobe	0,g5,c0f2caa4 <L65>
+c0f2ca9c:	00 50 05 86 	callx	(g5)
+c0f2caa0:	10 16 98 5c 	mov	g0,g3
+
+c0f2caa4 <L65>:
+c0f2caa4:	13 16 b8 5c 	mov	g3,g7
+
+c0f2caa8 <L62>:
+c0f2caa8:	17 16 80 5c 	mov	g7,g0
+
+c0f2caac <Li960R8>:
+c0f2caac:	00 00 00 0a 	ret
+
+c0f2cab0 <_rtems_io_write>:
+c0f2cab0:	05 0e b4 59 	shlo	5,g0,g6
+c0f2cab4:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2cab8:	58 54 f3 c0 
+c0f2cabc:	0a 1e b8 5c 	mov	10,g7
+c0f2cac0:	00 1e 98 5c 	mov	0,g3
+c0f2cac4:	24 00 a4 36 	cmpoble	g4,g0,c0f2cae8 <L66>
+c0f2cac8:	00 30 a0 90 	ld	c0f354d0 <__IO_Driver_address_table>,g4
+c0f2cacc:	d0 54 f3 c0 
+c0f2cad0:	14 bc ad 90 	ld	10 <REG_G9>(g6)[g4],g5
+c0f2cad4:	10 00 00 00 
+c0f2cad8:	0c 60 05 32 	cmpobe	0,g5,c0f2cae4 <L69>
+c0f2cadc:	00 50 05 86 	callx	(g5)
+c0f2cae0:	10 16 98 5c 	mov	g0,g3
+
+c0f2cae4 <L69>:
+c0f2cae4:	13 16 b8 5c 	mov	g3,g7
+
+c0f2cae8 <L66>:
+c0f2cae8:	17 16 80 5c 	mov	g7,g0
+
+c0f2caec <Li960R9>:
+c0f2caec:	00 00 00 0a 	ret
+
+c0f2caf0 <_rtems_io_control>:
+c0f2caf0:	05 0e b4 59 	shlo	5,g0,g6
+c0f2caf4:	00 30 a0 90 	ld	c0f35458 <__IO_Number_of_drivers>,g4
+c0f2caf8:	58 54 f3 c0 
+c0f2cafc:	0a 1e b8 5c 	mov	10,g7
+c0f2cb00:	00 1e 98 5c 	mov	0,g3
+c0f2cb04:	24 00 a4 36 	cmpoble	g4,g0,c0f2cb28 <L70>
+c0f2cb08:	00 30 a0 90 	ld	c0f354d0 <__IO_Driver_address_table>,g4
+c0f2cb0c:	d0 54 f3 c0 
+c0f2cb10:	14 bc ad 90 	ld	14 <REG_G10>(g6)[g4],g5
+c0f2cb14:	14 00 00 00 
+c0f2cb18:	0c 60 05 32 	cmpobe	0,g5,c0f2cb24 <L73>
+c0f2cb1c:	00 50 05 86 	callx	(g5)
+c0f2cb20:	10 16 98 5c 	mov	g0,g3
+
+c0f2cb24 <L73>:
+c0f2cb24:	13 16 b8 5c 	mov	g3,g7
+
+c0f2cb28 <L70>:
+c0f2cb28:	17 16 80 5c 	mov	g7,g0
+
+c0f2cb2c <Li960R10>:
+c0f2cb2c:	00 00 00 0a 	ret
+
+c0f2cb30 <__RTEMS_API_Initialize>:
+c0f2cb30:	30 20 24 90 	ld	0x30(g0),r4
+c0f2cb34:	00 30 a0 8c 	lda	c0f35a60 <__RTEMS_Objects>,g4
+c0f2cb38:	60 5a f3 c0 
+c0f2cb3c:	00 30 a0 92 	st	g4,c0f35708 <__Objects_Information_table+0x8>
+c0f2cb40:	08 57 f3 c0 
+c0f2cb44:	00 30 00 86 	callx	c0f2dd60 <__Interrupt_Manager_initialization>
+c0f2cb48:	60 dd f2 c0 
+c0f2cb4c:	20 20 89 90 	ld	0x20(r4),g1
+c0f2cb50:	24 20 91 90 	ld	0x24(r4),g2
+c0f2cb54:	00 10 81 90 	ld	(r4),g0
+c0f2cb58:	00 30 00 86 	callx	c0f2e170 <__RTEMS_tasks_Manager_initialization>
+c0f2cb5c:	70 e1 f2 c0 
+c0f2cb60:	04 20 81 90 	ld	0x4(r4),g0
+c0f2cb64:	00 30 00 86 	callx	c0f2dec0 <__Timer_Manager_initialization>
+c0f2cb68:	c0 de f2 c0 
+c0f2cb6c:	00 30 00 86 	callx	c0f2df30 <__Signal_Manager_initialization>
+c0f2cb70:	30 df f2 c0 
+c0f2cb74:	00 30 00 86 	callx	c0f2dd40 <__Event_Manager_initialization>
+c0f2cb78:	40 dd f2 c0 
+c0f2cb7c:	0c 20 81 90 	ld	0xc(r4),g0
+c0f2cb80:	00 30 00 86 	callx	c0f2dd80 <__Message_queue_Manager_initialization>
+c0f2cb84:	80 dd f2 c0 
+c0f2cb88:	08 20 81 90 	ld	0x8(r4),g0
+c0f2cb8c:	00 30 00 86 	callx	c0f2df00 <__Semaphore_Manager_initialization>
+c0f2cb90:	00 df f2 c0 
+c0f2cb94:	10 20 81 90 	ld	0x10(r4),g0
+c0f2cb98:	00 30 00 86 	callx	c0f2ddb0 <__Partition_Manager_initialization>
+c0f2cb9c:	b0 dd f2 c0 
+c0f2cba0:	14 20 81 90 	ld	0x14(r4),g0
+c0f2cba4:	00 30 00 86 	callx	c0f2de10 <__Region_Manager_initialization>
+c0f2cba8:	10 de f2 c0 
+c0f2cbac:	18 20 81 90 	ld	0x18(r4),g0
+c0f2cbb0:	00 30 00 86 	callx	c0f2dd10 <__Dual_ported_memory_Manager_initialization>
+c0f2cbb4:	10 dd f2 c0 
+c0f2cbb8:	1c 20 81 90 	ld	0x1c(r4),g0
+c0f2cbbc:	00 30 00 84 	bx	c0f2dde0 <__Rate_monotonic_Manager_initialization>
+c0f2cbc0:	e0 dd f2 c0 
+
+c0f2cbc4 <Li960R1>:
+c0f2cbc4:	00 00 00 0a 	ret
+	...
+
+c0f2cbd0 <__CPU_Initialize>:
+c0f2cbd0:	10 16 88 5c 	mov	g0,g1
+c0f2cbd4:	00 30 80 8c 	lda	c0f355b0 <__CPU_Table>,g0
+c0f2cbd8:	b0 55 f3 c0 
+c0f2cbdc:	1f 58 94 59 	addo	31,17,g2
+c0f2cbe0:	00 30 00 84 	bx	c0f2c1b0 <_memcpy>
+c0f2cbe4:	b0 c1 f2 c0 
+
+c0f2cbe8 <Li960R1>:
+c0f2cbe8:	00 00 00 0a 	ret
+c0f2cbec:	00 00 00 00 	.word	0x00000000
+
+c0f2cbf0 <__CPU_ISR_Get_level>:
+c0f2cbf0:	00 30 f0 8c 	lda	c0f2cc18 <Li960R2>,g14
+c0f2cbf4:	18 cc f2 c0 
+
+c0f2cbf8 <_CPU_ISR_Get_level.lf>:
+c0f2cbf8:	1e 16 88 5c 	mov	g14,g1
+c0f2cbfc:	00 1e f0 5c 	mov	0,g14
+c0f2cc00:	10 de 87 59 	shlo	16,31,g0
+c0f2cc04:	80 0a 84 65 	modpc	0,g0,g0
+c0f2cc08:	10 de a7 59 	shlo	16,31,g4
+c0f2cc0c:	80 0a 85 65 	modpc	0,g4,g0
+c0f2cc10:	10 0c a4 59 	shro	16,g0,g4
+c0f2cc14:	9f 08 85 58 	and	31,g4,g0
+
+c0f2cc18 <Li960R2>:
+c0f2cc18:	00 00 00 0a 	ret
+c0f2cc1c:	00 00 00 00 	.word	0x00000000
+
+c0f2cc20 <__CPU_ISR_install_vector>:
+c0f2cc20:	10 48 08 59 	addo	16,sp,sp
+c0f2cc24:	00 30 a0 90 	ld	c0f35500 <__ISR_Vector_table>,g4
+c0f2cc28:	00 55 f3 c0 
+c0f2cc2c:	12 16 a8 5c 	mov	g2,g5
+c0f2cc30:	10 1d a5 90 	ld	(g4)[g0*4],g4
+c0f2cc34:	11 16 20 5c 	mov	g1,r4
+c0f2cc38:	40 e0 97 8c 	lda	0x40(fp),g2
+c0f2cc3c:	10 16 28 5c 	mov	g0,r5
+c0f2cc40:	00 50 a5 92 	st	g4,(g5)
+c0f2cc44:	00 30 88 8c 	lda	c0f2c090 <__ISR_Handler>,g1
+c0f2cc48:	90 c0 f2 c0 
+c0f2cc4c:	00 30 00 86 	callx	c0f2c0b0 <__CPU_ISR_install_raw_handler>
+c0f2cc50:	b0 c0 f2 c0 
+c0f2cc54:	00 30 a0 90 	ld	c0f35500 <__ISR_Vector_table>,g4
+c0f2cc58:	00 55 f3 c0 
+c0f2cc5c:	Address 0x00000000c0f2cc5c is out of bounds.
+
+
+c0f2cc60 <Li960R3>:
+c0f2cc60:	00 00 00 0a 	ret
+	...
+
+c0f2cc70 <__API_extensions_Initialization>:
+c0f2cc70:	00 30 f0 8c 	lda	c0f2cc98 <Li960R1>,g14
+c0f2cc74:	98 cc f2 c0 
+
+c0f2cc78 <_API_extensions_Initialization.lf>:
+c0f2cc78:	1e 16 80 5c 	mov	g14,g0
+c0f2cc7c:	00 1e f0 5c 	mov	0,g14
+c0f2cc80:	00 30 a0 8c 	lda	c0f35530 <__API_extensions_List>,g4
+c0f2cc84:	30 55 f3 c0 
+c0f2cc88:	04 08 ad 59 	addo	4,g4,g5
+c0f2cc8c:	00 50 f5 92 	st	g14,(g5)
+c0f2cc90:	08 20 a5 92 	st	g4,0x8(g4)
+c0f2cc94:	Address 0x00000000c0f2cc94 is out of bounds.
+
+
+c0f2cc98 <Li960R1>:
+c0f2cc98:	00 00 00 0a 	ret
+c0f2cc9c:	00 00 00 00 	.word	0x00000000
+
+c0f2cca0 <__API_extensions_Add>:
+c0f2cca0:	10 16 88 5c 	mov	g0,g1
+c0f2cca4:	00 30 80 8c 	lda	c0f35530 <__API_extensions_List>,g0
+c0f2cca8:	30 55 f3 c0 
+c0f2ccac:	00 30 00 84 	bx	c0f2ce00 <__Chain_Append>
+c0f2ccb0:	00 ce f2 c0 
+
+c0f2ccb4 <Li960R2>:
+c0f2ccb4:	00 00 00 0a 	ret
+	...
+
+c0f2ccc0 <__API_extensions_Run_predriver>:
+c0f2ccc0:	00 30 20 90 	ld	c0f35530 <__API_extensions_List>,r4
+c0f2ccc4:	30 55 f3 c0 
+c0f2ccc8:	00 30 28 8c 	lda	c0f35534 <__API_extensions_List+0x4>,r5
+c0f2cccc:	34 55 f3 c0 
+c0f2ccd0:	18 00 29 32 	cmpobe	r5,r4,c0f2cce8 <L26>
+
+c0f2ccd4 <L24>:
+c0f2ccd4:	08 20 a1 90 	ld	0x8(r4),g4
+c0f2ccd8:	08 20 05 32 	cmpobe	0,g4,c0f2cce0 <L19>
+c0f2ccdc:	Address 0x00000000c0f2ccdc is out of bounds.
+
+
+c0f2cce0 <L19>:
+c0f2cce0:	00 10 21 90 	ld	(r4),r4
+c0f2cce4:	f0 1f 29 35 	cmpobne	r5,r4,c0f2ccd4 <L24>
+
+c0f2cce8 <L26>:
+c0f2cce8:	00 00 00 0a 	ret
+c0f2ccec:	00 00 00 00 	.word	0x00000000
+
+c0f2ccf0 <__API_extensions_Run_postdriver>:
+c0f2ccf0:	00 30 20 90 	ld	c0f35530 <__API_extensions_List>,r4
+c0f2ccf4:	30 55 f3 c0 
+c0f2ccf8:	00 30 28 8c 	lda	c0f35534 <__API_extensions_List+0x4>,r5
+c0f2ccfc:	34 55 f3 c0 
+c0f2cd00:	18 00 29 32 	cmpobe	r5,r4,c0f2cd18 <L37>
+
+c0f2cd04 <L35>:
+c0f2cd04:	0c 20 a1 90 	ld	0xc(r4),g4
+c0f2cd08:	08 20 05 32 	cmpobe	0,g4,c0f2cd10 <L30>
+c0f2cd0c:	Address 0x00000000c0f2cd0c is out of bounds.
+
+
+c0f2cd10 <L30>:
+c0f2cd10:	00 10 21 90 	ld	(r4),r4
+c0f2cd14:	f0 1f 29 35 	cmpobne	r5,r4,c0f2cd04 <L35>
+
+c0f2cd18 <L37>:
+c0f2cd18:	00 00 00 0a 	ret
+c0f2cd1c:	00 00 00 00 	.word	0x00000000
+
+c0f2cd20 <__API_extensions_Run_postswitch>:
+c0f2cd20:	00 30 20 90 	ld	c0f35530 <__API_extensions_List>,r4
+c0f2cd24:	30 55 f3 c0 
+c0f2cd28:	00 30 28 8c 	lda	c0f35534 <__API_extensions_List+0x4>,r5
+c0f2cd2c:	34 55 f3 c0 
+c0f2cd30:	20 00 29 32 	cmpobe	r5,r4,c0f2cd50 <L48>
+
+c0f2cd34 <L46>:
+c0f2cd34:	10 20 a1 90 	ld	0x10(r4),g4
+c0f2cd38:	10 20 05 32 	cmpobe	0,g4,c0f2cd48 <L41>
+c0f2cd3c:	00 30 80 90 	ld	c0f35600 <__Thread_Executing>,g0
+c0f2cd40:	00 56 f3 c0 
+c0f2cd44:	Address 0x00000000c0f2cd44 is out of bounds.
+
+
+c0f2cd48 <L41>:
+c0f2cd48:	00 10 21 90 	ld	(r4),r4
+c0f2cd4c:	e8 1f 29 35 	cmpobne	r5,r4,c0f2cd34 <L46>
+
+c0f2cd50 <L48>:
+c0f2cd50:	00 00 00 0a 	ret
+	...
+
+c0f2cd60 <__Chain_Initialize>:
+c0f2cd60:	00 30 f0 8c 	lda	c0f2cda8 <Li960R1>,g14
+c0f2cd64:	a8 cd f2 c0 
+
+c0f2cd68 <_Chain_Initialize.lf>:
+c0f2cd68:	1e 16 b8 5c 	mov	g14,g7
+c0f2cd6c:	00 1e f0 5c 	mov	0,g14
+c0f2cd70:	04 20 f4 92 	st	g14,0x4(g0)
+c0f2cd74:	10 16 b0 5c 	mov	g0,g6
+c0f2cd78:	01 89 ac 59 	subo	1,g2,g5
+c0f2cd7c:	20 a0 04 32 	cmpobe	0,g2,c0f2cd9c <L10>
+
+c0f2cd80 <L7>:
+c0f2cd80:	04 60 b4 92 	st	g6,0x4(g1)
+c0f2cd84:	00 90 8d 92 	st	g1,(g6)
+c0f2cd88:	11 16 b0 5c 	mov	g1,g6
+c0f2cd8c:	11 c0 8c 59 	addo	g1,g3,g1
+c0f2cd90:	01 49 ad 59 	subo	1,g5,g5
+c0f2cd94:	01 19 a0 59 	subo	1,0,g4
+c0f2cd98:	e8 5f a5 35 	cmpobne	g4,g5,c0f2cd80 <L7>
+
+c0f2cd9c <L10>:
+c0f2cd9c:	10 10 a1 59 	addo	g0,4,g4
+c0f2cda0:	00 90 a5 92 	st	g4,(g6)
+c0f2cda4:	Address 0x00000000c0f2cda4 is out of bounds.
+
+
+c0f2cda8 <Li960R1>:
+c0f2cda8:	00 00 00 0a 	ret
+c0f2cdac:	00 00 00 00 	.word	0x00000000
+
+c0f2cdb0 <__Chain_Get>:
+c0f2cdb0:	00 30 f0 8c 	lda	c0f2cdf4 <Li960R2>,g14
+c0f2cdb4:	f4 cd f2 c0 
+
+c0f2cdb8 <_Chain_Get.lf>:
+c0f2cdb8:	1e 16 88 5c 	mov	g14,g1
+c0f2cdbc:	00 1e f0 5c 	mov	0,g14
+c0f2cdc0:	00 1e b8 5c 	mov	0,g7
+c0f2cdc4:	10 de b7 59 	shlo	16,31,g6
+c0f2cdc8:	80 8a b5 65 	modpc	0,g6,g6
+c0f2cdcc:	00 10 ac 90 	ld	(g0),g5
+c0f2cdd0:	10 10 a1 59 	addo	g0,4,g4
+c0f2cdd4:	14 40 a5 32 	cmpobe	g4,g5,c0f2cde8 <L13>
+c0f2cdd8:	00 50 a5 90 	ld	(g5),g4
+c0f2cddc:	15 16 b8 5c 	mov	g5,g7
+c0f2cde0:	00 10 a4 92 	st	g4,(g0)
+c0f2cde4:	Address 0x00000000c0f2cde4 is out of bounds.
+
+
+c0f2cde8 <L13>:
+c0f2cde8:	10 de a7 59 	shlo	16,31,g4
+c0f2cdec:	80 0a b5 65 	modpc	0,g4,g6
+c0f2cdf0:	17 16 80 5c 	mov	g7,g0
+
+c0f2cdf4 <Li960R2>:
+c0f2cdf4:	00 00 00 0a 	ret
+	...
+
+c0f2ce00 <__Chain_Append>:
+c0f2ce00:	00 30 f0 8c 	lda	c0f2ce38 <Li960R3>,g14
+c0f2ce04:	38 ce f2 c0 
+
+c0f2ce08 <_Chain_Append.lf>:
+c0f2ce08:	1e 16 90 5c 	mov	g14,g2
+c0f2ce0c:	00 1e f0 5c 	mov	0,g14
+c0f2ce10:	10 de af 59 	shlo	16,31,g5
+c0f2ce14:	80 4a ad 65 	modpc	0,g5,g5
+c0f2ce18:	10 10 a1 59 	addo	g0,4,g4
+c0f2ce1c:	00 50 a4 92 	st	g4,(g1)
+c0f2ce20:	08 20 a4 90 	ld	0x8(g0),g4
+c0f2ce24:	08 20 8c 92 	st	g1,0x8(g0)
+c0f2ce28:	04 60 a4 92 	st	g4,0x4(g1)
+c0f2ce2c:	00 10 8d 92 	st	g1,(g4)
+c0f2ce30:	10 de a7 59 	shlo	16,31,g4
+c0f2ce34:	80 0a ad 65 	modpc	0,g4,g5
+
+c0f2ce38 <Li960R3>:
+c0f2ce38:	00 00 00 0a 	ret
+c0f2ce3c:	00 00 00 00 	.word	0x00000000
+
+c0f2ce40 <__Chain_Extract>:
+c0f2ce40:	00 30 f0 8c 	lda	c0f2ce70 <Li960R4>,g14
+c0f2ce44:	70 ce f2 c0 
+
+c0f2ce48 <_Chain_Extract.lf>:
+c0f2ce48:	1e 16 88 5c 	mov	g14,g1
+c0f2ce4c:	00 1e f0 5c 	mov	0,g14
+c0f2ce50:	10 de af 59 	shlo	16,31,g5
+c0f2ce54:	80 4a ad 65 	modpc	0,g5,g5
+c0f2ce58:	04 20 b4 90 	ld	0x4(g0),g6
+c0f2ce5c:	00 10 a4 90 	ld	(g0),g4
+c0f2ce60:	00 90 a5 92 	st	g4,(g6)
+c0f2ce64:	04 20 b5 92 	st	g6,0x4(g4)
+c0f2ce68:	10 de a7 59 	shlo	16,31,g4
+c0f2ce6c:	80 0a ad 65 	modpc	0,g4,g5
+
+c0f2ce70 <Li960R4>:
+c0f2ce70:	00 00 00 0a 	ret
+	...
+
+c0f2ce80 <__Chain_Insert>:
+c0f2ce80:	00 30 f0 8c 	lda	c0f2ceb4 <Li960R5>,g14
+c0f2ce84:	b4 ce f2 c0 
+
+c0f2ce88 <_Chain_Insert.lf>:
+c0f2ce88:	1e 16 90 5c 	mov	g14,g2
+c0f2ce8c:	00 1e f0 5c 	mov	0,g14
+c0f2ce90:	10 de af 59 	shlo	16,31,g5
+c0f2ce94:	80 4a ad 65 	modpc	0,g5,g5
+c0f2ce98:	00 10 a4 90 	ld	(g0),g4
+c0f2ce9c:	04 60 84 92 	st	g0,0x4(g1)
+c0f2cea0:	00 10 8c 92 	st	g1,(g0)
+c0f2cea4:	04 20 8d 92 	st	g1,0x4(g4)
+c0f2cea8:	00 50 a4 92 	st	g4,(g1)
+c0f2ceac:	10 de a7 59 	shlo	16,31,g4
+c0f2ceb0:	80 0a ad 65 	modpc	0,g4,g5
+
+c0f2ceb4 <Li960R5>:
+c0f2ceb4:	00 00 00 0a 	ret
+	...
+
+c0f2cec0 <__TOD_Handler_initialization>:
+c0f2cec0:	01 1e a8 5c 	mov	1,g5
+c0f2cec4:	c4 07 a0 8c 	lda	0x7c4,g4
+c0f2cec8:	00 30 a0 92 	st	g4,c0f35720 <__TOD_Current>
+c0f2cecc:	20 57 f3 c0 
+c0f2ced0:	00 30 a8 92 	st	g5,c0f35728 <__TOD_Current+0x8>
+c0f2ced4:	28 57 f3 c0 
+c0f2ced8:	00 30 80 92 	st	g0,c0f356c8 <__TOD_Microseconds_per_tick>
+c0f2cedc:	c8 56 f3 c0 
+c0f2cee0:	00 30 f0 92 	st	g14,c0f35464 <__TOD_Seconds_since_epoch>
+c0f2cee4:	64 54 f3 c0 
+c0f2cee8:	00 30 a8 92 	st	g5,c0f35724 <__TOD_Current+0x4>
+c0f2ceec:	24 57 f3 c0 
+c0f2cef0:	00 30 f0 92 	st	g14,c0f3572c <__TOD_Current+0xc>
+c0f2cef4:	2c 57 f3 c0 
+c0f2cef8:	00 30 f0 92 	st	g14,c0f35730 <__TOD_Current+0x10>
+c0f2cefc:	30 57 f3 c0 
+c0f2cf00:	00 30 f0 92 	st	g14,c0f35734 <__TOD_Current+0x14>
+c0f2cf04:	34 57 f3 c0 
+c0f2cf08:	00 30 f0 92 	st	g14,c0f35738 <__TOD_Current+0x18>
+c0f2cf0c:	38 57 f3 c0 
+c0f2cf10:	10 20 04 35 	cmpobne	0,g0,c0f2cf20 <L12>
+c0f2cf14:	00 30 f0 92 	st	g14,c0f354f0 <__TOD_Ticks_per_second>
+c0f2cf18:	f0 54 f3 c0 
+c0f2cf1c:	18 00 00 08 	b	c0f2cf34 <L13>
+
+c0f2cf20 <L12>:
+c0f2cf20:	00 30 a0 8c 	lda	f4240 <SIZE_REGS+0xf4214>,g4
+c0f2cf24:	40 42 0f 00 
+c0f2cf28:	90 05 a5 70 	divo	g0,g4,g4
+c0f2cf2c:	00 30 a0 92 	st	g4,c0f354f0 <__TOD_Ticks_per_second>
+c0f2cf30:	f0 54 f3 c0 
+
+c0f2cf34 <L13>:
+c0f2cf34:	00 30 88 8c 	lda	c0f35740 <__TOD_Seconds_watchdog>,g1
+c0f2cf38:	40 57 f3 c0 
+c0f2cf3c:	00 30 a0 8c 	lda	c0f2cf80 <__TOD_Tickle>,g4
+c0f2cf40:	80 cf f2 c0 
+c0f2cf44:	1c 60 a4 92 	st	g4,0x1c(g1)
+c0f2cf48:	00 30 a0 90 	ld	c0f354f0 <__TOD_Ticks_per_second>,g4
+c0f2cf4c:	f0 54 f3 c0 
+c0f2cf50:	00 30 f0 92 	st	g14,c0f35480 <__TOD_Is_set>
+c0f2cf54:	80 54 f3 c0 
+c0f2cf58:	00 30 80 8c 	lda	c0f355f0 <__Watchdog_Ticks_chain>,g0
+c0f2cf5c:	f0 55 f3 c0 
+c0f2cf60:	0c 60 a4 92 	st	g4,0xc(g1)
+c0f2cf64:	08 60 f4 92 	st	g14,0x8(g1)
+c0f2cf68:	20 60 f4 92 	st	g14,0x20(g1)
+c0f2cf6c:	24 60 f4 92 	st	g14,0x24(g1)
+c0f2cf70:	00 30 00 84 	bx	c0f2dac0 <__Watchdog_Insert>
+c0f2cf74:	c0 da f2 c0 
+
+c0f2cf78 <Li960R1>:
+c0f2cf78:	00 00 00 0a 	ret
+c0f2cf7c:	00 00 00 00 	.word	0x00000000
+
+c0f2cf80 <__TOD_Tickle>:
+c0f2cf80:	00 30 a8 90 	ld	c0f35734 <__TOD_Current+0x14>,g5
+c0f2cf84:	34 57 f3 c0 
+c0f2cf88:	00 30 a0 90 	ld	c0f35464 <__TOD_Seconds_since_epoch>,g4
+c0f2cf8c:	64 54 f3 c0 
+c0f2cf90:	15 50 a8 59 	addo	g5,1,g5
+c0f2cf94:	14 50 a0 59 	addo	g4,1,g4
+c0f2cf98:	00 30 80 8c 	lda	c0f354e0 <__Watchdog_Seconds_chain>,g0
+c0f2cf9c:	e0 54 f3 c0 
+c0f2cfa0:	00 30 a0 92 	st	g4,c0f35464 <__TOD_Seconds_since_epoch>
+c0f2cfa4:	64 54 f3 c0 
+c0f2cfa8:	00 30 a8 92 	st	g5,c0f35734 <__TOD_Current+0x14>
+c0f2cfac:	34 57 f3 c0 
+c0f2cfb0:	00 30 f0 92 	st	g14,c0f35738 <__TOD_Current+0x18>
+c0f2cfb4:	38 57 f3 c0 
+c0f2cfb8:	1f 18 b7 59 	addo	31,28,g6
+c0f2cfbc:	c4 40 b5 33 	cmpobge	g6,g5,c0f2d080 <L12>
+c0f2cfc0:	00 30 a0 90 	ld	c0f35730 <__TOD_Current+0x10>,g4
+c0f2cfc4:	30 57 f3 c0 
+c0f2cfc8:	00 30 f0 92 	st	g14,c0f35734 <__TOD_Current+0x14>
+c0f2cfcc:	34 57 f3 c0 
+c0f2cfd0:	14 50 a0 59 	addo	g4,1,g4
+c0f2cfd4:	00 30 a0 92 	st	g4,c0f35730 <__TOD_Current+0x10>
+c0f2cfd8:	30 57 f3 c0 
+c0f2cfdc:	a4 00 b5 33 	cmpobge	g6,g4,c0f2d080 <L12>
+c0f2cfe0:	00 30 a0 90 	ld	c0f3572c <__TOD_Current+0xc>,g4
+c0f2cfe4:	2c 57 f3 c0 
+c0f2cfe8:	00 30 f0 92 	st	g14,c0f35730 <__TOD_Current+0x10>
+c0f2cfec:	30 57 f3 c0 
+c0f2cff0:	14 50 a0 59 	addo	g4,1,g4
+c0f2cff4:	00 30 a0 92 	st	g4,c0f3572c <__TOD_Current+0xc>
+c0f2cff8:	2c 57 f3 c0 
+c0f2cffc:	84 20 bd 33 	cmpobge	23,g4,c0f2d080 <L12>
+c0f2d000:	00 30 90 90 	ld	c0f35720 <__TOD_Current>,g2
+c0f2d004:	20 57 f3 c0 
+c0f2d008:	00 30 b8 90 	ld	c0f35724 <__TOD_Current+0x4>,g7
+c0f2d00c:	24 57 f3 c0 
+c0f2d010:	92 d0 a8 58 	and	g2,3,g5
+c0f2d014:	15 54 a8 59 	shro	g5,1,g5
+c0f2d018:	00 30 b0 90 	ld	c0f35728 <__TOD_Current+0x8>,g6
+c0f2d01c:	28 57 f3 c0 
+c0f2d020:	01 4e a5 59 	shlo	1,g5,g4
+c0f2d024:	16 50 b0 59 	addo	g6,1,g6
+c0f2d028:	14 40 a5 59 	addo	g4,g5,g4
+c0f2d02c:	14 5d a5 8c 	lda	(g5)[g4*4],g4
+c0f2d030:	17 50 88 59 	addo	g7,1,g1
+c0f2d034:	14 c0 a5 59 	addo	g4,g7,g4
+c0f2d038:	14 39 a0 90 	ld	c0f2c330 <__TOD_Days_per_month>[g4*4],g4
+c0f2d03c:	30 c3 f2 c0 
+c0f2d040:	01 1e b8 5c 	mov	1,g7
+c0f2d044:	00 30 f0 92 	st	g14,c0f3572c <__TOD_Current+0xc>
+c0f2d048:	2c 57 f3 c0 
+c0f2d04c:	00 30 b0 92 	st	g6,c0f35728 <__TOD_Current+0x8>
+c0f2d050:	28 57 f3 c0 
+c0f2d054:	2c 80 a5 33 	cmpobge	g4,g6,c0f2d080 <L12>
+c0f2d058:	00 30 88 92 	st	g1,c0f35724 <__TOD_Current+0x4>
+c0f2d05c:	24 57 f3 c0 
+c0f2d060:	00 30 b8 92 	st	g7,c0f35728 <__TOD_Current+0x8>
+c0f2d064:	28 57 f3 c0 
+c0f2d068:	12 50 a8 59 	addo	g2,1,g5
+c0f2d06c:	14 60 64 33 	cmpobge	12,g1,c0f2d080 <L12>
+c0f2d070:	00 30 b8 92 	st	g7,c0f35724 <__TOD_Current+0x4>
+c0f2d074:	24 57 f3 c0 
+c0f2d078:	00 30 a8 92 	st	g5,c0f35720 <__TOD_Current>
+c0f2d07c:	20 57 f3 c0 
+
+c0f2d080 <L12>:
+c0f2d080:	00 30 00 86 	callx	c0f2dbc0 <__Watchdog_Tickle>
+c0f2d084:	c0 db f2 c0 
+c0f2d088:	00 30 a0 90 	ld	c0f354f0 <__TOD_Ticks_per_second>,g4
+c0f2d08c:	f0 54 f3 c0 
+c0f2d090:	00 30 88 8c 	lda	c0f35740 <__TOD_Seconds_watchdog>,g1
+c0f2d094:	40 57 f3 c0 
+c0f2d098:	0c 60 a4 92 	st	g4,0xc(g1)
+c0f2d09c:	00 30 80 8c 	lda	c0f355f0 <__Watchdog_Ticks_chain>,g0
+c0f2d0a0:	f0 55 f3 c0 
+c0f2d0a4:	00 30 00 84 	bx	c0f2dac0 <__Watchdog_Insert>
+c0f2d0a8:	c0 da f2 c0 
+
+c0f2d0ac <Li960R1>:
+c0f2d0ac:	00 00 00 0a 	ret
+
+c0f2d0b0 <__Internal_error_Occurred>:
+c0f2d0b0:	00 30 a0 8c 	lda	c0f35510 <_Internal_errors_What_happened>,g4
+c0f2d0b4:	10 55 f3 c0 
+c0f2d0b8:	00 10 85 92 	st	g0,(g4)
+c0f2d0bc:	12 16 20 5c 	mov	g2,r4
+c0f2d0c0:	04 20 8d 92 	st	g1,0x4(g4)
+c0f2d0c4:	08 20 95 92 	st	g2,0x8(g4)
+c0f2d0c8:	00 30 00 86 	callx	c0f2da10 <__User_extensions_Fatal>
+c0f2d0cc:	10 da f2 c0 
+c0f2d0d0:	05 1e a0 5c 	mov	5,g4
+c0f2d0d4:	00 30 a0 92 	st	g4,c0f356cc <__System_state_Current>
+c0f2d0d8:	cc 56 f3 c0 
+c0f2d0dc:	04 16 80 5c 	mov	r4,g0
+c0f2d0e0:	00 30 00 84 	bx	c0f2c080 <_bounded_fatal>
+c0f2d0e4:	80 c0 f2 c0 
+
+c0f2d0e8 <Li960R1>:
+c0f2d0e8:	00 00 00 0a 	ret
+c0f2d0ec:	00 00 00 00 	.word	0x00000000
+
+c0f2d0f0 <__ISR_Handler_initialization>:
+c0f2d0f0:	00 30 f0 92 	st	g14,c0f355e4 <__ISR_Signals_to_thread_executing>
+c0f2d0f4:	e4 55 f3 c0 
+c0f2d0f8:	00 30 f0 92 	st	g14,c0f35484 <__ISR_Nest_level>
+c0f2d0fc:	84 54 f3 c0 
+c0f2d100:	8a 19 80 58 	setbit	10,0,g0
+c0f2d104:	00 30 00 86 	callx	c0f2dcd0 <__Workspace_Allocate_or_fatal_error>
+c0f2d108:	d0 dc f2 c0 
+c0f2d10c:	00 30 80 92 	st	g0,c0f35500 <__ISR_Vector_table>
+c0f2d110:	00 55 f3 c0 
+
+c0f2d114 <Li960R1>:
+c0f2d114:	00 00 00 0a 	ret
+	...
+
+c0f2d120 <__Objects_Handler_initialization>:
+c0f2d120:	10 16 20 5d 	movl	g0,r4
+c0f2d124:	00 1e 80 5c 	mov	0,g0
+c0f2d128:	01 1e 88 5c 	mov	1,g1
+c0f2d12c:	08 1e 90 5c 	mov	8,g2
+c0f2d130:	08 20 01 32 	cmpobe	0,r4,c0f2d138 <L13>
+c0f2d134:	0c 00 29 33 	cmpobge	r5,r4,c0f2d140 <L12>
+
+c0f2d138 <L13>:
+c0f2d138:	00 30 00 86 	callx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2d13c:	b0 d0 f2 c0 
+
+c0f2d140 <L12>:
+c0f2d140:	00 30 20 92 	st	r4,c0f356d0 <__Objects_Local_node>
+c0f2d144:	d0 56 f3 c0 
+c0f2d148:	00 30 28 92 	st	r5,c0f3560c <__Objects_Maximum_nodes>
+c0f2d14c:	0c 56 f3 c0 
+
+c0f2d150 <Li960R1>:
+c0f2d150:	00 00 00 0a 	ret
+	...
+
+c0f2d160 <__Objects_Initialize_information>:
+c0f2d160:	13 16 28 5c 	mov	g3,r5
+c0f2d164:	00 30 b8 8c 	lda	7fffffff <SIZE_REGS+0x7fffffd3>,g7
+c0f2d168:	ff ff ff 7f 
+c0f2d16c:	85 c0 2d 58 	and	r5,g7,r5
+c0f2d170:	1f cc 24 59 	shro	31,g3,r4
+c0f2d174:	00 30 b8 90 	ld	c0f356d0 <__Objects_Local_node>,g7
+c0f2d178:	d0 56 f3 c0 
+c0f2d17c:	1b 8e ec 59 	shlo	27,g2,g13
+c0f2d180:	18 4e 9c 59 	shlo	24,g1,g3
+c0f2d184:	10 ce bd 59 	shlo	16,g7,g7
+c0f2d188:	93 43 9f 58 	or	g3,g13,g3
+c0f2d18c:	97 c3 9c 58 	or	g7,g3,g3
+c0f2d190:	85 30 00 5a 	cmpi	r5,0
+c0f2d194:	1c 20 a4 92 	st	g4,0x1c(g0)
+c0f2d198:	00 00 b8 25 	testne	g7
+c0f2d19c:	00 30 a0 8c 	lda	c0f353b0 <_null_local_table.0>,g4
+c0f2d1a0:	b0 53 f3 c0 
+c0f2d1a4:	11 39 e8 90 	ld	c0f35700 <__Objects_Information_table>[g1*4],g13
+c0f2d1a8:	00 57 f3 c0 
+c0f2d1ac:	30 20 1c 8c 	lda	0x30(g0),r3
+c0f2d1b0:	93 c3 9d 58 	or	g3,g7,g3
+c0f2d1b4:	4c 20 ac 92 	st	g5,0x4c(g0)
+c0f2d1b8:	20 20 a4 92 	st	g4,0x20(g0)
+c0f2d1bc:	10 16 b8 5c 	mov	g0,g7
+c0f2d1c0:	03 10 31 59 	addo	r3,4,r6
+c0f2d1c4:	12 5d 87 92 	st	g0,(g13)[g2*4]
+c0f2d1c8:	14 20 24 92 	st	r4,0x14(g0)
+c0f2d1cc:	08 20 9c 92 	st	g3,0x8(g0)
+c0f2d1d0:	00 10 8c 92 	st	g1,(g0)
+c0f2d1d4:	04 20 94 92 	st	g2,0x4(g0)
+c0f2d1d8:	24 20 f4 92 	st	g14,0x24(g0)
+c0f2d1dc:	44 20 f4 92 	st	g14,0x44(g0)
+c0f2d1e0:	48 20 f4 92 	st	g14,0x48(g0)
+c0f2d1e4:	40 20 f4 92 	st	g14,0x40(g0)
+c0f2d1e8:	18 20 2c 92 	st	r5,0x18(g0)
+c0f2d1ec:	16 10 a9 59 	addo	g6,4,g5
+c0f2d1f0:	96 d0 a0 58 	and	g6,3,g4
+c0f2d1f4:	08 20 05 32 	cmpobe	0,g4,c0f2d1fc <L15>
+c0f2d1f8:	03 49 b5 58 	andnot	3,g5,g6
+
+c0f2d1fc <L15>:
+c0f2d1fc:	50 e0 b5 92 	st	g6,0x50(g7)
+c0f2d200:	00 d0 30 92 	st	r6,(r3)
+c0f2d204:	34 e0 f5 92 	st	g14,0x34(g7)
+c0f2d208:	38 e0 1d 92 	st	r3,0x38(g7)
+c0f2d20c:	10 60 01 32 	cmpobe	0,r5,c0f2d21c <L11>
+c0f2d210:	10 e0 f5 92 	st	g14,0x10(g7)
+c0f2d214:	00 30 00 84 	bx	c0f2e610 <__Objects_Extend_information>
+c0f2d218:	10 e6 f2 c0 
+
+c0f2d21c <L11>:
+c0f2d21c:	00 00 00 0a 	ret
+
+c0f2d220 <__Thread_Handler_initialization>:
+c0f2d220:	00 30 a8 90 	ld	c0f355d0 <__CPU_Table+0x20>,g5
+c0f2d224:	d0 55 f3 c0 
+c0f2d228:	00 30 a0 90 	ld	c0f355d4 <__CPU_Table+0x24>,g4
+c0f2d22c:	d4 55 f3 c0 
+c0f2d230:	15 54 a8 59 	shro	g5,1,g5
+c0f2d234:	14 54 a0 59 	shro	g4,1,g4
+c0f2d238:	10 16 28 5c 	mov	g0,r5
+c0f2d23c:	11 16 20 5c 	mov	g1,r4
+c0f2d240:	18 40 a5 32 	cmpobe	g4,g5,c0f2d258 <L12>
+c0f2d244:	00 1e 80 5c 	mov	0,g0
+c0f2d248:	01 1e 88 5c 	mov	1,g1
+c0f2d24c:	0f 1e 90 5c 	mov	15,g2
+c0f2d250:	00 30 00 86 	callx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2d254:	b0 d0 f2 c0 
+
+c0f2d258 <L12>:
+c0f2d258:	00 30 20 92 	st	r4,c0f353d0 <__Thread_Maximum_extensions>
+c0f2d25c:	d0 53 f3 c0 
+c0f2d260:	00 30 28 92 	st	r5,c0f353cc <__Thread_Ticks_per_timeslice>
+c0f2d264:	cc 53 f3 c0 
+c0f2d268:	00 30 f0 92 	st	g14,c0f353c4 <__Context_Switch_necessary>
+c0f2d26c:	c4 53 f3 c0 
+c0f2d270:	00 30 f0 92 	st	g14,c0f35600 <__Thread_Executing>
+c0f2d274:	00 56 f3 c0 
+c0f2d278:	00 30 f0 92 	st	g14,c0f35610 <__Thread_Heir>
+c0f2d27c:	10 56 f3 c0 
+c0f2d280:	00 30 f0 92 	st	g14,c0f354f4 <__Thread_Do_post_task_switch_extension>
+c0f2d284:	f4 54 f3 c0 
+c0f2d288:	8c 19 80 58 	setbit	12,0,g0
+c0f2d28c:	00 30 00 86 	callx	c0f2dcd0 <__Workspace_Allocate_or_fatal_error>
+c0f2d290:	d0 dc f2 c0 
+c0f2d294:	00 30 80 92 	st	g0,c0f35504 <__Thread_Ready_chain>
+c0f2d298:	04 55 f3 c0 
+c0f2d29c:	00 1e a8 5c 	mov	0,g5
+c0f2d2a0:	Address 0x00000000c0f2d2a0 is out of bounds.
+
+
+c0f2d2a4 <L20>:
+c0f2d2a4:	10 10 a1 59 	addo	g0,4,g4
+c0f2d2a8:	00 10 a4 92 	st	g4,(g0)
+c0f2d2ac:	08 20 84 92 	st	g0,0x8(g0)
+c0f2d2b0:	00 10 f5 92 	st	g14,(g4)
+c0f2d2b4:	15 50 a8 59 	addo	g5,1,g5
+c0f2d2b8:	10 10 84 59 	addo	g0,16,g0
+c0f2d2bc:	e8 5f b5 33 	cmpobge	g6,g5,c0f2d2a4 <L20>
+c0f2d2c0:	00 30 98 90 	ld	c0f355e0 <__System_state_Is_multiprocessing>,g3
+c0f2d2c4:	e0 55 f3 c0 
+c0f2d2c8:	00 30 80 8c 	lda	c0f35660 <__Thread_Internal_information>,g0
+c0f2d2cc:	60 56 f3 c0 
+c0f2d2d0:	13 54 98 59 	shro	g3,1,g3
+c0f2d2d4:	01 1e 88 5c 	mov	1,g1
+c0f2d2d8:	13 91 98 59 	subo	g3,2,g3
+c0f2d2dc:	01 1e 90 5c 	mov	1,g2
+c0f2d2e0:	04 de a5 59 	shlo	4,23,g4
+c0f2d2e4:	01 1e a8 5c 	mov	1,g5
+c0f2d2e8:	08 1e b0 5c 	mov	8,g6
+c0f2d2ec:	00 30 00 84 	bx	c0f2d160 <__Objects_Initialize_information>
+c0f2d2f0:	60 d1 f2 c0 
+
+c0f2d2f4 <Li960R1>:
+c0f2d2f4:	00 00 00 0a 	ret
+	...
+
+c0f2d300 <LC0>:
+c0f2d300:	49 44 4c 45 	.word	0x454c4449
+	...
+
+c0f2d310 <__Thread_Create_idle>:
+c0f2d310:	18 16 60 5e 	movt	g8,r12
+c0f2d314:	00 30 80 8c 	lda	c0f35660 <__Thread_Internal_information>,g0
+c0f2d318:	60 56 f3 c0 
+c0f2d31c:	00 30 00 86 	callx	c0f2e590 <__Objects_Allocate>
+c0f2d320:	90 e5 f2 c0 
+c0f2d324:	10 16 98 5c 	mov	g0,g3
+c0f2d328:	10 16 88 5c 	mov	g0,g1
+c0f2d32c:	00 30 d0 90 	ld	c0f2f330 <__Thread_Idle_name>,g10
+c0f2d330:	30 f3 f2 c0 
+c0f2d334:	00 30 18 90 	ld	c0f355bc <__CPU_Table+0xc>,r3
+c0f2d338:	bc 55 f3 c0 
+c0f2d33c:	00 30 e8 90 	ld	c0f355c4 <__CPU_Table+0x14>,g13
+c0f2d340:	c4 55 f3 c0 
+c0f2d344:	00 1e c0 5c 	mov	0,g8
+c0f2d348:	00 1e c8 5c 	mov	0,g9
+c0f2d34c:	00 1e 90 5c 	mov	0,g2
+c0f2d350:	00 1e a0 5c 	mov	0,g4
+c0f2d354:	00 30 80 8c 	lda	c0f35660 <__Thread_Internal_information>,g0
+c0f2d358:	60 56 f3 c0 
+c0f2d35c:	ff 00 a8 8c 	lda	0xff,g5
+c0f2d360:	01 1e b0 5c 	mov	1,g6
+c0f2d364:	00 1e b8 5c 	mov	0,g7
+c0f2d368:	00 30 98 92 	st	g3,c0f35770 <__Thread_Idle>
+c0f2d36c:	70 57 f3 c0 
+c0f2d370:	00 30 20 8c 	lda	c0f2d530 <__Thread_Idle_body>,r4
+c0f2d374:	30 d5 f2 c0 
+c0f2d378:	08 e0 00 32 	cmpobe	0,r3,c0f2d380 <L13>
+c0f2d37c:	03 16 20 5c 	mov	r3,r4
+
+c0f2d380 <L13>:
+c0f2d380:	ff 07 98 8c 	lda	0x7ff,g3
+c0f2d384:	08 40 9f 34 	cmpobl	g3,g13,c0f2d38c <L14>
+c0f2d388:	8b 19 e8 58 	setbit	11,0,g13
+
+c0f2d38c <L14>:
+c0f2d38c:	1d 16 98 5c 	mov	g13,g3
+c0f2d390:	00 30 00 86 	callx	c0f2d550 <__Thread_Initialize>
+c0f2d394:	50 d5 f2 c0 
+c0f2d398:	00 30 80 90 	ld	c0f35770 <__Thread_Idle>,g0
+c0f2d39c:	70 57 f3 c0 
+c0f2d3a0:	04 16 90 5c 	mov	r4,g2
+c0f2d3a4:	00 30 80 92 	st	g0,c0f35600 <__Thread_Executing>
+c0f2d3a8:	00 56 f3 c0 
+c0f2d3ac:	00 30 80 92 	st	g0,c0f35610 <__Thread_Heir>
+c0f2d3b0:	10 56 f3 c0 
+c0f2d3b4:	00 1e 88 5c 	mov	0,g1
+c0f2d3b8:	00 1e 98 5c 	mov	0,g3
+c0f2d3bc:	00 1e a0 5c 	mov	0,g4
+c0f2d3c0:	00 30 00 86 	callx	c0f2d7f0 <__Thread_Start>
+c0f2d3c4:	f0 d7 f2 c0 
+
+c0f2d3c8 <Li960R1>:
+c0f2d3c8:	0c 16 c0 5e 	movt	r12,g8
+c0f2d3cc:	00 00 00 0a 	ret
+
+c0f2d3d0 <__Thread_Enable_dispatch>:
+c0f2d3d0:	00 30 a0 90 	ld	c0f356c4 <__Thread_Dispatch_disable_level>,g4
+c0f2d3d4:	c4 56 f3 c0 
+c0f2d3d8:	01 09 a5 59 	subo	1,g4,g4
+c0f2d3dc:	00 30 a0 92 	st	g4,c0f356c4 <__Thread_Dispatch_disable_level>
+c0f2d3e0:	c4 56 f3 c0 
+c0f2d3e4:	00 30 a0 90 	ld	c0f356c4 <__Thread_Dispatch_disable_level>,g4
+c0f2d3e8:	c4 56 f3 c0 
+c0f2d3ec:	0c 20 05 35 	cmpobne	0,g4,c0f2d3f8 <L11>
+c0f2d3f0:	00 30 00 84 	bx	c0f2d400 <__Thread_Dispatch>
+c0f2d3f4:	00 d4 f2 c0 
+
+c0f2d3f8 <L11>:
+c0f2d3f8:	00 00 00 0a 	ret
+c0f2d3fc:	00 00 00 00 	.word	0x00000000
+
+c0f2d400 <__Thread_Dispatch>:
+c0f2d400:	00 30 30 90 	ld	c0f35600 <__Thread_Executing>,r6
+c0f2d404:	00 56 f3 c0 
+c0f2d408:	10 de b7 59 	shlo	16,31,g6
+c0f2d40c:	80 8a b5 65 	modpc	0,g6,g6
+c0f2d410:	00 30 a0 90 	ld	c0f353c4 <__Context_Switch_necessary>,g4
+c0f2d414:	c4 53 f3 c0 
+c0f2d418:	dc 20 0d 35 	cmpobne	1,g4,c0f2d4f4 <L35>
+
+c0f2d41c <L30>:
+c0f2d41c:	00 30 a0 90 	ld	c0f356c0 <_rtems_ada_self>,g4
+c0f2d420:	c0 56 f3 c0 
+c0f2d424:	00 30 28 90 	ld	c0f35610 <__Thread_Heir>,r5
+c0f2d428:	10 56 f3 c0 
+c0f2d42c:	a0 a0 a1 92 	st	g4,0xa0(r6)
+c0f2d430:	01 1e a0 5c 	mov	1,g4
+c0f2d434:	00 30 a0 92 	st	g4,c0f356c4 <__Thread_Dispatch_disable_level>
+c0f2d438:	c4 56 f3 c0 
+c0f2d43c:	a0 60 a9 90 	ld	0xa0(r5),g5
+c0f2d440:	a8 60 a1 90 	ld	0xa8(r5),g4
+c0f2d444:	00 30 a8 92 	st	g5,c0f356c0 <_rtems_ada_self>
+c0f2d448:	c0 56 f3 c0 
+c0f2d44c:	00 30 f0 92 	st	g14,c0f353c4 <__Context_Switch_necessary>
+c0f2d450:	c4 53 f3 c0 
+c0f2d454:	00 30 28 92 	st	r5,c0f35600 <__Thread_Executing>
+c0f2d458:	00 56 f3 c0 
+c0f2d45c:	10 20 0d 35 	cmpobne	1,g4,c0f2d46c <L18>
+c0f2d460:	00 30 a0 90 	ld	c0f353cc <__Thread_Ticks_per_timeslice>,g4
+c0f2d464:	cc 53 f3 c0 
+c0f2d468:	Address 0x00000000c0f2d468 is out of bounds.
+
+
+c0f2d46c <L18>:
+c0f2d46c:	10 de a7 59 	shlo	16,31,g4
+c0f2d470:	80 0a b5 65 	modpc	0,g4,g6
+c0f2d474:	b0 60 a1 90 	ld	0xb0(r5),g4
+c0f2d478:	00 30 a8 90 	ld	c0f354fc <__Thread_libc_reent>,g5
+c0f2d47c:	fc 54 f3 c0 
+c0f2d480:	14 50 a0 59 	addo	g4,1,g4
+c0f2d484:	b0 60 a1 92 	st	g4,0xb0(r5)
+c0f2d488:	14 60 05 32 	cmpobe	0,g5,c0f2d49c <L20>
+c0f2d48c:	00 50 a5 90 	ld	(g5),g4
+c0f2d490:	50 a1 a1 92 	st	g4,0x150(r6)
+c0f2d494:	50 61 a1 90 	ld	0x150(r5),g4
+c0f2d498:	Address 0x00000000c0f2d498 is out of bounds.
+
+
+c0f2d49c <L20>:
+c0f2d49c:	00 30 20 90 	ld	c0f35470 <__User_extensions_Switches_list>,r4
+c0f2d4a0:	70 54 f3 c0 
+c0f2d4a4:	00 30 38 8c 	lda	c0f35474 <__User_extensions_Switches_list+0x4>,r7
+c0f2d4a8:	74 54 f3 c0 
+c0f2d4ac:	1c 00 39 32 	cmpobe	r7,r4,c0f2d4c8 <L37>
+
+c0f2d4b0 <L27>:
+c0f2d4b0:	08 20 a1 90 	ld	0x8(r4),g4
+c0f2d4b4:	06 16 80 5c 	mov	r6,g0
+c0f2d4b8:	05 16 88 5c 	mov	r5,g1
+c0f2d4bc:	00 10 05 86 	callx	(g4)
+c0f2d4c0:	00 10 21 90 	ld	(r4),r4
+c0f2d4c4:	ec 1f 39 35 	cmpobne	r7,r4,c0f2d4b0 <L27>
+
+c0f2d4c8 <L37>:
+c0f2d4c8:	20 a1 81 8c 	lda	0x120(r6),g0
+c0f2d4cc:	20 61 89 8c 	lda	0x120(r5),g1
+c0f2d4d0:	00 30 00 86 	callx	c0f2c130 <__CPU_Context_switch>
+c0f2d4d4:	30 c1 f2 c0 
+c0f2d4d8:	00 30 30 90 	ld	c0f35600 <__Thread_Executing>,r6
+c0f2d4dc:	00 56 f3 c0 
+c0f2d4e0:	10 de b7 59 	shlo	16,31,g6
+c0f2d4e4:	80 8a b5 65 	modpc	0,g6,g6
+c0f2d4e8:	00 30 a0 90 	ld	c0f353c4 <__Context_Switch_necessary>,g4
+c0f2d4ec:	c4 53 f3 c0 
+c0f2d4f0:	2c 3f 0d 32 	cmpobe	1,g4,c0f2d41c <L30>
+
+c0f2d4f4 <L35>:
+c0f2d4f4:	00 30 f0 92 	st	g14,c0f356c4 <__Thread_Dispatch_disable_level>
+c0f2d4f8:	c4 56 f3 c0 
+c0f2d4fc:	10 de a7 59 	shlo	16,31,g4
+c0f2d500:	80 0a b5 65 	modpc	0,g4,g6
+c0f2d504:	00 30 a0 90 	ld	c0f354f4 <__Thread_Do_post_task_switch_extension>,g4
+c0f2d508:	f4 54 f3 c0 
+c0f2d50c:	0c 20 05 35 	cmpobne	0,g4,c0f2d518 <L33>
+c0f2d510:	98 a0 a1 90 	ld	0x98(r6),g4
+c0f2d514:	10 20 05 32 	cmpobe	0,g4,c0f2d524 <L13>
+
+c0f2d518 <L33>:
+c0f2d518:	98 a0 f1 92 	st	g14,0x98(r6)
+c0f2d51c:	00 30 00 84 	bx	c0f2cd20 <__API_extensions_Run_postswitch>
+c0f2d520:	20 cd f2 c0 
+
+c0f2d524 <L13>:
+c0f2d524:	00 00 00 0a 	ret
+	...
+
+c0f2d530 <__Thread_Idle_body>:
+c0f2d530:	00 30 f0 8c 	lda	c0f2d544 <Li960R1>,g14
+c0f2d534:	44 d5 f2 c0 
+
+c0f2d538 <_Thread_Idle_body.lf>:
+c0f2d538:	1e 16 80 5c 	mov	g14,g0
+c0f2d53c:	00 1e f0 5c 	mov	0,g14
+
+c0f2d540 <L12>:
+c0f2d540:	00 00 00 08 	b	c0f2d540 <L12>
+
+c0f2d544 <Li960R1>:
+c0f2d544:	00 00 00 0a 	ret
+	...
+
+c0f2d550 <__Thread_Initialize>:
+c0f2d550:	18 16 60 5e 	movt	g8,r12
+c0f2d554:	11 16 20 5c 	mov	g1,r4
+c0f2d558:	10 16 40 5c 	mov	g0,r8
+c0f2d55c:	13 16 28 5c 	mov	g3,r5
+c0f2d560:	15 16 30 5c 	mov	g5,r6
+c0f2d564:	16 16 48 5c 	mov	g6,r9
+c0f2d568:	17 16 38 5c 	mov	g7,r7
+c0f2d56c:	a0 60 f4 92 	st	g14,0xa0(g1)
+c0f2d570:	3c a0 04 35 	cmpobne	0,g2,c0f2d5ac <L12>
+c0f2d574:	8b 19 80 58 	setbit	11,0,g0
+c0f2d578:	ff 07 a0 8c 	lda	0x7ff,g4
+c0f2d57c:	08 c0 a4 33 	cmpobge	g4,g3,c0f2d584 <L15>
+c0f2d580:	13 16 80 5c 	mov	g3,g0
+
+c0f2d584 <L15>:
+c0f2d584:	10 16 88 5c 	mov	g0,g1
+c0f2d588:	04 16 80 5c 	mov	r4,g0
+c0f2d58c:	00 30 00 86 	callx	c0f2d750 <__Thread_Stack_Allocate>
+c0f2d590:	50 d7 f2 c0 
+c0f2d594:	3c 21 04 32 	cmpobe	0,g0,c0f2d6d0 <L48>
+c0f2d598:	38 01 2c 31 	cmpobg	r5,g0,c0f2d6d0 <L48>
+c0f2d59c:	01 1e a0 5c 	mov	1,g4
+c0f2d5a0:	10 21 91 90 	ld	0x110(r4),g2
+c0f2d5a4:	04 21 a1 92 	st	g4,0x104(r4)
+c0f2d5a8:	0c 00 00 08 	b	c0f2d5b4 <L18>
+
+c0f2d5ac <L12>:
+c0f2d5ac:	13 16 80 5c 	mov	g3,g0
+c0f2d5b0:	Address 0x00000000c0f2d5b0 is out of bounds.
+
+
+c0f2d5b4 <L18>:
+c0f2d5b4:	60 20 a1 8c 	lda	0x60(r4),g4
+c0f2d5b8:	00 30 a8 90 	ld	c0f353d0 <__Thread_Maximum_extensions>,g5
+c0f2d5bc:	d0 53 f3 c0 
+c0f2d5c0:	0c 21 91 92 	st	g2,0x10c(r4)
+c0f2d5c4:	08 21 81 92 	st	g0,0x108(r4)
+c0f2d5c8:	24 20 f5 92 	st	g14,0x24(g4)
+c0f2d5cc:	68 20 f1 92 	st	g14,0x68(r4)
+c0f2d5d0:	7c 20 f1 92 	st	g14,0x7c(r4)
+c0f2d5d4:	20 20 f5 92 	st	g14,0x20(g4)
+c0f2d5d8:	50 21 f1 92 	st	g14,0x150(r4)
+c0f2d5dc:	00 1e 28 5c 	mov	0,r5
+c0f2d5e0:	24 60 05 32 	cmpobe	0,g5,c0f2d604 <L24>
+c0f2d5e4:	15 39 88 8c 	lda	4 <REG_R1_SP>[g5*4],g1
+c0f2d5e8:	04 00 00 00 
+c0f2d5ec:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2d5f0:	e0 56 f3 c0 
+c0f2d5f4:	00 30 00 86 	callx	c0f2e390 <__Heap_Allocate>
+c0f2d5f8:	90 e3 f2 c0 
+c0f2d5fc:	10 16 28 5c 	mov	g0,r5
+c0f2d600:	c4 20 04 32 	cmpobe	0,g0,c0f2d6c4 <L45>
+
+c0f2d604 <L24>:
+c0f2d604:	60 21 29 92 	st	r5,0x160(r4)
+c0f2d608:	2c 60 01 32 	cmpobe	0,r5,c0f2d634 <L25>
+c0f2d60c:	00 30 a0 90 	ld	c0f353d0 <__Thread_Maximum_extensions>,g4
+c0f2d610:	d0 53 f3 c0 
+c0f2d614:	00 1e b0 5c 	mov	0,g6
+c0f2d618:	14 50 a0 59 	addo	g4,1,g4
+c0f2d61c:	18 80 a5 36 	cmpoble	g4,g6,c0f2d634 <L25>
+c0f2d620:	05 16 a8 5c 	mov	r5,g5
+
+c0f2d624 <L30>:
+c0f2d624:	00 50 f5 92 	st	g14,(g5)
+c0f2d628:	16 50 b0 59 	addo	g6,1,g6
+c0f2d62c:	15 10 a9 59 	addo	g5,4,g5
+c0f2d630:	f4 9f a5 31 	cmpobg	g4,g6,c0f2d624 <L30>
+
+c0f2d634 <L25>:
+c0f2d634:	f0 20 49 92 	st	r9,0xf0(r4)
+c0f2d638:	f8 20 c1 92 	st	g8,0xf8(r4)
+c0f2d63c:	f4 20 39 92 	st	r7,0xf4(r4)
+c0f2d640:	10 e0 11 35 	cmpobne	2,r7,c0f2d650 <L31>
+c0f2d644:	00 30 a0 90 	ld	c0f353cc <__Thread_Ticks_per_timeslice>,g4
+c0f2d648:	cc 53 f3 c0 
+c0f2d64c:	Address 0x00000000c0f2d64c is out of bounds.
+
+
+c0f2d650 <L31>:
+c0f2d650:	01 1e a0 5c 	mov	1,g4
+c0f2d654:	10 20 a1 92 	st	g4,0x10(r4)
+c0f2d658:	fc 20 c9 92 	st	g9,0xfc(r4)
+c0f2d65c:	1c 20 f1 92 	st	g14,0x1c(r4)
+c0f2d660:	90 20 f1 92 	st	g14,0x90(r4)
+c0f2d664:	18 20 31 92 	st	r6,0x18(r4)
+c0f2d668:	00 21 31 92 	st	r6,0x100(r4)
+c0f2d66c:	b0 20 f1 92 	st	g14,0xb0(r4)
+c0f2d670:	06 16 88 5c 	mov	r6,g1
+c0f2d674:	04 16 80 5c 	mov	r4,g0
+c0f2d678:	00 30 00 86 	callx	c0f2d6e0 <__Thread_Set_priority>
+c0f2d67c:	e0 d6 f2 c0 
+c0f2d680:	08 20 a9 88 	ldos	0x8(r4),g5
+c0f2d684:	10 20 a2 90 	ld	0x10(r8),g4
+c0f2d688:	0c 40 a5 34 	cmpobl	g4,g5,c0f2d694 <L40>
+c0f2d68c:	20 20 a2 90 	ld	0x20(r8),g4
+c0f2d690:	Address 0x00000000c0f2d690 is out of bounds.
+
+
+c0f2d694 <L40>:
+c0f2d694:	0c 20 d1 92 	st	g10,0xc(r4)
+c0f2d698:	04 16 80 5c 	mov	r4,g0
+c0f2d69c:	00 30 00 86 	callx	c0f2d880 <__User_extensions_Thread_create>
+c0f2d6a0:	80 d8 f2 c0 
+c0f2d6a4:	01 1e a0 5c 	mov	1,g4
+c0f2d6a8:	2c 20 04 35 	cmpobne	0,g0,c0f2d6d4 <L11>
+c0f2d6ac:	18 60 01 32 	cmpobe	0,r5,c0f2d6c4 <L45>
+c0f2d6b0:	05 16 88 5c 	mov	r5,g1
+c0f2d6b4:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2d6b8:	e0 56 f3 c0 
+c0f2d6bc:	00 30 00 86 	callx	c0f2e460 <__Heap_Free>
+c0f2d6c0:	60 e4 f2 c0 
+
+c0f2d6c4 <L45>:
+c0f2d6c4:	04 16 80 5c 	mov	r4,g0
+c0f2d6c8:	00 30 00 86 	callx	c0f2d7b0 <__Thread_Stack_Free>
+c0f2d6cc:	b0 d7 f2 c0 
+
+c0f2d6d0 <L48>:
+c0f2d6d0:	00 1e a0 5c 	mov	0,g4
+
+c0f2d6d4 <L11>:
+c0f2d6d4:	14 16 80 5c 	mov	g4,g0
+
+c0f2d6d8 <Li960R1>:
+c0f2d6d8:	0c 16 c0 5e 	movt	r12,g8
+c0f2d6dc:	00 00 00 0a 	ret
+
+c0f2d6e0 <__Thread_Set_priority>:
+c0f2d6e0:	00 30 f0 8c 	lda	c0f2d740 <Li960R1>,g14
+c0f2d6e4:	40 d7 f2 c0 
+
+c0f2d6e8 <_Thread_Set_priority.lf>:
+c0f2d6e8:	1e 16 98 5c 	mov	g14,g3
+c0f2d6ec:	00 1e f0 5c 	mov	0,g14
+c0f2d6f0:	04 4c ac 59 	shro	4,g1,g5
+c0f2d6f4:	8f 19 b0 58 	setbit	15,0,g6
+c0f2d6f8:	95 85 95 59 	shri	g5,g6,g2
+c0f2d6fc:	91 d0 a3 58 	and	g1,15,g4
+c0f2d700:	12 15 b8 58 	not	g2,g7
+c0f2d704:	c4 20 94 92 	st	g2,0xc4(g0)
+c0f2d708:	94 85 95 59 	shri	g4,g6,g2
+c0f2d70c:	15 d1 ab 59 	subo	g5,15,g5
+c0f2d710:	00 30 a0 90 	ld	c0f35504 <__Thread_Ready_chain>,g4
+c0f2d714:	04 55 f3 c0 
+c0f2d718:	15 39 a8 8c 	lda	c0f35620 <__Priority_Bit_map>[g5*4],g5
+c0f2d71c:	20 56 f3 c0 
+c0f2d720:	11 1e b5 8c 	lda	(g4)[g1*16],g6
+c0f2d724:	c0 20 ac 92 	st	g5,0xc0(g0)
+c0f2d728:	12 15 a0 58 	not	g2,g4
+c0f2d72c:	d0 20 a4 92 	st	g4,0xd0(g0)
+c0f2d730:	b4 20 b4 92 	st	g6,0xb4(g0)
+c0f2d734:	cc 20 bc 92 	st	g7,0xcc(g0)
+c0f2d738:	14 20 8c 92 	st	g1,0x14(g0)
+c0f2d73c:	Address 0x00000000c0f2d73c is out of bounds.
+
+
+c0f2d740 <Li960R1>:
+c0f2d740:	00 00 00 0a 	ret
+	...
+
+c0f2d750 <__Thread_Stack_Allocate>:
+c0f2d750:	10 16 28 5c 	mov	g0,r5
+c0f2d754:	00 30 a8 90 	ld	c0f355d0 <__CPU_Table+0x20>,g5
+c0f2d758:	d0 55 f3 c0 
+c0f2d75c:	11 16 20 5c 	mov	g1,r4
+c0f2d760:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2d764:	e0 56 f3 c0 
+c0f2d768:	ff 07 a0 8c 	lda	0x7ff,g4
+c0f2d76c:	08 40 a4 34 	cmpobl	g4,g1,c0f2d774 <L12>
+c0f2d770:	8b 19 20 58 	setbit	11,0,r4
+
+c0f2d774 <L12>:
+c0f2d774:	10 60 05 32 	cmpobe	0,g5,c0f2d784 <L14>
+c0f2d778:	04 16 80 5c 	mov	r4,g0
+c0f2d77c:	00 50 05 86 	callx	(g5)
+c0f2d780:	14 00 00 08 	b	c0f2d794 <L15>
+
+c0f2d784 <L14>:
+c0f2d784:	04 10 24 59 	addo	r4,16,r4
+c0f2d788:	04 16 88 5c 	mov	r4,g1
+c0f2d78c:	00 30 00 86 	callx	c0f2e390 <__Heap_Allocate>
+c0f2d790:	90 e3 f2 c0 
+
+c0f2d794 <L15>:
+c0f2d794:	08 20 04 35 	cmpobne	0,g0,c0f2d79c <L18>
+c0f2d798:	00 1e 20 5c 	mov	0,r4
+
+c0f2d79c <L18>:
+c0f2d79c:	10 61 81 92 	st	g0,0x110(r5)
+c0f2d7a0:	04 16 80 5c 	mov	r4,g0
+
+c0f2d7a4 <Li960R1>:
+c0f2d7a4:	00 00 00 0a 	ret
+	...
+
+c0f2d7b0 <__Thread_Stack_Free>:
+c0f2d7b0:	04 21 a4 90 	ld	0x104(g0),g4
+c0f2d7b4:	2c 20 05 32 	cmpobe	0,g4,c0f2d7e0 <L11>
+c0f2d7b8:	0c 21 8c 90 	ld	0x10c(g0),g1
+c0f2d7bc:	00 30 a0 90 	ld	c0f355d4 <__CPU_Table+0x24>,g4
+c0f2d7c0:	d4 55 f3 c0 
+c0f2d7c4:	11 16 80 5c 	mov	g1,g0
+c0f2d7c8:	08 20 05 32 	cmpobe	0,g4,c0f2d7d0 <L13>
+c0f2d7cc:	Address 0x00000000c0f2d7cc is out of bounds.
+
+
+c0f2d7d0 <L13>:
+c0f2d7d0:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2d7d4:	e0 56 f3 c0 
+c0f2d7d8:	00 30 00 84 	bx	c0f2e460 <__Heap_Free>
+c0f2d7dc:	60 e4 f2 c0 
+
+c0f2d7e0 <L11>:
+c0f2d7e0:	00 00 00 0a 	ret
+	...
+
+c0f2d7f0 <__Thread_Start>:
+c0f2d7f0:	10 20 ac 90 	ld	0x10(g0),g5
+c0f2d7f4:	10 16 20 5c 	mov	g0,r4
+c0f2d7f8:	00 1e b0 5c 	mov	0,g6
+c0f2d7fc:	38 60 05 30 	bbc	0,g5,c0f2d834 <L11>
+c0f2d800:	e0 20 94 92 	st	g2,0xe0(g0)
+c0f2d804:	e4 20 8c 92 	st	g1,0xe4(g0)
+c0f2d808:	e8 20 9c 92 	st	g3,0xe8(g0)
+c0f2d80c:	ec 20 a4 92 	st	g4,0xec(g0)
+c0f2d810:	00 30 00 86 	callx	c0f2e8f0 <__Thread_Load_environment>
+c0f2d814:	f0 e8 f2 c0 
+c0f2d818:	04 16 80 5c 	mov	r4,g0
+c0f2d81c:	00 30 00 86 	callx	c0f2e9f0 <__Thread_Ready>
+c0f2d820:	f0 e9 f2 c0 
+c0f2d824:	04 16 80 5c 	mov	r4,g0
+c0f2d828:	00 30 00 86 	callx	c0f2d910 <__User_extensions_Thread_start>
+c0f2d82c:	10 d9 f2 c0 
+c0f2d830:	01 1e b0 5c 	mov	1,g6
+
+c0f2d834 <L11>:
+c0f2d834:	16 16 80 5c 	mov	g6,g0
+
+c0f2d838 <Li960R1>:
+c0f2d838:	00 00 00 0a 	ret
+c0f2d83c:	00 00 00 00 	.word	0x00000000
+
+c0f2d840 <__Thread_Start_multitasking>:
+c0f2d840:	00 30 a0 90 	ld	c0f35610 <__Thread_Heir>,g4
+c0f2d844:	10 56 f3 c0 
+c0f2d848:	03 1e a8 5c 	mov	3,g5
+c0f2d84c:	20 21 8d 8c 	lda	0x120(g4),g1
+c0f2d850:	00 30 a8 92 	st	g5,c0f356cc <__System_state_Current>
+c0f2d854:	cc 56 f3 c0 
+c0f2d858:	00 30 f0 92 	st	g14,c0f353c4 <__Context_Switch_necessary>
+c0f2d85c:	c4 53 f3 c0 
+c0f2d860:	00 30 a0 92 	st	g4,c0f35600 <__Thread_Executing>
+c0f2d864:	00 56 f3 c0 
+c0f2d868:	00 30 80 8c 	lda	c0f35490 <__Thread_BSP_context>,g0
+c0f2d86c:	90 54 f3 c0 
+c0f2d870:	00 30 00 84 	bx	c0f2c130 <__CPU_Context_switch>
+c0f2d874:	30 c1 f2 c0 
+
+c0f2d878 <Li960R1>:
+c0f2d878:	00 00 00 0a 	ret
+c0f2d87c:	00 00 00 00 	.word	0x00000000
+
+c0f2d880 <__User_extensions_Thread_create>:
+c0f2d880:	00 30 20 90 	ld	c0f354c0 <__User_extensions_List>,r4
+c0f2d884:	c0 54 f3 c0 
+c0f2d888:	10 16 28 5c 	mov	g0,r5
+c0f2d88c:	00 30 30 8c 	lda	c0f354c4 <__User_extensions_List+0x4>,r6
+c0f2d890:	c4 54 f3 c0 
+c0f2d894:	2c 00 31 32 	cmpobe	r6,r4,c0f2d8c0 <L22>
+
+c0f2d898 <L20>:
+c0f2d898:	20 20 a1 90 	ld	0x20(r4),g4
+c0f2d89c:	05 16 88 5c 	mov	r5,g1
+c0f2d8a0:	18 20 05 32 	cmpobe	0,g4,c0f2d8b8 <L14>
+c0f2d8a4:	00 30 80 90 	ld	c0f35600 <__Thread_Executing>,g0
+c0f2d8a8:	00 56 f3 c0 
+c0f2d8ac:	00 10 05 86 	callx	(g4)
+c0f2d8b0:	00 1e a0 5c 	mov	0,g4
+c0f2d8b4:	10 20 04 32 	cmpobe	0,g0,c0f2d8c4 <L11>
+
+c0f2d8b8 <L14>:
+c0f2d8b8:	00 10 21 90 	ld	(r4),r4
+c0f2d8bc:	dc 1f 31 35 	cmpobne	r6,r4,c0f2d898 <L20>
+
+c0f2d8c0 <L22>:
+c0f2d8c0:	01 1e a0 5c 	mov	1,g4
+
+c0f2d8c4 <L11>:
+c0f2d8c4:	14 16 80 5c 	mov	g4,g0
+
+c0f2d8c8 <Li960R1>:
+c0f2d8c8:	00 00 00 0a 	ret
+c0f2d8cc:	00 00 00 00 	.word	0x00000000
+
+c0f2d8d0 <__User_extensions_Thread_delete>:
+c0f2d8d0:	00 30 20 90 	ld	c0f354c8 <__User_extensions_List+0x8>,r4
+c0f2d8d4:	c8 54 f3 c0 
+c0f2d8d8:	10 16 28 5c 	mov	g0,r5
+c0f2d8dc:	00 30 30 8c 	lda	c0f354c0 <__User_extensions_List>,r6
+c0f2d8e0:	c0 54 f3 c0 
+c0f2d8e4:	24 00 31 32 	cmpobe	r6,r4,c0f2d908 <L33>
+
+c0f2d8e8 <L31>:
+c0f2d8e8:	2c 20 a1 90 	ld	0x2c(r4),g4
+c0f2d8ec:	05 16 88 5c 	mov	r5,g1
+c0f2d8f0:	10 20 05 32 	cmpobe	0,g4,c0f2d900 <L26>
+c0f2d8f4:	00 30 80 90 	ld	c0f35600 <__Thread_Executing>,g0
+c0f2d8f8:	00 56 f3 c0 
+c0f2d8fc:	Address 0x00000000c0f2d8fc is out of bounds.
+
+
+c0f2d900 <L26>:
+c0f2d900:	04 20 21 90 	ld	0x4(r4),r4
+c0f2d904:	e4 1f 31 35 	cmpobne	r6,r4,c0f2d8e8 <L31>
+
+c0f2d908 <L33>:
+c0f2d908:	00 00 00 0a 	ret
+c0f2d90c:	00 00 00 00 	.word	0x00000000
+
+c0f2d910 <__User_extensions_Thread_start>:
+c0f2d910:	00 30 20 90 	ld	c0f354c0 <__User_extensions_List>,r4
+c0f2d914:	c0 54 f3 c0 
+c0f2d918:	10 16 28 5c 	mov	g0,r5
+c0f2d91c:	00 30 30 8c 	lda	c0f354c4 <__User_extensions_List+0x4>,r6
+c0f2d920:	c4 54 f3 c0 
+c0f2d924:	24 00 31 32 	cmpobe	r6,r4,c0f2d948 <L44>
+
+c0f2d928 <L42>:
+c0f2d928:	24 20 a1 90 	ld	0x24(r4),g4
+c0f2d92c:	05 16 88 5c 	mov	r5,g1
+c0f2d930:	10 20 05 32 	cmpobe	0,g4,c0f2d940 <L37>
+c0f2d934:	00 30 80 90 	ld	c0f35600 <__Thread_Executing>,g0
+c0f2d938:	00 56 f3 c0 
+c0f2d93c:	Address 0x00000000c0f2d93c is out of bounds.
+
+
+c0f2d940 <L37>:
+c0f2d940:	00 10 21 90 	ld	(r4),r4
+c0f2d944:	e4 1f 31 35 	cmpobne	r6,r4,c0f2d928 <L42>
+
+c0f2d948 <L44>:
+c0f2d948:	00 00 00 0a 	ret
+c0f2d94c:	00 00 00 00 	.word	0x00000000
+
+c0f2d950 <__User_extensions_Thread_restart>:
+c0f2d950:	00 30 20 90 	ld	c0f354c0 <__User_extensions_List>,r4
+c0f2d954:	c0 54 f3 c0 
+c0f2d958:	10 16 28 5c 	mov	g0,r5
+c0f2d95c:	00 30 30 8c 	lda	c0f354c4 <__User_extensions_List+0x4>,r6
+c0f2d960:	c4 54 f3 c0 
+c0f2d964:	24 00 31 32 	cmpobe	r6,r4,c0f2d988 <L55>
+
+c0f2d968 <L53>:
+c0f2d968:	28 20 a1 90 	ld	0x28(r4),g4
+c0f2d96c:	05 16 88 5c 	mov	r5,g1
+c0f2d970:	10 20 05 32 	cmpobe	0,g4,c0f2d980 <L48>
+c0f2d974:	00 30 80 90 	ld	c0f35600 <__Thread_Executing>,g0
+c0f2d978:	00 56 f3 c0 
+c0f2d97c:	Address 0x00000000c0f2d97c is out of bounds.
+
+
+c0f2d980 <L48>:
+c0f2d980:	00 10 21 90 	ld	(r4),r4
+c0f2d984:	e4 1f 31 35 	cmpobne	r6,r4,c0f2d968 <L53>
+
+c0f2d988 <L55>:
+c0f2d988:	00 00 00 0a 	ret
+c0f2d98c:	00 00 00 00 	.word	0x00000000
+
+c0f2d990 <__User_extensions_Thread_begin>:
+c0f2d990:	00 30 20 90 	ld	c0f354c0 <__User_extensions_List>,r4
+c0f2d994:	c0 54 f3 c0 
+c0f2d998:	10 16 28 5c 	mov	g0,r5
+c0f2d99c:	00 30 30 8c 	lda	c0f354c4 <__User_extensions_List+0x4>,r6
+c0f2d9a0:	c4 54 f3 c0 
+c0f2d9a4:	1c 00 31 32 	cmpobe	r6,r4,c0f2d9c0 <L66>
+
+c0f2d9a8 <L64>:
+c0f2d9a8:	34 20 a1 90 	ld	0x34(r4),g4
+c0f2d9ac:	05 16 80 5c 	mov	r5,g0
+c0f2d9b0:	08 20 05 32 	cmpobe	0,g4,c0f2d9b8 <L59>
+c0f2d9b4:	Address 0x00000000c0f2d9b4 is out of bounds.
+
+
+c0f2d9b8 <L59>:
+c0f2d9b8:	00 10 21 90 	ld	(r4),r4
+c0f2d9bc:	ec 1f 31 35 	cmpobne	r6,r4,c0f2d9a8 <L64>
+
+c0f2d9c0 <L66>:
+c0f2d9c0:	00 00 00 0a 	ret
+	...
+
+c0f2d9d0 <__User_extensions_Thread_exitted>:
+c0f2d9d0:	00 30 20 90 	ld	c0f354c8 <__User_extensions_List+0x8>,r4
+c0f2d9d4:	c8 54 f3 c0 
+c0f2d9d8:	10 16 28 5c 	mov	g0,r5
+c0f2d9dc:	00 30 30 8c 	lda	c0f354c0 <__User_extensions_List>,r6
+c0f2d9e0:	c0 54 f3 c0 
+c0f2d9e4:	1c 00 31 32 	cmpobe	r6,r4,c0f2da00 <L77>
+
+c0f2d9e8 <L75>:
+c0f2d9e8:	38 20 a1 90 	ld	0x38(r4),g4
+c0f2d9ec:	05 16 80 5c 	mov	r5,g0
+c0f2d9f0:	08 20 05 32 	cmpobe	0,g4,c0f2d9f8 <L70>
+c0f2d9f4:	Address 0x00000000c0f2d9f4 is out of bounds.
+
+
+c0f2d9f8 <L70>:
+c0f2d9f8:	04 20 21 90 	ld	0x4(r4),r4
+c0f2d9fc:	ec 1f 31 35 	cmpobne	r6,r4,c0f2d9e8 <L75>
+
+c0f2da00 <L77>:
+c0f2da00:	00 00 00 0a 	ret
+	...
+
+c0f2da10 <__User_extensions_Fatal>:
+c0f2da10:	00 30 20 90 	ld	c0f354c8 <__User_extensions_List+0x8>,r4
+c0f2da14:	c8 54 f3 c0 
+c0f2da18:	10 16 38 5c 	mov	g0,r7
+c0f2da1c:	11 16 30 5c 	mov	g1,r6
+c0f2da20:	12 16 28 5c 	mov	g2,r5
+c0f2da24:	00 30 40 8c 	lda	c0f354c0 <__User_extensions_List>,r8
+c0f2da28:	c0 54 f3 c0 
+c0f2da2c:	24 00 41 32 	cmpobe	r8,r4,c0f2da50 <L88>
+
+c0f2da30 <L86>:
+c0f2da30:	3c 20 a1 90 	ld	0x3c(r4),g4
+c0f2da34:	07 16 80 5c 	mov	r7,g0
+c0f2da38:	06 16 88 5c 	mov	r6,g1
+c0f2da3c:	05 16 90 5c 	mov	r5,g2
+c0f2da40:	08 20 05 32 	cmpobe	0,g4,c0f2da48 <L81>
+c0f2da44:	Address 0x00000000c0f2da44 is out of bounds.
+
+
+c0f2da48 <L81>:
+c0f2da48:	04 20 21 90 	ld	0x4(r4),r4
+c0f2da4c:	e4 1f 41 35 	cmpobne	r8,r4,c0f2da30 <L86>
+
+c0f2da50 <L88>:
+c0f2da50:	00 00 00 0a 	ret
+	...
+
+c0f2da60 <__Watchdog_Handler_initialization>:
+c0f2da60:	00 30 f0 8c 	lda	c0f2dab8 <Li960R1>,g14
+c0f2da64:	b8 da f2 c0 
+
+c0f2da68 <_Watchdog_Handler_initialization.lf>:
+c0f2da68:	1e 16 80 5c 	mov	g14,g0
+c0f2da6c:	00 1e f0 5c 	mov	0,g14
+c0f2da70:	00 30 a0 8c 	lda	c0f355f0 <__Watchdog_Ticks_chain>,g4
+c0f2da74:	f0 55 f3 c0 
+c0f2da78:	00 30 a8 8c 	lda	c0f354e0 <__Watchdog_Seconds_chain>,g5
+c0f2da7c:	e0 54 f3 c0 
+c0f2da80:	00 30 f0 92 	st	g14,c0f35604 <__Watchdog_Sync_count>
+c0f2da84:	04 56 f3 c0 
+c0f2da88:	14 10 b1 59 	addo	g4,4,g6
+c0f2da8c:	15 10 b9 59 	addo	g5,4,g7
+c0f2da90:	00 30 f0 92 	st	g14,c0f353c0 <__Watchdog_Sync_level>
+c0f2da94:	c0 53 f3 c0 
+c0f2da98:	00 90 f5 92 	st	g14,(g6)
+c0f2da9c:	08 20 a5 92 	st	g4,0x8(g4)
+c0f2daa0:	00 10 b5 92 	st	g6,(g4)
+c0f2daa4:	00 d0 f5 92 	st	g14,(g7)
+c0f2daa8:	08 60 ad 92 	st	g5,0x8(g5)
+c0f2daac:	00 30 f0 92 	st	g14,c0f35544 <__Watchdog_Ticks_since_boot>
+c0f2dab0:	44 55 f3 c0 
+c0f2dab4:	Address 0x00000000c0f2dab4 is out of bounds.
+
+
+c0f2dab8 <Li960R1>:
+c0f2dab8:	00 00 00 0a 	ret
+c0f2dabc:	00 00 00 00 	.word	0x00000000
+
+c0f2dac0 <__Watchdog_Insert>:
+c0f2dac0:	00 30 98 90 	ld	c0f35484 <__ISR_Nest_level>,g3
+c0f2dac4:	84 54 f3 c0 
+c0f2dac8:	10 de bf 59 	shlo	16,31,g7
+c0f2dacc:	80 ca bd 65 	modpc	0,g7,g7
+c0f2dad0:	08 60 a4 90 	ld	0x8(g1),g4
+c0f2dad4:	28 20 05 32 	cmpobe	0,g4,c0f2dafc <L3>
+c0f2dad8:	10 de a7 59 	shlo	16,31,g4
+c0f2dadc:	80 0a bd 65 	modpc	0,g4,g7
+c0f2dae0:	00 00 00 0a 	ret
+
+c0f2dae4 <L21>:
+c0f2dae4:	12 01 a5 59 	subo	g2,g4,g4
+c0f2dae8:	10 60 a5 92 	st	g4,0x10(g5)
+c0f2daec:	78 00 00 08 	b	c0f2db64 <L7>
+
+c0f2daf0 <L22>:
+c0f2daf0:	00 30 98 92 	st	g3,c0f353c0 <__Watchdog_Sync_level>
+c0f2daf4:	c0 53 f3 c0 
+c0f2daf8:	20 00 00 08 	b	c0f2db18 <L5>
+
+c0f2dafc <L3>:
+c0f2dafc:	00 30 a0 90 	ld	c0f35604 <__Watchdog_Sync_count>,g4
+c0f2db00:	04 56 f3 c0 
+c0f2db04:	01 1e a8 5c 	mov	1,g5
+c0f2db08:	14 50 a0 59 	addo	g4,1,g4
+c0f2db0c:	08 60 ac 92 	st	g5,0x8(g1)
+c0f2db10:	00 30 a0 92 	st	g4,c0f35604 <__Watchdog_Sync_count>
+c0f2db14:	04 56 f3 c0 
+
+c0f2db18 <L5>:
+c0f2db18:	0c 60 94 90 	ld	0xc(g1),g2
+c0f2db1c:	Address 0x00000000c0f2db1c is out of bounds.
+
+
+c0f2db20 <L6>:
+c0f2db20:	44 a0 04 32 	cmpobe	0,g2,c0f2db64 <L7>
+c0f2db24:	00 50 a5 90 	ld	(g5),g4
+c0f2db28:	3c 20 05 32 	cmpobe	0,g4,c0f2db64 <L7>
+c0f2db2c:	10 60 a5 90 	ld	0x10(g5),g4
+c0f2db30:	b4 9f a4 31 	cmpobg	g4,g2,c0f2dae4 <L21>
+c0f2db34:	14 81 94 59 	subo	g4,g2,g2
+c0f2db38:	10 de a7 59 	shlo	16,31,g4
+c0f2db3c:	80 0a bd 65 	modpc	0,g4,g7
+c0f2db40:	14 16 b8 5c 	mov	g4,g7
+c0f2db44:	80 0a bd 65 	modpc	0,g4,g7
+c0f2db48:	08 60 a4 90 	ld	0x8(g1),g4
+c0f2db4c:	48 20 0d 35 	cmpobne	1,g4,c0f2db94 <L15>
+c0f2db50:	00 30 a0 90 	ld	c0f353c0 <__Watchdog_Sync_level>,g4
+c0f2db54:	c0 53 f3 c0 
+c0f2db58:	98 1f 9d 34 	cmpobl	g3,g4,c0f2daf0 <L22>
+c0f2db5c:	00 50 ad 90 	ld	(g5),g5
+c0f2db60:	c0 ff ff 08 	b	c0f2db20 <L6>
+
+c0f2db64 <L7>:
+c0f2db64:	04 60 a5 90 	ld	0x4(g5),g4
+c0f2db68:	00 10 b5 90 	ld	(g4),g6
+c0f2db6c:	00 30 a8 90 	ld	c0f35544 <__Watchdog_Ticks_since_boot>,g5
+c0f2db70:	44 55 f3 c0 
+c0f2db74:	04 60 a4 92 	st	g4,0x4(g1)
+c0f2db78:	00 10 8d 92 	st	g1,(g4)
+c0f2db7c:	02 1e a0 5c 	mov	2,g4
+c0f2db80:	14 60 ac 92 	st	g5,0x14(g1)
+c0f2db84:	08 60 a4 92 	st	g4,0x8(g1)
+c0f2db88:	10 60 94 92 	st	g2,0x10(g1)
+c0f2db8c:	04 a0 8d 92 	st	g1,0x4(g6)
+c0f2db90:	Address 0x00000000c0f2db90 is out of bounds.
+
+
+c0f2db94 <L15>:
+c0f2db94:	00 30 98 92 	st	g3,c0f353c0 <__Watchdog_Sync_level>
+c0f2db98:	c0 53 f3 c0 
+c0f2db9c:	00 30 a0 90 	ld	c0f35604 <__Watchdog_Sync_count>,g4
+c0f2dba0:	04 56 f3 c0 
+c0f2dba4:	01 09 a5 59 	subo	1,g4,g4
+c0f2dba8:	00 30 a0 92 	st	g4,c0f35604 <__Watchdog_Sync_count>
+c0f2dbac:	04 56 f3 c0 
+c0f2dbb0:	10 de a7 59 	shlo	16,31,g4
+c0f2dbb4:	80 0a bd 65 	modpc	0,g4,g7
+c0f2dbb8:	00 00 00 0a 	ret
+c0f2dbbc:	00 00 00 00 	.word	0x00000000
+
+c0f2dbc0 <__Watchdog_Tickle>:
+c0f2dbc0:	10 16 30 5c 	mov	g0,r6
+c0f2dbc4:	10 de 2f 59 	shlo	16,31,r5
+c0f2dbc8:	80 4a 29 65 	modpc	0,r5,r5
+c0f2dbcc:	00 10 84 90 	ld	(g0),g0
+c0f2dbd0:	06 10 39 59 	addo	r6,4,r7
+c0f2dbd4:	58 00 3c 32 	cmpobe	r7,g0,c0f2dc2c <L6>
+c0f2dbd8:	10 20 a4 90 	ld	0x10(g0),g4
+c0f2dbdc:	10 16 20 5c 	mov	g0,r4
+c0f2dbe0:	10 20 05 32 	cmpobe	0,g4,c0f2dbf0 <L10>
+c0f2dbe4:	01 09 a5 59 	subo	1,g4,g4
+c0f2dbe8:	10 20 a4 92 	st	g4,0x10(g0)
+c0f2dbec:	40 20 05 35 	cmpobne	0,g4,c0f2dc2c <L6>
+
+c0f2dbf0 <L10>:
+c0f2dbf0:	04 16 80 5c 	mov	r4,g0
+c0f2dbf4:	00 30 00 86 	callx	c0f2eae0 <__Watchdog_Remove>
+c0f2dbf8:	e0 ea f2 c0 
+c0f2dbfc:	10 de a7 59 	shlo	16,31,g4
+c0f2dc00:	80 0a 2d 65 	modpc	0,g4,r5
+c0f2dc04:	10 de 2f 59 	shlo	16,31,r5
+c0f2dc08:	10 20 14 35 	cmpobne	2,g0,c0f2dc18 <L14>
+c0f2dc0c:	20 20 81 98 	ldl	0x20(r4),g0
+c0f2dc10:	1c 20 a1 90 	ld	0x1c(r4),g4
+c0f2dc14:	Address 0x00000000c0f2dc14 is out of bounds.
+
+
+c0f2dc18 <L14>:
+c0f2dc18:	80 4a 29 65 	modpc	0,r5,r5
+c0f2dc1c:	00 90 21 90 	ld	(r6),r4
+c0f2dc20:	0c 00 39 32 	cmpobe	r7,r4,c0f2dc2c <L6>
+c0f2dc24:	10 20 a1 90 	ld	0x10(r4),g4
+c0f2dc28:	c8 3f 05 32 	cmpobe	0,g4,c0f2dbf0 <L10>
+
+c0f2dc2c <L6>:
+c0f2dc2c:	10 de a7 59 	shlo	16,31,g4
+c0f2dc30:	80 0a 2d 65 	modpc	0,g4,r5
+
+c0f2dc34 <Li960R1>:
+c0f2dc34:	00 00 00 0a 	ret
+	...
+
+c0f2dc40 <__Workspace_Handler_initialization>:
+c0f2dc40:	10 16 20 5d 	movl	g0,r4
+c0f2dc44:	0c 20 04 32 	cmpobe	0,g0,c0f2dc50 <L3>
+c0f2dc48:	90 d0 a0 58 	and	g0,3,g4
+c0f2dc4c:	18 20 05 32 	cmpobe	0,g4,c0f2dc64 <L2>
+
+c0f2dc50 <L3>:
+c0f2dc50:	00 1e 80 5c 	mov	0,g0
+c0f2dc54:	01 1e 88 5c 	mov	1,g1
+c0f2dc58:	02 1e 90 5c 	mov	2,g2
+c0f2dc5c:	00 30 00 86 	callx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2dc60:	b0 d0 f2 c0 
+
+c0f2dc64 <L2>:
+c0f2dc64:	00 30 a0 90 	ld	c0f355c0 <__CPU_Table+0x10>,g4
+c0f2dc68:	c0 55 f3 c0 
+c0f2dc6c:	24 20 05 32 	cmpobe	0,g4,c0f2dc90 <L5>
+c0f2dc70:	02 4c b1 59 	shro	2,r5,g6
+c0f2dc74:	00 1e a8 5c 	mov	0,g5
+c0f2dc78:	18 40 b5 36 	cmpoble	g6,g5,c0f2dc90 <L5>
+c0f2dc7c:	04 16 a0 5c 	mov	r4,g4
+
+c0f2dc80 <L10>:
+c0f2dc80:	00 10 f5 92 	st	g14,(g4)
+c0f2dc84:	15 50 a8 59 	addo	g5,1,g5
+c0f2dc88:	14 10 a1 59 	addo	g4,4,g4
+c0f2dc8c:	f4 5f b5 31 	cmpobg	g6,g5,c0f2dc80 <L10>
+
+c0f2dc90 <L5>:
+c0f2dc90:	04 16 88 5c 	mov	r4,g1
+c0f2dc94:	05 16 90 5c 	mov	r5,g2
+c0f2dc98:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2dc9c:	e0 56 f3 c0 
+c0f2dca0:	04 1e 98 5c 	mov	4,g3
+c0f2dca4:	00 30 00 86 	callx	c0f2e320 <__Heap_Initialize>
+c0f2dca8:	20 e3 f2 c0 
+c0f2dcac:	14 20 04 35 	cmpobne	0,g0,c0f2dcc0 <L1>
+c0f2dcb0:	01 1e 88 5c 	mov	1,g1
+c0f2dcb4:	03 1e 90 5c 	mov	3,g2
+c0f2dcb8:	00 30 00 84 	bx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2dcbc:	b0 d0 f2 c0 
+
+c0f2dcc0 <L1>:
+c0f2dcc0:	00 00 00 0a 	ret
+	...
+
+c0f2dcd0 <__Workspace_Allocate_or_fatal_error>:
+c0f2dcd0:	10 16 88 5c 	mov	g0,g1
+c0f2dcd4:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2dcd8:	e0 56 f3 c0 
+c0f2dcdc:	00 30 00 86 	callx	c0f2e390 <__Heap_Allocate>
+c0f2dce0:	90 e3 f2 c0 
+c0f2dce4:	10 16 20 5c 	mov	g0,r4
+c0f2dce8:	01 1e 88 5c 	mov	1,g1
+c0f2dcec:	04 1e 90 5c 	mov	4,g2
+c0f2dcf0:	0c 20 04 35 	cmpobne	0,g0,c0f2dcfc <L15>
+c0f2dcf4:	00 30 00 86 	callx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2dcf8:	b0 d0 f2 c0 
+
+c0f2dcfc <L15>:
+c0f2dcfc:	04 16 80 5c 	mov	r4,g0
+
+c0f2dd00 <Li960R2>:
+c0f2dd00:	00 00 00 0a 	ret
+	...
+
+c0f2dd10 <__Dual_ported_memory_Manager_initialization>:
+c0f2dd10:	10 16 98 5c 	mov	g0,g3
+c0f2dd14:	00 30 80 8c 	lda	c0f35790 <__Dual_ported_memory_Information>,g0
+c0f2dd18:	90 57 f3 c0 
+c0f2dd1c:	02 1e 88 5c 	mov	2,g1
+c0f2dd20:	07 1e 90 5c 	mov	7,g2
+c0f2dd24:	1f 58 a0 59 	addo	31,1,g4
+c0f2dd28:	00 1e a8 5c 	mov	0,g5
+c0f2dd2c:	04 1e b0 5c 	mov	4,g6
+c0f2dd30:	00 30 00 84 	bx	c0f2d160 <__Objects_Initialize_information>
+c0f2dd34:	60 d1 f2 c0 
+
+c0f2dd38 <Li960R1>:
+c0f2dd38:	00 00 00 0a 	ret
+c0f2dd3c:	00 00 00 00 	.word	0x00000000
+
+c0f2dd40 <__Event_Manager_initialization>:
+c0f2dd40:	00 30 f0 8c 	lda	c0f2dd58 <Li960R1>,g14
+c0f2dd44:	58 dd f2 c0 
+
+c0f2dd48 <_Event_Manager_initialization.lf>:
+c0f2dd48:	1e 16 80 5c 	mov	g14,g0
+c0f2dd4c:	00 1e f0 5c 	mov	0,g14
+c0f2dd50:	00 30 f0 92 	st	g14,c0f35990 <__Event_Sync_state>
+c0f2dd54:	90 59 f3 c0 
+
+c0f2dd58 <Li960R1>:
+c0f2dd58:	00 00 00 0a 	ret
+c0f2dd5c:	00 00 00 00 	.word	0x00000000
+
+c0f2dd60 <__Interrupt_Manager_initialization>:
+c0f2dd60:	00 30 f0 8c 	lda	c0f2dd70 <Li960R1>,g14
+c0f2dd64:	70 dd f2 c0 
+
+c0f2dd68 <_Interrupt_Manager_initialization.lf>:
+c0f2dd68:	1e 16 80 5c 	mov	g14,g0
+c0f2dd6c:	00 1e f0 5c 	mov	0,g14
+
+c0f2dd70 <Li960R1>:
+c0f2dd70:	00 00 00 0a 	ret
+	...
+
+c0f2dd80 <__Message_queue_Manager_initialization>:
+c0f2dd80:	10 16 98 5c 	mov	g0,g3
+c0f2dd84:	00 30 80 8c 	lda	c0f35a90 <__Message_queue_Information>,g0
+c0f2dd88:	90 5a f3 c0 
+c0f2dd8c:	04 de a2 59 	shlo	4,11,g4
+c0f2dd90:	02 1e 88 5c 	mov	2,g1
+c0f2dd94:	04 1e 90 5c 	mov	4,g2
+c0f2dd98:	00 1e a8 5c 	mov	0,g5
+c0f2dd9c:	04 1e b0 5c 	mov	4,g6
+c0f2dda0:	00 30 00 84 	bx	c0f2d160 <__Objects_Initialize_information>
+c0f2dda4:	60 d1 f2 c0 
+
+c0f2dda8 <Li960R1>:
+c0f2dda8:	00 00 00 0a 	ret
+c0f2ddac:	00 00 00 00 	.word	0x00000000
+
+c0f2ddb0 <__Partition_Manager_initialization>:
+c0f2ddb0:	10 16 98 5c 	mov	g0,g3
+c0f2ddb4:	00 30 80 8c 	lda	c0f358d0 <__Partition_Information>,g0
+c0f2ddb8:	d0 58 f3 c0 
+c0f2ddbc:	02 1e 88 5c 	mov	2,g1
+c0f2ddc0:	05 1e 90 5c 	mov	5,g2
+c0f2ddc4:	86 19 a0 58 	setbit	6,0,g4
+c0f2ddc8:	00 1e a8 5c 	mov	0,g5
+c0f2ddcc:	04 1e b0 5c 	mov	4,g6
+c0f2ddd0:	00 30 00 84 	bx	c0f2d160 <__Objects_Initialize_information>
+c0f2ddd4:	60 d1 f2 c0 
+
+c0f2ddd8 <Li960R1>:
+c0f2ddd8:	00 00 00 0a 	ret
+c0f2dddc:	00 00 00 00 	.word	0x00000000
+
+c0f2dde0 <__Rate_monotonic_Manager_initialization>:
+c0f2dde0:	10 16 98 5c 	mov	g0,g3
+c0f2dde4:	00 30 80 8c 	lda	c0f35a00 <__Rate_monotonic_Information>,g0
+c0f2dde8:	00 5a f3 c0 
+c0f2ddec:	05 de a0 59 	shlo	5,3,g4
+c0f2ddf0:	02 1e 88 5c 	mov	2,g1
+c0f2ddf4:	08 1e 90 5c 	mov	8,g2
+c0f2ddf8:	00 1e a8 5c 	mov	0,g5
+c0f2ddfc:	04 1e b0 5c 	mov	4,g6
+c0f2de00:	00 30 00 84 	bx	c0f2d160 <__Objects_Initialize_information>
+c0f2de04:	60 d1 f2 c0 
+
+c0f2de08 <Li960R1>:
+c0f2de08:	00 00 00 0a 	ret
+c0f2de0c:	00 00 00 00 	.word	0x00000000
+
+c0f2de10 <__Region_Manager_initialization>:
+c0f2de10:	10 48 08 59 	addo	16,sp,sp
+c0f2de14:	10 16 28 5c 	mov	g0,r5
+c0f2de18:	00 30 20 8c 	lda	c0f353f0 <__API_Mutex_Information>,r4
+c0f2de1c:	f0 53 f3 c0 
+c0f2de20:	01 1e 98 5c 	mov	1,g3
+c0f2de24:	00 1e a8 5c 	mov	0,g5
+c0f2de28:	00 1e b0 5c 	mov	0,g6
+c0f2de2c:	01 1e 88 5c 	mov	1,g1
+c0f2de30:	02 1e 90 5c 	mov	2,g2
+c0f2de34:	04 5e a2 59 	shlo	4,9,g4
+c0f2de38:	04 16 80 5c 	mov	r4,g0
+c0f2de3c:	00 30 00 86 	callx	c0f2d160 <__Objects_Initialize_information>
+c0f2de40:	60 d1 f2 c0 
+c0f2de44:	01 1e a0 5c 	mov	1,g4
+c0f2de48:	40 e0 a7 92 	st	g4,0x40(fp)
+c0f2de4c:	02 1e a0 5c 	mov	2,g4
+c0f2de50:	48 e0 a7 92 	st	g4,0x48(fp)
+c0f2de54:	44 e0 f7 92 	st	g14,0x44(fp)
+c0f2de58:	4c e0 f7 92 	st	g14,0x4c(fp)
+c0f2de5c:	04 16 80 5c 	mov	r4,g0
+c0f2de60:	00 30 00 86 	callx	c0f2e590 <__Objects_Allocate>
+c0f2de64:	90 e5 f2 c0 
+c0f2de68:	10 16 a0 5c 	mov	g0,g4
+c0f2de6c:	40 e0 8f 8c 	lda	0x40(fp),g1
+c0f2de70:	10 10 84 59 	addo	g0,16,g0
+c0f2de74:	00 30 a0 92 	st	g4,c0f35520 <__RTEMS_Allocator_Mutex>
+c0f2de78:	20 55 f3 c0 
+c0f2de7c:	01 1e 90 5c 	mov	1,g2
+c0f2de80:	00 30 00 86 	callx	c0f2e2a0 <__CORE_mutex_Initialize>
+c0f2de84:	a0 e2 f2 c0 
+c0f2de88:	00 30 80 8c 	lda	c0f35800 <__Region_Information>,g0
+c0f2de8c:	00 58 f3 c0 
+c0f2de90:	05 16 98 5c 	mov	r5,g3
+c0f2de94:	05 5e a1 59 	shlo	5,5,g4
+c0f2de98:	02 1e 88 5c 	mov	2,g1
+c0f2de9c:	06 1e 90 5c 	mov	6,g2
+c0f2dea0:	00 1e a8 5c 	mov	0,g5
+c0f2dea4:	04 1e b0 5c 	mov	4,g6
+c0f2dea8:	00 30 00 86 	callx	c0f2d160 <__Objects_Initialize_information>
+c0f2deac:	60 d1 f2 c0 
+
+c0f2deb0 <Li960R1>:
+c0f2deb0:	00 00 00 0a 	ret
+	...
+
+c0f2dec0 <__Timer_Manager_initialization>:
+c0f2dec0:	10 16 98 5c 	mov	g0,g3
+c0f2dec4:	00 30 80 8c 	lda	c0f35930 <__Timer_Information>,g0
+c0f2dec8:	30 59 f3 c0 
+c0f2decc:	04 5e a1 59 	shlo	4,5,g4
+c0f2ded0:	02 1e 88 5c 	mov	2,g1
+c0f2ded4:	02 1e 90 5c 	mov	2,g2
+c0f2ded8:	00 1e a8 5c 	mov	0,g5
+c0f2dedc:	04 1e b0 5c 	mov	4,g6
+c0f2dee0:	00 30 00 86 	callx	c0f2d160 <__Objects_Initialize_information>
+c0f2dee4:	60 d1 f2 c0 
+c0f2dee8:	00 30 f0 92 	st	g14,c0f35860 <__Timer_Server>
+c0f2deec:	60 58 f3 c0 
+
+c0f2def0 <Li960R1>:
+c0f2def0:	00 00 00 0a 	ret
+	...
+
+c0f2df00 <__Semaphore_Manager_initialization>:
+c0f2df00:	10 16 98 5c 	mov	g0,g3
+c0f2df04:	00 30 80 8c 	lda	c0f359a0 <__Semaphore_Information>,g0
+c0f2df08:	a0 59 f3 c0 
+c0f2df0c:	05 5e a1 59 	shlo	5,5,g4
+c0f2df10:	02 1e 88 5c 	mov	2,g1
+c0f2df14:	03 1e 90 5c 	mov	3,g2
+c0f2df18:	00 1e a8 5c 	mov	0,g5
+c0f2df1c:	04 1e b0 5c 	mov	4,g6
+c0f2df20:	00 30 00 84 	bx	c0f2d160 <__Objects_Initialize_information>
+c0f2df24:	60 d1 f2 c0 
+
+c0f2df28 <Li960R1>:
+c0f2df28:	00 00 00 0a 	ret
+c0f2df2c:	00 00 00 00 	.word	0x00000000
+
+c0f2df30 <__Signal_Manager_initialization>:
+c0f2df30:	00 30 f0 8c 	lda	c0f2df40 <Li960R1>,g14
+c0f2df34:	40 df f2 c0 
+
+c0f2df38 <_Signal_Manager_initialization.lf>:
+c0f2df38:	1e 16 80 5c 	mov	g14,g0
+c0f2df3c:	00 1e f0 5c 	mov	0,g14
+
+c0f2df40 <Li960R1>:
+c0f2df40:	00 00 00 0a 	ret
+	...
+
+c0f2df50 <__RTEMS_tasks_Create_extension>:
+c0f2df50:	11 16 20 5c 	mov	g1,r4
+c0f2df54:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2df58:	e0 56 f3 c0 
+c0f2df5c:	04 de 89 59 	shlo	4,7,g1
+c0f2df60:	00 30 00 86 	callx	c0f2e390 <__Heap_Allocate>
+c0f2df64:	90 e3 f2 c0 
+c0f2df68:	00 1e a0 5c 	mov	0,g4
+c0f2df6c:	44 20 04 32 	cmpobe	0,g0,c0f2dfb0 <L11>
+c0f2df70:	01 1e a0 5c 	mov	1,g4
+c0f2df74:	3c 20 b4 8c 	lda	0x3c(g0),g6
+c0f2df78:	10 16 a8 5c 	mov	g0,g5
+c0f2df7c:	50 20 a4 92 	st	g4,0x50(g0)
+c0f2df80:	64 21 f1 92 	st	g14,0x164(r4)
+c0f2df84:	54 21 81 92 	st	g0,0x154(r4)
+c0f2df88:	40 20 f4 92 	st	g14,0x40(g0)
+c0f2df8c:	54 20 f4 92 	st	g14,0x54(g0)
+c0f2df90:	58 20 f4 92 	st	g14,0x58(g0)
+c0f2df94:	5c 20 f4 92 	st	g14,0x5c(g0)
+c0f2df98:	60 20 f4 92 	st	g14,0x60(g0)
+c0f2df9c:	Address 0x00000000c0f2df9c is out of bounds.
+
+
+c0f2dfa0 <L19>:
+c0f2dfa0:	00 50 f5 92 	st	g14,(g5)
+c0f2dfa4:	15 10 a9 59 	addo	g5,4,g5
+c0f2dfa8:	f8 5f b5 3b 	cmpibge	g6,g5,c0f2dfa0 <L19>
+c0f2dfac:	01 1e a0 5c 	mov	1,g4
+
+c0f2dfb0 <L11>:
+c0f2dfb0:	14 16 80 5c 	mov	g4,g0
+
+c0f2dfb4 <Li960R1>:
+c0f2dfb4:	00 00 00 0a 	ret
+	...
+
+c0f2dfc0 <__RTEMS_tasks_Start_extension>:
+c0f2dfc0:	00 30 f0 8c 	lda	c0f2dff4 <Li960R2>,g14
+c0f2dfc4:	f4 df f2 c0 
+
+c0f2dfc8 <_RTEMS_tasks_Start_extension.lf>:
+c0f2dfc8:	1e 16 80 5c 	mov	g14,g0
+c0f2dfcc:	00 1e f0 5c 	mov	0,g14
+c0f2dfd0:	54 61 a4 90 	ld	0x154(g1),g4
+c0f2dfd4:	01 1e a8 5c 	mov	1,g5
+c0f2dfd8:	50 20 ad 92 	st	g5,0x50(g4)
+c0f2dfdc:	64 20 f5 92 	st	g14,0x64(g4)
+c0f2dfe0:	40 20 f5 92 	st	g14,0x40(g4)
+c0f2dfe4:	54 20 f5 92 	st	g14,0x54(g4)
+c0f2dfe8:	58 20 f5 92 	st	g14,0x58(g4)
+c0f2dfec:	5c 20 f5 92 	st	g14,0x5c(g4)
+c0f2dff0:	Address 0x00000000c0f2dff0 is out of bounds.
+
+
+c0f2dff4 <Li960R2>:
+c0f2dff4:	00 00 00 0a 	ret
+	...
+
+c0f2e000 <__RTEMS_tasks_Delete_extension>:
+c0f2e000:	64 61 24 90 	ld	0x164(g1),r4
+c0f2e004:	11 16 28 5c 	mov	g1,r5
+c0f2e008:	64 61 f4 92 	st	g14,0x164(g1)
+c0f2e00c:	60 20 01 32 	cmpobe	0,r4,c0f2e06c <L37>
+
+c0f2e010 <L34>:
+c0f2e010:	10 20 a9 90 	ld	0x10(r4),g5
+c0f2e014:	00 10 31 90 	ld	(r4),r6
+c0f2e018:	00 30 a0 90 	ld	c0f35600 <__Thread_Executing>,g4
+c0f2e01c:	00 56 f3 c0 
+c0f2e020:	24 40 a1 35 	cmpobne	g4,r5,c0f2e044 <L28>
+c0f2e024:	10 60 05 32 	cmpobe	0,g5,c0f2e034 <L30>
+c0f2e028:	04 20 a1 90 	ld	0x4(r4),g4
+c0f2e02c:	00 10 85 90 	ld	(g4),g0
+c0f2e030:	Address 0x00000000c0f2e030 is out of bounds.
+
+
+c0f2e034 <L30>:
+c0f2e034:	04 20 a9 90 	ld	0x4(r4),g5
+c0f2e038:	08 20 a1 90 	ld	0x8(r4),g4
+c0f2e03c:	00 50 a5 92 	st	g4,(g5)
+c0f2e040:	10 00 00 08 	b	c0f2e050 <L31>
+
+c0f2e044 <L28>:
+c0f2e044:	0c 60 05 32 	cmpobe	0,g5,c0f2e050 <L31>
+c0f2e048:	0c 20 81 90 	ld	0xc(r4),g0
+c0f2e04c:	Address 0x00000000c0f2e04c is out of bounds.
+
+
+c0f2e050 <L31>:
+c0f2e050:	04 16 88 5c 	mov	r4,g1
+c0f2e054:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2e058:	e0 56 f3 c0 
+c0f2e05c:	00 30 00 86 	callx	c0f2e460 <__Heap_Free>
+c0f2e060:	60 e4 f2 c0 
+c0f2e064:	06 16 20 5c 	mov	r6,r4
+c0f2e068:	a8 bf 01 35 	cmpobne	0,r6,c0f2e010 <L34>
+
+c0f2e06c <L37>:
+c0f2e06c:	54 61 89 90 	ld	0x154(r5),g1
+c0f2e070:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2e074:	e0 56 f3 c0 
+c0f2e078:	00 30 00 86 	callx	c0f2e460 <__Heap_Free>
+c0f2e07c:	60 e4 f2 c0 
+c0f2e080:	Address 0x00000000c0f2e080 is out of bounds.
+
+
+c0f2e084 <Li960R3>:
+c0f2e084:	00 00 00 0a 	ret
+	...
+
+c0f2e090 <__RTEMS_tasks_Switch_extension>:
+c0f2e090:	00 30 f0 8c 	lda	c0f2e0ec <Li960R4>,g14
+c0f2e094:	ec e0 f2 c0 
+
+c0f2e098 <_RTEMS_tasks_Switch_extension.lf>:
+c0f2e098:	1e 16 90 5c 	mov	g14,g2
+c0f2e09c:	00 1e f0 5c 	mov	0,g14
+c0f2e0a0:	64 21 bc 90 	ld	0x164(g0),g7
+c0f2e0a4:	20 e0 05 32 	cmpobe	0,g7,c0f2e0c4 <L48>
+
+c0f2e0a8 <L42>:
+c0f2e0a8:	04 e0 a5 90 	ld	0x4(g7),g4
+c0f2e0ac:	08 e0 b5 90 	ld	0x8(g7),g6
+c0f2e0b0:	00 10 ad 90 	ld	(g4),g5
+c0f2e0b4:	0c e0 ad 92 	st	g5,0xc(g7)
+c0f2e0b8:	00 d0 bd 90 	ld	(g7),g7
+c0f2e0bc:	00 10 b5 92 	st	g6,(g4)
+c0f2e0c0:	e8 ff 05 35 	cmpobne	0,g7,c0f2e0a8 <L42>
+
+c0f2e0c4 <L48>:
+c0f2e0c4:	64 61 bc 90 	ld	0x164(g1),g7
+c0f2e0c8:	20 e0 05 32 	cmpobe	0,g7,c0f2e0e8 <L50>
+
+c0f2e0cc <L46>:
+c0f2e0cc:	04 e0 a5 90 	ld	0x4(g7),g4
+c0f2e0d0:	0c e0 b5 90 	ld	0xc(g7),g6
+c0f2e0d4:	00 10 ad 90 	ld	(g4),g5
+c0f2e0d8:	08 e0 ad 92 	st	g5,0x8(g7)
+c0f2e0dc:	00 d0 bd 90 	ld	(g7),g7
+c0f2e0e0:	00 10 b5 92 	st	g6,(g4)
+c0f2e0e4:	e8 ff 05 35 	cmpobne	0,g7,c0f2e0cc <L46>
+
+c0f2e0e8 <L50>:
+c0f2e0e8:	Address 0x00000000c0f2e0e8 is out of bounds.
+
+
+c0f2e0ec <Li960R4>:
+c0f2e0ec:	00 00 00 0a 	ret
+
+c0f2e0f0 <__RTEMS_tasks_Post_switch_extension>:
+c0f2e0f0:	10 48 08 59 	addo	16,sp,sp
+c0f2e0f4:	54 21 24 90 	ld	0x154(g0),r4
+c0f2e0f8:	10 de af 59 	shlo	16,31,g5
+c0f2e0fc:	80 4a ad 65 	modpc	0,g5,g5
+c0f2e100:	5c 20 29 90 	ld	0x5c(r4),r5
+c0f2e104:	5c 20 f1 92 	st	g14,0x5c(r4)
+c0f2e108:	10 de a7 59 	shlo	16,31,g4
+c0f2e10c:	80 0a ad 65 	modpc	0,g4,g5
+c0f2e110:	40 e0 97 8c 	lda	0x40(fp),g2
+c0f2e114:	00 30 88 8c 	lda	ffff <SIZE_REGS+0xffd3>,g1
+c0f2e118:	ff ff 00 00 
+c0f2e11c:	4c 60 01 32 	cmpobe	0,r5,c0f2e168 <L51>
+c0f2e120:	64 20 a1 90 	ld	0x64(r4),g4
+c0f2e124:	58 20 81 90 	ld	0x58(r4),g0
+c0f2e128:	14 50 a0 59 	addo	g4,1,g4
+c0f2e12c:	64 20 a1 92 	st	g4,0x64(r4)
+c0f2e130:	00 30 00 86 	callx	c0f2ec30 <_rtems_task_mode>
+c0f2e134:	30 ec f2 c0 
+c0f2e138:	54 20 a1 90 	ld	0x54(r4),g4
+c0f2e13c:	05 16 80 5c 	mov	r5,g0
+c0f2e140:	00 10 05 86 	callx	(g4)
+c0f2e144:	64 20 a1 90 	ld	0x64(r4),g4
+c0f2e148:	40 e0 97 8c 	lda	0x40(fp),g2
+c0f2e14c:	01 09 a5 59 	subo	1,g4,g4
+c0f2e150:	40 e0 87 90 	ld	0x40(fp),g0
+c0f2e154:	64 20 a1 92 	st	g4,0x64(r4)
+c0f2e158:	00 30 88 8c 	lda	ffff <SIZE_REGS+0xffd3>,g1
+c0f2e15c:	ff ff 00 00 
+c0f2e160:	00 30 00 86 	callx	c0f2ec30 <_rtems_task_mode>
+c0f2e164:	30 ec f2 c0 
+
+c0f2e168 <L51>:
+c0f2e168:	00 00 00 0a 	ret
+c0f2e16c:	00 00 00 00 	.word	0x00000000
+
+c0f2e170 <__RTEMS_tasks_Manager_initialization>:
+c0f2e170:	10 16 98 5c 	mov	g0,g3
+c0f2e174:	00 30 88 92 	st	g1,c0f35780 <__RTEMS_tasks_Number_of_initialization_tasks>
+c0f2e178:	80 57 f3 c0 
+c0f2e17c:	00 30 90 92 	st	g2,c0f357f0 <__RTEMS_tasks_User_initialization_tasks>
+c0f2e180:	f0 57 f3 c0 
+c0f2e184:	04 de a5 59 	shlo	4,23,g4
+c0f2e188:	01 1e 90 5c 	mov	1,g2
+c0f2e18c:	00 1e a8 5c 	mov	0,g5
+c0f2e190:	04 1e b0 5c 	mov	4,g6
+c0f2e194:	00 30 80 8c 	lda	c0f35870 <__RTEMS_tasks_Information>,g0
+c0f2e198:	70 58 f3 c0 
+c0f2e19c:	02 1e 88 5c 	mov	2,g1
+c0f2e1a0:	00 30 00 86 	callx	c0f2d160 <__Objects_Initialize_information>
+c0f2e1a4:	60 d1 f2 c0 
+c0f2e1a8:	00 30 20 8c 	lda	c0f2f360 <__RTEMS_tasks_User_extensions>,r4
+c0f2e1ac:	60 f3 f2 c0 
+c0f2e1b0:	00 30 80 8c 	lda	c0f354c0 <__User_extensions_List>,g0
+c0f2e1b4:	c0 54 f3 c0 
+c0f2e1b8:	04 16 88 5c 	mov	r4,g1
+c0f2e1bc:	00 30 00 86 	callx	c0f2ce00 <__Chain_Append>
+c0f2e1c0:	00 ce f2 c0 
+c0f2e1c4:	00 30 a0 90 	ld	c0f2f390 <__RTEMS_tasks_User_extensions+0x30>,g4
+c0f2e1c8:	90 f3 f2 c0 
+c0f2e1cc:	04 10 8c 59 	addo	r4,16,g1
+c0f2e1d0:	00 30 80 8c 	lda	c0f35470 <__User_extensions_Switches_list>,g0
+c0f2e1d4:	70 54 f3 c0 
+c0f2e1d8:	10 20 05 32 	cmpobe	0,g4,c0f2e1e8 <L57>
+c0f2e1dc:	18 20 a1 92 	st	g4,0x18(r4)
+c0f2e1e0:	00 30 00 86 	callx	c0f2ce00 <__Chain_Append>
+c0f2e1e4:	00 ce f2 c0 
+
+c0f2e1e8 <L57>:
+c0f2e1e8:	00 30 80 8c 	lda	c0f2f340 <__RTEMS_tasks_API_extensions>,g0
+c0f2e1ec:	40 f3 f2 c0 
+c0f2e1f0:	00 30 00 84 	bx	c0f2cca0 <__API_extensions_Add>
+c0f2e1f4:	a0 cc f2 c0 
+
+c0f2e1f8 <Li960R6>:
+c0f2e1f8:	00 00 00 0a 	ret
+c0f2e1fc:	00 00 00 00 	.word	0x00000000
+
+c0f2e200 <__Debug_Manager_initialization>:
+c0f2e200:	01 19 80 59 	subo	1,0,g0
+c0f2e204:	00 30 00 84 	bx	c0f2e240 <_rtems_debug_disable>
+c0f2e208:	40 e2 f2 c0 
+
+c0f2e20c <Li960R1>:
+c0f2e20c:	00 00 00 0a 	ret
+
+c0f2e210 <_rtems_debug_enable>:
+c0f2e210:	00 30 f0 8c 	lda	c0f2e234 <Li960R2>,g14
+c0f2e214:	34 e2 f2 c0 
+
+c0f2e218 <rtems_debug_enable.lf>:
+c0f2e218:	1e 16 88 5c 	mov	g14,g1
+c0f2e21c:	00 1e f0 5c 	mov	0,g14
+c0f2e220:	00 30 a0 90 	ld	c0f35450 <__Debug_Level>,g4
+c0f2e224:	50 54 f3 c0 
+c0f2e228:	90 03 a5 58 	or	g0,g4,g4
+c0f2e22c:	00 30 a0 92 	st	g4,c0f35450 <__Debug_Level>
+c0f2e230:	50 54 f3 c0 
+
+c0f2e234 <Li960R2>:
+c0f2e234:	00 00 00 0a 	ret
+	...
+
+c0f2e240 <_rtems_debug_disable>:
+c0f2e240:	00 30 f0 8c 	lda	c0f2e264 <Li960R3>,g14
+c0f2e244:	64 e2 f2 c0 
+
+c0f2e248 <rtems_debug_disable.lf>:
+c0f2e248:	1e 16 88 5c 	mov	g14,g1
+c0f2e24c:	00 1e f0 5c 	mov	0,g14
+c0f2e250:	00 30 a0 90 	ld	c0f35450 <__Debug_Level>,g4
+c0f2e254:	50 54 f3 c0 
+c0f2e258:	10 01 85 58 	andnot	g0,g4,g0
+c0f2e25c:	00 30 80 92 	st	g0,c0f35450 <__Debug_Level>
+c0f2e260:	50 54 f3 c0 
+
+c0f2e264 <Li960R3>:
+c0f2e264:	00 00 00 0a 	ret
+	...
+
+c0f2e270 <__Debug_Is_enabled>:
+c0f2e270:	00 30 f0 8c 	lda	c0f2e290 <Li960R4>,g14
+c0f2e274:	90 e2 f2 c0 
+
+c0f2e278 <_Debug_Is_enabled.lf>:
+c0f2e278:	1e 16 88 5c 	mov	g14,g1
+c0f2e27c:	00 1e f0 5c 	mov	0,g14
+c0f2e280:	10 16 a0 5c 	mov	g0,g4
+c0f2e284:	00 30 80 90 	ld	c0f35450 <__Debug_Level>,g0
+c0f2e288:	50 54 f3 c0 
+c0f2e28c:	94 00 84 58 	and	g4,g0,g0
+
+c0f2e290 <Li960R4>:
+c0f2e290:	00 00 00 0a 	ret
+	...
+
+c0f2e2a0 <__CORE_mutex_Initialize>:
+c0f2e2a0:	00 50 a4 b0 	ldq	(g1),g4
+c0f2e2a4:	60 20 94 92 	st	g2,0x60(g0)
+c0f2e2a8:	50 20 a4 b2 	stq	g4,0x50(g0)
+c0f2e2ac:	68 20 f4 92 	st	g14,0x68(g0)
+c0f2e2b0:	3c a0 04 35 	cmpobne	0,g2,c0f2e2ec <L38>
+c0f2e2b4:	00 30 a8 90 	ld	c0f35600 <__Thread_Executing>,g5
+c0f2e2b8:	00 56 f3 c0 
+c0f2e2bc:	01 1e a0 5c 	mov	1,g4
+c0f2e2c0:	64 20 a4 92 	st	g4,0x64(g0)
+c0f2e2c4:	08 60 a5 90 	ld	0x8(g5),g4
+c0f2e2c8:	58 20 b4 90 	ld	0x58(g0),g6
+c0f2e2cc:	6c 20 ac 92 	st	g5,0x6c(g0)
+c0f2e2d0:	70 20 a4 92 	st	g4,0x70(g0)
+c0f2e2d4:	08 a0 15 32 	cmpobe	2,g6,c0f2e2dc <L40>
+c0f2e2d8:	20 a0 1d 35 	cmpobne	3,g6,c0f2e2f8 <L43>
+
+c0f2e2dc <L40>:
+c0f2e2dc:	1c 60 a5 90 	ld	0x1c(g5),g4
+c0f2e2e0:	01 08 a5 59 	addo	1,g4,g4
+c0f2e2e4:	1c 60 a5 92 	st	g4,0x1c(g5)
+c0f2e2e8:	10 00 00 08 	b	c0f2e2f8 <L43>
+
+c0f2e2ec <L38>:
+c0f2e2ec:	64 20 f4 92 	st	g14,0x64(g0)
+c0f2e2f0:	6c 20 f4 92 	st	g14,0x6c(g0)
+c0f2e2f4:	Address 0x00000000c0f2e2f4 is out of bounds.
+
+
+c0f2e2f8 <L43>:
+c0f2e2f8:	08 60 a4 90 	ld	0x8(g1),g4
+c0f2e2fc:	8a 19 90 58 	setbit	10,0,g2
+c0f2e300:	94 30 00 5a 	cmpi	g4,0
+c0f2e304:	05 1e 98 5c 	mov	5,g3
+c0f2e308:	00 00 88 25 	testne	g1
+c0f2e30c:	00 30 00 84 	bx	c0f2e980 <__Thread_queue_Initialize>
+c0f2e310:	80 e9 f2 c0 
+
+c0f2e314 <Li960R1>:
+c0f2e314:	00 00 00 0a 	ret
+	...
+
+c0f2e320 <__Heap_Initialize>:
+c0f2e320:	00 1e e8 5c 	mov	0,g13
+c0f2e324:	93 d0 a0 58 	and	g3,3,g4
+c0f2e328:	54 e0 04 32 	cmpobe	0,g3,c0f2e37c <L1>
+c0f2e32c:	50 20 05 35 	cmpobne	0,g4,c0f2e37c <L1>
+c0f2e330:	08 89 b4 59 	subo	8,g2,g6
+c0f2e334:	01 89 a5 58 	andnot	1,g6,g4
+c0f2e338:	10 10 b9 59 	addo	g0,4,g7
+c0f2e33c:	11 00 ad 59 	addo	g1,g4,g5
+c0f2e340:	3c a0 bc 33 	cmpobge	23,g2,c0f2e37c <L1>
+c0f2e344:	14 20 9c 92 	st	g3,0x14(g0)
+c0f2e348:	01 1e a0 5c 	mov	1,g4
+c0f2e34c:	08 60 bc 92 	st	g7,0x8(g1)
+c0f2e350:	0c 60 84 92 	st	g0,0xc(g1)
+c0f2e354:	00 50 a4 92 	st	g4,(g1)
+c0f2e358:	04 60 b4 92 	st	g6,0x4(g1)
+c0f2e35c:	10 89 ec 59 	subo	16,g2,g13
+c0f2e360:	00 d0 ad 92 	st	g5,(g7)
+c0f2e364:	10 20 8c 92 	st	g1,0x10(g0)
+c0f2e368:	00 50 b5 92 	st	g6,(g5)
+c0f2e36c:	04 60 a5 92 	st	g4,0x4(g5)
+c0f2e370:	00 10 8c 92 	st	g1,(g0)
+c0f2e374:	08 20 8c 92 	st	g1,0x8(g0)
+c0f2e378:	Address 0x00000000c0f2e378 is out of bounds.
+
+
+c0f2e37c <L1>:
+c0f2e37c:	1d 16 80 5c 	mov	g13,g0
+
+c0f2e380 <Li960R1>:
+c0f2e380:	00 00 00 0a 	ret
+	...
+
+c0f2e390 <__Heap_Allocate>:
+c0f2e390:	10 16 98 5c 	mov	g0,g3
+c0f2e394:	00 1e 80 5c 	mov	0,g0
+c0f2e398:	0a 19 a0 59 	subo	10,0,g4
+c0f2e39c:	bc 40 a4 34 	cmpobl	g4,g1,c0f2e458 <L1>
+c0f2e3a0:	14 e0 b4 90 	ld	0x14(g3),g6
+c0f2e3a4:	16 44 a4 70 	remo	g6,g1,g4
+c0f2e3a8:	16 7c 8c 8c 	lda	8 <REG_PC>(g1)[g6],g1
+c0f2e3ac:	08 00 00 00 
+c0f2e3b0:	0c 20 05 32 	cmpobe	0,g4,c0f2e3bc <L3>
+c0f2e3b4:	14 81 a5 59 	subo	g4,g6,g4
+c0f2e3b8:	11 00 8d 59 	addo	g1,g4,g1
+
+c0f2e3bc <L3>:
+c0f2e3bc:	08 60 7c 34 	cmpobl	15,g1,c0f2e3c4 <L4>
+c0f2e3c0:	10 1e 88 5c 	mov	16,g1
+
+c0f2e3c4 <L4>:
+c0f2e3c4:	Address 0x00000000c0f2e3c4 is out of bounds.
+
+
+c0f2e3c8 <L5>:
+c0f2e3c8:	13 10 a1 59 	addo	g3,4,g4
+c0f2e3cc:	00 1e 80 5c 	mov	0,g0
+c0f2e3d0:	88 80 a4 32 	cmpobe	g4,g2,c0f2e458 <L1>
+c0f2e3d4:	04 a0 ac 90 	ld	0x4(g2),g5
+c0f2e3d8:	0c 40 8d 36 	cmpoble	g1,g5,c0f2e3e4 <L6>
+c0f2e3dc:	08 a0 94 90 	ld	0x8(g2),g2
+c0f2e3e0:	e8 ff ff 08 	b	c0f2e3c8 <L5>
+
+c0f2e3e4 <L6>:
+c0f2e3e4:	16 10 a2 59 	addo	g6,8,g4
+c0f2e3e8:	11 41 b5 59 	subo	g1,g5,g6
+c0f2e3ec:	28 80 a5 33 	cmpobge	g4,g6,c0f2e414 <L11>
+c0f2e3f0:	01 89 a5 58 	andnot	1,g6,g4
+c0f2e3f4:	12 00 a5 59 	addo	g2,g4,g4
+c0f2e3f8:	91 53 a8 58 	or	g1,1,g5
+c0f2e3fc:	00 10 b5 92 	st	g6,(g4)
+c0f2e400:	04 a0 b4 92 	st	g6,0x4(g2)
+c0f2e404:	11 1c ad 92 	st	g5,(g4)[g1]
+c0f2e408:	04 20 ad 92 	st	g5,0x4(g4)
+c0f2e40c:	14 10 82 59 	addo	g4,8,g0
+c0f2e410:	2c 00 00 08 	b	c0f2e43c <L18>
+
+c0f2e414 <L11>:
+c0f2e414:	08 a0 b4 90 	ld	0x8(g2),g6
+c0f2e418:	0c a0 a4 90 	ld	0xc(g2),g4
+c0f2e41c:	95 53 b8 58 	or	g5,1,g7
+c0f2e420:	0c a0 a5 92 	st	g4,0xc(g6)
+c0f2e424:	0c a0 a4 90 	ld	0xc(g2),g4
+c0f2e428:	01 49 ad 58 	andnot	1,g5,g5
+c0f2e42c:	08 20 b5 92 	st	g6,0x8(g4)
+c0f2e430:	15 9c bc 92 	st	g7,(g2)[g5]
+c0f2e434:	04 a0 bc 92 	st	g7,0x4(g2)
+c0f2e438:	12 10 82 59 	addo	g2,8,g0
+
+c0f2e43c <L18>:
+c0f2e43c:	14 e0 ac 90 	ld	0x14(g3),g5
+c0f2e440:	01 49 a5 59 	subo	1,g5,g4
+c0f2e444:	90 00 a5 58 	and	g0,g4,g4
+c0f2e448:	14 41 ad 59 	subo	g4,g5,g5
+c0f2e44c:	10 40 85 59 	addo	g0,g5,g0
+c0f2e450:	00 34 ac 92 	st	g5,fffffffc <__bss_end+0x3f0ca50c>(g0)
+c0f2e454:	fc ff ff ff 
+
+c0f2e458 <L1>:
+c0f2e458:	00 00 00 0a 	ret
+c0f2e45c:	00 00 00 00 	.word	0x00000000
+
+c0f2e460 <__Heap_Free>:
+c0f2e460:	00 74 ac 90 	ld	fffffffc <__bss_end+0x3f0ca50c>(g1),g5
+c0f2e464:	fc ff ff ff 
+c0f2e468:	08 19 a0 59 	subo	8,0,g4
+c0f2e46c:	15 01 a5 59 	subo	g5,g4,g4
+c0f2e470:	00 10 b4 98 	ldl	(g0),g6
+c0f2e474:	11 00 8d 59 	addo	g1,g4,g1
+c0f2e478:	48 40 b4 31 	cmpobg	g6,g1,c0f2e4c0 <L40>
+c0f2e47c:	44 40 bc 34 	cmpobl	g7,g1,c0f2e4c0 <L40>
+c0f2e480:	04 60 ac 90 	ld	0x4(g1),g5
+c0f2e484:	01 4a a5 58 	notand	1,g5,g4
+c0f2e488:	38 20 05 35 	cmpobne	0,g4,c0f2e4c0 <L40>
+c0f2e48c:	01 49 9d 58 	andnot	1,g5,g3
+c0f2e490:	11 c0 94 59 	addo	g1,g3,g2
+c0f2e494:	2c 80 b4 31 	cmpobg	g6,g2,c0f2e4c0 <L40>
+c0f2e498:	28 80 bc 34 	cmpobl	g7,g2,c0f2e4c0 <L40>
+c0f2e49c:	00 90 a4 90 	ld	(g2),g4
+c0f2e4a0:	20 40 a5 35 	cmpobne	g4,g5,c0f2e4c0 <L40>
+c0f2e4a4:	00 50 ac 90 	ld	(g1),g5
+c0f2e4a8:	01 4a a5 58 	notand	1,g5,g4
+c0f2e4ac:	68 20 05 32 	cmpobe	0,g4,c0f2e514 <L19>
+c0f2e4b0:	01 49 a5 58 	andnot	1,g5,g4
+c0f2e4b4:	14 41 8c 59 	subo	g4,g1,g1
+c0f2e4b8:	08 40 b4 31 	cmpobg	g6,g1,c0f2e4c0 <L40>
+c0f2e4bc:	0c 40 bc 33 	cmpobge	g7,g1,c0f2e4c8 <L47>
+
+c0f2e4c0 <L40>:
+c0f2e4c0:	00 1e 80 5c 	mov	0,g0
+c0f2e4c4:	00 00 00 0a 	ret
+
+c0f2e4c8 <L47>:
+c0f2e4c8:	04 a0 ac 90 	ld	0x4(g2),g5
+c0f2e4cc:	04 60 b4 90 	ld	0x4(g1),g6
+c0f2e4d0:	15 51 a0 58 	andnot	g5,1,g4
+c0f2e4d4:	30 20 05 32 	cmpobe	0,g4,c0f2e504 <L27>
+c0f2e4d8:	08 a0 bc 90 	ld	0x8(g2),g7
+c0f2e4dc:	0c a0 a4 90 	ld	0xc(g2),g4
+c0f2e4e0:	15 c0 ac 59 	addo	g5,g3,g5
+c0f2e4e4:	16 40 ad 59 	addo	g6,g5,g5
+c0f2e4e8:	0c e0 a5 92 	st	g4,0xc(g7)
+c0f2e4ec:	0c a0 b4 90 	ld	0xc(g2),g6
+c0f2e4f0:	01 49 a5 58 	andnot	1,g5,g4
+c0f2e4f4:	14 5c ac 92 	st	g5,(g1)[g4]
+c0f2e4f8:	08 a0 bd 92 	st	g7,0x8(g6)
+c0f2e4fc:	04 60 ac 92 	st	g5,0x4(g1)
+c0f2e500:	80 00 00 08 	b	c0f2e580 <L32>
+
+c0f2e504 <L27>:
+c0f2e504:	16 c0 a4 59 	addo	g6,g3,g4
+c0f2e508:	04 60 a4 92 	st	g4,0x4(g1)
+c0f2e50c:	00 90 a4 92 	st	g4,(g2)
+c0f2e510:	70 00 00 08 	b	c0f2e580 <L32>
+
+c0f2e514 <L19>:
+c0f2e514:	04 a0 b4 90 	ld	0x4(g2),g6
+c0f2e518:	01 8a a5 58 	notand	1,g6,g4
+c0f2e51c:	44 20 05 32 	cmpobe	0,g4,c0f2e560 <L33>
+c0f2e520:	0c a0 a4 90 	ld	0xc(g2),g4
+c0f2e524:	08 a0 ac 90 	ld	0x8(g2),g5
+c0f2e528:	0c 60 a4 92 	st	g4,0xc(g1)
+c0f2e52c:	0c a0 a4 90 	ld	0xc(g2),g4
+c0f2e530:	08 60 ac 92 	st	g5,0x8(g1)
+c0f2e534:	08 20 8d 92 	st	g1,0x8(g4)
+c0f2e538:	08 a0 ac 90 	ld	0x8(g2),g5
+c0f2e53c:	13 80 a5 59 	addo	g3,g6,g4
+c0f2e540:	0c 60 8d 92 	st	g1,0xc(g5)
+c0f2e544:	01 09 ad 58 	andnot	1,g4,g5
+c0f2e548:	08 20 b4 90 	ld	0x8(g0),g6
+c0f2e54c:	15 5c a4 92 	st	g4,(g1)[g5]
+c0f2e550:	04 60 a4 92 	st	g4,0x4(g1)
+c0f2e554:	2c 80 95 35 	cmpobne	g2,g6,c0f2e580 <L32>
+c0f2e558:	08 20 8c 92 	st	g1,0x8(g0)
+c0f2e55c:	24 00 00 08 	b	c0f2e580 <L32>
+
+c0f2e560 <L33>:
+c0f2e560:	0c 60 84 92 	st	g0,0xc(g1)
+c0f2e564:	08 20 a4 90 	ld	0x8(g0),g4
+c0f2e568:	00 90 9c 92 	st	g3,(g2)
+c0f2e56c:	08 60 a4 92 	st	g4,0x8(g1)
+c0f2e570:	08 20 8c 92 	st	g1,0x8(g0)
+c0f2e574:	08 60 a4 90 	ld	0x8(g1),g4
+c0f2e578:	04 60 9c 92 	st	g3,0x4(g1)
+c0f2e57c:	Address 0x00000000c0f2e57c is out of bounds.
+
+
+c0f2e580 <L32>:
+c0f2e580:	01 1e 80 5c 	mov	1,g0
+c0f2e584:	00 00 00 0a 	ret
+	...
+
+c0f2e590 <__Objects_Allocate>:
+c0f2e590:	30 20 2c 8c 	lda	0x30(g0),r5
+c0f2e594:	10 16 20 5c 	mov	g0,r4
+c0f2e598:	05 16 80 5c 	mov	r5,g0
+c0f2e59c:	00 30 00 86 	callx	c0f2cdb0 <__Chain_Get>
+c0f2e5a0:	b0 cd f2 c0 
+c0f2e5a4:	14 20 a1 90 	ld	0x14(r4),g4
+c0f2e5a8:	10 16 88 5c 	mov	g0,g1
+c0f2e5ac:	58 20 05 32 	cmpobe	0,g4,c0f2e604 <L12>
+c0f2e5b0:	04 16 80 5c 	mov	r4,g0
+c0f2e5b4:	20 60 04 35 	cmpobne	0,g1,c0f2e5d4 <L17>
+c0f2e5b8:	00 30 00 86 	callx	c0f2e610 <__Objects_Extend_information>
+c0f2e5bc:	10 e6 f2 c0 
+c0f2e5c0:	05 16 80 5c 	mov	r5,g0
+c0f2e5c4:	00 30 00 86 	callx	c0f2cdb0 <__Chain_Get>
+c0f2e5c8:	b0 cd f2 c0 
+c0f2e5cc:	10 16 88 5c 	mov	g0,g1
+c0f2e5d0:	34 20 04 32 	cmpobe	0,g0,c0f2e604 <L12>
+
+c0f2e5d4 <L17>:
+c0f2e5d4:	08 60 ac 88 	ldos	0x8(g1),g5
+c0f2e5d8:	08 20 a1 88 	ldos	0x8(r4),g4
+c0f2e5dc:	18 20 b1 90 	ld	0x18(r4),g6
+c0f2e5e0:	14 41 ad 59 	subo	g4,g5,g5
+c0f2e5e4:	96 45 ad 70 	divo	g6,g5,g5
+c0f2e5e8:	44 20 b9 90 	ld	0x44(r4),g7
+c0f2e5ec:	15 dd a5 90 	ld	(g7)[g5*4],g4
+c0f2e5f0:	01 09 a5 59 	subo	1,g4,g4
+c0f2e5f4:	15 dd a5 92 	st	g4,(g7)[g5*4]
+c0f2e5f8:	40 20 a1 90 	ld	0x40(r4),g4
+c0f2e5fc:	01 09 a5 59 	subo	1,g4,g4
+c0f2e600:	Address 0x00000000c0f2e600 is out of bounds.
+
+
+c0f2e604 <L12>:
+c0f2e604:	11 16 80 5c 	mov	g1,g0
+
+c0f2e608 <Li960R1>:
+c0f2e608:	00 00 00 0a 	ret
+c0f2e60c:	00 00 00 00 	.word	0x00000000
+
+c0f2e610 <__Objects_Extend_information>:
+c0f2e610:	10 48 08 59 	addo	16,sp,sp
+c0f2e614:	08 20 4c 88 	ldos	0x8(g0),r9
+c0f2e618:	10 20 ac 90 	ld	0x10(g0),g5
+c0f2e61c:	10 16 28 5c 	mov	g0,r5
+c0f2e620:	09 16 40 5c 	mov	r9,r8
+c0f2e624:	00 1e 68 5c 	mov	0,r13
+c0f2e628:	00 1e 30 5c 	mov	0,r6
+c0f2e62c:	28 40 4d 31 	cmpobg	r9,g5,c0f2e654 <L14>
+c0f2e630:	18 20 b4 90 	ld	0x18(g0),g6
+c0f2e634:	96 45 35 70 	divo	g6,g5,r6
+c0f2e638:	1c 40 33 36 	cmpoble	r6,r13,c0f2e654 <L14>
+
+c0f2e63c <L21>:
+c0f2e63c:	48 60 a1 90 	ld	0x48(r5),g4
+c0f2e640:	0d 1d a5 90 	ld	(g4)[r13*4],g4
+c0f2e644:	10 20 05 32 	cmpobe	0,g4,c0f2e654 <L14>
+c0f2e648:	09 80 4d 59 	addo	r9,g6,r9
+c0f2e64c:	0d 50 68 59 	addo	r13,1,r13
+c0f2e650:	ec 5f 33 31 	cmpobg	r6,r13,c0f2e63c <L21>
+
+c0f2e654 <L14>:
+c0f2e654:	90 41 aa 31 	cmpobg	g5,r9,c0f2e7e4 <L22>
+c0f2e658:	18 60 a1 90 	ld	0x18(r5),g4
+c0f2e65c:	06 50 30 59 	addo	r6,1,r6
+c0f2e660:	15 00 75 59 	addo	g5,g4,r14
+c0f2e664:	14 60 a1 90 	ld	0x14(r5),g4
+c0f2e668:	01 8e 81 59 	shlo	1,r6,g0
+c0f2e66c:	0e 00 aa 59 	addo	r14,r8,g5
+c0f2e670:	2c 20 05 32 	cmpobe	0,g4,c0f2e69c <L23>
+c0f2e674:	10 80 89 59 	addo	g0,r6,g1
+c0f2e678:	15 40 8c 59 	addo	g5,g1,g1
+c0f2e67c:	02 4e 8c 59 	shlo	2,g1,g1
+c0f2e680:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2e684:	e0 56 f3 c0 
+c0f2e688:	00 30 00 86 	callx	c0f2e390 <__Heap_Allocate>
+c0f2e68c:	90 e3 f2 c0 
+c0f2e690:	10 16 38 5c 	mov	g0,r7
+c0f2e694:	20 20 04 35 	cmpobne	0,g0,c0f2e6b4 <L26>
+c0f2e698:	00 00 00 0a 	ret
+
+c0f2e69c <L23>:
+c0f2e69c:	10 80 81 59 	addo	g0,r6,g0
+c0f2e6a0:	15 00 84 59 	addo	g5,g0,g0
+c0f2e6a4:	02 0e 84 59 	shlo	2,g0,g0
+c0f2e6a8:	00 30 00 86 	callx	c0f2dcd0 <__Workspace_Allocate_or_fatal_error>
+c0f2e6ac:	d0 dc f2 c0 
+c0f2e6b0:	10 16 38 5c 	mov	g0,r7
+
+c0f2e6b4 <L26>:
+c0f2e6b4:	02 8e a1 59 	shlo	2,r6,g4
+c0f2e6b8:	10 60 a9 90 	ld	0x10(r5),g5
+c0f2e6bc:	07 00 5d 59 	addo	r7,g4,r11
+c0f2e6c0:	14 c0 52 59 	addo	g4,r11,r10
+c0f2e6c4:	14 80 62 59 	addo	g4,r10,r12
+c0f2e6c8:	01 89 31 59 	subo	1,r6,r6
+c0f2e6cc:	64 40 45 33 	cmpobge	r8,g5,c0f2e730 <L30>
+c0f2e6d0:	02 8e 21 59 	shlo	2,r6,r4
+c0f2e6d4:	48 60 89 90 	ld	0x48(r5),g1
+c0f2e6d8:	04 16 90 5c 	mov	r4,g2
+c0f2e6dc:	07 16 80 5c 	mov	r7,g0
+c0f2e6e0:	00 30 00 86 	callx	c0f2c1b0 <_memcpy>
+c0f2e6e4:	b0 c1 f2 c0 
+c0f2e6e8:	44 60 89 90 	ld	0x44(r5),g1
+c0f2e6ec:	04 16 90 5c 	mov	r4,g2
+c0f2e6f0:	0b 16 80 5c 	mov	r11,g0
+c0f2e6f4:	00 30 00 86 	callx	c0f2c1b0 <_memcpy>
+c0f2e6f8:	b0 c1 f2 c0 
+c0f2e6fc:	24 60 89 90 	ld	0x24(r5),g1
+c0f2e700:	04 16 90 5c 	mov	r4,g2
+c0f2e704:	0a 16 80 5c 	mov	r10,g0
+c0f2e708:	00 30 00 86 	callx	c0f2c1b0 <_memcpy>
+c0f2e70c:	b0 c1 f2 c0 
+c0f2e710:	10 60 91 90 	ld	0x10(r5),g2
+c0f2e714:	20 60 89 90 	ld	0x20(r5),g1
+c0f2e718:	12 00 92 59 	addo	g2,r8,g2
+c0f2e71c:	02 8e 94 59 	shlo	2,g2,g2
+c0f2e720:	0c 16 80 5c 	mov	r12,g0
+c0f2e724:	00 30 00 86 	callx	c0f2c1b0 <_memcpy>
+c0f2e728:	b0 c1 f2 c0 
+c0f2e72c:	20 00 00 08 	b	c0f2e74c <L31>
+
+c0f2e730 <L30>:
+c0f2e730:	00 1e 20 5c 	mov	0,r4
+c0f2e734:	18 00 41 36 	cmpoble	r8,r4,c0f2e74c <L31>
+c0f2e738:	0c 16 a0 5c 	mov	r12,g4
+
+c0f2e73c <L36>:
+c0f2e73c:	00 10 f5 92 	st	g14,(g4)
+c0f2e740:	04 50 20 59 	addo	r4,1,r4
+c0f2e744:	14 10 a1 59 	addo	g4,4,g4
+c0f2e748:	f4 1f 41 31 	cmpobg	r8,r4,c0f2e73c <L36>
+
+c0f2e74c <L31>:
+c0f2e74c:	06 dd f2 92 	st	g14,(r11)[r6*4]
+c0f2e750:	18 60 a1 90 	ld	0x18(r5),g4
+c0f2e754:	06 dd f1 92 	st	g14,(r7)[r6*4]
+c0f2e758:	09 16 20 5c 	mov	r9,r4
+c0f2e75c:	06 9d f2 92 	st	g14,(r10)[r6*4]
+c0f2e760:	14 40 a2 59 	addo	g4,r9,g4
+c0f2e764:	18 40 a2 36 	cmpoble	g4,r9,c0f2e77c <L61>
+c0f2e768:	Address 0x00000000c0f2e768 is out of bounds.
+
+
+c0f2e76c <L41>:
+c0f2e76c:	00 50 f5 92 	st	g14,(g5)
+c0f2e770:	04 50 20 59 	addo	r4,1,r4
+c0f2e774:	15 10 a9 59 	addo	g5,4,g5
+c0f2e778:	f4 1f a1 31 	cmpobg	g4,r4,c0f2e76c <L41>
+
+c0f2e77c <L61>:
+c0f2e77c:	10 de bf 59 	shlo	16,31,g7
+c0f2e780:	80 ca bd 65 	modpc	0,g7,g7
+c0f2e784:	00 50 a9 90 	ld	(r5),g5
+c0f2e788:	04 60 b1 90 	ld	0x4(r5),g6
+c0f2e78c:	00 30 a0 90 	ld	c0f356d0 <__Objects_Local_node>,g4
+c0f2e790:	d0 56 f3 c0 
+c0f2e794:	1b 8e b5 59 	shlo	27,g6,g6
+c0f2e798:	18 4e ad 59 	shlo	24,g5,g5
+c0f2e79c:	10 0e a5 59 	shlo	16,g4,g4
+c0f2e7a0:	95 83 ad 58 	or	g5,g6,g5
+c0f2e7a4:	94 43 ad 58 	or	g4,g5,g5
+c0f2e7a8:	48 60 89 90 	ld	0x48(r5),g1
+c0f2e7ac:	95 83 ab 58 	or	g5,r14,g5
+c0f2e7b0:	48 60 39 92 	st	r7,0x48(r5)
+c0f2e7b4:	44 60 59 92 	st	r11,0x44(r5)
+c0f2e7b8:	24 60 51 92 	st	r10,0x24(r5)
+c0f2e7bc:	20 60 61 92 	st	r12,0x20(r5)
+c0f2e7c0:	0c 60 a9 92 	st	g5,0xc(r5)
+c0f2e7c4:	10 60 71 92 	st	r14,0x10(r5)
+c0f2e7c8:	10 de a7 59 	shlo	16,31,g4
+c0f2e7cc:	80 0a bd 65 	modpc	0,g4,g7
+c0f2e7d0:	14 60 04 32 	cmpobe	0,g1,c0f2e7e4 <L22>
+c0f2e7d4:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2e7d8:	e0 56 f3 c0 
+c0f2e7dc:	00 30 00 86 	callx	c0f2e460 <__Heap_Free>
+c0f2e7e0:	60 e4 f2 c0 
+
+c0f2e7e4 <L22>:
+c0f2e7e4:	14 60 a1 98 	ldl	0x14(r5),g4
+c0f2e7e8:	50 60 89 90 	ld	0x50(r5),g1
+c0f2e7ec:	1c 60 81 90 	ld	0x1c(r5),g0
+c0f2e7f0:	34 20 05 32 	cmpobe	0,g4,c0f2e824 <L47>
+c0f2e7f4:	11 00 8c 59 	addo	g1,g0,g1
+c0f2e7f8:	95 40 8c 70 	mulo	g5,g1,g1
+c0f2e7fc:	48 60 21 90 	ld	0x48(r5),r4
+c0f2e800:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2e804:	e0 56 f3 c0 
+c0f2e808:	00 30 00 86 	callx	c0f2e390 <__Heap_Allocate>
+c0f2e80c:	90 e3 f2 c0 
+c0f2e810:	48 60 a1 90 	ld	0x48(r5),g4
+c0f2e814:	0d 1d 81 92 	st	g0,(r4)[r13*4]
+c0f2e818:	0d 1d a5 90 	ld	(g4)[r13*4],g4
+c0f2e81c:	20 20 05 35 	cmpobne	0,g4,c0f2e83c <L50>
+c0f2e820:	00 00 00 0a 	ret
+
+c0f2e824 <L47>:
+c0f2e824:	11 00 84 59 	addo	g1,g0,g0
+c0f2e828:	95 00 84 70 	mulo	g5,g0,g0
+c0f2e82c:	00 30 00 86 	callx	c0f2dcd0 <__Workspace_Allocate_or_fatal_error>
+c0f2e830:	d0 dc f2 c0 
+c0f2e834:	48 60 a1 90 	ld	0x48(r5),g4
+c0f2e838:	Address 0x00000000c0f2e838 is out of bounds.
+
+
+c0f2e83c <L50>:
+c0f2e83c:	18 60 91 98 	ldl	0x18(r5),g2
+c0f2e840:	48 60 b9 90 	ld	0x48(r5),g7
+c0f2e844:	92 c0 b4 70 	mulo	g2,g3,g6
+c0f2e848:	0d dd a5 90 	ld	(g7)[r13*4],g4
+c0f2e84c:	24 60 a9 90 	ld	0x24(r5),g5
+c0f2e850:	40 e0 87 8c 	lda	0x40(fp),g0
+c0f2e854:	09 16 20 5c 	mov	r9,r4
+c0f2e858:	14 80 35 59 	addo	g4,g6,r6
+c0f2e85c:	0d 5d 35 92 	st	r6,(g5)[r13*4]
+c0f2e860:	0d dd 8d 90 	ld	(g7)[r13*4],g1
+c0f2e864:	00 30 00 86 	callx	c0f2cd60 <__Chain_Initialize>
+c0f2e868:	60 cd f2 c0 
+c0f2e86c:	48 00 00 08 	b	c0f2e8b4 <L52>
+
+c0f2e870 <L57>:
+c0f2e870:	04 60 b1 90 	ld	0x4(r5),g6
+c0f2e874:	00 50 a1 90 	ld	(r5),g4
+c0f2e878:	00 30 a8 90 	ld	c0f356d0 <__Objects_Local_node>,g5
+c0f2e87c:	d0 56 f3 c0 
+c0f2e880:	1b 8e b5 59 	shlo	27,g6,g6
+c0f2e884:	18 0e a5 59 	shlo	24,g4,g4
+c0f2e888:	10 4e ad 59 	shlo	16,g5,g5
+c0f2e88c:	94 83 a5 58 	or	g4,g6,g4
+c0f2e890:	95 03 a5 58 	or	g5,g4,g4
+c0f2e894:	84 03 a5 58 	or	r4,g4,g4
+c0f2e898:	08 e0 a5 92 	st	g4,0x8(g7)
+c0f2e89c:	50 60 a1 90 	ld	0x50(r5),g4
+c0f2e8a0:	0c e0 35 92 	st	r6,0xc(g7)
+c0f2e8a4:	06 00 35 59 	addo	r6,g4,r6
+c0f2e8a8:	00 30 00 86 	callx	c0f2ce00 <__Chain_Append>
+c0f2e8ac:	00 ce f2 c0 
+c0f2e8b0:	04 50 20 59 	addo	r4,1,r4
+
+c0f2e8b4 <L52>:
+c0f2e8b4:	40 e0 87 8c 	lda	0x40(fp),g0
+c0f2e8b8:	00 30 00 86 	callx	c0f2cdb0 <__Chain_Get>
+c0f2e8bc:	b0 cd f2 c0 
+c0f2e8c0:	10 16 b8 5c 	mov	g0,g7
+c0f2e8c4:	30 60 81 8c 	lda	0x30(r5),g0
+c0f2e8c8:	17 16 88 5c 	mov	g7,g1
+c0f2e8cc:	a4 ff 05 35 	cmpobne	0,g7,c0f2e870 <L57>
+c0f2e8d0:	44 60 a9 90 	ld	0x44(r5),g5
+c0f2e8d4:	18 60 a1 90 	ld	0x18(r5),g4
+c0f2e8d8:	0d 5d a5 92 	st	g4,(g5)[r13*4]
+c0f2e8dc:	40 60 a1 90 	ld	0x40(r5),g4
+c0f2e8e0:	18 60 a9 90 	ld	0x18(r5),g5
+c0f2e8e4:	14 40 a5 59 	addo	g4,g5,g4
+c0f2e8e8:	40 60 a1 92 	st	g4,0x40(r5)
+c0f2e8ec:	00 00 00 0a 	ret
+
+c0f2e8f0 <__Thread_Load_environment>:
+c0f2e8f0:	00 30 f0 8c 	lda	c0f2e970 <Li960R1>,g14
+c0f2e8f4:	70 e9 f2 c0 
+
+c0f2e8f8 <_Thread_Load_environment.lf>:
+c0f2e8f8:	1e 16 88 5c 	mov	g14,g1
+c0f2e8fc:	00 1e f0 5c 	mov	0,g14
+c0f2e900:	0c 21 ac 90 	ld	0x10c(g0),g5
+c0f2e904:	f0 20 a4 90 	ld	0xf0(g0),g4
+c0f2e908:	f4 20 b4 98 	ldl	0xf4(g0),g6
+c0f2e90c:	15 10 ac 59 	addo	g5,16,g5
+c0f2e910:	9c 20 a4 92 	st	g4,0x9c(g0)
+c0f2e914:	a8 20 b4 9a 	stl	g6,0xa8(g0)
+c0f2e918:	98 20 f4 92 	st	g14,0x98(g0)
+c0f2e91c:	0f 49 ad 58 	andnot	15,g5,g5
+c0f2e920:	80 3e 00 66 	flushreg
+c0f2e924:	40 60 a5 8c 	lda	0x40(g5),g4
+c0f2e928:	80 60 b5 8c 	lda	0x80(g5),g6
+c0f2e92c:	48 21 a4 92 	st	g4,0x148(g0)
+c0f2e930:	24 21 b4 92 	st	g6,0x124(g0)
+c0f2e934:	20 21 ac 92 	st	g5,0x120(g0)
+c0f2e938:	10 de a7 59 	shlo	16,31,g4
+c0f2e93c:	80 1a b0 65 	modpc	0,0,g6
+c0f2e940:	14 81 b5 58 	andnot	g4,g6,g6
+c0f2e944:	fc 20 a4 90 	ld	0xfc(g0),g4
+c0f2e948:	00 50 f5 92 	st	g14,(g5)
+c0f2e94c:	10 0e a5 59 	shlo	16,g4,g4
+c0f2e950:	48 21 bc 90 	ld	0x148(g0),g7
+c0f2e954:	96 03 b5 58 	or	g6,g4,g6
+c0f2e958:	00 30 a0 8c 	lda	c0f2ef10 <__Thread_Handler>,g4
+c0f2e95c:	10 ef f2 c0 
+c0f2e960:	08 60 a5 92 	st	g4,0x8(g5)
+c0f2e964:	28 21 b4 92 	st	g6,0x128(g0)
+c0f2e968:	04 60 bd 92 	st	g7,0x4(g5)
+c0f2e96c:	Address 0x00000000c0f2e96c is out of bounds.
+
+
+c0f2e970 <Li960R1>:
+c0f2e970:	00 00 00 0a 	ret
+	...
+
+c0f2e980 <__Thread_queue_Initialize>:
+c0f2e980:	00 30 f0 8c 	lda	c0f2e9e0 <Li960R1>,g14
+c0f2e984:	e0 e9 f2 c0 
+
+c0f2e988 <_Thread_queue_Initialize.lf>:
+c0f2e988:	1e 16 b0 5c 	mov	g14,g6
+c0f2e98c:	00 1e f0 5c 	mov	0,g14
+c0f2e990:	48 20 94 9a 	stl	g2,0x48(g0)
+c0f2e994:	44 20 8c 92 	st	g1,0x44(g0)
+c0f2e998:	40 20 f4 92 	st	g14,0x40(g0)
+c0f2e99c:	0c 60 04 32 	cmpobe	0,g1,c0f2e9a8 <L13>
+c0f2e9a0:	1c 60 0c 32 	cmpobe	1,g1,c0f2e9bc <L17>
+c0f2e9a4:	Address 0x00000000c0f2e9a4 is out of bounds.
+
+
+c0f2e9a8 <L13>:
+c0f2e9a8:	10 10 a1 59 	addo	g0,4,g4
+c0f2e9ac:	00 10 f5 92 	st	g14,(g4)
+c0f2e9b0:	08 20 84 92 	st	g0,0x8(g0)
+c0f2e9b4:	00 10 a4 92 	st	g4,(g0)
+c0f2e9b8:	Address 0x00000000c0f2e9b8 is out of bounds.
+
+
+c0f2e9bc <L17>:
+c0f2e9bc:	00 1e a8 5c 	mov	0,g5
+
+c0f2e9c0 <L25>:
+c0f2e9c0:	10 10 a1 59 	addo	g0,4,g4
+c0f2e9c4:	00 10 a4 92 	st	g4,(g0)
+c0f2e9c8:	08 20 84 92 	st	g0,0x8(g0)
+c0f2e9cc:	00 10 f5 92 	st	g14,(g4)
+c0f2e9d0:	15 50 a8 59 	addo	g5,1,g5
+c0f2e9d4:	10 10 84 59 	addo	g0,16,g0
+c0f2e9d8:	e8 7f 1d 33 	cmpobge	3,g5,c0f2e9c0 <L25>
+c0f2e9dc:	Address 0x00000000c0f2e9dc is out of bounds.
+
+
+c0f2e9e0 <Li960R1>:
+c0f2e9e0:	00 00 00 0a 	ret
+	...
+
+c0f2e9f0 <__Thread_Ready>:
+c0f2e9f0:	00 30 f0 8c 	lda	c0f2ead0 <Li960R1>,g14
+c0f2e9f4:	d0 ea f2 c0 
+
+c0f2e9f8 <_Thread_Ready.lf>:
+c0f2e9f8:	1e 16 90 5c 	mov	g14,g2
+c0f2e9fc:	00 1e f0 5c 	mov	0,g14
+c0f2ea00:	10 de 8f 59 	shlo	16,31,g1
+c0f2ea04:	80 4a 8c 65 	modpc	0,g1,g1
+c0f2ea08:	c0 20 bc 90 	ld	0xc0(g0),g7
+c0f2ea0c:	10 20 f4 92 	st	g14,0x10(g0)
+c0f2ea10:	00 d0 a5 90 	ld	(g7),g4
+c0f2ea14:	c8 20 ac 90 	ld	0xc8(g0),g5
+c0f2ea18:	b4 20 b4 90 	ld	0xb4(g0),g6
+c0f2ea1c:	94 43 a5 58 	or	g4,g5,g4
+c0f2ea20:	16 10 a9 59 	addo	g6,4,g5
+c0f2ea24:	00 d0 a5 92 	st	g4,(g7)
+c0f2ea28:	00 10 ac 92 	st	g5,(g0)
+c0f2ea2c:	08 a0 bd 90 	ld	0x8(g6),g7
+c0f2ea30:	00 30 a0 90 	ld	c0f35540 <__Priority_Major_bit_map>,g4
+c0f2ea34:	40 55 f3 c0 
+c0f2ea38:	c4 20 ac 90 	ld	0xc4(g0),g5
+c0f2ea3c:	08 a0 85 92 	st	g0,0x8(g6)
+c0f2ea40:	94 43 a5 58 	or	g4,g5,g4
+c0f2ea44:	04 20 bc 92 	st	g7,0x4(g0)
+c0f2ea48:	00 30 a0 92 	st	g4,c0f35540 <__Priority_Major_bit_map>
+c0f2ea4c:	40 55 f3 c0 
+c0f2ea50:	00 d0 85 92 	st	g0,(g7)
+c0f2ea54:	00 1e b0 5c 	mov	0,g6
+c0f2ea58:	10 de a7 59 	shlo	16,31,g4
+c0f2ea5c:	80 0a 8d 65 	modpc	0,g4,g1
+c0f2ea60:	14 16 88 5c 	mov	g4,g1
+c0f2ea64:	80 0a 8d 65 	modpc	0,g4,g1
+c0f2ea68:	00 30 a0 90 	ld	c0f35540 <__Priority_Major_bit_map>,g4
+c0f2ea6c:	40 55 f3 c0 
+c0f2ea70:	16 16 a8 5c 	mov	g6,g5
+c0f2ea74:	94 10 a8 64 	scanbit	g4,g5
+c0f2ea78:	15 39 a0 90 	ld	c0f35620 <__Priority_Bit_map>[g5*4],g4
+c0f2ea7c:	20 56 f3 c0 
+c0f2ea80:	94 10 b0 64 	scanbit	g4,g6
+c0f2ea84:	15 d1 ab 59 	subo	g5,15,g5
+c0f2ea88:	04 4e ad 59 	shlo	4,g5,g5
+c0f2ea8c:	00 30 a0 90 	ld	c0f35504 <__Thread_Ready_chain>,g4
+c0f2ea90:	04 55 f3 c0 
+c0f2ea94:	16 41 ad 59 	subo	g6,g5,g5
+c0f2ea98:	15 3e a5 90 	ld	f0 <SIZE_REGS+0xc4>(g4)[g5*16],g4
+c0f2ea9c:	f0 00 00 00 
+c0f2eaa0:	00 30 a8 90 	ld	c0f35600 <__Thread_Executing>,g5
+c0f2eaa4:	00 56 f3 c0 
+c0f2eaa8:	00 30 a0 92 	st	g4,c0f35610 <__Thread_Heir>
+c0f2eaac:	10 56 f3 c0 
+c0f2eab0:	18 00 ad 32 	cmpobe	g5,g4,c0f2eac8 <L19>
+c0f2eab4:	9c 60 a5 90 	ld	0x9c(g5),g4
+c0f2eab8:	10 20 05 32 	cmpobe	0,g4,c0f2eac8 <L19>
+c0f2eabc:	01 1e a0 5c 	mov	1,g4
+c0f2eac0:	00 30 a0 92 	st	g4,c0f353c4 <__Context_Switch_necessary>
+c0f2eac4:	c4 53 f3 c0 
+
+c0f2eac8 <L19>:
+c0f2eac8:	10 de a7 59 	shlo	16,31,g4
+c0f2eacc:	80 0a 8d 65 	modpc	0,g4,g1
+
+c0f2ead0 <Li960R1>:
+c0f2ead0:	00 00 00 0a 	ret
+	...
+
+c0f2eae0 <__Watchdog_Remove>:
+c0f2eae0:	00 30 f0 8c 	lda	c0f2eb74 <Li960R1>,g14
+c0f2eae4:	74 eb f2 c0 
+
+c0f2eae8 <_Watchdog_Remove.lf>:
+c0f2eae8:	1e 16 90 5c 	mov	g14,g2
+c0f2eaec:	00 1e f0 5c 	mov	0,g14
+c0f2eaf0:	10 de bf 59 	shlo	16,31,g7
+c0f2eaf4:	80 ca bd 65 	modpc	0,g7,g7
+c0f2eaf8:	08 20 8c 90 	ld	0x8(g0),g1
+c0f2eafc:	10 60 0c 32 	cmpobe	1,g1,c0f2eb0c <L5>
+c0f2eb00:	5c 60 04 32 	cmpobe	0,g1,c0f2eb5c <L3>
+c0f2eb04:	58 60 1c 34 	cmpobl	3,g1,c0f2eb5c <L3>
+c0f2eb08:	0c 00 00 08 	b	c0f2eb14 <L7>
+
+c0f2eb0c <L5>:
+c0f2eb0c:	08 20 f4 92 	st	g14,0x8(g0)
+c0f2eb10:	4c 00 00 08 	b	c0f2eb5c <L3>
+
+c0f2eb14 <L7>:
+c0f2eb14:	00 10 b4 90 	ld	(g0),g6
+c0f2eb18:	08 20 f4 92 	st	g14,0x8(g0)
+c0f2eb1c:	00 90 a5 90 	ld	(g6),g4
+c0f2eb20:	14 20 05 32 	cmpobe	0,g4,c0f2eb34 <L9>
+c0f2eb24:	10 a0 a5 90 	ld	0x10(g6),g4
+c0f2eb28:	10 20 ac 90 	ld	0x10(g0),g5
+c0f2eb2c:	14 40 a5 59 	addo	g4,g5,g4
+c0f2eb30:	Address 0x00000000c0f2eb30 is out of bounds.
+
+
+c0f2eb34 <L9>:
+c0f2eb34:	00 30 a0 90 	ld	c0f35604 <__Watchdog_Sync_count>,g4
+c0f2eb38:	04 56 f3 c0 
+c0f2eb3c:	14 20 05 32 	cmpobe	0,g4,c0f2eb50 <L11>
+c0f2eb40:	00 30 a0 90 	ld	c0f35484 <__ISR_Nest_level>,g4
+c0f2eb44:	84 54 f3 c0 
+c0f2eb48:	00 30 a0 92 	st	g4,c0f353c0 <__Watchdog_Sync_level>
+c0f2eb4c:	c0 53 f3 c0 
+
+c0f2eb50 <L11>:
+c0f2eb50:	04 20 a4 90 	ld	0x4(g0),g4
+c0f2eb54:	00 10 b5 92 	st	g6,(g4)
+c0f2eb58:	Address 0x00000000c0f2eb58 is out of bounds.
+
+
+c0f2eb5c <L3>:
+c0f2eb5c:	00 30 a0 90 	ld	c0f35544 <__Watchdog_Ticks_since_boot>,g4
+c0f2eb60:	44 55 f3 c0 
+c0f2eb64:	18 20 a4 92 	st	g4,0x18(g0)
+c0f2eb68:	10 de a7 59 	shlo	16,31,g4
+c0f2eb6c:	80 0a bd 65 	modpc	0,g4,g7
+c0f2eb70:	11 16 80 5c 	mov	g1,g0
+
+c0f2eb74 <Li960R1>:
+c0f2eb74:	00 00 00 0a 	ret
+	...
+
+c0f2eb80 <__RTEMS_tasks_Initialize_user_tasks>:
+c0f2eb80:	10 48 08 59 	addo	16,sp,sp
+c0f2eb84:	00 30 80 90 	ld	c0f357f0 <__RTEMS_tasks_User_initialization_tasks>,g0
+c0f2eb88:	f0 57 f3 c0 
+c0f2eb8c:	00 30 28 90 	ld	c0f35780 <__RTEMS_tasks_Number_of_initialization_tasks>,r5
+c0f2eb90:	80 57 f3 c0 
+c0f2eb94:	8c 20 04 32 	cmpobe	0,g0,c0f2ec20 <L11>
+c0f2eb98:	88 60 01 32 	cmpobe	0,r5,c0f2ec20 <L11>
+c0f2eb9c:	00 1e 30 5c 	mov	0,r6
+c0f2eba0:	80 80 29 36 	cmpoble	r5,r6,c0f2ec20 <L11>
+c0f2eba4:	10 16 20 5c 	mov	g0,r4
+
+c0f2eba8 <L22>:
+c0f2eba8:	08 20 89 90 	ld	0x8(r4),g1
+c0f2ebac:	04 20 91 90 	ld	0x4(r4),g2
+c0f2ebb0:	0c 20 a1 90 	ld	0xc(r4),g4
+c0f2ebb4:	14 20 99 90 	ld	0x14(r4),g3
+c0f2ebb8:	40 e0 af 8c 	lda	0x40(fp),g5
+c0f2ebbc:	00 10 81 90 	ld	(r4),g0
+c0f2ebc0:	06 50 30 59 	addo	r6,1,r6
+c0f2ebc4:	00 30 00 86 	callx	c0f2efb0 <_rtems_task_create>
+c0f2ebc8:	b0 ef f2 c0 
+c0f2ebcc:	10 16 a0 5c 	mov	g0,g4
+c0f2ebd0:	10 16 90 5c 	mov	g0,g2
+c0f2ebd4:	01 1e 80 5c 	mov	1,g0
+c0f2ebd8:	01 1e 88 5c 	mov	1,g1
+c0f2ebdc:	0c 20 05 32 	cmpobe	0,g4,c0f2ebe8 <L18>
+c0f2ebe0:	00 30 00 86 	callx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2ebe4:	b0 d0 f2 c0 
+
+c0f2ebe8 <L18>:
+c0f2ebe8:	10 20 89 90 	ld	0x10(r4),g1
+c0f2ebec:	18 20 91 90 	ld	0x18(r4),g2
+c0f2ebf0:	40 e0 87 90 	ld	0x40(fp),g0
+c0f2ebf4:	20 20 21 8c 	lda	0x20(r4),r4
+c0f2ebf8:	00 30 00 86 	callx	c0f2ed40 <_rtems_task_start>
+c0f2ebfc:	40 ed f2 c0 
+c0f2ec00:	10 16 a0 5c 	mov	g0,g4
+c0f2ec04:	10 16 90 5c 	mov	g0,g2
+c0f2ec08:	01 1e 80 5c 	mov	1,g0
+c0f2ec0c:	01 1e 88 5c 	mov	1,g1
+c0f2ec10:	0c 20 05 32 	cmpobe	0,g4,c0f2ec1c <L16>
+c0f2ec14:	00 30 00 86 	callx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2ec18:	b0 d0 f2 c0 
+
+c0f2ec1c <L16>:
+c0f2ec1c:	8c 9f 29 31 	cmpobg	r5,r6,c0f2eba8 <L22>
+
+c0f2ec20 <L11>:
+c0f2ec20:	00 00 00 0a 	ret
+	...
+
+c0f2ec30 <_rtems_task_mode>:
+c0f2ec30:	10 16 40 5c 	mov	g0,r8
+c0f2ec34:	11 16 38 5c 	mov	g1,r7
+c0f2ec38:	12 16 48 5c 	mov	g2,r9
+c0f2ec3c:	09 1e 80 5c 	mov	9,g0
+c0f2ec40:	fc a0 04 32 	cmpobe	0,g2,c0f2ed3c <L11>
+c0f2ec44:	00 30 30 90 	ld	c0f35600 <__Thread_Executing>,r6
+c0f2ec48:	00 56 f3 c0 
+c0f2ec4c:	9c a0 a1 90 	ld	0x9c(r6),g4
+c0f2ec50:	54 a1 a9 90 	ld	0x154(r6),g5
+c0f2ec54:	14 54 a0 59 	shro	g4,1,g4
+c0f2ec58:	50 60 2d 8c 	lda	0x50(g5),r5
+c0f2ec5c:	08 0e 25 59 	shlo	8,g4,r4
+c0f2ec60:	a8 a0 a1 90 	ld	0xa8(r6),g4
+c0f2ec64:	08 20 05 32 	cmpobe	0,g4,c0f2ec6c <L16>
+c0f2ec68:	89 09 21 58 	setbit	9,r4,r4
+
+c0f2ec6c <L16>:
+c0f2ec6c:	00 50 a1 90 	ld	(r5),g4
+c0f2ec70:	08 20 05 35 	cmpobne	0,g4,c0f2ec78 <L17>
+c0f2ec74:	8a 09 21 58 	setbit	10,r4,r4
+
+c0f2ec78 <L17>:
+c0f2ec78:	00 30 00 86 	callx	c0f2cbf0 <__CPU_ISR_Get_level>
+c0f2ec7c:	f0 cb f2 c0 
+c0f2ec80:	84 03 24 58 	or	r4,g0,r4
+c0f2ec84:	00 50 22 92 	st	r4,(r9)
+c0f2ec88:	10 e0 41 30 	bbc	8,r7,c0f2ec98 <L18>
+c0f2ec8c:	08 0c a2 59 	shro	8,r8,g4
+c0f2ec90:	01 0a a5 58 	notand	1,g4,g4
+c0f2ec94:	Address 0x00000000c0f2ec94 is out of bounds.
+
+
+c0f2ec98 <L18>:
+c0f2ec98:	18 e0 49 30 	bbc	9,r7,c0f2ecb0 <L20>
+c0f2ec9c:	10 20 4a 30 	bbc	9,r8,c0f2ecac <L21>
+c0f2eca0:	01 1e a0 5c 	mov	1,g4
+c0f2eca4:	a8 a0 a1 92 	st	g4,0xa8(r6)
+c0f2eca8:	08 00 00 08 	b	c0f2ecb0 <L20>
+
+c0f2ecac <L21>:
+c0f2ecac:	Address 0x00000000c0f2ecac is out of bounds.
+
+
+c0f2ecb0 <L20>:
+c0f2ecb0:	87 d0 a7 58 	and	r7,31,g4
+c0f2ecb4:	14 20 05 32 	cmpobe	0,g4,c0f2ecc8 <L24>
+c0f2ecb8:	00 1e a0 5c 	mov	0,g4
+c0f2ecbc:	88 d0 af 58 	and	r8,31,g5
+c0f2ecc0:	10 de a7 59 	shlo	16,31,g4
+c0f2ecc4:	80 0a ad 65 	modpc	0,g4,g5
+
+c0f2ecc8 <L24>:
+c0f2ecc8:	00 1e 20 5c 	mov	0,r4
+c0f2eccc:	48 e0 51 30 	bbc	10,r7,c0f2ed14 <L27>
+c0f2ecd0:	0a 0c a2 59 	shro	10,r8,g4
+c0f2ecd4:	00 50 a9 90 	ld	(r5),g5
+c0f2ecd8:	14 51 80 58 	andnot	g4,1,g0
+c0f2ecdc:	38 00 ac 32 	cmpobe	g5,g0,c0f2ed14 <L27>
+c0f2ece0:	00 50 81 92 	st	g0,(r5)
+c0f2ece4:	10 de af 59 	shlo	16,31,g5
+c0f2ece8:	80 4a ad 65 	modpc	0,g5,g5
+c0f2ecec:	10 60 a1 90 	ld	0x10(r5),g4
+c0f2ecf0:	0c 60 b1 90 	ld	0xc(r5),g6
+c0f2ecf4:	0c 60 a1 92 	st	g4,0xc(r5)
+c0f2ecf8:	10 60 b1 92 	st	g6,0x10(r5)
+c0f2ecfc:	10 de a7 59 	shlo	16,31,g4
+c0f2ed00:	80 0a ad 65 	modpc	0,g4,g5
+c0f2ed04:	0c 60 a1 90 	ld	0xc(r5),g4
+c0f2ed08:	0c 20 05 32 	cmpobe	0,g4,c0f2ed14 <L27>
+c0f2ed0c:	01 1e 20 5c 	mov	1,r4
+c0f2ed10:	Address 0x00000000c0f2ed10 is out of bounds.
+
+
+c0f2ed14 <L27>:
+c0f2ed14:	00 30 a0 90 	ld	c0f356cc <__System_state_Current>,g4
+c0f2ed18:	cc 56 f3 c0 
+c0f2ed1c:	1c 20 1d 35 	cmpobne	3,g4,c0f2ed38 <L35>
+c0f2ed20:	00 30 00 86 	callx	c0f2eeb0 <__Thread_Evaluate_mode>
+c0f2ed24:	b0 ee f2 c0 
+c0f2ed28:	08 20 04 35 	cmpobne	0,g0,c0f2ed30 <L38>
+c0f2ed2c:	0c 20 01 32 	cmpobe	0,r4,c0f2ed38 <L35>
+
+c0f2ed30 <L38>:
+c0f2ed30:	00 30 00 86 	callx	c0f2d400 <__Thread_Dispatch>
+c0f2ed34:	00 d4 f2 c0 
+
+c0f2ed38 <L35>:
+c0f2ed38:	00 1e 80 5c 	mov	0,g0
+
+c0f2ed3c <L11>:
+c0f2ed3c:	00 00 00 0a 	ret
+
+c0f2ed40 <_rtems_task_start>:
+c0f2ed40:	10 48 08 59 	addo	16,sp,sp
+c0f2ed44:	11 16 20 5c 	mov	g1,r4
+c0f2ed48:	40 e0 8f 8c 	lda	0x40(fp),g1
+c0f2ed4c:	12 16 28 5c 	mov	g2,r5
+c0f2ed50:	09 1e a8 5c 	mov	9,g5
+c0f2ed54:	60 20 01 32 	cmpobe	0,r4,c0f2edb4 <L11>
+c0f2ed58:	00 30 00 86 	callx	c0f2edc0 <__Thread_Get>
+c0f2ed5c:	c0 ed f2 c0 
+c0f2ed60:	40 e0 b7 90 	ld	0x40(fp),g6
+c0f2ed64:	05 16 a0 5c 	mov	r5,g4
+c0f2ed68:	04 16 90 5c 	mov	r4,g2
+c0f2ed6c:	00 1e 88 5c 	mov	0,g1
+c0f2ed70:	00 1e 98 5c 	mov	0,g3
+c0f2ed74:	04 1e a8 5c 	mov	4,g5
+c0f2ed78:	0c a0 05 32 	cmpobe	0,g6,c0f2ed84 <L16>
+c0f2ed7c:	38 a0 15 33 	cmpobge	2,g6,c0f2edb4 <L11>
+c0f2ed80:	30 00 00 08 	b	c0f2edb0 <L13>
+
+c0f2ed84 <L16>:
+c0f2ed84:	00 30 00 86 	callx	c0f2d7f0 <__Thread_Start>
+c0f2ed88:	f0 d7 f2 c0 
+c0f2ed8c:	14 20 04 32 	cmpobe	0,g0,c0f2eda0 <L17>
+c0f2ed90:	00 30 00 86 	callx	c0f2d3d0 <__Thread_Enable_dispatch>
+c0f2ed94:	d0 d3 f2 c0 
+c0f2ed98:	00 1e a8 5c 	mov	0,g5
+c0f2ed9c:	18 00 00 08 	b	c0f2edb4 <L11>
+
+c0f2eda0 <L17>:
+c0f2eda0:	00 30 00 86 	callx	c0f2d3d0 <__Thread_Enable_dispatch>
+c0f2eda4:	d0 d3 f2 c0 
+c0f2eda8:	0e 1e a8 5c 	mov	14,g5
+c0f2edac:	08 00 00 08 	b	c0f2edb4 <L11>
+
+c0f2edb0 <L13>:
+c0f2edb0:	19 1e a8 5c 	mov	25,g5
+
+c0f2edb4 <L11>:
+c0f2edb4:	15 16 80 5c 	mov	g5,g0
+
+c0f2edb8 <Li960R1>:
+c0f2edb8:	00 00 00 0a 	ret
+c0f2edbc:	00 00 00 00 	.word	0x00000000
+
+c0f2edc0 <__Thread_Get>:
+c0f2edc0:	18 0c a4 59 	shro	24,g0,g4
+c0f2edc4:	11 16 a8 5c 	mov	g1,g5
+c0f2edc8:	00 1e b8 5c 	mov	0,g7
+c0f2edcc:	94 d0 a1 58 	and	g4,7,g4
+c0f2edd0:	28 20 04 35 	cmpobne	0,g0,c0f2edf8 <L2>
+c0f2edd4:	00 30 a0 90 	ld	c0f356c4 <__Thread_Dispatch_disable_level>,g4
+c0f2edd8:	c4 56 f3 c0 
+c0f2eddc:	01 08 a5 59 	addo	1,g4,g4
+c0f2ede0:	00 30 a0 92 	st	g4,c0f356c4 <__Thread_Dispatch_disable_level>
+c0f2ede4:	c4 56 f3 c0 
+c0f2ede8:	00 30 b8 90 	ld	c0f35600 <__Thread_Executing>,g7
+c0f2edec:	00 56 f3 c0 
+c0f2edf0:	00 50 f4 92 	st	g14,(g1)
+c0f2edf4:	44 00 00 08 	b	c0f2ee38 <L5>
+
+c0f2edf8 <L2>:
+c0f2edf8:	1b 0c b4 59 	shro	27,g0,g6
+c0f2edfc:	24 20 25 34 	cmpobl	4,g4,c0f2ee20 <L285>
+c0f2ee00:	20 a0 0d 35 	cmpobne	1,g6,c0f2ee20 <L285>
+c0f2ee04:	14 39 a0 90 	ld	c0f35700 <__Objects_Information_table>[g4*4],g4
+c0f2ee08:	00 57 f3 c0 
+c0f2ee0c:	10 16 88 5c 	mov	g0,g1
+c0f2ee10:	04 20 a5 90 	ld	0x4(g4),g4
+c0f2ee14:	15 16 90 5c 	mov	g5,g2
+c0f2ee18:	14 16 80 5c 	mov	g4,g0
+c0f2ee1c:	10 20 05 35 	cmpobne	0,g4,c0f2ee2c <L10>
+
+c0f2ee20 <L285>:
+c0f2ee20:	02 1e a0 5c 	mov	2,g4
+c0f2ee24:	00 50 a5 92 	st	g4,(g5)
+c0f2ee28:	10 00 00 08 	b	c0f2ee38 <L5>
+
+c0f2ee2c <L10>:
+c0f2ee2c:	00 30 00 86 	callx	c0f2ee40 <__Objects_Get>
+c0f2ee30:	40 ee f2 c0 
+c0f2ee34:	10 16 b8 5c 	mov	g0,g7
+
+c0f2ee38 <L5>:
+c0f2ee38:	17 16 80 5c 	mov	g7,g0
+
+c0f2ee3c <Li960R2>:
+c0f2ee3c:	00 00 00 0a 	ret
+
+c0f2ee40 <__Objects_Get>:
+c0f2ee40:	00 30 a0 8c 	lda	ffff <SIZE_REGS+0xffd3>,g4
+c0f2ee44:	ff ff 00 00 
+c0f2ee48:	10 20 ac 90 	ld	0x10(g0),g5
+c0f2ee4c:	91 00 8d 58 	and	g1,g4,g1
+c0f2ee50:	12 16 20 5c 	mov	g2,r4
+c0f2ee54:	48 40 8d 31 	cmpobg	g1,g5,c0f2ee9c <L12>
+c0f2ee58:	00 30 a0 90 	ld	c0f356c4 <__Thread_Dispatch_disable_level>,g4
+c0f2ee5c:	c4 56 f3 c0 
+c0f2ee60:	01 08 a5 59 	addo	1,g4,g4
+c0f2ee64:	00 30 a0 92 	st	g4,c0f356c4 <__Thread_Dispatch_disable_level>
+c0f2ee68:	c4 56 f3 c0 
+c0f2ee6c:	20 20 a4 90 	ld	0x20(g0),g4
+c0f2ee70:	11 1d a5 90 	ld	(g4)[g1*4],g4
+c0f2ee74:	14 16 80 5c 	mov	g4,g0
+c0f2ee78:	0c 20 05 32 	cmpobe	0,g4,c0f2ee84 <L14>
+c0f2ee7c:	00 90 f4 92 	st	g14,(g2)
+c0f2ee80:	00 00 00 0a 	ret
+
+c0f2ee84 <L14>:
+c0f2ee84:	00 30 00 86 	callx	c0f2d3d0 <__Thread_Enable_dispatch>
+c0f2ee88:	d0 d3 f2 c0 
+c0f2ee8c:	02 1e a0 5c 	mov	2,g4
+c0f2ee90:	00 10 a1 92 	st	g4,(r4)
+c0f2ee94:	00 1e 80 5c 	mov	0,g0
+c0f2ee98:	00 00 00 0a 	ret
+
+c0f2ee9c <L12>:
+c0f2ee9c:	02 1e a0 5c 	mov	2,g4
+c0f2eea0:	00 90 a4 92 	st	g4,(g2)
+c0f2eea4:	00 1e 80 5c 	mov	0,g0
+c0f2eea8:	00 00 00 0a 	ret
+c0f2eeac:	00 00 00 00 	.word	0x00000000
+
+c0f2eeb0 <__Thread_Evaluate_mode>:
+c0f2eeb0:	00 30 f0 8c 	lda	c0f2ef00 <Li960R1>,g14
+c0f2eeb4:	00 ef f2 c0 
+
+c0f2eeb8 <_Thread_Evaluate_mode.lf>:
+c0f2eeb8:	1e 16 88 5c 	mov	g14,g1
+c0f2eebc:	00 1e f0 5c 	mov	0,g14
+c0f2eec0:	00 30 a8 90 	ld	c0f35600 <__Thread_Executing>,g5
+c0f2eec4:	00 56 f3 c0 
+c0f2eec8:	01 1e 80 5c 	mov	1,g0
+c0f2eecc:	10 60 a5 90 	ld	0x10(g5),g4
+c0f2eed0:	18 20 05 35 	cmpobne	0,g4,c0f2eee8 <L13>
+c0f2eed4:	00 30 a0 90 	ld	c0f35610 <__Thread_Heir>,g4
+c0f2eed8:	10 56 f3 c0 
+c0f2eedc:	1c 40 a5 32 	cmpobe	g4,g5,c0f2eef8 <L12>
+c0f2eee0:	9c 60 a5 90 	ld	0x9c(g5),g4
+c0f2eee4:	14 20 05 32 	cmpobe	0,g4,c0f2eef8 <L12>
+
+c0f2eee8 <L13>:
+c0f2eee8:	01 1e a0 5c 	mov	1,g4
+c0f2eeec:	00 30 a0 92 	st	g4,c0f353c4 <__Context_Switch_necessary>
+c0f2eef0:	c4 53 f3 c0 
+c0f2eef4:	Address 0x00000000c0f2eef4 is out of bounds.
+
+
+c0f2eef8 <L12>:
+c0f2eef8:	00 1e 80 5c 	mov	0,g0
+c0f2eefc:	Address 0x00000000c0f2eefc is out of bounds.
+
+
+c0f2ef00 <Li960R1>:
+c0f2ef00:	00 00 00 0a 	ret
+	...
+
+c0f2ef10 <__Thread_Handler>:
+c0f2ef10:	00 30 20 90 	ld	c0f35600 <__Thread_Executing>,r4
+c0f2ef14:	00 56 f3 c0 
+c0f2ef18:	00 1e a0 5c 	mov	0,g4
+c0f2ef1c:	fc 20 a9 90 	ld	0xfc(r4),g5
+c0f2ef20:	10 de a7 59 	shlo	16,31,g4
+c0f2ef24:	80 0a ad 65 	modpc	0,g4,g5
+c0f2ef28:	04 16 80 5c 	mov	r4,g0
+c0f2ef2c:	00 30 00 86 	callx	c0f2d990 <__User_extensions_Thread_begin>
+c0f2ef30:	90 d9 f2 c0 
+c0f2ef34:	00 30 00 86 	callx	c0f2d3d0 <__Thread_Enable_dispatch>
+c0f2ef38:	d0 d3 f2 c0 
+c0f2ef3c:	e4 20 a1 90 	ld	0xe4(r4),g4
+c0f2ef40:	1c 20 0d 32 	cmpobe	1,g4,c0f2ef5c <L14>
+c0f2ef44:	10 20 05 32 	cmpobe	0,g4,c0f2ef54 <L13>
+c0f2ef48:	24 20 15 32 	cmpobe	2,g4,c0f2ef6c <L15>
+c0f2ef4c:	28 20 1d 32 	cmpobe	3,g4,c0f2ef74 <L16>
+c0f2ef50:	38 00 00 08 	b	c0f2ef88 <L12>
+
+c0f2ef54 <L13>:
+c0f2ef54:	ec 20 81 90 	ld	0xec(r4),g0
+c0f2ef58:	08 00 00 08 	b	c0f2ef60 <L21>
+
+c0f2ef5c <L14>:
+c0f2ef5c:	Address 0x00000000c0f2ef5c is out of bounds.
+
+
+c0f2ef60 <L21>:
+c0f2ef60:	e0 20 a1 90 	ld	0xe0(r4),g4
+c0f2ef64:	00 10 05 86 	callx	(g4)
+c0f2ef68:	1c 00 00 08 	b	c0f2ef84 <L20>
+
+c0f2ef6c <L15>:
+c0f2ef6c:	e8 20 81 98 	ldl	0xe8(r4),g0
+c0f2ef70:	0c 00 00 08 	b	c0f2ef7c <L19>
+
+c0f2ef74 <L16>:
+c0f2ef74:	ec 20 81 90 	ld	0xec(r4),g0
+c0f2ef78:	Address 0x00000000c0f2ef78 is out of bounds.
+
+
+c0f2ef7c <L19>:
+c0f2ef7c:	e0 20 a1 90 	ld	0xe0(r4),g4
+c0f2ef80:	Address 0x00000000c0f2ef80 is out of bounds.
+
+
+c0f2ef84 <L20>:
+c0f2ef84:	Address 0x00000000c0f2ef84 is out of bounds.
+
+
+c0f2ef88 <L12>:
+c0f2ef88:	04 16 80 5c 	mov	r4,g0
+c0f2ef8c:	00 30 00 86 	callx	c0f2d9d0 <__User_extensions_Thread_exitted>
+c0f2ef90:	d0 d9 f2 c0 
+c0f2ef94:	00 1e 80 5c 	mov	0,g0
+c0f2ef98:	01 1e 88 5c 	mov	1,g1
+c0f2ef9c:	06 1e 90 5c 	mov	6,g2
+c0f2efa0:	00 30 00 84 	bx	c0f2d0b0 <__Internal_error_Occurred>
+c0f2efa4:	b0 d0 f2 c0 
+
+c0f2efa8 <Li960R1>:
+c0f2efa8:	00 00 00 0a 	ret
+c0f2efac:	00 00 00 00 	.word	0x00000000
+
+c0f2efb0 <_rtems_task_create>:
+c0f2efb0:	18 16 60 5e 	movt	g8,r12
+c0f2efb4:	10 16 d0 5c 	mov	g0,g10
+c0f2efb8:	11 16 30 5c 	mov	g1,r6
+c0f2efbc:	15 16 40 5c 	mov	g5,r8
+c0f2efc0:	12 16 38 5c 	mov	g2,r7
+c0f2efc4:	13 16 28 5c 	mov	g3,r5
+c0f2efc8:	03 1e 80 5c 	mov	3,g0
+c0f2efcc:	f8 a0 06 32 	cmpobe	0,g10,c0f2f0c4 <L11>
+c0f2efd0:	09 1e 80 5c 	mov	9,g0
+c0f2efd4:	f0 60 05 32 	cmpobe	0,g5,c0f2f0c4 <L11>
+c0f2efd8:	13 1e 80 5c 	mov	19,g0
+c0f2efdc:	01 49 ac 59 	subo	1,g1,g5
+c0f2efe0:	0c 20 45 37 	bbs	8,g4,c0f2efec <L20>
+c0f2efe4:	fe 00 a0 8c 	lda	0xfe,g4
+c0f2efe8:	dc 40 a5 34 	cmpobl	g4,g5,c0f2f0c4 <L11>
+
+c0f2efec <L20>:
+c0f2efec:	00 30 a0 90 	ld	c0f356c4 <__Thread_Dispatch_disable_level>,g4
+c0f2eff0:	c4 56 f3 c0 
+c0f2eff4:	01 08 a5 59 	addo	1,g4,g4
+c0f2eff8:	00 30 a0 92 	st	g4,c0f356c4 <__Thread_Dispatch_disable_level>
+c0f2effc:	c4 56 f3 c0 
+c0f2f000:	00 30 80 8c 	lda	c0f35870 <__RTEMS_tasks_Information>,g0
+c0f2f004:	70 58 f3 c0 
+c0f2f008:	00 30 00 86 	callx	c0f2e590 <__Objects_Allocate>
+c0f2f00c:	90 e5 f2 c0 
+c0f2f010:	08 4c b1 59 	shro	8,r5,g6
+c0f2f014:	09 4c b9 59 	shro	9,r5,g7
+c0f2f018:	10 16 20 5c 	mov	g0,r4
+c0f2f01c:	10 16 88 5c 	mov	g0,g1
+c0f2f020:	00 1e c0 5c 	mov	0,g8
+c0f2f024:	16 51 b0 58 	andnot	g6,1,g6
+c0f2f028:	97 50 b8 58 	and	g7,1,g7
+c0f2f02c:	85 d0 cf 58 	and	r5,31,g9
+c0f2f030:	07 16 98 5c 	mov	r7,g3
+c0f2f034:	00 1e a0 5c 	mov	0,g4
+c0f2f038:	06 16 a8 5c 	mov	r6,g5
+c0f2f03c:	00 1e 90 5c 	mov	0,g2
+c0f2f040:	00 30 80 8c 	lda	c0f35870 <__RTEMS_tasks_Information>,g0
+c0f2f044:	70 58 f3 c0 
+c0f2f048:	14 20 01 35 	cmpobne	0,r4,c0f2f05c <L27>
+c0f2f04c:	00 30 00 86 	callx	c0f2d3d0 <__Thread_Enable_dispatch>
+c0f2f050:	d0 d3 f2 c0 
+c0f2f054:	05 1e 80 5c 	mov	5,g0
+c0f2f058:	6c 00 00 08 	b	c0f2f0c4 <L11>
+
+c0f2f05c <L27>:
+c0f2f05c:	00 30 00 86 	callx	c0f2d550 <__Thread_Initialize>
+c0f2f060:	50 d5 f2 c0 
+c0f2f064:	0a 4c a1 59 	shro	10,r5,g4
+c0f2f068:	04 16 88 5c 	mov	r4,g1
+c0f2f06c:	14 51 98 58 	andnot	g4,1,g3
+c0f2f070:	38 20 04 35 	cmpobne	0,g0,c0f2f0a8 <L31>
+c0f2f074:	08 20 a9 90 	ld	0x8(r4),g5
+c0f2f078:	18 4c a5 59 	shro	24,g5,g4
+c0f2f07c:	87 08 a5 58 	and	7,g4,g4
+c0f2f080:	1b 4c ad 59 	shro	27,g5,g5
+c0f2f084:	14 39 a0 90 	ld	c0f35700 <__Objects_Information_table>[g4*4],g4
+c0f2f088:	00 57 f3 c0 
+c0f2f08c:	15 1d 85 90 	ld	(g4)[g5*4],g0
+c0f2f090:	00 30 00 86 	callx	c0f2f0d0 <__Objects_Free>
+c0f2f094:	d0 f0 f2 c0 
+c0f2f098:	00 30 00 86 	callx	c0f2d3d0 <__Thread_Enable_dispatch>
+c0f2f09c:	d0 d3 f2 c0 
+c0f2f0a0:	0d 1e 80 5c 	mov	13,g0
+c0f2f0a4:	20 00 00 08 	b	c0f2f0c4 <L11>
+
+c0f2f0a8 <L31>:
+c0f2f0a8:	54 21 a1 90 	ld	0x154(r4),g4
+c0f2f0ac:	50 20 9d 92 	st	g3,0x50(g4)
+c0f2f0b0:	08 20 a1 90 	ld	0x8(r4),g4
+c0f2f0b4:	00 10 a2 92 	st	g4,(r8)
+c0f2f0b8:	00 30 00 86 	callx	c0f2d3d0 <__Thread_Enable_dispatch>
+c0f2f0bc:	d0 d3 f2 c0 
+c0f2f0c0:	00 1e 80 5c 	mov	0,g0
+
+c0f2f0c4 <L11>:
+c0f2f0c4:	0c 16 c0 5e 	movt	r12,g8
+c0f2f0c8:	00 00 00 0a 	ret
+c0f2f0cc:	00 00 00 00 	.word	0x00000000
+
+c0f2f0d0 <__Objects_Free>:
+c0f2f0d0:	10 16 28 5c 	mov	g0,r5
+c0f2f0d4:	18 60 21 90 	ld	0x18(r5),r4
+c0f2f0d8:	30 20 84 8c 	lda	0x30(g0),g0
+c0f2f0dc:	11 16 30 5c 	mov	g1,r6
+c0f2f0e0:	00 30 00 86 	callx	c0f2ce00 <__Chain_Append>
+c0f2f0e4:	00 ce f2 c0 
+c0f2f0e8:	01 0c a1 59 	shro	1,r4,g4
+c0f2f0ec:	14 60 a9 90 	ld	0x14(r5),g5
+c0f2f0f0:	04 00 8d 59 	addo	r4,g4,g1
+c0f2f0f4:	44 60 05 32 	cmpobe	0,g5,c0f2f138 <L11>
+c0f2f0f8:	08 a0 a9 88 	ldos	0x8(r6),g5
+c0f2f0fc:	08 60 a1 88 	ldos	0x8(r5),g4
+c0f2f100:	18 60 b1 90 	ld	0x18(r5),g6
+c0f2f104:	14 41 ad 59 	subo	g4,g5,g5
+c0f2f108:	96 45 ad 70 	divo	g6,g5,g5
+c0f2f10c:	44 60 b9 90 	ld	0x44(r5),g7
+c0f2f110:	05 16 80 5c 	mov	r5,g0
+c0f2f114:	15 dd a5 90 	ld	(g7)[g5*4],g4
+c0f2f118:	01 08 a5 59 	addo	1,g4,g4
+c0f2f11c:	15 dd a5 92 	st	g4,(g7)[g5*4]
+c0f2f120:	40 60 a1 90 	ld	0x40(r5),g4
+c0f2f124:	01 08 a5 59 	addo	1,g4,g4
+c0f2f128:	40 60 a1 92 	st	g4,0x40(r5)
+c0f2f12c:	0c 00 8d 33 	cmpobge	g1,g4,c0f2f138 <L11>
+c0f2f130:	00 30 00 84 	bx	c0f2f140 <__Objects_Shrink_information>
+c0f2f134:	40 f1 f2 c0 
+
+c0f2f138 <L11>:
+c0f2f138:	00 00 00 0a 	ret
+c0f2f13c:	00 00 00 00 	.word	0x00000000
+
+c0f2f140 <__Objects_Shrink_information>:
+c0f2f140:	08 20 34 88 	ldos	0x8(g0),r6
+c0f2f144:	10 20 a4 90 	ld	0x10(g0),g4
+c0f2f148:	18 20 ac 90 	ld	0x18(g0),g5
+c0f2f14c:	06 01 a5 59 	subo	r6,g4,g4
+c0f2f150:	95 05 b5 70 	divo	g5,g4,g6
+c0f2f154:	10 16 28 5c 	mov	g0,r5
+c0f2f158:	00 1e 38 5c 	mov	0,r7
+c0f2f15c:	a8 c0 b1 36 	cmpoble	g6,r7,c0f2f204 <L11>
+
+c0f2f160 <L31>:
+c0f2f160:	44 60 a1 90 	ld	0x44(r5),g4
+c0f2f164:	07 1d a5 90 	ld	(g4)[r7*4],g4
+c0f2f168:	90 00 ad 35 	cmpobne	g5,g4,c0f2f1f8 <L17>
+c0f2f16c:	Address 0x00000000c0f2f16c is out of bounds.
+
+
+c0f2f170 <L18>:
+c0f2f170:	08 20 a9 88 	ldos	0x8(r4),g5
+c0f2f174:	30 40 35 31 	cmpobg	r6,g5,c0f2f1a4 <L22>
+c0f2f178:	18 60 a1 90 	ld	0x18(r5),g4
+c0f2f17c:	04 16 80 5c 	mov	r4,g0
+c0f2f180:	06 00 a5 59 	addo	r6,g4,g4
+c0f2f184:	20 40 a5 36 	cmpoble	g4,g5,c0f2f1a4 <L22>
+c0f2f188:	00 10 a1 90 	ld	(r4),g4
+c0f2f18c:	14 16 20 5c 	mov	g4,r4
+c0f2f190:	08 20 05 35 	cmpobne	0,g4,c0f2f198 <L25>
+c0f2f194:	00 1e 20 5c 	mov	0,r4
+
+c0f2f198 <L25>:
+c0f2f198:	00 30 00 86 	callx	c0f2ce40 <__Chain_Extract>
+c0f2f19c:	40 ce f2 c0 
+c0f2f1a0:	08 00 00 08 	b	c0f2f1a8 <L20>
+
+c0f2f1a4 <L22>:
+c0f2f1a4:	Address 0x00000000c0f2f1a4 is out of bounds.
+
+
+c0f2f1a8 <L20>:
+c0f2f1a8:	0c 20 01 32 	cmpobe	0,r4,c0f2f1b4 <L19>
+c0f2f1ac:	00 10 a1 90 	ld	(r4),g4
+c0f2f1b0:	c0 3f 05 35 	cmpobne	0,g4,c0f2f170 <L18>
+
+c0f2f1b4 <L19>:
+c0f2f1b4:	48 60 a1 90 	ld	0x48(r5),g4
+c0f2f1b8:	00 30 80 8c 	lda	c0f356e0 <__Workspace_Area>,g0
+c0f2f1bc:	e0 56 f3 c0 
+c0f2f1c0:	07 1d 8d 90 	ld	(g4)[r7*4],g1
+c0f2f1c4:	00 30 00 86 	callx	c0f2e460 <__Heap_Free>
+c0f2f1c8:	60 e4 f2 c0 
+c0f2f1cc:	44 60 a1 90 	ld	0x44(r5),g4
+c0f2f1d0:	24 60 b9 90 	ld	0x24(r5),g7
+c0f2f1d4:	07 1d f5 92 	st	g14,(g4)[r7*4]
+c0f2f1d8:	40 60 a1 90 	ld	0x40(r5),g4
+c0f2f1dc:	18 60 a9 90 	ld	0x18(r5),g5
+c0f2f1e0:	48 60 b1 90 	ld	0x48(r5),g6
+c0f2f1e4:	07 dd f5 92 	st	g14,(g7)[r7*4]
+c0f2f1e8:	15 01 a5 59 	subo	g5,g4,g4
+c0f2f1ec:	40 60 a1 92 	st	g4,0x40(r5)
+c0f2f1f0:	07 9d f5 92 	st	g14,(g6)[r7*4]
+c0f2f1f4:	00 00 00 0a 	ret
+
+c0f2f1f8 <L17>:
+c0f2f1f8:	06 40 35 59 	addo	r6,g5,r6
+c0f2f1fc:	07 50 38 59 	addo	r7,1,r7
+c0f2f200:	60 df b1 31 	cmpobg	g6,r7,c0f2f160 <L31>
+
+c0f2f204 <L11>:
+c0f2f204:	00 00 00 0a 	ret
+	...

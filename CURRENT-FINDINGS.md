@@ -2,8 +2,8 @@
 
 This is the current-state index. Earlier reports and artifact source snapshots
 record the state at their own milestone; their future-tense plans are historical.
-The preservation audit itself did not load a module, issue a firmware command,
-reboot, program flash or interrupt the running terminal client.
+The earlier preservation audit was read-only. The subsequent RTEMS work loaded
+RAM payloads and exercised the card; it did not reboot, program flash or test recovery.
 
 ## Established on this card
 
@@ -16,6 +16,7 @@ reboot, program flash or interrupt the running terminal client.
 | Returning i960 programs can be uploaded and executed after the PC has booted, without further flash writes. | [Software loader](SOFTWARE-LOADER.md), `host/loadrun/`, `loader/runtime/`. Cache invalidation and restoration are part of the protocol. |
 | BIO1 returns bounded text/frame data; Tetris has an explicit bounded update/render ABI. | [Buffer I/O](BUFFER-IO.md), [Tetris step](TETRIS-STEP.md), `game/`. 4 KiB input, 8 KiB output; Tetris uses 256-byte requests and 2,160-byte responses. |
 | Repeated execution and persistent sessions are hardware-tested. | [T3 replay](TETRIS-REPLAY.md): 1,000 + 64 calls. [T5 session](PERSISTENT-SESSION.md): 1,000 frames and a separate 400-frame cadence test. |
+| RTEMS Classic tasks and card TCP/IP execute after PC startup. | [Cooperative RTEMS port](rtems/README.md), [exact artifacts](artifacts/rtems-20261011/README.md). Persistent tasks, lwIP ICMP/UDP/TCP, DNS and HTTP through Linux TUN/NAT; clock/progress depend on host polling. |
 | Tetris is playable over SSH. | [Terminal instructions](TETRIS-TERMINAL.md), `host/session/`. T4's five automated SSH runs validated 36,380 frames; the 30-minute run contributed 35,846 at 19.91 Hz. |
 
 Original full-ROM SHA256:
@@ -41,8 +42,10 @@ are expected to reject the now-patched card; do not bypass their pinned hashes.
   performed. Tests used an otherwise idle card with its storage driver unbound.
 - DRAM register component identity, bit meanings, clock and timing units remain
   unresolved. Recovered register literals are not a complete timing specification.
-- Payloads must return cooperatively; there is no preemption, established large
-  stack budget, general OS runtime, or automatic payload BSS initialization.
+- Payloads must return cooperatively; the host cannot preempt a runaway call.
+  The RTEMS profile adds explicit BSS initialization, private persistent state
+  and three guarded task stacks. It does not establish an autonomous hardware
+  clock, interrupt ownership, full Newlib/POSIX support or memory isolation.
 - Persistent sessions check the full payload/code/input/output region every
   frame, and the entire 512 KiB staging image every 32 calls and at close.
   Corruption outside the per-frame region can remain undetected for 31 calls.
@@ -52,10 +55,10 @@ are expected to reject the now-patched card; do not bypass their pinned hashes.
   simulation is not evidence of every physical failure mode.
 - T4's half-hour acceptance run used scripted keys, with game-over periods and
   68 restarts. It is not a human gameplay or uninterrupted-running-game claim.
-- RTEMS, interrupts/timer ownership, independent host transport, TCP/IP and
-  host-routed Internet access are not implemented. See the
-  [RTEMS plan](RTEMS-HOST-NETWORK-PLAN.md); a returning firmware callback alone
-  is not a resident RTEMS execution environment.
+- RTEMS tasks and host-routed TCP/IP now work in the [cooperative profile](rtems/README.md).
+  Autonomous timer/interrupt ownership and independent host transport remain
+  unimplemented. The [original takeover plan](RTEMS-HOST-NETWORK-PLAN.md) describes
+  those additional gates; a working cooperative session does not satisfy them.
 
 ## Preservation and current host observation
 
@@ -79,3 +82,15 @@ and independent validation are now preserved: 2,224 native-matching frames,
 111.387 seconds, successful RAM restoration and unload. The final host snapshot
 again showed no DAC960 module or bound controller driver, on the same boot.
 This session is additional to the five scripted T4 acceptance runs.
+
+
+The subsequent [RTEMS implementation](rtems/README.md) completed a separate
+half-hour TCP test: 29,352 callbacks, 4,430 exchanges and 18,896,608 exact echoed
+bytes. Independent checks covered 918 saved RAM audits and 45,267 IP packets.
+Task-stack guards and full close restoration passed. Final rebuild tests also
+covered explicit fatal return, SIGTERM and established-session SIGKILL cleanup.
+The original firmware's vectors/timers and flash remain unchanged by this work.
+
+A final Tetris SSH regression after RTEMS matched all 204 frames against native
+C and restored terminal settings/RAM before unloading. The RTEMS foreground
+service also passed twelve sequential TCP connections and UDP.

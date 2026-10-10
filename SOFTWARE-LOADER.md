@@ -1,5 +1,8 @@
 # Runtime software loader — hardware validated 2026-10-10
 
+**RTEMS extension (2026-10-11):** [cooperative RTEMS + lwIP](rtems/README.md) uses a separate RIO1 transport and a larger, explicitly bounded private workspace inside the established staging allocation. The original scalar/BIO1/Tetris layouts remain unchanged. See the RTEMS guide for the correct module, memory map and host-routing commands.
+
+
 **T4 complete (2026-10-10): [play Tetris over SSH](TETRIS-TERMINAL.md).** The terminal client passed a 30-minute real-SSH test: 35,846 native-matching frames, 68 restarts, 19.91 Hz. Quit, Ctrl-C, connection loss/reconnect and resize cleanup passed. Use `ssh -t mit@192.168.2.75 /home/mit/i960-tetris-t4/play.sh`. Full RAM restored, module unloaded; no reboot or flash.
 
 
