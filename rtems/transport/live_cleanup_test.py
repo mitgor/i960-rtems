@@ -19,16 +19,18 @@ def clean_host():
  assert not Path('/sys/module/dac960rtems').exists()
  assert not Path('/sys/class/net/i960rt0').exists()
  assert 'i960rt0' not in subprocess.check_output(['iptables-save'],text=True)
+ assert 'i960rt0' not in subprocess.check_output(['ip6tables-save'],text=True)
  assert not Path('/sys/bus/pci/devices/0000:37:09.1/driver').exists()
 
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--ipv6',action='store_true');a=p.parse_args()
  assert os.geteuid()==0;a.output.mkdir(exist_ok=False)
  forward=Path('/proc/sys/net/ipv4/ip_forward').read_text();report={}
+ v6={str(p):p.read_text() for p in Path('/proc/sys/net/ipv6/conf').glob('*/*') if p.name in ('forwarding','accept_ra')}
  for name,sig in [('sigterm',signal.SIGTERM),('sigkill',signal.SIGKILL)]:
   out=a.output/name
   with (a.output/(name+'.log')).open('w') as log:
-   proc=subprocess.Popen([sys.executable,str(HERE/'relay.py'),'--payload',str(a.payload),'--module',str(a.module),'--output',str(out),'--duration','120','--internet'],stdout=log,stderr=subprocess.STDOUT)
+   proc=subprocess.Popen([sys.executable,str(HERE/'relay.py'),'--payload',str(a.payload),'--module',str(a.module),'--output',str(out),'--duration','120','--internet6' if a.ipv6 else '--internet'],stdout=log,stderr=subprocess.STDOUT)
    try:
     wait_for(lambda:(out/'local-network.json').exists() or proc.poll() is not None,30)
     assert proc.poll() is None,'relay failed before signal';time.sleep(1)
@@ -44,6 +46,7 @@ def main():
    assert code!=0;verify_close(out/'close')
    assert json.loads((out/'cleanup.json').read_text())['errors']==[]
   clean_host();assert Path('/proc/sys/net/ipv4/ip_forward').read_text()==forward
+  assert all(Path(p).read_text()==value for p,value in v6.items())
   report[name]=dict(exit_code=code,restored=True,unloaded=True,network_restored=True)
   print(name,'passed',flush=True)
  board=Board(a.payload,a.module,a.output/'invalid-operation')

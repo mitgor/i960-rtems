@@ -1,0 +1,14 @@
+{
+  "valid": true,
+  "mode": "network",
+  "steps": 3118,
+  "milliseconds_supplied": 192830,
+  "ram_audits": 98,
+  "stack_used_lower_bounds": [
+    28,
+    1298,
+    256
+  ],
+  "restored": true,
+  "unloaded": true
+}

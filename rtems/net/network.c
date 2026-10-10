@@ -1,7 +1,8 @@
 #include <string.h>
 #include "lwip/init.h"
 #include "lwip/netif.h"
-#include "lwip/ip4.h"
+#include "lwip/ip.h"
+#include "lwip/ip6.h"
 #include "lwip/udp.h"
 #include "lwip/tcp.h"
 #include "lwip/dns.h"
@@ -19,11 +20,13 @@ static char fetch_name[128];
 static struct tcp_pcb *fetch_pcb;
 unsigned int card_rand(void){random_state^=random_state<<13;random_state^=random_state>>17;random_state^=random_state<<5;return random_state;}
 u32_t sys_now(void){return now_ms;}
-static err_t output(struct netif*n,struct pbuf*p,const ip4_addr_t*addr){
+static err_t enqueue(struct pbuf*p){
  if(p->tot_len>1536||queued==8){drops++;return ERR_MEM;}
  lengths[tail]=p->tot_len;pbuf_copy_partial(p,frames[tail],p->tot_len,0);tail=(tail+1)%8;queued++;tx_count++;return ERR_OK;
 }
-static err_t netinit(struct netif*n){n->name[0]='i';n->name[1]='9';n->mtu=1500;n->output=output;n->flags=NETIF_FLAG_LINK_UP;return ERR_OK;}
+static err_t output(struct netif*n,struct pbuf*p,const ip4_addr_t*addr){return enqueue(p);}
+static err_t output6(struct netif*n,struct pbuf*p,const ip6_addr_t*addr){return enqueue(p);}
+static err_t netinit(struct netif*n){n->name[0]='i';n->name[1]='9';n->mtu=1500;n->output=output;n->output_ip6=output6;n->flags=NETIF_FLAG_LINK_UP;return ERR_OK;}
 static void udp_recv_cb(void*a,struct udp_pcb*pcb,struct pbuf*p,const ip_addr_t*addr,u16_t port){if(p){udp_sendto(pcb,p,addr,port);pbuf_free(p);}}
 static err_t echo_recv(void*a,struct tcp_pcb*pcb,struct pbuf*p,err_t e){
  static unsigned char bytes[TCP_WND];err_t result;
@@ -55,24 +58,27 @@ static err_t connected(void*a,struct tcp_pcb*pcb,err_t e){
 }
 static void resolved(const char*name,const ip_addr_t*ip,void*a){
  err_t e;if(!ip){fetch_state=0x80000100;return;}
- fetch_pcb=tcp_new();if(!fetch_pcb){fetch_state=0x80000200;return;}
+ fetch_pcb=tcp_new_ip_type(IP_GET_TYPE(ip));if(!fetch_pcb){fetch_state=0x80000200;return;}
  tcp_err(fetch_pcb,fetch_error);fetch_state=2;e=tcp_connect(fetch_pcb,ip,fetch_port,connected);
  if(e!=ERR_OK){tcp_abort(fetch_pcb);fetch_pcb=0;fetch_state=0x82000000|(unsigned char)(-e);}
 }
-void network_fetch(const char*name,unsigned int port){
+void network_fetch(const char*name,unsigned int port,unsigned int ipv6){
  ip_addr_t ip;err_t e;unsigned int n=strlen(name);
  if(fetch_pcb||fetch_state==1||n==0||n>=sizeof(fetch_name))return;
  memcpy(fetch_name,name,n+1);fetch_port=port;fetch_length=0;fetch_hash=2166136261u;fetch_state=1;
- e=dns_gethostbyname(fetch_name,&ip,resolved,0);
+ e=dns_gethostbyname_addrtype(fetch_name,&ip,resolved,0,ipv6?LWIP_DNS_ADDRTYPE_IPV6:LWIP_DNS_ADDRTYPE_IPV4);
  if(e==ERR_OK)resolved(fetch_name,&ip,0);else if(e!=ERR_INPROGRESS)fetch_state=0x83000000|(unsigned char)(-e);
 }
 void network_init(void){
- ip4_addr_t ip,mask,gw;ip_addr_t dns;struct udp_pcb*u;struct tcp_pcb*t;
+ ip4_addr_t ip,mask,gw;ip6_addr_t ip6;ip_addr_t dns;struct udp_pcb*u;struct tcp_pcb*t;
  lwip_init();IP4_ADDR(&ip,10,196,0,2);IP4_ADDR(&mask,255,255,255,252);IP4_ADDR(&gw,10,196,0,1);
- netif_add(&cardif,&ip,&mask,&gw,0,netinit,ip4_input);netif_set_default(&cardif);netif_set_up(&cardif);netif_set_link_up(&cardif);
+ netif_add(&cardif,&ip,&mask,&gw,0,netinit,ip_input);netif_set_default(&cardif);netif_set_up(&cardif);netif_set_link_up(&cardif);
+ /* Static addresses on a point-to-point IP link; no ND/MAC resolution. */
+ ip6addr_aton("fe80::960:2",&ip6);netif_ip6_addr_set(&cardif,0,&ip6);netif_ip6_addr_set_state(&cardif,0,IP6_ADDR_PREFERRED);
+ ip6addr_aton("fd96:196:960::2",&ip6);netif_ip6_addr_set(&cardif,1,&ip6);netif_ip6_addr_set_state(&cardif,1,IP6_ADDR_PREFERRED);
  IP_ADDR4(&dns,192,168,2,3);dns_setserver(0,&dns);
- u=udp_new();if(!u)bounded_fatal(0x601);if(udp_bind(u,IP_ADDR_ANY,9601)!=ERR_OK)bounded_fatal(0x602);udp_recv(u,udp_recv_cb,0);
- t=tcp_new();if(!t)bounded_fatal(0x603);if(tcp_bind(t,IP_ADDR_ANY,9600)!=ERR_OK)bounded_fatal(0x604);t=tcp_listen(t);if(!t)bounded_fatal(0x605);tcp_accept(t,accepted);
+ u=udp_new_ip_type(IPADDR_TYPE_ANY);if(!u)bounded_fatal(0x601);if(udp_bind(u,IP_ANY_TYPE,9601)!=ERR_OK)bounded_fatal(0x602);udp_recv(u,udp_recv_cb,0);
+ t=tcp_new_ip_type(IPADDR_TYPE_ANY);if(!t)bounded_fatal(0x603);if(tcp_bind(t,IP_ANY_TYPE,9600)!=ERR_OK)bounded_fatal(0x604);t=tcp_listen(t);if(!t)bounded_fatal(0x605);tcp_accept(t,accepted);
 }
 void network_step(unsigned int ms,const unsigned char*packet,unsigned int length){
  now_ms+=ms;

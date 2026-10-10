@@ -26,3 +26,14 @@ does not touch hardware. `transport/relay.py` is an explicit live test which may
 also change routing when `--internet` is provided; it saves a cleanup journal.
 Use fresh output directories and retain exact target/module/source hashes.
 Artifact source snapshots are historical evidence and must not be modernized.
+
+## IPv6 milestone (2026-10-11)
+
+The current net target is dual-stack. See [usage](README.md#ipv6-usage-and-scope)
+and [evidence](../artifacts/rtems-ipv6-20261011/README.md). Installed launcher:
+`/home/mit/i960-rtems-ipv6-20261011/serve.sh --ipv6`; `--internet6` enables NAT66
+and IPv4 DNS routing. Raw IP input is operation 1; operation 5 selects AAAA/IPv6
+HTTP, while operation 2 remains IPv4. Static ULA, MTU 1500, no fragmentation,
+SLAAC or autonomous polling. Keep shared `lwip_patches.py` DNS packing and
+mandatory IPv6 UDP checksum adaptation in native and target builds. Preserve
+IPv6 forwarding/accept_ra journal rollback and verify both IP families.

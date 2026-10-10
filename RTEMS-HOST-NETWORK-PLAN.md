@@ -8,7 +8,7 @@ cooperative RTEMS, autonomous execution and all gaps in
 The October 10 proposal assumed exclusive firmware takeover before RTEMS could
 run. The implementation subsequently established a cooperative alternative:
 RTEMS 4.6.6 tasks and lwIP 2.1.3 execute in bounded callbacks, retain private state
-and exchange complete IPv4 packets through Linux TUN/NAT. Card-side DNS and HTTP
+and exchange complete IPv4 and IPv6 packets through Linux TUN/NAT. Card-side DNS and HTTP
 and a half-hour TCP test passed. See [implementation](rtems/README.md) and
 [hardware evidence](artifacts/rtems-20261011/README.md).
 
@@ -28,3 +28,7 @@ Do not reselect the network stack or treat RTEMS as unimplemented.
 
 The original detailed proposal remains in Git history at `4eb6133` and earlier;
 its future-tense instructions are superseded by the integrated roadmap.
+
+IPv6 is now live-tested: [implementation](rtems/README.md#ipv6-usage-and-scope),
+[artifacts](artifacts/rtems-ipv6-20261011/README.md). This fits the current RIO1
+reservation and does not depend on M1 or autonomous execution.

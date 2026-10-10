@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independently verify IPv4/ICMP/UDP/TCP checksums and reassemble captured streams."""
+"""Independently verify IPv4/IPv6/ICMP/UDP/TCP checksums and reassemble captured streams."""
 import argparse,collections,hashlib,json,socket,struct
 from pathlib import Path
 
@@ -16,17 +16,28 @@ def validate(path):
  while offset<len(b):
   sec,usec,n,original=struct.unpack_from('<4I',b,offset);offset+=16;p=b[offset:offset+n];offset+=n
   assert len(p)==n==original and n>=20
-  if p[0]>>4==6:
+  version=p[0]>>4
+  if version==6:
    assert len(p)>=40 and struct.unpack_from('!H',p,4)[0]+40==len(p)
-   counts['host_ipv6_ignored']+=1;continue
-  assert p[0]>>4==4
-  ihl=(p[0]&15)*4;length=struct.unpack_from('!H',p,2)[0];assert length==len(p) and checksum(p[:ihl])==0
-  fragment=struct.unpack_from('!H',p,6)[0];assert fragment&0x3fff==0
-  src=socket.inet_ntoa(p[12:16]);dst=socket.inet_ntoa(p[16:20]);proto=p[9];data=p[ihl:];counts[str(proto)]+=1
-  if proto==1:assert checksum(data)==0
-  if proto in (6,17):
+   src=socket.inet_ntop(socket.AF_INET6,p[8:24]);dst=socket.inet_ntop(socket.AF_INET6,p[24:40]);proto=p[6];ihl=40
+   # Host MLD traffic may include the IPv6 hop-by-hop Router Alert option.
+   while proto in (0,43,60):
+    assert ihl+2<=len(p);next_proto=p[ihl];extension=(p[ihl+1]+1)*8;assert ihl+extension<=len(p);ihl+=extension;proto=next_proto
+   assert proto!=44,'fragmented captures require a reassembly validator'
+   data=p[ihl:];pseudo=p[8:40]+struct.pack('!I3xB',len(data),proto);counts['ipv6_'+str(proto)]+=1
+   if proto==58:assert checksum(pseudo+data)==0
+  else:
+   assert version==4
+   ihl=(p[0]&15)*4;assert 20<=ihl<=len(p)
+   length=struct.unpack_from('!H',p,2)[0];assert length==len(p) and checksum(p[:ihl])==0
+   fragment=struct.unpack_from('!H',p,6)[0];assert fragment&0x3fff==0
+   src=socket.inet_ntoa(p[12:16]);dst=socket.inet_ntoa(p[16:20]);proto=p[9];data=p[ihl:];counts[str(proto)]+=1
    pseudo=p[12:20]+struct.pack('!BBH',0,proto,len(data))
-   if proto==6 or data[6:8]!=b'\0\0':assert checksum(pseudo+data)==0,(src,dst,proto)
+   if proto==1:assert checksum(data)==0
+  if proto in (6,17):
+   assert len(data)>=(20 if proto==6 else 8)
+   if proto==17 and version==6:assert data[6:8]!=b'\0\0','IPv6 UDP checksum required'
+   if proto==6 or version==6 or data[6:8]!=b'\0\0':assert checksum(pseudo+data)==0,(src,dst,proto)
    sport,dport=struct.unpack_from('!HH',data)
    if proto==17:
     assert struct.unpack_from('!H',data,4)[0]==len(data)

@@ -183,7 +183,10 @@ console responsiveness and complete session cleanup. Record code/RAM growth
 against M1/M2 budgets. TLS remains a later milestone requiring a suitable
 library, real entropy, time/certificate policy and memory/performance evidence;
 HTTP success and the deterministic current PRNG do not satisfy those needs.
-IPv6, IP fragmentation/reassembly and larger HTTP response storage are optional
+IPv6 is now implemented and live-tested in the existing RIO1 allocation; see
+[IPv6 evidence](artifacts/rtems-ipv6-20261011/README.md). Static dual-stack
+addressing, AAAA lookup and NAT66 Internet HTTP work; DNS transport is IPv4.
+IP fragmentation/reassembly and larger HTTP response storage are optional
 application-driven extensions, each requiring explicit memory/MTU bounds and
 negative/interop tests; they are not prerequisites for M1 or the current IPv4
 service. Keep them marked unsupported until such tests pass.
@@ -265,7 +268,7 @@ prove recovery of this one. No new flash change is required for M1/R1/M2/R2.
 | G08 | Physical command failures and hot unbind untested | Extend native fault simulation first; design limited live cases with an exit/reset route and pinned DMA ownership | Successful SIGKILL cleanup is not proof of arbitrary DMA/command failure safety |
 | G09 | Scripted Tetris evidence is not human play or production soak | Optional interactive feedback and broader endurance workload, keeping labels accurate | Not a blocker for loader or RTEMS development |
 | G10 | Autonomous transport, interrupts and timers absent | A1–A3; historical ISR/BSP audit and measured clocks | Separate from already-working cooperative RTEMS/TCP/IP |
-| G11 | Network/libc feature gaps and hardcoded configuration | R1 configuration/diagnostics; R2 sys_arch/APIs; later TLS/entropy if needed | Raw IPv4/HTTP works; sockets/TLS/IPv6/fragmentation are not implied |
+| G11 | Network/libc feature gaps and hardcoded configuration | R1 configuration/diagnostics; R2 sys_arch/APIs; later TLS/entropy if needed | Raw IPv4/IPv6 HTTP works; sockets/TLS/fragmentation and IPv6-only DNS remain gaps |
 | G12 | General loader remains 64 KiB / larger memory ownership unknown | M1 supported larger profile; M2 optional rebalance; M3 new reservation | Larger RIO1 profile proven; arbitrary multi-megabyte loading unproved |
 
 ## Evidence and completion rules

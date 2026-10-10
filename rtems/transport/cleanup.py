@@ -12,6 +12,8 @@ def main():
  p=argparse.ArgumentParser();p.add_argument('output',type=Path);a=p.parse_args()
  lock=open('/run/lock/i960-loadrun.lock','w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
  if Path('/sys/class/net',IFACE).exists():raise SystemExit('TUN is still owned; stop the client normally before cleanup')
+ from ipv6_gateway import cleanup as cleanup6
+ cleanup6(a.output)
  # Exact commands are restricted to this project's routing rule shapes.
  j=json.loads((a.output/'gateway-journal.json').read_text());allowed=[]
  for cmd in j['undo']:

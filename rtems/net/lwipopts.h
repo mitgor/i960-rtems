@@ -5,7 +5,14 @@
 #define LWIP_SOCKET 0
 #define LWIP_NETCONN 0
 #define LWIP_IPV4 1
-#define LWIP_IPV6 0
+#define LWIP_IPV6 1
+/* Static point-to-point TUN: no Ethernet discovery/autoconfiguration. */
+#define LWIP_IPV6_AUTOCONFIG 0
+#define LWIP_IPV6_SEND_ROUTER_SOLICIT 0
+#define LWIP_IPV6_DUP_DETECT_ATTEMPTS 0
+#define LWIP_IPV6_MLD 0
+#define LWIP_IPV6_FRAG 0
+#define LWIP_IPV6_REASS 0
 #define LWIP_ARP 0
 #define LWIP_ETHERNET 0
 #define LWIP_ICMP 1

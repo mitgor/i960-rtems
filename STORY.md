@@ -654,6 +654,34 @@ The sources, exact binaries, failed first attempts and packet captures went
 into the same box as the ROM. An operating system is a better trophy when
 someone else can build it, run it, and check why you believe it worked.
 
+## A longer address, the same old processor
+
+The next question was whether this arrangement could speak IPv6. It could.
+The stack already knew the protocol; the port had been built with that half
+switched off. Enabling it meant giving the card a second address family,
+letting the virtual interface carry both, and teaching the host gateway to
+put everything back afterward.
+
+There was one small archaeological trap inside the network stack itself. The
+pinned UDP receive code accepted a zero checksum, which was acceptable for
+IPv4 but wrong for this IPv6 profile. A native test caught it. The target and
+native builds now share the same narrow correction, alongside the earlier DNS
+structure-packing fix.
+
+Then the card answered IPv6 pings, echoed UDP and TCP, asked for an AAAA record,
+and fetched an HTTP page over IPv6. The DNS question still went to the existing
+IPv4 resolver; the TCP connection to the web server was IPv6 all the way to
+the host's NAT66 gateway. The packet capture and the bytes returned from card
+memory agreed. During a three-minute transfer it echoed 1,876,865 bytes without
+a mismatch, then returned its borrowed RAM. Deliberate packet loss recovered;
+killing the client and replaying the journal restored the host's networking.
+
+All of this fit inside the same reservation. No new flash write, no reboot,
+no newly claimed megabytes. It remained a cooperative operating system that
+needed the host to keep asking, now with a considerably longer address.
+The [binaries and captures](artifacts/rtems-ipv6-20261011/README.md) are in the
+excavation box too.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

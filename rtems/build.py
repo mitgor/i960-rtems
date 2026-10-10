@@ -2,6 +2,7 @@
 """Build RTEMS 4.6.6 Classic core for a bounded DAC960 callback experiment."""
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
+from lwip_patches import apply as patch_lwip
 p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
 here=Path(__file__).resolve().parent;work=a.work.resolve();src=work/'rtems-4.6.6';out=work/a.profile;out.mkdir(exist_ok=True,parents=True)
 for row in json.loads((here/'sources.json').read_text())['sources']:
@@ -36,8 +37,7 @@ flags=['-DI960_TARGET','-mrp','-Os','-fno-builtin','-ffreestanding','-D__rtems__
 if a.profile=='net':
  lwip=work/'lwip-STABLE-2_1_3_RELEASE'
  if not lwip.exists():subprocess.run(['tar','-xzf',str(work/'sources/lwip-2.1.3.tar.gz'),'-C',str(work)],check=True)
- # i960 ABI rounds an unpacked 10-byte DNS answer to 16 bytes.
- f=lwip/'src/core/dns.c';s=f.read_text();s=s.replace('struct dns_answer {','struct __attribute__((packed)) dns_answer {');f.write_text(s)
+ patch_lwip(lwip)
  flags += ['-I'+str(here/'net'),'-I'+str(lwip/'src/include')]
 sources=[]
 for folder in ['score/src','rtems/src','sapi/src']:
@@ -51,7 +51,7 @@ for f in sources:
 subprocess.run([a.cross+'ar','rcs',str(out/'librtems-bounded.a'),*map(str,objs)],check=True)
 if a.profile=='net':
  netobjs=[]
- for f in sorted((lwip/'src/core').glob('*.c'))+sorted((lwip/'src/core/ipv4').glob('*.c')):
+ for f in sorted((lwip/'src/core').glob('*.c'))+sorted((lwip/'src/core/ipv4').glob('*.c'))+sorted((lwip/'src/core/ipv6').glob('*.c')):
   obj=out/('lwip_'+f.stem+'.o');netobjs.append(obj)
   subprocess.run([a.cross+'gcc',*flags,'-c',str(f),'-o',str(obj)],check=True)
  subprocess.run([a.cross+'ar','rcs',str(out/'liblwip.a'),*map(str,netobjs)],check=True)

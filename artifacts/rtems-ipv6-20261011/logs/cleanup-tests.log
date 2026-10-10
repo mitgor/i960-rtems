@@ -1,0 +1,4 @@
+sigterm passed
+Project firewall rules removed; verified RAM restoration; module unloaded if present.
+sigkill passed
+{"sigterm": {"exit_code": -2, "restored": true, "unloaded": true, "network_restored": true}, "sigkill": {"exit_code": -9, "restored": true, "unloaded": true, "network_restored": true}, "invalid_operation": {"errno": 61, "fatal": "F0050002", "rejected": true}, "invalid_operation_close": {"steps": 1, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 0.0, "max": 0.0, "mean": 0.0}}}

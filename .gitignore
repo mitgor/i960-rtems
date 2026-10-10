@@ -44,3 +44,6 @@ loader/postinit/test_profile
 
 # Exact RTEMS archaeology builds.
 !artifacts/rtems-20261011/**/*.elf
+
+# Preserved, tested dual-stack RTEMS target.
+!artifacts/rtems-ipv6-20261011/**/*.elf

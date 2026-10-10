@@ -7,6 +7,10 @@ HTTP through the Linux host. A 30-minute run passed 29,352 callbacks and echoed
 checks also passed. Exact images, source packages, captures and results
 are under [artifacts/rtems-20261011](../artifacts/rtems-20261011/README.md).
 
+IPv4 and IPv6 now work together on the card. Static IPv6 ping, UDP/TCP echo,
+AAAA lookup and IPv6 Internet HTTP passed live tests. See the
+[IPv6 evidence and limitations](../artifacts/rtems-ipv6-20261011/README.md).
+
 ## Execution model
 
 This is a **cooperative, RAM-only RTEMS port** using the existing programmed
@@ -61,7 +65,7 @@ The compiler's `i960-coff-` command names drive ELF assembler/linker tools.
 
 ## Run on the existing PC
 
-The installed working directory is `/home/mit/i960-rtems-final-20261011`.
+The installed working directory is `/home/mit/i960-rtems-ipv6-20261011`.
 Use a **new** output directory for each invocation. The card must be idle and
 unbound; the runner shares Tetris's exclusive `/run/lock/i960-loadrun.lock`.
 It refuses an already-owned card. Finish Tetris before starting RTEMS.
@@ -69,16 +73,17 @@ It refuses an already-owned card. Finish Tetris before starting RTEMS.
 To keep RTEMS services running in the foreground, use the installed launcher:
 
 ```sh
-ssh -t mit@192.168.2.75 /home/mit/i960-rtems-final-20261011/serve.sh
+ssh -t mit@192.168.2.75 /home/mit/i960-rtems-ipv6-20261011/serve.sh
 ```
 
 It creates a timestamped capture directory. Ctrl-C restores RAM and releases
-the module/interface. Add `--internet` only when host routing/NAT is wanted.
+the module/interface. Add `--ipv6` for dual-stack local services, `--internet`
+for IPv4 routing, or `--internet6` for IPv6 Internet routing and tests.
 
 For a finite local host/card ICMP, UDP and TCP test:
 
 ```sh
-ssh -t mit@192.168.2.75 'sudo -n python3 /home/mit/i960-rtems-final-20261011/project/rtems/transport/relay.py --payload /home/mit/i960-rtems-final-20261011/net/kernel.bin --module /home/mit/i960-rtems-final-20261011/module/dac960rtems.ko --output /home/mit/i960-rtems-final-20261011/my-local-test'
+ssh -t mit@192.168.2.75 'sudo -n python3 /home/mit/i960-rtems-ipv6-20261011/project/rtems/transport/relay.py --payload /home/mit/i960-rtems-ipv6-20261011/net/kernel.bin --module /home/mit/i960-rtems-ipv6-20261011/module/dac960rtems.ko --output /home/mit/i960-rtems-ipv6-20261011/my-local-test'
 ```
 
 Add `--internet` to resolve and fetch `example.com` over HTTP, `--faults` to
@@ -97,7 +102,7 @@ UDP echo port 9601. The relay checks for overlapping host routes and an existing
 interface/rules before use. To use another network, change the target and host
 configuration together and rebuild. It does not bridge the card onto the LAN.
 
-Internet mode discovers the single default uplink, temporarily enables IPv4
+IPv4 Internet mode discovers the single default uplink, temporarily enables IPv4
 forwarding and adds address/interface-scoped NAT and forwarding rules. It
 allows replies toward the card and drops unsolicited forwarded input. Cleanup
 removes only its exact rules and restores the saved forwarding value. Loading
@@ -105,12 +110,43 @@ iptables may leave empty default-policy tables/chains initialized; no project
 rules remain after normal cleanup. Snapshots record the actual before/after
 configuration.
 
+### IPv6 usage and scope
+
+```sh
+ssh -t mit@192.168.2.75 "/home/mit/i960-rtems-ipv6-20261011/serve.sh --ipv6"
+# From another terminal on that PC:
+ping -6 fd96:196:960::2
+nc -6 fd96:196:960::2 9600
+```
+
+Host/card IPv6 addresses are `fd96:196:960::1/64` and `fd96:196:960::2/64`.
+The card also configures `fe80::960:2`. The TUN link carries raw IP packets;
+Ethernet neighbor resolution is unnecessary. Addresses are static: SLAAC,
+router solicitation, DAD and MLD are disabled. IPv6 fragmentation/reassembly
+is disabled; MTU is 1500 and TCP MSS is 1200. This is a tested constrained
+dual-stack profile, not a claim of full IPv6 conformance.
+
+`--internet6` tests AAAA resolution and card-originated HTTP over IPv6. It
+requires a working IPv6 default uplink and ip6tables NAT support on Linux.
+The host temporarily enables forwarding and adds scoped NAT66 and reply-only
+forwarding rules for the card. **It also enables the existing IPv4 gateway,
+because DNS server `192.168.2.3` is still reached over IPv4.** This does not
+provide an IPv6-only DNS deployment. The TCP connection and HTTP handling run
+on the card; the host routes packets rather than proxying application sockets.
+
+The IPv6 journal records rule intent before installation and saves forwarding
+and uplink `accept_ra` settings before changes. Uplink `accept_ra=2` preserves
+router advertisement reception while forwarding. Cleanup restores those
+settings and removes only the recorded rules. `cleanup.py` replays both IP
+families after SIGKILL. `--faults` drops one echo data packet per enabled IP
+family; `--duration` stresses IPv6 when either IPv6 flag is active.
+
 SIGTERM/SIGHUP and normal exceptions run cleanup. SIGKILL cannot run Python
 cleanup: the final device-file release restores RAM when the kernel can prove
 it safe, but module unload and routing cleanup require the saved journal:
 
 ```sh
-sudo python3 /home/mit/i960-rtems-final-20261011/project/rtems/transport/cleanup.py /path/to/previous-output
+sudo python3 /home/mit/i960-rtems-ipv6-20261011/project/rtems/transport/cleanup.py /path/to/previous-output
 ```
 
 The cleanup tool refuses an interface still held by a live client and refuses
@@ -143,8 +179,9 @@ retains module/DMA ownership for inspection rather than forcing an unload.
 RIO1 retains the BIO1 header layout at offset `0x70000`, with magic `0x314f4952`.
 The supplied clients use the full 8 KiB output capacity. A request body starts
 with four little-endian words: `RTM1` magic, operation, elapsed milliseconds
-(0–1000), and body length. Operations are poll (0), IPv4 input (1), DNS/HTTP
-fetch (2), status/poll (3), and fetch-buffer read (4). Fetch takes a little-endian
+(0–1000), and body length. Operations are poll (0), IPv4/IPv6 input (1), IPv4 DNS/HTTP
+fetch (2), status/poll (3), fetch-buffer read (4), and IPv6 DNS/HTTP fetch (5).
+The fetch operations explicitly select A or AAAA resolution. Fetch takes a little-endian
 16-bit port followed by a hostname; buffer read takes a 32-bit offset.
 
 The network response has twelve words: magic, callback count, worker count,
@@ -175,6 +212,9 @@ code is trusted and shares one address space.
 - Reconcile Newlib's signed integer typedefs with RTEMS's `stdint.h` adapter.
 - Pack lwIP's ten-byte DNS answer structure explicitly: i960's aggregate ABI
   otherwise rounds it to sixteen bytes and trips lwIP's sanity assertion.
+- Apply the shared `lwip_patches.py` adaptations in target and native builds.
+  Besides DNS packing, reject zero-checksum IPv6 UDP before the pinned lwIP
+  2.1.3 receive path can accept it; IPv4 retains its optional checksum behavior.
 - Use simple binary semaphores for signals. The historical mutex-style binary
   semaphore permits recursive ownership, which is unsuitable for this exchange.
 
@@ -228,6 +268,7 @@ The complete archived evidence can be checked with:
 
 ```sh
 python3 rtems/verify_artifacts.py
+python3 rtems/verify_ipv6_artifacts.py
 ```
 
 `transport/live_service_test.py` checks repeated TCP connections and UDP through

@@ -30,10 +30,10 @@ static void process(void){
  if(_CPU_ISR_Get_level()!=31)bounded_fatal(0x52000);
  if(!bio_request_valid(b)||n<16||bio_word(in)!=0x314d5452){bounded_fatal(0x50001);}
  op=bio_word(in+4);ms=bio_word(in+8);
- if(ms>1000||bio_word(in+12)!=n-16||op>4){bounded_fatal(0x50002);}
+ if(ms>1000||bio_word(in+12)!=n-16||op>5){bounded_fatal(0x50002);}
  carry+=ms;while(carry>=10){carry-=10;ticks++;CHECK(rtems_clock_tick());}
  CHECK(rtems_semaphore_release(request_sem));CHECK(rtems_semaphore_obtain(reply_sem,RTEMS_WAIT,WATCHDOG_NO_TIMEOUT));
- if(op==2){char name[128];unsigned int length=n-16,port;if(length<3||length>129)bounded_fatal(0x50003);port=in[16]|in[17]<<8;memcpy(name,in+18,length-2);name[length-2]=0;network_fetch(name,port);}
+ if(op==2||op==5){char name[128];unsigned int length=n-16,port;if(length<3||length>129)bounded_fatal(0x50003);port=in[16]|in[17]<<8;memcpy(name,in+18,length-2);name[length-2]=0;network_fetch(name,port,op==5);}
  network_step(ms,op==1?in+16:0,op==1?n-16:0);
  steps++;bio_put(out,0x314d5452);bio_put(out+4,steps);bio_put(out+8,worker_steps);bio_put(out+12,ticks);
  bio_put(out+16,network_report(out+20));
