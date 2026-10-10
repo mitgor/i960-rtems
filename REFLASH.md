@@ -37,11 +37,13 @@ register space):
 | `FEFFFF44`  | 5 | **PRCB pointer** — address of the Process Control Block |
 | `FEFFFF48`–`FEFFFF5C` | 6–11 | checksum / bus-confidence words |
 
-**Boot checksum (do not skip):** at startup the core reads **8 words** from the IBR and
-sums them together with the constant `0xFFFFFFFF`; it boots **only if the sum is 0**
-(mod 2³²). Equivalently, `word0 + … + word7 ≡ 1 (mod 2³²)`. One of those words is a free
-"checksum word" you solve for after setting the others. Get this wrong → the core asserts
-**FAIL#** and halts with a fail code of form `0xFEFFFFnn` (dead card to the host).
+**Boot checksum (do not skip):** the core reads the IBR's **8 words** at startup. The i960
+manual phrases the check as summing the 8 words with the constant `0xFFFFFFFF` and booting
+only if the result is 0 — i.e. `word0 + … + word7 ≡ 1`. **Measured reality differs:** on both
+the vendor images and this card's recovered dump, `word0 + … + word7 ≡ 0 (mod 2³²)` exactly
+(verified byte-for-byte by `host/mkimage.py`, which reproduces the stock checksum word).
+Follow the measurement — solve the free "checksum word" so the 8 words sum to **0**. Get this
+wrong → the core asserts **FAIL#** and halts with a fail code of form `0xFEFFFFnn` (dead card).
 
 **PRCB** — pointed to by IBR word 5; holds base addresses the core caches at init: fault
 table, control table, interrupt table, system procedure table, initial AC image, fault
@@ -56,6 +58,16 @@ So the IBR starts at offset `S - 0xD0` (e.g. for a 512 KB / `0x80000` flash: `0x
 The reset image lives at the very top of the chip; the rest of the chip is free for your
 code.
 
+**Confirmed on this card (from the recovered 512 KB dump — see
+[SNAPSHOT-RECOVERY.md](SNAPSHOT-RECOVERY.md)):** flash size `S = 0x80000`, base
+`0xFF000000 - 0x80000 = 0xFEF80000`. The IBR sits at offset `0x7FF30` → `0xFEFFFF30`, with
+firstIP `0xFEFFC400`, PRCB `0xFEFFD4D0`, and `sum8 = 0`. Crucially, firstIP/PRCB point into
+the **boot block** (vendor `FWTCBBLK`, at flash offset `0x7C000`), **not** into the main
+firmware payload (at `0x30000`). A custom image must therefore keep the boot block's IBR and
+startup intact (or relocate deliberately) and place new code in free space — redirecting a
+"firmware-payload IBR," as an earlier draft of `mkimage.py` assumed, is the wrong structure
+and will not boot.
+
 ## 2. Identify the flash chip(s)
 
 1. Power off, pull the card. Find the flash near the i960 — usually a **PLCC-32 NOR**
@@ -69,6 +81,13 @@ code.
 3. Read the **JEDEC ID** with your programmer to confirm part, size, and sector map.
 
 ## 3. Dump and archive the stock image (mandatory)
+
+> **We now have a validated in-system 512 KB image** of this card
+> (`artifacts/private-dumps/snapshot-fresh-20261010T125336Z/image-window-0.bin`; firmware,
+> boot block and BIOS all match independent references, IBR checksum valid). **But it was
+> read through the controller's command path — a staging copy — not off the chip.** So it is
+> a strong *reference* (diff your programmer read against it), not a certified un-brick
+> backup. The external-programmer read below is still mandatory before you write anything.
 
 - Best: an **external programmer** (TL866II Plus / XGecko) with a **PLCC clip**, or desolder
   the chip into a socket/adapter. Read it **twice**, confirm the two reads are identical,
