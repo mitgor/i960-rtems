@@ -1,0 +1,24 @@
+
+hello.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+00000200 <_start>:
+ 200:	00 30 f0 8c 	lda	224 <Li960R1>,g14
+ 204:	24 02 00 00 
+
+00000208 <start.lf>:
+ 208:	1e 16 80 5c 	mov	g14,g0
+ 20c:	00 1e f0 5c 	mov	0,g14
+ 210:	00 30 a0 8c 	lda	beef00ee <_end+0xbeeefebe>,g4
+ 214:	ee 00 ef be 
+ 218:	00 30 a0 92 	st	g4,131c <_end+0x10ec>
+ 21c:	1c 13 00 00 
+
+00000220 <L2>:
+ 220:	00 00 00 08 	b	220 <L2>
+
+00000224 <Li960R1>:
+ 224:	00 00 00 0a 	ret
+	...

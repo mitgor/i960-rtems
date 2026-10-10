@@ -1,0 +1,122 @@
+[
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/control/result.txt",
+    "size": 379,
+    "sha256": "05d0c30658dae64a0df82ad92bd72a5b0754e4b51c9b710c084ffd62966683b2",
+    "local_path": "artifacts/remote-audit-20261010/control/result.txt"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/dump/dac960dump.ko",
+    "size": 403608,
+    "sha256": "c960cd2573b90cf191e908a9ad8a773045ccbc8c10cdadce523b22fef50d914e",
+    "local_path": "artifacts/remote-audit-20261010/acquisition-module/dac960dump.ko"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/hello.bin",
+    "size": 48,
+    "sha256": "b1d7f93652c39ecb2b7cbedfb821c13ff54642d2a361a85ef7d7103396c2bf84",
+    "local_path": "artifacts/remote-audit-20261010/loader-build/hello.bin"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/hello.dis",
+    "size": 462,
+    "sha256": "007b96a4a1df07e1e38691f98392deb7e627bd2a63b4bdeece23378e324aa6a1",
+    "local_path": "artifacts/remote-audit-20261010/loader-build/hello.dis"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/hello.elf",
+    "size": 548,
+    "sha256": "98bc6d4e2dd1027ae9c492ff7affe1286c87931174f57030d04a7872ee254d5f",
+    "local_path": "artifacts/remote-audit-20261010/loader-build/hello.elf"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/hello.map",
+    "size": 1301,
+    "sha256": "cdff387a4103b3bca8a0ba731a2484911e51e8f8aa4f38faa17b5362c20280b0",
+    "local_path": "artifacts/remote-audit-20261010/loader-build/hello.map"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/loader.bin",
+    "size": 652,
+    "sha256": "1b8538c85a6e17b575b4f4ff1b147aa0cbe86ac0032fd2dca820b3f0acd89658",
+    "local_path": "artifacts/remote-audit-20261010/loader-build/loader.bin"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/loader.elf",
+    "size": 1556,
+    "sha256": "5f71823d957ab2eca757c63fb37548268af0dea4e472d47b8a2a859b210e3754",
+    "local_path": "artifacts/remote-audit-20261010/loader-build/loader.elf"
+  },
+  {
+    "path": "/home/mit/i960-analysis.7jVBmy/loader.map",
+    "size": 1535,
+    "sha256": "51c6bf3045e01ed1d19561171e1587fb843352f60e5c3e44ef2c57ce8aa5c66f",
+    "local_path": "artifacts/remote-audit-20261010/loader-build/loader.map"
+  },
+  {
+    "path": "/home/mit/biosA/b.asm",
+    "size": 689159,
+    "sha256": "fc36128f71eb0beb3f2db450945e1b4fd2af854302d6311ac9b555bf3b0b2357",
+    "local_path": "artifacts/remote-audit-20261010/bios/b.asm"
+  },
+  {
+    "path": "/home/mit/scratch/crib.py",
+    "size": 966,
+    "sha256": "704ce37523a7015aa6eda26dec046289108438f63f85c0299386fcc1b2311d9b",
+    "local_path": "artifacts/remote-audit-20261010/historical-scripts/crib.py"
+  },
+  {
+    "path": "/home/mit/scratch/derive.py",
+    "size": 1301,
+    "sha256": "94c5566ed5319c60804f566825cd2dd230be64e31c2994d75b21bfa07aee0197",
+    "local_path": "artifacts/remote-audit-20261010/historical-scripts/derive.py"
+  },
+  {
+    "path": "/home/mit/scratch/findmbx.py",
+    "size": 868,
+    "sha256": "2719c9c687011120e0db41b250f40c1c5a648b4ec0da7db585864a004f5a3395",
+    "local_path": "artifacts/remote-audit-20261010/historical-scripts/findmbx.py"
+  },
+  {
+    "path": "/home/mit/scratch/gf_decode.py",
+    "size": 200,
+    "sha256": "571f5bccfc011f627deee0a231e722da80b0c8b4b381efca426c58dfae841ff1",
+    "local_path": "artifacts/remote-audit-20261010/historical-scripts/gf_decode.py"
+  },
+  {
+    "path": "/home/mit/scratch/gf_probe.py",
+    "size": 667,
+    "sha256": "bcf01afb2ad12434e21b83cb7f01edc5729f7bcef2a728b28ed6d6f2d8aea77f",
+    "local_path": "artifacts/remote-audit-20261010/historical-scripts/gf_probe.py"
+  },
+  {
+    "path": "/home/mit/scratch/gf_probe2.py",
+    "size": 795,
+    "sha256": "fc1b8f2f47cbabd740620e7b97a3dc691828418c4df2c5c65bda31444a3a2637",
+    "local_path": "artifacts/remote-audit-20261010/historical-scripts/gf_probe2.py"
+  },
+  {
+    "path": "/home/mit/scratch/gfmake.py",
+    "size": 791,
+    "sha256": "629dfdc2a6e86539b424fe68cd1b0486f6171fbb799420c81420cc294955e9d3",
+    "local_path": "artifacts/remote-audit-20261010/historical-scripts/gfmake.py"
+  },
+  {
+    "path": "/home/mit/scratch/symparse.py",
+    "size": 823,
+    "sha256": "c00ee197112120974607b93290477ed72d703407c964daf785155eb0fedaec3d",
+    "local_path": "artifacts/remote-audit-20261010/historical-scripts/symparse.py"
+  },
+  {
+    "path": "/home/mit/i960/host/kmod/dac960probe.c",
+    "size": 4684,
+    "sha256": "ebc850b04b82d2dab280e7ce22d0fa44e7e2386eabc42a36f1dd4228c8b5e076",
+    "local_path": "artifacts/remote-audit-20261010/historical-sources/dac960probe.c"
+  },
+  {
+    "path": "/home/mit/i960/t/s.c",
+    "size": 166,
+    "sha256": "7acffca418029d3ade7e8e6e42ca2b04acdac0367dd92fa60d745bcfdffcebec",
+    "local_path": "artifacts/remote-audit-20261010/toolchain/smoke-test.c"
+  }
+]

@@ -1,0 +1,82 @@
+#Parameterfile fuer Mylex Controller  DAC960PG
+
+[BaseParameters]
+
+PARAVERSION=02
+COMPONENTTYPE=scsi-raid-controller
+UPDATEMODE=offline
+
+VENDOR_ID=mylex
+PRODUCT_ID=DAC960PG
+PRE_MSG=
+POST_MSG=
+RELNOTE_FILE_NAME=readme.txt
+
+[FW_Parameters]
+
+FW_VERS=4.07-0-39
+FW_VERS_FMT_1.1=%*s[^$0-$9]%u.%u-%u-%u
+FW_VERS_MIN_SUPP_1=0.00-0-00
+FW_VERS_SUPP_1=N/A
+
+[BIOS_Parameters]
+
+BIOS_VERS=4.10-41
+BIOS_VERS_FMT_1.1=%*s[^$0-$9]%u.%u-%u
+BIOS_VERS_MIN_SUPP_1=0.00-00
+BIOS_VERS_SUPP_1=N/A
+
+[File_Parameters]
+
+FILES=DAC960FL.EXE, 407t39b0.img, FWPJBBLK.IMG, Bgj41041.img
+
+[Variables]
+
+# Produkt-Id wie bei BaseParameters
+PROD_ID=DAC960PG
+FWPATH=ScsiCtr\DAC960PG\V40739
+TOOL=dac960fl
+BOOTBLOCK=fwpjbblk.img
+BIOS=Bgj41041.img
+FIRMWARE=407t39b0.img
+CTR_NUMBER=%CHOICE0
+CMD
+      
+
+
+[Choices]
+# controller-type
+
+#Die Controller-Nummer wird gebildet aus DAC960PG, DAC960PJ,  DAC960PRL,  DAC1164P, DAC960PD 
+
+
+[Settings]
+
+AUTOEXEC
+set path=c:\fwupdate
+cd fwupdate
+shell.exe
+ENDAUTOEXEC
+
+CONFIG
+FILES=50
+ENDCONFIG
+
+RUNTIME
+TIMEOUT=120
+ENDRUNTIME 
+
+
+COMMAND
+echo Move Files to workplace
+copyf $FWPATH
+check_config 
+echo Start Controller-Flash of $PROD_ID
+flag abort_ne 0
+$TOOL -c$CTR_NUMBER=$BOOTBLOCK,$BIOS,$FIRMWARE
+clearf
+ENDCOMMAND
+
+
+
+

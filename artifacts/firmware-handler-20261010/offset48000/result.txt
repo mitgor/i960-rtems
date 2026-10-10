@@ -1,0 +1,11 @@
+bdf=0000:37:09.1 attempt=1 length=512 offset=00048000 saved-irq=000000ff
+submit op=1c id=1 len=0 offset=00000000 dma=fff80000 pattern=a5 mailbox=0000011c,00000000,fff80000,00
+complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+submit op=20 id=2 len=512 offset=00048000 dma=fff80000 pattern=a5 mailbox=02000220,00048000,fff80000,00
+complete op=20 id=0002 status=0000 changed=510 guard-changed=0 head=a6 b2 6b f6 f5 88 66 8d 0d ea e8 0e dd 36 fb 8e
+submit op=20 id=3 len=512 offset=00048000 dma=fff80000 pattern=5a mailbox=02000320,00048000,fff80000,00
+complete op=20 id=0003 status=0000 changed=510 guard-changed=0 head=a6 b2 6b f6 f5 88 66 8d 0d ea e8 0e dd 36 fb 8e
+submit op=1c id=4 len=0 offset=00000000 dma=fff80000 pattern=5a mailbox=0000041c,00000000,fff80000,00
+complete op=1c id=0004 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+candidate read: repeated captures match; still requires image/coverage validation
+experiment-result=0 pending=0; exported files are captures, not a physical-flash backup

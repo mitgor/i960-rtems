@@ -1,0 +1,4 @@
+bdf=0000:37:09.1 attempt=0 length=512 offset=00000000 saved-irq=000000ff
+submit op=1c id=1 len=0 offset=00000000 dma=fffd0000 pattern=a5 mailbox=0000011c,00000000,fffd0000,00
+complete op=1c id=0001 status=0000 changed=128 guard-changed=0 head=15 01 02 03 04 07 1d 30 01 00 00 00 01 01 10 fc
+experiment-result=0 pending=0; exported files are captures, not a physical-flash backup

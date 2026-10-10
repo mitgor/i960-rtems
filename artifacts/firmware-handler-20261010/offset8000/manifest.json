@@ -1,0 +1,61 @@
+{
+  "bdf": "0000:37:09.1",
+  "offset": 32768,
+  "length": 512,
+  "transport_checks_passed": true,
+  "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+  "firmware_version_bytes_before": [
+    4,
+    7,
+    29,
+    48
+  ],
+  "firmware_version_bytes_after": [
+    4,
+    7,
+    29,
+    48
+  ],
+  "changed_from_a5": 511,
+  "changed_from_5a": 510,
+  "captures_equal": true,
+  "transactions": [
+    {
+      "opcode": 28,
+      "id": 1,
+      "status": 0,
+      "changed": 128,
+      "guard_changed": 0
+    },
+    {
+      "opcode": 32,
+      "id": 2,
+      "status": 0,
+      "changed": 511,
+      "guard_changed": 0
+    },
+    {
+      "opcode": 32,
+      "id": 3,
+      "status": 0,
+      "changed": 510,
+      "guard_changed": 0
+    },
+    {
+      "opcode": 28,
+      "id": 4,
+      "status": 0,
+      "changed": 128,
+      "guard_changed": 0
+    }
+  ],
+  "sha256": {
+    "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+    "read-a5.bin": "cd72301ce92c22cb16bb0e5b0b6a4fc6f511335245782e49c68a4f6caa597baa",
+    "read-5a.bin": "cd72301ce92c22cb16bb0e5b0b6a4fc6f511335245782e49c68a4f6caa597baa",
+    "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+  },
+  "physical_flash_backup_verified": false,
+  "command_direction_verified": true,
+  "source_is_physical_flash_verified": false
+}

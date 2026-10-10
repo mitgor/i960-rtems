@@ -1,0 +1,9 @@
+Firmware, Bootblock und BIOS flash for DAC960G/J
+
+1. Firmware -filename		<fgj40729.img>		Rev. 4.07-0-39
+2. Bootblock -filename		<fwpjbblk.img>	
+3. BIOS -filename			<bgj41041.img>		Rev. 4.10-41
+
+
+
+

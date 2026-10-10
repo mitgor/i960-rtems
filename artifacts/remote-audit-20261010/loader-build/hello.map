@@ -1,0 +1,35 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000000200                . = 0x200
+
+.text           0x0000000000000200       0x30
+ *(.text*)
+ .text          0x0000000000000200       0x30 hello.o
+                0x0000000000000200                _start
+                0x0000000000000208                start.lf
+
+.rodata
+ *(.rodata*)
+ *(.rdata*)
+
+.data           0x0000000000000230        0x0
+ *(.data*)
+ .data          0x0000000000000230        0x0 hello.o
+
+.bss            0x0000000000000230        0x0
+ *(.bss*)
+ .bss           0x0000000000000230        0x0 hello.o
+ *(COMMON)
+                0x0000000000000230                _end = .
+                0x0000000000000001                ASSERT ((SIZEOF (.data) == 0x0), payload .data requires startup initialization)
+                0x0000000000000001                ASSERT ((SIZEOF (.bss) == 0x0), payload .bss requires startup initialization)
+                0x0000000000000001                ASSERT ((_start == 0x200), payload entry must be 0x200)
+                0x0000000000000001                ASSERT ((_end <= 0x400), payload exceeds internal RAM)
+LOAD hello.o
+OUTPUT(hello.elf elf32-i960)

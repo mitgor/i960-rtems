@@ -1,0 +1,3771 @@
+
+bootblock.raw:     file format binary
+
+
+Disassembly of section .data:
+
+feffc000 <.data>:
+feffc000:	55 aa 02 e9 	.word	0xe902aa55
+feffc004:	3c 00 00 00 	.word	0x0000003c
+	...
+feffc018:	1c 00 00 00 	.word	0x0000001c
+feffc01c:	50 43 49 52 	.word	0x52494350
+feffc020:	69 10 11 00 	.word	0x00111069
+feffc024:	00 00 18 00 	.word	0x00180000
+feffc028:	00 00 04 01 	.word	0x01040000
+feffc02c:	02 00 00 00 	.word	0x00000002
+feffc030:	00 80 00 00 	.word	0x00008000
+feffc034:	be 1a 01 0e 	.word	0x0e011abe
+feffc038:	e8 c1 00 be 	.word	0xbe00c1e8
+feffc03c:	31 01 0e e8 	.word	0xe80e0131
+feffc040:	ba 00 2e 0f 	.word	0x0f2e00ba
+feffc044:	01 06 8e 02 	.word	0x028e0601
+feffc048:	fb 0e 1f 2e 	.word	0x2e1f0efb
+feffc04c:	88 26 8c 02 	.word	0x028c2688
+feffc050:	2e a2 8d 02 	.word	0x028da22e
+feffc054:	be 1a 01 0e 	.word	0x0e011abe
+feffc058:	e8 a1 00 be 	.word	0xbe00a1e8
+feffc05c:	31 01 0e e8 	.word	0xe80e0131
+feffc060:	9a 00 be 48 	.word	0x48be009a
+feffc064:	01 0e e8 93 	.word	0x93e80e01
+feffc068:	00 be 5c 01 	.word	0x015cbe00
+feffc06c:	0e e8 8c 00 	.word	0x008ce80e
+feffc070:	be 6d 02 0e 	.word	0x0e026dbe
+feffc074:	e8 85 00 0e 	.word	0x0e0085e8
+feffc078:	e8 94 00 be 	.word	0xbe0094e8
+feffc07c:	89 02 0e e8 	.word	0xe80e0289
+feffc080:	7a 00 66 c1 	.word	0xc166007a
+feffc084:	c8 10 8b c1 	.word	0xc18b10c8
+feffc088:	66 c1 c8 10 	bno.f	0xfec881ee
+feffc08c:	b4 df 33 c9 	.word	0xc933dfb4
+feffc090:	e4 64 a8 02 	.word	0x02a864e4
+feffc094:	e0 fa b0 d1 	.word	0xd1b0fae0
+feffc098:	e6 64 33 c9 	.word	0xc93364e6
+feffc09c:	e4 64 a8 02 	.word	0x02a864e4
+feffc0a0:	e0 fa 8a c4 	.word	0xc48afae0
+feffc0a4:	e6 60 33 c9 	.word	0xc93360e6
+feffc0a8:	e4 64 a8 02 	.word	0x02a864e4
+feffc0ac:	e0 fa b0 ff 	.word	0xffb0fae0
+feffc0b0:	e6 64 33 c9 	.word	0xc93364e6
+feffc0b4:	e4 64 a8 02 	.word	0x02a864e4
+feffc0b8:	e0 fa 66 c1 	.word	0xc166fae0
+feffc0bc:	c8 10 8b c8 	ldis	.word	0xc88b10c8,g1
+feffc0c0:	32 c0 2e 0f 	.word	0x0f2ec032
+feffc0c4:	01 16 8e 02 	.word	0x028e1601
+feffc0c8:	0f 20 c0 0c 	.word	0x0cc0200f
+feffc0cc:	01 0f 22 c0 	ldib	0xf01,r4
+feffc0d0:	e9 00 00 b8 	.word	0xb80000e9
+feffc0d4:	10 00 8e d8 	.word	0xd88e0010
+feffc0d8:	8e c0 8e e8 	.word	0xe88ec08e
+feffc0dc:	8e e0 0f 20 	testno.f	1
+feffc0e0:	c0 24 fe 0f 	.word	0x0ffe24c0
+feffc0e4:	22 c0 e9 00 	.word	0x00e9c022
+feffc0e8:	00 33 c0 8e 	.word	0x8ec03300
+feffc0ec:	d8 8e c0 8e 	.word	0x8ec08ed8
+feffc0f0:	e8 8e e0 cb 	.word	0xcbe08ee8
+feffc0f4:	50 9c b4 0e 	.word	0x0eb49c50
+feffc0f8:	cd 10 9d 58 	and	r13,20,g3
+feffc0fc:	50 9c 2e 8a 	stos	r5,.word	0x8a2e9c50
+feffc100:	04 46 3c 24 	testl	r7
+feffc104:	74 06 b4 0e 	.word	0x0eb40674
+feffc108:	cd 10 eb f2 	.word	0xf2eb10cd
+feffc10c:	9d 58 cb 50 	.word	0x50cb589d
+feffc110:	06 b4 01 cd 	.word	0xcd01b406
+feffc114:	16 74 fa 07 	.word	0x07fa7416
+feffc118:	58 cb 0d 0a 	ret
+feffc11c:	44 41 43 39 	cmpibg	r8,r13,0xfeffc260
+feffc120:	36 30 20 42 	.word	0x42203036
+feffc124:	49 4f 53 20 	testno	r10
+feffc128:	56 65 72 73 	.word	0x73726556
+feffc12c:	69 6f 6e 20 	testno	13
+feffc130:	24 34 2e 30 	bbc	5,g8,0xfeffb554
+feffc134:	31 2e 30 31 	cmpobg	6,sf0,0xfeffcf64
+feffc138:	20 2d 20 4d 	.word	0x4d202d20
+feffc13c:	61 72 20 32 	cmpobe	4,sf1,0xfeffb39c
+feffc140:	37 2c 20 31 	cmpobg.f	4,sf0,0xfeffcd74
+feffc144:	39 39 37 24 	testl	6
+feffc148:	0d 0a 4d 79 	selg	13,g4,r9
+feffc14c:	6c 65 78 20 	testno	15
+feffc150:	43 6f 72 70 	.word	0x70726f43
+feffc154:	6f 72 61 74 	.word	0x7461726f
+feffc158:	69 6f 6e 24 	testl	13
+feffc15c:	0d 0a c9 cd 	.word	0xcdc90a0d
+feffc160:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc164:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc168:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc16c:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc170:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc174:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc178:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc17c:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc180:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc184:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc188:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc18c:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc190:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc194:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc198:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc19c:	cd cd cd bb 	.word	0xbbcdcdcd
+feffc1a0:	0d 0a ba 20 	testno	g7
+feffc1a4:	46 6c 61 73 	.word	0x73616c46
+feffc1a8:	68 20 6d 65 	modify	sf8,sf20,sf13
+feffc1ac:	6d 6f 72 79 	.word	0x79726f6d
+feffc1b0:	20 63 6f 6e 	.word	0x6e6f6320
+feffc1b4:	74 65 6e 74 	.word	0x746e6574
+feffc1b8:	73 20 61 72 	.word	0x72612073
+feffc1bc:	65 20 63 6f 	.word	0x6f632065
+feffc1c0:	72 72 75 70 	.word	0x70757272
+feffc1c4:	74 65 64 2e 	.word	0x2e646574
+feffc1c8:	20 50 6c 65 	modify	sf0,17,r13
+feffc1cc:	61 73 65 20 	testno	12
+feffc1d0:	75 73 65 20 	testno	12
+feffc1d4:	74 68 65 20 	testno	12
+feffc1d8:	46 69 72 6d 	.word	0x6d726946
+feffc1dc:	77 61 72 65 	.word	0x65726177
+feffc1e0:	20 20 20 ba 	.word	0xba202020
+feffc1e4:	0d 0a ba 20 	testno	g7
+feffc1e8:	46 6c 61 73 	.word	0x73616c46
+feffc1ec:	68 20 75 74 	.word	0x74752068
+feffc1f0:	69 6c 69 74 	remi	9,sf5,sf13
+feffc1f4:	79 20 74 6f 	.word	0x6f742079
+feffc1f8:	20 75 70 64 	.word	0x64707520
+feffc1fc:	61 74 65 20 	testno	12
+feffc200:	74 68 65 20 	testno	12
+feffc204:	44 41 43 39 	cmpibg	r8,r13,0xfeffc348
+feffc208:	36 30 20 46 	.word	0x46203036
+feffc20c:	6c 61 73 68 	logr	r12,r13,?
+feffc210:	20 6d 65 6d 	.word	0x6d656d20
+feffc214:	6f 72 79 2e 	.word	0x2e79726f
+feffc218:	20 20 20 20 	testno	4
+feffc21c:	20 20 20 20 	testno	4
+feffc220:	20 20 20 20 	testno	4
+feffc224:	20 20 20 ba 	.word	0xba202020
+feffc228:	0d 0a c8 cd 	.word	0xcdc80a0d
+feffc22c:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc230:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc234:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc238:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc23c:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc240:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc244:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc248:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc24c:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc250:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc254:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc258:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc25c:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc260:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc264:	cd cd cd cd 	.word	0xcdcdcdcd
+feffc268:	cd cd cd bc 	.word	0xbccdcdcd
+feffc26c:	24 0d 0a 50 	.word	0x500a0d24
+feffc270:	72 65 73 73 	.word	0x73736572
+feffc274:	20 61 6e 79 	subog	sf0,g9,sf13
+feffc278:	20 6b 65 79 	.word	0x79656b20
+feffc27c:	20 74 6f 20 	testno	13
+feffc280:	63 6f 6e 74 	.word	0x746e6f63
+feffc284:	69 6e 75 65 	dcctl	9,sf21,sf14
+feffc288:	24 0d 0a 24 	testl	sp
+	...
+feffc294:	00 00 ff ff 	.word	0xffff0000
+feffc298:	ff ff ff ff 	.word	0xffffffff
+feffc29c:	ff ff ff ff 	.word	0xffffffff
+feffc2a0:	ff ff ff ff 	.word	0xffffffff
+feffc2a4:	ff ff ff ff 	.word	0xffffffff
+feffc2a8:	ff ff ff ff 	.word	0xffffffff
+feffc2ac:	ff ff ff ff 	.word	0xffffffff
+feffc2b0:	ff ff ff ff 	.word	0xffffffff
+feffc2b4:	ff ff ff ff 	.word	0xffffffff
+feffc2b8:	ff ff ff ff 	.word	0xffffffff
+feffc2bc:	ff ff ff ff 	.word	0xffffffff
+feffc2c0:	ff ff ff ff 	.word	0xffffffff
+feffc2c4:	ff ff ff ff 	.word	0xffffffff
+feffc2c8:	ff ff ff ff 	.word	0xffffffff
+feffc2cc:	ff ff ff ff 	.word	0xffffffff
+feffc2d0:	ff ff ff ff 	.word	0xffffffff
+feffc2d4:	ff ff ff ff 	.word	0xffffffff
+feffc2d8:	ff ff ff ff 	.word	0xffffffff
+feffc2dc:	ff ff ff ff 	.word	0xffffffff
+feffc2e0:	ff ff ff ff 	.word	0xffffffff
+feffc2e4:	ff ff ff ff 	.word	0xffffffff
+feffc2e8:	ff ff ff ff 	.word	0xffffffff
+feffc2ec:	ff ff ff ff 	.word	0xffffffff
+feffc2f0:	ff ff ff ff 	.word	0xffffffff
+feffc2f4:	ff ff ff ff 	.word	0xffffffff
+feffc2f8:	ff ff ff ff 	.word	0xffffffff
+feffc2fc:	ff ff ff ff 	.word	0xffffffff
+feffc300:	ff ff ff ff 	.word	0xffffffff
+feffc304:	ff ff ff ff 	.word	0xffffffff
+feffc308:	ff ff ff ff 	.word	0xffffffff
+feffc30c:	ff ff ff ff 	.word	0xffffffff
+feffc310:	ff ff ff ff 	.word	0xffffffff
+feffc314:	ff ff ff ff 	.word	0xffffffff
+feffc318:	ff ff ff ff 	.word	0xffffffff
+feffc31c:	ff ff ff ff 	.word	0xffffffff
+feffc320:	ff ff ff ff 	.word	0xffffffff
+feffc324:	ff ff ff ff 	.word	0xffffffff
+feffc328:	ff ff ff ff 	.word	0xffffffff
+feffc32c:	ff ff ff ff 	.word	0xffffffff
+feffc330:	ff ff ff ff 	.word	0xffffffff
+feffc334:	ff ff ff ff 	.word	0xffffffff
+feffc338:	ff ff ff ff 	.word	0xffffffff
+feffc33c:	ff ff ff ff 	.word	0xffffffff
+feffc340:	ff ff ff ff 	.word	0xffffffff
+feffc344:	ff ff ff ff 	.word	0xffffffff
+feffc348:	ff ff ff ff 	.word	0xffffffff
+feffc34c:	ff ff ff ff 	.word	0xffffffff
+feffc350:	ff ff ff ff 	.word	0xffffffff
+feffc354:	ff ff ff ff 	.word	0xffffffff
+feffc358:	ff ff ff ff 	.word	0xffffffff
+feffc35c:	ff ff ff ff 	.word	0xffffffff
+feffc360:	ff ff ff ff 	.word	0xffffffff
+feffc364:	ff ff ff ff 	.word	0xffffffff
+feffc368:	ff ff ff ff 	.word	0xffffffff
+feffc36c:	ff ff ff ff 	.word	0xffffffff
+feffc370:	ff ff ff ff 	.word	0xffffffff
+feffc374:	ff ff ff ff 	.word	0xffffffff
+feffc378:	ff ff ff ff 	.word	0xffffffff
+feffc37c:	ff ff ff ff 	.word	0xffffffff
+feffc380:	ff ff ff ff 	.word	0xffffffff
+feffc384:	ff ff ff ff 	.word	0xffffffff
+feffc388:	ff ff ff ff 	.word	0xffffffff
+feffc38c:	ff ff ff ff 	.word	0xffffffff
+feffc390:	ff ff ff ff 	.word	0xffffffff
+feffc394:	ff ff ff ff 	.word	0xffffffff
+feffc398:	ff ff ff ff 	.word	0xffffffff
+feffc39c:	ff ff ff ff 	.word	0xffffffff
+feffc3a0:	ff ff ff ff 	.word	0xffffffff
+feffc3a4:	ff ff ff ff 	.word	0xffffffff
+feffc3a8:	ff ff ff ff 	.word	0xffffffff
+feffc3ac:	ff ff ff ff 	.word	0xffffffff
+feffc3b0:	ff ff ff ff 	.word	0xffffffff
+feffc3b4:	ff ff ff ff 	.word	0xffffffff
+feffc3b8:	ff ff ff ff 	.word	0xffffffff
+feffc3bc:	ff ff ff ff 	.word	0xffffffff
+feffc3c0:	ff ff ff ff 	.word	0xffffffff
+feffc3c4:	ff ff ff ff 	.word	0xffffffff
+feffc3c8:	ff ff ff ff 	.word	0xffffffff
+feffc3cc:	ff ff ff ff 	.word	0xffffffff
+feffc3d0:	ff ff ff ff 	.word	0xffffffff
+feffc3d4:	ff ff ff ff 	.word	0xffffffff
+feffc3d8:	ff ff ff ff 	.word	0xffffffff
+feffc3dc:	ff ff ff ff 	.word	0xffffffff
+feffc3e0:	ff ff ff ff 	.word	0xffffffff
+feffc3e4:	ff ff ff ff 	.word	0xffffffff
+feffc3e8:	ff ff ff ff 	.word	0xffffffff
+feffc3ec:	ff ff ff ff 	.word	0xffffffff
+feffc3f0:	ff ff ff ff 	.word	0xffffffff
+feffc3f4:	ff ff ff ff 	.word	0xffffffff
+feffc3f8:	ff ff ff ff 	.word	0xffffffff
+feffc3fc:	ff ff ff cb 	.word	0xcbffffff
+feffc400:	00 30 f8 8c 	lda	0xc0002000,fp
+feffc404:	00 20 00 c0 
+feffc408:	40 e0 0f 8c 	lda	0x40(fp),sp
+feffc40c:	00 00 00 8c 	lda	0x0,pfp
+feffc410:	00 1e f0 5c 	mov	0,g14
+feffc414:	00 1e 80 5c 	mov	0,g0
+feffc418:	00 30 80 92 	st	g0,0xff008500
+feffc41c:	00 85 00 ff 
+feffc420:	00 30 80 92 	st	g0,0xff008504
+feffc424:	04 85 00 ff 
+feffc428:	00 30 80 8c 	lda	0x7100f1,g0
+feffc42c:	f1 00 71 00 
+feffc430:	00 30 80 92 	st	g0,0x1500
+feffc434:	00 15 00 00 
+feffc438:	00 30 80 8c 	lda	0xfe000000,g0
+feffc43c:	00 00 00 fe 
+feffc440:	00 30 80 92 	st	g0,0x1504
+feffc444:	04 15 00 00 
+feffc448:	00 30 80 8c 	lda	0x40600,g0
+feffc44c:	00 06 04 00 
+feffc450:	00 30 80 92 	st	g0,0x1508
+feffc454:	08 15 00 00 
+feffc458:	00 30 80 8c 	lda	0x40600,g0
+feffc45c:	00 06 04 00 
+feffc460:	00 30 80 92 	st	g0,0x150c
+feffc464:	0c 15 00 00 
+feffc468:	00 30 80 8c 	lda	0xe0000000,g0
+feffc46c:	00 00 00 e0 
+feffc470:	00 30 80 92 	st	g0,0x1510
+feffc474:	10 15 00 00 
+feffc478:	00 30 80 8c 	lda	0x60600,g0
+feffc47c:	00 06 06 00 
+feffc480:	00 30 80 92 	st	g0,0x1514
+feffc484:	14 15 00 00 
+feffc488:	00 30 80 8c 	lda	0x60600,g0
+feffc48c:	00 06 06 00 
+feffc490:	00 30 80 92 	st	g0,0x1518
+feffc494:	18 15 00 00 
+feffc498:	00 30 20 8c 	lda	0x40800000,r4
+feffc49c:	00 00 80 40 
+feffc4a0:	00 10 29 90 	ld	(r4),r5
+feffc4a4:	00 30 20 8c 	lda	0x40800024,r4
+feffc4a8:	24 00 80 40 
+feffc4ac:	00 10 29 92 	st	r5,(r4)
+feffc4b0:	00 30 20 8c 	lda	0x40800004,r4
+feffc4b4:	04 00 80 40 
+feffc4b8:	1f 58 32 59 	addo	31,9,r6
+feffc4bc:	00 10 31 92 	st	r6,(r4)
+feffc4c0:	00 30 20 8c 	lda	0x40800008,r4
+feffc4c4:	08 00 80 40 
+feffc4c8:	00 10 29 88 	ldos	(r4),r5
+feffc4cc:	14 60 41 30 	bbc	8,r5,0xfeffc4e0
+feffc4d0:	00 30 20 8c 	lda	0x40800050,r4
+feffc4d4:	50 00 80 40 
+feffc4d8:	00 10 29 80 	ldob	(r4),r5
+feffc4dc:	e4 ff ff 08 	b	0xfeffc4c0
+feffc4e0:	00 30 20 8c 	lda	0x40800050,r4
+feffc4e4:	50 00 80 40 
+feffc4e8:	53 00 28 8c 	lda	0x53,r5
+feffc4ec:	00 10 29 82 	stob	r5,(r4)
+feffc4f0:	18 5e 20 59 	shlo	24,1,r4
+feffc4f4:	01 09 21 59 	subo	1,r4,r4
+feffc4f8:	fc 3f 09 33 	cmpobge	1,r4,0xfeffc4f4
+feffc4fc:	1c 02 00 0b 	bal	0xfeffc718
+feffc500:	10 03 f4 58 	xor	g0,g0,g14
+feffc504:	00 30 20 8c 	lda	0x40800000,r4
+feffc508:	00 00 80 40 
+feffc50c:	1f 58 30 59 	addo	31,1,r6
+feffc510:	00 10 29 90 	ld	(r4),r5
+feffc514:	08 60 79 30 	bbc	15,r5,0xfeffc51c
+feffc518:	01 88 31 59 	addo	1,r6,r6
+feffc51c:	00 30 20 8c 	lda	0xe0100000,r4
+feffc520:	00 00 10 e0 
+feffc524:	00 10 31 82 	stob	r6,(r4)
+feffc528:	02 1e 80 5c 	mov	2,g0
+feffc52c:	00 1e 88 5c 	mov	0,g1
+feffc530:	00 30 90 8c 	lda	0xf8000001,g2
+feffc534:	01 00 00 f8 
+feffc538:	00 30 88 92 	st	g1,0xff008100
+feffc53c:	00 81 00 ff 
+feffc540:	00 30 98 8c 	lda	0xc0000002,g3
+feffc544:	02 00 00 c0 
+feffc548:	00 30 98 92 	st	g3,0xff008108
+feffc54c:	08 81 00 ff 
+feffc550:	00 30 90 92 	st	g2,0xff00810c
+feffc554:	0c 81 00 ff 
+feffc558:	74 00 00 09 	call	0xfeffc5cc
+feffc55c:	01 1e 80 65 	dcctl	1,0,g0
+feffc560:	c4 04 00 09 	call	0xfeffca24
+feffc564:	00 1e 80 5c 	mov	0,g0
+feffc568:	00 30 20 8c 	lda	0x40800008,r4
+feffc56c:	08 00 80 40 
+feffc570:	00 10 29 88 	ldos	(r4),r5
+feffc574:	4c 60 41 30 	bbc	8,r5,0xfeffc5c0
+feffc578:	01 1e 80 5c 	mov	1,g0
+feffc57c:	00 30 20 8c 	lda	0x40800050,r4
+feffc580:	50 00 80 40 
+feffc584:	00 10 29 80 	ldob	(r4),r5
+feffc588:	53 00 20 8c 	lda	0x53,r4
+feffc58c:	34 40 21 32 	cmpobe	r4,r5,0xfeffc5c0
+feffc590:	1f 98 20 59 	addo	31,2,r4
+feffc594:	00 1e 80 5c 	mov	0,g0
+feffc598:	28 40 21 35 	cmpobne	r4,r5,0xfeffc5c0
+feffc59c:	02 1e 80 5c 	mov	2,g0
+feffc5a0:	00 30 20 8c 	lda	0x40800008,r4
+feffc5a4:	08 00 80 40 
+feffc5a8:	00 10 29 88 	ldos	(r4),r5
+feffc5ac:	14 60 41 30 	bbc	8,r5,0xfeffc5c0
+feffc5b0:	00 30 20 8c 	lda	0x40800050,r4
+feffc5b4:	50 00 80 40 
+feffc5b8:	00 10 29 80 	ldob	(r4),r5
+feffc5bc:	e4 ff ff 08 	b	0xfeffc5a0
+feffc5c0:	20 06 00 09 	call	0xfeffcbe0
+feffc5c4:	01 1e 88 65 	dcctl	1,0,g1
+feffc5c8:	00 10 04 84 	bx	(g0)
+feffc5cc:	00 30 c0 8c 	lda	0xc0000000,g8
+feffc5d0:	00 00 00 c0 
+feffc5d4:	01 1e c8 5c 	mov	1,g9
+feffc5d8:	00 30 d0 8c 	lda	0xf0000000,g10
+feffc5dc:	00 00 00 f0 
+feffc5e0:	00 30 b8 8c 	lda	0x1234567,g7
+feffc5e4:	67 45 23 01 
+feffc5e8:	0c 5e d8 59 	shlo	12,1,g11
+feffc5ec:	18 16 80 5c 	mov	g8,g0
+feffc5f0:	19 16 88 5c 	mov	g9,g1
+feffc5f4:	1f 58 98 59 	addo	31,1,g3
+feffc5f8:	00 10 8c 92 	st	g1,(g0)
+feffc5fc:	00 10 94 90 	ld	(g0),g2
+feffc600:	a0 80 8c 35 	cmpobne	g1,g2,0xfeffc6a0
+feffc604:	01 4e 8c 59 	shlo	1,g1,g1
+feffc608:	01 cb 9c 5a 	cmpdeco	1,g3,g3
+feffc60c:	ec ff ff 15 	bne	0xfeffc5f8
+feffc610:	18 16 80 5c 	mov	g8,g0
+feffc614:	1a 16 88 5c 	mov	g10,g1
+feffc618:	1b 16 98 5c 	mov	g11,g3
+feffc61c:	00 10 8c 92 	st	g1,(g0)
+feffc620:	04 08 84 59 	addo	4,g0,g0
+feffc624:	17 40 8c 59 	addo	g7,g1,g1
+feffc628:	01 cb 9c 5a 	cmpdeco	1,g3,g3
+feffc62c:	f0 ff ff 15 	bne	0xfeffc61c
+feffc630:	18 16 80 5c 	mov	g8,g0
+feffc634:	1a 16 88 5c 	mov	g10,g1
+feffc638:	1b 16 98 5c 	mov	g11,g3
+feffc63c:	00 10 94 90 	ld	(g0),g2
+feffc640:	60 80 8c 35 	cmpobne	g1,g2,0xfeffc6a0
+feffc644:	04 08 84 59 	addo	4,g0,g0
+feffc648:	17 40 8c 59 	addo	g7,g1,g1
+feffc64c:	01 cb 9c 5a 	cmpdeco	1,g3,g3
+feffc650:	ec ff ff 15 	bne	0xfeffc63c
+feffc654:	00 30 88 8c 	lda	0xc0100000,g1
+feffc658:	00 00 10 c0 
+feffc65c:	18 16 80 5c 	mov	g8,g0
+feffc660:	1a 16 90 5c 	mov	g10,g2
+feffc664:	1b 16 98 5c 	mov	g11,g3
+feffc668:	02 ce 9c 59 	shlo	2,g3,g3
+feffc66c:	00 10 94 92 	st	g2,(g0)
+feffc670:	13 00 84 59 	addo	g3,g0,g0
+feffc674:	17 80 94 59 	addo	g7,g2,g2
+feffc678:	f4 5f 84 35 	cmpobne	g0,g1,0xfeffc66c
+feffc67c:	18 16 80 5c 	mov	g8,g0
+feffc680:	1a 16 90 5c 	mov	g10,g2
+feffc684:	00 10 a4 90 	ld	(g0),g4
+feffc688:	18 80 a4 35 	cmpobne	g4,g2,0xfeffc6a0
+feffc68c:	13 00 84 59 	addo	g3,g0,g0
+feffc690:	17 80 94 59 	addo	g7,g2,g2
+feffc694:	f0 5f 84 35 	cmpobne	g0,g1,0xfeffc684
+feffc698:	00 1e 80 5c 	mov	0,g0
+feffc69c:	00 00 00 0a 	ret
+feffc6a0:	02 1e 80 5c 	mov	2,g0
+feffc6a4:	08 00 00 09 	call	0xfeffc6ac
+feffc6a8:	f8 ff ff 08 	b	0xfeffc6a0
+feffc6ac:	10 16 50 5c 	mov	g0,r10
+feffc6b0:	1c 00 00 09 	call	0xfeffc6cc
+feffc6b4:	01 8b 52 5a 	cmpdeco	1,r10,r10
+feffc6b8:	f8 ff ff 15 	bne	0xfeffc6b0
+feffc6bc:	00 30 80 8c 	lda	0x1e8480,g0
+feffc6c0:	80 84 1e 00 
+feffc6c4:	e8 ff ff 09 	call	0xfeffc6ac
+feffc6c8:	00 00 00 0a 	ret
+feffc6cc:	12 5e 40 59 	shlo	18,1,r8
+feffc6d0:	00 30 58 8c 	lda	0xe0100000,r11
+feffc6d4:	00 00 10 e0 
+feffc6d8:	00 d0 52 82 	stob	r10,(r11)
+feffc6dc:	08 16 80 5c 	mov	r8,g0
+feffc6e0:	10 00 00 09 	call	0xfeffc6f0
+feffc6e4:	00 d0 4a 82 	stob	r9,(r11)
+feffc6e8:	08 00 00 09 	call	0xfeffc6f0
+feffc6ec:	00 00 00 0a 	ret
+feffc6f0:	00 30 50 8c 	lda	0xc0000000,r10
+feffc6f4:	00 00 00 c0 
+feffc6f8:	00 90 5a 90 	ld	(r10),r11
+feffc6fc:	00 90 5a 90 	ld	(r10),r11
+feffc700:	00 90 5a 90 	ld	(r10),r11
+feffc704:	00 90 5a 90 	ld	(r10),r11
+feffc708:	00 90 5a 90 	ld	(r10),r11
+feffc70c:	01 0b 84 5a 	cmpdeco	1,g0,g0
+feffc710:	e8 ff ff 15 	bne	0xfeffc6f8
+feffc714:	00 00 00 0a 	ret
+feffc718:	1e 16 18 5c 	mov	g14,r3
+feffc71c:	00 30 20 8c 	lda	0x40800000,r4
+feffc720:	00 00 80 40 
+feffc724:	00 10 29 90 	ld	(r4),r5
+feffc728:	4c 60 a1 37 	bbs	20,r5,0xfeffc774
+feffc72c:	00 30 20 8c 	lda	0xe0100000,r4
+feffc730:	00 00 10 e0 
+feffc734:	00 10 29 80 	ldob	(r4),r5
+feffc738:	3c 60 19 30 	bbc	3,r5,0xfeffc774
+feffc73c:	1f 58 67 59 	addo	31,29,r12
+feffc740:	00 1e 30 5c 	mov	0,r6
+feffc744:	00 1e 38 5c 	mov	0,r7
+feffc748:	00 30 20 8c 	lda	0x7530,r4
+feffc74c:	30 75 00 00 
+feffc750:	00 30 28 8c 	lda	0xfeff0000,r5
+feffc754:	00 00 ff fe 
+feffc758:	00 50 31 80 	ldob	(r5),r6
+feffc75c:	06 c0 39 59 	addo	r6,r7,r7
+feffc760:	01 48 29 59 	addo	1,r5,r5
+feffc764:	01 0b 21 5a 	cmpdeco	1,r4,r4
+feffc768:	f0 ff ff 15 	bne	0xfeffc758
+feffc76c:	01 0b 63 5a 	cmpdeco	1,r12,r12
+feffc770:	d0 ff ff 15 	bne	0xfeffc740
+feffc774:	00 30 20 8c 	lda	0xe0400000,r4
+feffc778:	00 00 40 e0 
+feffc77c:	00 10 29 82 	stob	r5,(r4)
+feffc780:	00 1e 38 5c 	mov	0,r7
+feffc784:	04 5e 21 59 	shlo	4,5,r4
+feffc788:	00 30 28 8c 	lda	0xfeff0000,r5
+feffc78c:	00 00 ff fe 
+feffc790:	00 50 31 80 	ldob	(r5),r6
+feffc794:	06 c0 39 59 	addo	r6,r7,r7
+feffc798:	01 48 29 59 	addo	1,r5,r5
+feffc79c:	01 0b 21 5a 	cmpdeco	1,r4,r4
+feffc7a0:	f0 ff ff 15 	bne	0xfeffc790
+feffc7a4:	00 30 20 8c 	lda	0x40800000,r4
+feffc7a8:	00 00 80 40 
+feffc7ac:	00 30 30 8c 	lda	0x257c203c,r6
+feffc7b0:	3c 20 7c 25 
+feffc7b4:	00 10 29 90 	ld	(r4),r5
+feffc7b8:	0c 60 29 37 	bbs	5,r5,0xfeffc7c4
+feffc7bc:	00 30 30 8c 	lda	0x231c201c,r6
+feffc7c0:	1c 20 1c 23 
+feffc7c4:	00 30 38 8c 	lda	0xe0100000,r7
+feffc7c8:	00 00 10 e0 
+feffc7cc:	11 43 44 58 	xor	g1,g1,r8
+feffc7d0:	00 d0 41 82 	stob	r8,(r7)
+feffc7d4:	00 10 31 92 	st	r6,(r4)
+feffc7d8:	00 30 40 8c 	lda	0x80000000,r8
+feffc7dc:	00 00 00 80 
+feffc7e0:	00 10 39 90 	ld	(r4),r7
+feffc7e4:	88 c3 39 58 	or	r8,r7,r7
+feffc7e8:	00 10 39 92 	st	r7,(r4)
+feffc7ec:	00 10 39 90 	ld	(r4),r7
+feffc7f0:	00 30 28 8c 	lda	0xfeffc000,r5
+feffc7f4:	00 c0 ff fe 
+feffc7f8:	06 5e 30 59 	shlo	6,1,r6
+feffc7fc:	00 50 39 80 	ldob	(r5),r7
+feffc800:	01 8b 31 5a 	cmpdeco	1,r6,r6
+feffc804:	f8 ff ff 15 	bne	0xfeffc7fc
+feffc808:	00 1e 30 5c 	mov	0,r6
+feffc80c:	00 1e 38 5c 	mov	0,r7
+feffc810:	e2 04 20 8c 	lda	0x4e2,r4
+feffc814:	00 30 28 8c 	lda	0xfeff0000,r5
+feffc818:	00 00 ff fe 
+feffc81c:	00 50 31 80 	ldob	(r5),r6
+feffc820:	06 c0 39 59 	addo	r6,r7,r7
+feffc824:	01 48 29 59 	addo	1,r5,r5
+feffc828:	01 0b 21 5a 	cmpdeco	1,r4,r4
+feffc82c:	f0 ff ff 15 	bne	0xfeffc81c
+feffc830:	00 30 20 8c 	lda	0x40800000,r4
+feffc834:	00 00 80 40 
+feffc838:	00 10 31 90 	ld	(r4),r6
+feffc83c:	14 8e 31 58 	clrbit	20,r6,r6
+feffc840:	00 10 31 92 	st	r6,(r4)
+feffc844:	00 30 70 8c 	lda	0xc3c00000,r14
+feffc848:	00 00 c0 c3 
+feffc84c:	0e 16 20 5c 	mov	r14,r4
+feffc850:	08 1e 28 5c 	mov	8,r5
+feffc854:	0e 5e 30 59 	shlo	14,1,r6
+feffc858:	00 10 39 90 	ld	(r4),r7
+feffc85c:	06 00 21 59 	addo	r6,r4,r4
+feffc860:	01 4b 29 5a 	cmpdeco	1,r5,r5
+feffc864:	f4 ff ff 15 	bne	0xfeffc858
+feffc868:	00 30 20 8c 	lda	0xc3c00000,r4
+feffc86c:	00 00 c0 c3 
+feffc870:	00 10 29 90 	ld	(r4),r5
+feffc874:	00 30 30 8c 	lda	0xffff3344,r6
+feffc878:	44 33 ff ff 
+feffc87c:	ee 00 38 8c 	lda	0xee,r7
+feffc880:	00 30 40 8c 	lda	0xffffff00,r8
+feffc884:	00 ff ff ff 
+feffc888:	00 10 31 8a 	stos	r6,(r4)
+feffc88c:	00 10 39 82 	stob	r7,(r4)
+feffc890:	0c 5e 50 59 	shlo	12,1,r10
+feffc894:	01 89 52 59 	subo	1,r10,r10
+feffc898:	fc bf 0a 33 	cmpobge	1,r10,0xfeffc894
+feffc89c:	00 10 49 88 	ldos	(r4),r9
+feffc8a0:	00 30 30 8c 	lda	0x33ee,r6
+feffc8a4:	ee 33 00 00 
+feffc8a8:	0c 40 32 35 	cmpobne	r6,r9,0xfeffc8b4
+feffc8ac:	00 10 29 92 	st	r5,(r4)
+feffc8b0:	68 00 00 08 	b	0xfeffc918
+feffc8b4:	00 30 50 8c 	lda	0xe0100000,r10
+feffc8b8:	00 00 10 e0 
+feffc8bc:	01 1e 58 5c 	mov	1,r11
+feffc8c0:	00 90 5a 82 	stob	r11,(r10)
+feffc8c4:	0c 5e 50 59 	shlo	12,1,r10
+feffc8c8:	01 89 52 59 	subo	1,r10,r10
+feffc8cc:	fc bf 0a 33 	cmpobge	1,r10,0xfeffc8c8
+feffc8d0:	00 10 49 88 	ldos	(r4),r9
+feffc8d4:	00 30 30 8c 	lda	0xffff,r6
+feffc8d8:	ff ff 00 00 
+feffc8dc:	89 80 49 58 	and	r9,r6,r9
+feffc8e0:	00 30 30 8c 	lda	0xeeee,r6
+feffc8e4:	ee ee 00 00 
+feffc8e8:	09 16 80 5c 	mov	r9,g0
+feffc8ec:	00 10 29 92 	st	r5,(r4)
+feffc8f0:	00 30 20 8c 	lda	0x40800000,r4
+feffc8f4:	00 00 80 40 
+feffc8f8:	00 10 29 90 	ld	(r4),r5
+feffc8fc:	8f 49 29 58 	setbit	15,r5,r5
+feffc900:	0d 4e 29 58 	clrbit	13,r5,r5
+feffc904:	00 10 29 92 	st	r5,(r4)
+feffc908:	00 30 30 8c 	lda	0xe0100000,r6
+feffc90c:	00 00 10 e0 
+feffc910:	01 00 28 8c 	lda	0x1,r5
+feffc914:	00 90 29 82 	stob	r5,(r6)
+feffc918:	00 30 20 8c 	lda	0x40800000,r4
+feffc91c:	00 00 80 40 
+feffc920:	00 10 29 90 	ld	(r4),r5
+feffc924:	14 5e 30 59 	shlo	20,1,r6
+feffc928:	86 43 29 58 	or	r6,r5,r5
+feffc92c:	00 10 29 92 	st	r5,(r4)
+feffc930:	58 00 00 08 	b	0xfeffc988
+feffc934:	00 30 20 8c 	lda	0x40800000,r4
+feffc938:	00 00 80 40 
+feffc93c:	00 10 29 90 	ld	(r4),r5
+feffc940:	14 5e 30 59 	shlo	20,1,r6
+feffc944:	86 43 29 58 	or	r6,r5,r5
+feffc948:	00 10 29 92 	st	r5,(r4)
+feffc94c:	1e 1e 60 5c 	mov	30,r12
+feffc950:	00 1e 30 5c 	mov	0,r6
+feffc954:	00 1e 38 5c 	mov	0,r7
+feffc958:	00 30 20 8c 	lda	0x7530,r4
+feffc95c:	30 75 00 00 
+feffc960:	00 30 28 8c 	lda	0xfeff0000,r5
+feffc964:	00 00 ff fe 
+feffc968:	00 50 31 80 	ldob	(r5),r6
+feffc96c:	06 c0 39 59 	addo	r6,r7,r7
+feffc970:	01 48 29 59 	addo	1,r5,r5
+feffc974:	01 0b 21 5a 	cmpdeco	1,r4,r4
+feffc978:	f0 ff ff 15 	bne	0xfeffc968
+feffc97c:	01 0b 63 5a 	cmpdeco	1,r12,r12
+feffc980:	d0 ff ff 15 	bne	0xfeffc950
+feffc984:	20 fe ff 08 	b	0xfeffc7a4
+feffc988:	00 30 20 8c 	lda	0xc0000000,r4
+feffc98c:	00 00 00 c0 
+feffc990:	14 5e 28 59 	shlo	20,1,r5
+feffc994:	00 10 31 90 	ld	(r4),r6
+feffc998:	00 10 31 92 	st	r6,(r4)
+feffc99c:	04 08 21 59 	addo	4,r4,r4
+feffc9a0:	01 4b 29 5a 	cmpdeco	1,r5,r5
+feffc9a4:	f0 ff ff 15 	bne	0xfeffc994
+feffc9a8:	00 30 20 8c 	lda	0x40800008,r4
+feffc9ac:	08 00 80 40 
+feffc9b0:	00 30 28 8c 	lda	0xffff,r5
+feffc9b4:	ff ff 00 00 
+feffc9b8:	00 10 29 92 	st	r5,(r4)
+feffc9bc:	00 30 20 8c 	lda	0x40800014,r4
+feffc9c0:	14 00 80 40 
+feffc9c4:	09 5e 28 59 	shlo	9,1,r5
+feffc9c8:	00 10 29 92 	st	r5,(r4)
+feffc9cc:	00 30 20 8c 	lda	0xc0000000,r4
+feffc9d0:	00 00 00 c0 
+feffc9d4:	14 5e 28 59 	shlo	20,1,r5
+feffc9d8:	00 10 31 90 	ld	(r4),r6
+feffc9dc:	04 08 21 59 	addo	4,r4,r4
+feffc9e0:	01 4b 29 5a 	cmpdeco	1,r5,r5
+feffc9e4:	f4 ff ff 15 	bne	0xfeffc9d8
+feffc9e8:	00 30 20 8c 	lda	0x40800008,r4
+feffc9ec:	08 00 80 40 
+feffc9f0:	00 10 29 90 	ld	(r4),r5
+feffc9f4:	08 60 21 30 	bbc	4,r5,0xfeffc9fc
+feffc9f8:	00 d0 00 84 	bx	(r3)
+feffc9fc:	08 60 19 30 	bbc	3,r5,0xfeffca04
+feffca00:	00 d0 00 84 	bx	(r3)
+feffca04:	00 d0 00 84 	bx	(r3)
+feffca08:	00 10 9c 80 	ldob	(g0),g3
+feffca0c:	00 50 9c 82 	stob	g3,(g1)
+feffca10:	01 08 84 59 	addo	1,g0,g0
+feffca14:	01 48 8c 59 	addo	1,g1,g1
+feffca18:	01 8b 94 5a 	cmpdeco	1,g2,g2
+feffca1c:	ec ff ff 15 	bne	0xfeffca08
+feffca20:	00 00 00 0a 	ret
+feffca24:	00 30 20 8c 	lda	0xc0000000,r4
+feffca28:	00 00 00 c0 
+feffca2c:	10 5e 28 59 	shlo	16,1,r5
+feffca30:	10 1e 30 5c 	mov	16,r6
+feffca34:	00 1e 38 5c 	mov	0,r7
+feffca38:	07 16 40 5c 	mov	r7,r8
+feffca3c:	07 16 48 5c 	mov	r7,r9
+feffca40:	07 16 50 5c 	mov	r7,r10
+feffca44:	07 16 58 5c 	mov	r7,r11
+feffca48:	00 10 41 b2 	stq	r8,(r4)
+feffca4c:	04 80 21 59 	addo	r4,r6,r4
+feffca50:	01 4b 29 5a 	cmpdeco	1,r5,r5
+feffca54:	f4 ff ff 15 	bne	0xfeffca48
+feffca58:	00 00 00 0a 	ret
+feffca5c:	00 30 20 8c 	lda	0xfeffd600,r4
+feffca60:	00 d6 ff fe 
+feffca64:	00 30 28 8c 	lda	0xc0010000,r5
+feffca68:	00 00 01 c0 
+feffca6c:	00 30 30 8c 	lda	0x2a00,r6
+feffca70:	00 2a 00 00 
+feffca74:	00 10 39 80 	ldob	(r4),r7
+feffca78:	00 50 39 82 	stob	r7,(r5)
+feffca7c:	01 08 21 59 	addo	1,r4,r4
+feffca80:	01 48 29 59 	addo	1,r5,r5
+feffca84:	01 8b 31 5a 	cmpdeco	1,r6,r6
+feffca88:	ec ff ff 15 	bne	0xfeffca74
+feffca8c:	00 00 00 0a 	ret
+feffca90:	02 1e 80 5c 	mov	2,g0
+feffca94:	18 fc ff 09 	call	0xfeffc6ac
+feffca98:	f8 ff ff 08 	b	0xfeffca90
+feffca9c:	00 00 00 00 	.word	0x00000000
+feffcaa0:	00 30 20 8c 	lda	0x40800008,r4
+feffcaa4:	08 00 80 40 
+feffcaa8:	00 10 29 88 	ldos	(r4),r5
+feffcaac:	f4 7f 39 30 	bbc	7,r5,0xfeffcaa0
+feffcab0:	00 30 20 8c 	lda	0x40800050,r4
+feffcab4:	50 00 80 40 
+feffcab8:	00 10 81 82 	stob	g0,(r4)
+feffcabc:	00 00 00 0a 	ret
+feffcac0:	00 10 3c 80 	ldob	(g0),r7
+feffcac4:	08 e0 01 35 	cmpobne	0,r7,0xfeffcacc
+feffcac8:	00 00 00 0a 	ret
+feffcacc:	00 30 20 8c 	lda	0x40800008,r4
+feffcad0:	08 00 80 40 
+feffcad4:	00 10 29 88 	ldos	(r4),r5
+feffcad8:	f4 7f 39 30 	bbc	7,r5,0xfeffcacc
+feffcadc:	00 30 28 8c 	lda	0x40800050,r5
+feffcae0:	50 00 80 40 
+feffcae4:	00 50 39 82 	stob	r7,(r5)
+feffcae8:	01 08 84 59 	addo	1,g0,g0
+feffcaec:	d4 ff ff 08 	b	0xfeffcac0
+feffcaf0:	10 16 20 5c 	mov	g0,r4
+feffcaf4:	08 1e 30 5c 	mov	8,r6
+feffcaf8:	00 30 38 8c 	lda	0xfeffcb58,r7
+feffcafc:	58 cb ff fe 
+feffcb00:	1c 0c 81 59 	shro	28,r4,g0
+feffcb04:	04 0e 21 59 	shlo	4,r4,r4
+feffcb08:	07 00 44 59 	addo	r7,g0,r8
+feffcb0c:	00 10 82 80 	ldob	(r8),g0
+feffcb10:	90 ff ff 09 	call	0xfeffcaa0
+feffcb14:	01 8b 31 5a 	cmpdeco	1,r6,r6
+feffcb18:	e8 ff ff 15 	bne	0xfeffcb00
+feffcb1c:	03 5e 82 59 	shlo	3,9,g0
+feffcb20:	80 ff ff 09 	call	0xfeffcaa0
+feffcb24:	00 00 00 0a 	ret
+	...
+feffcb30:	14 20 4c 31 	cmpobg	9,g0,0xfeffcb44
+feffcb34:	1f 58 44 59 	addo	31,17,r8
+feffcb38:	08 00 84 59 	addo	r8,g0,g0
+feffcb3c:	64 ff ff 09 	call	0xfeffcaa0
+feffcb40:	00 00 00 0a 	ret
+feffcb44:	0a 09 84 59 	subo	10,g0,g0
+feffcb48:	41 00 40 8c 	lda	0x41,r8
+feffcb4c:	08 00 84 59 	addo	r8,g0,g0
+feffcb50:	50 ff ff 09 	call	0xfeffcaa0
+feffcb54:	00 00 00 0a 	ret
+feffcb58:	30 31 32 33 	cmpobge	6,r8,0xfeffbc88
+feffcb5c:	34 35 36 37 	bbs	6,g8,0xfeffc090
+feffcb60:	38 39 41 42 	.word	0x42413938
+feffcb64:	43 44 45 46 	.word	0x46454443
+	...
+feffcb70:	21 53 69 67 	scalerl	sp,?,r13
+feffcb74:	6e 00 00 00 	.word	0x0000006e
+feffcb78:	21 4e 6f 49 	.word	0x496f4e21
+feffcb7c:	6d 67 00 00 	.word	0x0000676d
+feffcb80:	21 44 65 73 	.word	0x73654421
+feffcb84:	63 43 6b 53 	.word	0x536b4363
+	...
+feffcb90:	21 5a 69 70 	.word	0x70695a21
+feffcb94:	43 6b 53 00 	.word	0x00536b43
+feffcb98:	4d 00 55 00 	.word	0x0055004d
+feffcb9c:	00 00 00 00 	.word	0x00000000
+feffcba0:	0a 52 65 6d 	.word	0x6d65520a
+feffcba4:	6f 76 65 20 	testno.f	12
+feffcba8:	53 65 72 69 	logbnrl	g3,?
+feffcbac:	61 6c 20 50 	.word	0x50206c61
+feffcbb0:	6f 72 74 20 	testno.f	14
+feffcbb4:	4a 75 6d 70 	.word	0x706d754a
+feffcbb8:	65 72 00 00 	.word	0x00007265
+feffcbbc:	00 00 00 00 	.word	0x00000000
+feffcbc0:	0a 45 6e 74 	.word	0x746e450a
+feffcbc4:	65 72 69 6e 	.word	0x6e697265
+feffcbc8:	67 20 4d 66 	calls	sf7
+feffcbcc:	67 20 4d 6f 	.word	0x6f4d2067
+feffcbd0:	64 65 3a 00 	.word	0x003a6564
+	...
+feffcbe0:	10 16 38 5c 	mov	g0,r7
+feffcbe4:	0c ff ff 09 	call	0xfeffcaf0
+feffcbe8:	87 30 00 5a 	cmpi	r7,0
+feffcbec:	00 30 a0 8c 	lda	0xfeff9c0a,g4
+feffcbf0:	0a 9c ff fe 
+feffcbf4:	00 10 ad 80 	ldob	(g4),g5
+feffcbf8:	08 01 00 15 	bne	0xfeffcd00
+feffcbfc:	0a 09 b5 59 	subo	10,g4,g6
+feffcc00:	00 90 a5 90 	ld	(g6),g4
+feffcc04:	00 30 98 8c 	lda	0x4d594c58,g3
+feffcc08:	58 4c 59 4d 
+feffcc0c:	10 c0 a4 3a 	cmpibe	g4,g3,0xfeffcc1c
+feffcc10:	00 30 80 8c 	lda	0xfeffcb70,g0
+feffcc14:	70 cb ff fe 
+feffcc18:	e4 00 00 08 	b	0xfeffccfc
+feffcc1c:	00 1e 80 5c 	mov	0,g0
+feffcc20:	28 40 85 33 	cmpobge	g0,g5,0xfeffcc48
+feffcc24:	15 16 b8 5c 	mov	g5,g7
+feffcc28:	1f 58 a8 59 	addo	31,1,g5
+feffcc2c:	16 40 35 59 	addo	g6,g5,r6
+feffcc30:	08 a0 a1 80 	ldob	0x8(r6),g4
+feffcc34:	20 20 15 3a 	cmpibe	2,g4,0xfeffcc54
+feffcc38:	10 50 80 59 	addo	g0,1,g0
+feffcc3c:	10 e0 05 5a 	cmpo	g0,g7
+feffcc40:	40 60 ad 8c 	lda	0x40(g5),g5
+feffcc44:	e8 ff ff 14 	bl	0xfeffcc2c
+feffcc48:	00 30 80 8c 	lda	0xfeffcb78,g0
+feffcc4c:	78 cb ff fe 
+feffcc50:	ac 00 00 08 	b	0xfeffccfc
+feffcc54:	00 a0 a1 90 	ld	0x0(r6),g4
+feffcc58:	04 a0 a9 90 	ld	0x4(r6),g5
+feffcc5c:	00 30 40 8c 	lda	0xfef80000,r8
+feffcc60:	00 00 f8 fe 
+feffcc64:	14 00 82 59 	addo	g4,r8,g0
+feffcc68:	10 40 85 59 	addo	g0,g5,g0
+feffcc6c:	00 34 24 8c 	lda	0xffffff60(g0),r4
+feffcc70:	60 ff ff ff 
+feffcc74:	1f 1e 88 5c 	mov	31,g1
+feffcc78:	04 16 80 5c 	mov	r4,g0
+feffcc7c:	3c 02 00 0b 	bal	0xfeffceb8
+feffcc80:	7c 20 a1 90 	ld	0x7c(r4),g4
+feffcc84:	90 20 05 5a 	cmpi	g0,g4
+feffcc88:	00 1e b0 5c 	mov	0,g6
+feffcc8c:	10 00 00 12 	be	0xfeffcc9c
+feffcc90:	00 30 80 8c 	lda	0xfeffcb80,g0
+feffcc94:	80 cb ff fe 
+feffcc98:	64 00 00 08 	b	0xfeffccfc
+feffcc9c:	10 20 a1 90 	ld	0x10(r4),g4
+feffcca0:	00 90 a9 90 	ld	(r6),g5
+feffcca4:	0c 20 89 90 	ld	0xc(r4),g1
+feffcca8:	14 40 a5 59 	addo	g4,g5,g4
+feffccac:	14 00 2a 59 	addo	g4,r8,r5
+feffccb0:	85 83 85 58 	or	r5,g6,g0
+feffccb4:	02 4c 8c 59 	shro	2,g1,g1
+feffccb8:	00 02 00 0b 	bal	0xfeffceb8
+feffccbc:	18 20 a1 90 	ld	0x18(r4),g4
+feffccc0:	34 00 85 3d 	cmpibne	g0,g4,0xfeffccf4
+feffccc4:	14 20 89 90 	ld	0x14(r4),g1
+feffccc8:	0c 20 91 90 	ld	0xc(r4),g2
+feffcccc:	05 16 80 5c 	mov	r5,g0
+feffccd0:	38 fd ff 09 	call	0xfeffca08
+feffccd4:	00 30 80 8c 	lda	0xfeffcb98,g0
+feffccd8:	98 cb ff fe 
+feffccdc:	e4 fd ff 09 	call	0xfeffcac0
+feffcce0:	1c 20 a1 90 	ld	0x1c(r4),g4
+feffcce4:	00 90 a9 90 	ld	(r6),g5
+feffcce8:	14 40 a5 59 	addo	g4,g5,g4
+feffccec:	14 00 2a 59 	addo	g4,r8,r5
+feffccf0:	84 01 00 08 	b	0xfeffce74
+feffccf4:	00 30 80 8c 	lda	0xfeffcb90,g0
+feffccf8:	90 cb ff fe 
+feffccfc:	c4 fd ff 09 	call	0xfeffcac0
+feffcd00:	50 02 00 09 	call	0xfeffcf50
+feffcd04:	04 02 00 0b 	bal	0xfeffcf08
+feffcd08:	44 e0 11 3a 	cmpibe	2,r7,0xfeffcd4c
+feffcd0c:	50 fd ff 09 	call	0xfeffca5c
+feffcd10:	30 e0 01 3a 	cmpibe	0,r7,0xfeffcd40
+feffcd14:	00 30 80 8c 	lda	0xfeffcba0,g0
+feffcd18:	a0 cb ff fe 
+feffcd1c:	a4 fd ff 09 	call	0xfeffcac0
+feffcd20:	00 30 a8 8c 	lda	0x40800008,g5
+feffcd24:	08 00 80 40 
+feffcd28:	00 50 a5 88 	ldos	(g5),g4
+feffcd2c:	14 20 45 30 	bbc	8,g4,0xfeffcd40
+feffcd30:	48 60 b5 8c 	lda	0x48(g5),g6
+feffcd34:	00 90 85 80 	ldob	(g6),g0
+feffcd38:	00 50 a5 88 	ldos	(g5),g4
+feffcd3c:	f8 3f 45 37 	bbs	8,g4,0xfeffcd34
+feffcd40:	00 30 80 8c 	lda	0xc0010000,g0
+feffcd44:	00 00 01 c0 
+feffcd48:	00 00 00 0a 	ret
+feffcd4c:	00 30 80 8c 	lda	0xfeffcbc0,g0
+feffcd50:	c0 cb ff fe 
+feffcd54:	6c fd ff 09 	call	0xfeffcac0
+feffcd58:	00 30 a8 8c 	lda	0x40800008,g5
+feffcd5c:	08 00 80 40 
+feffcd60:	00 50 a5 88 	ldos	(g5),g4
+feffcd64:	14 20 45 30 	bbc	8,g4,0xfeffcd78
+feffcd68:	48 60 b5 8c 	lda	0x48(g5),g6
+feffcd6c:	00 90 85 80 	ldob	(g6),g0
+feffcd70:	00 50 a5 88 	ldos	(g5),g4
+feffcd74:	f8 3f 45 37 	bbs	8,g4,0xfeffcd6c
+feffcd78:	00 30 b0 8c 	lda	0xfeff9c00,g6
+feffcd7c:	00 9c ff fe 
+feffcd80:	00 90 a5 90 	ld	(g6),g4
+feffcd84:	00 30 98 8c 	lda	0x4d594c58,g3
+feffcd88:	58 4c 59 4d 
+feffcd8c:	10 c0 a4 3a 	cmpibe	g4,g3,0xfeffcd9c
+feffcd90:	00 30 80 8c 	lda	0xfeffcb70,g0
+feffcd94:	70 cb ff fe 
+feffcd98:	b8 00 00 08 	b	0xfeffce50
+feffcd9c:	00 30 b8 80 	ldob	0xfeff9c0a,g7
+feffcda0:	0a 9c ff fe 
+feffcda4:	00 1e 80 5c 	mov	0,g0
+feffcda8:	24 c0 85 33 	cmpobge	g0,g7,0xfeffcdcc
+feffcdac:	1f 58 a8 59 	addo	31,1,g5
+feffcdb0:	16 40 35 59 	addo	g6,g5,r6
+feffcdb4:	08 a0 a1 80 	ldob	0x8(r6),g4
+feffcdb8:	20 20 2d 3a 	cmpibe	5,g4,0xfeffcdd8
+feffcdbc:	10 50 80 59 	addo	g0,1,g0
+feffcdc0:	10 e0 05 5a 	cmpo	g0,g7
+feffcdc4:	40 60 ad 8c 	lda	0x40(g5),g5
+feffcdc8:	e8 ff ff 14 	bl	0xfeffcdb0
+feffcdcc:	00 30 80 8c 	lda	0xfeffcb78,g0
+feffcdd0:	78 cb ff fe 
+feffcdd4:	7c 00 00 08 	b	0xfeffce50
+feffcdd8:	00 a0 a1 90 	ld	0x0(r6),g4
+feffcddc:	04 a0 a9 90 	ld	0x4(r6),g5
+feffcde0:	00 30 38 8c 	lda	0xfef80000,r7
+feffcde4:	00 00 f8 fe 
+feffcde8:	14 c0 81 59 	addo	g4,r7,g0
+feffcdec:	10 40 85 59 	addo	g0,g5,g0
+feffcdf0:	00 34 24 8c 	lda	0xffffff60(g0),r4
+feffcdf4:	60 ff ff ff 
+feffcdf8:	1f 1e 88 5c 	mov	31,g1
+feffcdfc:	04 16 80 5c 	mov	r4,g0
+feffce00:	b8 00 00 0b 	bal	0xfeffceb8
+feffce04:	7c 20 a1 90 	ld	0x7c(r4),g4
+feffce08:	90 20 05 5a 	cmpi	g0,g4
+feffce0c:	00 1e b0 5c 	mov	0,g6
+feffce10:	10 00 00 12 	be	0xfeffce20
+feffce14:	00 30 80 8c 	lda	0xfeffcb80,g0
+feffce18:	80 cb ff fe 
+feffce1c:	34 00 00 08 	b	0xfeffce50
+feffce20:	10 20 a1 90 	ld	0x10(r4),g4
+feffce24:	00 90 a9 90 	ld	(r6),g5
+feffce28:	0c 20 89 90 	ld	0xc(r4),g1
+feffce2c:	14 40 a5 59 	addo	g4,g5,g4
+feffce30:	14 c0 29 59 	addo	g4,r7,r5
+feffce34:	85 83 85 58 	or	r5,g6,g0
+feffce38:	02 4c 8c 59 	shro	2,g1,g1
+feffce3c:	7c 00 00 0b 	bal	0xfeffceb8
+feffce40:	18 20 a1 90 	ld	0x18(r4),g4
+feffce44:	20 00 85 3a 	cmpibe	g0,g4,0xfeffce64
+feffce48:	00 30 80 8c 	lda	0xfeffcb90,g0
+feffce4c:	90 cb ff fe 
+feffce50:	70 fc ff 09 	call	0xfeffcac0
+feffce54:	fc 00 00 09 	call	0xfeffcf50
+feffce58:	b0 00 00 0b 	bal	0xfeffcf08
+feffce5c:	00 fc ff 09 	call	0xfeffca5c
+feffce60:	e0 fe ff 08 	b	0xfeffcd40
+feffce64:	1c 20 a1 90 	ld	0x1c(r4),g4
+feffce68:	00 90 a9 90 	ld	(r6),g5
+feffce6c:	14 40 a5 59 	addo	g4,g5,g4
+feffce70:	14 c0 29 59 	addo	g4,r7,r5
+feffce74:	05 16 80 5c 	mov	r5,g0
+feffce78:	78 fc ff 09 	call	0xfeffcaf0
+feffce7c:	20 20 81 90 	ld	0x20(r4),g0
+feffce80:	70 fc ff 09 	call	0xfeffcaf0
+feffce84:	04 20 91 90 	ld	0x4(r4),g2
+feffce88:	20 20 89 90 	ld	0x20(r4),g1
+feffce8c:	05 16 80 5c 	mov	r5,g0
+feffce90:	00 90 04 86 	callx	(g2)
+feffce94:	00 30 80 8c 	lda	0xfeffcb9a,g0
+feffce98:	9a cb ff fe 
+feffce9c:	24 fc ff 09 	call	0xfeffcac0
+feffcea0:	08 20 81 90 	ld	0x8(r4),g0
+feffcea4:	00 00 00 0a 	ret
+	...
+feffceb0:	00 30 f0 8c 	lda	0xfeffcef4,g14
+feffceb4:	f4 ce ff fe 
+feffceb8:	1e 16 90 5c 	mov	g14,g2
+feffcebc:	00 1e f0 5c 	mov	0,g14
+feffcec0:	01 49 8c 59 	subo	1,g1,g1
+feffcec4:	01 19 b0 59 	subo	1,0,g6
+feffcec8:	91 a0 05 5a 	cmpi	g1,g6
+feffcecc:	10 16 a8 5c 	mov	g0,g5
+feffced0:	00 1e 80 5c 	mov	0,g0
+feffced4:	1c 00 00 12 	be	0xfeffcef0
+feffced8:	01 49 8c 59 	subo	1,g1,g1
+feffcedc:	00 50 a5 90 	ld	(g5),g4
+feffcee0:	91 a0 05 5a 	cmpi	g1,g6
+feffcee4:	15 10 a9 59 	addo	g5,4,g5
+feffcee8:	10 00 85 59 	addo	g0,g4,g0
+feffceec:	ec ff ff 15 	bne	0xfeffced8
+feffcef0:	00 90 04 84 	bx	(g2)
+feffcef4:	00 00 00 0a 	ret
+	...
+feffcf00:	00 30 f0 8c 	lda	0xfeffcf48,g14
+feffcf04:	48 cf ff fe 
+feffcf08:	1e 16 80 5c 	mov	g14,g0
+feffcf0c:	00 1e f0 5c 	mov	0,g14
+feffcf10:	00 30 b0 8c 	lda	0xc0000800,g6
+feffcf14:	00 08 00 c0 
+feffcf18:	00 1e b8 5c 	mov	0,g7
+feffcf1c:	00 a0 a5 90 	ld	0x0(g6),g4
+feffcf20:	04 a0 ad 90 	ld	0x4(g6),g5
+feffcf24:	00 30 a0 8c 	lda	0xc0010c20,g4
+feffcf28:	20 0c 01 c0 
+feffcf2c:	17 50 b8 59 	addo	g7,1,g7
+feffcf30:	00 1e a8 5c 	mov	0,g5
+feffcf34:	17 f0 03 5a 	cmpo	g7,15
+feffcf38:	00 90 a5 9a 	stl	g4,(g6)
+feffcf3c:	16 10 b2 59 	addo	g6,8,g6
+feffcf40:	dc ff ff 16 	ble	0xfeffcf1c
+feffcf44:	00 10 04 84 	bx	(g0)
+feffcf48:	00 00 00 0a 	ret
+feffcf4c:	00 00 00 00 	.word	0x00000000
+feffcf50:	00 30 80 8c 	lda	0x84003000,g0
+feffcf54:	00 30 00 84 
+feffcf58:	00 30 88 8c 	lda	0xc0010bd0,g1
+feffcf5c:	d0 0b 01 c0 
+feffcf60:	00 30 90 8c 	lda	0x84003000,g2
+feffcf64:	00 30 00 84 
+feffcf68:	00 30 98 8c 	lda	0xc0010bd0,g3
+feffcf6c:	d0 0b 01 c0 
+feffcf70:	00 30 20 8c 	lda	0x84003000,r4
+feffcf74:	00 30 00 84 
+feffcf78:	13 16 28 5c 	mov	g3,r5
+feffcf7c:	00 30 a0 8c 	lda	0xc0000400,g4
+feffcf80:	00 04 00 c0 
+feffcf84:	00 30 30 8c 	lda	0x84003000,r6
+feffcf88:	00 30 00 84 
+feffcf8c:	13 16 38 5c 	mov	g3,r7
+feffcf90:	00 10 85 b2 	stq	g0,(g4)
+feffcf94:	10 20 25 92 	st	r4,0x10(g4)
+feffcf98:	14 20 9d 92 	st	g3,0x14(g4)
+feffcf9c:	00 30 40 8c 	lda	0xc0000400,r8
+feffcfa0:	00 04 00 c0 
+feffcfa4:	18 20 35 92 	st	r6,0x18(g4)
+feffcfa8:	00 30 50 8c 	lda	0xc0000408,r10
+feffcfac:	08 04 00 c0 
+feffcfb0:	00 30 a8 8c 	lda	0xc0000400,g5
+feffcfb4:	00 04 00 c0 
+feffcfb8:	1c 20 9d 92 	st	g3,0x1c(g4)
+feffcfbc:	00 30 58 8c 	lda	0xc0000410,r11
+feffcfc0:	10 04 00 c0 
+feffcfc4:	10 00 a8 92 	st	g5,0x10
+feffcfc8:	00 30 a0 8c 	lda	0xc0010a90,g4
+feffcfcc:	90 0a 01 c0 
+feffcfd0:	18 00 50 9a 	stl	r10,0x18
+feffcfd4:	00 30 a8 8c 	lda	0xc0000418,g5
+feffcfd8:	18 04 00 c0 
+feffcfdc:	00 00 a0 92 	st	g4,0x0
+feffcfe0:	20 00 a8 92 	st	g5,0x20
+feffcfe4:	00 30 a0 8c 	lda	0x84003000,g4
+feffcfe8:	00 30 00 84 
+feffcfec:	00 d0 a4 92 	st	g4,(g3)
+feffcff0:	00 30 98 92 	st	g3,0xc0010bd4
+feffcff4:	d4 0b 01 c0 
+feffcff8:	00 00 00 0a 	ret
+	...
+feffd010:	44 44 00 00 	.word	0x00004444
+feffd014:	54 67 00 00 	.word	0x00006754
+feffd018:	00 00 08 00 	.word	0x00080000
+feffd01c:	00 60 00 00 	.word	0x00006000
+feffd020:	00 00 80 00 	.word	0x00800000
+feffd024:	00 00 00 00 	.word	0x00000000
+feffd028:	00 00 80 00 	.word	0x00800000
+feffd02c:	00 00 00 00 	.word	0x00000000
+feffd030:	00 00 80 00 	.word	0x00800000
+feffd034:	00 00 00 00 	.word	0x00000000
+feffd038:	00 00 80 00 	.word	0x00800000
+feffd03c:	00 00 00 00 	.word	0x00000000
+feffd040:	00 00 80 00 	.word	0x00800000
+feffd044:	00 00 00 00 	.word	0x00000000
+feffd048:	00 00 80 00 	.word	0x00800000
+feffd04c:	00 00 00 00 	.word	0x00000000
+feffd050:	00 00 80 00 	.word	0x00800000
+	...
+feffd06c:	01 00 00 00 	.word	0x00000001
+	...
+feffd17c:	00 04 00 c0 	ldib	0x400,pfp
+	...
+feffd1fc:	08 04 00 c0 	ldib	0x408,pfp
+	...
+feffd23c:	10 04 00 c0 	ldib	0x410,pfp
+	...
+feffd27c:	18 04 00 c0 	ldib	0x418,pfp
+	...
+feffd450:	90 ca ff fe 	.word	0xfeffca90
+feffd454:	90 ca ff fe 	.word	0xfeffca90
+feffd458:	90 ca ff fe 	.word	0xfeffca90
+	...
+feffd480:	00 08 00 c0 	ldib	0x800,pfp
+feffd484:	00 d0 ff fe 	.word	0xfeffd000
+feffd488:	00 90 00 00 	.word	0x00009000
+feffd48c:	00 00 00 40 	.word	0x40000000
+feffd490:	70 d0 ff fe 	.word	0xfeffd070
+feffd494:	00 00 fe fe 	.word	0xfefe0000
+feffd498:	00 00 00 00 	.word	0x00000000
+feffd49c:	00 10 00 c0 	ldib	(pfp),pfp
+	...
+feffd4a8:	ff ff ff ff 	.word	0xffffffff
+feffd4ac:	ff ff ff ff 	.word	0xffffffff
+feffd4b0:	ff ff ff ff 	.word	0xffffffff
+feffd4b4:	ff ff ff ff 	.word	0xffffffff
+feffd4b8:	ff ff ff ff 	.word	0xffffffff
+feffd4bc:	ff ff ff ff 	.word	0xffffffff
+feffd4c0:	ff ff ff ff 	.word	0xffffffff
+feffd4c4:	ff ff ff ff 	.word	0xffffffff
+feffd4c8:	ff ff ff ff 	.word	0xffffffff
+feffd4cc:	ff ff ff ff 	.word	0xffffffff
+feffd4d0:	ff ff ff ff 	.word	0xffffffff
+feffd4d4:	ff ff ff ff 	.word	0xffffffff
+feffd4d8:	ff ff ff ff 	.word	0xffffffff
+feffd4dc:	ff ff ff ff 	.word	0xffffffff
+feffd4e0:	ff ff ff ff 	.word	0xffffffff
+feffd4e4:	ff ff ff ff 	.word	0xffffffff
+feffd4e8:	ff ff ff ff 	.word	0xffffffff
+feffd4ec:	ff ff ff ff 	.word	0xffffffff
+feffd4f0:	ff ff ff ff 	.word	0xffffffff
+feffd4f4:	ff ff ff ff 	.word	0xffffffff
+feffd4f8:	ff ff ff ff 	.word	0xffffffff
+feffd4fc:	ff ff ff ff 	.word	0xffffffff
+feffd500:	ff ff ff ff 	.word	0xffffffff
+feffd504:	ff ff ff ff 	.word	0xffffffff
+feffd508:	ff ff ff ff 	.word	0xffffffff
+feffd50c:	ff ff ff ff 	.word	0xffffffff
+feffd510:	ff ff ff ff 	.word	0xffffffff
+feffd514:	ff ff ff ff 	.word	0xffffffff
+feffd518:	ff ff ff ff 	.word	0xffffffff
+feffd51c:	ff ff ff ff 	.word	0xffffffff
+feffd520:	ff ff ff ff 	.word	0xffffffff
+feffd524:	ff ff ff ff 	.word	0xffffffff
+feffd528:	ff ff ff ff 	.word	0xffffffff
+feffd52c:	ff ff ff ff 	.word	0xffffffff
+feffd530:	ff ff ff ff 	.word	0xffffffff
+feffd534:	ff ff ff ff 	.word	0xffffffff
+feffd538:	ff ff ff ff 	.word	0xffffffff
+feffd53c:	ff ff ff ff 	.word	0xffffffff
+feffd540:	ff ff ff ff 	.word	0xffffffff
+feffd544:	ff ff ff ff 	.word	0xffffffff
+feffd548:	ff ff ff ff 	.word	0xffffffff
+feffd54c:	ff ff ff ff 	.word	0xffffffff
+feffd550:	ff ff ff ff 	.word	0xffffffff
+feffd554:	ff ff ff ff 	.word	0xffffffff
+feffd558:	ff ff ff ff 	.word	0xffffffff
+feffd55c:	ff ff ff ff 	.word	0xffffffff
+feffd560:	ff ff ff ff 	.word	0xffffffff
+feffd564:	ff ff ff ff 	.word	0xffffffff
+feffd568:	ff ff ff ff 	.word	0xffffffff
+feffd56c:	ff ff ff ff 	.word	0xffffffff
+feffd570:	ff ff ff ff 	.word	0xffffffff
+feffd574:	ff ff ff ff 	.word	0xffffffff
+feffd578:	ff ff ff ff 	.word	0xffffffff
+feffd57c:	ff ff ff ff 	.word	0xffffffff
+feffd580:	ff ff ff ff 	.word	0xffffffff
+feffd584:	ff ff ff ff 	.word	0xffffffff
+feffd588:	ff ff ff ff 	.word	0xffffffff
+feffd58c:	ff ff ff ff 	.word	0xffffffff
+feffd590:	ff ff ff ff 	.word	0xffffffff
+feffd594:	ff ff ff ff 	.word	0xffffffff
+feffd598:	ff ff ff ff 	.word	0xffffffff
+feffd59c:	ff ff ff ff 	.word	0xffffffff
+feffd5a0:	ff ff ff ff 	.word	0xffffffff
+feffd5a4:	ff ff ff ff 	.word	0xffffffff
+feffd5a8:	ff ff ff ff 	.word	0xffffffff
+feffd5ac:	ff ff ff ff 	.word	0xffffffff
+feffd5b0:	ff ff ff ff 	.word	0xffffffff
+feffd5b4:	ff ff ff ff 	.word	0xffffffff
+feffd5b8:	ff ff ff ff 	.word	0xffffffff
+feffd5bc:	ff ff ff ff 	.word	0xffffffff
+feffd5c0:	ff ff ff ff 	.word	0xffffffff
+feffd5c4:	ff ff ff ff 	.word	0xffffffff
+feffd5c8:	ff ff ff ff 	.word	0xffffffff
+feffd5cc:	ff ff ff ff 	.word	0xffffffff
+feffd5d0:	ff ff ff ff 	.word	0xffffffff
+feffd5d4:	ff ff ff ff 	.word	0xffffffff
+feffd5d8:	ff ff ff ff 	.word	0xffffffff
+feffd5dc:	ff ff ff ff 	.word	0xffffffff
+feffd5e0:	ff ff ff ff 	.word	0xffffffff
+feffd5e4:	ff ff ff ff 	.word	0xffffffff
+feffd5e8:	ff ff ff ff 	.word	0xffffffff
+feffd5ec:	ff ff ff ff 	.word	0xffffffff
+feffd5f0:	ff ff ff ff 	.word	0xffffffff
+feffd5f4:	ff ff ff ff 	.word	0xffffffff
+feffd5f8:	ff ff ff ff 	.word	0xffffffff
+feffd5fc:	ff ff ff ff 	.word	0xffffffff
+feffd600:	00 0e e7 65 	dcctl	0,g12,g12
+feffd604:	14 01 00 0b 	bal	0xfeffd718
+feffd608:	c0 01 00 0b 	bal	0xfeffd7c8
+feffd60c:	2c 02 00 0b 	bal	0xfeffd838
+feffd610:	10 03 00 09 	call	0xfeffd920
+feffd614:	74 04 00 0b 	bal	0xfeffda88
+feffd618:	98 0e 00 09 	call	0xfeffe4b0
+feffd61c:	08 1e 98 5c 	mov	8,g3
+feffd620:	00 30 b8 8c 	lda	0xfef80000,g7
+feffd624:	00 00 f8 fe 
+feffd628:	00 30 b0 8c 	lda	0xc0100000,g6
+feffd62c:	00 00 10 c0 
+feffd630:	00 1e a8 5c 	mov	0,g5
+feffd634:	00 30 80 8c 	lda	0x7ffff,g0
+feffd638:	ff ff 07 00 
+feffd63c:	00 30 98 8a 	stos	g3,0x1040
+feffd640:	40 10 00 00 
+feffd644:	00 d0 a5 80 	ldob	(g7),g4
+feffd648:	17 50 b8 59 	addo	g7,1,g7
+feffd64c:	15 50 a8 59 	addo	g5,1,g5
+feffd650:	15 20 04 5a 	cmpo	g5,g0
+feffd654:	00 90 a5 82 	stob	g4,(g6)
+feffd658:	16 50 b0 59 	addo	g6,1,g6
+feffd65c:	e8 ff ff 16 	ble	0xfeffd644
+feffd660:	00 30 90 8c 	lda	0xc0179c00,g2
+feffd664:	00 9c 17 c0 
+feffd668:	00 90 a4 90 	ld	(g2),g4
+feffd66c:	00 30 98 8c 	lda	0x4d594c58,g3
+feffd670:	58 4c 59 4d 
+feffd674:	94 c0 a4 3a 	cmpibe	g4,g3,0xfeffd708
+feffd678:	12 16 b0 5c 	mov	g2,g6
+feffd67c:	00 1e a8 5c 	mov	0,g5
+feffd680:	5f 01 a0 8c 	lda	0x15f,g4
+feffd684:	15 50 a8 59 	addo	g5,1,g5
+feffd688:	00 90 f5 82 	stob	g14,(g6)
+feffd68c:	15 20 05 5a 	cmpo	g5,g4
+feffd690:	16 50 b0 59 	addo	g6,1,g6
+feffd694:	f0 ff ff 16 	ble	0xfeffd684
+feffd698:	00 30 20 8c 	lda	0xc0179c00,r4
+feffd69c:	00 9c 17 c0 
+feffd6a0:	00 a0 a4 90 	ld	0x0(g2),g4
+feffd6a4:	04 a0 ac 90 	ld	0x4(g2),g5
+feffd6a8:	08 a0 b4 90 	ld	0x8(g2),g6
+feffd6ac:	0c a0 bc 90 	ld	0xc(g2),g7
+feffd6b0:	20 20 81 8c 	lda	0x20(r4),g0
+feffd6b4:	00 30 a0 8c 	lda	0x4d594c58,g4
+feffd6b8:	58 4c 59 4d 
+feffd6bc:	00 30 98 8c 	lda	0xffff0000,g3
+feffd6c0:	00 00 ff ff 
+feffd6c4:	01 1e a8 5c 	mov	1,g5
+feffd6c8:	96 c0 8c 58 	and	g6,g3,g1
+feffd6cc:	11 16 b0 5c 	mov	g1,g6
+feffd6d0:	08 a0 8c 92 	st	g1,0x8(g2)
+feffd6d4:	05 1e 98 5c 	mov	5,g3
+feffd6d8:	00 90 a4 9a 	stl	g4,(g2)
+feffd6dc:	0a a0 9c 82 	stob	g3,0xa(g2)
+feffd6e0:	0c a0 bc 92 	st	g7,0xc(g2)
+feffd6e4:	54 0b 00 0b 	bal	0xfeffe238
+feffd6e8:	60 20 81 8c 	lda	0x60(r4),g0
+feffd6ec:	bc 0b 00 0b 	bal	0xfeffe2a8
+feffd6f0:	a0 20 81 8c 	lda	0xa0(r4),g0
+feffd6f4:	24 0c 00 0b 	bal	0xfeffe318
+feffd6f8:	e0 20 81 8c 	lda	0xe0(r4),g0
+feffd6fc:	8c 0c 00 0b 	bal	0xfeffe388
+feffd700:	20 21 81 8c 	lda	0x120(r4),g0
+feffd704:	f4 0c 00 0b 	bal	0xfeffe3f8
+feffd708:	c8 03 00 08 	b	0xfeffdad0
+feffd70c:	00 00 00 00 	.word	0x00000000
+feffd710:	00 30 f0 8c 	lda	0xc00101b0,g14
+feffd714:	b0 01 01 c0 
+feffd718:	1e 16 80 5c 	mov	g14,g0
+feffd71c:	00 1e f0 5c 	mov	0,g14
+feffd720:	00 30 a0 8c 	lda	0x1200,g4
+feffd724:	00 12 00 00 
+feffd728:	00 30 a8 8c 	lda	0x1069,g5
+feffd72c:	69 10 00 00 
+feffd730:	00 10 ad 8a 	stos	g5,(g4)
+feffd734:	11 1e b0 5c 	mov	17,g6
+feffd738:	02 20 b5 8a 	stos	g6,0x2(g4)
+feffd73c:	2c 20 ad 8a 	stos	g5,0x2c(g4)
+feffd740:	2e 20 b5 8a 	stos	g6,0x2e(g4)
+feffd744:	04 1e b0 5c 	mov	4,g6
+feffd748:	0a 20 b5 82 	stob	g6,0xa(g4)
+feffd74c:	01 1e b0 5c 	mov	1,g6
+feffd750:	0b 20 b5 82 	stob	g6,0xb(g4)
+feffd754:	10 1e b0 5c 	mov	16,g6
+feffd758:	0c 20 b5 82 	stob	g6,0xc(g4)
+feffd75c:	86 19 b0 58 	setbit	6,0,g6
+feffd760:	0d 20 b5 82 	stob	g6,0xd(g4)
+feffd764:	00 30 a8 8c 	lda	0xffffe000,g5
+feffd768:	00 e0 ff ff 
+feffd76c:	40 20 ad 92 	st	g5,0x40(g4)
+feffd770:	00 30 a8 8c 	lda	0xc0008000,g5
+feffd774:	00 80 00 c0 
+feffd778:	44 20 ad 92 	st	g5,0x44(g4)
+feffd77c:	00 30 a8 8c 	lda	0xfffff800,g5
+feffd780:	00 f8 ff ff 
+feffd784:	74 20 ad 92 	st	g5,0x74(g4)
+feffd788:	00 30 a8 8c 	lda	0xfeffc000,g5
+feffd78c:	00 c0 ff fe 
+feffd790:	78 20 ad 92 	st	g5,0x78(g4)
+feffd794:	54 02 b0 8c 	lda	0x254,g6
+feffd798:	04 20 b5 8a 	stos	g6,0x4(g4)
+feffd79c:	01 19 b0 59 	subo	1,0,g6
+feffd7a0:	06 20 b5 8a 	stos	g6,0x6(g4)
+feffd7a4:	1f d8 a9 59 	addo	31,7,g5
+feffd7a8:	88 20 ad 92 	st	g5,0x88(g4)
+feffd7ac:	00 10 04 84 	bx	(g0)
+feffd7b0:	00 00 00 0a 	ret
+	...
+feffd7c0:	00 30 f0 8c 	lda	0xc001022c,g14
+feffd7c4:	2c 02 01 c0 
+feffd7c8:	1e 16 80 5c 	mov	g14,g0
+feffd7cc:	00 1e f0 5c 	mov	0,g14
+feffd7d0:	00 30 a8 8c 	lda	0x124c,g5
+feffd7d4:	4c 12 00 00 
+feffd7d8:	00 30 a0 8c 	lda	0xffc00000,g4
+feffd7dc:	00 00 c0 ff 
+feffd7e0:	00 50 a5 92 	st	g4,(g5)
+feffd7e4:	1e de a0 59 	shlo	30,3,g4
+feffd7e8:	04 60 a5 92 	st	g4,0x4(g5)
+feffd7ec:	00 30 a0 8c 	lda	0xff800008,g4
+feffd7f0:	08 00 80 ff 
+feffd7f4:	00 74 a5 92 	st	g4,0xfffffffc(g5)
+feffd7f8:	fc ff ff ff 
+feffd7fc:	00 30 a0 8c 	lda	0xfff00000,g4
+feffd800:	00 00 f0 ff 
+feffd804:	1c 60 a5 92 	st	g4,0x1c(g5)
+feffd808:	16 1e b0 5c 	mov	22,g6
+feffd80c:	4c 60 b5 8a 	stos	g6,0x4c(g5)
+feffd810:	01 19 b0 59 	subo	1,0,g6
+feffd814:	00 30 b0 8a 	stos	g6,0x1206
+feffd818:	06 12 00 00 
+feffd81c:	89 19 b0 58 	setbit	9,0,g6
+feffd820:	00 30 b0 8a 	stos	g6,0x103e
+feffd824:	3e 10 00 00 
+feffd828:	00 10 04 84 	bx	(g0)
+feffd82c:	00 00 00 0a 	ret
+feffd830:	00 30 f0 8c 	lda	0xc00102fc,g14
+feffd834:	fc 02 01 c0 
+feffd838:	1e 16 80 5c 	mov	g14,g0
+feffd83c:	00 1e f0 5c 	mov	0,g14
+feffd840:	00 30 a0 8c 	lda	0x1044,g4
+feffd844:	44 10 00 00 
+feffd848:	01 19 a8 59 	subo	1,0,g5
+feffd84c:	00 10 ad 92 	st	g5,(g4)
+feffd850:	04 20 ad 92 	st	g5,0x4(g4)
+feffd854:	00 30 b0 8c 	lda	0x1069,g6
+feffd858:	69 10 00 00 
+feffd85c:	00 34 b5 8a 	stos	g6,0xfffffff0(g4)
+feffd860:	f0 ff ff ff 
+feffd864:	11 1e b0 5c 	mov	17,g6
+feffd868:	00 34 b5 8a 	stos	g6,0xfffffff2(g4)
+feffd86c:	f2 ff ff ff 
+feffd870:	00 30 f0 8a 	stos	g14,0x1020
+feffd874:	20 10 00 00 
+feffd878:	00 30 f0 8a 	stos	g14,0x1022
+feffd87c:	22 10 00 00 
+feffd880:	00 30 f0 82 	stob	g14,0x101c
+feffd884:	1c 10 00 00 
+feffd888:	00 30 f0 82 	stob	g14,0x101d
+feffd88c:	1d 10 00 00 
+feffd890:	10 20 f5 82 	stob	g14,0x10(g4)
+feffd894:	11 20 f5 82 	stob	g14,0x11(g4)
+feffd898:	10 1e b0 5c 	mov	16,g6
+feffd89c:	00 30 b0 82 	stob	g6,0x100c
+feffd8a0:	0c 10 00 00 
+feffd8a4:	86 19 a8 58 	setbit	6,0,g5
+feffd8a8:	00 30 a8 82 	stob	g5,0x100d
+feffd8ac:	0d 10 00 00 
+feffd8b0:	00 30 f0 8a 	stos	g14,0x1024
+feffd8b4:	24 10 00 00 
+feffd8b8:	00 34 f5 8a 	stos	g14,0xffffffe2(g4)
+feffd8bc:	e2 ff ff ff 
+feffd8c0:	00 30 b0 8c 	lda	0xffffff80,g6
+feffd8c4:	80 ff ff ff 
+feffd8c8:	14 20 b5 8a 	stos	g6,0x14(g4)
+feffd8cc:	01 19 b0 59 	subo	1,0,g6
+feffd8d0:	16 20 b5 8a 	stos	g6,0x16(g4)
+feffd8d4:	04 1e b0 5c 	mov	4,g6
+feffd8d8:	18 20 b5 8a 	stos	g6,0x18(g4)
+feffd8dc:	00 30 a8 82 	stob	g5,0x101b
+feffd8e0:	1b 10 00 00 
+feffd8e4:	00 30 f0 82 	stob	g14,0x101a
+feffd8e8:	1a 10 00 00 
+feffd8ec:	44 00 b0 8c 	lda	0x44,g6
+feffd8f0:	00 30 b0 8a 	stos	g6,0x1004
+feffd8f4:	04 10 00 00 
+feffd8f8:	00 10 04 84 	bx	(g0)
+feffd8fc:	00 00 00 0a 	ret
+feffd900:	0a 53 63 61 	.word	0x6163530a
+feffd904:	6e 53 50 43 	.word	0x4350536e
+feffd908:	49 20 3a 20 	testno	7
+feffd90c:	00 00 00 00 	.word	0x00000000
+feffd910:	20 44 25 58 	nor	sf0,g5,r4
+feffd914:	3a 25 58 25 	testne.f	11
+feffd918:	58 20 00 00 	.word	0x00002058
+feffd91c:	00 00 00 00 	.word	0x00000000
+feffd920:	00 30 80 8c 	lda	0xc0010300,g0
+feffd924:	00 03 01 c0 
+feffd928:	00 1e 40 5c 	mov	0,r8
+feffd92c:	00 1e 38 5c 	mov	0,r7
+feffd930:	10 1e 20 5c 	mov	16,r4
+feffd934:	00 30 48 8c 	lda	0xffff,r9
+feffd938:	ff ff 00 00 
+feffd93c:	d4 20 00 09 	call	0xfefffa10
+feffd940:	04 16 80 5c 	mov	r4,g0
+feffd944:	02 1e 88 5c 	mov	2,g1
+feffd948:	30 05 00 0b 	bal	0xfeffde78
+feffd94c:	00 1e 88 5c 	mov	0,g1
+feffd950:	10 16 28 5c 	mov	g0,r5
+feffd954:	04 16 80 5c 	mov	r4,g0
+feffd958:	20 05 00 0b 	bal	0xfeffde78
+feffd95c:	90 63 02 59 	cmpis	g0,r9
+feffd960:	10 16 30 5c 	mov	g0,r6
+feffd964:	a0 00 00 12 	be	0xfeffda04
+feffd968:	00 30 e8 8c 	lda	0xffff,g13
+feffd96c:	ff ff 00 00 
+feffd970:	85 63 07 59 	cmpis	r5,g13
+feffd974:	90 00 00 12 	be	0xfeffda04
+feffd978:	90 40 92 58 	and	g0,r9,g2
+feffd97c:	00 30 80 8c 	lda	0xc0010310,g0
+feffd980:	10 03 01 c0 
+feffd984:	85 40 9a 58 	and	r5,r9,g3
+feffd988:	04 16 88 5c 	mov	r4,g1
+feffd98c:	84 20 00 09 	call	0xfefffa10
+feffd990:	00 30 e8 8c 	lda	0x104b,g13
+feffd994:	4b 10 00 00 
+feffd998:	86 63 07 59 	cmpis	r6,g13
+feffd99c:	64 00 00 15 	bne	0xfeffda00
+feffd9a0:	00 30 e8 8c 	lda	0x8130,g13
+feffd9a4:	30 81 00 00 
+feffd9a8:	85 63 07 59 	cmpis	r5,g13
+feffd9ac:	54 00 00 15 	bne	0xfeffda00
+feffd9b0:	10 ce 91 59 	shlo	16,r7,g2
+feffd9b4:	04 16 80 5c 	mov	r4,g0
+feffd9b8:	14 1e 88 5c 	mov	20,g1
+feffd9bc:	00 b4 94 8c 	lda	0xfff00000(g2),g2
+feffd9c0:	00 00 f0 ff 
+feffd9c4:	34 05 00 0b 	bal	0xfeffdef8
+feffd9c8:	04 16 80 5c 	mov	r4,g0
+feffd9cc:	04 1e 88 5c 	mov	4,g1
+feffd9d0:	00 30 90 8c 	lda	0xffff0006,g2
+feffd9d4:	06 00 ff ff 
+feffd9d8:	20 05 00 0b 	bal	0xfeffdef8
+feffd9dc:	04 16 80 5c 	mov	r4,g0
+feffd9e0:	0c 1e 88 5c 	mov	12,g1
+feffd9e4:	00 30 90 8c 	lda	0x2008,g2
+feffd9e8:	08 20 00 00 
+feffd9ec:	0c 05 00 0b 	bal	0xfeffdef8
+feffd9f0:	10 09 a1 59 	subo	16,r4,g4
+feffd9f4:	14 56 a0 59 	shlo	g4,1,g4
+feffd9f8:	88 03 45 58 	or	r8,g4,r8
+feffd9fc:	07 50 38 59 	addo	r7,1,r7
+feffda00:	0c e0 11 34 	cmpobl	2,r7,0xfeffda0c
+feffda04:	04 50 20 59 	addo	r4,1,r4
+feffda08:	38 3f f9 33 	cmpobge	31,r4,0xfeffd940
+feffda0c:	00 30 b8 8c 	lda	0x1050,g7
+feffda10:	50 10 00 00 
+feffda14:	00 1e 20 5c 	mov	0,r4
+feffda18:	04 e0 01 5a 	cmpo	r4,r7
+feffda1c:	01 1e a0 5c 	mov	1,g4
+feffda20:	00 30 b0 8c 	lda	0x1554,g6
+feffda24:	54 15 00 00 
+feffda28:	00 d0 a5 92 	st	g4,(g7)
+feffda2c:	28 00 00 13 	bge	0xfeffda54
+feffda30:	04 56 a0 59 	shlo	r4,1,g4
+feffda34:	04 50 20 59 	addo	r4,1,r4
+feffda38:	00 d0 ad 90 	ld	(g7),g5
+feffda3c:	04 e0 01 5a 	cmpo	r4,r7
+feffda40:	02 8e b5 59 	shlo	2,g6,g6
+feffda44:	94 43 a5 58 	or	g4,g5,g4
+feffda48:	83 89 b5 58 	setbit	3,g6,g6
+feffda4c:	00 d0 a5 92 	st	g4,(g7)
+feffda50:	e0 ff ff 14 	bl	0xfeffda30
+feffda54:	00 30 a0 8c 	lda	0x1042,g4
+feffda58:	42 10 00 00 
+feffda5c:	00 30 e8 8c 	lda	0x3fff,g13
+feffda60:	ff 3f 00 00 
+feffda64:	96 40 b7 58 	and	g6,g13,g6
+feffda68:	00 10 45 8a 	stos	r8,(g4)
+feffda6c:	90 89 b5 58 	setbit	16,g6,g6
+feffda70:	0a 20 b5 92 	st	g6,0xa(g4)
+feffda74:	00 00 00 0a 	ret
+	...
+feffda80:	00 30 f0 8c 	lda	0xc00104c0,g14
+feffda84:	c0 04 01 c0 
+feffda88:	1e 16 88 5c 	mov	g14,g1
+feffda8c:	00 1e f0 5c 	mov	0,g14
+feffda90:	00 1e a8 5c 	mov	0,g5
+feffda94:	1f d8 87 59 	addo	31,31,g0
+feffda98:	00 30 b8 8c 	lda	0xc0009000,g7
+feffda9c:	00 90 00 c0 
+feffdaa0:	00 1e b0 5c 	mov	0,g6
+feffdaa4:	15 c0 a5 59 	addo	g5,g7,g4
+feffdaa8:	15 10 a9 59 	addo	g5,4,g5
+feffdaac:	15 20 04 5a 	cmpo	g5,g0
+feffdab0:	14 80 a5 59 	addo	g4,g6,g4
+feffdab4:	00 10 f5 92 	st	g14,(g4)
+feffdab8:	ec ff ff 16 	ble	0xfeffdaa4
+feffdabc:	00 50 04 84 	bx	(g1)
+feffdac0:	00 00 00 0a 	ret
+	...
+feffdad0:	00 30 20 8c 	lda	0x1324,r4
+feffdad4:	24 13 00 00 
+feffdad8:	08 00 00 08 	b	0xfeffdae0
+feffdadc:	34 12 00 09 	call	0xfeffed10
+feffdae0:	00 10 a1 90 	ld	(r4),g4
+feffdae4:	f8 3f 15 30 	bbc	2,g4,0xfeffdadc
+feffdae8:	08 00 00 09 	call	0xfeffdaf0
+feffdaec:	e4 ff ff 08 	b	0xfeffdad0
+feffdaf0:	00 30 28 8c 	lda	0x1320,r5
+feffdaf4:	20 13 00 00 
+feffdaf8:	00 50 21 90 	ld	(r5),r4
+feffdafc:	10 20 19 30 	bbc	3,r4,0xfeffdb0c
+feffdb00:	1f 58 80 59 	addo	31,1,g0
+feffdb04:	00 30 80 8a 	stos	g0,0x1040
+feffdb08:	40 10 00 00 
+feffdb0c:	0c 20 11 30 	bbc	2,r4,0xfeffdb18
+feffdb10:	04 1e a0 5c 	mov	4,g4
+feffdb14:	00 50 a1 92 	st	g4,(r5)
+feffdb18:	10 20 01 30 	bbc	0,r4,0xfeffdb28
+feffdb1c:	34 00 00 09 	call	0xfeffdb50
+feffdb20:	01 1e a0 5c 	mov	1,g4
+feffdb24:	00 50 a1 92 	st	g4,(r5)
+feffdb28:	0c 20 09 30 	bbc	1,r4,0xfeffdb34
+feffdb2c:	02 1e a0 5c 	mov	2,g4
+feffdb30:	00 50 a1 92 	st	g4,(r5)
+feffdb34:	00 00 00 0a 	ret
+	...
+feffdb40:	55 6e 69 6d 	.word	0x6d696e55
+feffdb44:	70 6c 3a 20 	testno	7
+feffdb48:	25 58 00 00 	.word	0x00005825
+feffdb4c:	00 00 00 00 	.word	0x00000000
+feffdb50:	00 30 a0 8c 	lda	0xc0009000,g4
+feffdb54:	00 90 00 c0 
+feffdb58:	00 10 8d 80 	ldob	(g4),g1
+feffdb5c:	1f 98 a8 59 	addo	31,2,g5
+feffdb60:	91 60 05 5a 	cmpi	g1,g5
+feffdb64:	01 20 25 80 	ldob	0x1(g4),r4
+feffdb68:	24 00 00 12 	be	0xfeffdb8c
+feffdb6c:	10 40 8d 31 	cmpobg	g1,g5,0xfeffdb7c
+feffdb70:	1f 58 90 59 	addo	31,1,g2
+feffdb74:	14 80 8c 3a 	cmpibe	g1,g2,0xfeffdb88
+feffdb78:	18 00 00 08 	b	0xfeffdb90
+feffdb7c:	1f 18 93 59 	addo	31,12,g2
+feffdb80:	10 80 8c 3d 	cmpibne	g1,g2,0xfeffdb90
+feffdb84:	9c 03 00 08 	b	0xfeffdf20
+feffdb88:	28 00 00 08 	b	0xfeffdbb0
+feffdb8c:	64 00 00 08 	b	0xfeffdbf0
+feffdb90:	00 30 80 8c 	lda	0xc0010540,g0
+feffdb94:	40 05 01 c0 
+feffdb98:	78 1e 00 09 	call	0xfefffa10
+feffdb9c:	04 16 80 5c 	mov	r4,g0
+feffdba0:	04 01 88 8c 	lda	0x104,g1
+feffdba4:	8c 02 00 08 	b	0xfeffde30
+	...
+feffdbb0:	00 30 a0 b0 	ldq	0xc0009000,g4
+feffdbb4:	00 90 00 c0 
+feffdbb8:	00 30 90 88 	ldos	0xc0009002,g2
+feffdbbc:	02 90 00 c0 
+feffdbc0:	0f 1e 98 5c 	mov	15,g3
+feffdbc4:	16 16 80 5c 	mov	g6,g0
+feffdbc8:	00 74 8d 8c 	lda	0xc0100000(g5),g1
+feffdbcc:	00 00 10 c0 
+feffdbd0:	c0 01 00 09 	call	0xfeffdd90
+feffdbd4:	00 30 80 80 	ldob	0xc0009001,g0
+feffdbd8:	01 90 00 c0 
+feffdbdc:	00 1e 88 5c 	mov	0,g1
+feffdbe0:	50 02 00 08 	b	0xfeffde30
+	...
+feffdbf0:	00 30 a0 b0 	ldq	0xc0009000,g4
+feffdbf4:	00 90 00 c0 
+feffdbf8:	00 30 90 88 	ldos	0xc0009002,g2
+feffdbfc:	02 90 00 c0 
+feffdc00:	0e 1e 98 5c 	mov	14,g3
+feffdc04:	16 16 80 5c 	mov	g6,g0
+feffdc08:	00 74 8d 8c 	lda	0xc0100000(g5),g1
+feffdc0c:	00 00 10 c0 
+feffdc10:	80 01 00 09 	call	0xfeffdd90
+feffdc14:	00 30 80 80 	ldob	0xc0009001,g0
+feffdc18:	01 90 00 c0 
+feffdc1c:	00 1e 88 5c 	mov	0,g1
+feffdc20:	10 02 00 08 	b	0xfeffde30
+feffdc24:	25 58 00 00 	.word	0x00005825
+	...
+feffdc30:	00 30 80 8c 	lda	0xfef80000,g0
+feffdc34:	00 00 f8 fe 
+feffdc38:	91 19 88 58 	setbit	17,0,g1
+feffdc3c:	64 09 00 09 	call	0xfeffe5a0
+feffdc40:	91 19 88 58 	setbit	17,0,g1
+feffdc44:	10 16 20 5c 	mov	g0,r4
+feffdc48:	00 30 80 8c 	lda	0xfefa0000,g0
+feffdc4c:	00 00 fa fe 
+feffdc50:	50 09 00 09 	call	0xfeffe5a0
+feffdc54:	91 19 88 58 	setbit	17,0,g1
+feffdc58:	84 03 24 58 	or	r4,g0,r4
+feffdc5c:	00 30 80 8c 	lda	0xfefc0000,g0
+feffdc60:	00 00 fc fe 
+feffdc64:	3c 09 00 09 	call	0xfeffe5a0
+feffdc68:	0f de 88 59 	shlo	15,3,g1
+feffdc6c:	84 03 24 58 	or	r4,g0,r4
+feffdc70:	00 30 80 8c 	lda	0xfefe0000,g0
+feffdc74:	00 00 fe fe 
+feffdc78:	28 09 00 09 	call	0xfeffe5a0
+feffdc7c:	8d 19 88 58 	setbit	13,0,g1
+feffdc80:	84 03 24 58 	or	r4,g0,r4
+feffdc84:	00 30 80 8c 	lda	0xfeff8000,g0
+feffdc88:	00 80 ff fe 
+feffdc8c:	14 09 00 09 	call	0xfeffe5a0
+feffdc90:	8d 19 88 58 	setbit	13,0,g1
+feffdc94:	84 03 24 58 	or	r4,g0,r4
+feffdc98:	00 30 80 8c 	lda	0xfeffa000,g0
+feffdc9c:	00 a0 ff fe 
+feffdca0:	00 09 00 09 	call	0xfeffe5a0
+feffdca4:	84 03 24 58 	or	r4,g0,r4
+feffdca8:	00 30 80 8c 	lda	0xc0010624,g0
+feffdcac:	24 06 01 c0 
+feffdcb0:	04 16 88 5c 	mov	r4,g1
+feffdcb4:	5c 1d 00 09 	call	0xfefffa10
+feffdcb8:	ac 20 01 3d 	cmpibne	0,r4,0xfeffdd64
+feffdcbc:	00 30 80 8c 	lda	0xfef80000,g0
+feffdcc0:	00 00 f8 fe 
+feffdcc4:	00 30 88 8c 	lda	0xc0100000,g1
+feffdcc8:	00 00 10 c0 
+feffdccc:	91 19 90 58 	setbit	17,0,g2
+feffdcd0:	f0 09 00 09 	call	0xfeffe6c0
+feffdcd4:	90 20 04 3d 	cmpibne	0,g0,0xfeffdd64
+feffdcd8:	00 30 80 8c 	lda	0xfefa0000,g0
+feffdcdc:	00 00 fa fe 
+feffdce0:	00 30 88 8c 	lda	0xc0120000,g1
+feffdce4:	00 00 12 c0 
+feffdce8:	91 19 90 58 	setbit	17,0,g2
+feffdcec:	d4 09 00 09 	call	0xfeffe6c0
+feffdcf0:	74 20 04 3d 	cmpibne	0,g0,0xfeffdd64
+feffdcf4:	00 30 80 8c 	lda	0xfefc0000,g0
+feffdcf8:	00 00 fc fe 
+feffdcfc:	00 30 88 8c 	lda	0xc0140000,g1
+feffdd00:	00 00 14 c0 
+feffdd04:	91 19 90 58 	setbit	17,0,g2
+feffdd08:	b8 09 00 09 	call	0xfeffe6c0
+feffdd0c:	58 20 04 3d 	cmpibne	0,g0,0xfeffdd64
+feffdd10:	00 30 80 8c 	lda	0xfefe0000,g0
+feffdd14:	00 00 fe fe 
+feffdd18:	00 30 88 8c 	lda	0xc0160000,g1
+feffdd1c:	00 00 16 c0 
+feffdd20:	0f de 90 59 	shlo	15,3,g2
+feffdd24:	9c 09 00 09 	call	0xfeffe6c0
+feffdd28:	3c 20 04 3d 	cmpibne	0,g0,0xfeffdd64
+feffdd2c:	00 30 80 8c 	lda	0xfeff8000,g0
+feffdd30:	00 80 ff fe 
+feffdd34:	00 30 88 8c 	lda	0xc0178000,g1
+feffdd38:	00 80 17 c0 
+feffdd3c:	8d 19 90 58 	setbit	13,0,g2
+feffdd40:	80 09 00 09 	call	0xfeffe6c0
+feffdd44:	20 20 04 3d 	cmpibne	0,g0,0xfeffdd64
+feffdd48:	00 30 80 8c 	lda	0xfeffa000,g0
+feffdd4c:	00 a0 ff fe 
+feffdd50:	00 30 88 8c 	lda	0xc017a000,g1
+feffdd54:	00 a0 17 c0 
+feffdd58:	8d 19 90 58 	setbit	13,0,g2
+feffdd5c:	64 09 00 09 	call	0xfeffe6c0
+feffdd60:	14 20 04 3a 	cmpibe	0,g0,0xfeffdd74
+feffdd64:	00 30 80 80 	ldob	0xc0009001,g0
+feffdd68:	01 90 00 c0 
+feffdd6c:	02 1e 88 5c 	mov	2,g1
+feffdd70:	c0 00 00 08 	b	0xfeffde30
+feffdd74:	00 30 80 80 	ldob	0xc0009001,g0
+feffdd78:	01 90 00 c0 
+feffdd7c:	00 1e 88 5c 	mov	0,g1
+feffdd80:	b8 00 00 0b 	bal	0xfeffde38
+feffdd84:	8c 0f 00 09 	call	0xfeffed10
+feffdd88:	fc ff ff 08 	b	0xfeffdd84
+feffdd8c:	00 00 00 00 	.word	0x00000000
+feffdd90:	00 30 e8 8c 	lda	0xc0080000,g13
+feffdd94:	00 00 08 c0 
+feffdd98:	00 60 27 90 	ld	0x0(g13),r4
+feffdd9c:	04 60 2f 90 	ld	0x4(g13),r5
+feffdda0:	08 60 37 90 	ld	0x8(g13),r6
+feffdda4:	0c 60 3f 90 	ld	0xc(g13),r7
+feffdda8:	04 60 87 92 	st	g0,0x4(g13)
+feffddac:	0c 60 8f 92 	st	g1,0xc(g13)
+feffddb0:	10 60 a7 90 	ld	0x10(g13),g4
+feffddb4:	14 60 af 90 	ld	0x14(g13),g5
+feffddb8:	18 60 b7 90 	ld	0x18(g13),g6
+feffddbc:	1c 60 bf 90 	ld	0x1c(g13),g7
+feffddc0:	00 30 48 8c 	lda	0x1450,r9
+feffddc4:	50 14 00 00 
+feffddc8:	00 50 ea 92 	st	g13,(r9)
+feffddcc:	10 60 97 9a 	stl	g2,0x10(g13)
+feffddd0:	01 1e 40 5c 	mov	1,r8
+feffddd4:	00 74 42 92 	st	r8,0xfffffff0(r9)
+feffddd8:	f0 ff ff ff 
+feffdddc:	00 1e 20 5c 	mov	0,r4
+feffdde0:	10 16 28 5c 	mov	g0,r5
+feffdde4:	00 1e 30 5c 	mov	0,r6
+feffdde8:	11 16 38 5c 	mov	g1,r7
+feffddec:	12 16 a0 5c 	mov	g2,g4
+feffddf0:	13 16 a8 5c 	mov	g3,g5
+feffddf4:	00 50 27 92 	st	r4,(g13)
+feffddf8:	0c 49 4a 59 	subo	12,r9,r9
+feffddfc:	00 1e b0 5c 	mov	0,g6
+feffde00:	00 1e b8 5c 	mov	0,g7
+feffde04:	00 50 82 90 	ld	(r9),g0
+feffde08:	08 60 37 92 	st	r6,0x8(g13)
+feffde0c:	0a 2f 04 5a 	chkbit	10,g0
+feffde10:	18 60 b7 9a 	stl	g6,0x18(g13)
+feffde14:	0c 00 00 10 	bno	0xfeffde20
+feffde18:	00 50 82 90 	ld	(r9),g0
+feffde1c:	fc 3f 54 37 	bbs	10,g0,0xfeffde18
+feffde20:	00 30 f0 92 	st	g14,0x1440
+feffde24:	40 14 00 00 
+feffde28:	02 1e e0 65 	dcctl	2,0,g12
+feffde2c:	00 00 00 0a 	ret
+feffde30:	00 30 f0 8c 	lda	0xc0010860,g14
+feffde34:	60 08 01 c0 
+feffde38:	1e 16 90 5c 	mov	g14,g2
+feffde3c:	00 1e f0 5c 	mov	0,g14
+feffde40:	00 30 a0 8c 	lda	0xc0009018,g4
+feffde44:	18 90 00 c0 
+feffde48:	00 10 85 82 	stob	g0,(g4)
+feffde4c:	02 20 8d 8a 	stos	g1,0x2(g4)
+feffde50:	01 1e a0 5c 	mov	1,g4
+feffde54:	00 30 a0 92 	st	g4,0x132c
+feffde58:	2c 13 00 00 
+feffde5c:	00 90 04 84 	bx	(g2)
+feffde60:	00 00 00 0a 	ret
+	...
+feffde70:	00 30 f0 8c 	lda	0xc00108e0,g14
+feffde74:	e0 08 01 c0 
+feffde78:	1e 16 90 5c 	mov	g14,g2
+feffde7c:	00 1e f0 5c 	mov	0,g14
+feffde80:	11 d2 a0 58 	notand	g1,3,g4
+feffde84:	10 56 80 59 	shlo	g0,1,g0
+feffde88:	10 00 85 59 	addo	g0,g4,g0
+feffde8c:	00 30 a0 8c 	lda	0x12a8,g4
+feffde90:	a8 12 00 00 
+feffde94:	00 10 85 92 	st	g0,(g4)
+feffde98:	91 d0 88 58 	and	g1,3,g1
+feffde9c:	08 20 ad 90 	ld	0x8(g4),g5
+feffdea0:	91 70 00 5a 	cmpi	g1,1
+feffdea4:	08 4c a5 59 	shro	8,g5,g4
+feffdea8:	15 02 ad 7a 	sele	g5,g4,g5
+feffdeac:	24 00 00 12 	be	0xfeffded0
+feffdeb0:	20 60 0c 31 	cmpobg	1,g1,0xfeffded0
+feffdeb4:	91 b0 00 5a 	cmpi	g1,2
+feffdeb8:	10 4c a5 59 	shro	16,g5,g4
+feffdebc:	15 02 ad 7a 	sele	g5,g4,g5
+feffdec0:	10 00 00 12 	be	0xfeffded0
+feffdec4:	91 f0 00 5a 	cmpi	g1,3
+feffdec8:	18 4c a5 59 	shro	24,g5,g4
+feffdecc:	15 02 ad 7a 	sele	g5,g4,g5
+feffded0:	00 30 80 8c 	lda	0xffff,g0
+feffded4:	ff ff 00 00 
+feffded8:	95 00 84 58 	and	g5,g0,g0
+feffdedc:	00 90 04 84 	bx	(g2)
+feffdee0:	00 00 00 0a 	ret
+	...
+feffdef0:	00 30 f0 8c 	lda	0xc001091c,g14
+feffdef4:	1c 09 01 c0 
+feffdef8:	1e 16 98 5c 	mov	g14,g3
+feffdefc:	00 1e f0 5c 	mov	0,g14
+feffdf00:	10 56 80 59 	shlo	g0,1,g0
+feffdf04:	10 40 84 59 	addo	g0,g1,g0
+feffdf08:	00 30 a0 8c 	lda	0x12a8,g4
+feffdf0c:	a8 12 00 00 
+feffdf10:	00 10 85 92 	st	g0,(g4)
+feffdf14:	08 20 95 92 	st	g2,0x8(g4)
+feffdf18:	00 d0 04 84 	bx	(g3)
+feffdf1c:	00 00 00 0a 	ret
+feffdf20:	00 30 a0 80 	ldob	0xc0009002,g4
+feffdf24:	02 90 00 c0 
+feffdf28:	94 b0 00 5a 	cmpi	g4,2
+feffdf2c:	00 30 80 8c 	lda	0xc0009000,g0
+feffdf30:	00 90 00 c0 
+feffdf34:	1c 00 00 12 	be	0xfeffdf50
+feffdf38:	0c 20 15 34 	cmpobl	2,g4,0xfeffdf44
+feffdf3c:	10 20 0d 3a 	cmpibe	1,g4,0xfeffdf4c
+feffdf40:	18 00 00 08 	b	0xfeffdf58
+feffdf44:	10 20 1d 3a 	cmpibe	3,g4,0xfeffdf54
+feffdf48:	10 00 00 08 	b	0xfeffdf58
+feffdf4c:	e4 fc ff 08 	b	0xfeffdc30
+feffdf50:	20 00 00 08 	b	0xfeffdf70
+feffdf54:	4c 00 00 08 	b	0xfeffdfa0
+feffdf58:	01 20 84 80 	ldob	0x1(g0),g0
+feffdf5c:	04 01 88 8c 	lda	0x104,g1
+feffdf60:	d0 fe ff 08 	b	0xfeffde30
+	...
+feffdf70:	10 16 20 5c 	mov	g0,r4
+feffdf74:	08 20 84 90 	ld	0x8(g0),g0
+feffdf78:	00 30 88 8c 	lda	0xc0179c00,g1
+feffdf7c:	00 9c 17 c0 
+feffdf80:	60 01 90 8c 	lda	0x160,g2
+feffdf84:	0f 1e 98 5c 	mov	15,g3
+feffdf88:	08 fe ff 09 	call	0xfeffdd90
+feffdf8c:	01 20 81 80 	ldob	0x1(r4),g0
+feffdf90:	00 1e 88 5c 	mov	0,g1
+feffdf94:	9c fe ff 08 	b	0xfeffde30
+	...
+feffdfa0:	10 16 20 5c 	mov	g0,r4
+feffdfa4:	08 20 84 90 	ld	0x8(g0),g0
+feffdfa8:	00 30 88 8c 	lda	0xc0179c00,g1
+feffdfac:	00 9c 17 c0 
+feffdfb0:	60 01 90 8c 	lda	0x160,g2
+feffdfb4:	0e 1e 98 5c 	mov	14,g3
+feffdfb8:	d8 fd ff 09 	call	0xfeffdd90
+feffdfbc:	01 20 81 80 	ldob	0x1(r4),g0
+feffdfc0:	00 1e 88 5c 	mov	0,g1
+feffdfc4:	6c fe ff 08 	b	0xfeffde30
+	...
+feffdfd0:	00 30 f0 8c 	lda	0xc0010a14,g14
+feffdfd4:	14 0a 01 c0 
+feffdfd8:	1e 16 90 5c 	mov	g14,g2
+feffdfdc:	00 1e f0 5c 	mov	0,g14
+feffdfe0:	01 49 8c 59 	subo	1,g1,g1
+feffdfe4:	01 19 b0 59 	subo	1,0,g6
+feffdfe8:	91 a0 05 5a 	cmpi	g1,g6
+feffdfec:	10 16 a8 5c 	mov	g0,g5
+feffdff0:	00 1e 80 5c 	mov	0,g0
+feffdff4:	1c 00 00 12 	be	0xfeffe010
+feffdff8:	01 49 8c 59 	subo	1,g1,g1
+feffdffc:	00 50 a5 90 	ld	(g5),g4
+feffe000:	91 a0 05 5a 	cmpi	g1,g6
+feffe004:	15 10 a9 59 	addo	g5,4,g5
+feffe008:	10 00 85 59 	addo	g0,g4,g0
+feffe00c:	ec ff ff 15 	bne	0xfeffdff8
+feffe010:	00 90 04 84 	bx	(g2)
+feffe014:	00 00 00 0a 	ret
+	...
+feffe020:	2d 43 6f 72 	.word	0x726f432d
+feffe024:	65 45 72 72 	.word	0x72724565
+feffe028:	25 58 20 00 	.word	0x00205825
+feffe02c:	00 00 00 00 	.word	0x00000000
+feffe030:	2d 50 41 54 	.word	0x5441502d
+feffe034:	55 5f 45 72 	.word	0x72455f55
+feffe038:	72 25 58 20 	testno.f	11
+feffe03c:	00 00 00 00 	.word	0x00000000
+feffe040:	2d 50 42 49 	.word	0x4942502d
+feffe044:	5f 45 72 25 	testne.f	r14
+feffe048:	58 20 00 00 	.word	0x00002058
+feffe04c:	00 00 00 00 	.word	0x00000000
+feffe050:	20 44 43 30 	bbc	r8,r13,0xfeffe470
+feffe054:	5f 45 72 72 	.word	0x7272455f
+feffe058:	25 58 20 00 	.word	0x00205825
+feffe05c:	00 00 00 00 	.word	0x00000000
+feffe060:	20 44 43 31 	cmpobg	r8,r13,0xfeffe480
+feffe064:	5f 45 72 72 	.word	0x7272455f
+feffe068:	25 58 20 00 	.word	0x00205825
+feffe06c:	00 00 00 00 	.word	0x00000000
+feffe070:	20 44 43 32 	cmpobe	r8,r13,0xfeffe490
+feffe074:	5f 45 72 72 	.word	0x7272455f
+feffe078:	25 58 20 00 	.word	0x00205825
+feffe07c:	00 00 00 00 	.word	0x00000000
+feffe080:	2d 45 78 74 	.word	0x7478452d
+feffe084:	4e 4d 49 20 	testno.f	r9
+	...
+feffe090:	40 60 08 8c 	lda	0x40(sp),sp
+feffe094:	40 e0 87 b2 	stq	g0,0x40(fp)
+feffe098:	50 e0 a7 b2 	stq	g4,0x50(fp)
+feffe09c:	70 e0 e7 a2 	stt	g12,0x70(fp)
+feffe0a0:	00 1e f0 5c 	mov	0,g14
+feffe0a4:	00 30 30 90 	ld	0x1700,r6
+feffe0a8:	00 17 00 00 
+feffe0ac:	24 a0 01 30 	bbc	0,r6,0xfeffe0d0
+feffe0b0:	00 30 20 8c 	lda	0x153c,r4
+feffe0b4:	3c 15 00 00 
+feffe0b8:	00 10 29 90 	ld	(r4),r5
+feffe0bc:	00 30 80 8c 	lda	0xc0010a20,g0
+feffe0c0:	20 0a 01 c0 
+feffe0c4:	05 16 88 5c 	mov	r5,g1
+feffe0c8:	48 19 00 09 	call	0xfefffa10
+feffe0cc:	00 10 29 92 	st	r5,(r4)
+feffe0d0:	24 a0 09 30 	bbc	1,r6,0xfeffe0f4
+feffe0d4:	00 30 20 8c 	lda	0x1290,r4
+feffe0d8:	90 12 00 00 
+feffe0dc:	00 10 29 90 	ld	(r4),r5
+feffe0e0:	00 30 80 8c 	lda	0xc0010a30,g0
+feffe0e4:	30 0a 01 c0 
+feffe0e8:	05 16 88 5c 	mov	r5,g1
+feffe0ec:	24 19 00 09 	call	0xfefffa10
+feffe0f0:	00 10 29 92 	st	r5,(r4)
+feffe0f4:	14 a0 11 30 	bbc	2,r6,0xfeffe108
+feffe0f8:	00 30 a0 8c 	lda	0x1294,g4
+feffe0fc:	94 12 00 00 
+feffe100:	00 10 2d 90 	ld	(g4),r5
+feffe104:	00 10 2d 92 	st	r5,(g4)
+feffe108:	24 a0 19 30 	bbc	3,r6,0xfeffe12c
+feffe10c:	00 30 20 8c 	lda	0x1044,r4
+feffe110:	44 10 00 00 
+feffe114:	00 10 29 90 	ld	(r4),r5
+feffe118:	00 30 80 8c 	lda	0xc0010a40,g0
+feffe11c:	40 0a 01 c0 
+feffe120:	05 16 88 5c 	mov	r5,g1
+feffe124:	ec 18 00 09 	call	0xfefffa10
+feffe128:	00 10 29 92 	st	r5,(r4)
+feffe12c:	14 a0 21 30 	bbc	4,r6,0xfeffe140
+feffe130:	00 30 a0 8c 	lda	0x1048,g4
+feffe134:	48 10 00 00 
+feffe138:	00 10 2d 90 	ld	(g4),r5
+feffe13c:	00 10 2d 92 	st	r5,(g4)
+feffe140:	24 a0 29 30 	bbc	5,r6,0xfeffe164
+feffe144:	00 30 20 8c 	lda	0x1404,r4
+feffe148:	04 14 00 00 
+feffe14c:	00 10 29 90 	ld	(r4),r5
+feffe150:	00 30 80 8c 	lda	0xc0010a50,g0
+feffe154:	50 0a 01 c0 
+feffe158:	05 16 88 5c 	mov	r5,g1
+feffe15c:	b4 18 00 09 	call	0xfefffa10
+feffe160:	00 10 29 92 	st	r5,(r4)
+feffe164:	24 a0 31 30 	bbc	6,r6,0xfeffe188
+feffe168:	00 30 20 8c 	lda	0x1444,r4
+feffe16c:	44 14 00 00 
+feffe170:	00 10 29 90 	ld	(r4),r5
+feffe174:	00 30 80 8c 	lda	0xc0010a60,g0
+feffe178:	60 0a 01 c0 
+feffe17c:	05 16 88 5c 	mov	r5,g1
+feffe180:	90 18 00 09 	call	0xfefffa10
+feffe184:	00 10 29 92 	st	r5,(r4)
+feffe188:	24 a0 39 30 	bbc	7,r6,0xfeffe1ac
+feffe18c:	00 30 20 8c 	lda	0x1484,r4
+feffe190:	84 14 00 00 
+feffe194:	00 10 29 90 	ld	(r4),r5
+feffe198:	00 30 80 8c 	lda	0xc0010a70,g0
+feffe19c:	70 0a 01 c0 
+feffe1a0:	05 16 88 5c 	mov	r5,g1
+feffe1a4:	6c 18 00 09 	call	0xfefffa10
+feffe1a8:	00 10 29 92 	st	r5,(r4)
+feffe1ac:	10 a0 41 30 	bbc	8,r6,0xfeffe1bc
+feffe1b0:	00 30 80 8c 	lda	0xc0010a80,g0
+feffe1b4:	80 0a 01 c0 
+feffe1b8:	58 18 00 09 	call	0xfefffa10
+feffe1bc:	e8 be 01 3d 	cmpibne	0,r6,0xfeffe0a4
+feffe1c0:	40 e0 87 b0 	ldq	0x40(fp),g0
+feffe1c4:	50 e0 a7 b0 	ldq	0x50(fp),g4
+feffe1c8:	70 e0 e7 a0 	ldt	0x70(fp),g12
+feffe1cc:	00 00 00 0a 	ret
+feffe1d0:	40 60 08 8c 	lda	0x40(sp),sp
+feffe1d4:	40 e0 87 b2 	stq	g0,0x40(fp)
+feffe1d8:	50 e0 a7 b2 	stq	g4,0x50(fp)
+feffe1dc:	70 e0 e7 a2 	stt	g12,0x70(fp)
+feffe1e0:	00 1e f0 5c 	mov	0,g14
+feffe1e4:	00 30 80 8c 	lda	0xfffd,g0
+feffe1e8:	fd ff 00 00 
+feffe1ec:	00 1e 88 5c 	mov	0,g1
+feffe1f0:	00 1e 90 5c 	mov	0,g2
+feffe1f4:	00 1e 98 5c 	mov	0,g3
+feffe1f8:	98 05 00 09 	call	0xfeffe790
+feffe1fc:	40 e0 87 b0 	ldq	0x40(fp),g0
+feffe200:	50 e0 a7 b0 	ldq	0x50(fp),g4
+feffe204:	70 e0 e7 a0 	ldt	0x70(fp),g12
+feffe208:	00 00 00 0a 	ret
+feffe20c:	00 00 00 00 	.word	0x00000000
+feffe210:	66 61 74 61 	atadd	sf6,sf17,sf14
+feffe214:	6c 20 66 61 	atmod	sf12,sf24,sf12
+feffe218:	75 6c 74 00 	.word	0x00746c75
+feffe21c:	00 00 00 00 	.word	0x00000000
+feffe220:	00 30 80 8c 	lda	0xc0010c10,g0
+feffe224:	10 0c 01 c0 
+feffe228:	e8 17 00 08 	b	0xfefffa10
+feffe22c:	00 00 00 00 	.word	0x00000000
+feffe230:	00 30 f0 8c 	lda	0xc0010c94,g14
+feffe234:	94 0c 01 c0 
+feffe238:	1e 16 88 5c 	mov	g14,g1
+feffe23c:	00 1e f0 5c 	mov	0,g14
+feffe240:	01 1e b0 5c 	mov	1,g6
+feffe244:	08 20 b4 82 	stob	g6,0x8(g0)
+feffe248:	09 20 b4 82 	stob	g6,0x9(g0)
+feffe24c:	04 1e b0 5c 	mov	4,g6
+feffe250:	0c 20 b4 82 	stob	g6,0xc(g0)
+feffe254:	06 1e b0 5c 	mov	6,g6
+feffe258:	0d 20 b4 82 	stob	g6,0xd(g0)
+feffe25c:	01 1e b0 5c 	mov	1,g6
+feffe260:	0e 20 b4 82 	stob	g6,0xe(g0)
+feffe264:	06 1e b0 5c 	mov	6,g6
+feffe268:	10 20 b4 82 	stob	g6,0x10(g0)
+feffe26c:	04 1e b0 5c 	mov	4,g6
+feffe270:	0e de af 59 	shlo	14,31,g5
+feffe274:	11 20 b4 82 	stob	g6,0x11(g0)
+feffe278:	8e 19 a0 58 	setbit	14,0,g4
+feffe27c:	00 10 ac 92 	st	g5,(g0)
+feffe280:	ce 07 b0 8c 	lda	0x7ce,g6
+feffe284:	04 20 a4 92 	st	g4,0x4(g0)
+feffe288:	12 20 b4 8a 	stos	g6,0x12(g0)
+feffe28c:	0a 20 f4 8a 	stos	g14,0xa(g0)
+feffe290:	00 50 04 84 	bx	(g1)
+feffe294:	00 00 00 0a 	ret
+	...
+feffe2a0:	00 30 f0 8c 	lda	0xc0010d04,g14
+feffe2a4:	04 0d 01 c0 
+feffe2a8:	1e 16 88 5c 	mov	g14,g1
+feffe2ac:	00 1e f0 5c 	mov	0,g14
+feffe2b0:	02 1e b0 5c 	mov	2,g6
+feffe2b4:	08 20 b4 82 	stob	g6,0x8(g0)
+feffe2b8:	09 20 b4 82 	stob	g6,0x9(g0)
+feffe2bc:	04 1e b0 5c 	mov	4,g6
+feffe2c0:	0c 20 b4 82 	stob	g6,0xc(g0)
+feffe2c4:	06 1e b0 5c 	mov	6,g6
+feffe2c8:	0d 20 b4 82 	stob	g6,0xd(g0)
+feffe2cc:	01 1e b0 5c 	mov	1,g6
+feffe2d0:	0e 20 b4 82 	stob	g6,0xe(g0)
+feffe2d4:	06 1e b0 5c 	mov	6,g6
+feffe2d8:	10 20 b4 82 	stob	g6,0x10(g0)
+feffe2dc:	04 1e b0 5c 	mov	4,g6
+feffe2e0:	10 de a8 59 	shlo	16,3,g5
+feffe2e4:	11 20 b4 82 	stob	g6,0x11(g0)
+feffe2e8:	0f de a1 59 	shlo	15,7,g4
+feffe2ec:	00 10 ac 92 	st	g5,(g0)
+feffe2f0:	ce 07 b0 8c 	lda	0x7ce,g6
+feffe2f4:	04 20 a4 92 	st	g4,0x4(g0)
+feffe2f8:	12 20 b4 8a 	stos	g6,0x12(g0)
+feffe2fc:	0a 20 f4 8a 	stos	g14,0xa(g0)
+feffe300:	00 50 04 84 	bx	(g1)
+feffe304:	00 00 00 0a 	ret
+	...
+feffe310:	00 30 f0 8c 	lda	0xc0010d7c,g14
+feffe314:	7c 0d 01 c0 
+feffe318:	1e 16 88 5c 	mov	g14,g1
+feffe31c:	00 1e f0 5c 	mov	0,g14
+feffe320:	03 1e b0 5c 	mov	3,g6
+feffe324:	08 20 b4 82 	stob	g6,0x8(g0)
+feffe328:	01 1e b0 5c 	mov	1,g6
+feffe32c:	09 20 b4 82 	stob	g6,0x9(g0)
+feffe330:	04 1e b0 5c 	mov	4,g6
+feffe334:	0c 20 b4 82 	stob	g6,0xc(g0)
+feffe338:	06 1e b0 5c 	mov	6,g6
+feffe33c:	0d 20 b4 82 	stob	g6,0xd(g0)
+feffe340:	01 1e b0 5c 	mov	1,g6
+feffe344:	0e 20 b4 82 	stob	g6,0xe(g0)
+feffe348:	06 1e b0 5c 	mov	6,g6
+feffe34c:	10 20 b4 82 	stob	g6,0x10(g0)
+feffe350:	04 1e b0 5c 	mov	4,g6
+feffe354:	00 30 a8 8c 	lda	0x28000,g5
+feffe358:	00 80 02 00 
+feffe35c:	11 20 b4 82 	stob	g6,0x11(g0)
+feffe360:	8f 19 a0 58 	setbit	15,0,g4
+feffe364:	00 10 ac 92 	st	g5,(g0)
+feffe368:	ce 07 b0 8c 	lda	0x7ce,g6
+feffe36c:	04 20 a4 92 	st	g4,0x4(g0)
+feffe370:	12 20 b4 8a 	stos	g6,0x12(g0)
+feffe374:	0a 20 f4 8a 	stos	g14,0xa(g0)
+feffe378:	00 50 04 84 	bx	(g1)
+feffe37c:	00 00 00 0a 	ret
+feffe380:	00 30 f0 8c 	lda	0xc0010de8,g14
+feffe384:	e8 0d 01 c0 
+feffe388:	1e 16 88 5c 	mov	g14,g1
+feffe38c:	00 1e f0 5c 	mov	0,g14
+feffe390:	04 1e a8 5c 	mov	4,g5
+feffe394:	08 20 ac 82 	stob	g5,0x8(g0)
+feffe398:	02 1e a8 5c 	mov	2,g5
+feffe39c:	09 20 ac 82 	stob	g5,0x9(g0)
+feffe3a0:	04 1e a8 5c 	mov	4,g5
+feffe3a4:	0c 20 ac 82 	stob	g5,0xc(g0)
+feffe3a8:	06 1e a8 5c 	mov	6,g5
+feffe3ac:	0d 20 ac 82 	stob	g5,0xd(g0)
+feffe3b0:	01 1e a8 5c 	mov	1,g5
+feffe3b4:	0e 20 ac 82 	stob	g5,0xe(g0)
+feffe3b8:	06 1e a8 5c 	mov	6,g5
+feffe3bc:	10 20 ac 82 	stob	g5,0x10(g0)
+feffe3c0:	04 1e a8 5c 	mov	4,g5
+feffe3c4:	11 20 ac 82 	stob	g5,0x11(g0)
+feffe3c8:	00 30 a0 8c 	lda	0x28000,g4
+feffe3cc:	00 80 02 00 
+feffe3d0:	00 10 f4 92 	st	g14,(g0)
+feffe3d4:	ce 07 a8 8c 	lda	0x7ce,g5
+feffe3d8:	04 20 a4 92 	st	g4,0x4(g0)
+feffe3dc:	12 20 ac 8a 	stos	g5,0x12(g0)
+feffe3e0:	0a 20 f4 8a 	stos	g14,0xa(g0)
+feffe3e4:	00 50 04 84 	bx	(g1)
+feffe3e8:	00 00 00 0a 	ret
+feffe3ec:	00 00 00 00 	.word	0x00000000
+feffe3f0:	00 30 f0 8c 	lda	0xc0010e60,g14
+feffe3f4:	60 0e 01 c0 
+feffe3f8:	1e 16 88 5c 	mov	g14,g1
+feffe3fc:	00 1e f0 5c 	mov	0,g14
+feffe400:	05 1e b0 5c 	mov	5,g6
+feffe404:	08 20 b4 82 	stob	g6,0x8(g0)
+feffe408:	02 1e b0 5c 	mov	2,g6
+feffe40c:	09 20 b4 82 	stob	g6,0x9(g0)
+feffe410:	04 1e b0 5c 	mov	4,g6
+feffe414:	0c 20 b4 82 	stob	g6,0xc(g0)
+feffe418:	06 1e b0 5c 	mov	6,g6
+feffe41c:	0d 20 b4 82 	stob	g6,0xd(g0)
+feffe420:	01 1e b0 5c 	mov	1,g6
+feffe424:	0e 20 b4 82 	stob	g6,0xe(g0)
+feffe428:	06 1e b0 5c 	mov	6,g6
+feffe42c:	10 20 b4 82 	stob	g6,0x10(g0)
+feffe430:	04 1e b0 5c 	mov	4,g6
+feffe434:	00 30 a8 8c 	lda	0x68000,g5
+feffe438:	00 80 06 00 
+feffe43c:	11 20 b4 82 	stob	g6,0x11(g0)
+feffe440:	00 30 a0 8c 	lda	0x11c00,g4
+feffe444:	00 1c 01 00 
+feffe448:	00 10 ac 92 	st	g5,(g0)
+feffe44c:	ce 07 b0 8c 	lda	0x7ce,g6
+feffe450:	04 20 a4 92 	st	g4,0x4(g0)
+feffe454:	12 20 b4 8a 	stos	g6,0x12(g0)
+feffe458:	0a 20 f4 8a 	stos	g14,0xa(g0)
+feffe45c:	00 50 04 84 	bx	(g1)
+feffe460:	00 00 00 0a 	ret
+feffe464:	00 00 00 00 	.word	0x00000000
+feffe468:	21 53 69 67 	scalerl	sp,?,r13
+feffe46c:	6e 00 00 00 	.word	0x0000006e
+feffe470:	21 4e 6f 49 	.word	0x496f4e21
+feffe474:	6d 67 00 00 	.word	0x0000676d
+	...
+feffe480:	21 44 65 73 	.word	0x73654421
+feffe484:	63 43 68 6b 	.word	0x6b684363
+feffe488:	53 75 6d 25 	testne.f	13
+feffe48c:	58 20 25 58 	notbit	g8,sf20,sf4
+	...
+feffe4a0:	21 5a 69 70 	.word	0x70695a21
+feffe4a4:	43 68 6b 53 	.word	0x536b6843
+feffe4a8:	75 6d 25 58 	not	21,sf4
+feffe4ac:	20 25 58 00 	.word	0x00582520
+feffe4b0:	00 30 b8 8c 	lda	0xfeff9c00,g7
+feffe4b4:	00 9c ff fe 
+feffe4b8:	00 d0 a5 90 	ld	(g7),g4
+feffe4bc:	00 30 98 8c 	lda	0x4d594c58,g3
+feffe4c0:	58 4c 59 4d 
+feffe4c4:	94 e0 04 5a 	cmpi	g4,g3
+feffe4c8:	0a e0 a5 80 	ldob	0xa(g7),g4
+feffe4cc:	10 00 00 12 	be	0xfeffe4dc
+feffe4d0:	00 30 80 8c 	lda	0xc0010e68,g0
+feffe4d4:	68 0e 01 c0 
+feffe4d8:	38 15 00 08 	b	0xfefffa10
+feffe4dc:	00 1e 88 5c 	mov	0,g1
+feffe4e0:	28 00 8d 33 	cmpobge	g1,g4,0xfeffe508
+feffe4e4:	14 16 b0 5c 	mov	g4,g6
+feffe4e8:	1f 58 a8 59 	addo	31,1,g5
+feffe4ec:	17 40 2d 59 	addo	g7,g5,r5
+feffe4f0:	08 60 a1 80 	ldob	0x8(r5),g4
+feffe4f4:	20 20 15 3a 	cmpibe	2,g4,0xfeffe514
+feffe4f8:	11 50 88 59 	addo	g1,1,g1
+feffe4fc:	11 a0 05 5a 	cmpo	g1,g6
+feffe500:	40 60 ad 8c 	lda	0x40(g5),g5
+feffe504:	e8 ff ff 14 	bl	0xfeffe4ec
+feffe508:	00 30 80 8c 	lda	0xc0010e70,g0
+feffe50c:	70 0e 01 c0 
+feffe510:	00 15 00 08 	b	0xfefffa10
+feffe514:	00 60 a1 90 	ld	0x0(r5),g4
+feffe518:	04 60 a9 90 	ld	0x4(r5),g5
+feffe51c:	00 30 30 8c 	lda	0xfef80000,r6
+feffe520:	00 00 f8 fe 
+feffe524:	14 80 89 59 	addo	g4,r6,g1
+feffe528:	15 7c 24 8c 	lda	0xffffff60(g1)[g5],r4
+feffe52c:	60 ff ff ff 
+feffe530:	1f 1e 88 5c 	mov	31,g1
+feffe534:	04 16 80 5c 	mov	r4,g0
+feffe538:	a0 fa ff 0b 	bal	0xfeffdfd8
+feffe53c:	7c 20 91 90 	ld	0x7c(r4),g2
+feffe540:	00 1e a8 5c 	mov	0,g5
+feffe544:	90 a0 04 5a 	cmpi	g0,g2
+feffe548:	10 16 88 5c 	mov	g0,g1
+feffe54c:	10 00 00 12 	be	0xfeffe55c
+feffe550:	00 30 80 8c 	lda	0xc0010e80,g0
+feffe554:	80 0e 01 c0 
+feffe558:	b8 14 00 08 	b	0xfefffa10
+feffe55c:	10 20 81 90 	ld	0x10(r4),g0
+feffe560:	00 50 a1 90 	ld	(r5),g4
+feffe564:	0c 20 89 90 	ld	0xc(r4),g1
+feffe568:	10 00 85 59 	addo	g0,g4,g0
+feffe56c:	10 80 81 59 	addo	g0,r6,g0
+feffe570:	90 43 85 58 	or	g0,g5,g0
+feffe574:	02 4c 8c 59 	shro	2,g1,g1
+feffe578:	60 fa ff 0b 	bal	0xfeffdfd8
+feffe57c:	18 20 91 90 	ld	0x18(r4),g2
+feffe580:	90 a0 04 5a 	cmpi	g0,g2
+feffe584:	10 16 88 5c 	mov	g0,g1
+feffe588:	10 00 00 12 	be	0xfeffe598
+feffe58c:	00 30 80 8c 	lda	0xc0010ea0,g0
+feffe590:	a0 0e 01 c0 
+feffe594:	7c 14 00 08 	b	0xfefffa10
+feffe598:	00 00 00 0a 	ret
+feffe59c:	00 00 00 00 	.word	0x00000000
+feffe5a0:	1f 58 90 59 	addo	31,1,g2
+feffe5a4:	00 10 94 82 	stob	g2,(g0)
+feffe5a8:	00 30 90 8c 	lda	0xffffffd0,g2
+feffe5ac:	d0 ff ff ff 
+feffe5b0:	10 16 20 5c 	mov	g0,r4
+feffe5b4:	11 16 30 5c 	mov	g1,r6
+feffe5b8:	00 10 94 82 	stob	g2,(g0)
+feffe5bc:	08 00 00 08 	b	0xfeffe5c4
+feffe5c0:	04 16 80 5c 	mov	r4,g0
+feffe5c4:	74 00 00 0b 	bal	0xfeffe638
+feffe5c8:	07 2f 04 5a 	chkbit	7,g0
+feffe5cc:	10 16 28 5c 	mov	g0,r5
+feffe5d0:	f0 ff ff 10 	bno	0xfeffe5c0
+feffe5d4:	04 16 80 5c 	mov	r4,g0
+feffe5d8:	90 00 00 0b 	bal	0xfeffe668
+feffe5dc:	04 16 80 5c 	mov	r4,g0
+feffe5e0:	b8 00 00 0b 	bal	0xfeffe698
+feffe5e4:	0c 60 19 30 	bbc	3,r5,0xfeffe5f0
+feffe5e8:	01 19 80 59 	subo	1,0,g0
+feffe5ec:	00 00 00 0a 	ret
+feffe5f0:	1f 58 94 59 	addo	31,17,g2
+feffe5f4:	85 80 a4 58 	and	r5,g2,g4
+feffe5f8:	f0 9f a4 3a 	cmpibe	g4,g2,0xfeffe5e8
+feffe5fc:	ec 7f 21 37 	bbs	4,r5,0xfeffe5e8
+feffe600:	00 1e a8 5c 	mov	0,g5
+feffe604:	20 80 a9 33 	cmpobge	g5,r6,0xfeffe624
+feffe608:	ff 00 b0 8c 	lda	0xff,g6
+feffe60c:	00 10 a1 80 	ldob	(r4),g4
+feffe610:	94 a0 05 5a 	cmpi	g4,g6
+feffe614:	04 50 20 59 	addo	r4,1,r4
+feffe618:	14 00 00 15 	bne	0xfeffe62c
+feffe61c:	15 50 a8 59 	addo	g5,1,g5
+feffe620:	ec 9f a9 34 	cmpobl	g5,r6,0xfeffe60c
+feffe624:	00 1e 80 5c 	mov	0,g0
+feffe628:	00 00 00 0a 	ret
+feffe62c:	bc ff ff 08 	b	0xfeffe5e8
+feffe630:	00 30 f0 8c 	lda	0xc001105c,g14
+feffe634:	5c 10 01 c0 
+feffe638:	1e 16 88 5c 	mov	g14,g1
+feffe63c:	00 1e f0 5c 	mov	0,g14
+feffe640:	00 30 a0 8c 	lda	0xfe000000,g4
+feffe644:	00 00 00 fe 
+feffe648:	90 00 85 58 	and	g0,g4,g0
+feffe64c:	04 de a1 59 	shlo	4,7,g4
+feffe650:	00 10 a4 82 	stob	g4,(g0)
+feffe654:	00 10 84 80 	ldob	(g0),g0
+feffe658:	00 50 04 84 	bx	(g1)
+feffe65c:	00 00 00 0a 	ret
+feffe660:	00 30 f0 8c 	lda	0xc0011088,g14
+feffe664:	88 10 01 c0 
+feffe668:	1e 16 88 5c 	mov	g14,g1
+feffe66c:	00 1e f0 5c 	mov	0,g14
+feffe670:	00 30 a0 8c 	lda	0xfe000000,g4
+feffe674:	00 00 00 fe 
+feffe678:	90 00 85 58 	and	g0,g4,g0
+feffe67c:	50 00 a0 8c 	lda	0x50,g4
+feffe680:	00 10 a4 82 	stob	g4,(g0)
+feffe684:	00 50 04 84 	bx	(g1)
+feffe688:	00 00 00 0a 	ret
+feffe68c:	00 00 00 00 	.word	0x00000000
+feffe690:	00 30 f0 8c 	lda	0xc00110b8,g14
+feffe694:	b8 10 01 c0 
+feffe698:	1e 16 88 5c 	mov	g14,g1
+feffe69c:	00 1e f0 5c 	mov	0,g14
+feffe6a0:	00 30 a0 8c 	lda	0xfe000000,g4
+feffe6a4:	00 00 00 fe 
+feffe6a8:	90 00 85 58 	and	g0,g4,g0
+feffe6ac:	01 19 a0 59 	subo	1,0,g4
+feffe6b0:	00 10 a4 82 	stob	g4,(g0)
+feffe6b4:	00 50 04 84 	bx	(g1)
+feffe6b8:	00 00 00 0a 	ret
+feffe6bc:	00 00 00 00 	.word	0x00000000
+feffe6c0:	12 16 48 5c 	mov	g2,r9
+feffe6c4:	00 1e 20 5c 	mov	0,r4
+feffe6c8:	04 60 02 5a 	cmpo	r4,r9
+feffe6cc:	10 16 30 5c 	mov	g0,r6
+feffe6d0:	11 16 40 5c 	mov	g1,r8
+feffe6d4:	06 16 28 5c 	mov	r6,r5
+feffe6d8:	00 1e 38 5c 	mov	0,r7
+feffe6dc:	44 00 00 13 	bge	0xfeffe720
+feffe6e0:	86 19 50 58 	setbit	6,0,r10
+feffe6e4:	00 50 51 82 	stob	r10,(r5)
+feffe6e8:	00 10 a2 80 	ldob	(r8),g4
+feffe6ec:	06 16 80 5c 	mov	r6,g0
+feffe6f0:	00 50 a1 82 	stob	g4,(r5)
+feffe6f4:	44 ff ff 0b 	bal	0xfeffe638
+feffe6f8:	08 50 40 59 	addo	r8,1,r8
+feffe6fc:	05 50 28 59 	addo	r5,1,r5
+feffe700:	0c 00 00 08 	b	0xfeffe70c
+feffe704:	06 16 80 5c 	mov	r6,g0
+feffe708:	30 ff ff 0b 	bal	0xfeffe638
+feffe70c:	07 2f 04 5a 	chkbit	7,g0
+feffe710:	10 16 20 5c 	mov	g0,r4
+feffe714:	f0 ff ff 10 	bno	0xfeffe704
+feffe718:	07 50 38 59 	addo	r7,1,r7
+feffe71c:	c8 5f 3a 34 	cmpobl	r7,r9,0xfeffe6e4
+feffe720:	06 16 80 5c 	mov	r6,g0
+feffe724:	44 ff ff 0b 	bal	0xfeffe668
+feffe728:	06 16 80 5c 	mov	r6,g0
+feffe72c:	6c ff ff 0b 	bal	0xfeffe698
+feffe730:	0c 20 19 30 	bbc	3,r4,0xfeffe73c
+feffe734:	01 19 80 59 	subo	1,0,g0
+feffe738:	00 00 00 0a 	ret
+feffe73c:	0c 20 21 30 	bbc	4,r4,0xfeffe748
+feffe740:	01 19 80 59 	subo	1,0,g0
+feffe744:	00 00 00 0a 	ret
+feffe748:	00 1e 80 5c 	mov	0,g0
+feffe74c:	00 00 00 0a 	ret
+feffe750:	0a 42 72 65 	modtc	r10,r9,r14
+feffe754:	61 6b 23 3a 	cmpibe	4,sf13,0xfefff2b4
+feffe758:	20 25 58 20 	testno	11
+feffe75c:	25 58 20 25 	testne	r4
+feffe760:	58 20 25 58 	notbit	g8,sf20,sf4
+	...
+feffe770:	20 2e 2e 20 	testno	5
+feffe774:	70 72 65 73 	.word	0x73657270
+feffe778:	73 20 27 71 	.word	0x71272073
+feffe77c:	27 20 74 6f 	.word	0x6f742027
+feffe780:	20 71 75 69 	logrl	pfp,?,?
+feffe784:	74 00 00 00 	.word	0x00000074
+	...
+feffe790:	10 16 40 5c 	mov	g0,r8
+feffe794:	11 16 38 5c 	mov	g1,r7
+feffe798:	12 16 30 5c 	mov	g2,r6
+feffe79c:	13 16 28 5c 	mov	g3,r5
+feffe7a0:	00 30 80 8c 	lda	0xc0011150,g0
+feffe7a4:	50 11 01 c0 
+feffe7a8:	08 16 88 5c 	mov	r8,g1
+feffe7ac:	07 16 90 5c 	mov	r7,g2
+feffe7b0:	06 16 98 5c 	mov	r6,g3
+feffe7b4:	05 16 a0 5c 	mov	r5,g4
+feffe7b8:	58 12 00 09 	call	0xfefffa10
+feffe7bc:	00 30 80 8c 	lda	0xc0011170,g0
+feffe7c0:	70 11 01 c0 
+feffe7c4:	4c 12 00 09 	call	0xfefffa10
+feffe7c8:	48 05 00 09 	call	0xfeffed10
+feffe7cc:	90 70 00 5a 	cmpi	g0,1
+feffe7d0:	10 16 20 5c 	mov	g0,r4
+feffe7d4:	2c 00 00 15 	bne	0xfeffe800
+feffe7d8:	00 30 80 8c 	lda	0xc0011150,g0
+feffe7dc:	50 11 01 c0 
+feffe7e0:	08 16 88 5c 	mov	r8,g1
+feffe7e4:	07 16 90 5c 	mov	r7,g2
+feffe7e8:	06 16 98 5c 	mov	r6,g3
+feffe7ec:	05 16 a0 5c 	mov	r5,g4
+feffe7f0:	20 12 00 09 	call	0xfefffa10
+feffe7f4:	00 30 80 8c 	lda	0xc0011170,g0
+feffe7f8:	70 11 01 c0 
+feffe7fc:	14 12 00 09 	call	0xfefffa10
+feffe800:	c8 3f 11 3d 	cmpibne	2,r4,0xfeffe7c8
+feffe804:	00 00 00 0a 	ret
+	...
+feffe810:	0a 50 46 50 	.word	0x5046500a
+feffe814:	20 25 78 20 	testno	15
+feffe818:	53 50 20 20 	testno.f	r4
+feffe81c:	25 78 20 52 	.word	0x52207825
+feffe820:	49 50 20 25 	testne	r4
+feffe824:	78 20 00 00 	.word	0x00002078
+feffe828:	52 33 20 20 	testno.f	4
+feffe82c:	25 78 00 00 	.word	0x00007825
+feffe830:	0a 52 34 20 	testno.f	r6
+feffe834:	20 25 78 20 	testno	15
+feffe838:	52 35 20 20 	testno.f	4
+feffe83c:	25 78 20 52 	.word	0x52207825
+feffe840:	36 20 20 25 	testne.f	4
+feffe844:	78 20 52 37 	bbs	10,r8,0xfeffe8bc
+feffe848:	20 20 25 78 	addono	sf0,g4,sf4
+feffe84c:	00 00 00 00 	.word	0x00000000
+feffe850:	0a 52 38 20 	testno.f	r7
+feffe854:	20 25 78 20 	testno	15
+feffe858:	52 39 20 20 	testno.f	4
+feffe85c:	25 78 20 52 	.word	0x52207825
+feffe860:	31 30 20 25 	testne	4
+feffe864:	78 20 52 31 	cmpobg	10,r8,0xfeffe8dc
+feffe868:	31 20 25 78 	addono	sf17,g4,sf4
+feffe86c:	00 00 00 00 	.word	0x00000000
+feffe870:	0a 52 31 32 	cmpobe.f	r6,r5,0xfeffda78
+feffe874:	20 25 78 20 	testno	15
+feffe878:	52 31 33 20 	testno.f	6
+feffe87c:	25 78 20 52 	.word	0x52207825
+feffe880:	31 34 20 25 	testne	4
+feffe884:	78 20 52 31 	cmpobg	10,r8,0xfeffe8fc
+feffe888:	35 20 25 78 	addono	sf21,g4,sf4
+feffe88c:	00 00 00 00 	.word	0x00000000
+feffe890:	0a 50 72 65 	modify	r10,9,r14
+feffe894:	73 73 20 27 	testo.f	4
+feffe898:	71 27 20 74 	.word	0x74202771
+feffe89c:	6f 20 71 75 	.word	0x7571206f
+feffe8a0:	69 74 2c 20 	testno	5
+feffe8a4:	6f 74 68 65 	intctl	sf15,sf13
+feffe8a8:	72 20 6b 65 	modify	sf18,sf12,sf13
+feffe8ac:	79 20 74 6f 	.word	0x6f742079
+feffe8b0:	20 63 6f 6e 	.word	0x6e6f6320
+feffe8b4:	74 69 6e 75 	.word	0x756e6974
+feffe8b8:	65 00 00 00 	.word	0x00000065
+feffe8bc:	00 00 00 00 	.word	0x00000000
+feffe8c0:	80 3e 00 66 	flushreg
+feffe8c4:	00 30 28 90 	ld	0xc008047c,r5
+feffe8c8:	7c 04 08 c0 
+feffe8cc:	00 30 e8 8c 	lda	0xc0009fff,g13
+feffe8d0:	ff 9f 00 c0 
+feffe8d4:	05 60 07 5a 	cmpo	r5,g13
+feffe8d8:	01 1e 20 5c 	mov	1,r4
+feffe8dc:	f0 01 00 16 	ble	0xfeffeacc
+feffe8e0:	00 30 38 8c 	lda	0xc0080430,r7
+feffe8e4:	30 04 08 c0 
+feffe8e8:	07 10 59 59 	addo	r7,4,r11
+feffe8ec:	07 10 52 59 	addo	r7,8,r10
+feffe8f0:	07 10 4b 59 	addo	r7,12,r9
+feffe8f4:	07 10 44 59 	addo	r7,16,r8
+feffe8f8:	00 1e 30 5c 	mov	0,r6
+feffe8fc:	00 e0 a1 90 	ld	0x0(r7),g4
+feffe900:	04 e0 a9 90 	ld	0x4(r7),g5
+feffe904:	08 e0 b1 90 	ld	0x8(r7),g6
+feffe908:	0c e0 b9 90 	ld	0xc(r7),g7
+feffe90c:	00 30 80 8c 	lda	0xc0011210,g0
+feffe910:	10 12 01 c0 
+feffe914:	14 16 88 5c 	mov	g4,g1
+feffe918:	15 16 90 5c 	mov	g5,g2
+feffe91c:	16 16 98 5c 	mov	g6,g3
+feffe920:	f0 10 00 09 	call	0xfefffa10
+feffe924:	a0 20 01 3d 	cmpibne	0,r4,0xfeffe9c4
+feffe928:	00 50 8a 90 	ld	(r9),g1
+feffe92c:	00 30 80 8c 	lda	0xc0011228,g0
+feffe930:	28 12 01 c0 
+feffe934:	dc 10 00 09 	call	0xfefffa10
+feffe938:	00 20 a2 90 	ld	0x0(r8),g4
+feffe93c:	04 20 aa 90 	ld	0x4(r8),g5
+feffe940:	08 20 b2 90 	ld	0x8(r8),g6
+feffe944:	0c 20 ba 90 	ld	0xc(r8),g7
+feffe948:	00 30 80 8c 	lda	0xc0011230,g0
+feffe94c:	30 12 01 c0 
+feffe950:	14 16 88 5c 	mov	g4,g1
+feffe954:	15 16 90 5c 	mov	g5,g2
+feffe958:	16 16 98 5c 	mov	g6,g3
+feffe95c:	17 16 a0 5c 	mov	g7,g4
+feffe960:	00 30 20 8c 	lda	0xc0080450,r4
+feffe964:	50 04 08 c0 
+feffe968:	a8 10 00 09 	call	0xfefffa10
+feffe96c:	00 20 a1 90 	ld	0x0(r4),g4
+feffe970:	04 20 a9 90 	ld	0x4(r4),g5
+feffe974:	08 20 b1 90 	ld	0x8(r4),g6
+feffe978:	0c 20 b9 90 	ld	0xc(r4),g7
+feffe97c:	00 30 80 8c 	lda	0xc0011250,g0
+feffe980:	50 12 01 c0 
+feffe984:	14 16 88 5c 	mov	g4,g1
+feffe988:	15 16 90 5c 	mov	g5,g2
+feffe98c:	16 16 98 5c 	mov	g6,g3
+feffe990:	17 16 a0 5c 	mov	g7,g4
+feffe994:	7c 10 00 09 	call	0xfefffa10
+feffe998:	10 20 a1 90 	ld	0x10(r4),g4
+feffe99c:	14 20 a9 90 	ld	0x14(r4),g5
+feffe9a0:	18 20 b1 90 	ld	0x18(r4),g6
+feffe9a4:	1c 20 b9 90 	ld	0x1c(r4),g7
+feffe9a8:	00 30 80 8c 	lda	0xc0011270,g0
+feffe9ac:	70 12 01 c0 
+feffe9b0:	14 16 88 5c 	mov	g4,g1
+feffe9b4:	15 16 90 5c 	mov	g5,g2
+feffe9b8:	16 16 98 5c 	mov	g6,g3
+feffe9bc:	17 16 a0 5c 	mov	g7,g4
+feffe9c0:	50 10 00 09 	call	0xfefffa10
+feffe9c4:	00 30 80 8c 	lda	0xc0011290,g0
+feffe9c8:	90 12 01 c0 
+feffe9cc:	44 10 00 09 	call	0xfefffa10
+feffe9d0:	58 0e 00 0b 	bal	0xfefff828
+feffe9d4:	71 00 e8 8c 	lda	0x71,g13
+feffe9d8:	90 62 07 59 	cmpib	g0,g13
+feffe9dc:	00 1e 20 5c 	mov	0,r4
+feffe9e0:	f0 00 00 12 	be	0xfeffead0
+feffe9e4:	00 50 a1 90 	ld	(r5),g4
+feffe9e8:	00 d0 a1 92 	st	g4,(r7)
+feffe9ec:	05 80 a1 59 	addo	r5,r6,g4
+feffe9f0:	04 20 a5 90 	ld	0x4(g4),g4
+feffe9f4:	00 d0 a2 92 	st	g4,(r11)
+feffe9f8:	05 80 a1 59 	addo	r5,r6,g4
+feffe9fc:	08 20 a5 90 	ld	0x8(g4),g4
+feffea00:	00 90 a2 92 	st	g4,(r10)
+feffea04:	05 80 a1 59 	addo	r5,r6,g4
+feffea08:	0c 20 a5 90 	ld	0xc(g4),g4
+feffea0c:	00 50 a2 92 	st	g4,(r9)
+feffea10:	05 80 a1 59 	addo	r5,r6,g4
+feffea14:	10 20 a5 90 	ld	0x10(g4),g4
+feffea18:	00 10 a2 92 	st	g4,(r8)
+feffea1c:	05 80 a1 59 	addo	r5,r6,g4
+feffea20:	14 20 a5 90 	ld	0x14(g4),g4
+feffea24:	00 30 88 8c 	lda	0xc0080444,g1
+feffea28:	44 04 08 c0 
+feffea2c:	00 50 a4 92 	st	g4,(g1)
+feffea30:	05 80 a1 59 	addo	r5,r6,g4
+feffea34:	18 20 a5 90 	ld	0x18(g4),g4
+feffea38:	04 60 a4 92 	st	g4,0x4(g1)
+feffea3c:	05 80 a1 59 	addo	r5,r6,g4
+feffea40:	1c 20 a5 90 	ld	0x1c(g4),g4
+feffea44:	08 60 a4 92 	st	g4,0x8(g1)
+feffea48:	05 80 a1 59 	addo	r5,r6,g4
+feffea4c:	20 20 a5 90 	ld	0x20(g4),g4
+feffea50:	0c 60 a4 92 	st	g4,0xc(g1)
+feffea54:	05 80 a1 59 	addo	r5,r6,g4
+feffea58:	24 20 a5 90 	ld	0x24(g4),g4
+feffea5c:	10 60 a4 92 	st	g4,0x10(g1)
+feffea60:	05 80 a1 59 	addo	r5,r6,g4
+feffea64:	28 20 a5 90 	ld	0x28(g4),g4
+feffea68:	14 60 a4 92 	st	g4,0x14(g1)
+feffea6c:	05 80 a1 59 	addo	r5,r6,g4
+feffea70:	2c 20 a5 90 	ld	0x2c(g4),g4
+feffea74:	18 60 a4 92 	st	g4,0x18(g1)
+feffea78:	05 80 a1 59 	addo	r5,r6,g4
+feffea7c:	30 20 a5 90 	ld	0x30(g4),g4
+feffea80:	1c 60 a4 92 	st	g4,0x1c(g1)
+feffea84:	05 80 a1 59 	addo	r5,r6,g4
+feffea88:	34 20 a5 90 	ld	0x34(g4),g4
+feffea8c:	20 60 a4 92 	st	g4,0x20(g1)
+feffea90:	05 80 a1 59 	addo	r5,r6,g4
+feffea94:	00 30 e8 8c 	lda	0xc0009fff,g13
+feffea98:	ff 9f 00 c0 
+feffea9c:	38 20 85 90 	ld	0x38(g4),g0
+feffeaa0:	00 e0 a1 90 	ld	0x0(r7),g4
+feffeaa4:	04 e0 a9 90 	ld	0x4(r7),g5
+feffeaa8:	08 e0 b1 90 	ld	0x8(r7),g6
+feffeaac:	0c e0 b9 90 	ld	0xc(r7),g7
+feffeab0:	24 60 84 92 	st	g0,0x24(g1)
+feffeab4:	05 80 81 59 	addo	r5,r6,g0
+feffeab8:	14 d2 2b 58 	notand	g4,15,r5
+feffeabc:	3c 20 a4 90 	ld	0x3c(g0),g4
+feffeac0:	05 60 07 5a 	cmpo	r5,g13
+feffeac4:	28 60 a4 92 	st	g4,0x28(g1)
+feffeac8:	34 fe ff 11 	bg	0xfeffe8fc
+feffeacc:	00 00 00 0a 	ret
+feffead0:	00 00 00 0a 	ret
+	...
+feffeae0:	0a 47 30 20 	testno.f	r6
+feffeae4:	20 25 78 20 	testno	15
+feffeae8:	47 31 20 20 	testno.f	4
+feffeaec:	25 78 20 47 	.word	0x47207825
+feffeaf0:	32 20 20 25 	testne.f	4
+feffeaf4:	78 20 47 33 	cmpobge	8,g12,0xfeffeb6c
+feffeaf8:	20 20 25 78 	addono	sf0,g4,sf4
+feffeafc:	00 00 00 00 	.word	0x00000000
+feffeb00:	0a 47 34 20 	testno.f	r6
+feffeb04:	20 25 78 20 	testno	15
+feffeb08:	47 35 20 20 	testno.f	4
+feffeb0c:	25 78 20 47 	.word	0x47207825
+feffeb10:	36 20 20 25 	testne.f	4
+feffeb14:	78 20 47 37 	bbs	8,g12,0xfeffeb8c
+feffeb18:	20 20 25 78 	addono	sf0,g4,sf4
+feffeb1c:	00 00 00 00 	.word	0x00000000
+feffeb20:	0a 47 38 20 	testno.f	r7
+feffeb24:	20 25 78 20 	testno	15
+feffeb28:	47 39 20 20 	testno.f	4
+feffeb2c:	25 78 20 47 	.word	0x47207825
+feffeb30:	31 30 20 25 	testne	4
+feffeb34:	78 20 47 31 	cmpobg	8,g12,0xfeffebac
+feffeb38:	31 20 25 78 	addono	sf17,g4,sf4
+feffeb3c:	00 00 00 00 	.word	0x00000000
+feffeb40:	0a 47 31 32 	cmpobe.f	r6,r5,0xfefff248
+feffeb44:	20 25 78 20 	testno	15
+feffeb48:	47 31 33 20 	testno.f	6
+feffeb4c:	25 78 20 47 	.word	0x47207825
+feffeb50:	31 34 20 25 	testne	4
+feffeb54:	78 20 46 50 	.word	0x50462078
+feffeb58:	20 20 25 78 	addono	sf0,g4,sf4
+feffeb5c:	00 00 00 00 	.word	0x00000000
+feffeb60:	0a 53 46 30 	bbc.f	r8,g9,0xfeffde68
+feffeb64:	20 25 78 20 	testno	15
+feffeb68:	53 46 31 20 	testno.f	r6
+feffeb6c:	25 78 20 53 	.word	0x53207825
+feffeb70:	46 32 20 25 	testne.f	4
+feffeb74:	78 20 50 43 	.word	0x43502078
+feffeb78:	20 20 25 78 	addono	sf0,g4,sf4
+feffeb7c:	00 00 00 00 	.word	0x00000000
+feffeb80:	0a 50 46 50 	.word	0x5046500a
+feffeb84:	20 25 78 20 	testno	15
+feffeb88:	53 50 20 20 	testno.f	r4
+feffeb8c:	25 78 20 52 	.word	0x52207825
+feffeb90:	49 50 20 25 	testne	r4
+feffeb94:	78 00 00 00 	.word	0x00000078
+	...
+feffeba0:	00 30 40 8c 	lda	0xc0080430,r8
+feffeba4:	30 04 08 c0 
+feffeba8:	00 20 a2 90 	ld	0x0(r8),g4
+feffebac:	04 20 aa 90 	ld	0x4(r8),g5
+feffebb0:	08 20 b2 90 	ld	0x8(r8),g6
+feffebb4:	0c 20 ba 90 	ld	0xc(r8),g7
+feffebb8:	00 30 80 8c 	lda	0xc00114e0,g0
+feffebbc:	e0 14 01 c0 
+feffebc0:	14 16 88 5c 	mov	g4,g1
+feffebc4:	15 16 90 5c 	mov	g5,g2
+feffebc8:	16 16 98 5c 	mov	g6,g3
+feffebcc:	17 16 a0 5c 	mov	g7,g4
+feffebd0:	40 0e 00 09 	call	0xfefffa10
+feffebd4:	10 20 a2 90 	ld	0x10(r8),g4
+feffebd8:	14 20 aa 90 	ld	0x14(r8),g5
+feffebdc:	18 20 b2 90 	ld	0x18(r8),g6
+feffebe0:	1c 20 ba 90 	ld	0x1c(r8),g7
+feffebe4:	00 30 80 8c 	lda	0xc0011500,g0
+feffebe8:	00 15 01 c0 
+feffebec:	14 16 88 5c 	mov	g4,g1
+feffebf0:	15 16 90 5c 	mov	g5,g2
+feffebf4:	16 16 98 5c 	mov	g6,g3
+feffebf8:	17 16 a0 5c 	mov	g7,g4
+feffebfc:	14 0e 00 09 	call	0xfefffa10
+feffec00:	20 20 a2 90 	ld	0x20(r8),g4
+feffec04:	24 20 aa 90 	ld	0x24(r8),g5
+feffec08:	28 20 b2 90 	ld	0x28(r8),g6
+feffec0c:	2c 20 ba 90 	ld	0x2c(r8),g7
+feffec10:	00 30 80 8c 	lda	0xc0011520,g0
+feffec14:	20 15 01 c0 
+feffec18:	14 16 88 5c 	mov	g4,g1
+feffec1c:	15 16 90 5c 	mov	g5,g2
+feffec20:	16 16 98 5c 	mov	g6,g3
+feffec24:	17 16 a0 5c 	mov	g7,g4
+feffec28:	e8 0d 00 09 	call	0xfefffa10
+feffec2c:	30 20 a2 90 	ld	0x30(r8),g4
+feffec30:	34 20 aa 90 	ld	0x34(r8),g5
+feffec34:	38 20 b2 90 	ld	0x38(r8),g6
+feffec38:	3c 20 ba 90 	ld	0x3c(r8),g7
+feffec3c:	00 30 80 8c 	lda	0xc0011540,g0
+feffec40:	40 15 01 c0 
+feffec44:	14 16 88 5c 	mov	g4,g1
+feffec48:	15 16 90 5c 	mov	g5,g2
+feffec4c:	16 16 98 5c 	mov	g6,g3
+feffec50:	17 16 a0 5c 	mov	g7,g4
+feffec54:	bc 0d 00 09 	call	0xfefffa10
+feffec58:	40 20 22 90 	ld	0x40(r8),r4
+feffec5c:	44 20 2a 90 	ld	0x44(r8),r5
+feffec60:	48 20 32 90 	ld	0x48(r8),r6
+feffec64:	4c 20 3a 90 	ld	0x4c(r8),r7
+feffec68:	58 20 a2 90 	ld	0x58(r8),g4
+feffec6c:	00 30 80 8c 	lda	0xc0011560,g0
+feffec70:	60 15 01 c0 
+feffec74:	04 16 88 5c 	mov	r4,g1
+feffec78:	05 16 90 5c 	mov	r5,g2
+feffec7c:	06 16 98 5c 	mov	r6,g3
+feffec80:	90 0d 00 09 	call	0xfefffa10
+feffec84:	50 20 a2 90 	ld	0x50(r8),g4
+feffec88:	54 20 aa 90 	ld	0x54(r8),g5
+feffec8c:	4c 20 8a 90 	ld	0x4c(r8),g1
+feffec90:	00 30 80 8c 	lda	0xc0011580,g0
+feffec94:	80 15 01 c0 
+feffec98:	14 16 90 5c 	mov	g4,g2
+feffec9c:	15 16 98 5c 	mov	g5,g3
+feffeca0:	70 0d 00 09 	call	0xfefffa10
+feffeca4:	dc 0a 00 08 	b	0xfefff780
+	...
+feffecb0:	0a 0a 4d 41 	.word	0x414d0a0a
+feffecb4:	49 4e 20 4d 	.word	0x4d204e49
+feffecb8:	45 4e 55 20 	testno	r10
+feffecbc:	76 25 44 2e 	.word	0x2e442576
+feffecc0:	25 44 25 44 	.word	0x44254425
+feffecc4:	00 00 00 00 	.word	0x00000000
+feffecc8:	2d 25 44 25 	testne	8
+feffeccc:	44 20 00 00 	.word	0x00002044
+feffecd0:	20 25 44 2f 	.word	0x2f442520
+feffecd4:	25 44 2f 25 	testne	r5
+feffecd8:	44 20 42 75 	.word	0x75422044
+feffecdc:	69 6c 64 20 	testno	12
+	...
+feffece8:	25 44 25 44 	.word	0x44254425
+feffecec:	0a 0a 00 00 	.word	0x00000a0a
+feffecf0:	45 2e 20 4d 	.word	0x4d202e45
+feffecf4:	69 73 63 20 	testno	12
+feffecf8:	66 75 6e 63 	.word	0x636e7566
+feffecfc:	74 69 6f 6e 	cpysre	?,g13,?
+feffed00:	73 20 0a 00 	.word	0x000a2073
+	...
+feffed10:	00 30 a0 8c 	lda	0x40800008,g4
+feffed14:	08 00 80 40 
+feffed18:	00 10 a5 88 	ldos	(g4),g4
+feffed1c:	0c 20 45 37 	bbs	8,g4,0xfeffed28
+feffed20:	00 1e 80 5c 	mov	0,g0
+feffed24:	00 00 00 0a 	ret
+feffed28:	18 10 00 09 	call	0xfefffd40
+feffed2c:	1f 1e 80 5c 	mov	31,g0
+feffed30:	e0 0f 00 09 	call	0xfefffd10
+feffed34:	10 16 28 5c 	mov	g0,r5
+feffed38:	28 0b 00 09 	call	0xfefff860
+feffed3c:	51 00 a0 8c 	lda	0x51,g4
+feffed40:	90 22 05 59 	cmpib	g0,g4
+feffed44:	01 1e 20 5c 	mov	1,r4
+feffed48:	40 00 00 12 	be	0xfeffed88
+feffed4c:	10 22 05 59 	cmpob	g0,g4
+feffed50:	14 00 00 11 	bg	0xfeffed64
+feffed54:	45 00 e8 8c 	lda	0x45,g13
+feffed58:	90 62 07 59 	cmpib	g0,g13
+feffed5c:	24 00 00 12 	be	0xfeffed80
+feffed60:	2c 00 00 08 	b	0xfeffed8c
+feffed64:	65 00 e8 8c 	lda	0x65,g13
+feffed68:	90 62 07 59 	cmpib	g0,g13
+feffed6c:	14 00 00 12 	be	0xfeffed80
+feffed70:	71 00 e8 8c 	lda	0x71,g13
+feffed74:	90 62 07 59 	cmpib	g0,g13
+feffed78:	10 00 00 12 	be	0xfeffed88
+feffed7c:	10 00 00 08 	b	0xfeffed8c
+feffed80:	d0 01 00 09 	call	0xfeffef50
+feffed84:	08 00 00 08 	b	0xfeffed8c
+feffed88:	02 1e 20 5c 	mov	2,r4
+feffed8c:	00 30 80 8c 	lda	0xc00116b0,g0
+feffed90:	b0 16 01 c0 
+feffed94:	04 1e 88 5c 	mov	4,g1
+feffed98:	00 1e 90 5c 	mov	0,g2
+feffed9c:	06 1e 98 5c 	mov	6,g3
+feffeda0:	70 0c 00 09 	call	0xfefffa10
+feffeda4:	00 30 80 8c 	lda	0xc00116c8,g0
+feffeda8:	c8 16 01 c0 
+feffedac:	00 1e 88 5c 	mov	0,g1
+feffedb0:	01 1e 90 5c 	mov	1,g2
+feffedb4:	5c 0c 00 09 	call	0xfefffa10
+feffedb8:	00 30 80 8c 	lda	0xc00116d0,g0
+feffedbc:	d0 16 01 c0 
+feffedc0:	06 1e 88 5c 	mov	6,g1
+feffedc4:	04 1e 90 5c 	mov	4,g2
+feffedc8:	ce 07 98 8c 	lda	0x7ce,g3
+feffedcc:	44 0c 00 09 	call	0xfefffa10
+feffedd0:	00 30 80 8c 	lda	0xc00116e8,g0
+feffedd4:	e8 16 01 c0 
+feffedd8:	00 1e 88 5c 	mov	0,g1
+feffeddc:	00 1e 90 5c 	mov	0,g2
+feffede0:	30 0c 00 09 	call	0xfefffa10
+feffede4:	00 30 80 8c 	lda	0xc00116f0,g0
+feffede8:	f0 16 01 c0 
+feffedec:	24 0c 00 09 	call	0xfefffa10
+feffedf0:	05 16 80 5c 	mov	r5,g0
+feffedf4:	1c 0f 00 09 	call	0xfefffd10
+feffedf8:	04 16 80 5c 	mov	r4,g0
+feffedfc:	00 00 00 0a 	ret
+feffee00:	0a 31 2e 20 	testno.f	5
+feffee04:	43 6c 65 61 	.word	0x61656c43
+feffee08:	72 5f 6d 65 	.word	0x656d5f72
+feffee0c:	6d 20 20 20 	testno	4
+feffee10:	20 20 20 20 	testno	4
+feffee14:	20 32 2e 20 	testno	5
+feffee18:	53 65 74 20 	testno.f	14
+feffee1c:	64 75 6d 70 	.word	0x706d7564
+feffee20:	20 73 69 7a 	.word	0x7a697320
+feffee24:	65 20 20 20 	testno	4
+feffee28:	20 20 20 33 	cmpobge	4,pfp,0xfeffee48
+feffee2c:	2e 20 44 75 	.word	0x7544202e
+feffee30:	6d 70 20 6d 	.word	0x6d20706d
+feffee34:	65 6d 6f 72 	.word	0x726f6d65
+feffee38:	79 00 00 00 	.word	0x00000079
+feffee3c:	00 00 00 00 	.word	0x00000000
+feffee40:	0a 34 2e 20 	testno.f	5
+feffee44:	45 6e 74 65 	dcctl	5,sf17,sf14
+feffee48:	72 20 6d 65 	modify	sf18,sf20,sf13
+feffee4c:	6d 6f 72 79 	.word	0x79726f6d
+feffee50:	20 20 20 20 	testno	4
+feffee54:	20 35 2e 20 	testno	5
+feffee58:	43 6f 6e 76 	.word	0x766e6f43
+feffee5c:	65 72 74 20 	testno	14
+feffee60:	63 5f 69 6e 	.word	0x6e695f63
+feffee64:	64 20 20 20 	testno	4
+feffee68:	20 20 20 36 	cmpoble	4,pfp,0xfeffee88
+feffee6c:	2e 20 43 68 	atanr	r14,r12,?
+feffee70:	61 6e 67 65 	dcctl	1,sf29,sf12
+feffee74:	20 41 52 35 	cmpobne	r10,r9,0xfeffef94
+feffee78:	5f 4c 49 4d 	.word	0x4d494c5f
+feffee7c:	49 54 00 00 	.word	0x00005449
+feffee80:	0a 37 2e 20 	testno.f	5
+feffee84:	47 65 74 20 	testno.f	14
+feffee88:	73 79 73 74 	.word	0x74737973
+feffee8c:	65 6d 20 6d 	.word	0x6d206d65
+feffee90:	65 6d 20 20 	testno	4
+feffee94:	20 38 2e 20 	testno	5
+feffee98:	45 6e 74 65 	dcctl	5,sf17,sf14
+feffee9c:	72 20 73 79 	addog	sf18,sf12,sf14
+feffeea0:	73 74 65 6d 	.word	0x6d657473
+feffeea4:	20 6d 65 6d 	.word	0x6d656d20
+feffeea8:	20 20 20 39 	cmpibg	4,pfp,0xfeffeec8
+feffeeac:	2e 20 43 68 	atanr	r14,r12,?
+feffeeb0:	61 6e 67 65 	dcctl	1,sf29,sf12
+feffeeb4:	20 52 43 2d 	.word	0x2d435220
+feffeeb8:	52 41 54 45 	.word	0x45544152
+feffeebc:	00 00 00 00 	.word	0x00000000
+feffeec0:	0a 61 2e 20 	testno.f	5
+feffeec4:	43 68 61 6e 	.word	0x6e616843
+feffeec8:	67 65 20 54 	.word	0x54206567
+feffeecc:	61 67 20 4c 	.word	0x4c206761
+feffeed0:	69 6d 69 74 	.word	0x74696d69
+feffeed4:	20 62 2e 20 	testno	5
+feffeed8:	54 6f 67 67 	.word	0x67676f54
+feffeedc:	6c 65 20 42 	.word	0x4220656c
+feffeee0:	72 65 61 6b 	.word	0x6b616572
+feffeee4:	73 20 20 20 	testno.f	4
+feffeee8:	20 20 20 63 	sdma	sf0,pfp,sf4
+feffeeec:	2e 20 54 72 	.word	0x7254202e
+feffeef0:	61 63 65 20 	testno	12
+feffeef4:	50 72 6f 67 	cvtir	g0,?
+feffeef8:	72 61 6d 00 	.word	0x006d6172
+feffeefc:	00 00 00 00 	.word	0x00000000
+feffef00:	0a 64 2e 20 	testno.f	5
+feffef04:	44 75 6d 70 	.word	0x706d7544
+feffef08:	20 52 65 67 	cvtir	pfp,r12
+feffef0c:	69 73 74 65 	receive	sf9,sf14
+feffef10:	72 73 20 20 	testno.f	4
+feffef14:	20 65 2e 20 	testno	5
+feffef18:	49 6e 76 61 	.word	0x61766e49
+feffef1c:	6c 69 64 61 	atadd	12,sf17,sf12
+feffef20:	74 65 20 43 	.word	0x43206574
+feffef24:	61 63 68 65 	receive	sf1,sf13
+feffef28:	20 00 00 00 	.word	0x00000020
+feffef2c:	00 00 00 00 	.word	0x00000000
+feffef30:	0a 0a 45 6e 	.word	0x6e450a0a
+feffef34:	74 65 72 20 	testno	14
+feffef38:	6f 70 74 69 	atanrl	r15,?,?
+feffef3c:	6f 6e 20 3a 	cmpibe.f	4,sf1,0xfefffda8
+feffef40:	20 00 00 00 	.word	0x00000020
+	...
+feffef50:	00 30 80 8c 	lda	0xc0011800,g0
+feffef54:	00 18 01 c0 
+feffef58:	b8 0a 00 09 	call	0xfefffa10
+feffef5c:	00 30 80 8c 	lda	0xc0011840,g0
+feffef60:	40 18 01 c0 
+feffef64:	ac 0a 00 09 	call	0xfefffa10
+feffef68:	00 30 80 8c 	lda	0xc0011880,g0
+feffef6c:	80 18 01 c0 
+feffef70:	a0 0a 00 09 	call	0xfefffa10
+feffef74:	00 30 80 8c 	lda	0xc00118c0,g0
+feffef78:	c0 18 01 c0 
+feffef7c:	94 0a 00 09 	call	0xfefffa10
+feffef80:	00 30 80 8c 	lda	0xc0011900,g0
+feffef84:	00 19 01 c0 
+feffef88:	88 0a 00 09 	call	0xfefffa10
+feffef8c:	00 30 80 8c 	lda	0xc0011930,g0
+feffef90:	30 19 01 c0 
+feffef94:	7c 0a 00 09 	call	0xfefffa10
+feffef98:	c8 08 00 09 	call	0xfefff860
+feffef9c:	ff 00 a0 8c 	lda	0xff,g4
+feffefa0:	90 00 85 58 	and	g0,g4,g0
+feffefa4:	00 34 84 8c 	lda	0xffffffce(g0),g0
+feffefa8:	ce ff ff ff 
+feffefac:	50 20 34 34 	cmpobl	6,g0,0xfeffeffc
+feffefb0:	10 39 a0 90 	ld	0xc00119bc[g0*4],g4
+feffefb4:	bc 19 01 c0 
+feffefb8:	00 10 05 84 	bx	(g4)
+feffefbc:	d8 19 01 c0 	.word	0xc00119d8
+feffefc0:	e0 19 01 c0 	.word	0xc00119e0
+feffefc4:	e8 19 01 c0 	.word	0xc00119e8
+feffefc8:	fc 19 01 c0 	.word	0xc00119fc
+feffefcc:	fc 19 01 c0 	.word	0xc00119fc
+feffefd0:	f0 19 01 c0 	.word	0xc00119f0
+feffefd4:	f8 19 01 c0 	.word	0xc00119f8
+feffefd8:	68 00 00 09 	call	0xfefff040
+feffefdc:	20 00 00 08 	b	0xfeffeffc
+feffefe0:	00 01 00 09 	call	0xfefff0e0
+feffefe4:	18 00 00 08 	b	0xfeffeffc
+feffefe8:	78 02 00 09 	call	0xfefff260
+feffefec:	10 00 00 08 	b	0xfeffeffc
+feffeff0:	30 04 00 09 	call	0xfefff420
+feffeff4:	08 00 00 08 	b	0xfeffeffc
+feffeff8:	78 05 00 09 	call	0xfefff570
+feffeffc:	84 07 00 08 	b	0xfefff780
+fefff000:	0a 44 75 6d 	.word	0x6d75440a
+fefff004:	70 53 69 7a 	.word	0x7a695370
+fefff008:	65 3a 20 53 	.word	0x53203a65
+fefff00c:	48 4f 52 54 	.word	0x54524f48
+	...
+fefff020:	0a 44 75 6d 	.word	0x6d75440a
+fefff024:	70 53 69 7a 	.word	0x7a695370
+fefff028:	65 3a 20 4c 	.word	0x4c203a65
+fefff02c:	4f 4e 47 00 	.word	0x00474e4f
+fefff030:	0a 44 75 6d 	.word	0x6d75440a
+fefff034:	70 53 69 7a 	.word	0x7a695370
+fefff038:	65 3a 20 42 	.word	0x42203a65
+fefff03c:	59 54 45 00 	.word	0x00455459
+fefff040:	00 30 a0 90 	ld	0xc0080020,g4
+fefff044:	20 00 08 c0 
+fefff048:	0c 20 0d 3a 	cmpibe	1,g4,0xfefff054
+fefff04c:	18 20 15 3a 	cmpibe	2,g4,0xfefff064
+fefff050:	24 00 00 08 	b	0xfefff074
+fefff054:	02 1e a0 5c 	mov	2,g4
+fefff058:	00 30 80 8c 	lda	0xc0011a00,g0
+fefff05c:	00 1a 01 c0 
+fefff060:	20 00 00 08 	b	0xfefff080
+fefff064:	04 1e a0 5c 	mov	4,g4
+fefff068:	00 30 80 8c 	lda	0xc0011a20,g0
+fefff06c:	20 1a 01 c0 
+fefff070:	10 00 00 08 	b	0xfefff080
+fefff074:	01 1e a0 5c 	mov	1,g4
+fefff078:	00 30 80 8c 	lda	0xc0011a30,g0
+fefff07c:	30 1a 01 c0 
+fefff080:	00 30 a0 92 	st	g4,0xc0080020
+fefff084:	20 00 08 c0 
+fefff088:	88 09 00 08 	b	0xfefffa10
+fefff08c:	00 00 00 00 	.word	0x00000000
+fefff090:	0a 45 6e 74 	.word	0x746e450a
+fefff094:	65 72 20 73 	.word	0x73207265
+fefff098:	74 61 72 74 	.word	0x74726174
+fefff09c:	20 61 64 64 	daddc	sf0,g1,sf12
+fefff0a0:	72 65 73 73 	.word	0x73736572
+fefff0a4:	20 3a 20 00 	.word	0x00203a20
+fefff0a8:	0a 00 00 00 	.word	0x0000000a
+fefff0ac:	00 00 00 00 	.word	0x00000000
+fefff0b0:	0a 25 78 20 	testno.f	15
+fefff0b4:	3a 20 00 00 	.word	0x0000203a
+fefff0b8:	25 58 20 00 	.word	0x00205825
+fefff0bc:	00 00 00 00 	.word	0x00000000
+fefff0c0:	0a 48 69 74 	.word	0x7469480a
+fefff0c4:	20 61 6e 79 	subog	sf0,g9,sf13
+fefff0c8:	20 6b 65 79 	.word	0x79656b20
+fefff0cc:	20 28 51 20 	testno	10
+fefff0d0:	74 6f 20 71 	.word	0x71206f74
+fefff0d4:	75 69 74 29 	.word	0x29746975
+fefff0d8:	2e 2e 2e 0a 	ret.f
+fefff0dc:	00 00 00 00 	.word	0x00000000
+fefff0e0:	00 30 80 8c 	lda	0xc0011a90,g0
+fefff0e4:	90 1a 01 c0 
+fefff0e8:	28 09 00 09 	call	0xfefffa10
+fefff0ec:	00 30 80 8c 	lda	0xc0080030,g0
+fefff0f0:	30 00 08 c0 
+fefff0f4:	9c 06 00 09 	call	0xfefff790
+fefff0f8:	08 20 04 3a 	cmpibe	0,g0,0xfefff100
+fefff0fc:	00 00 00 0a 	ret
+fefff100:	00 30 80 8c 	lda	0xc0080030,g0
+fefff104:	30 00 08 c0 
+fefff108:	00 10 a4 80 	ldob	(g0),g4
+fefff10c:	94 30 00 5a 	cmpi	g4,0
+fefff110:	00 30 30 90 	ld	0xc0080024,r6
+fefff114:	24 00 08 c0 
+fefff118:	0c 00 00 12 	be	0xfefff124
+fefff11c:	14 08 00 09 	call	0xfefff930
+fefff120:	10 16 30 5c 	mov	g0,r6
+fefff124:	00 30 30 92 	st	r6,0xc0080024
+fefff128:	24 00 08 c0 
+fefff12c:	00 30 80 8c 	lda	0xc0011aa8,g0
+fefff130:	a8 1a 01 c0 
+fefff134:	00 1e 38 5c 	mov	0,r7
+fefff138:	d8 08 00 09 	call	0xfefffa10
+fefff13c:	00 30 80 8c 	lda	0xc0011ab0,g0
+fefff140:	b0 1a 01 c0 
+fefff144:	06 16 88 5c 	mov	r6,g1
+fefff148:	00 1e 28 5c 	mov	0,r5
+fefff14c:	06 16 20 5c 	mov	r6,r4
+fefff150:	c0 08 00 09 	call	0xfefffa10
+fefff154:	00 30 a0 90 	ld	0xc0080020,g4
+fefff158:	20 00 08 c0 
+fefff15c:	0c 20 0d 3a 	cmpibe	1,g4,0xfefff168
+fefff160:	24 20 15 3a 	cmpibe	2,g4,0xfefff184
+fefff164:	3c 00 00 08 	b	0xfefff1a0
+fefff168:	00 30 80 8c 	lda	0xc0011ab8,g0
+fefff16c:	b8 1a 01 c0 
+fefff170:	00 10 89 80 	ldob	(r4),g1
+fefff174:	05 50 28 59 	addo	r5,1,r5
+fefff178:	04 50 20 59 	addo	r4,1,r4
+fefff17c:	06 50 30 59 	addo	r6,1,r6
+fefff180:	38 00 00 08 	b	0xfefff1b8
+fefff184:	00 30 80 8c 	lda	0xc0011ab8,g0
+fefff188:	b8 1a 01 c0 
+fefff18c:	00 10 89 88 	ldos	(r4),g1
+fefff190:	05 90 28 59 	addo	r5,2,r5
+fefff194:	04 90 20 59 	addo	r4,2,r4
+fefff198:	06 90 30 59 	addo	r6,2,r6
+fefff19c:	1c 00 00 08 	b	0xfefff1b8
+fefff1a0:	00 30 80 8c 	lda	0xc0011ab8,g0
+fefff1a4:	b8 1a 01 c0 
+fefff1a8:	00 10 89 90 	ld	(r4),g1
+fefff1ac:	05 10 29 59 	addo	r5,4,r5
+fefff1b0:	04 10 21 59 	addo	r4,4,r4
+fefff1b4:	06 10 31 59 	addo	r6,4,r6
+fefff1b8:	58 08 00 09 	call	0xfefffa10
+fefff1bc:	98 7f 79 33 	cmpobge	15,r5,0xfefff154
+fefff1c0:	07 50 38 59 	addo	r7,1,r7
+fefff1c4:	78 ff 39 33 	cmpobge	7,r7,0xfefff13c
+fefff1c8:	00 30 80 8c 	lda	0xc0011ac0,g0
+fefff1cc:	c0 1a 01 c0 
+fefff1d0:	40 08 00 09 	call	0xfefffa10
+fefff1d4:	54 06 00 0b 	bal	0xfefff828
+fefff1d8:	71 00 90 8c 	lda	0x71,g2
+fefff1dc:	90 a2 04 59 	cmpib	g0,g2
+fefff1e0:	10 00 00 12 	be	0xfefff1f0
+fefff1e4:	51 00 90 8c 	lda	0x51,g2
+fefff1e8:	90 a2 04 59 	cmpib	g0,g2
+fefff1ec:	40 ff ff 15 	bne	0xfefff12c
+fefff1f0:	00 00 00 0a 	ret
+	...
+fefff200:	0a 0a 45 6e 	.word	0x6e450a0a
+fefff204:	74 65 72 20 	testno	14
+fefff208:	62 79 74 65 	.word	0x65747962
+fefff20c:	2c 20 3c 71 	.word	0x713c202c
+fefff210:	3e 20 77 68 	atanr	g14,g12,?
+fefff214:	65 6e 20 64 	.word	0x64206e65
+fefff218:	6f 6e 65 00 	.word	0x00656e6f
+fefff21c:	00 00 00 00 	.word	0x00000000
+fefff220:	0a 0a 45 6e 	.word	0x6e450a0a
+fefff224:	74 65 72 20 	testno	14
+fefff228:	73 68 6f 72 	.word	0x726f6873
+fefff22c:	74 2c 20 3c 	cmpibl	4,pfp,0xfefffea0
+fefff230:	71 3e 20 77 	.word	0x77203e71
+fefff234:	68 65 6e 20 	testno	13
+fefff238:	64 6f 6e 65 	.word	0x656e6f64
+fefff23c:	00 00 00 00 	.word	0x00000000
+fefff240:	0a 0a 45 6e 	.word	0x6e450a0a
+fefff244:	74 65 72 20 	testno	14
+fefff248:	77 6f 72 64 	.word	0x64726f77
+fefff24c:	2c 20 3c 71 	.word	0x713c202c
+fefff250:	3e 20 77 68 	atanr	g14,g12,?
+fefff254:	65 6e 20 64 	.word	0x64206e65
+fefff258:	6f 6e 65 00 	.word	0x00656e6f
+fefff25c:	25 58 2e 00 	.word	0x002e5825
+fefff260:	00 30 80 8c 	lda	0xc0011a90,g0
+fefff264:	90 1a 01 c0 
+fefff268:	a8 07 00 09 	call	0xfefffa10
+fefff26c:	00 30 80 8c 	lda	0xc0080030,g0
+fefff270:	30 00 08 c0 
+fefff274:	1c 05 00 09 	call	0xfefff790
+fefff278:	08 20 04 3a 	cmpibe	0,g0,0xfefff280
+fefff27c:	00 00 00 0a 	ret
+fefff280:	00 30 80 8c 	lda	0xc0080030,g0
+fefff284:	30 00 08 c0 
+fefff288:	00 10 a4 80 	ldob	(g0),g4
+fefff28c:	94 30 00 5a 	cmpi	g4,0
+fefff290:	00 30 28 90 	ld	0xc0080024,r5
+fefff294:	24 00 08 c0 
+fefff298:	0c 00 00 12 	be	0xfefff2a4
+fefff29c:	94 06 00 09 	call	0xfefff930
+fefff2a0:	10 16 28 5c 	mov	g0,r5
+fefff2a4:	00 30 a0 90 	ld	0xc0080020,g4
+fefff2a8:	20 00 08 c0 
+fefff2ac:	94 70 00 5a 	cmpi	g4,1
+fefff2b0:	00 30 28 92 	st	r5,0xc0080024
+fefff2b4:	24 00 08 c0 
+fefff2b8:	0c 00 00 12 	be	0xfefff2c4
+fefff2bc:	14 20 15 3a 	cmpibe	2,g4,0xfefff2d0
+fefff2c0:	28 00 00 08 	b	0xfefff2e8
+fefff2c4:	00 30 80 8c 	lda	0xc0011c00,g0
+fefff2c8:	00 1c 01 c0 
+fefff2cc:	24 00 00 08 	b	0xfefff2f0
+fefff2d0:	00 30 80 8c 	lda	0xc0011c20,g0
+fefff2d4:	20 1c 01 c0 
+fefff2d8:	18 00 00 08 	b	0xfefff2f0
+fefff2dc:	00 00 00 0a 	ret
+fefff2e0:	00 00 00 0a 	ret
+fefff2e4:	00 00 00 0a 	ret
+fefff2e8:	00 30 80 8c 	lda	0xc0011c40,g0
+fefff2ec:	40 1c 01 c0 
+fefff2f0:	20 07 00 09 	call	0xfefffa10
+fefff2f4:	00 30 40 8c 	lda	0xc0080030,r8
+fefff2f8:	30 00 08 c0 
+fefff2fc:	71 00 38 8c 	lda	0x71,r7
+fefff300:	51 00 30 8c 	lda	0x51,r6
+fefff304:	05 16 20 5c 	mov	r5,r4
+fefff308:	00 30 80 8c 	lda	0xc0011ab0,g0
+fefff30c:	b0 1a 01 c0 
+fefff310:	05 16 88 5c 	mov	r5,g1
+fefff314:	fc 06 00 09 	call	0xfefffa10
+fefff318:	00 30 a0 90 	ld	0xc0080020,g4
+fefff31c:	20 00 08 c0 
+fefff320:	0c 20 0d 3a 	cmpibe	1,g4,0xfefff32c
+fefff324:	58 20 15 3a 	cmpibe	2,g4,0xfefff37c
+fefff328:	a4 00 00 08 	b	0xfefff3cc
+fefff32c:	00 10 89 80 	ldob	(r4),g1
+fefff330:	00 30 80 8c 	lda	0xc0011c5c,g0
+fefff334:	5c 1c 01 c0 
+fefff338:	d8 06 00 09 	call	0xfefffa10
+fefff33c:	00 30 80 8c 	lda	0xc0080030,g0
+fefff340:	30 00 08 c0 
+fefff344:	4c 04 00 09 	call	0xfefff790
+fefff348:	94 3f 04 3d 	cmpibne	0,g0,0xfefff2dc
+fefff34c:	00 10 a2 80 	ldob	(r8),g4
+fefff350:	08 c0 a1 3a 	cmpibe	g4,r7,0xfefff358
+fefff354:	08 80 a1 3d 	cmpibne	g4,r6,0xfefff35c
+fefff358:	00 00 00 0a 	ret
+fefff35c:	14 20 05 3a 	cmpibe	0,g4,0xfefff370
+fefff360:	00 30 80 8c 	lda	0xc0080030,g0
+fefff364:	30 00 08 c0 
+fefff368:	c8 05 00 09 	call	0xfefff930
+fefff36c:	00 10 81 82 	stob	g0,(r4)
+fefff370:	04 50 20 59 	addo	r4,1,r4
+fefff374:	05 50 28 59 	addo	r5,1,r5
+fefff378:	90 ff ff 08 	b	0xfefff308
+fefff37c:	00 10 89 88 	ldos	(r4),g1
+fefff380:	00 30 80 8c 	lda	0xc0011c5c,g0
+fefff384:	5c 1c 01 c0 
+fefff388:	88 06 00 09 	call	0xfefffa10
+fefff38c:	00 30 80 8c 	lda	0xc0080030,g0
+fefff390:	30 00 08 c0 
+fefff394:	fc 03 00 09 	call	0xfefff790
+fefff398:	48 3f 04 3d 	cmpibne	0,g0,0xfefff2e0
+fefff39c:	00 10 a2 80 	ldob	(r8),g4
+fefff3a0:	08 c0 a1 3a 	cmpibe	g4,r7,0xfefff3a8
+fefff3a4:	08 80 a1 3d 	cmpibne	g4,r6,0xfefff3ac
+fefff3a8:	00 00 00 0a 	ret
+fefff3ac:	14 20 05 3a 	cmpibe	0,g4,0xfefff3c0
+fefff3b0:	00 30 80 8c 	lda	0xc0080030,g0
+fefff3b4:	30 00 08 c0 
+fefff3b8:	78 05 00 09 	call	0xfefff930
+fefff3bc:	00 10 81 8a 	stos	g0,(r4)
+fefff3c0:	04 90 20 59 	addo	r4,2,r4
+fefff3c4:	05 90 28 59 	addo	r5,2,r5
+fefff3c8:	40 ff ff 08 	b	0xfefff308
+fefff3cc:	00 10 89 90 	ld	(r4),g1
+fefff3d0:	00 30 80 8c 	lda	0xc0011c5c,g0
+fefff3d4:	5c 1c 01 c0 
+fefff3d8:	38 06 00 09 	call	0xfefffa10
+fefff3dc:	00 30 80 8c 	lda	0xc0080030,g0
+fefff3e0:	30 00 08 c0 
+fefff3e4:	ac 03 00 09 	call	0xfefff790
+fefff3e8:	fc 3e 04 3d 	cmpibne	0,g0,0xfefff2e4
+fefff3ec:	00 10 a2 80 	ldob	(r8),g4
+fefff3f0:	08 c0 a1 3a 	cmpibe	g4,r7,0xfefff3f8
+fefff3f4:	08 80 a1 3d 	cmpibne	g4,r6,0xfefff3fc
+fefff3f8:	00 00 00 0a 	ret
+fefff3fc:	14 20 05 3a 	cmpibe	0,g4,0xfefff410
+fefff400:	00 30 80 8c 	lda	0xc0080030,g0
+fefff404:	30 00 08 c0 
+fefff408:	28 05 00 09 	call	0xfefff930
+fefff40c:	00 10 81 92 	st	g0,(r4)
+fefff410:	04 10 21 59 	addo	r4,4,r4
+fefff414:	05 10 29 59 	addo	r5,4,r5
+fefff418:	f0 fe ff 08 	b	0xfefff308
+fefff41c:	00 00 00 00 	.word	0x00000000
+fefff420:	00 30 80 8c 	lda	0xc0011a90,g0
+fefff424:	90 1a 01 c0 
+fefff428:	e8 05 00 09 	call	0xfefffa10
+fefff42c:	00 30 80 8c 	lda	0xc0080030,g0
+fefff430:	30 00 08 c0 
+fefff434:	5c 03 00 09 	call	0xfefff790
+fefff438:	08 20 04 3a 	cmpibe	0,g0,0xfefff440
+fefff43c:	00 00 00 0a 	ret
+fefff440:	00 30 80 8c 	lda	0xc0080030,g0
+fefff444:	30 00 08 c0 
+fefff448:	00 10 a4 80 	ldob	(g0),g4
+fefff44c:	94 30 00 5a 	cmpi	g4,0
+fefff450:	00 30 28 90 	ld	0xc0080028,r5
+fefff454:	28 00 08 c0 
+fefff458:	0c 00 00 12 	be	0xfefff464
+fefff45c:	d4 04 00 09 	call	0xfefff930
+fefff460:	10 16 28 5c 	mov	g0,r5
+fefff464:	00 30 80 8c 	lda	0xc0011aa8,g0
+fefff468:	a8 1a 01 c0 
+fefff46c:	00 30 28 92 	st	r5,0xc0080028
+fefff470:	28 00 08 c0 
+fefff474:	9c 05 00 09 	call	0xfefffa10
+fefff478:	00 1e 30 5c 	mov	0,r6
+fefff47c:	00 30 80 8c 	lda	0xc0011ab0,g0
+fefff480:	b0 1a 01 c0 
+fefff484:	05 16 88 5c 	mov	r5,g1
+fefff488:	88 05 00 09 	call	0xfefffa10
+fefff48c:	05 16 80 5c 	mov	r5,g0
+fefff490:	00 30 88 8c 	lda	0xc0080040,g1
+fefff494:	40 00 08 c0 
+fefff498:	10 1e 90 5c 	mov	16,g2
+fefff49c:	0e 1e 98 5c 	mov	14,g3
+fefff4a0:	00 30 20 8c 	lda	0xc0080040,r4
+fefff4a4:	40 00 08 c0 
+fefff4a8:	04 d0 3b 59 	addo	r4,15,r7
+fefff4ac:	e4 e8 ff 09 	call	0xfeffdd90
+fefff4b0:	00 30 a0 90 	ld	0xc0080020,g4
+fefff4b4:	20 00 08 c0 
+fefff4b8:	0c 20 0d 3a 	cmpibe	1,g4,0xfefff4c4
+fefff4bc:	20 20 15 3a 	cmpibe	2,g4,0xfefff4dc
+fefff4c0:	34 00 00 08 	b	0xfefff4f4
+fefff4c4:	00 10 89 80 	ldob	(r4),g1
+fefff4c8:	00 30 80 8c 	lda	0xc0011ab8,g0
+fefff4cc:	b8 1a 01 c0 
+fefff4d0:	04 50 20 59 	addo	r4,1,r4
+fefff4d4:	05 50 28 59 	addo	r5,1,r5
+fefff4d8:	30 00 00 08 	b	0xfefff508
+fefff4dc:	00 10 89 88 	ldos	(r4),g1
+fefff4e0:	00 30 80 8c 	lda	0xc0011ab8,g0
+fefff4e4:	b8 1a 01 c0 
+fefff4e8:	04 90 20 59 	addo	r4,2,r4
+fefff4ec:	05 90 28 59 	addo	r5,2,r5
+fefff4f0:	18 00 00 08 	b	0xfefff508
+fefff4f4:	00 10 89 90 	ld	(r4),g1
+fefff4f8:	00 30 80 8c 	lda	0xc0011ab8,g0
+fefff4fc:	b8 1a 01 c0 
+fefff500:	04 10 21 59 	addo	r4,4,r4
+fefff504:	05 10 29 59 	addo	r5,4,r5
+fefff508:	08 05 00 09 	call	0xfefffa10
+fefff50c:	a4 df 21 36 	cmpoble	r4,r7,0xfefff4b0
+fefff510:	06 50 30 59 	addo	r6,1,r6
+fefff514:	68 bf 39 33 	cmpobge	7,r6,0xfefff47c
+fefff518:	00 30 80 8c 	lda	0xc0011ac0,g0
+fefff51c:	c0 1a 01 c0 
+fefff520:	f0 04 00 09 	call	0xfefffa10
+fefff524:	04 03 00 0b 	bal	0xfefff828
+fefff528:	71 00 e8 8c 	lda	0x71,g13
+fefff52c:	90 62 07 59 	cmpib	g0,g13
+fefff530:	10 00 00 12 	be	0xfefff540
+fefff534:	51 00 e8 8c 	lda	0x51,g13
+fefff538:	90 62 07 59 	cmpib	g0,g13
+fefff53c:	3c ff ff 15 	bne	0xfefff478
+fefff540:	00 00 00 0a 	ret
+	...
+fefff550:	0a 0a 1b 6e 	.word	0x6e1b0a0a
+fefff554:	74 65 72 20 	testno	14
+fefff558:	77 6f 72 64 	.word	0x64726f77
+fefff55c:	2c 20 3c 71 	.word	0x713c202c
+fefff560:	3e 20 77 68 	atanr	g14,g12,?
+fefff564:	65 6e 20 64 	.word	0x64206e65
+fefff568:	6f 6e 65 00 	.word	0x00656e6f
+fefff56c:	00 00 00 00 	.word	0x00000000
+fefff570:	00 30 80 8c 	lda	0xc0011a90,g0
+fefff574:	90 1a 01 c0 
+fefff578:	98 04 00 09 	call	0xfefffa10
+fefff57c:	00 30 80 8c 	lda	0xc0080030,g0
+fefff580:	30 00 08 c0 
+fefff584:	0c 02 00 09 	call	0xfefff790
+fefff588:	08 20 04 3a 	cmpibe	0,g0,0xfefff590
+fefff58c:	00 00 00 0a 	ret
+fefff590:	00 30 80 8c 	lda	0xc0080030,g0
+fefff594:	30 00 08 c0 
+fefff598:	00 10 a4 80 	ldob	(g0),g4
+fefff59c:	94 30 00 5a 	cmpi	g4,0
+fefff5a0:	00 30 20 90 	ld	0xc0080024,r4
+fefff5a4:	24 00 08 c0 
+fefff5a8:	0c 00 00 12 	be	0xfefff5b4
+fefff5ac:	84 03 00 09 	call	0xfefff930
+fefff5b0:	10 16 20 5c 	mov	g0,r4
+fefff5b4:	00 30 a0 90 	ld	0xc0080020,g4
+fefff5b8:	20 00 08 c0 
+fefff5bc:	94 70 00 5a 	cmpi	g4,1
+fefff5c0:	00 30 20 92 	st	r4,0xc0080024
+fefff5c4:	24 00 08 c0 
+fefff5c8:	0c 00 00 12 	be	0xfefff5d4
+fefff5cc:	14 20 15 3a 	cmpibe	2,g4,0xfefff5e0
+fefff5d0:	1c 00 00 08 	b	0xfefff5ec
+fefff5d4:	00 30 80 8c 	lda	0xc0011c00,g0
+fefff5d8:	00 1c 01 c0 
+fefff5dc:	18 00 00 08 	b	0xfefff5f4
+fefff5e0:	00 30 80 8c 	lda	0xc0011c20,g0
+fefff5e4:	20 1c 01 c0 
+fefff5e8:	0c 00 00 08 	b	0xfefff5f4
+fefff5ec:	00 30 80 8c 	lda	0xc0011f50,g0
+fefff5f0:	50 1f 01 c0 
+fefff5f4:	1c 04 00 09 	call	0xfefffa10
+fefff5f8:	00 30 28 8c 	lda	0xc0080230,r5
+fefff5fc:	30 02 08 c0 
+fefff600:	00 30 48 8c 	lda	0xc0080030,r9
+fefff604:	30 00 08 c0 
+fefff608:	71 00 40 8c 	lda	0x71,r8
+fefff60c:	51 00 38 8c 	lda	0x51,r7
+fefff610:	00 30 80 8c 	lda	0xc0011ab0,g0
+fefff614:	b0 1a 01 c0 
+fefff618:	04 16 88 5c 	mov	r4,g1
+fefff61c:	f4 03 00 09 	call	0xfefffa10
+fefff620:	04 16 80 5c 	mov	r4,g0
+fefff624:	00 30 88 8c 	lda	0xc0080230,g1
+fefff628:	30 02 08 c0 
+fefff62c:	10 1e 90 5c 	mov	16,g2
+fefff630:	0e 1e 98 5c 	mov	14,g3
+fefff634:	5c e7 ff 09 	call	0xfeffdd90
+fefff638:	00 30 a0 90 	ld	0xc0080020,g4
+fefff63c:	20 00 08 c0 
+fefff640:	94 70 00 5a 	cmpi	g4,1
+fefff644:	04 16 30 5c 	mov	r4,r6
+fefff648:	0c 00 00 12 	be	0xfefff654
+fefff64c:	50 20 15 3a 	cmpibe	2,g4,0xfefff69c
+fefff650:	94 00 00 08 	b	0xfefff6e4
+fefff654:	00 50 89 80 	ldob	(r5),g1
+fefff658:	00 30 80 8c 	lda	0xc0011c5c,g0
+fefff65c:	5c 1c 01 c0 
+fefff660:	b0 03 00 09 	call	0xfefffa10
+fefff664:	00 30 80 8c 	lda	0xc0080030,g0
+fefff668:	30 00 08 c0 
+fefff66c:	24 01 00 09 	call	0xfefff790
+fefff670:	d4 20 04 3d 	cmpibne	0,g0,0xfefff744
+fefff674:	00 50 a2 80 	ldob	(r9),g4
+fefff678:	cc 00 a2 3a 	cmpibe	g4,r8,0xfefff744
+fefff67c:	c8 c0 a1 3a 	cmpibe	g4,r7,0xfefff744
+fefff680:	14 20 05 3a 	cmpibe	0,g4,0xfefff694
+fefff684:	00 30 80 8c 	lda	0xc0080030,g0
+fefff688:	30 00 08 c0 
+fefff68c:	a4 02 00 09 	call	0xfefff930
+fefff690:	00 50 81 82 	stob	g0,(r5)
+fefff694:	04 50 20 59 	addo	r4,1,r4
+fefff698:	90 00 00 08 	b	0xfefff728
+fefff69c:	00 50 89 88 	ldos	(r5),g1
+fefff6a0:	00 30 80 8c 	lda	0xc0011c5c,g0
+fefff6a4:	5c 1c 01 c0 
+fefff6a8:	68 03 00 09 	call	0xfefffa10
+fefff6ac:	00 30 80 8c 	lda	0xc0080030,g0
+fefff6b0:	30 00 08 c0 
+fefff6b4:	dc 00 00 09 	call	0xfefff790
+fefff6b8:	8c 20 04 3d 	cmpibne	0,g0,0xfefff744
+fefff6bc:	00 50 a2 80 	ldob	(r9),g4
+fefff6c0:	84 00 a2 3a 	cmpibe	g4,r8,0xfefff744
+fefff6c4:	80 c0 a1 3a 	cmpibe	g4,r7,0xfefff744
+fefff6c8:	14 20 05 3a 	cmpibe	0,g4,0xfefff6dc
+fefff6cc:	00 30 80 8c 	lda	0xc0080030,g0
+fefff6d0:	30 00 08 c0 
+fefff6d4:	5c 02 00 09 	call	0xfefff930
+fefff6d8:	00 50 81 8a 	stos	g0,(r5)
+fefff6dc:	04 90 20 59 	addo	r4,2,r4
+fefff6e0:	48 00 00 08 	b	0xfefff728
+fefff6e4:	00 50 89 90 	ld	(r5),g1
+fefff6e8:	00 30 80 8c 	lda	0xc0011c5c,g0
+fefff6ec:	5c 1c 01 c0 
+fefff6f0:	20 03 00 09 	call	0xfefffa10
+fefff6f4:	00 30 80 8c 	lda	0xc0080030,g0
+fefff6f8:	30 00 08 c0 
+fefff6fc:	94 00 00 09 	call	0xfefff790
+fefff700:	44 20 04 3d 	cmpibne	0,g0,0xfefff744
+fefff704:	00 50 a2 80 	ldob	(r9),g4
+fefff708:	3c 00 a2 3a 	cmpibe	g4,r8,0xfefff744
+fefff70c:	38 c0 a1 3a 	cmpibe	g4,r7,0xfefff744
+fefff710:	14 20 05 3a 	cmpibe	0,g4,0xfefff724
+fefff714:	00 30 80 8c 	lda	0xc0080030,g0
+fefff718:	30 00 08 c0 
+fefff71c:	14 02 00 09 	call	0xfefff930
+fefff720:	00 50 81 92 	st	g0,(r5)
+fefff724:	04 10 21 59 	addo	r4,4,r4
+fefff728:	06 16 80 5c 	mov	r6,g0
+fefff72c:	00 30 88 8c 	lda	0xc0080230,g1
+fefff730:	30 02 08 c0 
+fefff734:	10 1e 90 5c 	mov	16,g2
+fefff738:	0f 1e 98 5c 	mov	15,g3
+fefff73c:	54 e6 ff 09 	call	0xfeffdd90
+fefff740:	d0 fe ff 08 	b	0xfefff610
+fefff744:	04 16 80 5c 	mov	r4,g0
+fefff748:	00 30 88 8c 	lda	0xc0080230,g1
+fefff74c:	30 02 08 c0 
+fefff750:	10 1e 90 5c 	mov	16,g2
+fefff754:	0f 1e 98 5c 	mov	15,g3
+fefff758:	38 e6 ff 08 	b	0xfeffdd90
+fefff75c:	00 00 00 00 	.word	0x00000000
+fefff760:	0a 0a 48 69 	cmporl	?,pfp
+fefff764:	74 20 61 6e 	.word	0x6e612074
+fefff768:	79 20 6b 65 	modify	sf25,sf12,sf13
+fefff76c:	79 2e 2e 2e 	.word	0x2e2e2e79
+	...
+fefff780:	00 30 80 8c 	lda	0xc0012160,g0
+fefff784:	60 21 01 c0 
+fefff788:	88 02 00 09 	call	0xfefffa10
+fefff78c:	94 00 00 08 	b	0xfefff820
+fefff790:	10 16 30 5c 	mov	g0,r6
+fefff794:	00 1e 20 5c 	mov	0,r4
+fefff798:	90 00 00 0b 	bal	0xfefff828
+fefff79c:	90 f2 04 59 	cmpib	g0,19
+fefff7a0:	10 16 28 5c 	mov	g0,r5
+fefff7a4:	68 00 00 12 	be	0xfefff80c
+fefff7a8:	90 72 04 59 	cmpib	g0,17
+fefff7ac:	60 00 00 12 	be	0xfefff80c
+fefff7b0:	ff 00 a0 8c 	lda	0xff,g4
+fefff7b4:	90 00 85 58 	and	g0,g4,g0
+fefff7b8:	c8 00 00 09 	call	0xfefff880
+fefff7bc:	85 72 03 59 	cmpib	r5,13
+fefff7c0:	50 00 00 12 	be	0xfefff810
+fefff7c4:	85 b2 02 59 	cmpib	r5,10
+fefff7c8:	48 00 00 12 	be	0xfefff810
+fefff7cc:	85 32 02 59 	cmpib	r5,8
+fefff7d0:	10 00 00 12 	be	0xfefff7e0
+fefff7d4:	7f 00 88 8c 	lda	0x7f,g1
+fefff7d8:	85 62 04 59 	cmpib	r5,g1
+fefff7dc:	10 00 00 15 	bne	0xfefff7ec
+fefff7e0:	84 30 00 5a 	cmpi	r4,0
+fefff7e4:	01 09 21 79 	subog	1,r4,r4
+fefff7e8:	24 00 00 08 	b	0xfefff80c
+fefff7ec:	85 f2 06 59 	cmpib	r5,27
+fefff7f0:	10 00 00 15 	bne	0xfefff800
+fefff7f4:	1b 1e 80 5c 	mov	27,g0
+fefff7f8:	88 00 00 09 	call	0xfefff880
+fefff7fc:	98 ff ff 08 	b	0xfefff794
+fefff800:	06 00 a1 59 	addo	r6,r4,g4
+fefff804:	04 50 20 59 	addo	r4,1,r4
+fefff808:	00 10 2d 82 	stob	r5,(g4)
+fefff80c:	8c 3f 41 3b 	cmpibge	8,r4,0xfefff798
+fefff810:	06 00 a1 59 	addo	r6,r4,g4
+fefff814:	00 1e 80 5c 	mov	0,g0
+fefff818:	00 10 f5 82 	stob	g14,(g4)
+fefff81c:	00 00 00 0a 	ret
+fefff820:	00 30 f0 8c 	lda	0xc0012250,g14
+fefff824:	50 22 01 c0 
+fefff828:	1e 16 88 5c 	mov	g14,g1
+fefff82c:	00 1e f0 5c 	mov	0,g14
+fefff830:	00 30 a8 8c 	lda	0x40800008,g5
+fefff834:	08 00 80 40 
+fefff838:	00 50 a5 88 	ldos	(g5),g4
+fefff83c:	fc 3f 45 30 	bbc	8,g4,0xfefff838
+fefff840:	00 30 a0 8c 	lda	0x40800050,g4
+fefff844:	50 00 80 40 
+fefff848:	00 10 85 80 	ldob	(g4),g0
+fefff84c:	00 50 04 84 	bx	(g1)
+fefff850:	00 00 00 0a 	ret
+	...
+fefff860:	c8 ff ff 0b 	bal	0xfefff828
+fefff864:	ff 00 a0 8c 	lda	0xff,g4
+fefff868:	90 00 25 58 	and	g0,g4,r4
+fefff86c:	04 16 80 5c 	mov	r4,g0
+fefff870:	10 00 00 09 	call	0xfefff880
+fefff874:	04 16 80 5c 	mov	r4,g0
+fefff878:	00 00 00 0a 	ret
+fefff87c:	00 00 00 00 	.word	0x00000000
+fefff880:	00 30 a8 8c 	lda	0x40800008,g5
+fefff884:	08 00 80 40 
+fefff888:	00 50 a5 88 	ldos	(g5),g4
+fefff88c:	fc 3f 3d 30 	bbc	7,g4,0xfefff888
+fefff890:	90 b2 02 59 	cmpib	g0,10
+fefff894:	00 30 80 82 	stob	g0,0x40800050
+fefff898:	50 00 80 40 
+fefff89c:	0c 00 00 15 	bne	0xfefff8a8
+fefff8a0:	0d 1e 80 5c 	mov	13,g0
+fefff8a4:	dc ff ff 09 	call	0xfefff880
+fefff8a8:	00 30 a8 8c 	lda	0x40800008,g5
+fefff8ac:	08 00 80 40 
+fefff8b0:	00 50 a5 88 	ldos	(g5),g4
+fefff8b4:	fc 3f 3d 30 	bbc	7,g4,0xfefff8b0
+fefff8b8:	00 30 a8 8c 	lda	0x40800008,g5
+fefff8bc:	08 00 80 40 
+fefff8c0:	00 50 a5 88 	ldos	(g5),g4
+fefff8c4:	14 20 45 30 	bbc	8,g4,0xfefff8d8
+fefff8c8:	48 60 b5 8c 	lda	0x48(g5),g6
+fefff8cc:	00 90 a5 80 	ldob	(g6),g4
+fefff8d0:	00 50 a5 88 	ldos	(g5),g4
+fefff8d4:	f8 3f 45 37 	bbs	8,g4,0xfefff8cc
+fefff8d8:	00 00 00 0a 	ret
+fefff8dc:	00 00 00 00 	.word	0x00000000
+fefff8e0:	10 16 20 5c 	mov	g0,r4
+fefff8e4:	00 10 a1 80 	ldob	(r4),g4
+fefff8e8:	94 30 00 5a 	cmpi	g4,0
+fefff8ec:	00 1e 28 5c 	mov	0,r5
+fefff8f0:	18 00 00 12 	be	0xfefff908
+fefff8f4:	05 16 a0 5c 	mov	r5,g4
+fefff8f8:	7e 00 88 8c 	lda	0x7e,g1
+fefff8fc:	94 60 04 5a 	cmpi	g4,g1
+fefff900:	05 50 28 59 	addo	r5,1,r5
+fefff904:	08 00 00 16 	ble	0xfefff90c
+fefff908:	00 00 00 0a 	ret
+fefff90c:	00 10 81 80 	ldob	(r4),g0
+fefff910:	70 ff ff 09 	call	0xfefff880
+fefff914:	04 50 20 59 	addo	r4,1,r4
+fefff918:	00 10 a1 80 	ldob	(r4),g4
+fefff91c:	ec 3f 05 3a 	cmpibe	0,g4,0xfefff908
+fefff920:	d4 ff ff 08 	b	0xfefff8f4
+	...
+fefff930:	00 10 a4 80 	ldob	(g0),g4
+fefff934:	1f 58 88 59 	addo	31,1,g1
+fefff938:	94 60 04 5a 	cmpi	g4,g1
+fefff93c:	00 1e a8 5c 	mov	0,g5
+fefff940:	00 1e 30 5c 	mov	0,r6
+fefff944:	00 1e 28 5c 	mov	0,r5
+fefff948:	08 00 00 12 	be	0xfefff950
+fefff94c:	1c 20 4d 3d 	cmpibne	9,g4,0xfefff968
+fefff950:	15 50 a8 59 	addo	g5,1,g5
+fefff954:	10 40 a5 59 	addo	g0,g5,g4
+fefff958:	00 10 a5 80 	ldob	(g4),g4
+fefff95c:	1f 58 88 59 	addo	31,1,g1
+fefff960:	f0 5f a4 3a 	cmpibe	g4,g1,0xfefff950
+fefff964:	ec 3f 4d 3a 	cmpibe	9,g4,0xfefff950
+fefff968:	10 40 85 59 	addo	g0,g5,g0
+fefff96c:	00 10 a4 80 	ldob	(g0),g4
+fefff970:	34 20 05 3a 	cmpibe	0,g4,0xfefff9a4
+fefff974:	01 19 38 59 	subo	1,0,r7
+fefff978:	10 16 20 5c 	mov	g0,r4
+fefff97c:	00 10 81 c0 	ldib	(r4),g0
+fefff980:	38 00 00 0b 	bal	0xfefff9b8
+fefff984:	20 c0 81 3a 	cmpibe	g0,r7,0xfefff9a4
+fefff988:	04 50 20 59 	addo	r4,1,r4
+fefff98c:	00 10 a1 80 	ldob	(r4),g4
+fefff990:	06 46 a9 59 	shlo	r6,r5,g5
+fefff994:	04 1e 30 5c 	mov	4,r6
+fefff998:	94 30 00 5a 	cmpi	g4,0
+fefff99c:	15 00 2c 59 	addo	g5,g0,r5
+fefff9a0:	dc ff ff 15 	bne	0xfefff97c
+fefff9a4:	05 16 80 5c 	mov	r5,g0
+fefff9a8:	00 00 00 0a 	ret
+fefff9ac:	00 00 00 00 	.word	0x00000000
+fefff9b0:	00 30 f0 8c 	lda	0xc0012404,g14
+fefff9b4:	04 24 01 c0 
+fefff9b8:	1e 16 88 5c 	mov	g14,g1
+fefff9bc:	00 1e f0 5c 	mov	0,g14
+fefff9c0:	d0 20 a4 8c 	lda	0xd0(g0),g4
+fefff9c4:	14 72 02 59 	cmpob	g4,9
+fefff9c8:	10 00 00 11 	bg	0xfefff9d8
+fefff9cc:	00 34 84 8c 	lda	0xffffffd0(g0),g0
+fefff9d0:	d0 ff ff ff 
+fefff9d4:	1c 00 00 08 	b	0xfefff9f0
+fefff9d8:	85 09 84 58 	setbit	5,g0,g0
+fefff9dc:	9f 20 a4 8c 	lda	0x9f(g0),g4
+fefff9e0:	14 72 01 59 	cmpob	g4,5
+fefff9e4:	18 00 00 11 	bg	0xfefff9fc
+fefff9e8:	00 34 84 8c 	lda	0xffffffa9(g0),g0
+fefff9ec:	a9 ff ff ff 
+fefff9f0:	18 0e 84 59 	shlo	24,g0,g0
+fefff9f4:	98 0d 84 59 	shri	24,g0,g0
+fefff9f8:	00 50 04 84 	bx	(g1)
+fefff9fc:	01 19 80 59 	subo	1,0,g0
+fefffa00:	00 50 04 84 	bx	(g1)
+fefffa04:	00 00 00 0a 	ret
+	...
+fefffa10:	10 48 08 59 	addo	16,sp,sp
+fefffa14:	10 16 40 5c 	mov	g0,r8
+fefffa18:	1f 1e 80 5c 	mov	31,g0
+fefffa1c:	11 16 20 5c 	mov	g1,r4
+fefffa20:	12 16 28 5c 	mov	g2,r5
+fefffa24:	13 16 30 5c 	mov	g3,r6
+fefffa28:	14 16 38 5c 	mov	g4,r7
+fefffa2c:	e4 02 00 09 	call	0xfefffd10
+fefffa30:	00 1e 48 5c 	mov	0,r9
+fefffa34:	00 1e 50 5c 	mov	0,r10
+fefffa38:	40 e0 27 92 	st	r4,0x40(fp)
+fefffa3c:	44 e0 2f 92 	st	r5,0x44(fp)
+fefffa40:	48 e0 37 92 	st	r6,0x48(fp)
+fefffa44:	10 16 20 5c 	mov	g0,r4
+fefffa48:	4c e0 3f 92 	st	r7,0x4c(fp)
+fefffa4c:	08 00 00 08 	b	0xfefffa54
+fefffa50:	9c 60 1a 3c 	cmpibl	3,r9,0xfefffaec
+fefffa54:	00 10 82 80 	ldob	(r8),g0
+fefffa58:	1f 98 e9 59 	addo	31,6,g13
+fefffa5c:	90 60 07 5a 	cmpi	g0,g13
+fefffa60:	08 50 40 59 	addo	r8,1,r8
+fefffa64:	18 00 00 12 	be	0xfefffa7c
+fefffa68:	5c 00 e8 8c 	lda	0x5c,g13
+fefffa6c:	10 40 87 3a 	cmpibe	g0,g13,0xfefffa7c
+fefffa70:	0c 20 04 3a 	cmpibe	0,g0,0xfefffa7c
+fefffa74:	0c fe ff 09 	call	0xfefff880
+fefffa78:	6c 00 00 08 	b	0xfefffae4
+fefffa7c:	1f 98 a1 59 	addo	31,6,g4
+fefffa80:	44 00 85 3a 	cmpibe	g0,g4,0xfefffac4
+fefffa84:	0c 00 85 31 	cmpobg	g0,g4,0xfefffa90
+fefffa88:	64 20 04 3a 	cmpibe	0,g0,0xfefffaec
+fefffa8c:	54 00 00 08 	b	0xfefffae0
+fefffa90:	5c 00 e8 8c 	lda	0x5c,g13
+fefffa94:	4c 40 87 3d 	cmpibne	g0,g13,0xfefffae0
+fefffa98:	00 10 82 80 	ldob	(r8),g0
+fefffa9c:	6e 00 e8 8c 	lda	0x6e,g13
+fefffaa0:	0c 40 87 3d 	cmpibne	g0,g13,0xfefffaac
+fefffaa4:	0a 1e 80 5c 	mov	10,g0
+fefffaa8:	10 00 00 08 	b	0xfefffab8
+fefffaac:	72 00 e8 8c 	lda	0x72,g13
+fefffab0:	08 40 87 3d 	cmpibne	g0,g13,0xfefffab8
+fefffab4:	0d 1e 80 5c 	mov	13,g0
+fefffab8:	c8 fd ff 09 	call	0xfefff880
+fefffabc:	08 50 40 59 	addo	r8,1,r8
+fefffac0:	20 00 00 08 	b	0xfefffae0
+fefffac4:	02 4e a2 59 	shlo	2,r9,g4
+fefffac8:	1f 00 a5 59 	addo	fp,g4,g4
+fefffacc:	40 20 8d 90 	ld	0x40(g4),g1
+fefffad0:	00 10 82 80 	ldob	(r8),g0
+fefffad4:	08 50 40 59 	addo	r8,1,r8
+fefffad8:	09 50 48 59 	addo	r9,1,r9
+fefffadc:	24 00 00 09 	call	0xfefffb00
+fefffae0:	0a 50 50 59 	addo	r10,1,r10
+fefffae4:	7f 00 e8 8c 	lda	0x7f,g13
+fefffae8:	68 5f 57 3e 	cmpible	r10,g13,0xfefffa50
+fefffaec:	ff 00 80 8c 	lda	0xff,g0
+fefffaf0:	84 00 84 58 	and	r4,g0,g0
+fefffaf4:	1c 02 00 09 	call	0xfefffd10
+fefffaf8:	00 00 00 0a 	ret
+fefffafc:	00 00 00 00 	.word	0x00000000
+fefffb00:	10 48 08 59 	addo	16,sp,sp
+fefffb04:	03 de 93 59 	shlo	3,15,g2
+fefffb08:	90 a2 04 59 	cmpib	g0,g2
+fefffb0c:	1f 16 20 5c 	mov	fp,r4
+fefffb10:	10 16 38 5c 	mov	g0,r7
+fefffb14:	10 00 00 12 	be	0xfefffb24
+fefffb18:	58 00 90 8c 	lda	0x58,g2
+fefffb1c:	90 a2 04 59 	cmpib	g0,g2
+fefffb20:	14 00 00 15 	bne	0xfefffb34
+fefffb24:	11 16 80 5c 	mov	g1,g0
+fefffb28:	40 e0 8f 8c 	lda	0x40(fp),g1
+fefffb2c:	0c 01 00 0b 	bal	0xfefffc38
+fefffb30:	10 00 00 08 	b	0xfefffb40
+fefffb34:	11 16 80 5c 	mov	g1,g0
+fefffb38:	40 e0 8f 8c 	lda	0x40(fp),g1
+fefffb3c:	6c 01 00 0b 	bal	0xfefffca8
+fefffb40:	03 de 93 59 	shlo	3,15,g2
+fefffb44:	40 20 a1 80 	ldob	0x40(r4),g4
+fefffb48:	87 a2 04 59 	cmpib	r7,g2
+fefffb4c:	08 1e 20 5c 	mov	8,r4
+fefffb50:	40 e0 2f 8c 	lda	0x40(fp),r5
+fefffb54:	10 00 00 12 	be	0xfefffb64
+fefffb58:	64 00 90 8c 	lda	0x64,g2
+fefffb5c:	87 a2 04 59 	cmpib	r7,g2
+fefffb60:	5c 00 00 15 	bne	0xfefffbbc
+fefffb64:	1f 58 94 59 	addo	31,17,g2
+fefffb68:	2c 80 a4 3d 	cmpibne	g4,g2,0xfefffb94
+fefffb6c:	08 00 00 08 	b	0xfefffb74
+fefffb70:	24 20 09 3b 	cmpibge	1,r4,0xfefffb94
+fefffb74:	1f 58 80 59 	addo	31,1,g0
+fefffb78:	08 fd ff 09 	call	0xfefff880
+fefffb7c:	05 50 28 59 	addo	r5,1,r5
+fefffb80:	00 50 a1 80 	ldob	(r5),g4
+fefffb84:	1f 58 94 59 	addo	31,17,g2
+fefffb88:	94 a0 04 5a 	cmpi	g4,g2
+fefffb8c:	01 09 21 59 	subo	1,r4,r4
+fefffb90:	e0 ff ff 12 	be	0xfefffb70
+fefffb94:	01 09 21 59 	subo	1,r4,r4
+fefffb98:	01 19 30 59 	subo	1,0,r6
+fefffb9c:	6c 80 21 3a 	cmpibe	r4,r6,0xfefffc08
+fefffba0:	00 50 81 80 	ldob	(r5),g0
+fefffba4:	dc fc ff 09 	call	0xfefff880
+fefffba8:	01 09 21 59 	subo	1,r4,r4
+fefffbac:	84 a0 01 5a 	cmpi	r4,r6
+fefffbb0:	05 50 28 59 	addo	r5,1,r5
+fefffbb4:	ec ff ff 15 	bne	0xfefffba0
+fefffbb8:	50 00 00 08 	b	0xfefffc08
+fefffbbc:	1f 58 94 59 	addo	31,17,g2
+fefffbc0:	24 80 a4 3d 	cmpibne	g4,g2,0xfefffbe4
+fefffbc4:	08 00 00 08 	b	0xfefffbcc
+fefffbc8:	1c 20 09 3b 	cmpibge	1,r4,0xfefffbe4
+fefffbcc:	05 50 28 59 	addo	r5,1,r5
+fefffbd0:	00 50 a1 80 	ldob	(r5),g4
+fefffbd4:	1f 58 94 59 	addo	31,17,g2
+fefffbd8:	94 a0 04 5a 	cmpi	g4,g2
+fefffbdc:	01 09 21 59 	subo	1,r4,r4
+fefffbe0:	e8 ff ff 12 	be	0xfefffbc8
+fefffbe4:	01 09 21 59 	subo	1,r4,r4
+fefffbe8:	01 19 30 59 	subo	1,0,r6
+fefffbec:	1c 80 21 3a 	cmpibe	r4,r6,0xfefffc08
+fefffbf0:	00 50 81 80 	ldob	(r5),g0
+fefffbf4:	8c fc ff 09 	call	0xfefff880
+fefffbf8:	01 09 21 59 	subo	1,r4,r4
+fefffbfc:	84 a0 01 5a 	cmpi	r4,r6
+fefffc00:	05 50 28 59 	addo	r5,1,r5
+fefffc04:	ec ff ff 15 	bne	0xfefffbf0
+fefffc08:	03 de 93 59 	shlo	3,15,g2
+fefffc0c:	87 a2 04 59 	cmpib	r7,g2
+fefffc10:	10 00 00 12 	be	0xfefffc20
+fefffc14:	58 00 90 8c 	lda	0x58,g2
+fefffc18:	87 a2 04 59 	cmpib	r7,g2
+fefffc1c:	0c 00 00 15 	bne	0xfefffc28
+fefffc20:	48 00 80 8c 	lda	0x48,g0
+fefffc24:	5c fc ff 09 	call	0xfefff880
+fefffc28:	00 00 00 0a 	ret
+fefffc2c:	00 00 00 00 	.word	0x00000000
+fefffc30:	00 30 f0 8c 	lda	0xc0012694,g14
+fefffc34:	94 26 01 c0 
+fefffc38:	1e 16 90 5c 	mov	g14,g2
+fefffc3c:	00 1e f0 5c 	mov	0,g14
+fefffc40:	01 49 b4 59 	subo	1,g1,g6
+fefffc44:	11 d0 a9 59 	addo	g1,7,g5
+fefffc48:	90 d0 a3 58 	and	g0,15,g4
+fefffc4c:	00 50 a5 82 	stob	g4,(g5)
+fefffc50:	01 49 ad 59 	subo	1,g5,g5
+fefffc54:	95 a0 05 5a 	cmpi	g5,g6
+fefffc58:	04 0c 84 59 	shro	4,g0,g0
+fefffc5c:	ec ff ff 15 	bne	0xfefffc48
+fefffc60:	01 19 b0 59 	subo	1,0,g6
+fefffc64:	07 1e a8 5c 	mov	7,g5
+fefffc68:	00 50 a4 80 	ldob	(g1),g4
+fefffc6c:	0c 20 4d 33 	cmpobge	9,g4,0xfefffc78
+fefffc70:	37 20 a5 8c 	lda	0x37(g4),g4
+fefffc74:	08 00 00 08 	b	0xfefffc7c
+fefffc78:	30 20 a5 8c 	lda	0x30(g4),g4
+fefffc7c:	00 50 a4 82 	stob	g4,(g1)
+fefffc80:	01 49 ad 59 	subo	1,g5,g5
+fefffc84:	95 a0 05 5a 	cmpi	g5,g6
+fefffc88:	11 50 88 59 	addo	g1,1,g1
+fefffc8c:	dc ff ff 15 	bne	0xfefffc68
+fefffc90:	00 90 04 84 	bx	(g2)
+fefffc94:	00 00 00 0a 	ret
+	...
+fefffca0:	00 30 f0 8c 	lda	0xc00126d8,g14
+fefffca4:	d8 26 01 c0 
+fefffca8:	1e 16 90 5c 	mov	g14,g2
+fefffcac:	00 1e f0 5c 	mov	0,g14
+fefffcb0:	01 49 ac 59 	subo	1,g1,g5
+fefffcb4:	11 d0 89 59 	addo	g1,7,g1
+fefffcb8:	0a 0c a4 70 	remo	10,g0,g4
+fefffcbc:	30 20 a5 8c 	lda	0x30(g4),g4
+fefffcc0:	00 50 a4 82 	stob	g4,(g1)
+fefffcc4:	01 49 8c 59 	subo	1,g1,g1
+fefffcc8:	91 60 05 5a 	cmpi	g1,g5
+fefffccc:	8a 0d 84 70 	divo	10,g0,g0
+fefffcd0:	e8 ff ff 15 	bne	0xfefffcb8
+fefffcd4:	00 90 04 84 	bx	(g2)
+fefffcd8:	00 00 00 0a 	ret
+fefffcdc:	00 00 00 00 	.word	0x00000000
+fefffce0:	1f 58 a2 59 	addo	31,9,g4
+fefffce4:	0a 1e 80 5c 	mov	10,g0
+fefffce8:	00 30 a0 92 	st	g4,0x40800004
+fefffcec:	04 00 80 40 
+fefffcf0:	90 fb ff 09 	call	0xfefff880
+fefffcf4:	53 00 80 8c 	lda	0x53,g0
+fefffcf8:	88 fb ff 09 	call	0xfefff880
+fefffcfc:	0a 1e 80 5c 	mov	10,g0
+fefffd00:	80 fb ff 08 	b	0xfefff880
+	...
+fefffd10:	10 de 27 59 	shlo	16,31,r4
+fefffd14:	10 0e 84 59 	shlo	16,g0,g0
+fefffd18:	90 00 81 58 	and	g0,r4,g0
+fefffd1c:	84 02 81 65 	modpc	r4,r4,g0
+fefffd20:	90 00 81 58 	and	g0,r4,g0
+fefffd24:	10 0c 84 59 	shro	16,g0,g0
+fefffd28:	14 1e 28 5c 	mov	20,r5
+fefffd2c:	01 49 29 59 	subo	1,r5,r5
+fefffd30:	fc 7f 01 35 	cmpobne	0,r5,0xfefffd2c
+fefffd34:	00 00 00 0a 	ret
+	...
+fefffd40:	80 3e 00 66 	flushreg
+fefffd44:	00 30 20 8c 	lda	0xc0080430,r4
+fefffd48:	30 04 08 c0 
+fefffd4c:	00 10 81 b2 	stq	g0,(r4)
+fefffd50:	10 20 a1 b2 	stq	g4,0x10(r4)
+fefffd54:	20 20 c1 b2 	stq	g8,0x20(r4)
+fefffd58:	30 20 e1 b2 	stq	g12,0x30(r4)
+fefffd5c:	00 16 58 5c 	mov	pfp,r11
+fefffd60:	40 20 41 b2 	stq	r8,0x40(r4)
+fefffd64:	01 16 60 5c 	mov	sp,r12
+fefffd68:	02 16 68 5c 	mov	rip,r13
+fefffd6c:	50 20 61 92 	st	r12,0x50(r4)
+fefffd70:	54 20 69 92 	st	r13,0x54(r4)
+fefffd74:	00 1e 28 5c 	mov	0,r5
+fefffd78:	85 42 31 65 	modpc	r5,r5,r6
+fefffd7c:	58 20 31 92 	st	r6,0x58(r4)
+fefffd80:	00 00 00 0a 	ret
+fefffd84:	ff ff ff ff 	.word	0xffffffff
+fefffd88:	ff ff ff ff 	.word	0xffffffff
+fefffd8c:	ff ff ff ff 	.word	0xffffffff
+fefffd90:	ff ff ff ff 	.word	0xffffffff
+fefffd94:	ff ff ff ff 	.word	0xffffffff
+fefffd98:	ff ff ff ff 	.word	0xffffffff
+fefffd9c:	ff ff ff ff 	.word	0xffffffff
+fefffda0:	ff ff ff ff 	.word	0xffffffff
+fefffda4:	ff ff ff ff 	.word	0xffffffff
+fefffda8:	ff ff ff ff 	.word	0xffffffff
+fefffdac:	ff ff ff ff 	.word	0xffffffff
+fefffdb0:	ff ff ff ff 	.word	0xffffffff
+fefffdb4:	ff ff ff ff 	.word	0xffffffff
+fefffdb8:	ff ff ff ff 	.word	0xffffffff
+fefffdbc:	ff ff ff ff 	.word	0xffffffff
+fefffdc0:	ff ff ff ff 	.word	0xffffffff
+fefffdc4:	ff ff ff ff 	.word	0xffffffff
+fefffdc8:	ff ff ff ff 	.word	0xffffffff
+fefffdcc:	ff ff ff ff 	.word	0xffffffff
+fefffdd0:	ff ff ff ff 	.word	0xffffffff
+fefffdd4:	ff ff ff ff 	.word	0xffffffff
+fefffdd8:	ff ff ff ff 	.word	0xffffffff
+fefffddc:	ff ff ff ff 	.word	0xffffffff
+fefffde0:	ff ff ff ff 	.word	0xffffffff
+fefffde4:	ff ff ff ff 	.word	0xffffffff
+fefffde8:	ff ff ff ff 	.word	0xffffffff
+fefffdec:	ff ff ff ff 	.word	0xffffffff
+fefffdf0:	ff ff ff ff 	.word	0xffffffff
+fefffdf4:	ff ff ff ff 	.word	0xffffffff
+fefffdf8:	ff ff ff ff 	.word	0xffffffff
+fefffdfc:	ff ff ff ff 	.word	0xffffffff
+fefffe00:	ff ff ff ff 	.word	0xffffffff
+fefffe04:	ff ff ff ff 	.word	0xffffffff
+fefffe08:	ff ff ff ff 	.word	0xffffffff
+fefffe0c:	ff ff ff ff 	.word	0xffffffff
+fefffe10:	ff ff ff ff 	.word	0xffffffff
+fefffe14:	ff ff ff ff 	.word	0xffffffff
+fefffe18:	ff ff ff ff 	.word	0xffffffff
+fefffe1c:	ff ff ff ff 	.word	0xffffffff
+fefffe20:	ff ff ff ff 	.word	0xffffffff
+fefffe24:	ff ff ff ff 	.word	0xffffffff
+fefffe28:	ff ff ff ff 	.word	0xffffffff
+fefffe2c:	ff ff ff ff 	.word	0xffffffff
+fefffe30:	ff ff ff ff 	.word	0xffffffff
+fefffe34:	ff ff ff ff 	.word	0xffffffff
+fefffe38:	ff ff ff ff 	.word	0xffffffff
+fefffe3c:	ff ff ff ff 	.word	0xffffffff
+fefffe40:	ff ff ff ff 	.word	0xffffffff
+fefffe44:	ff ff ff ff 	.word	0xffffffff
+fefffe48:	ff ff ff ff 	.word	0xffffffff
+fefffe4c:	ff ff ff ff 	.word	0xffffffff
+fefffe50:	ff ff ff ff 	.word	0xffffffff
+fefffe54:	ff ff ff ff 	.word	0xffffffff
+fefffe58:	ff ff ff ff 	.word	0xffffffff
+fefffe5c:	ff ff ff ff 	.word	0xffffffff
+fefffe60:	ff ff ff ff 	.word	0xffffffff
+fefffe64:	ff ff ff ff 	.word	0xffffffff
+fefffe68:	ff ff ff ff 	.word	0xffffffff
+fefffe6c:	ff ff ff ff 	.word	0xffffffff
+fefffe70:	ff ff ff ff 	.word	0xffffffff
+fefffe74:	ff ff ff ff 	.word	0xffffffff
+fefffe78:	ff ff ff ff 	.word	0xffffffff
+fefffe7c:	ff ff ff ff 	.word	0xffffffff
+fefffe80:	ff ff ff ff 	.word	0xffffffff
+fefffe84:	ff ff ff ff 	.word	0xffffffff
+fefffe88:	ff ff ff ff 	.word	0xffffffff
+fefffe8c:	ff ff ff ff 	.word	0xffffffff
+fefffe90:	ff ff ff ff 	.word	0xffffffff
+fefffe94:	ff ff ff ff 	.word	0xffffffff
+fefffe98:	ff ff ff ff 	.word	0xffffffff
+fefffe9c:	ff ff ff ff 	.word	0xffffffff
+fefffea0:	ff ff ff ff 	.word	0xffffffff
+fefffea4:	ff ff ff ff 	.word	0xffffffff
+fefffea8:	ff ff ff ff 	.word	0xffffffff
+fefffeac:	ff ff ff ff 	.word	0xffffffff
+fefffeb0:	ff ff ff ff 	.word	0xffffffff
+fefffeb4:	ff ff ff ff 	.word	0xffffffff
+fefffeb8:	ff ff ff ff 	.word	0xffffffff
+fefffebc:	ff ff ff ff 	.word	0xffffffff
+fefffec0:	ff ff ff ff 	.word	0xffffffff
+fefffec4:	ff ff ff ff 	.word	0xffffffff
+fefffec8:	ff ff ff ff 	.word	0xffffffff
+fefffecc:	ff ff ff ff 	.word	0xffffffff
+fefffed0:	ff ff ff ff 	.word	0xffffffff
+fefffed4:	ff ff ff ff 	.word	0xffffffff
+fefffed8:	ff ff ff ff 	.word	0xffffffff
+fefffedc:	ff ff ff ff 	.word	0xffffffff
+fefffee0:	ff ff ff ff 	.word	0xffffffff
+fefffee4:	ff ff ff ff 	.word	0xffffffff
+fefffee8:	ff ff ff ff 	.word	0xffffffff
+fefffeec:	ff ff ff ff 	.word	0xffffffff
+fefffef0:	ff ff ff ff 	.word	0xffffffff
+fefffef4:	ff ff ff ff 	.word	0xffffffff
+fefffef8:	ff ff ff ff 	.word	0xffffffff
+fefffefc:	ff ff ff ff 	.word	0xffffffff
+feffff00:	ff ff ff ff 	.word	0xffffffff
+feffff04:	ff ff ff ff 	.word	0xffffffff
+feffff08:	ff ff ff ff 	.word	0xffffffff
+feffff0c:	ff ff ff ff 	.word	0xffffffff
+feffff10:	ff ff ff ff 	.word	0xffffffff
+feffff14:	ff ff ff ff 	.word	0xffffffff
+feffff18:	ff ff ff ff 	.word	0xffffffff
+feffff1c:	ff ff ff ff 	.word	0xffffffff
+feffff20:	ff ff ff ff 	.word	0xffffffff
+feffff24:	ff ff ff ff 	.word	0xffffffff
+feffff28:	ff ff ff ff 	.word	0xffffffff
+feffff2c:	ff ff ff ff 	.word	0xffffffff
+	...
+feffff40:	00 c4 ff fe 	.word	0xfeffc400
+feffff44:	80 d4 ff fe 	.word	0xfeffd480
+feffff48:	80 67 00 02 	.word	0x02006780
+	...
+feffff5c:	fe ff ff ff 	.word	0xfffffffe
+feffff60:	ff ff ff ff 	.word	0xffffffff
+feffff64:	ff ff ff ff 	.word	0xffffffff
+feffff68:	ff ff ff ff 	.word	0xffffffff
+feffff6c:	ff ff ff ff 	.word	0xffffffff
+feffff70:	ff ff ff ff 	.word	0xffffffff
+feffff74:	ff ff ff ff 	.word	0xffffffff
+feffff78:	ff ff ff ff 	.word	0xffffffff
+feffff7c:	ff ff ff ff 	.word	0xffffffff
+feffff80:	ff ff ff ff 	.word	0xffffffff
+feffff84:	ff ff ff ff 	.word	0xffffffff
+feffff88:	ff ff ff ff 	.word	0xffffffff
+feffff8c:	ff ff ff ff 	.word	0xffffffff
+feffff90:	ff ff ff ff 	.word	0xffffffff
+feffff94:	ff ff ff ff 	.word	0xffffffff
+feffff98:	ff ff ff ff 	.word	0xffffffff
+feffff9c:	ff ff ff ff 	.word	0xffffffff
+feffffa0:	ff ff ff ff 	.word	0xffffffff
+feffffa4:	ff ff ff ff 	.word	0xffffffff
+feffffa8:	ff ff ff ff 	.word	0xffffffff
+feffffac:	ff ff ff ff 	.word	0xffffffff
+feffffb0:	ff ff ff ff 	.word	0xffffffff
+feffffb4:	ff ff ff ff 	.word	0xffffffff
+feffffb8:	ff ff ff ff 	.word	0xffffffff
+feffffbc:	ff ff ff ff 	.word	0xffffffff
+feffffc0:	ff ff ff ff 	.word	0xffffffff
+feffffc4:	ff ff ff ff 	.word	0xffffffff
+feffffc8:	ff ff ff ff 	.word	0xffffffff
+feffffcc:	ff ff ff ff 	.word	0xffffffff
+feffffd0:	ff ff ff ff 	.word	0xffffffff
+feffffd4:	ff ff ff ff 	.word	0xffffffff
+feffffd8:	ff ff ff ff 	.word	0xffffffff
+feffffdc:	ff ff ff ff 	.word	0xffffffff
+feffffe0:	ff ff ff ff 	.word	0xffffffff
+feffffe4:	ff ff ff ff 	.word	0xffffffff
+feffffe8:	ff ff ff ff 	.word	0xffffffff
+feffffec:	ff ff ff ff 	.word	0xffffffff
+fefffff0:	ff ff ff ff 	.word	0xffffffff
+fefffff4:	ff ff ff ff 	.word	0xffffffff
+fefffff8:	ff ff ff ff 	.word	0xffffffff
+fefffffc:	10 00 02 03 	.word	0x03020010

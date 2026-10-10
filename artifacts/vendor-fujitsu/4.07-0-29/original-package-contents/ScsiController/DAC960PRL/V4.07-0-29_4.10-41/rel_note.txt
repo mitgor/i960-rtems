@@ -1,0 +1,8 @@
+Firmware, Bootblock und BIOS flash for DAC960PRL
+
+1. Firmware -filename		<fgj40729.000>		Rev. 4.07-0-29
+2. Bootblock -filename		<fwtcbblk.img>	
+3. BIOS -filename			<bgj41041.img>		Rev. 4.10-41
+
+
+
