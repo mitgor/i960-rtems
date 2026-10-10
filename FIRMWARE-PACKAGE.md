@@ -1,5 +1,22 @@
 # Official DAC960PG firmware package (found + archived on the box)
 
+**Current result:** [In-system recovery succeeded](SNAPSHOT-RECOVERY.md). A paired
+512 KiB capture contains the exact 4.07-0-29 firmware and FWTCBBLK boot block,
+plus the independently verified PCI BIOS. This supersedes older no-dump status
+and the 256 KiB layout assumption below.
+
+> **Latest follow-up:** [VENDOR-READ-PATH.md](VENDOR-READ-PATH.md) corrects the
+> vendor symbol addresses and verifies opcode 0x20 card-to-host transfers.
+> Returned bytes appear to be staging memory; no physical-flash backup exists.
+> Opcode 0x21 uploads host bytes and must not be used as a dump command.
+
+
+> **2026-10-10 live-attempt update:** See [DUMP-ATTEMPT.md](DUMP-ATTEMPT.md).
+> Fresh, matched-ID 0x21 transactions left host buffers untouched; Enquiry2 worked.
+> Vendor-code dataflow also puts the claimed card-to-host direction of 0x21 in
+> doubt. Historical “safe StoreImage dump” statements below are superseded;
+> no verified firmware-read procedure exists yet.
+
 The complete official firmware/BIOS/flasher package for this exact card was located on
 Fujitsu's still-live firmware server and downloaded to the box. It matches the card's
 family (firmware v4.07, BIOS v4.10). **The card currently runs 4.07-0-29; this package is
@@ -10,9 +27,10 @@ family (firmware v4.07, BIOS v4.10). **The card currently runs 4.07-0-29; this p
 - self-extracting ZIP, 346,864 bytes
 - sha256 `4e83c865240c577f9f005e631e5aec0802afc491ede8ed8772085194829885b2`
 
-## Contents (extracted; kept on the box at `~/fwpkg/`, NOT committed here)
-Vendor binaries are left on the user's machine rather than redistributed in this public
-repo. Re-fetch from the URL above (it's the authoritative copy).
+## Contents
+Original packages and decoded vendor binaries are now archived locally for Git
+preservation under `artifacts/vendor-fujitsu/`. See `artifacts/ROM-INVENTORY.md`.
+The URL above records the original source.
 
 | File | Size | What it is |
 |------|------|-----------|
@@ -87,7 +105,7 @@ by crib-dragging the card's plaintext BIOS dump against the encoded `BGJ41041.IM
 
 `.IMG` files have a 512-byte header (`MIMGMYLX` + `"Ver 4.10-41 Released on Feb 02 1999"`),
 raw image at offset 512; `DAC960FL.EXE` has no header. Verified decoded outputs (on the box,
-`~/fwpkg/decoded/`, not committed — vendor binaries):
+`~/fwpkg/decoded/`; now also archived under `artifacts/vendor-fujitsu/4.07-0-39/decoded/`):
 - `DAC960FL.EXE` -> `MZ` DOS exe; strings "DAC960 Firmware Upgrade Utility", "StoreImage".
 - `BGJ41041.IMG[512:]` -> `55 AA 38 E9` option ROM; "DAC960 BIOS Version", "Mylex", "PCIR".
 - `407t39b0.img[512:]` -> i960 firmware; the firmware itself is Huffman-packed internally

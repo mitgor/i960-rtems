@@ -1,0 +1,223 @@
+
+loader.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+fefccd44 <_start>:
+fefccd44:	40 00 f8 8c 	lda	0x40,fp
+fefccd48:	40 00 08 8c 	lda	0x40,sp
+fefccd4c:	80 3e 00 66 	flushreg
+fefccd50:	00 1e f0 5c 	mov	0,g14
+fefccd54:	0c 00 00 09 	call	fefccd60 <_loader_main>
+fefccd58:	00 00 00 08 	b	fefccd58 <_start+0x14>
+fefccd5c:	00 00 00 00 	.word	0x00000000
+
+fefccd60 <_loader_main>:
+fefccd60:	10 48 08 59 	addo	16,sp,sp
+fefccd64:	00 30 a0 90 	ld	1314 <_start-0xfefcba30>,g4
+fefccd68:	14 13 00 00 
+fefccd6c:	00 30 a8 8c 	lda	600d <_start-0xfefc6d37>,g5
+fefccd70:	0d 60 00 00 
+fefccd74:	10 0c a5 59 	shro	16,g4,g4
+fefccd78:	48 e0 f7 92 	st	g14,0x48(fp)
+fefccd7c:	40 e0 a7 92 	st	g4,0x40(fp)
+fefccd80:	44 e0 f7 92 	st	g14,0x44(fp)
+fefccd84:	00 30 f0 92 	st	g14,131c <_start-0xfefcba28>
+fefccd88:	1c 13 00 00 
+fefccd8c:	40 e0 a7 90 	ld	0x40(fp),g4
+fefccd90:	00 30 30 8c 	lda	ffff <_start-0xfefbcd45>,r6
+fefccd94:	ff ff 00 00 
+fefccd98:	10 0e a5 59 	shlo	16,g4,g4
+fefccd9c:	95 03 a5 58 	or	g5,g4,g4
+fefccda0:	00 30 a0 92 	st	g4,1318 <_start-0xfefcba2c>
+fefccda4:	18 13 00 00 
+
+fefccda8 <L39>:
+fefccda8:	Address 0x00000000fefccda8 is out of bounds.
+
+
+fefccdac <L42>:
+fefccdac:	00 30 88 90 	ld	1314 <_start-0xfefcba30>,g1
+fefccdb0:	14 13 00 00 
+fefccdb4:	10 4c 24 59 	shro	16,g1,r4
+fefccdb8:	f4 1f a1 32 	cmpobe	g4,r4,fefccdac <L42>
+fefccdbc:	00 30 28 90 	ld	1310 <_start-0xfefcba34>,r5
+fefccdc0:	10 13 00 00 
+fefccdc4:	40 e0 87 8c 	lda	0x40(fp),g0
+fefccdc8:	91 80 89 58 	and	g1,r6,g1
+fefccdcc:	05 16 90 5c 	mov	r5,g2
+fefccdd0:	00 30 00 86 	callx	fefcce20 <_dispatch>
+fefccdd4:	20 ce fc fe 
+fefccdd8:	40 e0 27 92 	st	r4,0x40(fp)
+fefccddc:	00 30 a8 8c 	lda	600e <_start-0xfefc6d36>,g5
+fefccde0:	0e 60 00 00 
+fefccde4:	24 00 ac 32 	cmpobe	g5,g0,fefcce08 <L51>
+
+fefccde8 <L46>:
+fefccde8:	40 e0 a7 90 	ld	0x40(fp),g4
+fefccdec:	10 0e a5 59 	shlo	16,g4,g4
+fefccdf0:	90 03 a5 58 	or	g0,g4,g4
+fefccdf4:	00 30 a0 92 	st	g4,1318 <_start-0xfefcba2c>
+fefccdf8:	18 13 00 00 
+fefccdfc:	ac 1f ac 35 	cmpobne	g5,g0,fefccda8 <L39>
+fefcce00:	Address 0x00000000fefcce00 is out of bounds.
+
+
+fefcce04 <L48>:
+fefcce04:	00 00 00 08 	b	fefcce04 <L48>
+
+fefcce08 <L51>:
+fefcce08:	00 30 f0 92 	st	g14,131c <_start-0xfefcba28>
+fefcce0c:	1c 13 00 00 
+fefcce10:	d8 ff ff 08 	b	fefccde8 <L46>
+	...
+
+fefcce20 <_dispatch>:
+fefcce20:	00 30 f0 8c 	lda	fefccfc0 <Li960R2>,g14
+fefcce24:	c0 cf fc fe 
+
+fefcce28 <dispatch.lf>:
+fefcce28:	1e 16 98 5c 	mov	g14,g3
+fefcce2c:	00 1e f0 5c 	mov	0,g14
+fefcce30:	10 16 a8 5c 	mov	g0,g5
+fefcce34:	a8 60 44 34 	cmpobl	8,g1,fefccedc <L36>
+fefcce38:	11 39 a0 90 	ld	fefcce44 <L37>[g1*4],g4
+fefcce3c:	44 ce fc fe 
+fefcce40:	Address 0x00000000fefcce40 is out of bounds.
+
+
+fefcce44 <L37>:
+fefcce44:	dc ce fc fe 	.word	0xfefccedc
+fefcce48:	b0 ce fc fe 	.word	0xfefcceb0
+fefcce4c:	68 ce fc fe 	.word	0xfefcce68
+fefcce50:	e4 ce fc fe 	.word	0xfefccee4
+fefcce54:	64 cf fc fe 	.word	0xfefccf64
+fefcce58:	24 cf fc fe 	.word	0xfefccf24
+fefcce5c:	68 ce fc fe 	.word	0xfefcce68
+fefcce60:	48 cf fc fe 	.word	0xfefccf48
+fefcce64:	64 cf fc fe 	.word	0xfefccf64
+
+fefcce68 <L5>:
+fefcce68:	08 20 f4 92 	st	g14,0x8(g0)
+fefcce6c:	04 20 f4 92 	st	g14,0x4(g0)
+fefcce70:	50 60 14 32 	cmpobe	2,g1,fefccec0 <L80>
+fefcce74:	92 d0 a0 58 	and	g2,3,g4
+fefcce78:	40 20 05 35 	cmpobne	0,g4,fefcceb8 <L32>
+fefcce7c:	ff 0f a0 8c 	lda	0xfff,g4
+fefcce80:	38 80 a4 33 	cmpobge	g4,g2,fefcceb8 <L32>
+fefcce84:	00 30 a0 8c 	lda	1ffc <_start-0xfefcad48>,g4
+fefcce88:	fc 1f 00 00 
+fefcce8c:	2c 80 a4 34 	cmpobl	g4,g2,fefcceb8 <L32>
+fefcce90:	00 b4 a4 8c 	lda	ffffecf0 <_end+0x1031d20>(g2),g4
+fefcce94:	f0 ec ff ff 
+fefcce98:	20 20 65 33 	cmpobge	12,g4,fefcceb8 <L32>
+
+fefcce9c <L6>:
+fefcce9c:	91 b0 00 5a 	cmpi	g1,2
+fefccea0:	00 00 a0 25 	testne	g4
+fefccea4:	01 08 a5 59 	addo	1,g4,g4
+fefccea8:	08 60 a5 92 	st	g4,0x8(g5)
+fefcceac:	Address 0x00000000fefcceac is out of bounds.
+
+
+fefcceb0 <L79>:
+fefcceb0:	02 1e 80 5c 	mov	2,g0
+fefcceb4:	Address 0x00000000fefcceb4 is out of bounds.
+
+
+fefcceb8 <L32>:
+fefcceb8:	ef 00 80 8c 	lda	0xef,g0
+fefccebc:	Address 0x00000000fefccebc is out of bounds.
+
+
+fefccec0 <L80>:
+fefccec0:	92 d0 a0 58 	and	g2,3,g4
+fefccec4:	f4 3f 05 35 	cmpobne	0,g4,fefcceb8 <L32>
+fefccec8:	ff 01 a0 8c 	lda	0x1ff,g4
+fefccecc:	ec 9f a4 33 	cmpobge	g4,g2,fefcceb8 <L32>
+fefcced0:	fc 03 a0 8c 	lda	0x3fc,g4
+fefcced4:	e4 9f a4 34 	cmpobl	g4,g2,fefcceb8 <L32>
+fefcced8:	c4 ff ff 08 	b	fefcce9c <L6>
+
+fefccedc <L36>:
+fefccedc:	Address 0x00000000fefccedc is out of bounds.
+
+
+fefccee0 <L1>:
+fefccee0:	Address 0x00000000fefccee0 is out of bounds.
+
+
+fefccee4 <L15>:
+fefccee4:	08 20 a4 90 	ld	0x8(g0),g4
+fefccee8:	04 de 83 59 	shlo	4,15,g0
+fefcceec:	f4 3f 0d 35 	cmpobne	1,g4,fefccee0 <L1>
+fefccef0:	04 60 b5 90 	ld	0x4(g5),g6
+fefccef4:	83 88 a5 58 	and	3,g6,g4
+fefccef8:	c0 3f 05 35 	cmpobne	0,g4,fefcceb8 <L32>
+fefccefc:	ff 01 a0 8c 	lda	0x1ff,g4
+fefccf00:	b8 9f a5 33 	cmpobge	g4,g6,fefcceb8 <L32>
+fefccf04:	fc 03 a0 8c 	lda	0x3fc,g4
+fefccf08:	b0 9f a5 34 	cmpobl	g4,g6,fefcceb8 <L32>
+fefccf0c:	00 90 95 92 	st	g2,(g6)
+fefccf10:	04 60 a5 90 	ld	0x4(g5),g4
+fefccf14:	02 1e 80 5c 	mov	2,g0
+fefccf18:	14 10 a1 59 	addo	g4,4,g4
+fefccf1c:	04 60 a5 92 	st	g4,0x4(g5)
+fefccf20:	Address 0x00000000fefccf20 is out of bounds.
+
+
+fefccf24 <L31>:
+fefccf24:	92 d0 a0 58 	and	g2,3,g4
+fefccf28:	90 3f 05 35 	cmpobne	0,g4,fefcceb8 <L32>
+fefccf2c:	ff 01 a0 8c 	lda	0x1ff,g4
+fefccf30:	88 9f a4 33 	cmpobge	g4,g2,fefcceb8 <L32>
+fefccf34:	00 30 80 8c 	lda	600e <_start-0xfefc6d36>,g0
+fefccf38:	0e 60 00 00 
+fefccf3c:	fc 03 a0 8c 	lda	0x3fc,g4
+fefccf40:	a0 9f a4 33 	cmpobge	g4,g2,fefccee0 <L1>
+fefccf44:	74 ff ff 08 	b	fefcceb8 <L32>
+
+fefccf48 <L20>:
+fefccf48:	08 20 a4 90 	ld	0x8(g0),g4
+fefccf4c:	04 de 83 59 	shlo	4,15,g0
+fefccf50:	90 3f 15 35 	cmpobne	2,g4,fefccee0 <L1>
+fefccf54:	04 60 a5 90 	ld	0x4(g5),g4
+fefccf58:	02 1e 80 5c 	mov	2,g0
+fefccf5c:	00 10 95 92 	st	g2,(g4)
+fefccf60:	Address 0x00000000fefccf60 is out of bounds.
+
+
+fefccf64 <L23>:
+fefccf64:	40 60 24 32 	cmpobe	4,g1,fefccfa4 <L81>
+fefccf68:	92 d0 a0 58 	and	g2,3,g4
+fefccf6c:	4c 3f 05 35 	cmpobne	0,g4,fefcceb8 <L32>
+fefccf70:	ff 0f a0 8c 	lda	0xfff,g4
+fefccf74:	44 9f a4 33 	cmpobge	g4,g2,fefcceb8 <L32>
+fefccf78:	00 30 a0 8c 	lda	1ffc <_start-0xfefcad48>,g4
+fefccf7c:	fc 1f 00 00 
+fefccf80:	38 9f a4 34 	cmpobl	g4,g2,fefcceb8 <L32>
+fefccf84:	00 b4 a4 8c 	lda	ffffecf0 <_end+0x1031d20>(g2),g4
+fefccf88:	f0 ec ff ff 
+fefccf8c:	2c 3f 65 33 	cmpobge	12,g4,fefcceb8 <L32>
+
+fefccf90 <L24>:
+fefccf90:	00 90 a4 90 	ld	(g2),g4
+fefccf94:	02 1e 80 5c 	mov	2,g0
+fefccf98:	00 30 a0 92 	st	g4,131c <_start-0xfefcba28>
+fefccf9c:	1c 13 00 00 
+fefccfa0:	Address 0x00000000fefccfa0 is out of bounds.
+
+
+fefccfa4 <L81>:
+fefccfa4:	92 d0 a0 58 	and	g2,3,g4
+fefccfa8:	10 3f 05 35 	cmpobne	0,g4,fefcceb8 <L32>
+fefccfac:	ff 01 a0 8c 	lda	0x1ff,g4
+fefccfb0:	08 9f a4 33 	cmpobge	g4,g2,fefcceb8 <L32>
+fefccfb4:	fc 03 a0 8c 	lda	0x3fc,g4
+fefccfb8:	00 9f a4 34 	cmpobl	g4,g2,fefcceb8 <L32>
+fefccfbc:	d4 ff ff 08 	b	fefccf90 <L24>
+
+fefccfc0 <Li960R2>:
+fefccfc0:	00 00 00 0a 	ret
+	...

@@ -1,0 +1,2485 @@
+{
+  "sha256": "1be1c11f5e030be80cd55b5c9215734f472daf4ee651abd1da57284e4888c552",
+  "mz_header_bytes": 6144,
+  "symbol_count": 354,
+  "symbols": {
+    "_ofw_image": {
+      "record_file_offset": 369310,
+      "offset": 19812,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 88980
+    },
+    "_ExtFlashDesc": {
+      "record_file_offset": 369327,
+      "offset": 22632,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 91800
+    },
+    "_buffer_for_fw_image": {
+      "record_file_offset": 369347,
+      "offset": 24362,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 93530
+    },
+    "_b": {
+      "record_file_offset": 369374,
+      "offset": 22212,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 91380
+    },
+    "_enq_info": {
+      "record_file_offset": 369383,
+      "offset": 25384,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 94552
+    },
+    "_enq_info2": {
+      "record_file_offset": 369399,
+      "offset": 24108,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 93276
+    },
+    "_enq2_buf": {
+      "record_file_offset": 369416,
+      "offset": 19684,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 88852
+    },
+    "_cltr": {
+      "record_file_offset": 369432,
+      "offset": 20004,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 89172
+    },
+    "_dac": {
+      "record_file_offset": 369444,
+      "offset": 26504,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 95672
+    },
+    "_dpc": {
+      "record_file_offset": 369455,
+      "offset": 21764,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 90932
+    },
+    "_dpc2": {
+      "record_file_offset": 369466,
+      "offset": 25514,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 94682
+    },
+    "_dmc": {
+      "record_file_offset": 369478,
+      "offset": 20644,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 89812
+    },
+    "_ProgramBoot": {
+      "record_file_offset": 369489,
+      "offset": 19844,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 89012
+    },
+    "_PciInfo": {
+      "record_file_offset": 369508,
+      "offset": 20932,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 90100
+    },
+    "_ImageInfo": {
+      "record_file_offset": 369523,
+      "offset": 4,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 69172
+    },
+    "_TempImageHeader": {
+      "record_file_offset": 369540,
+      "offset": 24376,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 93544
+    },
+    "_gam_opterr": {
+      "record_file_offset": 369563,
+      "offset": 26500,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 95668
+    },
+    "_gam_optopt": {
+      "record_file_offset": 369581,
+      "offset": 0,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 69168
+    },
+    "_gam_optarg": {
+      "record_file_offset": 369599,
+      "offset": 22628,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 91796
+    },
+    "_image": {
+      "record_file_offset": 369617,
+      "offset": 0,
+      "segment": 5600,
+      "flags": 0,
+      "file_offset": 95744
+    },
+    "_curr_dac": {
+      "record_file_offset": 369630,
+      "offset": 25512,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 94680
+    },
+    "_fname": {
+      "record_file_offset": 369646,
+      "offset": 25962,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 95130
+    },
+    "_version": {
+      "record_file_offset": 369659,
+      "offset": 26490,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 95658
+    },
+    "_gMbxCmd": {
+      "record_file_offset": 369674,
+      "offset": 24888,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 94056
+    },
+    "_SysFlashDescTbl": {
+      "record_file_offset": 369689,
+      "offset": 19076,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 88244
+    },
+    "_TmpFlashDescTbl": {
+      "record_file_offset": 369712,
+      "offset": 24904,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 94072
+    },
+    "_BoardData": {
+      "record_file_offset": 369735,
+      "offset": 25256,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 94424
+    },
+    "_TmpBoardData": {
+      "record_file_offset": 369752,
+      "offset": 19876,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 89044
+    },
+    "_fw_image": {
+      "record_file_offset": 369772,
+      "offset": 24104,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 93272
+    },
+    "_BlankFlashOneCard": {
+      "record_file_offset": 369788,
+      "offset": 2894,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 9038
+    },
+    "_load_image2": {
+      "record_file_offset": 369813,
+      "offset": 14898,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 21042
+    },
+    "_WriteFlashDescTbl": {
+      "record_file_offset": 369832,
+      "offset": 9041,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 15185
+    },
+    "_UpdateFlashDate": {
+      "record_file_offset": 369857,
+      "offset": 17619,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 23763
+    },
+    "_GetFileSize": {
+      "record_file_offset": 369880,
+      "offset": 5362,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 11506
+    },
+    "_WriteOldFlashDescTbl": {
+      "record_file_offset": 369899,
+      "offset": 8695,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 14839
+    },
+    "_gam_getopt": {
+      "record_file_offset": 369927,
+      "offset": 1458,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 7602
+    },
+    "_GetANumber": {
+      "record_file_offset": 369945,
+      "offset": 10886,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 17030
+    },
+    "_BinaryVerOption": {
+      "record_file_offset": 369963,
+      "offset": 11106,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 17250
+    },
+    "_ShowBoardData": {
+      "record_file_offset": 369986,
+      "offset": 10200,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 16344
+    },
+    "_GetFlashMapIndex": {
+      "record_file_offset": 370007,
+      "offset": 926,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 7070
+    },
+    "_MonthName": {
+      "record_file_offset": 370031,
+      "offset": 610,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358498
+    },
+    "_AccessI2OBit": {
+      "record_file_offset": 370048,
+      "offset": 7818,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 13962
+    },
+    "_ReadOldFlashDescTbl": {
+      "record_file_offset": 370068,
+      "offset": 8873,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 15017
+    },
+    "_store_image2": {
+      "record_file_offset": 370095,
+      "offset": 19381,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 25525
+    },
+    "_QuietMode": {
+      "record_file_offset": 370115,
+      "offset": 602,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358490
+    },
+    "_ReturnToDos": {
+      "record_file_offset": 370132,
+      "offset": 604,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358492
+    },
+    "_StoreImageFlag": {
+      "record_file_offset": 370151,
+      "offset": 606,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358494
+    },
+    "_ExitCode": {
+      "record_file_offset": 370173,
+      "offset": 608,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358496
+    },
+    "_Upgrade": {
+      "record_file_offset": 370189,
+      "offset": 13055,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 19199
+    },
+    "_check_board_id": {
+      "record_file_offset": 370204,
+      "offset": 12429,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 18573
+    },
+    "_ShowFileComponent": {
+      "record_file_offset": 370226,
+      "offset": 18157,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 24301
+    },
+    "_modify_all_default_filenames": {
+      "record_file_offset": 370251,
+      "offset": 12597,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 18741
+    },
+    "_PrintTotalDAC": {
+      "record_file_offset": 370287,
+      "offset": 12776,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 18920
+    },
+    "_DrawBox": {
+      "record_file_offset": 370308,
+      "offset": 12817,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 18961
+    },
+    "_MlxImgEncode": {
+      "record_file_offset": 370323,
+      "offset": 658,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358546
+    },
+    "_restart": {
+      "record_file_offset": 370343,
+      "offset": 22602,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 28746
+    },
+    "_main": {
+      "record_file_offset": 370358,
+      "offset": 11397,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 17541
+    },
+    "_chk_ver": {
+      "record_file_offset": 370370,
+      "offset": 22309,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 28453
+    },
+    "_ProgVersion": {
+      "record_file_offset": 370385,
+      "offset": 448,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358336
+    },
+    "_file_error": {
+      "record_file_offset": 370404,
+      "offset": 22379,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 28523
+    },
+    "_dac_error": {
+      "record_file_offset": 370422,
+      "offset": 22474,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 28618
+    },
+    "_MlxImgType": {
+      "record_file_offset": 370439,
+      "offset": 670,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358558
+    },
+    "_chk_dual_prom": {
+      "record_file_offset": 370457,
+      "offset": 22680,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 28824
+    },
+    "_load_image": {
+      "record_file_offset": 370478,
+      "offset": 15061,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 21205
+    },
+    "_store_image": {
+      "record_file_offset": 370496,
+      "offset": 21653,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 27797
+    },
+    "_UtilityName": {
+      "record_file_offset": 370515,
+      "offset": 1460,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 359348
+    },
+    "_BoardIdFwName": {
+      "record_file_offset": 370534,
+      "offset": 452,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358340
+    },
+    "_program_image": {
+      "record_file_offset": 370555,
+      "offset": 22068,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 28212
+    },
+    "_exit_msg_code": {
+      "record_file_offset": 370576,
+      "offset": 2602,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 8746
+    },
+    "_ReadFile": {
+      "record_file_offset": 370597,
+      "offset": 15343,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 21487
+    },
+    "_CompareVersion": {
+      "record_file_offset": 370613,
+      "offset": 2648,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 8792
+    },
+    "_ProgramRoadRunnerImage": {
+      "record_file_offset": 370635,
+      "offset": 16631,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 22775
+    },
+    "_StoreI2O": {
+      "record_file_offset": 370665,
+      "offset": 17092,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 23236
+    },
+    "_FlashOneCard": {
+      "record_file_offset": 370681,
+      "offset": 5468,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 11612
+    },
+    "_I2OBitOption": {
+      "record_file_offset": 370701,
+      "offset": 8374,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 14518
+    },
+    "_StoreFullImage": {
+      "record_file_offset": 370721,
+      "offset": 18410,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 24554
+    },
+    "_GetImageHeader": {
+      "record_file_offset": 370743,
+      "offset": 0,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 6144
+    },
+    "_gam_optind": {
+      "record_file_offset": 370765,
+      "offset": 1322,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 359210
+    },
+    "_CtrlOption": {
+      "record_file_offset": 370783,
+      "offset": 4256,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 10400
+    },
+    "_GetUserConfirmation": {
+      "record_file_offset": 370801,
+      "offset": 2787,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 8931
+    },
+    "_D960MapInfo": {
+      "record_file_offset": 370828,
+      "offset": 746,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358634
+    },
+    "_gam_sp": {
+      "record_file_offset": 370847,
+      "offset": 1326,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 359214
+    },
+    "_ShowImageHeader": {
+      "record_file_offset": 370861,
+      "offset": 408,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 6552
+    },
+    "_D1100MapInfo": {
+      "record_file_offset": 370884,
+      "offset": 890,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358778
+    },
+    "_dual_eeprom": {
+      "record_file_offset": 370904,
+      "offset": 588,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358476
+    },
+    "_StoreRoadRunnerImage": {
+      "record_file_offset": 370923,
+      "offset": 15662,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 21806
+    },
+    "_nok_vers": {
+      "record_file_offset": 370951,
+      "offset": 590,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358478
+    },
+    "_GetParam": {
+      "record_file_offset": 370967,
+      "offset": 1241,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 7385
+    },
+    "_CheckAdpDevId": {
+      "record_file_offset": 370983,
+      "offset": 849,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 6993
+    },
+    "_file_in": {
+      "record_file_offset": 371004,
+      "offset": 600,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 358488
+    },
+    "_ShowFlashDescTbl": {
+      "record_file_offset": 371019,
+      "offset": 10763,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 16907
+    },
+    "_DisplayOption": {
+      "record_file_offset": 371043,
+      "offset": 7443,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 13587
+    },
+    "_ShowBinaryVersions": {
+      "record_file_offset": 371064,
+      "offset": 9648,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 15792
+    },
+    "_ReadFlashDescTbl": {
+      "record_file_offset": 371090,
+      "offset": 9347,
+      "segment": 0,
+      "flags": 0,
+      "file_offset": 15491
+    },
+    "_dpc3": {
+      "record_file_offset": 371114,
+      "offset": 26042,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 95210
+    },
+    "_DACPVX_CtlrInfo": {
+      "record_file_offset": 371126,
+      "offset": 23656,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 92824
+    },
+    "_EISA_issue_cmd": {
+      "record_file_offset": 371149,
+      "offset": 9217,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 38193
+    },
+    "_check_sts_avail0": {
+      "record_file_offset": 371171,
+      "offset": 14238,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 43214
+    },
+    "_PCI_issue_cmd": {
+      "record_file_offset": 371195,
+      "offset": 10237,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 39213
+    },
+    "_MC_issue_cmd": {
+      "record_file_offset": 371216,
+      "offset": 12823,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 41799
+    },
+    "_get_phy_addr": {
+      "record_file_offset": 371236,
+      "offset": 13301,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 42277
+    },
+    "_Read32BitPciConfigValue": {
+      "record_file_offset": 371256,
+      "offset": 17753,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 46729
+    },
+    "_DrawTop": {
+      "record_file_offset": 371287,
+      "offset": 13362,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 42338
+    },
+    "_DrawMiddle": {
+      "record_file_offset": 371302,
+      "offset": 13420,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 42396
+    },
+    "_DrawBase": {
+      "record_file_offset": 371320,
+      "offset": 13478,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 42454
+    },
+    "_PrintHorizontal": {
+      "record_file_offset": 371336,
+      "offset": 13536,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 42512
+    },
+    "_check_cmd_accpt": {
+      "record_file_offset": 371359,
+      "offset": 13595,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 42571
+    },
+    "_FindPciDevice": {
+      "record_file_offset": 371382,
+      "offset": 17018,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 45994
+    },
+    "_change_endian_long": {
+      "record_file_offset": 371403,
+      "offset": 15376,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 44352
+    },
+    "_PCI_process_dac": {
+      "record_file_offset": 371429,
+      "offset": 15466,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 44442
+    },
+    "_Read16BitPciConfigValue": {
+      "record_file_offset": 371452,
+      "offset": 17982,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 46958
+    },
+    "_DACPVX_InitializeControllerInfo": {
+      "record_file_offset": 371483,
+      "offset": 16561,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 45537
+    },
+    "_write_mbxs": {
+      "record_file_offset": 371522,
+      "offset": 11438,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 40414
+    },
+    "_BigAppleInit": {
+      "record_file_offset": 371540,
+      "offset": 16820,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 45796
+    },
+    "_DACPVX_IssueCommand": {
+      "record_file_offset": 371560,
+      "offset": 18825,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 47801
+    },
+    "_write_dbl": {
+      "record_file_offset": 371587,
+      "offset": 11753,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 40729
+    },
+    "_read_dbl": {
+      "record_file_offset": 371604,
+      "offset": 12119,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 41095
+    },
+    "_DACPVX_IntializeCtlrFwInfo": {
+      "record_file_offset": 371620,
+      "offset": 18085,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 47061
+    },
+    "_read_sts": {
+      "record_file_offset": 371654,
+      "offset": 12486,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 41462
+    },
+    "_TsopPresent": {
+      "record_file_offset": 371670,
+      "offset": 12,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 28988
+    },
+    "_init_all_dac": {
+      "record_file_offset": 371689,
+      "offset": 344,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 29320
+    },
+    "_EISA_init_dac": {
+      "record_file_offset": 371709,
+      "offset": 433,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 29409
+    },
+    "_PCI_init_dac": {
+      "record_file_offset": 371730,
+      "offset": 1289,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 30265
+    },
+    "_MC_init_dac": {
+      "record_file_offset": 371750,
+      "offset": 1410,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 30386
+    },
+    "_enquire_dac": {
+      "record_file_offset": 371769,
+      "offset": 2904,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 31880
+    },
+    "_get_brd_hid": {
+      "record_file_offset": 371788,
+      "offset": 4165,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 33141
+    },
+    "_size_dac": {
+      "record_file_offset": 371807,
+      "offset": 4284,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 33260
+    },
+    "_dcmd": {
+      "record_file_offset": 371823,
+      "offset": 5204,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 34180
+    },
+    "_xdcmd": {
+      "record_file_offset": 371835,
+      "offset": 5618,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 34594
+    },
+    "_EISA_daci_dis": {
+      "record_file_offset": 371848,
+      "offset": 5955,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 34931
+    },
+    "_EISA_daci_en": {
+      "record_file_offset": 371869,
+      "offset": 6025,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 35001
+    },
+    "_PCI_daci_dis": {
+      "record_file_offset": 371889,
+      "offset": 6095,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 35071
+    },
+    "_FindPciDeviceIoAddress": {
+      "record_file_offset": 371909,
+      "offset": 17464,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 46440
+    },
+    "_PCI_daci_en": {
+      "record_file_offset": 371939,
+      "offset": 6350,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 35326
+    },
+    "_MC_daci_dis": {
+      "record_file_offset": 371958,
+      "offset": 6605,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 35581
+    },
+    "_MC_daci_en": {
+      "record_file_offset": 371977,
+      "offset": 6752,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 35728
+    },
+    "_ScanForDac": {
+      "record_file_offset": 371995,
+      "offset": 1088,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 30064
+    },
+    "_BoardIdName": {
+      "record_file_offset": 372013,
+      "offset": 6538,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 364426
+    },
+    "_PCI_find_dac": {
+      "record_file_offset": 372032,
+      "offset": 6900,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 35876
+    },
+    "_PCI_verify_pci_bios": {
+      "record_file_offset": 372052,
+      "offset": 9137,
+      "segment": 1427,
+      "flags": 0,
+      "file_offset": 38113
+    },
+    "_MoveMemory2HighMemArea": {
+      "record_file_offset": 372079,
+      "offset": 0,
+      "segment": 2641,
+      "flags": 0,
+      "file_offset": 48400
+    },
+    "_Flash32BitScratch": {
+      "record_file_offset": 372109,
+      "offset": 24358,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 93526
+    },
+    "_FlashScratch": {
+      "record_file_offset": 372134,
+      "offset": 19428,
+      "segment": 3939,
+      "flags": 0,
+      "file_offset": 88596
+    },
+    "_Erase08BitsFlashBlock": {
+      "record_file_offset": 372154,
+      "offset": 3590,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 55142
+    },
+    "_Write08Bits2FootBridge": {
+      "record_file_offset": 372183,
+      "offset": 3914,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 55466
+    },
+    "_Read08BitsFromFootBridge": {
+      "record_file_offset": 372213,
+      "offset": 4152,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 55704
+    },
+    "_Program08BitsFlashBlock": {
+      "record_file_offset": 372245,
+      "offset": 4378,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 55930
+    },
+    "_Set08BitFlashMode": {
+      "record_file_offset": 372276,
+      "offset": 2958,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 54510
+    },
+    "_Reset08BitsFlash": {
+      "record_file_offset": 372301,
+      "offset": 3275,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 54827
+    },
+    "_Clear08BitsFlashBlockLock": {
+      "record_file_offset": 372325,
+      "offset": 4774,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 56326
+    },
+    "_Read08BitFlashMfgId": {
+      "record_file_offset": 372358,
+      "offset": 1254,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 52806
+    },
+    "_Read32BitFlashStsReg": {
+      "record_file_offset": 372385,
+      "offset": 0,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 51552
+    },
+    "_Clear32BitFlashStsReg": {
+      "record_file_offset": 372413,
+      "offset": 130,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 51682
+    },
+    "_DebugOn": {
+      "record_file_offset": 372442,
+      "offset": 7144,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365032
+    },
+    "_flashDbg": {
+      "record_file_offset": 372457,
+      "offset": 7148,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365036
+    },
+    "_Erase32BitsFlashBlock": {
+      "record_file_offset": 372473,
+      "offset": 204,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 51756
+    },
+    "_Read32BitsFromFootBridge": {
+      "record_file_offset": 372502,
+      "offset": 514,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 52066
+    },
+    "_GetPhyAddress": {
+      "record_file_offset": 372534,
+      "offset": 1115,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 52667
+    },
+    "_Set32BitFlashMode": {
+      "record_file_offset": 372555,
+      "offset": 1070,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 52622
+    },
+    "_Reset32BitsFlash": {
+      "record_file_offset": 372580,
+      "offset": 1181,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 52733
+    },
+    "_GetFootBridgeRemapValue": {
+      "record_file_offset": 372604,
+      "offset": 1226,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 52778
+    },
+    "_Read08BitFlashStsReg": {
+      "record_file_offset": 372635,
+      "offset": 1956,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 53508
+    },
+    "_Write32Bits2FootBridge": {
+      "record_file_offset": 372663,
+      "offset": 617,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 52169
+    },
+    "_Clear08BitFlashStsReg": {
+      "record_file_offset": 372693,
+      "offset": 2643,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 54195
+    },
+    "_Program32BitsFlashBlock": {
+      "record_file_offset": 372722,
+      "offset": 720,
+      "segment": 2838,
+      "flags": 0,
+      "file_offset": 52272
+    },
+    "_ProbePciDevice": {
+      "record_file_offset": 372753,
+      "offset": 250,
+      "segment": 3159,
+      "flags": 0,
+      "file_offset": 56938
+    },
+    "_VerifyPciBiosExistence": {
+      "record_file_offset": 372775,
+      "offset": 180,
+      "segment": 3159,
+      "flags": 0,
+      "file_offset": 56868
+    },
+    "_GetPciCfgHeader": {
+      "record_file_offset": 372805,
+      "offset": 374,
+      "segment": 3159,
+      "flags": 0,
+      "file_offset": 57062
+    },
+    "_Write32BitPciConfigValue": {
+      "record_file_offset": 372828,
+      "offset": 997,
+      "segment": 3159,
+      "flags": 0,
+      "file_offset": 57685
+    },
+    "_FindFootBridge": {
+      "record_file_offset": 372860,
+      "offset": 775,
+      "segment": 3159,
+      "flags": 0,
+      "file_offset": 57463
+    },
+    "_bflDbg": {
+      "record_file_offset": 372882,
+      "offset": 7912,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365800
+    },
+    "_InitAllBlankMdac": {
+      "record_file_offset": 372896,
+      "offset": 4,
+      "segment": 3159,
+      "flags": 0,
+      "file_offset": 56692
+    },
+    "_edata": {
+      "record_file_offset": 372920,
+      "offset": 9418,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 367306
+    },
+    "_end": {
+      "record_file_offset": 372933,
+      "offset": 10464,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 368352
+    },
+    "__aexit_rtn": {
+      "record_file_offset": 372944,
+      "offset": 7916,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365804
+    },
+    "__nheap_desc": {
+      "record_file_offset": 372962,
+      "offset": 7920,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365808
+    },
+    "___aDBptrchk": {
+      "record_file_offset": 372981,
+      "offset": 9146,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 367034
+    },
+    "___aDBswpchk": {
+      "record_file_offset": 373000,
+      "offset": 9136,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 367024
+    },
+    "___aDBswpflg": {
+      "record_file_offset": 373019,
+      "offset": 9134,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 367022
+    },
+    "__aseghi": {
+      "record_file_offset": 373038,
+      "offset": 7940,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365828
+    },
+    "__aseglo": {
+      "record_file_offset": 373053,
+      "offset": 7942,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365830
+    },
+    "__asizds": {
+      "record_file_offset": 373068,
+      "offset": 7918,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365806
+    },
+    "__astart": {
+      "record_file_offset": 373083,
+      "offset": 22,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 57862
+    },
+    "__atopsp": {
+      "record_file_offset": 373098,
+      "offset": 7914,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365802
+    },
+    "__dataseg": {
+      "record_file_offset": 373113,
+      "offset": 275,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58115
+    },
+    "__cintDIV": {
+      "record_file_offset": 373129,
+      "offset": 225,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58065
+    },
+    "__aDBdoswp": {
+      "record_file_offset": 373145,
+      "offset": 54998,
+      "segment": 0,
+      "flags": 1,
+      "file_offset": 61142
+    },
+    "__acrtused": {
+      "record_file_offset": 373162,
+      "offset": 39030,
+      "segment": 0,
+      "flags": 1,
+      "file_offset": 45174
+    },
+    "___aDBexit": {
+      "record_file_offset": 373179,
+      "offset": 9140,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 367028
+    },
+    "___aDBrterr": {
+      "record_file_offset": 373196,
+      "offset": 9138,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 367026
+    },
+    "__amsg_exit": {
+      "record_file_offset": 373214,
+      "offset": 241,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58081
+    },
+    "__osversion": {
+      "record_file_offset": 373232,
+      "offset": 7980,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365868
+    },
+    "___qczrinit": {
+      "record_file_offset": 373250,
+      "offset": 9132,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 367020
+    },
+    "_errno": {
+      "record_file_offset": 373268,
+      "offset": 7972,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365860
+    },
+    "__exit": {
+      "record_file_offset": 373281,
+      "offset": 482,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58322
+    },
+    "__child": {
+      "record_file_offset": 373294,
+      "offset": 8022,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365910
+    },
+    "__nfile": {
+      "record_file_offset": 373308,
+      "offset": 7985,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365873
+    },
+    "__cinit": {
+      "record_file_offset": 373322,
+      "offset": 278,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58118
+    },
+    "___argc": {
+      "record_file_offset": 373336,
+      "offset": 8007,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365895
+    },
+    "__cexit": {
+      "record_file_offset": 373350,
+      "offset": 490,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58330
+    },
+    "__intno": {
+      "record_file_offset": 373364,
+      "offset": 8025,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365913
+    },
+    "__dosvermajor": {
+      "record_file_offset": 373378,
+      "offset": 7980,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365868
+    },
+    "__oserr": {
+      "record_file_offset": 373398,
+      "offset": 7983,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365871
+    },
+    "___argv": {
+      "record_file_offset": 373412,
+      "offset": 8009,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365897
+    },
+    "__dosverminor": {
+      "record_file_offset": 373426,
+      "offset": 7981,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365869
+    },
+    "_environ": {
+      "record_file_offset": 373446,
+      "offset": 8013,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365901
+    },
+    "__osfile": {
+      "record_file_offset": 373461,
+      "offset": 7987,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365875
+    },
+    "__osmode": {
+      "record_file_offset": 373476,
+      "offset": 7982,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365870
+    },
+    "__pspadr": {
+      "record_file_offset": 373491,
+      "offset": 7976,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365864
+    },
+    "__fpinit": {
+      "record_file_offset": 373506,
+      "offset": 9150,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 367038
+    },
+    "__ovlvec": {
+      "record_file_offset": 373521,
+      "offset": 8026,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365914
+    },
+    "__pgmptr": {
+      "record_file_offset": 373536,
+      "offset": 8017,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365905
+    },
+    "__c_exit": {
+      "record_file_offset": 373551,
+      "offset": 500,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58340
+    },
+    "__acfinfo": {
+      "record_file_offset": 373566,
+      "offset": 7944,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365832
+    },
+    "__ovlflag": {
+      "record_file_offset": 373582,
+      "offset": 8024,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365912
+    },
+    "__aintdiv": {
+      "record_file_offset": 373598,
+      "offset": 7958,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365846
+    },
+    "__osmajor": {
+      "record_file_offset": 373614,
+      "offset": 7980,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365868
+    },
+    "__osminor": {
+      "record_file_offset": 373630,
+      "offset": 7981,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365869
+    },
+    "__umaskval": {
+      "record_file_offset": 373646,
+      "offset": 7974,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365862
+    },
+    "__ctermsub": {
+      "record_file_offset": 373663,
+      "offset": 606,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58446
+    },
+    "__doserrno": {
+      "record_file_offset": 373680,
+      "offset": 7983,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365871
+    },
+    "__EmDataSeg": {
+      "record_file_offset": 373697,
+      "offset": 0,
+      "segment": 3938,
+      "flags": 0,
+      "file_offset": 69152
+    },
+    "__fac": {
+      "record_file_offset": 373715,
+      "offset": 7962,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365850
+    },
+    "_exit": {
+      "record_file_offset": 373727,
+      "offset": 475,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58315
+    },
+    "__psp": {
+      "record_file_offset": 373739,
+      "offset": 7978,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365866
+    },
+    "__FF_MSGBANNER": {
+      "record_file_offset": 373751,
+      "offset": 670,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58510
+    },
+    "__adbgmsg": {
+      "record_file_offset": 373772,
+      "offset": 8030,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365918
+    },
+    "__acrtmsg": {
+      "record_file_offset": 373788,
+      "offset": 39030,
+      "segment": 0,
+      "flags": 1,
+      "file_offset": 45174
+    },
+    "__fptrap": {
+      "record_file_offset": 373804,
+      "offset": 704,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58544
+    },
+    "STKHQQ": {
+      "record_file_offset": 373819,
+      "offset": 8038,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365926
+    },
+    "__aaltstkovr": {
+      "record_file_offset": 373832,
+      "offset": 8034,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365922
+    },
+    "__chkstk": {
+      "record_file_offset": 373851,
+      "offset": 710,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58550
+    },
+    "__aFchkstk": {
+      "record_file_offset": 373866,
+      "offset": 710,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58550
+    },
+    "__nullcheck": {
+      "record_file_offset": 373883,
+      "offset": 746,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58586
+    },
+    "__anullsize": {
+      "record_file_offset": 373901,
+      "offset": 66,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 357954
+    },
+    "__setargv": {
+      "record_file_offset": 373919,
+      "offset": 782,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 58622
+    },
+    "__setenvp": {
+      "record_file_offset": 373935,
+      "offset": 1212,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59052
+    },
+    "__NMSG_TEXT": {
+      "record_file_offset": 373951,
+      "offset": 1372,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59212
+    },
+    "__NMSG_WRITE": {
+      "record_file_offset": 373969,
+      "offset": 1415,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59255
+    },
+    "__myalloc": {
+      "record_file_offset": 373988,
+      "offset": 1470,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59310
+    },
+    "__dosret0": {
+      "record_file_offset": 374004,
+      "offset": 1508,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59348
+    },
+    "__maperror": {
+      "record_file_offset": 374020,
+      "offset": 1542,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59382
+    },
+    "__dosretax": {
+      "record_file_offset": 374037,
+      "offset": 1529,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59369
+    },
+    "__dosreturn": {
+      "record_file_offset": 374054,
+      "offset": 1516,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59356
+    },
+    "_printf": {
+      "record_file_offset": 374072,
+      "offset": 1594,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59434
+    },
+    "_scanf": {
+      "record_file_offset": 374086,
+      "offset": 1662,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59502
+    },
+    "__cflush": {
+      "record_file_offset": 374099,
+      "offset": 8064,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365952
+    },
+    "__bufin": {
+      "record_file_offset": 374114,
+      "offset": 9952,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 367840
+    },
+    "__iob2": {
+      "record_file_offset": 374128,
+      "offset": 8306,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366194
+    },
+    "__lastiob": {
+      "record_file_offset": 374141,
+      "offset": 8546,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366434
+    },
+    "__iob": {
+      "record_file_offset": 374157,
+      "offset": 8066,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 365954
+    },
+    "__filbuf": {
+      "record_file_offset": 374169,
+      "offset": 1698,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59538
+    },
+    "__flsbuf": {
+      "record_file_offset": 374184,
+      "offset": 1854,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59694
+    },
+    "__getbuf": {
+      "record_file_offset": 374199,
+      "offset": 2090,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 59930
+    },
+    "__ftbuf": {
+      "record_file_offset": 374214,
+      "offset": 2295,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 60135
+    },
+    "__stbuf": {
+      "record_file_offset": 374228,
+      "offset": 2166,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 60006
+    },
+    "_fflush": {
+      "record_file_offset": 374242,
+      "offset": 2368,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 60208
+    },
+    "_flushall": {
+      "record_file_offset": 374256,
+      "offset": 2496,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 60336
+    },
+    "__input": {
+      "record_file_offset": 374272,
+      "offset": 2580,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 60420
+    },
+    "__output": {
+      "record_file_offset": 374286,
+      "offset": 4712,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 62552
+    },
+    "_ungetc": {
+      "record_file_offset": 374301,
+      "offset": 5970,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 63810
+    },
+    "_close": {
+      "record_file_offset": 374315,
+      "offset": 6078,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 63918
+    },
+    "_lseek": {
+      "record_file_offset": 374328,
+      "offset": 6110,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 63950
+    },
+    "_sopen": {
+      "record_file_offset": 374341,
+      "offset": 6232,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 64072
+    },
+    "_open": {
+      "record_file_offset": 374354,
+      "offset": 6258,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 64098
+    },
+    "__cXENIXtoDOSmode": {
+      "record_file_offset": 374366,
+      "offset": 6675,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 64515
+    },
+    "_read": {
+      "record_file_offset": 374390,
+      "offset": 6692,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 64532
+    },
+    "_write": {
+      "record_file_offset": 374402,
+      "offset": 6946,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 64786
+    },
+    "_stackavail": {
+      "record_file_offset": 374415,
+      "offset": 7298,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65138
+    },
+    "__fmode": {
+      "record_file_offset": 374433,
+      "offset": 8668,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366556
+    },
+    "__iomode": {
+      "record_file_offset": 374447,
+      "offset": 8668,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366556
+    },
+    "_malloc": {
+      "record_file_offset": 374462,
+      "offset": 7318,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65158
+    },
+    "__ffree": {
+      "record_file_offset": 374476,
+      "offset": 7324,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65164
+    },
+    "__fmalloc": {
+      "record_file_offset": 374490,
+      "offset": 7343,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65183
+    },
+    "__fheap": {
+      "record_file_offset": 374506,
+      "offset": 8670,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366558
+    },
+    "__initseg": {
+      "record_file_offset": 374520,
+      "offset": 7468,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65308
+    },
+    "__linkseg": {
+      "record_file_offset": 374536,
+      "offset": 7520,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65360
+    },
+    "__searchseg": {
+      "record_file_offset": 374552,
+      "offset": 7574,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65414
+    },
+    "__incseg": {
+      "record_file_offset": 374570,
+      "offset": 7841,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65681
+    },
+    "__growseg": {
+      "record_file_offset": 374585,
+      "offset": 7698,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65538
+    },
+    "__findlast": {
+      "record_file_offset": 374601,
+      "offset": 7922,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65762
+    },
+    "__amblksiz": {
+      "record_file_offset": 374618,
+      "offset": 8684,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366572
+    },
+    "__newseg": {
+      "record_file_offset": 374635,
+      "offset": 7954,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65794
+    },
+    "_strcpy": {
+      "record_file_offset": 374650,
+      "offset": 8022,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65862
+    },
+    "_strcmp": {
+      "record_file_offset": 374664,
+      "offset": 8076,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65916
+    },
+    "_strlen": {
+      "record_file_offset": 374678,
+      "offset": 8118,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65958
+    },
+    "_strncpy": {
+      "record_file_offset": 374692,
+      "offset": 8142,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 65982
+    },
+    "_strncmp": {
+      "record_file_offset": 374707,
+      "offset": 8184,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66024
+    },
+    "_atol": {
+      "record_file_offset": 374722,
+      "offset": 8244,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66084
+    },
+    "__catox": {
+      "record_file_offset": 374734,
+      "offset": 8248,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66088
+    },
+    "_toupper": {
+      "record_file_offset": 374748,
+      "offset": 8346,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66186
+    },
+    "__toupper": {
+      "record_file_offset": 374763,
+      "offset": 8334,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66174
+    },
+    "__cfltcvt_tab": {
+      "record_file_offset": 374779,
+      "offset": 8686,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366574
+    },
+    "__asizeC": {
+      "record_file_offset": 374799,
+      "offset": 8714,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366602
+    },
+    "__asizeD": {
+      "record_file_offset": 374814,
+      "offset": 8715,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366603
+    },
+    "__sigintoff": {
+      "record_file_offset": 374829,
+      "offset": 8712,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366600
+    },
+    "__sigintseg": {
+      "record_file_offset": 374847,
+      "offset": 8710,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366598
+    },
+    "__ctype": {
+      "record_file_offset": 374865,
+      "offset": 8716,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366604
+    },
+    "__ctype_": {
+      "record_file_offset": 374879,
+      "offset": 8716,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366604
+    },
+    "_getenv": {
+      "record_file_offset": 374894,
+      "offset": 8368,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66208
+    },
+    "_getch": {
+      "record_file_offset": 374908,
+      "offset": 8514,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66354
+    },
+    "_getche": {
+      "record_file_offset": 374921,
+      "offset": 8510,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66350
+    },
+    "__chbuf": {
+      "record_file_offset": 374935,
+      "offset": 8974,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366862
+    },
+    "_int86": {
+      "record_file_offset": 374949,
+      "offset": 8554,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66394
+    },
+    "__AHINCR": {
+      "record_file_offset": 374962,
+      "offset": 4096,
+      "segment": 0,
+      "flags": 1,
+      "file_offset": 10240
+    },
+    "__AHSHIFT": {
+      "record_file_offset": 374977,
+      "offset": 12,
+      "segment": 0,
+      "flags": 1,
+      "file_offset": 6156
+    },
+    "_filelength": {
+      "record_file_offset": 374993,
+      "offset": 8692,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66532
+    },
+    "_inp": {
+      "record_file_offset": 375011,
+      "offset": 8826,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66666
+    },
+    "_outp": {
+      "record_file_offset": 375022,
+      "offset": 8840,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66680
+    },
+    "__days": {
+      "record_file_offset": 375034,
+      "offset": 9002,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366890
+    },
+    "__lpdays": {
+      "record_file_offset": 375047,
+      "offset": 8976,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366864
+    },
+    "_gmtime": {
+      "record_file_offset": 375062,
+      "offset": 8854,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 66694
+    },
+    "_localtime": {
+      "record_file_offset": 375076,
+      "offset": 9312,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 67152
+    },
+    "_time": {
+      "record_file_offset": 375093,
+      "offset": 9444,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 67284
+    },
+    "_tzset": {
+      "record_file_offset": 375105,
+      "offset": 9548,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 67388
+    },
+    "__isindst": {
+      "record_file_offset": 375118,
+      "offset": 9756,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 67596
+    },
+    "___tzset": {
+      "record_file_offset": 375134,
+      "offset": 9530,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 67370
+    },
+    "_daylight": {
+      "record_file_offset": 375149,
+      "offset": 9062,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366950
+    },
+    "_timezone": {
+      "record_file_offset": 375165,
+      "offset": 9058,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366946
+    },
+    "_tzname": {
+      "record_file_offset": 375181,
+      "offset": 9064,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366952
+    },
+    "___dnames": {
+      "record_file_offset": 375195,
+      "offset": 9072,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366960
+    },
+    "___mnames": {
+      "record_file_offset": 375211,
+      "offset": 9094,
+      "segment": 21984,
+      "flags": 0,
+      "file_offset": 366982
+    },
+    "__dtoxtime": {
+      "record_file_offset": 375227,
+      "offset": 9974,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 67814
+    },
+    "_strchr": {
+      "record_file_offset": 375244,
+      "offset": 10234,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68074
+    },
+    "_stricmp": {
+      "record_file_offset": 375258,
+      "offset": 10280,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68120
+    },
+    "_strcmpi": {
+      "record_file_offset": 375273,
+      "offset": 10280,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68120
+    },
+    "_memcpy": {
+      "record_file_offset": 375288,
+      "offset": 10350,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68190
+    },
+    "_memset": {
+      "record_file_offset": 375302,
+      "offset": 10444,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68284
+    },
+    "_isalpha": {
+      "record_file_offset": 375316,
+      "offset": 10516,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68356
+    },
+    "_isspace": {
+      "record_file_offset": 375331,
+      "offset": 10541,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68381
+    },
+    "_isdigit": {
+      "record_file_offset": 375346,
+      "offset": 10531,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68371
+    },
+    "_isgraph": {
+      "record_file_offset": 375361,
+      "offset": 10561,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68401
+    },
+    "_isalnum": {
+      "record_file_offset": 375376,
+      "offset": 10551,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68391
+    },
+    "_iscntrl": {
+      "record_file_offset": 375391,
+      "offset": 10566,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68406
+    },
+    "_islower": {
+      "record_file_offset": 375406,
+      "offset": 10526,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68366
+    },
+    "_ispunct": {
+      "record_file_offset": 375421,
+      "offset": 10546,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68386
+    },
+    "_isupper": {
+      "record_file_offset": 375436,
+      "offset": 10521,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68361
+    },
+    "_isprint": {
+      "record_file_offset": 375451,
+      "offset": 10556,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68396
+    },
+    "_isxdigit": {
+      "record_file_offset": 375466,
+      "offset": 10536,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68376
+    },
+    "__disable": {
+      "record_file_offset": 375482,
+      "offset": 10582,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68422
+    },
+    "__enable": {
+      "record_file_offset": 375498,
+      "offset": 10584,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68424
+    },
+    "_inpw": {
+      "record_file_offset": 375513,
+      "offset": 10586,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68426
+    },
+    "__aFFalmul": {
+      "record_file_offset": 375525,
+      "offset": 10596,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68436
+    },
+    "__aFFaulmul": {
+      "record_file_offset": 375542,
+      "offset": 10596,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68436
+    },
+    "__aFFalrem": {
+      "record_file_offset": 375560,
+      "offset": 10630,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68470
+    },
+    "__aFFalshl": {
+      "record_file_offset": 375577,
+      "offset": 10664,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68504
+    },
+    "__aFldiv": {
+      "record_file_offset": 375594,
+      "offset": 10696,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68536
+    },
+    "__aFlmul": {
+      "record_file_offset": 375609,
+      "offset": 10850,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68690
+    },
+    "__aFulmul": {
+      "record_file_offset": 375624,
+      "offset": 10850,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68690
+    },
+    "__aFlrem": {
+      "record_file_offset": 375640,
+      "offset": 10900,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68740
+    },
+    "__aFlshl": {
+      "record_file_offset": 375655,
+      "offset": 11060,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68900
+    },
+    "__aFNalshl": {
+      "record_file_offset": 375670,
+      "offset": 11072,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68912
+    },
+    "__aFuldiv": {
+      "record_file_offset": 375687,
+      "offset": 11102,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 68942
+    },
+    "__aFulrem": {
+      "record_file_offset": 375703,
+      "offset": 11198,
+      "segment": 3231,
+      "flags": 0,
+      "file_offset": 69038
+    }
+  }
+}

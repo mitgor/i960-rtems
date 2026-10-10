@@ -11,4 +11,8 @@ SECTIONS {
   .data   : { *(.data*) }
   .bss    : { *(.bss*) *(COMMON) }   /* expected empty; loader uses no static storage */
   _end = .;
+  ASSERT(SIZEOF(.data) == 0, "loader .data requires initialization")
+  ASSERT(SIZEOF(.bss) == 0, "loader .bss requires initialization")
+  ASSERT(_start == ADDR(.text), "firstIP must equal start of binary")
+  ASSERT(_end <= 0xFEFE0000, "loader reaches preserved system procedure table")
 }

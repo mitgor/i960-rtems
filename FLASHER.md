@@ -1,5 +1,22 @@
 # DAC960FL.EXE — the DOS flash utility (decoded) + the MIMG image format
 
+**Current result:** [In-system recovery succeeded](SNAPSHOT-RECOVERY.md). A paired
+512 KiB capture contains the exact 4.07-0-29 firmware and FWTCBBLK boot block,
+plus the independently verified PCI BIOS. This supersedes older no-dump status
+and the 256 KiB layout assumption below.
+
+> **Latest follow-up:** [VENDOR-READ-PATH.md](VENDOR-READ-PATH.md) corrects the
+> vendor symbol addresses and verifies opcode 0x20 card-to-host transfers.
+> Returned bytes appear to be staging memory; no physical-flash backup exists.
+> Opcode 0x21 uploads host bytes and must not be used as a dump command.
+
+
+> **2026-10-10 live-attempt update:** See [DUMP-ATTEMPT.md](DUMP-ATTEMPT.md).
+> Fresh, matched-ID 0x21 transactions left host buffers untouched; Enquiry2 worked.
+> Vendor-code dataflow also puts the claimed card-to-host direction of 0x21 in
+> doubt. Historical “safe StoreImage dump” statements below are superseded;
+> no verified firmware-read procedure exists yet.
+
 Findings from the **decoded** `DAC960FL.EXE` ("DAC960 Firmware Upgrade Utility", (c) 1997
 Mylex, build Jul 28 2000). Decode it from the Fujitsu package with
 [`host/globalflash_decode.py`](host/globalflash_decode.py).

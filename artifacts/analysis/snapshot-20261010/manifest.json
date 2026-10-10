@@ -1,0 +1,593 @@
+{
+  "size": 524288,
+  "sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93",
+  "paired_captures_equal": true,
+  "boot_id": "13f4bfa6-76a4-4c20-88d5-6fdd337e5aeb",
+  "remote_directory": "/home/mit/i960-analysis.7jVBmy/snapshot-fresh-20261010T125336Z",
+  "regions": {
+    "ezassist-archive": {
+      "offset": 0,
+      "length": 112963,
+      "sha256": "8b3615d4c358c258919ab1565514c7ba8dbe96113dee518409f3d0dabe53b78a"
+    },
+    "pci-bios": {
+      "offset": 163840,
+      "length": 28672,
+      "sha256": "f292ced6f809fedf5446f048495fcb983021d620923daba2b8690242c612e624"
+    },
+    "firmware-40729": {
+      "offset": 196608,
+      "length": 229376,
+      "sha256": "8afaebf954bbbf31bba42f1156c76237c3e632b071f6b400d3f17fbcd9d8baa5"
+    },
+    "bootblock": {
+      "offset": 507904,
+      "length": 16384,
+      "sha256": "d10cca35861b66ef38c74de9b7409438b5a46ed3c3b238d5abfcc879d32bd85c"
+    }
+  },
+  "checks": {
+    "main_firmware_matches_fujitsu_40729": true,
+    "bootblock_matches_fujitsu_FWTCBBLK": true,
+    "bios_matches_previous_pci_aperture_dump": true,
+    "firmware_zip_crc32": "8a9d7f6c",
+    "firmware_unpacked_length": 304120,
+    "ezassist_zip_crc32": "9c5a2a90",
+    "ezassist_unpacked_length": 545516
+  },
+  "limitations": [
+    "Paired reads are from one staging snapshot, not independent flash acquisitions.",
+    "No external-programmer comparison or restoration test."
+  ],
+  "chunks": [
+    {
+      "bdf": "0000:37:09.1",
+      "offset": 0,
+      "length": 61440,
+      "transport_checks_passed": true,
+      "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+      "firmware_version_bytes_before": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "firmware_version_bytes_after": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "changed_from_a5": 61252,
+      "changed_from_5a": 61208,
+      "captures_equal": true,
+      "transactions": [
+        {
+          "opcode": 28,
+          "id": 1,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 2,
+          "status": 0,
+          "changed": 61252,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 3,
+          "status": 0,
+          "changed": 61208,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 28,
+          "id": 4,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        }
+      ],
+      "sha256": {
+        "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+        "read-a5.bin": "be48957d20e2a82ce9d769d4191139aa230de11bf6e7ca259f39f74dc3808340",
+        "read-5a.bin": "be48957d20e2a82ce9d769d4191139aa230de11bf6e7ca259f39f74dc3808340",
+        "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+      },
+      "physical_flash_backup_verified": false,
+      "command_direction_verified": true,
+      "source_is_physical_flash_verified": false
+    },
+    {
+      "bdf": "0000:37:09.1",
+      "offset": 61440,
+      "length": 61440,
+      "transport_checks_passed": true,
+      "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+      "firmware_version_bytes_before": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "firmware_version_bytes_after": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "changed_from_a5": 61280,
+      "changed_from_5a": 61255,
+      "captures_equal": true,
+      "transactions": [
+        {
+          "opcode": 28,
+          "id": 1,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 2,
+          "status": 0,
+          "changed": 61280,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 3,
+          "status": 0,
+          "changed": 61255,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 28,
+          "id": 4,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        }
+      ],
+      "sha256": {
+        "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+        "read-a5.bin": "65c18f41e9c9f134d6821bfdf4387d3d6f8e4f2bc47760fb7243995f777148f4",
+        "read-5a.bin": "65c18f41e9c9f134d6821bfdf4387d3d6f8e4f2bc47760fb7243995f777148f4",
+        "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+      },
+      "physical_flash_backup_verified": false,
+      "command_direction_verified": true,
+      "source_is_physical_flash_verified": false
+    },
+    {
+      "bdf": "0000:37:09.1",
+      "offset": 122880,
+      "length": 61440,
+      "transport_checks_passed": true,
+      "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+      "firmware_version_bytes_before": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "firmware_version_bytes_after": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "changed_from_a5": 61431,
+      "changed_from_5a": 61425,
+      "captures_equal": true,
+      "transactions": [
+        {
+          "opcode": 28,
+          "id": 1,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 2,
+          "status": 0,
+          "changed": 61431,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 3,
+          "status": 0,
+          "changed": 61425,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 28,
+          "id": 4,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        }
+      ],
+      "sha256": {
+        "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+        "read-a5.bin": "3bd409126851160c6b9727b333480a79bce262ec9eb4ffe78c536a3e10ca7401",
+        "read-5a.bin": "3bd409126851160c6b9727b333480a79bce262ec9eb4ffe78c536a3e10ca7401",
+        "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+      },
+      "physical_flash_backup_verified": false,
+      "command_direction_verified": true,
+      "source_is_physical_flash_verified": false
+    },
+    {
+      "bdf": "0000:37:09.1",
+      "offset": 184320,
+      "length": 61440,
+      "transport_checks_passed": true,
+      "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+      "firmware_version_bytes_before": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "firmware_version_bytes_after": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "changed_from_a5": 61212,
+      "changed_from_5a": 61189,
+      "captures_equal": true,
+      "transactions": [
+        {
+          "opcode": 28,
+          "id": 1,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 2,
+          "status": 0,
+          "changed": 61212,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 3,
+          "status": 0,
+          "changed": 61189,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 28,
+          "id": 4,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        }
+      ],
+      "sha256": {
+        "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+        "read-a5.bin": "1ec373e15daf5cb4905a032cde5b7307d8491eab0160d26bb7251ab832583fba",
+        "read-5a.bin": "1ec373e15daf5cb4905a032cde5b7307d8491eab0160d26bb7251ab832583fba",
+        "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+      },
+      "physical_flash_backup_verified": false,
+      "command_direction_verified": true,
+      "source_is_physical_flash_verified": false
+    },
+    {
+      "bdf": "0000:37:09.1",
+      "offset": 245760,
+      "length": 61440,
+      "transport_checks_passed": true,
+      "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+      "firmware_version_bytes_before": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "firmware_version_bytes_after": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "changed_from_a5": 61256,
+      "changed_from_5a": 61195,
+      "captures_equal": true,
+      "transactions": [
+        {
+          "opcode": 28,
+          "id": 1,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 2,
+          "status": 0,
+          "changed": 61256,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 3,
+          "status": 0,
+          "changed": 61195,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 28,
+          "id": 4,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        }
+      ],
+      "sha256": {
+        "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+        "read-a5.bin": "5f773f6965e610efca743103ffd57786144a26041744df8db5508c64d060764b",
+        "read-5a.bin": "5f773f6965e610efca743103ffd57786144a26041744df8db5508c64d060764b",
+        "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+      },
+      "physical_flash_backup_verified": false,
+      "command_direction_verified": true,
+      "source_is_physical_flash_verified": false
+    },
+    {
+      "bdf": "0000:37:09.1",
+      "offset": 307200,
+      "length": 61440,
+      "transport_checks_passed": true,
+      "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+      "firmware_version_bytes_before": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "firmware_version_bytes_after": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "changed_from_a5": 61268,
+      "changed_from_5a": 61209,
+      "captures_equal": true,
+      "transactions": [
+        {
+          "opcode": 28,
+          "id": 1,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 2,
+          "status": 0,
+          "changed": 61268,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 3,
+          "status": 0,
+          "changed": 61209,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 28,
+          "id": 4,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        }
+      ],
+      "sha256": {
+        "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+        "read-a5.bin": "e3bc448177d633fb983fa4222330633c4fca5297fa6fb82c7c729a54a311c23f",
+        "read-5a.bin": "e3bc448177d633fb983fa4222330633c4fca5297fa6fb82c7c729a54a311c23f",
+        "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+      },
+      "physical_flash_backup_verified": false,
+      "command_direction_verified": true,
+      "source_is_physical_flash_verified": false
+    },
+    {
+      "bdf": "0000:37:09.1",
+      "offset": 368640,
+      "length": 61440,
+      "transport_checks_passed": true,
+      "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+      "firmware_version_bytes_before": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "firmware_version_bytes_after": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "changed_from_a5": 61378,
+      "changed_from_5a": 61345,
+      "captures_equal": true,
+      "transactions": [
+        {
+          "opcode": 28,
+          "id": 1,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 2,
+          "status": 0,
+          "changed": 61378,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 3,
+          "status": 0,
+          "changed": 61345,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 28,
+          "id": 4,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        }
+      ],
+      "sha256": {
+        "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+        "read-a5.bin": "ac68625ae37db940a3c7666e22d2dc40f0ebc2633e1f0ac764256f3fe9c9afdc",
+        "read-5a.bin": "ac68625ae37db940a3c7666e22d2dc40f0ebc2633e1f0ac764256f3fe9c9afdc",
+        "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+      },
+      "physical_flash_backup_verified": false,
+      "command_direction_verified": true,
+      "source_is_physical_flash_verified": false
+    },
+    {
+      "bdf": "0000:37:09.1",
+      "offset": 430080,
+      "length": 61440,
+      "transport_checks_passed": true,
+      "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+      "firmware_version_bytes_before": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "firmware_version_bytes_after": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "changed_from_a5": 61284,
+      "changed_from_5a": 61371,
+      "captures_equal": true,
+      "transactions": [
+        {
+          "opcode": 28,
+          "id": 1,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 2,
+          "status": 0,
+          "changed": 61284,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 3,
+          "status": 0,
+          "changed": 61371,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 28,
+          "id": 4,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        }
+      ],
+      "sha256": {
+        "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+        "read-a5.bin": "49b2a158bd07f3c6c8c49a260562f5c03ea3594beff9f09f11de94515b6625f1",
+        "read-5a.bin": "49b2a158bd07f3c6c8c49a260562f5c03ea3594beff9f09f11de94515b6625f1",
+        "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+      },
+      "physical_flash_backup_verified": false,
+      "command_direction_verified": true,
+      "source_is_physical_flash_verified": false
+    },
+    {
+      "bdf": "0000:37:09.1",
+      "offset": 491520,
+      "length": 32768,
+      "transport_checks_passed": true,
+      "outcome": "repeatable_capture_requires_semantic_and_image_validation",
+      "firmware_version_bytes_before": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "firmware_version_bytes_after": [
+        4,
+        7,
+        29,
+        48
+      ],
+      "changed_from_a5": 32708,
+      "changed_from_5a": 32688,
+      "captures_equal": true,
+      "transactions": [
+        {
+          "opcode": 28,
+          "id": 1,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 2,
+          "status": 0,
+          "changed": 32708,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 32,
+          "id": 3,
+          "status": 0,
+          "changed": 32688,
+          "guard_changed": 0
+        },
+        {
+          "opcode": 28,
+          "id": 4,
+          "status": 0,
+          "changed": 128,
+          "guard_changed": 0
+        }
+      ],
+      "sha256": {
+        "enquiry-before.bin": "dccc38f82a6b9b867a624e7630258f51ca71ca90076c02caf51405cc00e0686c",
+        "read-a5.bin": "1f979c6d0e4459511e9ad3b5ecad679edd3b6fca6489b546920f2f2d1af27ce4",
+        "read-5a.bin": "1f979c6d0e4459511e9ad3b5ecad679edd3b6fca6489b546920f2f2d1af27ce4",
+        "enquiry-after.bin": "0148efc790c48907f67b05ac9eea14cbb52fc5c00e4c5902fa8ddfa0a7a6bcbb"
+      },
+      "physical_flash_backup_verified": false,
+      "command_direction_verified": true,
+      "source_is_physical_flash_verified": false
+    }
+  ]
+}

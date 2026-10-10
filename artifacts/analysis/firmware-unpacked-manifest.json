@@ -1,0 +1,21 @@
+{
+  "reference_version": "4.07-0-39",
+  "running_version": "4.07-0-29",
+  "raw_sha256": "af3df1e17f0ff8b31ceb1a375aa58976922db3a25c96e0acd3045ea6f61b22af",
+  "embedded_zip_offset": 28672,
+  "compression_method": 6,
+  "compressed_size": 167576,
+  "unpacked_size": 304120,
+  "crc32": "31d5040e",
+  "unpacked_sha256": "6d35598e082f72c83fcc6030e3b4788dfb6f7c334ada569f7e2a140a9195a3fe",
+  "runtime_base": 3221291008,
+  "runtime_entry": 3221529312,
+  "dispatch": {
+    "0x1c": "0xc001fe6c",
+    "0x20": "0xc001fdb8",
+    "0x21": "0xc001fdc8",
+    "0x22": "0xc001fdd8",
+    "0x2b": "0xc001fe90"
+  },
+  "live_firmware_dump": false
+}

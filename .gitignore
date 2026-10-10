@@ -1,7 +1,30 @@
 *.o
 *.elf
+.DS_Store
 host/emu
 host/ref
 host/ref_clear
 host/io.h
 i960-flash-usb.img
+
+__pycache__/
+loader/loadctl
+loader/test_protocol
+loader/loader.bin
+loader/hello.bin
+loader/loader-fw.img
+loader/*.map
+loader/*.dis
+loader/*.undefined
+
+host/dump/*.ko
+host/dump/*.mod
+host/dump/*.mod.c
+host/dump/.*.cmd
+host/dump/Module.symvers
+host/dump/modules.order
+
+# Firmware reference packages and hardware snapshots in artifacts/ are versioned.
+
+# Preserve these exact historical target builds as archaeological evidence.
+!artifacts/remote-audit-20261010/loader-build/*.elf

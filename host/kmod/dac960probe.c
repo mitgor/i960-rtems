@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0
-/* dac960probe - bind the (myrb-blacklisted) Mylex DAC960 and issue ONE V1 command
+/* HISTORICAL PROBE: do not use for further hardware experiments.
+ * Completion/DMA/opcode handling is unsafe; see ../../DUMP-ATTEMPT.md and
+ * ../dump/README.md. The claimed StoreImage direction below is unverified.
+ *
+ * dac960probe - bind the (myrb-blacklisted) Mylex DAC960 and issue ONE V1 command
  * through the PG hardware mailbox via the kernel DMA API. Bounded polling (cannot wedge).
  *
  *   insmod dac960probe.ko op=0x1c                 # Enquiry2 (read-only, default)

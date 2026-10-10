@@ -1,101 +1,120 @@
-# i960 flash loader (`loader/`)
+# i960 flash loader
 
-A two-stage firmware for the DAC960PG: **stage 1** is a tiny loader that lives in
-the card's boot flash; **stage 2** is whatever program the host pushes over PCI at
-runtime. Flash the loader **once**, then iterate on real code (Tetris, test stubs,
-anything) by sending it over the bus — no reflash per change, no external
-programmer per change.
+> **2026-10-10 architecture correction:** Intel i960 Rx manual §4.1 forbids
+> instruction fetch from internal data RAM (0x000..0x3ff). The hello-at-0x200 /
+> GO milestone described below is invalid on hardware. Current C tests check
+> software behavior only. See [PROJECT-REVIEW.md](../PROJECT-REVIEW.md), item 12.
+> Executable payloads need verified external memory; code has not yet been fixed.
 
-Why this beats the full-image reflash (`../host/mkimage.py` used alone): you take
-the brick risk exactly once, for a ~few-hundred-byte loader that never needs to
-change. Everything after is a software push you can repeat freely.
+Stage 1 runs from the DAC960PG boot flash. Stage 2 is uploaded through the i960
+Messaging Unit (MU). This implementation supports the **no-DRAM bring-up**:
+word-aligned payloads in internal RAM `[0x200, 0x400)`, at most 512 padded bytes.
+The lower RAM is reserved for startup and loader register frames. Larger programs
+require verified board-specific DRAM initialization and an explicit range extension.
 
-## The channel
+The protocol and demo changed on **2026-10-10**. Build the sender, firmware, and
+demo together. Old `loadctl` binaries and old demos are incompatible with the new
+hand-off convention. See [PROTOCOL.md](PROTOCOL.md) for the contract and
+[REVIEW.md](REVIEW.md) for implemented fixes, tests, and remaining hardware gates.
+Claude Code guidance is in [CLAUDE.md](CLAUDE.md).
 
-The loader talks to the host through the i960Rx **Messaging Unit** — four 32-bit
-hardware registers in the card's BAR0 window. They are silicon, not firmware, so
-they work the instant the loader runs: **no DRAM, no memory-controller setup**.
-Mapping (`i960 local 0x1300+X` ⇒ `host BAR0+X`), confirmed against the stub, the
-kernel module, and the stock 80960Rx layout:
+## Build and test
 
-| i960 local | host BAR0 | reg  | dir        | use                          |
-|------------|-----------|------|------------|------------------------------|
-| `0x1310`   | `+0x10`   | IMR0 | host→i960  | command argument             |
-| `0x1314`   | `+0x14`   | IMR1 | host→i960  | `(seq<<16)\|opcode` (commits)|
-| `0x1318`   | `+0x18`   | OMR0 | i960→host  | `(ackseq<<16)\|status`       |
-| `0x131C`   | `+0x1C`   | OMR1 | i960→host  | read-back (OP_READ)          |
+Native checks work without the i960 toolchain or card:
 
-Handshake is a **sequence number** (not the doorbell IRQ bits): host writes IMR0
-then bumps the seq in IMR1; loader echoes the consumed seq in OMR0's high half.
-Polling, no interrupts, and robust to a host restart mid-session.
+```sh
+make -C loader test
+# Compatibility entry point also runs the same tests:
+python3 loader/test_protocol.py
+```
 
-Opcodes (`mu.h`): `PING`, `SET_ADDR`, `WRITE` (word, pointer auto-increments),
-`READ`, `GO`. A whole program is `SET_ADDR` + a stream of `WRITE` + `GO`.
+On the Linux development box with the cross-toolchain on PATH:
+
+```sh
+cd loader
+make all
+make check
+# Inspect loader.dis, hello.dis, and the linker maps before flashing.
+make image STOCK=/absolute/path/to/decoded/stock.bin
+```
+
+`HOSTCC` and `HOSTCFLAGS` configure the native build; `CC`, `LD`, `OC`, `NM`,
+`OBJDUMP`, and `CFLAGS` configure the target build through make command-line
+assignments. `PYTHON` defaults to `python3`.
+
+The image gate requires the known decoded MIMG stock layout with a `0x38000`-byte
+payload, valid IBR checksum, expected PRCB pointer, and matching header length.
+The ELF entry, flat binary, and image placement must agree at `0xFEFCCD44`.
+This checks layout consistency; it does not identify a compatible board or prove
+that inherited firmware tables and startup code work on the card.
+
+## Device ownership and sender
+
+Run on Linux as a user allowed to map PCI sysfs resources, usually root. Unbind
+**every driver** from the controller first (including `myrb` and `dac960probe`),
+and prevent automatic rebinding while using the loader. Do not run another
+controller tool concurrently.
+
+The preferred selector is a full PCI BDF. The historical physical BAR0 selector
+is retained, but it must resolve to exactly one `1069:0010` controller. Both use
+that device's sysfs `resource0`; arbitrary `/dev/mem` mappings are removed.
+Each sender takes a nonblocking advisory lock on the device's `config` inode,
+checks that no driver is bound, and checks BAR0 type and size. This coordinates
+loadctl processes, not independent tools or concurrent driver binding.
+
+Example for the controller recorded in this repository:
+
+```sh
+sudo ./loadctl 0000:37:09.1 status
+sudo ./loadctl 0000:37:09.1 ping
+sudo ./loadctl 0000:37:09.1 load 0x200 hello.bin
+sudo ./loadctl 0000:37:09.1 go 0x200
+sudo ./loadctl 0000:37:09.1 status
+# Legacy selector, if BAR0 is still at this address:
+sudo ./loadctl 0xee000000 status
+```
+
+`status` prints both OMR0 and OMR1 without issuing a command. Before hand-off,
+OMR0's low half is `ST_READY=0x600D` or a completed command status. After `go`,
+OMR0 remains `(ackseq << 16) | ST_HANDOFF=0x600E`. The hello payload writes
+`PAYLOAD_MAGIC=0xBEEF00EE` to **OMR1**, proving payload execution while preserving
+the acknowledgment. A GO acknowledgment alone does not prove payload execution.
+Only `status` is available after hand-off; resetting the card restarts the loader.
+
+`load` reads the file completely before issuing upload commands, checks bounds,
+zero-pads its final word, and verifies every transmitted word through `READ`.
+It reports original and padded lengths separately. Any error returns nonzero;
+a failed or partial upload must not be followed by `go`.
+
+For diagnostics, `read ADDR` reads an allowed payload word. Explicit
+`reg-read ADDR` and `reg-write ADDR WORD` access aligned addresses in the policy
+window `[0x1000, 0x2000)`, excluding the four protocol registers at
+`0x1310..0x131c`. This window is an access policy, not a declaration that every
+address is a valid register. Register writes can affect the controller and must
+come from verified hardware documentation; no DRAM timing values are supplied.
 
 ## Files
 
-| file          | side  | what                                                        |
-|---------------|-------|-------------------------------------------------------------|
-| `mu.h`        | both  | register offsets + opcodes (shared contract)                |
-| `start.s`     | i960  | reset entry: stack into internal RAM, call the C loader     |
-| `loader.c`    | i960  | the protocol loop (no static storage, no libgcc, shallow)   |
-| `loader.ld`   | i960  | links the loader at its flash run address                   |
-| `hello.c`     | i960  | demo payload: writes `0xBEEF00EE` to OMR0 (proves hand-off) |
-| `payload.ld`  | i960  | links a tiny payload into internal RAM at `0x200`           |
-| `loadctl.c`   | host  | sender over `/dev/mem` BAR0                                 |
-| `Makefile`    | both  | builds all of the above                                     |
+| File | Purpose |
+| --- | --- |
+| `mu.h` | Shared opcodes, statuses, register offsets, and address policy |
+| `start.s`, `loader.c`, `loader.ld` | Flash entry, command dispatcher, link layout |
+| `hello.c`, `payload.ld` | Internal-RAM demo and link layout |
+| `loadctl.c` | Linux PCI sender, synchronization, upload/readback |
+| `test_protocol.c` | Actual C sender/dispatcher tests with fake hardware |
+| `test_build.py` | ELF/image gate and CLI validation regression tests |
+| `test_protocol.py` | Compatibility wrapper for `make test` |
+| `check_build.py` | ELF/binary and donor-image consistency gates |
 
-## Build
+## Hardware gates
 
-On the remote box (cross-toolchain on PATH):
+**Target build and hardware execution are unverified.** Native tests exercise
+software behavior only; they do not verify MMIO ordering, the MU mapping, internal
+RAM instruction fetch, or register-cache behavior. Review `start.s` and generated
+code against the i960 documentation before flashing. The stack initialization and
+`flushreg` sequence retain the previous implementation and require validation.
 
-```bash
-cd ~/i960/loader && make          # -> loader.bin, hello.bin, loadctl
-```
-
-Assemble the loader into a flashable image (reuses the validated builder; needs a
-decoded stock firmware image as the IBR/PRCB donor):
-
-```bash
-make image STOCK=~/fwpkg/decoded/<stock>.bin   # -> loader-fw.img
-```
-
-## Bring-up, in milestones (each is a real checkpoint)
-
-**1 — loader boots, channel works (no DRAM).** Flash `loader-fw.img`, power on.
-```bash
-sudo ./loadctl 0xee000000 status     # OMR0 low half == 0x600D (READY)
-sudo ./loadctl 0xee000000 ping       # ack status=0x0002
-```
-READY at `BAR0+0x18` means your loader is running from flash and the bidirectional
-channel is live. This is the milestone — nothing below matters until it passes.
-
-**2a — load and run code (still no DRAM).** Push the demo into internal RAM and jump:
-```bash
-sudo ./loadctl 0xee000000 load 0x200 hello.bin
-sudo ./loadctl 0xee000000 go   0x200
-sudo ./loadctl 0xee000000 status     # OMR0 now 0xBEEF00EE -> loaded code ran
-```
-The magic can only change if the i960 executed code the host sent. Full chain proven.
-
-**2b — real programs (needs DRAM).** Internal RAM is ~1 KB (shared with the loader
-stack), so anything bigger than the demo goes in the card's 16 MB DRAM. That
-requires bringing up the i960Rx memory controller first — its registers are known
-(MCON block in the local register space) but the **refresh/timing values are
-board-specific**. Get them from the stock firmware's early boot code (disassemble
-the decoded image) or the on-card DRAM part's datasheet, do a one-time DRAM-init
-`WRITE` sequence (or extend `start.s` to init DRAM before the loop), then
-`SET_ADDR <dram> ; load tetris.bin ; go <dram>`.
-<!-- ponytail: DRAM timing is the one real hardware unknown; left as a tunable
-     step rather than fabricated values. Milestones 1 and 2a don't need it. -->
-
-## Gates / honesty
-
-- **Untested.** Written against the datasheet + this repo's verified facts; not yet
-  compiled or run (needs the box powered on; the i960 side needs the cross-toolchain).
-- **Flashing is still irreversible without a backup.** Same gate as `REFLASH.md`:
-  the vendor flasher cannot dump, so take an external-programmer flash backup before
-  writing `loader-fw.img`. After that, the *loader* is the last thing you ever flash.
-- The loader assumes the stock PRCB (kept by `mkimage.py`) leaves the register cache
-  usable at reset; `start.s` sets its own stack so a shallow call can't fault. If
-  milestone 1 shows READY but `ping` times out, that assumption is where to look.
+Follow [REFLASH.md](../REFLASH.md): obtain an external-programmer flash backup
+before replacing firmware. Milestone 1 is READY plus a working ping. Milestone 2
+is a verified hello upload followed by the OMR1 payload marker. Record actual
+results and toolchain versions in [REVIEW.md](REVIEW.md).

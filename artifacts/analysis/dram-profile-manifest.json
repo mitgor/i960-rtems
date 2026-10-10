@@ -1,0 +1,19 @@
+{
+  "firmware": "407t39b0.img.full",
+  "bootblock": "FWPJBBLK.IMG.full",
+  "source_directory": "/home/mit/fwpkg/decoded",
+  "profiles": {
+    "firmware.raw": {
+      "sha256": "af3df1e17f0ff8b31ceb1a375aa58976922db3a25c96e0acd3045ea6f61b22af",
+      "bit5_set": "0x257c203c",
+      "bit5_clear": "0x231c201c",
+      "first_literal_offset": "0x3c8"
+    },
+    "bootblock.raw": {
+      "sha256": "19aa440dc4517749e2663c1ee7123f406e4354adf473527adb6bf85496039df1",
+      "bit5_set": "0x257c203c",
+      "bit5_clear": "0x231c201c",
+      "first_literal_offset": "0x7b0"
+    }
+  }
+}

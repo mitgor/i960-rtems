@@ -1,5 +1,12 @@
 # Tetris on an Intel i960
 
+**In-system firmware recovery succeeded.** See [SNAPSHOT-RECOVERY.md](SNAPSHOT-RECOVERY.md)
+for the validated 512 KiB capture, exact 4.07-0-29 firmware match, saved files,
+and corrected flash layout. [CLAUDE.md](CLAUDE.md) contains current agent guidance.
+
+See [PROJECT-REVIEW.md](PROJECT-REVIEW.md) for the broader review. The loader
+still has an internal-RAM execution architecture blocker.
+
 Runs Tetris as **native i960 machine code**. The game is compiled with a from-source
 i960 cross-toolchain; a small interpreter executes the i960 instructions and acts as a
 text terminal (framebuffer + keyboard over shared memory). The same binary and I/O model
@@ -8,6 +15,8 @@ for why loading onto that specific card is blocked in software (Mode 3 reset str
 
 ## Layout
 - `game/` — the i960 side: `tetris.c`, `io.h` (shared memory contract), `i960.ld`, `Makefile`.
+- `loader/` — flash loader and Linux sender; see [loader/README.md](loader/README.md)
+  and [loader/REVIEW.md](loader/REVIEW.md) for protocol fixes and validation status.
 - `host/` — the Ubuntu side: `emu.c` (i960 interpreter + ANSI terminal), self-check programs.
 - `toolchain.sh` — builds the i960 cross-toolchain (binutils 2.27 + gcc 3.3.6).
 - `MANUAL.md` — full execution/build notes and the real-card findings.

@@ -8,5 +8,10 @@ SECTIONS {
   .text   : { *(.text*) }
   .rodata : { *(.rodata*) *(.rdata*) }
   .data   : { *(.data*) }
+  .bss : { *(.bss*) *(COMMON) }
   _end = .;
+  ASSERT(SIZEOF(.data) == 0, "payload .data requires startup initialization")
+  ASSERT(SIZEOF(.bss) == 0, "payload .bss requires startup initialization")
+  ASSERT(_start == 0x200, "payload entry must be 0x200")
+  ASSERT(_end <= 0x400, "payload exceeds internal RAM")
 }

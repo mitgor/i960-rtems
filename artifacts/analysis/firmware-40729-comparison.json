@@ -1,0 +1,32 @@
+{
+  "source_url": "https://support.ts.fujitsu.com/globalflash/ScsiController/DAC960PRL/V4.07-0-29_4.10-41/zip_dac960prl_v4.07-0-29_4.10-41.exe",
+  "package_sha256": "5ba2adb79dbd3b536ee042fb11242f1b87aa42df4f95dd1224adf66f14d935f9",
+  "bootstrap_identical": true,
+  "bootstrap_bytes": 28672,
+  "unpacked_differing_bytes": 555,
+  "regions": {
+    "opcode_dispatch": {
+      "start": "0xc001f7b0",
+      "end_exclusive": "0xc001feec",
+      "identical": true,
+      "sha256_29": "c3e023f4313c954b223dc777bc16f0d3a5423d6a37276de18c5b2dcdfc6fcab7",
+      "sha256_39": "c3e023f4313c954b223dc777bc16f0d3a5423d6a37276de18c5b2dcdfc6fcab7"
+    },
+    "config_dispatch": {
+      "start": "0xc00207d0",
+      "end_exclusive": "0xc00209b0",
+      "identical": true,
+      "sha256_29": "75c71846ef5a32d28d2d5af3deabf8ea4e3d951615eff0a1d925c0fd20b6371d",
+      "sha256_39": "75c71846ef5a32d28d2d5af3deabf8ea4e3d951615eff0a1d925c0fd20b6371d"
+    },
+    "dma_and_flash_handlers": {
+      "start": "0xc004c010",
+      "end_exclusive": "0xc004d9e0",
+      "identical": true,
+      "sha256_29": "594c69e454d9760949190919ced970a607b39f056668e3ba356539b4052cc4f1",
+      "sha256_39": "594c69e454d9760949190919ced970a607b39f056668e3ba356539b4052cc4f1"
+    }
+  },
+  "board_bootblock_compatibility_verified": false,
+  "installed_flash_identity_verified": false
+}
