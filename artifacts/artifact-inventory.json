@@ -8528,6 +8528,26 @@
       "sha256": "98c3217f969eec7968a57d18909e10f97bd7b87d3dfdd3ec4b88ab6eb6108440"
     },
     {
+      "path": "artifacts/rtems-vader-20261011/README.md",
+      "size": 1012,
+      "sha256": "0de13c7f23948b91b9d816a50f05ef56a80058b20d101185056d4387dce9b907"
+    },
+    {
+      "path": "artifacts/rtems-vader-20261011/build.tar.xz",
+      "size": 208632,
+      "sha256": "307c8a320803a638c6ce7ce9d5b137c897f6c0b41de2bb0afbeda46e22a637ae"
+    },
+    {
+      "path": "artifacts/rtems-vader-20261011/http-tests.json",
+      "size": 622,
+      "sha256": "2d4f855f21f585932abb054096d68e94056c56e0bdb2ae108c083befd4507038"
+    },
+    {
+      "path": "artifacts/rtems-vader-20261011/response.html",
+      "size": 1252,
+      "sha256": "fb070c65505cf65ca52d44d637ec82a4a1da271dcdb24a28736d05730c504299"
+    },
+    {
       "path": "artifacts/rtems-web-autonomous-20261011/README.md",
       "size": 6293,
       "sha256": "f6a917148afc0452db31939986af16f1f3d8547d10f0809f500d0c3293471cdc"
