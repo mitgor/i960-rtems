@@ -1,0 +1,257 @@
+{
+  "run": "residentnet-decode-resident2",
+  "boot": "61aad7bd-307f-4892-9fc4-8a46d6875f02",
+  "ticks": 12000,
+  "stop_reason": 2,
+  "ioctls": [
+    143,
+    104
+  ],
+  "cache_observations": [
+    8,
+    16512,
+    1082130432
+  ],
+  "queue_telemetry": null,
+  "cache_completion_proven": false,
+  "broader_ram_owned": false,
+  "rounds": 3,
+  "burst": null,
+  "snapshot_corruptions_rejected": 19,
+  "bulk_latency_ms": {
+    "min": 1.419135,
+    "max": 241.815965,
+    "mean": 57.30201117408907
+  },
+  "packets": {
+    "valid": true,
+    "packets": 247,
+    "protocols": {
+      "17": 30,
+      "6": 94,
+      "ipv6_17": 30,
+      "ipv6_6": 93
+    },
+    "streams": [
+      {
+        "src": "10.196.0.1",
+        "sport": 33322,
+        "dst": "10.196.0.2",
+        "dport": 9600,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 9600,
+        "dst": "10.196.0.1",
+        "dport": 33322,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "10.196.0.1",
+        "sport": 41338,
+        "dst": "10.196.0.2",
+        "dport": 80,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 80,
+        "dst": "10.196.0.1",
+        "dport": 41338,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 39004,
+        "dst": "fd96:196:960::2",
+        "dport": 9600,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 9600,
+        "dst": "fd96:196:960::1",
+        "dport": 39004,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 33542,
+        "dst": "fd96:196:960::2",
+        "dport": 80,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 80,
+        "dst": "fd96:196:960::1",
+        "dport": 33542,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      },
+      {
+        "src": "10.196.0.1",
+        "sport": 52226,
+        "dst": "10.196.0.2",
+        "dport": 9600,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 9600,
+        "dst": "10.196.0.1",
+        "dport": 52226,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "10.196.0.1",
+        "sport": 41340,
+        "dst": "10.196.0.2",
+        "dport": 80,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 80,
+        "dst": "10.196.0.1",
+        "dport": 41340,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 58520,
+        "dst": "fd96:196:960::2",
+        "dport": 9600,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 9600,
+        "dst": "fd96:196:960::1",
+        "dport": 58520,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 41468,
+        "dst": "fd96:196:960::2",
+        "dport": 80,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 80,
+        "dst": "fd96:196:960::1",
+        "dport": 41468,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      },
+      {
+        "src": "10.196.0.1",
+        "sport": 34170,
+        "dst": "10.196.0.2",
+        "dport": 9600,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 9600,
+        "dst": "10.196.0.1",
+        "dport": 34170,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "10.196.0.1",
+        "sport": 36022,
+        "dst": "10.196.0.2",
+        "dport": 80,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 80,
+        "dst": "10.196.0.1",
+        "dport": 36022,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 58528,
+        "dst": "fd96:196:960::2",
+        "dport": 9600,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 9600,
+        "dst": "fd96:196:960::1",
+        "dport": 58528,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 41480,
+        "dst": "fd96:196:960::2",
+        "dport": 80,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 80,
+        "dst": "fd96:196:960::1",
+        "dport": 41480,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      }
+    ],
+    "dns": [],
+    "retransmitted_segments": 18,
+    "preexisting_echo_streams_reset": []
+  }
+}

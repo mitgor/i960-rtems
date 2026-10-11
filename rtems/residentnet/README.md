@@ -131,3 +131,10 @@ Final build: three uncached-probe phases restored/unloaded, and a third resident
 network run passed STOP at 846 ticks. The production IPv6 Darth Vader page was
 restored after the final reboot and verified from the Mac. Final mutable tail
 space is 98,144 bytes. Artifact recovery verification is in `verify_production.py`.
+
+## Allocation follow-up
+
+The [RAM ownership batch](RAM-OWNERSHIP.md) supersedes the 32-slot queue limit
+with 64 slots inside the same grant, adds board admission and RNT2 queue telemetry,
+and documents fixed allocation/SCSI diagnostic pages. Physical RAM outside the
+upload remains unavailable.

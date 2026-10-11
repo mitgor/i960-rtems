@@ -19,6 +19,11 @@ static unsigned int now_ms,random_state=0x1960466,tx_count,rx_count,drops;
 static unsigned short lengths[NETWORK_QUEUE_SLOTS];
 static unsigned char frames[NETWORK_QUEUE_SLOTS][1536];
 static unsigned int head,tail,queued;
+#ifdef RESIDENT_QUEUE_STATS
+static unsigned int queue_highwater;
+unsigned int resident_queue_drops(void){return drops;}
+unsigned int resident_queue_peak(void){return queue_highwater;}
+#endif
 static unsigned char fetch_bytes[8192];
 static unsigned int fetch_length,fetch_hash,fetch_state,fetch_port;
 static char fetch_name[128];
@@ -27,7 +32,11 @@ unsigned int card_rand(void){random_state^=random_state<<13;random_state^=random
 u32_t sys_now(void){return now_ms;}
 static err_t enqueue(struct pbuf*p){
  if(p->tot_len>1536||queued==NETWORK_QUEUE_SLOTS){drops++;return ERR_MEM;}
- lengths[tail]=p->tot_len;pbuf_copy_partial(p,frames[tail],p->tot_len,0);tail=(tail+1)%NETWORK_QUEUE_SLOTS;queued++;tx_count++;return ERR_OK;
+ lengths[tail]=p->tot_len;pbuf_copy_partial(p,frames[tail],p->tot_len,0);tail=(tail+1)%NETWORK_QUEUE_SLOTS;queued++;tx_count++;
+#ifdef RESIDENT_QUEUE_STATS
+ if(queued>queue_highwater)queue_highwater=queued;
+#endif
+ return ERR_OK;
 }
 static err_t output(struct netif*n,struct pbuf*p,const ip4_addr_t*addr){return enqueue(p);}
 static err_t output6(struct netif*n,struct pbuf*p,const ip6_addr_t*addr){return enqueue(p);}

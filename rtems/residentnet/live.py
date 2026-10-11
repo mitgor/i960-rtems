@@ -7,18 +7,23 @@ from run import Board,capture
 from relay import Gateway,CARD,CARD6
 import wire
 from pump import send_pending
+from burst import burst
 
-def clients(rounds=1):
+def clients(rounds=1,parallel=False):
  results=[]
  for iteration in range(rounds):
-  batch=client_round()
+  if parallel:
+   with concurrent.futures.ThreadPoolExecutor(max_workers=2) as workers:
+    jobs=[workers.submit(client_round,[(family,address)]) for family,address in [(socket.AF_INET,CARD),(socket.AF_INET6,CARD6)]]
+    batch=[row for job in jobs for row in job.result()]
+  else:batch=client_round()
   for row in batch:row["round"]=iteration
   results.extend(batch)
  return results
 
-def client_round():
+def client_round(families=None):
  results=[]
- for family,address in [(socket.AF_INET,CARD),(socket.AF_INET6,CARD6)]:
+ for family,address in (families or [(socket.AF_INET,CARD),(socket.AF_INET6,CARD6)]):
   for n in [1,31,500,1400,1472 if family==socket.AF_INET else 1452]:
    data=bytes((i*7+n)%251 for i in range(n))
    with socket.socket(family,socket.SOCK_DGRAM) as s:
@@ -44,9 +49,10 @@ def client_round():
 def main():
  p=argparse.ArgumentParser()
  for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
+ p.add_argument('--burst',action='store_true');p.add_argument('--parallel',action='store_true')
  p.add_argument('--ticks',type=int,default=6000);p.add_argument('--rounds',type=int,default=1)
  p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=60000 and 1<=a.rounds<=20
- b=Board(a.payload,a.module,a.output,autonomous=True);epoch=secrets.randbelow(65535)+1;events=[];snaps=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(ticks=a.ticks,rounds=a.rounds,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
  def save():
   (b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n');(b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
  def control(op,arg=0,e=epoch):
@@ -55,7 +61,7 @@ def main():
   control(7);w=[control(5,i)[2] for i in range(64)];snaps.append(dict(seconds=time.monotonic()-start,words=w));save()
   assert w[0]==0x31525845 and w[2] in (1,2) and w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6 and w[42:46]==[2,18,514,81916] and w[63]==1
   assert w[54]==w[55] and w[56]==epoch
-  print(json.dumps(dict(seconds=snaps[-1]['seconds'],state=w[2],ticks=w[5],work=w[6:8],cache=w[57:60],packets=w[60:63])),flush=True);return w
+  print(json.dumps(dict(seconds=snaps[-1]['seconds'],state=w[2],ticks=w[5],work=w[6:8],queue=w[57:60],packets=w[60:63])),flush=True);return w
  def packet(op,data=b'',e=epoch):
   raw=bytearray(struct.pack('<8I',op,e,len(data),0,0,0,0,0)+data.ljust(1536,b'\0'));before=bytes(raw);t=time.monotonic_ns()
   try:fcntl.ioctl(b.fd,0xc6204d05,raw,True)
@@ -77,9 +83,10 @@ def main():
    try:packet(op,data,e);raise AssertionError('invalid packet accepted')
    except OSError as exc:assert exc.errno==expected
   time.sleep(.3);v=snapshot();assert v[5]>w[5] # timers advance without host packet traffic
+  if a.burst:burst(packet,snapshot,b.out)
   g=Gateway(b.out,ipv6=True)
   with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
-   future=pool.submit(clients,a.rounds);deadline=time.monotonic()+max(45,a.ticks/100-5);last=time.monotonic()
+   future=pool.submit(clients,a.rounds,a.parallel);deadline=time.monotonic()+max(45,a.ticks/100-5);last=time.monotonic()
    while not future.done():
     if time.monotonic()>deadline:raise TimeoutError('resident test exceeded session traffic budget')
     readable,_,_=select.select([g.fd],[],[],0)

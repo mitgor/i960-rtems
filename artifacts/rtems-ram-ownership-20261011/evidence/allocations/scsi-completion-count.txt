@@ -1,0 +1,24 @@
+c004bb20:	00 30 a0 90 	ld	0xc0060128,g4
+c004bb24:	28 01 06 c0 
+c004bb28:	01 09 a5 59 	subo	1,g4,g4
+c004bb2c:	00 30 a0 92 	st	g4,0xc0060128
+c004bb30:	28 01 06 c0 
+c004bb34:	00 3a 00 5b 	intdis
+c004bb38:	30 00 e0 90 	ld	0x30,g12
+c004bb3c:	01 08 e7 59 	addo	1,g12,g12
+c004bb40:	30 00 e0 92 	st	g12,0x30
+c004bb44:	00 30 a8 8c 	lda	0xc0021c70,g5
+c004bb48:	70 1c 02 c0 
+c004bb4c:	54 20 8c 90 	ld	0x54(g0),g1
+c004bb50:	00 30 a0 8c 	lda	0xc004c3d0,g4
+c004bb54:	d0 c3 04 c0 
+c004bb58:	40 20 ac 92 	st	g5,0x40(g0)
+c004bb5c:	50 20 a4 92 	st	g4,0x50(g0)
+c004bb60:	00 50 04 86 	callx	(g1)
+c004bb64:	30 00 e0 90 	ld	0x30,g12
+c004bb68:	01 0b e7 5a 	cmpdeco	1,g12,g12
+c004bb6c:	30 00 e0 92 	st	g12,0x30
+c004bb70:	08 00 00 15 	bne	0xc004bb78
+c004bb74:	80 3a 00 5b 	inten
+c004bb78:	30 00 e0 90 	ld	0x30,g12
+c004bb7c:	00 00 00 0a 	ret

@@ -11,6 +11,7 @@ def snapshot_gate(w,epoch):
  assert len(w)==64 and w[0]==0x31525845 and w[1]>0 and w[2] in (1,2)
  assert w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6 and w[42:46]==[2,18,514,81916]
  assert w[54]==w[55] and w[56]==epoch and w[63]==1
+ if w[57]==0x32544e52:assert 0<=w[59]<=64
  for i in (12,14):assert 0<=w[i]-w[i+1]<=1
  if w[2]==2:assert w[3] in (1,2) and w[8:10]==[1,1] and w[12]==w[13]>0 and w[14]==w[15]>0 and w[53]==0
  else:assert w[3]==0 and w[8:10]==[0,0] and w[53]==0x2000
@@ -35,8 +36,13 @@ def verify(root,out):
    cur=[]
   elif e['op']==5:assert e['arg']==len(cur);cur.append(w[2])
  assert len(cur)==64;groups.append(cur);assert groups==[s['words'] for s in json.loads((out/'snapshots.json').read_text())]
- for w in groups:snapshot_gate(w,epoch)
+ for w in groups:
+  snapshot_gate(w,epoch)
+  if w[57]==0x32544e52:assert 0<=w[59]<=64
  for a,b in zip(groups,groups[1:]):assert b[1]>a[1] and all(b[i]>=a[i] for i in (5,6,7,60,61,62))
+ if groups[0][57]==0x32544e52:
+  assert all(w[57]==0x32544e52 for w in groups)
+  assert all(b[58]>=a[58] and b[59]>=a[59] for a,b in zip(groups,groups[1:]))
  assert groups[-1][2]==2 and groups[-1][4:36]==groups[-2][4:36] and groups[-1][6]>0 and groups[-1][7]>0
  assert groups[-1][62]-groups[-2][62]==2
  if groups[-1][3]==2:assert groups[-1][5]==arm[3]>>8
@@ -48,9 +54,9 @@ def verify(root,out):
  assert json.loads((out/'cleanup.json').read_text())['interface_present'] is False
  # Reconstruct raw-IP PCAP from successful bulk ioctls. Check every checksum and
  # reassemble both directions of TCP echo independently of the live assertions.
- pcap=bytearray(struct.pack('<IHHIIII',0xa1b2c3d4,2,4,0,0,65535,101));counts=[0,0];latencies=[]
+ pcap=bytearray(struct.pack('<IHHIIII',0xa1b2c3d4,2,4,0,0,65535,101));counts=[0,0];latencies=[];frames=[]
  def add(frame):
-  assert 20<=len(frame)<=1500;pcap.extend(struct.pack('<4I',0,0,len(frame),len(frame))+frame)
+  assert 20<=len(frame)<=1500;frames.append(frame);pcap.extend(struct.pack('<4I',0,0,len(frame),len(frame))+frame)
  for e in json.loads((out/'packets.json').read_text()):
   a=bytes.fromhex(e['request']);b=bytes.fromhex(e['response']);assert len(a)==len(b)==1568 and e['ns']>0
   aw=struct.unpack_from('<8I',a);bw=struct.unpack_from('<8I',b);assert aw[0]==bw[0]==e['op'] and aw[1]==bw[1]==epoch and aw[3:]==(0,)*5
@@ -66,6 +72,22 @@ def verify(root,out):
  assert counts==groups[-1][60:62]
  with tempfile.TemporaryDirectory() as d:
   path=Path(d)/'packets.pcap';path.write_bytes(pcap);packets=validate(path)
+ burst_result=None
+ if (out/'burst-results.json').exists():
+  burst_result=json.loads((out/'burst-results.json').read_text())
+  sent=[];received=[]
+  for frame in frames:
+   if frame[0]>>4!=4 or frame[9]!=17:continue
+   ihl=(frame[0]&15)*4;ports=struct.unpack_from('!2H',frame,ihl)
+   if ports not in ((44000,9601),(9601,44000)):continue
+   data=frame[ihl+8:];assert len(data)==64
+   index=struct.unpack_from('<I',data)[0];assert index<96 and data[4:]==bytes([index])*60
+   (sent if ports[0]==44000 else received).append(index)
+  assert sent==list(range(96)) and len(received)==len(set(received))
+  assert received==burst_result['indices'] and len(received)==burst_result['echoed']
+  assert burst_result['submitted']==96 and 60<=len(received)<96
+  assert burst_result['queue_highwater']==64 and burst_result['drops']>0
+  assert any(w[57:60]==[0x32544e52,burst_result['drops'],64] for w in groups)
  results=json.loads((out/'network-results.json').read_text());rounds=1+max(v.get('round',0) for v in results);assert 1<=rounds<=20 and len(results) in (12*rounds,14*rounds)
  for iteration in range(rounds):
   for family in (2,10):
@@ -75,12 +97,25 @@ def verify(root,out):
    t=ts[0];assert t['bytes']==4096 and t['sha256']==hashlib.sha256(bytes(i%251 for i in range(4096))).hexdigest()
    hs=[v for v in r if v['protocol']=='http'];assert len(hs)==1 and 'HTTP/1.0 200 OK' in hs[0]['response']
 
+ # Require the claimed TCP rounds in captured bytes, not only client summaries.
+ echo_hash=hashlib.sha256(bytes(i%251 for i in range(4096))).hexdigest()
+ for version in (4,6):
+  for key in ('sport','dport'):
+   flows=[f for f in packets['streams'] if f[key]==9600 and (6 if ':' in f['src'] else 4)==version]
+   assert len(flows)==rounds and all(f['bytes']==4096 and f['sha256']==echo_hash for f in flows)
+  http=[f for f in packets['streams'] if f['sport']==80 and (6 if ':' in f['src'] else 4)==version]
+  assert len(http)==rounds and all(f['prefix'].startswith('HTTP/1.0 200 OK') for f in http)
  bad=0
+ if groups[-1][57]==0x32544e52:
+  w=groups[-1].copy();w[59]=65
+  try:snapshot_gate(w,epoch)
+  except AssertionError:bad+=1
+  else:raise AssertionError('queue overflow accepted')
  for i in (0,2,4,11,36,37,38,39,40,41,42,43,44,45,52,53,54,56,63):
   w=groups[-1].copy();w[i]=0 if w[i] else 1
   try:snapshot_gate(w,epoch)
   except AssertionError:bad+=1
   else:raise AssertionError(('corruption accepted',i))
- return dict(run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=groups[-1][57:60],cache_completion_proven=False,broader_ram_owned=False,rounds=rounds,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
+ return dict(run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=None if groups[-1][57]==0x32544e52 else groups[-1][57:60],queue_telemetry=groups[-1][58:60] if groups[-1][57]==0x32544e52 else None,cache_completion_proven=False,broader_ram_owned=False,rounds=rounds,burst=burst_result,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--root',type=Path,required=True);p.add_argument('run',type=Path);a=p.parse_args();print(json.dumps(verify(a.root,a.run),indent=2))

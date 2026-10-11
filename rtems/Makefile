@@ -4,6 +4,7 @@ test:
 	python3 residentnet/test_native.py
 	python3 residentnet/test_host.py
 	python3 residentnet/test_queue.py
+	python3 residentnet/test_board.py
 	python3 residentnet/test_pump.py
 	python3 residentnet/test_decode.py
 	python3 exclusive/test_native.py

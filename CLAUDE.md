@@ -512,3 +512,12 @@ Three read-only MU samples found IMR1/OMR1 zero with message interrupts masked.
 These are selected for a separate, driver-serialized bounded echo experiment;
 no live sideband writes have occurred. Use the pinned 4.07-0-29 evidence, not the
 older 4.07-0-39 `remote-analysis` reference.
+
+## RAM ownership follow-up (2026-10-11)
+
+See [rtems/residentnet/RAM-OWNERSHIP.md](rtems/residentnet/RAM-OWNERSHIP.md). The resident queue is now 64 slots inside the
+existing 512 KiB grant. Board/dispatch/staging identity is checked before network
+initialization. Snapshot RNT2 words 57–59 are queue telemetry, not cache status.
+The adjacent 240 KiB belongs to the stock cache data pool; never reclaim it from
+size or zero software counters alone. Fixed page 15 observes SCSI bookkeeping;
+hardware drain remains unproved. Cooperative net/autonet stays available.

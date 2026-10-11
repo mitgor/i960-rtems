@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Exercise the actual shared queue functions at both supported capacities."""
+"""Exercise the actual shared queue functions at all supported capacities."""
 from pathlib import Path
 import subprocess,tempfile
 source=(Path(__file__).resolve().parents[1]/'net/network.c').read_text()
 functions=source[source.index('static err_t enqueue('):source.index('static err_t output(')]
 functions+=source[source.index('unsigned int network_output('):source.index('unsigned int network_report(')]
-for capacity in (8,32):
+for capacity in (8,32,64):
  code='''
 #include <assert.h>
 #include <stdio.h>
@@ -14,6 +14,8 @@ typedef int err_t;
 #define ERR_MEM -1
 #define ERR_OK 0
 #define NETWORK_QUEUE_SLOTS CAPACITY
+#define RESIDENT_QUEUE_STATS 1
+static unsigned int queue_highwater;
 struct pbuf {unsigned int tot_len;unsigned char *payload;};
 static unsigned short lengths[NETWORK_QUEUE_SLOTS];
 static unsigned char frames[NETWORK_QUEUE_SLOTS][1536];
@@ -24,6 +26,7 @@ static void bio_put(unsigned char*p,unsigned int n){p[0]=n;p[1]=n>>8;p[2]=n>>16;
 int main(void){unsigned int i,j;unsigned char bytes[1537],out[1536];struct pbuf p={1500,bytes};
  for(i=0;i<NETWORK_QUEUE_SLOTS;i++){memset(bytes,i,sizeof(bytes));assert(enqueue(&p)==0);}
  assert(queued==NETWORK_QUEUE_SLOTS&&enqueue(&p)==ERR_MEM);
+ assert(queue_highwater==NETWORK_QUEUE_SLOTS);
  assert(network_output(out,1503)==0&&queued==NETWORK_QUEUE_SLOTS);
  for(i=0;i<NETWORK_QUEUE_SLOTS*4;i++){
   assert(network_output(out,sizeof(out))==1504);

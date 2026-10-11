@@ -26,10 +26,20 @@ static void cache_decode_probe(unsigned int*w,unsigned int page){
   {0x1500,0x1504,0x1508,0x150c,0x1510,0x1514,0x1518,0x1700},
   {0x151c,0x1520,0x1524,0x1528,0x152c,0x1530,0x40800000,0x40800008}};
  unsigned int i,status,scratch;
- if(!page||page>7){cache_probe(w);return;}
+ if(!page||page>15){cache_probe(w);return;}
  __asm__ volatile("dcctl 4,0,%0":"=r"(status)::"memory");
  __asm__ volatile("dcctl 0,0,%0":"=r"(scratch)::"memory");
  w[0]=0x32484343;w[1]=page;
+ if(page>=8){unsigned int table=*(volatile unsigned int*)0xc011e22c,base=0;
+  static const unsigned int globals[8]={0xc009c3f4,0xc009c3f8,0xc0112a70,0xc00bee54,0xc00bee50,0xc00a8750,0xc00a8754,0xc00aed64};
+  if(page<=10&&table>=0xc0010000u&&table<=0xc013fe00u&&!(table&3))base=table+(page==8?0x100:page==9?0x120:0);
+  if(page==11)base=0xc00600e0;
+  if(page==12)base=0xc00a8700;
+  if(page==15)base=0xc0060110; /* debug counters, including four named SCSI queues */
+  if(page==14){base=*(volatile unsigned int*)0xc00bee54;if(base<0xc0010000u||base>0xc013ffe0u||(base&3))base=0;}
+  for(i=0;i<8;i++)w[i+2]=page==13?*(volatile unsigned int*)globals[i]:base?*(volatile unsigned int*)(base+i*4):0xffffffffu;
+ }
+
  if(page<=3)for(i=0;i<8;i++)w[i+2]=cache_probe_read(addresses[page-1][i],0x5a5a5a5a,0);
  else if(page==4) {
   w[2]=cache_probe_read((unsigned int)&probe_seed,0xa5a5a5a5,0);

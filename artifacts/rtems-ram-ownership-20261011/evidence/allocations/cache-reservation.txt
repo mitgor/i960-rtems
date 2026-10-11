@@ -1,0 +1,114 @@
+c001ea70:	10 48 08 59 	addo	16,sp,sp
+c001ea74:	00 30 a0 90 	ld	0xc009c3f8,g4
+c001ea78:	f8 c3 09 c0 
+c001ea7c:	09 0e a5 59 	shlo	9,g4,g4
+c001ea80:	94 05 84 70 	divo	g4,g0,g0
+c001ea84:	00 30 a0 90 	ld	0xc011e22c,g4
+c001ea88:	2c e2 11 c0 
+c001ea8c:	00 30 b0 8c 	lda	0xfeeffeef,g6
+c001ea90:	ef fe ef fe 
+c001ea94:	00 1e 28 5c 	mov	0,r5
+c001ea98:	0d 1e 90 5c 	mov	13,g2
+c001ea9c:	10 21 25 90 	ld	0x110(g4),r4
+c001eaa0:	24 21 ad 88 	ldos	0x124(g4),g5
+c001eaa4:	45 e0 97 82 	stob	g2,0x45(fp)
+c001eaa8:	1f 58 90 59 	addo	31,1,g2
+c001eaac:	40 e0 b7 92 	st	g6,0x40(fp)
+c001eab0:	44 e0 97 82 	stob	g2,0x44(fp)
+c001eab4:	04 16 a0 5c 	mov	r4,g4
+c001eab8:	94 30 00 5a 	cmpi	g4,0
+c001eabc:	10 50 30 59 	addo	g0,1,r6
+c001eac0:	06 41 ad 59 	subo	r6,g5,g5
+c001eac4:	01 09 21 59 	subo	1,r4,r4
+c001eac8:	00 74 3d 8c 	lda	0xfffe(g5),r7
+c001eacc:	fe ff 00 00 
+c001ead0:	74 00 00 12 	be	0xc001eb44
+c001ead4:	00 30 40 8c 	lda	0xffff,r8
+c001ead8:	ff ff 00 00 
+c001eadc:	87 00 4a 58 	and	r7,r8,r9
+c001eae0:	64 80 29 3a 	cmpibe	r5,r6,0xc001eb44
+c001eae4:	40 e0 87 8c 	lda	0x40(fp),g0
+c001eae8:	b8 e3 ff 09 	call	0xc001cea0
+c001eaec:	05 40 a2 59 	addo	r5,r9,g4
+c001eaf0:	90 00 82 58 	and	g0,r8,g0
+c001eaf4:	90 20 05 5a 	cmpi	g0,g4
+c001eaf8:	01 48 29 7a 	addoe	1,r5,r5
+c001eafc:	38 00 00 12 	be	0xc001eb34
+c001eb00:	1f 58 95 59 	addo	31,21,g2
+c001eb04:	90 80 a4 70 	mulo	g0,g2,g4
+c001eb08:	00 30 b0 90 	ld	0xc00600ec,g6
+c001eb0c:	ec 00 06 c0 
+c001eb10:	00 1e 88 5c 	mov	0,g1
+c001eb14:	00 30 a8 88 	ldos	0xc00a8754,g5
+c001eb18:	54 87 0a c0 
+c001eb1c:	14 80 a5 59 	addo	g4,g6,g4
+c001eb20:	06 20 ad 8a 	stos	g5,0x6(g4)
+c001eb24:	dc f2 ff 09 	call	0xc001de00
+c001eb28:	00 30 a0 90 	ld	0xc011e22c,g4
+c001eb2c:	2c e2 11 c0 
+c001eb30:	10 21 25 90 	ld	0x110(g4),r4
+c001eb34:	04 16 a0 5c 	mov	r4,g4
+c001eb38:	94 30 00 5a 	cmpi	g4,0
+c001eb3c:	01 09 21 59 	subo	1,r4,r4
+c001eb40:	a0 ff ff 15 	bne	0xc001eae0
+c001eb44:	20 40 31 3a 	cmpibe	r6,r5,0xc001eb64
+c001eb48:	00 30 80 8c 	lda	0xffff,g0
+c001eb4c:	ff ff 00 00 
+c001eb50:	87 00 84 58 	and	r7,g0,g0
+c001eb54:	05 16 88 5c 	mov	r5,g1
+c001eb58:	68 00 00 09 	call	0xc001ebc0
+c001eb5c:	00 1e 80 5c 	mov	0,g0
+c001eb60:	00 00 00 0a 	ret
+c001eb64:	00 30 80 8c 	lda	0xffff,g0
+c001eb68:	ff ff 00 00 
+c001eb6c:	00 30 a0 90 	ld	0xc009c3f8,g4
+c001eb70:	f8 c3 09 c0 
+c001eb74:	87 00 84 58 	and	r7,g0,g0
+c001eb78:	90 00 85 70 	mulo	g0,g4,g0
+c001eb7c:	09 0e 84 59 	shlo	9,g0,g0
+c001eb80:	00 34 84 8c 	lda	0xc0140000(g0),g0
+c001eb84:	00 00 14 c0 
+c001eb88:	00 00 00 0a 	ret
+c001eb8c:	00 00 00 00 	.word	0x00000000
+c001eb90:	00 30 a0 90 	ld	0xc009c3f8,g4
+c001eb94:	f8 c3 09 c0 
+c001eb98:	00 34 ac 8c 	lda	0x3fec0000(g0),g5
+c001eb9c:	00 00 ec 3f 
+c001eba0:	09 0e a5 59 	shlo	9,g4,g4
+c001eba4:	94 45 8c 70 	divo	g4,g1,g1
+c001eba8:	94 45 ad 70 	divo	g4,g5,g5
+c001ebac:	00 30 80 8c 	lda	0xffff,g0
+c001ebb0:	ff ff 00 00 
+c001ebb4:	95 00 84 58 	and	g5,g0,g0
+c001ebb8:	11 50 88 59 	addo	g1,1,g1
+c001ebbc:	04 00 00 08 	b	0xc001ebc0
+c001ebc0:	11 16 28 5c 	mov	g1,r5
+c001ebc4:	00 1e 20 5c 	mov	0,r4
+c001ebc8:	04 60 01 5a 	cmpo	r4,r5
+c001ebcc:	10 16 30 5c 	mov	g0,r6
+c001ebd0:	24 00 00 13 	bge	0xc001ebf4
+c001ebd4:	00 30 38 8c 	lda	0xffff,r7
+c001ebd8:	ff ff 00 00 
+c001ebdc:	06 00 81 59 	addo	r6,r4,g0
+c001ebe0:	90 c0 81 58 	and	g0,r7,g0
+c001ebe4:	00 1e 88 5c 	mov	0,g1
+c001ebe8:	18 f2 ff 09 	call	0xc001de00
+c001ebec:	04 50 20 59 	addo	r4,1,r4
+c001ebf0:	ec 5f 21 34 	cmpobl	r4,r5,0xc001ebdc
+c001ebf4:	00 00 00 0a 	ret
+c001ec00:	00 30 f0 8c 	lda	0xc001ec28,g14
+c001ec04:	28 ec 01 c0 
+c001ec08:	1e 16 80 5c 	mov	g14,g0
+c001ec0c:	00 1e f0 5c 	mov	0,g14
+c001ec10:	00 30 a0 90 	ld	0xc011e22c,g4
+c001ec14:	2c e2 11 c0 
+c001ec18:	28 21 a5 90 	ld	0x128(g4),g4
+c001ec1c:	00 34 f5 92 	st	g14,0xc013ffc0(g4)
+c001ec20:	c0 ff 13 c0 
+c001ec24:	00 10 04 84 	bx	(g0)
+c001ec28:	00 00 00 0a 	ret
+c001ec2c:	00 00 00 00 	.word	0x00000000
+c001ec30:	50 72 6f 63 	.word	0x636f7250
+c001ec34:	50 61 72 69 	logrl	g0,r9,?
+c001ec38:	74 79 49 6e 	cpysre	?,?,?
+c001ec3c:	74 00 00 00 	.word	0x00000074

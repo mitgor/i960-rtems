@@ -10333,6 +10333,156 @@
       "sha256": "2e9710f7e0035eba22daa25ace810543c84efeb4b13eba6569864bf3c8ac0f58"
     },
     {
+      "path": "artifacts/rtems-ram-ownership-20261011/README.md",
+      "size": 7169,
+      "sha256": "afb3bf05469dad0865442cd77b39b11b0e281e06c31a29929425296ec19e293c"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocation-mutations.json",
+      "size": 374,
+      "sha256": "b9510b848a306462de9995bb956374ce15a39272323eb87790b0d49e4a8bf1ec"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/allocation.json",
+      "size": 612,
+      "sha256": "344f53dcecd7663addda7e1c6650c1c745885819319015d8b7daa753b998fd6e"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/cache-geometry.txt",
+      "size": 16055,
+      "sha256": "8b163967f40e925eeb9cda7158ef0380aceadcaedf9569ca4f2bbd35d2db0c64"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/cache-reservation.txt",
+      "size": 3955,
+      "sha256": "a57c31aec6a0a43af23aa56f76dd44332b1f3203a8cfa52e64a9484dfa195da7"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/script-command-construction.txt",
+      "size": 1891,
+      "sha256": "0ba32d2033e166aa7e71673d897636facc8b4d93261450451966477be5a2cab2"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/scsi-busy-test.txt",
+      "size": 767,
+      "sha256": "8172afcdd5f529274ee09cbe8a4c30dc471887d1107eaada648528b429fbaac9"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/scsi-completion-count.txt",
+      "size": 816,
+      "sha256": "f0d05169827973b77e7edb544798df56a11ab3676e100d3b8d5ee652aeaa42c5"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/scsi-debug-counters.txt",
+      "size": 355,
+      "sha256": "be4fda7240d39e12d00727bf3c87b1326460532f67a49351c94ed3293a5f17c2"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/scsi-submit-count.txt",
+      "size": 1199,
+      "sha256": "703b7bffe7f1ec5a06d4b70c74678cd0edda7e96e296e02e60ec87926b0afdf0"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/staging-helper.txt",
+      "size": 1667,
+      "sha256": "b1e3d0b5fbc9a15bd016d16de8c479d3f71fea997db23368c00b938cf2de1bc4"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/allocations/transfer-dispatch.txt",
+      "size": 2870,
+      "sha256": "2b7ad3450709ccbb2b1a1d3880a8569ee27a71772479adbf793db7dd221d0484"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/archive-checks.json",
+      "size": 641,
+      "sha256": "2ccf69b739f96861c9778b2855932aaf91671bcb782946fcfa7b02c9199ca8dd"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/board-tests.txt",
+      "size": 77,
+      "sha256": "d5f0a8e2e0c0874974cf95d00636dbf2fa42ea80bd396494acca6227c0b8fa2c"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/bounded-gated.json",
+      "size": 470,
+      "sha256": "64185385d86151499da1de97399b58831a877a7d9037cbb77c31464c77b8fe52"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/bounded-probe.json",
+      "size": 469,
+      "sha256": "a2098da5599767cd498e037f1d3f272cecf2c8052dd54e2b8763da831aa90656"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/bounded-scsi.json",
+      "size": 475,
+      "sha256": "502ec5e2f9bacbd5fc0ee9f66dc27c02f0e2935587f8d733d4b08265814f23aa"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/http-body.html",
+      "size": 2891,
+      "sha256": "3a8513d10ec4880a865d75ae97649313d6a13bde1716ed9815b6b446848d107e"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/http-headers.txt",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/native-tests.txt",
+      "size": 7868,
+      "sha256": "68949bfecbbcbc3399f0252f5ef660fd5a7673029d6f9b2d33d668a5dfa00baf"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/prior-replay.json",
+      "size": 10667,
+      "sha256": "8b2000a09b8a1e060727108afccbf862eee2570737e293cf4ad65a96e66fdc1c"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/queue-tests.txt",
+      "size": 242,
+      "sha256": "63a69436826975b44122c8675b29df8f8a020d625f06fa69fa6a4e76f929b2c3"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/ram-gated.json",
+      "size": 1163,
+      "sha256": "23df822568c6b36d9b8c74357c7625bdab98773109c9586f7332da4a69fc965f"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/ram-probe.json",
+      "size": 1163,
+      "sha256": "769382e822804243f8f88e12b1972f2cb3dd29addd2c4570e94d277976baa5dd"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/resident-replay.json",
+      "size": 21341,
+      "sha256": "468b9c9f4f20966af8ae813039d1ed7b88530fc07f220b71191d1d64230a39b4"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/evidence/resident-tested-cache_probe.h",
+      "size": 4148,
+      "sha256": "e13e134d55003cae94eb2027955a1338b24fff4c71957b59257780c942fe6b30"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/residentnet-ram-probe.tar.xz",
+      "size": 1346832,
+      "sha256": "c77199d098d15d4bd27e5a31e7bcb71710d658a4197cc109939285957b92df9a"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/residentnet-ram-production.tar.xz",
+      "size": 527680,
+      "sha256": "93b5f58431ba5f4d441d36f65a0170ba2a10362177fd72dbd6d4ab4eba4fc99f"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/residentnet-ram-resident.tar.xz",
+      "size": 1326512,
+      "sha256": "407038202121d567179f275829a03bc2677eb2e07d6e663ace984dda67fcd3da"
+    },
+    {
+      "path": "artifacts/rtems-ram-ownership-20261011/residentnet-ram-scsi.tar.xz",
+      "size": 1224372,
+      "sha256": "a973ad747a4fd915436049a83b003c222dc79fda5b95cec983a2b7afd4272c18"
+    },
+    {
       "path": "artifacts/rtems-residentnet-20261011/README.md",
       "size": 6245,
       "sha256": "dc9daef93330e1cdcd83068593ac6ff25be10d66b22c95364b6eb89717777b1f"

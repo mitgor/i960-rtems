@@ -1,5 +1,16 @@
 # Current findings and evidence — 2026-10-11
 
+**Firmware allocation follow-up:** recovered 8 KiB cache lines and 52-byte
+cache descriptors, with the staging allocation inside the firmware cache pool.
+The adjacent 240 KiB is not free RAM. Resident TX capacity is now 64 slots within
+the existing grant, with board admission checks and queue telemetry. Six concurrent dual-stack rounds,
+a deliberately saturated queue and a 60,000-tick autonomous deadline passed;
+711 captured packets pass independent replay. Public IPv6 HTTP is restored. SCSI
+software counters read 0/0/4/0 after reboot; engine drain and broader RAM ownership remain
+open. See [allocation and test contract](rtems/residentnet/RAM-OWNERSHIP.md) and
+[batch evidence](artifacts/rtems-ram-ownership-20261011/README.md).
+
+
 
 **Callback/render optimization accepted (2026-10-11):** exact word-at-a-time
 request validation and equivalent renderer loops reduce full-frame callback time

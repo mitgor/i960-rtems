@@ -1573,6 +1573,39 @@ drained. The bytes and the failed attempt both went into the archive.
 That was more room for the network, not a claim on the rest of the card's RAM.
 The distinction was becoming something of a theme.
 
+## The memory that already had an owner
+
+Sixteen megabytes sounded generous until we asked who was using them.
+
+The firmware answered in eight-kilobyte pieces. Its cache began above the low
+firmware workspace; 1,876 lines ran up to a table of fifty-two-byte descriptors.
+The numbers in the live card matched the arithmetic in the old program. Our
+half-megabyte upload buffer was a reservation inside that machinery, not a
+lucky patch of unused DRAM. The tempting space immediately above it was still
+cache data. We left it alone.
+
+There was room to improve without moving the boundary. The packet queue grew
+to sixty-four slots, and the monitor learned to report how full it had become
+and how many packets it had refused. We sent ninety-six requests and deliberately
+stopped collecting the answers. Sixty-five echoes survived: sixty-four queued
+and one already waiting in the transport. Thirty-one were counted as drops.
+Then IPv4 and IPv6 clients ran together, and the network recovered.
+After the traffic stopped, both tasks kept advancing until the timer reached
+exactly sixty thousand ticks. The kernel parked, and we saved the proof before
+rebooting the host.
+
+SCSI offered another small piece of honesty. The firmware's own debug strings
+named its queue counters. We found the loads, and the increment and decrement
+of its outstanding-I/O count. Reading those counters was reasonable. Treating
+zero as permission to overwrite every buffer was still a leap: a software
+ledger is not a photograph of every engine on the bus. After reboot, the
+card reported no outstanding SCSI I/O but still had four scheduler entries.
+The short probe restored cleanly, and Vader returned to the IPv6 page.
+
+The next boundary was clearer now. Before moving into the rest of RAM, we had
+to retire its old owners and account for everything the monitor would still
+need. In the meantime, the memory we had actually earned was doing more work.
+
 ## Counting four at a time
 
 With the upload chatter silenced, the next expensive thing was checking that
