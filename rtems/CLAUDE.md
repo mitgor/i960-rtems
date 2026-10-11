@@ -1,5 +1,18 @@
 # RTEMS working guidance
 
+**Nested STOP and timeout checkpoint (2026-10-11):** all twelve `stopcases`
+card runs passed. STOP at critical depths 2/1 was recorded at ticks 18/30 but
+controller dispatch/drain waited until outer release at tick 40. Missing STOP
+reached the 128-tick event deadline; missing RELEASE exhausted its finite loop
+and returned with only the expected `0x4000` flag. All contexts, guards, paired
+RAM/MU restoration and unload checks passed; no reboot/flash. IPv6 HTTP restored.
+[Implementation](switch/STOP-CASES.md),
+[evidence](../artifacts/irq-stop-cases-20261011/README.md).
+Next: concurrent user-control/lifetime design and non-cooperative task containment.
+These workers remain stop-aware; deliberate message omission is not a full host
+crash or proof of recovery from permanently masked interrupts.
+
+
 **Pending-callback MU STOP milestone (2026-10-11):** three `mustop` card runs
 accepted a one-shot host STOP at ticks 34/41/52 while both owned ISR contexts
 were live and firmware sequence 1 was still pending. Workers observed the stop

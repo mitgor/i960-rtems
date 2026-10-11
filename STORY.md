@@ -907,6 +907,33 @@ second user command running beside the first: the driver performed the bounded
 handshake inside its existing lock. Those are the next doors, now that the knock
 and the safe return have met on the real card.
 
+## The request that had to wait
+
+We sent the next stop request at an inconvenient moment on purpose. Task A had
+disabled dispatch twice. The timer could still interrupt it, and at tick eighteen
+it found the host's request. The controller was ready to act. It had to wait.
+
+Releasing the inner level at tick twenty-eight changed nothing about that debt.
+Only the outer release at tick forty let the controller run and the two
+unfinished interrupt returns drain. We repeated the experiment with the request
+arriving in the remaining inner scope instead, at tick thirty. Same ending.
+The clock had continued throughout; the scheduler had respected the boundary.
+
+Then we withheld parts of the conversation. With no STOP word, the card reached
+its own one-hundred-and-twenty-eight-tick deadline and wound the workers down.
+With no final RELEASE, it counted out its finite waiting loop, recorded the
+expected timeout flag, cleaned up its message words, and returned anyway.
+
+Three attempts at each of four cases: twelve returns, twelve complete restoration
+checks. No reboot. Vader came back. The timeout flag was evidence that the test
+had taken the intended branch, not a fault we quietly ignored.
+
+The host was still there to observe those missing messages and verify the
+cleanup. That is a narrower claim than surviving a vanished host, and the workers
+still knew how to stop. But the monitor now had two more demonstrated habits:
+it could wait through a legitimate critical section, and it could stop waiting
+for a message that never came.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

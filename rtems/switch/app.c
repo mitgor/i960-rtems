@@ -51,7 +51,11 @@ static void defer_probe(void){
 }
 #else
 #ifdef I960_STOP_TEST
+#ifdef I960_STOP_CASES
+#define REPORT_SIZE 896
+#else
 #define REPORT_SIZE 816
+#endif
 #else
 #define REPORT_SIZE 736
 #endif
@@ -61,6 +65,9 @@ void bounded_fatal(unsigned int code){stop_timer();bounded_escape(0xf0000000u|co
 #define CHECK(x) do{unsigned int e=(x);if(e)bounded_fatal(0x10000+__LINE__*256+e);}while(0)
 #ifdef I960_STOP_TEST
 #include "stop_target.h"
+#ifdef I960_STOP_CASES
+#include "stop_critical.h"
+#endif
 #endif
 static void*stack_alloc(unsigned int n){unsigned int i=allocated++;if(i>=4||n>8192)bounded_fatal(0x51000);sizes[i]=n;memset(stacks[i],0xa5,8320);return stacks[i]+16;}
 static void stack_free(void*p){bounded_fatal(0x51001);}
@@ -86,6 +93,9 @@ void switch_irq_body(void){
 #endif
  CHECK(rtems_clock_tick());
  _Thread_Dispatch_disable_level--;_ISR_Nest_level--;
+#ifdef I960_STOP_CASES
+ stop_critical_observe();
+#endif
 #ifdef I960_DEFER_TEST
  if(defer_phase){
   deferral[9+defer_phase]++;
@@ -119,6 +129,9 @@ static void Worker(rtems_task_argument id){unsigned int *r=switch_records[id],i;
 #ifdef I960_DEFER_TEST
  if(id==0)defer_probe();
 #endif
+#ifdef I960_STOP_CASES
+ if(id==0&&stop_case<=2)stop_critical();
+#endif
  deep_probe(16,id);
  if(!switch_stop||!r[69])bounded_fatal(0x52000+id); /* finite loop deadline */
  for(i=0;i<16;i++)if(r[i]!=r[16+i])switch_fault|=128;
@@ -138,6 +151,9 @@ static void Init(rtems_task_argument arg){rtems_id a,b;rtems_task_priority old;u
 #ifdef I960_STOP_TEST
  {rtems_event_set events;unsigned int rc=rtems_event_receive(RTEMS_EVENT_0,RTEMS_EVENT_ANY|RTEMS_WAIT,128,&events);
   if(rc!=RTEMS_SUCCESSFUL&&rc!=RTEMS_TIMEOUT)bounded_fatal(0x57002);
+#ifdef I960_STOP_CASES
+  case_diag[11]=ticks;case_diag[12]=_Thread_Dispatch_disable_level;
+#endif
   stop_diag[14]=rc; /* local deadline is recorded, never mistaken for host STOP */
  }
 #else
@@ -156,6 +172,9 @@ static void Init(rtems_task_argument arg){rtems_id a,b;rtems_task_priority old;u
 #ifdef I960_STOP_TEST
  stop_mu_finish();
  for(i=0;i<20;i++)bio_put(out+736+i*4,stop_diag[i]);
+#ifdef I960_STOP_CASES
+ for(i=0;i<20;i++)bio_put(out+816+i*4,case_diag[i]);
+#endif
 #endif
  {unsigned int header[]={0x31575349,switch_fault,ticks,two_live,handoffs,done[0],done[1],switch_active[0],switch_active[1],_ISR_Nest_level,_Thread_Dispatch_disable_level,REG(0xff008504),REG(0xff008528),REG(0x3c),saved_vector,REG(0xff000310),REG(0xff000314),REG(0xff000318),REG(0xff008500),armed};
  for(i=0;i<20;i++)bio_put(out+i*4,header[i]);}
@@ -186,6 +205,11 @@ unsigned int bounded_main(unsigned int arg){unsigned char*p=(unsigned char*)arg;
  for(p=_bss_start;p<_bss_end;p++)*p=0;
 #ifdef I960_STOP_TEST
  stop_epoch=bio_word((unsigned char*)BIO_BASE+BIO_INPUT+4);
+#ifdef I960_STOP_CASES
+ stop_case=bio_word((unsigned char*)BIO_BASE+BIO_INPUT+8);
+ if(stop_case<1||stop_case>4)return 1;
+ case_diag[0]=stop_case;
+#endif
 #endif
  initialized=1;rtems_initialize_executive(&config,&cpu);return 0;
 }

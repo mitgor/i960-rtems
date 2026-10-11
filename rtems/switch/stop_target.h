@@ -3,6 +3,13 @@
  * returned and the timer is restored. Host RELEASE permits MU restoration. */
 static unsigned int stop_epoch,stop_diag[20];
 static rtems_id stop_controller;
+#ifdef I960_STOP_CASES
+static unsigned int stop_case;
+static volatile unsigned int critical_phase,case_diag[20];
+#define STOP_READY ((!stop_diag[2]) && ((stop_case<=2 && critical_phase==stop_case) || (stop_case>=3 && ticks==8)))
+#else
+#define STOP_READY (ticks==8)
+#endif
 static unsigned int stop_mu_start(void){
  if(REG(0x1328)!=0x1fb||REG(0x1334)!=0xff||REG(0x1314)||REG(0x131c)||
     (REG(0x1324)&2)||(REG(0x1330)&2))return 1;
@@ -10,9 +17,12 @@ static unsigned int stop_mu_start(void){
 }
 static void stop_mu_poll(void){unsigned int token;
  if(REG(0x1328)!=0x1fb||REG(0x1334)!=0xff){switch_fault|=8192;return;}
- if(ticks==8){stop_diag[2]=ticks;REG(0x131c)=0x71000000u|stop_epoch;(void)REG(0x131c);}
+ if(STOP_READY){stop_diag[2]=ticks;REG(0x131c)=0x71000000u|stop_epoch;(void)REG(0x131c);}
  token=REG(0x1314);
  if(token==(0x72000000u|stop_epoch)&&!stop_diag[3]){
+#ifdef I960_STOP_CASES
+  case_diag[17]=critical_phase;
+#endif
   stop_diag[3]=ticks;stop_diag[4]=(unsigned int)_Thread_Executing;
   stop_diag[5]=life[0].live;stop_diag[6]=life[1].live;
   stop_diag[7]=_Thread_Dispatch_disable_level;stop_diag[8]=_ISR_Nest_level;

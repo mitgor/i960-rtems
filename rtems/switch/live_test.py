@@ -5,10 +5,10 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'transport'))
 from run import Board
 
-def decode(data):
+def decode(data,expected_fault=0):
     assert len(data)==736,len(data)
     w=struct.unpack('<184I',data)
-    assert w[0]==0x31575349 and w[1]==0,('header',w[:20])
+    assert w[0]==0x31575349 and w[1]==expected_fault,('header',w[:20])
     assert w[2]>=32 and w[3]>5 and w[4]>5,w[2:5]
     assert w[5:7]==(1,1) and w[7:11]==(0,0,0,0),w[5:11]
     assert w[11]==0x10c7 and w[12]==0x80000 and w[13]==w[14]

@@ -1,5 +1,10 @@
 # Two owned interrupt continuations and timer-driven task switching
 
+**Follow-up:** nested critical-section STOP and both individual omission deadlines
+now pass on hardware (three runs each). See [STOP cases](STOP-CASES.md) for the
+new profile, expected timeout flag and exact limits. Earlier next-step statements
+below describe the original STOP1 milestone.
+
 2026-10-11: the `switch` profile passed three bounded hardware runs. Two equal
 priority RTEMS tasks execute CPU-bound assembly loops without voluntarily yielding.
 Timer interrupts time-slice them; each task owns its suspended ISR continuation.

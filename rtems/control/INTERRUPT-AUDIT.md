@@ -154,3 +154,12 @@ the bounded pending-callback signalling test, not arbitrary-task cancellation.
 The host hook retains the session mutex; workers still poll a stop flag.
 See [STOP1 contract](../switch/STOP.md) and
 [evidence](../../artifacts/irq-mu-stop-20261011/README.md).
+
+## Critical-section STOP and omission deadlines (2026-10-11)
+
+Twelve `stopcases` runs passed: STOP at depths 2/1 stayed pending until outer
+release; missing STOP reached 128 delivered ticks; missing RELEASE exhausted
+the instruction-loop budget after timer restoration and returned with the
+expected `0x4000` flag. All contexts drained and full MU/RAM cleanup passed.
+See [contract and evidence](../switch/STOP-CASES.md). Full host disappearance,
+non-cooperative code and permanent interrupt masking remain separate limits.

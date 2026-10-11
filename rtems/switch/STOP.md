@@ -1,5 +1,10 @@
 # One-shot independent MU STOP during an active callback
 
+**Follow-up:** nested critical-section STOP and both individual omission deadlines
+now pass on hardware (three runs each). See [STOP cases](STOP-CASES.md) for the
+new profile, expected timeout flag and exact limits. Earlier next-step statements
+below describe the original STOP1 milestone.
+
 2026-10-11: `mustop` passed three runs on the installed DAC960. This is a separate
 bounded experiment compiled from `switch/app.c` with `I960_STOP_TEST`. Existing
 production, `switch`, `defer`, and CTL1 control profiles remain separate.

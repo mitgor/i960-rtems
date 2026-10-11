@@ -225,3 +225,25 @@ Remaining gates before resident preemption/DMA work:
    forced cancellation, safe abandonment of interrupt frames, or resident ownership.
 4. Reintroduce framed epochs, retries/status and explicit stop-state semantics
    around that lifetime protocol; then revisit resident execution and host-RAM DMA.
+
+## Critical-section STOP and omission deadlines (2026-10-11)
+
+**Nested STOP and timeout checkpoint (2026-10-11):** all twelve `stopcases`
+card runs passed. STOP at critical depths 2/1 was recorded at ticks 18/30 but
+controller dispatch/drain waited until outer release at tick 40. Missing STOP
+reached the 128-tick event deadline; missing RELEASE exhausted its finite loop
+and returned with only the expected `0x4000` flag. All contexts, guards, paired
+RAM/MU restoration and unload checks passed; no reboot/flash. IPv6 HTTP restored.
+[Implementation](rtems/switch/STOP-CASES.md),
+[evidence](artifacts/irq-stop-cases-20261011/README.md).
+Next: concurrent user-control/lifetime design and non-cooperative task containment.
+These workers remain stop-aware; deliberate message omission is not a full host
+crash or proof of recovery from permanently masked interrupts.
+
+The preceding checkpoint's first gate is now hardware-tested: STOP remains
+pending through the nested levels, missing STOP times out and drains at tick
+128, and missing RELEASE returns after its loop budget. Three runs per case
+passed full restoration. The next implementation gate is a concurrent user
+control path with explicit session/command/removal ownership, followed by a
+separately defined policy for non-cooperative tasks. Do not treat these bounded
+stop-aware cases as arbitrary cancellation or resident firmware takeover.
