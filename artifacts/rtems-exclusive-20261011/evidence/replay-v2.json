@@ -1,0 +1,34 @@
+[
+  {
+    "path": "exclusive-rtems-smoke",
+    "boot": "3c5b99fb-e6a3-4bab-8df2-fdd16e43b1d9",
+    "resident": false,
+    "phase": 0,
+    "ticks": 8,
+    "restored": true
+  },
+  {
+    "path": "exclusive-rtems-dma",
+    "boot": "3c5b99fb-e6a3-4bab-8df2-fdd16e43b1d9",
+    "resident": false,
+    "phase": 1,
+    "ticks": 8,
+    "restored": true
+  },
+  {
+    "path": "exclusive-rtems-isolated",
+    "boot": "3c5b99fb-e6a3-4bab-8df2-fdd16e43b1d9",
+    "resident": false,
+    "phase": 2,
+    "ticks": 8,
+    "restored": true
+  },
+  {
+    "path": "exclusive-rtems-second",
+    "boot": "3c5b99fb-e6a3-4bab-8df2-fdd16e43b1d9",
+    "resident": false,
+    "phase": 2,
+    "ticks": 100,
+    "restored": true
+  }
+]

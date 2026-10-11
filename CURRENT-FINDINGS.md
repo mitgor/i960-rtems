@@ -1,5 +1,19 @@
 # Current findings and evidence — 2026-10-11
 
+**Exclusive RTEMS track (2026-10-11):** the user explicitly permits RAID/SCSI
+shutdown during RTEMS and reboot/power-cycle to exit. `exclusive` now runs real
+preemptible RTEMS after the ARM callback returns, with inactive i960 DMA disabled,
+primary/secondary bus mastering denied and external secondary grants disabled.
+Nine bounded sessions restored/unloaded; resident deadline/STOP runs parked at
+1,200/581 ticks with all task IRQs drained and resources retained. The first
+reboot needed user intervention; unattended recovery remains unproven.
+This is tested CPU/bus isolation within the existing allocation, not proof of
+cache-coprocessor drain or arbitrary RAM ownership. **Keep the cooperative
+RTEMS + stock-firmware path and all its profiles/evidence as a future option.**
+[Exclusive contract and remaining gates](rtems/exclusive/README.md),
+[30-iteration ledger](rtems/exclusive/BATCH.md). Production remains `autonet`.
+
+
 **Word-memory raycaster milestone (2026-10-11):** aligned RAM copy/clear
 helpers passed 5,280 on-card reference cases and 2,105 native-matching replies
 across five restored sessions. Native sanitizer/guard-page tests also passed.

@@ -1357,6 +1357,46 @@ new helpers; the production network service kept its tested build. Vader was
 back afterward. The next useful question was now about the conversation, not
 how many bytes a load instruction could carry.
 
+## Letting the old job wait
+
+Then came a useful clarification: the card did not have to keep being a RAID
+controller while it was running RTEMS. Rebooting to get that job back was fine.
+That did not make its hardware harmless, but it removed the obligation to keep
+both employers happy at once.
+
+The manual was quite specific about the first trap. Disabling an active DMA
+channel suspends it; it does not promise that every buffered transaction has
+finished. So the new entrance refused anything but clean, inactive channels.
+It also took away PCI bus-master permission and disabled grants to the external
+secondary-bus masters. It left the memory decoding that our host control channel
+needed. One tempting shortcut, disabling the external local-bus master, was
+explicitly forbidden by Intel. We left that one alone.
+
+The rehearsal worked. An ordinary setup call returned, a later timer interrupt
+opened our monitor, and two RTEMS workers began competing for the processor.
+The firmware's old interrupt frame stayed parked underneath them. A hundred
+timer ticks later, both workers drained their interrupt frames, the borrowed
+controls went back, and the usual RAM checks passed.
+
+Then we removed the return trip. In the resident experiment the setup callback
+was already finished before takeover. The host could ask for frozen status
+snapshots without invoking the firmware. A deadline stopped the workers after
+1,200 ticks. A second run obeyed a host STOP at tick 581. In both cases every
+worker interrupt frame had returned before the monitor parked. The original
+firmware continuation stayed exactly where we had left it.
+
+Closing the host handle did not mean the card was finished with its memory.
+The driver kept the allocation and its own module pinned. That was deliberate.
+The less convenient part was recovery: the first reboot did not bring SSH back
+promptly, and help at the machine was needed again.
+
+We now have a tested way to give RTEMS the CPU and fence off the unused PCI
+engines for this allocation. We still owe the cache coprocessor a proper
+completion contract before claiming the rest of RAM, and the resident system
+needs its own packet transport before Vader can move in. The old cooperative
+arrangement is still there, documented and working. It has become an option
+rather than a condition of every experiment.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

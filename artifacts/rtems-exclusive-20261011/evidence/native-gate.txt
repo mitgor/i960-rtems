@@ -1,0 +1,3 @@
+Exclusive admission: 512 cases passed with ASan/UBSan; active/error DMA, existing reset, external arbiter and invalid phases denied.
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Generated host source: one-way state before publication, write lockout, consumed-request acknowledgement and retain-before-STOP ordering verified.

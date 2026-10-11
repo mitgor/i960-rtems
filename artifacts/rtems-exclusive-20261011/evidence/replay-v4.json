@@ -1,0 +1,20 @@
+[
+  {
+    "path": "exclusive-fresh-return",
+    "boot": "f4e3a34e-fc67-4fac-a631-447cf99b29cd",
+    "resident": false,
+    "phase": 2,
+    "ticks": 100,
+    "restored": true
+  },
+  {
+    "path": "exclusive-resident-stop",
+    "boot": "f4e3a34e-fc67-4fac-a631-447cf99b29cd",
+    "resident": true,
+    "ticks": 581,
+    "reason": 1,
+    "snapshots": 7,
+    "corruptions_rejected": 19,
+    "retained": true
+  }
+]

@@ -9368,6 +9368,111 @@
       "sha256": "7ce5659a1d752a2fc9b1ead8aee188503612cb67f977f072feae18c18101dd6c"
     },
     {
+      "path": "artifacts/rtems-exclusive-20261011/README.md",
+      "size": 3150,
+      "sha256": "7123c11fca11f5e0b05dbaf146caeacf00bda6525d59842deb6fa7093aaf3140"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/baseline.txt",
+      "size": 2902,
+      "sha256": "a06b15934c384ef1c9cb7a44e8de3e07f20a4c3d80e08534bb8fdfa64b812dce"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/cap-retention.txt",
+      "size": 41,
+      "sha256": "7b07ac3f418eea91fb3129fefd22517023920789e4d774def2e8bb2792e85804"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/http-restored.txt",
+      "size": 2994,
+      "sha256": "ae223fb39cca36833828f74452b05675fd90747326d45bb8005d42eb35c7e9df"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/native-gate.txt",
+      "size": 392,
+      "sha256": "28c9e7a77fc2b8bc5c14040f6769d99dd548b469ca75136da760a59f2bd57fe2"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/native-tests.txt",
+      "size": 6593,
+      "sha256": "8e6d2beb5568b0aa40d3217949027d2093cfd638873159278c2503887f76f6fa"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/production-verification.txt",
+      "size": 492,
+      "sha256": "bb86c1b8d24d71f6b92214232ee31888b804c16e755ab5e673e545101af12ea2"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/reboot-after-cap.txt",
+      "size": 59,
+      "sha256": "e20d6fae620900c91be3181ab930bcf1ae100bc974d2be92d7551d59f62686a3"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/reboot-after-stop.txt",
+      "size": 59,
+      "sha256": "404534cb04d61c582ee29493d2ea4e1402476bfa7c32c070f0cbf0e0d0b0228d"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/replay-v1.json",
+      "size": 523,
+      "sha256": "f8c426f8f3f9f62e35bd5534ff1ed9e4867ff7985e8871d5a8be2b8ddf3fe34f"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/replay-v2.json",
+      "size": 703,
+      "sha256": "2ac8a936fe5bfdd6717aa389777e638fd2dd813bed65633ed1a0966f44de0c12"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/replay-v3.json",
+      "size": 408,
+      "sha256": "12f78306dead54461b47ebf4b4dfdeedf62c5b19f17f26aeac7a2bfbce2d3e86"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/replay-v4.json",
+      "size": 410,
+      "sha256": "5e68e4515c1054fb44d6c42aa51d0aa09aed7200dd56822371e22331fccae2cc"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/research-sources.json",
+      "size": 482,
+      "sha256": "13998bc7793627bcac885f19eaf7f95d37f5069ce3c6c5fb938b086aeb6ecc39"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/service-state.txt",
+      "size": 83,
+      "sha256": "c171adbe523c643a6b46f7490c8cf9d9f9f505e1a18d71b08814493ee6e1f32d"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/evidence/stop-retention.txt",
+      "size": 39,
+      "sha256": "12c5ef9c4369eb845850e983ce62c8ada849b7137721b6a43a27eb6d9089453a"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/exclusive-production.tar.xz",
+      "size": 362672,
+      "sha256": "7a5650d8f31dd5b712f402eeebaf75aa90f239ba563e506e8ead05cfb318abda"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/exclusive-v1.tar.xz",
+      "size": 699740,
+      "sha256": "4de2c5b6783d7df886d2be1c3f10f1cfd052e93f7d4b3fe97f6e1384d4582146"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/exclusive-v2.tar.xz",
+      "size": 806644,
+      "sha256": "bb87d2c88987114bb5747831135d931dd9547d63f3ae3c6a466dfc1f03102edf"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/exclusive-v3-cap.tar.xz",
+      "size": 771484,
+      "sha256": "d90963d3cc23e3b0219578aa4fbf99126dbbeafc77a037c4f0f84e7bdd562538"
+    },
+    {
+      "path": "artifacts/rtems-exclusive-20261011/exclusive-v4-stop.tar.xz",
+      "size": 786168,
+      "sha256": "d447b36053419f0ee137348b7f577758b67009b00e09795c90473ff1b19c9c7d"
+    },
+    {
       "path": "artifacts/rtems-handoff-20261011/README.md",
       "size": 2502,
       "sha256": "207188b114ed3dc2bb5d7c18edf760bb3ba41183da5caa429155cef5390c4ee7"

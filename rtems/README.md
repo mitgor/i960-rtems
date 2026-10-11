@@ -1,5 +1,19 @@
 # RTEMS on the DAC960PG
 
+**Exclusive RTEMS track (2026-10-11):** the user explicitly permits RAID/SCSI
+shutdown during RTEMS and reboot/power-cycle to exit. `exclusive` now runs real
+preemptible RTEMS after the ARM callback returns, with inactive i960 DMA disabled,
+primary/secondary bus mastering denied and external secondary grants disabled.
+Nine bounded sessions restored/unloaded; resident deadline/STOP runs parked at
+1,200/581 ticks with all task IRQs drained and resources retained. The first
+reboot needed user intervention; unattended recovery remains unproven.
+This is tested CPU/bus isolation within the existing allocation, not proof of
+cache-coprocessor drain or arbitrary RAM ownership. **Keep the cooperative
+RTEMS + stock-firmware path and all its profiles/evidence as a future option.**
+[Exclusive contract and remaining gates](exclusive/README.md),
+[30-iteration ledger](exclusive/BATCH.md). Production remains `autonet`.
+
+
 **Callback-free monitor milestone (2026-10-11):** `handoff` passed five final
 sessions: 20 bounded entries from the timer ISR after the ARM firmware callback
 returned, five omitted-RELEASE expiries and ten denied DMA/SCSI transfer
