@@ -1,0 +1,105 @@
+{
+  "engine_sections": {
+    ".text": 306720,
+    ".data": 69888,
+    ".bss": 250248
+  },
+  "compiled_sources": 80,
+  "undefined_symbols": {
+    "platform_hooks": [
+      "DG_DrawFrame",
+      "DG_GetKey",
+      "DG_GetTicksMs",
+      "DG_Init",
+      "DG_SetWindowTitle",
+      "DG_SleepMs"
+    ],
+    "compiler_helpers": [
+      "__divdi3",
+      "__divsf3",
+      "__extendsfdf2",
+      "__fixsfsi",
+      "__floatsisf",
+      "__ltdf2",
+      "__mulsf3",
+      "__subsf3",
+      "__truncdfsf2"
+    ],
+    "newlib_state": [
+      "__errno",
+      "__swbuf",
+      "_ctype_",
+      "_impure_ptr"
+    ],
+    "allocation": [
+      "calloc",
+      "free",
+      "malloc",
+      "realloc",
+      "strdup"
+    ],
+    "files_and_process": [
+      "exit",
+      "fclose",
+      "fflush",
+      "fopen",
+      "fread",
+      "fseek",
+      "ftell",
+      "fwrite",
+      "mkdir",
+      "remove",
+      "rename",
+      "system"
+    ],
+    "format_strings_math": [
+      "abs",
+      "atof",
+      "atoi",
+      "fabs",
+      "fprintf",
+      "memcpy",
+      "memset",
+      "printf",
+      "puts",
+      "snprintf",
+      "sscanf",
+      "strcasecmp",
+      "strchr",
+      "strcmp",
+      "strlen",
+      "strncasecmp",
+      "strncmp",
+      "strncpy",
+      "strrchr",
+      "strstr",
+      "vfprintf",
+      "vsnprintf"
+    ]
+  },
+  "undefined_count": 58,
+  "workloads": 20,
+  "completed_capped_workloads": 20,
+  "profiled_frames": 42000,
+  "observed_6mib": {
+    "direct_allocation_peak": 6456649,
+    "outside_zone_peak": 165193,
+    "zone_nonpurgeable_peak": 2211560,
+    "zone_total_used_peak": 6284784,
+    "instrumented_stack_span": 5856,
+    "largest_wad_read": 224280
+  },
+  "provisional_reservation": {
+    "engine_sections": 626856,
+    "zone": 6291456,
+    "non_zone_heap_including_output": 262144,
+    "game_stack": 65536,
+    "two_guarded_frame_slots": 128128,
+    "wad_transfer_window": 65536,
+    "rtems_runtime_and_helpers_allowance": 524288,
+    "guards_and_alignment_allowance": 65536
+  },
+  "provisional_total": 8029480,
+  "requested_arena": 8388608,
+  "headroom": 359128
+}

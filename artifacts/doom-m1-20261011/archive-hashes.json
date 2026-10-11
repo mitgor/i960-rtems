@@ -1,0 +1,27 @@
+[
+  {
+    "file": "doom-builds.tar.gz",
+    "bytes": 14060938,
+    "sha256": "3e69604811ab5af9e6daf604eb8cc7aaafd75e291b5af3e1988c5ceb44f0e68c"
+  },
+  {
+    "file": "doom-profiles.tar.gz",
+    "bytes": 57447,
+    "sha256": "8c5be61943704b2fa34487ddcf1517c91d81471e542014d74f79948d60772166"
+  },
+  {
+    "file": "doomgeneric-source.tar.gz",
+    "bytes": 3090826,
+    "sha256": "26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7"
+  },
+  {
+    "file": "freedoom-0.13.0.zip",
+    "bytes": 24143781,
+    "sha256": "3f9b264f3e3ce503b4fb7f6bdcb1f419d93c7b546f4df3e874dd878db9688f59"
+  },
+  {
+    "file": "newlib-headers.tar.gz",
+    "bytes": 67807,
+    "sha256": "c1424b06bf052b9000ac6196d5ad95a1918161731348984de31f5273024447fb"
+  }
+]

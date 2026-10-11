@@ -79,6 +79,23 @@ Next: validate combined ACK-and-PUBLISH while keeping full audits per request;
 no asynchronous producer, broader RAM ownership or relaxed audit policy is proven.
 [Contract](game/raycaster/queue/README.md), [measurements and failure evidence](artifacts/framequeue-20261011/README.md).
 
+## Doom milestone 1 complete: compile and memory profile
+
+The pinned engine now compiles all 80 translation units for i960RP. Its
+relocatable object contains **626,856 bytes** of text/data/BSS and retains **58
+unresolved externals**; it is not a loadable card image. Twenty bounded 32-bit host
+workloads completed **42,000 draws**. Peak direct allocation was **6,456,649 bytes**,
+including the 6 MiB zone; heavier workloads reject a 2 MiB zone. The proposed
+RTEMS ownership request is **8 MiB**, with explicit runtime/stack/transport allowances.
+
+The indexed-output allocation and uninitialized startup wipe are corrected.
+Three later frames still differ between repeated traces, so deterministic oracle
+acceptance remains open. No Doom code ran on the card. Next: resolve that issue,
+implement the measured missing runtime/platform subset, and prove the larger
+loader/RAM manifest before headless target testing. [Report](game/doom/README.md),
+[RAM contract for parallel RTEMS work](game/doom/RAM-CONTRACT.md),
+[artifacts](artifacts/doom-m1-20261011/README.md).
+
 ## Decision: use DoomGeneric; borrow measured ideas from FastDoom
 
 Chosen base: [ozkl/doomgeneric](https://github.com/ozkl/doomgeneric), inspected at

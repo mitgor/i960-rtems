@@ -1,0 +1,18 @@
+{
+  "i960_engine_verified": true,
+  "compiled_sources": 80,
+  "engine_bytes": 626856,
+  "unresolved_symbols": 58,
+  "host_frames": 42000,
+  "low_memory_failures": 4,
+  "repeatability": {
+    "frames": 2100,
+    "initial_100_match": true,
+    "differing_frames": [
+      497,
+      1426,
+      1817
+    ],
+    "full_match": false
+  }
+}

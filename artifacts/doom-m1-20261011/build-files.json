@@ -1,0 +1,4466 @@
+[
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/.gitignore",
+    "sha256": "20ce02a86baeae521139e1c91bbb4e4cdde8a93ec4bfd9b44068426e7a63bd37"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/LICENSE",
+    "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/README.TXT",
+    "sha256": "48e841db2b6f44faf87754e8629535ec2d3a25c6aa1cab05774f5cf05269efad"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/README.md",
+    "sha256": "56f0c309866be4de8469555b78c6adbbea878ead302fa415eb9fc668cd5188db"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile",
+    "sha256": "c4c0554b033efd5a357dbe6ab3095e0861b897c06c624da5da62d13fd0ac2d3d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.djgpp",
+    "sha256": "95d1c6d161047f0d97290ab0065c6cc52336ac644da1ddbc40aebc1ed4f22dee"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.emscripten",
+    "sha256": "59e0206aa05b3b94f7450988c3eb24ab52d44721b7d0138a02f321b53a930c3c"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.freebsd",
+    "sha256": "306caf38ed22346c7e2ae482ba2ffd06d018996673f053580c3f51c35fc0ab2f"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.linuxvt",
+    "sha256": "45007a3c1270f28320c5b5eaf50fa6b14b1dafcb33c8c23706b1975457a2701a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.sdl",
+    "sha256": "ed7902611ee571ca633da3b694b50b29e2ebf294399f746e37787626648d4aa2"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.soso",
+    "sha256": "0bfd20701e679d9ea019e876554ef7740977a4e6ddc96343f3d72e0ac48893d8"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.sosox",
+    "sha256": "a113dc6ebd0ce2abbe8481b781ee02cbd6d3cf19a3d72ab7813c1782d0c65ced"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.win",
+    "sha256": "f475fb2325b3dc13209d846f89771230e819be281860d1884b964195f9cd2b2e"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/am_map.c",
+    "sha256": "4d62b1c824f161f84efdc6fb7dfd3c02123a532f28f5296e0eef9c79778aee65"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/am_map.h",
+    "sha256": "1755affedbe06d36901c5d4754f931ddd214f28ac6625706eb56533925f4651d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/config.h",
+    "sha256": "3fcfe210bf24702f25de2e72ca2bd0c7bdb20b23cb412ffddad15fcacf2031d7"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_englsh.h",
+    "sha256": "a87f7d2d4693bdae0e0f8bf81918fe19bd78742d28ee4bfc3c7a92759d73c06a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_event.c",
+    "sha256": "f06d11316e62d26f8d4687103d77e88ec92e2273b5dedcd798136496ba8e9004"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_event.h",
+    "sha256": "e42a92f9e8bbd27c3f810acc5d50929d9329019240b41af13fc886815ead2a64"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_items.c",
+    "sha256": "57796c266d224c2cab69f9c8c9fae564d4161f04e2f859a80062675ada61e23b"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_items.h",
+    "sha256": "f251ed3bcdd5b15250db5c38c6b52996bc684c88802ff87dbfe5b4859d59dab4"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_iwad.c",
+    "sha256": "9723efdc547f3739e26b72232b80e36c37c9f685795c3990cb696a7103daf88a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_iwad.h",
+    "sha256": "b9fd8c8bd82d8e2f6952ee7645e221c42ba7c3f1793939a7596067ec1bc68396"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_loop.c",
+    "sha256": "e93f84c7794f2fce9da0c4c96173fa2eec9d48e6a0c31daade9c48a1d2af35ea"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_loop.h",
+    "sha256": "27cc9f6611fe6273b39e3e780d44f9f25bc61937e5f1f62711229568af311a8c"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_main.c",
+    "sha256": "9cb01798f600879ce8142a1acdc00828cbea48e1d01371f03b166bffdc72c0ee"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_main.h",
+    "sha256": "93d04e541a63430da34396b546b4561867b60fe72a21ee7cf382159c8dbac421"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_mode.c",
+    "sha256": "4db5e599badeb809b8f1bcdf0ce483dcd704cdbc1abdb3fbdba447cda150ea0d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_mode.h",
+    "sha256": "809224d5ab46b4a29be0ea2d82f3cbbd9eea6e476a38441f3aa42bb0f99b08e4"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_net.c",
+    "sha256": "dd6cbd6e3ebc379bcdfca2e02e2bf0a5a3bfe8c1945a920f8c8dacac9fc45890"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_player.h",
+    "sha256": "349de25b7ba47532507556f8ac4f2f218891f36b1c4647defaee03ae4b85d6fc"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_textur.h",
+    "sha256": "7500fb01de1fe637e05110a0aa189425979bddf0de327a31527434418f4d3efc"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_think.h",
+    "sha256": "a500e07ef47fd0e1ab24d34f5df24e7a59c7ad1b657f67c9c977704b72cef08b"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_ticcmd.h",
+    "sha256": "96bebe68c88b81a8fb35bfb6e8d74870d792107e1ceabc1c69069ed257aff851"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/deh_main.h",
+    "sha256": "de68692339596b59f8903e41ce88842d79bef3c92d3995f4d68f9056f90ecb9e"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/deh_misc.h",
+    "sha256": "cf07e29421704d2491f53cc3e055e367c6aaecce2baa9759e9bcace21e657cb2"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/deh_str.h",
+    "sha256": "2387262e1fd9751575be33659145dfc900d7525587e267b3dab5c63c7daa5ac0"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doom.h",
+    "sha256": "09f5e81390611c078348327489b08e4eda85306c83dc2c2a764406b2e0abf51d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomdata.h",
+    "sha256": "a258ffd069833b0c81a132c4db74fd9121e1815267b309c2b3b5dc501971a3eb"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomdef.c",
+    "sha256": "56e23ec1235d7478f64577ac349f9fad92a9fe6f77a0197630d6319f0838b02a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomdef.h",
+    "sha256": "87eaafe4d3366fe89924c8649c45b91fe89b6780a17f655e90c8a1d77b318a77"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomfeatures.h",
+    "sha256": "01fd54d8060c650933f1d65c90fbd04355637b9ec66108e65cda0ef1bba4b929"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric.c",
+    "sha256": "bece34e9d03af40c439aa15ef89006caa7f206cac23d8f87e843c79a2ae1affc"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric.h",
+    "sha256": "d24861dd7aa75d283226724f710ae4226839898bc61b986a0602df7df19df148"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric.vcxproj",
+    "sha256": "6b6fb3d0b50f1a478a4f1093c897adff685fb6d12d5dde9708db78c9bf6ad683"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric.vcxproj.filters",
+    "sha256": "aa15faffac79a4c95c4e44f850446a2a1ae38e3236c8fb4b63727166ec3856c6"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_allegro.c",
+    "sha256": "01099e40148e07b6bad00a4f4f5b77a8d145c68cf82964d08f58c607aa57dc1a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_emscripten.c",
+    "sha256": "a95ffca364abea76c8729694fe20eaffc1d1790d7d0affd290051852d6e8ccfe"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_linuxvt.c",
+    "sha256": "2e76ff582626c5d480280501b4e23d2459c12809aec02a7b76aeefaf6c438d90"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_sdl.c",
+    "sha256": "d1d323309d192b978cb86d98811233987ef17f507f1c9c9968b34891c7fb20d7"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_soso.c",
+    "sha256": "f78fc52d7e00439a00c84bb53c3556b36400bd1d1db14eb880cf171da82eb069"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_sosox.c",
+    "sha256": "ff244f7719d182a6222eacf4ce0dff1e24947fe972dc24838d6450c586d637e5"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_win.c",
+    "sha256": "591671e0b80a50289c0aec9aeb460f2296bde8a1a589971b96d59ef9c5b2fa0c"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_xlib.c",
+    "sha256": "e7c06b4f6c41ab083501bc6196ac6249d4cb1d9f04f92a792008561ac9ccb09f"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomkeys.h",
+    "sha256": "9bacfdc85b2003913b8a571c0762226d07e5e303dbdaa6c64887a194a4279ba2"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomstat.c",
+    "sha256": "fa9332d64d0278e8eaa1481e18175b5b06d012af9e3f56a72edf823401a473bc"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomstat.h",
+    "sha256": "a4c71dc810f4ac7b23a881a03566b4427356f7d59de37d5ddd38b43069c1f1a5"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomtype.h",
+    "sha256": "17467a61fe3bb8b3c40a9173430213deea2d69a4f2ddbf0c7fc89bd180008827"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/dstrings.c",
+    "sha256": "9804ceaafe342d4a12d0ce52a1f882f84e1d8d62482bd8edf914bec8f4d6fb84"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/dstrings.h",
+    "sha256": "81e8527b9264b1271fe7ab0737a359d24fb1f4052994ac3aea9a98c7a3a651c7"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/dummy.c",
+    "sha256": "fe10b9869685fd586d5641883405531b3694d4ff6f9e6b800c4d3a43710d65fd"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/f_finale.c",
+    "sha256": "ac5ea9aff7dc47a8621e014b9f65ff91ac5cf8cdc1dcdaa855bbd5e3acc00861"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/f_finale.h",
+    "sha256": "8b1d4777e91f0f8be1c97475698701e0f17013d00c394cb6a2cfbb87f46b9d62"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/f_wipe.c",
+    "sha256": "60969b7843a0eb0483f549abff2c4fcd20ccfeafc5ace8817836d1e895819fa0"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/f_wipe.h",
+    "sha256": "e3e769803e2998aab83a6f98634654ce76f9c51aa6c7c551c4489deac5a2e041"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/g_game.c",
+    "sha256": "88d13781006089e80f8d1e4c1bea9fe6934f1314c290a1f379fc8155c3268123"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/g_game.h",
+    "sha256": "b808b2ca10e734e22bef8591b0124d9ff4a4ef808ac12a6170189b4ef96c0c90"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/gusconf.c",
+    "sha256": "4efa93fb1d49a1c8d8c4f0cefee09066da9cd59159f868fd9658a064898d516a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/gusconf.h",
+    "sha256": "beec7b7cceabc46ecf932ed584c85cbb68acb6dff7776f4df8586b35054afa58"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/hu_lib.c",
+    "sha256": "fa6fa03cab0645248aeb16400ced25f9b8d52cadb9bf988ec9a6e2dcac228018"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/hu_lib.h",
+    "sha256": "6ce06bc30e0275d8c77ebbf1b70d581f93594ead3efd2a0d84dcc8d00394fea5"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/hu_stuff.c",
+    "sha256": "726c8fa2a23a4da67b87b312156d9b04472c9cf966f210031e6924d46865ce0f"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/hu_stuff.h",
+    "sha256": "b7c9078a1eac5ccfc0e70ca691490ece0dae6171c28e315f4ece12ccff60cee5"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_allegromusic.c",
+    "sha256": "ba9b072bb1162f3435ca9b2ff8420fe03ce2b61adfbc756dfee302d7316d1792"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_allegrosound.c",
+    "sha256": "8570343be57fba9ff76b7eb6ce977cb96058fc861f450c8418443353ee14d81b"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_cdmus.c",
+    "sha256": "6573cbb850e268671c21f9278fd0f3a5bb3c4bd31801e2231c649a334145902a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_cdmus.h",
+    "sha256": "e0024e794a5e507c476b011a23770726c940e211c7c9603452d3bd156db47c30"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_endoom.c",
+    "sha256": "4fd3d8b7b8959512b6742cb922b3a637f137ab64dd00c1811f146a18db80b590"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_endoom.h",
+    "sha256": "54834211849d212b3aec65b03ff8a8906f0b1f1985d334188eaad8990af73e4c"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_input.c",
+    "sha256": "c7cfc91d1edaefd66395f9293fbef5050ea2ad367fd9acc2afd4b4cbf213daa4"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_joystick.c",
+    "sha256": "01f52e0e986dfe3114e97a388f977a01d74e9bd16a454a57df58d6ecaeb7d519"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_joystick.h",
+    "sha256": "1980f8481b417416d048ad03968058f0ff0cce9700e10f1bafd8e965190a80d1"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_scale.c",
+    "sha256": "f9dad27d7cae5ca6a63c87570c359d40e35002fb499c7d8a2e58ebb291a93e92"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_scale.h",
+    "sha256": "23d43b89fea35c33ee14959643441dafe2ba478b66f0d9c25af170abf27d203f"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_sdlmusic.c",
+    "sha256": "6847ea7539ef7b7d6cf7a7e58bdb252b97e725e41f92db6a50ce5b858868c96d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_sdlsound.c",
+    "sha256": "56a39689d5803708e8eaaec1481bb0bcec3279de5493116530033fca76bcb8b6"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_sound.c",
+    "sha256": "715918bc37b927c9426f37c3565d58d0f9f7bb517791b88b673820cc768572ee"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_sound.h",
+    "sha256": "b0a63a0fb482e767aa7812f5f7db3c66883feda084a30ec59abda10abc314a5e"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_swap.h",
+    "sha256": "b8e773577839ccb51c0c9bf7232e9c174ec32e44c9573b1b38cc3337e2d0ad45"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_system.c",
+    "sha256": "e547a31d179f5aeb3a377f4d4fe22d46d212e737d2dedde8b64b0d253a4d71f9"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_system.h",
+    "sha256": "19084cfd6ffb7b69516cb62916c2a510ace67545f17dd6fb673be848f1d81d9e"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_timer.c",
+    "sha256": "cf59e0db8d0ce9cefeb22643141a8983cea3668f16bae2bf009c58979c3b5cb3"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_timer.h",
+    "sha256": "39449001def04dbd4984be2ea42ed48e3a4ba1e0b10fdb43e43d9e18b23f5081"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_video.c",
+    "sha256": "96ab70a06680aaa5129fbc3bd7ac9237b186e36ded1c725a957ce69d82a9bec8"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_video.h",
+    "sha256": "c3321fc943e421a9a889509b7a2a7ee5b6a848c8fee4ecaab746c66588c15a3d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/icon.c",
+    "sha256": "d1fc9187565142fb687830b151b63190c47ad4220210661dbe98edb0f74c068f"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/info.c",
+    "sha256": "43ed8b32ecd053e26b485a5443d8c11d4cf302377d5f62655d302964c90e2a0f"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/info.h",
+    "sha256": "7ddb348b1f09c500446fb7e8c1e6dd3eec715f3a01e1fdee211ad3b0ec9516df"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_argv.c",
+    "sha256": "7fb6bde5640bcce06a92cfc96bfab58c39a172d55823c7f7fae62864996f8da6"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_argv.h",
+    "sha256": "f6e755d39f0edb6654625e11f328ae1cfa66f0898da57202eeebeda49bf8dd85"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_bbox.c",
+    "sha256": "89b9abb5d7b112e1d49052a7936020503d884e7368729dbf079439d2efd2b900"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_bbox.h",
+    "sha256": "6290e396400b65a87c9c14eddb04c455c64381f116b9784870e5162cfb6d1857"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_cheat.c",
+    "sha256": "4d68a9eaa79bfdf4efad2f92246aaff7d067c3b5aa4aecc06902ea98ae76cdb7"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_cheat.h",
+    "sha256": "30ae07736b39f44b57edbcd9c4b861dcd6d81cede100aa7c3c6c85648af05ab2"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_config.c",
+    "sha256": "9ee5543597647fdbd182019769d15e12ca54d930595885a520344adfd041c6d6"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_config.h",
+    "sha256": "002679e7cd0e9a5aeeede9e57fa9052c8f18e34e8273bd47b34ef878c95714eb"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_controls.c",
+    "sha256": "8b85c59a9af0cf2d698e6ed1fa0796e4759ca94fa7bae94c853b775cb9584718"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_controls.h",
+    "sha256": "089b36825ad0f49957990f52fc10fd3c4b2404b7822bf3051b0a69b297ea8f7b"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_fixed.c",
+    "sha256": "d5e13eb7d84416055a5981b8c9bf6495821795626114de40d9b1d4ca36bdc544"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_fixed.h",
+    "sha256": "0928f51e77d3d9dadcd8593821e5c3788a82144e3d74ad40414e87d82cd28c70"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_menu.c",
+    "sha256": "d8cf0f46692ce17301511bd5b4163d3985c309afd34265f9cedf17c13a08b9d2"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_menu.h",
+    "sha256": "bd8d8c0c6d3f759a5bada0b2a8210c4242b5a46fa0f85439eefa0c425ae31d23"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_misc.c",
+    "sha256": "fbd40d5fb82ed3a315841d7bb4a2fea60971993597fb9908ff7c69d576028cb3"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_misc.h",
+    "sha256": "5e35de7b90304c2ef4a88dd4f4f672addb9062ced9b6f98566d253177b8cab7c"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_random.c",
+    "sha256": "5be0ddef0e84bd3e4789e4d6311d979263b8da43a32f30403b9e6d08bf070fea"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_random.h",
+    "sha256": "f9d5a08dc6dcab13c22c8bb20a65e70ff42b35623dee81c0d2f363b595c2b612"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/memio.c",
+    "sha256": "29619ef12147ce4f66ac54ef05c59c7e2c0e792d851f9d1921837c1dc7a165b1"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/memio.h",
+    "sha256": "3dff35a40b042f831d0b2505b6238c8ff96663ea527aae3614d23ee1870fcc92"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/mus2mid.c",
+    "sha256": "47f7f8ffb9785774b19a24d034222a1fcbc6a90a40e0ed75dd3d80efd6f01b3b"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/mus2mid.h",
+    "sha256": "5c0543485225e396f77e1707b033d4e679e950b1af1f3ad8f05d4bc274ee75ac"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_client.h",
+    "sha256": "76d382f79cd596e99cedfc1e8ea50d472aa3ed03cc5ac734ef3e5effc9a8dfff"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_dedicated.h",
+    "sha256": "d842253025919a48f3c314f354450dd64ef31448912e6ed86ab2a75f33add287"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_defs.h",
+    "sha256": "a35b30a1e248fc28f190113794f9c11c3d991a196ad11a31cd2dd9717160247a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_gui.h",
+    "sha256": "da25eac4d1e2e6e18d05039f3830dda814e81cbad4bf1af4f8fd9c1d5e7297c3"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_io.h",
+    "sha256": "50d07149d4603b20b4477443e88adac8ba72303a190253d7d1fede4901db64bf"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_loop.h",
+    "sha256": "6b2517390fda6c5a71b4db7cb8de885de685960d8d469e750712712434c0a998"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_packet.h",
+    "sha256": "3386dce3169cb8a5ad37cccc010b64bf8a66eb36d847eb55d38c5554af10ffec"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_query.h",
+    "sha256": "2c1a1be246d9b560683b2ef56719b6b6b3958f62819a033bb3a35dedf724d60f"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_sdl.h",
+    "sha256": "73c88c6ec8ffad3a30583a48e1ace2ff186d4b5bb08061776c0fd01ec81ca51a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_server.h",
+    "sha256": "33437f02e5ce1b5cb2cc3fef790512f75b3afb1b14a90bf92378738c54af3cef"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_ceilng.c",
+    "sha256": "20c58a9336c44f61d42f5b57bcab08f866889776083365850b34cc24a90f7017"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_doors.c",
+    "sha256": "429bc5c7446caf4c95bfc0ac8a6c4f9892f88e9f4615fa02103f180a3dbb4178"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_enemy.c",
+    "sha256": "0043c0fa6107ddd001737e5da25d80c3d8c606769710d25a9fa064661cd6a7d3"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_floor.c",
+    "sha256": "8bc68d1f1bea828aa72ef09213addebd946483e07886ca7e51457c95e87a4ec8"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_inter.c",
+    "sha256": "2b8f7c1c38feefd296406438820ddb7fb13c09c2b3cb5a78ee030b7838f318ba"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_inter.h",
+    "sha256": "83b5c68164306ca2b51675d9753e118ca854a2eadc56c2c9e5bdf4b9bdd83cb4"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_lights.c",
+    "sha256": "f0aebf42466c7995f7d84faac28bee1abd25cb83e76f668edb7a24b77311ed91"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_local.h",
+    "sha256": "f9c74f3ec882f4f759653fd96bdece15c83b4bbafa9baf47a3d86ae56d72ce1d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_map.c",
+    "sha256": "7e39f8a82c7a7b3de34845a28ac14ea8252509ed6af2ba280f1ba5d9d050c3e4"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_maputl.c",
+    "sha256": "46b752624ae6686fffab2493c121f42eaa29816eb9bb487689ca6dd79a9373bc"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_mobj.c",
+    "sha256": "c80a7063eb28fe1461a2b40845d48405fddfeea06fbaf2fd30cec88e689f070d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_mobj.h",
+    "sha256": "b54b339339a442f52412a6828b3749306c7841550849299f1f7d272ea323e168"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_plats.c",
+    "sha256": "9fd0e8bfdeced8ef16a46694b3d3159cf110e499c3a4ef7ce68e9b8c12f7f2dc"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_pspr.c",
+    "sha256": "0d8b0f8a285d6533e81bc4fbaeeb18a6ab4bb305d547e81ae3853a462e5c9a1e"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_pspr.h",
+    "sha256": "eee47f10c539d4c27b4b72bddfe5d83b2f317c14aa3d92eb5f9d1f993838ef6d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_saveg.c",
+    "sha256": "00618c964bea7664fef9f6b15e76f5b6d8766d7bebb4e0e979f0c2e4d8289cb5"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_saveg.h",
+    "sha256": "1fb50d63262bd64046c3553d4a2f3e5913878c792338d0ae77934ce59bcd1ee4"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_setup.c",
+    "sha256": "e6735d36ac04a58c77467776d96ab2fa0f8234fd00c522cf7484ed1510abe3c0"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_setup.h",
+    "sha256": "b694051e5a6981cfd5800c4f6a64484553172c4587148b5354c5db082af46dc9"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_sight.c",
+    "sha256": "9435efa2f2d2755c64155b3a490ead7587838bc32a8d081d45b64c3d45836271"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_spec.c",
+    "sha256": "7b79a0d9972f0866ab0f1a0cdcbf377ca28851d1d2139e8651037808eaca276e"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_spec.h",
+    "sha256": "0215f64ac43834fd292bc32003f84e6b195f9fb0ab30d0b6cb7fad04fdf78109"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_switch.c",
+    "sha256": "e7621d563f384a2e228644612a59702c7cd0f5c7ed88fa8f69a09098c062c236"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_telept.c",
+    "sha256": "5d0eb86e2620c7f58d9ce106ba85ffe331e7fe0886f7e3955d7e321a452551ee"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_tick.c",
+    "sha256": "824179765df5de9c3c93a420b606cad7aa48ccbd393bd4ce22f7fba9d9d54a19"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_tick.h",
+    "sha256": "558c6879d9fb461ae1bf0f3e42f492fcdf4c7291e1795f9a283add8f78149567"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_user.c",
+    "sha256": "617d5ffdd3e67770415d26d370e24bde8afcf525d46510c63753de3c4e648fe2"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_bsp.c",
+    "sha256": "08197bf2685b9c9467af4483517e4842396889504a7311506ff0c73b8f56f371"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_bsp.h",
+    "sha256": "fc1adc08614fd463384c8af565e82bca4dd396316d18302cd2baa3a9250a303f"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_data.c",
+    "sha256": "6806c473319095e24fd422a9156be7a19eea01c9f11ade5543782a25813c6e57"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_data.h",
+    "sha256": "ad200859ba61da621a82182bac9835dcc79f03e35d1ac91064c791676e1954c4"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_defs.h",
+    "sha256": "ab5e553358945af3cc800eb05d5275eed5e678e7452b0d872b35d837c866d272"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_draw.c",
+    "sha256": "b13e6ac18a4e911875601c15ccc02b7f1958712f13e5edf85cf0134372623bce"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_draw.h",
+    "sha256": "9e8d667a90785e93b44547a94cd7c0f317e6fce199ab3d551f9346d6ef9465ee"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_local.h",
+    "sha256": "f0b87b3534d532b37b58386519de6b1d06328a580fe2af62f3de340aea95faeb"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_main.c",
+    "sha256": "f4b0a5f14ac46fe90f537553a9dce558d8cc2d0aa6aab6c53a8080598fda3ab9"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_main.h",
+    "sha256": "bfafe1bb3bfab0de24e14f463ed1162fdb28ce4a78f30d7a514e86ebfba359a6"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_plane.c",
+    "sha256": "d16c45af2658781620254b4ce2bc6985980912a208b3cc7037986a142ee3c7a8"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_plane.h",
+    "sha256": "e792ae34f6440363cc1e7ed68a9d4880b8a1057fc5293aebfbcf4466c889d773"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_segs.c",
+    "sha256": "3c473ad15d4830bfe24be959cd3e2ce72e7a6bbb2a41bef93495a7f11ffd53b4"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_segs.h",
+    "sha256": "4ed0b751b8a0db73b01cdd0f6ec24dafef61c1b403de2be83094cf84e93c26ae"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_sky.c",
+    "sha256": "5e7ea2b14c227ff7df297741e1be674e6a7865ce2eeab29c99ca12d1f3209ade"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_sky.h",
+    "sha256": "cc53c08d1cc7ef042944a2f9d1924ebe27022b6ef172bee3e492d4cfd6e9240a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_state.h",
+    "sha256": "7ec040a913b05ec2c57ea33720fd600b702186701076faad5a4f135e65a562f6"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.c",
+    "sha256": "584277754102354ebd9e9a9dfc804e99466adafff394444a272dd241e9c64024"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.h",
+    "sha256": "664ba8ac66b160e321dce8a00a9d29eea4f39643f20f7711f6d439286e58ef60"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/s_sound.c",
+    "sha256": "b11d6990c9308edf686a1c77bcca1eded7e3b5c0e233a918cb195861ca412101"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/s_sound.h",
+    "sha256": "08c6e17c15a86927f86e9e68fd16b8b7c7b50f7a11abd313e9905703969cd4d1"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/sha1.c",
+    "sha256": "1920c8f3c669f86678c250d997d2159c6d562f41414891e34544c331e45aef22"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/sha1.h",
+    "sha256": "cda0dd9326ef9bcf5622076fab20e7e420c8dfe2d173a9859cc7cddefb78804b"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/sounds.c",
+    "sha256": "28d358a0b76ec79208773ce4f9644ac2624a3950a518a3dad1decc8697d57d71"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/sounds.h",
+    "sha256": "8a360f02c2bcb17c0fae62bf41317f91b785cd63ef7c9f35bc0cbbf708e9aa7a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/st_lib.c",
+    "sha256": "f30d72536657f369a4fea6c03e60122ee7d385d1062615c7e5a917c8c086c63c"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/st_lib.h",
+    "sha256": "e0486603bc4154e87fb6c90cb4e669365f9c2e66a29e6c8296e8534d7e6223eb"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/st_stuff.c",
+    "sha256": "da145ef218df8f46cbfa23854dc6a993f80c53b15a9bbee628cebd3fb78d024b"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/st_stuff.h",
+    "sha256": "7315a6067fe21c6b0b88be1c2eaca4f2e3623c7c24f4949bc30bcf0d71216772"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/statdump.c",
+    "sha256": "79ab0c3af80f05e01df1f80f37d4e3902387f9a69acf50118e763d3a46302761"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/statdump.h",
+    "sha256": "15b7f0891cc6848d4f17bbb75508cb0f7ab1eee56067e7a8e556d0d151bf849b"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/tables.c",
+    "sha256": "b20ffe17b3b32e6eb689199db0b314deea234091301f2c34dd82b3512b42c411"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/tables.h",
+    "sha256": "f37583bc957fb456c4229fb85a6cb57fece3d24c069df622c8c9690dd66d094a"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/v_patch.h",
+    "sha256": "e5300f9c7b7c762131569f0e9d906b30fabe1d90eec040ad5808561fe7ff7da0"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/v_video.c",
+    "sha256": "19d99cc57a49fb83a7357332a2a2338970633b477a883ffe61f9ee876ac13fe6"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/v_video.h",
+    "sha256": "42f84f7588c2c33d6b7ba4297dedc83927063a39fb40f391df7399c8b05ad0e5"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_checksum.c",
+    "sha256": "95a62cd90d615d67cb4326aea446e516df68a2384827236c55b01e483afdc571"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_checksum.h",
+    "sha256": "3ce1d2fcaf078d69d38bf7ae11e85c195463cf7da728c0546296eb3959b8b16c"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_file.c",
+    "sha256": "c1da5ccf0ac64cbb3023730ffb79569d424b443de2e6064d081b0dea9566b6e6"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_file.h",
+    "sha256": "3d2fcf565ae7ed32f2000bf3517ae55d6311a2e71069c80d3aa54d6c267e2c3c"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_file_stdc.c",
+    "sha256": "515a68720dc0f4b3d66be0fd7831e5dc15d57d2015a2ff60613d26d120332237"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_main.c",
+    "sha256": "fc9768762a4f5d3ee487f08ac483ad7088e443c9291fd7d4696b5177b7770b10"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_main.h",
+    "sha256": "9c8fc5515ef36b90e1ffd66a7934b94ac581ba7119f675037992f4ba9a6c4628"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_merge.h",
+    "sha256": "e8c2ba4f7f357fe265acde37122e42d6d4fd73bf135efcdb5b9af3043409ac34"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_wad.c",
+    "sha256": "5e3a6c495c5fc839f816ab6fb856272cd887ee4e9db67fbd6e0d339dd7847027"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_wad.h",
+    "sha256": "5fb042b3db5b20a09f2dd70134e734c26dd42230925c1dc9068274885bcc7d5e"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/wi_stuff.c",
+    "sha256": "881c934b7100507ce4141c74255c03ba381434632e233a34f7b98ff1c7ed4e03"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/wi_stuff.h",
+    "sha256": "82013f95fa7d59e1006f4f080d8bfedf69919571f57714415cf3413e049f273b"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/z_zone.c",
+    "sha256": "37b296f9ad28decc44b5bca9d38c6ea81ddbd8ab977c1d06f03fc7360e316423"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/z_zone.h",
+    "sha256": "d392cb68bf7c05b5950db5556757fb9271e8be903674afa01ab4b6d9d767871d"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric.sln",
+    "sha256": "671cdd79944e4d1f7ee62d76d72e494e307fa2850fc82a9c08f4c76071be2c5c"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/screenshots/freebsd.png",
+    "sha256": "294fac40bdad21698ce8722800d5351abdbd541b78b31b12e0c536bf206e1bfe"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/screenshots/sdl.png",
+    "sha256": "5775b52d24b4913837149adf6dad3c9f29e2c8d3ae1dd2ccc1d78062221e5378"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/screenshots/ubuntu.png",
+    "sha256": "e8d60d065593d5090f7f25b0c4eee73e246935825e0698e6a88e4d5cbadbc5e4"
+  },
+  {
+    "path": "cross/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/screenshots/windows.png",
+    "sha256": "b2ea268d187039e551f4abdc638cc1daaa8e2fdb01084d8078eb0e4cb0d8b60d"
+  },
+  {
+    "path": "cross/i960/abi-probe.o",
+    "sha256": "d7013f2aa906521962a999c5f883e1521b95c48821bbde2aa155874e7be7c53b"
+  },
+  {
+    "path": "cross/i960/abi-sizes.txt",
+    "sha256": "025bceedfa2a3c1f9de19f3615b125d5dd358964055b97f3024e7c9edf29e557"
+  },
+  {
+    "path": "cross/i960/am_map.o",
+    "sha256": "4a586cfb0a8be784fc61ac4ab2c18d23db461be531360e9fa13115099cc7f007"
+  },
+  {
+    "path": "cross/i960/build.json",
+    "sha256": "2adff201458a83d137dd7c4b4358f44b07f53bbcf872c663190013bcbabfd557"
+  },
+  {
+    "path": "cross/i960/compile.log",
+    "sha256": "17ce6b7eaf8eef001f3aef3689a8648ecc8f5a075179f7edfdccf6cbf8c887cd"
+  },
+  {
+    "path": "cross/i960/d_event.o",
+    "sha256": "e23e740fd6ea5369ef693ea49234983065c35987710eb0dda902b54c0abbbb2e"
+  },
+  {
+    "path": "cross/i960/d_items.o",
+    "sha256": "0f250ad6cd2a63db4b1b55a170d15f0f64e864e3fda800846f4492bcf25f057b"
+  },
+  {
+    "path": "cross/i960/d_iwad.o",
+    "sha256": "b3b3e0857fedbfa4fbf4c68003f001653cbd024fe1a0c0b46789611cfb1451d6"
+  },
+  {
+    "path": "cross/i960/d_loop.o",
+    "sha256": "0ccab621c0a56e7ee23178d3b265488c0436df39dc251f3b3d0055830d56de70"
+  },
+  {
+    "path": "cross/i960/d_main.o",
+    "sha256": "25b81a790c9993076259eb52db89237aab183aea682132ded80477cddbcf4e80"
+  },
+  {
+    "path": "cross/i960/d_mode.o",
+    "sha256": "841662cbe881c3c18a61222ab3332cbf65f464253371cb7cbb6c477cd4140e59"
+  },
+  {
+    "path": "cross/i960/d_net.o",
+    "sha256": "e60f771452db384734f23180c3d1199fb852dabea037c02bda5a270fbcae4400"
+  },
+  {
+    "path": "cross/i960/doom-engine.o",
+    "sha256": "f421630513e0d94f057aa60532b89009b3948c527fad0d3860d5c8116906d1b1"
+  },
+  {
+    "path": "cross/i960/doomdef.o",
+    "sha256": "cac2fd3476f1b813949eb45beaccced80a3315ddc1c75753508361c9baec7471"
+  },
+  {
+    "path": "cross/i960/doomgeneric.o",
+    "sha256": "a06748ded1e3b13bd40dd4c5114b5e33b5583c135b0cebc154e238941d7ff6a3"
+  },
+  {
+    "path": "cross/i960/doomstat.o",
+    "sha256": "71267d2b904d05a776daeb937ce4e948852e162d86d9cbb7769517b9bf5ab6f9"
+  },
+  {
+    "path": "cross/i960/dstrings.o",
+    "sha256": "15fb919a4c76416fec5b8fbc3c6d3818eda375517ab0cffaaebda0aa6d00e4c7"
+  },
+  {
+    "path": "cross/i960/dummy.o",
+    "sha256": "0abb3688538ce5ab1b811aff64860ba352b3a1d09762877fc6f59f7c1b2abae7"
+  },
+  {
+    "path": "cross/i960/expected-unresolved-link.log",
+    "sha256": "ca15b8980650b48e8b69bba7562f8a5ce8bf1d20200148a78886f303f4615b2e"
+  },
+  {
+    "path": "cross/i960/f_finale.o",
+    "sha256": "cbe9c1998672f7ec6aa572b74098e28ef15807835711a90a62ecf61421ea8398"
+  },
+  {
+    "path": "cross/i960/f_wipe.o",
+    "sha256": "fe28158829e0538ce260e344f385ee60628b07db1e1261f16829f40f71b71e7f"
+  },
+  {
+    "path": "cross/i960/g_game.o",
+    "sha256": "721cfa562538c014181732425f8fa10ff3e3c167a1bb41e4e38bea11a8868b3a"
+  },
+  {
+    "path": "cross/i960/headers.txt",
+    "sha256": "218667550b5ce39bf24efa83edc310f2dca14c88aa060fa83159486df51d521d"
+  },
+  {
+    "path": "cross/i960/hu_lib.o",
+    "sha256": "81ccb29476f4e89d57c0f7d13600bcf4fa7c39ffec7c367056731dd293c7a52a"
+  },
+  {
+    "path": "cross/i960/hu_stuff.o",
+    "sha256": "70bd145812c44d94871e6c9be90094094588bd2d6ef229671c77b0fe233b6063"
+  },
+  {
+    "path": "cross/i960/i_cdmus.o",
+    "sha256": "e77dcdc50f21e2626eaa9035c6c866df90e77502dfec68b78a3c39da5de8e0bd"
+  },
+  {
+    "path": "cross/i960/i_endoom.o",
+    "sha256": "cc135f8484546421eeee8cfaf329092b38128df3d511c79fa556a3766e4a734f"
+  },
+  {
+    "path": "cross/i960/i_input.o",
+    "sha256": "24911042954c46ec69debf504be7642567fff12093c9f8788abe1d287f119123"
+  },
+  {
+    "path": "cross/i960/i_joystick.o",
+    "sha256": "257ba5b403e2793cd9998d3554f2f7ae9e4053cc45754769ca49c6c94228696a"
+  },
+  {
+    "path": "cross/i960/i_scale.o",
+    "sha256": "d5d75d8812d7ab6fda34e6d5d263dfdc618b6cd764d62ef1d8368c670b5a1b99"
+  },
+  {
+    "path": "cross/i960/i_sound.o",
+    "sha256": "268eb2399aeab4a4b847b3ea0c17baae7e3d727aab55a1cd10f1da4e3375bf33"
+  },
+  {
+    "path": "cross/i960/i_system.o",
+    "sha256": "cf0a9f6194925a0ea7984a5c684a73f28de7644227e629b5937cc0226a97d35b"
+  },
+  {
+    "path": "cross/i960/i_timer.o",
+    "sha256": "0e1b09b2f7eab867df93cdecf679c736d7dce3ad99971ab31cb57d08154dfc32"
+  },
+  {
+    "path": "cross/i960/i_video.o",
+    "sha256": "bf792a72cb2b4f0551ebe02ea9419e96f1d356cfb88224053e256aff178511f5"
+  },
+  {
+    "path": "cross/i960/info.o",
+    "sha256": "a1e2051385e26f41f07a27f039540085f393ced2de6441207a66d1be9355bd07"
+  },
+  {
+    "path": "cross/i960/m_argv.o",
+    "sha256": "0c045f55b028c9a2717936d94bf6d4ded5a1e93de96c06b682024ac4e25be5a1"
+  },
+  {
+    "path": "cross/i960/m_bbox.o",
+    "sha256": "2fd4de5582442272577f0907c13f1dfdf4ba4430f50d37f5939d87d5aa3ea2f8"
+  },
+  {
+    "path": "cross/i960/m_cheat.o",
+    "sha256": "ad74386d261f4ed1a7bd961e27f82b141a266971c0dc13f378ef70d68ad0a31b"
+  },
+  {
+    "path": "cross/i960/m_config.o",
+    "sha256": "f41d1c33fe28aa7d0595f06cdfc96cd4f973397cc49e3a5acee622f49843594f"
+  },
+  {
+    "path": "cross/i960/m_controls.o",
+    "sha256": "6e89efd131d07dc54687da060235717a055dda13943bcdac7a9e5dd2d4d2da84"
+  },
+  {
+    "path": "cross/i960/m_fixed.o",
+    "sha256": "1a897719708a2a0f3fb0ae70276d8243466edbea6ce211192fbe884858e93ab6"
+  },
+  {
+    "path": "cross/i960/m_menu.o",
+    "sha256": "a2317cb8bcd063bb46b1599b3a285cbbec3ed40f8f562deb184f8856e684539f"
+  },
+  {
+    "path": "cross/i960/m_misc.o",
+    "sha256": "5156d698727122c87a4306729102c0141414c6c6a24fcd3c60378b27da4d3493"
+  },
+  {
+    "path": "cross/i960/m_random.o",
+    "sha256": "6f84e7b84f5218ebe88c8f87c742b6fbb0634ae97a6e57a9338faea634d0ecc8"
+  },
+  {
+    "path": "cross/i960/memio.o",
+    "sha256": "c69d14aa79c4afadbdd6303b7aa514296bce733617833781505b947892bb7a95"
+  },
+  {
+    "path": "cross/i960/p_ceilng.o",
+    "sha256": "fd5f4c23d5710ed048cd9c16f034ec7cae22629be59cdb6267c8c46cf4a06ca4"
+  },
+  {
+    "path": "cross/i960/p_doors.o",
+    "sha256": "ff58425066ef9055ed86899088f891faa26c814a3f0e97eb7e5819dfdeb193b2"
+  },
+  {
+    "path": "cross/i960/p_enemy.o",
+    "sha256": "dc3d1151b150ac87dc806ec741f9aa15689f9ee760ef757931a662aea85377c4"
+  },
+  {
+    "path": "cross/i960/p_floor.o",
+    "sha256": "3763b967507d557c8c6c734a700098ae98f4897f4d6a487fe2b95f33cc8558b5"
+  },
+  {
+    "path": "cross/i960/p_inter.o",
+    "sha256": "e340547de2d896e176baba53e961aff124ef1315f3f33677069144a70a013315"
+  },
+  {
+    "path": "cross/i960/p_lights.o",
+    "sha256": "0e51196827254fb0c9a7208210c3f644db0b93a4da441f3c8c159480ac51de84"
+  },
+  {
+    "path": "cross/i960/p_map.o",
+    "sha256": "e626624fad68abca96b37ce3d5d0c85480d7742b6d4275db9cdc0d523ef01517"
+  },
+  {
+    "path": "cross/i960/p_maputl.o",
+    "sha256": "170f6cfbae7a8d3736cb0db0d11f6c13b65a327192d2e2d244b63ea8fa3f57db"
+  },
+  {
+    "path": "cross/i960/p_mobj.o",
+    "sha256": "df1bc3c53aa1affcb81f8a123eb73c7f96bf8da50fc69590411cb9d7fa97279c"
+  },
+  {
+    "path": "cross/i960/p_plats.o",
+    "sha256": "c6dd3e580af0626363db88aedc9715d8a9651cb3ade991cf676bc257fc372dbb"
+  },
+  {
+    "path": "cross/i960/p_pspr.o",
+    "sha256": "eb2e986546ad172913739ff399875a9514c50e57157c6e2d23d4a80dd7fed66c"
+  },
+  {
+    "path": "cross/i960/p_saveg.o",
+    "sha256": "bd2fdb34f14254df3d2c6f78d43f7e32de78a1acf9c628ce2e052787d55ba06b"
+  },
+  {
+    "path": "cross/i960/p_setup.o",
+    "sha256": "439e59023283b54a6c9c5fe803601d312ee73f952192dd492c9d6e0c0c153041"
+  },
+  {
+    "path": "cross/i960/p_sight.o",
+    "sha256": "d43264fa951f6a71003343dd39eeca0d51bfdfff0dfed1e0778fcca6a68af9c6"
+  },
+  {
+    "path": "cross/i960/p_spec.o",
+    "sha256": "d7b35ebe02b4b7165389fcc0a84aca6e95702e83212642ce647270a37b4fb54d"
+  },
+  {
+    "path": "cross/i960/p_switch.o",
+    "sha256": "11bda8033d957f72b6d0a493f0ddd26f941166614d978ecf78226c6607a09d88"
+  },
+  {
+    "path": "cross/i960/p_telept.o",
+    "sha256": "da0605247724377f6f4fe736f0c2cf0ab60f9b59f92a58f358fb0936bdb7031c"
+  },
+  {
+    "path": "cross/i960/p_tick.o",
+    "sha256": "48878f6f15a204823cdd8e4953c1f7ffddb0a139e9aa074bf9a36aab22a46122"
+  },
+  {
+    "path": "cross/i960/p_user.o",
+    "sha256": "ced6a5a96554efd594e1ba23281c5ad1ad7e3e71b8afdd2d1bb063415ecd8ffc"
+  },
+  {
+    "path": "cross/i960/r_bsp.o",
+    "sha256": "48d24251199a10caf92efe727fb5bc6b935d5ffae1c8641ad71672ef6feef4ad"
+  },
+  {
+    "path": "cross/i960/r_data.o",
+    "sha256": "1d28722f4351179f8da09092b324ecde80706ae363beb2bb7d8170152c184555"
+  },
+  {
+    "path": "cross/i960/r_draw.o",
+    "sha256": "c8d4811e8406424daae6b196dff2ec6c9578e365328b1c543be33fd555286277"
+  },
+  {
+    "path": "cross/i960/r_main.o",
+    "sha256": "7e5e264112685ddb7e5b3e8ef6be61c24939728022a6b1431da4d0e2b155be98"
+  },
+  {
+    "path": "cross/i960/r_plane.o",
+    "sha256": "c52a607f65b803e59c93c374489a70f82e3be0bc955ee891a947449c315fa39f"
+  },
+  {
+    "path": "cross/i960/r_segs.o",
+    "sha256": "04cf076992d362006c07c74dbd77cb99a7a7b7830f8371e0b5c6d7ffd46331be"
+  },
+  {
+    "path": "cross/i960/r_sky.o",
+    "sha256": "ad3de3ba5e8b71bd9112b1fa770615d839e2e9c7c91afc85c2229dd0b715285b"
+  },
+  {
+    "path": "cross/i960/r_things.o",
+    "sha256": "65e21877e47d61fef78b269773bc0a4f6a8b328957bad20e61a9682052b3dd25"
+  },
+  {
+    "path": "cross/i960/runtime-callers.json",
+    "sha256": "08be60990658b6e131eecee43bd4b1f174f0beb14d30f192af74b20126acec31"
+  },
+  {
+    "path": "cross/i960/s_sound.o",
+    "sha256": "80e642c10b1f64a2bdd64c8c994640b0121c8006368edb75ef14c2050bb3fc58"
+  },
+  {
+    "path": "cross/i960/sections.txt",
+    "sha256": "960f43883e6a6a6283a5e9eb81f8886d9da0d4d7a2ccc2eb89ae362959d985f5"
+  },
+  {
+    "path": "cross/i960/sha1.o",
+    "sha256": "98c036e1a52b4ab2139800f380785a9b7d224949c6b956a1479a6917e1e86c4e"
+  },
+  {
+    "path": "cross/i960/sounds.o",
+    "sha256": "eb0cf38036260a854aa4f5a9a2d3426e230f6799c978a38d417e0411d042dd4a"
+  },
+  {
+    "path": "cross/i960/st_lib.o",
+    "sha256": "f96748163ddc8381171325466d74a1abc38dc193a7122ed60b58c9dd8f4831f0"
+  },
+  {
+    "path": "cross/i960/st_stuff.o",
+    "sha256": "9946bacd0656593c8e71d4213100cf4770816b3ab10a5d8e932fdd0bd5f3c5ec"
+  },
+  {
+    "path": "cross/i960/statdump.o",
+    "sha256": "1f8b2ea518c4120528ce6da9060f082d47e5f997a0c72307768c7ede9d91b874"
+  },
+  {
+    "path": "cross/i960/symbols.txt",
+    "sha256": "7c74926a2fedaa52aa0f172db6d5ee6cc1723cae4157280ea48900df6ee813e6"
+  },
+  {
+    "path": "cross/i960/tables.o",
+    "sha256": "ab5e052ca5076ead1f64f18b6f97455abce4e12c6a942da3acafeb4c799478e7"
+  },
+  {
+    "path": "cross/i960/undefined.txt",
+    "sha256": "066ec622fe73363b5ebada8ac0cb6934907e45e5479c4aa2d685745cbecc3b04"
+  },
+  {
+    "path": "cross/i960/v_video.o",
+    "sha256": "dd09a280bca945a83a01f42b9c1a20dc0becc3d82e86b0c71a70a4b2bb8b4504"
+  },
+  {
+    "path": "cross/i960/w_checksum.o",
+    "sha256": "be406b23bbabe0ae1ecad69ae029ebe7a2a59def73f86ad965ba427400be87c5"
+  },
+  {
+    "path": "cross/i960/w_file.o",
+    "sha256": "4a3a531c5b3c4f1b4211b15750bcf47107ac0302f23ef200a1b082b22d2fc18a"
+  },
+  {
+    "path": "cross/i960/w_file_stdc.o",
+    "sha256": "f2fb4e2130def44774a1318c960f841350a56c2ef5f3a2f845216dea46474e48"
+  },
+  {
+    "path": "cross/i960/w_main.o",
+    "sha256": "7f5960122032859bf04e6b182ef7192f230e1bba62b5ee104199df3f85830762"
+  },
+  {
+    "path": "cross/i960/w_wad.o",
+    "sha256": "d87596ece1db590c498427f2ca6936e4568db4a2b1186fed0d159bcc1d388590"
+  },
+  {
+    "path": "cross/i960/wi_stuff.o",
+    "sha256": "a07d9212ed927dc27bba4f4f0b8ff22a055370802f9ffdc9f99b72b643b97246"
+  },
+  {
+    "path": "cross/i960/z_zone.o",
+    "sha256": "176281fb9bc27aca41b94e9e5309c534a982437a8323606052397833a5ca45cc"
+  },
+  {
+    "path": "cross/i960-before-clear/am_map.o",
+    "sha256": "4a586cfb0a8be784fc61ac4ab2c18d23db461be531360e9fa13115099cc7f007"
+  },
+  {
+    "path": "cross/i960-before-clear/build.json",
+    "sha256": "e0442baccd2ed2735afdcf5582052eadff9ded2edeb9136ef6f66dd83fc8c53c"
+  },
+  {
+    "path": "cross/i960-before-clear/compile.log",
+    "sha256": "17ce6b7eaf8eef001f3aef3689a8648ecc8f5a075179f7edfdccf6cbf8c887cd"
+  },
+  {
+    "path": "cross/i960-before-clear/d_event.o",
+    "sha256": "e23e740fd6ea5369ef693ea49234983065c35987710eb0dda902b54c0abbbb2e"
+  },
+  {
+    "path": "cross/i960-before-clear/d_items.o",
+    "sha256": "0f250ad6cd2a63db4b1b55a170d15f0f64e864e3fda800846f4492bcf25f057b"
+  },
+  {
+    "path": "cross/i960-before-clear/d_iwad.o",
+    "sha256": "b3b3e0857fedbfa4fbf4c68003f001653cbd024fe1a0c0b46789611cfb1451d6"
+  },
+  {
+    "path": "cross/i960-before-clear/d_loop.o",
+    "sha256": "0ccab621c0a56e7ee23178d3b265488c0436df39dc251f3b3d0055830d56de70"
+  },
+  {
+    "path": "cross/i960-before-clear/d_main.o",
+    "sha256": "25b81a790c9993076259eb52db89237aab183aea682132ded80477cddbcf4e80"
+  },
+  {
+    "path": "cross/i960-before-clear/d_mode.o",
+    "sha256": "841662cbe881c3c18a61222ab3332cbf65f464253371cb7cbb6c477cd4140e59"
+  },
+  {
+    "path": "cross/i960-before-clear/d_net.o",
+    "sha256": "e60f771452db384734f23180c3d1199fb852dabea037c02bda5a270fbcae4400"
+  },
+  {
+    "path": "cross/i960-before-clear/doom-engine.o",
+    "sha256": "90e94eb4510cf462340470096466b78d4fa7eec0e1032fd1ff9bd7222a0e1959"
+  },
+  {
+    "path": "cross/i960-before-clear/doomdef.o",
+    "sha256": "cac2fd3476f1b813949eb45beaccced80a3315ddc1c75753508361c9baec7471"
+  },
+  {
+    "path": "cross/i960-before-clear/doomgeneric.o",
+    "sha256": "a06748ded1e3b13bd40dd4c5114b5e33b5583c135b0cebc154e238941d7ff6a3"
+  },
+  {
+    "path": "cross/i960-before-clear/doomstat.o",
+    "sha256": "71267d2b904d05a776daeb937ce4e948852e162d86d9cbb7769517b9bf5ab6f9"
+  },
+  {
+    "path": "cross/i960-before-clear/dstrings.o",
+    "sha256": "15fb919a4c76416fec5b8fbc3c6d3818eda375517ab0cffaaebda0aa6d00e4c7"
+  },
+  {
+    "path": "cross/i960-before-clear/dummy.o",
+    "sha256": "0abb3688538ce5ab1b811aff64860ba352b3a1d09762877fc6f59f7c1b2abae7"
+  },
+  {
+    "path": "cross/i960-before-clear/f_finale.o",
+    "sha256": "cbe9c1998672f7ec6aa572b74098e28ef15807835711a90a62ecf61421ea8398"
+  },
+  {
+    "path": "cross/i960-before-clear/f_wipe.o",
+    "sha256": "fe28158829e0538ce260e344f385ee60628b07db1e1261f16829f40f71b71e7f"
+  },
+  {
+    "path": "cross/i960-before-clear/g_game.o",
+    "sha256": "721cfa562538c014181732425f8fa10ff3e3c167a1bb41e4e38bea11a8868b3a"
+  },
+  {
+    "path": "cross/i960-before-clear/headers.txt",
+    "sha256": "4a57563b20496894059bb61809aa59aa484908d5f5242532c3f92d578ac24af8"
+  },
+  {
+    "path": "cross/i960-before-clear/hu_lib.o",
+    "sha256": "81ccb29476f4e89d57c0f7d13600bcf4fa7c39ffec7c367056731dd293c7a52a"
+  },
+  {
+    "path": "cross/i960-before-clear/hu_stuff.o",
+    "sha256": "70bd145812c44d94871e6c9be90094094588bd2d6ef229671c77b0fe233b6063"
+  },
+  {
+    "path": "cross/i960-before-clear/i_cdmus.o",
+    "sha256": "e77dcdc50f21e2626eaa9035c6c866df90e77502dfec68b78a3c39da5de8e0bd"
+  },
+  {
+    "path": "cross/i960-before-clear/i_endoom.o",
+    "sha256": "cc135f8484546421eeee8cfaf329092b38128df3d511c79fa556a3766e4a734f"
+  },
+  {
+    "path": "cross/i960-before-clear/i_input.o",
+    "sha256": "24911042954c46ec69debf504be7642567fff12093c9f8788abe1d287f119123"
+  },
+  {
+    "path": "cross/i960-before-clear/i_joystick.o",
+    "sha256": "257ba5b403e2793cd9998d3554f2f7ae9e4053cc45754769ca49c6c94228696a"
+  },
+  {
+    "path": "cross/i960-before-clear/i_scale.o",
+    "sha256": "d5d75d8812d7ab6fda34e6d5d263dfdc618b6cd764d62ef1d8368c670b5a1b99"
+  },
+  {
+    "path": "cross/i960-before-clear/i_sound.o",
+    "sha256": "268eb2399aeab4a4b847b3ea0c17baae7e3d727aab55a1cd10f1da4e3375bf33"
+  },
+  {
+    "path": "cross/i960-before-clear/i_system.o",
+    "sha256": "cf0a9f6194925a0ea7984a5c684a73f28de7644227e629b5937cc0226a97d35b"
+  },
+  {
+    "path": "cross/i960-before-clear/i_timer.o",
+    "sha256": "0e1b09b2f7eab867df93cdecf679c736d7dce3ad99971ab31cb57d08154dfc32"
+  },
+  {
+    "path": "cross/i960-before-clear/i_video.o",
+    "sha256": "7c537e9ee4ccadae3363a3dd2d6e2bf9fd059fa236e300f6e74454d67cb130f4"
+  },
+  {
+    "path": "cross/i960-before-clear/info.o",
+    "sha256": "a1e2051385e26f41f07a27f039540085f393ced2de6441207a66d1be9355bd07"
+  },
+  {
+    "path": "cross/i960-before-clear/m_argv.o",
+    "sha256": "0c045f55b028c9a2717936d94bf6d4ded5a1e93de96c06b682024ac4e25be5a1"
+  },
+  {
+    "path": "cross/i960-before-clear/m_bbox.o",
+    "sha256": "2fd4de5582442272577f0907c13f1dfdf4ba4430f50d37f5939d87d5aa3ea2f8"
+  },
+  {
+    "path": "cross/i960-before-clear/m_cheat.o",
+    "sha256": "ad74386d261f4ed1a7bd961e27f82b141a266971c0dc13f378ef70d68ad0a31b"
+  },
+  {
+    "path": "cross/i960-before-clear/m_config.o",
+    "sha256": "f41d1c33fe28aa7d0595f06cdfc96cd4f973397cc49e3a5acee622f49843594f"
+  },
+  {
+    "path": "cross/i960-before-clear/m_controls.o",
+    "sha256": "6e89efd131d07dc54687da060235717a055dda13943bcdac7a9e5dd2d4d2da84"
+  },
+  {
+    "path": "cross/i960-before-clear/m_fixed.o",
+    "sha256": "1a897719708a2a0f3fb0ae70276d8243466edbea6ce211192fbe884858e93ab6"
+  },
+  {
+    "path": "cross/i960-before-clear/m_menu.o",
+    "sha256": "a2317cb8bcd063bb46b1599b3a285cbbec3ed40f8f562deb184f8856e684539f"
+  },
+  {
+    "path": "cross/i960-before-clear/m_misc.o",
+    "sha256": "5156d698727122c87a4306729102c0141414c6c6a24fcd3c60378b27da4d3493"
+  },
+  {
+    "path": "cross/i960-before-clear/m_random.o",
+    "sha256": "6f84e7b84f5218ebe88c8f87c742b6fbb0634ae97a6e57a9338faea634d0ecc8"
+  },
+  {
+    "path": "cross/i960-before-clear/memio.o",
+    "sha256": "c69d14aa79c4afadbdd6303b7aa514296bce733617833781505b947892bb7a95"
+  },
+  {
+    "path": "cross/i960-before-clear/p_ceilng.o",
+    "sha256": "fd5f4c23d5710ed048cd9c16f034ec7cae22629be59cdb6267c8c46cf4a06ca4"
+  },
+  {
+    "path": "cross/i960-before-clear/p_doors.o",
+    "sha256": "ff58425066ef9055ed86899088f891faa26c814a3f0e97eb7e5819dfdeb193b2"
+  },
+  {
+    "path": "cross/i960-before-clear/p_enemy.o",
+    "sha256": "dc3d1151b150ac87dc806ec741f9aa15689f9ee760ef757931a662aea85377c4"
+  },
+  {
+    "path": "cross/i960-before-clear/p_floor.o",
+    "sha256": "3763b967507d557c8c6c734a700098ae98f4897f4d6a487fe2b95f33cc8558b5"
+  },
+  {
+    "path": "cross/i960-before-clear/p_inter.o",
+    "sha256": "e340547de2d896e176baba53e961aff124ef1315f3f33677069144a70a013315"
+  },
+  {
+    "path": "cross/i960-before-clear/p_lights.o",
+    "sha256": "0e51196827254fb0c9a7208210c3f644db0b93a4da441f3c8c159480ac51de84"
+  },
+  {
+    "path": "cross/i960-before-clear/p_map.o",
+    "sha256": "e626624fad68abca96b37ce3d5d0c85480d7742b6d4275db9cdc0d523ef01517"
+  },
+  {
+    "path": "cross/i960-before-clear/p_maputl.o",
+    "sha256": "170f6cfbae7a8d3736cb0db0d11f6c13b65a327192d2e2d244b63ea8fa3f57db"
+  },
+  {
+    "path": "cross/i960-before-clear/p_mobj.o",
+    "sha256": "df1bc3c53aa1affcb81f8a123eb73c7f96bf8da50fc69590411cb9d7fa97279c"
+  },
+  {
+    "path": "cross/i960-before-clear/p_plats.o",
+    "sha256": "c6dd3e580af0626363db88aedc9715d8a9651cb3ade991cf676bc257fc372dbb"
+  },
+  {
+    "path": "cross/i960-before-clear/p_pspr.o",
+    "sha256": "eb2e986546ad172913739ff399875a9514c50e57157c6e2d23d4a80dd7fed66c"
+  },
+  {
+    "path": "cross/i960-before-clear/p_saveg.o",
+    "sha256": "bd2fdb34f14254df3d2c6f78d43f7e32de78a1acf9c628ce2e052787d55ba06b"
+  },
+  {
+    "path": "cross/i960-before-clear/p_setup.o",
+    "sha256": "439e59023283b54a6c9c5fe803601d312ee73f952192dd492c9d6e0c0c153041"
+  },
+  {
+    "path": "cross/i960-before-clear/p_sight.o",
+    "sha256": "d43264fa951f6a71003343dd39eeca0d51bfdfff0dfed1e0778fcca6a68af9c6"
+  },
+  {
+    "path": "cross/i960-before-clear/p_spec.o",
+    "sha256": "d7b35ebe02b4b7165389fcc0a84aca6e95702e83212642ce647270a37b4fb54d"
+  },
+  {
+    "path": "cross/i960-before-clear/p_switch.o",
+    "sha256": "11bda8033d957f72b6d0a493f0ddd26f941166614d978ecf78226c6607a09d88"
+  },
+  {
+    "path": "cross/i960-before-clear/p_telept.o",
+    "sha256": "da0605247724377f6f4fe736f0c2cf0ab60f9b59f92a58f358fb0936bdb7031c"
+  },
+  {
+    "path": "cross/i960-before-clear/p_tick.o",
+    "sha256": "48878f6f15a204823cdd8e4953c1f7ffddb0a139e9aa074bf9a36aab22a46122"
+  },
+  {
+    "path": "cross/i960-before-clear/p_user.o",
+    "sha256": "ced6a5a96554efd594e1ba23281c5ad1ad7e3e71b8afdd2d1bb063415ecd8ffc"
+  },
+  {
+    "path": "cross/i960-before-clear/r_bsp.o",
+    "sha256": "48d24251199a10caf92efe727fb5bc6b935d5ffae1c8641ad71672ef6feef4ad"
+  },
+  {
+    "path": "cross/i960-before-clear/r_data.o",
+    "sha256": "1d28722f4351179f8da09092b324ecde80706ae363beb2bb7d8170152c184555"
+  },
+  {
+    "path": "cross/i960-before-clear/r_draw.o",
+    "sha256": "c8d4811e8406424daae6b196dff2ec6c9578e365328b1c543be33fd555286277"
+  },
+  {
+    "path": "cross/i960-before-clear/r_main.o",
+    "sha256": "7e5e264112685ddb7e5b3e8ef6be61c24939728022a6b1431da4d0e2b155be98"
+  },
+  {
+    "path": "cross/i960-before-clear/r_plane.o",
+    "sha256": "c52a607f65b803e59c93c374489a70f82e3be0bc955ee891a947449c315fa39f"
+  },
+  {
+    "path": "cross/i960-before-clear/r_segs.o",
+    "sha256": "04cf076992d362006c07c74dbd77cb99a7a7b7830f8371e0b5c6d7ffd46331be"
+  },
+  {
+    "path": "cross/i960-before-clear/r_sky.o",
+    "sha256": "ad3de3ba5e8b71bd9112b1fa770615d839e2e9c7c91afc85c2229dd0b715285b"
+  },
+  {
+    "path": "cross/i960-before-clear/r_things.o",
+    "sha256": "65e21877e47d61fef78b269773bc0a4f6a8b328957bad20e61a9682052b3dd25"
+  },
+  {
+    "path": "cross/i960-before-clear/s_sound.o",
+    "sha256": "80e642c10b1f64a2bdd64c8c994640b0121c8006368edb75ef14c2050bb3fc58"
+  },
+  {
+    "path": "cross/i960-before-clear/sections.txt",
+    "sha256": "9824342db7ccf82dea9b934c9dc5b14df5931fdd0a7ca66d6be96a8d0365591b"
+  },
+  {
+    "path": "cross/i960-before-clear/sha1.o",
+    "sha256": "98c036e1a52b4ab2139800f380785a9b7d224949c6b956a1479a6917e1e86c4e"
+  },
+  {
+    "path": "cross/i960-before-clear/sounds.o",
+    "sha256": "eb0cf38036260a854aa4f5a9a2d3426e230f6799c978a38d417e0411d042dd4a"
+  },
+  {
+    "path": "cross/i960-before-clear/st_lib.o",
+    "sha256": "f96748163ddc8381171325466d74a1abc38dc193a7122ed60b58c9dd8f4831f0"
+  },
+  {
+    "path": "cross/i960-before-clear/st_stuff.o",
+    "sha256": "9946bacd0656593c8e71d4213100cf4770816b3ab10a5d8e932fdd0bd5f3c5ec"
+  },
+  {
+    "path": "cross/i960-before-clear/statdump.o",
+    "sha256": "1f8b2ea518c4120528ce6da9060f082d47e5f997a0c72307768c7ede9d91b874"
+  },
+  {
+    "path": "cross/i960-before-clear/symbols.txt",
+    "sha256": "7c74926a2fedaa52aa0f172db6d5ee6cc1723cae4157280ea48900df6ee813e6"
+  },
+  {
+    "path": "cross/i960-before-clear/tables.o",
+    "sha256": "ab5e052ca5076ead1f64f18b6f97455abce4e12c6a942da3acafeb4c799478e7"
+  },
+  {
+    "path": "cross/i960-before-clear/undefined.txt",
+    "sha256": "066ec622fe73363b5ebada8ac0cb6934907e45e5479c4aa2d685745cbecc3b04"
+  },
+  {
+    "path": "cross/i960-before-clear/v_video.o",
+    "sha256": "dd09a280bca945a83a01f42b9c1a20dc0becc3d82e86b0c71a70a4b2bb8b4504"
+  },
+  {
+    "path": "cross/i960-before-clear/w_checksum.o",
+    "sha256": "be406b23bbabe0ae1ecad69ae029ebe7a2a59def73f86ad965ba427400be87c5"
+  },
+  {
+    "path": "cross/i960-before-clear/w_file.o",
+    "sha256": "4a3a531c5b3c4f1b4211b15750bcf47107ac0302f23ef200a1b082b22d2fc18a"
+  },
+  {
+    "path": "cross/i960-before-clear/w_file_stdc.o",
+    "sha256": "f2fb4e2130def44774a1318c960f841350a56c2ef5f3a2f845216dea46474e48"
+  },
+  {
+    "path": "cross/i960-before-clear/w_main.o",
+    "sha256": "7f5960122032859bf04e6b182ef7192f230e1bba62b5ee104199df3f85830762"
+  },
+  {
+    "path": "cross/i960-before-clear/w_wad.o",
+    "sha256": "d87596ece1db590c498427f2ca6936e4568db4a2b1186fed0d159bcc1d388590"
+  },
+  {
+    "path": "cross/i960-before-clear/wi_stuff.o",
+    "sha256": "a07d9212ed927dc27bba4f4f0b8ff22a055370802f9ffdc9f99b72b643b97246"
+  },
+  {
+    "path": "cross/i960-before-clear/z_zone.o",
+    "sha256": "176281fb9bc27aca41b94e9e5309c534a982437a8323606052397833a5ca45cc"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/.gitignore",
+    "sha256": "20ce02a86baeae521139e1c91bbb4e4cdde8a93ec4bfd9b44068426e7a63bd37"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/LICENSE",
+    "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/README.TXT",
+    "sha256": "48e841db2b6f44faf87754e8629535ec2d3a25c6aa1cab05774f5cf05269efad"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/README.md",
+    "sha256": "56f0c309866be4de8469555b78c6adbbea878ead302fa415eb9fc668cd5188db"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile",
+    "sha256": "c4c0554b033efd5a357dbe6ab3095e0861b897c06c624da5da62d13fd0ac2d3d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.djgpp",
+    "sha256": "95d1c6d161047f0d97290ab0065c6cc52336ac644da1ddbc40aebc1ed4f22dee"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.emscripten",
+    "sha256": "59e0206aa05b3b94f7450988c3eb24ab52d44721b7d0138a02f321b53a930c3c"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.freebsd",
+    "sha256": "306caf38ed22346c7e2ae482ba2ffd06d018996673f053580c3f51c35fc0ab2f"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.linuxvt",
+    "sha256": "45007a3c1270f28320c5b5eaf50fa6b14b1dafcb33c8c23706b1975457a2701a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.sdl",
+    "sha256": "ed7902611ee571ca633da3b694b50b29e2ebf294399f746e37787626648d4aa2"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.soso",
+    "sha256": "0bfd20701e679d9ea019e876554ef7740977a4e6ddc96343f3d72e0ac48893d8"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.sosox",
+    "sha256": "a113dc6ebd0ce2abbe8481b781ee02cbd6d3cf19a3d72ab7813c1782d0c65ced"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/Makefile.win",
+    "sha256": "f475fb2325b3dc13209d846f89771230e819be281860d1884b964195f9cd2b2e"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/am_map.c",
+    "sha256": "4d62b1c824f161f84efdc6fb7dfd3c02123a532f28f5296e0eef9c79778aee65"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/am_map.h",
+    "sha256": "1755affedbe06d36901c5d4754f931ddd214f28ac6625706eb56533925f4651d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/config.h",
+    "sha256": "3fcfe210bf24702f25de2e72ca2bd0c7bdb20b23cb412ffddad15fcacf2031d7"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_englsh.h",
+    "sha256": "a87f7d2d4693bdae0e0f8bf81918fe19bd78742d28ee4bfc3c7a92759d73c06a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_event.c",
+    "sha256": "f06d11316e62d26f8d4687103d77e88ec92e2273b5dedcd798136496ba8e9004"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_event.h",
+    "sha256": "e42a92f9e8bbd27c3f810acc5d50929d9329019240b41af13fc886815ead2a64"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_items.c",
+    "sha256": "57796c266d224c2cab69f9c8c9fae564d4161f04e2f859a80062675ada61e23b"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_items.h",
+    "sha256": "f251ed3bcdd5b15250db5c38c6b52996bc684c88802ff87dbfe5b4859d59dab4"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_iwad.c",
+    "sha256": "9723efdc547f3739e26b72232b80e36c37c9f685795c3990cb696a7103daf88a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_iwad.h",
+    "sha256": "b9fd8c8bd82d8e2f6952ee7645e221c42ba7c3f1793939a7596067ec1bc68396"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_loop.c",
+    "sha256": "e93f84c7794f2fce9da0c4c96173fa2eec9d48e6a0c31daade9c48a1d2af35ea"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_loop.h",
+    "sha256": "27cc9f6611fe6273b39e3e780d44f9f25bc61937e5f1f62711229568af311a8c"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_main.c",
+    "sha256": "9cb01798f600879ce8142a1acdc00828cbea48e1d01371f03b166bffdc72c0ee"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_main.h",
+    "sha256": "93d04e541a63430da34396b546b4561867b60fe72a21ee7cf382159c8dbac421"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_mode.c",
+    "sha256": "4db5e599badeb809b8f1bcdf0ce483dcd704cdbc1abdb3fbdba447cda150ea0d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_mode.h",
+    "sha256": "809224d5ab46b4a29be0ea2d82f3cbbd9eea6e476a38441f3aa42bb0f99b08e4"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_net.c",
+    "sha256": "dd6cbd6e3ebc379bcdfca2e02e2bf0a5a3bfe8c1945a920f8c8dacac9fc45890"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_player.h",
+    "sha256": "349de25b7ba47532507556f8ac4f2f218891f36b1c4647defaee03ae4b85d6fc"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_textur.h",
+    "sha256": "7500fb01de1fe637e05110a0aa189425979bddf0de327a31527434418f4d3efc"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_think.h",
+    "sha256": "a500e07ef47fd0e1ab24d34f5df24e7a59c7ad1b657f67c9c977704b72cef08b"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/d_ticcmd.h",
+    "sha256": "96bebe68c88b81a8fb35bfb6e8d74870d792107e1ceabc1c69069ed257aff851"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/deh_main.h",
+    "sha256": "de68692339596b59f8903e41ce88842d79bef3c92d3995f4d68f9056f90ecb9e"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/deh_misc.h",
+    "sha256": "cf07e29421704d2491f53cc3e055e367c6aaecce2baa9759e9bcace21e657cb2"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/deh_str.h",
+    "sha256": "2387262e1fd9751575be33659145dfc900d7525587e267b3dab5c63c7daa5ac0"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doom.h",
+    "sha256": "09f5e81390611c078348327489b08e4eda85306c83dc2c2a764406b2e0abf51d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomdata.h",
+    "sha256": "a258ffd069833b0c81a132c4db74fd9121e1815267b309c2b3b5dc501971a3eb"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomdef.c",
+    "sha256": "56e23ec1235d7478f64577ac349f9fad92a9fe6f77a0197630d6319f0838b02a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomdef.h",
+    "sha256": "87eaafe4d3366fe89924c8649c45b91fe89b6780a17f655e90c8a1d77b318a77"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomfeatures.h",
+    "sha256": "01fd54d8060c650933f1d65c90fbd04355637b9ec66108e65cda0ef1bba4b929"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric.c",
+    "sha256": "bece34e9d03af40c439aa15ef89006caa7f206cac23d8f87e843c79a2ae1affc"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric.h",
+    "sha256": "d24861dd7aa75d283226724f710ae4226839898bc61b986a0602df7df19df148"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric.vcxproj",
+    "sha256": "6b6fb3d0b50f1a478a4f1093c897adff685fb6d12d5dde9708db78c9bf6ad683"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric.vcxproj.filters",
+    "sha256": "aa15faffac79a4c95c4e44f850446a2a1ae38e3236c8fb4b63727166ec3856c6"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_allegro.c",
+    "sha256": "01099e40148e07b6bad00a4f4f5b77a8d145c68cf82964d08f58c607aa57dc1a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_emscripten.c",
+    "sha256": "a95ffca364abea76c8729694fe20eaffc1d1790d7d0affd290051852d6e8ccfe"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_linuxvt.c",
+    "sha256": "2e76ff582626c5d480280501b4e23d2459c12809aec02a7b76aeefaf6c438d90"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_sdl.c",
+    "sha256": "d1d323309d192b978cb86d98811233987ef17f507f1c9c9968b34891c7fb20d7"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_soso.c",
+    "sha256": "f78fc52d7e00439a00c84bb53c3556b36400bd1d1db14eb880cf171da82eb069"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_sosox.c",
+    "sha256": "ff244f7719d182a6222eacf4ce0dff1e24947fe972dc24838d6450c586d637e5"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_win.c",
+    "sha256": "591671e0b80a50289c0aec9aeb460f2296bde8a1a589971b96d59ef9c5b2fa0c"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric_xlib.c",
+    "sha256": "e7c06b4f6c41ab083501bc6196ac6249d4cb1d9f04f92a792008561ac9ccb09f"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomkeys.h",
+    "sha256": "9bacfdc85b2003913b8a571c0762226d07e5e303dbdaa6c64887a194a4279ba2"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomstat.c",
+    "sha256": "fa9332d64d0278e8eaa1481e18175b5b06d012af9e3f56a72edf823401a473bc"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomstat.h",
+    "sha256": "a4c71dc810f4ac7b23a881a03566b4427356f7d59de37d5ddd38b43069c1f1a5"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomtype.h",
+    "sha256": "17467a61fe3bb8b3c40a9173430213deea2d69a4f2ddbf0c7fc89bd180008827"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/dstrings.c",
+    "sha256": "9804ceaafe342d4a12d0ce52a1f882f84e1d8d62482bd8edf914bec8f4d6fb84"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/dstrings.h",
+    "sha256": "81e8527b9264b1271fe7ab0737a359d24fb1f4052994ac3aea9a98c7a3a651c7"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/dummy.c",
+    "sha256": "fe10b9869685fd586d5641883405531b3694d4ff6f9e6b800c4d3a43710d65fd"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/f_finale.c",
+    "sha256": "ac5ea9aff7dc47a8621e014b9f65ff91ac5cf8cdc1dcdaa855bbd5e3acc00861"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/f_finale.h",
+    "sha256": "8b1d4777e91f0f8be1c97475698701e0f17013d00c394cb6a2cfbb87f46b9d62"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/f_wipe.c",
+    "sha256": "60969b7843a0eb0483f549abff2c4fcd20ccfeafc5ace8817836d1e895819fa0"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/f_wipe.h",
+    "sha256": "e3e769803e2998aab83a6f98634654ce76f9c51aa6c7c551c4489deac5a2e041"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/g_game.c",
+    "sha256": "88d13781006089e80f8d1e4c1bea9fe6934f1314c290a1f379fc8155c3268123"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/g_game.h",
+    "sha256": "b808b2ca10e734e22bef8591b0124d9ff4a4ef808ac12a6170189b4ef96c0c90"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/gusconf.c",
+    "sha256": "4efa93fb1d49a1c8d8c4f0cefee09066da9cd59159f868fd9658a064898d516a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/gusconf.h",
+    "sha256": "beec7b7cceabc46ecf932ed584c85cbb68acb6dff7776f4df8586b35054afa58"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/hu_lib.c",
+    "sha256": "fa6fa03cab0645248aeb16400ced25f9b8d52cadb9bf988ec9a6e2dcac228018"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/hu_lib.h",
+    "sha256": "6ce06bc30e0275d8c77ebbf1b70d581f93594ead3efd2a0d84dcc8d00394fea5"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/hu_stuff.c",
+    "sha256": "726c8fa2a23a4da67b87b312156d9b04472c9cf966f210031e6924d46865ce0f"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/hu_stuff.h",
+    "sha256": "b7c9078a1eac5ccfc0e70ca691490ece0dae6171c28e315f4ece12ccff60cee5"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_allegromusic.c",
+    "sha256": "ba9b072bb1162f3435ca9b2ff8420fe03ce2b61adfbc756dfee302d7316d1792"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_allegrosound.c",
+    "sha256": "8570343be57fba9ff76b7eb6ce977cb96058fc861f450c8418443353ee14d81b"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_cdmus.c",
+    "sha256": "6573cbb850e268671c21f9278fd0f3a5bb3c4bd31801e2231c649a334145902a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_cdmus.h",
+    "sha256": "e0024e794a5e507c476b011a23770726c940e211c7c9603452d3bd156db47c30"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_endoom.c",
+    "sha256": "4fd3d8b7b8959512b6742cb922b3a637f137ab64dd00c1811f146a18db80b590"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_endoom.h",
+    "sha256": "54834211849d212b3aec65b03ff8a8906f0b1f1985d334188eaad8990af73e4c"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_input.c",
+    "sha256": "c7cfc91d1edaefd66395f9293fbef5050ea2ad367fd9acc2afd4b4cbf213daa4"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_joystick.c",
+    "sha256": "01f52e0e986dfe3114e97a388f977a01d74e9bd16a454a57df58d6ecaeb7d519"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_joystick.h",
+    "sha256": "1980f8481b417416d048ad03968058f0ff0cce9700e10f1bafd8e965190a80d1"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_scale.c",
+    "sha256": "f9dad27d7cae5ca6a63c87570c359d40e35002fb499c7d8a2e58ebb291a93e92"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_scale.h",
+    "sha256": "23d43b89fea35c33ee14959643441dafe2ba478b66f0d9c25af170abf27d203f"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_sdlmusic.c",
+    "sha256": "6847ea7539ef7b7d6cf7a7e58bdb252b97e725e41f92db6a50ce5b858868c96d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_sdlsound.c",
+    "sha256": "56a39689d5803708e8eaaec1481bb0bcec3279de5493116530033fca76bcb8b6"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_sound.c",
+    "sha256": "715918bc37b927c9426f37c3565d58d0f9f7bb517791b88b673820cc768572ee"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_sound.h",
+    "sha256": "b0a63a0fb482e767aa7812f5f7db3c66883feda084a30ec59abda10abc314a5e"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_swap.h",
+    "sha256": "b8e773577839ccb51c0c9bf7232e9c174ec32e44c9573b1b38cc3337e2d0ad45"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_system.c",
+    "sha256": "e547a31d179f5aeb3a377f4d4fe22d46d212e737d2dedde8b64b0d253a4d71f9"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_system.h",
+    "sha256": "19084cfd6ffb7b69516cb62916c2a510ace67545f17dd6fb673be848f1d81d9e"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_timer.c",
+    "sha256": "cf59e0db8d0ce9cefeb22643141a8983cea3668f16bae2bf009c58979c3b5cb3"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_timer.h",
+    "sha256": "39449001def04dbd4984be2ea42ed48e3a4ba1e0b10fdb43e43d9e18b23f5081"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_video.c",
+    "sha256": "96ab70a06680aaa5129fbc3bd7ac9237b186e36ded1c725a957ce69d82a9bec8"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_video.h",
+    "sha256": "c3321fc943e421a9a889509b7a2a7ee5b6a848c8fee4ecaab746c66588c15a3d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/icon.c",
+    "sha256": "d1fc9187565142fb687830b151b63190c47ad4220210661dbe98edb0f74c068f"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/info.c",
+    "sha256": "43ed8b32ecd053e26b485a5443d8c11d4cf302377d5f62655d302964c90e2a0f"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/info.h",
+    "sha256": "7ddb348b1f09c500446fb7e8c1e6dd3eec715f3a01e1fdee211ad3b0ec9516df"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_argv.c",
+    "sha256": "7fb6bde5640bcce06a92cfc96bfab58c39a172d55823c7f7fae62864996f8da6"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_argv.h",
+    "sha256": "f6e755d39f0edb6654625e11f328ae1cfa66f0898da57202eeebeda49bf8dd85"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_bbox.c",
+    "sha256": "89b9abb5d7b112e1d49052a7936020503d884e7368729dbf079439d2efd2b900"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_bbox.h",
+    "sha256": "6290e396400b65a87c9c14eddb04c455c64381f116b9784870e5162cfb6d1857"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_cheat.c",
+    "sha256": "4d68a9eaa79bfdf4efad2f92246aaff7d067c3b5aa4aecc06902ea98ae76cdb7"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_cheat.h",
+    "sha256": "30ae07736b39f44b57edbcd9c4b861dcd6d81cede100aa7c3c6c85648af05ab2"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_config.c",
+    "sha256": "9ee5543597647fdbd182019769d15e12ca54d930595885a520344adfd041c6d6"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_config.h",
+    "sha256": "002679e7cd0e9a5aeeede9e57fa9052c8f18e34e8273bd47b34ef878c95714eb"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_controls.c",
+    "sha256": "8b85c59a9af0cf2d698e6ed1fa0796e4759ca94fa7bae94c853b775cb9584718"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_controls.h",
+    "sha256": "089b36825ad0f49957990f52fc10fd3c4b2404b7822bf3051b0a69b297ea8f7b"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_fixed.c",
+    "sha256": "d5e13eb7d84416055a5981b8c9bf6495821795626114de40d9b1d4ca36bdc544"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_fixed.h",
+    "sha256": "0928f51e77d3d9dadcd8593821e5c3788a82144e3d74ad40414e87d82cd28c70"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_menu.c",
+    "sha256": "d8cf0f46692ce17301511bd5b4163d3985c309afd34265f9cedf17c13a08b9d2"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_menu.h",
+    "sha256": "bd8d8c0c6d3f759a5bada0b2a8210c4242b5a46fa0f85439eefa0c425ae31d23"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_misc.c",
+    "sha256": "fbd40d5fb82ed3a315841d7bb4a2fea60971993597fb9908ff7c69d576028cb3"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_misc.h",
+    "sha256": "5e35de7b90304c2ef4a88dd4f4f672addb9062ced9b6f98566d253177b8cab7c"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_random.c",
+    "sha256": "5be0ddef0e84bd3e4789e4d6311d979263b8da43a32f30403b9e6d08bf070fea"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/m_random.h",
+    "sha256": "f9d5a08dc6dcab13c22c8bb20a65e70ff42b35623dee81c0d2f363b595c2b612"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/memio.c",
+    "sha256": "29619ef12147ce4f66ac54ef05c59c7e2c0e792d851f9d1921837c1dc7a165b1"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/memio.h",
+    "sha256": "3dff35a40b042f831d0b2505b6238c8ff96663ea527aae3614d23ee1870fcc92"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/mus2mid.c",
+    "sha256": "47f7f8ffb9785774b19a24d034222a1fcbc6a90a40e0ed75dd3d80efd6f01b3b"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/mus2mid.h",
+    "sha256": "5c0543485225e396f77e1707b033d4e679e950b1af1f3ad8f05d4bc274ee75ac"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_client.h",
+    "sha256": "76d382f79cd596e99cedfc1e8ea50d472aa3ed03cc5ac734ef3e5effc9a8dfff"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_dedicated.h",
+    "sha256": "d842253025919a48f3c314f354450dd64ef31448912e6ed86ab2a75f33add287"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_defs.h",
+    "sha256": "a35b30a1e248fc28f190113794f9c11c3d991a196ad11a31cd2dd9717160247a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_gui.h",
+    "sha256": "da25eac4d1e2e6e18d05039f3830dda814e81cbad4bf1af4f8fd9c1d5e7297c3"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_io.h",
+    "sha256": "50d07149d4603b20b4477443e88adac8ba72303a190253d7d1fede4901db64bf"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_loop.h",
+    "sha256": "6b2517390fda6c5a71b4db7cb8de885de685960d8d469e750712712434c0a998"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_packet.h",
+    "sha256": "3386dce3169cb8a5ad37cccc010b64bf8a66eb36d847eb55d38c5554af10ffec"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_query.h",
+    "sha256": "2c1a1be246d9b560683b2ef56719b6b6b3958f62819a033bb3a35dedf724d60f"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_sdl.h",
+    "sha256": "73c88c6ec8ffad3a30583a48e1ace2ff186d4b5bb08061776c0fd01ec81ca51a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/net_server.h",
+    "sha256": "33437f02e5ce1b5cb2cc3fef790512f75b3afb1b14a90bf92378738c54af3cef"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_ceilng.c",
+    "sha256": "20c58a9336c44f61d42f5b57bcab08f866889776083365850b34cc24a90f7017"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_doors.c",
+    "sha256": "429bc5c7446caf4c95bfc0ac8a6c4f9892f88e9f4615fa02103f180a3dbb4178"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_enemy.c",
+    "sha256": "0043c0fa6107ddd001737e5da25d80c3d8c606769710d25a9fa064661cd6a7d3"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_floor.c",
+    "sha256": "8bc68d1f1bea828aa72ef09213addebd946483e07886ca7e51457c95e87a4ec8"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_inter.c",
+    "sha256": "2b8f7c1c38feefd296406438820ddb7fb13c09c2b3cb5a78ee030b7838f318ba"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_inter.h",
+    "sha256": "83b5c68164306ca2b51675d9753e118ca854a2eadc56c2c9e5bdf4b9bdd83cb4"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_lights.c",
+    "sha256": "f0aebf42466c7995f7d84faac28bee1abd25cb83e76f668edb7a24b77311ed91"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_local.h",
+    "sha256": "f9c74f3ec882f4f759653fd96bdece15c83b4bbafa9baf47a3d86ae56d72ce1d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_map.c",
+    "sha256": "7e39f8a82c7a7b3de34845a28ac14ea8252509ed6af2ba280f1ba5d9d050c3e4"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_maputl.c",
+    "sha256": "46b752624ae6686fffab2493c121f42eaa29816eb9bb487689ca6dd79a9373bc"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_mobj.c",
+    "sha256": "c80a7063eb28fe1461a2b40845d48405fddfeea06fbaf2fd30cec88e689f070d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_mobj.h",
+    "sha256": "b54b339339a442f52412a6828b3749306c7841550849299f1f7d272ea323e168"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_plats.c",
+    "sha256": "9fd0e8bfdeced8ef16a46694b3d3159cf110e499c3a4ef7ce68e9b8c12f7f2dc"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_pspr.c",
+    "sha256": "0d8b0f8a285d6533e81bc4fbaeeb18a6ab4bb305d547e81ae3853a462e5c9a1e"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_pspr.h",
+    "sha256": "eee47f10c539d4c27b4b72bddfe5d83b2f317c14aa3d92eb5f9d1f993838ef6d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_saveg.c",
+    "sha256": "00618c964bea7664fef9f6b15e76f5b6d8766d7bebb4e0e979f0c2e4d8289cb5"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_saveg.h",
+    "sha256": "1fb50d63262bd64046c3553d4a2f3e5913878c792338d0ae77934ce59bcd1ee4"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_setup.c",
+    "sha256": "e6735d36ac04a58c77467776d96ab2fa0f8234fd00c522cf7484ed1510abe3c0"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_setup.h",
+    "sha256": "b694051e5a6981cfd5800c4f6a64484553172c4587148b5354c5db082af46dc9"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_sight.c",
+    "sha256": "9435efa2f2d2755c64155b3a490ead7587838bc32a8d081d45b64c3d45836271"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_spec.c",
+    "sha256": "7b79a0d9972f0866ab0f1a0cdcbf377ca28851d1d2139e8651037808eaca276e"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_spec.h",
+    "sha256": "0215f64ac43834fd292bc32003f84e6b195f9fb0ab30d0b6cb7fad04fdf78109"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_switch.c",
+    "sha256": "e7621d563f384a2e228644612a59702c7cd0f5c7ed88fa8f69a09098c062c236"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_telept.c",
+    "sha256": "5d0eb86e2620c7f58d9ce106ba85ffe331e7fe0886f7e3955d7e321a452551ee"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_tick.c",
+    "sha256": "824179765df5de9c3c93a420b606cad7aa48ccbd393bd4ce22f7fba9d9d54a19"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_tick.h",
+    "sha256": "558c6879d9fb461ae1bf0f3e42f492fcdf4c7291e1795f9a283add8f78149567"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/p_user.c",
+    "sha256": "617d5ffdd3e67770415d26d370e24bde8afcf525d46510c63753de3c4e648fe2"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_bsp.c",
+    "sha256": "08197bf2685b9c9467af4483517e4842396889504a7311506ff0c73b8f56f371"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_bsp.h",
+    "sha256": "fc1adc08614fd463384c8af565e82bca4dd396316d18302cd2baa3a9250a303f"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_data.c",
+    "sha256": "6806c473319095e24fd422a9156be7a19eea01c9f11ade5543782a25813c6e57"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_data.h",
+    "sha256": "ad200859ba61da621a82182bac9835dcc79f03e35d1ac91064c791676e1954c4"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_defs.h",
+    "sha256": "ab5e553358945af3cc800eb05d5275eed5e678e7452b0d872b35d837c866d272"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_draw.c",
+    "sha256": "b13e6ac18a4e911875601c15ccc02b7f1958712f13e5edf85cf0134372623bce"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_draw.h",
+    "sha256": "9e8d667a90785e93b44547a94cd7c0f317e6fce199ab3d551f9346d6ef9465ee"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_local.h",
+    "sha256": "f0b87b3534d532b37b58386519de6b1d06328a580fe2af62f3de340aea95faeb"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_main.c",
+    "sha256": "f4b0a5f14ac46fe90f537553a9dce558d8cc2d0aa6aab6c53a8080598fda3ab9"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_main.h",
+    "sha256": "bfafe1bb3bfab0de24e14f463ed1162fdb28ce4a78f30d7a514e86ebfba359a6"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_plane.c",
+    "sha256": "d16c45af2658781620254b4ce2bc6985980912a208b3cc7037986a142ee3c7a8"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_plane.h",
+    "sha256": "e792ae34f6440363cc1e7ed68a9d4880b8a1057fc5293aebfbcf4466c889d773"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_segs.c",
+    "sha256": "3c473ad15d4830bfe24be959cd3e2ce72e7a6bbb2a41bef93495a7f11ffd53b4"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_segs.h",
+    "sha256": "4ed0b751b8a0db73b01cdd0f6ec24dafef61c1b403de2be83094cf84e93c26ae"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_sky.c",
+    "sha256": "5e7ea2b14c227ff7df297741e1be674e6a7865ce2eeab29c99ca12d1f3209ade"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_sky.h",
+    "sha256": "cc53c08d1cc7ef042944a2f9d1924ebe27022b6ef172bee3e492d4cfd6e9240a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_state.h",
+    "sha256": "7ec040a913b05ec2c57ea33720fd600b702186701076faad5a4f135e65a562f6"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.c",
+    "sha256": "584277754102354ebd9e9a9dfc804e99466adafff394444a272dd241e9c64024"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.h",
+    "sha256": "664ba8ac66b160e321dce8a00a9d29eea4f39643f20f7711f6d439286e58ef60"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/s_sound.c",
+    "sha256": "b11d6990c9308edf686a1c77bcca1eded7e3b5c0e233a918cb195861ca412101"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/s_sound.h",
+    "sha256": "08c6e17c15a86927f86e9e68fd16b8b7c7b50f7a11abd313e9905703969cd4d1"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/sha1.c",
+    "sha256": "1920c8f3c669f86678c250d997d2159c6d562f41414891e34544c331e45aef22"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/sha1.h",
+    "sha256": "cda0dd9326ef9bcf5622076fab20e7e420c8dfe2d173a9859cc7cddefb78804b"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/sounds.c",
+    "sha256": "28d358a0b76ec79208773ce4f9644ac2624a3950a518a3dad1decc8697d57d71"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/sounds.h",
+    "sha256": "8a360f02c2bcb17c0fae62bf41317f91b785cd63ef7c9f35bc0cbbf708e9aa7a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/st_lib.c",
+    "sha256": "f30d72536657f369a4fea6c03e60122ee7d385d1062615c7e5a917c8c086c63c"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/st_lib.h",
+    "sha256": "e0486603bc4154e87fb6c90cb4e669365f9c2e66a29e6c8296e8534d7e6223eb"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/st_stuff.c",
+    "sha256": "da145ef218df8f46cbfa23854dc6a993f80c53b15a9bbee628cebd3fb78d024b"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/st_stuff.h",
+    "sha256": "7315a6067fe21c6b0b88be1c2eaca4f2e3623c7c24f4949bc30bcf0d71216772"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/statdump.c",
+    "sha256": "79ab0c3af80f05e01df1f80f37d4e3902387f9a69acf50118e763d3a46302761"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/statdump.h",
+    "sha256": "15b7f0891cc6848d4f17bbb75508cb0f7ab1eee56067e7a8e556d0d151bf849b"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/tables.c",
+    "sha256": "b20ffe17b3b32e6eb689199db0b314deea234091301f2c34dd82b3512b42c411"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/tables.h",
+    "sha256": "f37583bc957fb456c4229fb85a6cb57fece3d24c069df622c8c9690dd66d094a"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/v_patch.h",
+    "sha256": "e5300f9c7b7c762131569f0e9d906b30fabe1d90eec040ad5808561fe7ff7da0"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/v_video.c",
+    "sha256": "19d99cc57a49fb83a7357332a2a2338970633b477a883ffe61f9ee876ac13fe6"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/v_video.h",
+    "sha256": "42f84f7588c2c33d6b7ba4297dedc83927063a39fb40f391df7399c8b05ad0e5"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_checksum.c",
+    "sha256": "95a62cd90d615d67cb4326aea446e516df68a2384827236c55b01e483afdc571"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_checksum.h",
+    "sha256": "3ce1d2fcaf078d69d38bf7ae11e85c195463cf7da728c0546296eb3959b8b16c"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_file.c",
+    "sha256": "c1da5ccf0ac64cbb3023730ffb79569d424b443de2e6064d081b0dea9566b6e6"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_file.h",
+    "sha256": "3d2fcf565ae7ed32f2000bf3517ae55d6311a2e71069c80d3aa54d6c267e2c3c"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_file_stdc.c",
+    "sha256": "11e3512d543a9337920abd37f1bcb981cc8a901c66cc7a26622f3f77cfae35c1"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_main.c",
+    "sha256": "fc9768762a4f5d3ee487f08ac483ad7088e443c9291fd7d4696b5177b7770b10"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_main.h",
+    "sha256": "9c8fc5515ef36b90e1ffd66a7934b94ac581ba7119f675037992f4ba9a6c4628"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_merge.h",
+    "sha256": "e8c2ba4f7f357fe265acde37122e42d6d4fd73bf135efcdb5b9af3043409ac34"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_wad.c",
+    "sha256": "5e3a6c495c5fc839f816ab6fb856272cd887ee4e9db67fbd6e0d339dd7847027"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/w_wad.h",
+    "sha256": "5fb042b3db5b20a09f2dd70134e734c26dd42230925c1dc9068274885bcc7d5e"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/wi_stuff.c",
+    "sha256": "881c934b7100507ce4141c74255c03ba381434632e233a34f7b98ff1c7ed4e03"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/wi_stuff.h",
+    "sha256": "82013f95fa7d59e1006f4f080d8bfedf69919571f57714415cf3413e049f273b"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/z_zone.c",
+    "sha256": "db3d4e358bee165f6ade8b71a574dbfad61b50b4d878862545d55e7110e93df3"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/z_zone.h",
+    "sha256": "d392cb68bf7c05b5950db5556757fb9271e8be903674afa01ab4b6d9d767871d"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric.sln",
+    "sha256": "671cdd79944e4d1f7ee62d76d72e494e307fa2850fc82a9c08f4c76071be2c5c"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/screenshots/freebsd.png",
+    "sha256": "294fac40bdad21698ce8722800d5351abdbd541b78b31b12e0c536bf206e1bfe"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/screenshots/sdl.png",
+    "sha256": "5775b52d24b4913837149adf6dad3c9f29e2c8d3ae1dd2ccc1d78062221e5378"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/screenshots/ubuntu.png",
+    "sha256": "e8d60d065593d5090f7f25b0c4eee73e246935825e0698e6a88e4d5cbadbc5e4"
+  },
+  {
+    "path": "native/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/screenshots/windows.png",
+    "sha256": "b2ea268d187039e551f4abdc638cc1daaa8e2fdb01084d8078eb0e4cb0d8b60d"
+  },
+  {
+    "path": "native/host32/am_map.o",
+    "sha256": "9c47e358be46b1c1b18ee0f64bc9b10fc91da79e263cf687164ad55e55de4ae3"
+  },
+  {
+    "path": "native/host32/am_map.su",
+    "sha256": "9f9cb0dc1036c4672f5064e8086dd54c672c6d696f424882e200b6a5644a0db6"
+  },
+  {
+    "path": "native/host32/build.json",
+    "sha256": "c84673351349ed3081dd782514319bc621ce1c5445a7453b8b27efde41980834"
+  },
+  {
+    "path": "native/host32/compile.log",
+    "sha256": "e3b7381e530ef3785a941d45ea048150deac2544ab021a17e1ec793c17695070"
+  },
+  {
+    "path": "native/host32/d_event.o",
+    "sha256": "8521b23bdfea800ec4144775ccd8f07e30039fa243ca70c64b86980b8da7ad47"
+  },
+  {
+    "path": "native/host32/d_event.su",
+    "sha256": "8179673d12857b986e773e4769427e851c3579719f4f6cce55a7bb428fdc72e0"
+  },
+  {
+    "path": "native/host32/d_items.o",
+    "sha256": "9f6aa3c15a9f01529dd8999353e782045da71efd1df6fdf199176d32ccf7d5a8"
+  },
+  {
+    "path": "native/host32/d_items.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32/d_iwad.o",
+    "sha256": "a0cbc1f65aaaca0dc713d3cd67aadf3baad809c0c0f1c6016f94ec0bde6d76a0"
+  },
+  {
+    "path": "native/host32/d_iwad.su",
+    "sha256": "c52e1e3c4084ab4be2e43d3e9025fa67ee7da84283ddd2da65d42270d0958bfa"
+  },
+  {
+    "path": "native/host32/d_loop.o",
+    "sha256": "0efa5eb35024ad86682853aac6f25410f5dd941b7ad40d83e6567a3bd8aec136"
+  },
+  {
+    "path": "native/host32/d_loop.su",
+    "sha256": "2f0fe6d47f5d3305be50f749786fbbb817187106ef578f03624cbb75dc4845e6"
+  },
+  {
+    "path": "native/host32/d_main.o",
+    "sha256": "110480f45b122c481f7a53838146cd61e6427f5e71a742b872ac8d221a4a1bb7"
+  },
+  {
+    "path": "native/host32/d_main.su",
+    "sha256": "640a02674bc091e7c659059f7c10b603c68726da69ea4a6599fd6fe1aec70377"
+  },
+  {
+    "path": "native/host32/d_mode.o",
+    "sha256": "328859983ec5d6a3bc5ac757da1e2f4713e9fe88059c6bfb32ab742babeb2946"
+  },
+  {
+    "path": "native/host32/d_mode.su",
+    "sha256": "dcfec024f5e3a362c67387cbb3c05dba289180c26f494af61d9ba8c0d44568e6"
+  },
+  {
+    "path": "native/host32/d_net.o",
+    "sha256": "ea543bd367a9b78b33af5d562c72232d976c02fb77354ac0658704e12f5a7479"
+  },
+  {
+    "path": "native/host32/d_net.su",
+    "sha256": "767148a581f667596540a630eb739a58e68dd3eba80fbd3c5fc3e94404ec3dc6"
+  },
+  {
+    "path": "native/host32/doom-profile",
+    "sha256": "b694feb6dc3ea5ab7a216fc1b6764be1b057e069e60cbc5e84b6f49f9d229ef8"
+  },
+  {
+    "path": "native/host32/doom.map",
+    "sha256": "f13cdcb89e1deff90aaafc3c5b595b64915a64390dcb84054bc50140434ec410"
+  },
+  {
+    "path": "native/host32/doomdef.o",
+    "sha256": "416c6497ce3f8875f41007cd3d6d4abcf92eb4a506d45b9370e8a1f34c3b9c50"
+  },
+  {
+    "path": "native/host32/doomdef.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32/doomgeneric.o",
+    "sha256": "086368f2fd264849ee11c0b04adc242da0881059b2655ebc4247f8d0e512642e"
+  },
+  {
+    "path": "native/host32/doomgeneric.su",
+    "sha256": "0a4b2fc6dc4f5e8cb0f94d8fddb364ce11c55a9878934f8baa58fb10af8e48e8"
+  },
+  {
+    "path": "native/host32/doomstat.o",
+    "sha256": "ac57a998dd8616ae724d1ba20512aff3428e13bb6f1145817c3370b9111ebd3d"
+  },
+  {
+    "path": "native/host32/doomstat.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32/dstrings.o",
+    "sha256": "2fdee6c163c2b14a6ec148651bf7a3e71c074cf4e7d339a02eb366d238766cf6"
+  },
+  {
+    "path": "native/host32/dstrings.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32/dummy.o",
+    "sha256": "45869444cdb3f4f68d214b129979da1542e72dc8c235b7a175068abae560a72e"
+  },
+  {
+    "path": "native/host32/dummy.su",
+    "sha256": "8a0b9d12756697c2239d5edc1411606c62d1d0b3d75a6db3aada3f18a17a319f"
+  },
+  {
+    "path": "native/host32/f_finale.o",
+    "sha256": "ce54018a859b8e432edbcc02d119842522d33a3a289ab77b3d62a8d3c59e16f3"
+  },
+  {
+    "path": "native/host32/f_finale.su",
+    "sha256": "491ecb32e1a536b6489b2fe045b38291e76b8fb7ad58a38c0dc700e638403299"
+  },
+  {
+    "path": "native/host32/f_wipe.o",
+    "sha256": "354309d47b6612f3f95d4a992cd95dc8155c922a98392f6f8d9578b7ea2e6702"
+  },
+  {
+    "path": "native/host32/f_wipe.su",
+    "sha256": "6274cc032d3357b1295c03708d91bab800b8ec2bfa524e1258d849bcb7ba0e8e"
+  },
+  {
+    "path": "native/host32/g_game.o",
+    "sha256": "9bab2fcb281cd87897c8e81b2cf334fb08fd55b294b33dc03e0443aa37a6909b"
+  },
+  {
+    "path": "native/host32/g_game.su",
+    "sha256": "dbd2501e1bcb9449e9e53ec31bc1f3420250a6f1ff721ea363f1abd638561400"
+  },
+  {
+    "path": "native/host32/hu_lib.o",
+    "sha256": "6b2b9ec426902884754e8e331ee4243b014ab7a01b349431a102c001aec042b2"
+  },
+  {
+    "path": "native/host32/hu_lib.su",
+    "sha256": "f21c28e4e2d3095f05d1fd9f8c980d70739f329f9acfeff7513c7b2823c57616"
+  },
+  {
+    "path": "native/host32/hu_stuff.o",
+    "sha256": "fdf5fe2e33ea6f4756b10d8ca030b036cbbf278511ef33fc4bf01c8da23df165"
+  },
+  {
+    "path": "native/host32/hu_stuff.su",
+    "sha256": "5c43fdd2bd50ab2ece5545e1624a1d77939f41393e4439bca024a900276a5815"
+  },
+  {
+    "path": "native/host32/i_cdmus.o",
+    "sha256": "dbbdd6a3fd425d464dfa45719cea60d9f81f0eecca749e0311eee95269e29cef"
+  },
+  {
+    "path": "native/host32/i_cdmus.su",
+    "sha256": "3f518a9bf862268208cbaba7ff6de6da90013cc7b21ddb38611146e4eaa29cc3"
+  },
+  {
+    "path": "native/host32/i_endoom.o",
+    "sha256": "61cee072d8979b456acbb1ab5643596df3624c0050a567d592fd11ea263945da"
+  },
+  {
+    "path": "native/host32/i_endoom.su",
+    "sha256": "ed643ecac068d44f6326bcde22a067f3175d8c348a3ae768b4e18816dc7bf411"
+  },
+  {
+    "path": "native/host32/i_input.o",
+    "sha256": "9e2398f4d551fd44a58298ea35e7a127a39df27d31da9a9693653315082b8269"
+  },
+  {
+    "path": "native/host32/i_input.su",
+    "sha256": "2c4f1a0ead6e7abb30cfe6b2c217a1212906628a9c97f117f529e9488f413c1e"
+  },
+  {
+    "path": "native/host32/i_joystick.o",
+    "sha256": "c41a2fd1a774a3a19e5a3a39ad14451d56834e71c4e280f12b6ef1cfdbb4d497"
+  },
+  {
+    "path": "native/host32/i_joystick.su",
+    "sha256": "32484524fe2a829bab89986084e047a07ea5236b385f3f5dc3a51205018ae15c"
+  },
+  {
+    "path": "native/host32/i_scale.o",
+    "sha256": "3b604aa4d17d5c7a112ceed9b4464ebd292f8062aafdb8d89f2a17fbd92e0535"
+  },
+  {
+    "path": "native/host32/i_scale.su",
+    "sha256": "2ada51712f67a9bf6da1f5379cf2649d17a0d3f8d61f5fdb8c9cce2053d6014b"
+  },
+  {
+    "path": "native/host32/i_sound.o",
+    "sha256": "1b8e6f3248b04e2ad7a68a4f8b558607d978e3558532d5cc2338c148b9d7d7ff"
+  },
+  {
+    "path": "native/host32/i_sound.su",
+    "sha256": "5c01d4caedc1269111b95734e22e7ea052b9e583c6e61dc968e0902b26bae89d"
+  },
+  {
+    "path": "native/host32/i_system.o",
+    "sha256": "cadbefb99fd1d6283eabf56db3c0a2767ad81df8cdba109e1d8772dec1b9a52a"
+  },
+  {
+    "path": "native/host32/i_system.su",
+    "sha256": "653b5df332b110aaacd197d71c0371c2c416da6fc804871ccc837af8a9b7983f"
+  },
+  {
+    "path": "native/host32/i_timer.o",
+    "sha256": "f4ee5db652febe8408bc510dbf46aa2da910dbb88f62a71998530e4871d3ccfc"
+  },
+  {
+    "path": "native/host32/i_timer.su",
+    "sha256": "048365d107127742307517421c2d14fa89d5677c2363d29fa3a092b77a293fa9"
+  },
+  {
+    "path": "native/host32/i_video.o",
+    "sha256": "681774d07161f6eadc85a4f4d62cb9bb95ac47ca5a355423770ee2ad821ac94a"
+  },
+  {
+    "path": "native/host32/i_video.su",
+    "sha256": "e3186bfe6d761cb2ce26e6844ff8861956b97f280871b514d4ad9c20bd397e07"
+  },
+  {
+    "path": "native/host32/info.o",
+    "sha256": "c54538ae3eb42f09ed9d3c2b515c793304d836059d44275a77978dcb4d11a4f3"
+  },
+  {
+    "path": "native/host32/info.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32/link.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32/m_argv.o",
+    "sha256": "d745644a84812fbbc9a9577081673e781dfcf40a824c374857a8d98e0a8ab4b9"
+  },
+  {
+    "path": "native/host32/m_argv.su",
+    "sha256": "05f4921554a98f04beb5b56abfb956b790d67e688914e09db0447d043c5e1dbb"
+  },
+  {
+    "path": "native/host32/m_bbox.o",
+    "sha256": "b21d4fbd114e66a1d9b08b0a90b4f097328069276ec4a36d3a5b6964a0480687"
+  },
+  {
+    "path": "native/host32/m_bbox.su",
+    "sha256": "49d3c00634011f668aeed926c0f5ba4983f4c2ea9a0ff41a0b5555262e164e08"
+  },
+  {
+    "path": "native/host32/m_cheat.o",
+    "sha256": "a93a459d0b53801c43d0af9444ee525e176f5b4c61f6bf1aaeabcdaa19662b8a"
+  },
+  {
+    "path": "native/host32/m_cheat.su",
+    "sha256": "3663e62344eaeaabbbb1a9cecf52feebce13d01c72d05070539da5970f05c77e"
+  },
+  {
+    "path": "native/host32/m_config.o",
+    "sha256": "bcc572f9e60c6111c5a963b9fee9875211d045c89e27a1b1bfb8b8db7a5072df"
+  },
+  {
+    "path": "native/host32/m_config.su",
+    "sha256": "16162352554dd3e569b202b385ed8f6b40dad454bad1cf7cad8268a9ed2bfc62"
+  },
+  {
+    "path": "native/host32/m_controls.o",
+    "sha256": "11e4d4486055f76cf15173bfb0540b0137de583bf0e1a71a6cf3f38ee22bcd26"
+  },
+  {
+    "path": "native/host32/m_controls.su",
+    "sha256": "93f29f0ce9cc1338af45627eaef83421ae3d2346d51bec72051781c140f5f2d8"
+  },
+  {
+    "path": "native/host32/m_fixed.o",
+    "sha256": "89a9fe16f9d5742177d414a0d543036628bbd77d6e3d931075022f01e63511a2"
+  },
+  {
+    "path": "native/host32/m_fixed.su",
+    "sha256": "a3b687e8bd9652217adccdb68ae48e0000e44d0351d469e7bceff0b9123e7e3e"
+  },
+  {
+    "path": "native/host32/m_menu.o",
+    "sha256": "1c4c6d098f79463257ce414a283e593e664ce26cbfe97a6545b7799ccecfbd5a"
+  },
+  {
+    "path": "native/host32/m_menu.su",
+    "sha256": "22827a4104142ff676e18ff1379e88654a51e848d489d8e7c3e1120fc73bd0bd"
+  },
+  {
+    "path": "native/host32/m_misc.o",
+    "sha256": "cb7aa3fec9ccbbcb8316bc188568499bdbc41a60b13d9eef5f6485f3cbae41b3"
+  },
+  {
+    "path": "native/host32/m_misc.su",
+    "sha256": "8be25e781fd612a07fd48b9107566a0969514da3caf923e9a95af4d2616c2b44"
+  },
+  {
+    "path": "native/host32/m_random.o",
+    "sha256": "0f96c8437c9c89abd59afad6fd03ebca35b6b45458daf1202463ca9d3053ae45"
+  },
+  {
+    "path": "native/host32/m_random.su",
+    "sha256": "620863232e476c143bee5d1917acfa842e015825f00ffcbcd8b1fe29758dec88"
+  },
+  {
+    "path": "native/host32/memio.o",
+    "sha256": "32258d7c5d18a3be80bc74b44ed257a7d5f164ba3a65d2657fc0587f6a037d0c"
+  },
+  {
+    "path": "native/host32/memio.su",
+    "sha256": "bc9593fe162fdd080add0187e4b6e096ac38777c5f35d6cb458da79cc0c78b7f"
+  },
+  {
+    "path": "native/host32/p_ceilng.o",
+    "sha256": "8bb6c7364609305f8a48d98061853e3b0f7923b07683ff77a58a71dd56eecdc2"
+  },
+  {
+    "path": "native/host32/p_ceilng.su",
+    "sha256": "e353970ec6cd08e420a428bd73be4b97125188f2b2a19d9d471d57ade2066c30"
+  },
+  {
+    "path": "native/host32/p_doors.o",
+    "sha256": "2efaa1012997354c36d14459a19b3b074d77ef7d4449bb763b6b21e3547b39ef"
+  },
+  {
+    "path": "native/host32/p_doors.su",
+    "sha256": "fc391f2fe162ceef575cc4e9308e9f9cf9a620d1077d30855236075b62652409"
+  },
+  {
+    "path": "native/host32/p_enemy.o",
+    "sha256": "35c75c224e793ae61fba6ecb15cafc652124b4fd44aab28f67f8312caa9870c7"
+  },
+  {
+    "path": "native/host32/p_enemy.su",
+    "sha256": "2c54b8f9d360aff0fa194d77af07c6892667984bdfcd24510aba09f1dafb4b5a"
+  },
+  {
+    "path": "native/host32/p_floor.o",
+    "sha256": "e498835e817088aced8f6b2591896c0fb95bec72055801f66fa3ee3e62933092"
+  },
+  {
+    "path": "native/host32/p_floor.su",
+    "sha256": "e6a5be3b9274d3774cd1c1168f066146b5feac22b3d5215fcec8d19262d4ed9d"
+  },
+  {
+    "path": "native/host32/p_inter.o",
+    "sha256": "c6d19de4201b51be932d26686dbcb180fe716d71a830d04a3d68c6f0da88f526"
+  },
+  {
+    "path": "native/host32/p_inter.su",
+    "sha256": "cc7a029ff8ff314b198bbaa248408e4421b25903c8d304b685a83b2fb3779726"
+  },
+  {
+    "path": "native/host32/p_lights.o",
+    "sha256": "17a06bf7e47a51217c3640b692f9a223d7969f587996df550801342e7051c720"
+  },
+  {
+    "path": "native/host32/p_lights.su",
+    "sha256": "8c16041bb8fd0b8c5c6382c017b16a6093fd5e568affcb0883d8a23305d6f3e1"
+  },
+  {
+    "path": "native/host32/p_map.o",
+    "sha256": "b2a192b45b1fb5158a213aaa39060f8c51157001531bbb458e2eaeff805fdac0"
+  },
+  {
+    "path": "native/host32/p_map.su",
+    "sha256": "eed14d6cf27a129e03642e18e5be43a85ab834156f26993e08009f6d276b6f24"
+  },
+  {
+    "path": "native/host32/p_maputl.o",
+    "sha256": "c906f78f4e2738f9fa0de71e947ef6a81ab2534a77d21dfa91cfbe408a29c002"
+  },
+  {
+    "path": "native/host32/p_maputl.su",
+    "sha256": "f88a366f4b049961ca1acb2f432cec76775bcc311e4833105bbb2b664f546cef"
+  },
+  {
+    "path": "native/host32/p_mobj.o",
+    "sha256": "b7f7c79e70eae588540b9d4d6d3590c0de512489ab8c7a378964ea506ada1350"
+  },
+  {
+    "path": "native/host32/p_mobj.su",
+    "sha256": "bb8c23a73e40b66acdb7511cc36c557b449d06dc9810e3f1501c1f9943458c8d"
+  },
+  {
+    "path": "native/host32/p_plats.o",
+    "sha256": "b46b99a1a72df9e38e673072241e20d16c61b7b9a660de886a9154dafbd8fb5c"
+  },
+  {
+    "path": "native/host32/p_plats.su",
+    "sha256": "4bc6d9e00217989754f27908f72cc544a30a438f2e7a401a691a4c67023d7cd0"
+  },
+  {
+    "path": "native/host32/p_pspr.o",
+    "sha256": "f19e49d8f2c19af0f9cba9275f5139e7562f825d263511416d170f566b0d2c80"
+  },
+  {
+    "path": "native/host32/p_pspr.su",
+    "sha256": "3041a82505fc60956b9d99211485945337a3c9ea4444401ed37d5715da4a68c8"
+  },
+  {
+    "path": "native/host32/p_saveg.o",
+    "sha256": "956791ab69d56300e58ea625a9ab3ff1bf1cbe9a7677b02554c0dfcb973cba10"
+  },
+  {
+    "path": "native/host32/p_saveg.su",
+    "sha256": "626ad2993588acea580410bc50566f68933b787c1174f841b74685f4f42b15ec"
+  },
+  {
+    "path": "native/host32/p_setup.o",
+    "sha256": "4b4caca8b506ebc093d97c99e9cd8f8b9ea444251500db1e50705225fa841ae8"
+  },
+  {
+    "path": "native/host32/p_setup.su",
+    "sha256": "e0488f2c2c058eea98214169a5e945ba60762a89be155320e5a855f892969fef"
+  },
+  {
+    "path": "native/host32/p_sight.o",
+    "sha256": "af3e53fe772fee1ed98464193e478c1b34fe66a70c93288b000d21bc054c8303"
+  },
+  {
+    "path": "native/host32/p_sight.su",
+    "sha256": "f94e5841350c8f7548df483c07daba6977a733b1620b4f7c95a4f1afc71b24a9"
+  },
+  {
+    "path": "native/host32/p_spec.o",
+    "sha256": "b994d59111b24c28f94ff0b822ac10623b3cc52dd39435f9305d32d4deeba237"
+  },
+  {
+    "path": "native/host32/p_spec.su",
+    "sha256": "469b84c4639ae448feadd22dd212a8b37d88ee5e7561eef6a2658e0d2bf443b6"
+  },
+  {
+    "path": "native/host32/p_switch.o",
+    "sha256": "df8b717d9ec42b0f70588a319417660ef2acd2dea17a384ed30d06da56b6b56d"
+  },
+  {
+    "path": "native/host32/p_switch.su",
+    "sha256": "41d26a093e4e804f87e77b2b5b6dde785eb9593f43aa3991650dd9829b7f6bc7"
+  },
+  {
+    "path": "native/host32/p_telept.o",
+    "sha256": "35f03e6a2f8353c8d57a8f149cbda9fe29702b55aef35212c8b4ab8edba14433"
+  },
+  {
+    "path": "native/host32/p_telept.su",
+    "sha256": "5f13a3ef2aab2858a982a85576b0b96fa44d59ac4d867e8f4141af3b7baefbd9"
+  },
+  {
+    "path": "native/host32/p_tick.o",
+    "sha256": "50d52eb5ff466d57519d236562d905f5c9dc4327b64b18b6d73e0f5120fec86b"
+  },
+  {
+    "path": "native/host32/p_tick.su",
+    "sha256": "7c4ff99abdec9e6956b01a63861d70effd9f795f6cf73c1bcef7e4f8b8109014"
+  },
+  {
+    "path": "native/host32/p_user.o",
+    "sha256": "de63ef93893029e0afcb458db9be182707338679afc83b6c7023b7ee3f34c221"
+  },
+  {
+    "path": "native/host32/p_user.su",
+    "sha256": "d5c85106379f5b13c633834dc58a8c284d64d1951544a1eb75129efa4bf2d455"
+  },
+  {
+    "path": "native/host32/profile.o",
+    "sha256": "30604d7542fb70cebb6674b8ff4c7b8c27597bedd180ebfbe92efbadc7bb90d9"
+  },
+  {
+    "path": "native/host32/profile.su",
+    "sha256": "58f12c9e8c245cbeb668f51c45f333704f88bf1afcfe317c64a556e5cafbee69"
+  },
+  {
+    "path": "native/host32/r_bsp.o",
+    "sha256": "1ea0ffde46a7d3954e7fa032bf2a32e52de452ad8be45a4c1a59effb2b1ae0f3"
+  },
+  {
+    "path": "native/host32/r_bsp.su",
+    "sha256": "0b1349299ec9ca6213b6dec4fca69d13702ed224d6eca4b195a92e8fa650c496"
+  },
+  {
+    "path": "native/host32/r_data.o",
+    "sha256": "6ea9007b9aa37f9e1f3b0e32d8cb71aa9d49f4108ecf36b8662a84da11469074"
+  },
+  {
+    "path": "native/host32/r_data.su",
+    "sha256": "0c84caf3f1f5aa77ae2c73ff0fc9e1c59fdd5fe0918dbf5603f22e2b626754f7"
+  },
+  {
+    "path": "native/host32/r_draw.o",
+    "sha256": "647fa279e6d4b3bbe216093935e984bc331dd7a15b2c55b38ff1f8240ecfa9dc"
+  },
+  {
+    "path": "native/host32/r_draw.su",
+    "sha256": "823e80e44fd18f79ef66b3cf91d9f7cb01d75639f6dc8eaa8f8a93c8ac936c10"
+  },
+  {
+    "path": "native/host32/r_main.o",
+    "sha256": "f7444e20de6561ca97946fcfa81666853f31af0edd5fa4c47920bf71a039346b"
+  },
+  {
+    "path": "native/host32/r_main.su",
+    "sha256": "9cd7ada79d67b588aa967202570f9ac15cae69a621d9dbe769039f8a1a68b38a"
+  },
+  {
+    "path": "native/host32/r_plane.o",
+    "sha256": "973ca18ac426884c703a8a60c1ef0d6ffd0ce099af462b980c3f5247344190ff"
+  },
+  {
+    "path": "native/host32/r_plane.su",
+    "sha256": "48e1a5f4a047caee028236408ee958bfa8f6049ace2bcbabf2cb8191d8b89826"
+  },
+  {
+    "path": "native/host32/r_segs.o",
+    "sha256": "72ca143ca4a5e6b05d562c1eee5142b62a56c90e50380fdb1899cf7ec24163b4"
+  },
+  {
+    "path": "native/host32/r_segs.su",
+    "sha256": "7c25d6247f07f2b6e350d52a1fa38bcc0dfcea57df3bdf3b5162f2c51f744097"
+  },
+  {
+    "path": "native/host32/r_sky.o",
+    "sha256": "ac1c9de3b1fc409e0a75126baab6808382251d2e117807f5e13db32414bcaddd"
+  },
+  {
+    "path": "native/host32/r_sky.su",
+    "sha256": "48abc6521ca1d318029e459598c7eb6865ac261c80feac90437278d8b3fe7aca"
+  },
+  {
+    "path": "native/host32/r_things.o",
+    "sha256": "9ededa56fc46317c53e33feb99be6872977a2504f4fc4f377e1bd159a551211b"
+  },
+  {
+    "path": "native/host32/r_things.su",
+    "sha256": "bc8ef790fdc19df8630bd4401702bea4a8c548d66e4e2e9f2568af1c04188ea8"
+  },
+  {
+    "path": "native/host32/s_sound.o",
+    "sha256": "3cff8ce8107dc57f9ab4cefc46ad06e3839537704690f303c4db53b59b09a1b9"
+  },
+  {
+    "path": "native/host32/s_sound.su",
+    "sha256": "7906eb8f5b93171c17e931f4f4ae88851ff24744c828c1a6874852e9ee5659fd"
+  },
+  {
+    "path": "native/host32/sha1.o",
+    "sha256": "ddad7b2ae5e6d240a605a569578c5f8d1da621647e4e91a7afe5ef3d85b23e24"
+  },
+  {
+    "path": "native/host32/sha1.su",
+    "sha256": "b516d312be18ad5e18bbb8e7254ee1f82d558aced5e2b59ad7962308548778ae"
+  },
+  {
+    "path": "native/host32/sounds.o",
+    "sha256": "d62660a707a26a172ccb66d538373e4d930ddd287db93e0e4f86611c98bc561a"
+  },
+  {
+    "path": "native/host32/sounds.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32/st_lib.o",
+    "sha256": "70a0b041d115bc81804171890240c71bd5de2530bee84b55a5c6a5692375e1cd"
+  },
+  {
+    "path": "native/host32/st_lib.su",
+    "sha256": "bdbc88a2728cf13d436bd951160ad8a6a87671a63cbe4b93f88bb18f5a4b8d04"
+  },
+  {
+    "path": "native/host32/st_stuff.o",
+    "sha256": "d51ee6b2ea7240380b017b12c21403991472db71e347a83e4b59c9921617ffc7"
+  },
+  {
+    "path": "native/host32/st_stuff.su",
+    "sha256": "6a3a57171bb2dcb8857857ef633d99b32581a94edfe11dc232382fd1271223a2"
+  },
+  {
+    "path": "native/host32/statdump.o",
+    "sha256": "7ea82c5780d76ae66fbfc5f32b7261a42d61fbd25b2fecebe3f16dfa8497551c"
+  },
+  {
+    "path": "native/host32/statdump.su",
+    "sha256": "19a859e764e4e3b44e5ffb7d7bb025b4ee7a88c8b5f39b4446e76b0af060d59b"
+  },
+  {
+    "path": "native/host32/tables.o",
+    "sha256": "482e0940d7521976aa7dedbadb1e00971f5e1989923c168de75ed20d3fa4e407"
+  },
+  {
+    "path": "native/host32/tables.su",
+    "sha256": "b754e3497e070ec3623ad174e890ae1498061d2017c2aeccd4f2522958fe4f19"
+  },
+  {
+    "path": "native/host32/v_video.o",
+    "sha256": "423b56e476d078de90f869e1a9f50245b28aa7cf53339451271b0e6f6c30e101"
+  },
+  {
+    "path": "native/host32/v_video.su",
+    "sha256": "18c819c15b925ff2f421a8a7ba7c4f6db9cb72d60c78fadd25967963346a3268"
+  },
+  {
+    "path": "native/host32/w_checksum.o",
+    "sha256": "b5207120193a22f62a5ddf18e03f5f2fcd798f3ed65fe4c5f95f8ca818c64cce"
+  },
+  {
+    "path": "native/host32/w_checksum.su",
+    "sha256": "c34a8585c4625af094f57a45c9f5d301fd692b6dae0102a83e58ef6e31ebc33c"
+  },
+  {
+    "path": "native/host32/w_file.o",
+    "sha256": "d9b3177b401ef7300c0d0e2f22a998aaa2787bc7fa5e201d7475de20cb24bc81"
+  },
+  {
+    "path": "native/host32/w_file.su",
+    "sha256": "174eef77c3a3f340fa962f97f7eb3e87bbfb6cbc4a8438ad6cbbbb2cc720ac99"
+  },
+  {
+    "path": "native/host32/w_file_stdc.o",
+    "sha256": "a3610854e4833d2abe18bba8f568a5e7cd5a9ce52afe8f8ada6304a975bfc02a"
+  },
+  {
+    "path": "native/host32/w_file_stdc.su",
+    "sha256": "0f1302ce29644dc593642e123ee2292a387ea7086b9a735166670c855912e150"
+  },
+  {
+    "path": "native/host32/w_main.o",
+    "sha256": "214648d63234cd3ca5127f87aae2371a246feecff2fb8ca0546b171333a4aa2c"
+  },
+  {
+    "path": "native/host32/w_main.su",
+    "sha256": "3a87ab158f0284c7975502e9886661e0ce0c7db47f25eaa60a15da3e16f3114f"
+  },
+  {
+    "path": "native/host32/w_wad.o",
+    "sha256": "248f31b863e36c17976e207e9eb5813c7845632b0902b3ee4d0bbff7d5d95180"
+  },
+  {
+    "path": "native/host32/w_wad.su",
+    "sha256": "08a52f383a8e324b4b7f82bc6a69866bbbce512f6292fb52e82bad101e20dcc0"
+  },
+  {
+    "path": "native/host32/wi_stuff.o",
+    "sha256": "8e513f63c69eb9f772166cc4ea7df2908807f7dfc3cfb99df4fad74ded3671fc"
+  },
+  {
+    "path": "native/host32/wi_stuff.su",
+    "sha256": "8c3718e54fd15f74a3ea6f3f23206464d8a839fba83a3e604ebdca1caa8251f4"
+  },
+  {
+    "path": "native/host32/z_zone.o",
+    "sha256": "ae58c66cb147e76757d9d3c3083f25d2858fd71d855588763f6d22e478689f2c"
+  },
+  {
+    "path": "native/host32/z_zone.su",
+    "sha256": "47dcb78d3e784a2b26455bdacdf8f121e5f2549477b73dc4004b06bb0b125d21"
+  },
+  {
+    "path": "native/host32-before-clear/am_map.o",
+    "sha256": "9c47e358be46b1c1b18ee0f64bc9b10fc91da79e263cf687164ad55e55de4ae3"
+  },
+  {
+    "path": "native/host32-before-clear/am_map.su",
+    "sha256": "9f9cb0dc1036c4672f5064e8086dd54c672c6d696f424882e200b6a5644a0db6"
+  },
+  {
+    "path": "native/host32-before-clear/build.json",
+    "sha256": "3307257bf32864cc3a1162f6d059a2337b08becaea2f70919d355f6625a45f00"
+  },
+  {
+    "path": "native/host32-before-clear/compile.log",
+    "sha256": "e3b7381e530ef3785a941d45ea048150deac2544ab021a17e1ec793c17695070"
+  },
+  {
+    "path": "native/host32-before-clear/d_event.o",
+    "sha256": "8521b23bdfea800ec4144775ccd8f07e30039fa243ca70c64b86980b8da7ad47"
+  },
+  {
+    "path": "native/host32-before-clear/d_event.su",
+    "sha256": "8179673d12857b986e773e4769427e851c3579719f4f6cce55a7bb428fdc72e0"
+  },
+  {
+    "path": "native/host32-before-clear/d_items.o",
+    "sha256": "9f6aa3c15a9f01529dd8999353e782045da71efd1df6fdf199176d32ccf7d5a8"
+  },
+  {
+    "path": "native/host32-before-clear/d_items.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-before-clear/d_iwad.o",
+    "sha256": "a0cbc1f65aaaca0dc713d3cd67aadf3baad809c0c0f1c6016f94ec0bde6d76a0"
+  },
+  {
+    "path": "native/host32-before-clear/d_iwad.su",
+    "sha256": "c52e1e3c4084ab4be2e43d3e9025fa67ee7da84283ddd2da65d42270d0958bfa"
+  },
+  {
+    "path": "native/host32-before-clear/d_loop.o",
+    "sha256": "0efa5eb35024ad86682853aac6f25410f5dd941b7ad40d83e6567a3bd8aec136"
+  },
+  {
+    "path": "native/host32-before-clear/d_loop.su",
+    "sha256": "2f0fe6d47f5d3305be50f749786fbbb817187106ef578f03624cbb75dc4845e6"
+  },
+  {
+    "path": "native/host32-before-clear/d_main.o",
+    "sha256": "110480f45b122c481f7a53838146cd61e6427f5e71a742b872ac8d221a4a1bb7"
+  },
+  {
+    "path": "native/host32-before-clear/d_main.su",
+    "sha256": "640a02674bc091e7c659059f7c10b603c68726da69ea4a6599fd6fe1aec70377"
+  },
+  {
+    "path": "native/host32-before-clear/d_mode.o",
+    "sha256": "328859983ec5d6a3bc5ac757da1e2f4713e9fe88059c6bfb32ab742babeb2946"
+  },
+  {
+    "path": "native/host32-before-clear/d_mode.su",
+    "sha256": "dcfec024f5e3a362c67387cbb3c05dba289180c26f494af61d9ba8c0d44568e6"
+  },
+  {
+    "path": "native/host32-before-clear/d_net.o",
+    "sha256": "ea543bd367a9b78b33af5d562c72232d976c02fb77354ac0658704e12f5a7479"
+  },
+  {
+    "path": "native/host32-before-clear/d_net.su",
+    "sha256": "767148a581f667596540a630eb739a58e68dd3eba80fbd3c5fc3e94404ec3dc6"
+  },
+  {
+    "path": "native/host32-before-clear/doom-profile",
+    "sha256": "12f85b7fb731836b9cc0edb3039532c55f125a0c461c3ee28ed74b15ff0820b8"
+  },
+  {
+    "path": "native/host32-before-clear/doom.map",
+    "sha256": "366ed3b0f9f16e4d6d88e2426b2463edcf77708e40588ef68a4239c2790f09ea"
+  },
+  {
+    "path": "native/host32-before-clear/doomdef.o",
+    "sha256": "416c6497ce3f8875f41007cd3d6d4abcf92eb4a506d45b9370e8a1f34c3b9c50"
+  },
+  {
+    "path": "native/host32-before-clear/doomdef.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-before-clear/doomgeneric.o",
+    "sha256": "086368f2fd264849ee11c0b04adc242da0881059b2655ebc4247f8d0e512642e"
+  },
+  {
+    "path": "native/host32-before-clear/doomgeneric.su",
+    "sha256": "0a4b2fc6dc4f5e8cb0f94d8fddb364ce11c55a9878934f8baa58fb10af8e48e8"
+  },
+  {
+    "path": "native/host32-before-clear/doomstat.o",
+    "sha256": "ac57a998dd8616ae724d1ba20512aff3428e13bb6f1145817c3370b9111ebd3d"
+  },
+  {
+    "path": "native/host32-before-clear/doomstat.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-before-clear/dstrings.o",
+    "sha256": "2fdee6c163c2b14a6ec148651bf7a3e71c074cf4e7d339a02eb366d238766cf6"
+  },
+  {
+    "path": "native/host32-before-clear/dstrings.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-before-clear/dummy.o",
+    "sha256": "45869444cdb3f4f68d214b129979da1542e72dc8c235b7a175068abae560a72e"
+  },
+  {
+    "path": "native/host32-before-clear/dummy.su",
+    "sha256": "8a0b9d12756697c2239d5edc1411606c62d1d0b3d75a6db3aada3f18a17a319f"
+  },
+  {
+    "path": "native/host32-before-clear/f_finale.o",
+    "sha256": "ce54018a859b8e432edbcc02d119842522d33a3a289ab77b3d62a8d3c59e16f3"
+  },
+  {
+    "path": "native/host32-before-clear/f_finale.su",
+    "sha256": "491ecb32e1a536b6489b2fe045b38291e76b8fb7ad58a38c0dc700e638403299"
+  },
+  {
+    "path": "native/host32-before-clear/f_wipe.o",
+    "sha256": "354309d47b6612f3f95d4a992cd95dc8155c922a98392f6f8d9578b7ea2e6702"
+  },
+  {
+    "path": "native/host32-before-clear/f_wipe.su",
+    "sha256": "6274cc032d3357b1295c03708d91bab800b8ec2bfa524e1258d849bcb7ba0e8e"
+  },
+  {
+    "path": "native/host32-before-clear/g_game.o",
+    "sha256": "9bab2fcb281cd87897c8e81b2cf334fb08fd55b294b33dc03e0443aa37a6909b"
+  },
+  {
+    "path": "native/host32-before-clear/g_game.su",
+    "sha256": "dbd2501e1bcb9449e9e53ec31bc1f3420250a6f1ff721ea363f1abd638561400"
+  },
+  {
+    "path": "native/host32-before-clear/hu_lib.o",
+    "sha256": "6b2b9ec426902884754e8e331ee4243b014ab7a01b349431a102c001aec042b2"
+  },
+  {
+    "path": "native/host32-before-clear/hu_lib.su",
+    "sha256": "f21c28e4e2d3095f05d1fd9f8c980d70739f329f9acfeff7513c7b2823c57616"
+  },
+  {
+    "path": "native/host32-before-clear/hu_stuff.o",
+    "sha256": "fdf5fe2e33ea6f4756b10d8ca030b036cbbf278511ef33fc4bf01c8da23df165"
+  },
+  {
+    "path": "native/host32-before-clear/hu_stuff.su",
+    "sha256": "5c43fdd2bd50ab2ece5545e1624a1d77939f41393e4439bca024a900276a5815"
+  },
+  {
+    "path": "native/host32-before-clear/i_cdmus.o",
+    "sha256": "dbbdd6a3fd425d464dfa45719cea60d9f81f0eecca749e0311eee95269e29cef"
+  },
+  {
+    "path": "native/host32-before-clear/i_cdmus.su",
+    "sha256": "3f518a9bf862268208cbaba7ff6de6da90013cc7b21ddb38611146e4eaa29cc3"
+  },
+  {
+    "path": "native/host32-before-clear/i_endoom.o",
+    "sha256": "61cee072d8979b456acbb1ab5643596df3624c0050a567d592fd11ea263945da"
+  },
+  {
+    "path": "native/host32-before-clear/i_endoom.su",
+    "sha256": "ed643ecac068d44f6326bcde22a067f3175d8c348a3ae768b4e18816dc7bf411"
+  },
+  {
+    "path": "native/host32-before-clear/i_input.o",
+    "sha256": "9e2398f4d551fd44a58298ea35e7a127a39df27d31da9a9693653315082b8269"
+  },
+  {
+    "path": "native/host32-before-clear/i_input.su",
+    "sha256": "2c4f1a0ead6e7abb30cfe6b2c217a1212906628a9c97f117f529e9488f413c1e"
+  },
+  {
+    "path": "native/host32-before-clear/i_joystick.o",
+    "sha256": "c41a2fd1a774a3a19e5a3a39ad14451d56834e71c4e280f12b6ef1cfdbb4d497"
+  },
+  {
+    "path": "native/host32-before-clear/i_joystick.su",
+    "sha256": "32484524fe2a829bab89986084e047a07ea5236b385f3f5dc3a51205018ae15c"
+  },
+  {
+    "path": "native/host32-before-clear/i_scale.o",
+    "sha256": "3b604aa4d17d5c7a112ceed9b4464ebd292f8062aafdb8d89f2a17fbd92e0535"
+  },
+  {
+    "path": "native/host32-before-clear/i_scale.su",
+    "sha256": "2ada51712f67a9bf6da1f5379cf2649d17a0d3f8d61f5fdb8c9cce2053d6014b"
+  },
+  {
+    "path": "native/host32-before-clear/i_sound.o",
+    "sha256": "1b8e6f3248b04e2ad7a68a4f8b558607d978e3558532d5cc2338c148b9d7d7ff"
+  },
+  {
+    "path": "native/host32-before-clear/i_sound.su",
+    "sha256": "5c01d4caedc1269111b95734e22e7ea052b9e583c6e61dc968e0902b26bae89d"
+  },
+  {
+    "path": "native/host32-before-clear/i_system.o",
+    "sha256": "cadbefb99fd1d6283eabf56db3c0a2767ad81df8cdba109e1d8772dec1b9a52a"
+  },
+  {
+    "path": "native/host32-before-clear/i_system.su",
+    "sha256": "653b5df332b110aaacd197d71c0371c2c416da6fc804871ccc837af8a9b7983f"
+  },
+  {
+    "path": "native/host32-before-clear/i_timer.o",
+    "sha256": "f4ee5db652febe8408bc510dbf46aa2da910dbb88f62a71998530e4871d3ccfc"
+  },
+  {
+    "path": "native/host32-before-clear/i_timer.su",
+    "sha256": "048365d107127742307517421c2d14fa89d5677c2363d29fa3a092b77a293fa9"
+  },
+  {
+    "path": "native/host32-before-clear/i_video.o",
+    "sha256": "325f476a321731ba946da7fdb8405c5b260db2f8e95393600a5902ebb382ead2"
+  },
+  {
+    "path": "native/host32-before-clear/i_video.su",
+    "sha256": "4633ca9b9f3d55b8a7ecff526edc56ff2040cb0e977c2606c3acf58c597a9ff4"
+  },
+  {
+    "path": "native/host32-before-clear/info.o",
+    "sha256": "c54538ae3eb42f09ed9d3c2b515c793304d836059d44275a77978dcb4d11a4f3"
+  },
+  {
+    "path": "native/host32-before-clear/info.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-before-clear/link.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-before-clear/m_argv.o",
+    "sha256": "d745644a84812fbbc9a9577081673e781dfcf40a824c374857a8d98e0a8ab4b9"
+  },
+  {
+    "path": "native/host32-before-clear/m_argv.su",
+    "sha256": "05f4921554a98f04beb5b56abfb956b790d67e688914e09db0447d043c5e1dbb"
+  },
+  {
+    "path": "native/host32-before-clear/m_bbox.o",
+    "sha256": "b21d4fbd114e66a1d9b08b0a90b4f097328069276ec4a36d3a5b6964a0480687"
+  },
+  {
+    "path": "native/host32-before-clear/m_bbox.su",
+    "sha256": "49d3c00634011f668aeed926c0f5ba4983f4c2ea9a0ff41a0b5555262e164e08"
+  },
+  {
+    "path": "native/host32-before-clear/m_cheat.o",
+    "sha256": "a93a459d0b53801c43d0af9444ee525e176f5b4c61f6bf1aaeabcdaa19662b8a"
+  },
+  {
+    "path": "native/host32-before-clear/m_cheat.su",
+    "sha256": "3663e62344eaeaabbbb1a9cecf52feebce13d01c72d05070539da5970f05c77e"
+  },
+  {
+    "path": "native/host32-before-clear/m_config.o",
+    "sha256": "bcc572f9e60c6111c5a963b9fee9875211d045c89e27a1b1bfb8b8db7a5072df"
+  },
+  {
+    "path": "native/host32-before-clear/m_config.su",
+    "sha256": "16162352554dd3e569b202b385ed8f6b40dad454bad1cf7cad8268a9ed2bfc62"
+  },
+  {
+    "path": "native/host32-before-clear/m_controls.o",
+    "sha256": "11e4d4486055f76cf15173bfb0540b0137de583bf0e1a71a6cf3f38ee22bcd26"
+  },
+  {
+    "path": "native/host32-before-clear/m_controls.su",
+    "sha256": "93f29f0ce9cc1338af45627eaef83421ae3d2346d51bec72051781c140f5f2d8"
+  },
+  {
+    "path": "native/host32-before-clear/m_fixed.o",
+    "sha256": "89a9fe16f9d5742177d414a0d543036628bbd77d6e3d931075022f01e63511a2"
+  },
+  {
+    "path": "native/host32-before-clear/m_fixed.su",
+    "sha256": "a3b687e8bd9652217adccdb68ae48e0000e44d0351d469e7bceff0b9123e7e3e"
+  },
+  {
+    "path": "native/host32-before-clear/m_menu.o",
+    "sha256": "1c4c6d098f79463257ce414a283e593e664ce26cbfe97a6545b7799ccecfbd5a"
+  },
+  {
+    "path": "native/host32-before-clear/m_menu.su",
+    "sha256": "22827a4104142ff676e18ff1379e88654a51e848d489d8e7c3e1120fc73bd0bd"
+  },
+  {
+    "path": "native/host32-before-clear/m_misc.o",
+    "sha256": "cb7aa3fec9ccbbcb8316bc188568499bdbc41a60b13d9eef5f6485f3cbae41b3"
+  },
+  {
+    "path": "native/host32-before-clear/m_misc.su",
+    "sha256": "8be25e781fd612a07fd48b9107566a0969514da3caf923e9a95af4d2616c2b44"
+  },
+  {
+    "path": "native/host32-before-clear/m_random.o",
+    "sha256": "0f96c8437c9c89abd59afad6fd03ebca35b6b45458daf1202463ca9d3053ae45"
+  },
+  {
+    "path": "native/host32-before-clear/m_random.su",
+    "sha256": "620863232e476c143bee5d1917acfa842e015825f00ffcbcd8b1fe29758dec88"
+  },
+  {
+    "path": "native/host32-before-clear/memio.o",
+    "sha256": "32258d7c5d18a3be80bc74b44ed257a7d5f164ba3a65d2657fc0587f6a037d0c"
+  },
+  {
+    "path": "native/host32-before-clear/memio.su",
+    "sha256": "bc9593fe162fdd080add0187e4b6e096ac38777c5f35d6cb458da79cc0c78b7f"
+  },
+  {
+    "path": "native/host32-before-clear/p_ceilng.o",
+    "sha256": "8bb6c7364609305f8a48d98061853e3b0f7923b07683ff77a58a71dd56eecdc2"
+  },
+  {
+    "path": "native/host32-before-clear/p_ceilng.su",
+    "sha256": "e353970ec6cd08e420a428bd73be4b97125188f2b2a19d9d471d57ade2066c30"
+  },
+  {
+    "path": "native/host32-before-clear/p_doors.o",
+    "sha256": "2efaa1012997354c36d14459a19b3b074d77ef7d4449bb763b6b21e3547b39ef"
+  },
+  {
+    "path": "native/host32-before-clear/p_doors.su",
+    "sha256": "fc391f2fe162ceef575cc4e9308e9f9cf9a620d1077d30855236075b62652409"
+  },
+  {
+    "path": "native/host32-before-clear/p_enemy.o",
+    "sha256": "35c75c224e793ae61fba6ecb15cafc652124b4fd44aab28f67f8312caa9870c7"
+  },
+  {
+    "path": "native/host32-before-clear/p_enemy.su",
+    "sha256": "2c54b8f9d360aff0fa194d77af07c6892667984bdfcd24510aba09f1dafb4b5a"
+  },
+  {
+    "path": "native/host32-before-clear/p_floor.o",
+    "sha256": "e498835e817088aced8f6b2591896c0fb95bec72055801f66fa3ee3e62933092"
+  },
+  {
+    "path": "native/host32-before-clear/p_floor.su",
+    "sha256": "e6a5be3b9274d3774cd1c1168f066146b5feac22b3d5215fcec8d19262d4ed9d"
+  },
+  {
+    "path": "native/host32-before-clear/p_inter.o",
+    "sha256": "c6d19de4201b51be932d26686dbcb180fe716d71a830d04a3d68c6f0da88f526"
+  },
+  {
+    "path": "native/host32-before-clear/p_inter.su",
+    "sha256": "cc7a029ff8ff314b198bbaa248408e4421b25903c8d304b685a83b2fb3779726"
+  },
+  {
+    "path": "native/host32-before-clear/p_lights.o",
+    "sha256": "17a06bf7e47a51217c3640b692f9a223d7969f587996df550801342e7051c720"
+  },
+  {
+    "path": "native/host32-before-clear/p_lights.su",
+    "sha256": "8c16041bb8fd0b8c5c6382c017b16a6093fd5e568affcb0883d8a23305d6f3e1"
+  },
+  {
+    "path": "native/host32-before-clear/p_map.o",
+    "sha256": "b2a192b45b1fb5158a213aaa39060f8c51157001531bbb458e2eaeff805fdac0"
+  },
+  {
+    "path": "native/host32-before-clear/p_map.su",
+    "sha256": "eed14d6cf27a129e03642e18e5be43a85ab834156f26993e08009f6d276b6f24"
+  },
+  {
+    "path": "native/host32-before-clear/p_maputl.o",
+    "sha256": "c906f78f4e2738f9fa0de71e947ef6a81ab2534a77d21dfa91cfbe408a29c002"
+  },
+  {
+    "path": "native/host32-before-clear/p_maputl.su",
+    "sha256": "f88a366f4b049961ca1acb2f432cec76775bcc311e4833105bbb2b664f546cef"
+  },
+  {
+    "path": "native/host32-before-clear/p_mobj.o",
+    "sha256": "b7f7c79e70eae588540b9d4d6d3590c0de512489ab8c7a378964ea506ada1350"
+  },
+  {
+    "path": "native/host32-before-clear/p_mobj.su",
+    "sha256": "bb8c23a73e40b66acdb7511cc36c557b449d06dc9810e3f1501c1f9943458c8d"
+  },
+  {
+    "path": "native/host32-before-clear/p_plats.o",
+    "sha256": "b46b99a1a72df9e38e673072241e20d16c61b7b9a660de886a9154dafbd8fb5c"
+  },
+  {
+    "path": "native/host32-before-clear/p_plats.su",
+    "sha256": "4bc6d9e00217989754f27908f72cc544a30a438f2e7a401a691a4c67023d7cd0"
+  },
+  {
+    "path": "native/host32-before-clear/p_pspr.o",
+    "sha256": "f19e49d8f2c19af0f9cba9275f5139e7562f825d263511416d170f566b0d2c80"
+  },
+  {
+    "path": "native/host32-before-clear/p_pspr.su",
+    "sha256": "3041a82505fc60956b9d99211485945337a3c9ea4444401ed37d5715da4a68c8"
+  },
+  {
+    "path": "native/host32-before-clear/p_saveg.o",
+    "sha256": "956791ab69d56300e58ea625a9ab3ff1bf1cbe9a7677b02554c0dfcb973cba10"
+  },
+  {
+    "path": "native/host32-before-clear/p_saveg.su",
+    "sha256": "626ad2993588acea580410bc50566f68933b787c1174f841b74685f4f42b15ec"
+  },
+  {
+    "path": "native/host32-before-clear/p_setup.o",
+    "sha256": "4b4caca8b506ebc093d97c99e9cd8f8b9ea444251500db1e50705225fa841ae8"
+  },
+  {
+    "path": "native/host32-before-clear/p_setup.su",
+    "sha256": "e0488f2c2c058eea98214169a5e945ba60762a89be155320e5a855f892969fef"
+  },
+  {
+    "path": "native/host32-before-clear/p_sight.o",
+    "sha256": "af3e53fe772fee1ed98464193e478c1b34fe66a70c93288b000d21bc054c8303"
+  },
+  {
+    "path": "native/host32-before-clear/p_sight.su",
+    "sha256": "f94e5841350c8f7548df483c07daba6977a733b1620b4f7c95a4f1afc71b24a9"
+  },
+  {
+    "path": "native/host32-before-clear/p_spec.o",
+    "sha256": "b994d59111b24c28f94ff0b822ac10623b3cc52dd39435f9305d32d4deeba237"
+  },
+  {
+    "path": "native/host32-before-clear/p_spec.su",
+    "sha256": "469b84c4639ae448feadd22dd212a8b37d88ee5e7561eef6a2658e0d2bf443b6"
+  },
+  {
+    "path": "native/host32-before-clear/p_switch.o",
+    "sha256": "df8b717d9ec42b0f70588a319417660ef2acd2dea17a384ed30d06da56b6b56d"
+  },
+  {
+    "path": "native/host32-before-clear/p_switch.su",
+    "sha256": "41d26a093e4e804f87e77b2b5b6dde785eb9593f43aa3991650dd9829b7f6bc7"
+  },
+  {
+    "path": "native/host32-before-clear/p_telept.o",
+    "sha256": "35f03e6a2f8353c8d57a8f149cbda9fe29702b55aef35212c8b4ab8edba14433"
+  },
+  {
+    "path": "native/host32-before-clear/p_telept.su",
+    "sha256": "5f13a3ef2aab2858a982a85576b0b96fa44d59ac4d867e8f4141af3b7baefbd9"
+  },
+  {
+    "path": "native/host32-before-clear/p_tick.o",
+    "sha256": "50d52eb5ff466d57519d236562d905f5c9dc4327b64b18b6d73e0f5120fec86b"
+  },
+  {
+    "path": "native/host32-before-clear/p_tick.su",
+    "sha256": "7c4ff99abdec9e6956b01a63861d70effd9f795f6cf73c1bcef7e4f8b8109014"
+  },
+  {
+    "path": "native/host32-before-clear/p_user.o",
+    "sha256": "de63ef93893029e0afcb458db9be182707338679afc83b6c7023b7ee3f34c221"
+  },
+  {
+    "path": "native/host32-before-clear/p_user.su",
+    "sha256": "d5c85106379f5b13c633834dc58a8c284d64d1951544a1eb75129efa4bf2d455"
+  },
+  {
+    "path": "native/host32-before-clear/profile.o",
+    "sha256": "30604d7542fb70cebb6674b8ff4c7b8c27597bedd180ebfbe92efbadc7bb90d9"
+  },
+  {
+    "path": "native/host32-before-clear/profile.su",
+    "sha256": "58f12c9e8c245cbeb668f51c45f333704f88bf1afcfe317c64a556e5cafbee69"
+  },
+  {
+    "path": "native/host32-before-clear/r_bsp.o",
+    "sha256": "1ea0ffde46a7d3954e7fa032bf2a32e52de452ad8be45a4c1a59effb2b1ae0f3"
+  },
+  {
+    "path": "native/host32-before-clear/r_bsp.su",
+    "sha256": "0b1349299ec9ca6213b6dec4fca69d13702ed224d6eca4b195a92e8fa650c496"
+  },
+  {
+    "path": "native/host32-before-clear/r_data.o",
+    "sha256": "6ea9007b9aa37f9e1f3b0e32d8cb71aa9d49f4108ecf36b8662a84da11469074"
+  },
+  {
+    "path": "native/host32-before-clear/r_data.su",
+    "sha256": "0c84caf3f1f5aa77ae2c73ff0fc9e1c59fdd5fe0918dbf5603f22e2b626754f7"
+  },
+  {
+    "path": "native/host32-before-clear/r_draw.o",
+    "sha256": "647fa279e6d4b3bbe216093935e984bc331dd7a15b2c55b38ff1f8240ecfa9dc"
+  },
+  {
+    "path": "native/host32-before-clear/r_draw.su",
+    "sha256": "823e80e44fd18f79ef66b3cf91d9f7cb01d75639f6dc8eaa8f8a93c8ac936c10"
+  },
+  {
+    "path": "native/host32-before-clear/r_main.o",
+    "sha256": "f7444e20de6561ca97946fcfa81666853f31af0edd5fa4c47920bf71a039346b"
+  },
+  {
+    "path": "native/host32-before-clear/r_main.su",
+    "sha256": "9cd7ada79d67b588aa967202570f9ac15cae69a621d9dbe769039f8a1a68b38a"
+  },
+  {
+    "path": "native/host32-before-clear/r_plane.o",
+    "sha256": "973ca18ac426884c703a8a60c1ef0d6ffd0ce099af462b980c3f5247344190ff"
+  },
+  {
+    "path": "native/host32-before-clear/r_plane.su",
+    "sha256": "48e1a5f4a047caee028236408ee958bfa8f6049ace2bcbabf2cb8191d8b89826"
+  },
+  {
+    "path": "native/host32-before-clear/r_segs.o",
+    "sha256": "72ca143ca4a5e6b05d562c1eee5142b62a56c90e50380fdb1899cf7ec24163b4"
+  },
+  {
+    "path": "native/host32-before-clear/r_segs.su",
+    "sha256": "7c25d6247f07f2b6e350d52a1fa38bcc0dfcea57df3bdf3b5162f2c51f744097"
+  },
+  {
+    "path": "native/host32-before-clear/r_sky.o",
+    "sha256": "ac1c9de3b1fc409e0a75126baab6808382251d2e117807f5e13db32414bcaddd"
+  },
+  {
+    "path": "native/host32-before-clear/r_sky.su",
+    "sha256": "48abc6521ca1d318029e459598c7eb6865ac261c80feac90437278d8b3fe7aca"
+  },
+  {
+    "path": "native/host32-before-clear/r_things.o",
+    "sha256": "9ededa56fc46317c53e33feb99be6872977a2504f4fc4f377e1bd159a551211b"
+  },
+  {
+    "path": "native/host32-before-clear/r_things.su",
+    "sha256": "bc8ef790fdc19df8630bd4401702bea4a8c548d66e4e2e9f2568af1c04188ea8"
+  },
+  {
+    "path": "native/host32-before-clear/s_sound.o",
+    "sha256": "3cff8ce8107dc57f9ab4cefc46ad06e3839537704690f303c4db53b59b09a1b9"
+  },
+  {
+    "path": "native/host32-before-clear/s_sound.su",
+    "sha256": "7906eb8f5b93171c17e931f4f4ae88851ff24744c828c1a6874852e9ee5659fd"
+  },
+  {
+    "path": "native/host32-before-clear/sha1.o",
+    "sha256": "ddad7b2ae5e6d240a605a569578c5f8d1da621647e4e91a7afe5ef3d85b23e24"
+  },
+  {
+    "path": "native/host32-before-clear/sha1.su",
+    "sha256": "b516d312be18ad5e18bbb8e7254ee1f82d558aced5e2b59ad7962308548778ae"
+  },
+  {
+    "path": "native/host32-before-clear/sounds.o",
+    "sha256": "d62660a707a26a172ccb66d538373e4d930ddd287db93e0e4f86611c98bc561a"
+  },
+  {
+    "path": "native/host32-before-clear/sounds.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-before-clear/st_lib.o",
+    "sha256": "70a0b041d115bc81804171890240c71bd5de2530bee84b55a5c6a5692375e1cd"
+  },
+  {
+    "path": "native/host32-before-clear/st_lib.su",
+    "sha256": "bdbc88a2728cf13d436bd951160ad8a6a87671a63cbe4b93f88bb18f5a4b8d04"
+  },
+  {
+    "path": "native/host32-before-clear/st_stuff.o",
+    "sha256": "d51ee6b2ea7240380b017b12c21403991472db71e347a83e4b59c9921617ffc7"
+  },
+  {
+    "path": "native/host32-before-clear/st_stuff.su",
+    "sha256": "6a3a57171bb2dcb8857857ef633d99b32581a94edfe11dc232382fd1271223a2"
+  },
+  {
+    "path": "native/host32-before-clear/statdump.o",
+    "sha256": "7ea82c5780d76ae66fbfc5f32b7261a42d61fbd25b2fecebe3f16dfa8497551c"
+  },
+  {
+    "path": "native/host32-before-clear/statdump.su",
+    "sha256": "19a859e764e4e3b44e5ffb7d7bb025b4ee7a88c8b5f39b4446e76b0af060d59b"
+  },
+  {
+    "path": "native/host32-before-clear/tables.o",
+    "sha256": "482e0940d7521976aa7dedbadb1e00971f5e1989923c168de75ed20d3fa4e407"
+  },
+  {
+    "path": "native/host32-before-clear/tables.su",
+    "sha256": "b754e3497e070ec3623ad174e890ae1498061d2017c2aeccd4f2522958fe4f19"
+  },
+  {
+    "path": "native/host32-before-clear/v_video.o",
+    "sha256": "423b56e476d078de90f869e1a9f50245b28aa7cf53339451271b0e6f6c30e101"
+  },
+  {
+    "path": "native/host32-before-clear/v_video.su",
+    "sha256": "18c819c15b925ff2f421a8a7ba7c4f6db9cb72d60c78fadd25967963346a3268"
+  },
+  {
+    "path": "native/host32-before-clear/w_checksum.o",
+    "sha256": "b5207120193a22f62a5ddf18e03f5f2fcd798f3ed65fe4c5f95f8ca818c64cce"
+  },
+  {
+    "path": "native/host32-before-clear/w_checksum.su",
+    "sha256": "c34a8585c4625af094f57a45c9f5d301fd692b6dae0102a83e58ef6e31ebc33c"
+  },
+  {
+    "path": "native/host32-before-clear/w_file.o",
+    "sha256": "d9b3177b401ef7300c0d0e2f22a998aaa2787bc7fa5e201d7475de20cb24bc81"
+  },
+  {
+    "path": "native/host32-before-clear/w_file.su",
+    "sha256": "174eef77c3a3f340fa962f97f7eb3e87bbfb6cbc4a8438ad6cbbbb2cc720ac99"
+  },
+  {
+    "path": "native/host32-before-clear/w_file_stdc.o",
+    "sha256": "a3610854e4833d2abe18bba8f568a5e7cd5a9ce52afe8f8ada6304a975bfc02a"
+  },
+  {
+    "path": "native/host32-before-clear/w_file_stdc.su",
+    "sha256": "0f1302ce29644dc593642e123ee2292a387ea7086b9a735166670c855912e150"
+  },
+  {
+    "path": "native/host32-before-clear/w_main.o",
+    "sha256": "214648d63234cd3ca5127f87aae2371a246feecff2fb8ca0546b171333a4aa2c"
+  },
+  {
+    "path": "native/host32-before-clear/w_main.su",
+    "sha256": "3a87ab158f0284c7975502e9886661e0ce0c7db47f25eaa60a15da3e16f3114f"
+  },
+  {
+    "path": "native/host32-before-clear/w_wad.o",
+    "sha256": "248f31b863e36c17976e207e9eb5813c7845632b0902b3ee4d0bbff7d5d95180"
+  },
+  {
+    "path": "native/host32-before-clear/w_wad.su",
+    "sha256": "08a52f383a8e324b4b7f82bc6a69866bbbce512f6292fb52e82bad101e20dcc0"
+  },
+  {
+    "path": "native/host32-before-clear/wi_stuff.o",
+    "sha256": "8e513f63c69eb9f772166cc4ea7df2908807f7dfc3cfb99df4fad74ded3671fc"
+  },
+  {
+    "path": "native/host32-before-clear/wi_stuff.su",
+    "sha256": "8c3718e54fd15f74a3ea6f3f23206464d8a839fba83a3e604ebdca1caa8251f4"
+  },
+  {
+    "path": "native/host32-before-clear/z_zone.o",
+    "sha256": "e19dcbad76d529fb4e888f07da869418911af68d51f42aa646b32728f863a1d4"
+  },
+  {
+    "path": "native/host32-before-clear/z_zone.su",
+    "sha256": "f9880d22d860f847a501eff811f92d4c7cae60d9fc61332cccdf8013b8a456c8"
+  },
+  {
+    "path": "native/host32-initial/am_map.o",
+    "sha256": "9c47e358be46b1c1b18ee0f64bc9b10fc91da79e263cf687164ad55e55de4ae3"
+  },
+  {
+    "path": "native/host32-initial/am_map.su",
+    "sha256": "9f9cb0dc1036c4672f5064e8086dd54c672c6d696f424882e200b6a5644a0db6"
+  },
+  {
+    "path": "native/host32-initial/build.json",
+    "sha256": "3307257bf32864cc3a1162f6d059a2337b08becaea2f70919d355f6625a45f00"
+  },
+  {
+    "path": "native/host32-initial/compile.log",
+    "sha256": "e3b7381e530ef3785a941d45ea048150deac2544ab021a17e1ec793c17695070"
+  },
+  {
+    "path": "native/host32-initial/d_event.o",
+    "sha256": "8521b23bdfea800ec4144775ccd8f07e30039fa243ca70c64b86980b8da7ad47"
+  },
+  {
+    "path": "native/host32-initial/d_event.su",
+    "sha256": "8179673d12857b986e773e4769427e851c3579719f4f6cce55a7bb428fdc72e0"
+  },
+  {
+    "path": "native/host32-initial/d_items.o",
+    "sha256": "9f6aa3c15a9f01529dd8999353e782045da71efd1df6fdf199176d32ccf7d5a8"
+  },
+  {
+    "path": "native/host32-initial/d_items.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-initial/d_iwad.o",
+    "sha256": "a0cbc1f65aaaca0dc713d3cd67aadf3baad809c0c0f1c6016f94ec0bde6d76a0"
+  },
+  {
+    "path": "native/host32-initial/d_iwad.su",
+    "sha256": "c52e1e3c4084ab4be2e43d3e9025fa67ee7da84283ddd2da65d42270d0958bfa"
+  },
+  {
+    "path": "native/host32-initial/d_loop.o",
+    "sha256": "0efa5eb35024ad86682853aac6f25410f5dd941b7ad40d83e6567a3bd8aec136"
+  },
+  {
+    "path": "native/host32-initial/d_loop.su",
+    "sha256": "2f0fe6d47f5d3305be50f749786fbbb817187106ef578f03624cbb75dc4845e6"
+  },
+  {
+    "path": "native/host32-initial/d_main.o",
+    "sha256": "110480f45b122c481f7a53838146cd61e6427f5e71a742b872ac8d221a4a1bb7"
+  },
+  {
+    "path": "native/host32-initial/d_main.su",
+    "sha256": "640a02674bc091e7c659059f7c10b603c68726da69ea4a6599fd6fe1aec70377"
+  },
+  {
+    "path": "native/host32-initial/d_mode.o",
+    "sha256": "328859983ec5d6a3bc5ac757da1e2f4713e9fe88059c6bfb32ab742babeb2946"
+  },
+  {
+    "path": "native/host32-initial/d_mode.su",
+    "sha256": "dcfec024f5e3a362c67387cbb3c05dba289180c26f494af61d9ba8c0d44568e6"
+  },
+  {
+    "path": "native/host32-initial/d_net.o",
+    "sha256": "ea543bd367a9b78b33af5d562c72232d976c02fb77354ac0658704e12f5a7479"
+  },
+  {
+    "path": "native/host32-initial/d_net.su",
+    "sha256": "767148a581f667596540a630eb739a58e68dd3eba80fbd3c5fc3e94404ec3dc6"
+  },
+  {
+    "path": "native/host32-initial/doom-profile",
+    "sha256": "fa3e627097e500d1d1bb0b309e238bea39539f41c6c3afd96f2ac464d2842730"
+  },
+  {
+    "path": "native/host32-initial/doom.map",
+    "sha256": "58c3be1ddbf33b53f375f3d575203eb4c23ed6543dd8a62b1d645c345a3d6017"
+  },
+  {
+    "path": "native/host32-initial/doomdef.o",
+    "sha256": "416c6497ce3f8875f41007cd3d6d4abcf92eb4a506d45b9370e8a1f34c3b9c50"
+  },
+  {
+    "path": "native/host32-initial/doomdef.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-initial/doomgeneric.o",
+    "sha256": "086368f2fd264849ee11c0b04adc242da0881059b2655ebc4247f8d0e512642e"
+  },
+  {
+    "path": "native/host32-initial/doomgeneric.su",
+    "sha256": "0a4b2fc6dc4f5e8cb0f94d8fddb364ce11c55a9878934f8baa58fb10af8e48e8"
+  },
+  {
+    "path": "native/host32-initial/doomstat.o",
+    "sha256": "ac57a998dd8616ae724d1ba20512aff3428e13bb6f1145817c3370b9111ebd3d"
+  },
+  {
+    "path": "native/host32-initial/doomstat.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-initial/dstrings.o",
+    "sha256": "2fdee6c163c2b14a6ec148651bf7a3e71c074cf4e7d339a02eb366d238766cf6"
+  },
+  {
+    "path": "native/host32-initial/dstrings.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-initial/dummy.o",
+    "sha256": "45869444cdb3f4f68d214b129979da1542e72dc8c235b7a175068abae560a72e"
+  },
+  {
+    "path": "native/host32-initial/dummy.su",
+    "sha256": "8a0b9d12756697c2239d5edc1411606c62d1d0b3d75a6db3aada3f18a17a319f"
+  },
+  {
+    "path": "native/host32-initial/f_finale.o",
+    "sha256": "ce54018a859b8e432edbcc02d119842522d33a3a289ab77b3d62a8d3c59e16f3"
+  },
+  {
+    "path": "native/host32-initial/f_finale.su",
+    "sha256": "491ecb32e1a536b6489b2fe045b38291e76b8fb7ad58a38c0dc700e638403299"
+  },
+  {
+    "path": "native/host32-initial/f_wipe.o",
+    "sha256": "354309d47b6612f3f95d4a992cd95dc8155c922a98392f6f8d9578b7ea2e6702"
+  },
+  {
+    "path": "native/host32-initial/f_wipe.su",
+    "sha256": "6274cc032d3357b1295c03708d91bab800b8ec2bfa524e1258d849bcb7ba0e8e"
+  },
+  {
+    "path": "native/host32-initial/g_game.o",
+    "sha256": "9bab2fcb281cd87897c8e81b2cf334fb08fd55b294b33dc03e0443aa37a6909b"
+  },
+  {
+    "path": "native/host32-initial/g_game.su",
+    "sha256": "dbd2501e1bcb9449e9e53ec31bc1f3420250a6f1ff721ea363f1abd638561400"
+  },
+  {
+    "path": "native/host32-initial/hu_lib.o",
+    "sha256": "6b2b9ec426902884754e8e331ee4243b014ab7a01b349431a102c001aec042b2"
+  },
+  {
+    "path": "native/host32-initial/hu_lib.su",
+    "sha256": "f21c28e4e2d3095f05d1fd9f8c980d70739f329f9acfeff7513c7b2823c57616"
+  },
+  {
+    "path": "native/host32-initial/hu_stuff.o",
+    "sha256": "fdf5fe2e33ea6f4756b10d8ca030b036cbbf278511ef33fc4bf01c8da23df165"
+  },
+  {
+    "path": "native/host32-initial/hu_stuff.su",
+    "sha256": "5c43fdd2bd50ab2ece5545e1624a1d77939f41393e4439bca024a900276a5815"
+  },
+  {
+    "path": "native/host32-initial/i_cdmus.o",
+    "sha256": "dbbdd6a3fd425d464dfa45719cea60d9f81f0eecca749e0311eee95269e29cef"
+  },
+  {
+    "path": "native/host32-initial/i_cdmus.su",
+    "sha256": "3f518a9bf862268208cbaba7ff6de6da90013cc7b21ddb38611146e4eaa29cc3"
+  },
+  {
+    "path": "native/host32-initial/i_endoom.o",
+    "sha256": "61cee072d8979b456acbb1ab5643596df3624c0050a567d592fd11ea263945da"
+  },
+  {
+    "path": "native/host32-initial/i_endoom.su",
+    "sha256": "ed643ecac068d44f6326bcde22a067f3175d8c348a3ae768b4e18816dc7bf411"
+  },
+  {
+    "path": "native/host32-initial/i_input.o",
+    "sha256": "9e2398f4d551fd44a58298ea35e7a127a39df27d31da9a9693653315082b8269"
+  },
+  {
+    "path": "native/host32-initial/i_input.su",
+    "sha256": "2c4f1a0ead6e7abb30cfe6b2c217a1212906628a9c97f117f529e9488f413c1e"
+  },
+  {
+    "path": "native/host32-initial/i_joystick.o",
+    "sha256": "c41a2fd1a774a3a19e5a3a39ad14451d56834e71c4e280f12b6ef1cfdbb4d497"
+  },
+  {
+    "path": "native/host32-initial/i_joystick.su",
+    "sha256": "32484524fe2a829bab89986084e047a07ea5236b385f3f5dc3a51205018ae15c"
+  },
+  {
+    "path": "native/host32-initial/i_scale.o",
+    "sha256": "3b604aa4d17d5c7a112ceed9b4464ebd292f8062aafdb8d89f2a17fbd92e0535"
+  },
+  {
+    "path": "native/host32-initial/i_scale.su",
+    "sha256": "2ada51712f67a9bf6da1f5379cf2649d17a0d3f8d61f5fdb8c9cce2053d6014b"
+  },
+  {
+    "path": "native/host32-initial/i_sound.o",
+    "sha256": "1b8e6f3248b04e2ad7a68a4f8b558607d978e3558532d5cc2338c148b9d7d7ff"
+  },
+  {
+    "path": "native/host32-initial/i_sound.su",
+    "sha256": "5c01d4caedc1269111b95734e22e7ea052b9e583c6e61dc968e0902b26bae89d"
+  },
+  {
+    "path": "native/host32-initial/i_system.o",
+    "sha256": "cadbefb99fd1d6283eabf56db3c0a2767ad81df8cdba109e1d8772dec1b9a52a"
+  },
+  {
+    "path": "native/host32-initial/i_system.su",
+    "sha256": "653b5df332b110aaacd197d71c0371c2c416da6fc804871ccc837af8a9b7983f"
+  },
+  {
+    "path": "native/host32-initial/i_timer.o",
+    "sha256": "f4ee5db652febe8408bc510dbf46aa2da910dbb88f62a71998530e4871d3ccfc"
+  },
+  {
+    "path": "native/host32-initial/i_timer.su",
+    "sha256": "048365d107127742307517421c2d14fa89d5677c2363d29fa3a092b77a293fa9"
+  },
+  {
+    "path": "native/host32-initial/i_video.o",
+    "sha256": "325f476a321731ba946da7fdb8405c5b260db2f8e95393600a5902ebb382ead2"
+  },
+  {
+    "path": "native/host32-initial/i_video.su",
+    "sha256": "4633ca9b9f3d55b8a7ecff526edc56ff2040cb0e977c2606c3acf58c597a9ff4"
+  },
+  {
+    "path": "native/host32-initial/info.o",
+    "sha256": "c54538ae3eb42f09ed9d3c2b515c793304d836059d44275a77978dcb4d11a4f3"
+  },
+  {
+    "path": "native/host32-initial/info.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-initial/link.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-initial/m_argv.o",
+    "sha256": "d745644a84812fbbc9a9577081673e781dfcf40a824c374857a8d98e0a8ab4b9"
+  },
+  {
+    "path": "native/host32-initial/m_argv.su",
+    "sha256": "05f4921554a98f04beb5b56abfb956b790d67e688914e09db0447d043c5e1dbb"
+  },
+  {
+    "path": "native/host32-initial/m_bbox.o",
+    "sha256": "b21d4fbd114e66a1d9b08b0a90b4f097328069276ec4a36d3a5b6964a0480687"
+  },
+  {
+    "path": "native/host32-initial/m_bbox.su",
+    "sha256": "49d3c00634011f668aeed926c0f5ba4983f4c2ea9a0ff41a0b5555262e164e08"
+  },
+  {
+    "path": "native/host32-initial/m_cheat.o",
+    "sha256": "a93a459d0b53801c43d0af9444ee525e176f5b4c61f6bf1aaeabcdaa19662b8a"
+  },
+  {
+    "path": "native/host32-initial/m_cheat.su",
+    "sha256": "3663e62344eaeaabbbb1a9cecf52feebce13d01c72d05070539da5970f05c77e"
+  },
+  {
+    "path": "native/host32-initial/m_config.o",
+    "sha256": "bcc572f9e60c6111c5a963b9fee9875211d045c89e27a1b1bfb8b8db7a5072df"
+  },
+  {
+    "path": "native/host32-initial/m_config.su",
+    "sha256": "16162352554dd3e569b202b385ed8f6b40dad454bad1cf7cad8268a9ed2bfc62"
+  },
+  {
+    "path": "native/host32-initial/m_controls.o",
+    "sha256": "11e4d4486055f76cf15173bfb0540b0137de583bf0e1a71a6cf3f38ee22bcd26"
+  },
+  {
+    "path": "native/host32-initial/m_controls.su",
+    "sha256": "93f29f0ce9cc1338af45627eaef83421ae3d2346d51bec72051781c140f5f2d8"
+  },
+  {
+    "path": "native/host32-initial/m_fixed.o",
+    "sha256": "89a9fe16f9d5742177d414a0d543036628bbd77d6e3d931075022f01e63511a2"
+  },
+  {
+    "path": "native/host32-initial/m_fixed.su",
+    "sha256": "a3b687e8bd9652217adccdb68ae48e0000e44d0351d469e7bceff0b9123e7e3e"
+  },
+  {
+    "path": "native/host32-initial/m_menu.o",
+    "sha256": "1c4c6d098f79463257ce414a283e593e664ce26cbfe97a6545b7799ccecfbd5a"
+  },
+  {
+    "path": "native/host32-initial/m_menu.su",
+    "sha256": "22827a4104142ff676e18ff1379e88654a51e848d489d8e7c3e1120fc73bd0bd"
+  },
+  {
+    "path": "native/host32-initial/m_misc.o",
+    "sha256": "cb7aa3fec9ccbbcb8316bc188568499bdbc41a60b13d9eef5f6485f3cbae41b3"
+  },
+  {
+    "path": "native/host32-initial/m_misc.su",
+    "sha256": "8be25e781fd612a07fd48b9107566a0969514da3caf923e9a95af4d2616c2b44"
+  },
+  {
+    "path": "native/host32-initial/m_random.o",
+    "sha256": "0f96c8437c9c89abd59afad6fd03ebca35b6b45458daf1202463ca9d3053ae45"
+  },
+  {
+    "path": "native/host32-initial/m_random.su",
+    "sha256": "620863232e476c143bee5d1917acfa842e015825f00ffcbcd8b1fe29758dec88"
+  },
+  {
+    "path": "native/host32-initial/memio.o",
+    "sha256": "32258d7c5d18a3be80bc74b44ed257a7d5f164ba3a65d2657fc0587f6a037d0c"
+  },
+  {
+    "path": "native/host32-initial/memio.su",
+    "sha256": "bc9593fe162fdd080add0187e4b6e096ac38777c5f35d6cb458da79cc0c78b7f"
+  },
+  {
+    "path": "native/host32-initial/p_ceilng.o",
+    "sha256": "8bb6c7364609305f8a48d98061853e3b0f7923b07683ff77a58a71dd56eecdc2"
+  },
+  {
+    "path": "native/host32-initial/p_ceilng.su",
+    "sha256": "e353970ec6cd08e420a428bd73be4b97125188f2b2a19d9d471d57ade2066c30"
+  },
+  {
+    "path": "native/host32-initial/p_doors.o",
+    "sha256": "2efaa1012997354c36d14459a19b3b074d77ef7d4449bb763b6b21e3547b39ef"
+  },
+  {
+    "path": "native/host32-initial/p_doors.su",
+    "sha256": "fc391f2fe162ceef575cc4e9308e9f9cf9a620d1077d30855236075b62652409"
+  },
+  {
+    "path": "native/host32-initial/p_enemy.o",
+    "sha256": "35c75c224e793ae61fba6ecb15cafc652124b4fd44aab28f67f8312caa9870c7"
+  },
+  {
+    "path": "native/host32-initial/p_enemy.su",
+    "sha256": "2c54b8f9d360aff0fa194d77af07c6892667984bdfcd24510aba09f1dafb4b5a"
+  },
+  {
+    "path": "native/host32-initial/p_floor.o",
+    "sha256": "e498835e817088aced8f6b2591896c0fb95bec72055801f66fa3ee3e62933092"
+  },
+  {
+    "path": "native/host32-initial/p_floor.su",
+    "sha256": "e6a5be3b9274d3774cd1c1168f066146b5feac22b3d5215fcec8d19262d4ed9d"
+  },
+  {
+    "path": "native/host32-initial/p_inter.o",
+    "sha256": "c6d19de4201b51be932d26686dbcb180fe716d71a830d04a3d68c6f0da88f526"
+  },
+  {
+    "path": "native/host32-initial/p_inter.su",
+    "sha256": "cc7a029ff8ff314b198bbaa248408e4421b25903c8d304b685a83b2fb3779726"
+  },
+  {
+    "path": "native/host32-initial/p_lights.o",
+    "sha256": "17a06bf7e47a51217c3640b692f9a223d7969f587996df550801342e7051c720"
+  },
+  {
+    "path": "native/host32-initial/p_lights.su",
+    "sha256": "8c16041bb8fd0b8c5c6382c017b16a6093fd5e568affcb0883d8a23305d6f3e1"
+  },
+  {
+    "path": "native/host32-initial/p_map.o",
+    "sha256": "b2a192b45b1fb5158a213aaa39060f8c51157001531bbb458e2eaeff805fdac0"
+  },
+  {
+    "path": "native/host32-initial/p_map.su",
+    "sha256": "eed14d6cf27a129e03642e18e5be43a85ab834156f26993e08009f6d276b6f24"
+  },
+  {
+    "path": "native/host32-initial/p_maputl.o",
+    "sha256": "c906f78f4e2738f9fa0de71e947ef6a81ab2534a77d21dfa91cfbe408a29c002"
+  },
+  {
+    "path": "native/host32-initial/p_maputl.su",
+    "sha256": "f88a366f4b049961ca1acb2f432cec76775bcc311e4833105bbb2b664f546cef"
+  },
+  {
+    "path": "native/host32-initial/p_mobj.o",
+    "sha256": "b7f7c79e70eae588540b9d4d6d3590c0de512489ab8c7a378964ea506ada1350"
+  },
+  {
+    "path": "native/host32-initial/p_mobj.su",
+    "sha256": "bb8c23a73e40b66acdb7511cc36c557b449d06dc9810e3f1501c1f9943458c8d"
+  },
+  {
+    "path": "native/host32-initial/p_plats.o",
+    "sha256": "b46b99a1a72df9e38e673072241e20d16c61b7b9a660de886a9154dafbd8fb5c"
+  },
+  {
+    "path": "native/host32-initial/p_plats.su",
+    "sha256": "4bc6d9e00217989754f27908f72cc544a30a438f2e7a401a691a4c67023d7cd0"
+  },
+  {
+    "path": "native/host32-initial/p_pspr.o",
+    "sha256": "f19e49d8f2c19af0f9cba9275f5139e7562f825d263511416d170f566b0d2c80"
+  },
+  {
+    "path": "native/host32-initial/p_pspr.su",
+    "sha256": "3041a82505fc60956b9d99211485945337a3c9ea4444401ed37d5715da4a68c8"
+  },
+  {
+    "path": "native/host32-initial/p_saveg.o",
+    "sha256": "956791ab69d56300e58ea625a9ab3ff1bf1cbe9a7677b02554c0dfcb973cba10"
+  },
+  {
+    "path": "native/host32-initial/p_saveg.su",
+    "sha256": "626ad2993588acea580410bc50566f68933b787c1174f841b74685f4f42b15ec"
+  },
+  {
+    "path": "native/host32-initial/p_setup.o",
+    "sha256": "4b4caca8b506ebc093d97c99e9cd8f8b9ea444251500db1e50705225fa841ae8"
+  },
+  {
+    "path": "native/host32-initial/p_setup.su",
+    "sha256": "e0488f2c2c058eea98214169a5e945ba60762a89be155320e5a855f892969fef"
+  },
+  {
+    "path": "native/host32-initial/p_sight.o",
+    "sha256": "af3e53fe772fee1ed98464193e478c1b34fe66a70c93288b000d21bc054c8303"
+  },
+  {
+    "path": "native/host32-initial/p_sight.su",
+    "sha256": "f94e5841350c8f7548df483c07daba6977a733b1620b4f7c95a4f1afc71b24a9"
+  },
+  {
+    "path": "native/host32-initial/p_spec.o",
+    "sha256": "b994d59111b24c28f94ff0b822ac10623b3cc52dd39435f9305d32d4deeba237"
+  },
+  {
+    "path": "native/host32-initial/p_spec.su",
+    "sha256": "469b84c4639ae448feadd22dd212a8b37d88ee5e7561eef6a2658e0d2bf443b6"
+  },
+  {
+    "path": "native/host32-initial/p_switch.o",
+    "sha256": "df8b717d9ec42b0f70588a319417660ef2acd2dea17a384ed30d06da56b6b56d"
+  },
+  {
+    "path": "native/host32-initial/p_switch.su",
+    "sha256": "41d26a093e4e804f87e77b2b5b6dde785eb9593f43aa3991650dd9829b7f6bc7"
+  },
+  {
+    "path": "native/host32-initial/p_telept.o",
+    "sha256": "35f03e6a2f8353c8d57a8f149cbda9fe29702b55aef35212c8b4ab8edba14433"
+  },
+  {
+    "path": "native/host32-initial/p_telept.su",
+    "sha256": "5f13a3ef2aab2858a982a85576b0b96fa44d59ac4d867e8f4141af3b7baefbd9"
+  },
+  {
+    "path": "native/host32-initial/p_tick.o",
+    "sha256": "50d52eb5ff466d57519d236562d905f5c9dc4327b64b18b6d73e0f5120fec86b"
+  },
+  {
+    "path": "native/host32-initial/p_tick.su",
+    "sha256": "7c4ff99abdec9e6956b01a63861d70effd9f795f6cf73c1bcef7e4f8b8109014"
+  },
+  {
+    "path": "native/host32-initial/p_user.o",
+    "sha256": "de63ef93893029e0afcb458db9be182707338679afc83b6c7023b7ee3f34c221"
+  },
+  {
+    "path": "native/host32-initial/p_user.su",
+    "sha256": "d5c85106379f5b13c633834dc58a8c284d64d1951544a1eb75129efa4bf2d455"
+  },
+  {
+    "path": "native/host32-initial/profile.o",
+    "sha256": "96dd9b0c762467c9a1bded6faa5c5d9d6c48bf21418e8297f3dfd0a925505fe5"
+  },
+  {
+    "path": "native/host32-initial/profile.su",
+    "sha256": "87de33f9bee5e54e922eabb85ce3ba2ff867f84cfba2e63de38ea02cf7e90dc9"
+  },
+  {
+    "path": "native/host32-initial/r_bsp.o",
+    "sha256": "1ea0ffde46a7d3954e7fa032bf2a32e52de452ad8be45a4c1a59effb2b1ae0f3"
+  },
+  {
+    "path": "native/host32-initial/r_bsp.su",
+    "sha256": "0b1349299ec9ca6213b6dec4fca69d13702ed224d6eca4b195a92e8fa650c496"
+  },
+  {
+    "path": "native/host32-initial/r_data.o",
+    "sha256": "6ea9007b9aa37f9e1f3b0e32d8cb71aa9d49f4108ecf36b8662a84da11469074"
+  },
+  {
+    "path": "native/host32-initial/r_data.su",
+    "sha256": "0c84caf3f1f5aa77ae2c73ff0fc9e1c59fdd5fe0918dbf5603f22e2b626754f7"
+  },
+  {
+    "path": "native/host32-initial/r_draw.o",
+    "sha256": "647fa279e6d4b3bbe216093935e984bc331dd7a15b2c55b38ff1f8240ecfa9dc"
+  },
+  {
+    "path": "native/host32-initial/r_draw.su",
+    "sha256": "823e80e44fd18f79ef66b3cf91d9f7cb01d75639f6dc8eaa8f8a93c8ac936c10"
+  },
+  {
+    "path": "native/host32-initial/r_main.o",
+    "sha256": "f7444e20de6561ca97946fcfa81666853f31af0edd5fa4c47920bf71a039346b"
+  },
+  {
+    "path": "native/host32-initial/r_main.su",
+    "sha256": "9cd7ada79d67b588aa967202570f9ac15cae69a621d9dbe769039f8a1a68b38a"
+  },
+  {
+    "path": "native/host32-initial/r_plane.o",
+    "sha256": "973ca18ac426884c703a8a60c1ef0d6ffd0ce099af462b980c3f5247344190ff"
+  },
+  {
+    "path": "native/host32-initial/r_plane.su",
+    "sha256": "48e1a5f4a047caee028236408ee958bfa8f6049ace2bcbabf2cb8191d8b89826"
+  },
+  {
+    "path": "native/host32-initial/r_segs.o",
+    "sha256": "72ca143ca4a5e6b05d562c1eee5142b62a56c90e50380fdb1899cf7ec24163b4"
+  },
+  {
+    "path": "native/host32-initial/r_segs.su",
+    "sha256": "7c25d6247f07f2b6e350d52a1fa38bcc0dfcea57df3bdf3b5162f2c51f744097"
+  },
+  {
+    "path": "native/host32-initial/r_sky.o",
+    "sha256": "ac1c9de3b1fc409e0a75126baab6808382251d2e117807f5e13db32414bcaddd"
+  },
+  {
+    "path": "native/host32-initial/r_sky.su",
+    "sha256": "48abc6521ca1d318029e459598c7eb6865ac261c80feac90437278d8b3fe7aca"
+  },
+  {
+    "path": "native/host32-initial/r_things.o",
+    "sha256": "9ededa56fc46317c53e33feb99be6872977a2504f4fc4f377e1bd159a551211b"
+  },
+  {
+    "path": "native/host32-initial/r_things.su",
+    "sha256": "bc8ef790fdc19df8630bd4401702bea4a8c548d66e4e2e9f2568af1c04188ea8"
+  },
+  {
+    "path": "native/host32-initial/s_sound.o",
+    "sha256": "3cff8ce8107dc57f9ab4cefc46ad06e3839537704690f303c4db53b59b09a1b9"
+  },
+  {
+    "path": "native/host32-initial/s_sound.su",
+    "sha256": "7906eb8f5b93171c17e931f4f4ae88851ff24744c828c1a6874852e9ee5659fd"
+  },
+  {
+    "path": "native/host32-initial/sha1.o",
+    "sha256": "ddad7b2ae5e6d240a605a569578c5f8d1da621647e4e91a7afe5ef3d85b23e24"
+  },
+  {
+    "path": "native/host32-initial/sha1.su",
+    "sha256": "b516d312be18ad5e18bbb8e7254ee1f82d558aced5e2b59ad7962308548778ae"
+  },
+  {
+    "path": "native/host32-initial/sounds.o",
+    "sha256": "d62660a707a26a172ccb66d538373e4d930ddd287db93e0e4f86611c98bc561a"
+  },
+  {
+    "path": "native/host32-initial/sounds.su",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native/host32-initial/st_lib.o",
+    "sha256": "70a0b041d115bc81804171890240c71bd5de2530bee84b55a5c6a5692375e1cd"
+  },
+  {
+    "path": "native/host32-initial/st_lib.su",
+    "sha256": "bdbc88a2728cf13d436bd951160ad8a6a87671a63cbe4b93f88bb18f5a4b8d04"
+  },
+  {
+    "path": "native/host32-initial/st_stuff.o",
+    "sha256": "d51ee6b2ea7240380b017b12c21403991472db71e347a83e4b59c9921617ffc7"
+  },
+  {
+    "path": "native/host32-initial/st_stuff.su",
+    "sha256": "6a3a57171bb2dcb8857857ef633d99b32581a94edfe11dc232382fd1271223a2"
+  },
+  {
+    "path": "native/host32-initial/statdump.o",
+    "sha256": "7ea82c5780d76ae66fbfc5f32b7261a42d61fbd25b2fecebe3f16dfa8497551c"
+  },
+  {
+    "path": "native/host32-initial/statdump.su",
+    "sha256": "19a859e764e4e3b44e5ffb7d7bb025b4ee7a88c8b5f39b4446e76b0af060d59b"
+  },
+  {
+    "path": "native/host32-initial/tables.o",
+    "sha256": "482e0940d7521976aa7dedbadb1e00971f5e1989923c168de75ed20d3fa4e407"
+  },
+  {
+    "path": "native/host32-initial/tables.su",
+    "sha256": "b754e3497e070ec3623ad174e890ae1498061d2017c2aeccd4f2522958fe4f19"
+  },
+  {
+    "path": "native/host32-initial/v_video.o",
+    "sha256": "423b56e476d078de90f869e1a9f50245b28aa7cf53339451271b0e6f6c30e101"
+  },
+  {
+    "path": "native/host32-initial/v_video.su",
+    "sha256": "18c819c15b925ff2f421a8a7ba7c4f6db9cb72d60c78fadd25967963346a3268"
+  },
+  {
+    "path": "native/host32-initial/w_checksum.o",
+    "sha256": "b5207120193a22f62a5ddf18e03f5f2fcd798f3ed65fe4c5f95f8ca818c64cce"
+  },
+  {
+    "path": "native/host32-initial/w_checksum.su",
+    "sha256": "c34a8585c4625af094f57a45c9f5d301fd692b6dae0102a83e58ef6e31ebc33c"
+  },
+  {
+    "path": "native/host32-initial/w_file.o",
+    "sha256": "d9b3177b401ef7300c0d0e2f22a998aaa2787bc7fa5e201d7475de20cb24bc81"
+  },
+  {
+    "path": "native/host32-initial/w_file.su",
+    "sha256": "174eef77c3a3f340fa962f97f7eb3e87bbfb6cbc4a8438ad6cbbbb2cc720ac99"
+  },
+  {
+    "path": "native/host32-initial/w_file_stdc.o",
+    "sha256": "a3610854e4833d2abe18bba8f568a5e7cd5a9ce52afe8f8ada6304a975bfc02a"
+  },
+  {
+    "path": "native/host32-initial/w_file_stdc.su",
+    "sha256": "0f1302ce29644dc593642e123ee2292a387ea7086b9a735166670c855912e150"
+  },
+  {
+    "path": "native/host32-initial/w_main.o",
+    "sha256": "214648d63234cd3ca5127f87aae2371a246feecff2fb8ca0546b171333a4aa2c"
+  },
+  {
+    "path": "native/host32-initial/w_main.su",
+    "sha256": "3a87ab158f0284c7975502e9886661e0ce0c7db47f25eaa60a15da3e16f3114f"
+  },
+  {
+    "path": "native/host32-initial/w_wad.o",
+    "sha256": "248f31b863e36c17976e207e9eb5813c7845632b0902b3ee4d0bbff7d5d95180"
+  },
+  {
+    "path": "native/host32-initial/w_wad.su",
+    "sha256": "08a52f383a8e324b4b7f82bc6a69866bbbce512f6292fb52e82bad101e20dcc0"
+  },
+  {
+    "path": "native/host32-initial/wi_stuff.o",
+    "sha256": "8e513f63c69eb9f772166cc4ea7df2908807f7dfc3cfb99df4fad74ded3671fc"
+  },
+  {
+    "path": "native/host32-initial/wi_stuff.su",
+    "sha256": "8c3718e54fd15f74a3ea6f3f23206464d8a839fba83a3e604ebdca1caa8251f4"
+  },
+  {
+    "path": "native/host32-initial/z_zone.o",
+    "sha256": "e19dcbad76d529fb4e888f07da869418911af68d51f42aa646b32728f863a1d4"
+  },
+  {
+    "path": "native/host32-initial/z_zone.su",
+    "sha256": "f9880d22d860f847a501eff811f92d4c7cae60d9fc61332cccdf8013b8a456c8"
+  },
+  {
+    "path": "tools/RAM-CONTRACT.md",
+    "sha256": "6160d2bf38307eb7980d8f783d1bbdf963c0e51902cc4e260ee2c386476de0da"
+  },
+  {
+    "path": "tools/abi.c",
+    "sha256": "3a07af9b9e585ec4ecca7190c781b0442fe8ad794c6f2f7125d3e79588252cba"
+  },
+  {
+    "path": "tools/audit_runtime.py",
+    "sha256": "5845c02412302b0ae461a8b8db197855e92132fc7e87f9868caa9df6d71d2319"
+  },
+  {
+    "path": "tools/build.py",
+    "sha256": "778ff03ced9eae8db8a5f20939309887fde849517894e7882d8e5a3fd4a658a9"
+  },
+  {
+    "path": "tools/include/inttypes.h",
+    "sha256": "0697368ba3a05113f41599a6da4566f7b1bb17a81c34caa98668dfebb649decc"
+  },
+  {
+    "path": "tools/include/stdint.h",
+    "sha256": "444dfb17dedb3bbc9ba1313f5aae614f020733d6bfd8c35137741cd022c98eca"
+  },
+  {
+    "path": "tools/include/strings.h",
+    "sha256": "67fd1fc09d226cff4672260a9fc5721f66e86af9505e2d91cd8e34e58a64e34c"
+  },
+  {
+    "path": "tools/low_memory.py",
+    "sha256": "d351bc1bab260fffbb09374ac408a903fde0f79e3b40d2513f41345b386520bb"
+  },
+  {
+    "path": "tools/profile.c",
+    "sha256": "18bebba6bc018e1e6062ff2b7570a66a589c8f001418a1e955b22b6da532a60e"
+  },
+  {
+    "path": "tools/run_profiles.py",
+    "sha256": "25ceea000e4b1870980b9faa825af7945ea9a2d9f4a9fdc798541cda80ec211d"
+  },
+  {
+    "path": "tools/summarize.py",
+    "sha256": "7f02f042c7f906c3c37ae5f9ae867c08b08187ce35e8f5974238433ef69071e9"
+  },
+  {
+    "path": "tools/test_profile.c",
+    "sha256": "1b618ce55f68d6e1e05cbc5f7be9d221d97df27e1b54a4b9487aaa0939af55f0"
+  },
+  {
+    "path": "tools/zone_profile.inc",
+    "sha256": "102c5bcaed6d3364537064aec07992d2ddd138d9b677c390b6f70668e346df41"
+  }
+]
