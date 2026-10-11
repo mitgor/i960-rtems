@@ -1,5 +1,8 @@
 # Resident networking and RAM ownership
 
+Shared allocation cancellation and exclusive timer-based heap measurements are
+available with `--heap-shared`; see [the contract and replay instructions](SHARED-HEAP.md).
+
 Latest follow-up: [general application heap and containment](GENERAL-HEAP.md).
 The opt-in heap uses 69,952 bytes within the validated 256 KiB range, alongside
 the 128-slot external queue. [Fault/NMI and RAM ownership](FAULT-OWNERSHIP.md)

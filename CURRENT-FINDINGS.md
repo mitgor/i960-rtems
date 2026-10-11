@@ -1,5 +1,27 @@
 # Current findings and evidence — 2026-10-11
 
+**Shared heap, latency and endurance (2026-10-11):** `--heap-shared` adds
+explicit two-task references/pins and cancellation to the existing 69,952-byte
+heap. Pinned or uncertain holders retain memory; no arbitrary task deletion or
+automatic reclamation is authorized. Busy reservations let calloc/realloc copy
+work restore the caller's interrupt priority. Measured protected maxima fell
+from 14.804 ms to 0.261 ms for calloc and 11.064 ms to 1.985 ms for realloc; these
+are observed sections, not whole-system bounds (maximum ISR gap: 13.270 ms).
+The final card run passed forty dual-stack rounds, timer wrap and 180,008 ticks;
+all 194,154 allocations and 14,764 shared objects drained, including both IRQ
+contexts. Each large-memory path spanned interrupts in 180 calls. Native stress
+passed 200,000 worker updates and a legitimate fragmentation refusal. A prior
+HTTP endurance timeout exposed full packet-history rewrites on the host; an
+append journal reduced recording from 188.43 to 0.200 ms in the matched benchmark
+while preserving every byte and strict replay. Partial/failed attempts are kept.
+No flash writes or new RAM grant. The 102,000-byte internal fallback queue is
+still reserved; reclaiming it needs separate initialization/ownership work.
+Post-test reboot succeeded; cooperative public IPv6 HTTP is restored and verified.
+Next: audit fallback-queue reuse, generalize task/resource ownership, and measure
+the remaining masked network/control work. Read the
+[contract, measurements and thirty-step evidence](rtems/residentnet/SHARED-HEAP.md).
+
+
 **Metadata journal implemented; physical acceptance pending (2026-10-11):**
 The opt-in `--queue-metadata journal` replaces repeated history rewrites with
 bounded intent/result records and a completion seal after verified CLOSE.

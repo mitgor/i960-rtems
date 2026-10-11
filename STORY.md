@@ -1917,6 +1917,66 @@ That was a host result, not another speed record for the card. The parallel RTEM
 experiment had the hardware, so the new journal stayed optional. Its next receipt
 would have to come from a fresh browser run, with every audit still attached.
 
+## Memory on loan
+
+Having a heap raised a question that counting free bytes could not answer. If
+one task had lent a buffer to another, what did it mean to cancel the owner?
+The borrower might still be halfway through reading it. Freeing the memory
+would turn a clean-looking shutdown into somebody else's corrupted data.
+
+The little resident system acquired a way to say that plainly. A handle named
+an allocation and its generation. A reference kept it alive; a pin said that a
+task was still using its pointer. Cancellation stopped new borrowing, but an
+acknowledgement from a pinned reader came back busy. The owner could leave
+while the reader finished. Only the last acknowledgement returned the bytes to
+the heap. A task that never answered kept its memory. Uncertainty was still not
+permission to reuse it.
+
+We made the two workers act out that conversation over and over. One lent a
+buffer, canceled itself and tried the forbidden shortcuts. The other kept the
+bytes across interrupts, checked them, refused to let go while pinned, and
+finally acknowledged. Old handles stayed old when the slot was reused.
+
+There was another debt in the allocator: time. Timer zero became an independent
+stopwatch while timer one kept scheduling the tasks. The large startup calloc
+benchmark held the allocator's own mask for nearly fifteen milliseconds;
+realloc reached eleven. Zeroing and copying moved outside that mask, with the
+buffers reserved until the operation returned. The short card test brought the
+measured calloc sections down to about 273 microseconds and realloc below two
+milliseconds. The whole machine still had other critical sections, and startup
+still had its outer mask. Those numbers were measurements, not a new hard
+real-time guarantee.
+
+The longer native test caught our next mistake at update forty-four thousand.
+There were enough free bytes, but not one large enough free block. Realloc had
+correctly kept the old data. The test had incorrectly demanded success. We kept
+the interrupted card run, taught the workload to count ordinary refusals, and
+checked the surviving buffer before freeing it. Two hundred thousand native
+worker updates then passed, including that refusal, with every allocation
+accounted for.
+
+The next long run found the same bookkeeping trap that had troubled the browser.
+After twenty minutes, HTTP timed out. The card was still scheduling, its heap
+checks were clean, and the captured responses had valid checksums. The host was
+rewriting twenty megabytes of packet history after every exchange. Writing a
+receipt had grown to roughly two hundred milliseconds; retransmissions were
+joining the queue. Appending the complete new record brought that work down to
+about two tenths of a millisecond. We kept every packet and started again with
+the same card binary.
+
+This time it reached the end. Forty IPv4 and IPv6 rounds ran through a half
+hour, including deliberately lost TCP data and a full packet queue. The spare
+timer wrapped without losing the accumulated time. Cancellation had been
+acknowledged as busy fifty-nine thousand times while readers still held their
+pins. At shutdown every one of the 194,154 application allocations was freed,
+and all 14,764 shared objects were retired.
+
+The deadline asked for shutdown at tick 180,000. The workers parked eight ticks
+later, after the operations already in flight had finished. That small distance
+was part of the result: requesting cancellation and proving that the last
+pointer is no longer in use are different events. After reboot, the public
+Vader page answered again.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -1944,8 +2004,10 @@ So, the ledger, honestly kept:
   runs preemptible tasks and IPv4/IPv6 networking without a pending firmware
   callback. Owned fault/NMI containment and a tested fixed cache-data range now
   support a 128-slot external packet queue and a guarded 69,952-byte application
-  heap. Kernel-workspace expansion, graceful engine drain and long-duration
-  resident service remain open.
+  heap with explicit shared references and cancellation. A half-hour exclusive
+  run passed forty dual-stack rounds and complete application-allocation drain.
+  Kernel-workspace expansion, graceful engine drain and longer resident service
+  remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

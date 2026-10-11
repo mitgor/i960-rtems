@@ -1,0 +1,38 @@
+{
+  "card_access": false,
+  "samples_per_size": 10,
+  "measurements": [
+    {
+      "records": 100,
+      "bytes": 632990,
+      "rewrite_mean_ms": 3.3906361,
+      "rewrite_max_ms": 3.565355,
+      "append_mean_ms": 0.1083427,
+      "append_max_ms": 0.132094
+    },
+    {
+      "records": 500,
+      "bytes": 3165027,
+      "rewrite_mean_ms": 21.95785,
+      "rewrite_max_ms": 26.519912,
+      "append_mean_ms": 0.1353488,
+      "append_max_ms": 0.139863
+    },
+    {
+      "records": 1000,
+      "bytes": 6330077,
+      "rewrite_mean_ms": 39.2750212,
+      "rewrite_max_ms": 49.086656,
+      "append_mean_ms": 0.1913452,
+      "append_max_ms": 0.199351
+    },
+    {
+      "records": 3297,
+      "bytes": 20870137,
+      "rewrite_mean_ms": 188.4337879,
+      "rewrite_max_ms": 199.497334,
+      "append_mean_ms": 0.2004023,
+      "append_max_ms": 0.210153
+    }
+  ]
+}

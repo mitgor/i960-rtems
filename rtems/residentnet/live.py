@@ -8,8 +8,9 @@ from relay import Gateway,CARD,CARD6
 import wire
 from pump import send_pending
 from burst import burst
+from packet_log import append_packet,finish_packets
 
-def clients(rounds=1,parallel=False,interval=0):
+def clients(rounds=1,parallel=False,interval=0,out=None):
  results=[];start=time.monotonic()
  for iteration in range(rounds):
   delay=start+iteration*interval-time.monotonic()
@@ -21,6 +22,7 @@ def clients(rounds=1,parallel=False,interval=0):
   else:batch=client_round()
   for row in batch:row["round"]=iteration;row["completed_seconds"]=time.monotonic()-start
   results.extend(batch)
+  if out is not None:(out/'network-progress.json').write_text(json.dumps(results,indent=2)+'\n')
  return results
 
 def client_round(families=None):
@@ -51,6 +53,7 @@ def client_round(families=None):
 def main():
  p=argparse.ArgumentParser()
  for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
+ p.add_argument('--heap-shared',action='store_true')
  p.add_argument('--general-heap',action='store_true')
  p.add_argument('--extra-ram',action='store_true')
  p.add_argument('--fault-owner',action='store_true')
@@ -58,10 +61,11 @@ def main():
  p.add_argument('--burst',action='store_true');p.add_argument('--parallel',action='store_true')
  p.add_argument('--ticks',type=int,default=6000);p.add_argument('--rounds',type=int,default=1)
  p.add_argument('--round-interval',type=float,default=0)
- p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=60000 and 1<=a.rounds<=20 and 0<=a.round_interval<=60
+ p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=180000 and 1<=a.rounds<=60 and 0<=a.round_interval<=60
+ if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
  def save():
   (b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n');(b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
  def control(op,arg=0,e=epoch):
@@ -74,6 +78,9 @@ def main():
   if a.secondary_reset:assert w[42:46]==[2,0,578,81916] and w[47]==0
   else:assert w[42:46]==[2,18,514,81916]
   assert w[54]==w[55] and w[56]==epoch
+  if a.heap_shared and (not diagnostics or w[2]==2 or w[5]-diagnostics[-1]['ticks']>=1000):
+   control(7,1);d=[control(5,i)[2] for i in range(64)];assert d[0]==0x314c5348 and d[54]==0 and d[55]==d[63]==1
+   diagnostics.append(dict(seconds=time.monotonic()-start,ticks=w[5],words=d));(b.out/'heap-diagnostics.json').write_text(json.dumps(diagnostics,indent=2)+'\n')
   print(json.dumps(dict(seconds=snaps[-1]['seconds'],state=w[2],ticks=w[5],work=w[6:8],queue=w[57:60],packets=w[60:63])),flush=True);return w
  def packet(op,data=b'',e=epoch):
   raw=bytearray(struct.pack('<8I',op,e,len(data),0,0,0,0,0)+data.ljust(1536,b'\0'));before=bytes(raw);t=time.monotonic_ns()
@@ -82,7 +89,7 @@ def main():
    events.append(dict(packet_op=op,errno=exc.errno,epoch=e,length=len(data)));save();raise
   w=list(struct.unpack_from('<8I',raw));assert w[3]==1 and not w[4]&1 and w[5:]==[0,0,0]
   if w[2]:
-   packets.append(dict(op=op,ns=time.monotonic_ns()-t,request=before.hex(),response=raw.hex()));(b.out/'packets.json').write_text(json.dumps(packets)+'\n')
+   record=dict(op=op,ns=time.monotonic_ns()-t,request=before.hex(),response=raw.hex());append_packet(b.out,record);packets.append(record)
   return raw[32:32+w[2]]
  try:
   assert len(b.step(struct.pack('<4I',0x31415452,1,epoch,2|(a.ticks<<8))))==640
@@ -99,7 +106,7 @@ def main():
   if a.burst:burst(packet,snapshot,b.out)
   g=Gateway(b.out,ipv6=True)
   with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
-   future=pool.submit(clients,a.rounds,a.parallel,a.round_interval);deadline=time.monotonic()+max(45,a.ticks/100-5);last=time.monotonic()
+   future=pool.submit(clients,a.rounds,a.parallel,a.round_interval,b.out);deadline=time.monotonic()+max(45,a.ticks/100-5);last=time.monotonic()
    while not future.done():
     if time.monotonic()>deadline:raise TimeoutError('resident test exceeded session traffic budget')
     readable,_,_=select.select([g.fd],[],[],0)
@@ -131,7 +138,7 @@ def main():
  except BaseException:
   (b.out/'error.txt').write_text(traceback.format_exc());raise
  finally:
-  save()
+  save();finish_packets(b.out,packets)
   if g:g.close()
   if b.fd is not None:os.close(b.fd);b.fd=None;capture(b.out/'retained-close',b.debugfs)
   if b.records:b.records.close()

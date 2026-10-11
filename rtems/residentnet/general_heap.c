@@ -9,15 +9,24 @@
 #define HEAP_ABORT() exclusive_abort()
 extern void exclusive_abort(void);
 extern unsigned int exclusive_extra_valid(void),exclusive_extra_guard_mask(void);
-static unsigned int lock_heap(void){unsigned int v=31u<<16;__asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,%0":"+r"(v)::"g0","memory");return v;}
-static void unlock_heap(unsigned int v){__asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,%0":"+r"(v)::"g0","memory");}
+static unsigned int heap_raw_lock(void){unsigned int v=31u<<16;__asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,%0":"+r"(v)::"g0","memory");return v;}
+static void heap_raw_unlock(unsigned int v){__asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,%0":"+r"(v)::"g0","memory");}
 #else
 #include "heap_native.h"
+#endif
+#ifdef I960_HEAP_SHARED
+#include "heap_timing.inc"
+static unsigned int shared_protected(void*),shared_valid(void);
+static void shared_worker(unsigned int,unsigned int),shared_drain(unsigned int);
+static unsigned int shared_selftest(void);
+#else
+#define lock_heap heap_raw_lock
+#define unlock_heap heap_raw_unlock
 #endif
 #define HWORD(a) (*(volatile unsigned int*)(a))
 #define HEAP_END (HEAP_BASE+RESIDENT_HEAP_BYTES)
 #define HEAP_SLOTS 64
-struct live_block {unsigned char*raw;unsigned int size;};
+struct live_block {unsigned char*raw;unsigned int size,busy;};
 static struct live_block blocks[HEAP_SLOTS];
 static Heap_Control app_heap;
 static unsigned int heap_ready,heap_error,allocations,frees,rejections,live_bytes,peak_bytes,selftest;
@@ -48,7 +57,7 @@ static unsigned int metadata(void){unsigned int a=HEAP_BASE,previous=1,n=0,nfree
   previous=f;a+=size;
  }
  if(a!=HEAP_END-8||HWORD(a)!=previous||HWORD(a+4)!=1)return 0;
- for(i=0;i<HEAP_SLOTS;i++)if(blocks[i].raw)registered++;
+ for(i=0;i<HEAP_SLOTS;i++)if(blocks[i].raw){if(blocks[i].busy>1)return 0;registered++;}
  if(nused!=registered)return 0;
  p=(unsigned int)app_heap.first;prev=(unsigned int)&app_heap.start;
  for(n=0;n<nfree;n++){
@@ -59,14 +68,24 @@ static unsigned int metadata(void){unsigned int a=HEAP_BASE,previous=1,n=0,nfree
  }
  return p==(unsigned int)&app_heap.final&&(unsigned int)app_heap.last==prev;
 }
-unsigned int resident_heap_valid(void){return heap_ready&&!heap_error&&metadata()&&redzones();}
+unsigned int resident_heap_valid(void){return heap_ready&&!heap_error&&metadata()&&redzones()
+#ifdef I960_HEAP_SHARED
+ &&shared_valid()
+#endif
+ ;}
 static void poison(unsigned int code){heap_error=code;HEAP_ABORT();}
-static unsigned int enter(unsigned int*saved){
+static unsigned int enter_op(unsigned int*saved,unsigned int op){
  *saved=lock_heap();
+#ifdef I960_HEAP_SHARED
+ timing_op=op;
+#endif
  if(!heap_ready||_ISR_Nest_level){rejections++;unlock_heap(*saved);return 0;}
  if(!exclusive_extra_valid()){poison(1);return 0;}
  if(!metadata()){poison(2);return 0;}
  if(!redzones()){poison(3);return 0;}
+#ifdef I960_HEAP_SHARED
+ if(!shared_valid()){poison(11);return 0;}
+#endif
  return 1;
 }
 static void*allocate(unsigned int n){unsigned int i,j;unsigned char*p;
@@ -75,27 +94,61 @@ static void*allocate(unsigned int n){unsigned int i,j;unsigned char*p;
  if(i==HEAP_SLOTS){rejections++;return 0;}
  p=_Heap_Allocate(&app_heap,n+32);if(!p){rejections++;return 0;}
  if((unsigned int)p<HEAP_BASE||(unsigned int)p>=HEAP_END||n+32>HEAP_END-(unsigned int)p||((unsigned int)p&15)){poison(4);return 0;}
- blocks[i].raw=p;blocks[i].size=n;
+ blocks[i].raw=p;blocks[i].size=n;blocks[i].busy=0;
  for(j=0;j<16;j++){p[j]=0xa5^j;p[16+n+j]=0x5a^j;}
  live_bytes+=n;if(live_bytes>peak_bytes)peak_bytes=live_bytes;allocations++;return p+16;
 }
-static unsigned int release(void*p){unsigned int i;if(!p)return 0;i=find_block(p);
- if(i==HEAP_SLOTS){rejections++;return 1;}
+static unsigned int release_raw(void*p){unsigned int i;if(!p)return 0;i=find_block(p);
+ if(i==HEAP_SLOTS||blocks[i].busy){rejections++;return 1;}
  if(!_Heap_Free(&app_heap,blocks[i].raw)){poison(5);return 2;}
  live_bytes-=blocks[i].size;blocks[i].raw=0;blocks[i].size=0;frees++;return 0;
 }
+static unsigned int release(void*p){
+#ifdef I960_HEAP_SHARED
+ if(shared_protected(p)){rejections++;return 1;}
+#endif
+ return release_raw(p);
+}
+#define enter(p) enter_op(p,0)
 void resident_heap_check(void){unsigned int saved;if(enter(&saved))unlock_heap(saved);}
-void*resident_malloc(unsigned int n){unsigned int saved;void*p;if(!enter(&saved))return 0;p=allocate(n);unlock_heap(saved);return p;}
-unsigned int resident_free(void*p){unsigned int saved,rc;if(!p)return 0;if(!enter(&saved))return 1;rc=release(p);unlock_heap(saved);return rc;}
-void*resident_calloc(unsigned int n,unsigned int size){unsigned int saved;void*p;if(!enter(&saved))return 0;
+void*resident_malloc(unsigned int n){unsigned int saved;void*p;if(!enter_op(&saved,1))return 0;p=allocate(n);unlock_heap(saved);return p;}
+unsigned int resident_free(void*p){unsigned int saved,rc;if(!p)return 0;if(!enter_op(&saved,4))return 1;rc=release(p);unlock_heap(saved);return rc;}
+void*resident_calloc(unsigned int n,unsigned int size){unsigned int saved;void*p;if(!enter_op(&saved,2))return 0;
  if(!n||!size||size>(RESIDENT_HEAP_BYTES-64)/n){rejections++;unlock_heap(saved);return 0;}
- p=allocate(n*size);if(p)memset(p,0,n*size);unlock_heap(saved);return p;
+ p=allocate(n*size);
+#ifdef I960_HEAP_SHARED
+ if(p){unsigned int slot=find_block(p),before;
+  blocks[slot].busy=1;unlock_heap(saved);before=irq_samples;memset(p,0,n*size);
+  if(!enter_op(&saved,2))return 0;if(irq_samples!=before)copy_preemptions[0]++;
+  blocks[slot].busy=0;
+ }
+#else
+ if(p)memset(p,0,n*size);
+#endif
+ unlock_heap(saved);return p;
 }
 void*resident_realloc(void*p,unsigned int n){unsigned int saved,i,old;void*q;
  if(!p)return resident_malloc(n);if(!n){resident_free(p);return 0;}
- if(!enter(&saved))return 0;i=find_block(p);if(i==HEAP_SLOTS){rejections++;unlock_heap(saved);return 0;}
- old=blocks[i].size;q=allocate(n);if(q){memcpy(q,p,n<old?n:old);release(p);}unlock_heap(saved);return q;
+ if(!enter_op(&saved,3))return 0;
+#ifdef I960_HEAP_SHARED
+ if(shared_protected(p)){rejections++;unlock_heap(saved);return 0;}
+#endif
+ i=find_block(p);if(i==HEAP_SLOTS||blocks[i].busy){rejections++;unlock_heap(saved);return 0;}
+ old=blocks[i].size;q=allocate(n);if(q){
+#ifdef I960_HEAP_SHARED
+  unsigned int slot=find_block(q),before;blocks[i].busy=blocks[slot].busy=1;
+  unlock_heap(saved);before=irq_samples;memcpy(q,p,n<old?n:old);
+  if(!enter_op(&saved,3))return 0;if(irq_samples!=before)copy_preemptions[1]++;
+  blocks[i].busy=blocks[slot].busy=0;
+#else
+  memcpy(q,p,n<old?n:old);
+#endif
+  release(p);
+ }unlock_heap(saved);return q;
 }
+#ifdef I960_HEAP_SHARED
+#include "shared_heap.inc"
+#endif
 static unsigned int startup_test(void){void*p[64],*q;unsigned int i,j,n=0;
  if(resident_malloc(0)||resident_malloc(~0u)||resident_calloc(~0u,2))return 1;
  q=resident_calloc(31,7);if(!q)return 2;for(i=0;i<217;i++)if(((unsigned char*)q)[i])return 3;
@@ -119,17 +172,31 @@ static unsigned int startup_test(void){void*p[64],*q;unsigned int i,j,n=0;
 }
 unsigned int resident_heap_init(void){unsigned int rc;
  if(heap_ready||!exclusive_extra_valid())return 1;
+#ifdef I960_HEAP_SHARED
+ timing_init();
+#endif
  if(!_Heap_Initialize(&app_heap,(void*)HEAP_BASE,RESIDENT_HEAP_BYTES,16))return 2;
- heap_ready=1;rc=startup_test();if(rc){heap_error=0x100+rc;return rc;}selftest=1;return 0;
+ heap_ready=1;rc=startup_test();if(rc){heap_error=0x100+rc;return rc;}selftest=1;
+#ifdef I960_HEAP_SHARED
+ if(shared_selftest())return 18;
+#endif
+ return 0;
 }
 void resident_heap_step(unsigned int id,unsigned int tick){unsigned int i,n;unsigned char*p;
  if(id>1||last_tick[id]==tick)return;last_tick[id]=tick;
  p=worker_block[id];if(p){for(i=0;i<worker_size[id];i++)if(p[i]!=worker_value[id])poison(6);if(resident_free(p))poison(7);worker_block[id]=0;}
+#ifdef I960_HEAP_SHARED
+ shared_worker(id,tick);
+#endif
  seeds[id]=seeds[id]*1664525u+1013904223u;n=1+(seeds[id]%3072);
  p=resident_malloc(n);if(!p)poison(8);worker_size[id]=n;worker_value[id]=(tick+id*31)&255;
  memset(p,worker_value[id],n);worker_block[id]=p;operations[id]++;
 }
-void resident_heap_drain(unsigned int id){unsigned int i;if(worker_block[id]){
+void resident_heap_drain(unsigned int id){unsigned int i;
+#ifdef I960_HEAP_SHARED
+ shared_drain(id);
+#endif
+ if(worker_block[id]){
  for(i=0;i<worker_size[id];i++)if(worker_block[id][i]!=worker_value[id])poison(6);
  if(resident_free(worker_block[id]))poison(7);worker_block[id]=0;}
 }

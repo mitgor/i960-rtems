@@ -64,6 +64,9 @@ static void resident_net_report(unsigned int*w){
  {unsigned int heap[16];resident_heap_report(heap);w[57]=0x36544e52;
  w[48]=heap[1];w[49]=heap[2];w[50]=heap[5];w[51]=heap[6];}
 #endif
+#ifdef I960_HEAP_SHARED
+ w[57]=0x37544e52; /* RNT7: shared-allocation cancellation + separate diagnostics */
+#endif
  w[58]=resident_queue_drops();w[59]=resident_queue_peak();
  w[60]=netlink.received;w[61]=netlink.sent;w[62]=netlink.rejected;w[63]=net_memory_ok;
 #ifdef I960_SECONDARY_RESET

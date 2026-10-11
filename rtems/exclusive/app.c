@@ -15,7 +15,7 @@ extern unsigned char _bss_start[],_bss_end[];
 #include "../residentnet/cache_probe.h"
 #endif
 #ifdef I960_RESIDENT_NET
-#define EXCLUSIVE_MAX_TICKS 60000u
+#define EXCLUSIVE_MAX_TICKS 180000u
 #else
 #define EXCLUSIVE_MAX_TICKS 6000u
 #endif

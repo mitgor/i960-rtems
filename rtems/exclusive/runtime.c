@@ -12,7 +12,7 @@
 #include <rtems/score/isr.h>
 #include "../switch/lifetime.h"
 #ifdef I960_RESIDENT_NET
-#define EXCLUSIVE_MAX_TICKS 60000u
+#define EXCLUSIVE_MAX_TICKS 180000u
 #else
 #define EXCLUSIVE_MAX_TICKS 6000u
 #endif
@@ -38,6 +38,12 @@ static void control_poll(void){unsigned int token=R(0x1314),index;
  if(!resident||((token&65535)!=resident_epoch))return;
  #ifdef I960_RESIDENT_NET
  if(resident_net_control(token))return;
+#endif
+#ifdef I960_HEAP_SHARED
+ if(token==(0x96000000u|resident_epoch)){
+  resident_heap_diagnostics(snapshot);R(0x1314)=0;R(0x131c)=0x97000000u|resident_epoch;
+  (void)R(0x131c);R(0x1324)=2;(void)R(0x1324);return;
+ }
 #endif
  if(token==(0x90000000u|resident_epoch)){
   memset(snapshot,0,sizeof(snapshot));snapshot[0]=0x31525845;snapshot[1]=++snapshot_id;snapshot[2]=resident_state;snapshot[3]=stop_reason;
@@ -65,6 +71,9 @@ static void stack_free(void*p){bounded_fatal(0x51001);}
 static void idle_error(void){bounded_fatal(0xdead);}
 void switch_irq_enter(unsigned int id,unsigned int fp){if(!lifetime_enter(&life[id],(unsigned int)_Thread_Executing,fp,R(fp-16),R(fp-12),R(fp-8)))switch_fault|=1;}
 void switch_irq_body(void){
+#ifdef I960_HEAP_SHARED
+ resident_heap_irq_sample();
+#endif
  _ISR_Nest_level++;_Thread_Dispatch_disable_level++;ticks++;control_poll();if(stop_sent){stop_sent=0;CHECK(rtems_event_send(controller,RTEMS_EVENT_0));}CHECK(rtems_clock_tick());
  _Thread_Dispatch_disable_level--;_ISR_Nest_level--;
  if(_Context_Switch_necessary&&!_Thread_Dispatch_disable_level){if(_Thread_Heir!=_Thread_Executing)handoffs++;_Thread_Dispatch();}

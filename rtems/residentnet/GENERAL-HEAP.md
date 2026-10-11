@@ -44,10 +44,12 @@ stock firmware or unload retained resources. Reboot is required.
 
 This is corruption detection and containment, not memory protection: a task can
 write outside its allocation before the next check. NMI/fault paths do not
-allocate. Interrupt masking includes calloc/realloc memory work; worst-case
-latency still needs measurement. There is no automatic cancellation reclaim:
-workers retain allocations across preemption and explicitly verify/free them
-at shutdown. Shared allocation ownership still needs an application policy.
+allocate. The base profile masks calloc/realloc memory work and requires explicit private
+allocation cleanup. The opt-in `--heap-shared` extension measures the protected
+work, moves large zero/copy operations outside its own mask, and adds explicit
+reference/pin cancellation. See [SHARED-HEAP.md](SHARED-HEAP.md) for its contract
+and physical measurements. Neither profile automatically reclaims memory from
+a task whose pointer use remains uncertain.
 
 ## Reproduction
 

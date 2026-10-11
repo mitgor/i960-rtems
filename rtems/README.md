@@ -1,5 +1,8 @@
 # RTEMS on the DAC960PG
 
+Shared allocation cancellation and exclusive timer-based heap measurements are
+available with `--heap-shared`; see [the contract and replay instructions](residentnet/SHARED-HEAP.md).
+
 **Latest: [general application heap and corruption containment](residentnet/GENERAL-HEAP.md).**
 The opt-in resident image adds a guarded 69,952-byte RTEMS application heap in
 already validated RAM alongside the 128-slot packet queue. Four deliberate

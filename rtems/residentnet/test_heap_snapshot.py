@@ -18,3 +18,30 @@ try:snapshot_gate(w,7,True,True,True,True)
 except AssertionError:pass
 else:raise AssertionError('more than two retained worker allocations accepted')
 print('RNT6: active/parked ownership, heap bounds, retained count and final drain checked')
+
+w[57]=0x37544e52;w[50]=205
+snapshot_gate(w,7,True,True,True,True)
+w[3]=1
+snapshot_gate(w,7,True,True,True,True,stopping=True)
+try:snapshot_gate(w,7,True,True,True,True)
+except AssertionError:pass
+else:raise AssertionError('unacknowledged STOP transition accepted')
+w[3]=2
+try:snapshot_gate(w,7,True,True,True,True,stopping=True)
+except AssertionError:pass
+else:raise AssertionError('unexpected active deadline reason accepted')
+print('RNT7: temporary copy allocations and acknowledged STOP transition checked')
+
+from verify import deadline_gate
+w[5]=180001;w[8:10]=[1,0]
+snapshot_gate(w,7,True,True,True,True,deadline=180000)
+deadline_gate(w,180000)
+for tick in (179999,180101):
+ bad=w.copy();bad[5]=tick
+ try:snapshot_gate(bad,7,True,True,True,True,deadline=180000)
+ except AssertionError:pass
+ else:raise AssertionError('out-of-window deadline transition accepted')
+ try:deadline_gate(bad,180000)
+ except AssertionError:pass
+ else:raise AssertionError('out-of-window final deadline accepted')
+print('RNT7: deadline-authorized drain transition and 100-tick acceptance bound checked')
