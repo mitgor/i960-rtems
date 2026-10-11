@@ -17,7 +17,10 @@ static unsigned int now_ms,random_state=0x1960466,tx_count,rx_count,drops;
 #define NETWORK_QUEUE_SLOTS 8
 #endif
 static unsigned short lengths[NETWORK_QUEUE_SLOTS];
-static unsigned char frames[NETWORK_QUEUE_SLOTS][1536];
+#ifndef NETWORK_FRAME_BYTES
+#define NETWORK_FRAME_BYTES 1536
+#endif
+static unsigned char frames[NETWORK_QUEUE_SLOTS][NETWORK_FRAME_BYTES];
 static unsigned int head,tail,queued;
 #ifdef RESIDENT_QUEUE_STATS
 static unsigned int queue_highwater;
@@ -31,7 +34,7 @@ static struct tcp_pcb *fetch_pcb;
 unsigned int card_rand(void){random_state^=random_state<<13;random_state^=random_state>>17;random_state^=random_state<<5;return random_state;}
 u32_t sys_now(void){return now_ms;}
 static err_t enqueue(struct pbuf*p){
- if(p->tot_len>1536||queued==NETWORK_QUEUE_SLOTS){drops++;return ERR_MEM;}
+ if(p->tot_len>NETWORK_FRAME_BYTES||queued==NETWORK_QUEUE_SLOTS){drops++;return ERR_MEM;}
  lengths[tail]=p->tot_len;pbuf_copy_partial(p,frames[tail],p->tot_len,0);tail=(tail+1)%NETWORK_QUEUE_SLOTS;queued++;tx_count++;
 #ifdef RESIDENT_QUEUE_STATS
  if(queued>queue_highwater)queue_highwater=queued;

@@ -1,0 +1,48 @@
+{
+  "firmware_sha256": "21f6c1d898a533d7023a53893f03547ed61631016d1b247d3ecbb97b9403c195",
+  "byte_checked_rows": 73608,
+  "channel_count_address": "c0060000",
+  "channel_base": "c0083000",
+  "channel_stride": "170",
+  "primary_flag_offset": "3c",
+  "identity_offset": "104",
+  "scsi_stopped": false,
+  "ram_granted": false,
+  "channels": [
+    {
+      "index": 0,
+      "mmio": "0x88000000",
+      "pci_bar": "0xfff00000",
+      "script_mmio": "0x88002000",
+      "primary_flag": 0,
+      "config_select": "0x10",
+      "vendor": "0x1000",
+      "device": "0xc",
+      "revision": 2
+    }
+  ],
+  "secondary_count": 1,
+  "bridge_bus_numbers": "0x20383837",
+  "all_channels_secondary": true,
+  "live_table": "0xc0110780",
+  "pci_config": [
+    "0xc1000",
+    "0x2000006",
+    "0x1000002",
+    "0xfff00000",
+    "0xfff02000",
+    "0x1000c",
+    "0x1000c",
+    "0x16"
+  ],
+  "identity_corroborated": true,
+  "stock_async_paths": {
+    "cached_nmi": "0xc004e190",
+    "prcb": "0xfeffd4d0",
+    "live_fault_table_read": false,
+    "diagnostic_skipped_rom_pointer": true,
+    "fault_table_from_archived_rom": "0xc0000800",
+    "rom_sha256": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0",
+    "exclusive_ownership_proven": false
+  }
+}

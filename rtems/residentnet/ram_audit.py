@@ -19,7 +19,8 @@ for name in ['_workspace','_stacks','_switch_irq_areas','_netlink']:assert lo<=b
 ordered=sorted(set(address for address,kind,name in symbols if kind in 'bBdD'))
 frame_start=byname['_frames'];next_address=min(x for x in ordered if x>frame_start)
 frame_bytes=next_address-frame_start
-assert frame_bytes in (8*1536,32*1536,64*1536)
+layouts={8*1536:(8,1536),32*1536:(32,1536),64*1536:(64,1536),72*1500:(72,1500)}
+assert frame_bytes in layouts
 assert lo<=frame_start and frame_start+frame_bytes<=hi
-queue_slots=frame_bytes//1536
-print(json.dumps(dict(payload_sha256=hashlib.sha256((a.build/'kernel.bin').read_bytes()).hexdigest(),mutable_low=hex(lo),mutable_high_exclusive=hex(hi),bss_start=hex(byname['__bss_start']),bss_end=hex(byname['__bss_end']),unused_mutable_tail=hi-byname['__bss_end'],symbol_count=len(symbols),queue_slots=queue_slots,queue_bytes=frame_bytes,objects={n:hex(byname[n]) for n in ['_workspace','_stacks','_switch_irq_areas','_netlink']},broader_ram_owned=False,regions=[['c0000000','c0f2c000','unreclaimed firmware/unknown'],['c0f2c000','c0f4c000','immutable upload code'],['c0f4c000','c0f4c010','lower guard'],['c0f4c010','c0f9bff0','owned mutable upload'],['c0f9bff0','c0f9c000','upper guard'],['c0f9c000','c0f9f060','BIO transport'],['c0f9f060','c0fac000','saved upload tail; do not reclaim'],['c0fac000','c1000000','outside upload allocation; no new ownership']]),indent=2))
+queue_slots,frame_capacity=layouts[frame_bytes]
+print(json.dumps(dict(payload_sha256=hashlib.sha256((a.build/'kernel.bin').read_bytes()).hexdigest(),mutable_low=hex(lo),mutable_high_exclusive=hex(hi),bss_start=hex(byname['__bss_start']),bss_end=hex(byname['__bss_end']),unused_mutable_tail=hi-byname['__bss_end'],symbol_count=len(symbols),queue_slots=queue_slots,queue_bytes=frame_bytes,frame_capacity=frame_capacity,objects={n:hex(byname[n]) for n in ['_workspace','_stacks','_switch_irq_areas','_netlink']},broader_ram_owned=False,regions=[['c0000000','c0f2c000','unreclaimed firmware/unknown'],['c0f2c000','c0f4c000','immutable upload code'],['c0f4c000','c0f4c010','lower guard'],['c0f4c010','c0f9bff0','owned mutable upload'],['c0f9bff0','c0f9c000','upper guard'],['c0f9c000','c0f9f060','BIO transport'],['c0f9f060','c0fac000','saved upload tail; do not reclaim'],['c0fac000','c1000000','outside upload allocation; no new ownership']]),indent=2))

@@ -26,7 +26,7 @@ def burst(packet,snapshot,out):
     if exc.errno!=errno.EAGAIN:raise
     busy+=1
     if time.monotonic()>=deadline:raise TimeoutError('RX busy did not clear')
- time.sleep(.2);full=snapshot();assert full[57]==0x32544e52 and full[59]==64 and full[58]>0
+ time.sleep(.2);full=snapshot();capacity={0x32544e52:64,0x33544e52:72}[full[57]];assert full[59]==capacity and full[58]>0
  seen=[];other=[];empty=0;deadline=time.monotonic()+15
  while time.monotonic()<deadline and empty<20:
   blob=packet(2);offset=0
@@ -38,7 +38,7 @@ def burst(packet,snapshot,out):
     index=struct.unpack_from('<I',frame,28)[0];assert 0<=index<96 and frame[28:]==datagram(index)[28:] and index not in seen;seen.append(index)
    else:other.append(frame.hex())
   assert offset==len(blob)
- assert empty==20 and 60<=len(seen)<96
+ assert empty==20 and capacity-4<=len(seen)<96
  result=dict(submitted=96,echoed=len(seen),indices=seen,busy_retries=busy,drops=full[58],queue_highwater=full[59],other_frames=other)
  (out/'burst-results.json').write_text(json.dumps(result,indent=2)+'\n')
  return result

@@ -1676,6 +1676,44 @@ the next publication, while keeping the complete audits. Vader returned to the
 public web page. The queue had proved a rule about when a picture could be
 replaced; it had not yet earned a faster frame rate.
 
+## Holding the other processor still
+
+The next useful fact was a device number. The channel structure said `1000:000c`;
+a narrowly addressed PCI configuration read said the same thing. The card's
+SCSI engine was a Symbios 53C895 on the private secondary bus. The FlashPoint
+trail had been interesting. It was not this piece of hardware.
+
+That gave us a more honest way to stop it. We denied bus mastering, checked the
+i960 DMA channels, asserted secondary reset, and left it asserted. This was not
+a polite request to finish a disk write. It was a forced stop, with reboot as
+the way back. RTEMS kept ticking. The primary host channel kept answering.
+IPv4 and IPv6 packets crossed the card while the SCSI side stayed in reset.
+The first run reached 12,000 ticks, survived a deliberately full packet queue
+and lost TCP packets, and came back through an ordinary host reboot.
+
+It was tempting to call the cache memory ours at that point. The next read
+explained why we could not. The cached NMI vector still pointed at the old
+firmware, and that handler contained a route back into secondary-bus
+initialization. Raising interrupt priority does not make an NMI disappear.
+The live PRCB pointed into ROM; our RAM-only probe correctly refused to follow
+it. The preserved ROM supplied the fault-table pointer instead. These were
+specific remaining owners, not an abstract warning about being careful.
+
+So the memory improvement stayed inside the ground we already owned: seventy-two
+MTU-sized packet slots in place of sixty-four slightly oversized ones. That
+recovered 9,696 useful packet bytes without borrowing a single cache line from
+the firmware. There were still 2,256 mutable bytes left in the allocation,
+and all the stacks and guards stayed where they belonged.
+
+The longer run reached 36,000 ticks and ten spaced dual-stack traffic rounds.
+At its deadline both task interrupt contexts drained and the card parked.
+Another ordinary reboot brought the old firmware back; the public Vader page
+answered again.
+
+The next door is the NMI and fault machinery. Holding the SCSI processor still
+worked. Making sure nothing can quietly start it again is a separate piece of
+work, and the captures now say exactly where to begin.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

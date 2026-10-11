@@ -26,7 +26,7 @@ static void cache_decode_probe(unsigned int*w,unsigned int page){
   {0x1500,0x1504,0x1508,0x150c,0x1510,0x1514,0x1518,0x1700},
   {0x151c,0x1520,0x1524,0x1528,0x152c,0x1530,0x40800000,0x40800008}};
  unsigned int i,status,scratch;
- if(!page||page>28){cache_probe(w);return;}
+ if(!page||page>31){cache_probe(w);return;}
  __asm__ volatile("dcctl 4,0,%0":"=r"(status)::"memory");
  __asm__ volatile("dcctl 0,0,%0":"=r"(scratch)::"memory");
  w[0]=0x32484343;w[1]=page;
@@ -45,9 +45,23 @@ static void cache_decode_probe(unsigned int*w,unsigned int page){
   for(i=0;i<3;i++)w[4+i]=table==0xc0110780u?*(volatile unsigned int*)(table+(i==0?0x58:i==1?0x4c:0x50)):0xffffffffu;
   w[7]=*(volatile unsigned int*)0x1018;w[8]=*(volatile unsigned int*)0x12a8;w[9]=*(volatile unsigned int*)0x1288;
  }
- if(page>=17){unsigned int channel=(page-17)/2,base=0xc0083000u+channel*0x170;
+ if(page>=17&&page<=28){unsigned int channel=(page-17)/2,base=0xc0083000u+channel*0x170;
   unsigned int count=*(volatile unsigned int*)0xc0060000;
   for(i=0;i<8;i++)w[i+2]=channel<count&&count<=6?*(volatile unsigned int*)(base+((page-17)&1?0xf0:0x2c)+i*4):0xffffffffu;
+ }
+ if(page==29){unsigned int saved=*(volatile unsigned int*)0x12a8;
+  static const unsigned int offsets[5]={0,4,8,0x14,0x18};
+  for(i=0;i<8;i++)w[i+2]=0xffffffffu;
+  /* Corroborate one identified private device; no enumeration or config writes. */
+  if(*(volatile unsigned int*)0xc0060000==1&&*(volatile unsigned int*)0xc0083104==0x000c1000u&&*(volatile unsigned int*)0xc0083040==0x10&&(*(volatile unsigned short*)0x1298&6)==6){
+   for(i=0;i<5;i++){*(volatile unsigned int*)0x12a8=0x10000u|offsets[i];w[i+2]=*(volatile unsigned int*)0x12b0;}
+   *(volatile unsigned int*)0x12a8=saved;w[7]=saved;w[8]=*(volatile unsigned int*)0x12a8;w[9]=*(volatile unsigned short*)0x1298;
+  }
+ }
+ if(page>=30){unsigned int prcb=*(volatile unsigned int*)0xff008700,ft=0;
+  if(prcb>=0xc0000000u&&prcb<=0xc013ffc0u&&!(prcb&3))ft=*(volatile unsigned int*)prcb;
+  if(page==30){w[2]=cache_probe_read(0,0xa5a5a5a5,0);w[3]=prcb;w[4]=ft;w[5]=*(volatile unsigned int*)0xff008704;w[6]=*(volatile unsigned int*)0xff008708;w[7]=*(volatile unsigned int*)0x1700;w[8]=*(volatile unsigned int*)0xff008500;w[9]=*(volatile unsigned int*)0xff008504;}
+  else for(i=0;i<8;i++)w[i+2]=ft==0xc0000800u?*(volatile unsigned int*)(ft+4*i):0xffffffffu;
  }
  if(page<=3)for(i=0;i<8;i++)w[i+2]=cache_probe_read(addresses[page-1][i],0x5a5a5a5a,0);
  else if(page==4) {

@@ -1,0 +1,33 @@
+c004e190:	40 60 08 8c 	lda	0x40(sp),sp
+c004e194:	40 e0 87 b2 	stq	g0,0x40(fp)
+c004e198:	50 e0 a7 b2 	stq	g4,0x50(fp)
+c004e19c:	70 e0 e7 a2 	stt	g12,0x70(fp)
+c004e1a0:	00 1e f0 5c 	mov	0,g14
+c004e1a4:	00 1e 38 5c 	mov	0,r7
+c004e1a8:	00 30 30 90 	ld	0x1700,r6
+c004e1ac:	00 17 00 00
+c004e1b0:	40 a0 01 30 	bbc	0,r6,0xc004e1f0
+c004e1b4:	00 30 20 8c 	lda	0x153c,r4
+c004e1b8:	3c 15 00 00
+c004e1bc:	00 10 29 90 	ld	(r4),r5
+c004e1c0:	00 30 88 90 	ld	0x1538,g1
+c004e1c4:	38 15 00 00
+c004e1c8:	00 30 80 8c 	lda	0xc004e120,g0
+c004e1cc:	20 e1 04 c0
+c004e1d0:	d0 c0 fb 09 	call	0xc000a2a0
+c004e1d4:	00 30 a8 90 	ld	0xc011e22c,g5
+c004e1d8:	2c e2 11 c0
+c004e1dc:	01 1e a0 5c 	mov	1,g4
+c004e1e0:	44 61 a5 92 	st	g4,0x144(g5)
+c004e1e4:	00 10 29 92 	st	r5,(r4)
+c004e1e8:	f8 60 85 90 	ld	0xf8(g5),g0
+c004e1ec:	00 10 04 86 	callx	(g0)
+c004e1f0:	24 a0 09 30 	bbc	1,r6,0xc004e214
+c004e1f4:	00 30 20 8c 	lda	0x1290,r4
+c004e1f8:	90 12 00 00
+c004e1fc:	00 10 29 90 	ld	(r4),r5
+c004e200:	00 30 80 8c 	lda	0xc004e130,g0
+c004e204:	30 e1 04 c0
+c004e208:	05 16 88 5c 	mov	r5,g1
+c004e20c:	94 c0 fb 09 	call	0xc000a2a0
+c004e210:	00 10 29 92 	st	r5,(r4)

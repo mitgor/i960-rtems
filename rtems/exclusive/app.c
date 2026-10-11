@@ -8,6 +8,9 @@ extern unsigned char _bss_start[],_bss_end[];
 #include "../control/mu_echo.h"
 #include "../handoff/policy.h"
 #include "engines.h"
+#ifdef I960_SECONDARY_RESET
+#include "../residentnet/scsi_target.h"
+#endif
 #ifdef I960_RESIDENT_NET
 #include "../residentnet/cache_probe.h"
 #endif
@@ -40,7 +43,11 @@ void timer_interrupt(void){unsigned int token,i,n;
  if(token==(0x88000000u|epoch)){stop_timer();state=4;publish(0x89000000u);return;}
  if(token==(0x8a000000u|epoch)){
   REG(0x1314)=0;(void)REG(0x1314);mask31();entries++;state=6;
+#ifdef I960_SECONDARY_RESET
+  if(requested_phase!=2||!requested_ticks||!scsi_target_identity()||engine_acquire(2)||scsi_stop_hold(&scsi_stop,0x31504353u)){publish(0x8c000000u);for(;;){}}
+#else
   if(requested_phase!=2||!requested_ticks||engine_acquire(2)){publish(0x8c000000u);for(;;){}}
+#endif
   publish(0x8b000000u);exclusive_resident(requested_ticks,epoch);for(;;){}
  }
  if(!monitor_take(epoch))return;

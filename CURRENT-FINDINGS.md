@@ -1,5 +1,18 @@
 # Current findings and evidence — 2026-10-11
 
+**SCSI stop boundary (2026-10-11):** the identified secondary Symbios 53C895
+remained in bus reset for 36,000 ticks and ten spaced concurrent IPv4/IPv6
+rounds, including saturation, TCP loss recovery and autonomous task shutdown.
+This is forced stop/discard, not graceful SCSI drain or a disk flush. The opt-in
+`--secondary-reset` build retains reset and resources until reboot; never force
+unload it. Default/cooperative profiles remain available. Useful resident queue
+storage is now 72 × 1,500 bytes inside the existing 512 KiB grant. **No broader
+RAM grant:** stock cached NMI and fault paths remain; the NMI handler can
+reinitialize the secondary interface. The candidate RAM-transfer policy is
+offline only. The final reboot returned normally; public IPv6 HTTP is restored
+and checked from the Mac. Follow the [contract and evidence](rtems/residentnet/SCSI-STOP.md) before further tests.
+
+
 **Bounded frame queue accepted (2026-10-11):** two fixed slots with epoch,
 generation and explicit ACK passed four sessions, 518 native-matching replies,
 518 paired full audits and four restorations. All requests retain both complete

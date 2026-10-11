@@ -3,7 +3,8 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");a=p.parse_args()
+if a.secondary_reset and a.profile!="residentnet":p.error("secondary reset requires residentnet")
 here=Path(__file__).resolve().parent;work=a.work.resolve();src=work/'rtems-4.6.6';out=work/a.profile;out.mkdir(exist_ok=True,parents=True)
 for row in json.loads((here/'sources.json').read_text())['sources']:
  if a.profile not in ('net','autonet','residentnet') and row['name'].startswith('lwip'):continue
@@ -50,6 +51,7 @@ if a.profile=='defer':flags+=['-DI960_DEFER_TEST']
 if a.profile in ('mustop','stopcases','contain','containcases'):flags+=['-DI960_STOP_TEST']
 if a.profile in ('stopcases','containcases'):flags+=['-DI960_STOP_CASES']
 if a.profile in ('contain','containcases'):flags+=['-DI960_CONTAIN_TEST']
+if a.secondary_reset:flags+=['-DI960_SECONDARY_RESET']
 sources=[]
 for folder in ['score/src','rtems/src','sapi/src']:
  sources += [f for f in sorted((src/'cpukit'/folder).glob('*.c')) if not f.stem.endswith('mp') and f.stem not in ('mpci','mppkt','mpproc','posixapi','itronapi')]

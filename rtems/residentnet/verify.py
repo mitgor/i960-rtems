@@ -7,16 +7,19 @@ from run import ROM_SHA,verify_close
 from validate_packets import validate
 import wire
 
-def snapshot_gate(w,epoch):
+def snapshot_gate(w,epoch,reset=False):
  assert len(w)==64 and w[0]==0x31525845 and w[1]>0 and w[2] in (1,2)
- assert w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6 and w[42:46]==[2,18,514,81916]
- assert w[54]==w[55] and w[56]==epoch and w[63]==1
- if w[57]==0x32544e52:assert 0<=w[59]<=64
+ assert w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6
+ assert w[54]==w[55] and w[56]==epoch and w[63]==(3 if reset else 1)
+ if reset:assert w[42:46]==[2,0,578,81916] and w[47]==0
+ else:assert w[42:46]==[2,18,514,81916]
+ if w[57] in (0x32544e52,0x33544e52):assert 0<=w[59]<={0x32544e52:64,0x33544e52:72}[w[57]]
  for i in (12,14):assert 0<=w[i]-w[i+1]<=1
  if w[2]==2:assert w[3] in (1,2) and w[8:10]==[1,1] and w[12]==w[13]>0 and w[14]==w[15]>0 and w[53]==0
  else:assert w[3]==0 and w[8:10]==[0,0] and w[53]==0x2000
 
 def verify(root,out):
+ reset='-DI960_SECONDARY_RESET' in json.loads((root/'residentnet/build.json').read_text())['flags']
  identity=json.loads((out/'request.json').read_text());code=(root/'residentnet/kernel.bin').read_bytes()
  assert hashlib.sha256(code).hexdigest()==identity['payload_sha256'] and hashlib.sha256(wire.prepare(code)).hexdigest()==identity['image_sha256']
  assert any(hashlib.sha256(p.read_bytes()).hexdigest()==identity['module_sha256'] for p in root.glob('residentnet-module*/dac960auto.ko'))
@@ -27,6 +30,7 @@ def verify(root,out):
  audit=gzip.decompress((out/'audit-000001.bin.gz').read_bytes());before=wire.prepare(code)[:wire.bio.OFFSET]+wire.block(req,1)+original[wire.bio.IMAGE_SIZE:]
  assert wire.response(before,audit+original[len(audit):])==(0,raw[32:])
  groups=[];cur=None;events=json.loads((out/'controls.json').read_text())
+ if (out/'control-journal.jsonl').exists():assert [json.loads(l) for l in (out/'control-journal.jsonl').read_text().splitlines()]==[e for e in events if 'words' in e]
  for e in events:
   if 'words' not in e:continue
   w=e['words'];assert w[3]==1 and w[6:]==[0,0] and not w[4]&1
@@ -37,11 +41,11 @@ def verify(root,out):
   elif e['op']==5:assert e['arg']==len(cur);cur.append(w[2])
  assert len(cur)==64;groups.append(cur);assert groups==[s['words'] for s in json.loads((out/'snapshots.json').read_text())]
  for w in groups:
-  snapshot_gate(w,epoch)
-  if w[57]==0x32544e52:assert 0<=w[59]<=64
+  snapshot_gate(w,epoch,reset)
+  if w[57] in (0x32544e52,0x33544e52):assert 0<=w[59]<={0x32544e52:64,0x33544e52:72}[w[57]]
  for a,b in zip(groups,groups[1:]):assert b[1]>a[1] and all(b[i]>=a[i] for i in (5,6,7,60,61,62))
- if groups[0][57]==0x32544e52:
-  assert all(w[57]==0x32544e52 for w in groups)
+ if groups[0][57] in (0x32544e52,0x33544e52):
+  assert all(w[57]==groups[0][57] for w in groups)
   assert all(b[58]>=a[58] and b[59]>=a[59] for a,b in zip(groups,groups[1:]))
  assert groups[-1][2]==2 and groups[-1][4:36]==groups[-2][4:36] and groups[-1][6]>0 and groups[-1][7]>0
  assert groups[-1][62]-groups[-2][62]==2
@@ -85,10 +89,16 @@ def verify(root,out):
    (sent if ports[0]==44000 else received).append(index)
   assert sent==list(range(96)) and len(received)==len(set(received))
   assert received==burst_result['indices'] and len(received)==burst_result['echoed']
-  assert burst_result['submitted']==96 and 60<=len(received)<96
-  assert burst_result['queue_highwater']==64 and burst_result['drops']>0
-  assert any(w[57:60]==[0x32544e52,burst_result['drops'],64] for w in groups)
+  assert burst_result['submitted']==96 and burst_result['queue_highwater']-4<=len(received)<96
+  assert burst_result['queue_highwater']=={0x32544e52:64,0x33544e52:72}[groups[-1][57]] and burst_result['drops']>0
+  assert any(w[57:60]==[groups[-1][57],burst_result['drops'],burst_result['queue_highwater']] for w in groups)
  results=json.loads((out/'network-results.json').read_text());rounds=1+max(v.get('round',0) for v in results);assert 1<=rounds<=20 and len(results) in (12*rounds,14*rounds)
+ if (out/'test-options.json').exists():
+  options=json.loads((out/'test-options.json').read_text());assert rounds==options['rounds']
+  interval=options.get('round_interval',0);assert 0<=interval<=60
+  if interval:
+   assert all(v['completed_seconds']>=v.get('round',0)*interval for v in results)
+   assert max(v['completed_seconds'] for v in results)<options['ticks']/100
  for iteration in range(rounds):
   for family in (2,10):
    r=[v for v in results if v['family']==family and v.get('round',0)==iteration]
@@ -106,16 +116,16 @@ def verify(root,out):
   http=[f for f in packets['streams'] if f['sport']==80 and (6 if ':' in f['src'] else 4)==version]
   assert len(http)==rounds and all(f['prefix'].startswith('HTTP/1.0 200 OK') for f in http)
  bad=0
- if groups[-1][57]==0x32544e52:
-  w=groups[-1].copy();w[59]=65
-  try:snapshot_gate(w,epoch)
+ if groups[-1][57] in (0x32544e52,0x33544e52):
+  w=groups[-1].copy();w[59]=73
+  try:snapshot_gate(w,epoch,reset)
   except AssertionError:bad+=1
   else:raise AssertionError('queue overflow accepted')
  for i in (0,2,4,11,36,37,38,39,40,41,42,43,44,45,52,53,54,56,63):
-  w=groups[-1].copy();w[i]=0 if w[i] else 1
-  try:snapshot_gate(w,epoch)
+  w=groups[-1].copy();w[i]=4 if reset and i==43 else 0 if w[i] else 1
+  try:snapshot_gate(w,epoch,reset)
   except AssertionError:bad+=1
   else:raise AssertionError(('corruption accepted',i))
- return dict(run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=None if groups[-1][57]==0x32544e52 else groups[-1][57:60],queue_telemetry=groups[-1][58:60] if groups[-1][57]==0x32544e52 else None,cache_completion_proven=False,broader_ram_owned=False,rounds=rounds,burst=burst_result,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
+ return dict(run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=None if groups[-1][57] in (0x32544e52,0x33544e52) else groups[-1][57:60],queue_telemetry=groups[-1][58:60] if groups[-1][57] in (0x32544e52,0x33544e52) else None,cache_completion_proven=False,secondary_reset_held=reset,broader_ram_owned=False,rounds=rounds,burst=burst_result,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--root',type=Path,required=True);p.add_argument('run',type=Path);a=p.parse_args();print(json.dumps(verify(a.root,a.run),indent=2))

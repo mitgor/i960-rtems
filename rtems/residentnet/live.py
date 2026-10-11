@@ -9,15 +9,17 @@ import wire
 from pump import send_pending
 from burst import burst
 
-def clients(rounds=1,parallel=False):
- results=[]
+def clients(rounds=1,parallel=False,interval=0):
+ results=[];start=time.monotonic()
  for iteration in range(rounds):
+  delay=start+iteration*interval-time.monotonic()
+  if delay>0:time.sleep(delay)
   if parallel:
    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as workers:
     jobs=[workers.submit(client_round,[(family,address)]) for family,address in [(socket.AF_INET,CARD),(socket.AF_INET6,CARD6)]]
     batch=[row for job in jobs for row in job.result()]
   else:batch=client_round()
-  for row in batch:row["round"]=iteration
+  for row in batch:row["round"]=iteration;row["completed_seconds"]=time.monotonic()-start
   results.extend(batch)
  return results
 
@@ -49,17 +51,24 @@ def client_round(families=None):
 def main():
  p=argparse.ArgumentParser()
  for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
+ p.add_argument('--secondary-reset',action='store_true')
  p.add_argument('--burst',action='store_true');p.add_argument('--parallel',action='store_true')
  p.add_argument('--ticks',type=int,default=6000);p.add_argument('--rounds',type=int,default=1)
- p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=60000 and 1<=a.rounds<=20
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(ticks=a.ticks,rounds=a.rounds,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
+ p.add_argument('--round-interval',type=float,default=0)
+ p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=60000 and 1<=a.rounds<=20 and 0<=a.round_interval<=60
+ if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
  def save():
   (b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n');(b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
  def control(op,arg=0,e=epoch):
-  raw=bytearray(struct.pack('<8I',op,e,arg,0,0,0,0,0));fcntl.ioctl(b.fd,0xc0204d04,raw,True);w=list(struct.unpack('<8I',raw));events.append(dict(op=op,arg=arg,epoch=e,words=w));save();assert w[3]==1 and w[6:]==[0,0] and not w[4]&1;return w
+  raw=bytearray(struct.pack('<8I',op,e,arg,0,0,0,0,0));fcntl.ioctl(b.fd,0xc0204d04,raw,True);w=list(struct.unpack('<8I',raw));event=dict(op=op,arg=arg,epoch=e,words=w);events.append(event)
+  with (b.out/'control-journal.jsonl').open('a') as journal:journal.write(json.dumps(event)+'\n')
+  assert w[3]==1 and w[6:]==[0,0] and not w[4]&1;return w
  def snapshot():
   control(7);w=[control(5,i)[2] for i in range(64)];snaps.append(dict(seconds=time.monotonic()-start,words=w));save()
-  assert w[0]==0x31525845 and w[2] in (1,2) and w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6 and w[42:46]==[2,18,514,81916] and w[63]==1
+  assert w[0]==0x31525845 and w[2] in (1,2) and w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6 and w[63]==(3 if a.secondary_reset else 1)
+  if a.secondary_reset:assert w[42:46]==[2,0,578,81916] and w[47]==0
+  else:assert w[42:46]==[2,18,514,81916]
   assert w[54]==w[55] and w[56]==epoch
   print(json.dumps(dict(seconds=snaps[-1]['seconds'],state=w[2],ticks=w[5],work=w[6:8],queue=w[57:60],packets=w[60:63])),flush=True);return w
  def packet(op,data=b'',e=epoch):
@@ -86,7 +95,7 @@ def main():
   if a.burst:burst(packet,snapshot,b.out)
   g=Gateway(b.out,ipv6=True)
   with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
-   future=pool.submit(clients,a.rounds,a.parallel);deadline=time.monotonic()+max(45,a.ticks/100-5);last=time.monotonic()
+   future=pool.submit(clients,a.rounds,a.parallel,a.round_interval);deadline=time.monotonic()+max(45,a.ticks/100-5);last=time.monotonic()
    while not future.done():
     if time.monotonic()>deadline:raise TimeoutError('resident test exceeded session traffic budget')
     readable,_,_=select.select([g.fd],[],[],0)
@@ -118,6 +127,7 @@ def main():
  except BaseException:
   (b.out/'error.txt').write_text(traceback.format_exc());raise
  finally:
+  save()
   if g:g.close()
   if b.fd is not None:os.close(b.fd);b.fd=None;capture(b.out/'retained-close',b.debugfs)
   if b.records:b.records.close()

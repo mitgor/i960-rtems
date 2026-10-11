@@ -138,3 +138,6 @@ The [RAM ownership batch](RAM-OWNERSHIP.md) supersedes the 32-slot queue limit
 with 64 slots inside the same grant, adds board admission and RNT2 queue telemetry,
 and documents fixed allocation/SCSI diagnostic pages. Physical RAM outside the
 upload remains unavailable.
+
+See [SCSI stop and RAM boundary](SCSI-STOP.md) for the opt-in held-reset build,
+72-slot queue, card evidence and outstanding NMI/fault ownership gate.

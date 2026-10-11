@@ -3,6 +3,9 @@
 #include "../residentnet/board.h"
 #include "../net/network.h"
 extern unsigned int resident_queue_drops(void),resident_queue_peak(void);
+#ifdef I960_SECONDARY_RESET
+extern unsigned int scsi_target_verified(void);
+#endif
 static struct packet_link netlink;
 static unsigned int net_tick,net_ready,net_memory_ok;
 static void resident_net_init(void){unsigned int identity[7];
@@ -30,7 +33,10 @@ static unsigned int resident_net_control(unsigned int token){unsigned int op=tok
  R(0x1324)=2;(void)R(0x1324);return 1;
 }
 static void resident_net_report(unsigned int*w){
- w[57]=0x32544e52; /* RNT2: queue telemetry replaces obsolete cache reads */
+ w[57]=0x33544e52; /* RNT3: 72 slots, each holding one <=1500-byte IP packet */
  w[58]=resident_queue_drops();w[59]=resident_queue_peak();
  w[60]=netlink.received;w[61]=netlink.sent;w[62]=netlink.rejected;w[63]=net_memory_ok;
+#ifdef I960_SECONDARY_RESET
+ w[63]|=scsi_target_verified()?2:0;
+#endif
 }
