@@ -104,10 +104,11 @@ code, preserving the original gzip-9 reference alongside the accepted gzip-1
 build. Next: measure metadata serialization/history rewriting before replacing
 it with a bounded append-only journal. Keep truncated/uncertain captures rejected.
 
-Journal follow-up is host-validated, not card-accepted. Read `journal/README.md`
-and `artifacts/journal-20261011/README.md`. Select `--queue-metadata journal`
-explicitly; keep rewrite as default. Preserve strict intent/result order, full
-audits, exports comparison and the seal after verified CLOSE. Never accept a
-truncated prefix or retry an uncertain request. Linux metadata benchmark improves
-5.09 to 0.11 ms/request; browser FPS remains unmeasured for this change. Coordinate
-card acceptance after parallel RTEMS work releases ownership.
+Journal follow-up is now physically accepted. Read `journal/README.md` and
+`artifacts/journal-20261011/README.md`. Nine sessions pass 1,635 full audits and
+restoration; clean browser RAF delivery improves 13.20 to 15.19 FPS. Use explicit
+`--queue-metadata journal`; rewrite stays the reference default. Preserve strict
+intent/result order, exports matching, full audits and the seal after verified
+CLOSE. No retry after uncertainty. An extra overlapped timing run is preserved
+but excluded from comparison. Public HTTP is restored. Follow
+`journal/USER-TESTING.md` for bounded user play; coordinate card ownership first.

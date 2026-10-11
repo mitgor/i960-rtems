@@ -1,7 +1,7 @@
 # Bounded metadata journal
 
 The browser queue supports `--queue-metadata journal` (opt-in) and `rewrite`
-(the accepted default until journal card testing is complete). This changes only host evidence metadata; card binaries, paired full
+(the retained reference default). This changes only host evidence metadata; card binaries, paired full
 512 KiB audits, slot checks, command validation and native frame comparison stay
 unchanged. Native backend behavior is unaffected.
 
@@ -27,3 +27,10 @@ journal / journal / rewrite against an existing capture without touching hardwar
 full replay plus corruption rejection; that conversion is explicitly offline.
 Live validation status and measurements are in
 [the evidence directory](../../../artifacts/journal-20261011/README.md).
+
+Physical acceptance is complete: nine sessions and 1,635 full audits/restorations
+pass. Clean browser RAF delivery improves 13.20 to 15.19 FPS; live metadata writes
+fall from 9.50 to 0.23 ms/request. All audits remain. See the evidence report for
+ABBA methodology, excluded overlap run and original host benchmark distinction.
+[User testing instructions](USER-TESTING.md) describe shared-card ownership,
+launch, controls, capture replay and restoring the public service.

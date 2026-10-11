@@ -1,0 +1,733 @@
+{
+  "round": 3,
+  "pacing": "raf-single-flight",
+  "backend": "Mylex / RTEMS (combined queue, full audits)",
+  "frames": 80,
+  "max_in_flight": 1,
+  "mean_draw_interval_ms": 65.54189188738127,
+  "delivered_fps": 15.257417373887696,
+  "mean_callback_ms": 41.43848801351476,
+  "samples": [
+    {
+      "update_id": 161,
+      "time": 75.70000004768372,
+      "interval": 0,
+      "frame_id": 47,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 37.83094599998549
+    },
+    {
+      "update_id": 162,
+      "time": 133.90000009536743,
+      "interval": 58.200000047683716,
+      "frame_id": 48,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 38.471798000045965
+    },
+    {
+      "update_id": 163,
+      "time": 192.20000004768372,
+      "interval": 58.299999952316284,
+      "frame_id": 49,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 40.746243999990384
+    },
+    {
+      "update_id": 164,
+      "time": 250.70000004768372,
+      "interval": 58.5,
+      "frame_id": 50,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.166394000015316
+    },
+    {
+      "update_id": 165,
+      "time": 317.40000009536743,
+      "interval": 66.70000004768372,
+      "frame_id": 51,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 40.77979200002346
+    },
+    {
+      "update_id": 166,
+      "time": 384.09999990463257,
+      "interval": 66.69999980926514,
+      "frame_id": 52,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.71282000004339
+    },
+    {
+      "update_id": 167,
+      "time": 450.7000000476837,
+      "interval": 66.60000014305115,
+      "frame_id": 53,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.372078999984296
+    },
+    {
+      "update_id": 168,
+      "time": 509,
+      "interval": 58.299999952316284,
+      "frame_id": 54,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.451655999992454
+    },
+    {
+      "update_id": 169,
+      "time": 575.7000000476837,
+      "interval": 66.70000004768372,
+      "frame_id": 55,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.50099599996793
+    },
+    {
+      "update_id": 170,
+      "time": 659,
+      "interval": 83.29999995231628,
+      "frame_id": 56,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.53123999998343
+    },
+    {
+      "update_id": 171,
+      "time": 725.7999999523163,
+      "interval": 66.79999995231628,
+      "frame_id": 57,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 43.12980000003108
+    },
+    {
+      "update_id": 172,
+      "time": 792.5,
+      "interval": 66.70000004768372,
+      "frame_id": 58,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.82281199996396
+    },
+    {
+      "update_id": 173,
+      "time": 859.9000000953674,
+      "interval": 67.40000009536743,
+      "frame_id": 59,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.60039800001414
+    },
+    {
+      "update_id": 174,
+      "time": 917.5,
+      "interval": 57.59999990463257,
+      "frame_id": 60,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.33146100002705
+    },
+    {
+      "update_id": 175,
+      "time": 983.9000000953674,
+      "interval": 66.40000009536743,
+      "frame_id": 61,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.449495999984265
+    },
+    {
+      "update_id": 176,
+      "time": 1042.2999999523163,
+      "interval": 58.39999985694885,
+      "frame_id": 62,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.427900000030604
+    },
+    {
+      "update_id": 177,
+      "time": 1108.9000000953674,
+      "interval": 66.60000014305115,
+      "frame_id": 63,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.414132999989306
+    },
+    {
+      "update_id": 178,
+      "time": 1167.2000000476837,
+      "interval": 58.299999952316284,
+      "frame_id": 64,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.53915300003064
+    },
+    {
+      "update_id": 179,
+      "time": 1225.5999999046326,
+      "interval": 58.39999985694885,
+      "frame_id": 65,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.43125699999928
+    },
+    {
+      "update_id": 180,
+      "time": 1283.9000000953674,
+      "interval": 58.30000019073486,
+      "frame_id": 66,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 40.696417999981804
+    },
+    {
+      "update_id": 181,
+      "time": 1350.5,
+      "interval": 66.59999990463257,
+      "frame_id": 67,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 43.42944399996895
+    },
+    {
+      "update_id": 182,
+      "time": 1417.2999999523163,
+      "interval": 66.79999995231628,
+      "frame_id": 68,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 43.35465200000499
+    },
+    {
+      "update_id": 183,
+      "time": 1484.2999999523163,
+      "interval": 67,
+      "frame_id": 69,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 42.946145000030356
+    },
+    {
+      "update_id": 184,
+      "time": 1550.5999999046326,
+      "interval": 66.29999995231628,
+      "frame_id": 70,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 41.451187999996364
+    },
+    {
+      "update_id": 185,
+      "time": 1609.7999999523163,
+      "interval": 59.200000047683716,
+      "frame_id": 71,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 41.43814299999349
+    },
+    {
+      "update_id": 186,
+      "time": 1668.5,
+      "interval": 58.700000047683716,
+      "frame_id": 72,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 41.15217999998322
+    },
+    {
+      "update_id": 187,
+      "time": 1734.0999999046326,
+      "interval": 65.59999990463257,
+      "frame_id": 73,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 41.69009800000367
+    },
+    {
+      "update_id": 188,
+      "time": 1800.7000000476837,
+      "interval": 66.60000014305115,
+      "frame_id": 74,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 41.810679999969125
+    },
+    {
+      "update_id": 189,
+      "time": 1884,
+      "interval": 83.29999995231628,
+      "frame_id": 75,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 62.598721000028945
+    },
+    {
+      "update_id": 190,
+      "time": 1943.2999999523163,
+      "interval": 59.299999952316284,
+      "frame_id": 76,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 40.35228800000823
+    },
+    {
+      "update_id": 191,
+      "time": 2009,
+      "interval": 65.70000004768372,
+      "frame_id": 77,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 41.753169000003254
+    },
+    {
+      "update_id": 192,
+      "time": 2067.9000000953674,
+      "interval": 58.90000009536743,
+      "frame_id": 78,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 40.5577459999904
+    },
+    {
+      "update_id": 193,
+      "time": 2125.5999999046326,
+      "interval": 57.69999980926514,
+      "frame_id": 79,
+      "keys": 8,
+      "reset": false,
+      "callback_ms": 40.66619000002447
+    },
+    {
+      "update_id": 194,
+      "time": 2208.9000000953674,
+      "interval": 83.30000019073486,
+      "frame_id": 0,
+      "keys": 0,
+      "reset": true,
+      "callback_ms": 57.508450000000266
+    },
+    {
+      "update_id": 195,
+      "time": 2267.2000000476837,
+      "interval": 58.299999952316284,
+      "frame_id": 1,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 37.37939800004142
+    },
+    {
+      "update_id": 196,
+      "time": 2325.5999999046326,
+      "interval": 58.39999985694885,
+      "frame_id": 2,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 39.41930999997112
+    },
+    {
+      "update_id": 197,
+      "time": 2392.4000000953674,
+      "interval": 66.80000019073486,
+      "frame_id": 3,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 40.89135700002089
+    },
+    {
+      "update_id": 198,
+      "time": 2450.7000000476837,
+      "interval": 58.299999952316284,
+      "frame_id": 4,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 35.824212000022726
+    },
+    {
+      "update_id": 199,
+      "time": 2509.7999999523163,
+      "interval": 59.09999990463257,
+      "frame_id": 5,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 34.12398000000394
+    },
+    {
+      "update_id": 200,
+      "time": 2567.2999999523163,
+      "interval": 57.5,
+      "frame_id": 6,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 34.32363299998542
+    },
+    {
+      "update_id": 201,
+      "time": 2650.7000000476837,
+      "interval": 83.40000009536743,
+      "frame_id": 7,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 40.410382999994
+    },
+    {
+      "update_id": 202,
+      "time": 2725.0999999046326,
+      "interval": 74.39999985694885,
+      "frame_id": 8,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 47.49737399998821
+    },
+    {
+      "update_id": 203,
+      "time": 2792.4000000953674,
+      "interval": 67.30000019073486,
+      "frame_id": 9,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 40.25473200005081
+    },
+    {
+      "update_id": 204,
+      "time": 2859.0999999046326,
+      "interval": 66.69999980926514,
+      "frame_id": 10,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.01045600003772
+    },
+    {
+      "update_id": 205,
+      "time": 2943.2000000476837,
+      "interval": 84.10000014305115,
+      "frame_id": 11,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 42.44538000000375
+    },
+    {
+      "update_id": 206,
+      "time": 3009.9000000953674,
+      "interval": 66.70000004768372,
+      "frame_id": 12,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 42.7648460000114
+    },
+    {
+      "update_id": 207,
+      "time": 3075.7000000476837,
+      "interval": 65.79999995231628,
+      "frame_id": 13,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 40.71333199999572
+    },
+    {
+      "update_id": 208,
+      "time": 3142.4000000953674,
+      "interval": 66.70000004768372,
+      "frame_id": 14,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 40.97136500001852
+    },
+    {
+      "update_id": 209,
+      "time": 3209.0999999046326,
+      "interval": 66.69999980926514,
+      "frame_id": 15,
+      "keys": 1,
+      "reset": false,
+      "callback_ms": 41.03678500001706
+    },
+    {
+      "update_id": 210,
+      "time": 3275.7999999523163,
+      "interval": 66.70000004768372,
+      "frame_id": 16,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.60800200003223
+    },
+    {
+      "update_id": 211,
+      "time": 3334.7000000476837,
+      "interval": 58.90000009536743,
+      "frame_id": 17,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.58826200000476
+    },
+    {
+      "update_id": 212,
+      "time": 3400.7999999523163,
+      "interval": 66.09999990463257,
+      "frame_id": 18,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.430923999996594
+    },
+    {
+      "update_id": 213,
+      "time": 3460.7000000476837,
+      "interval": 59.90000009536743,
+      "frame_id": 19,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 40.701552000030006
+    },
+    {
+      "update_id": 214,
+      "time": 3525.7000000476837,
+      "interval": 65,
+      "frame_id": 20,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.727062000006754
+    },
+    {
+      "update_id": 215,
+      "time": 3584.2999999523163,
+      "interval": 58.59999990463257,
+      "frame_id": 21,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 40.61998599996741
+    },
+    {
+      "update_id": 216,
+      "time": 3668,
+      "interval": 83.70000004768372,
+      "frame_id": 22,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 39.90115600004174
+    },
+    {
+      "update_id": 217,
+      "time": 3734.0999999046326,
+      "interval": 66.09999990463257,
+      "frame_id": 23,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.2514049999686
+    },
+    {
+      "update_id": 218,
+      "time": 3801.5999999046326,
+      "interval": 67.5,
+      "frame_id": 24,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.76717600000757
+    },
+    {
+      "update_id": 219,
+      "time": 3859.7999999523163,
+      "interval": 58.200000047683716,
+      "frame_id": 25,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.61526100000401
+    },
+    {
+      "update_id": 220,
+      "time": 3942.2999999523163,
+      "interval": 82.5,
+      "frame_id": 26,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 62.41327099996852
+    },
+    {
+      "update_id": 221,
+      "time": 4000.7999999523163,
+      "interval": 58.5,
+      "frame_id": 27,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 40.64183000002686
+    },
+    {
+      "update_id": 222,
+      "time": 4067.2999999523163,
+      "interval": 66.5,
+      "frame_id": 28,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 42.229942999995274
+    },
+    {
+      "update_id": 223,
+      "time": 4134.900000095367,
+      "interval": 67.60000014305115,
+      "frame_id": 29,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.644808999990346
+    },
+    {
+      "update_id": 224,
+      "time": 4200.599999904633,
+      "interval": 65.69999980926514,
+      "frame_id": 30,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.33973999995533
+    },
+    {
+      "update_id": 225,
+      "time": 4259.099999904633,
+      "interval": 58.5,
+      "frame_id": 31,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.209737000031055
+    },
+    {
+      "update_id": 226,
+      "time": 4325.700000047684,
+      "interval": 66.60000014305115,
+      "frame_id": 32,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.496361999975306
+    },
+    {
+      "update_id": 227,
+      "time": 4384.400000095367,
+      "interval": 58.700000047683716,
+      "frame_id": 33,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.38892499997837
+    },
+    {
+      "update_id": 228,
+      "time": 4476.200000047684,
+      "interval": 91.79999995231628,
+      "frame_id": 34,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.52106700001923
+    },
+    {
+      "update_id": 229,
+      "time": 4542.299999952316,
+      "interval": 66.09999990463257,
+      "frame_id": 35,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 42.62689499995531
+    },
+    {
+      "update_id": 230,
+      "time": 4608.900000095367,
+      "interval": 66.60000014305115,
+      "frame_id": 36,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.3837500000227
+    },
+    {
+      "update_id": 231,
+      "time": 4675.799999952316,
+      "interval": 66.89999985694885,
+      "frame_id": 37,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.43372400000089
+    },
+    {
+      "update_id": 232,
+      "time": 4742.400000095367,
+      "interval": 66.60000014305115,
+      "frame_id": 38,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.389408999975785
+    },
+    {
+      "update_id": 233,
+      "time": 4809.099999904633,
+      "interval": 66.69999980926514,
+      "frame_id": 39,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.24448599998232
+    },
+    {
+      "update_id": 234,
+      "time": 4875.799999952316,
+      "interval": 66.70000004768372,
+      "frame_id": 40,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.30656999996063
+    },
+    {
+      "update_id": 235,
+      "time": 4934,
+      "interval": 58.200000047683716,
+      "frame_id": 41,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 36.55953000003365
+    },
+    {
+      "update_id": 236,
+      "time": 4992.5,
+      "interval": 58.5,
+      "frame_id": 42,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 34.53964699997414
+    },
+    {
+      "update_id": 237,
+      "time": 5051,
+      "interval": 58.5,
+      "frame_id": 43,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 36.03912999994918
+    },
+    {
+      "update_id": 238,
+      "time": 5110.200000047684,
+      "interval": 59.200000047683716,
+      "frame_id": 44,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 35.42199899999332
+    },
+    {
+      "update_id": 239,
+      "time": 5184.099999904633,
+      "interval": 73.89999985694885,
+      "frame_id": 45,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.062354000018786
+    },
+    {
+      "update_id": 240,
+      "time": 5250.799999952316,
+      "interval": 66.70000004768372,
+      "frame_id": 46,
+      "keys": 0,
+      "reset": false,
+      "callback_ms": 41.66534300003377
+    }
+  ],
+  "status": "Frame 46 · position 3.00, 2.50 · angle 0/256 · 406 grid steps · host step 41.7 ms · delivery 15.0 fps"
+}

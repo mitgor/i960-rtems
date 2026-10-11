@@ -1,0 +1,17 @@
+{
+  "original_accepted": true,
+  "rejected": [
+    "request",
+    "label",
+    "profile",
+    "command-log",
+    "full-immutable",
+    "full-queue",
+    "payload-hash",
+    "restoration",
+    "journal-missing",
+    "journal-truncated",
+    "journal-unsealed",
+    "journal-chain"
+  ]
+}

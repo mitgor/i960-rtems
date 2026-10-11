@@ -22,9 +22,12 @@ and returned 200. No flash write or reboot in this batch. Read
 [the bridge contract](game/raycaster/browserqueue/README.md) and
 [the captures and remaining work](artifacts/browserqueue-20261011/README.md).
 
-The journal is implemented and passes host benchmarks and offline replay.
-Next: fresh physical browser/lifecycle acceptance and measured delivery; retain
-the rewrite default until then. See [journal evidence](artifacts/journal-20261011/README.md).
+Journal physical acceptance now passes: 1,635 full audits and nine restorations.
+RAF browser delivery improves 13.20 to 15.19 FPS, with every audit retained.
+Use explicit `--queue-metadata journal`; rewrite remains the reference default.
+Next: user play testing via [instructions](game/raycaster/journal/USER-TESTING.md),
+then profile remaining lossless archive/command costs if useful.
+See [journal evidence](artifacts/journal-20261011/README.md).
 Keep all paired reads, native-frame comparisons and audit snapshots. The larger
 Doom framebuffer/heap contract and asynchronous ownership remain separate work.
 

@@ -22,15 +22,16 @@ the remaining masked network/control work. Read the
 [contract, measurements and thirty-step evidence](rtems/residentnet/SHARED-HEAP.md).
 
 
-**Metadata journal implemented; physical acceptance pending (2026-10-11):**
-The opt-in `--queue-metadata journal` replaces repeated history rewrites with
-bounded intent/result records and a completion seal after verified CLOSE.
-Native tests pass on Mac/Linux; full replay of a converted prior card capture
-passes and 12 corruption classes reject. Linux metadata-only ABBA measured
-**5.09 → 0.11 ms/request** on average. This is not a new card/FPS measurement.
-Keep `rewrite` as default until fresh browser and lifecycle card tests pass.
-The parallel RTEMS task still owns the hardware; this batch did not change
-card or public service state. [Evidence and remaining acceptance steps](artifacts/journal-20261011/README.md).
+**Metadata journal card acceptance complete (2026-10-11):**
+Opt-in `--queue-metadata journal` passed nine physical sessions: **1,635 replies/full
+paired audits**, 1,586 targeted slots, 55,636 commands and nine restorations.
+The clean browser ABBA comparison improves RAF delivery **13.20 → 15.19 FPS
+(+15.0%)** and metadata writes **9.50 → 0.23 ms/request**; kernel time stays near
+24.4 ms. Idle/limit/SIGTERM/disconnect pass; 12 corruption cases reject. An extra
+run overlapping offline replay is preserved but excluded from timing. All full
+audits remain, and rewrite stays the reference default. Public IPv6 HTTP restored
+and checked; no flash write/reboot. The bounded raycaster is ready for user testing.
+[Evidence](artifacts/journal-20261011/README.md) · [Play instructions](game/raycaster/journal/USER-TESTING.md).
 
 
 **Browser queue accepted (2026-10-11):** `game/raycaster/server.py --backend

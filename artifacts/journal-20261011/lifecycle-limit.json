@@ -1,0 +1,1 @@
+{"mode": "limit", "returncode": 0, "session": {"backend": "card-queue", "exit_reason": "frame-limit", "updates": 2, "max_frames": 2, "idle_timeout": 10.0}}

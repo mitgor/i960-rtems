@@ -1,0 +1,12 @@
+[
+  {
+    "file": "card-builds.tar.gz",
+    "bytes": 1305904,
+    "sha256": "da79149b9b30e4721d22a2d4dcc0b9d83bbb5581ba3d520b139da2d22b792431"
+  },
+  {
+    "file": "card-live.tar.gz",
+    "bytes": 67361802,
+    "sha256": "6d86e589a67fa53fee1a2039f6d286e0847ded0476472801ccb107344add5b15"
+  }
+]

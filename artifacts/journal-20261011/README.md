@@ -1,4 +1,6 @@
-# Metadata journal — host validation, card acceptance pending
+# Metadata journal — card and browser acceptance complete
+
+## Initial host-only phase
 
 Implemented 2026-10-11. Base commit `db5d4b2`. No card commands, flash writes,
 reboots or production service changes were made by this batch. The parallel RTEMS
@@ -37,7 +39,7 @@ and all eight previous audit corruption cases. This is replay evidence, not a
 new physical capture. Original binaries and captures remain in
 `artifacts/browserqueue-20261011/browser-fast-{builds,live}.tar.gz`.
 
-## Continue physical acceptance
+## Original physical acceptance plan (completed below)
 
 Isolated prepared workspace: `/home/mit/i960-journal-20261011-g5s8JT`.
 Accepted unchanged images are `accepted/kernel.bin` and `accepted/dac960rtems.ko`.
@@ -62,3 +64,76 @@ After the parallel task releases the card and its service restoration is verifie
 The record chain detects corruption, not malicious rewriting. Flush is not fsync;
 no power-loss durability claim is made. An interrupted or unsealed session is
 never accepted, even if earlier audits passed. See the [format contract](../../game/raycaster/journal/README.md).
+
+## Physical acceptance — completed 2026-10-11
+
+After the parallel RTEMS batch finished and restored production, the cooperative
+HTTP service was stopped and its CLOSE verified. All nine card sessions used boot
+`639e51d4-bb32-4fd7-8364-f9b3cc4a157f` and the exact previously accepted images:
+
+- Payload SHA-256: `3c6f40e44f77f09f8fbed02722232d0651f4a4b7514ccb198fbaa4768dc44f4d`
+- Module SHA-256: `3796b5cbeacb853d31c966defa0788fcd568886160725674f7d7011c77aef0fa`
+
+**1,635 replies and full paired audits, 1,586 targeted slot pairs, 55,636 commands,
+nine verified restorations.** Five browser sessions displayed 1,600 frames; four
+lifecycle sessions passed idle expiry, frame limit, SIGTERM during a transaction,
+and TCP reset during a transaction. Disconnect exits nonzero as expected, with
+completed audited requests sealed only after successful restoration. All 12 live
+capture corruption cases rejected. Every full snapshot and command log remains.
+
+### Browser measurements
+
+Clean order: rewrite A1, journal B1, journal B2, rewrite A2. Each session runs the
+same 320-draw Chromium controls/reset/blur/single-flight test, internally comparing
+80-draw legacy / RAF / RAF / legacy blocks. Results pool equal-sized steady blocks
+within each pacing class, excluding their first five samples and reset samples.
+All card requests, including excluded timing samples, are fully audited.
+
+| Measurement | Rewrite | Journal | Change |
+| --- | ---: | ---: | ---: |
+| RAF draw interval | 75.732 ms | 65.831 ms | −13.1% |
+| RAF delivery | 13.2045 FPS | 15.1904 FPS | +15.0% |
+| Legacy delivery | 11.2159 FPS | 12.7526 FPS | +13.7% |
+| Metadata/request | 9.496 ms | 0.229 ms | −97.6% |
+| Command archive/request | 3.233 ms | 3.265 ms | essentially unchanged |
+
+Kernel mean remains 24.37–24.46 ms. Journal full-audit mean is 11.86–11.91 ms;
+lossless full-snapshot archive mean is 5.69–5.87 ms. These remain useful future
+profiling targets, but none blocks user testing. The live metadata timings differ
+from the earlier isolated microbenchmark: full capture and browser workloads are
+present. No claim is made that the microbenchmark predicts exact live FPS.
+
+The original second journal measurement overlapped CPU-heavy tamper replay. It is
+preserved as `live-overlap` / `browser-overlap`, fully verified, but excluded from
+the performance comparison and replaced by clean B2. There was no intentional
+replay workload during the four accepted timing sessions. Host scheduling, browser
+control timing and SSH still vary; these are headless canvas measurements, not
+physical monitor scanout or a cycle-identical renderer benchmark.
+
+### Reproduction and service state
+
+`card-builds.tar.gz` contains exact executed host sources, accepted images and
+firmware reference inputs. `executed-source-manifest.json` checks every archived
+build/reference file. `card-live.tar.gz` contains all nine complete captures and
+the previous production CLOSE. `verified-*.json`, `quiet-*.json`, `lifecycle-*.json`,
+`live-tamper.json`, browser reports/PNGs and profiles preserve individual results.
+The original host-only measurements and source manifest remain above.
+
+```sh
+python3 game/raycaster/journal/verify_archive.py artifacts/journal-20261011
+```
+
+Replay hashes the archived files before forcing a native oracle rebuild for the
+local platform. It runs the archived executed verifiers against every capture and
+recomputes browser profiles and the aggregate comparison. `card-replay.json` and
+`card-comparison.json` record accepted results.
+
+Production now runs at `/home/mit/i960-rtems-web-20261011/http-after-journal`.
+The Mac fetched HTTP 200 with the Vader and RTEMS system-info page; headers and
+HTML are preserved. No flash write or reboot was needed. Visitor logging remains
+with the production service. The SSH test tunnel was closed.
+
+**Ready for user testing:** no further implementation gate is required for this
+bounded raycaster. Keep journal explicit with `--queue-metadata journal`; rewrite
+remains the reference default. Follow [the play instructions](../../game/raycaster/journal/USER-TESTING.md).
+This is not Doom and does not authorize concurrent ownership with resident RTEMS.

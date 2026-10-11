@@ -1,0 +1,1 @@
+{"mode": "disconnect", "returncode": 1, "session": {"backend": "card-queue", "exit_reason": "ConnectionResetError", "updates": 2, "max_frames": 16, "idle_timeout": 10.0}}

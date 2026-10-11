@@ -1977,6 +1977,20 @@ was part of the result: requesting cancellation and proving that the last
 pointer is no longer in use are different events. After reboot, the public
 Vader page answered again.
 
+The card eventually became free, and the ledger got its next receipt. We ran the
+old writer, the journal, the journal again, and the old writer again. Every full
+audit stayed. Browser delivery rose from 13.20 to 15.19 frames a second; metadata
+writes fell from about nine and a half milliseconds to less than a quarter.
+The processor itself was taking almost exactly as long as before.
+
+One extra run had shared its host with a corruption replay test. We kept its
+capture and discarded its timing from the comparison. Counting that run and the
+shutdown tests, nine sessions produced sixteen hundred and thirty-five complete
+audits and nine verified restorations. A signal in mid-request and a broken
+browser connection both found the same way home. The public Vader page returned.
+The raycaster was ready for someone to play; the next frame no longer needed to
+copy the history of every frame before it.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
