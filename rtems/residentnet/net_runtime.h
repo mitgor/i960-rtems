@@ -14,6 +14,9 @@ extern unsigned int exclusive_extra_valid(void);
 extern void exclusive_extra_report(unsigned int*);
 extern void exclusive_abort(void);
 #endif
+#ifdef I960_GENERAL_HEAP
+#include "general_heap.h"
+#endif
 static struct packet_link netlink;
 static unsigned int net_tick,net_ready,net_memory_ok;
 static void resident_net_init(void){unsigned int identity[7];
@@ -30,7 +33,11 @@ static void resident_net_init(void){unsigned int identity[7];
 static void resident_net_step(void){unsigned int n=0,elapsed=ticks-net_tick;
  if(!net_ready||resident_state!=1)return;
 #ifdef I960_EXTRA_RAM
+#ifdef I960_GENERAL_HEAP
+ resident_heap_check();
+#else
  if(!exclusive_extra_valid())exclusive_abort();
+#endif
 #endif
  if(netlink.ready)n=netlink.length;
  if(n||elapsed){network_step(elapsed*10,netlink.rx,n);net_tick=ticks;}
@@ -53,6 +60,10 @@ static void resident_net_report(unsigned int*w){
  {unsigned int report[8];exclusive_extra_report(report);
  w[48]=0xc0200040u;w[49]=128*1500;w[50]=report[0];w[51]=report[1];}
 #endif
+#ifdef I960_GENERAL_HEAP
+ {unsigned int heap[16];resident_heap_report(heap);w[57]=0x36544e52;
+ w[48]=heap[1];w[49]=heap[2];w[50]=heap[5];w[51]=heap[6];}
+#endif
  w[58]=resident_queue_drops();w[59]=resident_queue_peak();
  w[60]=netlink.received;w[61]=netlink.sent;w[62]=netlink.rejected;w[63]=net_memory_ok;
 #ifdef I960_SECONDARY_RESET
@@ -61,6 +72,9 @@ static void resident_net_report(unsigned int*w){
  w[63]|=exclusive_fault_valid()?4:0;
 #ifdef I960_EXTRA_RAM
  w[63]|=exclusive_extra_valid()?8:0;
+#ifdef I960_GENERAL_HEAP
+ w[63]|=resident_heap_valid()?16:0;
+#endif
 #endif
 #endif
 #endif

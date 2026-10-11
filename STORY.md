@@ -1812,6 +1812,58 @@ acknowledged. The original memory came back intact. The public server returned,
 and the next application job was to let the browser use this carefully checked
 queue, with its real display rate measured rather than inferred from a callback.
 
+## Giving the spare bytes a name
+
+The packet queue left a narrow strip of the tested quarter megabyte unused.
+It was tempting to call it free memory. This time we had enough evidence to
+make the phrase mean something: sixty-nine thousand nine hundred and fifty-two
+bytes, between two guards, with the engines still stopped.
+
+The old RTEMS allocator could manage them. Its heap-extension routine could
+not attach a lower, distant island to the kernel workspace, so we gave the
+application a separate heap. The familiar calls—malloc, calloc, realloc, free—
+finally had somewhere larger to go. The kernel kept its old address. The packet
+queue kept its hundred and twenty-eight places.
+
+We also gave each allocation an entry in a small ledger and sixteen warning
+bytes on either side. Before the allocator followed a pointer, we checked the
+chain it was about to trust. The old code had earned its age; it had not earned
+the right to chase a damaged address through someone else's memory.
+
+Then we damaged three things on purpose. First the outer guard, then the byte
+just beyond a worker's allocation, then a block-size word in the allocator's
+own bookkeeping. Each time the card stopped in our terminal handler. Each time
+both workers had made fifty allocations during real preemption. The record
+showed a hundred and thirty-six allocations and a hundred and thirty-four frees:
+the two live buffers were still there. A broken heap was no occasion to tidy up
+by trusting it one last time.
+
+The host read each record twice, acknowledged STOP, and found the reset still
+held. Reboot was the way out. The Linux test harness supplied another kind of
+evidence: the actual old allocator running with thirty-two-bit pointers, faced
+with exhaustion, coalescing, failed reallocations and sixty-four different
+corruptions. It passed those too. This was a small application heap with a
+sixty-four-allocation limit, not a claim on all sixteen megabytes. Small and
+accounted for was becoming a useful habit.
+
+One more detail in the old allocator deserved attention. Just before the raw
+buffer, it saved the alignment offset that free would later trust to find a
+block header. We checked that word too, and required every used block to match
+our ledger. Thirty-two flipped offset bits failed safely in the Linux harness.
+A fourth deliberate corruption on the card did the same. This time the startup
+checks had filled all sixty-four allocation slots as well: two hundred
+allocations, a hundred and ninety-eight frees, and the same two live buffers
+left alone in a stopped machine.
+
+Finally we left the heap alone to do ordinary work while packets crossed the
+host link. Ten IPv4/IPv6 rounds ran alongside the two allocating tasks. We
+filled the packet queue, lost TCP data deliberately, and waited for the card's
+own deadline. At thirty-six thousand ticks the hardened build stopped both
+tasks with thirty-six thousand one hundred allocations and exactly as many
+frees. The warning bytes were untouched. The heap had become useful memory,
+and had shown what it would do when that usefulness went wrong. A final reboot
+brought the cooperative server back, and Vader answered over public IPv6 again.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -1838,8 +1890,9 @@ So, the ledger, honestly kept:
   RTEMS work; the host still relays packets. A separate exclusive profile now
   runs preemptible tasks and IPv4/IPv6 networking without a pending firmware
   callback. Owned fault/NMI containment and a tested fixed cache-data range now
-  support a 128-slot external packet queue. General heap expansion, graceful
-  engine drain and long-duration resident service remain open.
+  support a 128-slot external packet queue and a guarded 69,952-byte application
+  heap. Kernel-workspace expansion, graceful engine drain and long-duration
+  resident service remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

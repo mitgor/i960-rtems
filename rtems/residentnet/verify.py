@@ -7,19 +7,26 @@ from run import ROM_SHA,verify_close
 from validate_packets import validate
 import wire
 
-def snapshot_gate(w,epoch,reset=False,owner=False,extra=False):
+def snapshot_gate(w,epoch,reset=False,owner=False,extra=False,heap=False):
  assert len(w)==64 and w[0]==0x31525845 and w[1]>0 and w[2] in (1,2)
  assert w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6
- assert w[54]==w[55] and w[56]==epoch and w[63]==(15 if extra else 7 if owner else 3 if reset else 1)
- if extra:assert owner and reset and w[48:52]==[0xc0200040,192000,4,262144]
+ assert w[54]==w[55] and w[56]==epoch and w[63]==(31 if heap else 15 if extra else 7 if owner else 3 if reset else 1)
+ if heap:
+  assert extra and owner and reset and w[57]==0x36544e52 and w[48:50]==[0xc022ee80,69952]
+  assert w[50]>=w[51]>0 and w[50]-w[51]<=2
+  if w[2]==2:assert w[50]==w[51]
+ elif extra:assert owner and reset and w[48:52]==[0xc0200040,192000,4,262144]
  if reset:assert w[42:46]==[2,0,578,81916] and w[47]==0
  else:assert w[42:46]==[2,18,514,81916]
- if w[57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52):assert 0<=w[59]<={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128}[w[57]]
+ if w[57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52,0x36544e52):assert 0<=w[59]<={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128,0x36544e52:128}[w[57]]
  for i in (12,14):assert 0<=w[i]-w[i+1]<=1
  if w[2]==2:assert w[3] in (1,2) and w[8:10]==[1,1] and w[12]==w[13]>0 and w[14]==w[15]>0 and w[53]==0
  else:assert w[3]==0 and w[8:10]==[0,0] and w[53]==0x2000
 
 def verify(root,out):
+ flags=json.loads((root/'residentnet/build.json').read_text())['flags']
+ heap='-DI960_GENERAL_HEAP' in flags
+ if heap:assert '-DI960_HEAP_TEST=0' in flags and '-DI960_FAULT_TEST=0' in flags
  extra='-DI960_EXTRA_RAM' in json.loads((root/'residentnet/build.json').read_text())['flags']
  owner='-DI960_FAULT_OWNER' in json.loads((root/'residentnet/build.json').read_text())['flags']
  reset='-DI960_SECONDARY_RESET' in json.loads((root/'residentnet/build.json').read_text())['flags']
@@ -44,13 +51,14 @@ def verify(root,out):
   elif e['op']==5:assert e['arg']==len(cur);cur.append(w[2])
  assert len(cur)==64;groups.append(cur);assert groups==[s['words'] for s in json.loads((out/'snapshots.json').read_text())]
  for w in groups:
-  snapshot_gate(w,epoch,reset,owner,extra)
-  if w[57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52):assert 0<=w[59]<={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128}[w[57]]
- for a,b in zip(groups,groups[1:]):assert b[1]>a[1] and all(b[i]>=a[i] for i in (5,6,7,60,61,62))
- if groups[0][57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52):
+  snapshot_gate(w,epoch,reset,owner,extra,heap)
+  if w[57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52,0x36544e52):assert 0<=w[59]<={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128,0x36544e52:128}[w[57]]
+ for a,b in zip(groups,groups[1:]):assert b[1]>a[1] and all(b[i]>=a[i] for i in (5,6,7,60,61,62)+((50,51) if heap else ()))
+ if groups[0][57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52,0x36544e52):
   assert all(w[57]==groups[0][57] for w in groups)
   assert all(b[58]>=a[58] and b[59]>=a[59] for a,b in zip(groups,groups[1:]))
  assert groups[-1][2]==2 and groups[-1][4:36]==groups[-2][4:36] and groups[-1][6]>0 and groups[-1][7]>0
+ if heap:assert groups[-1][50]>groups[-1][5]//2
  assert groups[-1][62]-groups[-2][62]==2
  if groups[-1][3]==2:assert groups[-1][5]==arm[3]>>8
  errors=[e['errno'] for e in events if 'errno' in e]
@@ -93,7 +101,7 @@ def verify(root,out):
   assert sent==list(range(160 if extra else 96)) and len(received)==len(set(received))
   assert received==burst_result['indices'] and len(received)==burst_result['echoed']
   assert burst_result['submitted']==(160 if extra else 96) and burst_result['queue_highwater']-4<=len(received)<burst_result['submitted']
-  assert burst_result['queue_highwater']=={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128}[groups[-1][57]] and burst_result['drops']>0
+  assert burst_result['queue_highwater']=={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128,0x36544e52:128}[groups[-1][57]] and burst_result['drops']>0
   assert any(w[57:60]==[groups[-1][57],burst_result['drops'],burst_result['queue_highwater']] for w in groups)
  results=json.loads((out/'network-results.json').read_text());rounds=1+max(v.get('round',0) for v in results);assert 1<=rounds<=20 and len(results) in (12*rounds,14*rounds)
  if (out/'test-options.json').exists():
@@ -119,16 +127,16 @@ def verify(root,out):
   http=[f for f in packets['streams'] if f['sport']==80 and (6 if ':' in f['src'] else 4)==version]
   assert len(http)==rounds and all(f['prefix'].startswith('HTTP/1.0 200 OK') for f in http)
  bad=0
- if groups[-1][57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52):
+ if groups[-1][57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52,0x36544e52):
   w=groups[-1].copy();w[59]=129
-  try:snapshot_gate(w,epoch,reset,owner,extra)
+  try:snapshot_gate(w,epoch,reset,owner,extra,heap)
   except AssertionError:bad+=1
   else:raise AssertionError('queue overflow accepted')
  for i in (0,2,4,11,36,37,38,39,40,41,42,43,44,45,52,53,54,56,63)+((48,49,50,51) if extra else ()):
   w=groups[-1].copy();w[i]=4 if reset and i==43 else 0 if w[i] else 1
-  try:snapshot_gate(w,epoch,reset,owner,extra)
+  try:snapshot_gate(w,epoch,reset,owner,extra,heap)
   except AssertionError:bad+=1
   else:raise AssertionError(('corruption accepted',i))
- return dict(run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=None if groups[-1][57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52) else groups[-1][57:60],queue_telemetry=groups[-1][58:60] if groups[-1][57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52) else None,cache_completion_proven=False,secondary_reset_held=reset,exception_ownership=owner,broader_ram_owned=extra,external_queue_bytes=192000 if extra else 0,rounds=rounds,burst=burst_result,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
+ return dict(run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=None if groups[-1][57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52,0x36544e52) else groups[-1][57:60],queue_telemetry=groups[-1][58:60] if groups[-1][57] in (0x32544e52,0x33544e52,0x34544e52,0x35544e52,0x36544e52) else None,cache_completion_proven=False,secondary_reset_held=reset,exception_ownership=owner,broader_ram_owned=extra,external_queue_bytes=192000 if extra else 0,application_heap_bytes=69952 if heap else 0,heap_allocations_freed=groups[-1][50] if heap else None,rounds=rounds,burst=burst_result,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--root',type=Path,required=True);p.add_argument('run',type=Path);a=p.parse_args();print(json.dumps(verify(a.root,a.run),indent=2))

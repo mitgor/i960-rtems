@@ -1,9 +1,10 @@
 # Resident networking and RAM ownership
 
-Follow-up: [cache dispatch qualification and longer resident tests](DECODE-BATCH.md).
-The latest profile uses a 32-packet TX queue inside the original RAM grant and
-allows up to 60,000 ticks; 12,000 ticks have been tested. The historical results
-below describe the first batch. No external RAM has been reclaimed.
+Latest follow-up: [general application heap and containment](GENERAL-HEAP.md).
+The opt-in heap uses 69,952 bytes within the validated 256 KiB range, alongside
+the 128-slot external queue. [Fault/NMI and RAM ownership](FAULT-OWNERSHIP.md)
+and [SCSI stop](SCSI-STOP.md) describe its prerequisites. The measurements below
+are historical and do not describe the latest optional layouts.
 
 This experimental profile runs RTEMS and lwIP after the single ARM firmware
 callback returns. The original firmware IRQ continuation remains parked. It

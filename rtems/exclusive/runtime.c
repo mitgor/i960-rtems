@@ -76,6 +76,9 @@ void switch_irq_leave(unsigned int id,unsigned int fp){unsigned int j;
 #ifdef I960_FAULT_OWNER
 extern void exclusive_fault_inject(void);
 #endif
+#ifdef I960_GENERAL_HEAP
+#include "../residentnet/general_heap.h"
+#endif
 static void Worker(rtems_task_argument id){
  switch_threads[id]=(unsigned int)_Thread_Executing;life[id].owner=switch_threads[id];
  life[id].low=(unsigned int)_Thread_Executing->Start.Initial_stack.area;life[id].high=life[id].low+8192;
@@ -86,8 +89,15 @@ static void Worker(rtems_task_argument id){
 #ifdef I960_FAULT_OWNER
   if(resident&&!id&&ticks>=100)exclusive_fault_inject();
 #endif
+#ifdef I960_GENERAL_HEAP
+  if(resident){resident_heap_step(id,ticks);if(!id&&ticks>=100)resident_heap_inject();}
+#endif
   progress[id]++;
- }mask();done[id]=1;CHECK(rtems_task_suspend(RTEMS_SELF));bounded_fatal(0x53000);
+ }mask();
+#ifdef I960_GENERAL_HEAP
+ if(resident)resident_heap_drain(id);
+#endif
+ done[id]=1;CHECK(rtems_task_suspend(RTEMS_SELF));bounded_fatal(0x53000);
 }
 static void Init(rtems_task_argument arg){rtems_id ids[2];rtems_task_priority old;unsigned int i,j;
  memset(switch_irq_areas,0xa5,sizeof(switch_irq_areas));

@@ -17,7 +17,17 @@ static unsigned int boundary(void){unsigned int i;
 #include "ram_probe.h"
 struct ram_probe_report extra_report;
 static unsigned int saved_cache;
-static unsigned int guards(void){unsigned int i;for(i=0;i<16;i++)if(R(RAM_PROBE_LO+64+192000+4*i)!=0xc3c39696u||R(RAM_PROBE_LO+4*i)!=0xa55a1234u||R(RAM_PROBE_LO+4*(RAM_PROBE_WORDS-16+i))!=0x5aa54321u)return 0;return 1;}
+unsigned int exclusive_extra_guard_mask(void){unsigned int i,bad=0;
+ for(i=0;i<16;i++){
+  if(R(RAM_PROBE_LO+4*i)!=0xa55a1234u)bad|=1;
+  if(R(RAM_PROBE_LO+4*(RAM_PROBE_WORDS-16+i))!=0x5aa54321u)bad|=2;
+  if(R(RAM_PROBE_LO+64+192000+4*i)!=0xc3c39696u)bad|=4;
+ }return bad;
+}
+static unsigned int guards(void){return !exclusive_extra_guard_mask();}
+#ifdef I960_GENERAL_HEAP
+extern unsigned int resident_heap_init(void);
+#endif
 unsigned int exclusive_extra_valid(void){return extra_ready&&resident_queue_external_valid()&&extra_report.passes==4&&!extra_report.error&&guards()&&exclusive_fault_valid()&&scsi_target_verified();}
 unsigned int exclusive_extra_prepare(void){unsigned int i,scratch,s[17],rc;
  if(extra_ready||!exclusive_fault_valid()||!scsi_target_verified()){extra_report.error=0x10001;return 1;}
@@ -38,9 +48,13 @@ unsigned int exclusive_extra_prepare(void){unsigned int i,scratch,s[17],rc;
  }
  RP_SYNC();if(saved_cache&1)__asm__ volatile("dcctl 1,0,%0":"=r"(scratch)::"memory");
  if(rc){extra_report.error|=rc<<16;return rc;}
- /* Grant only the fixed guarded queue area, never a general RTEMS heap. */
+ /* The queue is always fixed; the separately opted-in heap uses its guarded tail. */
  if(resident_queue_extend(RAM_PROBE_LO+64)){extra_report.error=6;return 6;}
- extra_ready=1;return exclusive_extra_valid()?0:7;
+ extra_ready=1;if(!exclusive_extra_valid())return 7;
+#ifdef I960_GENERAL_HEAP
+ if(resident_heap_init())return 8;
+#endif
+ return 0;
 }
 void exclusive_extra_report(unsigned int*w){unsigned int i,*p=(unsigned int*)&extra_report;
  for(i=0;i<6;i++)w[i]=p[i];w[6]=extra_ready;w[7]=saved_cache;

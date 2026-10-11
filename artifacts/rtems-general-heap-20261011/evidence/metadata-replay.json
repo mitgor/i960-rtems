@@ -1,0 +1,45 @@
+{
+  "boot": "dc0ea70d-383e-4ed5-82f6-3dcd5973b804",
+  "kind": 4,
+  "real_processor_fault": false,
+  "physical_nmi_tested": false,
+  "stable_snapshots": 2,
+  "fault_record": [
+    "0xc0f78d70",
+    "0x0",
+    "0x0",
+    "0x0",
+    "0x0"
+  ],
+  "ownership_valid": true,
+  "scsi_reset_held": true,
+  "broader_ram_owned": true,
+  "ram_probe": [
+    4,
+    262144,
+    0,
+    0,
+    0,
+    0,
+    1,
+    29217
+  ],
+  "heap_report": [
+    827344200,
+    3223514752,
+    69952,
+    1,
+    2,
+    136,
+    134,
+    3986,
+    69696,
+    7,
+    1,
+    0,
+    50,
+    50,
+    0,
+    3
+  ]
+}

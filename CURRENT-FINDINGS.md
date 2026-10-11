@@ -1,5 +1,20 @@
 # Current findings and evidence — 2026-10-11
 
+**General application heap (2026-10-11):** `--general-heap` adds 69,952 bytes
+at `c022ee80..c023ffc0` using RTEMS 4.6.6's real allocator. It requires
+`--extra-ram --fault-owner --secondary-reset` and grants no additional RAM range.
+The 128-slot packet queue remains intact; kernel workspace/task stacks stay in
+the upload region. Allocation has a 64-live-block limit, exact-pointer checks,
+redzones, bounded metadata validation and ISR refusal. Outer-guard, allocation
+suffix, metadata-extent and saved-offset corruption each passed physical containment
+tests with both live allocations retained; no forced unload or recovery resume.
+The hardened non-injection image passed 36,000 ticks, ten spaced dual-stack
+rounds, saturation/TCP loss recovery, and all 36,100 allocations freed before
+both IRQ contexts drained. All six reboots returned normally; cooperative public
+IPv6 HTTP is restored and checked. Do not enable `--heap-test` in production. See the
+[heap contract and evidence](rtems/residentnet/GENERAL-HEAP.md).
+
+
 **Slot validation batch accepted (2026-10-11):** all fifteen steps in
 [the batch ledger](game/raycaster/slotopt/BATCH.md) completed. Target-only word
 hashing plus exact word metadata/guard checks reduce full-frame callback time

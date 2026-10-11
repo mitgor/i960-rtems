@@ -42,6 +42,9 @@ void exclusive_fault_inject(void){
 #ifdef I960_EXTRA_RAM
 extern void exclusive_extra_report(unsigned int*);
 #endif
+#ifdef I960_GENERAL_HEAP
+extern void resident_heap_report(unsigned int*);
+#endif
 void exclusive_trap_park(void){unsigned int token,index,i,s[17];
  exclusive_trap_words[37]=V(0x1320);exclusive_trap_words[38]=V(0x1328);exclusive_trap_words[39]=V(0x1324);
  V(0x1328)=0x1fb; /* mask the test source before clearing its latch */
@@ -57,6 +60,9 @@ void exclusive_trap_park(void){unsigned int token,index,i,s[17];
  exclusive_trap_words[18]=guard_valid();exclusive_trap_words[19]=V(0xff008504);
 #ifdef I960_EXTRA_RAM
  exclusive_extra_report((unsigned int*)(exclusive_trap_words+40));
+#endif
+#ifdef I960_GENERAL_HEAP
+ resident_heap_report((unsigned int*)(exclusive_trap_words+48));
 #endif
  for(;;){token=V(0x1314);if((token&65535)!=owner_epoch)continue;
   if(token==(0x90000000u|owner_epoch)){V(0x1314)=0;V(0x131c)=0x95000000u|owner_epoch;}

@@ -1,0 +1,1 @@
+Actual RTEMS 4.6.6 allocator, 32-bit wrapper: startup/exhaustion/coalescing, 2000 worker iterations, ISR refusal, 32 redzone, 32 offset and 32 pointer corruptions passed

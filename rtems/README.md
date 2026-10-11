@@ -1,5 +1,13 @@
 # RTEMS on the DAC960PG
 
+**Latest: [general application heap and corruption containment](residentnet/GENERAL-HEAP.md).**
+The opt-in resident image adds a guarded 69,952-byte RTEMS application heap in
+already validated RAM alongside the 128-slot packet queue. Four deliberate
+corruption paths passed physical containment tests. Kernel workspace and task
+stacks remain in their original region; default/cooperative profiles stay available.
+The older checkpoints below describe their individual stages.
+
+
 **Resident decode follow-up:** live board selector 6 and dispatch `c000d540`
 qualify synchronous CPU XOR / internal DRAM, not the alternate external-cache
 bit-0 completion path. Firmware reports 16 MiB. Resident networking now has

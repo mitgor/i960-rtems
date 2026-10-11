@@ -18,7 +18,7 @@ def datagram(index):
 
 def burst(packet,snapshot,out):
  busy=0
- capacity={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128}[snapshot()[57]]
+ capacity={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128,0x36544e52:128}[snapshot()[57]]
  submitted=max(96,capacity+32) if capacity>72 else 96
  for i in range(submitted):
   frame=datagram(i);deadline=time.monotonic()+5
@@ -28,7 +28,7 @@ def burst(packet,snapshot,out):
     if exc.errno!=errno.EAGAIN:raise
     busy+=1
     if time.monotonic()>=deadline:raise TimeoutError('RX busy did not clear')
- time.sleep(.2);full=snapshot();capacity={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128}[full[57]];assert full[59]==capacity and full[58]>0
+ time.sleep(.2);full=snapshot();capacity={0x32544e52:64,0x33544e52:72,0x34544e52:68,0x35544e52:128,0x36544e52:128}[full[57]];assert full[59]==capacity and full[58]>0
  seen=[];other=[];empty=0;deadline=time.monotonic()+15
  while time.monotonic()<deadline and empty<20:
   blob=packet(2);offset=0

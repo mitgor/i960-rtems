@@ -1,0 +1,25 @@
+[
+  {
+    "path": "general-heap-guard-bounded",
+    "boot": "39332cc7-b410-4d68-927c-d0398d95316a",
+    "resident": false,
+    "phase": 2,
+    "ticks": 100,
+    "restored": true,
+    "cache_probe": {
+      "values": [
+        1082130432,
+        1082130432,
+        8,
+        8,
+        16512,
+        16512
+      ],
+      "nmisr": 0,
+      "atucr": 38,
+      "dcache_status_or_reserved": 29217,
+      "completion_proven": false,
+      "ram_reclaimed": false
+    }
+  }
+]
