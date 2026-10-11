@@ -41,3 +41,8 @@ test-combined: test-queue
 test-slotopt: test-combined
 	python3 slotopt/test.py
 .PHONY: test-slotopt
+
+# Browser queue ownership, audit failures, reset/control and shutdown tests.
+test-browserqueue: all
+	python3 browserqueue/test.py
+.PHONY: test-browserqueue

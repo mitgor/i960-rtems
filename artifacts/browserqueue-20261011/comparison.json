@@ -1,0 +1,10 @@
+{
+  "baseline_fps": 9.787129924242329,
+  "optimized_fps": 13.09989555521853,
+  "fps_increase_percent": 33.84818283417914,
+  "baseline_draw_ms": 102.17499999903343,
+  "optimized_draw_ms": 76.33648648455336,
+  "gzip9_ms": 21.60588195498392,
+  "gzip1_ms": 5.940046453376206,
+  "gzip_cost_reduction_percent": 72.50727155803057
+}

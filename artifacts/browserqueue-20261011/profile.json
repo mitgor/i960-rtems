@@ -1,0 +1,95 @@
+{
+  "draws": 320,
+  "host_updates": 320,
+  "full_audits": 325,
+  "combined_requests": 311,
+  "pacing": {
+    "legacy-delay": {
+      "draw_interval_ms": {
+        "mean": 102.17499999903343,
+        "median": 101.14999997615814,
+        "min": 79.09999990463257,
+        "max": 137.5
+      },
+      "host_step_ms": {
+        "mean": 65.59831218918865,
+        "median": 63.526729000003,
+        "min": 43.44830700000557,
+        "max": 89.81556999998475
+      },
+      "delivered_fps": 9.787129924242329
+    },
+    "raf-single-flight": {
+      "draw_interval_ms": {
+        "mean": 92.6729729723286,
+        "median": 91.69999980926514,
+        "min": 66.59999990463257,
+        "max": 140.70000004768372
+      },
+      "host_step_ms": {
+        "mean": 67.9117502364859,
+        "median": 66.19820699998513,
+        "min": 45.65017799998827,
+        "max": 114.71512800000028
+      },
+      "delivered_fps": 10.790632564454278
+    }
+  },
+  "host_stage_ms": {
+    "host_oracle_ns": {
+      "mean": 1.5062068585209003,
+      "median": 1.591845,
+      "min": 0.852095,
+      "max": 2.455443
+    },
+    "host_snapshot_read_ns": {
+      "mean": 1.1421896045016078,
+      "median": 1.232609,
+      "min": 0.552473,
+      "max": 1.60138
+    },
+    "host_archive_ns": {
+      "mean": 21.60588195498392,
+      "median": 23.127076,
+      "min": 12.100091,
+      "max": 24.543933
+    },
+    "host_slot_check_ns": {
+      "mean": 1.640891659163987,
+      "median": 1.762626,
+      "min": 0.943974,
+      "max": 1.93939
+    },
+    "host_log_check_ns": {
+      "mean": 0.8353044308681672,
+      "median": 0.888856,
+      "min": 0.506825,
+      "max": 1.054548
+    }
+  },
+  "board_step_ms": {
+    "mean": 27.59801396784566,
+    "median": 27.047741,
+    "min": 25.194317,
+    "max": 48.81591
+  },
+  "kernel_ms": {
+    "mean": 24.421982659163987,
+    "median": 24.454166,
+    "min": 23.371055,
+    "max": 25.383335
+  },
+  "kernel_execute_ms": {
+    "mean": 10.016724022508038,
+    "median": 10.030792,
+    "min": 9.536058,
+    "max": 10.205177
+  },
+  "full_audit_ms": {
+    "mean": 11.911748199356913,
+    "median": 11.937086,
+    "min": 11.428888,
+    "max": 12.721079
+  },
+  "draw_interval_reduction_percent": 9.299757305402228
+}

@@ -1,0 +1,18 @@
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C ../../rtems/memory test
+mkdir -p build
+build/test
+PASS: 264 batches, 2112 copies + 2112 moves + 1056 clears; 513 guard-page lengths
+build/test
+Raycaster ASan/UBSan: bounds, invalid requests, 2000 partial movement batches, benchmark kinds passed
+python3 test_host.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.547s
+
+OK
+python3 browserqueue/test.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 3.550s
+
+OK

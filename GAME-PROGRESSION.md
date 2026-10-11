@@ -4,6 +4,29 @@ Updated 2026-10-11. This application track follows the working Tetris and RTEMS
 milestones. It does not supersede the interrupt/ownership work in the parallel
 **Review loader improvements (2)** chat or its production-service decisions.
 
+## Browser delivery and host audit cost
+
+**Browser queue accepted (2026-10-11):** `game/raycaster/server.py --backend
+card-queue` now uses the accepted combined queue and unchanged card binaries.
+Seven sessions passed **663 replies/full paired audits**, **640 targeted slots**,
+22,608 commands and seven verified restorations. Chromium displayed 640 frames
+with movement, reset, blur and single-flight checks. Idle expiry, frame limits,
+SIGTERM during a request and TCP reset all close safely; uncertain requests are
+never retried. Lossless gzip level 1 reduces full-audit archive cost **21.61 →
+5.94 ms**. Together with browser pacing, observed delivery improves **9.79 →
+13.10 FPS**; kernel time remains about 24.4 ms. These are headless Chromium/SSH
+measurements, not physical monitor scanout or asynchronous card rendering.
+Every full audit remains. Native remains the default backend; queue sessions
+are bounded to 512 updates/30 s idle by default. Public IPv6 HTTP was restored
+and returned 200. No flash write or reboot in this batch. Read
+[the bridge contract](game/raycaster/browserqueue/README.md) and
+[the captures and remaining work](artifacts/browserqueue-20261011/README.md).
+
+Next: profile metadata serialization and repeated history writes, then test an
+append-only capture journal with complete replay and crash/truncation rejection.
+Keep all paired reads, native-frame comparisons and audit snapshots. The larger
+Doom framebuffer/heap contract and asynchronous ownership remain separate work.
+
 ## Slot checks: fifteen-step measured follow-up
 
 **Slot validation batch accepted (2026-10-11):** all fifteen steps in
@@ -19,8 +42,7 @@ accepted combined/fast-render flags; diagnostic opcode 5 is excluded from releas
 images. Public IPv6 HTTP restored. No flash/reboot in this card batch. The queue
 retains its original RAM grant and does not inherit the parallel ownership work.
 [Contract](game/raycaster/slotopt/README.md), [complete measurements/artifacts](artifacts/slotopt-20261011/README.md).
-Next: browser integration of the verified combined queue with full audits and
-measured displayed-frame delivery.
+The browser integration follow-up is accepted above.
 
 ## Combined ACK-and-PUBLISH: fewer fully audited transactions
 
@@ -198,7 +220,7 @@ The 20 us polling experiment saves 0.269 ms audit time but costs 17.19% more hos
 CPU; the recommended 50 us coarse release measures 19.352 ms kernel time.
 [Evidence](artifacts/callback-20261011/README.md).
 
-Next concrete action: design and test a generation-checked frame queue with
+The originally proposed next action, now completed above, was a generation-checked frame queue with
 explicit ownership, stale-frame rejection, cancellation and an equivalent
 immutable-memory audit contract. Read completion waits still cost about 9.46 ms,
 with 942,272 bytes read per ordinary frame. Keep current paired coverage until a

@@ -90,3 +90,16 @@ measurement-only, bounded at 32 repetitions, and absent from release binaries.
 `make test-slotopt` covers native variants, mutations, alignments and guard pages.
 Next: connect this verified queue to the browser bridge, preserving full audit,
 ACK/generation and uncertain-execution rules; measure actual displayed delivery.
+
+Browser integration is now accepted: `server.py --backend card-queue` uses one
+occupied slot and combined replacement only after full host validation. Read
+`browserqueue/README.md` and `artifacts/browserqueue-20261011/README.md`. Seven
+sessions pass 663 full paired audits and restoration; 640 Chromium draws pass.
+Keep Python assertions enabled. Default gzip level 1 is lossless and retains every
+snapshot; never trade audit coverage for delivery speed. SIGTERM waits for the
+current request; any transport/audit fault or broken response socket closes the
+session without retries. Reset ACKs before a newer-epoch INIT. Idle and frame
+limits bound unattended sessions. Archive replay uses each run's archived host
+code, preserving the original gzip-9 reference alongside the accepted gzip-1
+build. Next: measure metadata serialization/history rewriting before replacing
+it with a bounded append-only journal. Keep truncated/uncertain captures rejected.

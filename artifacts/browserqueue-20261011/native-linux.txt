@@ -1,0 +1,22 @@
+make: Entering directory '/home/mit/i960-browserqueue-20261011-6PxkVU/game/raycaster'
+make -C ../../rtems/memory test
+make[1]: Entering directory '/home/mit/i960-browserqueue-20261011-6PxkVU/rtems/memory'
+mkdir -p build
+build/test
+PASS: 264 batches, 2112 copies + 2112 moves + 1056 clears; 513 guard-page lengths
+make[1]: Leaving directory '/home/mit/i960-browserqueue-20261011-6PxkVU/rtems/memory'
+build/test
+Raycaster ASan/UBSan: bounds, invalid requests, 2000 partial movement batches, benchmark kinds passed
+python3 test_host.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.166s
+
+OK
+python3 browserqueue/test.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 3.864s
+
+OK
+make: Leaving directory '/home/mit/i960-browserqueue-20261011-6PxkVU/game/raycaster'

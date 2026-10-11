@@ -1864,6 +1864,42 @@ frees. The warning bytes were untouched. The heap had become useful memory,
 and had shown what it would do when that usefulness went wrong. A final reboot
 brought the cooperative server back, and Vader answered over public IPv6 again.
 
+## The browser was keeping receipts
+
+Twenty-four milliseconds on the card sounded like forty pictures a second.
+The browser disagreed. By the time a picture had been rendered, checked, packed,
+carried through SSH and painted on a canvas, there were closer to ten. The
+processor was doing its part. We had not yet counted all of ours.
+
+The queue finally reached the browser with its receipts attached. One request
+at a time, one occupied slot, the old generation acknowledged only when its
+picture had survived every comparison. Reset first let that slot go, then began
+a newer epoch. We drove forward, turned, reset the position and took focus away.
+The card's pixels matched the old native renderer throughout.
+
+Then the host timers found a surprisingly expensive piece of housekeeping.
+Compressing each saved half-megabyte audit at gzip's default level took 21.6
+milliseconds. The card's whole kernel request took about 24.4. The archive was
+nearly another renderer. Turning the compression level down to one brought that
+cost to 5.9 milliseconds. Every decompressed byte was still there, and every
+request still had its two full reads. Nothing on the card had changed.
+
+With the browser's extra sixteen-millisecond wait removed too, measured delivery
+rose from 9.79 to 13.10 frames a second. That was a Chromium canvas reached over
+SSH, not a promise about somebody's monitor. It was nevertheless a picture one
+could steer, rather than a reciprocal written beside a stopwatch.
+
+We also interrupted the conversation. A termination signal arrived during a
+request; the request finished before the session closed. A TCP connection was
+reset while the next picture was being made; the server restored the card instead
+of trying the input again. Idle expiry and the frame limit took the same audited
+way out. Seven sessions, six hundred and sixty-three full paired audits, seven
+clean restorations. The public Vader page came back without a reboot.
+
+Six hundred and forty browser draws had made the next question clearer. Some of
+the remaining wait still lived in host bookkeeping. The next place to look was
+how we wrote the ledger, not which of its entries we could afford to lose.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

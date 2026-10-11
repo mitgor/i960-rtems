@@ -1,0 +1,46 @@
+[
+  {
+    "round": 1,
+    "pacing": "legacy-delay",
+    "backend": "Mylex / RTEMS (combined queue, full audits)",
+    "frames": 80,
+    "max_in_flight": 1,
+    "mean_draw_interval_ms": 78.7810810804367,
+    "delivered_fps": 12.693402861265442,
+    "mean_callback_ms": 45.3712423243283,
+    "status": "Frame 46 · position 3.00, 2.50 · angle 0/256 · 406 grid steps · host step 47.6 ms · delivery 12.7 fps"
+  },
+  {
+    "round": 2,
+    "pacing": "raf-single-flight",
+    "backend": "Mylex / RTEMS (combined queue, full audits)",
+    "frames": 80,
+    "max_in_flight": 1,
+    "mean_draw_interval_ms": 74.63378378185067,
+    "delivered_fps": 13.398757899276957,
+    "mean_callback_ms": 49.40444158108212,
+    "status": "Frame 46 · position 3.00, 2.50 · angle 0/256 · 406 grid steps · host step 62.5 ms · delivery 10.9 fps"
+  },
+  {
+    "round": 3,
+    "pacing": "raf-single-flight",
+    "backend": "Mylex / RTEMS (combined queue, full audits)",
+    "frames": 80,
+    "max_in_flight": 1,
+    "mean_draw_interval_ms": 78.03918918725607,
+    "delivered_fps": 12.814074702909672,
+    "mean_callback_ms": 54.387609635137174,
+    "status": "Frame 46 · position 3.00, 2.50 · angle 0/256 · 406 grid steps · host step 62.2 ms · delivery 12.0 fps"
+  },
+  {
+    "round": 4,
+    "pacing": "legacy-delay",
+    "backend": "Mylex / RTEMS (combined queue, full audits)",
+    "frames": 80,
+    "max_in_flight": 1,
+    "mean_draw_interval_ms": 93.83243243114369,
+    "delivered_fps": 10.657295927331118,
+    "mean_callback_ms": 56.442532162162095,
+    "status": "Frame 46 · position 3.00, 2.50 · angle 0/256 · 406 grid steps · host step 58.5 ms · delivery 10.9 fps"
+  }
+]

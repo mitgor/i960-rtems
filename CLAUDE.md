@@ -1,5 +1,22 @@
 # Repository guidance for Claude Code
 
+**Browser queue accepted (2026-10-11):** `game/raycaster/server.py --backend
+card-queue` now uses the accepted combined queue and unchanged card binaries.
+Seven sessions passed **663 replies/full paired audits**, **640 targeted slots**,
+22,608 commands and seven verified restorations. Chromium displayed 640 frames
+with movement, reset, blur and single-flight checks. Idle expiry, frame limits,
+SIGTERM during a request and TCP reset all close safely; uncertain requests are
+never retried. Lossless gzip level 1 reduces full-audit archive cost **21.61 →
+5.94 ms**. Together with browser pacing, observed delivery improves **9.79 →
+13.10 FPS**; kernel time remains about 24.4 ms. These are headless Chromium/SSH
+measurements, not physical monitor scanout or asynchronous card rendering.
+Every full audit remains. Native remains the default backend; queue sessions
+are bounded to 512 updates/30 s idle by default. Public IPv6 HTTP was restored
+and returned 200. No flash write or reboot in this batch. Read
+[the bridge contract](game/raycaster/browserqueue/README.md) and
+[the captures and remaining work](artifacts/browserqueue-20261011/README.md).
+
+
 **General application heap (2026-10-11):** `--general-heap` adds 69,952 bytes
 at `c022ee80..c023ffc0` using RTEMS 4.6.6's real allocator. It requires
 `--extra-ram --fault-owner --secondary-reset` and grants no additional RAM range.
