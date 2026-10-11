@@ -1,6 +1,7 @@
 .PHONY: test
 # Offline native tests only. This does not touch the card.
 test:
+	python3 handoff/test_native.py
 	python3 leaseirq/test_native.py
 	python3 persistirq/test_native.py
 	python3 ownirq/test_gate.py

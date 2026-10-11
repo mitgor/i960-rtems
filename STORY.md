@@ -1289,6 +1289,43 @@ and Vader returned over IPv6 without a reboot. There was still no Doom in that
 corridor. There was now a picture, a reproducible measurement, and a much better
 idea of what stood between the two.
 
+## A door without a caller
+
+Until now, the long-running workers had a useful alibi: somewhere underneath
+them, the firmware was still waiting for a callback to finish. The next question
+was whether we could enter our own monitor after that caller had gone home.
+
+We could. A short setup call armed the timer and returned. Later, a message from
+the host met the card in its interrupt handler. The handler moved onto our owned
+stack, kept the original firmware return frame intact, and waited for release.
+No firmware command was pending during that conversation.
+
+The first attempt also demonstrated why a conversation needs an ending. We
+forgot to consume the ENTER message. When the waiting loop expired, the next
+interrupt could see the same invitation and enter again. The host timed out.
+Instead of guessing that the card was finished, the driver held onto its memory
+and module. Getting back required a reboot and help at the machine. The failed
+captures stayed in the archive.
+
+Consuming the invitation fixed that. Then the old compiler supplied a second
+surprise: the card said it had denied hardware ownership, but its diagnostic
+number said zero. The disassembly told the story. A comparison of the proof mask
+was followed by another comparison that overwrote the condition codes before
+the result was used. Native tests had passed; the i960 code had not done what the
+C said. Explicit result stores removed the ambiguity.
+
+Five final sessions entered the monitor twenty times. Five deliberately
+withheld release and came back on their own. Ten requests to take ownership
+were refused. Every final session restored its RAM and unloaded, and Darth Vader
+returned to the IPv6 page.
+
+The refusal mattered as much as the return. The matching firmware uses both
+primary DMA channels. The board also has its own SCSI and cache machinery, with
+no established contract for handing those engines over. Six quiet registers
+are a photograph, not a permission slip. We have a bounded door into the monitor
+without a pending callback. We have not yet earned the right to move the rest of
+the controller through it.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

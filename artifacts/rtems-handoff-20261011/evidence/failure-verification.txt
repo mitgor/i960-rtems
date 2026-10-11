@@ -1,0 +1,2 @@
+Initial capture: four successful controls, omitted-release timeout, retained allocation/module, three read-only ENTER/PARKED samples. No post-failure diagnostic report exists.
+V3 capture: four entries, two denials, one expiry, diagnostic decision=0; STOP and full RAM restoration verified despite failed report assertion.

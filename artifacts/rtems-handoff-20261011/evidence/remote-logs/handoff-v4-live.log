@@ -1,0 +1,8 @@
+{"run": 0, "entries": 4, "denials": 2, "expired": 1, "dma_before": [0, 0, 0, 0, 0, 0], "dma_after": [0, 0, 0, 0, 0, 0], "irq_fault": 0, "ticks": 12, "proof": 0, "missing": 127}
+{"steps": 2, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 52.384305, "max": 67.894206, "mean": 60.1392555}}
+{"run": 1, "entries": 4, "denials": 2, "expired": 1, "dma_before": [0, 0, 0, 0, 0, 0], "dma_after": [0, 0, 0, 0, 0, 0], "irq_fault": 0, "ticks": 11, "proof": 0, "missing": 127}
+{"steps": 2, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 52.412791, "max": 69.772295, "mean": 61.092543}}
+{"run": 2, "entries": 4, "denials": 2, "expired": 1, "dma_before": [0, 0, 0, 0, 0, 0], "dma_after": [0, 0, 0, 0, 0, 0], "irq_fault": 0, "ticks": 11, "proof": 0, "missing": 127}
+{"steps": 2, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 52.296287, "max": 69.039361, "mean": 60.667824}}
+{"run": 3, "entries": 4, "denials": 2, "expired": 1, "dma_before": [0, 0, 0, 0, 0, 0], "dma_after": [0, 0, 0, 0, 0, 0], "irq_fault": 0, "ticks": 11, "proof": 0, "missing": 127}
+{"steps": 2, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 50.834706, "max": 69.008905, "mean": 59.9218055}}

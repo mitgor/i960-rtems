@@ -1,5 +1,17 @@
 # Current findings and evidence — 2026-10-11
 
+**Callback-free monitor milestone (2026-10-11):** `handoff` passed five final
+sessions: 20 bounded entries from the timer ISR after the ARM firmware callback
+returned, five omitted-RELEASE expiries and ten denied DMA/SCSI transfer
+requests. Every final close restored RAM and unloaded. The initial token-repeat
+failure required recovery; a second build exposed an i960 compiler condition-code
+bug in the diagnostic policy. Both failures and corrections are preserved.
+Stock firmware uses DMA0/1; idle registers do not grant ownership. This is a bare
+monitor prerequisite, not callback-free RTEMS scheduling or permanent takeover.
+Production IPv6 HTTP is restored. [Contract and next gates](rtems/handoff/README.md),
+[16-step batch](rtems/handoff/BATCH.md).
+
+
 **Raycaster/profiling milestone (2026-10-11):** an 80×60 fixed-point renderer
 and browser bridge passed 548 native-matching RTEMS card replies, including
 partial frames, movement/reset and OS-helper benchmarks. Six native tests and

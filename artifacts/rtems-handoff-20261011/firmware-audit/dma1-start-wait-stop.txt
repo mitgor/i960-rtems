@@ -1,0 +1,41 @@
+c004c090:	00 30 a0 90 	ld	0xc01127b4,g4
+c004c094:	b4 27 11 c0 
+c004c098:	00 30 20 8c 	lda	0x1404,r4
+c004c09c:	04 14 00 00 
+c004c0a0:	04 20 85 92 	st	g0,0x4(g4)
+c004c0a4:	08 20 f5 92 	st	g14,0x8(g4)
+c004c0a8:	0c 20 8d 92 	st	g1,0xc(g4)
+c004c0ac:	10 20 95 92 	st	g2,0x10(g4)
+c004c0b0:	14 20 9d 92 	st	g3,0x14(g4)
+c004c0b4:	00 10 f5 92 	st	g14,(g4)
+c004c0b8:	08 00 00 08 	b	0xc004c0c0
+c004c0bc:	54 42 fc 09 	call	0xc0010310
+c004c0c0:	00 10 a1 90 	ld	(r4),g4
+c004c0c4:	f8 3f 55 37 	bbs	10,g4,0xc004c0bc
+c004c0c8:	00 30 b0 90 	ld	0xc01127b4,g6
+c004c0cc:	b4 27 11 c0 
+c004c0d0:	00 30 a0 8c 	lda	0x1450,g4
+c004c0d4:	50 14 00 00 
+c004c0d8:	01 1e b8 5c 	mov	1,g7
+c004c0dc:	01 1e 80 5c 	mov	1,g0
+c004c0e0:	00 30 a8 90 	ld	0xc00a5da4,g5
+c004c0e4:	a4 5d 0a c0 
+c004c0e8:	0c 09 25 59 	subo	12,g4,r4
+c004c0ec:	00 10 b5 92 	st	g6,(g4)
+c004c0f0:	15 50 29 59 	addo	g5,5,r5
+c004c0f4:	00 34 bd 92 	st	g7,0xfffffff0(g4)
+c004c0f8:	f0 ff ff ff 
+c004c0fc:	44 2d 00 09 	call	0xc004ee40
+c004c100:	24 00 00 08 	b	0xc004c124
+c004c104:	01 1e 80 5c 	mov	1,g0
+c004c108:	38 2d 00 09 	call	0xc004ee40
+c004c10c:	00 30 a0 90 	ld	0xc00a5da4,g4
+c004c110:	a4 5d 0a c0 
+c004c114:	10 00 2d 31 	cmpobg	r5,g4,0xc004c124
+c004c118:	00 30 80 8c 	lda	0xc004c080,g0
+c004c11c:	80 c0 04 c0 
+c004c120:	80 e1 fb 09 	call	0xc000a2a0
+c004c124:	00 10 a1 90 	ld	(r4),g4
+c004c128:	dc 3f 55 37 	bbs	10,g4,0xc004c104
+c004c12c:	00 30 f0 92 	st	g14,0x1440
+c004c130:	40 14 00 00 

@@ -1,5 +1,17 @@
 # RTEMS on the DAC960PG
 
+**Callback-free monitor milestone (2026-10-11):** `handoff` passed five final
+sessions: 20 bounded entries from the timer ISR after the ARM firmware callback
+returned, five omitted-RELEASE expiries and ten denied DMA/SCSI transfer
+requests. Every final close restored RAM and unloaded. The initial token-repeat
+failure required recovery; a second build exposed an i960 compiler condition-code
+bug in the diagnostic policy. Both failures and corrections are preserved.
+Stock firmware uses DMA0/1; idle registers do not grant ownership. This is a bare
+monitor prerequisite, not callback-free RTEMS scheduling or permanent takeover.
+Production IPv6 HTTP is restored. [Contract and next gates](handoff/README.md),
+[16-step batch](handoff/BATCH.md).
+
+
 **Continuous execution lease (2026-10-11):** `leaseirq` now keeps preemptible
 RTEMS workers running continuously inside a parked firmware callback. Sideband
 grant/renew/STOP, a 512-tick renewal deadline, a non-renewable 24,000-tick cap and

@@ -9368,6 +9368,161 @@
       "sha256": "7ce5659a1d752a2fc9b1ead8aee188503612cb67f977f072feae18c18101dd6c"
     },
     {
+      "path": "artifacts/rtems-handoff-20261011/README.md",
+      "size": 2502,
+      "sha256": "207188b114ed3dc2bb5d7c18edf760bb3ba41183da5caa429155cef5390c4ee7"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/failure-verification.txt",
+      "size": 322,
+      "sha256": "a5516f994953173c52c519d9198efa350d1db910099f5e7fa008b4dfbea7ece1"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/handoff-native.txt",
+      "size": 254,
+      "sha256": "e164bb925ab25e52fd3c738035ad58a6c32cabdda3669393c0f12f4e31bbf138"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/http-restored.txt",
+      "size": 2994,
+      "sha256": "e47f7e479ee669d8a8e58191728740b2296942ca36cd1842599b2838cab02fab"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/initial-retained-mu.json",
+      "size": 570,
+      "sha256": "e0b2351ab1a6a46944de4f94bd859c8732c1d1f33fe3513fc9f24322429860e1"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/initial-retention.txt",
+      "size": 569,
+      "sha256": "18ec0f57a9d9160835565dff40292563b362e2336119d88d0a6c1a356f85132c"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/loose-copy-verification.json",
+      "size": 67,
+      "sha256": "d9b2a14e5a50e0bf75d2c66f411b9589fda8fcb69c065b66f27314534a3701c0"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/native-tests.txt",
+      "size": 6427,
+      "sha256": "d8957016a434e75a97d0b1b298bd7f63e01cfd06af85bd0c56ba73fc448099a4"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/production-verification.txt",
+      "size": 561,
+      "sha256": "7f09c7f9666fef5ff4a2e18935d62ffe85382b767bedb23fb2eb9cfe75b0a42a"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/recovery-boot.txt",
+      "size": 59,
+      "sha256": "a653ab67648173f0ffab4e8cb1078109826942934db4c9ce4e4956337d930eb2"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/remote-logs/handoff-build.log",
+      "size": 1804,
+      "sha256": "0fa085006caf294136aeb55ec8092aa5e28c8f9a04b38dd18e6fbc9b3c137fea"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/remote-logs/handoff-fixed-build.log",
+      "size": 1132,
+      "sha256": "461306cd9ae4ee7a6ac584c1ad3e456122da4d45704daf9aa49467a3a8ec35c1"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/remote-logs/handoff-fixed-smoke.log",
+      "size": 611,
+      "sha256": "d4ddcaae73c86c0df9fbaab8313eccdcbe673f7fbb2d9e056a0c90d0f4f13261"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/remote-logs/handoff-module-v2.log",
+      "size": 990,
+      "sha256": "364ed49fb22b8e611630b5152363314f1ef26e1f5194106e59982ffee2ba4c42"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/remote-logs/handoff-smoke.log",
+      "size": 486,
+      "sha256": "b20550ffcfa26fcc08a7c4bb7bba15f7c834d137eda7b3a857bab23e301a27cd"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/remote-logs/handoff-v4-build.log",
+      "size": 1132,
+      "sha256": "391fa65c70920de91ecd84b41bd9a2a2c6cbb2f8c44820353512e0587dcda460"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/remote-logs/handoff-v4-live.log",
+      "size": 1282,
+      "sha256": "d7a6778553fc4f45d7bec3b9ee79a3cd69690c9f3d108058b0772e9621fe0213"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/replay.json",
+      "size": 943,
+      "sha256": "a6816e1a20421d399036049bbdecd5dde7a57edf39700cc5d9d8930405315f85"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/service-state.txt",
+      "size": 83,
+      "sha256": "6073b3dda8b09b91b4e1fa9a50a04032924276ce189cfbbf0fd975f186bb12d8"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/evidence/topology.txt",
+      "size": 1802,
+      "sha256": "30fd0ac1671ec271cd6905c6db398694f5644dcc4e6877f738de10493cb82fcd"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/firmware-audit/audit.json",
+      "size": 2103,
+      "sha256": "68492500d68631370b80fafdaa98fa0ea0e2e44d84527126d33579f946efb1f4"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/firmware-audit/dma-init.txt",
+      "size": 1179,
+      "sha256": "c5c74e283bc059f8ef6cd66b8f2f94542776e53d6b4c3faaa0beb8d26ccc4c3c"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/firmware-audit/dma0-start-completion.txt",
+      "size": 2205,
+      "sha256": "2e28f121da6476992c01f9e038cfb73dfabe19f3974921044918f423e8d1f5b5"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/firmware-audit/dma1-start-wait-stop.txt",
+      "size": 1420,
+      "sha256": "527ca68615d2921badeaa094c37f2598f3a14f711711892f0e708efa2339587a"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/firmware-audit/io-descriptor-lead.txt",
+      "size": 763,
+      "sha256": "e9fba06d07c598602eb5dc305ac4ce47b736e8e0f0e2b45b4399508816347fec"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/handoff-final.tar.xz",
+      "size": 703468,
+      "sha256": "d8f3099616ce9a056905e024bdabd8eef8b49a55a66a0446606d5e173addfe69"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/handoff-guard-final.tar.xz",
+      "size": 539108,
+      "sha256": "ed57b0d0e107c02968114c305eefc5601773ad06a8b9fc3d55bc7a443fc02d6e"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/handoff-production-v4.tar.xz",
+      "size": 362756,
+      "sha256": "71a8f8c495221e90afcfffcf581cb36f3ac246b07493b77178c1fd7686075f9c"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/handoff-production.tar.xz",
+      "size": 366144,
+      "sha256": "358f51f16d6f4e9af66a0bede99d7b46e5e051b5d46cc79ee782332092f2827f"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/handoff-v3-diagnostic.tar.xz",
+      "size": 665936,
+      "sha256": "0d6f02d0ef47117a00ba39635f3e6805baa891d26000f0844b1140cc395694b8"
+    },
+    {
+      "path": "artifacts/rtems-handoff-20261011/initial.tar.xz",
+      "size": 645084,
+      "sha256": "3b30c847b922a4ca7062444331e2c86564714544d43adf4a56878fdd2484f065"
+    },
+    {
       "path": "artifacts/rtems-ipv6-20261011/README.md",
       "size": 6696,
       "sha256": "4863d7636f04a9a6a52a832ca0892c41989684e52e90a136720ae8517b5b180b"

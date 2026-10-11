@@ -1,0 +1,9 @@
+Previous and intermediate production closes verified. Final preflight and original paired OPEN verified. Same recovered boot as all five passing sessions. IPv6 HTTP 200 from Mac; production active.
+{
+  "payload_sha256": "a8cdfe8ba49093182f596c849d25f98befef933b8e7ed951bdeae6194110752d",
+  "image_sha256": "c889bd9bf0bc40d25dd27a04f3e124de85d998b934963bdade453c092fe027bd",
+  "module_sha256": "444278bc480c35224f4b556803e487acd731594ac8fa5698b8b6b93f838f15ff",
+  "autonomous": true,
+  "module_options": [],
+  "boot_id": "3c5b99fb-e6a3-4bab-8df2-fdd16e43b1d9"
+}

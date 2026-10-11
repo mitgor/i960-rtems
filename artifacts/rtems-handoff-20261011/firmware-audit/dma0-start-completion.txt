@@ -1,0 +1,62 @@
+c004bf08:	1e 16 90 5c 	mov	g14,g2
+c004bf0c:	00 1e f0 5c 	mov	0,g14
+c004bf10:	00 30 88 90 	ld	0xc00a5cf0,g1
+c004bf14:	f0 5c 0a c0 
+c004bf18:	04 60 b4 90 	ld	0x4(g1),g6
+c004bf1c:	08 a0 05 3d 	cmpibne	0,g6,0xc004bf24
+c004bf20:	00 90 04 84 	bx	(g2)
+c004bf24:	0c 60 a4 90 	ld	0xc(g1),g4
+c004bf28:	08 20 05 3a 	cmpibe	0,g4,0xc004bf30
+c004bf2c:	00 90 04 84 	bx	(g2)
+c004bf30:	08 60 ac 90 	ld	0x8(g1),g5
+c004bf34:	0c 60 b4 92 	st	g6,0xc(g1)
+c004bf38:	10 60 ac 92 	st	g5,0x10(g1)
+c004bf3c:	14 60 a5 90 	ld	0x14(g5),g4
+c004bf40:	00 30 b0 90 	ld	0xc00a5cf0,g6
+c004bf44:	f0 5c 0a c0 
+c004bf48:	84 09 a5 58 	setbit	4,g4,g4
+c004bf4c:	14 60 a5 92 	st	g4,0x14(g5)
+c004bf50:	10 a0 a5 90 	ld	0x10(g6),g4
+c004bf54:	00 10 f5 92 	st	g14,(g4)
+c004bf58:	04 a0 f5 92 	st	g14,0x4(g6)
+c004bf5c:	08 a0 f5 92 	st	g14,0x8(g6)
+c004bf60:	0c 60 84 90 	ld	0xc(g1),g0
+c004bf64:	01 1e a8 5c 	mov	1,g5
+c004bf68:	00 30 a0 8c 	lda	0x1410,g4
+c004bf6c:	10 14 00 00 
+c004bf70:	1c 60 bc 90 	ld	0x1c(g1),g7
+c004bf74:	00 10 85 92 	st	g0,(g4)
+c004bf78:	00 34 ad 92 	st	g5,0xfffffff0(g4)
+c004bf7c:	f0 ff ff ff 
+c004bf80:	20 60 bc 92 	st	g7,0x20(g1)
+c004bf84:	1c a0 f5 92 	st	g14,0x1c(g6)
+c004bf88:	00 90 04 84 	bx	(g2)
+c004bf8c:	00 00 00 0a 	ret
+c004bf90:	00 30 a0 8c 	lda	0x1404,g4
+c004bf94:	04 14 00 00 
+c004bf98:	00 10 b5 90 	ld	(g4),g6
+c004bf9c:	00 30 a8 90 	ld	0xc00a5cf0,g5
+c004bfa0:	f0 5c 0a c0 
+c004bfa4:	00 10 b5 92 	st	g6,(g4)
+c004bfa8:	10 60 bd 90 	ld	0x10(g5),g7
+c004bfac:	00 50 b5 90 	ld	(g5),g6
+c004bfb0:	00 34 f5 92 	st	g14,0xfffffffc(g4)
+c004bfb4:	fc ff ff ff 
+c004bfb8:	00 d0 b5 92 	st	g6,(g7)
+c004bfbc:	0c 60 a5 90 	ld	0xc(g5),g4
+c004bfc0:	00 30 b0 90 	ld	0xc00a5cf0,g6
+c004bfc4:	f0 5c 0a c0 
+c004bfc8:	00 50 a5 92 	st	g4,(g5)
+c004bfcc:	0c a0 f5 92 	st	g14,0xc(g6)
+c004bfd0:	10 a0 f5 92 	st	g14,0x10(g6)
+c004bfd4:	20 60 25 90 	ld	0x20(g5),r4
+c004bfd8:	20 60 f5 92 	st	g14,0x20(g5)
+c004bfdc:	2c ff ff 0b 	bal	0xc004bf08
+c004bfe0:	f0 fd ff 09 	call	0xc004bdd0
+c004bfe4:	1c 20 01 3a 	cmpibe	0,r4,0xc004c000
+c004bfe8:	20 20 81 90 	ld	0x20(r4),g0
+c004bfec:	05 1e 88 5c 	mov	5,g1
+c004bff0:	16 20 89 82 	stob	g1,0x16(r4)
+c004bff4:	74 ec ff 0b 	bal	0xc004ac68
+c004bff8:	00 10 21 90 	ld	(r4),r4
+c004bffc:	ec 3f 01 3d 	cmpibne	0,r4,0xc004bfe8
