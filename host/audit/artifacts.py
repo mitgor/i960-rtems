@@ -24,12 +24,21 @@ def digest(path):
     return h.hexdigest()
 
 
-def rows():
+def rows(tracked_only=False):
+    # Parallel tasks may be preparing unrelated, untracked artifact directories.
+    # An explicit index scope lets a batch inventory only the files it has staged.
+    tracked = None
+    if tracked_only:
+        tracked = set(subprocess.check_output(
+            ['git', 'ls-files', '-z', '--', 'artifacts'], cwd=ROOT
+        ).decode().split('\0'))
     result = []
     for p in sorted(ARTIFACTS.rglob('*')):
         if not p.is_file() or p in (INVENTORY, SUMS):
             continue
         if p.name == '.DS_Store' or '__pycache__' in p.parts:
+            continue
+        if tracked is not None and p.relative_to(ROOT).as_posix() not in tracked:
             continue
         if p.is_symlink():
             raise ValueError(f'Unexpected artifact symlink: {p}')
@@ -42,8 +51,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--update', action='store_true')
     parser.add_argument('--check-git', action='store_true')
+    parser.add_argument('--tracked-only', action='store_true',
+                        help='Scope inventory to Git-indexed artifact paths; stage new batch files first.')
     args = parser.parse_args()
-    actual = rows()
+    actual = rows(args.tracked_only)
     if args.update:
         inventory = json.loads(INVENTORY.read_text())
         inventory['updated_date'] = date.today().isoformat()

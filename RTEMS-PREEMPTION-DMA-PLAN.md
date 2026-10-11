@@ -1,5 +1,18 @@
 # Preemptive RTEMS and DMA networking plan
 
+**Persistent asynchronous epochs (2026-10-11):** `persistirq` preserves one
+RTEMS instance across host calls and tracks a transitive two-mutex dependency
+chain A/B/C. Five normal sessions passed 120 callbacks, 29 clean rollback/handoffs
+and 46 follow epochs with the quarantined chain unchanged while Other ran.
+An intentional six-callback early-close session retained resources despite a
+completed QUIESCED handshake. Replay verified 126 reports and rejected 5,922
+mutations; the full native suite passed. The retained-close reboot recovered;
+a fresh 18-callback session passed and production IPv6 HTTP returned 200.
+[Contract and evidence](rtems/persistirq/README.md). RTEMS interrupts run inside bounded epochs and are
+restored between callbacks; this is not free-running firmware coexistence.
+Keep production on autonet. Earlier next-step descriptions are historical.
+
+
 **2026-10-11 asynchronous resource integration:** [ownirq](rtems/ownirq/README.md)
 now composes nested-critical deferral, a real mutex dependency, software-reference
 deferral and original IRQ-frame preservation. Known owner/waiter quarantine lets

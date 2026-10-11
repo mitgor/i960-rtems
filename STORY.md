@@ -1190,6 +1190,39 @@ instance. We have not smuggled a DMA completion or a permanently resident operat
 system into the conclusion. We have made the next dependency explicit, and seen
 the machine refuse to cross it without evidence.
 
+The next experiment kept the instance alive long enough to meet its own past.
+
+We added another lock and another waiter. A held the first lock. B held the
+second and waited for A. C waited for B. Stopping A now meant following the
+chain all the way to C. The fourth worker had no claim on either lock. It could
+keep doing arithmetic without joining the freeze.
+
+On a clean stop, the interrupted owner returned through its original frame,
+waited for the borrowed reference and rolled back. B saw the old committed
+value; C saw B's completed update. A later host call restarted those same task
+IDs on those same stacks. The controller had not rebuilt RTEMS behind our backs.
+
+On the other path, we left A suspended inside its interrupt, with B and C still
+waiting. Then we returned to firmware and came back again. The independent
+worker ran through twelve more execution epochs on its own interrupt stack. The trapped chain's stack hashes did not move. A reference
+could come home later without magically repairing the two locks.
+
+Four sessions completed a hundred and two callbacks and returned all their
+borrowed RAM. In a fifth, we closed the host descriptor before saying FINALIZE.
+The timer was stopped. The callback had returned. The module still kept the
+resident memory and refused to unload. Six good replies had not granted
+permission to throw away the seventh thing: the instance itself.
+
+We saved the evidence and rebooted to clear that deliberate refusal. SSH took
+long enough to make us ask for a look at the screen, then returned on a new
+boot. Another eighteen callbacks passed. The web service came back too, and
+Vader answered over IPv6 again.
+
+RTEMS survives between these calls as state, including an unfinished interrupt
+frame. Its timer does not keep running beside the stock firmware. That next
+step still needs an agreement about who owns the machine when nobody is on
+the phone.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

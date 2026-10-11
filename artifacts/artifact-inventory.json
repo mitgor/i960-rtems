@@ -9338,6 +9338,76 @@
       "sha256": "7c42c77e18ff46b864bbbd3385161ff5f87181a26126f1ade98bc812a6401b08"
     },
     {
+      "path": "artifacts/rtems-persistirq-20261011/README.md",
+      "size": 4097,
+      "sha256": "532cea5cac506dbb5c3f0a5551d6a60fb2cdea66ab9d8391199dfbf42dd33dc3"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/after-reboot.txt",
+      "size": 78,
+      "sha256": "34b590f33fa3e9faf3e96cecb36259d208d54fb7b2d6a2a195843a3011e4999b"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/before-reboot.txt",
+      "size": 654,
+      "sha256": "c6f4e0a260966d5fa00c69e04f5c832ab8edadd34be6f3cac090a5ef4ed3fad6"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/http-restored.txt",
+      "size": 2994,
+      "sha256": "3dcda95cc5a555dfb4851d09b4918d8b7db5db731d1a749bbcf866d778ccdf61"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/native-tests.txt",
+      "size": 5863,
+      "sha256": "38ffa9b103ca1257a369c5e6f0669ff01bf87beb52a0db2ec69a781b5748b8b9"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/persistirq-build-v2.log",
+      "size": 1158,
+      "sha256": "8d241a5a6e6ad4bd39b60236da0144f563d08a1a531d330fa733ce7f3eb677cc"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/persistirq-early-close.log",
+      "size": 722,
+      "sha256": "df0664802cc38726a4ecc15669a13c852de5d990912beba2372f4dc0e177ca08"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/persistirq-matrix.log",
+      "size": 11095,
+      "sha256": "da7b8a57cb845bdefd3b5c8f69ea249458fdfaf8b8adb364a3439e1dc64e05c8"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/production-verification.txt",
+      "size": 456,
+      "sha256": "5a41cf859df005de31de119bae205be9f203519bf93f6e048b98fb0e2e227dca"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/replay-before-reboot.json",
+      "size": 1504,
+      "sha256": "131407b6b0665d8dbd55bfb8ce90c2554a491b5623184b9105e05575090efaab"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/replay-final.json",
+      "size": 1805,
+      "sha256": "08f5e72cff6ae4660819fc4c01a85df3eac33ad040d0172cd6a2e14d7a66dbb7"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/evidence/service-state.txt",
+      "size": 502,
+      "sha256": "f52f3fd8a877492dead133fea9c1c1603e0a6ac24ab45d0cfdc74e365bdd18cc"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/live.tar.xz",
+      "size": 962868,
+      "sha256": "2e28b49b720af2233cafd532f1207fa251f0fb8290514614c75811bc207a3616"
+    },
+    {
+      "path": "artifacts/rtems-persistirq-20261011/source.tar.xz",
+      "size": 67684,
+      "sha256": "2e9710f7e0035eba22daa25ace810543c84efeb4b13eba6569864bf3c8ac0f58"
+    },
+    {
       "path": "artifacts/rtems-system-info-20261011/README.md",
       "size": 2036,
       "sha256": "fa6c22c5382783878207c0b611593482a4c20fc4dc7cf2306782154a172df114"
