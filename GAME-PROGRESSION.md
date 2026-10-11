@@ -131,8 +131,13 @@ build: 3.30× copy, 4.63× clear, and a 3.91% full-frame kernel-time reduction a
 repeated byte/word sessions. All 2,105 replies matched native output, with full
 restoration. [Evidence](artifacts/word-memory-20261011/README.md).
 
-Next concrete action: profile the constituent upload/arming commands, then design
-transfer batching around proven buffer ownership, completion and teardown. Keep
-all audits. The optimized helper does not reserve the larger RAM needed by Doom,
-prove physical DMA drain, or enable unrestricted RTEMS ownership. Those remain
-separate gates aligned with the parallel OS work.
+Upload/arming profiling and exact validation acceleration are also accepted:
+43,904 measured commands, unchanged paired read volume, and 3.61% lower full-frame
+kernel time (57.83 → 55.74 ms). Readback/audit fell 13.15%. The three upload
+completion waits still consume about 32 ms. [Evidence](artifacts/transfer-20261011/README.md).
+
+Next concrete action: design a generation-checked batch/frame queue that amortizes
+those uploads while retaining acceptance, result freshness, stop/self-disarm,
+full audits and restoration. Align it with the parallel ownership work. Neither
+the word helpers nor faster validation establish physical DMA drain or reserve
+the larger RAM needed by Doom; those remain separate gates.

@@ -28,7 +28,7 @@ Target build uses an isolated snapshot of the existing bounded RTEMS session:
 ```sh
 python3 game/raycaster/build_target.py --work /path/to/FRESH-work \
  --sources /home/mit/i960-rtems-web-20261011/sources
-python3 game/raycaster/build_transport.py --out /path/to/FRESH-module
+python3 game/raycaster/transfer/build.py --out /path/to/FRESH-module --fast --coarse
 make -C /lib/modules/$(uname -r)/build M=/path/to/FRESH-module CC=gcc-12 modules
 ```
 
@@ -41,6 +41,17 @@ Use the same arguments with `server.py --backend card` for browser output. An
 SSH local forward provides browser access without exposing the control server.
 Ctrl-C performs the audited close; restore and check production HTTP afterwards.
 No driver validation checks or memory permissions are weakened for profiling.
+
+## Faster validated framebuffer readback
+
+The recommended transport command above uses the hardware-tested exact-count
+and range-validation optimization. It reduces full-frame kernel time from
+57.83 to 55.74 ms in repeated comparisons, with the same command sequence,
+paired reads, bytes checked and audit cadence. The i960 payload is unchanged.
+For detailed upload/arming timings, omit `--coarse` and pass `--command-profile`
+to `check_card.py`. See [contract and profiling tools](transfer/README.md) and
+[preserved results](../../artifacts/transfer-20261011/README.md).
+Run `make -C game/raycaster test-transfer` before changing these validators.
 
 ## Memory helper variants
 

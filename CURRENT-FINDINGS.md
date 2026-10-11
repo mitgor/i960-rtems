@@ -1,5 +1,17 @@
 # Current findings and evidence — 2026-10-11
 
+**Framebuffer transport profiling (2026-10-11):** 43,904 profiled commands
+show about 32 ms waiting for the three request/sentinel/table uploads per frame.
+Exact-count DMA scans and equivalent immutable-range comparisons reduce full-frame
+kernel time 57.83 → 55.74 ms (3.61%), with readback/audit 12.22 → 10.61 ms (13.15%).
+Five sessions passed 2,105 native-matching replies, 65 periodic full audits and
+five full restorations/unloads. Optimized coarse build: 55.64 ms. Payload, bytes
+transferred, paired comparisons, guards and audit cadence are unchanged. HTTP
+restored; no flash/reboot in this batch. [Contract](game/raycaster/transfer/README.md),
+[evidence](artifacts/transfer-20261011/README.md). Use the optimized module only
+for the accepted bounded application path; batching/ownership remain separate gates.
+
+
 **Exclusive RTEMS track (2026-10-11):** the user explicitly permits RAID/SCSI
 shutdown during RTEMS and reboot/power-cycle to exit. `exclusive` now runs real
 preemptible RTEMS after the ARM callback returns, with inactive i960 DMA disabled,

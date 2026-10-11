@@ -11,3 +11,8 @@ test: all build/test
 	$(MAKE) -C ../../rtems/memory test
 	build/test
 	python3 test_host.py
+
+# Includes complete response-range mutation and transaction fault sweeps.
+test-transfer:
+	python3 transfer/test.py
+.PHONY: test-transfer

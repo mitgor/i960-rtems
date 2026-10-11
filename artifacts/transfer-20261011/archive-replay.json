@@ -1,0 +1,18 @@
+{
+  "replies": 2105,
+  "full_audits": 65,
+  "initial_prefix_snapshots": 5,
+  "restored_sessions": 5,
+  "profiled_commands": 43904,
+  "boot_id": "926ae76c-6a22-45fb-bd0c-e2cf93556afc",
+  "payload_sha256": "8a19e5a357d3443721ee835d5fbdfd52ffd61710b339b8be9d74554d947da5e3",
+  "module_sha256": {
+    "module-base": "2024741540a7d4f6e7abc506d54a60eac26850cb70c03052d2d5a78275cf6f67",
+    "module-fast-v2": "c45043ed7981e1c2a1167da82870bea32544f5f9f6545d29326f42d04f68ee2a",
+    "module-release": "41c5d3fc269fc62512296644fc999a671ac381346e9f50a13ca32c2e594246ea"
+  },
+  "source_delta_verified": true,
+  "release_source_reproduced": true,
+  "all_profiles_reproduced": true,
+  "float_tolerance": 1e-12
+}

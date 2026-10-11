@@ -27,3 +27,11 @@ and `artifacts/word-memory-20261011/README.md` for scope and measured acceptance
 Do not silently propagate these helpers into production/autonet or IRQ profiles.
 The `--memory-check` image injects 264 correctness batches; exclude it from
 performance results. A/B comparison must preserve output and all audits.
+
+Validated transport acceleration: use `transfer/build.py --fast --coarse` for
+ordinary bounded raycaster sessions. Omit `--coarse` with `check_card.py
+--command-profile` to capture complete command timing. Read `transfer/README.md`
+and `artifacts/transfer-20261011/README.md`. All read coverage and exact guard
+counts are retained; never replace paired snapshots with sampling/checksums.
+The three upload completion waits dominate; their cause is not proven to be a
+removable firmware delay. Run `make -C game/raycaster test-transfer` for changes.

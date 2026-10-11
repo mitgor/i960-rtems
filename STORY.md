@@ -1397,6 +1397,42 @@ needs its own packet transport before Vader can move in. The old cooperative
 arrangement is still there, documented and working. It has become an option
 rather than a condition of every experiment.
 
+## Checking the same bytes
+
+The faster copy routine left a stubborn number on the stopwatch. Uploading and
+arming still took nearly thirty-three milliseconds. So we put timestamps around
+each command, instead of treating that stretch as one mysterious expense.
+
+There were three uploads in an ordinary frame. One carried the request. One
+replaced the old result with a sentinel, so yesterday's answer could not pass
+for today's. One changed the dispatch-table word. The last carried only four
+bytes, yet its completion wait was about eleven milliseconds. The waiting,
+not the amount of data, dominated all three.
+
+We left those guarantees alone. There was cheaper work to do on the host. Every
+command counted changed bytes across its DMA buffer one at a time. Every reply
+walked the staging image to decide, byte by byte, which parts were allowed to
+change. Eight-byte counting and exact range comparisons could ask precisely the
+same questions with less arithmetic.
+
+The tests were deliberately fussy. Every immutable byte got its own corruption
+attempt. Every possible output boundary was checked. The counter faced more than
+half a million pattern, alignment and length combinations, followed by every
+pair of adjacent byte values. The failure paths still refused uncertain work.
+On the card, five sessions returned two thousand one hundred and five matching
+replies and restored their memory afterward.
+
+The paired readback and audit fell from 12.22 milliseconds to 10.61. The full
+kernel transaction fell from 57.83 to 55.74. We still read the same nine hundred
+thousand bytes in the ordinary paired audit. We still checked the guards and
+old code. We had made checking cheaper, not asked the card fewer questions.
+
+Forty-three thousand nine hundred and four command measurements made the next
+limit plain. A much larger gain would need a better conversation with the card:
+one that could share the cost of those uploads without mistaking an old frame
+for a new one or forgetting how to stop. For now, the small gain was real, the
+captures replayed, and Vader came back over IPv6.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

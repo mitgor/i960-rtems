@@ -16928,6 +16928,246 @@
       "sha256": "76652e928b6e4fdbe3bd32b6bffd4e1e96fd7df28dcdb93e7760d0d3d72b38c8"
     },
     {
+      "path": "artifacts/transfer-20261011/README.md",
+      "size": 10321,
+      "sha256": "a3d5196ed644e0b24c0d1d2fa72c695d24570485e37dec95a3c2af69b862e2b7"
+    },
+    {
+      "path": "artifacts/transfer-20261011/archive-replay.json",
+      "size": 698,
+      "sha256": "36464d3ac8785cc83725fb876da86dd64ddafd61ac888593fda9e19d27614806"
+    },
+    {
+      "path": "artifacts/transfer-20261011/base1-commands.json",
+      "size": 3123,
+      "sha256": "0ac1f51fa49637041bac6484d399c07064c0a5949cd230ccfe41047aadcadff6"
+    },
+    {
+      "path": "artifacts/transfer-20261011/base1-profile.json",
+      "size": 16624,
+      "sha256": "89eb3740a1f257e464ab539bb366487e3b5197ae25739b8e2c4829eaef994a5d"
+    },
+    {
+      "path": "artifacts/transfer-20261011/base1-verified.json",
+      "size": 235,
+      "sha256": "3a020bfc3a485e7422a0c83d67e11da164e0df5d1dea2a689ca25a9e5a180826"
+    },
+    {
+      "path": "artifacts/transfer-20261011/base2-commands.json",
+      "size": 3124,
+      "sha256": "d9acc2a19155c85a95ccc9335823e5b743dd440244966f38bcc2328d3db1dfc6"
+    },
+    {
+      "path": "artifacts/transfer-20261011/base2-profile.json",
+      "size": 16591,
+      "sha256": "2e2d29bc1602b465ac689b04abe04538d35faa605e6651a8860b945c67c68d39"
+    },
+    {
+      "path": "artifacts/transfer-20261011/base2-verified.json",
+      "size": 235,
+      "sha256": "c9bc236db896b43c57c716589593855fb3cc1fa608516f1b5b12b86abd468ade"
+    },
+    {
+      "path": "artifacts/transfer-20261011/comparison.json",
+      "size": 15902,
+      "sha256": "bf1a42d4f58448a0cc1fa97ecf81e28d5f629a90fd3aeff45c02669729e6c35f"
+    },
+    {
+      "path": "artifacts/transfer-20261011/fast1-commands.json",
+      "size": 3121,
+      "sha256": "d00f6ab22af0d45d7e09d5779bd7ccd2e865f454f6369706efa3d8b88d67dff9"
+    },
+    {
+      "path": "artifacts/transfer-20261011/fast1-profile.json",
+      "size": 16653,
+      "sha256": "ce6e1b7149448fa984edc94e21b3a2bacf9331e1032a90fd26b6347ab64511c7"
+    },
+    {
+      "path": "artifacts/transfer-20261011/fast1-verified.json",
+      "size": 235,
+      "sha256": "856344c1b6b5989a6a45543f8344e82ecfb00b1eb7372e187ed32e3d55e9abf0"
+    },
+    {
+      "path": "artifacts/transfer-20261011/fast2-commands.json",
+      "size": 3116,
+      "sha256": "5c3922d6f6ea650860f9a5ce6a3f03a3369c57c7ae8bb3be382005d39bc56028"
+    },
+    {
+      "path": "artifacts/transfer-20261011/fast2-profile.json",
+      "size": 16655,
+      "sha256": "735bf9c47c84812ccc3f3b4f1e047d783f0cd59bbd74879bbd00a384ccc5e13e"
+    },
+    {
+      "path": "artifacts/transfer-20261011/fast2-verified.json",
+      "size": 235,
+      "sha256": "fa798ed00ad7c981578b0cb5b100d55bbe865f3812a7a473e783d92a97908d58"
+    },
+    {
+      "path": "artifacts/transfer-20261011/firmware-dispatch.txt",
+      "size": 2117,
+      "sha256": "e3abcfa0d310ce38178fc5dc8b91eea8ea54cd461eb4b707b4b5cce273cf66f0"
+    },
+    {
+      "path": "artifacts/transfer-20261011/http-restored.headers",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/transfer-20261011/http-restored.html",
+      "size": 2891,
+      "sha256": "c6ddd8b235e2cafcaf32c2982d6bfd06ad2991a623cc528743c9b4d236b81c70"
+    },
+    {
+      "path": "artifacts/transfer-20261011/kernel.bin",
+      "size": 202596,
+      "sha256": "8a19e5a357d3443721ee835d5fbdfd52ffd61710b339b8be9d74554d947da5e3"
+    },
+    {
+      "path": "artifacts/transfer-20261011/live-base1.log",
+      "size": 152,
+      "sha256": "c4de2d7ff9c9a6d597e6bf90a1800e4f2decea409b93bd3ce9a38ecd6b9e081d"
+    },
+    {
+      "path": "artifacts/transfer-20261011/live-base2.log",
+      "size": 153,
+      "sha256": "852d8a28ce7dedb52edc0c9ad3448a45b3f707fb458a783bed557c0e67573aaf"
+    },
+    {
+      "path": "artifacts/transfer-20261011/live-fast1.log",
+      "size": 153,
+      "sha256": "0428be56866a06013192ab18e5d3015e7819328a250366d9e8c8c78dbfce3c28"
+    },
+    {
+      "path": "artifacts/transfer-20261011/live-fast2.log",
+      "size": 154,
+      "sha256": "17ad43ac9fdabd836745a3af6ead6f9eb00b0497129ac4c370aef533fcb1663f"
+    },
+    {
+      "path": "artifacts/transfer-20261011/live-release.log",
+      "size": 154,
+      "sha256": "d5ccd09a282f242e2f06da1c2fdc05a2889e19b16dc4c30ad0de5b1e0c3d023b"
+    },
+    {
+      "path": "artifacts/transfer-20261011/live.tar.gz",
+      "size": 17373934,
+      "sha256": "02ffd2d4e5c2f9ecc5c9fbef4f56b92c82ba0a08f948d2b59d5c3e0dd96dc290"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-base/dac960rtems.ko",
+      "size": 676816,
+      "sha256": "2024741540a7d4f6e7abc506d54a60eac26850cb70c03052d2d5a78275cf6f67"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-base/driver.dis",
+      "size": 435042,
+      "sha256": "8fdb02faa10c53739fd0da6e957b5984c873e79609d87c84d5ca93176d848f58"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-base/source.tar.gz",
+      "size": 16465,
+      "sha256": "598640efab6e9914d5ce4704220c799a9dd396d00b9ca87ef07d877621053283"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-base/transfer-build.json",
+      "size": 58,
+      "sha256": "63b633785eb38389db25a34a8f2fe495853ed0a3900d69d2d30093fb3f1e9075"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-base.log",
+      "size": 995,
+      "sha256": "7736f07322d958d25a2ca8a77da9c494713f9c196dc98505016f2f46461a76fd"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-fast-v2/dac960rtems.ko",
+      "size": 681928,
+      "sha256": "c45043ed7981e1c2a1167da82870bea32544f5f9f6545d29326f42d04f68ee2a"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-fast-v2/driver.dis",
+      "size": 440668,
+      "sha256": "483f42dcf0b686f2772b1e31195ec4b3205aa729a82f2ff922999428d0c227b2"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-fast-v2/source.tar.gz",
+      "size": 16992,
+      "sha256": "d685a022788b220d79cf06d918e9791840bcd16ebeef5148619147f8f358a4ae"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-fast-v2/transfer-build.json",
+      "size": 57,
+      "sha256": "86e202a8258f2ba0be0e70a585a876b53d3ba9866ee31da31d2630e634288d91"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-fast-v2.log",
+      "size": 1013,
+      "sha256": "0d33e33a42b47d9f5305b3433eddf0286445956ebdaa85b59ae8890f451d1539"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-fast.log",
+      "size": 995,
+      "sha256": "850fec1f48ef097ee2d11d09af8daf82e8a8e23d5336a9c40bf1ee8312f32c41"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-release/dac960rtems.ko",
+      "size": 675272,
+      "sha256": "41c5d3fc269fc62512296644fc999a671ac381346e9f50a13ca32c2e594246ea"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-release/driver.dis",
+      "size": 435300,
+      "sha256": "a1f0876289d86ec361af7680105606defb3135e8d9bd9ee86eff235a9a47ab20"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-release/source.tar.gz",
+      "size": 16688,
+      "sha256": "ee5f9a08a602aa67b6c56eed375fde4cbf05fe971a3445a216f5fa137178eef4"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-release/transfer-build.json",
+      "size": 58,
+      "sha256": "8b39d8aa5734f13fe4b3b7a2c6e64e1257b54cc3e3750961bb358e2e02aba2cc"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-release.log",
+      "size": 1013,
+      "sha256": "c72868d4d0e44097969dbfa7ab8d8ca2bf3bcb8c46405489d4a4b3450d46583a"
+    },
+    {
+      "path": "artifacts/transfer-20261011/native-linux.txt",
+      "size": 980,
+      "sha256": "3d3f32119b15a1ef5021f892009776558c60e5a705ace149db8adc14312aa857"
+    },
+    {
+      "path": "artifacts/transfer-20261011/native-mac.txt",
+      "size": 1005,
+      "sha256": "2bf5d1ee4996a35f37f865c4c5ffc4933db85ea94bd7cf7b4180362d4d5ee085"
+    },
+    {
+      "path": "artifacts/transfer-20261011/native-ray-mac.txt",
+      "size": 429,
+      "sha256": "96bf0a6087cfaf22d9b3a99baa6def86c7cfc80337b8fb16c82ca5c10b75b8a7"
+    },
+    {
+      "path": "artifacts/transfer-20261011/native-ray.txt",
+      "size": 1726,
+      "sha256": "cfb864e77620b280eae0c979f36e97dbb09f460ede10a7f9a062c910f4eb07cd"
+    },
+    {
+      "path": "artifacts/transfer-20261011/release-profile.json",
+      "size": 16606,
+      "sha256": "e5d01a6b1004a415658dedf741f6f33109e752b56c988331cd531d22841a0416"
+    },
+    {
+      "path": "artifacts/transfer-20261011/release-verified.json",
+      "size": 235,
+      "sha256": "904b080544f2f8763d435fbea252a5b6ee34e1c0f66ec6b51bc15c341b2a7afd"
+    },
+    {
+      "path": "artifacts/transfer-20261011/service-state.txt",
+      "size": 458,
+      "sha256": "baf12ebef6e3775589fcedd6202e3bbf869cc038617874c3f91d1cfb519d5c6f"
+    },
+    {
       "path": "artifacts/vendor-fujitsu/4.07-0-29/BGJ41041.IMG.decoded",
       "size": 29194,
       "sha256": "a5a7e9c8edda69ca72ea663481e7c65dc1d44711901c8de8a239691faadaf39d"

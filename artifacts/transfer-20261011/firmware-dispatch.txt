@@ -1,0 +1,57 @@
+Matching Fujitsu firmware dispatch lookup (offline, no live register reads).
+unpacked.bin SHA256: 21f6c1d898a533d7023a53893f03547ed61631016d1b247d3ecbb97b9403c195
+opcode 0x20: table 0xc001f880 -> 0xc001fdb8
+opcode 0x21: table 0xc001f884 -> 0xc001fdc8
+opcode 0x6f: table 0xc001f9bc -> 0xc001fe98
+
+c001fdb8:	00 30 a0 8c 	lda	0xc004ccb0,g4
+c001fdbc:	b0 cc 04 c0 
+c001fdc0:	40 20 a4 92 	st	g4,0x40(g0)
+c001fdc4:	00 00 00 0a 	ret
+c001fdc8:	00 30 a0 8c 	lda	0xc004cd00,g4
+c001fdcc:	00 cd 04 c0 
+c001fdd0:	40 20 a4 92 	st	g4,0x40(g0)
+c001fdd4:	00 00 00 0a 	ret
+
+c004ccb0:	01 1e a0 5c 	mov	1,g4
+c004ccb4:	00 30 a0 92 	st	g4,0xc00a6940
+c004ccb8:	40 69 0a c0 
+c004ccbc:	c4 6c fe 09 	call	0xc0033980
+c004ccc0:	90 30 00 5a 	cmpi	g0,0
+c004ccc4:	00 30 80 80 	ldob	0xc00a5d98,g0
+c004ccc8:	98 5d 0a c0 
+c004cccc:	30 00 00 12 	be	0xc004ccfc
+c004ccd0:	44 04 90 8c 	lda	0x444,g2
+c004ccd4:	90 80 84 70 	mulo	g0,g2,g0
+c004ccd8:	00 30 a0 90 	ld	0xc011e22c,g4
+c004ccdc:	2c e2 11 c0 
+c004cce0:	e0 20 8d 90 	ld	0xe0(g4),g1
+c004cce4:	00 34 84 8c 	lda	0xc0060d80(g0),g0
+c004cce8:	80 0d 06 c0 
+c004ccec:	00 50 04 86 	callx	(g1)
+c004ccf0:	00 30 f0 92 	st	g14,0xc00a6940
+c004ccf4:	40 69 0a c0 
+c004ccf8:	00 00 00 0a 	ret
+c004ccfc:	64 df ff 08 	b	0xc004ac60
+c004cd00:	01 1e a0 5c 	mov	1,g4
+c004cd04:	00 30 a0 92 	st	g4,0xc00a6940
+c004cd08:	40 69 0a c0 
+c004cd0c:	74 6c fe 09 	call	0xc0033980
+c004cd10:	90 30 00 5a 	cmpi	g0,0
+c004cd14:	00 30 80 80 	ldob	0xc00a5d98,g0
+c004cd18:	98 5d 0a c0 
+c004cd1c:	30 00 00 12 	be	0xc004cd4c
+c004cd20:	44 04 90 8c 	lda	0x444,g2
+c004cd24:	90 80 84 70 	mulo	g0,g2,g0
+c004cd28:	00 30 a0 90 	ld	0xc011e22c,g4
+c004cd2c:	2c e2 11 c0 
+c004cd30:	e4 20 8d 90 	ld	0xe4(g4),g1
+c004cd34:	00 34 84 8c 	lda	0xc0060d80(g0),g0
+c004cd38:	80 0d 06 c0 
+c004cd3c:	00 50 04 86 	callx	(g1)
+c004cd40:	00 30 f0 92 	st	g14,0xc00a6940
+c004cd44:	40 69 0a c0 
+c004cd48:	00 00 00 0a 	ret
+c004cd4c:	14 df ff 08 	b	0xc004ac60
+
+The read/write wrappers select controller methods at +0xe0/+0xe4. This does not establish the origin of the observed 10–11 ms completion waits; no delay bypass or firmware patch is justified by these timings alone.

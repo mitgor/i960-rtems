@@ -1,0 +1,691 @@
+{
+  "method": "Median of two session medians, baseline/optimized/optimized/baseline order; same target and requests.",
+  "phases": {
+    "render80": {
+      "upload_ms": {
+        "baseline_runs": [
+          10.7532375,
+          10.7539355
+        ],
+        "optimized_runs": [
+          10.6939445,
+          10.695461
+        ],
+        "baseline": 10.7535865,
+        "optimized": 10.694702750000001,
+        "reduction_percent": 0.5475731282767793
+      },
+      "arm_ms": {
+        "baseline_runs": [
+          22.077264,
+          22.0705635
+        ],
+        "optimized_runs": [
+          21.9567195,
+          21.9625655
+        ],
+        "baseline": 22.07391375,
+        "optimized": 21.9596425,
+        "reduction_percent": 0.5176755300133284
+      },
+      "execute_ms": {
+        "baseline_runs": [
+          11.9876655,
+          11.988436
+        ],
+        "optimized_runs": [
+          11.92961,
+          11.9278765
+        ],
+        "baseline": 11.98805075,
+        "optimized": 11.92874325,
+        "reduction_percent": 0.4947217962019357
+      },
+      "verify_ms": {
+        "baseline_runs": [
+          0.843741,
+          0.813406
+        ],
+        "optimized_runs": [
+          0.6059985,
+          0.606736
+        ],
+        "baseline": 0.8285735,
+        "optimized": 0.60636725,
+        "reduction_percent": 26.817928644833554
+      },
+      "audit_ms": {
+        "baseline_runs": [
+          12.438036,
+          11.995033
+        ],
+        "optimized_runs": [
+          10.5255485,
+          10.6943275
+        ],
+        "baseline": 12.2165345,
+        "optimized": 10.609938,
+        "reduction_percent": 13.151000392132485
+      },
+      "kernel_ms": {
+        "baseline_runs": [
+          57.976466,
+          57.6833455
+        ],
+        "optimized_runs": [
+          55.674249,
+          55.808773
+        ],
+        "baseline": 57.82990575,
+        "optimized": 55.741511,
+        "reduction_percent": 3.611271232272406
+      },
+      "wall_ms": {
+        "baseline_runs": [
+          62.29738,
+          61.138979
+        ],
+        "optimized_runs": [
+          59.4769145,
+          60.394957
+        ],
+        "baseline": 61.7181795,
+        "optimized": 59.93593575,
+        "reduction_percent": 2.8877127686502746
+      }
+    },
+    "render10": {
+      "upload_ms": {
+        "baseline_runs": [
+          10.756381,
+          10.7881025
+        ],
+        "optimized_runs": [
+          10.70781,
+          10.694461
+        ],
+        "baseline": 10.77224175,
+        "optimized": 10.7011355,
+        "reduction_percent": 0.6600877667826133
+      },
+      "arm_ms": {
+        "baseline_runs": [
+          22.072409,
+          22.121791
+        ],
+        "optimized_runs": [
+          21.971893,
+          21.962153
+        ],
+        "baseline": 22.0971,
+        "optimized": 21.967023,
+        "reduction_percent": 0.5886609555100009
+      },
+      "execute_ms": {
+        "baseline_runs": [
+          6.0294625,
+          6.1082565
+        ],
+        "optimized_runs": [
+          5.971631,
+          5.967322
+        ],
+        "baseline": 6.0688595,
+        "optimized": 5.969476500000001,
+        "reduction_percent": 1.6375894020944082
+      },
+      "verify_ms": {
+        "baseline_runs": [
+          0.8349165,
+          0.9240265
+        ],
+        "optimized_runs": [
+          0.6308895,
+          0.5984085
+        ],
+        "baseline": 0.8794715,
+        "optimized": 0.614649,
+        "reduction_percent": 30.111549947894844
+      },
+      "audit_ms": {
+        "baseline_runs": [
+          12.6825875,
+          12.9189815
+        ],
+        "optimized_runs": [
+          10.729936,
+          10.5501025
+        ],
+        "baseline": 12.800784499999999,
+        "optimized": 10.64001925,
+        "reduction_percent": 16.879943959684653
+      },
+      "kernel_ms": {
+        "baseline_runs": [
+          52.425476,
+          52.935458
+        ],
+        "optimized_runs": [
+          50.037145,
+          49.822706
+        ],
+        "baseline": 52.680467,
+        "optimized": 49.929925499999996,
+        "reduction_percent": 5.221179037763668
+      },
+      "wall_ms": {
+        "baseline_runs": [
+          56.7275125,
+          58.190388
+        ],
+        "optimized_runs": [
+          54.4447765,
+          53.8202245
+        ],
+        "baseline": 57.45895025,
+        "optimized": 54.132500500000006,
+        "reduction_percent": 5.789263005200818
+      }
+    },
+    "snapshot64": {
+      "upload_ms": {
+        "baseline_runs": [
+          10.771592,
+          10.803493
+        ],
+        "optimized_runs": [
+          10.702923,
+          10.6948685
+        ],
+        "baseline": 10.7875425,
+        "optimized": 10.69889575,
+        "reduction_percent": 0.8217511078171924
+      },
+      "arm_ms": {
+        "baseline_runs": [
+          22.0829635,
+          22.0804295
+        ],
+        "optimized_runs": [
+          21.9571385,
+          21.966772
+        ],
+        "baseline": 22.0816965,
+        "optimized": 21.96195525,
+        "reduction_percent": 0.5422647213722986
+      },
+      "execute_ms": {
+        "baseline_runs": [
+          5.0708525,
+          5.083036
+        ],
+        "optimized_runs": [
+          5.006179,
+          5.024083
+        ],
+        "baseline": 5.07694425,
+        "optimized": 5.015131,
+        "reduction_percent": 1.217528634473386
+      },
+      "verify_ms": {
+        "baseline_runs": [
+          0.870881,
+          0.919839
+        ],
+        "optimized_runs": [
+          0.6300585,
+          0.6294
+        ],
+        "baseline": 0.8953599999999999,
+        "optimized": 0.62972925,
+        "reduction_percent": 29.667480119728374
+      },
+      "audit_ms": {
+        "baseline_runs": [
+          12.9396685,
+          12.954248
+        ],
+        "optimized_runs": [
+          10.7137015,
+          10.689015
+        ],
+        "baseline": 12.94695825,
+        "optimized": 10.70135825,
+        "reduction_percent": 17.344614515923073
+      },
+      "kernel_ms": {
+        "baseline_runs": [
+          51.859912,
+          51.921104
+        ],
+        "optimized_runs": [
+          49.0094175,
+          48.9958245
+        ],
+        "baseline": 51.890508,
+        "optimized": 49.002621,
+        "reduction_percent": 5.5653473271065295
+      },
+      "wall_ms": {
+        "baseline_runs": [
+          55.8190925,
+          56.1948315
+        ],
+        "optimized_runs": [
+          53.437669,
+          53.4113885
+        ],
+        "baseline": 56.006962,
+        "optimized": 53.42452875,
+        "reduction_percent": 4.6109147109246855
+      }
+    },
+    "snapshot4864": {
+      "upload_ms": {
+        "baseline_runs": [
+          10.764455,
+          10.776249
+        ],
+        "optimized_runs": [
+          10.696903,
+          10.704997
+        ],
+        "baseline": 10.770351999999999,
+        "optimized": 10.70095,
+        "reduction_percent": 0.6443800536881095
+      },
+      "arm_ms": {
+        "baseline_runs": [
+          22.0739775,
+          22.0783435
+        ],
+        "optimized_runs": [
+          21.954099,
+          21.9803765
+        ],
+        "baseline": 22.0761605,
+        "optimized": 21.96723775,
+        "reduction_percent": 0.49339535287398206
+      },
+      "execute_ms": {
+        "baseline_runs": [
+          5.549161,
+          5.605254
+        ],
+        "optimized_runs": [
+          5.4992185,
+          5.5053035
+        ],
+        "baseline": 5.5772075,
+        "optimized": 5.502261,
+        "reduction_percent": 1.3437997420752246
+      },
+      "verify_ms": {
+        "baseline_runs": [
+          0.8887295,
+          0.880684
+        ],
+        "optimized_runs": [
+          0.6313645,
+          0.607171
+        ],
+        "baseline": 0.88470675,
+        "optimized": 0.61926775,
+        "reduction_percent": 30.00304903291401
+      },
+      "audit_ms": {
+        "baseline_runs": [
+          12.861929,
+          13.001891
+        ],
+        "optimized_runs": [
+          10.7027955,
+          10.6744605
+        ],
+        "baseline": 12.93191,
+        "optimized": 10.688628000000001,
+        "reduction_percent": 17.346872967720927
+      },
+      "kernel_ms": {
+        "baseline_runs": [
+          52.1160005,
+          52.4572985
+        ],
+        "optimized_runs": [
+          49.492424,
+          49.502252
+        ],
+        "baseline": 52.286649499999996,
+        "optimized": 49.497338,
+        "reduction_percent": 5.334653351617025
+      },
+      "wall_ms": {
+        "baseline_runs": [
+          56.312685,
+          56.792965
+        ],
+        "optimized_runs": [
+          53.995237,
+          54.0101165
+        ],
+        "baseline": 56.552825,
+        "optimized": 54.002676750000006,
+        "reduction_percent": 4.509320710327014
+      }
+    }
+  },
+  "commands": {
+    "request_upload": {
+      "wait_ms": {
+        "baseline_runs": [
+          10.6035445,
+          10.6034775
+        ],
+        "optimized_runs": [
+          10.6042895,
+          10.603311
+        ],
+        "baseline": 10.603511000000001,
+        "optimized": 10.603800249999999,
+        "reduction_percent": -0.0027278700422739277
+      },
+      "scan_ms": {
+        "baseline_runs": [
+          0.0825265,
+          0.0825295
+        ],
+        "optimized_runs": [
+          0.0288385,
+          0.028825
+        ],
+        "baseline": 0.082528,
+        "optimized": 0.02883175,
+        "reduction_percent": 65.06428121364871
+      },
+      "total_ms": {
+        "baseline_runs": [
+          10.728007,
+          10.7320545
+        ],
+        "optimized_runs": [
+          10.6710495,
+          10.671455
+        ],
+        "baseline": 10.730030750000001,
+        "optimized": 10.67125225,
+        "reduction_percent": 0.5477943294803778
+      }
+    },
+    "sentinel_upload": {
+      "wait_ms": {
+        "baseline_runs": [
+          10.0789405,
+          10.079716
+        ],
+        "optimized_runs": [
+          10.145419,
+          10.143469
+        ],
+        "baseline": 10.07932825,
+        "optimized": 10.144444,
+        "reduction_percent": -0.6460326361531044
+      },
+      "scan_ms": {
+        "baseline_runs": [
+          0.082161,
+          0.0821935
+        ],
+        "optimized_runs": [
+          0.02777,
+          0.02783
+        ],
+        "baseline": 0.08217725000000001,
+        "optimized": 0.0278,
+        "reduction_percent": 66.17068592584931
+      },
+      "total_ms": {
+        "baseline_runs": [
+          10.2074285,
+          10.2099865
+        ],
+        "optimized_runs": [
+          10.2013915,
+          10.1990965
+        ],
+        "baseline": 10.2087075,
+        "optimized": 10.200244,
+        "reduction_percent": 0.08290471639038621
+      }
+    },
+    "table_upload": {
+      "wait_ms": {
+        "baseline_runs": [
+          11.331212,
+          11.3281315
+        ],
+        "optimized_runs": [
+          11.38546,
+          11.3863235
+        ],
+        "baseline": 11.32967175,
+        "optimized": 11.385891749999999,
+        "reduction_percent": -0.49621914244779575
+      },
+      "scan_ms": {
+        "baseline_runs": [
+          0.082164,
+          0.0822055
+        ],
+        "optimized_runs": [
+          0.02842,
+          0.0284945
+        ],
+        "baseline": 0.08218475,
+        "optimized": 0.02845725,
+        "reduction_percent": 65.37405053857314
+      },
+      "total_ms": {
+        "baseline_runs": [
+          11.445882,
+          11.448046
+        ],
+        "optimized_runs": [
+          11.4437385,
+          11.44584
+        ],
+        "baseline": 11.446964,
+        "optimized": 11.44478925,
+        "reduction_percent": 0.018998487284493937
+      }
+    },
+    "table_read": {
+      "wait_ms": {
+        "baseline_runs": [
+          0.363253,
+          0.3642865
+        ],
+        "optimized_runs": [
+          0.36329,
+          0.3632125
+        ],
+        "baseline": 0.36376975,
+        "optimized": 0.36325125,
+        "reduction_percent": 0.14253521630096522
+      },
+      "scan_ms": {
+        "baseline_runs": [
+          0.357306,
+          0.346208
+        ],
+        "optimized_runs": [
+          0.1130225,
+          0.1130985
+        ],
+        "baseline": 0.351757,
+        "optimized": 0.11306050000000001,
+        "reduction_percent": 67.85835107759048
+      },
+      "total_ms": {
+        "baseline_runs": [
+          0.813717,
+          0.8043255
+        ],
+        "optimized_runs": [
+          0.5818855,
+          0.5895395
+        ],
+        "baseline": 0.80902125,
+        "optimized": 0.5857125000000001,
+        "reduction_percent": 27.60233430209651
+      }
+    },
+    "callback": {
+      "wait_ms": {
+        "baseline_runs": [
+          11.8594035,
+          11.8614335
+        ],
+        "optimized_runs": [
+          11.8632865,
+          11.865751
+        ],
+        "baseline": 11.860418500000002,
+        "optimized": 11.864518749999998,
+        "reduction_percent": -0.03457087117118007
+      },
+      "scan_ms": {
+        "baseline_runs": [
+          0.082135,
+          0.082227
+        ],
+        "optimized_runs": [
+          0.027712,
+          0.027842
+        ],
+        "baseline": 0.082181,
+        "optimized": 0.027777,
+        "reduction_percent": 66.20021659507672
+      },
+      "total_ms": {
+        "baseline_runs": [
+          11.9783875,
+          11.97852
+        ],
+        "optimized_runs": [
+          11.919945,
+          11.9197975
+        ],
+        "baseline": 11.97845375,
+        "optimized": 11.91987125,
+        "reduction_percent": 0.4890656275230887
+      }
+    },
+    "result_read": {
+      "wait_ms": {
+        "baseline_runs": [
+          0.1458995,
+          0.1656765
+        ],
+        "optimized_runs": [
+          0.1712545,
+          0.1544915
+        ],
+        "baseline": 0.15578799999999998,
+        "optimized": 0.162873,
+        "reduction_percent": -4.547847074229083
+      },
+      "scan_ms": {
+        "baseline_runs": [
+          0.1642395,
+          0.1587945
+        ],
+        "optimized_runs": [
+          0.055259,
+          0.055333
+        ],
+        "baseline": 0.16151700000000002,
+        "optimized": 0.055296,
+        "reduction_percent": 65.76459443897546
+      },
+      "total_ms": {
+        "baseline_runs": [
+          0.3720865,
+          0.3631285
+        ],
+        "optimized_runs": [
+          0.253191,
+          0.251605
+        ],
+        "baseline": 0.3676075,
+        "optimized": 0.252398,
+        "reduction_percent": 31.34035622232951
+      }
+    },
+    "audit_read": {
+      "wait_ms": {
+        "baseline_runs": [
+          9.3376605,
+          9.401333
+        ],
+        "optimized_runs": [
+          9.3953645,
+          9.329607
+        ],
+        "baseline": 9.36949675,
+        "optimized": 9.36248575,
+        "reduction_percent": 0.07482792498967328
+      },
+      "scan_ms": {
+        "baseline_runs": [
+          1.1671305,
+          1.0706565
+        ],
+        "optimized_runs": [
+          0.3722765,
+          0.50301
+        ],
+        "baseline": 1.1188935,
+        "optimized": 0.43764325,
+        "reduction_percent": 60.88606735136097
+      },
+      "total_ms": {
+        "baseline_runs": [
+          10.9119095,
+          10.777807
+        ],
+        "optimized_runs": [
+          10.181909,
+          10.2357805
+        ],
+        "baseline": 10.84485825,
+        "optimized": 10.20884475,
+        "reduction_percent": 5.864654800813085
+      }
+    }
+  },
+  "unattributed_kernel_ms": {
+    "baseline_runs": [
+      1.5272335,
+      1.363075
+    ],
+    "optimized_runs": [
+      0.4377195,
+      0.574104
+    ],
+    "baseline": 1.4451542499999999,
+    "optimized": 0.50591175,
+    "reduction_percent": 64.99254318353906
+  },
+  "release": {
+    "n": 160,
+    "upload_ms": 10.6864575,
+    "arm_ms": 21.939525,
+    "execute_ms": 11.92763,
+    "verify_ms": 0.5852495,
+    "audit_ms": 10.507202,
+    "kernel_ms": 55.6420725,
+    "wall_ms": 60.2139,
+    "min_execute_ms": 11.513029,
+    "max_execute_ms": 12.207221
+  }
+}
