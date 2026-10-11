@@ -1,0 +1,11 @@
+{
+  "verified_replies": 301,
+  "verified_audit_snapshots": 10,
+  "verified_full_allocation_audits": 9,
+  "resets": 1,
+  "keyed_requests": 300,
+  "restored": true,
+  "unloaded": true,
+  "median_ms": 51.432397,
+  "max_ms": 74.031258
+}

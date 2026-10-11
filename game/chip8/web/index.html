@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>Mylex arcade · CHIP-8</title>
+<style>
+body{margin:3em auto;padding:0 1em;max-width:850px;background:#10151c;color:#e6edf3;font:17px system-ui}h1{font-size:2em}canvas{width:100%;image-rendering:pixelated;border:1px solid #41516a;background:#050b0a;aspect-ratio:2}button{padding:.6em 1em;color:inherit;background:#25374a;border:1px solid #526b85;border-radius:5px}#status{font:14px monospace;white-space:pre-wrap}kbd{color:#80efb5}a{color:#80efb5}
+</style>
+<h1>Mylex arcade <small>CHIP-8</small></h1>
+<p id="backend">Connecting…</p><canvas width="64" height="32" aria-label="CHIP-8 monochrome framebuffer"></canvas>
+<p>Move the ship: <kbd>← ↑ ↓ →</kbd>. CHIP-8 keypad: <kbd>1234 / QWER / ASDF / ZXCV</kbd>.</p>
+<button id="reset">Restart</button> <span id="sound"></span><p id="status"></p>
+<p>Original project demo. 64 × 32 pixels · 60 Hz guest timers · bounded interpreter calls.</p>
+<script>
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d');
+const keymap={'1':1,'2':2,'3':3,'4':12,q:4,w:5,e:6,r:13,a:7,s:8,d:9,f:14,z:10,x:0,c:11,v:15,arrowleft:4,arrowright:6,arrowup:2,arrowdown:8};
+const down=new Set();let reset=false,alive=true;
+function keys(){let mask=0;for(const k of down)mask|=1<<keymap[k];return mask;}
+addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(k in keymap){down.add(k);e.preventDefault();}});
+addEventListener('keyup',e=>down.delete(e.key.toLowerCase()));
+addEventListener('blur',()=>down.clear());
+document.addEventListener('visibilitychange',()=>{if(document.hidden)down.clear();});
+document.querySelector('#reset').onclick=()=>reset=true;
+async function frame(){
+ try{
+  const restart=reset;reset=false;
+  const response=await fetch('/step',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({keys:document.hidden?0:keys(),reset:restart})});
+  if(!response.ok)throw Error('HTTP '+response.status);
+  const s=await response.json(),pixels=ctx.createImageData(64,32);
+  for(let i=0;i<2048;i++){const byte=parseInt(s.frame.slice((i>>3)*2,(i>>3)*2+2),16),on=byte&(128>>(i&7)),p=i*4;pixels.data.set(on?[128,239,181,255]:[5,11,10,255],p);}
+  ctx.putImageData(pixels,0,0);document.querySelector('#backend').textContent=s.backend;
+  document.querySelector('#status').textContent=`Instructions ${s.total} · PC 0x${s.pc.toString(16)} · status ${['running','waiting for key','unsupported opcode','memory fault','stack fault'][s.status]}`;
+  document.querySelector('#sound').textContent=s.sound?'● Guest sound timer active':'';
+ }catch(e){document.querySelector('#status').textContent='Stopped: '+e.message;alive=false;}
+ // Serialized requests: never queue overlapping card callbacks.
+ if(alive)setTimeout(frame,33);
+}
+frame();
+</script></html>

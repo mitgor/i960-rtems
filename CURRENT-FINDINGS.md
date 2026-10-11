@@ -1,5 +1,16 @@
 # Current findings and evidence — 2026-10-11
 
+**CHIP-8 application milestone (2026-10-11):** bounded RTEMS CHIP-8 and a browser
+framebuffer bridge passed 705 native-matching card replies: reset + 300 scripted
+updates, then 404 browser callbacks including movement/restart. All 21 periodic full-allocation
+audits and both RAM restorations/unloads passed. Median callback latency was
+51.43/51.65 ms. Production IPv6 HTTP returned 200; no flash/reboot. The separate
+parallel OS batch completed before these sessions. [Evidence](artifacts/chip8-20261011/README.md),
+[usage](game/chip8/README.md), [progression and DoomGeneric decision](GAME-PROGRESSION.md).
+Next application: fixed-point raycaster and transport measurements. Doom still
+needs larger owned RAM and runtime services; FastDoom is an optimization reference.
+
+
 **Persistent asynchronous epochs (2026-10-11):** `persistirq` preserves one
 RTEMS instance across host calls and tracks a transitive two-mutex dependency
 chain A/B/C. Five normal sessions passed 120 callbacks, 29 clean rollback/handoffs

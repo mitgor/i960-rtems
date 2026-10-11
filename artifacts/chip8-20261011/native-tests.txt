@@ -1,0 +1,8 @@
+build/test
+CHIP-8: arithmetic, aliasing, stack, memory, wrap/collision, timer, key wait, protocol, all 65536 opcodes and 1000 random programs passed (ASan/UBSan)
+python3 test_host.py
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.510s
+
+OK

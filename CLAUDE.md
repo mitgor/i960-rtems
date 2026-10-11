@@ -1,5 +1,13 @@
 # Repository guidance for Claude Code
 
+**Game application track (2026-10-11):** [CHIP-8 → framebuffer → raycaster → Doom](GAME-PROGRESSION.md).
+DoomGeneric is the chosen porting base; FastDoom is an optimization reference.
+CHIP-8 passed 705 native-matching RTEMS card replies, browser keys/restart,
+21 periodic full-allocation audits and two clean restorations/unloads. Production IPv6 HTTP restored.
+See [application contract](game/chip8/README.md). Keep this bounded application
+separate from active interrupt/ownership profiles and production autonet.
+
+
 **Persistent asynchronous epochs (2026-10-11):** `persistirq` preserves one
 RTEMS instance across host calls and tracks a transitive two-mutex dependency
 chain A/B/C. Five normal sessions passed 120 callbacks, 29 clean rollback/handoffs

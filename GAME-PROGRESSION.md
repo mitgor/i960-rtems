@@ -1,0 +1,128 @@
+# Games on the Mylex: CHIP-8, framebuffer, raycaster, Doom
+
+Updated 2026-10-11. This application track follows the working Tetris and RTEMS
+milestones. It does not supersede the interrupt/ownership work in the parallel
+**Review loader improvements (2)** chat or its production-service decisions.
+
+## Decision: use DoomGeneric; borrow measured ideas from FastDoom
+
+Chosen base: [ozkl/doomgeneric](https://github.com/ozkl/doomgeneric), inspected at
+`e257a09527062bfb986b6e5e0780839b6cbd5b71`.
+Comparison: [viti95/FastDoom](https://github.com/viti95/FastDoom), inspected at
+`9a7b435a9b95db1ba38f89f1139050d748d32fde`. These are research pins, not vendored
+or completed i960 ports.
+
+DoomGeneric exposes platform hooks for initialization, display, time, sleep and
+keys, plus a callable `doomgeneric_Tick`. Its
+[header](https://github.com/ozkl/doomgeneric/blob/e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/doomgeneric.h)
+has an 8-bit `CMAP256` pixel option. Start the port at 320×200 indexed color,
+with palette conversion/scaling on the host, and sound disabled. The default
+640×400×32-bit output alone occupies 1,024,000 bytes; a 320×200 indexed image
+occupies 64,000 bytes. Existing engine buffers and the output buffer can still
+be separate allocations. Selecting a smaller output buffer is not sufficient
+to reduce the engine's internal rendering resolution.
+
+FastDoom explicitly targets DOS 386/486 PCs; its
+[build requirements and features](https://github.com/viti95/FastDoom/blob/9a7b435a9b95db1ba38f89f1139050d748d32fde/README.md)
+include OpenWatcom, NASM and DOS extender tooling. Porting that platform layer
+would consume effort before benefiting the i960. Its flat floors/ceilings, flat
+sky, reduced horizontal detail and distance culling remain useful ideas to
+benchmark after the portable baseline runs. Do not assume published x86 speedups
+carry over to i960, or copy x86/VGA assembly into this port.
+
+DoomGeneric still needs significant port work: allocator, WAD reads/seeks,
+formatting/string routines, time/input hooks, compiler helpers and a defined
+fatal/exit path. Audit floating-point and 64-bit dependencies rather than
+assuming that a fixed-point renderer makes every source file freestanding.
+`doomgeneric_Tick` is an integration entry, not a proven worst-case execution
+bound; startup and resource loads also require cancellation/yield analysis.
+
+The pinned
+[zone allocator platform code](https://github.com/ozkl/doomgeneric/blob/e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/i_system.c)
+sets both default and fallback minimum to 6 MiB, with a command-line override.
+This is the selected source's allocation policy, not a universal minimum for
+all possible Doom ports. Its actual peak working set must be measured. Physical
+16 MiB on the card does **not** establish ownership of that memory.
+
+## Checked against the parallel OS backlog
+
+Read the parallel chat's latest eight turns and the current findings on
+2026-10-11. Its `persistirq` batch progressed while this application was being
+built: the new report records five normal sessions/120 callbacks, 29 clean
+rollback/handoffs, 46 quarantine follow epochs and an intentional six-callback
+retained close. The evidence remains owned by that parallel work; this milestone
+did not rerun it. Its [remaining work](rtems/persistirq/README.md#remaining-work)
+is host-side admission/rejection, broader reference/dependency tracking,
+persistent-session teardown faults, and a firmware resource reservation before
+leaving interrupts armed between callbacks. Production remains `autonet`.
+
+This work is primarily lifecycle correctness, not yet a measured libc or graphics
+speedup. The application track must respect these dependencies:
+
+| OS / loader backlog | Game requirement and integration gate |
+| --- | --- |
+| Persistent async contexts, restart generations, quarantine, resource dependency closure | Later supervise a game task and shared frame/WAD resources. Start with bounded callbacks; do not bypass retained-resource decisions. |
+| M1 shared memory profile and G06/G12 stack/heap limits | Record code, BSS, workspace and stack bounds per game; use the proven RIO1 layout for CHIP-8. |
+| M2 rebalancing; M3 genuinely owned larger RAM | Required before a multi-megabyte Doom heap. Rebalancing 512 KiB alone cannot supply it. No speculative writes to unused-looking RAM. |
+| R1 diagnostics and backpressure | Measure interpreter/render time, full host callback latency, copy volume, queue high-water marks and drops separately. |
+| R2 libc and compiler helpers | Add the subset Doom actually calls, allocator failure handling and read-only WAD access; current byte-loop helpers are not full newlib/POSIX. |
+| G07 verification cost | Keep paired checks, guards, the 32-step full audit and final restoration. Optimize transport only with an explicit ownership/validation contract. |
+| Host-RAM DMA networking and eventual direct-peer research | Potential later transport improvement. Direct NIC DMA is not a prerequisite for the first game. Software leases do not prove DMA completion. |
+
+Sources in this repository: [integrated plan](DEVELOPMENT-PLAN.md),
+[current findings](CURRENT-FINDINGS.md), [preemption/DMA plan](RTEMS-PREEMPTION-DMA-PLAN.md),
+[ownership](rtems/ownership/README.md), [async ownership](rtems/ownirq/README.md).
+Historical gap entries in the integrated plan can lag newer hardware findings.
+
+## Progression and acceptance gates
+
+1. **CHIP-8 core and RTEMS adapter — implemented and card-tested.**
+   [Source and instructions](game/chip8/README.md),
+   [preserved target and tests](artifacts/chip8-20261011/README.md).
+   Fixed 4 KiB guest RAM, no dynamic allocation, at most 1,000 instructions per
+   request, deterministic keys/timers, 256-byte monochrome framebuffer. Separate
+   RTEMS worker with persistent guest state and semaphore request/reply. Card
+   testing followed completion of the parallel OS batch and normal web-service
+   cleanup; no concurrent PCI ownership.
+2. **Browser framebuffer — native and card paths validated.**
+   Shared C8G1 protocol and a serialized host bridge, with explicit native/card
+   labeling, keyboard state and restart. Reset + 300 scripted card updates and
+   404 browser callbacks all matched native replay (705 total), with 21 periodic full-allocation
+   audits and two complete RAM restorations/unloads. Browser arrow movement and
+   restart passed over SSH. Median callback latency was 51.43/51.65 ms; maximum
+   below 75 ms in both sessions. Production IPv6 HTTP returned 200 afterward.
+   Broader ROM conformance and a longer interactive soak remain follow-ups.
+
+3. **Small fixed-point raycaster.** Start at 64×48 or 80×60 indexed color and
+   bounded columns per update. Author a small map; reuse input and frame bridge.
+   Measure render/copy/transport separately before optimizing. Add frame IDs and
+   palettes, then chunking/dirty tiles and bounded backpressure. Dropping obsolete
+   display frames is preferable to an ever-growing queue.
+4. **Runtime/performance preparation for Doom.** Benchmark aligned and unaligned
+   memcpy/memset/memmove, overlap handling, framebuffer clears, fixed-point multiply/
+   divide and allocator behavior on actual i960 memory. Compare with independent
+   native references and retain guard checks. Count scheduler transitions and
+   unnecessary copies before changing OS routines. Larger RAM reservation and
+   an application/transport memory manifest remain required independent work.
+5. **DoomGeneric platform port and first timedemo.** Pin sources/licenses; compile
+   and record missing symbols; implement platform and read-only WAD service.
+   Budget zone heap, other allocations, code, stacks, palettes and frame buffers.
+   Establish recoverable task/transport shutdown, then headless demo first,
+   display second, interactive controls third. Record frame hashes and latency.
+   Use an explicitly supplied WAD or suitable freely distributable game data.
+6. **Optimize the measured bottleneck.** Borrow FastDoom's portable rendering
+   reductions one at a time, with the same timedemo and documented visual tradeoff.
+   Avoid promised FPS before hardware measurements. Audio and network multiplayer
+   follow a stable single-player renderer.
+
+The current 8 KiB RIO response can carry a CHIP-8 frame easily. A 64,000-byte
+Doom indexed frame needs at least eight such chunks even before scheduling and
+copy overhead. At 20 frames/s the image payload alone is 1.28 MB/s. The older
+Tetris 41.1 ms median session-call measurement is a warning about command/audit
+latency, **not** a measured Doom throughput prediction. Also, a logical 304-byte
+CHIP-8 reply does not shrink the driver's fixed buffers or paired staging reads.
+
+Next concrete action: implement the bounded fixed-point raycaster and use it to
+measure render/copy/transport costs. CHIP-8 acceptance is complete. Both game
+card sessions are closed and the production IPv6 server has been restored. No
+flash write or reboot was needed for this milestone.

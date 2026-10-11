@@ -2053,6 +2053,146 @@
       "sha256": "68e4566437d7a3915406752249d1daf5b7a578055df8c9bb93053ff69328c112"
     },
     {
+      "path": "artifacts/chip8-20261011/README.md",
+      "size": 3876,
+      "sha256": "3ecf0bf8e5b74ad7975058a7caaa71b57798e9698a8ce7d2754e2aa8fa26dfeb"
+    },
+    {
+      "path": "artifacts/chip8-20261011/build.json",
+      "size": 1522,
+      "sha256": "44563fa60a2c62fb6618b51104a2c557b8ad1a42e92eff9825f1d083ef16d71c"
+    },
+    {
+      "path": "artifacts/chip8-20261011/build.log",
+      "size": 1351,
+      "sha256": "8edccb414fcaa9ba001dddb543c2403a7dd2bfaa5b51ccfe774d60906743f4ed"
+    },
+    {
+      "path": "artifacts/chip8-20261011/card-browser.jpg",
+      "size": 27040,
+      "sha256": "e15617aa3194c5fb4cd1346b0f11453fafc2245827d31a6cc1e84c42fab18c9f"
+    },
+    {
+      "path": "artifacts/chip8-20261011/chip8-build.json",
+      "size": 702,
+      "sha256": "21b79653575fd631d50942b9cb157feea505ec97e19e693a6cc83ee83c9eedda"
+    },
+    {
+      "path": "artifacts/chip8-20261011/chip8-live.tar.gz",
+      "size": 4595727,
+      "sha256": "3b06b4fac588972c1419ad14efd4f218c2b7188e1721c6705784ba9c469762c1"
+    },
+    {
+      "path": "artifacts/chip8-20261011/dac960rtems.ko",
+      "size": 667568,
+      "sha256": "0df0559a682abf09f59f7a5e0197c27a281b2400b5e28b962f02dfde24174ac5"
+    },
+    {
+      "path": "artifacts/chip8-20261011/http-restored.headers",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/chip8-20261011/http-restored.html",
+      "size": 2891,
+      "sha256": "7ae581eaeb2c1fc9aa85056718737b927580c5950456316f26385144e7dba31a"
+    },
+    {
+      "path": "artifacts/chip8-20261011/kernel.bin",
+      "size": 187012,
+      "sha256": "3a0dfb3bd1e0fed27092690f4e06349acd9557c97abba562d3b25cac7df33e06"
+    },
+    {
+      "path": "artifacts/chip8-20261011/kernel.dis",
+      "size": 233622,
+      "sha256": "5197240c2f678ce66e0c69f5ea5b1078cda2333b9b2d40c21ffead876d045d8d"
+    },
+    {
+      "path": "artifacts/chip8-20261011/kernel.elf",
+      "size": 47812,
+      "sha256": "9166029dc3ecf00cabe515a32e8245d6f097d036282f79ba84a7ee16911e93d5"
+    },
+    {
+      "path": "artifacts/chip8-20261011/kernel.map",
+      "size": 90469,
+      "sha256": "ace4df4d3f0ee7ec09405194e1328141ca54f1071424f6061c1de9c0fb04aedc"
+    },
+    {
+      "path": "artifacts/chip8-20261011/kernel.symbols",
+      "size": 19213,
+      "sha256": "4c0bc83e6a8517f383a16886d4dbac95ec8dfc7f19171c5535cddb0aa448cf6a"
+    },
+    {
+      "path": "artifacts/chip8-20261011/live-web-verified.json",
+      "size": 233,
+      "sha256": "8be13b70b4cf286d074b1679034a2cf58c7fd3d3770a156b44415d21019c33a3"
+    },
+    {
+      "path": "artifacts/chip8-20261011/live1-verified.json",
+      "size": 233,
+      "sha256": "a27f37c5e72a981b85f2e6508c48113961309f9b59d639a9985d302030bcc7c8"
+    },
+    {
+      "path": "artifacts/chip8-20261011/module-build.log",
+      "size": 835,
+      "sha256": "02e672ee3d6e7a327ead80ab00550feddf21b4ff31cf88fb513d9e4c998823a7"
+    },
+    {
+      "path": "artifacts/chip8-20261011/module-source.tar.gz",
+      "size": 16271,
+      "sha256": "567d8980590c69626cbf24a4ba3e0efa65c5575d7b128cf636df321450c5f340"
+    },
+    {
+      "path": "artifacts/chip8-20261011/native-linux.txt",
+      "size": 635,
+      "sha256": "a5a474bd2122dd7d8656a6a49de5e2572b8f36a0d4c4e270340dfbef5079218e"
+    },
+    {
+      "path": "artifacts/chip8-20261011/native-tests.txt",
+      "size": 285,
+      "sha256": "45218669c920b7566c29fda36df9eb6cf29e6632b65e9f4e4d49e63ff53f934f"
+    },
+    {
+      "path": "artifacts/chip8-20261011/target-source/app.c",
+      "size": 3417,
+      "sha256": "ab654f71512da2e952db8ca5ac7c37a42e4b76dddda50a22b04ccf375a989383"
+    },
+    {
+      "path": "artifacts/chip8-20261011/target-source/chip8.c",
+      "size": 4935,
+      "sha256": "71db1aa7aa19dab28b50a83818f6edd25b23885b50960edb4db1f5688907dadf"
+    },
+    {
+      "path": "artifacts/chip8-20261011/target-source/chip8.h",
+      "size": 1307,
+      "sha256": "08932573579b9189a32840c4389e6a67638f875d926e3d7b540daf3edd3611d1"
+    },
+    {
+      "path": "artifacts/chip8-20261011/target-source/context.S",
+      "size": 3063,
+      "sha256": "bf2d5a10fa55a21b277393f88695dbb6c80e0f95e3a251f24616493bd80f66a7"
+    },
+    {
+      "path": "artifacts/chip8-20261011/target-source/libc.c",
+      "size": 692,
+      "sha256": "0d241be462e90706604852923bef4bf146e91d71d930d658ddde2f644b10de4e"
+    },
+    {
+      "path": "artifacts/chip8-20261011/target-source/link.ld",
+      "size": 410,
+      "sha256": "ff31f96d78bdea67edf0f2b5cba8482207e874595a238c16cd64e306d43dc74a"
+    },
+    {
+      "path": "artifacts/chip8-20261011/target-source/start.S",
+      "size": 621,
+      "sha256": "baf5b0f518cd7bb8bbaea05ec9b2d8f65b0b4d172feadffda03e427a7255c565"
+    },
+    {
+      "path": "artifacts/chip8-20261011/validation.json",
+      "size": 247,
+      "sha256": "f0e1cdeead8f03ca4f2ffb94b318e27f02c4f5f1c44999f4970eaf50cf195356"
+    },
+    {
       "path": "artifacts/control-ownership-20261011/README.md",
       "size": 746,
       "sha256": "b2ca570fc938f2ab3b5b284225ebe4a6cb7809c97439590003c51596529b62b0"

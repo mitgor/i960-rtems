@@ -1,0 +1,14 @@
+{
+  "application": "chip8",
+  "execution": "bounded RTEMS session",
+  "hardware_tested": false,
+  "source_sha256": {
+    "app.c": "ab654f71512da2e952db8ca5ac7c37a42e4b76dddda50a22b04ccf375a989383",
+    "chip8.c": "71db1aa7aa19dab28b50a83818f6edd25b23885b50960edb4db1f5688907dadf",
+    "chip8.h": "08932573579b9189a32840c4389e6a67638f875d926e3d7b540daf3edd3611d1",
+    "context.S": "bf2d5a10fa55a21b277393f88695dbb6c80e0f95e3a251f24616493bd80f66a7",
+    "libc.c": "0d241be462e90706604852923bef4bf146e91d71d930d658ddde2f644b10de4e",
+    "link.ld": "ff31f96d78bdea67edf0f2b5cba8482207e874595a238c16cd64e306d43dc74a",
+    "start.S": "baf5b0f518cd7bb8bbaea05ec9b2d8f65b0b4d172feadffda03e427a7255c565"
+  }
+}
