@@ -3028,6 +3028,46 @@
       "sha256": "2a48249c846a88e3abb5fc6ce3a1130076c9bc5154f9e3d892fd118fdcc31ab4"
     },
     {
+      "path": "artifacts/owned-interrupt-stack-20261011/README.md",
+      "size": 3518,
+      "sha256": "036f8d03f5ac134ace8445b9f5cdcaed18c0cf1173eaaf7c652b1514732d2bb3"
+    },
+    {
+      "path": "artifacts/owned-interrupt-stack-20261011/context-build.log",
+      "size": 1118,
+      "sha256": "709dec719ea2946254a2058647660bdf406362f543cd970e1505fe4bd23aabd1"
+    },
+    {
+      "path": "artifacts/owned-interrupt-stack-20261011/context-live.log",
+      "size": 1273,
+      "sha256": "4e74735f89c1d955da72d761ff1f28aeef9a3cea69cf166a01583565ec446cdb"
+    },
+    {
+      "path": "artifacts/owned-interrupt-stack-20261011/control-build.log",
+      "size": 1100,
+      "sha256": "c8807cacb58c4b97e23df743aa138fffa132faaa1f5494be015d7ad3eacd0a7d"
+    },
+    {
+      "path": "artifacts/owned-interrupt-stack-20261011/control-live.log",
+      "size": 1834,
+      "sha256": "65b35213a8b971dc198be5a3bdc5484a6bff4f1e116b05f2101deebefbb194e5"
+    },
+    {
+      "path": "artifacts/owned-interrupt-stack-20261011/http-check.txt",
+      "size": 192,
+      "sha256": "102e2ce3e52cfad6e319364dabc096611c6fe889a748f0991d35d9bd483ce8f5"
+    },
+    {
+      "path": "artifacts/owned-interrupt-stack-20261011/live.tar.xz",
+      "size": 1122496,
+      "sha256": "1037d3c10635ca95a19b75978fbc003b53b0d01f9472a086f36684ca359cf153"
+    },
+    {
+      "path": "artifacts/owned-interrupt-stack-20261011/offline-tests.log",
+      "size": 2239,
+      "sha256": "8a49df0ad72b7e01c74f7646d6f8df53e8e03414e21095e0acf75aadcd7316ba"
+    },
+    {
       "path": "artifacts/postinit-preflight-20261010/experimental-full-rom.bin",
       "size": 524288,
       "sha256": "2739ea3e1efbdfec928c9b779317de3025afee3f0c31b20ac7263b9573ecb657"

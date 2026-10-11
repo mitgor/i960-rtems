@@ -1,0 +1,84 @@
+#ifdef I960_CONTEXT_TEST
+ .text
+ .align 4
+ .globl _irq_context_probe
+_irq_context_probe:
+ lda 64(sp),sp
+ stq g0,64(fp)
+ stq g4,80(fp)
+ stq g8,96(fp)
+ stq g12,112(fp)
+ lda 0x1f0000,r4
+ lda 0x140000,r5
+ modpc 0,r4,r5
+ modpc 0,0,r4
+ st r4,_irq_probe_controls
+ modtc 0,0,r4
+ st r4,_irq_probe_controls+8
+ lda 0x19600000,g0
+ lda 0x19600001,g1
+ lda 0x19600002,g2
+ lda 0x19600003,g3
+ lda 0x19600004,g4
+ lda 0x19600005,g5
+ lda 0x19600006,g6
+ lda 0x19600007,g7
+ lda 0x19600008,g8
+ lda 0x19600009,g9
+ lda 0x1960000a,g10
+ lda 0x1960000b,g11
+ lda 0x1960000c,g12
+ lda 0x1960000d,g13
+ lda 0x1960000e,g14
+ lda 0x96000004,r4
+ lda 0x96000005,r5
+ lda 0x96000006,r6
+ lda 0x96000007,r7
+ lda 0x96000008,r8
+ lda 0x96000009,r9
+ lda 0x9600000a,r10
+ lda 0x9600000b,r11
+ lda 0x9600000c,r12
+ lda 0x9600000d,r13
+ lda 0x9600000e,r14
+ lda 0x9600000f,r15
+ lda 1000000,r3
+ stq g0,_irq_probe_gbefore+0
+ stq g4,_irq_probe_gbefore+16
+ stq g8,_irq_probe_gbefore+32
+ stq g12,_irq_probe_gbefore+48
+ stq pfp,_irq_probe_lbefore+0
+ stq r4,_irq_probe_lbefore+16
+ stq r8,_irq_probe_lbefore+32
+ stq r12,_irq_probe_lbefore+48
+probe_loop:
+ cmpo g0,g0
+ bne probe_ac_bad
+ subo 1,r3,r3
+ cmpobne 0,r3,probe_loop
+ b probe_done
+probe_ac_bad:
+ mov 1,r3
+ st r3,_irq_probe_fail
+probe_done:
+ stq g0,_irq_probe_gafter+0
+ stq g4,_irq_probe_gafter+16
+ stq g8,_irq_probe_gafter+32
+ stq g12,_irq_probe_gafter+48
+ stq pfp,_irq_probe_lafter+0
+ stq r4,_irq_probe_lafter+16
+ stq r8,_irq_probe_lafter+32
+ stq r12,_irq_probe_lafter+48
+ modpc 0,0,r4
+ st r4,_irq_probe_controls+4
+ modtc 0,0,r4
+ st r4,_irq_probe_controls+12
+ lda 0x1f0000,r4
+ mov r4,r5
+ modpc 0,r4,r5
+ ldq 64(fp),g0
+ ldq 80(fp),g4
+ ldq 96(fp),g8
+ ldq 112(fp),g12
+ ret
+#endif

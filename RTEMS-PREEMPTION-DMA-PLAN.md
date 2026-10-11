@@ -99,11 +99,12 @@ unowned DMA target.
 
 ## Immediate next implementation
 
-[Framed MU control and independent bounded STOP/HALT](rtems/control/MU-FRAMED.md)
-now pass live. The next step is an owned interrupt stack and complete asynchronous
-context preservation, with native/disassembly checks before lowering task interrupt
-priorities. Current STOP cannot interrupt a level-31 runaway task; the stronger
-P1 gate and unrestricted preemption remain open. Keep production `autonet` bounded.
+The [owned ISR execution stack](rtems/interrupt/README.md) and non-nested
+return-context stress now pass live, including framed independent STOP/HALT.
+Next design the per-task asynchronous record and owned suspended stack/frame
+lifetime, then test a controlled two-context switch with ISR accounting.
+Current hardware entry records remain in place; arbitrary task preemption and
+STOP of a level-31 runaway task remain open. Keep production `autonet` bounded.
 
 ## P0/P1 audit and prototype checkpoint (2026-10-11)
 
@@ -145,3 +146,14 @@ Vader service restored. [Implementation](rtems/control/MU-FRAMED.md),
 [evidence](artifacts/mu-framed-20261011/README.md). This does not establish
 runaway-task STOP or unrestricted preemption. Next: owned IRQ stack and complete
 asynchronous context preservation before lowering task interrupt priorities.
+
+## Owned-stack checkpoint (2026-10-11)
+
+**Owned ISR stack milestone (2026-10-11):** an owned, guarded C interrupt stack
+and explicit GPR/TC preservation passed 126 isolated stress interrupts and 546
+bounded RTEMS/control interrupts. Deep call chains, sentinels, PC/TC roundtrips,
+frame/guard checks and independent STOP/HALT passed; full cleanup and web restart
+passed without reboot/flash. The hardware entry frame stays in place: movable
+per-task interrupt contexts and unrestricted preemption remain future work.
+[Implementation](rtems/interrupt/README.md),
+[evidence](artifacts/owned-interrupt-stack-20261011/README.md).

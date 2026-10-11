@@ -110,3 +110,15 @@ remain unchanged across a later status exchange. Task priorities are still 31;
 this does not remove blockers 1–4 above. Reclamation still uses the validated
 firmware cleanup path after the ISR has returned. Next resolve owned stack,
 complete frame preservation and continuation lifetime before CPU-bound trials.
+
+## Owned execution-stack follow-up
+
+[Owned C ISR storage and context-return stress](../interrupt/README.md) now pass
+on hardware. This supersedes the lack of a separate C execution stack for the
+new `irqctx`/`muctx` profiles, not for production `autonet`. PC.s=1 means nested
+hardware entry follows current SP: the observed frame was in the RTEMS task
+stack for the stress test and C0002050 for stock-background entry. ISP itself
+remained C0001000. The original hardware frame is not relocated or independently
+owned by a scheduler. Globals, hardware PC/AC record integrity, PC/TC roundtrips,
+local-window/deep-call behavior and guards passed. Complete asynchronous task
+switching, original-frame lifetime, IRQ accounting and nesting remain blockers.

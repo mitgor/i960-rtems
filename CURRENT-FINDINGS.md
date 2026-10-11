@@ -1,5 +1,14 @@
 # Current findings and evidence — 2026-10-11
 
+**Owned ISR stack milestone (2026-10-11):** an owned, guarded C interrupt stack
+and explicit GPR/TC preservation passed 126 isolated stress interrupts and 546
+bounded RTEMS/control interrupts. Deep call chains, sentinels, PC/TC roundtrips,
+frame/guard checks and independent STOP/HALT passed; full cleanup and web restart
+passed without reboot/flash. The hardware entry frame stays in place: movable
+per-task interrupt contexts and unrestricted preemption remain future work.
+[Implementation](rtems/interrupt/README.md),
+[evidence](artifacts/owned-interrupt-stack-20261011/README.md).
+
 **Framed control milestone (2026-10-11):** CTL1 messages, retries and invalid-frame
 rejection passed over IMR1/OMR1. Independent STOP froze bounded RTEMS at tick 362;
 subsequent STATUS confirmed it, then independent timer HALT took 9.48 ms. Firmware

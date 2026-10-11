@@ -1,0 +1,6 @@
+GET http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/ from Mac
+HTTP/1.0 200 OK
+Content-Type: text/html; charset=utf-8
+Connection: close
+Cache-Control: no-store
+Darth Vader content verified

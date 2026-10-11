@@ -24,6 +24,9 @@ static volatile unsigned int background_fault;
 static Context_Control fault_context;
 #endif
 #include "timer_hw.h"
+#ifdef I960_OWNED_STACK
+#include "owned_stack.h"
+#endif
 #if defined(I960_MU_ECHO) || defined(I960_MU_FRAMED)
 #ifdef I960_MU_FRAMED
 #define MU_EPOCH bio_word((unsigned char*)BIO_BASE+BIO_INPUT+8)
@@ -45,6 +48,9 @@ static void*stack_alloc(unsigned int size){unsigned int i=allocated++;if(i>=3||s
 static void stack_free(void*p){bounded_fatal(0x51001);}
 static void idle_error(void){bounded_fatal(0xdead);}
 void timer_interrupt(void){
+#ifdef I960_CONTEXT_TEST
+ ticks++;(void)irq_deep(24);return;
+#endif
 #if defined(I960_MU_ECHO) || defined(I960_MU_FRAMED)
  mu_poll();
 #ifdef I960_MU_FRAMED
@@ -76,8 +82,18 @@ static void Init(rtems_task_argument arg){rtems_id ticker;unsigned int error,i;
  }
  if(bio_word(b+BIO_INPUT+4)==2)stop_timer();
 #else
- ticks=wakes=busy=observed_busy=last_wake_tick=0;error=start_timer();
- if(!error){priority20();while(ticks<8&&busy<1000000)busy++;stop_timer();}
+ ticks=wakes=busy=observed_busy=last_wake_tick=0;
+#ifdef I960_CONTEXT_TEST
+ irq_owned_prepare();
+#endif
+ error=start_timer();
+ if(!error){
+#ifdef I960_CONTEXT_TEST
+ irq_probe_deep(24);stop_timer();irq_probe_check();
+#else
+ priority20();while(ticks<8&&busy<1000000)busy++;stop_timer();
+#endif
+ }
 #endif
  for(i=0;i<allocated;i++){unsigned int j;for(j=0;j<16;j++)if(stacks[i][j]!=0xa5)bounded_fatal(0x51010+i);for(j=16+sizes[i];j<8320;j++)if(stacks[i][j]!=0xa5)bounded_fatal(0x51020+i);}
  steps++;
@@ -90,6 +106,12 @@ static void Init(rtems_task_argument arg){rtems_id ticker;unsigned int error,i;
  bio_put(out+28,REG(0xff008504));bio_put(out+32,REG(0xff008528));bio_put(out+36,REG(0x3c));bio_put(out+40,saved_vector);
  bio_put(out+44,REG(0xff000310));bio_put(out+48,REG(0xff000314));bio_put(out+52,armed?0x36:REG(0xff000318));bio_put(out+56,REG(0xff008500));
  bio_put(b+20,0);bio_put(b+24,64);bio_put(b+28,bio_word(b+8));
+#ifdef I960_OWNED_STACK
+ {unsigned int j;unsigned int diag[]={0x31584349,irq_owned_entries,irq_owned_fault,irq_probe_fail,irq_owned_low,irq_owned_high,irq_owned_entry_fp,irq_owned_pc,irq_owned_ac,irq_owned_vector,(unsigned int)irq_owned_area,IRQ_AREA_SIZE,irq_owned_active,REG(0xff008704)};
+ for(j=0;j<14;j++)bio_put(out+64+j*4,diag[j]);
+ for(j=0;j<16;j++){bio_put(out+120+j*4,irq_probe_gbefore[j]);bio_put(out+184+j*4,irq_probe_gafter[j]);bio_put(out+248+j*4,irq_probe_lbefore[j]);bio_put(out+312+j*4,irq_probe_lafter[j]);}
+ for(j=0;j<4;j++)bio_put(out+376+j*4,irq_probe_controls[j]);bio_put(b+24,392);}
+#endif
  _CPU_Context_switch(&_Thread_Executing->Registers,&_Thread_BSP_context);
  }
 }
@@ -111,7 +133,11 @@ unsigned int bounded_main(unsigned int arg){unsigned char*p;if(arg!=BIO_BASE||!b
  return 0;}
  if(initialized&&background_fault)return 0xf0000000u|background_fault;
 #endif
- if(!initialized){for(p=_bss_start;p<_bss_end;p++)*p=0;initialized=1;rtems_initialize_executive(&config,&cpu);}
+ if(!initialized){for(p=_bss_start;p<_bss_end;p++)*p=0;initialized=1;
+#ifdef I960_OWNED_STACK
+ irq_owned_prepare();
+#endif
+ rtems_initialize_executive(&config,&cpu);}
  else _CPU_Context_switch(&_Thread_BSP_context,&_Thread_Executing->Registers);
  return 0;
 }

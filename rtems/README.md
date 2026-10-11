@@ -303,3 +303,9 @@ termination and a malformed application request. It also enables temporary
 Internet routing to exercise journal cleanup. It is separate from `make test`,
 which remains offline. Its SIGKILL case targets an established session, not
 every instruction boundary during firewall setup or teardown.
+
+## Owned interrupt execution stack
+
+The isolated `irqctx` and bounded background `muctx` profiles now pass on the
+card. See [implementation, context contract and reproduction](interrupt/README.md).
+The hardware frame remains in place; this does not enable arbitrary preemption.

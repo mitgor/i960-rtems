@@ -14,6 +14,7 @@ from run import Board
 from protocol import request, response
 p=argparse.ArgumentParser(description=__doc__)
 for name in ['payload','module','output','reader']:p.add_argument('--'+name,type=Path,required=True)
+p.add_argument('--owned-stack',action='store_true',help='validate the muctx profile and collect stack diagnostics after HALT')
 a=p.parse_args()
 def snapshot():return json.loads(subprocess.check_output([str(a.reader)],text=True))
 before=snapshot();epoch=secrets.randbits(32) or 1
@@ -36,7 +37,9 @@ def exchange(label,frame,seq,halt=False):
     print(json.dumps(records[-1]),flush=True)
     return parsed
 try:
-    arm=struct.unpack('<16I',board.step(struct.pack('<4I',0x31415452,1,epoch,0)))
+    arm_data=board.step(struct.pack('<4I',0x31415452,1,epoch,0))
+    assert len(arm_data)==(392 if a.owned_stack else 64)
+    arm=struct.unpack('<16I',arm_data[:64])
     assert arm[1]==0 and arm[15]==1,arm
     s=exchange('status',request(epoch,1),1);assert s['status']==0 and not s['stopped']
     ping=request(epoch,2,1,0x960cafe)
@@ -54,6 +57,24 @@ try:
     assert quiet['stopped'] and quiet['status']==0
     assert quiet['value']==stopped['value'] and quiet['heartbeat']==stopped['heartbeat']
     halted=exchange('halt',bytes(64),0,True);assert halted['halt_ack']=='0x2f000000'
+    if a.owned_stack:
+        # Independent STOP/HALT already completed at firmware sequence 1.
+        # This later firmware request is diagnostic, not part of that handshake.
+        data=board.step(struct.pack('<4I',0x31415452,0,epoch,0))
+        (a.output/'irq-stack.bin').write_bytes(data)
+        w=struct.unpack('<98I',data)
+        assert w[0]==0x31415452 and w[1]==0 and w[16]==0x31584349
+        assert w[17]>100 and w[18]==w[19]==w[28]==0
+        assert w[26]+192<=w[20]<=w[21]<w[26]+w[27]-64
+        assert w[7]==0x10c7 and w[8]==0x80000 and w[9]==w[10]
+        assert w[11]==w[12]==w[13]==w[15]==0 and not(w[14]&0x2000)
+        assert w[29]==0xc0001000
+        diag=dict(interrupts=w[17],faults=w[18],active=w[28],owned_area=hex(w[26]),
+                  sampled_stack_low=hex(w[20]),sampled_stack_high=hex(w[21]),
+                  sampled_usage_bytes=w[21]-w[26]-192,hardware_frame=hex(w[22]),
+                  saved_pc=hex(w[23]),saved_ac=hex(w[24]),vector=hex(w[25]))
+        (a.output/'irq-stack.json').write_text(json.dumps(diag,indent=2)+'\n')
+        print(json.dumps(diag),flush=True)
     (a.output/'control-acceptance.json').write_text(json.dumps(dict(epoch=epoch,
         passed=True,host_steps=board.sequence,rtos_ticks_at_stop=stopped['value'],
         independent_stop=True,independent_timer_halt=True,

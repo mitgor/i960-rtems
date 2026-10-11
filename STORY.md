@@ -804,6 +804,32 @@ control interrupt can still shut that door. Opening it safely means giving
 interrupts their own stack and preserving a complete interrupted context. That
 is the next piece of the machine we have to earn.
 
+## A stack of our own
+
+The interrupt needed somewhere of its own to work. There was a catch: the card
+was already servicing an interrupt when it called us. On this processor, another
+interrupt builds its frame on the current stack. Changing the base interrupt
+stack pointer would not move the frame we actually cared about.
+
+So we left that frame where the processor put it. A small assembly bridge saved
+the globals, moved the C work onto guarded RAM of our own, and came back through
+the same hardware return. The processor kept its PC and arithmetic flags; we
+saved and restored the trace controls explicitly. No invented return frame.
+
+Three runs took forty-two interrupts each. Register sentinels survived. Twenty-five
+levels of calls on each side of the interrupt unwound with their local buffers
+intact. The observed process controls came back unchanged. Even a trace-mode bit
+deliberately changed inside the handler returned to its old value.
+
+Then the same stack carried the control protocol: another 546 interrupts, STOP,
+a status check, and the final timer halt. No guard or frame errors. All borrowed
+RAM was restored, and the web server came back without a reboot.
+
+We had earned a private workbench for the interrupt, not permission to leave its
+old frame behind. To switch away from an interrupted task, that frame and its
+whole stack ancestry must belong to something that will keep them alive. That
+ownership problem is now the next piece, rather than an invisible assumption.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

@@ -1,5 +1,14 @@
 # RTEMS working guidance
 
+**Owned ISR stack milestone (2026-10-11):** an owned, guarded C interrupt stack
+and explicit GPR/TC preservation passed 126 isolated stress interrupts and 546
+bounded RTEMS/control interrupts. Deep call chains, sentinels, PC/TC roundtrips,
+frame/guard checks and independent STOP/HALT passed; full cleanup and web restart
+passed without reboot/flash. The hardware entry frame stays in place: movable
+per-task interrupt contexts and unrestricted preemption remain future work.
+[Implementation](interrupt/README.md),
+[evidence](../artifacts/owned-interrupt-stack-20261011/README.md).
+
 **Current development roadmap:** [loader memory extension, RTEMS and remaining gaps](../DEVELOPMENT-PLAN.md). Next: M1, generalize the proven larger RAM profile; preserve scalar/BIO1 compatibility.
 
 
