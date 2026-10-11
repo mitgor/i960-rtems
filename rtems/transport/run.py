@@ -19,7 +19,7 @@ def verify_close(out):
   assert len({(out/n).read_bytes() for n in names})==1,names
 
 class Board:
- def __init__(self,payload,module,out,autonomous=False):
+ def __init__(self,payload,module,out,autonomous=False,module_options=()):
   self.autonomous=autonomous;self.module_name="dac960auto" if autonomous else "dac960rtems";self.debugfs=Path("/sys/kernel/debug")/self.module_name
   self.out=out;self.fd=None;self.lock=None;self.sequence=0;self.records=None;self.timings=[]
   self.code=payload.read_bytes();self.image=wire.prepare(self.code)
@@ -30,8 +30,8 @@ class Board:
   name='i960/rtems-'+sha(self.image)+'.bin';fw=Path('/lib/firmware')/name;fw.parent.mkdir(exist_ok=True)
   if fw.exists():assert fw.read_bytes()==self.image
   else:fw.write_bytes(self.image)
-  (out/'request.json').write_text(json.dumps(dict(payload_sha256=sha(self.code),image_sha256=sha(self.image),module_sha256=sha(module.read_bytes()),autonomous=autonomous,boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip()),indent=2)+'\n')
-  subprocess.run(['insmod',str(module),'firmware_name='+name,'pointer_check=1','runtime_check=1','stage_check=1','buffer_io=1',f'payload_argument={wire.bio.BASE}'],check=True)
+  (out/'request.json').write_text(json.dumps(dict(payload_sha256=sha(self.code),image_sha256=sha(self.image),module_sha256=sha(module.read_bytes()),autonomous=autonomous,module_options=list(module_options),boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip()),indent=2)+'\n')
+  subprocess.run(['insmod',str(module),'firmware_name='+name,'pointer_check=1','runtime_check=1','stage_check=1','buffer_io=1',f'payload_argument={wire.bio.BASE}',*module_options],check=True)
   capture(out/'preflight',self.debugfs)
   assert 'experiment-result=0 pending=0;' in (out/'preflight/result.txt').read_text()
   self.fd=os.open('/dev/i960-auto' if autonomous else '/dev/i960-rtems',os.O_RDWR|os.O_CLOEXEC)

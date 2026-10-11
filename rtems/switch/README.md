@@ -1,5 +1,11 @@
 # Two owned interrupt continuations and timer-driven task switching
 
+**2026-10-11 follow-up:** [failed-control teardown tests](FAILED-TEARDOWN.md) now pass
+on the card for omitted STOP/final close and omitted RELEASE/unbind. Pending
+resources remain pinned; unload is refused and recovery requires reboot. This
+covers synthetic control failure, not physical disappearance or non-cooperative
+task containment. Earlier next-step statements below are historical.
+
 **Follow-up:** final user-descriptor close and orderly driver-unbind fault tests
 now pass on the card, three runs each. See [lifecycle tests](LIFECYCLE.md) for
 ordering evidence, the diagnostic fix and remaining failure-path limits.

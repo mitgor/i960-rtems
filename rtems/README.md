@@ -1,5 +1,16 @@
 # RTEMS on the DAC960PG
 
+**Failed-control teardown checkpoint (2026-10-11):** both live injection cases
+passed: omitted STOP during final-user-fd close, and omitted RELEASE during
+unbind. Both syscalls returned ETIMEDOUT; pending/dirty state, DMA/BAR and module
+references remained retained. No post-failure firmware commands or cleanup/free
+occurred; ordinary unload was refused. Completion became visible but was not
+consumed after the control error. These are synthetic omissions on a responsive
+card, not physical PCI faults. Evidence was saved before each recovery reboot.
+Both reboots completed; fresh preflight passed and IPv6 HTTP returned 200.
+[Contract, findings and reproduction](switch/FAILED-TEARDOWN.md).
+Next: non-cooperative task containment; production stays on bounded autonet.
+
 **Final-close / driver-unbind checkpoint (2026-10-11):** six final hardware
 runs passed: three closes of the sole user descriptor and three sysfs unbinds
 while callback/control syscalls were active. Release/removal waited for the
@@ -8,8 +19,8 @@ All target contexts and full RAM/MU cleanup passed; HTTP restored, no reboot/fla
 An initial truncated removal log was preserved and its publication fixed before
 rerunning. [Contract and findings](switch/LIFECYCLE.md),
 [evidence](../artifacts/irq-lifecycle-20261011/README.md).
-Logical unbind is tested; physical hot-unplug and failing control during teardown
-remain unproven. Task shutdown still cooperates with a stop flag.
+Logical unbind is tested; the later failed-control checkpoint above covers
+synthetic omissions during teardown. Physical hot-unplug remains unproven. Task shutdown still cooperates with a stop flag.
 
 
 **Concurrent host control (2026-10-11):** three card runs passed with STOP

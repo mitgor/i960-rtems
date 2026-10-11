@@ -1001,6 +1001,31 @@ or trying to stop a program that refuses to cooperate are different questions.
 This test answered the narrower one we could now ask precisely: what happens
 when the owner closes the door while the controlled work is still coming home?
 
+## The answer we refused to guess
+
+The next experiment made the conversation fail halfway through. Once, the host
+never sent STOP and closed its last descriptor. Once, it heard that the workers
+had drained, withheld RELEASE, and asked Linux to unbind the driver. Both were
+controlled omissions. We were testing the host's response to uncertainty, not
+pretending to have pulled a PCI card out of a running computer.
+
+The card still had its bounded escape paths. Its completion bit eventually
+appeared. That was the tempting part: a light on the dashboard, after the
+protocol that explained the light had already failed. The driver declined to
+guess. Both calls returned a timeout, the transaction remained pending, and the
+borrowed memory stayed marked dirty.
+
+Nothing was put back. Nothing was freed. The DMA buffer, BAR mapping and driver
+object remained alive, and an ordinary module unload was refused. Even after
+unbind removed the driver's public attachment, its private responsibility did
+not disappear with it. The captured state stayed unchanged after the refusal.
+
+We copied the evidence off the PC before rebooting, once for each case. This
+was retention until a fresh boot, not a claim that the failed session had cleaned
+itself up. The next hard question remains a worker that will not cooperate at
+all. But the smaller answer is now measured: when we cannot prove completion,
+we can at least refuse to turn somebody else's unfinished work into freed RAM.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

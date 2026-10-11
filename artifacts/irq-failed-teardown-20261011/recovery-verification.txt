@@ -1,0 +1,4 @@
+Three distinct boot IDs; production close before experiments fully restored; final fresh preflight passed; both original staging reads match pinned ROM; IPv6 HTTP/1.0 200 OK after restart.
+3d262e40-fcf5-4c94-a4b2-79b4eddccff7
+35940b39-14b9-4a8b-b429-be634a998656
+ddc29cfe-f10a-4d49-b68b-9ad8f14c256f

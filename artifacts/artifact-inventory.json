@@ -2548,6 +2548,76 @@
       "sha256": "e96eacd146e99fd3eeb14710ef62f8b1fa565e183c13027eb90f980188daa46e"
     },
     {
+      "path": "artifacts/irq-failed-teardown-20261011/README.md",
+      "size": 3055,
+      "sha256": "f56e96e8caca999c8c76268e0092010207335994d661934f0680a5b83d1e65dc"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/boot-after.txt",
+      "size": 37,
+      "sha256": "2748f6eb0a13dcfbc0036aba8dd9348ee9e2a4f98306638b7b6e011a0f06d119"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/boot-before.txt",
+      "size": 37,
+      "sha256": "3a8176326aa2a5fcfd01775926ffdc3309677950f69ac0d38f4fe5b2098365e4"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/boot-between.txt",
+      "size": 37,
+      "sha256": "5fa3fbbe6ddbfa4b13ddd3a93d4686ca26c0873ba26e997c7a91d0e6830d8b4c"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/close-verification.txt",
+      "size": 216,
+      "sha256": "358eee2e877b04b6430d2fb1cd674ed13a425b392b87dbd3dd9a905c946d0cba"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/close.tar.xz",
+      "size": 726172,
+      "sha256": "e0ebee0bb96b648b9c940fa82fcd7f823c3e4d1e7633e4329edf3f5104bff1aa"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/http-restored.txt",
+      "size": 2988,
+      "sha256": "c02035b1332b37e567fda55bc798eb23422dacd5f245083b86dcd1101850cf94"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/native-tests.txt",
+      "size": 4179,
+      "sha256": "02435a1fe0e9c7980a01fffb234e2a236313b2590d41cfe8d47b66b6eeaa6e26"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/recovery-state.txt",
+      "size": 722,
+      "sha256": "e7f5d37726168da6c0f7a4d5dd298a35d3a06ee28ba6ae100581f1f1eb36492c"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/recovery-verification.txt",
+      "size": 300,
+      "sha256": "49cf8a060ee24600eb3adbc165b4c2813f454346007675b3a81c93416bd3b326"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/recovery.tar.xz",
+      "size": 362516,
+      "sha256": "2b23a0cd3ba1aeafbd8b6f76cc5ec2b6c45b2be484873831d4b45457d257b50c"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/source.tar.xz",
+      "size": 86064,
+      "sha256": "6ce849cfd26b23cdbf8e79c8f616dcf84c94d8002623074c604ca26d74b284e5"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/unbind-verification.txt",
+      "size": 217,
+      "sha256": "f627bb73f6cb27d1834512e49c2e758ff69adbb6985b26a47d346b1dd173ff6a"
+    },
+    {
+      "path": "artifacts/irq-failed-teardown-20261011/unbind.tar.xz",
+      "size": 726184,
+      "sha256": "43316b2615d0c399b39076b9cc28247ae377b97db5134648a1aae270a40fb385"
+    },
+    {
       "path": "artifacts/irq-lifecycle-20261011/README.md",
       "size": 3459,
       "sha256": "745c0795a6bd59c8d8e04c5588e8efd3e38a44c723e1c901bdf1e76af4864841"

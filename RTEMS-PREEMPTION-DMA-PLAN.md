@@ -1,5 +1,11 @@
 # Preemptive RTEMS and DMA networking plan
 
+**2026-10-11 follow-up:** [failed-control teardown tests](rtems/switch/FAILED-TEARDOWN.md) now pass
+on the card for omitted STOP/final close and omitted RELEASE/unbind. Pending
+resources remain pinned; unload is refused and recovery requires reboot. This
+covers synthetic control failure, not physical disappearance or non-cooperative
+task containment. Earlier next-step statements below are historical.
+
 2026-10-11. Requested order: unrestricted task preemption, Mylex ↔ host RAM ↔
 NIC, then direct Mylex ↔ NIC experiments. Direct-path documentation research
 starts now. This plan refines A1–A3 in DEVELOPMENT-PLAN.md; it does not claim

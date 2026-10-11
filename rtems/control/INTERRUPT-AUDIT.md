@@ -1,5 +1,11 @@
 # Interrupt-context audit — P0
 
+**2026-10-11 follow-up:** [failed-control teardown tests](../switch/FAILED-TEARDOWN.md) now pass
+on the card for omitted STOP/final close and omitted RELEASE/unbind. Pending
+resources remain pinned; unload is refused and recovery requires reboot. This
+covers synthetic control failure, not physical disappearance or non-cooperative
+task containment. Earlier next-step statements below are historical.
+
 2026-10-11. Scope: actual `irq`, `auto`, `autonet` sources and build rewrites,
 plus Intel i960 Rx manual chapters 7–9 and 17. This audit does not change the
 working ISR or claim that asynchronous task preemption has been implemented.
