@@ -164,3 +164,9 @@ one-shot MU STOP/DRAINED/RELEASE handshake. Three live runs passed with both
 continuations live at STOP. See [protocol, implementation and limits](STOP.md)
 and [preserved evidence](../../artifacts/irq-mu-stop-20261011/README.md).
 The `switch` and `defer` profiles retain their previous contracts.
+
+## Concurrent host control
+
+The pending-callback STOP handshake can now be invoked through an ioctl from a
+second host thread. Three live sessions passed duplicate/stale/late rejection,
+context draining and complete cleanup. See [API and lock contract](CONCURRENT.md).

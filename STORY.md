@@ -950,6 +950,29 @@ Twenty-four HTTP checks passed. We stopped the new runtime, checked that it gave
 all the borrowed RAM back, and started it again. The mask still stared out of the
 page. Underneath it, the card could now say how long it had been awake.
 
+## A second hand on the controls
+
+Until now, the host driver had arranged its own stop request while waiting for
+the card. The next test gave that decision to another host thread. One thread
+was still inside the firmware callback. The other used an ioctl to knock through
+the message registers without waiting for the first thread's session lock.
+
+That needed a smaller lock and a carefully limited window. The window opened
+only after the command was submitted. Before the driver could consume the reply
+or restore memory, it closed that window and waited for any control operation
+to finish. A late request found a closed window, not memory that had already
+been handed back.
+
+We tried competing stop requests. One got through; the other was refused. A
+wrong epoch was refused too. Closing an extra descriptor alias did not end the
+calls that still held the file. Three card runs drained both interrupt contexts
+and restored every borrowed byte. The web page answered again.
+
+This was concurrency with an ownership rule, not permission to kill arbitrary
+code. The workers still knew how to stop, and the live close test was an extra
+alias, not a forced final close or an unplugged card. Those remaining lifecycle
+cases now have a real control API to test against.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

@@ -1,5 +1,17 @@
 # RTEMS working guidance
 
+**Concurrent host control (2026-10-11):** three card runs passed with STOP
+issued by an ioctl on a second host thread while the firmware callback was
+pending. A separate control mutex/window is joined before completion/cleanup;
+wrong epochs, duplicate STOP and late requests were refused. Both ISR contexts
+drained; full RAM/MU restoration and unload passed. IPv6 HTTP restored.
+[API and lifetime contract](switch/CONCURRENT.md),
+[evidence](../artifacts/irq-concurrent-control-20261011/README.md).
+Workers remain stop-aware. Live alias-close coverage is not final-close or
+physical-removal fault injection; next are broader lifecycle failure tests and
+non-cooperative task containment.
+
+
 **Live web system information (2026-10-11):** the IPv6 Vader page now shows
 card runtime uptime, RTEMS/lwIP and CPU details, memory capacities, HTTP counts
 and RX/TX/drop counters. CPU utilization and temperature are explicitly

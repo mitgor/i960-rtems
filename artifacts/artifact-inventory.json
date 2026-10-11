@@ -2468,6 +2468,51 @@
       "sha256": "f4148e76b199f02b8a4b1c6c7e8a9780cf4ffcf970acd60067d21be928ee3eb3"
     },
     {
+      "path": "artifacts/irq-concurrent-control-20261011/README.md",
+      "size": 2768,
+      "sha256": "96b7647fcb608556d2be2d1490aa1c647f8ad0c94d05f49df8449c261f0edf42"
+    },
+    {
+      "path": "artifacts/irq-concurrent-control-20261011/acceptance.json",
+      "size": 3811,
+      "sha256": "6291bb089ef288b855a6b3125081bf8ad08654814a579073b0c7379a4c21f678"
+    },
+    {
+      "path": "artifacts/irq-concurrent-control-20261011/full-suite.txt",
+      "size": 3605,
+      "sha256": "985264c34a858708affb1b1e159990a1c5fdd3b8c351c5099bc02d4fa52b47df"
+    },
+    {
+      "path": "artifacts/irq-concurrent-control-20261011/http-restored.txt",
+      "size": 2989,
+      "sha256": "b4fc752cbf41ae1031906224775a1473f8a1b482cf7caaa0eb44dd592fdeee98"
+    },
+    {
+      "path": "artifacts/irq-concurrent-control-20261011/live.tar.xz",
+      "size": 785432,
+      "sha256": "2cfb282470c25445411c16617996cf25b43cf0d45a66c4705b3e2d5c7334873b"
+    },
+    {
+      "path": "artifacts/irq-concurrent-control-20261011/native-tests.txt",
+      "size": 367,
+      "sha256": "591ec1bbe659808e6d746bd13c09ce5a3fa13d0ad0e0ad9f812f9a03c3f64106"
+    },
+    {
+      "path": "artifacts/irq-concurrent-control-20261011/service-state.txt",
+      "size": 441,
+      "sha256": "0d5a44ed6fdd159d711294ee32d6e456855d9d68e791a60e5d1abf0e89bb7127"
+    },
+    {
+      "path": "artifacts/irq-concurrent-control-20261011/source.tar.xz",
+      "size": 27472,
+      "sha256": "553e5f3f254ed0344fc9759cb0ad0c34f8d5295eb2e139520564fc079c0e3c4f"
+    },
+    {
+      "path": "artifacts/irq-concurrent-control-20261011/verification.txt",
+      "size": 212,
+      "sha256": "fcabd8ee79fda258c47edf5e7db2a3ae405dd5267a76774db0562132b62b2657"
+    },
+    {
       "path": "artifacts/irq-deferral-20261011/README.md",
       "size": 3278,
       "sha256": "c0e064c2f20ad37cdfaac423519043fcce3c0eb3243c7364d53249bd127ce7f1"
