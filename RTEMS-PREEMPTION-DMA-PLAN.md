@@ -99,8 +99,19 @@ unowned DMA target.
 
 ## Immediate next implementation
 
-P0: write the interrupt frame/ABI audit and a separate preemption test design,
-while investigating P1's independent control registers without writes. Keep the
-running Vader web service on the proven bounded profile until those gates pass.
+P0 audit and the transport-neutral P1 prototype are now recorded below. Next,
+trace ownership of the translated C0000000–C0001FFF window and MU interrupt
+status/masks before choosing a live control slot. Keep the running Vader web
+service on the proven bounded profile until the physical control gate passes.
 H0 and D1 documentation can progress in parallel in the schedule; this does not
 authorize simultaneous hardware ownership experiments.
+
+## P0/P1 audit and prototype checkpoint (2026-10-11)
+
+The [interrupt audit](rtems/control/INTERRUPT-AUDIT.md) is written. The
+[control protocol prototype](rtems/control/README.md) passes native tests
+and a two-process shared-memory demo, and cross-compiles for i960. Read-only
+PCI configuration confirms PIATVR=C0000000 and the existing 8 KiB window.
+No live independent control writes are enabled: the MU overlay/index interrupt
+side effects and stock mailbox/stack ownership still require a proven reservation.
+This completes the offline prototype, not P1 physical validation or preemption.

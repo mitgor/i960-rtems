@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "backend": "native shared-memory simulation; no MMIO or firmware calls",
+  "results": [
+    {
+      "status": 0,
+      "value": 305419896,
+      "stopped": false,
+      "heartbeat": 1
+    },
+    {
+      "status": 0,
+      "value": 0,
+      "stopped": false,
+      "heartbeat": 46
+    },
+    {
+      "status": 0,
+      "value": 0,
+      "stopped": true,
+      "heartbeat": 87
+    }
+  ]
+}

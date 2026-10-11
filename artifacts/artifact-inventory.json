@@ -2053,6 +2053,36 @@
       "sha256": "68e4566437d7a3915406752249d1daf5b7a578055df8c9bb93053ff69328c112"
     },
     {
+      "path": "artifacts/control-prototype-20261011/README.md",
+      "size": 1117,
+      "sha256": "83ef865e815503fc7c7934db90024668734ce8043b4142fb23c6464373d8743e"
+    },
+    {
+      "path": "artifacts/control-prototype-20261011/config-build.txt",
+      "size": 198,
+      "sha256": "adcad0bcba0a4cd01b25479911b6a710120900ce8cad74a8afc8cf2a78251eb7"
+    },
+    {
+      "path": "artifacts/control-prototype-20261011/control.dis",
+      "size": 7456,
+      "sha256": "b2c6fabbae0c043ef950f6e258e4ecd2acbca2ec8dc1e06c347dc873f7cc3a8b"
+    },
+    {
+      "path": "artifacts/control-prototype-20261011/control.o",
+      "size": 2104,
+      "sha256": "626d4275d4c20e2230eb1f61a5d4fac2bbac51b6c75f819369c61d4132658719"
+    },
+    {
+      "path": "artifacts/control-prototype-20261011/native-demo.json",
+      "size": 409,
+      "sha256": "b41f94b1764cc7c78053701709b52e867add48e6956ad9792483b8b3c50e2209"
+    },
+    {
+      "path": "artifacts/control-prototype-20261011/tests.txt",
+      "size": 103,
+      "sha256": "caee21db175942000a38e63ee3e14ca15701cde7ed95c32eb650719eab415fb3"
+    },
+    {
       "path": "artifacts/dac960pg-x86-bios.asm",
       "size": 689162,
       "sha256": "fd81c35ce3ac8a6449e4d9092f4dccdf25b473f069aaebc09f096939a00516c3"

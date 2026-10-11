@@ -69,3 +69,13 @@ DMA networking → gated direct peer experiments. Read-only direct-DMA research
 has started; current NIC and Mylex occupy separate PCI branches. This is a plan
 and initial inventory, not implemented preemption or verified peer DMA. Keep
 the active web service on the existing bounded runtime.
+
+## P0/P1 audit and prototype checkpoint (2026-10-11)
+
+The [interrupt audit](control/INTERRUPT-AUDIT.md) is written. The
+[control protocol prototype](control/README.md) passes native tests
+and a two-process shared-memory demo, and cross-compiles for i960. Read-only
+PCI configuration confirms PIATVR=C0000000 and the existing 8 KiB window.
+No live independent control writes are enabled: the MU overlay/index interrupt
+side effects and stock mailbox/stack ownership still require a proven reservation.
+This completes the offline prototype, not P1 physical validation or preemption.
