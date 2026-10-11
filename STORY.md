@@ -1255,6 +1255,40 @@ pending work; its SCSI and DMA engines had not signed over their ownership.
 A parked continuation and a checked interrupt mask were enough for this test.
 They were not permission to call the whole board ours.
 
+## A corridor inside the controller
+
+While the kernel learned how to keep a lease, the application side acquired a
+small spaceship. A CHIP-8 interpreter ran as another bounded RTEMS worker,
+sending its little monochrome screen back to a browser. Seven hundred and five
+replies matched the native version exactly. The browser could move the ship and
+restart it; the card could still put everything back afterward.
+
+Then the flat screen acquired depth. Eighty rays crossed a small map using
+integer arithmetic, stopping at walls and turning their distances into colored
+columns. We could turn and walk through the scene in a browser while the i960
+built the picture. Each call had a column budget and each ray a step limit. A
+half-finished frame stayed private until its last column was ready.
+
+The surprising part was the stopwatch. A complete frame took about sixty
+milliseconds through the kernel path, but rendering and publication added only
+seven and a half milliseconds over returning an existing picture. Uploading the
+request and arming the callback used nearly thirty-three. The picture occupied
+4,800 bytes; the ordinary paired checks read more than nine hundred thousand.
+A smaller picture could not make that conversation shorter.
+
+The old memory helpers were measurable too. Copying four kilobytes through the
+byte loop took about 1.36 milliseconds, whether the pointer was aligned or one
+byte off. A semaphore round trip took about a hundred microseconds. These were
+estimates from repeated, bounded work and host command timings, not a newly
+discovered CPU clock. They were enough to choose where to look next.
+
+Across the renderer, memory tests and browser session, all five hundred and
+forty-eight replies matched the native reference. The browser delivered about
+ten updates a second in the short trial. Both sessions restored RAM and unloaded,
+and Vader returned over IPv6 without a reboot. There was still no Doom in that
+corridor. There was now a picture, a reproducible measurement, and a much better
+idea of what stood between the two.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

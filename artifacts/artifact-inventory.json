@@ -5953,6 +5953,171 @@
       "sha256": "6c9ebeefff6137a52d3c74c6e0f26f722efd04d35ade3055de1bf3206960a380"
     },
     {
+      "path": "artifacts/raycaster-20261011/README.md",
+      "size": 8832,
+      "sha256": "c2503fefea376e2653cb4fe4d4fdb27220b884cc61c64bd878b5492068bc362f"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/browser-profile.json",
+      "size": 186,
+      "sha256": "1413d9a09be377ef87c81a2c0bc602fa8f6a0da9f2e17997eac3c202f8489eb9"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/build-verified.json",
+      "size": 247,
+      "sha256": "26fbfa934f6579144c370fe7fc08538bc172b1e89bea4d4949a5e9412abb5cfc"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/build.json",
+      "size": 1506,
+      "sha256": "c032d61deeefc7bfc3ea9c5f8d95650d7809c8283ddda5ea42914f8d66ee4a5d"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/build.log",
+      "size": 1343,
+      "sha256": "59def432e59c1bd0d16e7ed8ecc181806f89da9855cbc6ab95ab86e769d40f0d"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/card-browser.jpg",
+      "size": 40738,
+      "sha256": "d800becc2172ccc74809987dacbb15d808455aaef871a7b0b3ffd46707c1a17c"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/dac960rtems.ko",
+      "size": 670096,
+      "sha256": "6eb23dbf64e93688e5f5e354adab40f53a11fea348a352d9babced0eefaf981d"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/http-restored.headers",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/http-restored.html",
+      "size": 2891,
+      "sha256": "6f934c74b85bc9d291c9215d9f34796393c5f3f2d33583d15e6a7a6be2d2e3f9"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/instrumentation.diff",
+      "size": 2353,
+      "sha256": "4d46cb65c217e4068b3dfc293afbd7577456e331ff8f85e27f1d8d3212560552"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/kernel.bin",
+      "size": 202596,
+      "sha256": "47046f511b683911df78a329985efba067836e982c0f42ec1a5d863e8d8242a5"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/kernel.dis",
+      "size": 246883,
+      "sha256": "d7fa86fa9cf33453438d5045644724a9fd1c9ec515f76e98fc40493f763dba83"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/kernel.elf",
+      "size": 49232,
+      "sha256": "7c5d18e10a62e22858ad1c82499e96fd5f2d58e5f30d96570c9260e61c8d618a"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/kernel.map",
+      "size": 86156,
+      "sha256": "5cd25271038024890ac2d232e93a2d0e25d0232889b801361738c5581353fc52"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/kernel.symbols",
+      "size": 19367,
+      "sha256": "8b304ca3b1cb040e2b18f444eccf5f003963b597ae20f37731101b149cfd1481"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/live-web-verified.json",
+      "size": 231,
+      "sha256": "1a056be465fd16323eb4ab62b41b738603eafbb2ea0819b431ab60f66eae43f9"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/live1-verified.json",
+      "size": 235,
+      "sha256": "8675cbf04d82b51d8b3690702b44382d7fe3e735de60fb1e0bf1a19c28646684"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/module-build.log",
+      "size": 823,
+      "sha256": "0ae1ff59ba73d0fe767ee328e3f8deb20e79fdb02a95eb06089b558bfe8a6b8f"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/module-source.tar.gz",
+      "size": 16453,
+      "sha256": "1129cd154f07739af25b020fd787964230ca56e45d953011a02acc73066ff952"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/native-linux.txt",
+      "size": 391,
+      "sha256": "7004abbf3b64cc49fde303a60918bba25d3f88a65ddfbd60e67feb1973941331"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/native-mac.txt",
+      "size": 238,
+      "sha256": "ebc4a0b6e17f6ec44b7cba1cfd07fd34f3e983fedd9fae7afb443a4e9a372d36"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/phases.json",
+      "size": 215450,
+      "sha256": "816a019062605a98035aadf8cad75ed4f8a5622c459f951cc9f2abf4d54c71c1"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/profile.json",
+      "size": 16654,
+      "sha256": "f583704b1085e1ca30d911a15307c581c766ea34b604ae56ba98047f34e3972f"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/raycaster-build.json",
+      "size": 784,
+      "sha256": "01888a7acbe0753a23f116a314ffce9ba72771d8adde125f0dc2299e0cac9d73"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/raycaster-live.tar.gz",
+      "size": 4554895,
+      "sha256": "e1581fea90800a4d6c109e772d522fb730c642b9e41a89f376e43e91c3caf600"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/target-source/app.c",
+      "size": 3828,
+      "sha256": "15935b6ea6795ee94a39541681b332eb25345ed8a084d68a74e11904f31055dc"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/target-source/context.S",
+      "size": 3063,
+      "sha256": "bf2d5a10fa55a21b277393f88695dbb6c80e0f95e3a251f24616493bd80f66a7"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/target-source/libc.c",
+      "size": 692,
+      "sha256": "0d241be462e90706604852923bef4bf146e91d71d930d658ddde2f644b10de4e"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/target-source/link.ld",
+      "size": 410,
+      "sha256": "ff31f96d78bdea67edf0f2b5cba8482207e874595a238c16cd64e306d43dc74a"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/target-source/ray.c",
+      "size": 5082,
+      "sha256": "a39eef96ff636e3aa6d0996e59d29140ccfd2e2fdce5d6e0bdc13b7a5e4f868d"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/target-source/ray.h",
+      "size": 689,
+      "sha256": "50d0f9e655ee3cdda5b70efb8db8ef605b51a4db6e4bceb400944f79bb6886df"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/target-source/start.S",
+      "size": 621,
+      "sha256": "baf5b0f518cd7bb8bbaea05ec9b2d8f65b0b4d172feadffda03e427a7255c565"
+    },
+    {
+      "path": "artifacts/raycaster-20261011/target-source/trig.h",
+      "size": 1294,
+      "sha256": "38d20c44e0bec9b1f6cbc59847062dc0b2946d415e6c630d0a8afb0dd079a8d1"
+    },
+    {
       "path": "artifacts/remote-audit-20261010/README.md",
       "size": 3316,
       "sha256": "6b9f98390be5353b3fb04397bb50e4356bbfadf130faa670bbd5e664ffc7b1c2"

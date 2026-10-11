@@ -1,0 +1,10 @@
+make: Entering directory '/home/mit/i960-ray-20261011-AesT6N/game/raycaster'
+build/test
+Raycaster ASan/UBSan: bounds, invalid requests, 2000 partial movement batches, benchmark kinds passed
+python3 test_host.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.167s
+
+OK
+make: Leaving directory '/home/mit/i960-ray-20261011-AesT6N/game/raycaster'

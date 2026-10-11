@@ -1,0 +1,43 @@
+--- baseline/stage_rehearsal.h
++++ profile/stage_rehearsal.h
+@@ -200,7 +200,7 @@
+ static int session_step(struct experiment *d,const u8 *request)
+ {
+     static const u8 sentinel[16]={0xde,0xad,0xbe,0xef};
+-    int rc;u64 start=ktime_get_ns();
++    int rc;u64 start=ktime_get_ns(),p1,p2,p3,p4,p5;
+     if(!d->ready || d->pending || d->runner_uncertain) return -EPERM;
+     if(!bio_request_valid(request) || bio_word(request+8)<=d->sequence) return -EINVAL;
+     /* Consume sequence before submission: a failed request is never replayed. */
+@@ -209,6 +209,7 @@
+     d->upload_data=request;
+     rc=issue(d,0x21,BIO_SIZE,BIO_OFFSET,0xa5,ARRAY_SIZE(d->capture));
+     d->upload_data=NULL;if(rc) return rc;
++    p1=ktime_get_ns();
+     /* First-entry cache handshake. Subsequent calls follow the runner's
+      * self-disarm + dcctl invalidation; no intervening 6F dispatch reloads the
+      * table. The unchanged runner invalidates I/D caches again on entry. */
+@@ -220,15 +221,23 @@
+     d->runner_uncertain=true; /* before the first possible arm write */
+     rc=load_table(d,exec_flash_pointer,39);if(rc) return rc;
+     d->exec_expected_status=0x017f;
++    p2=ktime_get_ns();
+     rc=issue(d,0x6f,0,0,0x5a,41);if(rc) return rc;
++    p3=ktime_get_ns();
+     rc=read_pair(d,EXEC_TABLE_ADDRESS,4,43);if(rc) return rc;
+     if(sp_word(d->capture[43].data)!=0xfefe001cu) return -ENODATA;
+     d->runner_uncertain=false;
+     rc=read_pair(d,LOAD_RESULT_ADDRESS,16,20);if(rc) return rc;
+     if(sp_word(d->capture[20].data+4)!=0x52554e31u || sp_word(d->capture[20].data)) return -ENODATA;
++    p4=ktime_get_ns();
+     d->steps++;
+     d->output_length=(d->steps%32)?BIO_IMAGE_SIZE:IMAGE_WINDOW;
+     rc=session_output(d,d->output_length);if(rc) return rc;
++    p5=ktime_get_ns();
++    record(d,"RAYPROFILE seq=%u upload=%llu arm=%llu execute=%llu verify=%llu audit=%llu total=%llu bytes=%u\n",
++       d->sequence,(unsigned long long)(p1-start),(unsigned long long)(p2-p1),
++       (unsigned long long)(p3-p2),(unsigned long long)(p4-p3),
++       (unsigned long long)(p5-p4),(unsigned long long)(p5-start),d->output_length);
+     d->output_valid=true;
+     record(d,"SESSION STEP sequence=%u elapsed_ns=%llu audit_bytes=%u; paired immutable bytes valid; PING dispatch\n",
+            d->sequence,(unsigned long long)(ktime_get_ns()-start),d->output_length);

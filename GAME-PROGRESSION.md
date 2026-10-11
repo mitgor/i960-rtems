@@ -93,11 +93,15 @@ Historical gap entries in the integrated plan can lag newer hardware findings.
    below 75 ms in both sessions. Production IPv6 HTTP returned 200 afterward.
    Broader ROM conformance and a longer interactive soak remain follow-ups.
 
-3. **Small fixed-point raycaster.** Start at 64×48 or 80×60 indexed color and
-   bounded columns per update. Author a small map; reuse input and frame bridge.
-   Measure render/copy/transport separately before optimizing. Add frame IDs and
-   palettes, then chunking/dirty tiles and bounded backpressure. Dropping obsolete
-   display frames is preferable to an ever-growing queue.
+3. **Bounded fixed-point raycaster — implemented and card-tested.**
+   80×60 indexed output, 1..80 columns per call, a fixed map and bounded grid
+   traversal. All 548 scripted/browser replies matched native replay, including
+   partial rendering, movement/reset and runtime-helper benchmarks. Both sessions
+   restored RAM and unloaded; production IPv6 HTTP returned 200. The browser
+   delivered 10.18 responses/s during a short run. Full-frame kernel time was
+   60.38 ms median; upload+arming accounted for about 32.8 ms and render/publication
+   added about 7.54 ms over a snapshot. [Measured findings and artifacts](artifacts/raycaster-20261011/README.md).
+
 4. **Runtime/performance preparation for Doom.** Benchmark aligned and unaligned
    memcpy/memset/memmove, overlap handling, framebuffer clears, fixed-point multiply/
    divide and allocator behavior on actual i960 memory. Compare with independent
@@ -122,7 +126,8 @@ Tetris 41.1 ms median session-call measurement is a warning about command/audit
 latency, **not** a measured Doom throughput prediction. Also, a logical 304-byte
 CHIP-8 reply does not shrink the driver's fixed buffers or paired staging reads.
 
-Next concrete action: implement the bounded fixed-point raycaster and use it to
-measure render/copy/transport costs. CHIP-8 acceptance is complete. Both game
-card sessions are closed and the production IPv6 server has been restored. No
-flash write or reboot was needed for this milestone.
+Next concrete action: prototype and validate aligned word-copy/clear helpers in
+an isolated profile, then break down the fixed upload/arming command costs. Keep
+frame-queue/DMA ownership and multi-megabyte RAM reservation explicit. Do not
+reduce audit cadence to manufacture an FPS improvement. CHIP-8 and raycaster
+card acceptance are complete; production IPv6 HTTP is restored.

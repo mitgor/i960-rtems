@@ -1,0 +1,8 @@
+{
+  "requests": 126,
+  "updates_per_second": 10.180571710704573,
+  "span_seconds": 12.278288837999753,
+  "median_callback_ms": 65.30891100010194,
+  "keyed_requests": 30,
+  "resets": 1
+}

@@ -1,0 +1,8 @@
+build/test
+Raycaster ASan/UBSan: bounds, invalid requests, 2000 partial movement batches, benchmark kinds passed
+python3 test_host.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.563s
+
+OK

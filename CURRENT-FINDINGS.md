@@ -1,5 +1,18 @@
 # Current findings and evidence — 2026-10-11
 
+**Raycaster/profiling milestone (2026-10-11):** an 80×60 fixed-point renderer
+and browser bridge passed 548 native-matching RTEMS card replies, including
+partial frames, movement/reset and OS-helper benchmarks. Six native tests and
+sanitizer checks passed; 16 periodic full-allocation audits plus two initial
+prefix snapshots verified, and both sessions restored RAM/unloaded. HTTP is
+restored. Median full-frame kernel time: 60.38 ms; upload+arming about 32.8 ms;
+render/publication increment about 7.54 ms. Byte-loop memcpy: 2.88 MiB/s;
+semaphore roundtrip: 102.4 µs; software tick: 4.96 µs (differential estimates).
+[Findings and evidence](artifacts/raycaster-20261011/README.md),
+[contract/reproduction](game/raycaster/README.md). Next: validated word-copy/clear
+helpers and finer command-cost profiling; preserve all ownership/audit checks.
+
+
 **Continuous execution lease (2026-10-11):** `leaseirq` now keeps preemptible
 RTEMS workers running continuously inside a parked firmware callback. Sideband
 grant/renew/STOP, a 512-tick renewal deadline, a non-renewable 24,000-tick cap and

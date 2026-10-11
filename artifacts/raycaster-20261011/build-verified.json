@@ -1,0 +1,8 @@
+{
+  "payload_sha256": "47046f511b683911df78a329985efba067836e982c0f42ec1a5d863e8d8242a5",
+  "payload_bytes": 202596,
+  "source_hashes_verified": 8,
+  "bss_start": "0xc0f4c1e0",
+  "bss_end": "0xc0f5d760",
+  "hardware_tested_by_this_check": false
+}
