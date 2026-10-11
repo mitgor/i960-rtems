@@ -24,6 +24,9 @@ static volatile unsigned int background_fault;
 static Context_Control fault_context;
 #endif
 #include "timer_hw.h"
+#ifdef I960_MU_ECHO
+#include "../control/mu_echo.h"
+#endif
 void bounded_fatal(unsigned int code){stop_timer();
 #ifdef I960_BACKGROUND
  if(background_active){background_fault=code;_CPU_Context_switch(&fault_context,&_Thread_BSP_context);for(;;){} }
@@ -35,6 +38,9 @@ static void*stack_alloc(unsigned int size){unsigned int i=allocated++;if(i>=3||s
 static void stack_free(void*p){bounded_fatal(0x51001);}
 static void idle_error(void){bounded_fatal(0xdead);}
 void timer_interrupt(void){
+#ifdef I960_MU_ECHO
+ mu_poll();
+#endif
 #ifdef I960_BACKGROUND
  if(armed){background_active=1;background_irq=1;_CPU_Context_switch(&_Thread_BSP_context,&_Thread_Executing->Registers);background_active=0;}
 #else
@@ -51,7 +57,13 @@ static void Init(rtems_task_argument arg){rtems_id ticker;unsigned int error,i;
 #ifdef I960_BACKGROUND
  if(background_irq){background_irq=0;ticks++;busy++;CHECK(rtems_clock_tick());_CPU_Context_switch(&_Thread_Executing->Registers,&_Thread_BSP_context);continue;}
  error=0;
- if(bio_word(b+BIO_INPUT+4)==1&&!armed)error=start_timer();
+ if(bio_word(b+BIO_INPUT+4)==1&&!armed){
+#ifdef I960_MU_ECHO
+ error=mu_start();if(!error)error=start_timer();
+#else
+ error=start_timer();
+#endif
+ }
  if(bio_word(b+BIO_INPUT+4)==2)stop_timer();
 #else
  ticks=wakes=busy=observed_busy=last_wake_tick=0;error=start_timer();
@@ -80,7 +92,13 @@ void _CPU_ISR_install_raw_handler(unsigned int v,proc_ptr n,proc_ptr*o){bounded_
 unsigned int bounded_main(unsigned int arg){unsigned char*p;if(arg!=BIO_BASE||!bio_request_valid((unsigned char*)arg))return 1;
 #ifdef I960_BACKGROUND
  if(bio_word((unsigned char*)arg+12)!=16||bio_word((unsigned char*)arg+BIO_INPUT)!=0x31415452||bio_word((unsigned char*)arg+BIO_INPUT+4)>2)return 2;
- if(bio_word((unsigned char*)arg+BIO_INPUT+4)==2){timer_stop_response((unsigned char*)arg,initialized);return 0;}
+ if(bio_word((unsigned char*)arg+BIO_INPUT+4)==2){timer_stop_response((unsigned char*)arg,initialized);
+#ifdef I960_MU_ECHO
+ {unsigned int owned=mu_owned,rc=mu_finish();
+ bio_put((unsigned char*)arg+BIO_OUTPUT+4,rc);
+ bio_put((unsigned char*)arg+BIO_OUTPUT+8,owned&&!rc?0x4d554f4bu:0);}
+#endif
+ return 0;}
  if(initialized&&background_fault)return 0xf0000000u|background_fault;
 #endif
  if(!initialized){for(p=_bss_start;p<_bss_end;p++)*p=0;initialized=1;rtems_initialize_executive(&config,&cpu);}

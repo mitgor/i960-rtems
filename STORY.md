@@ -760,6 +760,30 @@ moves packets, and an arbitrary runaway task is still an arbitrary runaway
 task. But the hundred ticks per second no longer come from Linux asking politely.
 The card has a clock, tasks waking to it, and a small IPv6 front door.
 
+## A word through another door
+
+The next question was whether Linux could speak to our code without asking the
+RAID command loop to carry the message. Two message registers looked promising.
+They were zero, their interrupts masked, and the matching firmware offered no
+obvious direct use of message number one. That was enough for an experiment,
+not enough to declare them ours forever.
+
+Linux wrote a tagged word. The timer interrupt answered through the other
+register. Eleven milliseconds, and the firmware command counter had not moved.
+A very small conversation, but it had gone through another door.
+
+The first attempt had already answered in six milliseconds. It also taught us
+that the outbound status register can be read by the i960 but acknowledged only
+by the PCI host. Our simulator had been too generous. Cleanup refused to release
+the borrowed memory, as it should; the host needed a reboot. With that distinction
+fixed in both code and model, the repeat restored the timer, every borrowed RAM
+byte, the message words and their pending bits. The driver unloaded. Vader went
+back to answering HTTP.
+
+One echoed word is not a control protocol, and it cannot yet stop a runaway task.
+That is the next door: framing, sequence numbers, and a STOP that does not need
+the old command loop to cooperate. No new flash was written for this experiment.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

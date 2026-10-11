@@ -2513,6 +2513,61 @@
       "sha256": "5c9c0c13dfb36a4e45edd5efc9a193af4cbf3de56a040ac229fabab7201aaf7d"
     },
     {
+      "path": "artifacts/mu-echo-20261011/README.md",
+      "size": 2387,
+      "sha256": "375d00f69e927a44bdbb11d76bb79f73ef29c572b9a61468df45a0827b13ed3c"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/build-first.log",
+      "size": 1079,
+      "sha256": "9fae4a936db614600a2fec90b989c4ed58cac51dd731325c7156129d14fb9b3e"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/build-success.log",
+      "size": 1085,
+      "sha256": "fb2c323d7fe019b661b66299956e2ac85c01e667601c5a3c3e216243f2ab1353"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/failed-first.log",
+      "size": 903,
+      "sha256": "c92c94c6df9bc2dc475ccd6edbdbe317002a8f4728df252c35d1bb87391d5b09"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/failed-first.tar.xz",
+      "size": 705752,
+      "sha256": "e536f1c8149f759c24d1ca144b15abc425a9277f8ebcf4d42020fc1ef3896b14"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/http-headers.txt",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/http-page.html",
+      "size": 1252,
+      "sha256": "fb070c65505cf65ca52d44d637ec82a4a1da271dcdb24a28736d05730c504299"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/native-tests.txt",
+      "size": 103,
+      "sha256": "c4a50d137229b3e1899ba15721d09148b8fb6562991dc20972a70b918d72c236"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/offline-tests.log",
+      "size": 2072,
+      "sha256": "2a3c2d8c7a88cf3f7d03930b9a780c48d765ec5ae5ab72dec3e547238d58f1d1"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/success.log",
+      "size": 470,
+      "sha256": "7f30b14745b826388aec1527767fa97c1cfe5a8ba47a3e8175560570c85ceb27"
+    },
+    {
+      "path": "artifacts/mu-echo-20261011/success.tar.xz",
+      "size": 709040,
+      "sha256": "1e6241935bedd729ba04ecbc1a687cf550d0b543f91cef8db9378a10b932e5d2"
+    },
+    {
       "path": "artifacts/one-shot-harness-20261010/build/Makefile",
       "size": 540,
       "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"

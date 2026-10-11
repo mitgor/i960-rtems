@@ -99,12 +99,11 @@ unowned DMA target.
 
 ## Immediate next implementation
 
-P0 audit and the transport-neutral P1 prototype are now recorded below. Next,
-trace ownership of the translated C0000000–C0001FFF window and MU interrupt
-status/masks before choosing a live control slot. Keep the running Vader web
-service on the proven bounded profile until the physical control gate passes.
-H0 and D1 documentation can progress in parallel in the schedule; this does not
-authorize simultaneous hardware ownership experiments.
+The bounded [MU echo](rtems/control/MU-ECHO.md) now passes live with full cleanup.
+Next implement and simulate a framed IMR1/OMR1 adapter with epoch/sequence/retry
+semantics and an independent STOP handshake, then validate it under bounded
+RTEMS activity. STOP still uses the stock firmware path today, so P1 is not
+complete. Keep the Vader service on the proven bounded `autonet` profile.
 
 ## P0/P1 audit and prototype checkpoint (2026-10-11)
 
@@ -124,3 +123,14 @@ Three read-only MU samples found IMR1/OMR1 zero with message interrupts masked.
 These are selected for a separate, driver-serialized bounded echo experiment;
 no live sideband writes have occurred. Use the pinned 4.07-0-29 evidence, not the
 older 4.07-0-39 `remote-analysis` reference.
+
+## Live MU checkpoint (2026-10-11)
+
+
+**MU echo milestone (2026-10-11):** a timer ISR echoed an IMR1 word through OMR1
+in 11.02 ms while firmware sequence stayed 1 → 1. Full timer/RAM/MU restoration
+and module unload passed. The first trial retained resources after an incorrect
+local OISR acknowledgement; a host reboot and host-side acknowledgement fix
+preceded the successful retry. [Implementation](rtems/control/MU-ECHO.md),
+[evidence](artifacts/mu-echo-20261011/README.md). Independent STOP and unrestricted
+preemption remain unproven; next is framed control plus independent STOP.

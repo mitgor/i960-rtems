@@ -1,5 +1,9 @@
 # Host-visible control ownership — 2026-10-11
 
+**Subsequent live result:** [bounded MU echo and restoration passed](MU-ECHO.md).
+The read-only investigation/prototype statements below describe the earlier checkpoint.
+Independent STOP and permanent coexistence remain unproven.
+
 Result: **do not reserve a RAM slot in the current BAR yet**. Select IMR1/OMR1
 as the next *bounded visibility experiment*, not as a proven permanently owned
 channel. No control register or card RAM was written during this investigation.

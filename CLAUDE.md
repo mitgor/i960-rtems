@@ -1,5 +1,14 @@
 # Repository guidance for Claude Code
 
+**MU echo milestone (2026-10-11):** a timer ISR echoed an IMR1 word through OMR1
+in 11.02 ms while firmware sequence stayed 1 → 1. Full timer/RAM/MU restoration
+and module unload passed. The first trial retained resources after an incorrect
+local OISR acknowledgement; a host reboot and host-side acknowledgement fix
+preceded the successful retry. [Implementation](rtems/control/MU-ECHO.md),
+[evidence](artifacts/mu-echo-20261011/README.md). Independent STOP and unrestricted
+preemption remain unproven; next is framed control plus independent STOP.
+
+
 **Current work (2026-10-11):** card-hosted IPv6 HTTP and stock-coexisting autonomous RTEMS now pass live tests. A hardware timer delivered 2,009 ticks/task wakeups during 20 seconds without host polling; the network build advanced 509 ticks during five silent seconds. IPv6 Internet HTTP, dual-stack echo, a one-minute IPv6 stress run, and kernel STOP-before-restore cleanup passed. See [current work report](artifacts/rtems-web-autonomous-20261011/README.md) for artifacts, failed trials, limitations and the published server.
 
 **Current development roadmap:** [loader memory extension, RTEMS and remaining gaps](DEVELOPMENT-PLAN.md). Next: M1, generalize the proven larger RAM profile; preserve scalar/BIO1 compatibility.

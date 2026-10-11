@@ -1,12 +1,22 @@
 # Current findings and evidence — 2026-10-11
 
+**MU echo milestone (2026-10-11):** a timer ISR echoed an IMR1 word through OMR1
+in 11.02 ms while firmware sequence stayed 1 → 1. Full timer/RAM/MU restoration
+and module unload passed. The first trial retained resources after an incorrect
+local OISR acknowledgement; a host reboot and host-side acknowledgement fix
+preceded the successful retry. [Implementation](rtems/control/MU-ECHO.md),
+[evidence](artifacts/mu-echo-20261011/README.md). Independent STOP and unrestricted
+preemption remain unproven; next is framed control plus independent STOP.
+
+
 The current implementation backlog is [the integrated development plan](DEVELOPMENT-PLAN.md),
 including a gap ledger G01–G12 and the next loader milestone M1.
 
 This is the current-state index. Earlier reports and artifact source snapshots
 record the state at their own milestone; their future-tense plans are historical.
 The earlier preservation audit was read-only. The subsequent RTEMS work loaded
-RAM payloads and exercised the card; it did not reboot, program flash or test recovery.
+RAM payloads and exercised the card. The later MU cleanup trial required a host
+reboot; no additional flash programming or recovery testing occurred.
 
 ## Established on this card
 

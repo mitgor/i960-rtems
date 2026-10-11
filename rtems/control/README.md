@@ -1,5 +1,9 @@
 # Independent control protocol prototype — P1
 
+**Subsequent live result:** [bounded MU echo and restoration passed](MU-ECHO.md).
+The read-only investigation/prototype statements below describe the earlier checkpoint.
+Independent STOP and permanent coexistence remain unproven.
+
 Status: native shared-memory host/target demonstration and cross-compiled i960
 protocol core; **no live independent MMIO channel is enabled**. Existing stock
 firmware commands are not used by the prototype. Hardware binding awaits an
