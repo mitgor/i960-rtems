@@ -55,3 +55,8 @@ application error. Live cleanup passed for both signals and invalid operation.
 Never load an autonomous image with the cooperative transport. Retain stock
 interrupt sources, preserve timer 0, and keep IRQ work bounded. This does not
 establish nested IRQ support, unrestricted preemption or independent transport.
+
+The host relay also supports persistent HTTP visitor accounting via `--visitor-log`.
+The deployed autonomous launcher enables it. See [visitor logging](transport/VISITORS.md)
+for paths, counting semantics and tests. Keep real visitor databases/statistics
+on the host, out of Git; no firmware rebuild is needed for this feature.

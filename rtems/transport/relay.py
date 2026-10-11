@@ -4,6 +4,7 @@ import argparse,traceback,concurrent.futures,fcntl,ipaddress,json,os,select,sock
 from pathlib import Path
 from run import Board
 from ipv6_gateway import IPv6Gateway, CARD6
+from visitors import VisitorLog
 IFACE='i960rt0';CARD='10.196.0.2';HOST='10.196.0.1';NET=ipaddress.ip_network('10.196.0.0/30')
 
 def command(*args):return subprocess.check_output(args,text=True)
@@ -60,7 +61,8 @@ class Gateway:
   if errors:raise RuntimeError(errors)
 
 class Relay:
- def __init__(self,board,gateway,drop_data=False):
+ def __init__(self,board,gateway,drop_data=False,visitors=None):
+  self.visitors=visitors
   self.drop_data={4,6} if drop_data else set();self.dropped=[]
   self.board=board;self.gateway=gateway;self.last=time.monotonic();self.stats=None;self.host_packets=0;self.card_packets=0
   self.pcap=(board.out/'packets.pcap').open('wb');self.pcap.write(struct.pack('<IHHIIII',0xa1b2c3d4,2,4,0,0,65535,101))
@@ -93,6 +95,7 @@ class Relay:
     if len(packet)>iplen+tcplen and struct.unpack_from('!H',packet,iplen)[0]==9600:
      self.drop_data.remove(version);self.dropped.append(dict(step=steps,ip_version=version,packet_hex=packet.hex()));(self.board.out/'deliberate-loss.json').write_text(json.dumps(self.dropped,indent=2));continue
    assert os.write(self.gateway.fd,packet)==length;self.card_packets+=1
+   if self.visitors:self.visitors.observe(packet)
   return b''
  def pump(self,future,timeout):
   deadline=time.monotonic()+timeout
@@ -135,14 +138,15 @@ def stress_test(duration,ipv6=False):
  return dict(elapsed_s=time.monotonic()-start,iterations=iterations,bytes=total,sha256=digest.hexdigest())
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--internet',action='store_true');p.add_argument('--ipv6',action='store_true',help='test static IPv6 alongside IPv4');p.add_argument('--internet6',action='store_true',help='enable IPv6 tests and scoped NAT66 with AAAA/HTTP fetch');p.add_argument('--fetch',default='example.com');p.add_argument('--faults',action='store_true');p.add_argument('--duration',type=float,default=0);p.add_argument('--serve',type=float,nargs='?',const=0,help='keep services active for this many seconds, or until Ctrl-C when omitted');p.add_argument('--autonomous',action='store_true',help='use the pinned background-IRQ net image and dac960auto');p.add_argument('--publish-http6',metavar='GLOBAL_IPV6',help='forward host TCP port to card HTTP (requires --internet6)');p.add_argument('--http-port',type=int,default=8080);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--internet',action='store_true');p.add_argument('--ipv6',action='store_true',help='test static IPv6 alongside IPv4');p.add_argument('--internet6',action='store_true',help='enable IPv6 tests and scoped NAT66 with AAAA/HTTP fetch');p.add_argument('--fetch',default='example.com');p.add_argument('--faults',action='store_true');p.add_argument('--duration',type=float,default=0);p.add_argument('--serve',type=float,nargs='?',const=0,help='keep services active for this many seconds, or until Ctrl-C when omitted');p.add_argument('--autonomous',action='store_true',help='use the pinned background-IRQ net image and dac960auto');p.add_argument('--publish-http6',metavar='GLOBAL_IPV6',help='forward host TCP port to card HTTP (requires --internet6)');p.add_argument('--http-port',type=int,default=8080);p.add_argument('--visitor-log',type=Path,help='persistent host directory for HTTP visitor database and statistics');a=p.parse_args()
  if a.publish_http6 and not a.internet6:p.error("--publish-http6 requires --internet6")
  if a.duration<0 or (a.serve is not None and a.serve<0):p.error('durations must be nonnegative')
  def interrupted(signum,frame):raise KeyboardInterrupt('signal '+str(signum))
  signal.signal(signal.SIGTERM,interrupted);signal.signal(signal.SIGHUP,interrupted)
+ visitors=VisitorLog(a.visitor_log) if a.visitor_log else None
  board=Board(a.payload,a.module,a.output,autonomous=a.autonomous);gateway=None;relay=None
  try:
-  gateway=Gateway(a.output,a.internet or a.internet6,a.ipv6,a.internet6);relay=Relay(board,gateway,a.faults);relay.step(0)
+  gateway=Gateway(a.output,a.internet or a.internet6,a.ipv6,a.internet6);relay=Relay(board,gateway,a.faults,visitors);relay.step(0)
   if a.publish_http6:gateway.v6.publish_http(a.publish_http6,a.http_port)
   with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:report=relay.pump(pool.submit(echo_tests,a.faults),90)
   (a.output/'local-network.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)
@@ -179,6 +183,7 @@ def main():
   (a.output/'error.json').write_text(json.dumps(dict(error=repr(exc),traceback=traceback.format_exc(),last_stats=relay.stats if relay else None),indent=2)+'\n');raise
  finally:
   try:
+   if visitors:visitors.close()
    if relay:relay.pcap.close()
    if gateway:gateway.close()
   finally:print(json.dumps(board.close()),flush=True)
