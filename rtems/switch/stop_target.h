@@ -1,6 +1,7 @@
 /* One-shot STOP1 experiment. No queues, BAR RAM, interrupt unmasking or DMA.
  * READY is published from an IRQ. DRAINED means both task continuations have
- * returned and the timer is restored. Host RELEASE permits MU restoration. */
+ * returned and the timer is restored. The containment build instead publishes
+ * QUIESCED with suspended live frames. Host RELEASE permits MU restoration. */
 static unsigned int stop_epoch,stop_diag[20];
 static rtems_id stop_controller;
 #ifdef I960_STOP_CASES
@@ -32,8 +33,15 @@ static void stop_mu_poll(void){unsigned int token;
 }
 static void stop_mu_finish(void){unsigned int budget=1000000;
  stop_diag[9]=ticks;stop_diag[10]=life[0].returns;stop_diag[11]=life[1].returns;
+#ifdef I960_CONTAIN_TEST
+ if(switch_fault||!contain_quiescent())bounded_fatal(0x58001);
+ /* Distinct QUIESCED token: these ISR continuations have NOT returned. */
+ REG(0x131c)=0x75000000u|stop_epoch;
+#else
  if(switch_fault||switch_active[0]||switch_active[1]||!lifetime_drained(life))bounded_fatal(0x57001);
- REG(0x131c)=0x73000000u|stop_epoch;(void)REG(0x131c);
+ REG(0x131c)=0x73000000u|stop_epoch;
+#endif
+ (void)REG(0x131c);
  while(REG(0x1314)!=(0x74000000u|stop_epoch)&&--budget){}
  stop_diag[12]=budget;if(!budget)switch_fault|=16384;
  if(REG(0x1328)!=0x1fb||REG(0x1334)!=0xff)switch_fault|=8192;

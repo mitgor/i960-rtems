@@ -1,5 +1,17 @@
 # RTEMS working guidance
 
+**STOP-ignoring worker containment (2026-10-11):** three live `contain`
+sessions passed. Both workers continued four ticks after STOP, then the
+controller externally suspended them, restored the timer and returned. Each
+worker retained one live ISR continuation; task/ISR stacks were kept intact
+until callback return, with 10,000 stable checks. The distinct QUIESCED token
+and exact-image-pinned host gate prevent confusing suspension with draining.
+Full RAM/MU restoration and unload passed each time; HTTP restored, no reboot
+or flash. [Contract, results and limits](switch/CONTAINMENT.md).
+This disposes of a bounded one-shot RTEMS instance; permanent interrupt masking,
+scheduler corruption and resource-safe cancellation in a resident OS remain
+unproven. Next: bounded critical-section containment and failure-path coverage.
+
 **Failed-control teardown checkpoint (2026-10-11):** both live injection cases
 passed: omitted STOP during final-user-fd close, and omitted RELEASE during
 unbind. Both syscalls returned ETIMEDOUT; pending/dirty state, DMA/BAR and module

@@ -1,0 +1,1 @@
+Three original paired reports verified: STOP ignored for 4 ticks, workers externally suspended, 10000 stable checks, live ISR/task stacks retained unchanged; exact binaries, full RAM/MU restoration and unload. C gate ASan/UBSan and Python reject 60 damaged hardware reports.

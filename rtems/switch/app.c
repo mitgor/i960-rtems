@@ -51,7 +51,9 @@ static void defer_probe(void){
 }
 #else
 #ifdef I960_STOP_TEST
-#ifdef I960_STOP_CASES
+#ifdef I960_CONTAIN_TEST
+#define REPORT_SIZE 944
+#elif defined(I960_STOP_CASES)
 #define REPORT_SIZE 896
 #else
 #define REPORT_SIZE 816
@@ -63,6 +65,9 @@ static void defer_probe(void){
 extern void switch_probe(unsigned int*,unsigned int);
 void bounded_fatal(unsigned int code){stop_timer();bounded_escape(0xf0000000u|code);}
 #define CHECK(x) do{unsigned int e=(x);if(e)bounded_fatal(0x10000+__LINE__*256+e);}while(0)
+#ifdef I960_CONTAIN_TEST
+#include "contain_target.h"
+#endif
 #ifdef I960_STOP_TEST
 #include "stop_target.h"
 #ifdef I960_STOP_CASES
@@ -160,10 +165,14 @@ static void Init(rtems_task_argument arg){rtems_id a,b;rtems_task_priority old;u
  CHECK(rtems_task_wake_after(32)); /* both workers spin, no voluntary yield */
 #endif
  switch_stop=1;
+#ifdef I960_CONTAIN_TEST
+ contain_workers(a,b);
+#else
  /* Both task-owned IRQ continuations must return before timer/code teardown. */
  CHECK(rtems_task_set_priority(RTEMS_SELF,3,&old));
  stop_timer();
  if(!done[0]||!done[1]||switch_active[0]||switch_active[1]||!lifetime_drained(life))switch_fault|=1024;
+#endif
  if(_ISR_Nest_level||_Thread_Dispatch_disable_level)switch_fault|=2048;
  for(i=0;i<allocated;i++){
   for(j=0;j<16;j++)if(stacks[i][j]!=0xa5)switch_fault|=4096;
@@ -172,6 +181,9 @@ static void Init(rtems_task_argument arg){rtems_id a,b;rtems_task_priority old;u
 #ifdef I960_STOP_TEST
  stop_mu_finish();
  for(i=0;i<20;i++)bio_put(out+736+i*4,stop_diag[i]);
+#ifdef I960_CONTAIN_TEST
+ for(i=0;i<32;i++)bio_put(out+816+i*4,contain_diag[i]);
+#endif
 #ifdef I960_STOP_CASES
  for(i=0;i<20;i++)bio_put(out+816+i*4,case_diag[i]);
 #endif

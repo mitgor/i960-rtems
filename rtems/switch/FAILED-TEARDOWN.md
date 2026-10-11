@@ -1,5 +1,11 @@
 # Failed control during teardown
 
+**2026-10-11 follow-up:** [STOP-ignoring worker containment](CONTAINMENT.md) passed
+three card sessions: external suspension, retained live ISR stacks, restored
+timer and full cleanup after callback return. This is one-shot instance disposal,
+not permanent-interrupt-mask recovery or resident resource-safe cancellation.
+Earlier next-step statements below describe their historical checkpoints.
+
 2026-10-11: two hardware tests passed, one final-user-fd close with STOP omitted,
 and one driver unbind with RELEASE omitted. Both deliberately leave the module
 pinned and require reboot. No flash was programmed. See the

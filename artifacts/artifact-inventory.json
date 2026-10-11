@@ -2513,6 +2513,46 @@
       "sha256": "fcabd8ee79fda258c47edf5e7db2a3ae405dd5267a76774db0562132b62b2657"
     },
     {
+      "path": "artifacts/irq-containment-20261011/README.md",
+      "size": 2904,
+      "sha256": "ba0cf6d80485e4f441b587d31bbdec0af588d1f9e0e5ec0cc43744159be6dbfe"
+    },
+    {
+      "path": "artifacts/irq-containment-20261011/acceptance.json",
+      "size": 2471,
+      "sha256": "39b2ceef483b5aa9119daf071ff31426b6ed861f3c48ca8cdde53eb82ad4defd"
+    },
+    {
+      "path": "artifacts/irq-containment-20261011/http-restored.txt",
+      "size": 2989,
+      "sha256": "7745db33d3bfac53553308d3723b8abdeff3ca7afccb8a47d7585f5f77a82efe"
+    },
+    {
+      "path": "artifacts/irq-containment-20261011/live.tar.xz",
+      "size": 871224,
+      "sha256": "c85765855eefca6f6809f5b2412e243a989425201946570c65c827e07538ba94"
+    },
+    {
+      "path": "artifacts/irq-containment-20261011/native-tests.txt",
+      "size": 4452,
+      "sha256": "6913859d090a06e843c4f2abe807332ea8b51d886d4d8477212fe107722b0126"
+    },
+    {
+      "path": "artifacts/irq-containment-20261011/service-state.txt",
+      "size": 172,
+      "sha256": "30289aa7dbbddc30c7f791097710027e99bab304764fc78fbcc209c8761385dd"
+    },
+    {
+      "path": "artifacts/irq-containment-20261011/source.tar.xz",
+      "size": 93904,
+      "sha256": "ac428f888d9614d595308d473c1f14ac2e4afbd6c5ac695d9c45982fddc2afc7"
+    },
+    {
+      "path": "artifacts/irq-containment-20261011/verification.txt",
+      "size": 275,
+      "sha256": "c0c4742ce2e9c3cd0382d8a7bc6dde201834b7fdc2dd0870ee658902ff64b5e0"
+    },
+    {
       "path": "artifacts/irq-deferral-20261011/README.md",
       "size": 3278,
       "sha256": "c0e064c2f20ad37cdfaac423519043fcce3c0eb3243c7364d53249bd127ce7f1"

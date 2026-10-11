@@ -1,0 +1,7 @@
+ddc29cfe-f10a-4d49-b68b-9ad8f14c256f
+test-module-unloaded
+card-unbound
+Running as unit: i960-http6.service
+active
+../../../../bus/pci/drivers/dac960auto
+test-module-absent

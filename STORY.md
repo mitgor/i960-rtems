@@ -1026,6 +1026,40 @@ itself up. The next hard question remains a worker that will not cooperate at
 all. But the smaller answer is now measured: when we cannot prove completion,
 we can at least refuse to turn somebody else's unfinished work into freed RAM.
 
+## The workers that did not listen
+
+Until now, even the busiest worker eventually looked at the stop flag. That is
+a useful agreement, but it is still an agreement. We built another pair that
+never looked. The host said STOP; both kept counting for four more timer ticks.
+The counters made their refusal visible.
+
+The controller did not manufacture a return address or pretend the interrupted
+calls had finished. It suspended both tasks through the scheduler, stopped the
+borrowed timer, and kept every unfinished interrupt frame where it was. Then it
+lowered its own scheduling priority below the workers. Neither ran. Ten thousand
+checks later, the counters were still fixed and the task and interrupt stacks
+still had the same checksums.
+
+There was a small but essential change in vocabulary. The reply was QUIESCED,
+not DRAINED. Each worker still owned one live interrupt continuation. We wrote
+that fact into the report instead of clearing the flags to make it look tidy.
+Only after the controller returned through the firmware callback could the host
+put the entire borrowed workspace back. We were throwing away this whole tiny
+RTEMS world, not promising to cancel one arbitrary task and keep its neighbours
+healthy.
+
+Three sessions passed. STOP arrived at ticks 36, 41 and 52; containment followed
+at 40, 45 and 56. Both workers stayed comfortably short of the experiment's
+emergency iteration ceiling. Every session restored RAM and the message unit,
+and the Linux module unloaded normally. The IPv6 Vader page came back without
+a reboot.
+
+This buys us a precise new capability: a worker need not agree to stop, provided
+interrupts can still reach the controller and the scheduler remains intact. A
+worker that masks interrupts forever, smashes a kernel structure or owns a lock
+somebody else needs is a different problem. The old card has no new protection
+boundary just because we have learned another way to ask its scheduler for help.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

@@ -54,8 +54,13 @@ _switch_probe:
 switch_loop:
  cmpo g0,g0
  bne switch_ac_bad
+#ifdef I960_CONTAIN_TEST
+ /* Deliberately ignore STOP, never yield. Finite emergency ceiling only. */
+ st r3,276(r4)
+#else
  ld _switch_stop,r5
  cmpobne 0,r5,switch_finished
+#endif
  subo 1,r3,r3
  cmpobne 0,r3,switch_loop
  b switch_finished

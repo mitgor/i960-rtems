@@ -1,5 +1,11 @@
 # Preemptive RTEMS and DMA networking plan
 
+**2026-10-11 follow-up:** [STOP-ignoring worker containment](rtems/switch/CONTAINMENT.md) passed
+three card sessions: external suspension, retained live ISR stacks, restored
+timer and full cleanup after callback return. This is one-shot instance disposal,
+not permanent-interrupt-mask recovery or resident resource-safe cancellation.
+Earlier next-step statements below describe their historical checkpoints.
+
 **2026-10-11 follow-up:** [failed-control teardown tests](rtems/switch/FAILED-TEARDOWN.md) now pass
 on the card for omitted STOP/final close and omitted RELEASE/unbind. Pending
 resources remain pinned; unload is refused and recovery requires reboot. This
