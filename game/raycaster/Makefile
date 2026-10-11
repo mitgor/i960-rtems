@@ -20,3 +20,9 @@ test-transfer:
 test-upload:
 	python3 upload/test.py
 .PHONY: test-upload
+
+# Differential candidates retain the unmodified renderer and byte validator.
+test-callback:
+	python3 callback/test.py
+	python3 callback/test_transport.py
+.PHONY: test-callback

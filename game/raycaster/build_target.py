@@ -23,6 +23,8 @@ def main():
     p.add_argument('--cross', default='/home/mit/i960/tools/bin/i960-coff-')
     p.add_argument('--memory', choices=['byte', 'word'], default='word')
     p.add_argument('--memory-check', action='store_true', help='run 264 bounded reference-check batches before requests')
+    p.add_argument('--request-words', action='store_true', help='exact aligned word request validation')
+    p.add_argument('--render-fast', action='store_true', help='word-loaded FNV and clipped column runs')
     a = p.parse_args()
     if a.memory_check and a.memory != 'word':
         p.error('--memory-check requires --memory word')
@@ -35,6 +37,13 @@ def main():
     shutil.copyfile(HERE / 'rtems/app.c', profile / 'app.c')
     for name in ('ray.c', 'ray.h', 'trig.h'):
         shutil.copyfile(HERE / name, profile / name)
+    from callback.optimize import request_words, render_fast
+    if a.request_words:
+        header = project / 'transport/buffer_io.h'
+        header.write_text(request_words(header.read_text()))
+    if a.render_fast:
+        ray = profile / 'ray.c'
+        ray.write_text(render_fast(ray.read_text()))
     if a.memory == 'word':
         libc = profile / 'libc.c'
         original = libc.read_text()
@@ -62,8 +71,9 @@ def main():
     for path in sorted(profile.iterdir()):
         if path.is_file() and not path.name.startswith('.'):
             sources[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    sources['buffer_io.h'] = hashlib.sha256((project/'transport/buffer_io.h').read_bytes()).hexdigest()
     (work / 'session/raycaster-build.json').write_text(json.dumps(dict(
-        application='raycaster', memory=a.memory, memory_check_batches=264 if a.memory_check else 0, execution='bounded RTEMS session',
+        application='raycaster', request_words=a.request_words, render_fast=a.render_fast, memory=a.memory, memory_check_batches=264 if a.memory_check else 0, execution='bounded RTEMS session',
         hardware_tested=False, source_sha256=sources), indent=2) + '\n')
 
 

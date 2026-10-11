@@ -1,0 +1,14 @@
+{
+  "binary_hashes_verified": 5,
+  "target_source_manifests_verified": 2,
+  "generated_modules_reproduced": 3,
+  "baseline_profile_reproduced": true,
+  "new_card_sessions": 8,
+  "replies": 3368,
+  "full_audits": 104,
+  "initial_prefix_audits": 8,
+  "profiled_commands": 82810,
+  "restored_sessions": 8,
+  "boot_id": "b73cb338-eb5f-4cd0-8367-ea65e2f799a9",
+  "production_restored": true
+}

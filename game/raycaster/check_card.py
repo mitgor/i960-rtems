@@ -2,12 +2,14 @@
 import argparse,gzip,json,re,time
 from pathlib import Path
 from host import Native,card_backend,request,decode
-p=argparse.ArgumentParser();p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--command-profile',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--command-profile',action='store_true');p.add_argument('--cpu-profile',action='store_true');a=p.parse_args()
 from transfer.commands import parse as parse_commands
 oracle=Native();board=card_backend(a.payload,a.module,a.output);rows=[]
 command_log=None
 def step(label,data):
+ cpu_start=time.process_time_ns() if a.cpu_profile else 0
  start=time.monotonic_ns();reply=board.step(data);end=time.monotonic_ns()
+ cpu_end=time.process_time_ns() if a.cpu_profile else 0
  assert reply==oracle.step(data),label
  log=board.debugfs.joinpath('result.txt').read_text()
  if command_log:
@@ -15,6 +17,7 @@ def step(label,data):
  match=re.search(r'RAYPROFILE seq=(\d+) upload=(\d+) arm=(\d+) execute=(\d+) verify=(\d+) audit=(\d+) total=(\d+) bytes=(\d+)',log)
  assert match,label
  row=dict(zip(['sequence','upload_ns','arm_ns','execute_ns','verify_ns','audit_ns','kernel_ns','audit_bytes'],map(int,match.groups())))
+ if a.cpu_profile:row['process_cpu_ns']=cpu_end-cpu_start
  row.update(label=label,wall_ns=end-start,reply_bytes=len(reply),header=decode(reply));row['header'].pop('frame');row['header'].pop('palette');rows.append(row)
  (a.output/'phases.json').write_text(json.dumps(rows,indent=2)+'\n')
 try:

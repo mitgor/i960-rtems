@@ -1,5 +1,20 @@
 # Current findings and evidence — 2026-10-11
 
+
+**Callback/render optimization accepted (2026-10-11):** exact word-at-a-time
+request validation and equivalent renderer loops reduce full-frame callback time
+**11.925 → 7.360 ms (38.28%)**, with kernel transaction time **24.169 → 19.471 ms
+(19.44%)**. Eight sessions pass 3,368 native-matching replies, 104 periodic full
+allocation audits and eight restorations; public IPv6 HTTP is restored. All paired
+read coverage, guards, deadlines and quiet-string restoration remain intact.
+The optional 20 us completion poll saves 0.269 ms of audit time but costs 17.19%
+more host CPU; retain 50 us as the recommendation. Coarse release: 19.352 ms.
+Use `build_target.py --request-words --render-fast` and
+`game/raycaster/callback/build_transport.py --out DIR --coarse`; existing target
+builder defaults and production remain unchanged. [Contract](game/raycaster/callback/README.md),
+[profiles, artifacts and next bottleneck](artifacts/callback-20261011/README.md).
+
+
 **Cache dispatch and resident follow-up:** board selector 6 and the live primary
 operation pointer qualify the i960 internal-controller / CPU-XOR path. Firmware
 reports 16 MiB. Bootstrap analysis shows board selector 6

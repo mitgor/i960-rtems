@@ -142,8 +142,17 @@ restoration, reduces upload waits 32.129 → 0.368 ms and full-frame kernel time
 55.840 → 24.141 ms. The final matrix passes 2,105 replies; ten repeated startup
 sessions cover the corrected cache ordering. [Evidence](artifacts/upload-20261011/README.md).
 
-Next concrete action: profile the remaining roughly 12 ms callback/render and
-10.5 ms readback/audit independently. Retain the bounded scalar interface while
-planning a generation-checked frame queue only where measured costs justify it.
-Align ownership with the parallel work. Faster uploads and word helpers do not
-establish physical DMA drain or reserve the larger RAM needed by Doom.
+Callback/readback profiling is now complete. Exact word request scans and
+renderer loops reduce callback 11.925 → 7.360 ms and kernel time 24.169 → 19.471 ms
+(19.44%). Eight sessions pass 3,368 identical replies and full restoration.
+The 20 us polling experiment saves 0.269 ms audit time but costs 17.19% more host
+CPU; the recommended 50 us coarse release measures 19.352 ms kernel time.
+[Evidence](artifacts/callback-20261011/README.md).
+
+Next concrete action: design and test a generation-checked frame queue with
+explicit ownership, stale-frame rejection, cancellation and an equivalent
+immutable-memory audit contract. Read completion waits still cost about 9.46 ms,
+with 942,272 bytes read per ordinary frame. Keep current paired coverage until a
+replacement is proven; do not silently reduce it to improve the timing. Align
+that design with the parallel internal-controller/ownership findings. Faster
+callbacks do not establish physical DMA drain or reserve Doom's larger heap.

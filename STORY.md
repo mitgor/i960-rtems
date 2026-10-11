@@ -1573,6 +1573,44 @@ drained. The bytes and the failed attempt both went into the archive.
 That was more room for the network, not a claim on the rest of the card's RAM.
 The distinction was becoming something of a theme.
 
+## Counting four at a time
+
+With the upload chatter silenced, the next expensive thing was checking that
+nothing had happened.
+
+Even a request for a header, without drawing a pixel, spent about five
+milliseconds in the callback. The target was walking through twelve kilobytes
+of padding, guards and untouched output, one byte at a time. Those checks had
+earned their place. They stayed. We taught them to compare four aligned bytes
+at once, with the awkward ends still checked individually.
+
+The header-only callback fell to about one and a half milliseconds. The picture
+had not changed, partly because there was no picture in that test.
+
+Then came the renderer. A column was sky, wall and floor; it did not need to
+rediscover that classification for every pixel. The frame hash could load four
+bytes at once too, provided it still fed them through the same arithmetic in the
+same order. The old renderer stayed beside the new one as the judge. Every
+returned byte had to agree.
+
+The full-frame callback went from 11.925 milliseconds to 7.360. Including the
+uploads and audits, the kernel transaction went from 24.169 to 19.471.
+
+We also tried asking the card whether it was finished more often. That worked,
+but the bargain was less attractive: about a quarter of a millisecond less
+readback time for seventeen percent more host CPU. The faster polling remained
+an option. The recommended build kept the old interval.
+
+Eight sessions returned three thousand three hundred and sixty-eight matching
+replies. Each one put the borrowed memory and the quieted diagnostic byte back.
+The public web server came back, and Vader resumed receiving visitors.
+
+The biggest remaining bill was moving nearly a megabyte through paired reads
+for each ordinary frame. We could make that bill disappear from a benchmark by
+checking less memory. That would answer a different question. The next transport
+would have to explain which bytes belonged to whom, and prove when a frame was
+finished, before it could ask to pay less.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

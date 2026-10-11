@@ -43,3 +43,15 @@ arming: the exploratory build exposed stale dispatch and was correctly rejected.
 Preserve fixed preimages, per-step paired 80-byte checks, dirty retention and
 prechecked exact restoration. `python3 game/raycaster/upload/test.py` covers the
 cache-order regression and failure paths. Other profiles remain unchanged.
+
+Callback/readback candidates live in `callback/`. Read its README and
+`artifacts/callback-20261011/README.md` for current acceptance status. The flags
+`build_target.py --request-words --render-fast` are explicit opt-ins; retain
+`ray.c` as the independent oracle. `callback/build_transport.py --poll20` changes
+only the completion observation interval, never validation or read coverage.
+`make -C game/raycaster test-callback` covers differential responses and every
+request bit mutation. The seven-session comparison plus coarse release passed: 3,368 replies, 104 full
+audits, eight restorations. Recommended 50 us transport + both target flags gives
+19.44% lower kernel time; 20 us costs 17.19% more host CPU for 0.269 ms less audit
+time. Keep it optional. Preserve full paired coverage and coordinate hardware
+through the existing lock; production remains autonet.
