@@ -1,0 +1,6 @@
+retained-module-cleared
+card-unbound
+Running as unit: i960-http6.service
+active
+../../../../bus/pci/drivers/dac960auto
+test-module-absent

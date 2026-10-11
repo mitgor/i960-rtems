@@ -5,8 +5,8 @@ from pathlib import Path
 from build_concurrent_transport import build as base
 from build import replace
 
-def build(out,payload):
- base(out,payload)
+def build(out,payload,base_builder=base):
+ base_builder(out,payload)
  p=out/'dac960rtems.c';s=p.read_text()
  pos=s.index('static unsigned int changed(')
  helper='''/* Test-only ordered event stamps, readable after debugfs teardown. Each

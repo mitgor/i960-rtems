@@ -2553,6 +2553,111 @@
       "sha256": "c0c4742ce2e9c3cd0382d8a7bc6dde201834b7fdc2dd0870ee658902ff64b5e0"
     },
     {
+      "path": "artifacts/irq-containment-batch-20261011/README.md",
+      "size": 3683,
+      "sha256": "397974e2fff520003625423a6252731d20b6365ed2929033e26c59ea198b601c"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/acceptance.json",
+      "size": 19062,
+      "sha256": "a6e1c73bb10e900b63853ccc913eeea240ea099b4b66e0afcc9517c975cebeee"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/boot-1.txt",
+      "size": 37,
+      "sha256": "2748f6eb0a13dcfbc0036aba8dd9348ee9e2a4f98306638b7b6e011a0f06d119"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/boot-2.txt",
+      "size": 37,
+      "sha256": "82200396e3dab9cdff6eea630da6464907b2ff158e867d5c983db5d9e72ad682"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/boot-3.txt",
+      "size": 37,
+      "sha256": "9004597d008a4d8f1d2c9298f861adb8a2545fd1a642a7a08f060cb01548af7b"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/boot-4.txt",
+      "size": 37,
+      "sha256": "be950f313e11cd857f07eef5cd58f437a070549365684bf849b27092af0ec750"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/critical-verification.txt",
+      "size": 187,
+      "sha256": "cb04d4140a0132445cea8d4f1f172fb12138ef98cd6576b4ca6afb69de80c1a1"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/critical.tar.xz",
+      "size": 1121148,
+      "sha256": "19e8e9407aa6a2f21fe9e4e851d4d47969af5b2f62e8b9d791002ad33fea431e"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/failure-1-verification.txt",
+      "size": 204,
+      "sha256": "0ab11336e78faec26cbf08d8ab024711fd80f58a0e7a6ae4572750c92ff778a5"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/failure-1.tar.xz",
+      "size": 708564,
+      "sha256": "2260c85975898e3e35ce5126caafdfcab7f8d497e68bf17d6c11f749cb4d6604"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/failure-2-verification.txt",
+      "size": 204,
+      "sha256": "b18fbb62dae8e3415a8ad4ce158d9e6a48f85463a57cc37d2629af1b7f1fd356"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/failure-2.tar.xz",
+      "size": 708664,
+      "sha256": "94c79bb713ad589c7dfc1c998cb03f8f9c5decb59f2e28e0ce79b5468c219001"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/failure-3-verification.txt",
+      "size": 251,
+      "sha256": "599f8e2ed5526a4fef827fdeccfd15299a01164654cff9b0ae92910191017dc3"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/failure-3.tar.xz",
+      "size": 711652,
+      "sha256": "5e649954b85a5d6c76e8b1e64a9d163957c5fa9a3c0af057a66ff80220768357"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/http-restored.txt",
+      "size": 2988,
+      "sha256": "3dc6bad4143fb73dd1dba9bbc61e4b389727c6044b6f46b6594ef35dc111de45"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/initial-verification.txt",
+      "size": 187,
+      "sha256": "cb04d4140a0132445cea8d4f1f172fb12138ef98cd6576b4ca6afb69de80c1a1"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/native-tests.txt",
+      "size": 4988,
+      "sha256": "1ad299f5a689c2e74dc873cdee44bd8dcc718585201ee87a5a99e85e3ce09da2"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/recovery-verification.txt",
+      "size": 349,
+      "sha256": "fe5d2be97e00f422e6abd5a962ac8709aec1901779ac397723786967bdd00c76"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/recovery.tar.xz",
+      "size": 355028,
+      "sha256": "64fa00926c7cf4624a994bb1e94f4c6e4a8ad700d8001f5845121666c1f2c843"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/service-state.txt",
+      "size": 138,
+      "sha256": "86a94463466b21c00c7a3f7f641c60bb5c1a8eba273a5166c568ccb15a447340"
+    },
+    {
+      "path": "artifacts/irq-containment-batch-20261011/source.tar.xz",
+      "size": 101660,
+      "sha256": "b34fa76f240f2215632297e41afdc288725b6533d1686f9b2336f98809f5cf76"
+    },
+    {
       "path": "artifacts/irq-deferral-20261011/README.md",
       "size": 3278,
       "sha256": "c0e064c2f20ad37cdfaac423519043fcce3c0eb3243c7364d53249bd127ce7f1"

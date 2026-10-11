@@ -5,8 +5,8 @@ from pathlib import Path
 from build_lifecycle_transport import build as base
 from build import replace
 
-def build(out,payload):
- base(out,payload)
+def build(out,payload,base_builder=base):
+ base_builder(out,payload)
  p=out/'dac960rtems.c';s=p.read_text()
  anchor='static atomic_t lifecycle_clock=ATOMIC_INIT(0);'
  s=replace(s,anchor,'''static unsigned int fail_control;

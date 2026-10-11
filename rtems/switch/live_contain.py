@@ -34,11 +34,11 @@ def decode(data):
  return dict(epoch=d[1],stop_tick=d[3],quiesced_tick=w[2],ignored_stop_ticks=q[4],
   stable_observations=q[17],faults=w[1],slots=slots)
 
-def main():
+def main(decoder=decode,delays=(120,150,200),filename='contain.bin'):
  p=argparse.ArgumentParser()
  for n in ('payload','module','output','reader'):p.add_argument('--'+n,type=Path,required=True)
  a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False);rows=[]
- for index,delay in enumerate((120,150,200)):
+ for index,delay in enumerate(delays):
   before=json.loads(subprocess.check_output([str(a.reader)],text=True))
   b=Board(a.payload,a.module,a.output/f'run-{index}');epoch=secrets.randbelow(65535)+1
   (b.out/'mu-before.json').write_text(json.dumps(before,indent=2)+'\n')
@@ -53,7 +53,7 @@ def main():
      except OSError as e:assert e.errno==errno.EAGAIN
      assert time.monotonic()<deadline;time.sleep(.001)
     pending=not work.done();reply=ioctl(b.fd,1,epoch);data=work.result(timeout=3)
-   (b.out/'contain.bin').write_bytes(data);row=decode(data);assert row['epoch']==epoch
+   (b.out/filename).write_bytes(data);row=decoder(data);assert row['epoch']==epoch
    assert pending and not(reply[3]&1) and not(reply[5]&1) and reply[6]==0x75000000|epoch and reply[7]==1
    (b.out/'control.json').write_text(json.dumps(dict(status=status,reply=reply,pending=pending),indent=2)+'\n')
    log=(b.debugfs/'result.txt').read_text();(b.out/'control-log.txt').write_text(log)

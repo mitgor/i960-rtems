@@ -51,7 +51,9 @@ static void defer_probe(void){
 }
 #else
 #ifdef I960_STOP_TEST
-#ifdef I960_CONTAIN_TEST
+#if defined(I960_CONTAIN_TEST) && defined(I960_STOP_CASES)
+#define REPORT_SIZE 1024
+#elif defined(I960_CONTAIN_TEST)
 #define REPORT_SIZE 944
 #elif defined(I960_STOP_CASES)
 #define REPORT_SIZE 896
@@ -135,6 +137,9 @@ static void Worker(rtems_task_argument id){unsigned int *r=switch_records[id],i;
  if(id==0)defer_probe();
 #endif
 #ifdef I960_STOP_CASES
+ #ifdef I960_CONTAIN_TEST
+ switch_records[id][69]=1000000; /* A has not reached its assembly leaf yet. */
+ #endif
  if(id==0&&stop_case<=2)stop_critical();
 #endif
  deep_probe(16,id);
@@ -185,7 +190,11 @@ static void Init(rtems_task_argument arg){rtems_id a,b;rtems_task_priority old;u
  for(i=0;i<32;i++)bio_put(out+816+i*4,contain_diag[i]);
 #endif
 #ifdef I960_STOP_CASES
+#ifdef I960_CONTAIN_TEST
+ for(i=0;i<20;i++)bio_put(out+944+i*4,case_diag[i]);
+#else
  for(i=0;i<20;i++)bio_put(out+816+i*4,case_diag[i]);
+#endif
 #endif
 #endif
  {unsigned int header[]={0x31575349,switch_fault,ticks,two_live,handoffs,done[0],done[1],switch_active[0],switch_active[1],_ISR_Nest_level,_Thread_Dispatch_disable_level,REG(0xff008504),REG(0xff008528),REG(0x3c),saved_vector,REG(0xff000310),REG(0xff000314),REG(0xff000318),REG(0xff008500),armed};

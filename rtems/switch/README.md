@@ -1,5 +1,11 @@
 # Two owned interrupt continuations and timer-driven task switching
 
+**2026-10-11 batch follow-up:** [critical-section and failure containment](CONTAINMENT-BATCH.md)
+now pass on the card. Six final critical sessions defer control until outer
+release; three failure cases retain resources, including an invalid report after
+completion. Earlier next-step statements below are historical. Resident resource
+ownership and cancellation remain separate design gates.
+
 **2026-10-11 follow-up:** [STOP-ignoring worker containment](CONTAINMENT.md) passed
 three card sessions: external suspension, retained live ISR stacks, restored
 timer and full cleanup after callback return. This is one-shot instance disposal,

@@ -1060,6 +1060,47 @@ worker that masks interrupts forever, smashes a kernel structure or owns a lock
 somebody else needs is a different problem. The old card has no new protection
 boundary just because we have learned another way to ask its scheduler for help.
 
+## Waiting for the outer door
+
+The next batch put the refusal to stop inside the scheduler's critical sections.
+At depth two, STOP arrived at tick 18. At depth one, it arrived at tick 30. The
+controller heard both requests, but neither gave it permission to break the
+scheduler's own rules. It waited until the outer section released at tick 40.
+Four ticks later, both workers were suspended with their unfinished interrupt
+frames still intact.
+
+There were six initial passes. The larger report also earned us a Linux compiler
+warning: the host's temporary decoding array had pushed a stack frame beyond the
+configured warning threshold. We moved that array off the stack and ran all six
+again. The second set passed too, including the full restoration after each run.
+The warning and the first captures stayed in the archive; they were part of the
+work, not something to edit out of the story.
+
+Then we made the conversation fail in three different places. No STOP, while the
+last descriptor closed. No RELEASE, while Linux unbound the driver. Finally, a
+perfectly good reply whose local decoded marker we deliberately invalidated,
+after the card had already completed the callback.
+
+That last one mattered most. The pending flag was clear. The runner was no longer
+uncertain. But the proof needed to put memory back had failed validation. The
+driver kept the dirty workspace, DMA buffer and BAR mapping, and refused to
+unload. Completion was a fact; permission to reclaim memory was another fact,
+and we had finally tested that they did not have to travel together.
+
+All three failures kept their resources until reboot. We saved and independently
+checked each capture before restarting the PC. The original reply in the third
+case still decoded correctly: only the host's validation copy had been damaged.
+That distinction is why the experiment tells us something about the refusal
+path without pretending the card suffered a physical bus fault.
+
+All three reboots returned to Linux. Fresh firmware checks passed, and the
+IPv6 Vader page was back with its live system information.
+
+The next boundary is ownership inside a system we intend to keep running. A
+whole disposable RTEMS instance is one thing. A cancelled task whose neighbour
+still needs its lock or I/O buffer is another. The machine has earned a stronger
+stop contract, not a promise that arbitrary code can now be safely forgotten.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

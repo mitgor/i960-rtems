@@ -1,0 +1,972 @@
+{
+  "critical_final": [
+    {
+      "epoch": 61374,
+      "stop_tick": 18,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955667,
+          "remaining_after": 955667,
+          "suspended_state": 2,
+          "stack_hash": "0xc85dc4f3",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821126,
+          "remaining_at_suspend": 776794,
+          "remaining_after": 776794,
+          "suspended_state": 2,
+          "stack_hash": "0x6832d08a",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 1,
+        "ready_tick": 17,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 2,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 39142,
+      "stop_tick": 30,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955669,
+          "remaining_after": 955669,
+          "suspended_state": 2,
+          "stack_hash": "0x2f9e76f9",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821129,
+          "remaining_at_suspend": 776796,
+          "remaining_after": 776796,
+          "suspended_state": 2,
+          "stack_hash": "0xbca752e4",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 2,
+        "ready_tick": 29,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 1,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 62427,
+      "stop_tick": 18,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955670,
+          "remaining_after": 955670,
+          "suspended_state": 2,
+          "stack_hash": "0xa1fa474",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821133,
+          "remaining_at_suspend": 776796,
+          "remaining_after": 776796,
+          "suspended_state": 2,
+          "stack_hash": "0xbca752e4",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 1,
+        "ready_tick": 17,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 2,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 26233,
+      "stop_tick": 30,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955667,
+          "remaining_after": 955667,
+          "suspended_state": 2,
+          "stack_hash": "0x40f22a4",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821133,
+          "remaining_at_suspend": 776797,
+          "remaining_after": 776797,
+          "suspended_state": 2,
+          "stack_hash": "0x14f1fff1",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 2,
+        "ready_tick": 29,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 1,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 52337,
+      "stop_tick": 18,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955666,
+          "remaining_after": 955666,
+          "suspended_state": 2,
+          "stack_hash": "0x29c69bb0",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821130,
+          "remaining_at_suspend": 776797,
+          "remaining_after": 776797,
+          "suspended_state": 2,
+          "stack_hash": "0x4deb9a6f",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 1,
+        "ready_tick": 17,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 2,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 34627,
+      "stop_tick": 30,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955669,
+          "remaining_after": 955669,
+          "suspended_state": 2,
+          "stack_hash": "0x2f9e76f9",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821126,
+          "remaining_at_suspend": 776791,
+          "remaining_after": 776791,
+          "suspended_state": 2,
+          "stack_hash": "0xe5181a32",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 2,
+        "ready_tick": 29,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 1,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    }
+  ],
+  "critical_initial": [
+    {
+      "epoch": 14119,
+      "stop_tick": 18,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955671,
+          "remaining_after": 955671,
+          "suspended_state": 2,
+          "stack_hash": "0x4677eeb8",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821129,
+          "remaining_at_suspend": 776797,
+          "remaining_after": 776797,
+          "suspended_state": 2,
+          "stack_hash": "0x4deb9a6f",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 1,
+        "ready_tick": 17,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 2,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 59077,
+      "stop_tick": 30,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955667,
+          "remaining_after": 955667,
+          "suspended_state": 2,
+          "stack_hash": "0xc85dc4f3",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821128,
+          "remaining_at_suspend": 776794,
+          "remaining_after": 776794,
+          "suspended_state": 2,
+          "stack_hash": "0x890203df",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 2,
+        "ready_tick": 29,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 1,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 46587,
+      "stop_tick": 18,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955671,
+          "remaining_after": 955671,
+          "suspended_state": 2,
+          "stack_hash": "0x6cd12697",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821133,
+          "remaining_at_suspend": 776802,
+          "remaining_after": 776802,
+          "suspended_state": 2,
+          "stack_hash": "0xc9691cb7",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 1,
+        "ready_tick": 17,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 2,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 10013,
+      "stop_tick": 30,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955674,
+          "remaining_after": 955674,
+          "suspended_state": 2,
+          "stack_hash": "0xc2c3a51e",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821129,
+          "remaining_at_suspend": 776796,
+          "remaining_after": 776796,
+          "suspended_state": 2,
+          "stack_hash": "0xe03702e2",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 2,
+        "ready_tick": 29,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 1,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 35682,
+      "stop_tick": 18,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955668,
+          "remaining_after": 955668,
+          "suspended_state": 2,
+          "stack_hash": "0x336476c",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821134,
+          "remaining_at_suspend": 776799,
+          "remaining_after": 776799,
+          "suspended_state": 2,
+          "stack_hash": "0x6d0efe1",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 1,
+        "ready_tick": 17,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 2,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    },
+    {
+      "epoch": 31832,
+      "stop_tick": 30,
+      "quiesced_tick": 44,
+      "ignored_stop_ticks": 4,
+      "stable_observations": 10000,
+      "faults": 0,
+      "slots": [
+        {
+          "owner": "0xc0f568e8",
+          "entries": 34,
+          "returns": 33,
+          "live": 1,
+          "remaining_at_stop": 1000000,
+          "remaining_at_suspend": 955666,
+          "remaining_after": 955666,
+          "suspended_state": 2,
+          "stack_hash": "0xa1c23909",
+          "irq_hash": "0xc1e9f82d"
+        },
+        {
+          "owner": "0xc0f56a58",
+          "entries": 10,
+          "returns": 9,
+          "live": 1,
+          "remaining_at_stop": 821130,
+          "remaining_at_suspend": 776797,
+          "remaining_after": 776797,
+          "suspended_state": 2,
+          "stack_hash": "0x4deb9a6f",
+          "irq_hash": "0xc104029f"
+        }
+      ],
+      "critical": {
+        "mode": 2,
+        "ready_tick": 29,
+        "controller_tick": 40,
+        "outer_return_tick": 41,
+        "depth": 1,
+        "observations": [
+          12,
+          12
+        ],
+        "pending": 24
+      }
+    }
+  ],
+  "failure_1": {
+    "mode": 1,
+    "epoch": 29651,
+    "injection": {
+      "events": [
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "retention": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refcount": 1,
+      "bound": true,
+      "debugfs": true
+    },
+    "last_fd_closed": true,
+    "control_errno": 110,
+    "write_errno": 110,
+    "before_unload": {
+      "events": [
+        1,
+        2,
+        0,
+        7,
+        4,
+        6,
+        0,
+        5,
+        0,
+        0,
+        0,
+        8,
+        0,
+        3,
+        0,
+        0
+      ],
+      "retention": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        110,
+        1,
+        1,
+        0,
+        1
+      ],
+      "refcount": 1,
+      "bound": true,
+      "debugfs": true
+    },
+    "unload": {
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rmmod: ERROR: Module dac960rtems is in use\n"
+    },
+    "after_unload": {
+      "events": [
+        1,
+        2,
+        0,
+        7,
+        4,
+        6,
+        0,
+        5,
+        0,
+        0,
+        0,
+        8,
+        0,
+        3,
+        0,
+        0
+      ],
+      "retention": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        110,
+        1,
+        1,
+        0,
+        1
+      ],
+      "refcount": 1,
+      "bound": true,
+      "debugfs": true
+    }
+  },
+  "failure_2": {
+    "mode": 2,
+    "epoch": 39506,
+    "injection": {
+      "events": [
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "retention": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refcount": 1,
+      "bound": true,
+      "debugfs": true
+    },
+    "control_errno": 110,
+    "write_errno": 110,
+    "before_unload": {
+      "events": [
+        1,
+        2,
+        3,
+        10,
+        5,
+        7,
+        8,
+        6,
+        0,
+        9,
+        0,
+        11,
+        0,
+        4,
+        0,
+        0
+      ],
+      "retention": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        110,
+        1,
+        1,
+        0,
+        2
+      ],
+      "refcount": 1,
+      "bound": false,
+      "debugfs": true
+    },
+    "unload": {
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rmmod: ERROR: Module dac960rtems is in use\n"
+    },
+    "after_unload": {
+      "events": [
+        1,
+        2,
+        3,
+        10,
+        5,
+        7,
+        8,
+        6,
+        0,
+        9,
+        0,
+        11,
+        0,
+        4,
+        0,
+        0
+      ],
+      "retention": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        110,
+        1,
+        1,
+        0,
+        2
+      ],
+      "refcount": 1,
+      "bound": false,
+      "debugfs": true
+    }
+  },
+  "failure_3": {
+    "mode": 3,
+    "epoch": 24985,
+    "injection": {
+      "events": [
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "retention": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refcount": 1,
+      "bound": true,
+      "debugfs": true
+    },
+    "last_fd_closed": true,
+    "control_reply": [
+      1,
+      24985,
+      1,
+      0,
+      1895850393,
+      0,
+      1962959257,
+      1
+    ],
+    "control_errno": 0,
+    "write_errno": 61,
+    "before_unload": {
+      "events": [
+        1,
+        2,
+        0,
+        7,
+        4,
+        6,
+        0,
+        5,
+        0,
+        0,
+        0,
+        8,
+        0,
+        3,
+        0,
+        0
+      ],
+      "retention": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        3
+      ],
+      "refcount": 1,
+      "bound": true,
+      "debugfs": true
+    },
+    "unload": {
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rmmod: ERROR: Module dac960rtems is in use\n"
+    },
+    "after_unload": {
+      "events": [
+        1,
+        2,
+        0,
+        7,
+        4,
+        6,
+        0,
+        5,
+        0,
+        0,
+        0,
+        8,
+        0,
+        3,
+        0,
+        0
+      ],
+      "retention": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        3
+      ],
+      "refcount": 1,
+      "bound": true,
+      "debugfs": true
+    }
+  }
+}

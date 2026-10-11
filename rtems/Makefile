@@ -7,6 +7,8 @@ test:
 	python3 switch/test_lifecycle.py
 	python3 switch/test_failed_teardown.py
 	python3 switch/test_contain.py
+	python3 switch/test_contain_cases.py
+	python3 switch/test_contain_failures.py
 	python3 control/test_framed.py
 	python3 control/test_mu.py
 	python3 control/test_control.py

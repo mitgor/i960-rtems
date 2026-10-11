@@ -1,5 +1,11 @@
 # Containing workers that ignore STOP
 
+**2026-10-11 batch follow-up:** [critical-section and failure containment](CONTAINMENT-BATCH.md)
+now pass on the card. Six final critical sessions defer control until outer
+release; three failure cases retain resources, including an invalid report after
+completion. Earlier next-step statements below are historical. Resident resource
+ownership and cancellation remain separate design gates.
+
 2026-10-11: the separate `contain` profile passed three fresh card sessions.
 Both workers ignored STOP and kept executing for four more timer ticks. The
 controller suspended them externally, restored the timer, and returned through

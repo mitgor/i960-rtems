@@ -1,5 +1,18 @@
 # RTEMS on the DAC960PG
 
+**Automatic containment batch (2026-10-11):** six final critical-section
+sessions passed (three per depth), following six initial passes. STOP at ticks
+18/30 deferred controller execution until outer release at tick 40; external
+suspension completed at tick 44. The final module removes a stack-frame warning.
+Three separate failure tests retained resources: omitted STOP/final close,
+omitted RELEASE/unbind, and invalid local report after real callback completion.
+The last case returned ENODATA and retained dirty state with pending=0, proving
+retention does not depend solely on an outstanding command. All refused unload;
+evidence was saved before each reboot. All three reboots and final fresh
+preflight passed; production IPv6 HTTP is restored. [Results and next gate](switch/CONTAINMENT-BATCH.md).
+General resident task cancellation, permanent interrupt masks and DMA ownership
+remain unproven; keep production on bounded autonet.
+
 **STOP-ignoring worker containment (2026-10-11):** three live `contain`
 sessions passed. Both workers continued four ticks after STOP, then the
 controller externally suspended them, restored the timer and returned. Each
