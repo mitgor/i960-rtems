@@ -122,3 +122,13 @@ remained C0001000. The original hardware frame is not relocated or independently
 owned by a scheduler. Globals, hardware PC/AC record integrity, PC/TC roundtrips,
 local-window/deep-call behavior and guards passed. Complete asynchronous task
 switching, original-frame lifetime, IRQ accounting and nesting remain blockers.
+
+## Two-task asynchronous continuation checkpoint
+
+The isolated [switch profile](../switch/README.md) now keeps two task-specific
+hardware frames, global saves and C ISR stacks live while timer-driven scheduling
+alternates CPU-bound loops. RTEMS ISR accounting is unwound before dispatch, and
+all 32 handlers per run resume and return before normal teardown. This closes
+the controlled two-context experiment, not arbitrary owner registration, nested
+interrupt scheduling or resident STOP. Deferred dispatch through live critical
+sections and MU STOP while these contexts run are the next validation steps.

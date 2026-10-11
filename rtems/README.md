@@ -309,3 +309,11 @@ every instruction boundary during firewall setup or teardown.
 The isolated `irqctx` and bounded background `muctx` profiles now pass on the
 card. See [implementation, context contract and reproduction](interrupt/README.md).
 The hardware frame remains in place; this does not enable arbitrary preemption.
+
+## Bounded CPU-bound task preemption
+
+The [switch profile](switch/README.md) now passes hardware tests with two
+CPU-bound tasks time-sliced by timer interrupts, each owning its suspended ISR
+continuation. Three runs preserved registers and drained every continuation
+before full RAM restoration. This remains a finite firmware callback; the
+production web server and resident-preemption limitations remain unchanged.

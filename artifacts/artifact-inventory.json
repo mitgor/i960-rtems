@@ -2468,6 +2468,36 @@
       "sha256": "f4148e76b199f02b8a4b1c6c7e8a9780cf4ffcf970acd60067d21be928ee3eb3"
     },
     {
+      "path": "artifacts/irq-switch-20261011/README.md",
+      "size": 2336,
+      "sha256": "99ce7a7fd794d300added3c8573c02fafae2f7ab0a73cb60df8c7a486d35141e"
+    },
+    {
+      "path": "artifacts/irq-switch-20261011/build.log",
+      "size": 1112,
+      "sha256": "42d9b036af7e321247f26cd4812f128224d8f1bd5d1646cdf726c361fd7b44e5"
+    },
+    {
+      "path": "artifacts/irq-switch-20261011/http-check.txt",
+      "size": 192,
+      "sha256": "102e2ce3e52cfad6e319364dabc096611c6fe889a748f0991d35d9bd483ce8f5"
+    },
+    {
+      "path": "artifacts/irq-switch-20261011/live.log",
+      "size": 2157,
+      "sha256": "85974fa83ad6966ac0dcbf00083fe18a5d3d2291cabd242462805dd5162f35c1"
+    },
+    {
+      "path": "artifacts/irq-switch-20261011/live.tar.xz",
+      "size": 764128,
+      "sha256": "2eb29c7b0606f61bec04c314633fed31087223b17ed48176f60586b6926e4fb4"
+    },
+    {
+      "path": "artifacts/irq-switch-20261011/offline-tests.log",
+      "size": 2393,
+      "sha256": "cb85979783ef5de4558f047f4f03acda729103bd111e1b9b72ea1ff61db8d403"
+    },
+    {
       "path": "artifacts/live-handoff-20261010/Makefile",
       "size": 501,
       "sha256": "319fbb64d01fac0e33f0934125376ff1c2ea67029e5475e1339292dff3b842aa"

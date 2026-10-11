@@ -99,12 +99,11 @@ unowned DMA target.
 
 ## Immediate next implementation
 
-The [owned ISR execution stack](rtems/interrupt/README.md) and non-nested
-return-context stress now pass live, including framed independent STOP/HALT.
-Next design the per-task asynchronous record and owned suspended stack/frame
-lifetime, then test a controlled two-context switch with ISR accounting.
-Current hardware entry records remain in place; arbitrary task preemption and
-STOP of a level-31 runaway task remain open. Keep production `autonet` bounded.
+[Two per-task ISR continuations and bounded time-slicing](rtems/switch/README.md)
+now pass live. Next test dispatch deferral through critical sections, then
+integrate a bounded MU STOP request and explicit drain handshake while the
+CPU-bound tasks run. The resident monitor and general network-task preemption
+remain open; production `autonet` stays on its existing bounded profile.
 
 ## P0/P1 audit and prototype checkpoint (2026-10-11)
 
@@ -157,3 +156,15 @@ passed without reboot/flash. The hardware entry frame stays in place: movable
 per-task interrupt contexts and unrestricted preemption remain future work.
 [Implementation](rtems/interrupt/README.md),
 [evidence](artifacts/owned-interrupt-stack-20261011/README.md).
+
+## Two-task switch checkpoint (2026-10-11)
+
+**Two-task interrupt-switch milestone (2026-10-11):** three bounded card runs
+passed timer-driven switching between CPU-bound RTEMS tasks. Each run recorded
+32 IRQ-path handoffs, 31 observations of both ISR continuations live, and 16
+entries/returns per task. Separate task/ISR stacks, register sentinels, frame
+ownership, draining and full restoration passed; web service restored without
+reboot/flash. [Implementation](rtems/switch/README.md),
+[evidence](artifacts/irq-switch-20261011/README.md). This is bounded preemption,
+not a resident monitor; next are deferred-dispatch stress and MU STOP integration
+while the CPU-bound task contexts are active.

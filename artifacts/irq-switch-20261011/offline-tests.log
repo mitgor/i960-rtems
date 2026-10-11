@@ -1,0 +1,66 @@
+python3 switch/test_lifetime.py
+Two owned IRQ continuations: interleaved resume, owner/frame/AC mismatch, reentry, bounds and drain-before-release passed
+python3 control/test_framed.py
+Framed MU: roundtrip, duplicate, STOP/status/halt, epoch/sequence/checksum, altered retry, order, timeout, mask change, watchdog passed
+python3 control/test_mu.py
+MU exact host/target loops: echo, refusal, timeout, masks, W1C isolation, watchdog, restoration passed
+python3 control/test_control.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.351s
+
+OK
+python3 control/demo.py
+{
+  "passed": true,
+  "backend": "native shared-memory simulation; no MMIO or firmware calls",
+  "results": [
+    {
+      "status": 0,
+      "value": 305419896,
+      "stopped": false,
+      "heartbeat": 1
+    },
+    {
+      "status": 0,
+      "value": 0,
+      "stopped": false,
+      "heartbeat": 43
+    },
+    {
+      "status": 0,
+      "value": 0,
+      "stopped": true,
+      "heartbeat": 84
+    }
+  ]
+}
+python3 transport/test_wire.py
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.413s
+
+OK
+python3 transport/test_visitors.py
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.005s
+
+OK
+python3 transport/test_transport.py
+session: 348 command-boundary faults, stale/malformed requests, 6 output corruptions; ASan/UBSan passed
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+python3 test_network.py
+IPv6 native: UDP 0/1/31/500/1400/1452, mandatory checksums, ICMPv6 and truncated inputs passed
+lwIP native: 10,000 mixed malformed/UDP packets; UDP 0/1/31/500/1400, ICMP, malformed IP, oversize and TX backpressure passed
+python3 transport/test_ipv6_gateway.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.088s
+
+OK
+python3 autonomous/test_transport.py
+autonomous: 344 command-failure/timeout boundaries; changing private state; stop-before-restore passed
+autonomous: 344 command-failure/timeout boundaries; changing private state; stop-before-restore passed
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075

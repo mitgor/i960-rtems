@@ -1,5 +1,8 @@
 # Owned ISR execution stack and return-context preservation
 
+**Later checkpoint:** [two per-task ISR continuations and bounded time-slicing passed](../switch/README.md).
+The next-work section below records this owned-stack milestone’s earlier scope.
+
 2026-10-11: implemented and tested on the card. The isolated `irqctx` profile
 passed 126 hardware interrupts across three runs. `muctx` then passed 546
 interrupts with bounded RTEMS, CTL1 control and independent STOP/HALT.

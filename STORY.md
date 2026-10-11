@@ -830,6 +830,33 @@ old frame behind. To switch away from an interrupted task, that frame and its
 whole stack ancestry must belong to something that will keep them alive. That
 ownership problem is now the next piece, rather than an invisible assumption.
 
+## Two unfinished interrupts
+
+The next test let an interrupt remain unfinished. Task A was spinning when the
+timer arrived. Its handler saved the machine, entered the scheduler, and stopped
+there while task B ran. B then took its own interrupt, on its own stack. For a
+moment there were two unfinished returns, each belonging to a different task.
+
+That had been the ownership problem. Now the records named their owners, the
+hardware frames stayed in the right task stacks, and the C handlers had separate
+workspaces. When the scheduler came back, each interrupt finished the return it
+had started. The register patterns in the spinning loops were still there.
+
+Three runs gave the same accounting: thirty-two ticks, sixteen entries and
+sixteen returns for each worker, and thirty-one sightings of both interrupt
+continuations alive at once. Neither loop volunteered to yield. The timer was
+actually taking the processor away and giving it back.
+
+At the end, the controller asked the workers to stop and let both unwind. Only
+when every return was accounted for did it remove the timer and return to the
+host. No reboot, no changed flash, no missing bytes in the restoration checks.
+Vader went back online.
+
+It was still a bounded visit inside the firmware's command. A resident monitor
+must accept STOP from outside while those tasks are busy, and it must respect
+scheduler critical sections. But two CPU-bound tasks had now shared the card
+through real timer preemption, with their unfinished interrupts kept safe.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

@@ -1,5 +1,15 @@
 # Repository guidance for Claude Code
 
+**Two-task interrupt-switch milestone (2026-10-11):** three bounded card runs
+passed timer-driven switching between CPU-bound RTEMS tasks. Each run recorded
+32 IRQ-path handoffs, 31 observations of both ISR continuations live, and 16
+entries/returns per task. Separate task/ISR stacks, register sentinels, frame
+ownership, draining and full restoration passed; web service restored without
+reboot/flash. [Implementation](rtems/switch/README.md),
+[evidence](artifacts/irq-switch-20261011/README.md). This is bounded preemption,
+not a resident monitor; next are deferred-dispatch stress and MU STOP integration
+while the CPU-bound task contexts are active.
+
 **Owned ISR stack milestone (2026-10-11):** an owned, guarded C interrupt stack
 and explicit GPR/TC preservation passed 126 isolated stress interrupts and 546
 bounded RTEMS/control interrupts. Deep call chains, sentinels, PC/TC roundtrips,

@@ -1,0 +1,102 @@
+# Two owned interrupt continuations and timer-driven task switching
+
+2026-10-11: the `switch` profile passed three bounded hardware runs. Two equal
+priority RTEMS tasks execute CPU-bound assembly loops without voluntarily yielding.
+Timer interrupts time-slice them; each task owns its suspended ISR continuation.
+[Exact evidence](../../artifacts/irq-switch-20261011/README.md).
+
+## Composite asynchronous context
+
+The asynchronous context consists of several objects, all kept live together:
+
+- The task's dedicated 8 KiB stack and original hardware interrupt frame, including
+  saved PC/AC, vector and return linkage. No synthetic frame is constructed.
+- A separate 8 KiB ISR area for that task: 64-byte lower guard, global-register/TC
+  save area and padding up to offset 192, upward-growing C stack, 64-byte upper guard.
+- The existing RTEMS `Thread_Control.Registers`, which saves the call-boundary
+  continuation *inside that task's suspended ISR*. This 44-byte context does not
+  become a standalone asynchronous register dump.
+- A lifetime record: owner thread pointer, task-stack bounds, hardware frame
+  address, saved PC/AC/vector, live flag, entry count and return count.
+
+The assembly chooses a slot from `_Thread_Executing` before modifying global
+registers. Unknown owners or reentry set a fault without overwriting a live
+save area. It saves g0–g15 and TC, changes SP to the selected owned C stack,
+then calls the IRQ body. That body enters/exits RTEMS ISR/dispatch accounting,
+advances the clock, and dispatches at outermost exit. `_Thread_Dispatch()` can
+remain suspended while the other task runs. On resume, the wrapper checks the
+same owner, hardware frame and controls, restores TC/globals/SP and returns
+through that task's original hardware frame.
+
+Two live ISR continuations are not ordinary nested C calls on one shared stack.
+`_ISR_Nest_level` is zero before the scheduler transfers execution. Each task
+has its own saved continuation and does not reuse the other task's C stack.
+This is why the earlier single-global save area cannot be used here.
+
+## Bounded lifetime and stop
+
+A controller task starts both workers and sleeps for 32 ticks. Each worker
+registers its ownership at priority 31, then a finite assembly loop runs at
+priority 20. Timer F2 can preempt that loop. Each loop carries distinct g0–g14
+sentinels, local sentinels, PC/TC snapshots, an AC-dependent branch check and a
+one-million-iteration ceiling. Seventeen call levels with checked volatile local
+buffers exercise register-window spilling before the leaf loop.
+
+At tick 32, the controller wakes at priority 31, publishes a stop flag and lowers
+its RTEMS scheduling priority. Both workers resume their suspended ISRs, return
+to their loops, observe STOP, restore CPU priority 31, check their records and
+suspend themselves. Only then does the controller stop/restore the timer.
+Normal success requires both lifetime records and assembly active flags drained,
+matching entry/return counts, zero ISR/dispatch nesting, intact task/ISR guards,
+and preserved registers. It then returns to the host for full RAM restoration.
+
+The inherited fatal path stops the timer before escaping a failed callback;
+that emergency path was not fault-injected on hardware here. Native tests cover
+ownership-policy rejection; the live results establish the normal drained path.
+An uncertain host transaction continues to use the existing transport retention
+rules. This is an explicitly invoked experiment on an exclusively owned card.
+
+## Evidence and limits
+
+Every live run recorded 32 ticks, 32 IRQ-path scheduler handoffs and 31 observations
+of both lifetime records being live. The handoff count includes the final wakeup
+of the controller, not just worker-to-worker switches. Each worker entered and
+returned 16 times. The two records had distinct owner pointers, non-overlapping
+task stacks and distinct hardware-frame addresses/ISR areas. Both loop counters
+advanced by about 228,000 iterations before STOP. All sentinels matched; both
+PC values remained 00142002 and both TC values remained zero. No guard/frame
+fault was reported. All three runs restored borrowed RAM and unloaded the module.
+
+This proves timer-driven preemption/time-slicing of two CPU-bound tasks **inside
+a bounded firmware callback**. It is not yet a resident RTEMS monitor. The host
+still waits for the callback; the existing MU ioctl is not integrated into this
+profile, so external independent STOP during these loops is not established.
+Scheduler critical-section deferral is coded using the existing dispatch level,
+but a live deferred-dispatch stress case remains to be added. General NMI/trace
+faults, arbitrary nesting, more than two ISR owners and worst-case stack use
+remain untested. Sampled entry/exit SP is not a full stack high-water measurement.
+Production `autonet` and its priority policy remain unchanged.
+
+## Build and run
+
+In the established remote workspace, stop the web relay normally and verify its
+restoration before taking exclusive ownership. Use a fresh output directory.
+
+```sh
+python3 project/rtems/build.py --work . --profile switch
+python3 project/rtems/transport/build.py --out switch-module
+make -C /lib/modules/$(uname -r)/build M="$PWD/switch-module" modules
+sudo python3 project/rtems/switch/live_test.py --payload switch/kernel.bin \
+  --module switch-module/dac960rtems.ko --output switch-live
+```
+
+This bounded profile uses ordinary `dac960rtems`, not `dac960auto`. Each upload
+accepts one run; the harness creates a fresh session/module per repeat. Its
+736-byte response includes timer state, counters, both lifetime records and
+complete before/after probe records. `lifetime.h` is shared with ASan/UBSan
+native tests (`python3 rtems/switch/test_lifetime.py`, also in `make -C rtems test`).
+
+Next: validate deferred dispatch through critical sections, then integrate a
+bounded MU STOP request into the CPU-bound switch profile with an explicit drain
+handshake. Do not enable resident network tasks or general preemption merely
+by lowering their interrupt priority.
