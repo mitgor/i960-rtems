@@ -1900,6 +1900,23 @@ Six hundred and forty browser draws had made the next question clearer. Some of
 the remaining wait still lived in host bookkeeping. The next place to look was
 how we wrote the ledger, not which of its entries we could afford to lose.
 
+## A ledger that stopped copying itself
+
+The receipts had acquired a habit: each new entry rewrote the entries before it.
+Replaying the same three hundred and twenty-five requests on the Linux host made
+that habit visible. Writing metadata averaged roughly five milliseconds per
+request, and the last pages took longer than the first.
+
+Appending an intent before execution and a result after verification brought the
+same bookkeeping down to about a tenth of a millisecond. The ledger still needed
+an ending: a seal written only after the card had been restored and the audit
+streams closed. Cut the file short, remove its ending, or change its account of
+what happened, and replay refused it. The full snapshots still had their say.
+
+That was a host result, not another speed record for the card. The parallel RTEMS
+experiment had the hardware, so the new journal stayed optional. Its next receipt
+would have to come from a fresh browser run, with every audit still attached.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

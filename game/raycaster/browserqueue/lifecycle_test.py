@@ -15,13 +15,14 @@ p.add_argument('--backend',choices=['native','card-queue'],default='native')
 p.add_argument('--payload',type=Path);p.add_argument('--module',type=Path)
 p.add_argument('--output',type=Path,required=True)
 p.add_argument('--mode',choices=['idle','limit','signal','disconnect'],required=True)
+p.add_argument('--queue-metadata',choices=['rewrite','journal'],default='rewrite')
 a=p.parse_args()
 if a.backend=="native" and a.mode in ("signal","disconnect"):
     p.error("controlled mid-transaction tests require the card intent log; native signal coverage is in test.py")
 assert not a.output.exists()
 with socket.socket() as sock:
     sock.bind(('127.0.0.1',0));port=sock.getsockname()[1]
-args=[sys.executable,str(Path(__file__).resolve().parents[1]/'server.py'),'--backend',a.backend,'--port',str(port),'--output',str(a.output),'--idle-timeout','1' if a.mode=='idle' else '10','--max-frames','2' if a.mode=='limit' else '16']
+args=[sys.executable,str(Path(__file__).resolve().parents[1]/'server.py'),'--backend',a.backend,'--queue-metadata',a.queue_metadata,'--port',str(port),'--output',str(a.output),'--idle-timeout','1' if a.mode=='idle' else '10','--max-frames','2' if a.mode=='limit' else '16']
 if a.backend!='native':args+=['--payload',str(a.payload),'--module',str(a.module)]
 proc=subprocess.Popen(args,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
 def fetch():
@@ -42,7 +43,11 @@ try:
             # transaction runs. Do not issue another firmware command.
             deadline=time.monotonic()+5
             while True:
-                try:count=len(json.loads((a.output/'browser-requests.json').read_text()))
+                try:
+                    journal=a.output/'metadata-journal.jsonl'
+                    if journal.exists():
+                        count=sum(json.loads(line)[2].get('kind')=='intent' for line in journal.read_bytes().splitlines(keepends=True) if line.endswith(b'\n'))
+                    else:count=len(json.loads((a.output/'browser-requests.json').read_text()))
                 except json.JSONDecodeError:count=0
                 if count==3:break
                 assert time.monotonic()<deadline

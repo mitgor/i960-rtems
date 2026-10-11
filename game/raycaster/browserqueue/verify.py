@@ -13,7 +13,9 @@ from combined.optimize import once
 p = argparse.ArgumentParser()
 p.add_argument('capture', type=Path)
 a, rest = p.parse_known_args()
-requests = [(label, bytes.fromhex(data)) for label, data in json.loads((a.capture / 'browser-requests.json').read_text())]
+from journal.metadata import read_metadata
+metadata_requests, metadata_rows = read_metadata(a.capture)
+requests = [(label, bytes.fromhex(data)) for label, data in metadata_requests]
 assert requests and requests[0][0] == 'browser-init'
 assert all(label in ('browser-init', 'browser-reset-ack', 'browser-publish', 'browser-combined') and len(req) == 64 for label, req in requests)
 from combined.model import Model

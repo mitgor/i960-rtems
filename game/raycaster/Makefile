@@ -46,3 +46,8 @@ test-slotopt: test-combined
 test-browserqueue: all
 	python3 browserqueue/test.py
 .PHONY: test-browserqueue
+
+# Sealed append-only metadata, truncation rejection and write-failure containment.
+test-journal: test-browserqueue
+	python3 journal/test.py
+.PHONY: test-journal

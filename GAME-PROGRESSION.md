@@ -22,8 +22,9 @@ and returned 200. No flash write or reboot in this batch. Read
 [the bridge contract](game/raycaster/browserqueue/README.md) and
 [the captures and remaining work](artifacts/browserqueue-20261011/README.md).
 
-Next: profile metadata serialization and repeated history writes, then test an
-append-only capture journal with complete replay and crash/truncation rejection.
+The journal is implemented and passes host benchmarks and offline replay.
+Next: fresh physical browser/lifecycle acceptance and measured delivery; retain
+the rewrite default until then. See [journal evidence](artifacts/journal-20261011/README.md).
 Keep all paired reads, native-frame comparisons and audit snapshots. The larger
 Doom framebuffer/heap contract and asynchronous ownership remain separate work.
 

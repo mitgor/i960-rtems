@@ -94,6 +94,7 @@ def handler(game):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--backend', choices=['native', 'card', 'card-queue'], default='native')
+    p.add_argument('--queue-metadata', choices=['rewrite', 'journal'], default='rewrite')
     p.add_argument('--port', type=int, default=8098)
     p.add_argument('--payload', type=Path)
     p.add_argument('--module', type=Path)
@@ -123,7 +124,7 @@ def main():
             a.output.mkdir(parents=True, exist_ok=False)
         if a.backend == 'card-queue':
             from browserqueue.backend import open_backend
-            backend = open_backend(a.payload, a.module, a.output)
+            backend = open_backend(a.payload, a.module, a.output, metadata=a.queue_metadata)
         else:
             backend = Native() if a.backend == 'native' else card_backend(a.payload, a.module, a.output)
         game = Game(backend, 'Native host simulation' if a.backend == 'native' else ('Mylex / RTEMS (combined queue, full audits)' if a.backend == 'card-queue' else 'Mylex / RTEMS (bounded callbacks)'))

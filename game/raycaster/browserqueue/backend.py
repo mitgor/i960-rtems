@@ -9,6 +9,7 @@ import time
 from pathlib import Path
 from combined.model import Model, request, replace, base
 from host import Native, request as ray_request
+from journal.metadata import Metadata
 
 GAME = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(GAME / 'transfer'))
@@ -36,7 +37,7 @@ def expected_commands(sequence, mask):
 
 
 class AuditedQueue:
-    def __init__(self, board, output, epoch=None):
+    def __init__(self, board, output, epoch=None, metadata="journal"):
         if not __debug__:
             raise RuntimeError('validation requires Python without -O')
         self.board, self.output = board, Path(output)
@@ -47,17 +48,21 @@ class AuditedQueue:
         self.frame = None
         self.rows = []
         self.requests = []
+        self.metadata = Metadata(self.output, metadata)
+        self.metadata_timings = (self.output / "metadata-timing.jsonl").open("x")
         self.commands = gzip.open(self.output / 'commands.jsonl.gz', 'wt')
         self.snapshots = gzip.open(self.output / 'full-audits.bin.gz', 'wb', compresslevel=1)
-        (self.output / 'queue-test.json').write_text(json.dumps(dict(queue=True, epoch=self.epoch, pipeline='combined', full_audit_gzip_level=1)) + '\n')
+        (self.output / 'queue-test.json').write_text(json.dumps(dict(queue=True, epoch=self.epoch, pipeline='combined', full_audit_gzip_level=1, metadata_format=metadata+'-v1')) + '\n')
 
     def transact(self, label, data):
         if self.failed or self.closed:
             raise RuntimeError('session is closed or faulted; no retry permitted')
         try:
             # Record intent before execution, including a possibly incomplete last call.
+            intent_start = time.monotonic_ns()
             self.requests.append((label, data.hex()))
-            (self.output / 'browser-requests.json').write_text(json.dumps(self.requests) + '\n')
+            self.metadata.intent(label, data, self.requests)
+            intent_ns = time.monotonic_ns() - intent_start
             start, cpu = time.monotonic_ns(), time.process_time_ns()
             reply = self.board.step(data)
             end, cpu_end = time.monotonic_ns(), time.process_time_ns()
@@ -102,9 +107,15 @@ class AuditedQueue:
             row.update(host_oracle_ns=oracle_end-end, host_snapshot_read_ns=snapshot_end-oracle_end, host_archive_ns=archive_end-snapshot_end, host_slot_check_ns=slots_end-archive_end, host_log_check_ns=log_end-slots_end)
             row.update(label=label, wall_ns=end-start, cpu_ns=cpu_end-cpu, mask=mask, targeted_ns=target, full_audit_ns=full)
             self.rows.append(row)
+            command_start = time.monotonic_ns()
             self.commands.write(json.dumps(dict(sequence=seq, commands=commands, log=log, slots=slots)) + '\n')
             self.commands.flush()
-            (self.output / 'phases.json').write_text(json.dumps(self.rows, indent=2) + '\n')
+            command_ns = time.monotonic_ns() - command_start
+            result_start = time.monotonic_ns()
+            self.metadata.result(row, self.rows)
+            result_ns = time.monotonic_ns() - result_start
+            self.metadata_timings.write(json.dumps(dict(sequence=seq, intent_ns=intent_ns, commands_ns=command_ns, result_ns=result_ns))+'\n')
+            self.metadata_timings.flush()
         except BaseException:
             self.failed = True
             # Preserve raw debug evidence before CLOSE replaces its result log.
@@ -149,19 +160,26 @@ class AuditedQueue:
             return
         self.closed = True
         try:
-            return self.board.close()
+            result = self.board.close()
+            self.commands.close()
+            self.snapshots.close()
+            if not self.failed:
+                self.metadata.finish(self.requests, self.rows, self.board.sequence)
+            return result
         finally:
             self.commands.close()
             self.snapshots.close()
+            self.metadata_timings.close()
+            self.metadata.close()
 
 
-def open_backend(payload, module, output):
+def open_backend(payload, module, output, metadata="journal"):
     if not __debug__:
         raise RuntimeError('validation requires Python without -O')
     from host import card_backend
     board = card_backend(payload, module, output)
     try:
-        return AuditedQueue(board, output)
+        return AuditedQueue(board, output, metadata=metadata)
     except BaseException:
         board.close()
         raise

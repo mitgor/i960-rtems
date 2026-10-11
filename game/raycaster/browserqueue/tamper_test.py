@@ -15,6 +15,8 @@ def check(cap):
     return subprocess.run([sys.executable,str(script),str(cap),'--payload',str(a.payload.resolve()),'--module',str(a.module.resolve())],capture_output=True,text=True)
 assert check(a.capture).returncode==0,'original must pass before mutation tests'
 mutations=['request','label','profile','command-log','full-immutable','full-queue','payload-hash','restoration']
+journal=(a.capture/'metadata-journal.jsonl').exists()
+if journal:mutations+=['journal-missing','journal-truncated','journal-unsealed','journal-chain']
 for kind in mutations:
     with tempfile.TemporaryDirectory(prefix='i960-browser-tamper-') as tmp:
         cap=Path(tmp)/'capture'
@@ -39,6 +41,15 @@ for kind in mutations:
             with gzip.open(original,'rb') as inp,gzip.open(source,'wb') as out:
                 first=bytearray(inp.read(524288));first[0 if kind=='full-immutable' else 0x60000]^=1;out.write(first)
                 shutil.copyfileobj(inp,out)
+        elif kind.startswith('journal-'):
+            name='metadata-journal.jsonl';data=(cap/name).read_bytes()
+            if kind=='journal-missing':(cap/name).unlink()
+            elif kind=='journal-truncated':replace(name,data[:-1])
+            elif kind=='journal-unsealed':replace(name,b'\n'.join(data.splitlines()[:-1])+b'\n')
+            else:
+                lines=data.splitlines();row=json.loads(lines[1]);row[1]='f'*64
+                lines[1]=json.dumps(row,sort_keys=True,separators=(',',':')).encode()
+                replace(name,b'\n'.join(lines)+b'\n')
         else:
             name='request.json' if kind=='payload-hash' else 'summary.json'
             row=json.loads((cap/name).read_text())
@@ -46,5 +57,8 @@ for kind in mutations:
             replace(name,json.dumps(row).encode())
         result=check(cap)
         assert result.returncode!=0,(kind,'corruption accepted')
-        assert ('ValueError: program modified immutable bytes or output guards' if kind=='full-immutable' else 'AssertionError') in result.stderr,(kind,result.stderr)
+        expected='ValueError: program modified immutable bytes or output guards' if kind=='full-immutable' else 'AssertionError'
+        if journal and kind in ('request','label','profile'):expected='ValueError: journal/export mismatch'
+        if kind.startswith('journal-'):expected='FileNotFoundError' if kind=='journal-missing' else 'ValueError:'
+        assert expected in result.stderr,(kind,result.stderr)
 print(json.dumps(dict(original_accepted=True,rejected=mutations),indent=2))

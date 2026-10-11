@@ -1,5 +1,16 @@
 # Repository guidance for Claude Code
 
+**Metadata journal implemented; physical acceptance pending (2026-10-11):**
+The opt-in `--queue-metadata journal` replaces repeated history rewrites with
+bounded intent/result records and a completion seal after verified CLOSE.
+Native tests pass on Mac/Linux; full replay of a converted prior card capture
+passes and 12 corruption classes reject. Linux metadata-only ABBA measured
+**5.09 → 0.11 ms/request** on average. This is not a new card/FPS measurement.
+Keep `rewrite` as default until fresh browser and lifecycle card tests pass.
+The parallel RTEMS task still owns the hardware; this batch did not change
+card or public service state. [Evidence and remaining acceptance steps](artifacts/journal-20261011/README.md).
+
+
 **Browser queue accepted (2026-10-11):** `game/raycaster/server.py --backend
 card-queue` now uses the accepted combined queue and unchanged card binaries.
 Seven sessions passed **663 replies/full paired audits**, **640 targeted slots**,
