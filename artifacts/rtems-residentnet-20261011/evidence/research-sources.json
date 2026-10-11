@@ -1,0 +1,19 @@
+{
+  "sources": [
+    {
+      "title": "Intel i960 Rx Developer Manual 272736-002",
+      "url": "https://datasheets.chipdb.org/Intel/80960/manuals/27273602.PDF",
+      "sha256": "441fca4d850ab8fd8a9d2fcade3926724f702c89e3c5129f721f0ee28a334ed9",
+      "sections": [
+        "6.2.23 dcctl",
+        "16.3.6 outbound ATU claiming",
+        "16.3.6.2 direct addressing"
+      ]
+    },
+    {
+      "title": "Mylex DAC960PG Installation Guide p2-2",
+      "url": "https://mylex.manymanuals.com/disk-arrays/dac960pg/installation-guide-36627/26",
+      "use": "Manufacturer identifies cache coprocessor; no register contract supplied"
+    }
+  ]
+}

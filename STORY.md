@@ -1433,6 +1433,59 @@ one that could share the cost of those uploads without mistaking an old frame
 for a new one or forgetting how to stop. For now, the small gain was real, the
 captures replayed, and Vader came back over IPv6.
 
+## A conversation without the firmware
+
+The card had learned to keep RTEMS running while its old firmware waited. The
+next question was whether it could keep talking to the host in that condition.
+The old network path still needed firmware callbacks to move packets. We wanted
+to leave the callback counter at one.
+
+There was an unfinished piece of hardware archaeology first. In the exact
+firmware recovered from the card, a routine loaded eight words into a register
+block, submitted a command, waited for bit zero and acknowledged it. Another
+version waited for DMA and a firmware event as well. That looked like the
+beginning of a cache-engine completion contract. It was not yet permission to
+reuse every byte of RAM.
+
+The first live readings made that distinction useful. The supposed configuration
+register returned its own address. Two neighbouring halfwords resembled pieces
+of their addresses too. We saved the values and kept the ownership gate closed.
+A completion sequence in a disassembly deserves investigation; an unexplained
+number from a board does not deserve a new name just because we need one.
+
+Networking could move ahead inside the memory we already owned. A small protocol
+used the card's message registers, four bytes at a time. The host announced a
+packet, supplied its words in order, then committed it. The card held outgoing
+bytes until the host had copied them and released the buffer. There was no new
+DMA descriptor and no need to switch PCI bus mastering back on.
+
+RTEMS kept two workers alive. One ran the IP stack; the other kept counting.
+The hardware timer still chose between them. UDP packets came back over IPv4
+and IPv6, including packets that filled the link's fifteen-hundred-byte limit.
+TCP returned four thousand and ninety-six matching bytes in each family. A tiny
+HTTP page answered from the resident kernel. We dropped a TCP data packet in
+each family on purpose, and both conversations recovered.
+
+Then we asked it to stop. The first resident run parked at five hundred and
+thirty-three ticks. The next ran to its own six-thousand-tick deadline. A final build repeated the resident network test and stopped at eight hundred
+and forty-six ticks. In all three runs, the
+workers finished their interrupt continuations before parking, and neither
+returned to the waiting firmware. Packet requests after that point were refused.
+The memory stayed attached to the stopped machine until reboot.
+
+The saved packets supplied a second account of the experiment: two hundred and
+thirty-six checked IP packets, matching TCP streams and the retransmissions after our
+intentional losses. Fifty-seven damaged versions of the status snapshots were
+rejected by the replay checker. The single firmware callback had remained single.
+
+The reboot was still a less polished part of the conversation. SSH disappeared
+long enough to ask for a check at the machine, and a later fresh boot proved
+recovery without explaining exactly what had made it return. The public service
+remained the older cooperative profile. After the final reboot, the paired RAM reads matched the original image and
+Vader answered over IPv6 again. The new resident endpoint had proved a
+path through the message registers; cache ownership, more RAM and a dependable
+exit still needed their own evidence.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -1456,8 +1509,10 @@ So, the ledger, honestly kept:
 - **RTEMS and TCP/IP run on the card.** Historical RTEMS Classic tasks persist
   across returning callbacks; lwIP handles ICMP, UDP, TCP, DNS and HTTP through
   host routing. The `autonet` profile supplies a hardware interrupt clock and bounded background
-  RTEMS work; the host still relays packets. Exclusive takeover and unrestricted
-  preemption remain future work.
+  RTEMS work; the host still relays packets. A separate exclusive profile now
+  runs preemptible tasks and IPv4/IPv6 networking without a pending firmware
+  callback, within the existing allocation. Whole-engine drain, broader RAM
+  ownership and sustained resident service remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

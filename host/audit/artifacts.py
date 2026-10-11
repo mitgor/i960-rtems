@@ -47,14 +47,71 @@ def rows(tracked_only=False):
     return result
 
 
+def indexed_rows(entries=None):
+    """Hash staged blobs without reading unrelated dirty working-tree artifacts."""
+    if entries is None:
+        entries = subprocess.check_output(
+            ['git', 'ls-files', '-s', '-z', '--', 'artifacts'], cwd=ROOT)
+    selected = []
+    for entry in entries.split(b'\0'):
+        if not entry:
+            continue
+        meta, raw_path = entry.split(b'\t', 1)
+        mode, oid, stage = meta.split()
+        name = raw_path.decode()
+        if stage != b'0' or mode not in (b'100644', b'100755'):
+            raise ValueError('Unmerged/nonregular indexed artifact: ' + name)
+        if name in ('artifacts/SHA256SUMS', 'artifacts/artifact-inventory.json'):
+            continue
+        if Path(name).name == '.DS_Store' or '__pycache__' in Path(name).parts:
+            continue
+        selected.append((name, oid))
+    result, cache = [], {}
+    with subprocess.Popen(['git', 'cat-file', '--batch'], cwd=ROOT,
+                          stdin=subprocess.PIPE, stdout=subprocess.PIPE) as proc:
+        for name, oid in sorted(selected, key=lambda item: Path(item[0])):
+            if oid not in cache:
+                proc.stdin.write(oid + b'\n')
+                proc.stdin.flush()
+                header = proc.stdout.readline().split()
+                if len(header) != 3 or header[:2] != [oid, b'blob']:
+                    raise ValueError('Invalid Git blob response: ' + name)
+                size = remaining = int(header[2])
+                sha = hashlib.sha256()
+                while remaining:
+                    chunk = proc.stdout.read(min(remaining, 1024 * 1024))
+                    if not chunk:
+                        raise ValueError('Truncated Git blob: ' + name)
+                    sha.update(chunk)
+                    remaining -= len(chunk)
+                if proc.stdout.read(1) != b'\n':
+                    raise ValueError('Invalid Git blob boundary: ' + name)
+                cache[oid] = (size, sha.hexdigest())
+            size, checksum = cache[oid]
+            result.append(dict(path=name, size=size, sha256=checksum))
+        proc.stdin.close()
+        if proc.wait():
+            raise ValueError('git cat-file failed')
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--update', action='store_true')
     parser.add_argument('--check-git', action='store_true')
     parser.add_argument('--tracked-only', action='store_true',
                         help='Scope inventory to Git-indexed artifact paths; stage new batch files first.')
+    parser.add_argument('--index-bytes', action='store_true',
+                        help='With --tracked-only, hash staged bytes rather than dirty working-tree files.')
     args = parser.parse_args()
-    actual = rows(args.tracked_only)
+    if args.index_bytes and not args.tracked_only:
+        parser.error('--index-bytes requires --tracked-only')
+    index_entries = subprocess.check_output(
+        ['git', 'ls-files', '-s', '-z', '--', 'artifacts'], cwd=ROOT) if args.index_bytes else None
+    actual = indexed_rows(index_entries) if args.index_bytes else rows(args.tracked_only)
+    if args.index_bytes and index_entries != subprocess.check_output(
+            ['git', 'ls-files', '-s', '-z', '--', 'artifacts'], cwd=ROOT):
+        raise SystemExit('Artifact index changed during hashing; retry the audit.')
     if args.update:
         inventory = json.loads(INVENTORY.read_text())
         inventory['updated_date'] = date.today().isoformat()
@@ -74,6 +131,8 @@ def main():
         # Check paths and blob bytes, so stale staged copies cannot pass.
         entries = subprocess.check_output(
             ['git', 'ls-files', '-s', '-z', '--', 'artifacts'], cwd=ROOT)
+        if args.index_bytes and entries != index_entries:
+            raise SystemExit('Artifact index changed during verification; retry the audit.')
         indexed = {}
         for entry in entries.split(b'\0'):
             if not entry:
@@ -87,6 +146,9 @@ def main():
         missing = set(names) - set(indexed)
         if missing:
             raise SystemExit('Artifacts missing from Git index: ' + ', '.join(sorted(missing)))
+        if args.index_bytes:
+            # All other artifact bytes were just read from the index above.
+            names = [INVENTORY.relative_to(ROOT).as_posix(), SUMS.relative_to(ROOT).as_posix()]
         hashes = subprocess.check_output(['git', 'hash-object', '--stdin-paths'],
             input=('\n'.join(names) + '\n').encode(), cwd=ROOT).decode().splitlines()
         stale = [name for name, oid in zip(names, hashes) if indexed[name] != oid]

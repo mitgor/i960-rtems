@@ -81,7 +81,10 @@ The first resident snapshots read status `0008`, mask `4080`, configuration
 engine status**. `cache_probe.h` performs register-indirect reads after two distinct
 RAM seed loads. A second probe temporarily disables the CPU D-cache and restores
 its prior enabled state (status `0x7221`). Observe, DMA-disable and bus-isolate
-sessions all returned the same address-like values even with CPU caching off;
+sessions all returned the same address-like values even with CPU caching off.
+These probes run in the ARM report and the final STATUS report after controls
+are restored, not inside the isolated interval; the resident snapshots separately
+record the normal-cache reads while isolation is active.
 NMISR stayed zero and ATUCR was `0x26` (direct-address mode clear). This rules out
 CPU D-cache state alone as the explanation, but does not establish an idle cache
 engine. The probe never writes a board-cache command, mask or ACK.
@@ -118,3 +121,8 @@ output directory must be new. Preserve captures before reboot. Offline replay:
 
 See [batch ledger](BATCH.md) and [artifacts](../../artifacts/rtems-residentnet-20261011/README.md)
 for exact completed and pending tests.
+
+Final build: three uncached-probe phases restored/unloaded, and a third resident
+network run passed STOP at 846 ticks. The production IPv6 Darth Vader page was
+restored after the final reboot and verified from the Mac. Final mutable tail
+space is 98,144 bytes. Artifact recovery verification is in `verify_production.py`.

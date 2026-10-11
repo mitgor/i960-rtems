@@ -14,8 +14,8 @@ owned allocation without relying on those missing proofs.
 | 5 | Separated the board timer's bit-5 completion from the operation's bit-0 completion. |
 | 6 | Traced the DMA0 bit-10 wait and firmware event-bit-6 dependency in the assisted cache path. |
 | 7 | Kept global drain and RAM-reclaim proof false; no cache command/mask/ACK writes. |
-| 8 | Added two-seed, register-indirect read-only probes. All three bounded phases gave the same address-like values. |
-| 9 | Added a temporary CPU D-cache-disable probe with original-state restoration; all three phases still returned address-like values; NMISR zero, ATUCR 0x26, original D-cache status 0x7221. |
+| 8 | Added two-seed, register-indirect read-only probes. Before/after reports for all three bounded phases gave the same address-like values. |
+| 9 | Added a temporary CPU D-cache-disable probe with original-state restoration; before/after callbacks around all three phases still returned address-like values; NMISR zero, ATUCR 0x26, original D-cache status 0x7221. |
 | 10 | Compared observe, DMA-disable and bus-isolate bounded sessions; engine controls restored and RAM/unload passed. |
 | 11 | Recorded immutable code, guards, mutable RAM, BIO and unreclaimed firmware regions. |
 | 12 | Implemented RAM interval/overflow/zero-length checks and an unconditional new-region denial. |
@@ -31,11 +31,11 @@ owned allocation without relying on those missing proofs.
 | 22 | First 100-tick network-image bring-up restored and unloaded; subsequent bounded probe matrix also passed. |
 | 23 | Card IPv4 UDP echo passed 1, 31, 500, 1,400 and 1,472-byte payloads (1,500-byte IP packet). |
 | 24 | Card IPv6 UDP echo passed 1, 31, 500, 1,400 and 1,452-byte payloads (1,500-byte IP packet). |
-| 25 | Card TCP echo matched 4,096 bytes in each IP family in both resident sessions. |
-| 26 | Resident HTTP returned 200 over IPv4 and IPv6 in both sessions, with no second firmware callback. |
+| 25 | Card TCP echo matched 4,096 bytes in each IP family in all three resident sessions. |
+| 26 | Resident HTTP returned 200 over IPv4 and IPv6 in all three sessions, with no second firmware callback. |
 | 27 | Deliberately dropped one card-to-host TCP data packet per IP family; both streams recovered. |
-| 28 | Host STOP parked at 533 ticks; target deadline parked at exactly 6,000. Both drained all task IRQs and rejected post-park packets. |
-| 29 | Offline replay checked 150 IP packets/checksums and matching TCP streams, rejected 38 corrupted snapshots and verified one ARM per resident session. Full native RTEMS suite passed. |
+| 28 | Host STOP parked at 533 ticks; target deadline parked at exactly 6,000. Final-build STOP parked at 846. All three drained all task IRQs and rejected post-park packets. |
+| 29 | Offline replay checked 236 IP packets/checksums and matching TCP streams, rejected 57 corrupted snapshots and verified one ARM per resident session. Full native RTEMS suite passed. |
 | 30 | Captured sources, target/kernel binaries, traces and restoration/reboot evidence; updated documentation and Git inventory. Production recovery status is recorded in the artifact README. |
 
 The first resident session's reboot was slow/unreachable long enough to request

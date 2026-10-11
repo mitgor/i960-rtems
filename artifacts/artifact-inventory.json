@@ -10048,6 +10048,181 @@
       "sha256": "2e9710f7e0035eba22daa25ace810543c84efeb4b13eba6569864bf3c8ac0f58"
     },
     {
+      "path": "artifacts/rtems-residentnet-20261011/README.md",
+      "size": 6245,
+      "sha256": "dc9daef93330e1cdcd83068593ac6ff25be10d66b22c95364b6eb89717777b1f"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/cache-audit/audit.json",
+      "size": 1113,
+      "sha256": "70d37cbbcf41f0f07664eeb20527414ebe784d6ee068d526251bf990b0c1cd5a"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/cache-audit/board-timer.txt",
+      "size": 1631,
+      "sha256": "e0a7e81a839185c001619b3d52b3639b18c7cc00ee0e6620c443170f9430472f"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/cache-audit/dma-and-cache-completion.txt",
+      "size": 5453,
+      "sha256": "a69ef08a9cd60ea2c8aa1ab42811fb51ed79c3a5011be3534019282d3f155a73"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/cache-audit/error-service.txt",
+      "size": 3331,
+      "sha256": "6a02ae8b6cd179e9ba25477d270a227f557e41fee821cb8ab42ed3026ec284cb"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/cache-audit/status-mask-ack.txt",
+      "size": 5157,
+      "sha256": "b0d8b0a640c3f99896f5c98d1a21820e0664de015b84c8d357e042dcb0307ccc"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/cache-audit/submit-wait-ack-results.txt",
+      "size": 2321,
+      "sha256": "d0124f7bdfac3c515e2be8f946c1b589a76428d2ffd2cc76e085defbb57ebd95"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/exclusive-regression.bin",
+      "size": 249908,
+      "sha256": "68e549b9ce23d4ee09ac9b56ffb1e4a3c6359d4444441aba4c7b4328dcfd5bce"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/exclusive-regression.json",
+      "size": 1005,
+      "sha256": "453d90d3055f1decf317dadd2e49ea7e3e506882ec3c0cfaad4089222c540c65"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/host-exchange-tests.txt",
+      "size": 185,
+      "sha256": "64957792550396c890f13f9489b33f9fd325f5a106eba064d3cdb17bb529e826"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/http-restored.txt",
+      "size": 2994,
+      "sha256": "5172940ba2e999f7d97788ea4149b49ca7d2eed1d11e96a4baa85549eeff6855"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/index-inventory-test.txt",
+      "size": 116,
+      "sha256": "f62c27cec127a9d6b0c6a294f7cb9b2ecf97f22922451cc839dd573037cd9681"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/native-tests.txt",
+      "size": 7203,
+      "sha256": "e686714d9aeedfa880354d17353f3db2852bcc402a6244bcd9953651048c44ef"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/packet-native-tests.txt",
+      "size": 98,
+      "sha256": "17fb7283d2f23c8a33da1b12073b0f98230b220e5742ac37942d77a087de6565"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/production-verification.txt",
+      "size": 478,
+      "sha256": "e8540e26983c0b6a598592a7e703aa742dc024c724773f07e16f2441a558f584"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/ram-v2.json",
+      "size": 1118,
+      "sha256": "8d47457345ce3011225ed863dd44ffac4d41e2697b27f656b7451407667bad5c"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/ram-v3.json",
+      "size": 1118,
+      "sha256": "8ace111e3d61c4850614eb2b74c43f7c070077863e2a9f6e0bb9c7ad84db7de8"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/ram-v4.json",
+      "size": 1118,
+      "sha256": "759a81e2676bada1a8fa74111398a38fcb613f5dc0a737ea9e06777f161c5079"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/reboot-after-v2.txt",
+      "size": 59,
+      "sha256": "9d53a68de518fd1a5ce180a641d847fcbad5688fe14d489384634e4c6dde2b1d"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/reboot-after-v3.txt",
+      "size": 59,
+      "sha256": "118df365af0cdd1e51f4fc89289a6d4bd8671129841d5bc093db2bf9e6ba9f19"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/reboot-after-v4.txt",
+      "size": 59,
+      "sha256": "af0cab69a6db675012954be7c939fae7a18af433ac4cc6268f556e1d12fefbe1"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/replay-bounded-v1.json",
+      "size": 177,
+      "sha256": "0dd6caec6781653fb91865fb43f59d8d713afff8dc88e589f3c8c02b039e7338"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/replay-bounded-v3.json",
+      "size": 1377,
+      "sha256": "0d768d553f5fcb80c1ab7ba74d2a1143205a9c7f3a16a16ed1e44ecb777bc951"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/replay-bounded-v4.json",
+      "size": 1398,
+      "sha256": "7ea86341a0d09f8e050292fb13c672ed73c07a01933057bc537f977b24639613"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/replay-v2.json",
+      "size": 3989,
+      "sha256": "32ed00a84906adca3c4fb700d7a29e49d812ecbf3948c8344ada37b107934566"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/replay-v3.json",
+      "size": 3992,
+      "sha256": "8687e0341f3f3f17c241b790db4a9d04cc5da68b5a07fc5bacec8a865bdd9659"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/replay-v4.json",
+      "size": 3989,
+      "sha256": "3040034b71d72f972015be101f0a775f70afbe236a11bab5bf7f314e8be5b5a5"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/research-sources.json",
+      "size": 640,
+      "sha256": "77c992d0a4c607e5086f768c4006a742fe63755f0043a12a720f3d89291dafc0"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/service-state.txt",
+      "size": 83,
+      "sha256": "16e922d3ae0d7444ff6a1d7edeb756e3df007e40249c82d6a1a76c595326c072"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/evidence/v1-v2-payload-diff.json",
+      "size": 138,
+      "sha256": "fb88fe9c740fd2bd6076510b6160aa3a663708caae513fa534d719188511c926"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/residentnet-production.tar.xz",
+      "size": 355148,
+      "sha256": "2bf877e9c33dc7c0c4611b7587ac117ae32413fed767d6aa1040167e9e91f092"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/residentnet-v1.tar.xz",
+      "size": 613312,
+      "sha256": "6614cf0d59150894ac75aeb96c451b1b3090a35cc4aba27bac80cd5197c4ce73"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/residentnet-v2.tar.xz",
+      "size": 1008160,
+      "sha256": "49aef9e3e489bd97fcd761a9bf3f894fe0c0f20d45b51b532af4ee61d0b43e8d"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/residentnet-v3.tar.xz",
+      "size": 1224720,
+      "sha256": "47c1edcbbb13eb00c70a4c93dd8c4d93b5e7ded7d056b6c287e3b0192e924efc"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-20261011/residentnet-v4.tar.xz",
+      "size": 1222288,
+      "sha256": "3b5771d94c0a742aed3dd8a5c96eac2088f330a061bb611bf966604c043ceebb"
+    },
+    {
       "path": "artifacts/rtems-system-info-20261011/README.md",
       "size": 2036,
       "sha256": "fa6c22c5382783878207c0b611593482a4c20fc4dc7cf2306782154a172df114"
@@ -17166,6 +17341,11 @@
       "path": "artifacts/transfer-20261011/service-state.txt",
       "size": 458,
       "sha256": "baf12ebef6e3775589fcedd6202e3bbf869cc038617874c3f91d1cfb519d5c6f"
+    },
+    {
+      "path": "artifacts/upload-20261011/native-mac.txt",
+      "size": 2100,
+      "sha256": "13b6da14e01ea0230bcf2805b18b250903dd1928d01c0064526bf84a733a3573"
     },
     {
       "path": "artifacts/vendor-fujitsu/4.07-0-29/BGJ41041.IMG.decoded",

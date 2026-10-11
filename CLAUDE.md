@@ -1,5 +1,19 @@
 # Repository guidance for Claude Code
 
+**Resident networking (2026-10-11):** `residentnet` runs RTEMS/lwIP after one
+ARM callback, using message-register PIO with PCI bus mastering disabled. Card
+IPv4/IPv6 UDP, 4,096-byte TCP echo, HTTP 200, maximum-size packets and deliberate
+TCP loss passed. STOP/deadline parked at 533/6,000/846 ticks with all task IRQs drained;
+packet requests after parking were rejected and the module retained until reboot.
+Offline replay validates 236 IP packets and rejects 57 corrupted snapshots.
+All state stays in the existing mutable allocation; **no broader RAM grant**.
+The exact firmware's cache completion wait/ack sequence is located, but live
+address-like register reads do not establish cache-engine completion or drain.
+Keep `autonet` for production and preserve all cooperative profiles. See the
+[contract](rtems/residentnet/README.md), [30-step ledger](rtems/residentnet/BATCH.md)
+and [captures/recovery status](artifacts/rtems-residentnet-20261011/README.md).
+
+
 **Framebuffer transport profiling (2026-10-11):** 43,904 profiled commands
 show about 32 ms waiting for the three request/sentinel/table uploads per frame.
 Exact-count DMA scans and equivalent immutable-range comparisons reduce full-frame
