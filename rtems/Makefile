@@ -1,6 +1,7 @@
 .PHONY: test
 # Offline native tests only. This does not touch the card.
 test:
+	python3 ownership/test_policy.py
 	python3 switch/test_lifetime.py
 	python3 switch/test_stop.py
 	python3 switch/test_concurrent.py

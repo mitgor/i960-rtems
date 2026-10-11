@@ -1,0 +1,9 @@
+[
+  {
+    "path": "/tmp/i960-ownership-recovery/ownership-recovery/run-0",
+    "callbacks": 48,
+    "native_policy_match": true,
+    "report_gate": "48 real reports and damaged-report rejection passed",
+    "normal_close": true
+  }
+]

@@ -1,5 +1,21 @@
 # RTEMS working guidance
 
+**Resident ownership batch (2026-10-11):** the separate persistent `ownership`
+profile passed a 48-callback smoke run and three 371-callback sessions: real
+priority-inheritance mutex, owner-only release, blocked waiter, cancellation
+rollback, software-reference deferral, stale/duplicate completion rejection,
+clean owner restart with new epochs, and owner/waiter quarantine while an
+unrelated worker continues. These are bounded persistent callbacks, not the
+asynchronous IRQ profile. A premature final close retained dirty state, DMA,
+BAR and module with pending=0 and refused ordinary unload. After reboot, a
+further 48-callback run passed full restoration; production IPv6 HTTP returned
+200. Total: 1,209 normally completed callbacks, 62 rollback/handoffs and five
+normal closes, plus the three-callback retained-close test. No flash writes.
+[Contract, evidence and next integration gate](ownership/README.md). Earlier next-step
+statements below are historical. Do not force-unlock a quarantined resource,
+delete its tasks, reuse its stacks, or treat a software lease as a DMA drain.
+
+
 **Automatic containment batch (2026-10-11):** six final critical-section
 sessions passed (three per depth), following six initial passes. STOP at ticks
 18/30 deferred controller execution until outer release at tick 40; external

@@ -1101,6 +1101,51 @@ whole disposable RTEMS instance is one thing. A cancelled task whose neighbour
 still needs its lock or I/O buffer is another. The machine has earned a stronger
 stop contract, not a promise that arbitrary code can now be safely forgotten.
 
+## The lock that could not be given away
+
+The next experiment gave the tasks something worth arguing over: one real
+RTEMS mutex, a value halfway through an update, and another task waiting to
+read it.
+
+An old operating system has old assumptions. In this RTEMS release, a plain
+binary semaphore was not enough to establish ownership. Its priority-inheritance
+mutex was. We checked the source, selected that form, then asked the supervisor
+to release a lock belonging to somebody else. The card answered with error 23:
+not the owner. The waiter stayed asleep. The unfinished value stayed unfinished.
+
+Cancellation became a request with obligations. First, stop lending out the
+buffer. Then wait for the outstanding reference to come home. Only the owner
+could roll back its staged update and release the mutex. The waiting task saw
+the old committed value before making its own change. The retired owner could
+then restart, on the same stack and task ID, under a new generation. Messages
+from its previous life no longer counted.
+
+There were sixty of those cycles in the three longer sessions, after the first
+smoke test. Wrong tickets, duplicate completions and old generations all got
+their turn at the door. None persuaded the card to forget a live reference.
+These were software leases, deliberately: a model for future I/O ownership,
+not a claim that an actual DMA engine had stopped.
+
+For the owner we would not allow to finish, we kept its lock. We suspended the
+waiting task too, preserved both stacks, and let the unrelated worker carry on.
+Quarantine was not repair. It was an honest way to keep one broken dependency
+from becoming everybody else's broken memory.
+
+The host had to learn the same distinction. We closed its last descriptor while
+the owner still held the mutex and the waiter still needed it. The firmware
+callback was already over; there was no command pending. The driver nevertheless
+refused to put the old RAM back. It kept its buffers, mapping and module reference,
+and ordinary unload failed. We saved the evidence before asking the PC to reboot.
+
+Linux returned. The same short experiment passed again, including full RAM
+restoration, and the IPv6 Vader page answered from the Mac. The captured card
+responses matched the native policy through all 1,212 callbacks, including the
+three leading up to the deliberately refused close.
+
+The ownership rules now survive across callbacks. They still have to meet the
+interrupt-driven containment work in the same program. That meeting is the next
+experiment, not something sixty successful handoffs can quietly stand in for.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

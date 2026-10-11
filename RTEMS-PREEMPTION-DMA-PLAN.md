@@ -1,5 +1,22 @@
 # Preemptive RTEMS and DMA networking plan
 
+**2026-10-11 ownership batch:** [persistent resource contracts](rtems/ownership/README.md)
+now pass on the card in a separate bounded profile. Owner checkpoint cancellation
+rolls back before real mutex handoff; external software references defer retirement;
+quarantined owners and dependents retain locks/stacks while an unrelated task
+continues. Premature final close pins host resources despite pending=0. This does
+not satisfy P2's firmware reservation or make P3 an unrestricted resident OS.
+
+The next sequence is: (1) integrate a real held mutex and generation ledger into
+the owned-ISR-stack profile; (2) deliver cancellation through the independent
+channel and test critical-section/reference deferral; (3) quarantine the known
+dependency pair without reclaiming its continuations while unrelated work runs;
+(4) add multiple-resource dependency closure and bounded timeout tests; (5) prove
+real external-buffer completion/drain plus RAM/interrupt/DMA reservation before
+host-RAM DMA networking. Physical DMA and direct-NIC work remain downstream of
+those ownership gates. Keep production on bounded autonet.
+
+
 **2026-10-11 batch follow-up:** [critical-section and failure containment](rtems/switch/CONTAINMENT-BATCH.md)
 now pass on the card. Six final critical sessions defer control until outer
 release; three failure cases retain resources, including an invalid report after

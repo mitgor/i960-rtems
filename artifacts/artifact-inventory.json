@@ -9213,6 +9213,61 @@
       "sha256": "98c3217f969eec7968a57d18909e10f97bd7b87d3dfdd3ec4b88ab6eb6108440"
     },
     {
+      "path": "artifacts/rtems-ownership-20261011/README.md",
+      "size": 4338,
+      "sha256": "24a8a87df78865baf0ac45725d98263882f0764857c036c101eb91941d91d276"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/http-restored.txt",
+      "size": 2994,
+      "sha256": "3dcda95cc5a555dfb4851d09b4918d8b7db5db731d1a749bbcf866d778ccdf61"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/live.tar.xz",
+      "size": 1494704,
+      "sha256": "53d21859a46ebbe17058489c21ebd5107e1ce5538eeb5852dd82da891563e381"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/native-tests.txt",
+      "size": 5283,
+      "sha256": "73dd2ad678793d2de92f84669d0eea8328202e4ad462b6115031a925c779664a"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/policy-final-tests.txt",
+      "size": 262,
+      "sha256": "8272a371beb03310bd4dccaf4058956d91878ecca61eb2c0becb1111f5237f3b"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/production-verification.txt",
+      "size": 478,
+      "sha256": "257b8aff9242d5dffa8c7b6ce87de36c9a842e810e89c0db67d6392ade6fb489"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/recovery-verification.json",
+      "size": 234,
+      "sha256": "9db7e93317a8236852e08ce3893fd34b796c79529541ff44b1c3632aa4ed7760"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/recovery.tar.xz",
+      "size": 557708,
+      "sha256": "444bb1e556736b62a0496113968cd0ab1a8d431378c30dc6e0c53b20997eebff"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/service-state.txt",
+      "size": 102,
+      "sha256": "3351db29aec3abe7e8ed5293fc6c1ed246e8e9719249b8fe9756fabe7afe63a0"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/source.tar.xz",
+      "size": 65860,
+      "sha256": "43b38a999aed9373a1a3b5c50d7faaee13dee6eb3bd99dffe3a0c175b2196d07"
+    },
+    {
+      "path": "artifacts/rtems-ownership-20261011/verification.json",
+      "size": 1134,
+      "sha256": "23abb3bfb3ce80b73f59336ca7287224cf8486ad4e003daed3e904664bf2224c"
+    },
+    {
       "path": "artifacts/rtems-system-info-20261011/README.md",
       "size": 2036,
       "sha256": "fa6c22c5382783878207c0b611593482a4c20fc4dc7cf2306782154a172df114"
