@@ -7,6 +7,14 @@ external symbols. `doom-engine.o` is an inventory artifact, **not firmware**.
 The next target is a real runtime/platform link and an independently proven RAM
 grant, followed by headless correctness testing.
 
+## OS implementation path
+
+The [RTEMS-to-Doom plan](OS-PLAN.md) orders the large-RAM allocator, segmented
+loader, runtime link, host-backed WAD service, task/control integration and
+correctness gates. The exclusive workspace/RAM experiments are separate from
+this engine milestone: a tested reserve is not yet the requested 8 MiB application
+arena, and no Doom image has been run on the card.
+
 ## Inputs and build changes
 
 Engine: [DoomGeneric e257a095](https://github.com/ozkl/doomgeneric/tree/e257a09527062bfb986b6e5e0780839b6cbd5b71),

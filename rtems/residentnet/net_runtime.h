@@ -80,7 +80,11 @@ static void resident_net_step(void){unsigned int n=0,now,elapsed,output,before;
 }
 static unsigned int resident_net_control(unsigned int token){unsigned int op=token>>28,value;
  if(op<10)return 0;
- value=packet_command(&netlink,op,(token>>16)&0xfff,R(0x1310),resident_state==1&&net_ready);
+ value=packet_command(&netlink,op,(token>>16)&0xfff,R(0x1310),resident_state==1&&net_ready
+#ifdef I960_OWNED_MIB
+ &&!stop
+#endif
+ );
  R(0x1318)=value;(void)R(0x1318);R(0x1314)=0;R(0x131c)=token|0x08000000u;(void)R(0x131c);
  R(0x1324)=2;(void)R(0x1324);return 1;
 }

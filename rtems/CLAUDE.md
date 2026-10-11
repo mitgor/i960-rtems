@@ -1,5 +1,25 @@
 # RTEMS working guidance
 
+**12 MiB exclusive RAM checkpoint (2026-10-12):** `--owned-mib 12`
+passed four startup patterns over `c0240000..c0e40000`, a 35-minute resident run,
+48 dual-stack rounds and independent replay of 3,812 packets. RTEMS now initializes
+after takeover, with a 256 KiB kernel workspace and three 64 KiB requested task
+stacks (plus the idle slot). Both workers checked live 12 KiB stack objects;
+a real 128 KiB workspace allocation survived the run, was fully checked and freed.
+All 220,066 application allocations and 16,402 shared objects drained at tick
+210,002, with both task IRQ contexts drained and two timer-counter carries.
+The complete 11,993,024-byte reserve passed its final scan. Both workers now
+service PIO; chunked shutdown scans keep control responsive. Observed word-ioctl
+median/P95/max: 0.182/2.931/10.644 ms; draining maximum 1.845 ms versus the earlier
+4.459-second blocked scan. These are workload observations, not latency bounds.
+Maximum ISR gap was 11.038 ms: broader checks add cost, so this is not an IRQ-latency
+improvement over the previous smaller profile. The application heap stays
+171,824 bytes; the reserve is not yet a general allocator or executable grant.
+The high protected-tail inventory and segmented loader remain gates before Doom.
+Two incomplete 10 MiB sessions and their fixes are preserved. Cooperative profiles
+remain available; no flash write. The post-run reboot returned; cooperative public IPv6 HTTP is restored and verified.
+See [RAM contract](residentnet/LARGE-RAM.md), [captures](../artifacts/rtems-large-ram-20261012/README.md), and [Doom OS plan](../game/doom/OS-PLAN.md).
+
 **Fallback queue reclaimed; network work preemptible (2026-10-11):**
 Opt-in `--queue-reclaim` requires the shared/general heap, validated extra RAM,
 owned exceptions and secondary SCSI reset. After copying any startup packets

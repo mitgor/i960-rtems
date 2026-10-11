@@ -9,7 +9,7 @@ code=r'''
 #include <stdio.h>
 #define I960_QUEUE_RECLAIM 1
 static volatile unsigned int ticks;
-static unsigned int resident_state=1,masked,elapsed_seen,calls;
+static unsigned int resident_state=1,masked,elapsed_seen,calls,stop;
 static unsigned int registers[2048];
 #define R(a) registers[((a)>>2)&2047]
 static void mask(void){assert(!masked);masked=1;}
@@ -45,10 +45,16 @@ int main(void){unsigned int i,v;
  resident_net_step();assert(elapsed_seen==20&&net_tick==12&&!netlink.ready&&netlink.txlen==24);
  assert(packet_command(&netlink,15,0,0,1)==24);resident_net_step();assert(netlink.ready&&netlink.txlen==24);
  resident_state=2;v=calls;resident_net_step();assert(calls==v&&netlink.ready&&netlink.txlen==24);
+#ifdef I960_OWNED_MIB
+ resident_state=1;stop=1;v=netlink.rejected;
+ for(i=10;i<=15;i++){assert(resident_net_control((i<<28)|1));assert(R(0x1318)==0xfffffffeu);}
+ assert(netlink.rejected==v+6&&netlink.ready&&netlink.txlen==24);
+#endif
  puts("Actual network worker: preemptible processing/copy, RX lease, unpublished TX, elapsed ticks, pending RX and STOP retention passed");
 }
 '''
 with tempfile.TemporaryDirectory() as d:
  p=Path(d)/'test.c';p.write_text(code);exe=p.with_suffix('')
- subprocess.run(['cc','-O2','-fsanitize=address,undefined','-Wno-int-to-pointer-cast','-Wno-pointer-to-int-cast','-I'+str(root),str(p),'-o',str(exe)],check=True)
- subprocess.run([str(exe)],check=True)
+ for flags in ([],['-DI960_OWNED_MIB=12']):
+  subprocess.run(['cc',*flags,'-O2','-fsanitize=address,undefined','-Wno-int-to-pointer-cast','-Wno-pointer-to-int-cast','-I'+str(root),str(p),'-o',str(exe)],check=True)
+  subprocess.run([str(exe)],check=True)

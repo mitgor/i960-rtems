@@ -1,11 +1,20 @@
 /* Serialized while no firmware command/callback is pending. The only device
  * writes here are the documented message-1 word. Never DMA/SCSI/config writes. */
 static int monitor_wait(struct experiment*d,unsigned int expected,unsigned int alternative,unsigned int*seen){unsigned int i;
+#ifdef I960_LARGE_CONTROL
+ unsigned long deadline=jiffies+msecs_to_jiffies((expected&0xff000000u)==0x8b000000u?180000:20000);
+ for(i=0;time_before(jiffies,deadline);i++){
+#else
  for(i=0;i<15000;i++){
+#endif
   if(readl(d->bar+ODB)&1)return -EPROTO;
   if(readl(d->bar+0x28)!=0x1fb||readl(d->bar+0x34)!=0xff)return -EIO;
   *seen=readl(d->bar+0x1c);if((*seen==expected||*seen==alternative)&&(!d->mu_resident||readl(d->bar+0x14)==0))return 0;
+#ifdef I960_LARGE_CONTROL
+  if((expected&0xff000000u)>=0x92000000u)usleep_range(50,100);else usleep_range(1000,1500);
+#else
   usleep_range(1000,1500);
+#endif
  }return -ETIMEDOUT;
 }
 static long monitor_ioctl(struct file*file,unsigned int cmd,unsigned long arg){struct experiment*d=file->private_data;unsigned int w[8],epoch,seen=0;int rc=0;

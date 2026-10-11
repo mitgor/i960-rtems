@@ -1,0 +1,7 @@
+bdb6d828-c873-4dbf-98b3-8d6f274732b5
+MainPID=4521
+ExecMainStatus=0
+ActiveState=active
+SubState=running
+a8cdfe8ba49093182f596c849d25f98befef933b8e7ed951bdeae6194110752d  /home/mit/i960-rtems-web-20261011/autonet/kernel.bin
+444278bc480c35224f4b556803e487acd731594ac8fa5698b8b6b93f838f15ff  /home/mit/i960-rtems-web-20261011/autonet-module-system-info/dac960auto.ko

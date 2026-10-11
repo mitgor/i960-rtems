@@ -1,0 +1,5 @@
+large RAM admission, four patterns, guards and reserve mutation passed
+large RAM admission, four patterns, guards and reserve mutation passed
+large RAM admission, four patterns, guards and reserve mutation passed
+large RAM admission, four patterns, guards and reserve mutation passed
+All four RAM sizes: positive admission, missing ownership, alias, parked-frame refusal and protected-memory mutation passed

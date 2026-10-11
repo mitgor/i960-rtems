@@ -1,0 +1,30 @@
+[
+  {
+    "mib": 1,
+    "ticks": 3913,
+    "rounds": 2,
+    "packets": 518,
+    "freed": 4247,
+    "irq_gap_us": 10367.677058583533,
+    "control_word_ms": {
+      "median": 0.307358,
+      "p95": 4.700092,
+      "maximum": 32.805594,
+      "samples": 2432
+    }
+  },
+  {
+    "mib": 4,
+    "ticks": 7308,
+    "rounds": 3,
+    "packets": 672,
+    "freed": 7797,
+    "irq_gap_us": 10461.276309789522,
+    "control_word_ms": {
+      "median": 0.3764505,
+      "p95": 9.62512,
+      "maximum": 10.047834,
+      "samples": 3520
+    }
+  }
+]

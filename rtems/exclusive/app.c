@@ -15,7 +15,11 @@ extern unsigned char _bss_start[],_bss_end[];
 #include "../residentnet/cache_probe.h"
 #endif
 #ifdef I960_RESIDENT_NET
+#ifdef I960_OWNED_MIB
+#define EXCLUSIVE_MAX_TICKS 360000u
+#else
 #define EXCLUSIVE_MAX_TICKS 180000u
+#endif
 #else
 #define EXCLUSIVE_MAX_TICKS 6000u
 #endif
@@ -62,6 +66,10 @@ void timer_interrupt(void){unsigned int token,i,n;
   if(scsi_stop_hold(&scsi_stop,0x31504353u)){publish(0x8c000000u);for(;;){}}
 #endif
 #ifdef I960_EXTRA_RAM
+#ifdef I960_OWNED_MIB
+  {extern unsigned int exclusive_large_prepare(void);
+   if(exclusive_large_prepare()||exclusive_init()){publish(0x8b000000u);exclusive_abort();for(;;){}}}
+#endif
   if(exclusive_extra_prepare()){publish(0x8b000000u);exclusive_abort();for(;;){}}
 #endif
   publish(0x8b000000u);exclusive_resident(requested_ticks,epoch);for(;;){}
@@ -100,7 +108,13 @@ unsigned int bounded_main(unsigned int a){unsigned char*b=(unsigned char*)a,*p;u
  if(!initialized){for(p=_bss_start;p<_bss_end;p++)*p=0;initialized=1;irq_owned_prepare();}
  if(op==2){unsigned int owned=mu_owned;stop_timer();rc=mu_finish();timer_stop_response(b,initialized);bio_put(b+BIO_OUTPUT+4,rc);bio_put(b+BIO_OUTPUT+8,owned&&!rc?0x4d554f4bu:0);return 0;}
  if(bio_word(b+16)<640)return 5;
- if(op==1){if(armed||entries||denials)return 3;requested_phase=bio_word(b+BIO_INPUT+12)&255;requested_ticks=bio_word(b+BIO_INPUT+12)>>8;if(requested_phase>2||requested_ticks>EXCLUSIVE_MAX_TICKS)return 6;if(requested_ticks){rc=exclusive_init();if(rc)return rc;}epoch=bio_word(b+BIO_INPUT+8);if(!epoch||epoch>65535)return 4;rc=mu_start();if(!rc)rc=start_timer();}
+ if(op==1){if(armed||entries||denials)return 3;requested_phase=bio_word(b+BIO_INPUT+12)&255;requested_ticks=bio_word(b+BIO_INPUT+12)>>8;if(requested_phase>2||requested_ticks>EXCLUSIVE_MAX_TICKS)return 6;if(requested_ticks){
+#ifdef I960_OWNED_MIB
+ if(requested_phase!=2)return 6;
+#else
+ rc=exclusive_init();if(rc)return rc;
+#endif
+ }epoch=bio_word(b+BIO_INPUT+8);if(!epoch||epoch>65535)return 4;rc=mu_start();if(!rc)rc=start_timer();}
  report(b,rc);return 0;
 }
 

@@ -45,6 +45,10 @@ extern void exclusive_extra_report(unsigned int*);
 #ifdef I960_GENERAL_HEAP
 extern void resident_heap_report(unsigned int*);
 #endif
+#ifdef I960_OWNED_MIB
+#include "large_ram.h"
+static unsigned int terminal_ram[64],terminal_ram_selected;
+#endif
 void exclusive_trap_park(void){unsigned int token,index,i,s[17];
  exclusive_trap_words[37]=V(0x1320);exclusive_trap_words[38]=V(0x1328);exclusive_trap_words[39]=V(0x1324);
  V(0x1328)=0x1fb; /* mask the test source before clearing its latch */
@@ -65,8 +69,16 @@ void exclusive_trap_park(void){unsigned int token,index,i,s[17];
  resident_heap_report((unsigned int*)(exclusive_trap_words+48));
 #endif
  for(;;){token=V(0x1314);if((token&65535)!=owner_epoch)continue;
+#ifdef I960_OWNED_MIB
+  if(token==(0x98000000u|owner_epoch)){exclusive_large_report(terminal_ram);terminal_ram_selected=1;V(0x1314)=0;V(0x131c)=0x99000000u|owner_epoch;(void)V(0x131c);V(0x1324)=2;continue;}
+  if(token==(0x90000000u|owner_epoch))terminal_ram_selected=0;
+#endif
   if(token==(0x90000000u|owner_epoch)){V(0x1314)=0;V(0x131c)=0x95000000u|owner_epoch;}
-  else if((token&0xff000000u)==0x91000000u){index=(token>>16)&255;if(index>=64)continue;V(0x1318)=exclusive_trap_words[index];V(0x1314)=0;V(0x131c)=0x92000000u|(index<<16)|owner_epoch;}
+  else if((token&0xff000000u)==0x91000000u){index=(token>>16)&255;if(index>=64)continue;V(0x1318)=
+#ifdef I960_OWNED_MIB
+ terminal_ram_selected?terminal_ram[index]:
+#endif
+ exclusive_trap_words[index];V(0x1314)=0;V(0x131c)=0x92000000u|(index<<16)|owner_epoch;}
   else if(token==(0x93000000u|owner_epoch)){V(0x1314)=0;V(0x131c)=0x94000000u|owner_epoch;}
   else continue;
   (void)V(0x131c);V(0x1324)=2;(void)V(0x1324);

@@ -1,0 +1,10 @@
+{
+  "client_date": "2026-10-12",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "status": 200,
+  "contains_rtems": true,
+  "body_bytes": 2891,
+  "body_sha256": "60ea5875a4af579ef299c9a63d8d76ce3658a9793811ed47c40a8b9d42ffdac0",
+  "profile": "cooperative autonet",
+  "visitor_database_copied": false
+}

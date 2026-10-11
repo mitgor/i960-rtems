@@ -1,5 +1,10 @@
 # Doom milestone guidance
 
+Follow [OS-PLAN.md](OS-PLAN.md) for the current RTEMS/RAM integration order.
+Keep the workspace/reserve experiments separate from the Doom application grant;
+resolve the known host-frame repeatability gap before claiming target correctness.
+
+
 Read README.md and RAM-CONTRACT.md before changing this prototype. Milestone 1
 compiles 80 engine units for i960 but leaves 58 explicit unresolved externals.
 The relocatable object is NOT a loadable card image. No new RAM grant exists.

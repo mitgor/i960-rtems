@@ -9,6 +9,7 @@ import wire
 from pump import send_pending
 from burst import burst
 from packet_log import append_packet,finish_packets
+from large_contract import validate_large_stacks,validate_large
 
 def clients(rounds=1,parallel=False,interval=0,out=None):
  results=[];start=time.monotonic()
@@ -53,6 +54,7 @@ def client_round(families=None):
 def main():
  p=argparse.ArgumentParser()
  for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
+ p.add_argument('--owned-mib',type=int,choices=(0,1,4,10,12),default=0)
  p.add_argument('--heap-shared',action='store_true')
  p.add_argument('--queue-reclaim',action='store_true')
  p.add_argument('--general-heap',action='store_true')
@@ -62,20 +64,31 @@ def main():
  p.add_argument('--burst',action='store_true');p.add_argument('--parallel',action='store_true')
  p.add_argument('--ticks',type=int,default=6000);p.add_argument('--rounds',type=int,default=1)
  p.add_argument('--round-interval',type=float,default=0)
- p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=180000 and 1<=a.rounds<=60 and 0<=a.round_interval<=60
+ p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=(360000 if a.owned_mib else 180000) and 1<=a.rounds<=60 and 0<=a.round_interval<=60
+ if a.owned_mib:assert a.queue_reclaim
+ flags=json.loads((a.payload.parent/'build.json').read_text())['flags']
+ owned_flags=[int(f.split('=')[1]) for f in flags if f.startswith('-DI960_OWNED_MIB=')]
+ assert owned_flags==([a.owned_mib] if a.owned_mib else [])
  if a.queue_reclaim:assert a.heap_shared
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
- def save():
-  (b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n');(b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
- def control(op,arg=0,e=epoch):
-  raw=bytearray(struct.pack('<8I',op,e,arg,0,0,0,0,0));fcntl.ioctl(b.fd,0xc0204d04,raw,True);w=list(struct.unpack('<8I',raw));event=dict(op=op,arg=arg,epoch=e,words=w);events.append(event)
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
+ def save(final=False):
+  if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')
+  (b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
+ def record_control(event):
+  events.append(event)
   with (b.out/'control-journal.jsonl').open('a') as journal:journal.write(json.dumps(event)+'\n')
+ def control(op,arg=0,e=epoch):
+  raw=bytearray(struct.pack('<8I',op,e,arg,0,0,0,0,0));started=time.monotonic_ns();fcntl.ioctl(b.fd,0xc0204d04,raw,True);w=list(struct.unpack('<8I',raw));event=dict(op=op,arg=arg,epoch=e,words=w,ns=time.monotonic_ns()-started);record_control(event)
   assert w[3]==1 and w[6:]==[0,0] and not w[4]&1;return w
  def snapshot():
   control(7);w=[control(5,i)[2] for i in range(64)];snaps.append(dict(seconds=time.monotonic()-start,words=w));save()
+  if a.owned_mib:
+   control(7,2);m=[control(5,i)[2] for i in range(64)]
+   with (b.out/'ram-diagnostics.jsonl').open('a') as f:f.write(json.dumps(dict(ticks=w[5],words=m))+'\n')
+   validate_large(m,a.owned_mib,w[2]==2,transition=(w[3] in (1,2) or (a.deadline and w[5]>=a.ticks-100)));validate_large_stacks(w)
   assert w[0]==0x31525845 and w[2] in (1,2) and w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6 and w[63]==(31 if a.general_heap else 15 if a.extra_ram else 7 if a.fault_owner else 3 if a.secondary_reset else 1)
   if a.secondary_reset:assert w[42:46]==[2,0,578,81916] and w[47]==0
   else:assert w[42:46]==[2,18,514,81916]
@@ -88,7 +101,7 @@ def main():
   raw=bytearray(struct.pack('<8I',op,e,len(data),0,0,0,0,0)+data.ljust(1536,b'\0'));before=bytes(raw);t=time.monotonic_ns()
   try:fcntl.ioctl(b.fd,0xc6204d05,raw,True)
   except OSError as exc:
-   events.append(dict(packet_op=op,errno=exc.errno,epoch=e,length=len(data)));save();raise
+   record_control(dict(packet_op=op,errno=exc.errno,epoch=e,length=len(data)));save();raise
   w=list(struct.unpack_from('<8I',raw));assert w[3]==1 and not w[4]&1 and w[5:]==[0,0,0]
   if w[2]:
    record=dict(op=op,ns=time.monotonic_ns()-t,request=before.hex(),response=raw.hex());append_packet(b.out,record);packets.append(record)
@@ -140,7 +153,7 @@ def main():
  except BaseException:
   (b.out/'error.txt').write_text(traceback.format_exc());raise
  finally:
-  save();finish_packets(b.out,packets)
+  save(final=True);finish_packets(b.out,packets)
   if g:g.close()
   if b.fd is not None:os.close(b.fd);b.fd=None;capture(b.out/'retained-close',b.debugfs)
   if b.records:b.records.close()

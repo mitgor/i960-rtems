@@ -1,6 +1,11 @@
 # Artifacts
 
-**Current index (2026-10-11): [findings, evidence and unresolved questions](../CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
+Latest RAM/OS milestone: [12 MiB exclusive RAM and RTEMS workspace](rtems-large-ram-20261012/README.md):
+256 KiB workspace, larger stacks, 35-minute / 48-round networking acceptance,
+responsive final scans, preserved failures, exact binaries and the Doom OS plan.
+
+
+**Current index (2026-10-12): [findings, evidence and unresolved questions](../CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
 
 Latest: [T4 SSH Tetris](tetris-t4-20261010/README.md): a 30-minute terminal run, 35,846 native-matching frames, plus disconnect/reconnect and resize evidence. Exact playable frontend, module and target binaries are preserved.
 

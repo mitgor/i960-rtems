@@ -1,6 +1,10 @@
 .PHONY: test
 # Offline native tests only. This does not touch the card.
 test:
+	python3 residentnet/test_control_journal.py
+	python3 residentnet/test_large_snapshot.py
+	python3 residentnet/test_control_wait.py
+	python3 residentnet/test_large_ram.py
 	python3 residentnet/test_heap_snapshot.py
 	python3 residentnet/test_heap_diagnostics.py
 	python3 residentnet/test_packet_log.py

@@ -31,7 +31,14 @@ static unsigned int guards(void){return !exclusive_extra_guard_mask();}
 #ifdef I960_GENERAL_HEAP
 extern unsigned int resident_heap_init(void);
 #endif
-unsigned int exclusive_extra_valid(void){return extra_ready&&resident_queue_external_valid()
+#ifdef I960_OWNED_MIB
+#include "large_ram.h"
+#endif
+unsigned int exclusive_extra_valid(void){return
+#ifdef I960_OWNED_MIB
+ exclusive_large_valid()&&
+#endif
+ extra_ready&&resident_queue_external_valid()
 #ifdef I960_QUEUE_RECLAIM
  &&resident_fallback_valid()
 #endif

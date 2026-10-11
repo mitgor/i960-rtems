@@ -2043,6 +2043,56 @@ retransmissions that had repaired the deliberate losses. The old queue had found
 another job without taking its packets back. After reboot, the public Vader
 page answered again.
 
+## The room behind the cache
+
+The card had reported sixteen megabytes all along. RTEMS was still using a
+48 KiB kernel workspace and 8 KiB task stacks. The reclaimed packet queue had
+helped the application heap, but it had not made the kernel's room any larger.
+
+RTEMS initialization itself had to move. It used to happen inside the ARM
+callback, while the stock firmware still owned the cache. The new exclusive
+profile waits until that callback has returned, the engines are isolated, the
+secondary SCSI chip is held in reset, and the fault and NMI paths belong to us.
+Only then does it test the proposed memory and initialize the kernel there.
+
+The first room was one megabyte, starting at `c0240000`. Four address-dependent
+patterns went through every word, with protected-region hashes around the test.
+RTEMS received a 256 KiB workspace and 64 KiB task-stack slots. Two rounds of
+IPv4 and IPv6 traffic passed, and STOP drained both interrupt contexts. Four
+megabytes followed. This time each worker kept a live 12 KiB object on its stack,
+and shutdown checked every word in the unused reserve. That passed too.
+
+Ten megabytes brought a timeout. The RAM patterns and guards had passed, but a
+TCP echo did not finish. The control captures showed a host word sometimes
+waiting nearly a whole 10 ms timer period: the network worker polled the channel,
+and the heap worker did not. Both workers learned to poll it. The retry completed
+six dual-stack rounds and reported a successful full reserve scan, including the
+check and release of a 128 KiB allocation from the kernel workspace.
+
+Then the host checker objected. Its status page had caught shutdown in progress;
+its later RAM page had caught shutdown finished. We had requested exactly that
+transition, and the checker had treated the two pages as one instant. The failed
+capture stayed in the record while the checker learned the difference.
+
+That capture held another useful embarrassment: one control word had waited
+4.459 seconds while the final memory scan ran. The scan now checks in with the
+control channel between small chunks, after both task-owned interrupt contexts
+have drained. It still reads every word. It still keeps the workspace allocation
+alive until the checks finish. It simply answers while doing the work.
+
+The twelve-megabyte run lasted thirty-five minutes. Forty-eight dual-stack
+rounds passed, the timer counter carried twice, and all 220,066 application
+allocations and 16,402 shared objects retired. Both workers had checked their
+stack objects 2,101 times. Every word of the 11,993,024-byte reserve passed its
+final scan. The largest measured reply during draining was now 1.845 ms. The
+largest IRQ gap was 11.038 ms: checking more memory had a cost, and the ledger
+kept that number too. After reboot, the cooperative Vader page answered again.
+
+The larger reserve is still a reserve. A successful pattern test does not create
+a general allocator, a larger executable loader, or the missing Doom runtime.
+Those have their own plan, starting with an explicitly owned application arena
+and a segmented loader that cannot overwrite the monitor keeping it alive.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -2074,8 +2124,10 @@ So, the ledger, honestly kept:
   fallback queue becomes the second heap only after external handoff. Network
   processing is now preemptible. A half-hour exclusive run passed forty dual-stack
   rounds and complete application-allocation drain.
-  Kernel-workspace expansion, graceful engine drain and longer resident service
-  remain open.
+  A later exclusive run validated a 12 MiB region, a 256 KiB kernel workspace,
+  64 KiB task stacks and thirty-five minutes of networking. The larger reserve
+  still needs an application allocator and segmented executable loader; graceful
+  engine drain and longer resident service remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

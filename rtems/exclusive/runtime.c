@@ -12,14 +12,30 @@
 #include <rtems/score/isr.h>
 #include "../switch/lifetime.h"
 #ifdef I960_RESIDENT_NET
+#ifdef I960_OWNED_MIB
+#define EXCLUSIVE_MAX_TICKS 360000u
+#else
 #define EXCLUSIVE_MAX_TICKS 180000u
+#endif
 #else
 #define EXCLUSIVE_MAX_TICKS 6000u
 #endif
 #define R(a) (*(volatile unsigned int*)(a))
 extern void exclusive_timer_isr(void);
-static unsigned char workspace[49152] __attribute__((aligned(16)));
-static unsigned char stacks[4][8320] __attribute__((aligned(16)));
+#ifdef I960_OWNED_MIB
+#include "../residentnet/large_ram.h"
+#define workspace ((unsigned char*)LARGE_WORKSPACE)
+#define WORKSPACE_BYTES 262144u
+#define TASK_BYTES 65536u
+#define STACK_BYTES (TASK_BYTES+128u)
+#define stacks ((unsigned char (*)[STACK_BYTES])LARGE_STACKS)
+#else
+#define WORKSPACE_BYTES 49152u
+#define TASK_BYTES 8192u
+#define STACK_BYTES 8320u
+static unsigned char workspace[WORKSPACE_BYTES] __attribute__((aligned(16)));
+static unsigned char stacks[4][STACK_BYTES] __attribute__((aligned(16)));
+#endif
 unsigned char switch_irq_areas[2][8192] __attribute__((aligned(16)));
 volatile unsigned int switch_threads[2],switch_active[2],switch_fault;
 static struct irq_lifetime life[2];
@@ -39,6 +55,12 @@ static void control_poll(void){unsigned int token=R(0x1314),index;
  if(!resident||((token&65535)!=resident_epoch))return;
  #ifdef I960_RESIDENT_NET
  if(resident_net_control(token))return;
+#endif
+#ifdef I960_OWNED_MIB
+ if(token==(0x98000000u|resident_epoch)){
+  exclusive_large_report(snapshot);R(0x1314)=0;R(0x131c)=0x99000000u|resident_epoch;
+  (void)R(0x131c);R(0x1324)=2;(void)R(0x1324);return;
+ }
 #endif
 #ifdef I960_HEAP_SHARED
  if(token==(0x96000000u|resident_epoch)){
@@ -63,11 +85,17 @@ static void control_poll(void){unsigned int token=R(0x1314),index;
  }
  (void)R(0x131c);R(0x1324)=2;(void)R(0x1324);
 }
+#ifdef I960_OWNED_MIB
+void exclusive_drain_poll(void){
+ if(!done[0]||!done[1]||switch_active[0]||switch_active[1])bounded_fatal(0x57005);
+ control_poll();
+}
+#endif
 static void mask(void){unsigned int v=31u<<16;__asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,%0":"+r"(v)::"g0","memory");}
 static void enable(void){unsigned int v=20u<<16;__asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,%0":"+r"(v)::"g0","memory");}
 void bounded_fatal(unsigned int code){mask();fault=code;R(0xff008504)=0;_CPU_Context_switch(&fatal_context,&_Thread_BSP_context);for(;;){}}
 #define CHECK(x) do{unsigned int e=(x);if(e)bounded_fatal(0x10000+__LINE__*256+e);}while(0)
-static void*stack_alloc(unsigned int n){unsigned int i=allocated++;if(i>=4||n>8192)bounded_fatal(0x51000);sizes[i]=n;memset(stacks[i],0xa5,8320);return stacks[i]+16;}
+static void*stack_alloc(unsigned int n){unsigned int i=allocated++;if(i>=4||n>TASK_BYTES)bounded_fatal(0x51000);sizes[i]=n;memset(stacks[i],0xa5,STACK_BYTES);return stacks[i]+16;}
 static void stack_free(void*p){bounded_fatal(0x51001);}
 static void idle_error(void){bounded_fatal(0xdead);}
 void switch_irq_enter(unsigned int id,unsigned int fp){if(!lifetime_enter(&life[id],(unsigned int)_Thread_Executing,fp,R(fp-16),R(fp-12),R(fp-8)))switch_fault|=1;}
@@ -89,10 +117,27 @@ extern void exclusive_fault_inject(void);
 #ifdef I960_GENERAL_HEAP
 #include "../residentnet/general_heap.h"
 #endif
+#ifdef I960_OWNED_MIB
+#include <rtems/score/wkspace.h>
+static unsigned int stack_checks[2],workspace_checked,workspace_freed;
+static unsigned int*workspace_proof;
+static unsigned int workspace_proof_address;
+
+void exclusive_stack_report(unsigned int*w){unsigned int i;w[0]=allocated;for(i=0;i<4;i++)w[1+i]=sizes[i];w[5]=stack_checks[0];w[6]=stack_checks[1];w[8]=workspace_proof_address;w[9]=131072;w[10]=workspace_checked;w[11]=workspace_freed;}
+#endif
 static void Worker(rtems_task_argument id){
+#ifdef I960_OWNED_MIB
+ volatile unsigned char proof[12288];unsigned int pi,last_proof=~0u;
+ for(pi=0;pi<sizeof(proof);pi++)proof[pi]=(unsigned char)(pi^id);
+#endif
  switch_threads[id]=(unsigned int)_Thread_Executing;life[id].owner=switch_threads[id];
- life[id].low=(unsigned int)_Thread_Executing->Start.Initial_stack.area;life[id].high=life[id].low+8192;
+ life[id].low=(unsigned int)_Thread_Executing->Start.Initial_stack.area;life[id].high=life[id].low+TASK_BYTES;
  enable();while(!stop){
+#ifdef I960_OWNED_MIB
+  /* Both runnable workers service the same serialized PIO channel. A CPU-bound
+   * heap worker must not force every host word to wait for the next timer IRQ. */
+  if(id){mask();control_poll();enable();}
+#endif
 #ifdef I960_RESIDENT_NET
   if(!id){mask();control_poll();
 #ifdef I960_QUEUE_RECLAIM
@@ -108,6 +153,9 @@ static void Worker(rtems_task_argument id){
 #ifdef I960_GENERAL_HEAP
   if(resident){resident_heap_step(id,ticks);if(!id&&ticks>=100)resident_heap_inject();}
 #endif
+#ifdef I960_OWNED_MIB
+  if(ticks/100!=last_proof){last_proof=ticks/100;for(pi=0;pi<sizeof(proof);pi++)if(proof[pi]!=(unsigned char)(pi^id))bounded_fatal(0x57001);stack_checks[id]++;}
+#endif
   progress[id]++;
  }mask();
 #ifdef I960_GENERAL_HEAP
@@ -117,9 +165,14 @@ static void Worker(rtems_task_argument id){
 }
 static void Init(rtems_task_argument arg){rtems_id ids[2];rtems_task_priority old;unsigned int i,j;
  memset(switch_irq_areas,0xa5,sizeof(switch_irq_areas));
- for(i=0;i<2;i++){CHECK(rtems_task_create(0x45584330+i,2,8192,RTEMS_TIMESLICE|RTEMS_INTERRUPT_LEVEL(31),RTEMS_DEFAULT_ATTRIBUTES,&ids[i]));CHECK(rtems_task_start(ids[i],Worker,i));}
+ for(i=0;i<2;i++){CHECK(rtems_task_create(0x45584330+i,2,TASK_BYTES,RTEMS_TIMESLICE|RTEMS_INTERRUPT_LEVEL(31),RTEMS_DEFAULT_ATTRIBUTES,&ids[i]));CHECK(rtems_task_start(ids[i],Worker,i));}
  #ifdef I960_RESIDENT_NET
  resident_net_init();
+#endif
+#ifdef I960_OWNED_MIB
+ workspace_proof=_Workspace_Allocate(131072);workspace_proof_address=(unsigned int)workspace_proof;
+ if(workspace_proof_address<LARGE_WORKSPACE||workspace_proof_address>LARGE_WORKSPACE+WORKSPACE_BYTES-131072)bounded_fatal(0x57002);
+ for(i=0;i<32768;i++)workspace_proof[i]=i^0x574b5350u;
 #endif
  controller=_Thread_Executing->Object.id;initialized=1;_CPU_Context_switch(&_Thread_Executing->Registers,&_Thread_BSP_context);
  if(resident){rtems_event_set e;unsigned int rc;rtems_status_code status;
@@ -129,13 +182,23 @@ static void Init(rtems_task_argument arg){rtems_id ids[2];rtems_task_priority ol
  CHECK(rtems_task_set_priority(RTEMS_SELF,3,&old));mask();
  if(!done[0]||!done[1]||switch_active[0]||switch_active[1]||!lifetime_drained(life))switch_fault|=8;
  if(_ISR_Nest_level||_Thread_Dispatch_disable_level)switch_fault|=16;
- for(i=0;i<allocated;i++){for(j=0;j<16;j++)if(stacks[i][j]!=0xa5)switch_fault|=32;for(j=16+sizes[i];j<8320;j++)if(stacks[i][j]!=0xa5)switch_fault|=32;}
+ for(i=0;i<allocated;i++){for(j=0;j<16;j++)if(stacks[i][j]!=0xa5)switch_fault|=32;for(j=16+sizes[i];j<STACK_BYTES;j++){
+#ifdef I960_OWNED_MIB
+ if(!(j&1023))exclusive_drain_poll();
+#endif
+ if(stacks[i][j]!=0xa5)switch_fault|=32;}}
+ #ifdef I960_OWNED_MIB
+ for(i=0;i<32768;i++){if(!(i&1023))exclusive_drain_poll();if(workspace_proof[i]!=(i^0x574b5350u))bounded_fatal(0x57003);}
+ if(!exclusive_large_finish()){switch_fault|=64;exclusive_abort();}
+ workspace_checked=131072;
+ if(!_Workspace_Free(workspace_proof))bounded_fatal(0x57004);workspace_freed=1;workspace_proof=0;
+#endif
  if(resident){R(0xff008504)=0;resident_state=2;for(;;)control_poll();}
  _CPU_Context_switch(&_Thread_Executing->Registers,&_Thread_BSP_context);bounded_fatal(0x54000);
 }
-static rtems_initialization_tasks_table tasks[]={{0x494e4954,8192,1,RTEMS_DEFAULT_ATTRIBUTES,Init,RTEMS_INTERRUPT_LEVEL(31),0}};
+static rtems_initialization_tasks_table tasks[]={{0x494e4954,TASK_BYTES,1,RTEMS_DEFAULT_ATTRIBUTES,Init,RTEMS_INTERRUPT_LEVEL(31),0}};
 static rtems_api_configuration_table api={3,0,0,0,0,0,0,0,1,tasks};
-static rtems_configuration_table config={workspace,sizeof(workspace),0,10000,1,0,0,0,0,0,0,0,&api,0,0};
+static rtems_configuration_table config={workspace,WORKSPACE_BYTES,0,10000,1,0,0,0,0,0,0,0,&api,0,0};
 static rtems_cpu_table cpu={0,0,0,idle_error,1,2048,2048,0,stack_alloc,stack_free};
 void _ISR_Handler(void){bounded_fatal(0x40000);}
 void _CPU_ISR_install_raw_handler(unsigned int v,proc_ptr n,proc_ptr*o){bounded_fatal(0x40000|v);}
