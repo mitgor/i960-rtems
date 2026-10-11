@@ -8908,6 +8908,61 @@
       "sha256": "98c3217f969eec7968a57d18909e10f97bd7b87d3dfdd3ec4b88ab6eb6108440"
     },
     {
+      "path": "artifacts/rtems-system-info-20261011/README.md",
+      "size": 2036,
+      "sha256": "fa6c22c5382783878207c0b611593482a4c20fc4dc7cf2306782154a172df114"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/dynamic-check.json",
+      "size": 276,
+      "sha256": "fd018174adff6fa7dc47d6586a89de97433a4df11ca0fcf96f74806dd06e5a60"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/http-later.txt",
+      "size": 2992,
+      "sha256": "f68c90de20183280ce9145238ed34ff705104adbee99283817f9ae9aec07c881"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/http-tests.json",
+      "size": 622,
+      "sha256": "f8faaf84277f5d3a963209778c45defa9bc9a66acdbbe1b854c3a3c9ddd408ee"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/http.txt",
+      "size": 2988,
+      "sha256": "d9a181cbd5e5d9c4fbef90385da2a45fc76074fa3730fa2cc5be403c63a60c25"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/live.tar.xz",
+      "size": 912992,
+      "sha256": "79cdc5d91a401c53017c5eb83181fd3149a75ce3fb142e748fe718eeadd9a331"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/native-tests.txt",
+      "size": 3204,
+      "sha256": "de6bea0d4b85128123b267ba5a123d5f60d050f5a6bdc069dd731e740240b9fd"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/network-tests.txt",
+      "size": 298,
+      "sha256": "cbcf48df9476148da55ce002e1b8bfdc8ee54555e68fa546be88252447ac802e"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/production-http.txt",
+      "size": 2989,
+      "sha256": "5e6451ed383aa7f47eea61dda81f378c3acf4c28c6027487a19c2aacb90877d2"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/source.tar.xz",
+      "size": 15980,
+      "sha256": "ed798a3710450d688e41b9f6347aef7cf1473dd628273694bc833d5f19ee870e"
+    },
+    {
+      "path": "artifacts/rtems-system-info-20261011/verification.txt",
+      "size": 131,
+      "sha256": "728eec63405fd325098de6beb68ea9cdad248f26574c3f839290035191dc6257"
+    },
+    {
       "path": "artifacts/rtems-vader-20261011/README.md",
       "size": 1012,
       "sha256": "0de13c7f23948b91b9d816a50f05ef56a80058b20d101185056d4387dce9b907"

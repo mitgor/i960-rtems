@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "requests": 24,
+  "results": [
+    {
+      "test": "get",
+      "bytes": 2994,
+      "sha256": "c07b2c5eaadf6c77f45d5702bcade980ed46ed79658155530414fcee9ef20bad"
+    },
+    {
+      "test": "fragmented",
+      "bytes": 2994,
+      "sha256": "59ee74fa7073b28cd1575240c6d2ca6fcbe2ea8fb00cc100c9d7c537ca95eeac"
+    },
+    {
+      "test": "invalid",
+      "bytes": 66,
+      "sha256": "fd9b1a795afff868a2b4a0e5cf28594b0f9ebe6b09e32f6efb8dce5219dc521d"
+    },
+    {
+      "test": "oversize",
+      "bytes": 86,
+      "sha256": "a6777763edf40ae11e994c646dc835951c025d87b69fe8875e5c596cde5e3641"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+#include "lwip/sys.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -60,3 +61,6 @@ int main(void){
  }
  puts("lwIP native: 10,000 mixed malformed/UDP packets; UDP 0/1/31/500/1400, ICMP, malformed IP, oversize and TX backpressure passed");return 0;
 }
+
+/* Native network harness clock; production obtains this from RTEMS ticks. */
+unsigned int http_uptime_seconds(void){return sys_now()/1000;}

@@ -934,6 +934,22 @@ still knew how to stop. But the monitor now had two more demonstrated habits:
 it could wait through a legitimate critical section, and it could stop waiting
 for a message that never came.
 
+## Vader learns to read the clock
+
+The next addition was quieter. Vader's page began telling us about the machine
+serving it: RTEMS and lwIP versions, the i960RP, its configured memory, and the
+packets moving through its little network interface. The uptime came from the
+card's own timer ticks. Refreshing the page made the seconds and counters move.
+
+Some boxes stayed honest and empty. We had measured the timer bus, not the CPU
+clock. We had no idle-time accounting to turn into a load percentage, and no
+known temperature interface to interrogate. Borrowing the Linux host's numbers
+would have made a fuller dashboard and a less truthful one.
+
+Twenty-four HTTP checks passed. We stopped the new runtime, checked that it gave
+all the borrowed RAM back, and started it again. The mask still stared out of the
+page. Underneath it, the card could now say how long it had been awake.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

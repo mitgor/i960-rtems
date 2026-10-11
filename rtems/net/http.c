@@ -3,6 +3,8 @@
 #include "lwip/tcp.h"
 #include "buffer_io.h"
 #include "http.h"
+#include "network.h"
+#include "system_info.h"
 #define CLIENTS 4
 #define REQUEST_LIMIT 512
 struct client {struct tcp_pcb *pcb; unsigned int length,idle,sending; char request[REQUEST_LIMIT];};
@@ -12,9 +14,18 @@ static struct client clients[CLIENTS];
 #else
 #define CLOCK_DESCRIPTION "Execution is currently cooperative and host-polled."
 #endif
+static unsigned int page_requests;
+static char page_buffer[4096];
 static const char page[]=
-"HTTP/1.0 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nConnection: close\r\nCache-Control: no-store\r\n\r\n<!doctype html><html><head><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Darth Vader | i960 RTEMS</title><style>body{background:#08090b;color:#eee;text-align:center;font-family:monospace;margin:3em 1em}pre{display:inline-block;text-align:left;color:#ddd;line-height:1.15;font-size:clamp(10px,3vw,16px)}h1{color:#f44}p{max-width:640px;margin:1em auto;line-height:1.5}</style></head><body><h1>Darth Vader</h1><pre role=\"img\" aria-label=\"ASCII portrait of Darth Vader\">              .-=========-.\n            .&#x27;             &#x27;.\n           /    .-------.    \\\n          /    /         \\    \\\n         |    |           |    |\n         |    |  ___ ___  |    |\n         |    | /   V   \\ |    |\n         |    | \\___|___/ |    |\n         |    /     |     \\    |\n         |   /    /---\\    \\   |\n         /  /    /|||||\\    \\  \\\n        /__/____/|||||||\\____\\__\\\n       /        \\=======/        \\\n      /__________\\=====/__________\\\n         /       |===|       \\\n        /________|___|________\\\n</pre><p>The Force is strong with this i960.</p><p>Served by RTEMS 4.6.6 and lwIP on a Mylex DAC960 card over IPv6.</p><p>"
-CLOCK_DESCRIPTION "</p></body></html>\n";
+"HTTP/1.0 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nConnection: close\r\nCache-Control: no-store\r\n\r\n<!doctype html><html><head><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Darth Vader | i960 RTEMS</title><style>body{background:#08090b;color:#eee;text-align:center;font-family:monospace;margin:3em 1em}pre{display:inline-block;text-align:left;color:#ddd;line-height:1.15;font-size:clamp(10px,3vw,16px)}h1{color:#f44}table{margin:1em auto;max-width:850px;border-collapse:collapse;text-align:left}th,td{padding:.6em;border-bottom:1px solid #333;vertical-align:top}th{width:30%;color:#faa}a{color:#faa}p{max-width:640px;margin:1em auto;line-height:1.5}</style></head><body><h1>Darth Vader</h1><pre role=\"img\" aria-label=\"ASCII portrait of Darth Vader\">              .-=========-.\n            .&#x27;             &#x27;.\n           /    .-------.    \\\n          /    /         \\    \\\n         |    |           |    |\n         |    |  ___ ___  |    |\n         |    | /   V   \\ |    |\n         |    | \\___|___/ |    |\n         |    /     |     \\    |\n         |   /    /---\\    \\   |\n         /  /    /|||||\\    \\  \\\n        /__/____/|||||||\\____\\__\\\n       /        \\=======/        \\\n      /__________\\=====/__________\\\n         /       |===|       \\\n        /________|___|________\\\n</pre><p>The Force is strong with this i960.</p><p>Served by RTEMS 4.6.6 and lwIP on a Mylex DAC960 card over IPv6.</p><p>"
+CLOCK_DESCRIPTION "</p>";
+static const char unavailable[]="HTTP/1.0 500 Internal Server Error\r\nConnection: close\r\nContent-Length: 0\r\n\r\n";
+static const char *render_page(void){unsigned char stats[24];unsigned int i,active=0;struct info_writer w={page_buffer,sizeof(page_buffer),0,0};
+ for(i=0;i<CLIENTS;i++)if(clients[i].pcb)active++;
+ network_report(stats);info_text(&w,page);
+ system_info(&w,http_uptime_seconds(),++page_requests,bio_word(stats),bio_word(stats+4),bio_word(stats+8),active);
+ info_text(&w,"</body></html>\n");return w.failed?unavailable:page_buffer;
+}
 static const char bad[]="HTTP/1.0 400 Bad Request\r\nConnection: close\r\nContent-Length: 0\r\n\r\n";
 static const char large[]="HTTP/1.0 431 Request Header Fields Too Large\r\nConnection: close\r\nContent-Length: 0\r\n\r\n";
 static void failed(void *arg,err_t err){struct client*c=arg;if(c)memset(c,0,sizeof(*c));}
@@ -40,7 +51,7 @@ static err_t receive(void*arg,struct tcp_pcb*p,struct pbuf*b,err_t err){
  if(!c->sending){
   if(n>REQUEST_LIMIT-c->length)response=large;
   else {pbuf_copy_partial(b,c->request+c->length,n,0);c->length+=n;
-   for(i=3;i<c->length;i++)if(!memcmp(c->request+i-3,"\r\n\r\n",4)){response=c->length>=6&&!memcmp(c->request,"GET /",5)?page:bad;break;}
+   for(i=3;i<c->length;i++)if(!memcmp(c->request+i-3,"\r\n\r\n",4)){response=c->length>=6&&!memcmp(c->request,"GET /",5)?render_page():bad;break;}
    if(!response&&c->length==REQUEST_LIMIT)response=large;
   }
  }

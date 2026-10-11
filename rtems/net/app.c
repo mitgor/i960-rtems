@@ -12,6 +12,7 @@
 extern unsigned char _bss_start[],_bss_end[];
 static unsigned char workspace[49152] __attribute__((aligned(16)));
 static unsigned int initialized=0,steps,worker_steps,ticks,carry;
+unsigned int http_uptime_seconds(void){return ticks/100;}
 #ifdef I960_BACKGROUND_NET
 #include "../irq/timer_hw.h"
 static volatile unsigned int timer_request,timer_in_irq;

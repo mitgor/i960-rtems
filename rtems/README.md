@@ -1,5 +1,14 @@
 # RTEMS on the DAC960PG
 
+**Live web system information (2026-10-11):** the IPv6 Vader page now shows
+card runtime uptime, RTEMS/lwIP and CPU details, memory capacities, HTTP counts
+and RX/TX/drop counters. CPU utilization and temperature are explicitly
+unavailable; measured timer-bus frequency is not labelled as CPU frequency.
+24 live HTTP checks and full cleanup/restart passed. Production module is now
+`autonet-module-system-info`, paired with the updated `autonet` image.
+[Details](net/SYSTEM-INFO.md), [artifacts](../artifacts/rtems-system-info-20261011/README.md).
+
+
 **Nested STOP and timeout checkpoint (2026-10-11):** all twelve `stopcases`
 card runs passed. STOP at critical depths 2/1 was recorded at ticks 18/30 but
 controller dispatch/drain waited until outer release at tick 40. Missing STOP

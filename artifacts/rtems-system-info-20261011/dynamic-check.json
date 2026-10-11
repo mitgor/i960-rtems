@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "samples": [
+    {
+      "uptime_seconds": 5,
+      "page_responses": 1,
+      "rx": 36,
+      "tx": 31,
+      "drops": 0
+    },
+    {
+      "uptime_seconds": 40,
+      "page_responses": 24,
+      "rx": 248,
+      "tx": 213,
+      "drops": 0
+    }
+  ]
+}
