@@ -1,5 +1,17 @@
 # RTEMS working guidance
 
+**Pending-callback MU STOP milestone (2026-10-11):** three `mustop` card runs
+accepted a one-shot host STOP at ticks 34/41/52 while both owned ISR contexts
+were live and firmware sequence 1 was still pending. Workers observed the stop
+flag, both contexts drained, and the card acknowledged before host RELEASE
+allowed the callback to return. Zero faults; full RAM/MU restoration and module
+unload passed. IPv6 Vader HTTP restored. [Evidence](../artifacts/irq-mu-stop-20261011/README.md).
+This is a serialized host-driver experiment, not a concurrent control ioctl,
+CTL1 framing, or forced termination of code that ignores the stop flag. Next:
+exercise STOP during nested dispatch deferral and the missing-host deadline;
+then generalize the control API and non-cooperative task containment.
+
+
 **Nested dispatch-deferral milestone (2026-10-11):** three `defer` card runs
 kept task A executing through four timer ticks at dispatch depth 2 and four at
 depth 1. All eight IRQs observed a pending switch to a different heir; task B

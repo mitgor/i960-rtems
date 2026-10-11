@@ -879,6 +879,34 @@ the independent control channel, and can they unwind safely while a firmware
 command is still in progress? We have tested the channel and the task contexts
 separately. Their meeting is the next experiment.
 
+## A knock while the door is closed
+
+The firmware command was still waiting for our program to return. That used to
+be the awkward part: the usual way to ask the card to do something was already
+occupied by the thing we wanted to stop.
+
+This time the host knocked through the message registers. The driver kept the
+original command open, waited for a ready signal, and sent a stop word through
+the side channel. On the card, a timer interrupt found it while both workers
+still owned unfinished interrupt returns. It woke the controller. The workers
+noticed the stop flag, finished their checks, and let those returns unwind.
+
+Only then did the card answer: drained. The host checked that the firmware
+command was still pending, acknowledged the answer, and let the card clean up
+the message words and finally return. The order mattered. A stop request is
+not permission to erase the stack of the interrupt carrying it.
+
+Three trials stopped at ticks thirty-four, forty-one and fifty-two. Every entry
+had a matching return. The register patterns survived, the borrowed RAM matched,
+and Vader came back without a reboot or another flash write.
+
+There is still an honest qualification. These loops do not volunteer to yield,
+but they do know how to notice a stop flag. We have not taught the monitor to
+safely cancel an arbitrary program that refuses to cooperate. Nor is this yet a
+second user command running beside the first: the driver performed the bounded
+handshake inside its existing lock. Those are the next doors, now that the knock
+and the safe return have met on the real card.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

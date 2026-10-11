@@ -151,3 +151,11 @@ This checks exact uploaded/module hashes, raw reports, sentinels and full close
 restoration, and rejects 45 deliberately corrupted deferral reports. The next
 experiment adds MU STOP during active CPU-bound execution. No independent host
 STOP was attempted in this profile. [Evidence](../../artifacts/irq-deferral-20261011/README.md).
+
+## Host STOP while the callback is pending
+
+The separate `mustop` profile now combines two owned task continuations with a
+one-shot MU STOP/DRAINED/RELEASE handshake. Three live runs passed with both
+continuations live at STOP. See [protocol, implementation and limits](STOP.md)
+and [preserved evidence](../../artifacts/irq-mu-stop-20261011/README.md).
+The `switch` and `defer` profiles retain their previous contracts.

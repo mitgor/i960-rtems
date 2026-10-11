@@ -190,3 +190,38 @@ continuations before returning to firmware. Keep a finite local deadline and
 verify duplicate/status behavior, register sentinels, timer/MU restoration and
 all borrowed RAM. A successful callback return is required before considering
 resident execution; host-RAM DMA networking follows those control/lifetime gates.
+
+## Pending-callback STOP checkpoint (2026-10-11)
+
+**Pending-callback MU STOP milestone (2026-10-11):** three `mustop` card runs
+accepted a one-shot host STOP at ticks 34/41/52 while both owned ISR contexts
+were live and firmware sequence 1 was still pending. Workers observed the stop
+flag, both contexts drained, and the card acknowledged before host RELEASE
+allowed the callback to return. Zero faults; full RAM/MU restoration and module
+unload passed. IPv6 Vader HTTP restored. [Evidence](artifacts/irq-mu-stop-20261011/README.md).
+This is a serialized host-driver experiment, not a concurrent control ioctl,
+CTL1 framing, or forced termination of code that ignores the stop flag. Next:
+exercise STOP during nested dispatch deferral and the missing-host deadline;
+then generalize the control API and non-cooperative task containment.
+
+The first combined control/lifetime test uses READY → STOP → DRAINED → RELEASE
+in IMR1/OMR1. A host-side hook exchanges these tokens while the original command
+is pending, retaining the existing session mutex. The target wakes its controller
+from the timer ISR; the controller lets both stop-aware workers finish and their
+ISR continuations return. It restores the timer before DRAINED. The host's RELEASE
+then permits target MU cleanup and callback return; Linux acknowledges OISR only
+after validating the returned report and paired reads.
+
+Remaining gates before resident preemption/DMA work:
+
+1. Deliver STOP during nested dispatch-disable sections and prove deferred
+   scheduling plus eventual drain; exercise the local deadline without a host
+   STOP and missing RELEASE with controlled failure evidence.
+2. Design a user-triggered control operation that can run concurrently with an
+   outstanding callback while protecting device removal, session close and DMA
+   lifetime. The current synchronous session mutex intentionally remains intact.
+3. Define containment for arbitrary code that does not check a stop flag. Current
+   probes time-slice without yielding but cooperate in shutdown; they do not prove
+   forced cancellation, safe abandonment of interrupt frames, or resident ownership.
+4. Reintroduce framed epochs, retries/status and explicit stop-state semantics
+   around that lifetime protocol; then revisit resident execution and host-RAM DMA.

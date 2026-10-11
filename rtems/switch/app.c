@@ -5,6 +5,9 @@
 #include <rtems/init.h>
 #include <rtems/rtems/tasks.h>
 #include <rtems/rtems/clock.h>
+#ifdef I960_STOP_TEST
+#include <rtems/rtems/event.h>
+#endif
 #include <rtems/score/thread.h>
 #include <rtems/score/isr.h>
 #include "buffer_io.h"
@@ -47,11 +50,18 @@ static void defer_probe(void){
  deferral[15]=life[1].entries;
 }
 #else
+#ifdef I960_STOP_TEST
+#define REPORT_SIZE 816
+#else
 #define REPORT_SIZE 736
+#endif
 #endif
 extern void switch_probe(unsigned int*,unsigned int);
 void bounded_fatal(unsigned int code){stop_timer();bounded_escape(0xf0000000u|code);}
 #define CHECK(x) do{unsigned int e=(x);if(e)bounded_fatal(0x10000+__LINE__*256+e);}while(0)
+#ifdef I960_STOP_TEST
+#include "stop_target.h"
+#endif
 static void*stack_alloc(unsigned int n){unsigned int i=allocated++;if(i>=4||n>8192)bounded_fatal(0x51000);sizes[i]=n;memset(stacks[i],0xa5,8320);return stacks[i]+16;}
 static void stack_free(void*p){bounded_fatal(0x51001);}
 static void idle_error(void){bounded_fatal(0xdead);}
@@ -70,7 +80,11 @@ void switch_irq_body(void){
  #ifdef I960_DEFER_TEST
  if(defer_phase && _Thread_Dispatch_disable_level>deferral[16])deferral[16]=_Thread_Dispatch_disable_level;
 #endif
- ticks++;CHECK(rtems_clock_tick());
+ ticks++;
+#ifdef I960_STOP_TEST
+ stop_mu_poll();
+#endif
+ CHECK(rtems_clock_tick());
  _Thread_Dispatch_disable_level--;_ISR_Nest_level--;
 #ifdef I960_DEFER_TEST
  if(defer_phase){
@@ -117,8 +131,18 @@ static void Init(rtems_task_argument arg){rtems_id a,b;rtems_task_priority old;u
  CHECK(rtems_task_create(0x43545841,2,8192,RTEMS_TIMESLICE|RTEMS_INTERRUPT_LEVEL(31),RTEMS_DEFAULT_ATTRIBUTES,&a));
  CHECK(rtems_task_create(0x43545842,2,8192,RTEMS_TIMESLICE|RTEMS_INTERRUPT_LEVEL(31),RTEMS_DEFAULT_ATTRIBUTES,&b));
  CHECK(rtems_task_start(a,Worker,0));CHECK(rtems_task_start(b,Worker,1));
+#ifdef I960_STOP_TEST
+ stop_controller=_Thread_Executing->Object.id;error=stop_mu_start();if(error)bounded_fatal(0x57000);
+#endif
  error=start_timer();if(error)bounded_fatal(0x54000+error);
+#ifdef I960_STOP_TEST
+ {rtems_event_set events;unsigned int rc=rtems_event_receive(RTEMS_EVENT_0,RTEMS_EVENT_ANY|RTEMS_WAIT,128,&events);
+  if(rc!=RTEMS_SUCCESSFUL&&rc!=RTEMS_TIMEOUT)bounded_fatal(0x57002);
+  stop_diag[14]=rc; /* local deadline is recorded, never mistaken for host STOP */
+ }
+#else
  CHECK(rtems_task_wake_after(32)); /* both workers spin, no voluntary yield */
+#endif
  switch_stop=1;
  /* Both task-owned IRQ continuations must return before timer/code teardown. */
  CHECK(rtems_task_set_priority(RTEMS_SELF,3,&old));
@@ -129,6 +153,10 @@ static void Init(rtems_task_argument arg){rtems_id a,b;rtems_task_priority old;u
   for(j=0;j<16;j++)if(stacks[i][j]!=0xa5)switch_fault|=4096;
   for(j=16+sizes[i];j<8320;j++)if(stacks[i][j]!=0xa5)switch_fault|=4096;
  }
+#ifdef I960_STOP_TEST
+ stop_mu_finish();
+ for(i=0;i<20;i++)bio_put(out+736+i*4,stop_diag[i]);
+#endif
  {unsigned int header[]={0x31575349,switch_fault,ticks,two_live,handoffs,done[0],done[1],switch_active[0],switch_active[1],_ISR_Nest_level,_Thread_Dispatch_disable_level,REG(0xff008504),REG(0xff008528),REG(0x3c),saved_vector,REG(0xff000310),REG(0xff000314),REG(0xff000318),REG(0xff008500),armed};
  for(i=0;i<20;i++)bio_put(out+i*4,header[i]);}
  for(i=0;i<2;i++){
@@ -152,5 +180,12 @@ void _ISR_Handler(void){bounded_fatal(0x40000);}
 void _CPU_ISR_install_raw_handler(unsigned int v,proc_ptr n,proc_ptr*o){bounded_fatal(0x40000|v);}
 unsigned int bounded_main(unsigned int arg){unsigned char*p=(unsigned char*)arg;
  if(arg!=BIO_BASE||!bio_request_valid(p)||bio_word(p+16)<REPORT_SIZE||initialized)return 1;
- for(p=_bss_start;p<_bss_end;p++)*p=0;initialized=1;rtems_initialize_executive(&config,&cpu);return 0;
+#ifdef I960_STOP_TEST
+ if(bio_word(p+12)!=12||bio_word(p+BIO_INPUT)!=0x31505453||!bio_word(p+BIO_INPUT+4)||bio_word(p+BIO_INPUT+4)>65535)return 1;
+#endif
+ for(p=_bss_start;p<_bss_end;p++)*p=0;
+#ifdef I960_STOP_TEST
+ stop_epoch=bio_word((unsigned char*)BIO_BASE+BIO_INPUT+4);
+#endif
+ initialized=1;rtems_initialize_executive(&config,&cpu);return 0;
 }

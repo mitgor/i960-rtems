@@ -143,3 +143,14 @@ then drained; see [evidence](../../artifacts/irq-deferral-20261011/README.md).
 This tests scheduler critical sections with timer IRQs, not arbitrary interrupt
 nesting or MU STOP during a CPU-bound callback. Those control/lifetime paths
 must be combined before claiming a resident preemptive monitor.
+
+## STOP inside an outstanding firmware callback (2026-10-11)
+
+The `mustop` profile received independent message-register STOP while two owned
+interrupt continuations were live. Both drained before DRAINED was published;
+the host checked the firmware completion doorbell remained clear at that point,
+then sent RELEASE. Three runs passed full timer/RAM/MU restoration. This closes
+the bounded pending-callback signalling test, not arbitrary-task cancellation.
+The host hook retains the session mutex; workers still poll a stop flag.
+See [STOP1 contract](../switch/STOP.md) and
+[evidence](../../artifacts/irq-mu-stop-20261011/README.md).

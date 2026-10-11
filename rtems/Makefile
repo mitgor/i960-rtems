@@ -2,6 +2,7 @@
 # Offline native tests only. This does not touch the card.
 test:
 	python3 switch/test_lifetime.py
+	python3 switch/test_stop.py
 	python3 control/test_framed.py
 	python3 control/test_mu.py
 	python3 control/test_control.py
