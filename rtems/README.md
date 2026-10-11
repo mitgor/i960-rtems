@@ -1,5 +1,17 @@
 # RTEMS on the DAC960PG
 
+**Nested dispatch-deferral milestone (2026-10-11):** three `defer` card runs
+kept task A executing through four timer ticks at dispatch depth 2 and four at
+depth 1. All eight IRQs observed a pending switch to a different heir; task B
+started only after the outer enable. A resumed at tick 9, depth 0. Each run
+finished at tick 32 with zero faults, 20/20 and 12/12 ISR entries/returns,
+verified RAM restoration and module unload. IPv6 Vader HTTP returned 200 after
+restart. [Evidence](../artifacts/irq-deferral-20261011/README.md).
+Next: integrate independent MU STOP with the two CPU-bound task contexts and
+prove safe draining during an active callback. Resident operation and general
+interrupt nesting remain unproven; production stays on `autonet`.
+
+
 ## Hardware clock and IPv6 web server (2026-10-11)
 
 `net` remains the cooperative baseline. `autonet` runs bounded RTEMS/lwIP work

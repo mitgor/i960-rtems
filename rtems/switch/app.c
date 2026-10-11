@@ -22,6 +22,33 @@ static struct irq_lifetime life[2];
 /* globals before/after, locals before/after, PC/TC before/after, AC-failure,
  * remaining loop budget. The assembly offsets are checked by host tests. */
 unsigned int switch_records[2][70];
+#ifdef I960_DEFER_TEST
+#define REPORT_SIZE 816
+/* Wire words: magic, fault, owner, begin, inner end, outer end, resumed,
+ * levels 2/1/0, phase tick counts, pending/heir observations, B entries
+ * before/after outer enable, max sampled ISR depth, reserved. */
+static volatile unsigned int deferral[20],defer_phase;
+void bounded_fatal(unsigned int code);
+static void defer_wait(void){unsigned int start=ticks,budget=1000000;
+ priority20();while(ticks-start<4 && --budget) __asm__ volatile("":::"memory");
+ mask31();if(!budget)bounded_fatal(0x56000);
+}
+static void defer_probe(void){
+ deferral[0]=0x31464544;deferral[2]=(unsigned int)_Thread_Executing;
+ _Thread_Disable_dispatch();_Thread_Disable_dispatch();
+ deferral[3]=ticks;defer_phase=1;defer_wait();
+ deferral[4]=ticks;deferral[7]=_Thread_Dispatch_disable_level;
+ _Thread_Enable_dispatch();deferral[8]=_Thread_Dispatch_disable_level;
+ defer_phase=2;defer_wait();deferral[5]=ticks;
+ deferral[14]=life[1].entries;
+ if(switch_threads[1]||deferral[14])deferral[1]|=8;
+ defer_phase=0;_Thread_Enable_dispatch();
+ deferral[6]=ticks;deferral[9]=_Thread_Dispatch_disable_level;
+ deferral[15]=life[1].entries;
+}
+#else
+#define REPORT_SIZE 736
+#endif
 extern void switch_probe(unsigned int*,unsigned int);
 void bounded_fatal(unsigned int code){stop_timer();bounded_escape(0xf0000000u|code);}
 #define CHECK(x) do{unsigned int e=(x);if(e)bounded_fatal(0x10000+__LINE__*256+e);}while(0)
@@ -40,8 +67,21 @@ void switch_irq_enter(unsigned int id,unsigned int fp){
 }
 void switch_irq_body(void){
  _ISR_Nest_level++;_Thread_Dispatch_disable_level++;
+ #ifdef I960_DEFER_TEST
+ if(defer_phase && _Thread_Dispatch_disable_level>deferral[16])deferral[16]=_Thread_Dispatch_disable_level;
+#endif
  ticks++;CHECK(rtems_clock_tick());
  _Thread_Dispatch_disable_level--;_ISR_Nest_level--;
+#ifdef I960_DEFER_TEST
+ if(defer_phase){
+  deferral[9+defer_phase]++;
+  if((unsigned int)_Thread_Executing!=deferral[2])deferral[1]|=1;
+  if(_Thread_Dispatch_disable_level!=3-defer_phase)deferral[1]|=2;
+  if(_ISR_Nest_level)deferral[1]|=4;
+  if(_Context_Switch_necessary)deferral[12]++;
+  if(_Thread_Heir!=_Thread_Executing)deferral[13]++;
+ }
+#endif
  if(_Context_Switch_necessary&&!_Thread_Dispatch_disable_level){
   if(_Thread_Heir!=_Thread_Executing)handoffs++;
   _Thread_Dispatch(); /* This call may stay suspended on this owner's C stack. */
@@ -62,6 +102,9 @@ static void Worker(rtems_task_argument id){unsigned int *r=switch_records[id],i;
  switch_threads[id]=(unsigned int)_Thread_Executing;
  life[id].owner=switch_threads[id];life[id].low=(unsigned int)_Thread_Executing->Start.Initial_stack.area;
  life[id].high=life[id].low+_Thread_Executing->Start.Initial_stack.size;
+#ifdef I960_DEFER_TEST
+ if(id==0)defer_probe();
+#endif
  deep_probe(16,id);
  if(!switch_stop||!r[69])bounded_fatal(0x52000+id); /* finite loop deadline */
  for(i=0;i<16;i++)if(r[i]!=r[16+i])switch_fault|=128;
@@ -93,7 +136,10 @@ static void Init(rtems_task_argument arg){rtems_id a,b;rtems_task_priority old;u
   bio_put(out+120+i*328,(unsigned int)switch_irq_areas[i]);bio_put(out+124+i*328,sampled_high[i]);
   for(j=0;j<70;j++)bio_put(out+128+i*328+j*4,switch_records[i][j]);
  }
- bio_put((unsigned char*)BIO_BASE+20,0);bio_put((unsigned char*)BIO_BASE+24,736);
+#ifdef I960_DEFER_TEST
+ for(i=0;i<20;i++)bio_put(out+736+i*4,deferral[i]);
+#endif
+ bio_put((unsigned char*)BIO_BASE+20,0);bio_put((unsigned char*)BIO_BASE+24,REPORT_SIZE);
  bio_put((unsigned char*)BIO_BASE+28,bio_word((unsigned char*)BIO_BASE+8));
  _CPU_Context_switch(&_Thread_Executing->Registers,&_Thread_BSP_context);
  for(;;)bounded_fatal(0x55000);
@@ -105,6 +151,6 @@ static rtems_cpu_table cpu={0,0,0,idle_error,1,2048,2048,0,stack_alloc,stack_fre
 void _ISR_Handler(void){bounded_fatal(0x40000);}
 void _CPU_ISR_install_raw_handler(unsigned int v,proc_ptr n,proc_ptr*o){bounded_fatal(0x40000|v);}
 unsigned int bounded_main(unsigned int arg){unsigned char*p=(unsigned char*)arg;
- if(arg!=BIO_BASE||!bio_request_valid(p)||bio_word(p+16)<736||initialized)return 1;
+ if(arg!=BIO_BASE||!bio_request_valid(p)||bio_word(p+16)<REPORT_SIZE||initialized)return 1;
  for(p=_bss_start;p<_bss_end;p++)*p=0;initialized=1;rtems_initialize_executive(&config,&cpu);return 0;
 }

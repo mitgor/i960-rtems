@@ -34,16 +34,31 @@ def decode(data):
     assert a[2]<=b[1] or b[2]<=a[1], 'task stacks overlap'
     return dict(ticks=w[2],two_live_observations=w[3],scheduler_handoffs=w[4],faults=w[1],slots=slots)
 
+def decode_defer(data):
+    assert len(data)==816,len(data)
+    row=decode(data[:736]);d=struct.unpack('<20I',data[736:])
+    assert d[0]==0x31464544 and d[1]==0,d
+    assert hex(d[2])==row['slots'][0]['owner']
+    assert d[4]-d[3]==4 and d[5]-d[4]==4 and d[6]>d[5],d
+    assert d[7:12]==(2,1,0,4,4),d
+    assert d[12]>0 and d[13]>0 and d[14]==0 and d[15]>0 and d[16]==3,d
+    assert d[17:]==(0,0,0)
+    row['deferral']=dict(zip(('magic','fault','owner','begin_tick','inner_end_tick',
+        'outer_end_tick','resumed_tick','depth_two','depth_one','depth_zero',
+        'ticks_depth_two','ticks_depth_one','pending_observations','other_heir_observations',
+        'b_entries_before','b_entries_after','max_sampled_isr_depth'),d[:17]))
+    return row
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ['payload','module','output']:p.add_argument('--'+name,type=Path,required=True)
-    p.add_argument('--runs',type=int,default=3);a=p.parse_args();a.output.mkdir(exist_ok=False,parents=True)
+    p.add_argument('--defer',action='store_true');p.add_argument('--runs',type=int,default=3);a=p.parse_args();a.output.mkdir(exist_ok=False,parents=True)
     rows=[]
     for i in range(a.runs):
         board=Board(a.payload,a.module,a.output/f'run-{i}')
         try:
             data=board.step(b'');(board.out/'switch.bin').write_bytes(data)
-            row=decode(data);rows.append(row);print(json.dumps(row),flush=True)
+            row=(decode_defer if a.defer else decode)(data);rows.append(row);print(json.dumps(row),flush=True)
             (board.out/'acceptance.json').write_text(json.dumps(row,indent=2)+'\n')
         finally:print(json.dumps(board.close()),flush=True)
     (a.output/'acceptance.json').write_text(json.dumps(rows,indent=2)+'\n')

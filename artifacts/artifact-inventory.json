@@ -2468,6 +2468,41 @@
       "sha256": "f4148e76b199f02b8a4b1c6c7e8a9780cf4ffcf970acd60067d21be928ee3eb3"
     },
     {
+      "path": "artifacts/irq-deferral-20261011/README.md",
+      "size": 3278,
+      "sha256": "c0e064c2f20ad37cdfaac423519043fcce3c0eb3243c7364d53249bd127ce7f1"
+    },
+    {
+      "path": "artifacts/irq-deferral-20261011/acceptance.json",
+      "size": 3981,
+      "sha256": "b058061daf745d51b28969756ab1842ce3f94293512423cfe297f44bb950d249"
+    },
+    {
+      "path": "artifacts/irq-deferral-20261011/http-restored.txt",
+      "size": 1350,
+      "sha256": "e3fc34b8c35aff928611ecf567cc2528291393f19f147069812353b8492c74f6"
+    },
+    {
+      "path": "artifacts/irq-deferral-20261011/live.tar.xz",
+      "size": 767056,
+      "sha256": "a869c5d3e24958a29ea1bcb78603cc0afc7d744197a86d2174d0bd89c1074126"
+    },
+    {
+      "path": "artifacts/irq-deferral-20261011/native-tests.txt",
+      "size": 2393,
+      "sha256": "7a5d7deef1c033ac336dda18a4eeb665f88b943323e56c7c6f4594eda8cc5819"
+    },
+    {
+      "path": "artifacts/irq-deferral-20261011/source.tar.xz",
+      "size": 13004,
+      "sha256": "733174930823de4b5498822f112ccefacea7d52d4b75ec135184b9d4d03c2984"
+    },
+    {
+      "path": "artifacts/irq-deferral-20261011/verification.txt",
+      "size": 214,
+      "sha256": "e96eacd146e99fd3eeb14710ef62f8b1fa565e183c13027eb90f980188daa46e"
+    },
+    {
       "path": "artifacts/irq-switch-20261011/README.md",
       "size": 2336,
       "sha256": "99ce7a7fd794d300added3c8573c02fafae2f7ab0a73cb60df8c7a486d35141e"

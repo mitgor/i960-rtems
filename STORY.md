@@ -857,6 +857,28 @@ must accept STOP from outside while those tasks are busy, and it must respect
 scheduler critical sections. But two CPU-bound tasks had now shared the card
 through real timer preemption, with their unfinished interrupts kept safe.
 
+## Waiting its turn
+
+Preemption also has to know when to wait. We gave task A two nested reasons to
+keep the processor, using RTEMS's own dispatch-disable calls, then let the timer
+interrupt it anyway. Four ticks passed. We released the inner level. Four more
+ticks passed. The clock was working; the other task was ready; the scheduler
+still owed A the chance to finish its critical section.
+
+The records caught that distinction on every interrupt. A different heir was
+waiting, but A remained the owner. Only releasing the outer level let B start.
+By tick nine A was back, returning from the enable call that had finally handed
+the processor away.
+
+Three runs agreed. Both workers went on to pass their register checks, every
+unfinished interrupt found its way home, and the borrowed RAM matched again.
+Vader came back with HTTP 200. No reboot and no new flash writes.
+
+The next question is external: can the host ask these busy tasks to stop over
+the independent control channel, and can they unwind safely while a firmware
+command is still in progress? We have tested the channel and the task contexts
+separately. Their meeting is the next experiment.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

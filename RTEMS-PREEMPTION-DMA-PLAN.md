@@ -168,3 +168,25 @@ reboot/flash. [Implementation](rtems/switch/README.md),
 [evidence](artifacts/irq-switch-20261011/README.md). This is bounded preemption,
 not a resident monitor; next are deferred-dispatch stress and MU STOP integration
 while the CPU-bound task contexts are active.
+
+## Nested dispatch deferral checkpoint (2026-10-11)
+
+**Nested dispatch-deferral milestone (2026-10-11):** three `defer` card runs
+kept task A executing through four timer ticks at dispatch depth 2 and four at
+depth 1. All eight IRQs observed a pending switch to a different heir; task B
+started only after the outer enable. A resumed at tick 9, depth 0. Each run
+finished at tick 32 with zero faults, 20/20 and 12/12 ISR entries/returns,
+verified RAM restoration and module unload. IPv6 Vader HTTP returned 200 after
+restart. [Evidence](artifacts/irq-deferral-20261011/README.md).
+Next: integrate independent MU STOP with the two CPU-bound task contexts and
+prove safe draining during an active callback. Resident operation and general
+interrupt nesting remain unproven; production stays on `autonet`.
+
+The next bounded experiment combines the proven framed MU control path with
+owned per-task ISR continuations. The host must send STOP while a callback is
+actively running CPU-bound workers. The ISR must defer any scheduler transfer
+inside a critical section, record STOP, and permit the controller to drain both
+continuations before returning to firmware. Keep a finite local deadline and
+verify duplicate/status behavior, register sentinels, timer/MU restoration and
+all borrowed RAM. A successful callback return is required before considering
+resident execution; host-RAM DMA networking follows those control/lifetime gates.

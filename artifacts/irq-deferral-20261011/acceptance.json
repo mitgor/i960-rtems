@@ -1,0 +1,173 @@
+[
+  {
+    "ticks": 32,
+    "two_live_observations": 23,
+    "scheduler_handoffs": 24,
+    "faults": 0,
+    "slots": [
+      {
+        "owner": "0xc0f568e8",
+        "task_stack": [
+          "0xc0f5c2d0",
+          "0xc0f5e2d0"
+        ],
+        "frame": "0xc0f5cc70",
+        "entries": 20,
+        "returns": 20,
+        "irq_stack": "0xc0f604e0",
+        "sampled_sp": "0xc0f60620",
+        "remaining_budget": 828990,
+        "pc": "0x142002",
+        "tc": "0x0"
+      },
+      {
+        "owner": "0xc0f56a58",
+        "task_stack": [
+          "0xc0f5e350",
+          "0xc0f60350"
+        ],
+        "frame": "0xc0f5ecf0",
+        "entries": 12,
+        "returns": 12,
+        "irq_stack": "0xc0f624e0",
+        "sampled_sp": "0xc0f62620",
+        "remaining_budget": 829144,
+        "pc": "0x142002",
+        "tc": "0x0"
+      }
+    ],
+    "deferral": {
+      "magic": 826688836,
+      "fault": 0,
+      "owner": 3237308648,
+      "begin_tick": 0,
+      "inner_end_tick": 4,
+      "outer_end_tick": 8,
+      "resumed_tick": 9,
+      "depth_two": 2,
+      "depth_one": 1,
+      "depth_zero": 0,
+      "ticks_depth_two": 4,
+      "ticks_depth_one": 4,
+      "pending_observations": 8,
+      "other_heir_observations": 8,
+      "b_entries_before": 0,
+      "b_entries_after": 1,
+      "max_sampled_isr_depth": 3
+    }
+  },
+  {
+    "ticks": 32,
+    "two_live_observations": 23,
+    "scheduler_handoffs": 24,
+    "faults": 0,
+    "slots": [
+      {
+        "owner": "0xc0f568e8",
+        "task_stack": [
+          "0xc0f5c2d0",
+          "0xc0f5e2d0"
+        ],
+        "frame": "0xc0f5cc70",
+        "entries": 20,
+        "returns": 20,
+        "irq_stack": "0xc0f604e0",
+        "sampled_sp": "0xc0f60620",
+        "remaining_budget": 828991,
+        "pc": "0x142002",
+        "tc": "0x0"
+      },
+      {
+        "owner": "0xc0f56a58",
+        "task_stack": [
+          "0xc0f5e350",
+          "0xc0f60350"
+        ],
+        "frame": "0xc0f5ecf0",
+        "entries": 12,
+        "returns": 12,
+        "irq_stack": "0xc0f624e0",
+        "sampled_sp": "0xc0f62620",
+        "remaining_budget": 829143,
+        "pc": "0x142002",
+        "tc": "0x0"
+      }
+    ],
+    "deferral": {
+      "magic": 826688836,
+      "fault": 0,
+      "owner": 3237308648,
+      "begin_tick": 0,
+      "inner_end_tick": 4,
+      "outer_end_tick": 8,
+      "resumed_tick": 9,
+      "depth_two": 2,
+      "depth_one": 1,
+      "depth_zero": 0,
+      "ticks_depth_two": 4,
+      "ticks_depth_one": 4,
+      "pending_observations": 8,
+      "other_heir_observations": 8,
+      "b_entries_before": 0,
+      "b_entries_after": 1,
+      "max_sampled_isr_depth": 3
+    }
+  },
+  {
+    "ticks": 32,
+    "two_live_observations": 23,
+    "scheduler_handoffs": 24,
+    "faults": 0,
+    "slots": [
+      {
+        "owner": "0xc0f568e8",
+        "task_stack": [
+          "0xc0f5c2d0",
+          "0xc0f5e2d0"
+        ],
+        "frame": "0xc0f5cc70",
+        "entries": 20,
+        "returns": 20,
+        "irq_stack": "0xc0f604e0",
+        "sampled_sp": "0xc0f60620",
+        "remaining_budget": 828994,
+        "pc": "0x142002",
+        "tc": "0x0"
+      },
+      {
+        "owner": "0xc0f56a58",
+        "task_stack": [
+          "0xc0f5e350",
+          "0xc0f60350"
+        ],
+        "frame": "0xc0f5ecf0",
+        "entries": 12,
+        "returns": 12,
+        "irq_stack": "0xc0f624e0",
+        "sampled_sp": "0xc0f62620",
+        "remaining_budget": 829148,
+        "pc": "0x142002",
+        "tc": "0x0"
+      }
+    ],
+    "deferral": {
+      "magic": 826688836,
+      "fault": 0,
+      "owner": 3237308648,
+      "begin_tick": 0,
+      "inner_end_tick": 4,
+      "outer_end_tick": 8,
+      "resumed_tick": 9,
+      "depth_two": 2,
+      "depth_one": 1,
+      "depth_zero": 0,
+      "ticks_depth_two": 4,
+      "ticks_depth_one": 4,
+      "pending_observations": 8,
+      "other_heir_observations": 8,
+      "b_entries_before": 0,
+      "b_entries_after": 1,
+      "max_sampled_isr_depth": 3
+    }
+  }
+]

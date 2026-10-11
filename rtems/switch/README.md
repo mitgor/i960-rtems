@@ -100,3 +100,54 @@ Next: validate deferred dispatch through critical sections, then integrate a
 bounded MU STOP request into the CPU-bound switch profile with an explicit drain
 handshake. Do not enable resident network tasks or general preemption merely
 by lowering their interrupt priority.
+
+## Nested dispatch deferral (`defer` profile)
+
+`build.py --profile defer` compiles this same source with `I960_DEFER_TEST`.
+The default `switch` profile and its 736-byte response are unchanged. `defer`
+appends 20 little-endian words (816 bytes total), documented beside `deferral`
+in `app.c` and named by `decode_defer()` in `live_test.py`.
+
+Before its existing register/deep-stack probe, task A disables dispatch twice
+using the actual RTEMS internal API. It lowers CPU priority to 20 and waits
+for four timer interrupts, raises it to 31, enables dispatch once, then repeats
+the four-tick wait at dispatch depth 1. Each wait has a finite loop budget.
+The IRQ still advances RTEMS time and samples pending-switch/heir state after
+unwinding ISR accounting. It checks that the executing owner and dispatch depth
+stay correct, with ISR nesting zero at that sampling point. B has not started.
+
+The outer `_Thread_Enable_dispatch()` dispatches to B; A's enable call returns
+at tick 9 after B's first timer interrupt. A then joins the original CPU-bound
+register-sentinel probe. The controller wakes at tick 32 and drains both tasks.
+The maximum sampled ISR dispatch depth is 3 (outer critical depth 2 plus IRQ
+accounting); this is not a measurement of every internal clock routine depth.
+
+Three fresh upload/module cycles passed: four ticks at each critical level,
+eight pending-switch/different-heir observations, B entries 0 before outer
+release and 1 on A's return, levels 2/1/0, zero faults. Each had 24 IRQ-path
+handoffs, 23 observations of two live continuations, A entries/returns 20/20,
+B 12/12. The outer enable's direct dispatch is not part of the IRQ-handoff
+counter. The last IRQ-path handoff wakes the controller. Timer reload 20000
+is a bounded tick test, not a calibrated wall-clock claim.
+
+Run only with the HTTP service stopped and its cleanup verified:
+
+```sh
+python3 project/rtems/build.py --work . --profile defer
+python3 project/rtems/transport/build.py --out defer-module
+make -C /lib/modules/$(uname -r)/build M=$PWD/defer-module modules
+sudo python3 project/rtems/switch/live_test.py --defer \
+  --payload defer/kernel.bin --module defer-module/dac960rtems.ko \
+  --output defer-live1
+```
+
+Offline verification from the repository root:
+
+```sh
+python3 rtems/switch/verify_capture.py --defer artifacts/irq-deferral-20261011/live.tar.xz
+```
+
+This checks exact uploaded/module hashes, raw reports, sentinels and full close
+restoration, and rejects 45 deliberately corrupted deferral reports. The next
+experiment adds MU STOP during active CPU-bound execution. No independent host
+STOP was attempted in this profile. [Evidence](../../artifacts/irq-deferral-20261011/README.md).
