@@ -1,0 +1,3 @@
+{"run": "cap", "seq": 1, "op": 1, "ticks": 24014, "lease_ticks": 24000, "renewals": 559, "reason": 3, "hw_checks": 24014}
+{"run": "cap", "seq": 2, "op": 5, "ticks": 24014, "lease_ticks": 24000, "renewals": 559, "reason": 3, "hw_checks": 24014}
+{"steps": 2, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 53.295017, "max": 115377.824259, "mean": 57715.559638}}

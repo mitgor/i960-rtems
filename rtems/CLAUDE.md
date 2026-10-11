@@ -1,5 +1,18 @@
 # RTEMS working guidance
 
+**Continuous execution lease (2026-10-11):** `leaseirq` now keeps preemptible
+RTEMS workers running continuously inside a parked firmware callback. Sideband
+grant/renew/STOP, a 512-tick renewal deadline, a non-renewable 24,000-tick cap and
+per-tick timer/vector/mask/MU checks make the execution lease explicit. Nine
+sessions passed 23 callbacks and 13 leases, including 60 seconds of renewed
+execution, 115 seconds to the cap, expiry and transitive quarantine. All 40,111
+hardware checks reported no drift; all closes restored RAM and unloaded.
+Native tests, 1,610 actual-report mutations and production IPv6 HTTP passed.
+[Contract, ownership table and evidence](leaseirq/README.md). Firmware stays parked; DMA/SCSI
+ownership and unrestricted coexistence are not established. Production remains
+autonet. Earlier next-step descriptions below are historical.
+
+
 **Persistent asynchronous epochs (2026-10-11):** `persistirq` preserves one
 RTEMS instance across host calls and tracks a transitive two-mutex dependency
 chain A/B/C. Five normal sessions passed 120 callbacks, 29 clean rollback/handoffs

@@ -1223,6 +1223,38 @@ frame. Its timer does not keep running beside the stock firmware. That next
 step still needs an agreement about who owns the machine when nobody is on
 the phone.
 
+So we kept the phone call open.
+
+The next version stopped returning to firmware between bursts of arithmetic.
+The firmware's callback stayed parked while RTEMS ran, and the host used the
+small independent message channel to grant a lease, renew it, or ask for STOP.
+Every tick checked the timer, vector and masks that made the arrangement possible.
+The old instruction counter wrapped around instead of ending the worker's day.
+
+A minute passed without a firmware round trip. The host renewed the lease 291
+times. The two workers took more than twelve thousand interrupts between them,
+then came back through their original frames, gave up their resources and let
+the firmware continue. The original RAM was restored and the module unloaded.
+
+A lease also needed a way to say no. Withholding the first grant stopped the
+experiment. Granting it and then merely asking for status stopped it too: looking
+at a clock is not winding it. The timer enforced the renewal deadline at exactly
+512 ticks. Even a diligent host could not renew forever. At 24,000 ticks, after
+559 accepted renewals and about a hundred and fifteen seconds, the administrative
+cap ended the run. That return and cleanup passed as well.
+
+The chain of locks came along. A, B and C stayed frozen while the independent
+worker ran under another lease, and another. Returning a borrowed reference
+still did not turn suspension into recovery. Across nine sessions we counted
+forty thousand one hundred and eleven hardware checks without a reported change.
+The Vader page came back afterward, on the same Linux boot.
+
+We had made continuous execution real, but within a deliberately narrow bargain.
+The firmware was waiting for its call to return. Its timer could accumulate
+pending work; its SCSI and DMA engines had not signed over their ownership.
+A parked continuation and a checked interrupt mask were enough for this test.
+They were not permission to call the whole board ours.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

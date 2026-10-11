@@ -1,0 +1,204 @@
+[
+  {
+    "path": "artifacts/rtems-leaseirq-20261011/leaseirq-smoke/smoke",
+    "callbacks": 2,
+    "epochs": [
+      {
+        "sequence": 1,
+        "reason": 1,
+        "renewals": 5,
+        "lease_ticks": 211,
+        "control_seconds": 1.0073226389999945,
+        "hardware_checks": 226,
+        "owner_irq_entries": 110,
+        "other_irq_entries": 116
+      }
+    ],
+    "corruptions_rejected": 140,
+    "boot": "82403cf7-9150-4581-b032-e029c2dd6484"
+  },
+  {
+    "path": "artifacts/rtems-leaseirq-20261011/leaseirq-matrix/chain",
+    "callbacks": 7,
+    "epochs": [
+      {
+        "sequence": 1,
+        "reason": 1,
+        "renewals": 5,
+        "lease_ticks": 211,
+        "control_seconds": 1.0066017550000197,
+        "hardware_checks": 226,
+        "owner_irq_entries": 110,
+        "other_irq_entries": 116
+      },
+      {
+        "sequence": 2,
+        "reason": 1,
+        "renewals": 10,
+        "lease_ticks": 419,
+        "control_seconds": 2.008255358000042,
+        "hardware_checks": 434,
+        "owner_irq_entries": 324,
+        "other_irq_entries": 336
+      },
+      {
+        "sequence": 3,
+        "reason": 1,
+        "renewals": 5,
+        "lease_ticks": 211,
+        "control_seconds": 1.0070399469998392,
+        "hardware_checks": 228,
+        "owner_irq_entries": 436,
+        "other_irq_entries": 452
+      },
+      {
+        "sequence": 4,
+        "reason": 1,
+        "renewals": 5,
+        "lease_ticks": 210,
+        "control_seconds": 1.0054708449999907,
+        "hardware_checks": 218,
+        "owner_irq_entries": 436,
+        "other_irq_entries": 670
+      },
+      {
+        "sequence": 6,
+        "reason": 2,
+        "renewals": 0,
+        "lease_ticks": 513,
+        "control_seconds": 2.4830357890000414,
+        "hardware_checks": 521,
+        "owner_irq_entries": 436,
+        "other_irq_entries": 1191
+      }
+    ],
+    "corruptions_rejected": 490,
+    "boot": "82403cf7-9150-4581-b032-e029c2dd6484"
+  },
+  {
+    "path": "artifacts/rtems-leaseirq-20261011/leaseirq-matrix/expiry-False",
+    "callbacks": 2,
+    "epochs": [
+      {
+        "sequence": 1,
+        "reason": 2,
+        "renewals": 0,
+        "lease_ticks": 512,
+        "control_seconds": 2.567019842000036,
+        "hardware_checks": 526,
+        "owner_irq_entries": 260,
+        "other_irq_entries": 266
+      }
+    ],
+    "corruptions_rejected": 140,
+    "boot": "82403cf7-9150-4581-b032-e029c2dd6484"
+  },
+  {
+    "path": "artifacts/rtems-leaseirq-20261011/leaseirq-matrix/expiry-True",
+    "callbacks": 2,
+    "epochs": [
+      {
+        "sequence": 1,
+        "reason": 2,
+        "renewals": 0,
+        "lease_ticks": 513,
+        "control_seconds": 2.5027410790000886,
+        "hardware_checks": 528,
+        "owner_irq_entries": 261,
+        "other_irq_entries": 267
+      }
+    ],
+    "corruptions_rejected": 140,
+    "boot": "82403cf7-9150-4581-b032-e029c2dd6484"
+  },
+  {
+    "path": "artifacts/rtems-leaseirq-20261011/leaseirq-matrix/silent",
+    "callbacks": 2,
+    "epochs": [
+      {
+        "sequence": 1,
+        "reason": 1,
+        "renewals": 0,
+        "lease_ticks": 210,
+        "control_seconds": 1.004310968999789,
+        "hardware_checks": 224,
+        "owner_irq_entries": 109,
+        "other_irq_entries": 115
+      }
+    ],
+    "corruptions_rejected": 140,
+    "boot": "82403cf7-9150-4581-b032-e029c2dd6484"
+  },
+  {
+    "path": "artifacts/rtems-leaseirq-20261011/leaseirq-matrix/smoke",
+    "callbacks": 2,
+    "epochs": [
+      {
+        "sequence": 1,
+        "reason": 1,
+        "renewals": 5,
+        "lease_ticks": 210,
+        "control_seconds": 1.0057585729998664,
+        "hardware_checks": 224,
+        "owner_irq_entries": 109,
+        "other_irq_entries": 115
+      }
+    ],
+    "corruptions_rejected": 140,
+    "boot": "82403cf7-9150-4581-b032-e029c2dd6484"
+  },
+  {
+    "path": "artifacts/rtems-leaseirq-20261011/leaseirq-matrix/soak",
+    "callbacks": 2,
+    "epochs": [
+      {
+        "sequence": 1,
+        "reason": 1,
+        "renewals": 291,
+        "lease_ticks": 12502,
+        "control_seconds": 60.00897476599994,
+        "hardware_checks": 12516,
+        "owner_irq_entries": 6255,
+        "other_irq_entries": 6261
+      }
+    ],
+    "corruptions_rejected": 140,
+    "boot": "82403cf7-9150-4581-b032-e029c2dd6484"
+  },
+  {
+    "path": "artifacts/rtems-leaseirq-20261011/leaseirq-cap/cap",
+    "callbacks": 2,
+    "epochs": [
+      {
+        "sequence": 1,
+        "reason": 3,
+        "renewals": 559,
+        "lease_ticks": 24000,
+        "control_seconds": 115.23640567100006,
+        "hardware_checks": 24014,
+        "owner_irq_entries": 12004,
+        "other_irq_entries": 12010
+      }
+    ],
+    "corruptions_rejected": 140,
+    "boot": "82403cf7-9150-4581-b032-e029c2dd6484"
+  },
+  {
+    "path": "artifacts/rtems-leaseirq-20261011/leaseirq-final/smoke",
+    "callbacks": 2,
+    "epochs": [
+      {
+        "sequence": 1,
+        "reason": 1,
+        "renewals": 5,
+        "lease_ticks": 211,
+        "control_seconds": 1.0067083530000218,
+        "hardware_checks": 226,
+        "owner_irq_entries": 110,
+        "other_irq_entries": 116
+      }
+    ],
+    "corruptions_rejected": 140,
+    "boot": "82403cf7-9150-4581-b032-e029c2dd6484"
+  }
+]
