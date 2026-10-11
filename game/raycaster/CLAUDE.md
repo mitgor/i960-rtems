@@ -20,3 +20,10 @@ restore HTTP. Build in a fresh isolated directory. No flash changes required.
 protocol tests. Target/host replies are serialized explicitly, never memcpy
 of a padded i960 struct. Only complete frames are published; keys are sampled
 at frame start. The next optimization should follow the measured bottleneck.
+
+Word-memory builds: `build_target.py --memory word` is now the raycaster default;
+`--memory byte` preserves the exact original binary. Read `rtems/memory/README.md`
+and `artifacts/word-memory-20261011/README.md` for scope and measured acceptance.
+Do not silently propagate these helpers into production/autonet or IRQ profiles.
+The `--memory-check` image injects 264 correctness batches; exclude it from
+performance results. A/B comparison must preserve output and all audits.

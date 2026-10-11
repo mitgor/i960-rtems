@@ -1,0 +1,14 @@
+ExecStart={ path=/home/mit/i960-rtems-web-20261011/serve-autonomous.sh ; argv[]=/home/mit/i960-rtems-web-20261011/serve-autonomous.sh --internet6 --publish-http6 2a02:8106:40:9000:f662:19ee:dbad:1f1e --http-port 8080 --output /home/mit/i960-rtems-web-20261011/http-after-handoff-final ; ignore_errors=no ; start_time=[Sun 2026-10-11 16:31:39 CEST] ; stop_time=[n/a] ; pid=26965 ; code=(null) ; status=0/0 }
+ActiveState=active
+3c5b99fb-e6a3-4bab-8df2-fdd16e43b1d9
+{
+  "steps": 143,
+  "restored": true,
+  "unloaded": true,
+  "driver_bound": false,
+  "latency_ms": {
+    "min": 59.146315,
+    "max": 108.130133,
+    "mean": 61.12652029577465
+  }
+}

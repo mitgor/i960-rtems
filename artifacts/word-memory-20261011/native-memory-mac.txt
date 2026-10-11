@@ -1,0 +1,7 @@
+mkdir -p build
+printf '#include <stddef.h>\nextern void *memcpy(void *, const void *, size_t);\n' > build/legacy.c
+sed -n '/^void \*memmove(/p' ../session/libc.c >> build/legacy.c
+cc -O2 -Wall -Wextra -Werror -fno-builtin -fsanitize=address,undefined -g -Dmemcpy=word_memcpy -Dmemset=word_memset -Dmemmove=word_memmove -c build/legacy.c -o build/move.o
+cc -O2 -Wall -Wextra -Werror -fno-builtin -fsanitize=address,undefined -g test.c build/check.o build/word.o build/move.o -o build/test
+build/test
+PASS: 264 batches, 2112 copies + 2112 moves + 1056 clears; 513 guard-page lengths

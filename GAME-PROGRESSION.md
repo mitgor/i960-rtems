@@ -126,8 +126,13 @@ Tetris 41.1 ms median session-call measurement is a warning about command/audit
 latency, **not** a measured Doom throughput prediction. Also, a logical 304-byte
 CHIP-8 reply does not shrink the driver's fixed buffers or paired staging reads.
 
-Next concrete action: prototype and validate aligned word-copy/clear helpers in
-an isolated profile, then break down the fixed upload/arming command costs. Keep
-frame-queue/DMA ownership and multi-megabyte RAM reservation explicit. Do not
-reduce audit cadence to manufacture an FPS improvement. CHIP-8 and raycaster
-card acceptance are complete; production IPv6 HTTP is restored.
+Word-copy/clear is now implemented and card-validated in the isolated raycaster
+build: 3.30× copy, 4.63× clear, and a 3.91% full-frame kernel-time reduction across
+repeated byte/word sessions. All 2,105 replies matched native output, with full
+restoration. [Evidence](artifacts/word-memory-20261011/README.md).
+
+Next concrete action: profile the constituent upload/arming commands, then design
+transfer batching around proven buffer ownership, completion and teardown. Keep
+all audits. The optimized helper does not reserve the larger RAM needed by Doom,
+prove physical DMA drain, or enable unrestricted RTEMS ownership. Those remain
+separate gates aligned with the parallel OS work.

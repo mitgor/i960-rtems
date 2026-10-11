@@ -8,5 +8,6 @@ build/libray.so: ray.c ray.h trig.h | build
 build/test: ray.c ray.h trig.h test.c | build
 	$(CC) $(FLAGS) -fsanitize=address,undefined -g ray.c test.c -o $@
 test: all build/test
+	$(MAKE) -C ../../rtems/memory test
 	build/test
 	python3 test_host.py

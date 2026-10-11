@@ -1326,6 +1326,37 @@ are a photograph, not a permission slip. We have a bounded door into the monitor
 without a pending callback. We have not yet earned the right to move the rest of
 the controller through it.
 
+## Four bytes at a time
+
+The first optimization was almost embarrassingly literal. The processor could
+move a word, but our little C library had been carrying every picture one byte
+at a time. We taught the copy routine to line up both addresses and move four.
+The clear routine learned the same trick. Misaligned edges still went through
+the old byte path; different source and destination alignments kept it entirely.
+
+Before timing anything, we gave those routines awkward jobs: empty copies,
+short tails, every small alignment, overlapping moves and negative fill values.
+Native guard pages made a reach past a boundary an immediate failure. On the card,
+five thousand two hundred and eighty reference cases ran in bounded batches.
+Then the normal raycaster answered, with every byte still matching the host.
+
+The stopwatch rewarded the small change. A four-kilobyte copy fell from about
+1,358 microseconds to 411. A clear fell from 861 to 186. We ran the old version,
+the new one twice, and the old one again, keeping the same checks around them.
+The numbers held. All two thousand one hundred and five replies matched, and
+all five sessions restored their memory and unloaded.
+
+The whole frame did not become three times faster. Its kernel transaction fell
+from 60.31 milliseconds to 57.95: just under four percent. The two picture copies
+explained almost all the saved execution time. Uploading, arming and reading the
+paired evidence still took most of the trip. Making the card work faster had
+made the cost of talking to it easier to see.
+
+It cost 160 bytes of code and no extra working memory. The raycaster kept the
+new helpers; the production network service kept its tested build. Vader was
+back afterward. The next useful question was now about the conversation, not
+how many bytes a load instruction could carry.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

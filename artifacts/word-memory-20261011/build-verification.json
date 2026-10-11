@@ -1,0 +1,23 @@
+{
+  "byte": {
+    "payload_sha256": "47046f511b683911df78a329985efba067836e982c0f42ec1a5d863e8d8242a5",
+    "payload_bytes": 202596,
+    "source_hashes_verified": 8,
+    "bss_start": "0xc0f4c1e0",
+    "bss_end": "0xc0f5d760"
+  },
+  "word": {
+    "payload_sha256": "8a19e5a357d3443721ee835d5fbdfd52ffd61710b339b8be9d74554d947da5e3",
+    "payload_bytes": 202596,
+    "source_hashes_verified": 8,
+    "bss_start": "0xc0f4c1e0",
+    "bss_end": "0xc0f5d760"
+  },
+  "check": {
+    "payload_sha256": "6b04762baea9d4bffcf6e33413ba77517e1a92f12b230939a04c68d75c8376cf",
+    "payload_bytes": 215076,
+    "source_hashes_verified": 10,
+    "bss_start": "0xc0f4c1e0",
+    "bss_end": "0xc0f60820"
+  }
+}

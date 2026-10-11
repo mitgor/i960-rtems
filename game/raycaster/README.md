@@ -42,6 +42,21 @@ SSH local forward provides browser access without exposing the control server.
 Ctrl-C performs the audited close; restore and check production HTTP afterwards.
 No driver validation checks or memory permissions are weakened for profiling.
 
+## Memory helper variants
+
+The target builder now defaults to `--memory word`: aligned 32-bit RAM copy and
+clear with byte prefixes/tails and a byte-copy fallback for different alignments.
+`--memory byte` reproduces the original payload exactly. `--memory-check` adds
+264 bounded reference-check batches to a separate checking image; do not use
+that image for performance comparisons. The normal word build adds 160 bytes of
+code and no data/BSS. Both variants retain the same renderer, wire protocol,
+RTEMS scheduler, memory layout, host checks and audit cadence.
+
+See [memory contract and tests](../../rtems/memory/README.md). The production
+network service and parallel interrupt/ownership profiles are unchanged. Original
+byte-build measurements below remain historical; current A/B evidence is in
+[the word-memory report](../../artifacts/word-memory-20261011/README.md).
+
 ## Bounds and protocol
 
 `RAY1` uses eight little-endian request words: magic `0x31594152`, operation,
@@ -94,8 +109,8 @@ header-only/full snapshots, and five repeats at 1/16/64/128 operations for each
 benchmark kind. Kind 0 is empty; 1 aligned memcpy(4096); 2 unaligned memcpy(4096);
 3 memset(4096); 4 overlapping memmove(4096); 5 equal-buffer memcmp(4096);
 6 strlen(4095); 7 RTEMS semaphore request/reply roundtrip; 8 rtems_clock_tick.
-Memory operations call the existing RTEMS session libc helpers with builtins
-disabled. Handoffs add real worker wake/block/context-switch pairs. Software
+Memory operations call the selected byte/word RTEMS session libc helpers with
+builtins disabled. Handoffs add real worker wake/block/context-switch pairs. Software
 clock ticks run with this workload's otherwise idle watchdog queues; they are
 not an asynchronous ISR benchmark. The native oracle checks digest/result
 semantics but does not emulate RTEMS scheduling cost.

@@ -1,5 +1,16 @@
 # Current findings and evidence — 2026-10-11
 
+**Word-memory raycaster milestone (2026-10-11):** aligned RAM copy/clear
+helpers passed 5,280 on-card reference cases and 2,105 native-matching replies
+across five restored sessions. Native sanitizer/guard-page tests also passed.
+Copy is 3.30× faster; clear 4.63×. Repeated byte/word comparisons reduce full-frame
+kernel time from 60.31 to 57.95 ms (3.91%), with unchanged output and audit cadence.
+The raycaster builder defaults to word helpers; other OS profiles and production
+autonet are unchanged. IPv6 HTTP verified after testing. [Contract](rtems/memory/README.md),
+[measurements and artifacts](artifacts/word-memory-20261011/README.md).
+Next: profile constituent upload/arming commands; do not weaken ownership or checks.
+
+
 **Callback-free monitor milestone (2026-10-11):** `handoff` passed five final
 sessions: 20 bounded entries from the timer ISR after the ARM firmware callback
 returned, five omitted-RELEASE expiries and ten denied DMA/SCSI transfer
