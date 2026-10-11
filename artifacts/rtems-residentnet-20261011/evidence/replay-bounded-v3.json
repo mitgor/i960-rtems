@@ -1,0 +1,71 @@
+[
+  {
+    "path": "residentnet-probe-0",
+    "boot": "f329d0ee-01f7-4516-ab19-525c2dac0ec3",
+    "resident": false,
+    "phase": 0,
+    "ticks": 100,
+    "restored": true,
+    "cache_probe": {
+      "values": [
+        1082130432,
+        1082130432,
+        8,
+        8,
+        16512,
+        16512
+      ],
+      "nmisr": 0,
+      "atucr": 38,
+      "dcache_status_or_reserved": 0,
+      "completion_proven": false,
+      "ram_reclaimed": false
+    }
+  },
+  {
+    "path": "residentnet-probe-1",
+    "boot": "f329d0ee-01f7-4516-ab19-525c2dac0ec3",
+    "resident": false,
+    "phase": 1,
+    "ticks": 100,
+    "restored": true,
+    "cache_probe": {
+      "values": [
+        1082130432,
+        1082130432,
+        8,
+        8,
+        16512,
+        16512
+      ],
+      "nmisr": 0,
+      "atucr": 38,
+      "dcache_status_or_reserved": 0,
+      "completion_proven": false,
+      "ram_reclaimed": false
+    }
+  },
+  {
+    "path": "residentnet-probe-2",
+    "boot": "f329d0ee-01f7-4516-ab19-525c2dac0ec3",
+    "resident": false,
+    "phase": 2,
+    "ticks": 100,
+    "restored": true,
+    "cache_probe": {
+      "values": [
+        1082130432,
+        1082130432,
+        8,
+        8,
+        16512,
+        16512
+      ],
+      "nmisr": 0,
+      "atucr": 38,
+      "dcache_status_or_reserved": 0,
+      "completion_proven": false,
+      "ram_reclaimed": false
+    }
+  }
+]

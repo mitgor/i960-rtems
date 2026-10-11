@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+"""Reboot-only resident IPv4/IPv6 test; never sends a second firmware callback."""
+import argparse,concurrent.futures,errno,fcntl,gzip,json,os,secrets,select,socket,struct,sys,time,traceback,hashlib
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'transport'))
+from run import Board,capture
+from relay import Gateway,CARD,CARD6
+import wire
+
+def clients():
+ results=[]
+ for family,address in [(socket.AF_INET,CARD),(socket.AF_INET6,CARD6)]:
+  for n in [1,31,500,1400,1472 if family==socket.AF_INET else 1452]:
+   data=bytes((i*7+n)%251 for i in range(n))
+   with socket.socket(family,socket.SOCK_DGRAM) as s:
+    s.settimeout(8);s.sendto(data,(address,9601));reply,peer=s.recvfrom(4096);assert reply==data and peer[0]==address
+   results.append(dict(family=family,protocol='udp',bytes=n,sha256=hashlib.sha256(data).hexdigest()))
+  data=bytes(i%251 for i in range(4096))
+  with socket.socket(family,socket.SOCK_STREAM) as s:
+   s.settimeout(10);s.connect((address,9600));s.sendall(data);reply=b''
+   while len(reply)<len(data):
+    part=s.recv(4096);assert part;reply+=part
+   assert reply==data
+  results.append(dict(family=family,protocol='tcp',bytes=len(data),sha256=hashlib.sha256(data).hexdigest()))
+  with socket.socket(family,socket.SOCK_STREAM) as s:
+   s.settimeout(10);s.connect((address,80));s.sendall(b'GET / HTTP/1.0\r\nHost: i960\r\n\r\n');reply=b''
+   while True:
+    part=s.recv(4096)
+    if not part:break
+    reply+=part
+   assert reply.startswith(b'HTTP/1.0 200 OK') and b'RTEMS resident IPv4/IPv6' in reply
+  results.append(dict(family=family,protocol='http',response=reply.decode()))
+ return results
+
+def main():
+ p=argparse.ArgumentParser()
+ for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
+ p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args()
+ b=Board(a.payload,a.module,a.output,autonomous=True);epoch=secrets.randbelow(65535)+1;events=[];snaps=[];packets=[];g=None;start=time.monotonic();drop={4,6} if a.drop_data else set();dropped=[]
+ def save():
+  (b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n');(b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
+ def control(op,arg=0,e=epoch):
+  raw=bytearray(struct.pack('<8I',op,e,arg,0,0,0,0,0));fcntl.ioctl(b.fd,0xc0204d04,raw,True);w=list(struct.unpack('<8I',raw));events.append(dict(op=op,arg=arg,epoch=e,words=w));save();assert w[3]==1 and w[6:]==[0,0] and not w[4]&1;return w
+ def snapshot():
+  control(7);w=[control(5,i)[2] for i in range(64)];snaps.append(dict(seconds=time.monotonic()-start,words=w));save()
+  assert w[0]==0x31525845 and w[2] in (1,2) and w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6 and w[42:46]==[2,18,514,81916] and w[63]==1
+  assert w[54]==w[55] and w[56]==epoch
+  print(json.dumps(dict(seconds=snaps[-1]['seconds'],state=w[2],ticks=w[5],work=w[6:8],cache=w[57:60],packets=w[60:63])),flush=True);return w
+ def packet(op,data=b'',e=epoch):
+  raw=bytearray(struct.pack('<8I',op,e,len(data),0,0,0,0,0)+data.ljust(1536,b'\0'));before=bytes(raw);t=time.monotonic_ns()
+  try:fcntl.ioctl(b.fd,0xc6204d05,raw,True)
+  except OSError as exc:
+   events.append(dict(packet_op=op,errno=exc.errno,epoch=e,length=len(data)));save();raise
+  w=list(struct.unpack_from('<8I',raw));assert w[3]==1 and not w[4]&1 and w[5:]==[0,0,0]
+  if w[2]:
+   packets.append(dict(op=op,ns=time.monotonic_ns()-t,request=before.hex(),response=raw.hex()));(b.out/'packets.json').write_text(json.dumps(packets)+'\n')
+  return raw[32:32+w[2]]
+ try:
+  assert len(b.step(struct.pack('<4I',0x31415452,1,epoch,2|(6000<<8))))==640
+  for op,data,e in [(1,b'x'*20,epoch)]:
+   try:packet(op,data,e);raise AssertionError('pre-resident packet accepted')
+   except OSError as exc:assert exc.errno==errno.EBUSY
+  control(4);w=snapshot();assert w[2]==1
+  try:os.write(b.fd,wire.block(struct.pack('<4I',0x31415452,0,epoch,0),2));raise AssertionError('firmware callback accepted')
+  except OSError as exc:assert exc.errno==errno.EIO;(b.out/'write-denied.txt').write_text('errno=5\n')
+  for op,data,e,expected in [(1,b'x'*19,epoch,errno.EINVAL),(1,b'x'*1501,epoch,errno.EINVAL),(2,b'',epoch^0x8000 or 1,errno.ESTALE)]:
+   try:packet(op,data,e);raise AssertionError('invalid packet accepted')
+   except OSError as exc:assert exc.errno==expected
+  time.sleep(.3);v=snapshot();assert v[5]>w[5] # timers advance without host packet traffic
+  g=Gateway(b.out,ipv6=True)
+  with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+   future=pool.submit(clients);deadline=time.monotonic()+45;last=time.monotonic()
+   while not future.done():
+    if time.monotonic()>deadline:raise TimeoutError('resident test exceeded 45 seconds')
+    readable,_,_=select.select([g.fd],[],[],0)
+    if readable:packet(1,os.read(g.fd,1536))
+    blob=packet(2);offset=0
+    while offset<len(blob):
+     n=struct.unpack_from('<I',blob,offset)[0];offset+=4;frame=blob[offset:offset+n];offset+=n;assert 20<=n<=1500 and len(frame)==n
+     version=frame[0]>>4;ihl=20 if version==4 else 40;proto=frame[9] if version==4 else frame[6]
+     if version in drop and proto==6 and struct.unpack_from('!H',frame,ihl)[0]==9600 and len(frame)>ihl+(frame[ihl+12]>>4)*4:
+      drop.remove(version);dropped.append(dict(version=version,frame=frame.hex()));(b.out/'deliberate-loss.json').write_text(json.dumps(dropped,indent=2)+'\n');continue
+     assert os.write(g.fd,frame)==n
+    assert offset==len(blob)
+    if time.monotonic()-last>3:snapshot();last=time.monotonic()
+   result=future.result();(b.out/'network-results.json').write_text(json.dumps(result,indent=2)+'\n')
+  if not a.deadline:control(6)
+  until=time.monotonic()+65
+  while time.monotonic()<until:
+   w=snapshot()
+   if w[2]==2:break
+   time.sleep(.5)
+  assert w[2]==2 and w[3]==(2 if a.deadline else 1) and w[8:10]==[1,1] and w[12]==w[13]>0 and w[14]==w[15]>0 and w[53]==0
+  for op,data in [(1,b'x'*20),(2,b'')]:
+   try:packet(op,data);raise AssertionError('parked networking accepted')
+   except OSError as exc:assert exc.errno==(errno.EAGAIN if op==1 else errno.ESHUTDOWN)
+  v=snapshot();assert v[4:36]==w[4:36];control(6)
+  (b.out/'last-control.txt').write_text((b.debugfs/'result.txt').read_text())
+  print('Resident network tests passed; module retained until reboot.',flush=True)
+ except BaseException:
+  (b.out/'error.txt').write_text(traceback.format_exc());raise
+ finally:
+  if g:g.close()
+  if b.fd is not None:os.close(b.fd);b.fd=None;capture(b.out/'retained-close',b.debugfs)
+  if b.records:b.records.close()
+  if b.lock:b.lock.close()
+if __name__=='__main__':main()

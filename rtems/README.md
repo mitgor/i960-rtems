@@ -1,5 +1,9 @@
 # RTEMS on the DAC960PG
 
+See [resident networking](residentnet/README.md) for callback-free IPv4/IPv6
+over PIO, retained STOP/deadline tests and the unresolved cache/RAM gates.
+The production cooperative `autonet` path remains separate.
+
 **Exclusive RTEMS track (2026-10-11):** the user explicitly permits RAID/SCSI
 shutdown during RTEMS and reboot/power-cycle to exit. `exclusive` now runs real
 preemptible RTEMS after the ARM callback returns, with inactive i960 DMA disabled,

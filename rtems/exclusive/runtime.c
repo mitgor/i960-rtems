@@ -25,12 +25,22 @@ static unsigned int resident,resident_epoch,resident_state,stop_reason,snapshot[
 static rtems_id controller;
 extern void exclusive_engine_report(unsigned int*);
 void exclusive_report(unsigned int*);
+#ifdef I960_RESIDENT_NET
+void bounded_fatal(unsigned int);
+#include "../residentnet/net_runtime.h"
+#endif
 static void control_poll(void){unsigned int token=R(0x1314),index;
  if(!resident||((token&65535)!=resident_epoch))return;
+ #ifdef I960_RESIDENT_NET
+ if(resident_net_control(token))return;
+#endif
  if(token==(0x90000000u|resident_epoch)){
   memset(snapshot,0,sizeof(snapshot));snapshot[0]=0x31525845;snapshot[1]=++snapshot_id;snapshot[2]=resident_state;snapshot[3]=stop_reason;
   exclusive_report(snapshot+4);exclusive_engine_report(snapshot+36);
   snapshot[53]=R(0xff008504);snapshot[54]=R(0x3c);snapshot[55]=(unsigned int)exclusive_timer_isr;snapshot[56]=resident_epoch;
+#ifdef I960_RESIDENT_NET
+  resident_net_report(snapshot);
+#endif
   R(0x1314)=0;R(0x131c)=0x95000000u|resident_epoch;
  }else if((token&0xff000000u)==0x91000000u){
   index=(token>>16)&255;if(index>=64)return;
@@ -61,11 +71,19 @@ void switch_irq_leave(unsigned int id,unsigned int fp){unsigned int j;
 static void Worker(rtems_task_argument id){
  switch_threads[id]=(unsigned int)_Thread_Executing;life[id].owner=switch_threads[id];
  life[id].low=(unsigned int)_Thread_Executing->Start.Initial_stack.area;life[id].high=life[id].low+8192;
- enable();while(!stop)progress[id]++;mask();done[id]=1;CHECK(rtems_task_suspend(RTEMS_SELF));bounded_fatal(0x53000);
+ enable();while(!stop){
+#ifdef I960_RESIDENT_NET
+  if(!id){mask();control_poll();resident_net_step();enable();}
+#endif
+  progress[id]++;
+ }mask();done[id]=1;CHECK(rtems_task_suspend(RTEMS_SELF));bounded_fatal(0x53000);
 }
 static void Init(rtems_task_argument arg){rtems_id ids[2];rtems_task_priority old;unsigned int i,j;
  memset(switch_irq_areas,0xa5,sizeof(switch_irq_areas));
  for(i=0;i<2;i++){CHECK(rtems_task_create(0x45584330+i,2,8192,RTEMS_TIMESLICE|RTEMS_INTERRUPT_LEVEL(31),RTEMS_DEFAULT_ATTRIBUTES,&ids[i]));CHECK(rtems_task_start(ids[i],Worker,i));}
+ #ifdef I960_RESIDENT_NET
+ resident_net_init();
+#endif
  controller=_Thread_Executing->Object.id;initialized=1;_CPU_Context_switch(&_Thread_Executing->Registers,&_Thread_BSP_context);
  if(resident){rtems_event_set e;unsigned int rc;rtems_status_code status;
   resident_state=1;status=rtems_event_receive(RTEMS_EVENT_0,RTEMS_EVENT_ANY|RTEMS_WAIT,limit,&e);rc=status;

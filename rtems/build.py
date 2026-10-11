@@ -3,10 +3,10 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
 here=Path(__file__).resolve().parent;work=a.work.resolve();src=work/'rtems-4.6.6';out=work/a.profile;out.mkdir(exist_ok=True,parents=True)
 for row in json.loads((here/'sources.json').read_text())['sources']:
- if a.profile not in ('net','autonet') and row['name'].startswith('lwip'):continue
+ if a.profile not in ('net','autonet','residentnet') and row['name'].startswith('lwip'):continue
  path=work/'sources'/row['name']
  if hashlib.sha256(path.read_bytes()).hexdigest()!=row['sha256']:raise SystemExit('source hash mismatch: '+str(path))
 if not src.exists():subprocess.run(['tar','-xjf',str(work/'sources/rtems-4.6.6.tar.bz2'),'-C',str(work)],check=True)
@@ -21,7 +21,7 @@ for rel in ['include','libcsupport/include','score/include','score/inline','rtem
   if f.suffix not in ('.h','.inl'):continue
   target=inc/f.relative_to(d);target.parent.mkdir(exist_ok=True,parents=True);shutil.copyfile(f,target)
 (inc/'rtems/score/cpuopts.h').write_text('#define RTEMS_INLINE 1\n#define USE_INLINES 1\n#define RTEMS_CPU "i960"\n#define RTEMS_CPU_MODEL "rp"\n')
-if a.profile in ('session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive'):
+if a.profile in ('session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'):
  shutil.copyfile(here/'transport/buffer_io.h',inc/'buffer_io.h')
 # Newlib's patched machine/types already owns signed C99 integer typedefs.
 f=inc/'rtems/stdint.h';s=f.read_text();start=s.index('typedef signed8');end=s.index('typedef unsigned8',start);f.write_text(s[:start]+'#include <machine/types.h>\n\n'+s[end:])
@@ -35,7 +35,7 @@ start=s.index('#define _CPU_Fatal_halt');end=s.index('/* end of Fatal Error Mana
 s=s[:start]+'void bounded_fatal(unsigned int code);\n#define _CPU_Fatal_halt(code) bounded_fatal(code)\n\n'+s[end:];f.write_text(s)
 profile_dir=here/('irq' if a.profile in ('auto','mu','muctl','irqctx','muctx') else 'net' if a.profile=='autonet' else 'switch' if a.profile in ('defer','mustop','stopcases','contain','containcases') else a.profile)
 flags=['-DI960_TARGET','-mrp','-Os','-fno-builtin','-ffreestanding','-D__rtems__','-DUSE_INLINES','-I'+str(inc),'-I'+str(newlib/'newlib/libc/include')]
-if a.profile in ('net','autonet'):
+if a.profile in ('net','autonet','residentnet'):
  lwip=work/'lwip-STABLE-2_1_3_RELEASE'
  if not lwip.exists():subprocess.run(['tar','-xzf',str(work/'sources/lwip-2.1.3.tar.gz'),'-C',str(work)],check=True)
  patch_lwip(lwip)
@@ -60,7 +60,7 @@ for f in sources:
  r=subprocess.run([a.cross+'gcc',*flags,'-c',str(f),'-o',str(obj)],capture_output=True,text=True)
  if r.returncode:print(r.stderr);raise SystemExit(f'Compile failed: {f}')
 subprocess.run([a.cross+'ar','rcs',str(out/'librtems-bounded.a'),*map(str,objs)],check=True)
-if a.profile in ('net','autonet'):
+if a.profile in ('net','autonet','residentnet'):
  netobjs=[]
  for f in sorted((lwip/'src/core').glob('*.c'))+sorted((lwip/'src/core/ipv4').glob('*.c'))+sorted((lwip/'src/core/ipv6').glob('*.c')):
   obj=out/('lwip_'+f.stem+'.o');netobjs.append(obj)
@@ -69,7 +69,7 @@ if a.profile in ('net','autonet'):
 for f in sorted(profile_dir.glob('*')):
  if f.suffix not in ('.c','.S') or f.name.startswith(('.', 'test_')):continue
  subprocess.run([a.cross+'gcc',*flags,'-c',str(f),'-o',str(out/(f.stem+'.o'))],check=True)
-subprocess.run([a.cross+'ld','-T',str(profile_dir/'link.ld'),'-Map='+str(out/'kernel.map'),'-o',str(out/'kernel.elf'),*[str(out/(f.stem+'.o')) for f in sorted(profile_dir.glob('*')) if f.suffix in ('.c','.S') and not f.name.startswith(('.', 'test_'))],str(out/'librtems-bounded.a'),*([str(out/'liblwip.a')] if a.profile in ('net','autonet') else [])],check=True)
+subprocess.run([a.cross+'ld','-T',str(profile_dir/'link.ld'),'-Map='+str(out/'kernel.map'),'-o',str(out/'kernel.elf'),*[str(out/(f.stem+'.o')) for f in sorted(profile_dir.glob('*')) if f.suffix in ('.c','.S') and not f.name.startswith(('.', 'test_'))],str(out/'librtems-bounded.a'),*([str(out/'liblwip.a')] if a.profile in ('net','autonet','residentnet') else [])],check=True)
 subprocess.run([a.cross+'objcopy','-O','binary',str(out/'kernel.elf'),str(out/'kernel.bin')],check=True)
 with (out/'kernel.dis').open('w') as f:subprocess.run([a.cross+'objdump','-dr',str(out/'kernel.elf')],stdout=f,check=True)
 subprocess.run([a.cross.replace('coff-','elf-')+'size',str(out/'kernel.elf')],check=True)

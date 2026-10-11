@@ -8,6 +8,9 @@ extern unsigned char _bss_start[],_bss_end[];
 #include "../control/mu_echo.h"
 #include "../handoff/policy.h"
 #include "engines.h"
+#ifdef I960_RESIDENT_NET
+#include "../residentnet/cache_probe.h"
+#endif
 #define MONITOR_READ() REG(0x1314)
 #define MONITOR_WRITE(v) (REG(0x1314)=(v))
 #include "../handoff/entry.h"
@@ -58,6 +61,9 @@ static void report(unsigned char*b,unsigned int rc){unsigned int w[160],i;memset
  w[64]=0x31435845;w[65]=engine_phase;w[66]=engine_error;w[67]=engine_written;
  for(i=0;i<16;i++){w[68+i]=engine_before[i];w[84+i]=engine_during[i];w[100+i]=engine_after[i];}
  exclusive_report(w+116);w[148]=runtime_error;w[149]=requested_ticks;
+#ifdef I960_RESIDENT_NET
+ cache_probe(w+150);
+#endif
  for(i=0;i<160;i++)bio_put(b+BIO_OUTPUT+i*4,w[i]);bio_put(b+20,0);bio_put(b+24,640);bio_put(b+28,bio_word(b+8));
 }
 unsigned int bounded_main(unsigned int a){unsigned char*b=(unsigned char*)a,*p;unsigned int op,rc=0;
