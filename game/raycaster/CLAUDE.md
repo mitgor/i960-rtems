@@ -65,4 +65,15 @@ The first driver faulted because three capture loops still used 54 after the
 array grew to 60; preserve that failed evidence. `make test-queue` now tests actual
 generated allocation/publication/copy/free and read_pair storage guards, as well
 as the protocol and failure paths. Always update all lifecycle bounds together.
-Next is a validated combined ACK-and-PUBLISH, with no audit reduction.
+That combined-operation follow-up is now accepted below, with no audit reduction.
+
+Combined ACK+PUBLISH is now card accepted: read `combined/README.md` and
+`artifacts/ackpublish-20261011/README.md`. Select `--queue-combined` alongside
+`--frame-queue`; it transforms an isolated target while preserving queue.c and the
+exact accepted kernel module. Op 4 uses word 5 for the acknowledged generation
+and replaces that same slot only after all checks pass. Four sessions: 586 replies,
+586 full audits, 39.958 → 25.078 ms/frame. Full audits remain on every request.
+`make test-combined` checks rejection immutability, corrupt slots and identical
+frames. Keep the older queue and single-frame paths available; never retry an
+uncertain replacement. Next: measure slot hash/validation costs, without removing
+any guards, paired comparisons, hashes or full audits.

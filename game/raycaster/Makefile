@@ -32,3 +32,8 @@ test-queue: all
 	python3 queue/test.py
 	python3 queue/test_transport.py
 .PHONY: test-queue
+
+# Same-slot ACK+PUBLISH, including rejected-request state preservation.
+test-combined: test-queue
+	python3 combined/test.py
+.PHONY: test-combined

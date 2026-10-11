@@ -1,5 +1,9 @@
 # Bounded fixed-point raycaster and RTEMS profiling
 
+The [combined queue operation](combined/README.md) is card accepted: 37.24% lower
+kernel time than separate ACK+PUBLISH, with full audits on every request. It remains
+opt-in; [measurements and exact evidence](../../artifacts/ackpublish-20261011/README.md).
+
 The opt-in [bounded frame queue](queue/README.md) now has card acceptance with
 full audits on every request. It proves two-slot ownership and backpressure, but
 separate PUBLISH+ACK costs 39.947 ms versus 20.596 ms for the audited baseline.

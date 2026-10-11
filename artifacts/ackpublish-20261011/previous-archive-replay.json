@@ -1,0 +1,15 @@
+{
+  "binary_hashes": 5,
+  "target_source_manifests": 1,
+  "regenerated_modules": 2,
+  "accepted_sessions": 4,
+  "replies": 518,
+  "full_audits": 518,
+  "targeted_slots": 202,
+  "commands": 16720,
+  "restorations": 4,
+  "boot_id": "623293bc-618f-4c8b-bca4-58dba212e849",
+  "production_restored": true,
+  "failed_v1_preserved": true,
+  "pre_failure_baseline_replies": 81
+}

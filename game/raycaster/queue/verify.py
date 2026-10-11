@@ -9,6 +9,10 @@ import wire
 sys.path.insert(0,str(GAME/'transfer'));from commands import parse
 p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);a=p.parse_args();cap=a.capture
 meta=json.loads((cap/'request.json').read_text());cfg=json.loads((cap/'queue-test.json').read_text());queue=cfg['queue']
+if cfg.get('pipeline'):
+ assert queue and cfg['pipeline'] in ('separate','combined')
+ from combined.model import Model,cases as pipeline_cases
+ cases=lambda epoch:pipeline_cases(epoch=epoch,combined=cfg['pipeline']=='combined')
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 assert sha(a.payload)==meta['payload_sha256'] and sha(a.module)==meta['module_sha256']
 image=wire.prepare(a.payload.read_bytes());assert hashlib.sha256(image).hexdigest()==meta['image_sha256']

@@ -26,7 +26,10 @@ def main():
     p.add_argument('--request-words', action='store_true', help='exact aligned word request validation')
     p.add_argument('--render-fast', action='store_true', help='word-loaded FNV and clipped column runs')
     p.add_argument('--frame-queue', action='store_true', help='bounded two-slot queue prototype; requires queue audit transport')
+    p.add_argument('--queue-combined', action='store_true', help='same-slot ACK+PUBLISH; requires --frame-queue')
     a = p.parse_args()
+    if a.queue_combined and not a.frame_queue:
+        p.error('--queue-combined requires --frame-queue')
     if a.memory_check and a.memory != 'word':
         p.error('--memory-check requires --memory word')
     work = a.work.resolve()
@@ -48,6 +51,9 @@ def main():
     if a.frame_queue:
         for name in ('queue.c', 'queue.h'):
             shutil.copyfile(HERE/'queue'/name, profile/name)
+        if a.queue_combined:
+            from combined.optimize import combined
+            q=profile/'queue.c';q.write_text(combined(q.read_text()))
         app=profile/'app.c'
         text=once(app.read_text(),'#include "ray.h"', '#include "ray.h"\n#include "queue.h"\nstatic struct fq_state queue_state;')
         text=once(text,'rc=ray_request(guest,b+BIO_INPUT,bio_word(b+12),b+BIO_OUTPUT,bio_word(b+16));', 'rc=fq_request(&queue_state,guest,(unsigned char*)(0xc0f2c000u+FQ_OFFSET),b+BIO_INPUT,bio_word(b+12),b+BIO_OUTPUT,bio_word(b+16),bio_word(b+8));')
@@ -88,7 +94,7 @@ def main():
             sources[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
     sources['buffer_io.h'] = hashlib.sha256((project/'transport/buffer_io.h').read_bytes()).hexdigest()
     (work / 'session/raycaster-build.json').write_text(json.dumps(dict(
-        application='raycaster', frame_queue=a.frame_queue, request_words=a.request_words, render_fast=a.render_fast, memory=a.memory, memory_check_batches=264 if a.memory_check else 0, execution='bounded RTEMS session',
+        application='raycaster', queue_combined=a.queue_combined, frame_queue=a.frame_queue, request_words=a.request_words, render_fast=a.render_fast, memory=a.memory, memory_check_batches=264 if a.memory_check else 0, execution='bounded RTEMS session',
         hardware_tested=False, source_sha256=sources), indent=2) + '\n')
 
 

@@ -6,11 +6,15 @@ from model import Model,Native,cases,validate,SIZE,OFFSET,ray_request
 GAME=Path(__file__).resolve().parents[1];ROOT=GAME.parents[1]
 sys.path.insert(0,str(ROOT/'rtems/transport'));from run import Board
 sys.path.insert(0,str(GAME/'transfer'));from commands import parse
-p=argparse.ArgumentParser();p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--queue',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--queue',action='store_true');p.add_argument('--pipeline',choices=['separate','combined']);a=p.parse_args()
+if a.pipeline and not a.queue:p.error('--pipeline requires --queue')
+if a.pipeline:
+ from combined.model import Model,cases as pipeline_cases
+ cases=lambda epoch:pipeline_cases(epoch=epoch,combined=a.pipeline=='combined')
 epoch=secrets.randbelow(0xfffffffd)+1
 model=Model() if a.queue else Native();rows=[]
 b=Board(a.payload,a.module,a.output)
-(a.output/'queue-test.json').write_text(json.dumps(dict(queue=a.queue,epoch=epoch,frames=80),indent=2)+'\n')
+(a.output/'queue-test.json').write_text(json.dumps(dict(queue=a.queue,epoch=epoch,frames=80,pipeline=a.pipeline),indent=2)+'\n')
 commands=gzip.open(a.output/'commands.jsonl.gz','wt');snapshots=gzip.open(a.output/'full-audits.bin.gz','wb')
 try:
  requests=cases(epoch=epoch) if a.queue else [('init',ray_request(op=0,columns=0))]+[('render',ray_request(keys=i//10%16)) for i in range(80)]

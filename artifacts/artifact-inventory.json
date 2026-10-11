@@ -18,6 +18,121 @@
       "sha256": "5ee9a9230a877ff914519e3ae067a432d88bbaa2bba073060bcb1516962e76d1"
     },
     {
+      "path": "artifacts/ackpublish-20261011/README.md",
+      "size": 7218,
+      "sha256": "0f08f546afe7cb4d194d0e9f9a8f001931ef6e79f4644c0697abd0180d7cc732"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/archive-replay.json",
+      "size": 341,
+      "sha256": "5e10d4d4acd8e1e4dddb977dedfab332f8a68a7271eb9837087a78d60bba9e4a"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/binary-sha256.txt",
+      "size": 259,
+      "sha256": "5902f331479070e49cc87ec51d140c8341ce8285345b5b188261ce6e5aa52628"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/build-replay.json",
+      "size": 85,
+      "sha256": "dc2d362439323fd8769358452b9a61bd0bf43b32c17f90acb94a6118db584391"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/builds.tar.gz",
+      "size": 610072,
+      "sha256": "d05e1fac39cfe1c9fe0832e28a152920b3e8495c5ddfcf2437fbf71dbccffe4d"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/combined1-quiet.json",
+      "size": 169,
+      "sha256": "cb83ab0f98f3300bd594b5e3023181ab2a98a9b6d3396d22fb9dc0657e833cbd"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/combined1-verified.json",
+      "size": 181,
+      "sha256": "d50430ad79af18bb02e18b5d484e10bae79327a6a944a3eef957db576627a41f"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/combined2-quiet.json",
+      "size": 169,
+      "sha256": "cb83ab0f98f3300bd594b5e3023181ab2a98a9b6d3396d22fb9dc0657e833cbd"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/combined2-verified.json",
+      "size": 181,
+      "sha256": "d50430ad79af18bb02e18b5d484e10bae79327a6a944a3eef957db576627a41f"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/comparison.json",
+      "size": 5003,
+      "sha256": "b94debe5413ee5f4aef828edfe1bffa0bbea513ae9cf67a28f7eccc03d13d921"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/http-headers.txt",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/http.html",
+      "size": 2891,
+      "sha256": "91de6dfc3c96ecd070789ceee2fb13bb2157010f92341e9bd2ac1ff486b2a7b9"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/live.tar.gz",
+      "size": 26133169,
+      "sha256": "a980bc557c29d1ca70455e40a98d8c86a6405d912e9fda7cda9d0a93a3434648"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/native-combined-mac.log",
+      "size": 255,
+      "sha256": "b2103ef62a2d9e3a431085775d2a9368cee69fbbd90a9f293d21fa887a3d217b"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/native-linux.log",
+      "size": 1447,
+      "sha256": "1bdd282e62e52f5378ce04ad758c4656c5dd9569c08d80c9190738378a483a71"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/native-queue-mac.log",
+      "size": 895,
+      "sha256": "bb34147f8e1603fc17f3ba29d0818dc6aa5cc6f344aed0a6dd0d3db3a0492dee"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/previous-archive-replay.json",
+      "size": 371,
+      "sha256": "3aa95532501867e1c813721a5427352db7d96c85ff2626ff40ff3b5da8bfcbd6"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/separate1-quiet.json",
+      "size": 169,
+      "sha256": "0659e93740263d1ed2e3d2734d471da96a13c9715eff559243508988da7a3558"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/separate1-verified.json",
+      "size": 181,
+      "sha256": "3d532d0ebc066788d5bf5723bcc08f631d908ccfd34bbfc1bf643a7172c46d5d"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/separate2-quiet.json",
+      "size": 169,
+      "sha256": "0659e93740263d1ed2e3d2734d471da96a13c9715eff559243508988da7a3558"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/separate2-verified.json",
+      "size": 181,
+      "sha256": "3d532d0ebc066788d5bf5723bcc08f631d908ccfd34bbfc1bf643a7172c46d5d"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/service-state.txt",
+      "size": 100,
+      "sha256": "d4b8c35858e827896cbe2c60703786604e4a40499d54fbae77ec8f82ea8d7df1"
+    },
+    {
+      "path": "artifacts/ackpublish-20261011/source-base-commit.txt",
+      "size": 41,
+      "sha256": "b612ff888fc65fb00def5c88dd84780a6f31c285ee314f5675a4e5245ceebd4d"
+    },
+    {
       "path": "artifacts/analysis/dram-profile-manifest.json",
       "size": 578,
       "sha256": "94ff5447dfaca88169d9ab4505e7c076ed462bab36d9e875825838f06121fd9f"

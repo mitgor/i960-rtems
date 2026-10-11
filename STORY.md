@@ -1714,6 +1714,29 @@ The next door is the NMI and fault machinery. Holding the SCSI processor still
 worked. Making sure nothing can quietly start it again is a separate piece of
 work, and the captures now say exactly where to begin.
 
+## The receipt rides along
+
+The receipt did not need a journey of its own. The host could say: I have checked
+picture forty; you may replace that exact picture with forty-one. The card first
+checked both halves of the request. A stale receipt or a malformed drawing order
+left the old picture and the renderer untouched. Only then could the slot change.
+
+The audit stayed. Every request still brought back two complete half-megabyte
+snapshots, plus the targeted picture reads. There was simply one request where
+there had been two. The same host driver ran both versions, and both drew the
+same eighty pictures, byte for byte.
+
+Four sessions returned five hundred and eighty-six matching replies and closed
+cleanly, even with a last picture still waiting for its receipt. Kernel time per
+frame fell from about forty milliseconds to twenty-five. Host CPU time fell by
+nearly forty-three percent. This time the clearer ownership rule also saved time.
+
+It was still slower than the earlier single-frame route. Checking the occupied
+slot and sealing its replacement had their own cost, and the complete memory
+reads still took nearly twelve milliseconds. Those costs stayed visible. The
+queue remained an option, Vader returned to the web server, and the next question
+became how much time we were spending checking each picture twice in software.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

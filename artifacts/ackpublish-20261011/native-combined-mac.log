@@ -1,0 +1,2 @@
+PASS: bad lengths/capacity, 5120 corrupt publication bytes and generation exhaustion preserve queue/renderer; ASan/UBSan
+PASS: 293 differential requests; identical 80-frame trajectory; 512 request bit mutations; 508 rejections preserve queue and renderer

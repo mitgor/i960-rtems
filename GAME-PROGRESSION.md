@@ -4,6 +4,22 @@ Updated 2026-10-11. This application track follows the working Tetris and RTEMS
 milestones. It does not supersede the interrupt/ownership work in the parallel
 **Review loader improvements (2)** chat or its production-service decisions.
 
+## Combined ACK-and-PUBLISH: fewer fully audited transactions
+
+**Combined ACK-and-PUBLISH accepted (2026-10-11):** the opt-in queue operation
+validates the exact occupied slot and next generation before replacing it. Four
+sessions passed **586 replies, 586 paired full audits and four restorations**;
+80 steady frames are identical across all four runs. Kernel time improves
+**39.958 → 25.078 ms/frame (37.24%)**, wall time 43.364 → 26.908 ms, and host CPU
+11.367 → 6.503 ms. The exact accepted kernel module is unchanged; every request
+still reads both complete 512 KiB snapshots and all targeted bytes. Combining
+operations saves one transaction/audit pair per frame, never audit coverage per
+request. Input rejection preserves queue and renderer state; uncertain execution
+is never retried. HTTP is restored; no flash/reboot in this batch. Keep this
+opt-in with `--frame-queue --queue-combined`; single-frame defaults remain.
+Next: profile slot validation/publication hashing while retaining all checks.
+[Contract](game/raycaster/combined/README.md), [measurements and captures](artifacts/ackpublish-20261011/README.md).
+
 ## Frame queue prototype: measured, still fully audited
 
 **Bounded frame queue accepted (2026-10-11):** two fixed slots with epoch,

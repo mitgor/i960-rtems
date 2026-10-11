@@ -1,5 +1,9 @@
 # Bounded frame queue prototype
 
+The opt-in [combined ACK-and-PUBLISH extension](../combined/README.md) now reduces
+queue frame cost from 39.958 to 25.078 ms while retaining a full paired audit on
+every request. The original protocol/source below remains available and replayable.
+
 This is an opt-in cooperative RTEMS raycaster profile. It is **not** autonomous
 rendering or an accepted replacement for immutable-memory auditing. Every request
 retains two complete 512 KiB reads and all existing transport validation.
