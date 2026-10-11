@@ -180,3 +180,12 @@ PCI configuration confirms PIATVR=C0000000 and the existing 8 KiB window.
 No live independent control writes are enabled: the MU overlay/index interrupt
 side effects and stock mailbox/stack ownership still require a proven reservation.
 This completes the offline prototype, not P1 physical validation or preemption.
+
+## Control ownership follow-up (2026-10-11)
+
+The [matching-firmware ownership trace](rtems/control/OWNERSHIP.md) identifies active handler/fault
+data and mailbox/interrupt-stack uses in the BAR window. No RAM slot is reserved.
+Three read-only MU samples found IMR1/OMR1 zero with message interrupts masked.
+These are selected for a separate, driver-serialized bounded echo experiment;
+no live sideband writes have occurred. Use the pinned 4.07-0-29 evidence, not the
+older 4.07-0-39 `remote-analysis` reference.

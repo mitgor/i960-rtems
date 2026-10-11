@@ -2053,6 +2053,81 @@
       "sha256": "68e4566437d7a3915406752249d1daf5b7a578055df8c9bb93053ff69328c112"
     },
     {
+      "path": "artifacts/control-ownership-20261011/README.md",
+      "size": 746,
+      "sha256": "b2ca570fc938f2ab3b5b284225ebe4a6cb7809c97439590003c51596529b62b0"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/audit.txt",
+      "size": 105,
+      "sha256": "6a28366b0e73be341d3f8287674886a38eed59cdbbadd4357cbfa0a82f024697"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/bootstrap-clear.txt",
+      "size": 1111,
+      "sha256": "6c7373258f3eb1fa3ce6668f47e60ad6eb9862f4361721fb08684f0efb832284"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/bootstrap-handler-records.txt",
+      "size": 1480,
+      "sha256": "9081ea6d280b94b5fef074cbd7aa8b43984d9d399c11ec15d108c7a875e70f6c"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/doorbell-dispatch.txt",
+      "size": 1666,
+      "sha256": "bb8c6af4610c044b2ce9d02d65cab032c3711c64b0e477dff5f2fbbd0a2ac14f"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/fault-record-read.txt",
+      "size": 1227,
+      "sha256": "ffd9e0f978bb2b40c961bb97aa3ba1ddd68f9cfe08deca74d0863705010d8cb7"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/handler-records.txt",
+      "size": 891,
+      "sha256": "76eadd61c499c49d0a625bac5440f354dfe7b207d3526e5bb36606601041d44b"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/imr0-diagnostic.txt",
+      "size": 592,
+      "sha256": "46d0f2cc9099a4067cb1b147fea8149738b2ceb54d3b01794a5af008227a6c4f"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/mailbox-command.txt",
+      "size": 1545,
+      "sha256": "f6d36feedd09b0161ad01edfa97779a0a24c53907f390171fb4a1cb33e831180"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/mailbox-completion.txt",
+      "size": 1338,
+      "sha256": "55c9389ea07340072e66c05d8ab0ab26a9a325614fd29e750da1b8dd9b7f6f7e"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/mailbox-init-mask.txt",
+      "size": 1179,
+      "sha256": "c5c74e283bc059f8ef6cd66b8f2f94542776e53d6b4c3faaa0beb8d26ccc4c3c"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/mu-isr.txt",
+      "size": 1059,
+      "sha256": "7a339601b84cb0364d091d2c2bf3745ee388d3598c1783c0a41275dddb2f17f5"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/mu-samples.json",
+      "size": 570,
+      "sha256": "7c2564156f784e0d66bab064a93b958cbf220fd5cbec64c0a9bbf34d9a5e119f"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/references.json",
+      "size": 9771,
+      "sha256": "f5c47ed3074b86ab755b643c7004f38e066945c12565d20fbbd8e1a6643302ad"
+    },
+    {
+      "path": "artifacts/control-ownership-20261011/web-check.txt",
+      "size": 21,
+      "sha256": "134511c8cd36e8e379608790c59af3e067c1dbbb6d57a37c84a3163d104d5e1c"
+    },
+    {
       "path": "artifacts/control-prototype-20261011/README.md",
       "size": 1117,
       "sha256": "83ef865e815503fc7c7934db90024668734ce8043b4142fb23c6464373d8743e"

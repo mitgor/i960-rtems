@@ -1,0 +1,29 @@
+c004ef20:	40 60 08 8c 	lda	0x40(sp),sp
+c004ef24:	40 e0 87 b2 	stq	g0,0x40(fp)
+c004ef28:	50 e0 a7 b2 	stq	g4,0x50(fp)
+c004ef2c:	70 e0 e7 a2 	stt	g12,0x70(fp)
+c004ef30:	00 1e f0 5c 	mov	0,g14
+c004ef34:	00 30 20 8c 	lda	0x1324,r4
+c004ef38:	24 13 00 00 
+c004ef3c:	00 3a 00 5b 	intdis
+c004ef40:	30 00 e0 90 	ld	0x30,g12
+c004ef44:	01 08 e7 59 	addo	1,g12,g12
+c004ef48:	30 00 e0 92 	st	g12,0x30
+c004ef4c:	00 10 a1 90 	ld	(r4),g4
+c004ef50:	08 20 15 30 	bbc	2,g4,0xc004ef58
+c004ef54:	9c ca ff 09 	call	0xc004b9f0
+c004ef58:	e0 23 a1 90 	ld	0x3e0(r4),g4
+c004ef5c:	08 20 25 30 	bbc	4,g4,0xc004ef64
+c004ef60:	70 00 00 09 	call	0xc004efd0
+c004ef64:	87 19 80 58 	setbit	7,0,g0
+c004ef68:	e4 db ff 09 	call	0xc004cb4c
+c004ef6c:	30 00 e0 90 	ld	0x30,g12
+c004ef70:	01 0b e7 5a 	cmpdeco	1,g12,g12
+c004ef74:	30 00 e0 92 	st	g12,0x30
+c004ef78:	08 00 00 15 	bne	0xc004ef80
+c004ef7c:	80 3a 00 5b 	inten
+c004ef80:	30 00 e0 90 	ld	0x30,g12
+c004ef84:	40 e0 87 b0 	ldq	0x40(fp),g0
+c004ef88:	50 e0 a7 b0 	ldq	0x50(fp),g4
+c004ef8c:	70 e0 e7 a0 	ldt	0x70(fp),g12
+c004ef90:	00 00 00 0a 	ret

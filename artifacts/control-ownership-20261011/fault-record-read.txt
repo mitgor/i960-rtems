@@ -1,0 +1,32 @@
+fefcbba0:	40 60 08 8c 	lda	0x40(sp),sp
+fefcbba4:	70 e0 c7 b2 	stq	g8,0x70(fp)
+fefcbba8:	00 30 e8 8c 	lda	0xc0000800,g13
+fefcbbac:	00 08 00 c0 
+fefcbbb0:	10 60 87 90 	ld	0x10(g13),g0
+fefcbbb4:	14 60 8f 90 	ld	0x14(g13),g1
+fefcbbb8:	18 60 97 90 	ld	0x18(g13),g2
+fefcbbbc:	1c 60 9f 90 	ld	0x1c(g13),g3
+fefcbbc0:	00 60 a7 90 	ld	0x0(g13),g4
+fefcbbc4:	04 60 af 90 	ld	0x4(g13),g5
+fefcbbc8:	08 60 b7 90 	ld	0x8(g13),g6
+fefcbbcc:	0c 60 bf 90 	ld	0xc(g13),g7
+fefcbbd0:	00 74 80 b2 	stq	g0,0xffffffe0(sp)
+fefcbbd4:	e0 ff ff ff 
+fefcbbd8:	60 60 87 90 	ld	0x60(g13),g0
+fefcbbdc:	64 60 8f 90 	ld	0x64(g13),g1
+fefcbbe0:	68 60 97 90 	ld	0x68(g13),g2
+fefcbbe4:	6c 60 9f 90 	ld	0x6c(g13),g3
+fefcbbe8:	20 60 27 90 	ld	0x20(g13),r4
+fefcbbec:	24 60 2f 90 	ld	0x24(g13),r5
+fefcbbf0:	28 60 37 90 	ld	0x28(g13),r6
+fefcbbf4:	2c 60 3f 90 	ld	0x2c(g13),r7
+fefcbbf8:	30 60 47 90 	ld	0x30(g13),r8
+fefcbbfc:	34 60 4f 90 	ld	0x34(g13),r9
+fefcbc00:	38 60 57 90 	ld	0x38(g13),r10
+fefcbc04:	3c 60 5f 90 	ld	0x3c(g13),r11
+fefcbc08:	40 60 67 90 	ld	0x40(g13),r12
+fefcbc0c:	44 60 6f 90 	ld	0x44(g13),r13
+fefcbc10:	48 60 77 90 	ld	0x48(g13),r14
+fefcbc14:	4c 60 7f 90 	ld	0x4c(g13),r15
+fefcbc18:	50 60 c7 90 	ld	0x50(g13),g8
+fefcbc1c:	54 60 cf 90 	ld	0x54(g13),g9

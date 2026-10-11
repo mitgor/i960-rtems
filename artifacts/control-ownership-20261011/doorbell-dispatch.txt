@@ -1,0 +1,47 @@
+c004b9f0:	00 30 28 8c 	lda	0x1320,r5
+c004b9f4:	20 13 00 00 
+c004b9f8:	00 50 21 90 	ld	(r5),r4
+c004b9fc:	84 d0 37 58 	and	r4,31,r6
+c004ba00:	10 a0 01 3d 	cmpibne	0,r6,0xc004ba10
+c004ba04:	00 50 a1 90 	ld	(r5),g4
+c004ba08:	14 d2 a3 58 	notand	g4,15,g4
+c004ba0c:	00 50 a1 92 	st	g4,(r5)
+c004ba10:	08 20 01 30 	bbc	0,r4,0xc004ba18
+c004ba14:	6c fe ff 09 	call	0xc004b880
+c004ba18:	10 20 09 30 	bbc	1,r4,0xc004ba28
+c004ba1c:	02 1e a0 5c 	mov	2,g4
+c004ba20:	00 50 a1 92 	st	g4,(r5)
+c004ba24:	1c ff ff 09 	call	0xc004b940
+c004ba28:	0c 20 11 30 	bbc	2,r4,0xc004ba34
+c004ba2c:	04 1e a0 5c 	mov	4,g4
+c004ba30:	00 50 a1 92 	st	g4,(r5)
+c004ba34:	64 20 19 30 	bbc	3,r4,0xc004ba98
+c004ba38:	d8 33 00 09 	call	0xc004ee10
+c004ba3c:	d4 10 00 09 	call	0xc004cb10
+c004ba40:	01 1e a0 5c 	mov	1,g4
+c004ba44:	00 50 a1 92 	st	g4,(r5)
+c004ba48:	02 1e a0 5c 	mov	2,g4
+c004ba4c:	00 50 a1 92 	st	g4,(r5)
+c004ba50:	04 1e a0 5c 	mov	4,g4
+c004ba54:	00 50 a1 92 	st	g4,(r5)
+c004ba58:	00 50 a1 90 	ld	(r5),g4
+c004ba5c:	14 d2 a3 58 	notand	g4,15,g4
+c004ba60:	00 50 a1 92 	st	g4,(r5)
+c004ba64:	00 30 a0 90 	ld	0x40800000,g4
+c004ba68:	00 00 80 40 
+c004ba6c:	0f 2f 05 5a 	chkbit	15,g4
+c004ba70:	00 30 a8 90 	ld	0xc011e22c,g5
+c004ba74:	2c e2 11 c0 
+c004ba78:	0c 00 00 10 	bno	0xc004ba84
+c004ba7c:	1f 98 a1 59 	addo	31,6,g4
+c004ba80:	08 00 00 08 	b	0xc004ba88
+c004ba84:	1f 58 a1 59 	addo	31,5,g4
+c004ba88:	40 60 a5 92 	st	g4,0x40(g5)
+c004ba8c:	1f 58 88 59 	addo	31,1,g1
+c004ba90:	00 30 88 8a 	stos	g1,0x1040
+c004ba94:	40 10 00 00 
+c004ba98:	14 a0 21 30 	bbc	4,r6,0xc004baac
+c004ba9c:	00 30 a0 90 	ld	0xc00bee54,g4
+c004baa0:	54 ee 0b c0 
+c004baa4:	0c 20 85 90 	ld	0xc(g4),g0
+c004baa8:	00 10 04 84 	bx	(g0)
