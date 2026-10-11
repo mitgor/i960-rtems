@@ -1,5 +1,9 @@
 # Two owned interrupt continuations and timer-driven task switching
 
+**Follow-up:** final user-descriptor close and orderly driver-unbind fault tests
+now pass on the card, three runs each. See [lifecycle tests](LIFECYCLE.md) for
+ordering evidence, the diagnostic fix and remaining failure-path limits.
+
 **Follow-up:** nested critical-section STOP and both individual omission deadlines
 now pass on hardware (three runs each). See [STOP cases](STOP-CASES.md) for the
 new profile, expected timeout flag and exact limits. Earlier next-step statements

@@ -973,6 +973,34 @@ code. The workers still knew how to stop, and the live close test was an extra
 alias, not a forced final close or an unplugged card. Those remaining lifecycle
 cases now have a real control API to test against.
 
+## Closing the handle underneath it
+
+The next test closed the last user descriptor while the callback and control
+ioctl were still inside the kernel. The number vanished from the process's file
+table. The work did not vanish with it. Each syscall still owned a reference,
+and final release waited until both were finished before restoring the card.
+
+Then we asked Linux to unbind the driver while the same exchange was running.
+Removal reached the session lock and waited. The stop completed, the interrupted
+tasks unwound, the borrowed bytes went back, and only then did the driver unmap
+its BAR. The old file could still exist, but it could no longer touch the card.
+Closing it finally released the experiment object.
+
+One early unbind test caught our evidence machinery rather than the card. The
+successful close message was in the kernel log, but the exported log length had
+not been updated. The verifier refused the truncated capture. We kept it,
+checked the saved bytes against the kernel's completion record, fixed the log
+publication, and repeated the tests.
+
+Three final closes and three unbinds then passed with complete raw captures.
+The order was the result: finish the active calls, restore what was borrowed,
+then release the resources. Vader answered again without a reboot.
+
+The card stayed powered through all of this. Pulling it out, losing the host,
+or trying to stop a program that refuses to cooperate are different questions.
+This test answered the narrower one we could now ask precisely: what happens
+when the owner closes the door while the controlled work is still coming home?
+
 ## Where it stands
 
 So, the ledger, honestly kept:

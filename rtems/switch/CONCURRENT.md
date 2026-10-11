@@ -1,5 +1,9 @@
 # Concurrent host control during a firmware callback
 
+**Follow-up:** final user-descriptor close and orderly driver-unbind fault tests
+now pass on the card, three runs each. See [lifecycle tests](LIFECYCLE.md) for
+ordering evidence, the diagnostic fix and remaining failure-path limits.
+
 2026-10-11: three live sessions passed using the previously proven `mustop`
 target image and a new, image-pinned `concurrent-module/dac960rtems.ko`.
 A Python worker blocks in the callback's write/read transaction while a separate

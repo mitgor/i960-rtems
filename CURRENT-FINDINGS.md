@@ -1,5 +1,17 @@
 # Current findings and evidence — 2026-10-11
 
+**Final-close / driver-unbind checkpoint (2026-10-11):** six final hardware
+runs passed: three closes of the sole user descriptor and three sysfs unbinds
+while callback/control syscalls were active. Release/removal waited for the
+operations; restoration preceded BAR unmapping, and late calls were refused.
+All target contexts and full RAM/MU cleanup passed; HTTP restored, no reboot/flash.
+An initial truncated removal log was preserved and its publication fixed before
+rerunning. [Contract and findings](rtems/switch/LIFECYCLE.md),
+[evidence](artifacts/irq-lifecycle-20261011/README.md).
+Logical unbind is tested; physical hot-unplug and failing control during teardown
+remain unproven. Task shutdown still cooperates with a stop flag.
+
+
 **Concurrent host control (2026-10-11):** three card runs passed with STOP
 issued by an ioctl on a second host thread while the firmware callback was
 pending. A separate control mutex/window is joined before completion/cleanup;

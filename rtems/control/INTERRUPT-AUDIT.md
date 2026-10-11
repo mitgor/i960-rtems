@@ -163,3 +163,13 @@ the instruction-loop budget after timer restoration and returned with the
 expected `0x4000` flag. All contexts drained and full MU/RAM cleanup passed.
 See [contract and evidence](../switch/STOP-CASES.md). Full host disappearance,
 non-cooperative code and permanent interrupt masking remain separate limits.
+
+## Host teardown while control is active (2026-10-11)
+
+The sole user descriptor was closed during active write/ioctl calls in three
+card runs; three more invoked sysfs unbind at that point. Kernel file references
+and the session/control join ordering kept cleanup after active operations.
+Restoration preceded BAR unmapping, late calls after remove were refused, and
+final object release waited for the retained file. Full captures passed.
+See [instrumentation, initial log defect and limits](../switch/LIFECYCLE.md).
+Physical hot-unplug and failed control concurrent with removal remain untested.
