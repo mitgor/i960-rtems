@@ -60,3 +60,12 @@ The host relay also supports persistent HTTP visitor accounting via `--visitor-l
 The deployed autonomous launcher enables it. See [visitor logging](transport/VISITORS.md)
 for paths, counting semantics and tests. Keep real visitor databases/statistics
 on the host, out of Git; no firmware rebuild is needed for this feature.
+
+## Preemption and DMA roadmap (2026-10-11)
+
+See the [staged preemption and DMA plan](../RTEMS-PREEMPTION-DMA-PLAN.md). Order: independent control
+and ownership prerequisites → arbitrary application-task preemption → host-RAM
+DMA networking → gated direct peer experiments. Read-only direct-DMA research
+has started; current NIC and Mylex occupy separate PCI branches. This is a plan
+and initial inventory, not implemented preemption or verified peer DMA. Keep
+the active web service on the existing bounded runtime.

@@ -161,3 +161,12 @@ Run `make -C loader test` to validate loader software without hardware. Target
 builds require the i960 cross-toolchain. Do not equate emulator/native tests with
 physical card validation. Firmware replacement must follow REFLASH.md and its
 external-programmer backup gate.
+
+## Preemption and DMA roadmap (2026-10-11)
+
+See the [staged preemption and DMA plan](RTEMS-PREEMPTION-DMA-PLAN.md). Order: independent control
+and ownership prerequisites → arbitrary application-task preemption → host-RAM
+DMA networking → gated direct peer experiments. Read-only direct-DMA research
+has started; current NIC and Mylex occupy separate PCI branches. This is a plan
+and initial inventory, not implemented preemption or verified peer DMA. Keep
+the active web service on the existing bounded runtime.

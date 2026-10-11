@@ -298,3 +298,12 @@ current roadmap; historical reports remain evidence for their own dates.
 generated validation/linker constants, and an opt-in >64 KiB returning example,
 followed by its boundary tests and card validation.** No M3 memory claims or
 interrupt takeover should be bundled into that first change.
+
+## Preemption and DMA roadmap (2026-10-11)
+
+See the [staged preemption and DMA plan](RTEMS-PREEMPTION-DMA-PLAN.md). Order: independent control
+and ownership prerequisites → arbitrary application-task preemption → host-RAM
+DMA networking → gated direct peer experiments. Read-only direct-DMA research
+has started; current NIC and Mylex occupy separate PCI branches. This is a plan
+and initial inventory, not implemented preemption or verified peer DMA. Keep
+the active web service on the existing bounded runtime.

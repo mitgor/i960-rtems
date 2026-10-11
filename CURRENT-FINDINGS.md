@@ -105,3 +105,12 @@ The original firmware's vectors/timers and flash remain unchanged by this work.
 A final Tetris SSH regression after RTEMS matched all 204 frames against native
 C and restored terminal settings/RAM before unloading. The RTEMS foreground
 service also passed twelve sequential TCP connections and UDP.
+
+## Preemption and DMA roadmap (2026-10-11)
+
+See the [staged preemption and DMA plan](RTEMS-PREEMPTION-DMA-PLAN.md). Order: independent control
+and ownership prerequisites → arbitrary application-task preemption → host-RAM
+DMA networking → gated direct peer experiments. Read-only direct-DMA research
+has started; current NIC and Mylex occupy separate PCI branches. This is a plan
+and initial inventory, not implemented preemption or verified peer DMA. Keep
+the active web service on the existing bounded runtime.

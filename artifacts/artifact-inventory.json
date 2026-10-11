@@ -2063,6 +2063,21 @@
       "sha256": "f292ced6f809fedf5446f048495fcb983021d620923daba2b8690242c612e624"
     },
     {
+      "path": "artifacts/dma-research-20261011/README.md",
+      "size": 4399,
+      "sha256": "09a6ce3bbbfb1d761a314bd14580a35e7619075470b71914c7da0a93c78e1f0c"
+    },
+    {
+      "path": "artifacts/dma-research-20261011/source-hashes.txt",
+      "size": 193,
+      "sha256": "d2458ca6d037c92937e3b9fe94e3b0fdb437dc657d2620cc9d23835921ee5bee"
+    },
+    {
+      "path": "artifacts/dma-research-20261011/topology.txt",
+      "size": 3658,
+      "sha256": "5931b2ae2ce98a476c38ba3aa2065cd709b99177637bc3e60dc3771f84873959"
+    },
+    {
       "path": "artifacts/dram-hook-audit-20261010/Makefile",
       "size": 540,
       "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
