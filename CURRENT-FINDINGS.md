@@ -1,5 +1,22 @@
 # Current findings and evidence — 2026-10-11
 
+**Asynchronous ownership integration (2026-10-11):** the separate `ownirq`
+profile now combines a real shared mutex, blocked waiter and software lease with
+task-owned IRQ stacks and concurrent host STOP. Nested critical sections defer
+controller execution until outer release; clean cancellation drains the owner's
+IRQ frame, waits for its lease, rolls back and hands the lock to the waiter.
+Quarantine preserves owner/waiter dependencies while an unrelated preempted task
+continues. A valid QUIESCED/completed callback with an outstanding lease returns
+ENODATA and retains resources with pending=0. The first run exposed i960 struct
+padding in report serialization; it was archived, corrected and retested.
+Ten asynchronous sessions passed full RAM/MU restoration; both retained cases
+recovered by reboot. The persistent serialization fix passed 48 more callbacks.
+Native/replay checks passed, and production IPv6 HTTP returned 200.
+[Contract, matrix and evidence](rtems/ownirq/README.md). These remain bounded one-shot experiments,
+not unrestricted resident execution or physical DMA cancellation. Keep production
+on autonet. Earlier next-step statements below are historical.
+
+
 **Resident ownership batch (2026-10-11):** the separate persistent `ownership`
 profile passed a 48-callback smoke run and three 371-callback sessions: real
 priority-inheritance mutex, owner-only release, blocked waiter, cancellation

@@ -3,7 +3,7 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
 here=Path(__file__).resolve().parent;work=a.work.resolve();src=work/'rtems-4.6.6';out=work/a.profile;out.mkdir(exist_ok=True,parents=True)
 for row in json.loads((here/'sources.json').read_text())['sources']:
  if a.profile not in ('net','autonet') and row['name'].startswith('lwip'):continue
@@ -21,7 +21,7 @@ for rel in ['include','libcsupport/include','score/include','score/inline','rtem
   if f.suffix not in ('.h','.inl'):continue
   target=inc/f.relative_to(d);target.parent.mkdir(exist_ok=True,parents=True);shutil.copyfile(f,target)
 (inc/'rtems/score/cpuopts.h').write_text('#define RTEMS_INLINE 1\n#define USE_INLINES 1\n#define RTEMS_CPU "i960"\n#define RTEMS_CPU_MODEL "rp"\n')
-if a.profile in ('session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership'):
+if a.profile in ('session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq'):
  shutil.copyfile(here/'transport/buffer_io.h',inc/'buffer_io.h')
 # Newlib's patched machine/types already owns signed C99 integer typedefs.
 f=inc/'rtems/stdint.h';s=f.read_text();start=s.index('typedef signed8');end=s.index('typedef unsigned8',start);f.write_text(s[:start]+'#include <machine/types.h>\n\n'+s[end:])

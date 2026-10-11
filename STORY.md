@@ -1146,6 +1146,50 @@ The ownership rules now survive across callbacks. They still have to meet the
 interrupt-driven containment work in the same program. That meeting is the next
 experiment, not something sixty successful handoffs can quietly stand in for.
 
+## The waiter meets the interrupt
+
+Then we put the lock into the experiment that could interrupt its owner.
+
+There were three workers now: the owner halfway through an update, a neighbour
+asleep on its mutex, and an unrelated task doing arithmetic. The owner and the
+arithmetic task each had their own interrupt stack. The waiting task had no need
+to enable interrupts at all. The host sent STOP while the firmware callback was
+still running, through the separate control channel we had already earned.
+
+The first run found a problem in the reporting, not in the lock. Eleven words
+made forty-four bytes on the Mac. The old i960 compiler gave their structure
+forty-eight. A careless `sizeof` copied padding over the next diagnostic, and
+the host refused to believe the reply. It kept its memory and refused to unload.
+We saved the failed run, changed the wire copy to its exact field count, and
+rebooted. The earlier persistent test had escaped this bug only because it wrote
+its heartbeat over that same extra word afterward. We fixed that copy too.
+
+With the report corrected, STOP at tick 18 waited for the outer critical section
+to open at tick 40. STOP at depth one, tick 30, waited for the same boundary.
+The owner came back through its real interrupted call chain. Three times its
+cancellation checkpoint found the buffer still lent out. At tick 44 the reference
+came home. The owner rolled back and released the mutex; the neighbour saw the
+old committed value and continued.
+
+For the owner we would not allow to cooperate, we kept the lock and suspended its
+waiter too. Their stacks and the unfinished interrupt frame stayed intact. The
+unrelated task ran for four more timer ticks. Containment had finally met a
+shared resource without pretending suspension repaired it.
+
+Then we withheld the reference altogether. The card stopped its timer, reported
+quiescence, accepted RELEASE and returned to firmware. All of that was true.
+The host still refused to reclaim the workspace. A stopped CPU path does not
+make a borrowed buffer unborrowed. The module stayed pinned until reboot.
+
+Both reboot recoveries returned to Linux. Ten asynchronous sessions had now
+passed full cleanup, and the corrected persistent loader passed another forty-eight
+callbacks. The web service came back and the Vader page answered over IPv6.
+
+The leases are still software, and the experiments still end their whole RTEMS
+instance. We have not smuggled a DMA completion or a permanently resident operating
+system into the conclusion. We have made the next dependency explicit, and seen
+the machine refuse to cross it without evidence.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

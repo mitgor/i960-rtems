@@ -20,7 +20,7 @@ int main(void){struct ownership p={1,0,0x10203040,0x10203040,0,0,0,0,0,0,0};unsi
    case 11:if(p.refs||(p.phase!=OWN_IDLE&&p.phase!=OWN_RETIRED&&p.phase!=OWN_QUARANTINE))rc=own_reject(&p,OWN_BUSY);else final=1;break;
    default:rc=own_reject(&p,OWN_STATE);
   }
-  memset(out,0,sizeof(out));out[0]=rc;out[1]=final;memcpy(out+2,&p,sizeof(p));out[13]=started;out[14]=done;out[15]=seen;out[16]=other;out[17]=other_value;out[18]=p.epoch;
+  memset(out,0,sizeof(out));out[0]=rc;out[1]=final;memcpy(out+2,&p,11*sizeof(unsigned int));out[13]=started;out[14]=done;out[15]=seen;out[16]=other;out[17]=other_value;out[18]=p.epoch;
   if(fwrite(out,sizeof(out),1,stdout)!=1)return 1;
  }
  return 0;

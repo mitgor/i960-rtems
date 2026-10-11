@@ -9268,6 +9268,76 @@
       "sha256": "23abb3bfb3ce80b73f59336ca7287224cf8486ad4e003daed3e904664bf2224c"
     },
     {
+      "path": "artifacts/rtems-ownirq-20261011/README.md",
+      "size": 5589,
+      "sha256": "0a772a21266705333d265954c88f5130e7c6cf417b9a3911938438e0cdec4cdc"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/http-restored.txt",
+      "size": 2994,
+      "sha256": "c40fea0ab60f5970888a243687b3bc40193ad3a99eb406c2ecb09fe750ce72ce"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/initial-verification.json",
+      "size": 306,
+      "sha256": "41c845742ff2d9e0787934b21640c1b1fd43b7cac1ddbce9aa556a2f5e66c1e4"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/initial.tar.xz",
+      "size": 777512,
+      "sha256": "7654efaf6b33a85e6c906a00a0e31e7c27d8f0d757960a052ceff807824a5b50"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/live-verification.json",
+      "size": 7046,
+      "sha256": "8465decb1e9e0e850d7e1397b0cd3e22c0130562dc3689658764691cf28d3c4c"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/live.tar.xz",
+      "size": 1009904,
+      "sha256": "d092ff142518f7b20dfe01f4c2efeef44a3b6ffcd0fe314116e7b617df7728ce"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/native-tests.txt",
+      "size": 5542,
+      "sha256": "ca4d9918687fd840189d0e9e356cbbb890942c3cd8340488ecd5eb5a24f592d8"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/ownership-wire-tests.txt",
+      "size": 262,
+      "sha256": "8272a371beb03310bd4dccaf4058956d91878ecca61eb2c0becb1111f5237f3b"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/ownership-wire-verification.json",
+      "size": 234,
+      "sha256": "6cf235dfb261891e4059bf3496709cd0e7c3bf30d061017289670ea2036b11ab"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/production-verification.txt",
+      "size": 504,
+      "sha256": "c3e724eb1e4656b51a0172702cb0e936e5e2fe5eb5634f2a4d8a083c2ca8e13e"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/recovery-verification.json",
+      "size": 715,
+      "sha256": "573ec973bfbf80ebf0b4f428f63c3c8858f1b31ea83f19581ba3fdda1b4090ae"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/recovery.tar.xz",
+      "size": 970452,
+      "sha256": "7c09a4d1fa3aa059185c23a8fb8c45e5945442738a2c36516d05eb960d6e1abb"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/service-state.txt",
+      "size": 102,
+      "sha256": "78441ecda54168a06dd7d97a0cc7c5d335fa26dfa49e6d7dd666d0d6a6132777"
+    },
+    {
+      "path": "artifacts/rtems-ownirq-20261011/source.tar.xz",
+      "size": 80060,
+      "sha256": "7c42c77e18ff46b864bbbd3385161ff5f87181a26126f1ade98bc812a6401b08"
+    },
+    {
       "path": "artifacts/rtems-system-info-20261011/README.md",
       "size": 2036,
       "sha256": "fa6c22c5382783878207c0b611593482a4c20fc4dc7cf2306782154a172df114"

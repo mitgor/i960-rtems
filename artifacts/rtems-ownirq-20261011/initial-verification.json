@@ -1,0 +1,15 @@
+[
+  {
+    "path": "/tmp/i960-ownirq-initial/ownirq-smoke/run-0",
+    "report": {
+      "mode": 1,
+      "epoch": 50855,
+      "initial_padding_bug": true,
+      "word51": 0
+    },
+    "paired_response_verified": true,
+    "cleanup_verified": false,
+    "gate": "0",
+    "damaged_reports_rejected": 0
+  }
+]

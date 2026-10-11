@@ -1,0 +1,92 @@
+ .text
+ .align 4
+ .globl _switch_probe
+_switch_probe:
+ lda 64(sp),sp
+ stq g0,64(fp)
+ stq g4,80(fp)
+ stq g8,96(fp)
+ stq g12,112(fp)
+ mov g0,r4
+ mov g1,r6
+ lda 0x1f0000,r7
+ lda 0x140000,r8
+ modpc 0,r7,r8
+ modpc 0,0,r7
+ st r7,256(r4)
+ modtc 0,0,r7
+ st r7,264(r4)
+ addo 0,r6,g0
+ addo 1,r6,g1
+ addo 2,r6,g2
+ addo 3,r6,g3
+ addo 4,r6,g4
+ addo 5,r6,g5
+ addo 6,r6,g6
+ addo 7,r6,g7
+ addo 8,r6,g8
+ addo 9,r6,g9
+ addo 10,r6,g10
+ addo 11,r6,g11
+ addo 12,r6,g12
+ addo 13,r6,g13
+ addo 14,r6,g14
+ lda 0x96000006,r6
+ lda 0x96000007,r7
+ lda 0x96000008,r8
+ lda 0x96000009,r9
+ lda 0x9600000a,r10
+ lda 0x9600000b,r11
+ lda 0x9600000c,r12
+ lda 0x9600000d,r13
+ lda 0x9600000e,r14
+ lda 0x9600000f,r15
+ mov 0,r5
+ lda 1000000,r3
+ stq g0,0(r4)
+ stq g4,16(r4)
+ stq g8,32(r4)
+ stq g12,48(r4)
+ stq pfp,128(r4)
+ stq r4,144(r4)
+ stq r8,160(r4)
+ stq r12,176(r4)
+switch_loop:
+ cmpo g0,g0
+ bne switch_ac_bad
+ /* Both tasks report progress; only the owner may receive a checkpoint request. */
+ st r3,276(r4)
+ lda _switch_records,r5
+ cmpobne r4,r5,ownirq_continue
+ ld _owner_checkpoint,r5
+ cmpobne 0,r5,switch_finished
+ownirq_continue:
+
+ subo 1,r3,r3
+ cmpobne 0,r3,switch_loop
+ b switch_finished
+switch_ac_bad:
+ mov 1,r5
+ st r5,272(r4)
+switch_finished:
+ st r3,276(r4)
+ stq g0,64(r4)
+ stq g4,80(r4)
+ stq g8,96(r4)
+ stq g12,112(r4)
+ stq pfp,192(r4)
+ stq r4,208(r4)
+ stq r8,224(r4)
+ stq r12,240(r4)
+ modpc 0,0,r6
+ st r6,260(r4)
+ modtc 0,0,r6
+ st r6,268(r4)
+ lda 0x1f0000,r6
+ mov r6,r7
+ modpc 0,r6,r7
+ ldq 64(fp),g0
+ ldq 80(fp),g4
+ ldq 96(fp),g8
+ ldq 112(fp),g12
+ ret

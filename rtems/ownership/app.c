@@ -99,7 +99,8 @@ static void report(unsigned int op,unsigned int result){unsigned int w[64],i,pc;
  if(resource.phase==OWN_QUARANTINE)REQUIRE(hash_a==hash_stack(0)&&hash_b==hash_stack(1));
  __asm__ volatile("modpc 0,0,%0":"=r"(pc));
  w[0]=0x314e574f;w[1]=1;w[2]=bio_word(b+8);w[3]=op;w[4]=result;w[5]=finalized;
- memcpy(w+6,&resource,sizeof(resource));w[17]=++heartbeats;
+ /* The i960 ABI pads this struct to 48 bytes; wire fields occupy 44. */
+ memcpy(w+6,&resource,11*sizeof(unsigned int));w[17]=++heartbeats;
  for(i=0;i<3;i++){w[18+i]=tasks_id[i];w[23+i]=threads[i]->current_state;w[42+i]=(unsigned int)threads[i]->Start.Initial_stack.area;}
  w[21]=mutex->Core_control.mutex.holder_id;w[22]=mutex->Core_control.mutex.nest_count;
  w[26]=threads[0]->current_priority;w[27]=threads[0]->resource_count;w[28]=threads[1]->resource_count;

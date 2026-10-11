@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/tmp/i960-ownirq-recovery/ownirq-recovery/run-0",
+    "report": {
+      "mode": 4,
+      "epoch": 17686,
+      "stop_tick": 18,
+      "controller_tick": 40,
+      "lease_complete_tick": 44,
+      "retired_tick": 0,
+      "quarantine_tick": 44,
+      "end_tick": 48,
+      "deferred_checkpoints": 0,
+      "waiter_done": 0,
+      "phase": 4,
+      "references": 0,
+      "other_budget_before": 869982,
+      "other_budget_after": 835253,
+      "owner_entries": 34,
+      "owner_returns": 33,
+      "other_entries": 14,
+      "other_returns": 13,
+      "faults": 0
+    },
+    "paired_response_verified": true,
+    "cleanup_verified": true,
+    "gate": "1",
+    "damaged_reports_rejected": 28
+  }
+]

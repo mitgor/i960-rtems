@@ -1,5 +1,22 @@
 # Preemptive RTEMS and DMA networking plan
 
+**2026-10-11 asynchronous resource integration:** [ownirq](rtems/ownirq/README.md)
+now composes nested-critical deferral, a real mutex dependency, software-reference
+deferral and original IRQ-frame preservation. Known owner/waiter quarantine lets
+unrelated interrupt-driven work continue. Completed quiescence with an unresolved
+lease is rejected by the host cleanup gate. This advances the resource part of
+P4 but does not establish P2 firmware takeover or an unrestricted resident P3 BSP.
+
+Next: (1) extend the supervisor's explicit dependency registry to two resources
+and transitive waiters, including acquisition order and admission closure;
+(2) test generation-safe reuse only after all real IRQ continuations and references
+are drained, preserving quarantine otherwise; (3) establish persistent interrupt
+and RAM reservation before repeated resident asynchronous epochs; (4) add actual
+host-buffer lease acknowledgements and verified hardware drain/reset before
+host-RAM DMA. A timer deadline, QUIESCED token or callback return is not a DMA
+completion. Direct NIC access remains downstream of those ownership gates.
+
+
 **2026-10-11 ownership batch:** [persistent resource contracts](rtems/ownership/README.md)
 now pass on the card in a separate bounded profile. Owner checkpoint cancellation
 rolls back before real mutex handoff; external software references defer retirement;

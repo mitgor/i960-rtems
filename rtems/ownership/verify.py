@@ -7,8 +7,8 @@ from run import verify_close
 import wire
 HERE=Path(__file__).resolve().parent
 
-def verify(out,oracle,gate,root):
- code=(root/"ownership/kernel.bin").read_bytes();module=(root/"ownership-module/dac960rtems.ko").read_bytes();image=wire.prepare(code)
+def verify(out,oracle,gate,root,module_dir):
+ code=(root/"ownership/kernel.bin").read_bytes();module=(root/module_dir/"dac960rtems.ko").read_bytes();image=wire.prepare(code)
  identity=json.loads((out/"request.json").read_text())
  for key,data in (("payload_sha256",code),("image_sha256",image),("module_sha256",module)):assert identity[key]==hashlib.sha256(data).hexdigest()
  original=(out/"open/stage-before-a5.bin").read_bytes()
@@ -52,12 +52,12 @@ def verify(out,oracle,gate,root):
  return dict(path=str(out),callbacks=len(rows),native_policy_match=True,report_gate=gate_result,normal_close=(out/'close').exists())
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('paths',type=Path,nargs='+');p.add_argument('--output',type=Path);p.add_argument('--root',type=Path,required=True);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('paths',type=Path,nargs='+');p.add_argument('--output',type=Path);p.add_argument('--root',type=Path,required=True);p.add_argument('--module',default='ownership-module');a=p.parse_args()
  with tempfile.TemporaryDirectory() as tmp:
   exe=[]
   for source in ('test_oracle.c','test_reports.c'):
    target=Path(tmp)/source[:-2];subprocess.run([os.environ.get('CC','cc'),'-std=c99','-Wall','-Wextra','-fsanitize=address,undefined',str(HERE/source),'-o',str(target)],check=True);exe.append(target)
-  result=[verify(path,*exe,a.root) for path in a.paths]
+  result=[verify(path,*exe,a.root,a.module) for path in a.paths]
  if (a.root/'http-after-containment-batch/close').exists():verify_close(a.root/'http-after-containment-batch/close')
  text=json.dumps(result,indent=2)+'\n';print(text,end='')
  if a.output:a.output.write_text(text)

@@ -1,5 +1,13 @@
 # Resident resource ownership and safe cancellation
 
+**Follow-up:** [asynchronous integration](../ownirq/README.md) now tests this
+policy with task-owned IRQ frames and a real blocked waiter. The i960 ABI pads
+the 44-byte ledger to 48 bytes. This profile now serializes exactly eleven words;
+its previous copy's extra word was immediately overwritten by the heartbeat,
+so the archived earlier wire reports remain valid. A fresh binary/module and
+48-callback hardware regression are recorded in the ownirq artifact bundle.
+
+
 2026-10-11. This is a separate `ownership` RTEMS 4.6.6 profile: the same
 RTEMS instance, task IDs, guarded stacks, mutex and ledger persist across bounded
 host callbacks. It establishes resource rules before combining them with the
