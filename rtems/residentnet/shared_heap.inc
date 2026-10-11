@@ -5,6 +5,7 @@ static unsigned int shared_generation,shared_cancelled,shared_testing;
 static unsigned int shared_created,shared_retired,shared_cancels,shared_deferred,shared_rejects,shared_cycles,shared_checks,shared_tested;
 static volatile unsigned int shared_phase,shared_handle,shared_since;
 static unsigned char*shared_hold;
+static unsigned int shared_bytes=256;
 static unsigned int shared_bench_tick,shared_bench_oom;
 #ifndef HEAP_NATIVE
 #include <rtems/score/thread.h>
@@ -79,13 +80,16 @@ static unsigned int shared_selftest(void){unsigned int h,old,i,v;unsigned char*p
  q=resident_calloc(1,RESIDENT_HEAP_BYTES-256);SHCHECK(q);SHCHECK(!resident_free(q));
  q=resident_malloc(32768);SHCHECK(q);memset(q,0x73,32768);q=resident_realloc(q,32768);SHCHECK(q);
  for(i=0;i<32768;i++)SHCHECK(((unsigned char*)q)[i]==0x73);SHCHECK(!resident_free(q));
- h=resident_shared_new(0,256);SHCHECK(h);SHCHECK(!resident_shared_acquire(h,1));
- SHCHECK(resident_shared_acquire(h,1));p=resident_shared_pin(h,1);SHCHECK(p);memset(p,0x6d,256);old=frees;
+ #ifdef I960_QUEUE_RECLAIM
+ shared_bytes=81920;
+#endif
+ h=resident_shared_new(0,shared_bytes);SHCHECK(h);SHCHECK(!resident_shared_acquire(h,1));
+ SHCHECK(resident_shared_acquire(h,1));p=resident_shared_pin(h,1);SHCHECK(p);memset(p,0x6d,shared_bytes);old=frees;
  SHCHECK(!resident_shared_cancel(0));SHCHECK(!resident_shared_ack(h,0));
  SHCHECK(resident_free(p)&&!resident_realloc(p,512)&&frees==old);
  SHCHECK(!resident_shared_cancel(1)&&resident_shared_ack(h,1)==2&&frees==old);
  SHCHECK(!resident_shared_resume(0)&&resident_shared_resume(1));
- for(i=0;i<256;i++)SHCHECK(p[i]==0x6d);
+ for(i=0;i<shared_bytes;i++)SHCHECK(p[i]==0x6d);
  SHCHECK(!resident_shared_unpin(h,1)&&!resident_shared_ack(h,1)&&frees==old+1);
  SHCHECK(!resident_shared_pin(h,1)&&resident_shared_ack(h,1));SHCHECK(!resident_shared_resume(1));
  SHCHECK(!live_bytes&&allocations==frees);shared_tested=1;shared_testing=0;return 0;
@@ -103,7 +107,11 @@ static void shared_worker(unsigned int a,unsigned int tick){unsigned int i;unsig
    for(i=0;i<30720;i++)SHCHECK(((unsigned char*)q)[i]==0x71);SHCHECK(!resident_free(q));
   }else shared_bench_oom++;
  }
- if(!a&&shared_phase==0){shared_handle=resident_shared_new(0,256);SHCHECK(shared_handle);p=resident_shared_pin(shared_handle,0);SHCHECK(p);memset(p,0x6d,256);SHCHECK(!resident_shared_unpin(shared_handle,0));shared_phase=1;}
+ if(!a&&shared_phase==0){
+#ifdef I960_QUEUE_RECLAIM
+ shared_bytes=(shared_cycles&31)?256:81920;
+#endif
+ shared_handle=resident_shared_new(0,shared_bytes);SHCHECK(shared_handle);p=resident_shared_pin(shared_handle,0);SHCHECK(p);memset(p,0x6d,shared_bytes);SHCHECK(!resident_shared_unpin(shared_handle,0));shared_phase=1;}
  else if(a==1&&shared_phase==1){SHCHECK(!resident_shared_acquire(shared_handle,1));shared_hold=resident_shared_pin(shared_handle,1);SHCHECK(shared_hold);shared_since=tick;shared_phase=2;}
  else if(!a&&shared_phase==2){
   SHCHECK(!resident_shared_cancel(0)&&!resident_shared_ack(shared_handle,0));
@@ -111,18 +119,21 @@ static void shared_worker(unsigned int a,unsigned int tick){unsigned int i;unsig
   SHCHECK(resident_free(shared_hold)&&!resident_realloc(shared_hold,512));
   SHCHECK(!resident_shared_cancel(1));shared_phase=3;
  }else if(a==1&&shared_phase==3){
-  for(i=0;i<256;i++)SHCHECK(shared_hold[i]==0x6d);shared_checks++;
+  for(i=0;i<shared_bytes;i++)SHCHECK(shared_hold[i]==0x6d);shared_checks++;
   SHCHECK(resident_shared_ack(shared_handle,1)==2);
   if(tick-shared_since>=8){SHCHECK(!resident_shared_unpin(shared_handle,1)&&!resident_shared_ack(shared_handle,1));shared_hold=0;SHCHECK(!resident_shared_resume(1));shared_phase=4;}
  }else if(!a&&shared_phase==4){SHCHECK(!resident_shared_pin(shared_handle,0));SHCHECK(!resident_shared_resume(0));shared_cycles++;shared_phase=0;}
 }
 static void shared_drain(unsigned int a){unsigned int i,h;
  SHCHECK(!resident_shared_cancel(a));
- if(a==1&&shared_hold){for(i=0;i<256;i++)SHCHECK(shared_hold[i]==0x6d);SHCHECK(!resident_shared_unpin(shared_handle,1));shared_hold=0;}
+ if(a==1&&shared_hold){for(i=0;i<shared_bytes;i++)SHCHECK(shared_hold[i]==0x6d);SHCHECK(!resident_shared_unpin(shared_handle,1));shared_hold=0;}
  for(i=0;i<8;i++)if(shared[i].p&&(shared[i].refs&(1u<<a))){h=(shared[i].generation<<3)|i;SHCHECK(!resident_shared_ack(h,a));}
 }
 void resident_heap_diagnostics(unsigned int*w){unsigned int i,j;
  memset(w,0,256);w[0]=0x314c5348;w[1]=3;w[2]=4166700;w[3]=~0u;w[4]=timing_ready;
+#ifdef I960_QUEUE_RECLAIM
+ {extern void resident_net_irq_counts(unsigned int*);w[1]=4;resident_net_irq_counts(w+3);}
+#endif
  w[5]=irq_samples;w[6]=irq_max_gap;w[7]=irq_late;w[8]=irq_elapsed[0];w[9]=irq_elapsed[1];w[10]=irq_min_gap;w[11]=41667;
  for(i=0;i<8;i++)for(j=0;j<4;j++)w[12+4*i+j]=timing_stats[i][j];
  w[44]=shared_created;w[45]=shared_retired;w[46]=shared_cancels;w[47]=shared_deferred;w[48]=shared_rejects;

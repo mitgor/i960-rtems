@@ -54,6 +54,7 @@ def main():
  p=argparse.ArgumentParser()
  for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
  p.add_argument('--heap-shared',action='store_true')
+ p.add_argument('--queue-reclaim',action='store_true')
  p.add_argument('--general-heap',action='store_true')
  p.add_argument('--extra-ram',action='store_true')
  p.add_argument('--fault-owner',action='store_true')
@@ -62,10 +63,11 @@ def main():
  p.add_argument('--ticks',type=int,default=6000);p.add_argument('--rounds',type=int,default=1)
  p.add_argument('--round-interval',type=float,default=0)
  p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=180000 and 1<=a.rounds<=60 and 0<=a.round_interval<=60
+ if a.queue_reclaim:assert a.heap_shared
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
  def save():
   (b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n');(b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
  def control(op,arg=0,e=epoch):

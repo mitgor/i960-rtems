@@ -4,7 +4,7 @@ No multilib libc required; only gcc's -m32 backend and Linux IA32 support.
 """
 import argparse,json,hashlib,subprocess,shutil,struct
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--rtems',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument("--shared",action="store_true");p.add_argument("--iterations",type=int,default=1000);a=p.parse_args();assert 1000<=a.iterations<=100000;out=a.out.resolve();out.mkdir(parents=True,exist_ok=True);root=Path(__file__).resolve().parent
+p=argparse.ArgumentParser();p.add_argument('--rtems',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument("--shared",action="store_true");p.add_argument("--iterations",type=int,default=1000);p.add_argument("--queue-reclaim",action="store_true");a=p.parse_args();assert not a.queue_reclaim or a.shared;assert 1000<=a.iterations<=100000;out=a.out.resolve();out.mkdir(parents=True,exist_ok=True);root=Path(__file__).resolve().parent
 inc=out/'include';(inc/'rtems/score').mkdir(parents=True,exist_ok=True)
 (inc/'rtems/system.h').write_text('''#ifndef TEST_SYSTEM_H
 #define TEST_SYSTEM_H
@@ -24,6 +24,11 @@ inputs=[]
 for rel in ['include/rtems/score/heap.h','include/rtems/score/address.h','inline/rtems/score/heap.inl','inline/rtems/score/address.inl']:
  source=a.rtems/'cpukit/score'/rel;dest=inc/'rtems/score'/source.name;shutil.copyfile(source,dest);inputs.append(source)
 (out/'heap_native.h').write_text('''static unsigned char native_arena[RESIDENT_HEAP_BYTES] __attribute__((aligned(16)));
+#ifdef I960_QUEUE_RECLAIM
+static unsigned char native_fallback[FALLBACK_HEAP_BYTES] __attribute__((aligned(16)));
+unsigned int resident_fallback_base(void){return (unsigned int)native_fallback;}
+unsigned int resident_fallback_valid(void){return 1;}
+#endif
 #define HEAP_BASE ((unsigned int)native_arena)
 static unsigned int native_admit=1,native_mask,native_actor;
 static int native_jump[5];
@@ -33,11 +38,12 @@ static unsigned int exclusive_extra_guard_mask(void){return !native_admit;}
 static unsigned int heap_raw_lock(void){unsigned int old=native_mask;native_mask=31;return old;}
 static void heap_raw_unlock(unsigned int old){native_mask=old;}
 ''')
-(out/'main.c').write_text('#define WORKER_ITERATIONS '+str(a.iterations)+'\n'+('#define I960_HEAP_SHARED 1\n' if a.shared else '')+'''#define I960_GENERAL_HEAP 1
+(out/'main.c').write_text('#define WORKER_ITERATIONS '+str(a.iterations)+'\n'+('#define I960_HEAP_SHARED 1\n' if a.shared else '')+('#define I960_QUEUE_RECLAIM 1\n' if a.queue_reclaim else '')+'''#define I960_GENERAL_HEAP 1
 #define I960_HEAP_TEST 0
 #define HEAP_NATIVE 1
 #include "general_heap.c"
 unsigned int _ISR_Nest_level;
+void resident_net_irq_counts(unsigned int*w){w[0]=w[1]=0;}
 void*memset(void*p,int c,size_t n){unsigned char*q=p;while(n--)*q++=c;return p;}
 void*memcpy(void*p,const void*q,size_t n){unsigned char*d=p;const unsigned char*s=q;while(n--)*d++=*s++;return p;}
 static void quit(unsigned int code){__asm__ volatile("int $0x80"::"a"(1),"b"(code):"memory");for(;;){}}
@@ -46,10 +52,34 @@ void _start(void){unsigned int i,t,old;unsigned char*p;void*saved;void*slots[64]
  if(__builtin_setjmp(native_jump))quit(128+heap_error);
  CHECK(sizeof(void*)==4);CHECK(!resident_malloc(1));CHECK(!resident_heap_init());CHECK(resident_heap_valid()&&selftest);
  p=resident_malloc(RESIDENT_HEAP_BYTES-64);CHECK(p&&resident_heap_valid());
- CHECK(!resident_malloc(1));CHECK(!resident_free(p)&&resident_heap_valid());
+#ifdef I960_QUEUE_RECLAIM
+ slots[0]=resident_malloc(FALLBACK_HEAP_BYTES-64);CHECK(slots[0]);
+ CHECK(!resident_malloc(1));CHECK(!resident_free(slots[0]));
+#else
+ CHECK(!resident_malloc(1));
+#endif
+ CHECK(!resident_free(p)&&resident_heap_valid());
  for(i=0;i<64;i++){slots[i]=resident_malloc(1);CHECK(slots[i]&&!((unsigned int)slots[i]&15));}
  CHECK(!resident_malloc(1));CHECK(!resident_realloc(slots[0],2));
  for(i=0;i<64;i++)CHECK(!resident_free(slots[i]));
+#ifdef I960_QUEUE_RECLAIM
+ {unsigned int j;void*prior;
+  p=resident_malloc(40000);CHECK(p);memset(p,0x39,40000);
+  p=resident_realloc(p,80000);CHECK(p&&arena((unsigned int)p-16,1)==&fallback_heap);
+  for(j=0;j<40000;j++)CHECK(p[j]==0x39);
+  p=resident_realloc(p,20000);CHECK(p&&arena((unsigned int)p-16,1)==&app_heap);
+  for(j=0;j<20000;j++)CHECK(p[j]==0x39);CHECK(!resident_free(p));
+  slots[0]=resident_malloc(RESIDENT_HEAP_BYTES-64);CHECK(slots[0]);
+  p=resident_malloc(100);CHECK(p&&arena((unsigned int)p-16,1)==&fallback_heap);
+  prior=fallback_heap.first;old=frees;
+  for(j=0;j<32;j++){
+   fallback_heap.first=(void*)((unsigned int)prior^(1u<<j));
+   if(!__builtin_setjmp(native_jump)){resident_free(p);quit(210);}
+   CHECK(heap_error==2&&frees==old);fallback_heap.first=prior;heap_error=0;native_mask=0;
+  }
+  CHECK(!resident_free(p)&&!resident_free(slots[0])&&resident_heap_valid());
+ }
+#endif
  p=resident_realloc(0,100);CHECK(p);memset(p,0x71,100);
  p=resident_realloc(p,20);CHECK(p);for(i=0;i<20;i++)CHECK(p[i]==0x71);
  CHECK(!resident_realloc(p,0)&&!resident_free(0));
@@ -146,5 +176,5 @@ subprocess.run(cmd,check=True);run=subprocess.run([str(out/'heap-test')],check=T
 if a.shared:
  assert len(run.stdout)==256
  (out/'diagnostics.json').write_text(json.dumps(list(struct.unpack('<64I',run.stdout)),indent=2)+'\n')
-(out/'result.json').write_text(json.dumps(dict(actual_rtems_sources={str(p.relative_to(a.rtems)):hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs},shared_enabled=a.shared,shared_random_operations=5000 if a.shared else 0,busy_buffer_reclaim_refused=True,shared_uncertain_ack_retries=1000 if a.shared else 0,generation_exhaustion_tested=a.shared,shared_registry_corruption_contained=a.shared,pointer_bits=32,live_slot_limit=64,empty_free_list_checked=True,realloc_shrink_and_oom_preserve=True,worker_iterations=a.iterations*2,redzone_mutations=32,free_list_pointer_bit_mutations=32,alignment_offset_bit_mutations=32,null_free_list_link_rejected=True,guard_failure_retains_allocations=True,passed=True),indent=2)+'\n')
+(out/'result.json').write_text(json.dumps(dict(actual_rtems_sources={str(p.relative_to(a.rtems)):hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs},queue_reclaim=a.queue_reclaim,cross_arena_realloc=a.queue_reclaim,fallback_free_list_pointer_bit_mutations=32 if a.queue_reclaim else 0,shared_enabled=a.shared,shared_random_operations=5000 if a.shared else 0,busy_buffer_reclaim_refused=True,shared_uncertain_ack_retries=1000 if a.shared else 0,generation_exhaustion_tested=a.shared,shared_registry_corruption_contained=a.shared,pointer_bits=32,live_slot_limit=64,empty_free_list_checked=True,realloc_shrink_and_oom_preserve=True,worker_iterations=a.iterations*2,redzone_mutations=32,free_list_pointer_bit_mutations=32,alignment_offset_bit_mutations=32,null_free_list_link_rejected=True,guard_failure_retains_allocations=True,passed=True),indent=2)+'\n')
 print('Actual RTEMS 4.6.6 allocator, 32-bit wrapper: startup/exhaustion/coalescing, worker stress iterations, ISR refusal, 32 redzone, 32 offset and 32 pointer corruptions passed')

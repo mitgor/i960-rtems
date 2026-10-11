@@ -25,8 +25,8 @@ def main():
   assert w[20:26]==[0]*6 and w[26:30]==[2,0,0x242,0x13ffc] and w[31]==0
   assert w[9]==w[12] and w[13]==0xc004e190
   if a.kind==4:
-   assert w[48:52]==[0x31504548,0xc022ee80,69952,1] and w[63] in (1,2,3,4)
-   assert w[52]=={1:1,2:3,3:2,4:2}[w[63]] and w[62]==(4 if w[63]==1 else 0)
+   assert w[48:50]==[0x31504548,0xc022ee80] and w[50] in (69952,171824) and w[51]==1 and w[63] in (1,2,3,4,5,6)
+   assert w[52]=={1:1,2:3,3:2,4:2,5:1,6:2}[w[63]] and w[62]==(4 if w[63]==1 else 0)
    assert w[53]>w[54] and w[55]>0 and w[58:60]==[1,0] and w[60]>0 and w[61]>0
   if a.kind==1:assert (w[6]>>16)&255==5 and w[6]&65535==1 and 0xc0f2c000<=w[7]<0xc0f4c000
   try:os.write(b.fd,wire.block(struct.pack('<4I',0x31415452,0,epoch,0),2));raise AssertionError('callback accepted')

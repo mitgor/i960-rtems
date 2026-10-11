@@ -9,6 +9,7 @@ test:
 	python3 residentnet/test_queue.py
 	python3 residentnet/test_board.py
 	python3 residentnet/test_queue_extend.py
+	python3 residentnet/test_net_preempt.py
 	python3 residentnet/test_ram_probe.py
 	python3 residentnet/test_nmi_host.py
 	python3 residentnet/test_fault_owner.py

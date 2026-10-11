@@ -3,6 +3,9 @@
 #define R(a) (*(volatile unsigned int*)(a))
 extern unsigned int exclusive_fault_valid(void),scsi_target_verified(void);
 extern void exclusive_engine_report(unsigned int*);
+#ifdef I960_QUEUE_RECLAIM
+extern unsigned int resident_fallback_prepare(void),resident_fallback_valid(void);
+#endif
 extern unsigned int resident_queue_extend(unsigned int),resident_queue_external_valid(void);
 static unsigned int boundary_low[16],boundary_high[16],firmware_hash,code_hash,extra_ready;
 static unsigned int hash(unsigned int lo,unsigned int bytes){unsigned int h=2166136261u,i;for(i=0;i<bytes;i+=4)h=(h^R(lo+i))*16777619u;return h;}
@@ -28,7 +31,11 @@ static unsigned int guards(void){return !exclusive_extra_guard_mask();}
 #ifdef I960_GENERAL_HEAP
 extern unsigned int resident_heap_init(void);
 #endif
-unsigned int exclusive_extra_valid(void){return extra_ready&&resident_queue_external_valid()&&extra_report.passes==4&&!extra_report.error&&guards()&&exclusive_fault_valid()&&scsi_target_verified();}
+unsigned int exclusive_extra_valid(void){return extra_ready&&resident_queue_external_valid()
+#ifdef I960_QUEUE_RECLAIM
+ &&resident_fallback_valid()
+#endif
+&&extra_report.passes==4&&!extra_report.error&&guards()&&exclusive_fault_valid()&&scsi_target_verified();}
 unsigned int exclusive_extra_prepare(void){unsigned int i,scratch,s[17],rc;
  if(extra_ready||!exclusive_fault_valid()||!scsi_target_verified()){extra_report.error=0x10001;return 1;}
  exclusive_engine_report(s);for(i=0;i<6;i++)if(s[i]){extra_report.error=0x10002;return 2;}
@@ -50,6 +57,9 @@ unsigned int exclusive_extra_prepare(void){unsigned int i,scratch,s[17],rc;
  if(rc){extra_report.error|=rc<<16;return rc;}
  /* The queue is always fixed; the separately opted-in heap uses its guarded tail. */
  if(resident_queue_extend(RAM_PROBE_LO+64)){extra_report.error=6;return 6;}
+#ifdef I960_QUEUE_RECLAIM
+ if(resident_fallback_prepare()){extra_report.error=9;return 9;}
+#endif
  extra_ready=1;if(!exclusive_extra_valid())return 7;
 #ifdef I960_GENERAL_HEAP
  if(resident_heap_init())return 8;

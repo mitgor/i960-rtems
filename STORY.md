@@ -1991,6 +1991,58 @@ browser connection both found the same way home. The public Vader page returned.
 The raycaster was ready for someone to play; the next frame no longer needed to
 copy the history of every frame before it.
 
+## The queue that had already left
+
+Moving the packet queue into tested RAM had left an expensive souvenir. The old
+queue still occupied 102,000 bytes in the upload. It had a legitimate job during
+network initialization, before the external memory was admitted. After the
+handoff, it sat there with nothing left to do.
+
+We gave that handoff an ending. Check the old pointer, indices and lengths. Copy
+any waiting packets. Publish the external queue. Refuse to go back. Only then
+could the old storage acquire a new owner. Sixty-four warning bytes at each end
+left 101,872 bytes for another RTEMS heap. Together the two arenas held 171,824
+bytes, although no single allocation could stretch across the space between them.
+The kernel stacks stayed where they were.
+
+The borrowing test moved in too. Every thirty-second cycle used an eighty-kibibyte
+object, too large for the original heap. Its owner canceled itself while the
+other task kept reading. The same pin and acknowledgement rules now protected
+bytes that had belonged to the packet queue a moment earlier.
+
+There was still a long silence around network processing. The worker raised
+interrupt priority before entering lwIP and kept it raised while copying packets.
+We shortened the part that needed silence. A committed receive buffer stayed
+leased until processing finished; another host write came back busy. A transmit
+buffer stayed invisible until the copy was complete. The timer could interrupt
+the work between those small ownership transfers.
+
+The first physical attempt got through admission and then found a mistake on
+the host: the burst test did not recognize the new snapshot version. We kept
+the failed capture, put the version table in one place and started again. Three
+concurrent IPv4 and IPv6 rounds then passed, including a full queue, deliberately
+lost TCP data and a host-requested stop. Every allocation was accounted for.
+
+We also damaged the reclaimed arena on purpose. Changing a warning word brought
+the machine into its owned terminal handler. Changing an allocator extent did
+the same before the allocator could follow it. In both cases three allocations
+remained live and the fault record stayed unchanged when the host asked for STOP.
+The broken arena was left alone until reboot.
+
+The half-hour run gave the handoff a longer examination. Forty rounds of IPv4
+and IPv6 traffic passed while the workers borrowed and returned memory. Timer
+zero wrapped, and its accumulated time kept going. The interrupt-gap maximum
+was about 10.688 milliseconds, down from 13.270 in the preceding long run. We
+had changed the memory workload too, so that comparison remained a measurement
+of these runs rather than a promise about every possible load.
+
+At tick 180,008 the machine had finished the shutdown requested eight ticks
+earlier. All 189,150 allocations were free. All 14,138 shared objects had been
+retired. The capture held forty complete rounds, 4,524 checked packets and the
+retransmissions that had repaired the deliberate losses. The old queue had found
+another job without taking its packets back. After reboot, the public Vader
+page answered again.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -2017,9 +2069,11 @@ So, the ledger, honestly kept:
   RTEMS work; the host still relays packets. A separate exclusive profile now
   runs preemptible tasks and IPv4/IPv6 networking without a pending firmware
   callback. Owned fault/NMI containment and a tested fixed cache-data range now
-  support a 128-slot external packet queue and a guarded 69,952-byte application
-  heap with explicit shared references and cancellation. A half-hour exclusive
-  run passed forty dual-stack rounds and complete application-allocation drain.
+  support a 128-slot external packet queue and two guarded application heaps
+  totaling 171,824 bytes, with explicit shared references and cancellation. The
+  fallback queue becomes the second heap only after external handoff. Network
+  processing is now preemptible. A half-hour exclusive run passed forty dual-stack
+  rounds and complete application-allocation drain.
   Kernel-workspace expansion, graceful engine drain and longer resident service
   remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O

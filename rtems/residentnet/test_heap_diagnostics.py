@@ -15,7 +15,7 @@ records=[record(100000,20),record(180000,30)]
 final=[0]*64;final[5]=180000;final[50]=200
 result=validate_diagnostics(records,final)
 assert result['irq_samples']==180000 and records[-1][9]>0
-cases=[(0,0),(1,4),(2,1),(3,0),(4,0),(5,1),(6,0),(7,41668),
+cases=[(0,0),(1,5),(2,1),(3,0),(4,0),(5,1),(6,0),(7,41668),
  (10,43000),(11,0),(12,0),(13,0),(14,1),(14,5001),
  (44,29),(45,31),(49,1),(50,1),(51,1),(54,11),(55,0),
  (57,9),(58,9),(59,0),(60,201),(61,201),(62,1),(63,0)]
@@ -34,3 +34,18 @@ latest=deepcopy(records)
 for w in latest:w[1]=3;w[56]=7
 assert validate_diagnostics(latest,final)['large_workload_allocation_refusals']==7
 print('Version 3: nonfatal large-allocation refusal telemetry checked')
+
+for w in latest:w[1]=4;w[3:5]=[20,30]
+assert validate_diagnostics(latest,final)['network_irq_spanning_calls']==[20,30]
+for index in (3,4):
+ bad=deepcopy(latest);bad[-1][index]=19
+ try:validate_diagnostics(bad,final)
+ except AssertionError:pass
+ else:raise AssertionError('decreasing network IRQ span counter accepted')
+print('Version 4: network/packet-copy interrupt-span counters checked')
+
+for value in (-1,0x100000000):
+ bad=deepcopy(latest);bad[-1][3]=value
+ try:validate_diagnostics(bad,final)
+ except AssertionError:pass
+ else:raise AssertionError('non-u32 counter accepted')

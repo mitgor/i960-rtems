@@ -1,0 +1,1 @@
+Guarded reclaim: 69 migrations, 70656 guard bit flips and external data isolation passed. Actual queue migration: all 0..68 occupancies preserved, repeated migration/wrong base/active head/overflow rejected

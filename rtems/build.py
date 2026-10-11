@@ -3,13 +3,15 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4),default=0);p.add_argument("--heap-shared",action="store_true");a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");a=p.parse_args()
 if a.secondary_reset and a.profile!="residentnet":p.error("secondary reset requires residentnet")
 if a.fault_owner and not a.secondary_reset:p.error("fault ownership requires secondary reset")
 if a.fault_test and not a.fault_owner:p.error("fault test requires fault ownership")
 if a.extra_ram and not a.fault_owner:p.error("extra RAM requires exclusive fault ownership")
 if a.general_heap and not a.extra_ram:p.error("general heap requires validated extra RAM")
+if a.heap_test>=5 and not a.queue_reclaim:p.error("fallback fault tests require queue reclaim")
 if a.heap_test and not a.general_heap:p.error("heap fault test requires general heap")
+if a.queue_reclaim and not a.heap_shared:p.error("queue reclaim requires shared heap instrumentation")
 if a.heap_shared and not a.general_heap:p.error("shared heap requires general heap")
 if a.heap_test and a.fault_test:p.error("select one fault injection per image")
 here=Path(__file__).resolve().parent;work=a.work.resolve();src=work/'rtems-4.6.6';out=work/a.profile;out.mkdir(exist_ok=True,parents=True)
@@ -62,6 +64,7 @@ if a.secondary_reset:flags+=['-DI960_SECONDARY_RESET']
 if a.fault_owner:flags+=['-DI960_FAULT_OWNER','-DI960_FAULT_TEST='+str(a.fault_test)]
 if a.extra_ram:flags+=['-DI960_EXTRA_RAM']
 if a.heap_shared:flags+=['-DI960_HEAP_SHARED']
+if a.queue_reclaim:flags+=['-DI960_QUEUE_RECLAIM']
 if a.general_heap:flags+=['-DI960_GENERAL_HEAP','-DI960_HEAP_TEST='+str(a.heap_test)]
 sources=[]
 for folder in ['score/src','rtems/src','sapi/src']:

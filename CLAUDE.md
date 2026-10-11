@@ -1,5 +1,26 @@
 # Repository guidance for Claude Code
 
+**Fallback queue reclaimed; network work preemptible (2026-10-11):**
+Opt-in `--queue-reclaim` requires the shared/general heap, validated extra RAM,
+owned exceptions and secondary SCSI reset. After copying any startup packets
+and irreversibly switching to the external queue, the old 102,000-byte object
+becomes a guarded 101,872-byte second application arena. Total arena capacity
+is 171,824 bytes; largest permitted request is 101,808 bytes, subject to free
+contiguous space. Kernel workspace, task stacks, lwIP pools and upload size do
+not grow. RX leases and unpublished TX buffers let lwIP/copy work run at priority
+20, with only ownership transfers masked. Every 32nd shared cycle uses 80 KiB
+in reclaimed storage. The forty-round, thirty-minute card run passed at tick
+180,008: all 189,150 allocations and 14,138 shared objects drained, including both
+IRQ contexts. Guard and metadata corruption each passed physical terminal
+containment with live resources retained. Maximum observed ISR gap was 10.688 ms
+(previous RNT7 endurance: 13.270 ms); 182 network-processing brackets spanned
+interrupts. These are measured workloads, not worst-case guarantees. Full raw
+packet replay, native regressions and offline tests passed. Failed host lookup
+attempt and exact binaries are preserved. No flash write or new RAM range grant.
+The post-test reboot returned; the cooperative public IPv6 RTEMS/Vader page
+is restored and verified HTTP 200.
+See [contract and evidence](rtems/residentnet/QUEUE-RECLAIM.md).
+
 **Shared heap, latency and endurance (2026-10-11):** `--heap-shared` adds
 explicit two-task references/pins and cancellation to the existing 69,952-byte
 heap. Pinned or uncertain holders retain memory; no arbitrary task deletion or
@@ -14,11 +35,13 @@ passed 200,000 worker updates and a legitimate fragmentation refusal. A prior
 HTTP endurance timeout exposed full packet-history rewrites on the host; an
 append journal reduced recording from 188.43 to 0.200 ms in the matched benchmark
 while preserving every byte and strict replay. Partial/failed attempts are kept.
-No flash writes or new RAM grant. The 102,000-byte internal fallback queue is
-still reserved; reclaiming it needs separate initialization/ownership work.
+No flash writes or new RAM grant. At this baseline the 102,000-byte internal
+fallback queue remained reserved; the opt-in queue-reclamation follow-up reuses
+it after external handoff. The baseline profile still reserves it.
 Post-test reboot succeeded; cooperative public IPv6 HTTP is restored and verified.
-Next: audit fallback-queue reuse, generalize task/resource ownership, and measure
-the remaining masked network/control work. Read the
+That batch proposed fallback-queue reuse and less masked network work; the
+queue-reclamation follow-up implements those. Broader task/resource ownership
+and control-path latency remain future work. Read the
 [contract, measurements and thirty-step evidence](rtems/residentnet/SHARED-HEAP.md).
 
 

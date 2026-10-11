@@ -32,8 +32,8 @@ else:
 extra='-DI960_EXTRA_RAM' in flags
 if extra:assert w[40:47]==[4,262144,0,0,0,0,1]
 if heap_test:
- assert '-DI960_GENERAL_HEAP' in flags and w[48:52]==[0x31504548,0xc022ee80,69952,1] and w[63]==heap_test
- assert w[52]=={1:1,2:3,3:2,4:2}[heap_test] and w[62]==(4 if heap_test==1 else 0)
+ assert '-DI960_GENERAL_HEAP' in flags and w[48:52]==[0x31504548,0xc022ee80,171824 if '-DI960_QUEUE_RECLAIM' in flags else 69952,1] and w[63]==heap_test
+ assert w[52]=={1:1,2:3,3:2,4:2,5:1,6:2}[heap_test] and w[62]==(4 if heap_test==1 else 0)
  assert w[53]>w[54] and w[55]>0 and w[58:60]==[1,0] and w[60]>0 and w[61]>0
 snapshots=[];cur=None
 for e in json.loads((out/'controls.json').read_text()):

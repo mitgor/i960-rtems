@@ -1,0 +1,12 @@
+{
+  "service": "active",
+  "boot": "de71488a-5c13-4b83-a5d7-2f03531c86a4",
+  "payload_sha256": "a8cdfe8ba49093182f596c849d25f98befef933b8e7ed951bdeae6194110752d",
+  "module_sha256": "444278bc480c35224f4b556803e487acd731594ac8fa5698b8b6b93f838f15ff",
+  "http_status": 200,
+  "content_verified": [
+    "RTEMS",
+    "Darth Vader"
+  ],
+  "visitor_records_archived": false
+}

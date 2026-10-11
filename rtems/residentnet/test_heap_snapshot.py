@@ -45,3 +45,16 @@ for tick in (179999,180101):
  except AssertionError:pass
  else:raise AssertionError('out-of-window final deadline accepted')
 print('RNT7: deadline-authorized drain transition and 100-tick acceptance bound checked')
+
+w[57]=0x38544e52;w[49]=171824
+snapshot_gate(w,7,True,True,True,True,deadline=180000)
+for size in (69952,101872,171825):
+ bad=w.copy();bad[49]=size
+ try:snapshot_gate(bad,7,True,True,True,True,deadline=180000)
+ except AssertionError:pass
+ else:raise AssertionError('wrong two-arena heap size accepted')
+print('RNT8: two discontiguous arena sizes bound to protocol version')
+
+from protocol import QUEUE_CAPACITY
+assert QUEUE_CAPACITY[w[57]]==128
+print('RNT8: shared live-burst/replay capacity registry admits 128 slots')

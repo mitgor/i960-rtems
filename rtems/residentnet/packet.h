@@ -2,7 +2,7 @@
 #ifndef RESIDENT_PACKET_H
 #define RESIDENT_PACKET_H
 #define PACKET_CAP 1536u
-struct packet_link {unsigned char rx[PACKET_CAP],tx[PACKET_CAP];unsigned int length,words,ready,txlen,received,sent,rejected;};
+struct packet_link {unsigned char rx[PACKET_CAP],tx[PACKET_CAP];volatile unsigned int length,words,ready,txlen,received,sent,rejected;};
 static unsigned int packet_word(const unsigned char*p){return p[0]|((unsigned int)p[1]<<8)|((unsigned int)p[2]<<16)|((unsigned int)p[3]<<24);}
 static unsigned int packet_command(struct packet_link*p,unsigned int op,unsigned int index,unsigned int value,unsigned int running){
  unsigned int i,n;

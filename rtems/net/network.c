@@ -24,7 +24,7 @@ static unsigned short lengths[NETWORK_LENGTH_SLOTS];
 #define NETWORK_FRAME_BYTES 1536
 #endif
 #ifdef NETWORK_EXTERNAL_QUEUE
-static unsigned char internal_frames[68][NETWORK_FRAME_BYTES];
+static unsigned char internal_frames[68][NETWORK_FRAME_BYTES] __attribute__((aligned(16)));
 static unsigned char (*frames)[NETWORK_FRAME_BYTES]=internal_frames;
 #else
 static unsigned char frames[NETWORK_QUEUE_SLOTS][NETWORK_FRAME_BYTES];

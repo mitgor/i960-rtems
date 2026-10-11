@@ -19,6 +19,10 @@ extern void exclusive_abort(void);
 #endif
 static struct packet_link netlink;
 static unsigned int net_tick,net_ready,net_memory_ok;
+#ifdef I960_QUEUE_RECLAIM
+static unsigned int net_irq_spans[2];
+void resident_net_irq_counts(unsigned int*w){w[0]=net_irq_spans[0];w[1]=net_irq_spans[1];}
+#endif
 static void resident_net_init(void){unsigned int identity[7];
  identity[0]=(*(volatile unsigned char*)0xe0400000)&31;identity[1]=R(0xc011e22c);
  if(identity[1]!=0xc0110780u)bounded_fatal(0x56010);
@@ -30,7 +34,7 @@ static void resident_net_init(void){unsigned int identity[7];
  if(!net_memory_ok)bounded_fatal(0x56001);
  network_init();net_ready=1;
 }
-static void resident_net_step(void){unsigned int n=0,elapsed=ticks-net_tick;
+static void resident_net_step(void){unsigned int n=0,now,elapsed,output,before;
  if(!net_ready||resident_state!=1)return;
 #ifdef I960_EXTRA_RAM
 #ifdef I960_GENERAL_HEAP
@@ -39,10 +43,40 @@ static void resident_net_step(void){unsigned int n=0,elapsed=ticks-net_tick;
  if(!exclusive_extra_valid())exclusive_abort();
 #endif
 #endif
+#ifdef I960_QUEUE_RECLAIM
+ mask();
+#endif
+ now=ticks;elapsed=now-net_tick;
  if(netlink.ready)n=netlink.length;
- if(n||elapsed){network_step(elapsed*10,netlink.rx,n);net_tick=ticks;}
- if(n){netlink.ready=0;netlink.length=0;netlink.words=0;}
- if(!netlink.txlen){memset(netlink.tx,0,sizeof(netlink.tx));netlink.txlen=network_output(netlink.tx,sizeof(netlink.tx));}
+#ifdef I960_QUEUE_RECLAIM
+ /* ready remains asserted: ISR cannot overwrite the leased RX bytes. */
+ enable();
+#endif
+ if(n||elapsed){before=ticks;network_step(elapsed*10,netlink.rx,n);net_tick=now;
+#ifdef I960_QUEUE_RECLAIM
+  if(ticks!=before)net_irq_spans[0]++;
+#endif
+ }
+#ifdef I960_QUEUE_RECLAIM
+ mask();
+#endif
+ if(n){netlink.length=0;netlink.words=0;netlink.ready=0;}
+ output=!netlink.txlen;
+#ifdef I960_QUEUE_RECLAIM
+ enable();
+#endif
+ /* Only worker 0 writes TX storage. txlen==0 hides it from every ISR read.
+  * Once published it remains immutable until the host acknowledges it. */
+ if(output){before=ticks;memset(netlink.tx,0,sizeof(netlink.tx));output=network_output(netlink.tx,sizeof(netlink.tx));
+#ifdef I960_QUEUE_RECLAIM
+  if(ticks!=before)net_irq_spans[1]++;
+  mask();
+#endif
+  netlink.txlen=output;
+#ifdef I960_QUEUE_RECLAIM
+  enable();
+#endif
+ }
 }
 static unsigned int resident_net_control(unsigned int token){unsigned int op=token>>28,value;
  if(op<10)return 0;
@@ -66,6 +100,9 @@ static void resident_net_report(unsigned int*w){
 #endif
 #ifdef I960_HEAP_SHARED
  w[57]=0x37544e52; /* RNT7: shared-allocation cancellation + separate diagnostics */
+#endif
+#ifdef I960_QUEUE_RECLAIM
+ w[57]=0x38544e52; /* RNT8: reclaimed fallback heap and preemptible network worker */
 #endif
  w[58]=resident_queue_drops();w[59]=resident_queue_peak();
  w[60]=netlink.received;w[61]=netlink.sent;w[62]=netlink.rejected;w[63]=net_memory_ok;

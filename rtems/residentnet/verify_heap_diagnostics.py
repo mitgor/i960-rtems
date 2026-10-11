@@ -2,7 +2,9 @@
 def validate_diagnostics(records,final):
  assert len(records)>=2
  for w in records:
-  assert len(w)==64 and w[0]==0x314c5348 and w[1] in (1,2,3) and w[2:5]==[4166700,0xffffffff,1]
+  assert len(w)==64 and all(isinstance(x,int) and 0<=x<=0xffffffff for x in w) and w[0]==0x314c5348 and w[1] in (1,2,3,4) and w[2]==4166700
+  if w[1]<4:assert w[3:5]==[0xffffffff,1]
+  else:assert w[3]<=w[5] and w[4]<=w[5]
   assert w[1]==records[0][1] and w[11]==41667 and w[54]==0 and w[55]==w[63]==1
   assert w[5]>1 and 0<w[10]<=w[6] and w[7]<=w[11]
   assert w[44]>=w[45] and w[44]-w[45]==w[49]<=8 and w[51]<=w[50]<=2*w[49]
@@ -13,6 +15,7 @@ def validate_diagnostics(records,final):
  for a,b in zip(records,records[1:]):
   for i in (5,6,7,44,45,46,47,48,52,53,56,60,61):assert b[i]>=a[i]
   assert ((b[9]<<32)|b[8])>=((a[9]<<32)|a[8])
+  if b[1]>=4:assert b[3]>=a[3] and b[4]>=a[4]
   if b[1]>=2:assert all(b[i]>=a[i] for i in (57,58))
   for op in range(8):
    x=a[12+op*4:16+op*4];y=b[12+op*4:16+op*4]
@@ -24,4 +27,4 @@ def validate_diagnostics(records,final):
  ops={}
  for op,name in enumerate(('check','malloc','calloc','realloc','free','share','cancel','empty')):
   n,maximum,lo,hi=w[12+4*op:16+4*op];ops[name]=dict(samples=n,max_counter_ticks=maximum,max_us=maximum/4.1667,mean_us=((hi<<32)|lo)/n/4.1667)
- return dict(large_workload_allocation_refusals=w[56] if w[1]>=3 else None,unlocked_copy_preemptions=w[57:59] if w[1]>=2 else None,counter_hz_nominal=4166700,irq_samples=w[5],irq_max_gap_us=w[6]/4.1667,irq_max_entry_phase_us=w[7]/4.1667,irq_mean_period_us=elapsed/(w[5]-1)/4.1667,operations=ops,shared_created=w[44],shared_retired=w[45],completed_cycles=w[52],deferred_acknowledgements=w[47],rejected_operations=w[48],retained_content_checks=w[53])
+ return dict(network_irq_spanning_calls=w[3:5] if w[1]>=4 else None,large_workload_allocation_refusals=w[56] if w[1]>=3 else None,unlocked_copy_preemptions=w[57:59] if w[1]>=2 else None,counter_hz_nominal=4166700,irq_samples=w[5],irq_max_gap_us=w[6]/4.1667,irq_max_entry_phase_us=w[7]/4.1667,irq_mean_period_us=elapsed/(w[5]-1)/4.1667,operations=ops,shared_created=w[44],shared_retired=w[45],completed_cycles=w[52],deferred_acknowledgements=w[47],rejected_operations=w[48],retained_content_checks=w[53])

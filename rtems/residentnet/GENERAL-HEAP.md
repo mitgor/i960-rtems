@@ -7,6 +7,10 @@ workspace and task stacks remain in the original upload allocation. RTEMS's
 historical `_Heap_Extend` requires a contiguous higher extension, so it cannot
 attach this lower, discontiguous range to the existing workspace.
 
+The optional [queue-reclamation extension](QUEUE-RECLAIM.md) adds a second
+101,872-byte arena inside the obsolete fallback queue after external handoff.
+The layout and baseline measurements below describe the original single arena.
+
 ## Layout and contract
 
 | Range | Use |

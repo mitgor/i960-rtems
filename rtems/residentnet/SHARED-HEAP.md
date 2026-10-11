@@ -1,5 +1,9 @@
 # Shared allocations and heap interrupt measurements
 
+Follow-up: [QUEUE-RECLAIM.md](QUEUE-RECLAIM.md) adds a guarded second arena,
+80 KiB shared-buffer cancellation cycles, preemptible network work and diagnostic
+version 4. The baseline measurements below remain historical evidence.
+
 `--heap-shared` is an opt-in exclusive resident build layered on `--general-heap
 --extra-ram --fault-owner --secondary-reset`. It keeps the same 69,952-byte
 application heap and 128-slot external packet queue. It does not extend the

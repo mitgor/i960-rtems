@@ -32,6 +32,7 @@ extern void exclusive_engine_report(unsigned int*);
 void exclusive_report(unsigned int*);
 #ifdef I960_RESIDENT_NET
 void bounded_fatal(unsigned int);
+static void mask(void),enable(void);
 #include "../residentnet/net_runtime.h"
 #endif
 static void control_poll(void){unsigned int token=R(0x1314),index;
@@ -93,7 +94,13 @@ static void Worker(rtems_task_argument id){
  life[id].low=(unsigned int)_Thread_Executing->Start.Initial_stack.area;life[id].high=life[id].low+8192;
  enable();while(!stop){
 #ifdef I960_RESIDENT_NET
-  if(!id){mask();control_poll();resident_net_step();enable();}
+  if(!id){mask();control_poll();
+#ifdef I960_QUEUE_RECLAIM
+   enable();resident_net_step();
+#else
+   resident_net_step();enable();
+#endif
+  }
 #endif
 #ifdef I960_FAULT_OWNER
   if(resident&&!id&&ticks>=100)exclusive_fault_inject();
