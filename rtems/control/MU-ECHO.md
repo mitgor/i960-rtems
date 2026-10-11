@@ -1,5 +1,8 @@
 # Bounded IMR1/OMR1 hardware experiment
 
+**Later milestone:** [framed control and independent bounded STOP/HALT passed](MU-FRAMED.md).
+Earlier next-step statements below describe their checkpoint.
+
 Live echo and full cleanup passed; see [captures and failed trial](../../artifacts/mu-echo-20261011/README.md).
 This is an opt-in experiment, separate from production `autonet`.
 

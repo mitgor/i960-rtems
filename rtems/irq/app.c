@@ -24,8 +24,15 @@ static volatile unsigned int background_fault;
 static Context_Control fault_context;
 #endif
 #include "timer_hw.h"
-#ifdef I960_MU_ECHO
+#if defined(I960_MU_ECHO) || defined(I960_MU_FRAMED)
+#ifdef I960_MU_FRAMED
+#define MU_EPOCH bio_word((unsigned char*)BIO_BASE+BIO_INPUT+8)
+#define MU_PROGRESS ticks
+#define MU_HALT() stop_timer()
+#include "../control/mu_framed.h"
+#else
 #include "../control/mu_echo.h"
+#endif
 #endif
 void bounded_fatal(unsigned int code){stop_timer();
 #ifdef I960_BACKGROUND
@@ -38,8 +45,11 @@ static void*stack_alloc(unsigned int size){unsigned int i=allocated++;if(i>=3||s
 static void stack_free(void*p){bounded_fatal(0x51001);}
 static void idle_error(void){bounded_fatal(0xdead);}
 void timer_interrupt(void){
-#ifdef I960_MU_ECHO
+#if defined(I960_MU_ECHO) || defined(I960_MU_FRAMED)
  mu_poll();
+#ifdef I960_MU_FRAMED
+ if(mu_runtime_stopped)return;
+#endif
 #endif
 #ifdef I960_BACKGROUND
  if(armed){background_active=1;background_irq=1;_CPU_Context_switch(&_Thread_BSP_context,&_Thread_Executing->Registers);background_active=0;}
@@ -58,7 +68,7 @@ static void Init(rtems_task_argument arg){rtems_id ticker;unsigned int error,i;
  if(background_irq){background_irq=0;ticks++;busy++;CHECK(rtems_clock_tick());_CPU_Context_switch(&_Thread_Executing->Registers,&_Thread_BSP_context);continue;}
  error=0;
  if(bio_word(b+BIO_INPUT+4)==1&&!armed){
-#ifdef I960_MU_ECHO
+#if defined(I960_MU_ECHO) || defined(I960_MU_FRAMED)
  error=mu_start();if(!error)error=start_timer();
 #else
  error=start_timer();
@@ -93,7 +103,7 @@ unsigned int bounded_main(unsigned int arg){unsigned char*p;if(arg!=BIO_BASE||!b
 #ifdef I960_BACKGROUND
  if(bio_word((unsigned char*)arg+12)!=16||bio_word((unsigned char*)arg+BIO_INPUT)!=0x31415452||bio_word((unsigned char*)arg+BIO_INPUT+4)>2)return 2;
  if(bio_word((unsigned char*)arg+BIO_INPUT+4)==2){timer_stop_response((unsigned char*)arg,initialized);
-#ifdef I960_MU_ECHO
+#if defined(I960_MU_ECHO) || defined(I960_MU_FRAMED)
  {unsigned int owned=mu_owned,rc=mu_finish();
  bio_put((unsigned char*)arg+BIO_OUTPUT+4,rc);
  bio_put((unsigned char*)arg+BIO_OUTPUT+8,owned&&!rc?0x4d554f4bu:0);}

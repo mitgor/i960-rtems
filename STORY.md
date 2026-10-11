@@ -784,6 +784,26 @@ One echoed word is not a control protocol, and it cannot yet stop a runaway task
 That is the next door: framing, sequence numbers, and a STOP that does not need
 the old command loop to cooperate. No new flash was written for this experiment.
 
+## A sentence, and a stop
+
+The single word became a small protocol: halfwords through the same two message
+registers, assembled into checked frames in our own RAM. An epoch says which
+session a sentence belongs to. A sequence number says whether we have heard it
+before. A retry gets the old answer, not a second execution.
+
+On the card, a damaged checksum and a wrong epoch were rejected. Then Linux sent
+STOP through this new door. RTEMS stopped at tick 362. Another question came
+through, and the answer was still 362. The control interrupt could keep answering
+without letting the tasks run again. A final command stopped the timer too.
+Through all of this, the old firmware command counter stayed at one.
+
+Cleanup still went through the old, carefully checked path. Every borrowed byte
+came back, the driver unloaded, and Vader returned to the web without a reboot.
+This was a stop for the bounded tasks we can already run. A task that masks the
+control interrupt can still shut that door. Opening it safely means giving
+interrupts their own stack and preserving a complete interrupted context. That
+is the next piece of the machine we have to earn.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

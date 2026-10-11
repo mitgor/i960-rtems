@@ -101,3 +101,12 @@ Reference: Intel [i960 Rx Developer's Manual, 272736-002](https://datasheets.chi
 §7.1, §8.1.3–8.1.5, §8.5 and chapter 9. Repository evidence:
 `rtems/irq/context.S`, `timer_isr.S`, `timer_hw.h`, `rtems/net/app.c`, `start.S`,
 `rtems/build.py`; earlier live captures in `artifacts/rtems-web-autonomous-20261011`.
+
+## Follow-up: independent control under the existing priority policy
+
+The [framed MU experiment](MU-FRAMED.md) now stops bounded RTEMS dispatch from
+the timer handler and independently halts the timer. Its saved tick/heartbeat
+remain unchanged across a later status exchange. Task priorities are still 31;
+this does not remove blockers 1–4 above. Reclamation still uses the validated
+firmware cleanup path after the ISR has returned. Next resolve owned stack,
+complete frame preservation and continuation lifetime before CPU-bound trials.

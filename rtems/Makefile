@@ -1,6 +1,7 @@
 .PHONY: test
 # Offline native tests only. This does not touch the card.
 test:
+	python3 control/test_framed.py
 	python3 control/test_mu.py
 	python3 control/test_control.py
 	python3 control/demo.py

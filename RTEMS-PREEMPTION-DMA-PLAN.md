@@ -99,11 +99,11 @@ unowned DMA target.
 
 ## Immediate next implementation
 
-The bounded [MU echo](rtems/control/MU-ECHO.md) now passes live with full cleanup.
-Next implement and simulate a framed IMR1/OMR1 adapter with epoch/sequence/retry
-semantics and an independent STOP handshake, then validate it under bounded
-RTEMS activity. STOP still uses the stock firmware path today, so P1 is not
-complete. Keep the Vader service on the proven bounded `autonet` profile.
+[Framed MU control and independent bounded STOP/HALT](rtems/control/MU-FRAMED.md)
+now pass live. The next step is an owned interrupt stack and complete asynchronous
+context preservation, with native/disassembly checks before lowering task interrupt
+priorities. Current STOP cannot interrupt a level-31 runaway task; the stronger
+P1 gate and unrestricted preemption remain open. Keep production `autonet` bounded.
 
 ## P0/P1 audit and prototype checkpoint (2026-10-11)
 
@@ -134,3 +134,14 @@ local OISR acknowledgement; a host reboot and host-side acknowledgement fix
 preceded the successful retry. [Implementation](rtems/control/MU-ECHO.md),
 [evidence](artifacts/mu-echo-20261011/README.md). Independent STOP and unrestricted
 preemption remain unproven; next is framed control plus independent STOP.
+
+## Framed control checkpoint (2026-10-11)
+
+**Framed control milestone (2026-10-11):** CTL1 messages, retries and invalid-frame
+rejection passed over IMR1/OMR1. Independent STOP froze bounded RTEMS at tick 362;
+subsequent STATUS confirmed it, then independent timer HALT took 9.48 ms. Firmware
+sequence stayed 1 → 1 throughout. Full cleanup passed, without reboot/flash;
+Vader service restored. [Implementation](rtems/control/MU-FRAMED.md),
+[evidence](artifacts/mu-framed-20261011/README.md). This does not establish
+runaway-task STOP or unrestricted preemption. Next: owned IRQ stack and complete
+asynchronous context preservation before lowering task interrupt priorities.

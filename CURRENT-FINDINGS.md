@@ -1,5 +1,14 @@
 # Current findings and evidence — 2026-10-11
 
+**Framed control milestone (2026-10-11):** CTL1 messages, retries and invalid-frame
+rejection passed over IMR1/OMR1. Independent STOP froze bounded RTEMS at tick 362;
+subsequent STATUS confirmed it, then independent timer HALT took 9.48 ms. Firmware
+sequence stayed 1 → 1 throughout. Full cleanup passed, without reboot/flash;
+Vader service restored. [Implementation](rtems/control/MU-FRAMED.md),
+[evidence](artifacts/mu-framed-20261011/README.md). This does not establish
+runaway-task STOP or unrestricted preemption. Next: owned IRQ stack and complete
+asynchronous context preservation before lowering task interrupt priorities.
+
 **MU echo milestone (2026-10-11):** a timer ISR echoed an IMR1 word through OMR1
 in 11.02 ms while firmware sequence stayed 1 → 1. Full timer/RAM/MU restoration
 and module unload passed. The first trial retained resources after an incorrect

@@ -1,0 +1,11 @@
+Production full restoration verified
+{"label": "status", "latency_ms": 651.076031, "generation": 1, "firmware_sequence": [1, 1], "response": {"status": 0, "value": 36, "stopped": false, "heartbeat": 37}}
+{"label": "ping", "latency_ms": 657.807307, "generation": 2, "firmware_sequence": [1, 1], "response": {"status": 0, "value": 157338366, "stopped": false, "heartbeat": 102}}
+{"label": "ping-retry", "latency_ms": 643.869742, "generation": 3, "firmware_sequence": [1, 1], "response": {"status": 0, "value": 157338366, "stopped": false, "heartbeat": 102}}
+{"label": "wrong-epoch", "latency_ms": 649.565886, "generation": 4, "firmware_sequence": [1, 1], "response": {"status": 2, "value": 0, "stopped": false, "heartbeat": 233}}
+{"label": "bad-checksum", "latency_ms": 650.231269, "generation": 5, "firmware_sequence": [1, 1], "response": {"status": 1, "value": 0, "stopped": false, "heartbeat": 298}}
+{"label": "stop", "latency_ms": 648.850482, "generation": 6, "firmware_sequence": [1, 1], "response": {"status": 0, "value": 362, "stopped": true, "heartbeat": 363}}
+{"label": "stop-retry", "latency_ms": 650.297553, "generation": 7, "firmware_sequence": [1, 1], "response": {"status": 0, "value": 362, "stopped": true, "heartbeat": 363}}
+{"label": "stopped-status", "latency_ms": 648.137663, "generation": 8, "firmware_sequence": [1, 1], "response": {"status": 0, "value": 362, "stopped": true, "heartbeat": 363}}
+{"label": "halt", "latency_ms": 9.480348, "generation": 9, "firmware_sequence": [1, 1], "response": {"halt_ack": "0x2f000000"}}
+Full RAM, timer and MU restoration verified; module unloaded

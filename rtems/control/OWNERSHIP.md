@@ -1,5 +1,8 @@
 # Host-visible control ownership — 2026-10-11
 
+**Later milestone:** [framed control and independent bounded STOP/HALT passed](MU-FRAMED.md).
+Earlier next-step statements below describe their checkpoint.
+
 **Subsequent live result:** [bounded MU echo and restoration passed](MU-ECHO.md).
 The read-only investigation/prototype statements below describe the earlier checkpoint.
 Independent STOP and permanent coexistence remain unproven.
