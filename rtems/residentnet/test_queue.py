@@ -5,7 +5,7 @@ import subprocess,tempfile
 source=(Path(__file__).resolve().parents[1]/'net/network.c').read_text()
 functions=source[source.index('static err_t enqueue('):source.index('static err_t output(')]
 functions+=source[source.index('unsigned int network_output('):source.index('unsigned int network_report(')]
-for capacity,frame_capacity in ((8,1536),(32,1536),(64,1536),(72,1500)):
+for capacity,frame_capacity in ((8,1536),(32,1536),(64,1536),(72,1500),(68,1500),(128,1500)):
  code='''
 #include <assert.h>
 #include <stdio.h>

@@ -141,3 +141,6 @@ upload remains unavailable.
 
 See [SCSI stop and RAM boundary](SCSI-STOP.md) for the opt-in held-reset build,
 72-slot queue, card evidence and outstanding NMI/fault ownership gate.
+
+The newer [exclusive exception/RAM contract](FAULT-OWNERSHIP.md) covers real
+fault/NMI containment and the opt-in fixed external packet-buffer grant.

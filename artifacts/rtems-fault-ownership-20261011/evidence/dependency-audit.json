@@ -1,0 +1,24 @@
+{
+  "image": "fault-owner-nmi.tar.xz:scsi-drain/residentnet/kernel.bin",
+  "payload_sha256": "ce8f1c880effaa42c6d400e2824e3b8611fd6be2da8cbea19cdff656888d89fc",
+  "disassembly_sha256": "a48182b19aedc77bcb7fe0474ca0580d83b31392b17542e054925887cfcc9e26",
+  "software_interrupt_posts_found": false,
+  "system_calls_found": false,
+  "protected_low_ram": [
+    "0xc0000000",
+    "0xc0140000"
+  ],
+  "immutable_upload": [
+    "0xc0f2c000",
+    "0xc0f4c000"
+  ],
+  "candidate": [
+    "0xc0200000",
+    "0xc0240000"
+  ],
+  "queue": [
+    "0xc0200040",
+    "0xc022ee40"
+  ],
+  "remaining_scope": "Fixed queue only; general heap and other firmware ranges remain ungranted"
+}

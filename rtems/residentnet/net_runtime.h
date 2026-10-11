@@ -6,6 +6,14 @@ extern unsigned int resident_queue_drops(void),resident_queue_peak(void);
 #ifdef I960_SECONDARY_RESET
 extern unsigned int scsi_target_verified(void);
 #endif
+#ifdef I960_FAULT_OWNER
+extern unsigned int exclusive_fault_valid(void);
+#endif
+#ifdef I960_EXTRA_RAM
+extern unsigned int exclusive_extra_valid(void);
+extern void exclusive_extra_report(unsigned int*);
+extern void exclusive_abort(void);
+#endif
 static struct packet_link netlink;
 static unsigned int net_tick,net_ready,net_memory_ok;
 static void resident_net_init(void){unsigned int identity[7];
@@ -21,6 +29,9 @@ static void resident_net_init(void){unsigned int identity[7];
 }
 static void resident_net_step(void){unsigned int n=0,elapsed=ticks-net_tick;
  if(!net_ready||resident_state!=1)return;
+#ifdef I960_EXTRA_RAM
+ if(!exclusive_extra_valid())exclusive_abort();
+#endif
  if(netlink.ready)n=netlink.length;
  if(n||elapsed){network_step(elapsed*10,netlink.rx,n);net_tick=ticks;}
  if(n){netlink.ready=0;netlink.length=0;netlink.words=0;}
@@ -34,9 +45,23 @@ static unsigned int resident_net_control(unsigned int token){unsigned int op=tok
 }
 static void resident_net_report(unsigned int*w){
  w[57]=0x33544e52; /* RNT3: 72 slots, each holding one <=1500-byte IP packet */
+#ifdef I960_FAULT_OWNER
+ w[57]=0x34544e52; /* RNT4: 68 slots and owned exception storage */
+#endif
+#ifdef I960_EXTRA_RAM
+ w[57]=0x35544e52; /* RNT5: fixed guarded external queue, 128 slots */
+ {unsigned int report[8];exclusive_extra_report(report);
+ w[48]=0xc0200040u;w[49]=128*1500;w[50]=report[0];w[51]=report[1];}
+#endif
  w[58]=resident_queue_drops();w[59]=resident_queue_peak();
  w[60]=netlink.received;w[61]=netlink.sent;w[62]=netlink.rejected;w[63]=net_memory_ok;
 #ifdef I960_SECONDARY_RESET
  w[63]|=scsi_target_verified()?2:0;
+#ifdef I960_FAULT_OWNER
+ w[63]|=exclusive_fault_valid()?4:0;
+#ifdef I960_EXTRA_RAM
+ w[63]|=exclusive_extra_valid()?8:0;
+#endif
+#endif
 #endif
 }

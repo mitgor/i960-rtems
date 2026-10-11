@@ -1,5 +1,19 @@
 # RTEMS working guidance
 
+**Exclusive exception/RAM follow-up (2026-10-11):** real constraint faults and
+a real PCI doorbell NMI (vector 248) entered owned terminal handlers. The cached
+NMI vector, all fault entries and interrupt stack are owned before SCSI reset.
+A fixed 256 KiB range passed four patterns with protected-range checks; only
+its guarded 192,000-byte packet queue is granted with `--extra-ram`. The
+128-slot queue passed 24,000 ticks, six dual-stack rounds, saturation and TCP
+loss recovery with IRQ contexts drained at the deadline. General
+RAM reclamation remains disabled. The dedicated NMI ioctl exists only in a
+module pinned to `--fault-test 3`; do not put it in production. All exclusive
+resources remain retained until reboot. The final reboot succeeded and public
+IPv6 HTTP is restored and checked. Preserve cooperative profiles and check
+the live card owner before experimenting. [Contract and evidence](residentnet/FAULT-OWNERSHIP.md).
+
+
 **SCSI stop boundary (2026-10-11):** the identified secondary Symbios 53C895
 remained in bus reset for 36,000 ticks and ten spaced concurrent IPv4/IPv6
 rounds, including saturation, TCP loss recovery and autonomous task shutdown.

@@ -1,0 +1,27 @@
+{
+  "boot": "0c563854-265d-45bf-8a69-f79b07386d02",
+  "kind": 1,
+  "real_processor_fault": true,
+  "physical_nmi_tested": false,
+  "stable_snapshots": 2,
+  "fault_record": [
+    "0xc0f78ac0",
+    "0x142002",
+    "0x9002",
+    "0x50001",
+    "0xc0f2ef2c"
+  ],
+  "ownership_valid": true,
+  "scsi_reset_held": true,
+  "broader_ram_owned": true,
+  "ram_probe": [
+    4,
+    262144,
+    0,
+    0,
+    0,
+    0,
+    1,
+    29217
+  ]
+}

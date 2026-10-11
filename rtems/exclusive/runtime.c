@@ -73,12 +73,18 @@ void switch_irq_leave(unsigned int id,unsigned int fp){unsigned int j;
  if(!lifetime_leave(&life[id],(unsigned int)_Thread_Executing,fp,R(fp-16),R(fp-12),R(fp-8)))switch_fault|=2;
  for(j=0;j<64;j++)if(switch_irq_areas[id][j]!=0xa5||switch_irq_areas[id][8128+j]!=0xa5)switch_fault|=4;
 }
+#ifdef I960_FAULT_OWNER
+extern void exclusive_fault_inject(void);
+#endif
 static void Worker(rtems_task_argument id){
  switch_threads[id]=(unsigned int)_Thread_Executing;life[id].owner=switch_threads[id];
  life[id].low=(unsigned int)_Thread_Executing->Start.Initial_stack.area;life[id].high=life[id].low+8192;
  enable();while(!stop){
 #ifdef I960_RESIDENT_NET
   if(!id){mask();control_poll();resident_net_step();enable();}
+#endif
+#ifdef I960_FAULT_OWNER
+  if(resident&&!id&&ticks>=100)exclusive_fault_inject();
 #endif
   progress[id]++;
  }mask();done[id]=1;CHECK(rtems_task_suspend(RTEMS_SELF));bounded_fatal(0x53000);

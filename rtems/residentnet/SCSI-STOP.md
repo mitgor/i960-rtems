@@ -1,5 +1,9 @@
 # Secondary SCSI stop and resident RAM boundary
 
+Follow-up: [exclusive exception ownership and limited RAM grant](FAULT-OWNERSHIP.md)
+now supplies real fault/NMI tests and a separately validated external packet queue.
+The 72-slot build and remaining gates below describe this earlier batch.
+
 The optional `rtems/build.py --profile residentnet --secondary-reset` build
 adds a destructive, reboot-only stop of the private secondary PCI bus. Default
 residentnet and all cooperative profiles keep their previous behavior. No flash

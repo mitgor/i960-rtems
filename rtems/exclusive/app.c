@@ -25,6 +25,13 @@ extern unsigned char _bss_start[],_bss_end[];
 extern unsigned int exclusive_init(void),exclusive_run(unsigned int);
 extern void exclusive_resident(unsigned int,unsigned int);
 extern void exclusive_report(unsigned int*);
+#ifdef I960_FAULT_OWNER
+extern unsigned int exclusive_fault_install(unsigned int);
+#ifdef I960_EXTRA_RAM
+extern unsigned int exclusive_extra_prepare(void);
+extern void exclusive_abort(void);
+#endif
+#endif
 static unsigned int requested_phase,requested_ticks,runtime_error;
 static unsigned int initialized,epoch,ticks,state,entries,denials,expired,spins,drift,busy,decision;
 static unsigned int dma_before[6],dma_after[6],entered_frame,entered_pc,entered_ac,entered_vector,enter_mask,leave_mask;
@@ -44,9 +51,18 @@ void timer_interrupt(void){unsigned int token,i,n;
  if(token==(0x8a000000u|epoch)){
   REG(0x1314)=0;(void)REG(0x1314);mask31();entries++;state=6;
 #ifdef I960_SECONDARY_RESET
-  if(requested_phase!=2||!requested_ticks||!scsi_target_identity()||engine_acquire(2)||scsi_stop_hold(&scsi_stop,0x31504353u)){publish(0x8c000000u);for(;;){}}
+  if(requested_phase!=2||!requested_ticks||!scsi_target_identity()||engine_acquire(2)){publish(0x8c000000u);for(;;){}}
 #else
   if(requested_phase!=2||!requested_ticks||engine_acquire(2)){publish(0x8c000000u);for(;;){}}
+#endif
+#ifdef I960_FAULT_OWNER
+  if(exclusive_fault_install(epoch)){publish(0x8c000000u);for(;;){}}
+#endif
+#ifdef I960_SECONDARY_RESET
+  if(scsi_stop_hold(&scsi_stop,0x31504353u)){publish(0x8c000000u);for(;;){}}
+#endif
+#ifdef I960_EXTRA_RAM
+  if(exclusive_extra_prepare()){publish(0x8b000000u);exclusive_abort();for(;;){}}
 #endif
   publish(0x8b000000u);exclusive_resident(requested_ticks,epoch);for(;;){}
  }

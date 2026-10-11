@@ -1737,6 +1737,55 @@ reads still took nearly twelve milliseconds. Those costs stayed visible. The
 queue remained an option, Vader returned to the web server, and the next question
 became how much time we were spending checking each picture twice in software.
 
+## Teaching the last doors to stay shut
+
+Reset had stopped the SCSI engine. It had not changed where the processor went
+when something went wrong. The NMI vector still led into the old firmware, and
+the fault table still belonged to a program that might reasonably try to put
+its controller back to work.
+
+We gave those doors new destinations. Every fault-table entry became a local
+call to our terminal handler. The cached NMI vector moved too, along with the
+interrupt-stack pointer. The handler had its own guarded storage and a modest
+ambition: write down what happened, keep the host channel answering, and never
+return. Recovering the interrupted task could wait. Accidentally restarting
+SCSI could not.
+
+The first deliberate `faulte` made the distinction real. The card reported a
+constraint-range fault at the instruction we had planted. Its diagnostics
+stayed readable. The reset stayed asserted. No second firmware callback was
+needed, and no old handler was invited back in.
+
+NMI seemed harder. The instruction set explicitly forbids posting its vector
+as a software interrupt. A synthetic call tested the plumbing, but we kept its
+label honest. Then the messaging-unit chapter supplied the missing route:
+an external PCI agent could ring bit thirty-one of the inbound doorbell.
+We armed only that source in a dedicated image and gave its Linux module one
+checked, one-shot write. The next record said vector 248. This time the
+hardware had knocked, and our handler had answered.
+
+That made one small piece of cache RAM worth testing. We chose a fixed quarter
+megabyte, left the firmware's low workspace and our upload alone, and ran four
+address-dependent patterns with the data cache controlled. All 262,144 word
+checks passed. The adjacent bytes and the checksums of the protected ranges
+stayed unchanged. Another deliberate fault preserved the result; another NMI
+test repeated it. We had not acquired sixteen megabytes. We had evidence for
+one bounded place to put packets.
+
+The new queue could hold 128 MTU-sized frames there. Its old internal storage
+remained reserved, and the general allocator still refused arbitrary firmware
+RAM. A guard immediately after the queue joined the guards at the ends of the
+tested range. There was finally room to grow without pretending that all the
+other questions had disappeared.
+
+The traffic test filled those 128 slots. Of 160 burst requests, 129 answers
+survived and thirty-one drops were counted. Six IPv4/IPv6 rounds completed,
+including deliberately lost TCP packets. At exactly 24,000 timer ticks, both
+task interrupt contexts drained and the resident session parked. The quarter
+megabyte had done useful work, and the evidence came back over the same host
+channel that had once seemed impossible to open. One more host reboot brought
+the cooperative server back, and Vader answered from the public IPv6 address.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -1762,8 +1811,9 @@ So, the ledger, honestly kept:
   host routing. The `autonet` profile supplies a hardware interrupt clock and bounded background
   RTEMS work; the host still relays packets. A separate exclusive profile now
   runs preemptible tasks and IPv4/IPv6 networking without a pending firmware
-  callback, within the existing allocation. Whole-engine drain, broader RAM
-  ownership and sustained resident service remain open.
+  callback. Owned fault/NMI containment and a tested fixed cache-data range now
+  support a 128-slot external packet queue. General heap expansion, graceful
+  engine drain and long-duration resident service remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

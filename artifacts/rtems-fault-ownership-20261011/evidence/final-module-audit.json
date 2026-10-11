@@ -1,0 +1,8 @@
+{
+  "payload_sha256": "a94a41b4d68129d37598b4b6de4ba56cfb483b6a5860dcad8f7b96b7eba44065",
+  "disassembly_sha256": "a24d49c14504ae54639b94ebf4459750761179d4836632612cb33ccf68abe620",
+  "software_interrupt_posts_found": false,
+  "system_calls_found": false,
+  "normal_module_has_nmi_test_ioctl": false,
+  "source_sha256": "0b8dd44567346e4b453a11a471a69bb6b65a6bc49fc26ecfb7b2b65ec2e695a9"
+}

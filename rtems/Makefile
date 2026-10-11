@@ -5,6 +5,10 @@ test:
 	python3 residentnet/test_host.py
 	python3 residentnet/test_queue.py
 	python3 residentnet/test_board.py
+	python3 residentnet/test_queue_extend.py
+	python3 residentnet/test_ram_probe.py
+	python3 residentnet/test_nmi_host.py
+	python3 residentnet/test_fault_owner.py
 	python3 residentnet/test_scsi_stop.py
 	python3 residentnet/test_scsi_identity.py
 	python3 residentnet/test_ram_transfer.py

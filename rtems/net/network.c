@@ -16,11 +16,19 @@ static unsigned int now_ms,random_state=0x1960466,tx_count,rx_count,drops;
 #ifndef NETWORK_QUEUE_SLOTS
 #define NETWORK_QUEUE_SLOTS 8
 #endif
-static unsigned short lengths[NETWORK_QUEUE_SLOTS];
+#ifndef NETWORK_LENGTH_SLOTS
+#define NETWORK_LENGTH_SLOTS NETWORK_QUEUE_SLOTS
+#endif
+static unsigned short lengths[NETWORK_LENGTH_SLOTS];
 #ifndef NETWORK_FRAME_BYTES
 #define NETWORK_FRAME_BYTES 1536
 #endif
+#ifdef NETWORK_EXTERNAL_QUEUE
+static unsigned char internal_frames[68][NETWORK_FRAME_BYTES];
+static unsigned char (*frames)[NETWORK_FRAME_BYTES]=internal_frames;
+#else
 static unsigned char frames[NETWORK_QUEUE_SLOTS][NETWORK_FRAME_BYTES];
+#endif
 static unsigned int head,tail,queued;
 #ifdef RESIDENT_QUEUE_STATS
 static unsigned int queue_highwater;
