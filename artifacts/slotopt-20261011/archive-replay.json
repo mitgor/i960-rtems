@@ -1,0 +1,15 @@
+{
+  "binary_hashes": 7,
+  "target_source_manifests": 5,
+  "unchanged_kernel_module": true,
+  "sessions": 10,
+  "replies": 1691,
+  "full_audits": 1691,
+  "targeted_slots": 2506,
+  "commands": 59284,
+  "identical_release_frames": 80,
+  "restorations": 10,
+  "selected": "words",
+  "boot_id": "39332cc7-b410-4d68-927c-d0398d95316a",
+  "production_restored": true
+}

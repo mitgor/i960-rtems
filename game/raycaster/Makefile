@@ -37,3 +37,7 @@ test-queue: all
 test-combined: test-queue
 	python3 combined/test.py
 .PHONY: test-combined
+
+test-slotopt: test-combined
+	python3 slotopt/test.py
+.PHONY: test-slotopt

@@ -1,0 +1,32 @@
+{
+  "target-bench-byte": {
+    "payload_bytes": 202628,
+    "diagnostic": true,
+    "slots": "byte",
+    "request_symbol": true
+  },
+  "target-bench-hash": {
+    "payload_bytes": 202628,
+    "diagnostic": true,
+    "slots": "hash",
+    "request_symbol": true
+  },
+  "target-bench-words": {
+    "payload_bytes": 202628,
+    "diagnostic": true,
+    "slots": "words",
+    "request_symbol": true
+  },
+  "target-hash": {
+    "payload_bytes": 202628,
+    "diagnostic": false,
+    "slots": "hash",
+    "request_symbol": true
+  },
+  "target-words": {
+    "payload_bytes": 202628,
+    "diagnostic": false,
+    "slots": "words",
+    "request_symbol": true
+  }
+}

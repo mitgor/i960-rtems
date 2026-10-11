@@ -1,5 +1,9 @@
 # Combined ACK-and-PUBLISH
 
+The [target-only slot optimization](../slotopt/README.md) is now accepted as an
+additional opt-in: another 4.00% less kernel time, with the same module and full
+audits. The original combined target below remains available and reproducible.
+
 This opt-in bounded queue profile adds operation **4** to the existing 64-byte
 request. It acknowledges and replaces **the same slot** in one callback. The
 previous separate-operation target and transport defaults remain available.

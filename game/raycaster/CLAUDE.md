@@ -77,3 +77,16 @@ and replaces that same slot only after all checks pass. Four sessions: 586 repli
 frames. Keep the older queue and single-frame paths available; never retry an
 uncertain replacement. Next: measure slot hash/validation costs, without removing
 any guards, paired comparisons, hashes or full audits.
+
+Slot helper follow-up: all fifteen `slotopt/BATCH.md` steps are complete. Read
+`slotopt/README.md` and `artifacts/slotopt-20261011/README.md`. Select
+`--queue-slots words` alongside the accepted combined/fast-render flags; keep all
+existing defaults and the old byte/hash-only paths. Do not copy target-only helper
+changes into the kernel or other RTEMS profiles without separate validation.
+Ten sessions pass 1,691 replies/full audits and 806 two-slot stress requests.
+Callback −10.14%, kernel −4.00%; host audit cost remains about 11.8 ms. The small
+extra kernel delta over hash-only is within host noise. `--queue-diagnostic` is
+measurement-only, bounded at 32 repetitions, and absent from release binaries.
+`make test-slotopt` covers native variants, mutations, alignments and guard pages.
+Next: connect this verified queue to the browser bridge, preserving full audit,
+ACK/generation and uncertain-execution rules; measure actual displayed delivery.

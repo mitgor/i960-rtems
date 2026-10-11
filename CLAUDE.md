@@ -1,5 +1,22 @@
 # Repository guidance for Claude Code
 
+**Slot validation batch accepted (2026-10-11):** all fifteen steps in
+[the batch ledger](game/raycaster/slotopt/BATCH.md) completed. Target-only word
+hashing plus exact word metadata/guard checks reduce full-frame callback time
+**11.219 → 10.081 ms (10.14%)** and kernel time **25.165 → 24.158 ms (4.00%)**.
+Ten sessions passed **1,691 replies and paired full audits**, 59,284 commands and
+ten complete restorations, including 806 two-slot stress requests. Hash cost falls
+24.97%; complete slot validation 33.63%. The accepted kernel module and full audit
+coverage are unchanged. The extra 0.016 ms kernel advantage over hash-only is
+within host variation; both remain opt-in. Use `--queue-slots words` with the
+accepted combined/fast-render flags; diagnostic opcode 5 is excluded from release
+images. Public IPv6 HTTP restored. No flash/reboot in this card batch. The queue
+retains its original RAM grant and does not inherit the parallel ownership work.
+[Contract](game/raycaster/slotopt/README.md), [complete measurements/artifacts](artifacts/slotopt-20261011/README.md).
+Next: browser integration of the verified combined queue with full audits and
+measured displayed-frame delivery.
+
+
 **Exclusive exception/RAM follow-up (2026-10-11):** real constraint faults and
 a real PCI doorbell NMI (vector 248) entered owned terminal handlers. The cached
 NMI vector, all fault entries and interrupt stack are owned before SCSI reset.

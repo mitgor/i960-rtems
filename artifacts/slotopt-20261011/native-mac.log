@@ -1,0 +1,24 @@
+PASS: bad lengths/capacity, 5120 corrupt publication bytes and generation exhaustion preserve queue/renderer; ASan/UBSan
+PASS: bad lengths/capacity, 5120 corrupt publication bytes and generation exhaustion preserve queue/renderer; ASan/UBSan
+PASS: 20484 hash length/alignment cases; 163840 single-bit slot corruptions; metadata offsets; protected-page tails; ASan/UBSan
+PASS: bad lengths/capacity, 5120 corrupt publication bytes and generation exhaustion preserve queue/renderer; ASan/UBSan
+PASS: bad lengths/capacity, 5120 corrupt publication bytes and generation exhaustion preserve queue/renderer; ASan/UBSan
+PASS: 20484 hash length/alignment cases; 163840 single-bit slot corruptions; metadata offsets; protected-page tails; ASan/UBSan
+PASS: bad lengths/capacity, 5120 corrupt publication bytes and generation exhaustion preserve queue/renderer; ASan/UBSan
+PASS: bad lengths/capacity, 5120 corrupt publication bytes and generation exhaustion preserve queue/renderer; ASan/UBSan
+PASS: 20484 hash length/alignment cases; 163840 single-bit slot corruptions; metadata offsets; protected-page tails; ASan/UBSan
+PASS: 293 differential requests; identical 80-frame trajectory; 512 request bit mutations; 508 rejections preserve queue and renderer
+PASS: 293 differential requests; identical 80-frame trajectory; 512 request bit mutations; 508 rejections preserve queue and renderer
+PASS byte bench 67 exact replies and slots
+PASS byte stress 806 exact replies and slots
+PASS byte 512 diagnostic request mutations preserve all private state
+PASS: 293 differential requests; identical 80-frame trajectory; 512 request bit mutations; 508 rejections preserve queue and renderer
+PASS: 293 differential requests; identical 80-frame trajectory; 512 request bit mutations; 508 rejections preserve queue and renderer
+PASS hash bench 67 exact replies and slots
+PASS hash stress 806 exact replies and slots
+PASS hash 512 diagnostic request mutations preserve all private state
+PASS: 293 differential requests; identical 80-frame trajectory; 512 request bit mutations; 508 rejections preserve queue and renderer
+PASS: 293 differential requests; identical 80-frame trajectory; 512 request bit mutations; 508 rejections preserve queue and renderer
+PASS words bench 67 exact replies and slots
+PASS words stress 806 exact replies and slots
+PASS words 512 diagnostic request mutations preserve all private state

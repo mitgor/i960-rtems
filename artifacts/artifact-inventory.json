@@ -11808,6 +11808,211 @@
       "sha256": "82f60da19a8d39f4fcb4585664da8b59665bc3853e30e0606da8839b66784eef"
     },
     {
+      "path": "artifacts/slotopt-20261011/README.md",
+      "size": 8272,
+      "sha256": "1f10074f85af07c81d995d10a9cd1fd53606966b656fa9daa885e5bd97d8b301"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/archive-replay.json",
+      "size": 362,
+      "sha256": "9363e63d647a1b102181cf0e2b86c490b0ad2d1ec4e59c9cc76e3efa45af2026"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/base1-quiet.json",
+      "size": 169,
+      "sha256": "cb83ab0f98f3300bd594b5e3023181ab2a98a9b6d3396d22fb9dc0657e833cbd"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/base1-verified.json",
+      "size": 181,
+      "sha256": "9e9bcd873e0324523789be456c5050ba0edea2f91f12f28ec0bf0bdac7c51a35"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/base2-quiet.json",
+      "size": 169,
+      "sha256": "cb83ab0f98f3300bd594b5e3023181ab2a98a9b6d3396d22fb9dc0657e833cbd"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/base2-verified.json",
+      "size": 181,
+      "sha256": "9e9bcd873e0324523789be456c5050ba0edea2f91f12f28ec0bf0bdac7c51a35"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/baseline-profile.json",
+      "size": 1279,
+      "sha256": "95e495f69cdfa4c15432ff5cbabc11cdd970b6235b5b8e365a0d6df2a5a30a73"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/bench-byte-quiet.json",
+      "size": 167,
+      "sha256": "1b68a3a19243221075ecca97c7f086585ef40503ae25d4183eb6ba8563c710a9"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/bench-byte-verified.json",
+      "size": 178,
+      "sha256": "356a0c7feec9bf54905f01c0797507fb200477e6c9e5468923a228a8fad40b1b"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/bench-hash-quiet.json",
+      "size": 167,
+      "sha256": "1b68a3a19243221075ecca97c7f086585ef40503ae25d4183eb6ba8563c710a9"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/bench-hash-verified.json",
+      "size": 178,
+      "sha256": "356a0c7feec9bf54905f01c0797507fb200477e6c9e5468923a228a8fad40b1b"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/bench-live.tar.gz",
+      "size": 10127472,
+      "sha256": "f6059e5f955d6acd3f44919fd22781059b9fc041a4d313c00e21185de47668f8"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/bench-words-quiet.json",
+      "size": 167,
+      "sha256": "1b68a3a19243221075ecca97c7f086585ef40503ae25d4183eb6ba8563c710a9"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/bench-words-verified.json",
+      "size": 178,
+      "sha256": "356a0c7feec9bf54905f01c0797507fb200477e6c9e5468923a228a8fad40b1b"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/binary-sha256.txt",
+      "size": 672,
+      "sha256": "5519885acea93fa5bdf899f91e9178ecd93034d5c51d1305654a58da9bad9f4f"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/build-inspection.json",
+      "size": 652,
+      "sha256": "b1137c6defc8b196535c4716e138c508e9a7f9e008959e8dfe4d06c86c794573"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/build-replay.json",
+      "size": 92,
+      "sha256": "99cacead28e82e4fc481247a8ee0abdb5e1b12793a9c4e7cce44e2d589242f68"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/builds.tar.gz",
+      "size": 1080648,
+      "sha256": "e8834262949f809fd6b0b6187363dd12e7243efeb344a0a3413b5e424d83e232"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/comparison.json",
+      "size": 6386,
+      "sha256": "5bdd62d340889a5d4936e2b0bba8ee62458c0d2b0c2d0ff6b78d6ca7b2779d98"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/diagnostic-inspection.json",
+      "size": 548,
+      "sha256": "aac4d1b9e5eefbb4b08aeb0f851c0dc68b81a72056329b076049a3d79fd87f5c"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/diagnostic-request.dis",
+      "size": 30439,
+      "sha256": "83fd33300bc0895f1c8f592d09fb151e695b119503f2552d4b654cc30c70853a"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/hash1-quiet.json",
+      "size": 169,
+      "sha256": "cb83ab0f98f3300bd594b5e3023181ab2a98a9b6d3396d22fb9dc0657e833cbd"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/hash1-verified.json",
+      "size": 181,
+      "sha256": "9e9bcd873e0324523789be456c5050ba0edea2f91f12f28ec0bf0bdac7c51a35"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/hash2-quiet.json",
+      "size": 169,
+      "sha256": "cb83ab0f98f3300bd594b5e3023181ab2a98a9b6d3396d22fb9dc0657e833cbd"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/hash2-verified.json",
+      "size": 181,
+      "sha256": "9e9bcd873e0324523789be456c5050ba0edea2f91f12f28ec0bf0bdac7c51a35"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/http-headers.txt",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/http.html",
+      "size": 2891,
+      "sha256": "1908b7b0a6989c94813aa1ed66fe9e37b778f72d6ebe96451c74485bc27a38ad"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/native-linux-final.log",
+      "size": 2391,
+      "sha256": "b1f5d48f7e3c26b7d85c68af20f4655249ac16dce9379bc61448afa3d4113b6d"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/native-mac.log",
+      "size": 2391,
+      "sha256": "b1f5d48f7e3c26b7d85c68af20f4655249ac16dce9379bc61448afa3d4113b6d"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/prior-combined-replay.json",
+      "size": 341,
+      "sha256": "5e10d4d4acd8e1e4dddb977dedfab332f8a68a7271eb9837087a78d60bba9e4a"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/release-live.tar.gz",
+      "size": 30140531,
+      "sha256": "d643d591f3c6cf45b40743955d7aa4a40c831b5b6808e2d88e9cab83a2ea7f7b"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/selected.json",
+      "size": 241,
+      "sha256": "1cd2ecbea48b2017a15407fbd48fb81e085ad12bbfee205bb966244880eee7c8"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/service-state.txt",
+      "size": 101,
+      "sha256": "3032567c1a51abd9355c88916439b697825ed81327abf375202966b141cb0285"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/source-base-commit.txt",
+      "size": 41,
+      "sha256": "2597231ee20e043469d7fabfa73013f823b78216febfad9ac59ee3f1d1afdc0d"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/stress-live.tar.gz",
+      "size": 25991370,
+      "sha256": "b5c2b98d8379043a633f4221d3efbf2fe4487765eb8440abc233de591ea56166"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/stress-quiet.json",
+      "size": 169,
+      "sha256": "a111e2eb7385deec774b15fc3f9900a2741bac28fc7253e9382dbe706272426c"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/stress-verified.json",
+      "size": 183,
+      "sha256": "e5d26a808e67dec0dc44afd62ab00f307537a0b3aaa2a34231c86a14194546a3"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/words1-quiet.json",
+      "size": 169,
+      "sha256": "cb83ab0f98f3300bd594b5e3023181ab2a98a9b6d3396d22fb9dc0657e833cbd"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/words1-verified.json",
+      "size": 181,
+      "sha256": "9e9bcd873e0324523789be456c5050ba0edea2f91f12f28ec0bf0bdac7c51a35"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/words2-quiet.json",
+      "size": 169,
+      "sha256": "cb83ab0f98f3300bd594b5e3023181ab2a98a9b6d3396d22fb9dc0657e833cbd"
+    },
+    {
+      "path": "artifacts/slotopt-20261011/words2-verified.json",
+      "size": 181,
+      "sha256": "9e9bcd873e0324523789be456c5050ba0edea2f91f12f28ec0bf0bdac7c51a35"
+    },
+    {
       "path": "artifacts/software-loader-20261010/README.md",
       "size": 1556,
       "sha256": "7e74045b3d94efbe69eb065059baa992e3af818122dc444d38f8d36d4e07a948"

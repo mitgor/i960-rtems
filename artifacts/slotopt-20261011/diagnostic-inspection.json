@@ -1,0 +1,12 @@
+{
+  "target": "target-bench-byte",
+  "function": "fq_request",
+  "repetition_cap_compare": "c0f2d1e4",
+  "zero_repeat_exit": "c0f2d204",
+  "hash_loop": "c0f2d220..c0f2d240",
+  "hash_result_comparison": "c0f2d270",
+  "validation_hash_loop": "c0f2d474..c0f2d494",
+  "validation_result_comparison": "c0f2d498",
+  "outer_loop_increment_compare": "c0f2d4a4..c0f2d4a8",
+  "finding": "The generated code retains bounded outer repetitions, complete FNV inner loops, checked results and an error exit. Hardware slopes remain the operational measurement."
+}

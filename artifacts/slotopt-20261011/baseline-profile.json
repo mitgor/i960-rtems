@@ -1,0 +1,51 @@
+{
+  "diagnostics": {
+    "byte": {
+      "hash": {
+        "counts": [
+          0,
+          1,
+          4,
+          8,
+          16,
+          32
+        ],
+        "median_execute_ms": [
+          3.51791,
+          5.260493,
+          10.549124,
+          17.56701,
+          31.598662,
+          59.671858
+        ],
+        "ms_per_repeat": 1.7548612429696284,
+        "intercept_ms": 3.519753529808778,
+        "max_fit_residual_ms": 0.014121772778405983
+      },
+      "validation": {
+        "counts": [
+          0,
+          1,
+          4,
+          8,
+          16,
+          32
+        ],
+        "median_execute_ms": [
+          3.534469,
+          5.549954,
+          11.624583,
+          19.710196,
+          35.856303,
+          68.193574
+        ],
+        "ms_per_repeat": 2.0205031723284588,
+        "intercept_ms": 3.5363975813273356,
+        "max_fit_residual_ms": 0.009773040044994019
+      },
+      "validation_minus_hash_ms": 0.26564192935883035
+    }
+  },
+  "release": {},
+  "limits": "Diagnostic slopes include loop/check overhead with warmed repeated data; residual validation-minus-hash is an estimate. Release targets contain no diagnostic opcode. Full paired audits retained on every request; host times are not target cycles or browser FPS."
+}

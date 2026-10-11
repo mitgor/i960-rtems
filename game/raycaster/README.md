@@ -1,5 +1,10 @@
 # Bounded fixed-point raycaster and RTEMS profiling
 
+The [slot-validation follow-up](slotopt/README.md) completed its fifteen-step batch:
+1,691 fully audited card requests, ten restorations, 10.14% less callback time and
+4.00% less kernel time. The selected combined-queue target uses `--queue-slots words`;
+existing defaults remain. [Evidence and limits](../../artifacts/slotopt-20261011/README.md).
+
 The [combined queue operation](combined/README.md) is card accepted: 37.24% lower
 kernel time than separate ACK+PUBLISH, with full audits on every request. It remains
 opt-in; [measurements and exact evidence](../../artifacts/ackpublish-20261011/README.md).

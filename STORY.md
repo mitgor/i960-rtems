@@ -1786,6 +1786,32 @@ megabyte had done useful work, and the evidence came back over the same host
 channel that had once seemed impossible to open. One more host reboot brought
 the cooperative server back, and Vader answered from the public IPv6 address.
 
+## Counting the checks
+
+A picture now arrived with an owner, a generation and a receipt. It also arrived
+with a bill for checking it. We asked the card to repeat the hash zero, one, four,
+eight, sixteen and thirty-two times, checking every result, while the host kept
+performing the complete memory audits. The resulting line was gratifyingly straight.
+
+Hashing one reply cost about 1.755 milliseconds. Checking the whole published
+slot cost 2.021. Loading words instead of individual bytes, while feeding the
+same bytes through the same hash in the same order, brought those costs down to
+about 1.317 and 1.341 milliseconds. Every metadata field and every guard byte
+still had to agree.
+
+The headline was smaller than the little benchmark. The callback became ten
+percent quicker, and the complete kernel transaction improved by four percent:
+roughly twenty-five milliseconds became twenty-four. Nearly twelve milliseconds
+still belonged to the paired memory audit. The slightly simpler hash-only change
+finished almost as quickly overall; host variation was larger than that difference.
+
+Ten sessions returned one thousand six hundred and ninety-one matching replies.
+The long run kept both picture slots occupied, tried stale and duplicate receipts,
+reset through eight epochs, and finally closed with two pictures nobody had yet
+acknowledged. The original memory came back intact. The public server returned,
+and the next application job was to let the browser use this carefully checked
+queue, with its real display rate measured rather than inferred from a callback.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

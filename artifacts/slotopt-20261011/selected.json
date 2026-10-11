@@ -1,0 +1,4 @@
+{
+  "selected": "words",
+  "reason": "Lower callback time in both runs and lower validation slope; full kernel advantage over hash-only is just 0.016 ms and not a reliable incremental end-to-end win. Both beat byte baseline. Keep opt-in."
+}
