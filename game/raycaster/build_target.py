@@ -25,6 +25,7 @@ def main():
     p.add_argument('--memory-check', action='store_true', help='run 264 bounded reference-check batches before requests')
     p.add_argument('--request-words', action='store_true', help='exact aligned word request validation')
     p.add_argument('--render-fast', action='store_true', help='word-loaded FNV and clipped column runs')
+    p.add_argument('--frame-queue', action='store_true', help='bounded two-slot queue prototype; requires queue audit transport')
     a = p.parse_args()
     if a.memory_check and a.memory != 'word':
         p.error('--memory-check requires --memory word')
@@ -37,13 +38,27 @@ def main():
     shutil.copyfile(HERE / 'rtems/app.c', profile / 'app.c')
     for name in ('ray.c', 'ray.h', 'trig.h'):
         shutil.copyfile(HERE / name, profile / name)
-    from callback.optimize import request_words, render_fast
+    from callback.optimize import request_words, render_fast, once
     if a.request_words:
         header = project / 'transport/buffer_io.h'
         header.write_text(request_words(header.read_text()))
     if a.render_fast:
         ray = profile / 'ray.c'
         ray.write_text(render_fast(ray.read_text()))
+    if a.frame_queue:
+        for name in ('queue.c', 'queue.h'):
+            shutil.copyfile(HERE/'queue'/name, profile/name)
+        app=profile/'app.c'
+        text=once(app.read_text(),'#include "ray.h"', '#include "ray.h"\n#include "queue.h"\nstatic struct fq_state queue_state;')
+        text=once(text,'rc=ray_request(guest,b+BIO_INPUT,bio_word(b+12),b+BIO_OUTPUT,bio_word(b+16));', 'rc=fq_request(&queue_state,guest,(unsigned char*)(0xc0f2c000u+FQ_OFFSET),b+BIO_INPUT,bio_word(b+12),b+BIO_OUTPUT,bio_word(b+16),bio_word(b+8));')
+        text=once(text,'rc?0:(bio_word(b+BIO_INPUT+16)?RAY_REPLY:RAY_HEADER)', 'rc?0:FQ_REPLY')
+        # Queue operations cannot enter the raycaster's benchmark adapter.
+        text=once(text,'if(!rc && bio_word(b+BIO_INPUT+4)==3', 'if(0 && !rc && bio_word(b+BIO_INPUT+4)==3')
+        text=once(text,'if(!bio_word(b+20) && bio_word(b+BIO_INPUT+4)==3', 'if(0 && !bio_word(b+20) && bio_word(b+BIO_INPUT+4)==3')
+        app.write_text(text)
+        link=profile/'link.ld';text=link.read_text()
+        text=once(text,'ASSERT(. <= 0xc0f9bff0,', 'ASSERT(. <= 0xc0f8c000,')
+        link.write_text(text)
     if a.memory == 'word':
         libc = profile / 'libc.c'
         original = libc.read_text()
@@ -73,7 +88,7 @@ def main():
             sources[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
     sources['buffer_io.h'] = hashlib.sha256((project/'transport/buffer_io.h').read_bytes()).hexdigest()
     (work / 'session/raycaster-build.json').write_text(json.dumps(dict(
-        application='raycaster', request_words=a.request_words, render_fast=a.render_fast, memory=a.memory, memory_check_batches=264 if a.memory_check else 0, execution='bounded RTEMS session',
+        application='raycaster', frame_queue=a.frame_queue, request_words=a.request_words, render_fast=a.render_fast, memory=a.memory, memory_check_batches=264 if a.memory_check else 0, execution='bounded RTEMS session',
         hardware_tested=False, source_sha256=sources), indent=2) + '\n')
 
 

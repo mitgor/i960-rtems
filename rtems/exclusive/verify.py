@@ -54,7 +54,7 @@ def verify(root,out):
    else:raise AssertionError(('corruption accepted',index))
   return dict(path=out.name,boot=identity['boot_id'],resident=True,ticks=groups[-1][5],reason=groups[-1][3],snapshots=len(groups),corruptions_rejected=bad,retained=True)
  if (out/'cache-pages.json').exists():
-  pages=json.loads((out/'cache-pages.json').read_text());assert len(pages) in (4,6,7,14,15) and len(rows)==2+len(pages)
+  pages=json.loads((out/'cache-pages.json').read_text());assert len(pages) in (4,6,7,14,15,28) and len(rows)==2+len(pages)
   for page,(req,data) in enumerate(rows[2:],1):
    assert struct.unpack('<4I',req)==(0x31415452,0,epoch,page)
    words=list(struct.unpack('<160I',data));assert words==pages[page-1] and words[150:152]==[0x32484343,page]

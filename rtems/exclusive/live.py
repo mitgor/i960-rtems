@@ -25,7 +25,7 @@ def main():
   if a.ticks:assert w[116]==w[123]==w[148]==0 and w[117]>=a.ticks and w[118]>0 and w[119]>0 and w[120:122]==[1,1] and w[124]==w[125]>0 and w[126]==w[127]>0
   if a.cache_pages:
    pages=[]
-   for page in range(1,16):
+   for page in range(1,29):
     data=b.step(struct.pack('<4I',0x31415452,0,epoch,page));words=list(struct.unpack('<160I',data));assert words[150:152]==[0x32484343,page];pages.append(words)
    (b.out/'cache-pages.json').write_text(json.dumps(pages,indent=2)+'\n')
   print(json.dumps(dict(phase=a.phase,runtime=w[116:128],before=w[68:84],during=w[84:100],after=w[100:116])),flush=True);print(json.dumps(b.close()),flush=True)
