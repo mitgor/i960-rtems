@@ -92,3 +92,11 @@ and timeout, and 10,304 mismatches between targeted bytes and full audits.
 The C queue is also compared to an independent Python ownership model and the
 unchanged native renderer. Card tests close with one unacknowledged frame to
 verify restoration without requiring application-level draining.
+
+The generated-driver lifecycle test also executes allocation, debugfs publication,
+capture copying and cleanup for all 60 buffers, every allocation failure, and
+read_pair storage rejection before DMA. This regression was added after the first
+card attempt exposed three loops still bounded at 54; that host fault and reboot
+are preserved in the evidence ledger. The corrected four-session batch passed.
+Run `make -C game/raycaster test-queue` and replay the full artifact set with
+`python3 game/raycaster/queue/verify_archive.py artifacts/framequeue-20261011`.

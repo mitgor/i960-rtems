@@ -1,5 +1,11 @@
 # Bounded fixed-point raycaster and RTEMS profiling
 
+The opt-in [bounded frame queue](queue/README.md) now has card acceptance with
+full audits on every request. It proves two-slot ownership and backpressure, but
+separate PUBLISH+ACK costs 39.947 ms versus 20.596 ms for the audited baseline.
+Keep the previous single-frame path as the default. See the
+[evidence, failed first attempt and next step](../../artifacts/framequeue-20261011/README.md).
+
 **Hardware-validated (2026-10-11):** 548 replies match native replay; both
 sessions restored/unloaded and production HTTP is restored. Browser movement,
 turning/reset passed. See the [measured findings](../../artifacts/raycaster-20261011/README.md).

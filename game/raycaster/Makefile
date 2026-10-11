@@ -26,3 +26,9 @@ test-callback:
 	python3 callback/test.py
 	python3 callback/test_transport.py
 .PHONY: test-callback
+
+# Bounded queue protocol, targeted reads and generated driver lifecycle.
+test-queue: all
+	python3 queue/test.py
+	python3 queue/test_transport.py
+.PHONY: test-queue

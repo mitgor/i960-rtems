@@ -1,5 +1,19 @@
 # Repository guidance for Claude Code
 
+**Bounded frame queue accepted (2026-10-11):** two fixed slots with epoch,
+generation and explicit ACK passed four sessions, 518 native-matching replies,
+518 paired full audits and four restorations. All requests retain both complete
+512 KiB reads. The separate PUBLISH/ACK prototype costs **39.947 ms/frame versus
+20.596 ms baseline**; keep the previous single-frame path as the default.
+Targeted publication reads take 0.591 ms but do not replace auditing. The first
+module missed three capture-array loop bounds and faulted the host; evidence is
+preserved, the bounds/storage checks and generated-driver lifecycle tests are
+fixed, and the accepted batch ran after reboot. Public IPv6 HTTP is restored.
+Next: validate combined ACK-and-PUBLISH while keeping full audits per request;
+no asynchronous producer, broader RAM ownership or relaxed audit policy is proven.
+[Contract](game/raycaster/queue/README.md), [measurements and failure evidence](artifacts/framequeue-20261011/README.md).
+
+
 
 **Callback/render optimization accepted (2026-10-11):** exact word-at-a-time
 request validation and equivalent renderer loops reduce full-frame callback time

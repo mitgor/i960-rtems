@@ -1644,6 +1644,38 @@ checking less memory. That would answer a different question. The next transport
 would have to explain which bytes belonged to whom, and prove when a frame was
 finished, before it could ask to pay less.
 
+## Two pictures, and a receipt
+
+The next experiment gave the renderer somewhere to leave its work. Two small
+slots, each with a generation number, an epoch and a marker saying the picture
+was finished. The host had to read the picture, compare it with its independent
+renderer and the complete memory audit, then send back a receipt before that
+slot could be used again. A full queue was allowed to say no.
+
+The first attempt tripped over an ordinary host-side mistake. We made the array
+of capture buffers larger and failed to enlarge three loops that managed it.
+The first targeted read reached a buffer that had never been allocated. Linux
+faulted; the session could not close cleanly. We kept the crash and the exact
+binary, rebooted the PC, and wrote a test that exercised the generated driver's
+allocation and cleanup rather than supplying convenient buffers of its own.
+
+With that fixed, four sessions returned five hundred and eighteen matching
+replies. Every one still paid for two complete half-megabyte reads. Full queues,
+stale receipts, duplicate receipts and a new epoch all behaved as intended.
+Even a final picture nobody acknowledged disappeared safely when the original
+memory was restored.
+
+The stopwatch refused to call it an optimization. Reading a published picture
+and its small description took about six tenths of a millisecond. Producing it
+and acknowledging it in separate callbacks took nearly forty milliseconds,
+against about twenty-one milliseconds for the old single-frame transaction. Two callbacks meant two full audits. The
+receipts had made ownership clearer and the bill larger.
+
+So the old path kept its job. The next experiment would combine a receipt with
+the next publication, while keeping the complete audits. Vader returned to the
+public web page. The queue had proved a rule about when a picture could be
+replaced; it had not yet earned a faster frame rate.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

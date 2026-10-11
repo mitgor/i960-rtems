@@ -55,3 +55,14 @@ audits, eight restorations. Recommended 50 us transport + both target flags give
 19.44% lower kernel time; 20 us costs 17.19% more host CPU for 0.269 ms less audit
 time. Keep it optional. Preserve full paired coverage and coordinate hardware
 through the existing lock; production remains autonet.
+
+Bounded frame queue: `queue/` is an opt-in cooperative profile. Read its README
+and `artifacts/framequeue-20261011/README.md`. Four accepted sessions verify 518
+replies and 518 paired full allocation audits. Separate PUBLISH+ACK costs 39.947 ms
+versus 20.596 ms baseline; it is not the default performance path. Full audits
+remain mandatory every STEP. READY is not an asynchronous DMA/cache barrier.
+The first driver faulted because three capture loops still used 54 after the
+array grew to 60; preserve that failed evidence. `make test-queue` now tests actual
+generated allocation/publication/copy/free and read_pair storage guards, as well
+as the protocol and failure paths. Always update all lifecycle bounds together.
+Next is a validated combined ACK-and-PUBLISH, with no audit reduction.
