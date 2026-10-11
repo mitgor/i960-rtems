@@ -1,0 +1,17 @@
+{
+  "restored": true,
+  "unloaded": true,
+  "trace_records": 6286,
+  "summary": {
+    "steps": 6287,
+    "restored": true,
+    "unloaded": true,
+    "driver_bound": false,
+    "latency_ms": {
+      "min": 54.124711,
+      "max": 103.767928,
+      "mean": 55.833335567292394
+    }
+  },
+  "note": "Service stopped by SIGTERM; a request can be interrupted after sequence allocation and before trace append. Full restoration independently verified."
+}

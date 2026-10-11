@@ -9,7 +9,8 @@ from run import DBG,capture,verify_close
 from relay import IFACE
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('output',type=Path);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('output',type=Path);p.add_argument('--autonomous',action='store_true');a=p.parse_args()
+ dbg=Path('/sys/kernel/debug/dac960auto') if a.autonomous else DBG
  lock=open('/run/lock/i960-loadrun.lock','w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
  if Path('/sys/class/net',IFACE).exists():raise SystemExit('TUN is still owned; stop the client normally before cleanup')
  from ipv6_gateway import cleanup as cleanup6
@@ -33,11 +34,12 @@ def main():
  if j['original_forwarding'] is not None:
   current=Path('/proc/sys/net/ipv4/ip_forward')
   if current.read_text().strip()=='1':current.write_text(j['original_forwarding'])
- if DBG.exists():
-  log=(DBG/'result.txt').read_text()
+ if dbg.exists():
+  log=(dbg/'result.txt').read_text()
   if 'SESSION CLOSE rc=0 pending=0 exec-dirty=0 stage-dirty=0' not in log:raise SystemExit('Card state uncertain; module retained, inspect debugfs. No forced unload.')
-  out=a.output/'after-kill-close';capture(out);verify_close(out)
-  subprocess.run(['rmmod','dac960rtems'],check=True)
+  if a.autonomous and 'AUTONOMOUS STOP verified before any RAM restoration' not in log:raise SystemExit('No verified autonomous stop; module retained')
+  out=a.output/'after-kill-close';capture(out,dbg);verify_close(out)
+  subprocess.run(['rmmod','dac960auto' if a.autonomous else 'dac960rtems'],check=True)
  (a.output/'manual-cleanup.json').write_text(json.dumps(dict(clean=True,driver_bound=Path('/sys/bus/pci/devices/0000:37:09.1/driver').exists(),ip_forward=Path('/proc/sys/net/ipv4/ip_forward').read_text().strip()),indent=2)+'\n')
  print('Project firewall rules removed; verified RAM restoration; module unloaded if present.')
 if __name__=='__main__':main()

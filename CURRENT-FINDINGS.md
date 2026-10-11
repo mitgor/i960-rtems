@@ -20,6 +20,8 @@ RAM payloads and exercised the card; it did not reboot, program flash or test re
 | The 64 KiB scalar limit is policy, and a larger RAM profile is already proven. | The initial RTEMS profile uses a 310,772-byte image (the dual-stack revision uses 315,108 bytes) and 471,136-byte prepared upload inside the existing 512 KiB staging window. [Memory limits and extension stages](DEVELOPMENT-PLAN.md#what-can-be-extended-now). This does not establish ownership of the rest of the card's 16 MiB DRAM. |
 | BIO1 returns bounded text/frame data; Tetris has an explicit bounded update/render ABI. | [Buffer I/O](BUFFER-IO.md), [Tetris step](TETRIS-STEP.md), `game/`. 4 KiB input, 8 KiB output; Tetris uses 256-byte requests and 2,160-byte responses. |
 | Repeated execution and persistent sessions are hardware-tested. | [T3 replay](TETRIS-REPLAY.md): 1,000 + 64 calls. [T5 session](PERSISTENT-SESSION.md): 1,000 frames and a separate 400-frame cadence test. |
+| A card-hosted IPv6 HTTP server works. | GET from the Mac to the host global IPv6 port 8080 reached the card through DNAT; bounded HTTP request tests passed. The autonomous service is running for user testing. [Current report](artifacts/rtems-web-autonomous-20261011/README.md). |
+| Hardware timer interrupts can wake RTEMS tasks. | Eight interrupts/eight higher-priority task wakeups during a bounded busy-loop experiment; timer/vector/mask and RAM restored. Background execution passed 2,009 ticks/wakes in 20 host-silent seconds; networking advanced 509 ticks in five silent seconds. SIGTERM/SIGKILL/error cleanup passed. |
 | IPv6 networking works on the current cooperative RTEMS port. | [Dual-stack implementation and live evidence](artifacts/rtems-ipv6-20261011/README.md): ICMPv6, UDP/TCP, AAAA and IPv6 Internet HTTP through NAT66. Static addressing; DNS transport remains IPv4; fragmentation, SLAAC, sockets and TLS remain gaps. |
 | RTEMS Classic tasks and card TCP/IP execute after PC startup. | [Cooperative RTEMS port](rtems/README.md), [exact artifacts](artifacts/rtems-20261011/README.md). Persistent tasks, lwIP ICMP/UDP/TCP, DNS and HTTP through Linux TUN/NAT; clock/progress depend on host polling. |
 | Tetris is playable over SSH. | [Terminal instructions](TETRIS-TERMINAL.md), `host/session/`. T4's five automated SSH runs validated 36,380 frames; the 30-minute run contributed 35,846 at 19.91 Hz. |
@@ -53,8 +55,8 @@ are expected to reject the now-patched card; do not bypass their pinned hashes.
   unresolved. Recovered register literals are not a complete timing specification.
 - Payloads must return cooperatively; the host cannot preempt a runaway call.
   The RTEMS profile adds explicit BSS initialization, private persistent state
-  and three guarded task stacks. It does not establish an autonomous hardware
-  clock, interrupt ownership, full Newlib/POSIX support or memory isolation.
+  and three guarded task stacks. The autonomous profiles additionally borrow timer 1 with verified restoration;
+  full Newlib/POSIX support and memory isolation are not established.
 - Persistent sessions check the full payload/code/input/output region every
   frame, and the entire 512 KiB staging image every 32 calls and at close.
   Corruption outside the per-frame region can remain undetected for 31 calls.
@@ -65,8 +67,8 @@ are expected to reject the now-patched card; do not bypass their pinned hashes.
 - T4's half-hour acceptance run used scripted keys, with game-over periods and
   68 restarts. It is not a human gameplay or uninterrupted-running-game claim.
 - RTEMS tasks and host-routed TCP/IP now work in the [cooperative profile](rtems/README.md).
-  Autonomous timer/interrupt ownership and independent host transport remain
-  unimplemented. The [integrated plan](DEVELOPMENT-PLAN.md) describes
+  Bounded background RTEMS and its hardware clock now pass live tests;
+  independent host transport and exclusive takeover remain unvalidated. The [integrated plan](DEVELOPMENT-PLAN.md) describes
   those additional gates in A1–A3; a working cooperative session does not satisfy them.
 
 ## Preservation and current host observation

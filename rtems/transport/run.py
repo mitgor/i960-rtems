@@ -6,9 +6,9 @@ import wire
 DBG=Path('/sys/kernel/debug/dac960rtems')
 ROM_SHA='a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0'
 def sha(data):return hashlib.sha256(data).hexdigest()
-def capture(out):
+def capture(out,debugfs=DBG):
  out.mkdir()
- for p in DBG.iterdir():
+ for p in debugfs.iterdir():
   if p.is_file():(out/p.name).write_bytes(p.read_bytes())
 def verify_close(out):
  before=(out/'stage-before-a5.bin').read_bytes()
@@ -19,33 +19,38 @@ def verify_close(out):
   assert len({(out/n).read_bytes() for n in names})==1,names
 
 class Board:
- def __init__(self,payload,module,out):
+ def __init__(self,payload,module,out,autonomous=False):
+  self.autonomous=autonomous;self.module_name="dac960auto" if autonomous else "dac960rtems";self.debugfs=Path("/sys/kernel/debug")/self.module_name
   self.out=out;self.fd=None;self.lock=None;self.sequence=0;self.records=None;self.timings=[]
   self.code=payload.read_bytes();self.image=wire.prepare(self.code)
   out.mkdir(parents=True,exist_ok=False)
   self.lock=open('/run/lock/i960-loadrun.lock','w');fcntl.flock(self.lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
   assert not Path('/sys/bus/pci/devices/0000:37:09.1/driver').exists(),'card has driver'
-  assert not any(Path('/sys/module',m).exists() for m in ['dac960dump','dac960loadrun','dac960program','dac960session','dac960rtems'])
+  assert not any(Path('/sys/module',m).exists() for m in ['dac960dump','dac960loadrun','dac960program','dac960session','dac960rtems','dac960auto'])
   name='i960/rtems-'+sha(self.image)+'.bin';fw=Path('/lib/firmware')/name;fw.parent.mkdir(exist_ok=True)
   if fw.exists():assert fw.read_bytes()==self.image
   else:fw.write_bytes(self.image)
-  (out/'request.json').write_text(json.dumps(dict(payload_sha256=sha(self.code),image_sha256=sha(self.image),module_sha256=sha(module.read_bytes()),boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip()),indent=2)+'\n')
+  (out/'request.json').write_text(json.dumps(dict(payload_sha256=sha(self.code),image_sha256=sha(self.image),module_sha256=sha(module.read_bytes()),autonomous=autonomous,boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip()),indent=2)+'\n')
   subprocess.run(['insmod',str(module),'firmware_name='+name,'pointer_check=1','runtime_check=1','stage_check=1','buffer_io=1',f'payload_argument={wire.bio.BASE}'],check=True)
-  capture(out/'preflight')
+  capture(out/'preflight',self.debugfs)
   assert 'experiment-result=0 pending=0;' in (out/'preflight/result.txt').read_text()
-  self.fd=os.open('/dev/i960-rtems',os.O_RDWR|os.O_CLOEXEC)
-  capture(out/'open');self.original=(out/'open/stage-before-a5.bin').read_bytes()
+  self.fd=os.open('/dev/i960-auto' if autonomous else '/dev/i960-rtems',os.O_RDWR|os.O_CLOEXEC)
+  capture(out/'open',self.debugfs);self.original=(out/'open/stage-before-a5.bin').read_bytes()
   self.records=gzip.open(out/'trace.bin.gz','wb')
  def step(self,incoming):
   self.sequence+=1;b=wire.block(incoming,self.sequence);t=time.monotonic_ns()
   try:assert os.write(self.fd,b)==len(b)
   except BaseException:
-   capture(self.out/f'failure-{self.sequence:06d}');raise
+   capture(self.out/f'failure-{self.sequence:06d}',self.debugfs);raise
   reply=os.read(self.fd,wire.bio.SIZE);elapsed=time.monotonic_ns()-t
   assert len(reply)==wire.bio.SIZE
   before=self.image[:wire.bio.OFFSET]+b+self.original[wire.bio.IMAGE_SIZE:]
-  after=DBG.joinpath('payload-after-a5.bin').read_bytes()
-  assert after==DBG.joinpath('payload-after-5a.bin').read_bytes()
+  after=self.debugfs.joinpath('payload-after-a5.bin').read_bytes()
+  second=self.debugfs.joinpath('payload-after-5a.bin').read_bytes()
+  if self.autonomous:
+   assert after[:wire.MUTABLE_START]==second[:wire.MUTABLE_START] and after[wire.MUTABLE_END:]==second[wire.MUTABLE_END:]
+   assert wire.response(before,second+self.original[len(second):])==wire.response(before,after+self.original[len(after):])
+  else:assert after==second
   assert len(after) in (wire.bio.IMAGE_SIZE,524288)
   status,data=wire.response(before,after+self.original[len(after):])
   assert after[wire.bio.OFFSET:wire.bio.IMAGE_SIZE]==reply
@@ -53,14 +58,15 @@ class Board:
   self.records.flush();self.timings.append(elapsed)
   if self.sequence==1 or self.sequence%32==0:
    with gzip.open(self.out/f'audit-{self.sequence:06d}.bin.gz','wb') as f:f.write(after)
-   (self.out/f'audit-{self.sequence:06d}.txt').write_text(DBG.joinpath('result.txt').read_text())
+   (self.out/f'audit-{self.sequence:06d}.txt').write_text(self.debugfs.joinpath('result.txt').read_text())
   assert status==0,f'RIO status {status}'
   return data
  def close(self):
   if self.fd is not None:
    fd,self.fd=self.fd,None;os.close(fd)
-   capture(self.out/'close');verify_close(self.out/'close')
-   subprocess.run(['rmmod','dac960rtems'],check=True)
+   capture(self.out/'close',self.debugfs);verify_close(self.out/'close')
+   if self.autonomous and self.sequence:assert 'AUTONOMOUS STOP verified before any RAM restoration' in (self.out/'close/result.txt').read_text()
+   subprocess.run(['rmmod',self.module_name],check=True)
   if self.records:self.records.close()
   if self.lock:self.lock.close()
   summary=dict(steps=self.sequence,restored=True,unloaded=True,driver_bound=Path('/sys/bus/pci/devices/0000:37:09.1/driver').exists(),latency_ms=dict(min=min(self.timings,default=0)/1e6,max=max(self.timings,default=0)/1e6,mean=sum(self.timings)/max(1,len(self.timings))/1e6))

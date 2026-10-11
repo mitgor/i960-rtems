@@ -1,5 +1,31 @@
 # RTEMS on the DAC960PG
 
+## Hardware clock and IPv6 web server (2026-10-11)
+
+`net` remains the cooperative baseline. `autonet` runs bounded RTEMS/lwIP work
+from timer-1 interrupts at approximately 100 Hz, including between host calls.
+It serves HTTP on card port 80 with four connections and 512-byte request headers.
+Packet delivery still uses the Linux TUN relay. See [implementation and limits](autonomous/README.md)
+and [live evidence](../artifacts/rtems-web-autonomous-20261011/README.md).
+
+Build with `build.py --profile autonet` and the usual work directory/toolchain
+arguments. Generate the **matching** module with
+`autonomous/build_transport.py --network --payload <autonet/kernel.bin> --out <module-dir>`;
+compile it against the running host kernel. Never pair a background image with
+the cooperative module. Run `transport/relay.py --autonomous --payload <kernel.bin>
+--module <dac960auto.ko> --output <new-directory> --serve --internet6
+--publish-http6 <host-global-IPv6> --http-port 8080` with root privileges.
+The host address must be assigned to its uplink. Gateway changes are journaled;
+normal close stops the timer, restores RAM and removes routing rules. After a
+killed relay, `transport/cleanup.py --help` describes explicit journal cleanup;
+the kernel release itself performs the timer stop before restoring memory.
+
+The current remote launcher is `rtems/serve-autonomous.sh`, installed alongside
+the build directories. Stop its transient service with `sudo systemctl stop
+ i960-http6`. This service is intentionally left running for the user's test;
+it is not configured to restart after reboot.
+
+
 RTEMS 4.6.6 Classic tasks and lwIP 2.1.3 now execute on the physical i960RP.
 The card answers ICMP, provides UDP/TCP echo services, resolves DNS and fetches
 HTTP through the Linux host. A 30-minute run passed 29,352 callbacks and echoed

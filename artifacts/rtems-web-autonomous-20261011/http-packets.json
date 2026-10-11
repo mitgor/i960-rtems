@@ -1,0 +1,140 @@
+{
+  "valid": true,
+  "packets": 168,
+  "protocols": {
+    "ipv6_58": 10,
+    "1": 8,
+    "17": 10,
+    "6": 44,
+    "ipv6_17": 8,
+    "ipv6_6": 88
+  },
+  "streams": [
+    {
+      "src": "10.196.0.1",
+      "sport": 33130,
+      "dst": "10.196.0.2",
+      "dport": 9600,
+      "bytes": 16000,
+      "sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8",
+      "prefix": "\u0000\u0007\u000e\u0015\u001c#*18?FMT[bipw~\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\b\u000f\u0016\u001d$+29@GNU\\cjqx\u007f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0002\t\u0010\u0017\u001e%,3:AHOV]dkry\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "src": "10.196.0.2",
+      "sport": 9600,
+      "dst": "10.196.0.1",
+      "dport": 33130,
+      "bytes": 16000,
+      "sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8",
+      "prefix": "\u0000\u0007\u000e\u0015\u001c#*18?FMT[bipw~\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\b\u000f\u0016\u001d$+29@GNU\\cjqx\u007f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0002\t\u0010\u0017\u001e%,3:AHOV]dkry\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "src": "fd96:196:960::1",
+      "sport": 43152,
+      "dst": "fd96:196:960::2",
+      "dport": 9600,
+      "bytes": 16000,
+      "sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8",
+      "prefix": "\u0000\u0007\u000e\u0015\u001c#*18?FMT[bipw~\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\b\u000f\u0016\u001d$+29@GNU\\cjqx\u007f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0002\t\u0010\u0017\u001e%,3:AHOV]dkry\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "src": "fd96:196:960::2",
+      "sport": 9600,
+      "dst": "fd96:196:960::1",
+      "dport": 43152,
+      "bytes": 16000,
+      "sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8",
+      "prefix": "\u0000\u0007\u000e\u0015\u001c#*18?FMT[bipw~\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\b\u000f\u0016\u001d$+29@GNU\\cjqx\u007f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0002\t\u0010\u0017\u001e%,3:AHOV]dkry\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "src": "fd96:196:960::2",
+      "sport": 60853,
+      "dst": "2606:4700:10::ac42:93f3",
+      "dport": 80,
+      "bytes": 56,
+      "sha256": "b935cf488f7eb0a4cc7d1093607dadb4e1cfc7e1d222db11558ced2c103b0a52",
+      "prefix": "GET / HTTP/1.0\r\nHost: example.com\r\nConnection: close\r\n\r\n"
+    },
+    {
+      "src": "2606:4700:10::ac42:93f3",
+      "sport": 80,
+      "dst": "fd96:196:960::2",
+      "dport": 60853,
+      "bytes": 891,
+      "sha256": "b495e0f8b857942b06c53b8387f7ffbb1180769a95cb60c6b010cfcffc7f826e",
+      "prefix": "HTTP/1.1 200 OK\r\nDate: Sun, 11 Oct 2026 05:11:56 GMT\r\nContent-Type: text/html; charset=utf-8\r\nConnec"
+    },
+    {
+      "src": "2a02:8106:40:9000:4045:28e8:f766:cb40",
+      "sport": 54435,
+      "dst": "fd96:196:960::2",
+      "dport": 80,
+      "bytes": 107,
+      "sha256": "c1ba052c9ff3d0ee1c83e516d563ee3d2f2c603c73ec333cac8a727add997518",
+      "prefix": "GET / HTTP/1.1\r\nHost: [2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080\r\nUser-Agent: curl/8.7.1\r\nAccept: "
+    },
+    {
+      "src": "fd96:196:960::2",
+      "sport": 80,
+      "dst": "2a02:8106:40:9000:4045:28e8:f766:cb40",
+      "dport": 54435,
+      "bytes": 366,
+      "sha256": "e1537ac7a9b4fa21a82c23c8fb5611de0d211308898bc5d04beba1a47010e75f",
+      "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nConnection: close\r\nCache-Control: no-store\r"
+    },
+    {
+      "src": "2a02:8106:40:9000:30a9:7a7b:1f37:9b28",
+      "sport": 52084,
+      "dst": "fd96:196:960::2",
+      "dport": 80,
+      "bytes": 438,
+      "sha256": "b038916196a34ab9d3774f9fd74b99bbbbd8423ea2e420a017a1678422a17afd",
+      "prefix": "GET / HTTP/1.1\r\nHost: [2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080\r\nUser-Agent: Mozilla/5.0 (iPhone;"
+    },
+    {
+      "src": "fd96:196:960::2",
+      "sport": 80,
+      "dst": "2a02:8106:40:9000:30a9:7a7b:1f37:9b28",
+      "dport": 52084,
+      "bytes": 366,
+      "sha256": "e1537ac7a9b4fa21a82c23c8fb5611de0d211308898bc5d04beba1a47010e75f",
+      "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nConnection: close\r\nCache-Control: no-store\r"
+    },
+    {
+      "src": "2a02:8106:40:9000:30a9:7a7b:1f37:9b28",
+      "sport": 49767,
+      "dst": "fd96:196:960::2",
+      "dport": 80,
+      "bytes": 349,
+      "sha256": "4f89757d5b8b9874e674d1eeed062084201a01d114b4da5596e4834fa469de58",
+      "prefix": "GET /favicon.ico HTTP/1.1\r\nHost: [2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080\r\nConnection: keep-aliv"
+    },
+    {
+      "src": "fd96:196:960::2",
+      "sport": 80,
+      "dst": "2a02:8106:40:9000:30a9:7a7b:1f37:9b28",
+      "dport": 49767,
+      "bytes": 366,
+      "sha256": "e1537ac7a9b4fa21a82c23c8fb5611de0d211308898bc5d04beba1a47010e75f",
+      "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nConnection: close\r\nCache-Control: no-store\r"
+    }
+  ],
+  "dns": [
+    {
+      "src": "10.196.0.2",
+      "dst": "192.168.2.3",
+      "source_port": 52900,
+      "dest_port": 53,
+      "payload_hex": "fd1601000001000000000000076578616d706c6503636f6d00001c0001"
+    },
+    {
+      "src": "192.168.2.3",
+      "dst": "10.196.0.2",
+      "source_port": 53,
+      "dest_port": 52900,
+      "payload_hex": "fd1681800001000200000000076578616d706c6503636f6d00001c0001c00c001c0001000000950010260647000010000000000000ac4293f3c00c001c00010000009500102606470000100000000000006814179a"
+    }
+  ],
+  "retransmitted_segments": 2,
+  "preexisting_echo_streams_reset": []
+}

@@ -682,6 +682,84 @@ needed the host to keep asking, now with a considerably longer address.
 The [binaries and captures](artifacts/rtems-ipv6-20261011/README.md) are in the
 excavation box too.
 
+## The card gets a front door
+
+IPv6 had first been a way out: a DNS question, a TCP connection, a web page
+fetched from somebody else's machine. The next request turned the direction
+around. Could the old controller serve a page of its own?
+
+A small HTTP server went into the card's lwIP build. Four connection slots,
+a 512-byte request-header limit, one reply per connection, and no filesystem.
+It answered ordinary GETs, requests split across packets, repeated connections,
+and deliberately oversized headers. The Linux host forwarded an IPv6 TCP port;
+it did not manufacture the page. A request from the Mac to the PC's global
+IPv6 address on port 8080 came back with a greeting from the i960RP.
+
+That left the larger request: stop borrowing time from the host.
+
+The first useful discovery was that timer zero was already occupied. The stock
+firmware had set it up, and its counter was moving. There was another trap in
+the manual: reading a timer's mode register clears its terminal-count flag.
+Even an inventory needed to know which questions changed the answer. The
+observational probe left those registers alone.
+
+Timer one had zero count and reload values, no pending interrupt, and its mask
+bit clear. The core's vector cache was enabled, so a dedicated interrupt could
+use a saved-and-restored entry in internal RAM without rewriting the interrupt
+table in flash. A bounded experiment took that route. While one RTEMS task
+spun in a busy loop, eight hardware timer interrupts woke a higher-priority
+task eight times. Then the experiment stopped the timer, restored the vector
+and mask, returned to firmware, and gave back its RAM.
+
+That was a real hardware-driven task switch. It was not yet permission to
+leave the timer running after the host call returned.
+
+The autonomous transport therefore gained a different kind of close operation:
+stop the timer first, verify the acknowledgement, and only then restore the
+memory containing its handler. A killed client must follow the same rule in
+the kernel. Native fault tests exercised 344 command boundaries and a bad stop
+acknowledgement. Private RTEMS state could move between reads; immutable code
+and the host response still had to agree.
+
+The first background trial found a mistake that the bounded test could hide.
+Its timer-only mask stayed installed, masking the firmware sources needed for
+continued command service. The initial command returned, but the next read
+could not proceed. The new transport did what it was supposed to do on that
+failure: it kept the image and DMA pinned. It did not erase a live interrupt
+handler to make cleanup look successful.
+
+The failed capture was saved, the background mask was corrected to retain the
+stock interrupt sources, and the PC rebooted. It eventually came back. The next
+trial really did advance RTEMS while the host was silent, but stopping it found
+another mistake: an inline assembly helper had not supplied the value it meant
+to put into the processor control register. Again the transport kept the handler
+in place, and again the evidence was saved before rebooting.
+
+With that repaired, and timer one set for a hundred ticks per second, the host
+asked RTEMS to start and then said nothing for twenty seconds. When it asked
+again, 2,009 ticks and 2,009 task wakeups had happened. The card had kept its own
+time. STOP restored the timer, vector and masks; the loader restored RAM and
+unloaded normally.
+
+The networking build took the same path. Five silent seconds produced 509
+ticks. IPv4 and IPv6 echo still worked, an IPv6 Internet HTTP fetch completed,
+and a minute of IPv6 stress carried 554,528 bytes. The web page now described
+its hardware-driven clock, and the Mac fetched it through the host's global
+IPv6 address.
+
+There was one last bookkeeping trap. A deliberately invalid application request
+marked the generic session unusable, which also blocked the separate STOP
+command. The timer had not been armed in that case, but cleanup correctly
+refused to pretend it knew that. The final correction permits only the verified
+STOP path after a completed application error. Live SIGTERM, SIGKILL and invalid
+request tests then all restored RAM and unloaded; the native tests covered 344
+failure boundaries for each of the two autonomous protocol variants.
+
+This is bounded work sharing the processor with stock firmware. Linux still
+moves packets, and an arbitrary runaway task is still an arbitrary runaway
+task. But the hundred ticks per second no longer come from Linux asking politely.
+The card has a clock, tasks waking to it, and a small IPv6 front door.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -704,8 +782,9 @@ So, the ledger, honestly kept:
   cooperative functions, not a resident game loop.
 - **RTEMS and TCP/IP run on the card.** Historical RTEMS Classic tasks persist
   across returning callbacks; lwIP handles ICMP, UDP, TCP, DNS and HTTP through
-  host routing. The host supplies time and polling; autonomous interrupt-driven
-  RTEMS remains future work.
+  host routing. The `autonet` profile supplies a hardware interrupt clock and bounded background
+  RTEMS work; the host still relays packets. Exclusive takeover and unrestricted
+  preemption remain future work.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

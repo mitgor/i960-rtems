@@ -1,0 +1,28 @@
+● i960-http6.service - /home/mit/i960-rtems-web-20261011/serve-autonomous.sh --internet6 --publish-http6 2a02:8106:40:9000:f662:19ee:dbad:1f1e --http-port 8080 --output /home/mit/i960-rtems-web-20261011/http-autonomous-public-final
+     Loaded: loaded (/run/systemd/transient/i960-http6.service; transient)
+  Transient: yes
+     Active: active (running) since Sun 2026-10-11 07:53:38 CEST; 1min 22s ago
+   Main PID: 14270 (sudo)
+      Tasks: 2 (limit: 28716)
+     Memory: 24.3M
+        CPU: 23.054s
+     CGroup: /system.slice/i960-http6.service
+             ├─14270 sudo -n python3 /home/mit/i960-rtems-web-20261011/project/rtems/transport/relay.py --payload /home/mit/i960-rtems-web-20261011/autonet/kernel.bin --module /home/mit/i960-rtems-web-20261011/autonet-module5/dac960auto.ko --autonomous --output /home/mit/i960-rtems-web-20261011/sessions/20261011-055338 --serve --internet6 --publish-http6 2a02:8106:40:9000:f662:19ee:dbad:1f1e --http-port 8080 --output /home/mit/i960-rtems-web-20261011/http-autonomous-public-final
+             └─14274 python3 /home/mit/i960-rtems-web-20261011/project/rtems/transport/relay.py --payload /home/mit/i960-rtems-web-20261011/autonet/kernel.bin --module /home/mit/i960-rtems-web-20261011/autonet-module5/dac960auto.ko --autonomous --output /home/mit/i960-rtems-web-20261011/sessions/20261011-055338 --serve --internet6 --publish-http6 2a02:8106:40:9000:f662:19ee:dbad:1f1e --http-port 8080 --output /home/mit/i960-rtems-web-20261011/http-autonomous-public-final
+
+Oct 11 07:53:38 mit-HP-Z400-Workstation systemd[1]: Started /home/mit/i960-rtems-web-20261011/serve-autonomous.sh --internet6 --publish-http6 2a02:8106:40:9000:f662:19ee:dbad:1f1e --http-port 8080 --output /home/mit/i960-rtems-web-20261011/http-autonomous-public-final.
+Oct 11 07:53:38 mit-HP-Z400-Workstation sudo[14270]:     root : PWD=/ ; USER=root ; COMMAND=/usr/bin/python3 /home/mit/i960-rtems-web-20261011/project/rtems/transport/relay.py --payload /home/mit/i960-rtems-web-20261011/autonet/kernel.bin --module /home/mit/i960-rtems-web-20261011/autonet-module5/dac960auto.ko --autonomous --output /home/mit/i960-rtems-web-20261011/sessions/20261011-055338 --serve --internet6 --publish-http6 2a02:8106:40:9000:f662:19ee:dbad:1f1e --http-port 8080 --output /home/mit/i960-rtems-web-20261011/http-autonomous-public-final
+Oct 11 07:53:38 mit-HP-Z400-Workstation sudo[14270]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=0)
+Oct 11 07:53:45 mit-HP-Z400-Workstation serve-autonomous.sh[14274]: {"ping": "PING 10.196.0.2 (10.196.0.2) 56(84) bytes of data.\n64 bytes from 10.196.0.2: icmp_seq=1 ttl=255 time=262 ms\n64 bytes from 10.196.0.2: icmp_seq=2 ttl=255 time=79.7 ms\n64 bytes from 10.196.0.2: icmp_seq=3 ttl=255 time=99.6 ms\n64 bytes from 10.196.0.2: icmp_seq=4 ttl=255 time=111 ms\n\n--- 10.196.0.2 ping statistics ---\n4 packets transmitted, 4 received, 0% packet loss, time 3003ms\nrtt min/avg/max/mdev = 79.689/138.092/261.971/72.398 ms\n", "udp_sizes": [1, 31, 500, 1400], "tcp_bytes": 16000, "tcp_sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8"}
+Oct 11 07:53:52 mit-HP-Z400-Workstation serve-autonomous.sh[14274]: {"ping": "PING fd96:196:960::2(fd96:196:960::2) 56 data bytes\n64 bytes from fd96:196:960::2: icmp_seq=1 ttl=255 time=341 ms\n64 bytes from fd96:196:960::2: icmp_seq=2 ttl=255 time=97.0 ms\n64 bytes from fd96:196:960::2: icmp_seq=3 ttl=255 time=114 ms\n64 bytes from fd96:196:960::2: icmp_seq=4 ttl=255 time=185 ms\n\n--- fd96:196:960::2 ping statistics ---\n4 packets transmitted, 4 received, 0% packet loss, time 3004ms\nrtt min/avg/max/mdev = 97.020/184.261/340.587/96.113 ms\n", "udp_sizes": [1, 31, 500, 1400], "tcp_bytes": 16000, "tcp_sha256": "d63c6152d9ff3a822164f74c0d23e6ba38e8b63e464ddfb317eea9059bcde6d8"}
+Oct 11 07:53:53 mit-HP-Z400-Workstation serve-autonomous.sh[14274]: RTEMS services active: 10.196.0.2 and fd96:196:960::2 TCP 9600, UDP 9601; Ctrl-C to stop
+Oct 11 07:54:53 mit-HP-Z400-Workstation serve-autonomous.sh[14274]: {"steps": 1086, "ticks": 6884, "rx": 209, "tx": 173, "drops": 0, "fetch_state": 4, "fetch_bytes": 891, "fetch_hash": 3717399446}
+bd60b92f-c8ff-4797-aef9-d556d2e1701c
+{
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "card": "fd96:196:960::2",
+  "card_port": 80,
+  "transport": "IPv6 DNAT, HTTP served by card"
+}
+0f28559f8211af7afed5c47dc07a303873ae2ab79879e74c2475354d6acf7717  /home/mit/i960-rtems-web-20261011/autonet/kernel.bin
+11383e3fe91422964bd4a7ab2a4484995117a24c1ba8deea5e7bd06cafb1ac84  /home/mit/i960-rtems-web-20261011/autonet-module5/dac960auto.ko

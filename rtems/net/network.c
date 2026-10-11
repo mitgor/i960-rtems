@@ -9,6 +9,7 @@
 #include "lwip/timeouts.h"
 #include "buffer_io.h"
 #include "network.h"
+#include "http.h"
 static struct netif cardif;
 static unsigned int now_ms,random_state=0x1960466,tx_count,rx_count,drops;
 static unsigned short lengths[8];
@@ -78,7 +79,7 @@ void network_init(void){
  ip6addr_aton("fd96:196:960::2",&ip6);netif_ip6_addr_set(&cardif,1,&ip6);netif_ip6_addr_set_state(&cardif,1,IP6_ADDR_PREFERRED);
  IP_ADDR4(&dns,192,168,2,3);dns_setserver(0,&dns);
  u=udp_new_ip_type(IPADDR_TYPE_ANY);if(!u)bounded_fatal(0x601);if(udp_bind(u,IP_ANY_TYPE,9601)!=ERR_OK)bounded_fatal(0x602);udp_recv(u,udp_recv_cb,0);
- t=tcp_new_ip_type(IPADDR_TYPE_ANY);if(!t)bounded_fatal(0x603);if(tcp_bind(t,IP_ANY_TYPE,9600)!=ERR_OK)bounded_fatal(0x604);t=tcp_listen(t);if(!t)bounded_fatal(0x605);tcp_accept(t,accepted);
+ t=tcp_new_ip_type(IPADDR_TYPE_ANY);if(!t)bounded_fatal(0x603);if(tcp_bind(t,IP_ANY_TYPE,9600)!=ERR_OK)bounded_fatal(0x604);t=tcp_listen(t);if(!t)bounded_fatal(0x605);tcp_accept(t,accepted);http_init();
 }
 void network_step(unsigned int ms,const unsigned char*packet,unsigned int length){
  now_ms+=ms;

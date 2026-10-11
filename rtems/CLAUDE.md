@@ -37,3 +37,21 @@ HTTP, while operation 2 remains IPv4. Static ULA, MTU 1500, no fragmentation,
 SLAAC or autonomous polling. Keep shared `lwip_patches.py` DNS packing and
 mandatory IPv6 UDP checksum adaptation in native and target builds. Preserve
 IPv6 forwarding/accept_ra journal rollback and verify both IP families.
+
+## Web and hardware-interrupt checkpoint
+
+See [current report](../artifacts/rtems-web-autonomous-20261011/README.md).
+The `net` profile serves bounded HTTP on port 80. `--publish-http6 <host-global>`
+with `--internet6` explicitly publishes it through DNAT (default port 8080).
+Only four clients and 512-byte headers are supported.
+
+The separate `irq` profile proved eight hardware interrupts/eight RTEMS task
+wakeups and restored timer/vector/mask state. `auto` and `autonet` now pass
+host-silent progression tests (20 and five seconds respectively). Use only the
+exact image-pinned `dac960auto` transport from `autonomous/build_transport.py`
+(`--network` for autonet: STOP operation 6; auto uses STOP 2). Kernel release
+verifies STOP before RAM restoration, including SIGKILL and a completed
+application error. Live cleanup passed for both signals and invalid operation.
+Never load an autonomous image with the cooperative transport. Retain stock
+interrupt sources, preserve timer 0, and keep IRQ work bounded. This does not
+establish nested IRQ support, unrestricted preemption or independent transport.

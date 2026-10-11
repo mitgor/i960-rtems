@@ -224,6 +224,15 @@ Report file size, image extent, private heap and remaining RAM separately.
 
 ## A1–A3 — Autonomous RTEMS track
 
+**2026-10-11 completed intermediate milestone:** `irq` proved eight hardware
+interrupts/eight task wakeups during a busy loop. `auto` proved 2,009 ticks and
+wakeups in 20 host-silent seconds. `autonet` proved 509 ticks in five silent
+seconds plus IPv6 Internet HTTP, dual-stack echo and a minute of IPv6 stress.
+The pinned transport stops timer 1 before restoring RAM, including live SIGKILL
+and application-error cleanup. See [evidence and failed trials](artifacts/rtems-web-autonomous-20261011/README.md).
+This stock-coexisting, bounded runtime does not complete the independent
+transport, exclusive handoff or unrestricted BSP gates below.
+
 **A1, independent communication:** audit RP registers/BAR/translation ownership;
 prototype bounded polled control, console and packet exchange without depending
 on stock `20/21/6F` servicing. The 8 KiB BAR is not an arbitrary DRAM mapping.

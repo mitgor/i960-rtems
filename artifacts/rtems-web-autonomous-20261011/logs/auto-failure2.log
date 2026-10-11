@@ -1,0 +1,11 @@
+{"start": {"ticks": 0, "wakes": 0, "iterations": 0, "last_wake_tick": 0, "armed": 1, "mask": 12487, "imap": 16252928, "vector": 3237138832, "saved_vector": 2863311530, "timer_count": 945, "timer_mode": 54}, "end": {"ticks": 638, "wakes": 638, "iterations": 638, "last_wake_tick": 638, "armed": 1, "mask": 12487, "imap": 16252928, "vector": 3237138832, "saved_vector": 2863311530, "timer_count": 18222, "timer_mode": 54}, "host_silent_seconds": 3.0, "elapsed_s": 3.0682214390000127, "observed_hz": 207.93805554267146, "host_steps": 2}
+Traceback (most recent call last):
+  File "/home/mit/i960-rtems-web-20261011/project/rtems/autonomous/live_test.py", line 25, in <module>
+    if __name__=='__main__':main()
+  File "/home/mit/i960-rtems-web-20261011/project/rtems/autonomous/live_test.py", line 24, in main
+    finally:print(json.dumps(board.close()),flush=True)
+  File "/home/mit/i960-rtems-web-20261011/project/rtems/transport/run.py", line 67, in close
+    capture(self.out/'close',self.debugfs);verify_close(self.out/'close')
+  File "/home/mit/i960-rtems-web-20261011/project/rtems/transport/run.py", line 16, in verify_close
+    for n in ['stage-before-5a.bin','stage-restored-a5.bin','stage-restored-5a.bin']:assert (out/n).read_bytes()==before,n
+AssertionError: stage-restored-a5.bin

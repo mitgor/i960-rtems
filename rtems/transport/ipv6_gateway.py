@@ -17,10 +17,18 @@ def rule_shapes(uplink):
   ['ip6tables','-t','filter','-D','FORWARD','-o',IFACE,'-d',CARD6,'-m','conntrack','--ctstate','ESTABLISHED,RELATED','-j','ACCEPT'],
   ['ip6tables','-t','filter','-D','FORWARD','-i',IFACE,'-s',CARD6,'-o',uplink,'-j','ACCEPT'],
   ['ip6tables','-t','nat','-D','POSTROUTING','-s',CARD6+'/128','-o',uplink,'-j','MASQUERADE']]
+def published_rules(uplink,address,port):
+ address=str(ipaddress.IPv6Address(address))
+ if not ipaddress.IPv6Address(address).is_global or not 1024<=port<=65535:raise ValueError('global address and unprivileged port required')
+ rule_shapes(uplink) # Validate interface before constructing commands.
+ return [
+  ['ip6tables','-t','filter','-D','FORWARD','-i',uplink,'-o',IFACE,'-d',CARD6,'-p','tcp','--dport','80','-j','ACCEPT'],
+  ['ip6tables','-t','nat','-D','PREROUTING','-i',uplink,'-d',address+'/128','-p','tcp','--dport',str(port),'-j','DNAT','--to-destination','['+CARD6+']:80']]
 def cleanup(output):
  path=output/'ipv6-gateway-journal.json'
  if not path.exists():return
  j=json.loads(path.read_text());allowed=rule_shapes(j['uplink']) if j['uplink'] else []
+ if j.get('published'):allowed+=published_rules(j['uplink'],j['published']['address'],j['published']['port'])
  for cmd in j['undo']:
   if cmd not in allowed:raise ValueError('unexpected IPv6 journal rule')
  for row in j['sysctls']:
@@ -64,5 +72,16 @@ class IPv6Gateway:
      install=undo[:];install[3]='-I';command(*install)
     (conf/'all/forwarding').write_text('1\n')
   except BaseException:cleanup(output);raise
+ def publish_http(self,address,port):
+  path=self.output/'ipv6-gateway-journal.json';j=json.loads(path.read_text())
+  if not j['uplink']:raise ValueError('publishing requires --internet6')
+  address=str(ipaddress.IPv6Address(address));rules=published_rules(j['uplink'],address,port)
+  addresses=json.loads(command('ip','-6','-j','addr','show','dev',j['uplink']))
+  if not any(a.get('local')==address and not a.get('tentative') and not a.get('dadfailed') for interface in addresses for a in interface.get('addr_info',[])):raise ValueError('published address is not assigned to uplink')
+  if command('ss','-H','-ltn','sport','=',str(port)).strip():raise ValueError('host TCP port is already listening')
+  j['published']=dict(address=address,port=port);journal(path,j)
+  for undo in rules:
+   j['undo'].append(undo);journal(path,j);install=undo[:];install[3]='-I';command(*install)
+  journal(self.output/'published-http.json',dict(url='http://['+address+']:'+str(port)+'/',card=CARD6,card_port=80,transport='IPv6 DNAT, HTTP served by card'))
  def close(self):
   (self.output/'ip6tables-active.txt').write_text(command('ip6tables-save','-c'));cleanup(self.output)

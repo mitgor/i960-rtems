@@ -74,10 +74,10 @@ class Relay:
   now=time.monotonic();ms=int((now-self.last)*1000);self.last+=ms/1000
   # Bound catch-up per callback; time debt is serviced on later calls.
   if ms>1000:self.last-= (ms-1000)/1000;ms=1000
-  reply=self.board.step(struct.pack('<4I',0x314d5452,op,ms,len(payload))+payload)
+  reply=self.board.step(struct.pack('<4I',0x31415452 if self.board.autonomous else 0x314d5452,op,ms,len(payload))+payload)
   assert len(reply)>=48;fields=struct.unpack_from('<12I',reply)
   magic,steps,workers,ticks,n,rx,tx,drops,state,total,hashvalue,bytes_count=fields
-  assert magic==0x314d5452 and steps==workers==self.board.sequence and n==24
+  assert magic==(0x31415452 if self.board.autonomous else 0x314d5452) and steps==workers==self.board.sequence and n==24
   self.stats=dict(steps=steps,ticks=ticks,rx=rx,tx=tx,drops=drops,fetch_state=state,fetch_bytes=total,fetch_hash=hashvalue)
   if bytes_count&0x80000000:
    assert op==4 and len(reply)==48+(bytes_count&0x7fffffff);return reply[48:]
@@ -135,13 +135,15 @@ def stress_test(duration,ipv6=False):
  return dict(elapsed_s=time.monotonic()-start,iterations=iterations,bytes=total,sha256=digest.hexdigest())
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--internet',action='store_true');p.add_argument('--ipv6',action='store_true',help='test static IPv6 alongside IPv4');p.add_argument('--internet6',action='store_true',help='enable IPv6 tests and scoped NAT66 with AAAA/HTTP fetch');p.add_argument('--fetch',default='example.com');p.add_argument('--faults',action='store_true');p.add_argument('--duration',type=float,default=0);p.add_argument('--serve',type=float,nargs='?',const=0,help='keep services active for this many seconds, or until Ctrl-C when omitted');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--payload',type=Path,required=True);p.add_argument('--module',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--internet',action='store_true');p.add_argument('--ipv6',action='store_true',help='test static IPv6 alongside IPv4');p.add_argument('--internet6',action='store_true',help='enable IPv6 tests and scoped NAT66 with AAAA/HTTP fetch');p.add_argument('--fetch',default='example.com');p.add_argument('--faults',action='store_true');p.add_argument('--duration',type=float,default=0);p.add_argument('--serve',type=float,nargs='?',const=0,help='keep services active for this many seconds, or until Ctrl-C when omitted');p.add_argument('--autonomous',action='store_true',help='use the pinned background-IRQ net image and dac960auto');p.add_argument('--publish-http6',metavar='GLOBAL_IPV6',help='forward host TCP port to card HTTP (requires --internet6)');p.add_argument('--http-port',type=int,default=8080);a=p.parse_args()
+ if a.publish_http6 and not a.internet6:p.error("--publish-http6 requires --internet6")
  if a.duration<0 or (a.serve is not None and a.serve<0):p.error('durations must be nonnegative')
  def interrupted(signum,frame):raise KeyboardInterrupt('signal '+str(signum))
  signal.signal(signal.SIGTERM,interrupted);signal.signal(signal.SIGHUP,interrupted)
- board=Board(a.payload,a.module,a.output);gateway=None;relay=None
+ board=Board(a.payload,a.module,a.output,autonomous=a.autonomous);gateway=None;relay=None
  try:
   gateway=Gateway(a.output,a.internet or a.internet6,a.ipv6,a.internet6);relay=Relay(board,gateway,a.faults);relay.step(0)
+  if a.publish_http6:gateway.v6.publish_http(a.publish_http6,a.http_port)
   with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:report=relay.pump(pool.submit(echo_tests,a.faults),90)
   (a.output/'local-network.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)
   if a.ipv6 or a.internet6:
