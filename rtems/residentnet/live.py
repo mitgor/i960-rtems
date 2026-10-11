@@ -6,8 +6,17 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'transport'))
 from run import Board,capture
 from relay import Gateway,CARD,CARD6
 import wire
+from pump import send_pending
 
-def clients():
+def clients(rounds=1):
+ results=[]
+ for iteration in range(rounds):
+  batch=client_round()
+  for row in batch:row["round"]=iteration
+  results.extend(batch)
+ return results
+
+def client_round():
  results=[]
  for family,address in [(socket.AF_INET,CARD),(socket.AF_INET6,CARD6)]:
   for n in [1,31,500,1400,1472 if family==socket.AF_INET else 1452]:
@@ -35,8 +44,9 @@ def clients():
 def main():
  p=argparse.ArgumentParser()
  for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
- p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args()
- b=Board(a.payload,a.module,a.output,autonomous=True);epoch=secrets.randbelow(65535)+1;events=[];snaps=[];packets=[];g=None;start=time.monotonic();drop={4,6} if a.drop_data else set();dropped=[]
+ p.add_argument('--ticks',type=int,default=6000);p.add_argument('--rounds',type=int,default=1)
+ p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=60000 and 1<=a.rounds<=20
+ b=Board(a.payload,a.module,a.output,autonomous=True);epoch=secrets.randbelow(65535)+1;events=[];snaps=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
  def save():
   (b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n');(b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
  def control(op,arg=0,e=epoch):
@@ -56,7 +66,7 @@ def main():
    packets.append(dict(op=op,ns=time.monotonic_ns()-t,request=before.hex(),response=raw.hex()));(b.out/'packets.json').write_text(json.dumps(packets)+'\n')
   return raw[32:32+w[2]]
  try:
-  assert len(b.step(struct.pack('<4I',0x31415452,1,epoch,2|(6000<<8))))==640
+  assert len(b.step(struct.pack('<4I',0x31415452,1,epoch,2|(a.ticks<<8))))==640
   for op,data,e in [(1,b'x'*20,epoch)]:
    try:packet(op,data,e);raise AssertionError('pre-resident packet accepted')
    except OSError as exc:assert exc.errno==errno.EBUSY
@@ -69,11 +79,12 @@ def main():
   time.sleep(.3);v=snapshot();assert v[5]>w[5] # timers advance without host packet traffic
   g=Gateway(b.out,ipv6=True)
   with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
-   future=pool.submit(clients);deadline=time.monotonic()+45;last=time.monotonic()
+   future=pool.submit(clients,a.rounds);deadline=time.monotonic()+max(45,a.ticks/100-5);last=time.monotonic()
    while not future.done():
-    if time.monotonic()>deadline:raise TimeoutError('resident test exceeded 45 seconds')
+    if time.monotonic()>deadline:raise TimeoutError('resident test exceeded session traffic budget')
     readable,_,_=select.select([g.fd],[],[],0)
-    if readable:packet(1,os.read(g.fd,1536))
+    if pending_rx is None and readable:pending_rx=os.read(g.fd,1536)
+    pending_rx=send_pending(packet,pending_rx)
     blob=packet(2);offset=0
     while offset<len(blob):
      n=struct.unpack_from('<I',blob,offset)[0];offset+=4;frame=blob[offset:offset+n];offset+=n;assert 20<=n<=1500 and len(frame)==n
@@ -85,7 +96,7 @@ def main():
     if time.monotonic()-last>3:snapshot();last=time.monotonic()
    result=future.result();(b.out/'network-results.json').write_text(json.dumps(result,indent=2)+'\n')
   if not a.deadline:control(6)
-  until=time.monotonic()+65
+  until=time.monotonic()+a.ticks/100+10
   while time.monotonic()<until:
    w=snapshot()
    if w[2]==2:break

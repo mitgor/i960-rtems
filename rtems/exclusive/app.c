@@ -11,6 +11,11 @@ extern unsigned char _bss_start[],_bss_end[];
 #ifdef I960_RESIDENT_NET
 #include "../residentnet/cache_probe.h"
 #endif
+#ifdef I960_RESIDENT_NET
+#define EXCLUSIVE_MAX_TICKS 60000u
+#else
+#define EXCLUSIVE_MAX_TICKS 6000u
+#endif
 #define MONITOR_READ() REG(0x1314)
 #define MONITOR_WRITE(v) (REG(0x1314)=(v))
 #include "../handoff/entry.h"
@@ -62,7 +67,7 @@ static void report(unsigned char*b,unsigned int rc){unsigned int w[160],i;memset
  for(i=0;i<16;i++){w[68+i]=engine_before[i];w[84+i]=engine_during[i];w[100+i]=engine_after[i];}
  exclusive_report(w+116);w[148]=runtime_error;w[149]=requested_ticks;
 #ifdef I960_RESIDENT_NET
- cache_probe(w+150);
+ cache_decode_probe(w+150,bio_word(b+BIO_INPUT+4)==0?bio_word(b+BIO_INPUT+12):0);
 #endif
  for(i=0;i<160;i++)bio_put(b+BIO_OUTPUT+i*4,w[i]);bio_put(b+20,0);bio_put(b+24,640);bio_put(b+28,bio_word(b+8));
 }
@@ -72,7 +77,7 @@ unsigned int bounded_main(unsigned int a){unsigned char*b=(unsigned char*)a,*p;u
  if(!initialized){for(p=_bss_start;p<_bss_end;p++)*p=0;initialized=1;irq_owned_prepare();}
  if(op==2){unsigned int owned=mu_owned;stop_timer();rc=mu_finish();timer_stop_response(b,initialized);bio_put(b+BIO_OUTPUT+4,rc);bio_put(b+BIO_OUTPUT+8,owned&&!rc?0x4d554f4bu:0);return 0;}
  if(bio_word(b+16)<640)return 5;
- if(op==1){if(armed||entries||denials)return 3;requested_phase=bio_word(b+BIO_INPUT+12)&255;requested_ticks=bio_word(b+BIO_INPUT+12)>>8;if(requested_phase>2||requested_ticks>6000)return 6;if(requested_ticks){rc=exclusive_init();if(rc)return rc;}epoch=bio_word(b+BIO_INPUT+8);if(!epoch||epoch>65535)return 4;rc=mu_start();if(!rc)rc=start_timer();}
+ if(op==1){if(armed||entries||denials)return 3;requested_phase=bio_word(b+BIO_INPUT+12)&255;requested_ticks=bio_word(b+BIO_INPUT+12)>>8;if(requested_phase>2||requested_ticks>EXCLUSIVE_MAX_TICKS)return 6;if(requested_ticks){rc=exclusive_init();if(rc)return rc;}epoch=bio_word(b+BIO_INPUT+8);if(!epoch||epoch>65535)return 4;rc=mu_start();if(!rc)rc=start_timer();}
  report(b,rc);return 0;
 }
 

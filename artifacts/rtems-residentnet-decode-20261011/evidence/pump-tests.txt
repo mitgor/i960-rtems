@@ -1,0 +1,1 @@
+three busy replies preserve identical packet; success consumes once; five fatal errors are never retried

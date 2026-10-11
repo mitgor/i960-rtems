@@ -1,5 +1,10 @@
 # Resident networking and RAM ownership
 
+Follow-up: [cache dispatch qualification and longer resident tests](DECODE-BATCH.md).
+The latest profile uses a 32-packet TX queue inside the original RAM grant and
+allows up to 60,000 ticks; 12,000 ticks have been tested. The historical results
+below describe the first batch. No external RAM has been reclaimed.
+
 This experimental profile runs RTEMS and lwIP after the single ARM firmware
 callback returns. The original firmware IRQ continuation remains parked. It
 inherits exclusive phase-2 isolation: inactive i960 DMA, primary and secondary

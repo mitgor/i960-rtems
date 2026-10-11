@@ -1,5 +1,14 @@
 # RTEMS working guidance
 
+**Resident decode follow-up:** live board selector 6 and dispatch `c000d540`
+qualify synchronous CPU XOR / internal DRAM, not the alternate external-cache
+bit-0 completion path. Firmware reports 16 MiB. Resident networking now has
+32 TX slots inside the original grant; three IPv4/IPv6 rounds and 12,000 ticks
+passed. No outside RAM grant or all-engine drain is claimed. Preserve cooperative
+profiles, never force-unload retained resident resources, and check the current
+remote owner before testing. [Findings, thirty steps and remaining gates](residentnet/DECODE-BATCH.md).
+
+
 **Exclusive RTEMS track (2026-10-11):** the user explicitly permits RAID/SCSI
 shutdown during RTEMS and reboot/power-cycle to exit. `exclusive` now runs real
 preemptible RTEMS after the ARM callback returns, with inactive i960 DMA disabled,

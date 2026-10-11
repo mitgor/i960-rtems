@@ -1,5 +1,14 @@
 # Repository guidance for Claude Code
 
+**Resident decode follow-up:** live board selector 6 and dispatch `c000d540`
+qualify synchronous CPU XOR / internal DRAM, not the alternate external-cache
+bit-0 completion path. Firmware reports 16 MiB. Resident networking now has
+32 TX slots inside the original grant; three IPv4/IPv6 rounds and 12,000 ticks
+passed. No outside RAM grant or all-engine drain is claimed. Preserve cooperative
+profiles, never force-unload retained resident resources, and check the current
+remote owner before testing. [Findings, thirty steps and remaining gates](rtems/residentnet/DECODE-BATCH.md).
+
+
 **Upload UART bottleneck resolved (2026-10-11):** the stock upload method prints
 through a blocking UART before DMA. A scoped RAM-only change to one format byte
 reduces three upload waits **32.129 → 0.368 ms** and full-frame kernel time

@@ -7,6 +7,7 @@ from run import Board,capture
 def main():
  p=argparse.ArgumentParser()
  for n in ('payload','module','output'):p.add_argument('--'+n,type=Path,required=True)
+ p.add_argument('--cache-pages',action='store_true')
  p.add_argument('--phase',type=int,choices=range(3),default=0);p.add_argument('--ticks',type=int,default=0);p.add_argument('--hold',type=int,default=5);a=p.parse_args();assert 0<=a.ticks<=1000 and 0<=a.hold<=20
  b=Board(a.payload,a.module,a.output,autonomous=True);epoch=secrets.randbelow(65535)+1;events=[]
  def action(op):
@@ -22,6 +23,11 @@ def main():
   assert w[16:21]==[0x31464f48,4,1,0,0] and w[46]==w[48]==0 and w[64:67]==[0x31435845,a.phase,0]
   assert w[68:84]==w[100:116]
   if a.ticks:assert w[116]==w[123]==w[148]==0 and w[117]>=a.ticks and w[118]>0 and w[119]>0 and w[120:122]==[1,1] and w[124]==w[125]>0 and w[126]==w[127]>0
+  if a.cache_pages:
+   pages=[]
+   for page in range(1,8):
+    data=b.step(struct.pack('<4I',0x31415452,0,epoch,page));words=list(struct.unpack('<160I',data));assert words[150:152]==[0x32484343,page];pages.append(words)
+   (b.out/'cache-pages.json').write_text(json.dumps(pages,indent=2)+'\n')
   print(json.dumps(dict(phase=a.phase,runtime=w[116:128],before=w[68:84],during=w[84:100],after=w[100:116])),flush=True);print(json.dumps(b.close()),flush=True)
  except BaseException:
   if b.fd is not None:os.close(b.fd);b.fd=None;capture(b.out/'failed-close',b.debugfs)

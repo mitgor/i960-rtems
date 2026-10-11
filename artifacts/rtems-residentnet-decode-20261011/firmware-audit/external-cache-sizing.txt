@@ -1,0 +1,154 @@
+c004f9d0:	00 30 80 8c 	lda	0xc004f968,g0
+c004f9d4:	68 f9 04 c0 
+c004f9d8:	c8 a8 fb 09 	call	0xc000a2a0
+c004f9dc:	00 30 20 90 	ld	0x40800000,r4
+c004f9e0:	00 00 80 40 
+c004f9e4:	00 30 a0 90 	ld	0xc011e22c,g4
+c004f9e8:	2c e2 11 c0 
+c004f9ec:	0f 2f 01 5a 	chkbit	15,r4
+c004f9f0:	20 20 f5 92 	st	g14,0x20(g4)
+c004f9f4:	28 00 00 10 	bno	0xc004fa1c
+c004f9f8:	00 30 80 8c 	lda	0xc004f970,g0
+c004f9fc:	70 f9 04 c0 
+c004fa00:	a0 a8 fb 09 	call	0xc000a2a0
+c004fa04:	00 30 a8 90 	ld	0xc011e22c,g5
+c004fa08:	2c e2 11 c0 
+c004fa0c:	20 60 a5 90 	ld	0x20(g5),g4
+c004fa10:	84 09 a5 58 	setbit	4,g4,g4
+c004fa14:	20 60 a5 92 	st	g4,0x20(g5)
+c004fa18:	38 00 00 08 	b	0xc004fa50
+c004fa1c:	28 20 69 30 	bbc	13,r4,0xc004fa44
+c004fa20:	00 30 80 8c 	lda	0xc004f978,g0
+c004fa24:	78 f9 04 c0 
+c004fa28:	78 a8 fb 09 	call	0xc000a2a0
+c004fa2c:	00 30 a8 90 	ld	0xc011e22c,g5
+c004fa30:	2c e2 11 c0 
+c004fa34:	20 60 a5 90 	ld	0x20(g5),g4
+c004fa38:	83 09 a5 58 	setbit	3,g4,g4
+c004fa3c:	20 60 a5 92 	st	g4,0x20(g5)
+c004fa40:	10 00 00 08 	b	0xc004fa50
+c004fa44:	00 30 80 8c 	lda	0xc004f980,g0
+c004fa48:	80 f9 04 c0 
+c004fa4c:	54 a8 fb 09 	call	0xc000a2a0
+c004fa50:	1f 58 ac 59 	addo	31,17,g5
+c004fa54:	84 40 a5 58 	and	r4,g5,g4
+c004fa58:	48 20 85 3a 	cmpibe	16,g4,0xc004faa0
+c004fa5c:	0c 20 85 34 	cmpobl	16,g4,0xc004fa68
+c004fa60:	60 20 05 3a 	cmpibe	0,g4,0xc004fac0
+c004fa64:	68 00 00 08 	b	0xc004facc
+c004fa68:	1f 58 98 59 	addo	31,1,g3
+c004fa6c:	28 c0 a4 3a 	cmpibe	g4,g3,0xc004fa94
+c004fa70:	5c 40 a5 3d 	cmpibne	g4,g5,0xc004facc
+c004fa74:	00 30 80 8c 	lda	0xc004f990,g0
+c004fa78:	90 f9 04 c0 
+c004fa7c:	24 a8 fb 09 	call	0xc000a2a0
+c004fa80:	00 30 a8 90 	ld	0xc011e22c,g5
+c004fa84:	2c e2 11 c0 
+c004fa88:	20 60 a5 90 	ld	0x20(g5),g4
+c004fa8c:	20 60 a5 92 	st	g4,0x20(g5)
+c004fa90:	3c 00 00 08 	b	0xc004facc
+c004fa94:	00 30 80 8c 	lda	0xc004f998,g0
+c004fa98:	98 f9 04 c0 
+c004fa9c:	2c 00 00 08 	b	0xc004fac8
+c004faa0:	00 30 a8 90 	ld	0xc011e22c,g5
+c004faa4:	2c e2 11 c0 
+c004faa8:	20 60 a5 90 	ld	0x20(g5),g4
+c004faac:	00 30 80 8c 	lda	0xc004f9a0,g0
+c004fab0:	a0 f9 04 c0 
+c004fab4:	80 09 a5 58 	setbit	0,g4,g4
+c004fab8:	20 60 a5 92 	st	g4,0x20(g5)
+c004fabc:	0c 00 00 08 	b	0xc004fac8
+c004fac0:	00 30 80 8c 	lda	0xc004f9a8,g0
+c004fac4:	a8 f9 04 c0 
+c004fac8:	d8 a7 fb 09 	call	0xc000a2a0
+c004facc:	00 30 a8 8c 	lda	0x40800000,g5
+c004fad0:	00 00 80 40 
+c004fad4:	00 50 45 90 	ld	(g5),r8
+c004fad8:	12 de 48 59 	shlo	18,3,r9
+c004fadc:	88 43 a2 58 	or	r8,r9,g4
+c004fae0:	00 50 a5 92 	st	g4,(g5)
+c004fae4:	00 30 a0 8c 	lda	0xc0000000,g4
+c004fae8:	00 00 00 c0 
+c004faec:	00 30 28 8c 	lda	0x3fffffff,r5
+c004faf0:	ff ff ff 3f 
+c004faf4:	00 10 3d 90 	ld	(g4),r7
+c004faf8:	00 10 2d 92 	st	r5,(g4)
+c004fafc:	f8 cf ff 09 	call	0xc004caf4
+c004fb00:	00 30 a0 90 	ld	0xc0100000,g4
+c004fb04:	00 00 10 c0 
+c004fb08:	94 60 01 5a 	cmpi	g4,r5
+c004fb0c:	94 19 30 58 	setbit	20,0,r6
+c004fb10:	00 1e 20 5c 	mov	0,r4
+c004fb14:	98 00 00 12 	be	0xc004fbac
+c004fb18:	dc cf ff 09 	call	0xc004caf4
+c004fb1c:	00 30 a0 90 	ld	0xc0200000,g4
+c004fb20:	00 00 20 c0 
+c004fb24:	94 60 01 5a 	cmpi	g4,r5
+c004fb28:	92 19 20 58 	setbit	18,0,r4
+c004fb2c:	95 19 30 58 	setbit	21,0,r6
+c004fb30:	74 00 00 12 	be	0xc004fba4
+c004fb34:	c0 cf ff 09 	call	0xc004caf4
+c004fb38:	00 30 a0 90 	ld	0xc0400000,g4
+c004fb3c:	00 00 40 c0 
+c004fb40:	94 60 01 5a 	cmpi	g4,r5
+c004fb44:	96 19 30 58 	setbit	22,0,r6
+c004fb48:	64 00 00 12 	be	0xc004fbac
+c004fb4c:	a8 cf ff 09 	call	0xc004caf4
+c004fb50:	00 30 a0 90 	ld	0xc0800000,g4
+c004fb54:	00 00 80 c0 
+c004fb58:	94 60 01 5a 	cmpi	g4,r5
+c004fb5c:	97 19 30 58 	setbit	23,0,r6
+c004fb60:	93 19 20 58 	setbit	19,0,r4
+c004fb64:	40 00 00 12 	be	0xc004fba4
+c004fb68:	8c cf ff 09 	call	0xc004caf4
+c004fb6c:	00 30 a0 90 	ld	0xc1000000,g4
+c004fb70:	00 00 00 c1 
+c004fb74:	94 60 01 5a 	cmpi	g4,r5
+c004fb78:	98 19 30 58 	setbit	24,0,r6
+c004fb7c:	30 00 00 12 	be	0xc004fbac
+c004fb80:	74 cf ff 09 	call	0xc004caf4
+c004fb84:	00 30 a0 90 	ld	0xc2000000,g4
+c004fb88:	00 00 00 c2 
+c004fb8c:	09 16 20 5c 	mov	r9,r4
+c004fb90:	99 19 90 58 	setbit	25,0,g2
+c004fb94:	9a 19 98 58 	setbit	26,0,g3
+c004fb98:	94 60 01 5a 	cmpi	g4,r5
+c004fb9c:	13 82 34 7a 	sele	g3,g2,r6
+c004fba0:	0c 00 00 15 	bne	0xc004fbac
+c004fba4:	00 1e 28 5c 	mov	0,r5
+c004fba8:	08 00 00 08 	b	0xc004fbb0
+c004fbac:	01 1e 28 5c 	mov	1,r5
+c004fbb0:	00 30 38 92 	st	r7,0xc0000000
+c004fbb4:	00 00 00 c0 
+c004fbb8:	3c cf ff 09 	call	0xc004caf4
+c004fbbc:	85 30 00 5a 	cmpi	r5,0
+c004fbc0:	00 30 90 8c 	lda	0xfff3ffff,g2
+c004fbc4:	ff ff f3 ff 
+c004fbc8:	88 80 44 58 	and	r8,g2,r8
+c004fbcc:	88 03 a1 58 	or	r8,r4,g4
+c004fbd0:	00 30 a0 92 	st	g4,0x40800000
+c004fbd4:	00 00 80 40 
+c004fbd8:	30 00 00 12 	be	0xc004fc08
+c004fbdc:	00 b4 29 8c 	lda	0xc0000000(r6),r5
+c004fbe0:	00 00 00 c0 
+c004fbe4:	00 50 39 90 	ld	(r5),r7
+c004fbe8:	00 30 20 8c 	lda	0x3fffffff,r4
+c004fbec:	ff ff ff 3f 
+c004fbf0:	00 50 21 92 	st	r4,(r5)
+c004fbf4:	00 cf ff 09 	call	0xc004caf4
+c004fbf8:	00 50 a1 90 	ld	(r5),g4
+c004fbfc:	08 00 a1 3d 	cmpibne	g4,r4,0xc004fc04
+c004fc00:	01 8e 31 59 	shlo	1,r6,r6
+c004fc04:	00 50 39 92 	st	r7,(r5)
+c004fc08:	00 30 80 8c 	lda	0xc004f9b0,g0
+c004fc0c:	b0 f9 04 c0 
+c004fc10:	06 16 88 5c 	mov	r6,g1
+c004fc14:	8c a6 fb 09 	call	0xc000a2a0
+c004fc18:	00 30 a0 90 	ld	0xc011e22c,g4
+c004fc1c:	2c e2 11 c0 
+c004fc20:	20 20 8d 90 	ld	0x20(g4),g1
+c004fc24:	00 30 80 8c 	lda	0xc004f9c0,g0
+c004fc28:	c0 f9 04 c0 
+c004fc2c:	74 a6 fb 09 	call	0xc000a2a0
+c004fc30:	06 16 80 5c 	mov	r6,g0
+c004fc34:	00 00 00 0a 	ret

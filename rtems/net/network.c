@@ -12,8 +12,12 @@
 #include "http.h"
 static struct netif cardif;
 static unsigned int now_ms,random_state=0x1960466,tx_count,rx_count,drops;
-static unsigned short lengths[8];
-static unsigned char frames[8][1536];
+/* Resident profile may use more of its separately audited owned RAM. */
+#ifndef NETWORK_QUEUE_SLOTS
+#define NETWORK_QUEUE_SLOTS 8
+#endif
+static unsigned short lengths[NETWORK_QUEUE_SLOTS];
+static unsigned char frames[NETWORK_QUEUE_SLOTS][1536];
 static unsigned int head,tail,queued;
 static unsigned char fetch_bytes[8192];
 static unsigned int fetch_length,fetch_hash,fetch_state,fetch_port;
@@ -22,8 +26,8 @@ static struct tcp_pcb *fetch_pcb;
 unsigned int card_rand(void){random_state^=random_state<<13;random_state^=random_state>>17;random_state^=random_state<<5;return random_state;}
 u32_t sys_now(void){return now_ms;}
 static err_t enqueue(struct pbuf*p){
- if(p->tot_len>1536||queued==8){drops++;return ERR_MEM;}
- lengths[tail]=p->tot_len;pbuf_copy_partial(p,frames[tail],p->tot_len,0);tail=(tail+1)%8;queued++;tx_count++;return ERR_OK;
+ if(p->tot_len>1536||queued==NETWORK_QUEUE_SLOTS){drops++;return ERR_MEM;}
+ lengths[tail]=p->tot_len;pbuf_copy_partial(p,frames[tail],p->tot_len,0);tail=(tail+1)%NETWORK_QUEUE_SLOTS;queued++;tx_count++;return ERR_OK;
 }
 static err_t output(struct netif*n,struct pbuf*p,const ip4_addr_t*addr){return enqueue(p);}
 static err_t output6(struct netif*n,struct pbuf*p,const ip6_addr_t*addr){return enqueue(p);}
@@ -87,6 +91,6 @@ void network_step(unsigned int ms,const unsigned char*packet,unsigned int length
   if(!p){drops++;return;}pbuf_take(p,packet,length);rx_count++;if(cardif.input(p,&cardif)!=ERR_OK)pbuf_free(p);}
  sys_check_timeouts();
 }
-unsigned int network_output(unsigned char*out,unsigned int cap){unsigned int n=0;while(queued&&n+4+lengths[head]<=cap){bio_put(out+n,lengths[head]);n+=4;memcpy(out+n,frames[head],lengths[head]);n+=lengths[head];head=(head+1)%8;queued--;}return n;}
+unsigned int network_output(unsigned char*out,unsigned int cap){unsigned int n=0;while(queued&&n+4+lengths[head]<=cap){bio_put(out+n,lengths[head]);n+=4;memcpy(out+n,frames[head],lengths[head]);n+=lengths[head];head=(head+1)%NETWORK_QUEUE_SLOTS;queued--;}return n;}
 unsigned int network_report(unsigned char*out){bio_put(out,rx_count);bio_put(out+4,tx_count);bio_put(out+8,drops);bio_put(out+12,fetch_state);bio_put(out+16,fetch_length);bio_put(out+20,fetch_hash);return 24;}
 unsigned int network_fetch_data(unsigned char*out,unsigned int offset,unsigned int limit){unsigned int n=fetch_length;if(n>sizeof(fetch_bytes))n=sizeof(fetch_bytes);if(offset>=n)return 0;n-=offset;if(n>limit)n=limit;memcpy(out,fetch_bytes+offset,n);return n;}

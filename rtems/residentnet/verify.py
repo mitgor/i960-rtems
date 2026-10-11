@@ -39,7 +39,9 @@ def verify(root,out):
  for a,b in zip(groups,groups[1:]):assert b[1]>a[1] and all(b[i]>=a[i] for i in (5,6,7,60,61,62))
  assert groups[-1][2]==2 and groups[-1][4:36]==groups[-2][4:36] and groups[-1][6]>0 and groups[-1][7]>0
  assert groups[-1][62]-groups[-2][62]==2
- assert sorted(e['errno'] for e in events if 'errno' in e)==[11,16,22,22,108,116]
+ if groups[-1][3]==2:assert groups[-1][5]==arm[3]>>8
+ errors=[e['errno'] for e in events if 'errno' in e]
+ assert sorted(x for x in errors if x!=11)==[16,22,22,108,116] and errors.count(11)>=1
  assert 'errno=5' in (out/'write-denied.txt').read_text()
  log=(out/'last-control.txt').read_text();assert 'submit op=' not in log[log.index('MONITOR enter'):]
  assert 'SESSION FAILED: retained DMA/module; reboot required' in (out/'retained-close/result.txt').read_text()
@@ -64,17 +66,21 @@ def verify(root,out):
  assert counts==groups[-1][60:62]
  with tempfile.TemporaryDirectory() as d:
   path=Path(d)/'packets.pcap';path.write_bytes(pcap);packets=validate(path)
- results=json.loads((out/'network-results.json').read_text());assert len(results) in (12,14)
- for family in (2,10):
-  r=[v for v in results if v['family']==family];assert len([v for v in r if v['protocol']=='udp']) in (4,5)
-  t=next(v for v in r if v['protocol']=='tcp');assert t['bytes']==4096 and t['sha256']==hashlib.sha256(bytes(i%251 for i in range(4096))).hexdigest()
-  assert 'HTTP/1.0 200 OK' in next(v for v in r if v['protocol']=='http')['response']
+ results=json.loads((out/'network-results.json').read_text());rounds=1+max(v.get('round',0) for v in results);assert 1<=rounds<=20 and len(results) in (12*rounds,14*rounds)
+ for iteration in range(rounds):
+  for family in (2,10):
+   r=[v for v in results if v['family']==family and v.get('round',0)==iteration]
+   assert len([v for v in r if v['protocol']=='udp']) in (4,5)
+   ts=[v for v in r if v['protocol']=='tcp'];assert len(ts)==1
+   t=ts[0];assert t['bytes']==4096 and t['sha256']==hashlib.sha256(bytes(i%251 for i in range(4096))).hexdigest()
+   hs=[v for v in r if v['protocol']=='http'];assert len(hs)==1 and 'HTTP/1.0 200 OK' in hs[0]['response']
+
  bad=0
  for i in (0,2,4,11,36,37,38,39,40,41,42,43,44,45,52,53,54,56,63):
   w=groups[-1].copy();w[i]=0 if w[i] else 1
   try:snapshot_gate(w,epoch)
   except AssertionError:bad+=1
   else:raise AssertionError(('corruption accepted',i))
- return dict(run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=groups[-1][57:60],cache_completion_proven=False,broader_ram_owned=False,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
+ return dict(run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=groups[-1][57:60],cache_completion_proven=False,broader_ram_owned=False,rounds=rounds,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--root',type=Path,required=True);p.add_argument('run',type=Path);a=p.parse_args();print(json.dumps(verify(a.root,a.run),indent=2))

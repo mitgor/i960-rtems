@@ -53,7 +53,13 @@ def verify(root,out):
    except AssertionError:bad+=1
    else:raise AssertionError(('corruption accepted',index))
   return dict(path=out.name,boot=identity['boot_id'],resident=True,ticks=groups[-1][5],reason=groups[-1][3],snapshots=len(groups),corruptions_rejected=bad,retained=True)
- assert len(rows)==2 and struct.unpack('<4I',rows[1][0])==(0x31415452,0,epoch,0)
+ if (out/'cache-pages.json').exists():
+  pages=json.loads((out/'cache-pages.json').read_text());assert len(pages) in (4,6,7) and len(rows)==2+len(pages)
+  for page,(req,data) in enumerate(rows[2:],1):
+   assert struct.unpack('<4I',req)==(0x31415452,0,epoch,page)
+   words=list(struct.unpack('<160I',data));assert words==pages[page-1] and words[150:152]==[0x32484343,page]
+ else:assert len(rows)==2
+ assert struct.unpack('<4I',rows[1][0])==(0x31415452,0,epoch,0)
  w=list(struct.unpack('<'+str(len(rows[1][1])//4)+'I',rows[1][1]));assert rows[1][1]==(out/'report.bin').read_bytes()
  assert w[7:9]==[0x10c7,0x80000] and w[9]==w[10] and not any(w[11:14]) and not w[14]&0x2000 and not w[15] and w[16:21]==[0x31464f48,4,1,0,0] and w[46]==w[48]==0
  assert w[64:67]==[0x31435845,phase,0] and w[68:84]==w[100:116]

@@ -11,6 +11,11 @@
 #include <rtems/score/thread.h>
 #include <rtems/score/isr.h>
 #include "../switch/lifetime.h"
+#ifdef I960_RESIDENT_NET
+#define EXCLUSIVE_MAX_TICKS 60000u
+#else
+#define EXCLUSIVE_MAX_TICKS 6000u
+#endif
 #define R(a) (*(volatile unsigned int*)(a))
 extern void exclusive_timer_isr(void);
 static unsigned char workspace[49152] __attribute__((aligned(16)));
@@ -104,7 +109,7 @@ void _ISR_Handler(void){bounded_fatal(0x40000);}
 void _CPU_ISR_install_raw_handler(unsigned int v,proc_ptr n,proc_ptr*o){bounded_fatal(0x40000|v);}
 unsigned int exclusive_init(void){rtems_initialize_executive(&config,&cpu);return fault;}
 unsigned int exclusive_run(unsigned int n){unsigned int vector=R(0x3c),mask_before=R(0xff008504);
- if(!initialized||ticks||fault||!n||n>6000)return 1;limit=n;
+ if(!initialized||ticks||fault||!n||n>EXCLUSIVE_MAX_TICKS)return 1;limit=n;
  R(0xff008504)=0;R(0x3c)=(unsigned int)exclusive_timer_isr;R(0xff008504)=0x2000;
  _CPU_Context_switch(&_Thread_BSP_context,&_Thread_Executing->Registers);mask();
  R(0xff008504)=0;R(0x3c)=vector;R(0xff008504)=mask_before;
@@ -117,7 +122,7 @@ void exclusive_report(unsigned int*w){unsigned int i;
 }
 
 void exclusive_resident(unsigned int n,unsigned int epoch){
- if(!initialized||ticks||fault||!n||n>6000)for(;;){}
+ if(!initialized||ticks||fault||!n||n>EXCLUSIVE_MAX_TICKS)for(;;){}
  resident=1;resident_epoch=epoch;limit=n;
  R(0xff008504)=0;R(0x3c)=(unsigned int)exclusive_timer_isr;R(0xff008504)=0x2000;
  _CPU_Context_switch(&_Thread_BSP_context,&_Thread_Executing->Registers);

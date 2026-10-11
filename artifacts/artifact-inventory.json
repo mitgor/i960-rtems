@@ -10223,6 +10223,196 @@
       "sha256": "3b5771d94c0a742aed3dd8a5c96eac2088f330a061bb611bf966604c043ceebb"
     },
     {
+      "path": "artifacts/rtems-residentnet-decode-20261011/README.md",
+      "size": 4707,
+      "sha256": "8c9e4ebb2e7598e6d4996c0964e92a47d6cc150bdff2e02bcd6eb3b3d49d1f7e"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/decoder/board-select.txt",
+      "size": 1805,
+      "sha256": "f0dd971567201f8adde3682d328d7695b1d028f3cc10c111d20232c3ab76866d"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/decoder/cpu-xor.txt",
+      "size": 2756,
+      "sha256": "0965f5df98c869cd5556a4141ae419b0fcd535fd9489bfb264ecc18ba796337f"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/decoder/decode.json",
+      "size": 1579,
+      "sha256": "abe628503fdf5499eb5c583838774726e8b5248c195f116dfb5b2b086a17664d"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/decoder/external-dispatch.txt",
+      "size": 3484,
+      "sha256": "b69e85d8c60bc3ca87014a9ccafcb7215a17f1e0ab9a983f43c06dc495f9a03a"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/decoder/internal-dispatch.txt",
+      "size": 2515,
+      "sha256": "4d6c82a0ec4fb85bca67535966e484bac743bd4a9db21496faedc1171a3d9c66"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/bounded-v1.json",
+      "size": 472,
+      "sha256": "1b6558996ba803342f8e2d1acab0583b22f782d0a12cb9d29e95635a8d94bfb6"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/bounded-v2.json",
+      "size": 473,
+      "sha256": "fe969708bf17a78b8bc7f315ccc887c647896444c0ca707063b7c2ec6e0a5578"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/bounded-v3.json",
+      "size": 473,
+      "sha256": "d8ac57795f232e071b5a9fd89509586c32aed960bbfda15856f0d9a5f25fc6c9"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/decode-tests.txt",
+      "size": 105,
+      "sha256": "e6c5a3d0e2f632ae2c9d95e8adb7397687295c71797d4b4d45e31a6e91f3573a"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/host-tests.txt",
+      "size": 185,
+      "sha256": "64957792550396c890f13f9489b33f9fd325f5a106eba064d3cdb17bb529e826"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/http-restored-headers.txt",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/http-restored.html",
+      "size": 2891,
+      "sha256": "8e8b130d301b42c609e05a38995aff31707a68cf3500c6dca8238d7a22543942"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/inventory-tests.txt",
+      "size": 116,
+      "sha256": "f62c27cec127a9d6b0c6a294f7cb9b2ecf97f22922451cc839dd573037cd9681"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/native-tests-final.txt",
+      "size": 7536,
+      "sha256": "a0f66b73697dbed2113fc579c9bf1644463747a1b7a443dc9e87a5431b72db0a"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/native-tests.txt",
+      "size": 7203,
+      "sha256": "01aa906f0c0f134bd221a194ab277fb8248bbd6eed9ffc8394393a5e97a389fb"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/packet-tests.txt",
+      "size": 98,
+      "sha256": "17fb7283d2f23c8a33da1b12073b0f98230b220e5742ac37942d77a087de6565"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/production-handoff.txt",
+      "size": 6186,
+      "sha256": "21c141dd447e9b25a272bbc5e6bac4f0a0ea946cb85f2202c187fc86c345f3d7"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/production-status.txt",
+      "size": 37,
+      "sha256": "5deb9de3a3dd767e96a4ad8bc082cef37e59e528e39a3264b431a849ce1e9483"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/production-verified.json",
+      "size": 338,
+      "sha256": "3cf8dce7e70a2ecc1af16cf0100ed609d0e9103521f2cfa9d1b84d706c85f531"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/pump-tests.txt",
+      "size": 105,
+      "sha256": "c7392aab4a0c4b9cb0edc831341b2fe9e7571818e2c5ac81f6569abe83e54dfd"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/queue-tests.txt",
+      "size": 161,
+      "sha256": "e69cc3785773e7e33d087878d7d6cb177f313e6c3d4ba6e4ed34f242a65e6a29"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/ram-v1.json",
+      "size": 1163,
+      "sha256": "3fee0ca112a8770ccc4815b85d9fc22f88b8581629c0743768466e47f4ef0159"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/ram-v3.json",
+      "size": 1163,
+      "sha256": "cf640fd66a128860debcfd5c45bcdc6612b071630b7712a611d71187432aad7c"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/evidence/resident-v2.json",
+      "size": 10623,
+      "sha256": "004a75bfd5a579a92cd9ba1fc55dc8297abd998d8ad7da8931b0a91361a28173"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/firmware-audit/audit.json",
+      "size": 1113,
+      "sha256": "70d37cbbcf41f0f07664eeb20527414ebe784d6ee068d526251bf990b0c1cd5a"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/firmware-audit/board-timer.txt",
+      "size": 1631,
+      "sha256": "e0a7e81a839185c001619b3d52b3639b18c7cc00ee0e6620c443170f9430472f"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/firmware-audit/dma-and-cache-completion.txt",
+      "size": 5453,
+      "sha256": "a69ef08a9cd60ea2c8aa1ab42811fb51ed79c3a5011be3534019282d3f155a73"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/firmware-audit/error-service.txt",
+      "size": 3331,
+      "sha256": "6a02ae8b6cd179e9ba25477d270a227f557e41fee821cb8ab42ed3026ec284cb"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/firmware-audit/external-cache-sizing.txt",
+      "size": 5402,
+      "sha256": "85ab4846b0ca58b2e458cb02316a6da898a6591c29f6ae81bb0d4b691f2891d6"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/firmware-audit/rp-internal-dram-sizing.txt",
+      "size": 3691,
+      "sha256": "36d97709ef445112502980ebdf23ca110fb13ab0818273562e9d2f85c7dbf9a7"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/firmware-audit/status-mask-ack.txt",
+      "size": 5157,
+      "sha256": "b0d8b0a640c3f99896f5c98d1a21820e0664de015b84c8d357e042dcb0307ccc"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/firmware-audit/submit-wait-ack-results.txt",
+      "size": 2321,
+      "sha256": "d0124f7bdfac3c515e2be8f946c1b589a76428d2ffd2cc76e085defbb57ebd95"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/residentnet-decode-handoff.tar.xz",
+      "size": 357532,
+      "sha256": "4804f50909c05330ef43d82755a2f239c9460ae2880684f769e297933b36318f"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/residentnet-decode-production.tar.xz",
+      "size": 540444,
+      "sha256": "98e0c9dd65fab705ff64dc2e886d766f3a743476688b0be66c0539b12d564586"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/residentnet-decode-v1.tar.xz",
+      "size": 1410876,
+      "sha256": "d1bbfc5d4685522fd9c6630c2932cc4c11f908c7e1b974b438d2770356134c33"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/residentnet-decode-v2.tar.xz",
+      "size": 1419648,
+      "sha256": "64286771f6fd1095d2cd54af47ff55ea306c25dcc931cdfa594b1d111da0f106"
+    },
+    {
+      "path": "artifacts/rtems-residentnet-decode-20261011/residentnet-decode-v3.tar.xz",
+      "size": 1343100,
+      "sha256": "5fa24676f84d6cd69b22c025014b47c0338477b29c09204cc8b3286b666bbe4f"
+    },
+    {
       "path": "artifacts/rtems-system-info-20261011/README.md",
       "size": 2036,
       "sha256": "fa6c22c5382783878207c0b611593482a4c20fc4dc7cf2306782154a172df114"

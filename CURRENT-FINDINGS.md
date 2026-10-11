@@ -1,5 +1,17 @@
 # Current findings and evidence — 2026-10-11
 
+**Cache dispatch and resident follow-up:** board selector 6 and the live primary
+operation pointer qualify the i960 internal-controller / CPU-XOR path. Firmware
+reports 16 MiB. Bootstrap analysis shows board selector 6
+installs synchronous CPU XOR, while a different board path installs the external
+`4080001c` command / bit-0 completion routines. Address-like cache reads remain
+invalid completion evidence. The resident TX queue now uses 32 slots within the
+existing grant; no new physical RAM ownership is claimed. Three network rounds
+and a 12,000-tick deadline passed, after fixing an RX-busy backpressure bug found
+in the first attempt. See [details and remaining gates](rtems/residentnet/DECODE-BATCH.md)
+and [captures/recovery status](artifacts/rtems-residentnet-decode-20261011/README.md).
+
+
 **Upload UART bottleneck resolved (2026-10-11):** the stock upload method prints
 through a blocking UART before DMA. A scoped RAM-only change to one format byte
 reduces three upload waits **32.129 → 0.368 ms** and full-frame kernel time

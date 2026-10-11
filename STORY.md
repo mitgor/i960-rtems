@@ -1530,6 +1530,49 @@ passed, and Vader answered over IPv6 again. The optimization had changed one
 byte in RAM for a while. The evidence, including the refusal, was considerably
 larger.
 
+## The other cache controller
+
+The register still answered with its own address.
+
+We had found the command, the wait loop and the acknowledgement. They were real
+instructions in the matching firmware. But knowing what a routine does is not
+quite the same thing as knowing whether this board uses it.
+
+This time we gave the read a control experiment. Known RAM returned the patterns
+we had put there. The processor's own registers returned sensible values. The
+suspected cache registers, even with the CPU data cache disabled, continued to
+say `40800000` and `40800008`. It was time to stop treating that answer as a
+status report.
+
+The missing references were in the bootstrap. One branch installed the external
+cache commands we had been studying. Another installed a routine that did the
+XOR work with the i960's own load, XOR and store instructions. That branch also
+used the processor's DRAM controller. The live dispatch table matched its hooks,
+including several gloriously unambiguous no-ops where the other branch installed
+cache status and acknowledgement functions. The final probe supplied the rest:
+board selector six, the CPU XOR pointer, and a firmware report of sixteen
+megabytes of memory.
+
+The apparent obstacle had changed shape. We still had to account for SCSI,
+firmware allocations and the saved continuation before claiming more memory.
+But a completion bit belonging to the other hardware path was not going to
+answer those questions for us.
+
+Meanwhile, there was useful space in the allocation we already owned. We gave
+the network queue thirty-two packet slots instead of eight. The first longer
+run caught a less archaeological bug: when the card said its receive buffer was
+busy, the host dropped out of the test instead of keeping the packet. We saved
+the failure, kept the packet pending on an explicit busy reply, and left
+uncertain operations as failures.
+
+The next run exchanged three rounds of IPv4 and IPv6 traffic, recovered from
+intentional TCP loss, and kept running beyond its old one-minute limit. At
+exactly twelve thousand ticks it parked, with both task interrupt continuations
+drained. The bytes and the failed attempt both went into the archive.
+
+That was more room for the network, not a claim on the rest of the card's RAM.
+The distinction was becoming something of a theme.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

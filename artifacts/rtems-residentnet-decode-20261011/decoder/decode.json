@@ -1,0 +1,61 @@
+{
+  "bootstrap_sha256": "8afaebf954bbbf31bba42f1156c76237c3e632b071f6b400d3f17fbcd9d8baa5",
+  "byte_checked_rows": 48750,
+  "board_selector": "(read8(e0400000) & 31) == 6",
+  "internal_install": "fefcc1f0",
+  "external_install": "fefcc310",
+  "internal_xor_runtime": "c000d540",
+  "internal_xor_flash": "fefcc540",
+  "external_submit": [
+    "c004e940",
+    "c004ea80"
+  ],
+  "completion": "internal CPU XOR returns synchronously; external bit-0 handshake is a different dispatch",
+  "whole_engine_drain_proven": false,
+  "live": {
+    "positive_controls": true,
+    "pmcon45": "0x800000",
+    "pmcon1415": "0x0",
+    "bcon": "0x1",
+    "pmcon_table_valid": false,
+    "atucr": "0x26",
+    "direct_address_mode": false,
+    "dbcr": "0xb4f",
+    "dram_base": "0xc0000000",
+    "dram_enabled": true,
+    "dram_arrangement_field": 9,
+    "dram_bank_leaf_mib": 64,
+    "installed_ram_bytes": null,
+    "cache_reads": [
+      "0x40800000",
+      "0x40800008"
+    ],
+    "nmisr": "0x0",
+    "broader_ram_owned": false,
+    "table": "0xc0110780",
+    "alias_base": "0xc1000000",
+    "dispatch_170_18c": [
+      "0xc004fe20",
+      "0xc004c3b0",
+      "0xc004c3b0",
+      "0xc004fe50",
+      "0xc004fe80",
+      "0xc004c3b0",
+      "0xc004c3b0",
+      "0xc004feb0"
+    ],
+    "internal_dispatch_subset_matches": true,
+    "dispatch_identity": [
+      "0x6",
+      "0xc000d540",
+      "0xc004fc40",
+      "0xc0050430",
+      "0x1000000",
+      "0x1",
+      "0xe0600000",
+      "0xe0600005"
+    ],
+    "internal_cpu_path_qualified": true,
+    "firmware_detected_ram_bytes": 16777216
+  }
+}

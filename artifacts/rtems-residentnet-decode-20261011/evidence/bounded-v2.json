@@ -1,0 +1,25 @@
+[
+  {
+    "path": "residentnet-decode-bounded2",
+    "boot": "61aad7bd-307f-4892-9fc4-8a46d6875f02",
+    "resident": false,
+    "phase": 2,
+    "ticks": 100,
+    "restored": true,
+    "cache_probe": {
+      "values": [
+        1082130432,
+        1082130432,
+        8,
+        8,
+        16512,
+        16512
+      ],
+      "nmisr": 0,
+      "atucr": 38,
+      "dcache_status_or_reserved": 29217,
+      "completion_proven": false,
+      "ram_reclaimed": false
+    }
+  }
+]

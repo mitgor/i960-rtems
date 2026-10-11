@@ -1,5 +1,14 @@
 # RTEMS on the DAC960PG
 
+**Resident decode follow-up:** live board selector 6 and dispatch `c000d540`
+qualify synchronous CPU XOR / internal DRAM, not the alternate external-cache
+bit-0 completion path. Firmware reports 16 MiB. Resident networking now has
+32 TX slots inside the original grant; three IPv4/IPv6 rounds and 12,000 ticks
+passed. No outside RAM grant or all-engine drain is claimed. Preserve cooperative
+profiles, never force-unload retained resident resources, and check the current
+remote owner before testing. [Findings, thirty steps and remaining gates](residentnet/DECODE-BATCH.md).
+
+
 See [resident networking](residentnet/README.md) for callback-free IPv4/IPv6
 over PIO, retained STOP/deadline tests and the unresolved cache/RAM gates.
 The production cooperative `autonet` path remains separate.

@@ -12,7 +12,7 @@ for line in (b/'unpacked.dis').read_text().splitlines():
  m=re.match(r'^([0-9a-f]{8}):\s*((?:[0-9a-f]{2} ){3}[0-9a-f]{2})\s*(.*)$',line)
  if m:
   pc=int(m[1],16);assert bytes.fromhex(m[2])==blob[pc-0xc0010000:pc-0xc0010000+4];rows.append((pc,line));checked+=1
-ranges=[('submit-wait-ack-results',0xc004e940,0xc004ea54),('dma-and-cache-completion',0xc004ea80,0xc004ecf0),('error-service',0xc004efd0,0xc004f14c),('status-mask-ack',0xc004ff70,0xc0050238),('board-timer',0xc0050300,0xc00503c0)]
+ranges=[('rp-internal-dram-sizing',0xc004fc40,0xc004fdf0),('external-cache-sizing',0xc004f9d0,0xc004fc38),('submit-wait-ack-results',0xc004e940,0xc004ea54),('dma-and-cache-completion',0xc004ea80,0xc004ecf0),('error-service',0xc004efd0,0xc004f14c),('status-mask-ack',0xc004ff70,0xc0050238),('board-timer',0xc0050300,0xc00503c0)]
 for name,lo,hi in ranges:(a.out/(name+'.txt')).write_text('\n'.join(l for pc,l in rows if lo<=pc<hi)+'\n')
 claims={
  'completion':{'submit_pc':'c004e9c8','command_register':'4080001c','wait_pc':'c004e9d8','status_register':'40800008','access_bits':16,'wait_bit':0,'wait_until_set':True,'ack_pc':'c004e9ec','ack_value':1},
