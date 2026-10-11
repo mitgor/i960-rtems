@@ -1,20 +1,6 @@
 Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
-/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/i960-upload-test-gh_oz6pt/test.c:209:65: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-  209 |     d.pending=true;i=calls;assert(quiet_end(&d)==-EBUSY && calls==i);
-      |                                                            ~~~~~^ ~
-/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/i960-upload-test-gh_oz6pt/test.c:210:82: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-  210 |     d.pending=false;d.runner_uncertain=true;assert(quiet_end(&d)==-EBUSY && calls==i);
-      |                                                                             ~~~~~^ ~
-2 warnings generated.
 quiet: 520 byte corruptions, fixed read/write policy and pending/uncertain restoration refusal passed
-session: 420 command-boundary faults, stale/malformed requests, 6 output corruptions; ASan/UBSan passed
+session: 406 command-boundary faults, stale/malformed requests, 6 output corruptions; ASan/UBSan passed
 Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
-/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/i960-upload-test-gy8lxypy/test.c:209:65: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-  209 |     d.pending=true;i=calls;assert(quiet_end(&d)==-EBUSY && calls==i);
-      |                                                            ~~~~~^ ~
-/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/i960-upload-test-gy8lxypy/test.c:210:82: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-  210 |     d.pending=false;d.runner_uncertain=true;assert(quiet_end(&d)==-EBUSY && calls==i);
-      |                                                                             ~~~~~^ ~
-2 warnings generated.
 quiet: 520 byte corruptions, fixed read/write policy and pending/uncertain restoration refusal passed
-session: 420 command-boundary faults, stale/malformed requests, 6 output corruptions; ASan/UBSan passed
+session: 406 command-boundary faults, stale/malformed requests, 6 output corruptions; ASan/UBSan passed

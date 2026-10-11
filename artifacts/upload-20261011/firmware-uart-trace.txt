@@ -1,0 +1,266 @@
+bootstrap SHA256 8afaebf954bbbf31bba42f1156c76237c3e632b071f6b400d3f17fbcd9d8baa5
+verified rows: 48750
+
+0xfefc8170..0xfefc81a0
+fefc8170:	00 30 80 8c 	lda	0xfefc9000,g0
+fefc8174:	00 90 fc fe 
+fefc8178:	00 30 88 8c 	lda	0xc000a000,g1
+fefc817c:	00 a0 00 c0 
+fefc8180:	00 30 90 8c 	lda	0x6000,g2
+fefc8184:	00 60 00 00 
+fefc8188:	00 10 9c 80 	ldob	(g0),g3
+fefc818c:	00 50 9c 82 	stob	g3,(g1)
+fefc8190:	01 08 84 59 	addo	1,g0,g0
+fefc8194:	01 48 8c 59 	addo	1,g1,g1
+fefc8198:	01 8b 94 5a 	cmpdeco	1,g2,g2
+fefc819c:	ec ff ff 15 	bne	0xfefc8188
+
+0xfefc9120..0xfefc9188
+fefc9120:	00 30 a8 90 	ld	0xc011e22c,g5
+fefc9124:	2c e2 11 c0 
+fefc9128:	58 61 a5 90 	ld	0x158(g5),g4
+fefc912c:	00 10 a5 88 	ldos	(g4),g4
+fefc9130:	60 61 ad 90 	ld	0x160(g5),g5
+fefc9134:	94 40 a5 58 	and	g4,g5,g4
+fefc9138:	2c 20 05 3d 	cmpibne	0,g4,0xfefc9164
+fefc913c:	00 30 a0 90 	ld	0xc011e22c,g4
+fefc9140:	2c e2 11 c0 
+fefc9144:	58 21 b5 90 	ld	0x158(g4),g6
+fefc9148:	00 30 b8 8c 	lda	0xffff,g7
+fefc914c:	ff ff 00 00 
+fefc9150:	60 21 ad 90 	ld	0x160(g4),g5
+fefc9154:	00 90 a5 88 	ldos	(g6),g4
+fefc9158:	94 c0 a5 58 	and	g4,g7,g4
+fefc915c:	94 40 a5 58 	and	g4,g5,g4
+fefc9160:	f4 3f 05 3a 	cmpibe	0,g4,0xfefc9154
+fefc9164:	00 30 a0 90 	ld	0xc011e22c,g4
+fefc9168:	2c e2 11 c0 
+fefc916c:	50 21 a5 90 	ld	0x150(g4),g4
+fefc9170:	00 10 85 82 	stob	g0,(g4)
+fefc9174:	90 b2 02 59 	cmpib	g0,10
+fefc9178:	0c 00 00 15 	bne	0xfefc9184
+fefc917c:	0d 1e 80 5c 	mov	13,g0
+fefc9180:	a0 ff ff 09 	call	0xfefc9120
+fefc9184:	00 00 00 0a 	ret
+
+0xfefc92a0..0xfefc93a0
+fefc92a0:	10 48 08 59 	addo	16,sp,sp
+fefc92a4:	10 16 20 5c 	mov	g0,r4
+fefc92a8:	00 3a 00 5b 	intdis
+fefc92ac:	30 00 e0 90 	ld	0x30,g12
+fefc92b0:	01 08 e7 59 	addo	1,g12,g12
+fefc92b4:	30 00 e0 92 	st	g12,0x30
+fefc92b8:	00 1e 28 5c 	mov	0,r5
+fefc92bc:	00 1e 30 5c 	mov	0,r6
+fefc92c0:	40 e0 8f 92 	st	g1,0x40(fp)
+fefc92c4:	44 e0 97 92 	st	g2,0x44(fp)
+fefc92c8:	48 e0 9f 92 	st	g3,0x48(fp)
+fefc92cc:	4c e0 a7 92 	st	g4,0x4c(fp)
+fefc92d0:	ff 00 48 8c 	lda	0xff,r9
+fefc92d4:	1f 98 39 59 	addo	31,6,r7
+fefc92d8:	5c 00 40 8c 	lda	0x5c,r8
+fefc92dc:	a8 60 19 3c 	cmpibl	3,r5,0xfefc9384
+fefc92e0:	00 10 81 80 	ldob	(r4),g0
+fefc92e4:	04 50 20 59 	addo	r4,1,r4
+fefc92e8:	90 e2 01 59 	cmpib	g0,r7
+fefc92ec:	20 00 00 12 	be	0xfefc930c
+fefc92f0:	90 22 02 59 	cmpib	g0,r8
+fefc92f4:	18 00 00 12 	be	0xfefc930c
+fefc92f8:	90 32 00 59 	cmpib	g0,0
+fefc92fc:	10 00 00 12 	be	0xfefc930c
+fefc9300:	90 40 82 58 	and	g0,r9,g0
+fefc9304:	1c fe ff 09 	call	0xfefc9120
+fefc9308:	74 00 00 08 	b	0xfefc937c
+fefc930c:	90 40 82 58 	and	g0,r9,g0
+fefc9310:	4c c0 81 3a 	cmpibe	g0,r7,0xfefc935c
+fefc9314:	0c c0 81 39 	cmpibg	g0,r7,0xfefc9320
+fefc9318:	6c 20 04 3a 	cmpibe	0,g0,0xfefc9384
+fefc931c:	5c 00 00 08 	b	0xfefc9378
+fefc9320:	58 00 82 3d 	cmpibne	g0,r8,0xfefc9378
+fefc9324:	00 10 a1 80 	ldob	(r4),g4
+fefc9328:	6e 00 e8 8c 	lda	0x6e,g13
+fefc932c:	0c 40 a7 3d 	cmpibne	g4,g13,0xfefc9338
+fefc9330:	0a 1e 80 5c 	mov	10,g0
+fefc9334:	1c 00 00 08 	b	0xfefc9350
+fefc9338:	00 10 a1 80 	ldob	(r4),g4
+fefc933c:	72 00 e8 8c 	lda	0x72,g13
+fefc9340:	0c 40 a7 3d 	cmpibne	g4,g13,0xfefc934c
+fefc9344:	0d 1e 80 5c 	mov	13,g0
+fefc9348:	08 00 00 08 	b	0xfefc9350
+fefc934c:	00 10 81 80 	ldob	(r4),g0
+fefc9350:	d0 fd ff 09 	call	0xfefc9120
+fefc9354:	04 50 20 59 	addo	r4,1,r4
+fefc9358:	20 00 00 08 	b	0xfefc9378
+fefc935c:	02 4e a1 59 	shlo	2,r5,g4
+fefc9360:	1f 00 a5 59 	addo	fp,g4,g4
+fefc9364:	00 10 81 80 	ldob	(r4),g0
+fefc9368:	40 20 8d 90 	ld	0x40(g4),g1
+fefc936c:	34 00 00 09 	call	0xfefc93a0
+fefc9370:	04 50 20 59 	addo	r4,1,r4
+fefc9374:	05 50 28 59 	addo	r5,1,r5
+fefc9378:	06 50 30 59 	addo	r6,1,r6
+fefc937c:	7f 00 e8 8c 	lda	0x7f,g13
+fefc9380:	5c 5f 37 3e 	cmpible	r6,g13,0xfefc92dc
+fefc9384:	30 00 e0 90 	ld	0x30,g12
+fefc9388:	01 0b e7 5a 	cmpdeco	1,g12,g12
+fefc938c:	30 00 e0 92 	st	g12,0x30
+fefc9390:	08 00 00 15 	bne	0xfefc9398
+fefc9394:	80 3a 00 5b 	inten
+fefc9398:	30 00 e0 90 	ld	0x30,g12
+fefc939c:	00 00 00 0a 	ret
+
+0xfefcb78c..0xfefcb7e8
+fefcb78c:	00 30 a0 90 	ld	0xc011e22c,g4
+fefcb790:	2c e2 11 c0 
+fefcb794:	00 30 a8 8c 	lda	0xc004ce90,g5
+fefcb798:	90 ce 04 c0 
+fefcb79c:	00 30 b0 8c 	lda	0xc004ced0,g6
+fefcb7a0:	d0 ce 04 c0 
+fefcb7a4:	00 30 b8 8c 	lda	0xc004cf80,g7
+fefcb7a8:	80 cf 04 c0 
+fefcb7ac:	00 30 80 8c 	lda	0xc004d6d0,g0
+fefcb7b0:	d0 d6 04 c0 
+fefcb7b4:	00 30 88 8c 	lda	0xc004d670,g1
+fefcb7b8:	70 d6 04 c0 
+fefcb7bc:	00 30 90 8c 	lda	0xc004cf20,g2
+fefcb7c0:	20 cf 04 c0 
+fefcb7c4:	00 30 98 8c 	lda	0xc004d940,g3
+fefcb7c8:	40 d9 04 c0 
+fefcb7cc:	00 30 e8 8c 	lda	0xc004d8e0,g13
+fefcb7d0:	e0 d8 04 c0 
+fefcb7d4:	00 30 20 8c 	lda	0xc0016710,r4
+fefcb7d8:	10 67 01 c0 
+fefcb7dc:	e0 20 ad 92 	st	g5,0xe0(g4)
+fefcb7e0:	e4 20 b5 92 	st	g6,0xe4(g4)
+fefcb7e4:	ec 20 bd 92 	st	g7,0xec(g4)
+unpacked SHA256 21f6c1d898a533d7023a53893f03547ed61631016d1b247d3ecbb97b9403c195
+verified rows: 73608
+
+0xc004cd00..0xc004cd50
+c004cd00:	01 1e a0 5c 	mov	1,g4
+c004cd04:	00 30 a0 92 	st	g4,0xc00a6940
+c004cd08:	40 69 0a c0 
+c004cd0c:	74 6c fe 09 	call	0xc0033980
+c004cd10:	90 30 00 5a 	cmpi	g0,0
+c004cd14:	00 30 80 80 	ldob	0xc00a5d98,g0
+c004cd18:	98 5d 0a c0 
+c004cd1c:	30 00 00 12 	be	0xc004cd4c
+c004cd20:	44 04 90 8c 	lda	0x444,g2
+c004cd24:	90 80 84 70 	mulo	g0,g2,g0
+c004cd28:	00 30 a0 90 	ld	0xc011e22c,g4
+c004cd2c:	2c e2 11 c0 
+c004cd30:	e4 20 8d 90 	ld	0xe4(g4),g1
+c004cd34:	00 34 84 8c 	lda	0xc0060d80(g0),g0
+c004cd38:	80 0d 06 c0 
+c004cd3c:	00 50 04 86 	callx	(g1)
+c004cd40:	00 30 f0 92 	st	g14,0xc00a6940
+c004cd44:	40 69 0a c0 
+c004cd48:	00 00 00 0a 	ret
+c004cd4c:	14 df ff 08 	b	0xc004ac60
+
+0xc004ce90..0xc004cf10
+c004ce90:	10 16 20 5c 	mov	g0,r4
+c004ce94:	9c 03 00 09 	call	0xc004d230
+c004ce98:	04 20 a1 90 	ld	0x4(r4),g4
+c004ce9c:	02 20 91 88 	ldos	0x2(r4),g2
+c004cea0:	10 00 8d 59 	addo	g0,g4,g1
+c004cea4:	08 20 81 90 	ld	0x8(r4),g0
+c004cea8:	0f 1e 98 5c 	mov	15,g3
+c004ceac:	64 f1 ff 09 	call	0xc004c010
+c004ceb0:	04 16 80 5c 	mov	r4,g0
+c004ceb4:	1c ec ff 08 	b	0xc004bad0
+c004cec0:	0a 4f 66 66 	.word	0x66664f0a
+c004cec4:	25 58 20 53 	.word	0x53205825
+c004cec8:	69 7a 25 58 	notand	9,21,sf4
+c004cecc:	00 00 00 00 	.word	0x00000000
+c004ced0:	10 16 20 5c 	mov	g0,r4
+c004ced4:	5c 03 00 09 	call	0xc004d230
+c004ced8:	02 20 31 88 	ldos	0x2(r4),r6
+c004cedc:	04 20 89 90 	ld	0x4(r4),g1
+c004cee0:	06 16 90 5c 	mov	r6,g2
+c004cee4:	10 40 2c 59 	addo	g0,g1,r5
+c004cee8:	00 30 80 8c 	lda	0xc004cec0,g0
+c004ceec:	c0 ce 04 c0 
+c004cef0:	b0 d3 fb 09 	call	0xc000a2a0
+c004cef4:	08 20 81 90 	ld	0x8(r4),g0
+c004cef8:	05 16 88 5c 	mov	r5,g1
+c004cefc:	06 16 90 5c 	mov	r6,g2
+c004cf00:	0e 1e 98 5c 	mov	14,g3
+c004cf04:	0c f1 ff 09 	call	0xc004c010
+c004cf08:	04 16 80 5c 	mov	r4,g0
+c004cf0c:	c4 eb ff 08 	b	0xc004bad0
+
+0xc004c010..0xc004c138
+c004c010:	12 16 20 5c 	mov	g2,r4
+c004c014:	84 30 00 5a 	cmpi	r4,0
+c004c018:	10 16 38 5c 	mov	g0,r7
+c004c01c:	11 16 30 5c 	mov	g1,r6
+c004c020:	13 16 40 5c 	mov	g3,r8
+c004c024:	4c 00 00 12 	be	0xc004c070
+c004c028:	04 19 48 59 	subo	4,0,r9
+c004c02c:	84 d0 a0 58 	and	r4,3,g4
+c004c030:	94 30 00 5a 	cmpi	g4,0
+c004c034:	04 16 28 5c 	mov	r4,r5
+c004c038:	10 00 00 12 	be	0xc004c048
+c004c03c:	04 f0 00 5a 	cmpo	r4,3
+c004c040:	84 40 a2 58 	and	r4,r9,g4
+c004c044:	14 02 29 7e 	selle	g4,r4,r5
+c004c048:	07 16 80 5c 	mov	r7,g0
+c004c04c:	06 16 88 5c 	mov	r6,g1
+c004c050:	05 16 90 5c 	mov	r5,g2
+c004c054:	08 16 98 5c 	mov	r8,g3
+c004c058:	38 00 00 09 	call	0xc004c090
+c004c05c:	05 01 21 59 	subo	r5,r4,r4
+c004c060:	84 30 00 5a 	cmpi	r4,0
+c004c064:	07 40 39 59 	addo	r7,r5,r7
+c004c068:	06 40 31 59 	addo	r6,r5,r6
+c004c06c:	c0 ff ff 15 	bne	0xc004c02c
+c004c070:	00 00 00 0a 	ret
+c004c080:	20 58 44 44 	.word	0x44445820
+c004c084:	5f 74 6d 6f 	.word	0x6f6d745f
+c004c090:	00 30 a0 90 	ld	0xc01127b4,g4
+c004c094:	b4 27 11 c0 
+c004c098:	00 30 20 8c 	lda	0x1404,r4
+c004c09c:	04 14 00 00 
+c004c0a0:	04 20 85 92 	st	g0,0x4(g4)
+c004c0a4:	08 20 f5 92 	st	g14,0x8(g4)
+c004c0a8:	0c 20 8d 92 	st	g1,0xc(g4)
+c004c0ac:	10 20 95 92 	st	g2,0x10(g4)
+c004c0b0:	14 20 9d 92 	st	g3,0x14(g4)
+c004c0b4:	00 10 f5 92 	st	g14,(g4)
+c004c0b8:	08 00 00 08 	b	0xc004c0c0
+c004c0bc:	54 42 fc 09 	call	0xc0010310
+c004c0c0:	00 10 a1 90 	ld	(r4),g4
+c004c0c4:	f8 3f 55 37 	bbs	10,g4,0xc004c0bc
+c004c0c8:	00 30 b0 90 	ld	0xc01127b4,g6
+c004c0cc:	b4 27 11 c0 
+c004c0d0:	00 30 a0 8c 	lda	0x1450,g4
+c004c0d4:	50 14 00 00 
+c004c0d8:	01 1e b8 5c 	mov	1,g7
+c004c0dc:	01 1e 80 5c 	mov	1,g0
+c004c0e0:	00 30 a8 90 	ld	0xc00a5da4,g5
+c004c0e4:	a4 5d 0a c0 
+c004c0e8:	0c 09 25 59 	subo	12,g4,r4
+c004c0ec:	00 10 b5 92 	st	g6,(g4)
+c004c0f0:	15 50 29 59 	addo	g5,5,r5
+c004c0f4:	00 34 bd 92 	st	g7,0xfffffff0(g4)
+c004c0f8:	f0 ff ff ff 
+c004c0fc:	44 2d 00 09 	call	0xc004ee40
+c004c100:	24 00 00 08 	b	0xc004c124
+c004c104:	01 1e 80 5c 	mov	1,g0
+c004c108:	38 2d 00 09 	call	0xc004ee40
+c004c10c:	00 30 a0 90 	ld	0xc00a5da4,g4
+c004c110:	a4 5d 0a c0 
+c004c114:	10 00 2d 31 	cmpobg	r5,g4,0xc004c124
+c004c118:	00 30 80 8c 	lda	0xc004c080,g0
+c004c11c:	80 c0 04 c0 
+c004c120:	80 e1 fb 09 	call	0xc000a2a0
+c004c124:	00 10 a1 90 	ld	(r4),g4
+c004c128:	dc 3f 55 37 	bbs	10,g4,0xc004c104
+c004c12c:	00 30 f0 92 	st	g14,0x1440
+c004c130:	40 14 00 00 
+c004c134:	00 00 00 0a 	ret
+
+Aligned references to format string: ['0xc004ceec']
+Format: b'\nOff%X Siz%X\x00\x00\x00\x00'
+Inference: upload-only unconditional formatter -> blocking UART readiness loop. Live paired method/code checks and reversible A/B are required to establish the active route and timing effect.

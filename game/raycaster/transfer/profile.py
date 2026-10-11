@@ -9,21 +9,27 @@ phases=json.loads((a.capture/'phases.json').read_text())
 with gzip.open(a.capture/'commands.jsonl.gz','rt') as f:commands=[json.loads(line) for line in f]
 assert len(commands)==len(phases)
 table=(0xc001f9bc-0xc0f2c000)&0xffffffff
-categories=lambda r: ('request_upload' if r['offset']==0x70000 else 'sentinel_upload' if r['offset']==0x80280 else 'table_upload') if r['op']==0x21 else 'callback' if r['op']==0x6f else 'table_read' if r['offset']==table else 'result_read' if r['offset']==0x80280 else 'audit_read'
+categories=lambda r: ('request_upload' if r['offset']==0x70000 else 'sentinel_upload' if r['offset']==0x80280 else 'table_upload') if r['op']==0x21 else 'callback' if r['op']==0x6f else 'table_read' if r['offset']==table else 'result_read' if r['offset']==0x80280 else 'quiet_read' if r['offset']==((0xc004cec0-0xc0f2c000)&0xffffffff) else 'audit_read'
 groups=defaultdict(list);residual=[];counts=defaultdict(int)
 for phase,sample in zip(phases,commands):
  assert sample['sequence']==phase['sequence']
  assert parse(sample['log'])==sample['commands']
  rows=sample['commands']
- expected=[(0x21,0x3060,0x70000)]
- if phase['sequence']==1:expected += [(0x21,4,table),(0x20,4,table),(0x20,4,table),(0x6f,0,0)]
+ is_quiet='QUIET PAIR' in sample['log']
+ quiet=[(0x20,80,(0xc004cec0-0xc0f2c000)&0xffffffff)]*2 if is_quiet and phase['sequence']>1 else []
+ expected=quiet+[(0x21,0x3060,0x70000)]
+ if phase['sequence']==1:
+  expected += [(0x21,4,table),(0x20,4,table),(0x20,4,table),(0x6f,0,0)]
+  if is_quiet:
+   for addr,n in [(0xc011e22c,4),(0xc0110860,8),(0xc000a2a0,256),(0xc000a120,104),(0xc004cec0,80)]:expected += [(0x20,n,(addr-0xc0f2c000)&0xffffffff)]*2
+   expected += [(0x21,4,(0xc004cec0-0xc0f2c000)&0xffffffff),(0x6f,0,0)]+[(0x20,80,(0xc004cec0-0xc0f2c000)&0xffffffff)]*2
  expected += [(0x21,16,0x80280),(0x21,4,table),(0x20,4,table),(0x20,4,table),(0x6f,0,0),(0x20,4,table),(0x20,4,table),(0x20,16,0x80280),(0x20,16,0x80280)]
  for repeat in range(2):
   expected += [(0x20,min(0xf000,phase['audit_bytes']-off),off) for off in range(0,phase['audit_bytes'],0xf000)]
  assert [(r['op'],r['count'],r['offset']) for r in rows]==expected
  assert sum(r['count'] for r in rows if r['op']==0x20 and r['offset']<0x80000)==2*phase['audit_bytes']
  if phase['sequence']>1:
-  assert len(rows)==(28 if phase['sequence']%32==0 else 26)
+  assert len(rows)==len(quiet)+(28 if phase['sequence']%32==0 else 26)
   assert sum(r['op']==0x21 for r in rows)==3 and sum(r['op']==0x6f for r in rows)==1
  if phase['label']!='render80':continue
  by_kind=defaultdict(list)
@@ -35,4 +41,4 @@ for phase,sample in zip(phases,commands):
  assert phase['kernel_ns']>=total
  residual.append(phase['kernel_ns']-total)
 summary={kind:dict(frames=len(values),commands=counts[kind],**{k+'_ms':statistics.median(v[k] for v in values)/1e6 for k in FIELDS+('total',)}) for kind,values in groups.items()}
-print(json.dumps(dict(verified_transactions=len(phases),commands=sum(len(s['commands']) for s in commands),render80=summary,median_unattributed_kernel_ms=statistics.median(residual)/1e6,limits='Host monotonic intervals. wait includes firmware execution and polling; logging is separate. Unattributed time includes CMDPROFILE logging, session validation and copying. Audits and command sequence unchanged.'),indent=2))
+print(json.dumps(dict(verified_transactions=len(phases),commands=sum(len(s['commands']) for s in commands),render80=summary,median_unattributed_kernel_ms=statistics.median(residual)/1e6,limits='Host monotonic intervals. wait includes firmware execution and polling; logging is separate. Unattributed time includes CMDPROFILE logging, session validation and copying.'+(' Existing command order/audits retained; quiet mode adds fixed checks and startup maintenance.' if is_quiet else ' Audits and command sequence unchanged.')),indent=2))

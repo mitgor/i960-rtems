@@ -1,5 +1,18 @@
 # Repository guidance for Claude Code
 
+**Upload UART bottleneck resolved (2026-10-11):** the stock upload method prints
+through a blocking UART before DMA. A scoped RAM-only change to one format byte
+reduces three upload waits **32.129 → 0.368 ms** and full-frame kernel time
+**55.840 → 24.141 ms (56.77%)**. All existing checks remain, with additional paired
+format/handler checks. Five final sessions passed 2,105 native-matching replies;
+ten startup sessions passed 40 more. An exploratory stale-PING rejection restored
+cleanly; the final ordering preserves the original first-entry cache handshake.
+Quiet data and all borrowed RAM restore before unload; HTTP returned 200 afterward.
+No flash/reboot. Use `game/raycaster/upload/build.py --quiet --coarse` only for the
+pinned bounded raycaster path; production remains autonet.
+[Contract](game/raycaster/upload/README.md), [findings and captures](artifacts/upload-20261011/README.md).
+
+
 **Resident networking (2026-10-11):** `residentnet` runs RTEMS/lwIP after one
 ARM callback, using message-register PIO with PCI bus mastering disabled. Card
 IPv4/IPv6 UDP, 4,096-byte TCP echo, HTTP 200, maximum-size packets and deliberate

@@ -14,6 +14,7 @@ for detail in [True,False]:
   source=source.replace('static u8 *address(','''#include "quiet_policy.h"
 #include "quiet_data.h"
 static u8 quiet_memory[80],printf_memory[256],uart_memory[104];
+static u32 cached_dispatch;
 static u8 board_pointer[]={0x80,0x07,0x11,0xc0};
 static u8 board_methods[]={0x90,0xce,0x04,0xc0,0xd0,0xce,0x04,0xc0};
 static u8 *address(''')
@@ -24,14 +25,20 @@ static u8 *address(''')
     if(off==0xc000a120u-STAGING_BASE){assert(size==104);return uart_memory;}
     if(off==EXEC_TABLE_OFFSET)''')
   source=source.replace('assert(load_upload_allowed(', 'assert(quiet_write_allowed(count,off,d->runtime_verified,d->quiet_armed)||load_upload_allowed(')
+  # Model the observed hazard: UART traffic can evict a cached table word;
+  # PING leaves it cached, while the cache callback and runner invalidate it.
+  source=source.replace('        memcpy(address(off,count),d->upload_data,count);', '        if(quiet_memory[0])cached_dispatch=0;\n        memcpy(address(off,count),d->upload_data,count);')
+  source=source.replace('        if(sp_word(table)==0xfefe001c)', '        if(!cached_dispatch)cached_dispatch=sp_word(table);\n        if(cached_dispatch==0xfefe001c)')
+  source=source.replace('else if(sp_word(table)==EXEC_RAM_ADDRESS) status=0x17d;', 'else if(cached_dispatch==EXEC_RAM_ADDRESS) {status=0x17d;cached_dispatch=0;}')
+  source=source.replace('assert(sp_word(table)==EXEC_FLASH_ADDRESS);', 'assert(cached_dispatch==EXEC_FLASH_ADDRESS);cached_dispatch=0;')
   main=(root/'host/session/test_session_main.c').read_text()
   main=main.replace('    calls=executions=0;', '''    memcpy(quiet_memory,quiet_original,80);memcpy(printf_memory,quiet_printf,256);memcpy(uart_memory,quiet_uart,104);
-    calls=executions=0;''')
+    cached_dispatch=0;calls=executions=0;''')
   main=main.replace('    n=calls;', '    n=calls;\n    if(!d.quiet_dirty) assert(!memcmp(quiet_memory,quiet_original,80));')
   main=main.replace('!d.exec_dirty && !d.stage_dirty);','!d.exec_dirty && !d.stage_dirty && !d.quiet_dirty);')
   # Directly reject every bad original byte and every active-region corruption.
   extra='''static void preimage_tests(void) {
-    struct experiment d={0};unsigned int i;u8 word[4];
+    struct experiment d={0};unsigned int i;int boundary;
     d.runtime_verified=true;d.quiet_armed=true;
     for(i=0;i<80;i++) {
         memcpy(quiet_memory,quiet_original,80);quiet_memory[i]^=1;
@@ -41,6 +48,7 @@ static u8 *address(''')
     for(i=0;i<80;i++) {
         memcpy(quiet_memory,quiet_original,80);quiet_memory[0]=0;quiet_memory[i]^=1;
         assert(quiet_check(&d)==-ENODATA);
+        boundary=calls;assert(quiet_end(&d)==-ENODATA && calls==boundary+2 && d.quiet_dirty);
     }
     for(i=0;i<256;i++) {
         memcpy(printf_memory,quiet_printf,256);printf_memory[i]^=1;
@@ -50,7 +58,6 @@ static u8 *address(''')
         memcpy(uart_memory,quiet_uart,104);uart_memory[i]^=1;
         assert(quiet_pair(&d,0xc000a120,quiet_uart,104)==-ENODATA);
     }
-    memcpy(word,quiet_original,4);
     for(i=0;i<260;i++) {
         assert(quiet_write_allowed(i,QUIET_OFFSET,1,1)==(i==4));
         assert(quiet_read_allowed(i,QUIET_OFFSET,1,1)==(i==80));
@@ -60,8 +67,12 @@ static u8 *address(''')
     assert(!quiet_write_allowed(4,QUIET_OFFSET,1,0));
     assert(!quiet_read_allowed(80,QUIET_OFFSET,0,1));
     assert(!quiet_read_allowed(80,QUIET_OFFSET,1,0));
-    d.pending=true;i=calls;assert(quiet_end(&d)==-EBUSY && calls==i);
-    d.pending=false;d.runner_uncertain=true;assert(quiet_end(&d)==-EBUSY && calls==i);
+    /* A completed table upload/readback alone cannot prove CPU dispatch visibility. */
+    cached_dispatch=0xfefe001c;put(table,EXEC_RAM_ADDRESS);d.exec_expected_status=0x17d;
+    assert(issue(&d,0x6f,0,0,0xa5,34)==-EIO && d.exec_last_status==0x17e);
+    cached_dispatch=0;
+    d.pending=true;boundary=calls;assert(quiet_end(&d)==-EBUSY && calls==boundary);
+    d.pending=false;d.runner_uncertain=true;assert(quiet_end(&d)==-EBUSY && calls==boundary);
     puts("quiet: 520 byte corruptions, fixed read/write policy and pending/uncertain restoration refusal passed");
 }
 '''

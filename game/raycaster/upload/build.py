@@ -12,6 +12,7 @@ def build(out,quiet=False,detail=True):
   fw=(ROOT/'artifacts/vendor-fujitsu/4.07-0-29/unpacked.bin').read_bytes()
   assert hashlib.sha256(fw).hexdigest()=='21f6c1d898a533d7023a53893f03547ed61631016d1b247d3ecbb97b9403c195'
   boot=(ROOT/'artifacts/vendor-fujitsu/4.07-0-29/Fgj40729.img.raw').read_bytes()
+  assert hashlib.sha256(boot).hexdigest()=='8afaebf954bbbf31bba42f1156c76237c3e632b071f6b400d3f17fbcd9d8baa5'
   # These bytes are copied fefc9000 -> c000a000 during bootstrap.
   arrays={'quiet_original':fw[0x3cec0:0x3cf10],'quiet_printf':boot[0x12a0:0x13a0],'quiet_uart':boot[0x1120:0x1188]}
   assert arrays['quiet_original'][:16]==b'\nOff%X Siz%X\0\0\0\0'
@@ -28,8 +29,8 @@ def build(out,quiet=False,detail=True):
   p=out/'stage_rehearsal.h';s=p.read_text()
   s=replace(s,'/* Persistent BIO1', '#include "quiet_data.h"\n'+(HERE/'transaction.h').read_text()+'\n/* Persistent BIO1')
   s=replace(s,'    if(d->exec_dirty) {','    if(d->quiet_dirty) {rc=quiet_end(d);if(rc) return rc;}\n    if(d->exec_dirty) {')
-  s=replace(s,'    d->ready=true;','    rc=quiet_begin(d);if(rc) return rc;\n    d->ready=true;')
-  s=replace(s,'    /* Consume sequence before submission:', '    rc=quiet_check(d);if(rc) return rc;\n    /* Consume sequence before submission:')
+  s=replace(s,'    /* Consume sequence before submission:', '    if(d->steps) {rc=quiet_check(d);if(rc) return rc;}\n    /* Consume sequence before submission:')
+  s=replace(s,'        rc=load_expect(d,0x017d);if(rc) return rc;', '        rc=load_expect(d,0x017d);if(rc) return rc;\n        rc=quiet_begin(d);if(rc) return rc;')
   s=replace(s,'d->load_armed=false;d->ready=false;', 'd->load_armed=false;d->ready=false;d->quiet_armed=false;')
   p.write_text(s)
  (out/'upload-build.json').write_text(json.dumps(dict(quiet=quiet,command_profile=detail),indent=2)+'\n')

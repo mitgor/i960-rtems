@@ -1,0 +1,10 @@
+0 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.591079, "max": 68.403389, "mean": 34.34275925}}
+1 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.675848, "max": 68.643692, "mean": 34.50426075}}
+2 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.697513, "max": 69.048063, "mean": 34.53289625}}
+3 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.693975, "max": 69.030249, "mean": 34.450822}}
+4 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.688719, "max": 69.16743, "mean": 34.5357785}}
+5 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.759937, "max": 68.844628, "mean": 34.444459}}
+6 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.579417, "max": 69.15333, "mean": 34.53368575}}
+7 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.715281, "max": 68.975388, "mean": 34.4904095}}
+8 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.766642, "max": 69.20361, "mean": 34.620996}}
+9 {"steps": 4, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 20.672773, "max": 68.581856, "mean": 34.3740905}}

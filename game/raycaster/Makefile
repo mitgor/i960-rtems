@@ -16,3 +16,7 @@ test: all build/test
 test-transfer:
 	python3 transfer/test.py
 .PHONY: test-transfer
+
+test-upload:
+	python3 upload/test.py
+.PHONY: test-upload

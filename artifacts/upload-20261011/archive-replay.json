@@ -1,0 +1,21 @@
+{
+  "replies": 2105,
+  "full_audits": 65,
+  "initial_prefix_snapshots": 5,
+  "restored_sessions": 5,
+  "profiled_commands": 45612,
+  "smoke_sessions": 10,
+  "smoke_replies": 40,
+  "exploratory_replies": 842,
+  "rejected_startups_restored": 1,
+  "quiet_step_logs_checked": 856,
+  "all_sources_reproduced": true,
+  "all_profiles_reproduced": true,
+  "boot_id": "8a7b0ba8-1ae4-4480-86e8-81c40e3b0c9a",
+  "payload_sha256": "8a19e5a357d3443721ee835d5fbdfd52ffd61710b339b8be9d74554d947da5e3",
+  "modules": {
+    "module-base": "d2e7cbcec8b925567d5919eb4238bbc220b1b1360b3bb97a926c602c66e6590d",
+    "module-quiet": "060c8431c2b4f5e93eec67c47629cfafea11074352f6c17906857ba33ac83731",
+    "module-release": "2791f9cc4b869a73c166d0aae318def0d53cdc09614aaecba3b6544c3776d3d5"
+  }
+}

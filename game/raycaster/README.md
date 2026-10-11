@@ -154,3 +154,12 @@ must not be counted as full 512 KiB reads. Final close checks the full allocatio
 [Hardware results and profiling findings](../../artifacts/raycaster-20261011/README.md)
 are recorded separately from this protocol. The production server and parallel
 OS profiles remain separate applications.
+
+## Upload latency follow-up
+
+The opt-in [quiet upload transport](upload/README.md) suppresses one blocking
+firmware UART diagnostic during a bounded session and restores it afterward.
+It retains every existing check and adds paired checks of the modified region.
+Use `python3 game/raycaster/upload/build.py --out FRESH-module --quiet --coarse`.
+Repeated card runs reduced full-frame kernel time 55.84 → 24.14 ms; this is not a
+browser FPS measurement. [Evidence and the corrected startup hazard](../../artifacts/upload-20261011/README.md).

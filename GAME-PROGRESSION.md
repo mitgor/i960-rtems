@@ -134,10 +134,16 @@ restoration. [Evidence](artifacts/word-memory-20261011/README.md).
 Upload/arming profiling and exact validation acceleration are also accepted:
 43,904 measured commands, unchanged paired read volume, and 3.61% lower full-frame
 kernel time (57.83 → 55.74 ms). Readback/audit fell 13.15%. The three upload
-completion waits still consume about 32 ms. [Evidence](artifacts/transfer-20261011/README.md).
+completion waits at that milestone consumed about 32 ms. [Evidence](artifacts/transfer-20261011/README.md).
 
-Next concrete action: design a generation-checked batch/frame queue that amortizes
-those uploads while retaining acceptance, result freshness, stop/self-disarm,
-full audits and restoration. Align it with the parallel ownership work. Neither
-the word helpers nor faster validation establish physical DMA drain or reserve
-the larger RAM needed by Doom; those remain separate gates.
+The next investigation found an upload-only blocking UART diagnostic. Temporarily
+suppressing one format byte, with pinned preimages, paired checks and full
+restoration, reduces upload waits 32.129 → 0.368 ms and full-frame kernel time
+55.840 → 24.141 ms. The final matrix passes 2,105 replies; ten repeated startup
+sessions cover the corrected cache ordering. [Evidence](artifacts/upload-20261011/README.md).
+
+Next concrete action: profile the remaining roughly 12 ms callback/render and
+10.5 ms readback/audit independently. Retain the bounded scalar interface while
+planning a generation-checked frame queue only where measured costs justify it.
+Align ownership with the parallel work. Faster uploads and word helpers do not
+establish physical DMA drain or reserve the larger RAM needed by Doom.

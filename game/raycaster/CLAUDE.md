@@ -35,3 +35,11 @@ and `artifacts/transfer-20261011/README.md`. All read coverage and exact guard
 counts are retained; never replace paired snapshots with sampling/checksums.
 The three upload completion waits dominate; their cause is not proven to be a
 removable firmware delay. Run `make -C game/raycaster test-transfer` for changes.
+
+UART follow-up: the opt-in `upload/build.py --quiet --coarse` is card accepted.
+Read `upload/README.md` and `artifacts/upload-20261011/README.md`. Never move
+suppression into OPEN or insert PING between the first cache handshake and runner
+arming: the exploratory build exposed stale dispatch and was correctly rejected.
+Preserve fixed preimages, per-step paired 80-byte checks, dirty retention and
+prechecked exact restoration. `python3 game/raycaster/upload/test.py` covers the
+cache-order regression and failure paths. Other profiles remain unchanged.

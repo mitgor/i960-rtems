@@ -1,0 +1,25 @@
+make: Entering directory '/home/mit/i960-upload-20261011-FigihP/game/raycaster'
+mkdir -p build
+cc -std=c99 -O2 -fno-builtin -Wall -Wextra -Werror -shared -fPIC ray.c -o build/libray.so
+cc -std=c99 -O2 -fno-builtin -Wall -Wextra -Werror -fsanitize=address,undefined -g ray.c test.c -o build/test
+make -C ../../rtems/memory test
+make[1]: Entering directory '/home/mit/i960-upload-20261011-FigihP/rtems/memory'
+mkdir -p build
+cc -O2 -Wall -Wextra -Werror -fno-builtin -fsanitize=address,undefined -g -Dmemcpy=word_memcpy -Dmemset=word_memset -Dmemmove=word_memmove -c check.c -o build/check.o
+cc -O2 -Wall -Wextra -Werror -fno-builtin -fsanitize=address,undefined -g -Dmemcpy=word_memcpy -Dmemset=word_memset -Dmemmove=word_memmove -c word.c -o build/word.o
+printf '#include <stddef.h>\nextern void *memcpy(void *, const void *, size_t);\n' > build/legacy.c
+sed -n '/^void \*memmove(/p' ../session/libc.c >> build/legacy.c
+cc -O2 -Wall -Wextra -Werror -fno-builtin -fsanitize=address,undefined -g -Dmemcpy=word_memcpy -Dmemset=word_memset -Dmemmove=word_memmove -c build/legacy.c -o build/move.o
+cc -O2 -Wall -Wextra -Werror -fno-builtin -fsanitize=address,undefined -g test.c build/check.o build/word.o build/move.o -o build/test
+build/test
+PASS: 264 batches, 2112 copies + 2112 moves + 1056 clears; 513 guard-page lengths
+make[1]: Leaving directory '/home/mit/i960-upload-20261011-FigihP/rtems/memory'
+build/test
+Raycaster ASan/UBSan: bounds, invalid requests, 2000 partial movement batches, benchmark kinds passed
+python3 test_host.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.810s
+
+OK
+make: Leaving directory '/home/mit/i960-upload-20261011-FigihP/game/raycaster'

@@ -1486,6 +1486,50 @@ Vader answered over IPv6 again. The new resident endpoint had proved a
 path through the message registers; cache ownership, more RAM and a dependable
 exit still needed their own evidence.
 
+## The time spent talking to nobody
+
+The thirty-two milliseconds had looked like the price of asking an old RAID
+controller to move data. The next trace found something less dignified.
+
+Before every upload, the firmware printed the offset and size to its serial
+port. It waited for each character to leave. The four-byte dispatch change paid
+for that little announcement just as faithfully as the much larger request.
+Nothing had to be connected to the serial port for the time to be spent.
+
+We could test that without removing a single check. First we matched the live
+controller methods, the formatter, the UART routine and the neighboring upload
+code against the recovered firmware. Then we changed the first newline of one
+format string to a zero byte. The DMA code stayed where it was. The completion
+status still had to be right. The sentinel, sequence, paired reads and guards
+still had their say. We even added paired reads of the altered string and its
+neighboring handler on every request.
+
+The first run was startling. The upload waits nearly vanished. The second run
+was useful in a different way: it refused to start.
+
+Our extra cache-and-PING roundtrip had disturbed the delicate first-entry
+sequence. The RAM table contained the cache callback, but the processor kept
+answering PING. Four harmless attempts were enough. The gate refused to enter
+user code, restored the original string and all the borrowed RAM, and unloaded.
+The serial chatter had been hiding a dispatch-visibility problem as well as
+wasting time.
+
+We kept the original startup handshake and moved the silence just after it,
+without inserting another PING. Ten consecutive sessions then opened, ran,
+restored and closed. Only after that did we repeat the full comparison.
+
+Baseline, quiet, quiet, baseline. The three upload waits went from 32.129
+milliseconds to 0.368. The complete kernel transaction went from 55.840 to
+24.141. Restoring the string brought the old delay back. The renderer itself
+had not become faster; the card had stopped narrating every upload to nobody.
+
+Five final sessions returned two thousand one hundred and five matching replies.
+The discarded startup attempt stayed in the archive beside the successful runs.
+The original format byte went back before each unload, the full memory checks
+passed, and Vader answered over IPv6 again. The optimization had changed one
+byte in RAM for a while. The evidence, including the refusal, was considerably
+larger.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
