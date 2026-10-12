@@ -2151,6 +2151,33 @@ old small heap, and arbitrary application tasks still need their runtime and
 ownership contract. Doom has not run. But the six-megabyte number now belongs in
 the card's column of the ledger, not only in the native tests.
 
+## Seven pixels outside the picture
+
+Before asking the card to draw Doom, the host had to agree with itself. Two runs
+of the same demo disagreed in three frames. The timing was fixed, the input was
+fixed, and the allocation measurements matched. Across the whole pair of runs,
+only seven pixels changed their minds.
+
+The debugger caught one in the act. A sprite's first sample was fifteen units
+below zero in a number with sixteen fractional bits. Rounded down, that became
+minus one. The drawing routine was also used for walls, where wrapping at 128
+pixels made sense. Minus one became 127. This particular sprite post contained
+eighteen pixels. The other two stops found the same mistake in posts of three
+and thirteen pixels.
+
+The repair gave sprite posts an end. Their samples now stay between the first
+pixel and the last, while walls keep their wrapping. It also changed some bad
+reads that had been politely returning the same wrong answer every time: 148
+pixels in thirty-five frames, compared with one old run. Agreement alone would
+have missed them.
+
+Four different heap fills, both Freedoom phases and three demos each then
+produced 50,400 captured draws. Every repeated picture, palette and game-tic
+trace matched. The i960 engine grew by 240 bytes. Its fifty-eight unresolved
+runtime symbols did not disappear, and no Doom instruction ran on the card.
+But with eight megabytes now owned on the hardware side and a repeatable picture
+on the host side, the next disagreement will at least have a proper reference.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

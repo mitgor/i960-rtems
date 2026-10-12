@@ -5,6 +5,7 @@
 #include <assert.h>
 pixel_t*DG_ScreenBuffer;
 int gametic;
+struct color colors[256];
 void doomgeneric_Create(int argc,char**argv){(void)argc;(void)argv;}
 void doomgeneric_Tick(void){}
 void Z_CheckHeap(void){}

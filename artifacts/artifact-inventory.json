@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 9708,
-      "sha256": "2ca655e7d32db9be810d5a64de205d5223967a0633300fa67a8213db83460130"
+      "size": 10579,
+      "sha256": "91fdf074fa9087456bc429c58737370b60855108b531836cdb73d1a56d6fa47c"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -3076,6 +3076,816 @@
       "path": "artifacts/dma-research-20261011/topology.txt",
       "size": 3658,
       "sha256": "5931b2ae2ce98a476c38ba3aa2065cd709b99177637bc3e60dc3771f84873959"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/README.md",
+      "size": 3813,
+      "sha256": "75ab0272e9da2177abeb970d5ae5da6b7cf68aa17e6e07227c8f94fa04fe3bad"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/before-1/frames.txt",
+      "size": 41215,
+      "sha256": "52eaa1ce4572ec44a82d50db403cade42e707ac7b516574cac6cb63150527ec1"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/before-1/output.log",
+      "size": 2035,
+      "sha256": "2897993d3b838d48f458075d92a68e8f2250518a041c2e3db8295c420ae3af93"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/before-1/profile.json",
+      "size": 489,
+      "sha256": "2a194699f16bd37110f46f5fed32e5d550722966e25146d15c97099aa5da2b15"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/before-2/frames.txt",
+      "size": 41218,
+      "sha256": "e538700142e462fd1f41dc4760756ff4a7b89e77b57a2d25b4cd860285490cb5"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/before-2/output.log",
+      "size": 2035,
+      "sha256": "6e5b142a622c001bf5f4875f772bb1acc87a8442527213d6529b4ce037df083f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/before-2/profile.json",
+      "size": 490,
+      "sha256": "de9845872a7dd58d70a6c6a8d148dfa5561d17da2270561581c13ea95aa06dd6"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/before-after.json",
+      "size": 12069,
+      "sha256": "cf40d493b4bf6b040a88dd1e23f76682b30ae00fd566cf2502c8d27a8ec7c7cf"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/before-captures.json",
+      "size": 249,
+      "sha256": "5278875d452b6c44d39116fec7856d6adcd28d7ae533c7722d9f62576d645e66"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/0eb1591a3b0f22654464da57cb99122a24624f33a18881367b37613d507dc8f2.xz",
+      "size": 3328,
+      "sha256": "0eb1591a3b0f22654464da57cb99122a24624f33a18881367b37613d507dc8f2"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/227fc1f4bb93f929b6071cde5040ab52be25fa03f88d771d71c5cd07e19f46c5.xz",
+      "size": 5372,
+      "sha256": "227fc1f4bb93f929b6071cde5040ab52be25fa03f88d771d71c5cd07e19f46c5"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/30771eaea2bc0770159fc2966f408fc5724b77531a601cad213304eeb1bbf78f.xz",
+      "size": 6708,
+      "sha256": "30771eaea2bc0770159fc2966f408fc5724b77531a601cad213304eeb1bbf78f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/32a573c2e05dd2fdd99810341dd8ec788bc81128b4ebba5929b88f47c8cafd92.xz",
+      "size": 32176192,
+      "sha256": "32a573c2e05dd2fdd99810341dd8ec788bc81128b4ebba5929b88f47c8cafd92"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/3451af83b6bde76498c5eebd4bb3721bfcc4d6f9845300727b9534979b7d9c21.xz",
+      "size": 4956,
+      "sha256": "3451af83b6bde76498c5eebd4bb3721bfcc4d6f9845300727b9534979b7d9c21"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/34cb66cce6fe1daf3b8e5ba75f507b80205eb1bc93c59105384ba6ccf2547197.xz",
+      "size": 32472140,
+      "sha256": "34cb66cce6fe1daf3b8e5ba75f507b80205eb1bc93c59105384ba6ccf2547197"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/4cb7a5dbf1f496d59124c2fe33b746ea872980143064afbcb879620b89c9b0f4.xz",
+      "size": 39443504,
+      "sha256": "4cb7a5dbf1f496d59124c2fe33b746ea872980143064afbcb879620b89c9b0f4"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/6349e38de9f5bb1957743d85f678954ddcc0c922c22453ccf00e5795a0246729.xz",
+      "size": 39443500,
+      "sha256": "6349e38de9f5bb1957743d85f678954ddcc0c922c22453ccf00e5795a0246729"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/8f635b650e45382d76f2c521bb220093138a546ee95cf037cb087c2ab0f24893.xz",
+      "size": 39443392,
+      "sha256": "8f635b650e45382d76f2c521bb220093138a546ee95cf037cb087c2ab0f24893"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/971653194328343902f34e3a4e0b4da5b54ddf5ac5ec974421b81f7981cdadf3.xz",
+      "size": 5496,
+      "sha256": "971653194328343902f34e3a4e0b4da5b54ddf5ac5ec974421b81f7981cdadf3"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/974c25b04ce714c33dcaee8e8eba043b61865ce1f41b482e3f597cf3648b6270.xz",
+      "size": 26630648,
+      "sha256": "974c25b04ce714c33dcaee8e8eba043b61865ce1f41b482e3f597cf3648b6270"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/f8e8c1c4e1aa4c23f8f56d0253487f7f072beb354b108725a87783d5be81b5d7.xz",
+      "size": 34392100,
+      "sha256": "f8e8c1c4e1aa4c23f8f56d0253487f7f072beb354b108725a87783d5be81b5d7"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/f8f088e3f1eb4c393582ec9754477edaa8712919c58d387ad370a45760dbabaa.xz",
+      "size": 4572,
+      "sha256": "f8f088e3f1eb4c393582ec9754477edaa8712919c58d387ad370a45760dbabaa"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/blobs/ffdf0a2e394307757cad31facc872b417e06cd79f638262203de712f00be1ec4.xz",
+      "size": 28884072,
+      "sha256": "ffdf0a2e394307757cad31facc872b417e06cd79f638262203de712f00be1ec4"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/builds.tar.gz",
+      "size": 14297601,
+      "sha256": "879f3b2dc4e97fce5b35f1b42c87c8ff05856ab3f6368758b186d9e09845fed8"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/captures.json",
+      "size": 5211,
+      "sha256": "9019a5c5ba93c6430db4b33d1f85be44350cc21a538354bbddc4384e37e20349"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/diagnose-1426.gdb",
+      "size": 500,
+      "sha256": "9b1c3fc580d7706e344c132074748a1b375fe5ec71bd2f051035e62e5332f2ba"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/diagnose-1426.log",
+      "size": 1934,
+      "sha256": "fe06cb2aa1aac8977264988b8b6b576cba6a7dc9dc57b4d5c491a11d71090971"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/diagnose-1817.gdb",
+      "size": 500,
+      "sha256": "fc5a636041acaec4b20138bdbf7352fd99f4d5d28760d544c1bb875026518a94"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/diagnose-1817.log",
+      "size": 1934,
+      "sha256": "beb66bf48ec80159a1f02d5cc2d8b799461f634e2c8b909396500220eabe45f6"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/diagnose-497.gdb",
+      "size": 499,
+      "sha256": "fc5a7500ac39795f87993a00d0004a5051a69c9385a40cdb80b54f1a93a02451"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/diagnose-497.log",
+      "size": 1929,
+      "sha256": "6d0da5e4a2645d0ce138a3fee84753553f443b9bed855a23dfba6dcb958c982a"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/diagnose.py",
+      "size": 1373,
+      "sha256": "032a28246947b7573c7e5ff22e007d6c3bc09d43c60a025802a71bf3bcd51f34"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/environment.txt",
+      "size": 392,
+      "sha256": "fb7d35904f95cf6270c64074b88205767d249c3313391b2e9a3542ae6463e077"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/manifest.json",
+      "size": 16408,
+      "sha256": "21592f6262871d01bc5585d8e80cb8f0857c3dd0645017fb3b6904b2b76d6c48"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/matrix.log",
+      "size": 1152,
+      "sha256": "9f6c1158e13cae616ef33c5af01892e65ebb89890fa5c5a0d3b844d0f874afea"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/results.json",
+      "size": 29839,
+      "sha256": "15af1ba8fb49dc09a18eb97dcd24acba00b1497b4d54c052b12838f7ccbf9367"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-0/frames.txt",
+      "size": 41216,
+      "sha256": "34d0187308b3ec13297d60fb4e8cb5ef4fcae7ec0e2987e14e7353b2f057353f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-0/output.log",
+      "size": 2035,
+      "sha256": "1070e72771cbb3ce116398b999d72e59a666982ab39cfe49e85111956e314437"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-0/profile.json",
+      "size": 490,
+      "sha256": "ef56aba861697659680ecece3c3b8aabc39a7f9bf4942abed3aad1bb26ad00bc"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-0/run.json",
+      "size": 1158,
+      "sha256": "58cb7bcebd38e87a3fe3de00451cbc5045a27ed7bda769ddbe7fc2631c212be6"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-0/sha256-frames.json",
+      "size": 142801,
+      "sha256": "8e2426e283f3fc69a660eedb4cac1e0f4e4ac30dd0f88f4b51141bbc87cbb067"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-1/frames.txt",
+      "size": 41216,
+      "sha256": "34d0187308b3ec13297d60fb4e8cb5ef4fcae7ec0e2987e14e7353b2f057353f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-1/output.log",
+      "size": 2035,
+      "sha256": "61ed749bfea3f4c71493e97f3ce98c5f876f2af773cc2296a4a87f8101346f14"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-1/profile.json",
+      "size": 490,
+      "sha256": "ef56aba861697659680ecece3c3b8aabc39a7f9bf4942abed3aad1bb26ad00bc"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-1/run.json",
+      "size": 1158,
+      "sha256": "0634242a5abfdcca685f8dd82d796efc142222bf95ddf220e1ee097739903975"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-1/sha256-frames.json",
+      "size": 142801,
+      "sha256": "8e2426e283f3fc69a660eedb4cac1e0f4e4ac30dd0f88f4b51141bbc87cbb067"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-2/frames.txt",
+      "size": 41216,
+      "sha256": "34d0187308b3ec13297d60fb4e8cb5ef4fcae7ec0e2987e14e7353b2f057353f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-2/output.log",
+      "size": 2035,
+      "sha256": "e43eba00a1739ce6ab77e189cc24f939b838ab75604f46350bf3bab3498c70fd"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-2/profile.json",
+      "size": 490,
+      "sha256": "ef56aba861697659680ecece3c3b8aabc39a7f9bf4942abed3aad1bb26ad00bc"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-2/run.json",
+      "size": 1159,
+      "sha256": "e2645748dd44babee906f21c510defcc18b8b20f65e0e7f81b063ce279c75191"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-2/sha256-frames.json",
+      "size": 142801,
+      "sha256": "8e2426e283f3fc69a660eedb4cac1e0f4e4ac30dd0f88f4b51141bbc87cbb067"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-3/frames.txt",
+      "size": 41216,
+      "sha256": "34d0187308b3ec13297d60fb4e8cb5ef4fcae7ec0e2987e14e7353b2f057353f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-3/output.log",
+      "size": 2035,
+      "sha256": "4765628d97d0a6b8b2dbb15337d5860fac764e3251bb902fce8e61409506e8a8"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-3/profile.json",
+      "size": 490,
+      "sha256": "ef56aba861697659680ecece3c3b8aabc39a7f9bf4942abed3aad1bb26ad00bc"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-3/run.json",
+      "size": 1159,
+      "sha256": "93338191caab9d20eb48e37aad95cc0fb1c040316849676e4e5cc1920d4ca200"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo1-3/sha256-frames.json",
+      "size": 142801,
+      "sha256": "8e2426e283f3fc69a660eedb4cac1e0f4e4ac30dd0f88f4b51141bbc87cbb067"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-0/frames.txt",
+      "size": 41203,
+      "sha256": "dd9107753c05a7d0bccf3c3a1eac0d87605cf3de7f12c3bcf31e0cdb3f941be7"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-0/output.log",
+      "size": 2035,
+      "sha256": "d4484d215bdc34bddaeaabc2d2ed01670c73c7505553ea5b10df735aa5d4a343"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-0/profile.json",
+      "size": 489,
+      "sha256": "ae1fef12eb019bbe52543267d3a3a5f8689e570936149779151a199cd12a57a4"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-0/run.json",
+      "size": 1157,
+      "sha256": "03c56dba0cf06d243076a3f242330e107cab2f0772cb93964d1270e11db8d57a"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-0/sha256-frames.json",
+      "size": 142801,
+      "sha256": "ad4a6aa2a3b1356f9945a120243142e5f7600bfc5cf1a015196bfd959a32d7df"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-1/frames.txt",
+      "size": 41203,
+      "sha256": "dd9107753c05a7d0bccf3c3a1eac0d87605cf3de7f12c3bcf31e0cdb3f941be7"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-1/output.log",
+      "size": 2035,
+      "sha256": "a30a1f23e574b45d6b0b843b11d3ac170c7bf6612821a00c684479f9da82b2bd"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-1/profile.json",
+      "size": 489,
+      "sha256": "ae1fef12eb019bbe52543267d3a3a5f8689e570936149779151a199cd12a57a4"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-1/run.json",
+      "size": 1157,
+      "sha256": "13acd5e5843100771c4947379126444d1ff4cc796a515e0c2de7d4b77b9ef44a"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-1/sha256-frames.json",
+      "size": 142801,
+      "sha256": "ad4a6aa2a3b1356f9945a120243142e5f7600bfc5cf1a015196bfd959a32d7df"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-2/frames.txt",
+      "size": 41203,
+      "sha256": "dd9107753c05a7d0bccf3c3a1eac0d87605cf3de7f12c3bcf31e0cdb3f941be7"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-2/output.log",
+      "size": 2035,
+      "sha256": "81399883611310ebcdac19176aedf1a0c3268877d1577a954e34ffeb23a76f60"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-2/profile.json",
+      "size": 489,
+      "sha256": "ae1fef12eb019bbe52543267d3a3a5f8689e570936149779151a199cd12a57a4"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-2/run.json",
+      "size": 1158,
+      "sha256": "de4af1864df40276cbf5937929a03b3190101e86afdd5f3fb4a452da8ffbc2f3"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-2/sha256-frames.json",
+      "size": 142801,
+      "sha256": "ad4a6aa2a3b1356f9945a120243142e5f7600bfc5cf1a015196bfd959a32d7df"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-3/frames.txt",
+      "size": 41203,
+      "sha256": "dd9107753c05a7d0bccf3c3a1eac0d87605cf3de7f12c3bcf31e0cdb3f941be7"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-3/output.log",
+      "size": 2035,
+      "sha256": "cb7fda4a80a4b00d40362efb407a933ecfcd892115347eeb97022d3d86130103"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-3/profile.json",
+      "size": 489,
+      "sha256": "ae1fef12eb019bbe52543267d3a3a5f8689e570936149779151a199cd12a57a4"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-3/run.json",
+      "size": 1158,
+      "sha256": "1796d9498b4c0cbbc2c40e31f3236dcfa494bb7146a818d12d3d7d2ecb620a19"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo2-3/sha256-frames.json",
+      "size": 142801,
+      "sha256": "ad4a6aa2a3b1356f9945a120243142e5f7600bfc5cf1a015196bfd959a32d7df"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-0/frames.txt",
+      "size": 41227,
+      "sha256": "7d8bfae02653ba7078f164020099c398d113e96bafc0738fc431e0a7bbcb1208"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-0/output.log",
+      "size": 2035,
+      "sha256": "0d98a5a3685e87a8c5be96744a749403d8a6f0b365e426aab0cee309ad9690cf"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-0/profile.json",
+      "size": 489,
+      "sha256": "eaef03803d5b760739830740f7a13954a5c103cfd3c4321d0fc7f62c3e2bf1ed"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-0/run.json",
+      "size": 1157,
+      "sha256": "5c4ce88ed7b8911a00187659e4ec736687b47565a29e70fbbf900fd65076664b"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-0/sha256-frames.json",
+      "size": 142801,
+      "sha256": "3c975533952f7ae17d1ad17d5ef23ca0e9f74fa2502f08f8d23e60dd4273b8a8"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-1/frames.txt",
+      "size": 41227,
+      "sha256": "7d8bfae02653ba7078f164020099c398d113e96bafc0738fc431e0a7bbcb1208"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-1/output.log",
+      "size": 2035,
+      "sha256": "148e8c2ebb80215c3d5f41ebae303cbfa32ecb4a5182c4d262e82198d1a2c56d"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-1/profile.json",
+      "size": 489,
+      "sha256": "eaef03803d5b760739830740f7a13954a5c103cfd3c4321d0fc7f62c3e2bf1ed"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-1/run.json",
+      "size": 1157,
+      "sha256": "e83a240576cd79a249bde382b9ff424e8e4a08bc973d70f2559df5dc05a2a159"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-1/sha256-frames.json",
+      "size": 142801,
+      "sha256": "3c975533952f7ae17d1ad17d5ef23ca0e9f74fa2502f08f8d23e60dd4273b8a8"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-2/frames.txt",
+      "size": 41227,
+      "sha256": "7d8bfae02653ba7078f164020099c398d113e96bafc0738fc431e0a7bbcb1208"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-2/output.log",
+      "size": 2035,
+      "sha256": "9d7aca63630339b0c213a07b45b606a9dcceab05962234566671f3d6a7512f62"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-2/profile.json",
+      "size": 489,
+      "sha256": "eaef03803d5b760739830740f7a13954a5c103cfd3c4321d0fc7f62c3e2bf1ed"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-2/run.json",
+      "size": 1158,
+      "sha256": "8334e0ade23a22f71e1ab7762e7971f5224bb339a2b2f917b1ffdc1cfe28c0f0"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-2/sha256-frames.json",
+      "size": 142801,
+      "sha256": "3c975533952f7ae17d1ad17d5ef23ca0e9f74fa2502f08f8d23e60dd4273b8a8"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-3/frames.txt",
+      "size": 41227,
+      "sha256": "7d8bfae02653ba7078f164020099c398d113e96bafc0738fc431e0a7bbcb1208"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-3/output.log",
+      "size": 2035,
+      "sha256": "538ec441a67b29858071437bd9dba622c5e96941a8e818704aa1226580522888"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-3/profile.json",
+      "size": 489,
+      "sha256": "eaef03803d5b760739830740f7a13954a5c103cfd3c4321d0fc7f62c3e2bf1ed"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-3/run.json",
+      "size": 1158,
+      "sha256": "2a4cfc75722887a3513092f1a2cd6ea420762b8a03b38ae440aa6ce6188abd86"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p1-demo3-3/sha256-frames.json",
+      "size": 142801,
+      "sha256": "3c975533952f7ae17d1ad17d5ef23ca0e9f74fa2502f08f8d23e60dd4273b8a8"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-0/frames.txt",
+      "size": 41216,
+      "sha256": "447eefb920c742afed89d2318ad694698efabe14a218e664f59105c4d3c07a7e"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-0/output.log",
+      "size": 2038,
+      "sha256": "e61d4d05a1e61f617328595519692f06ffe54ca6bca5033b91c1adddcd236f14"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-0/profile.json",
+      "size": 490,
+      "sha256": "8d9a9bf52796193c27089bebfb8f54acc416eec94f26a1c776bdc6e139ba405b"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-0/run.json",
+      "size": 1158,
+      "sha256": "4bd8b875dafab2119e6ffaf8a09de07723738cf2cba7869f2925340f49656111"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-0/sha256-frames.json",
+      "size": 142801,
+      "sha256": "b85de27d403ba810d6bb7675699191ac8726e0c4de19aaedf35e3072c718841f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-1/frames.txt",
+      "size": 41216,
+      "sha256": "447eefb920c742afed89d2318ad694698efabe14a218e664f59105c4d3c07a7e"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-1/output.log",
+      "size": 2038,
+      "sha256": "21e2578c20e39dd8e8b4b214d3e3e162d6696c696f4539e8bf302a085c175c21"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-1/profile.json",
+      "size": 490,
+      "sha256": "8d9a9bf52796193c27089bebfb8f54acc416eec94f26a1c776bdc6e139ba405b"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-1/run.json",
+      "size": 1158,
+      "sha256": "1c92bf9afe568acefb8634c43ebadbf82a8f2760a1e6207dd05c6c0933531233"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-1/sha256-frames.json",
+      "size": 142801,
+      "sha256": "b85de27d403ba810d6bb7675699191ac8726e0c4de19aaedf35e3072c718841f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-2/frames.txt",
+      "size": 41216,
+      "sha256": "447eefb920c742afed89d2318ad694698efabe14a218e664f59105c4d3c07a7e"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-2/output.log",
+      "size": 2038,
+      "sha256": "8a4c77a2eefbc97a854d274753127a166786d7e4b6e21d2161cf58426335d046"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-2/profile.json",
+      "size": 490,
+      "sha256": "8d9a9bf52796193c27089bebfb8f54acc416eec94f26a1c776bdc6e139ba405b"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-2/run.json",
+      "size": 1159,
+      "sha256": "5408cc093c07259ce5deaacf6a9fbfd446f4f33de37050619720ba8b6a0e74b3"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-2/sha256-frames.json",
+      "size": 142801,
+      "sha256": "b85de27d403ba810d6bb7675699191ac8726e0c4de19aaedf35e3072c718841f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-3/frames.txt",
+      "size": 41216,
+      "sha256": "447eefb920c742afed89d2318ad694698efabe14a218e664f59105c4d3c07a7e"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-3/output.log",
+      "size": 2038,
+      "sha256": "c8598f7bd08d66cb2c36f933cdfd8f3513f13b791b93878693ced3c1550f91b1"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-3/profile.json",
+      "size": 490,
+      "sha256": "8d9a9bf52796193c27089bebfb8f54acc416eec94f26a1c776bdc6e139ba405b"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-3/run.json",
+      "size": 1159,
+      "sha256": "ce9fe0771d4cc52a826ff6460b44637937436998c0785e185c2b64b115614fe4"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo1-3/sha256-frames.json",
+      "size": 142801,
+      "sha256": "b85de27d403ba810d6bb7675699191ac8726e0c4de19aaedf35e3072c718841f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-0/frames.txt",
+      "size": 41227,
+      "sha256": "a73756f018be75e844c6ffbcedc4590966b92e6aacf4814ee7d3f28cce536e8f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-0/output.log",
+      "size": 2038,
+      "sha256": "e86141c6401fa5662a5272be1e7ddd9e3dc811ba3558315aa4ce5d456cd09a10"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-0/profile.json",
+      "size": 490,
+      "sha256": "3cab91d1d4105e8da9147215f79db29ec969c4f333050336c347370151caa5bd"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-0/run.json",
+      "size": 1158,
+      "sha256": "ba5653ac96d033e4534cdbc1311fe52f5f42c8422b52d883bbbe9e7007a6da33"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-0/sha256-frames.json",
+      "size": 142801,
+      "sha256": "a2ca56464c517a7625a82d5c78165a530d71b5d7e2af1359fecf0b27d37e782d"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-1/frames.txt",
+      "size": 41227,
+      "sha256": "a73756f018be75e844c6ffbcedc4590966b92e6aacf4814ee7d3f28cce536e8f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-1/output.log",
+      "size": 2038,
+      "sha256": "0cbef6670bd0a0a5dcc8d3619d96072294829d7b345965b4828c243fb835a748"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-1/profile.json",
+      "size": 490,
+      "sha256": "3cab91d1d4105e8da9147215f79db29ec969c4f333050336c347370151caa5bd"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-1/run.json",
+      "size": 1158,
+      "sha256": "8cff78a67c94643a9040009a0ea4ac26804b87e6c58d756eee81e7a7c06b53e9"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-1/sha256-frames.json",
+      "size": 142801,
+      "sha256": "a2ca56464c517a7625a82d5c78165a530d71b5d7e2af1359fecf0b27d37e782d"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-2/frames.txt",
+      "size": 41227,
+      "sha256": "a73756f018be75e844c6ffbcedc4590966b92e6aacf4814ee7d3f28cce536e8f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-2/output.log",
+      "size": 2038,
+      "sha256": "c6c5efb6e322ec406f0714bbcc2cf37826cb7596285cc416fe3ab4ef6269d2c8"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-2/profile.json",
+      "size": 490,
+      "sha256": "3cab91d1d4105e8da9147215f79db29ec969c4f333050336c347370151caa5bd"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-2/run.json",
+      "size": 1159,
+      "sha256": "b52a9187051eab4205c4b63c94b64b345fd22f7c8338fffd4ee5191e3fb643c0"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-2/sha256-frames.json",
+      "size": 142801,
+      "sha256": "a2ca56464c517a7625a82d5c78165a530d71b5d7e2af1359fecf0b27d37e782d"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-3/frames.txt",
+      "size": 41227,
+      "sha256": "a73756f018be75e844c6ffbcedc4590966b92e6aacf4814ee7d3f28cce536e8f"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-3/output.log",
+      "size": 2038,
+      "sha256": "19299cbc4cd127dd75431519eb48e88bc8599d762ddffabaf7cd1b48a0debf00"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-3/profile.json",
+      "size": 490,
+      "sha256": "3cab91d1d4105e8da9147215f79db29ec969c4f333050336c347370151caa5bd"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-3/run.json",
+      "size": 1159,
+      "sha256": "b25ee3fb2173b80f72294aa0dce3342b5784f5e987b0c25ae49d0eda4afe2588"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo2-3/sha256-frames.json",
+      "size": 142801,
+      "sha256": "a2ca56464c517a7625a82d5c78165a530d71b5d7e2af1359fecf0b27d37e782d"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-0/frames.txt",
+      "size": 41244,
+      "sha256": "e55fd4cadd1e4955d6b4a02654448e5346fe4f75d086f89c98abb8744f4d2984"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-0/output.log",
+      "size": 2038,
+      "sha256": "b6fda39e8b52007ebd06c1ae1c844556a1f506bd848702ccbf0d2b3d270ee8a2"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-0/profile.json",
+      "size": 490,
+      "sha256": "a8da9903411ceb233237e6194e132bcd4c8e255d683730d87d856a70aec85c79"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-0/run.json",
+      "size": 1158,
+      "sha256": "eb6566ffa7fceab7dc9fee79d6235453b53bb19dd05189f13b34076197fba0e3"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-0/sha256-frames.json",
+      "size": 142801,
+      "sha256": "c7ad9b24b014ae210bd4ba0aedbfcde5b3e427a2dedc8eb5101a5977bcbb2a92"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-1/frames.txt",
+      "size": 41244,
+      "sha256": "e55fd4cadd1e4955d6b4a02654448e5346fe4f75d086f89c98abb8744f4d2984"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-1/output.log",
+      "size": 2038,
+      "sha256": "3c896bbaada75cf11f2d697aa7586f74f069676dd3fa7f789d3dac9a39d5447e"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-1/profile.json",
+      "size": 490,
+      "sha256": "a8da9903411ceb233237e6194e132bcd4c8e255d683730d87d856a70aec85c79"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-1/run.json",
+      "size": 1158,
+      "sha256": "9c19f510fcd2f04e385f1cfd413fca20c576963803f35160a1df113f9fae94f8"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-1/sha256-frames.json",
+      "size": 142801,
+      "sha256": "c7ad9b24b014ae210bd4ba0aedbfcde5b3e427a2dedc8eb5101a5977bcbb2a92"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-2/frames.txt",
+      "size": 41244,
+      "sha256": "e55fd4cadd1e4955d6b4a02654448e5346fe4f75d086f89c98abb8744f4d2984"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-2/output.log",
+      "size": 2038,
+      "sha256": "6587d43be1690ecd3707c6ff0df70121500a9c83b3a96d7551792cba8c34dc35"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-2/profile.json",
+      "size": 490,
+      "sha256": "a8da9903411ceb233237e6194e132bcd4c8e255d683730d87d856a70aec85c79"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-2/run.json",
+      "size": 1159,
+      "sha256": "92261b020949661413499ca88b8693514088f4e656c51c39a901b9426ed06136"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-2/sha256-frames.json",
+      "size": 142801,
+      "sha256": "c7ad9b24b014ae210bd4ba0aedbfcde5b3e427a2dedc8eb5101a5977bcbb2a92"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-3/frames.txt",
+      "size": 41244,
+      "sha256": "e55fd4cadd1e4955d6b4a02654448e5346fe4f75d086f89c98abb8744f4d2984"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-3/output.log",
+      "size": 2038,
+      "sha256": "9030b2c2ed3ad4164cabf5f2577f580d4c3921d7f9c6d5194fe16dd150c9b861"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-3/profile.json",
+      "size": 490,
+      "sha256": "a8da9903411ceb233237e6194e132bcd4c8e255d683730d87d856a70aec85c79"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-3/run.json",
+      "size": 1159,
+      "sha256": "2b0d98d437add7e2094f46bc58f767a1a85917d68fb9cad31addc5a028877c48"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/runs/p2-demo3-3/sha256-frames.json",
+      "size": 142801,
+      "sha256": "c7ad9b24b014ae210bd4ba0aedbfcde5b3e427a2dedc8eb5101a5977bcbb2a92"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/target-verification.json",
+      "size": 1288,
+      "sha256": "a4fac3127d53c1742d79d4146b1d4cfaded52b96d2c62354d993a2cb4d1dc63c"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/test-columns.log",
+      "size": 91,
+      "sha256": "d105cc73b5d33bf82473c587f7ba9f6fb175176e2e6a18beb8d1d09ef7654e5b"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/test-profile.log",
+      "size": 102,
+      "sha256": "9996f7f3e9ae20d3eeb8329b589061bb85ee7bbbffb45ffc8368346af3f86314"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/verification.json",
+      "size": 113,
+      "sha256": "8cb844604e2e397e83b707d2e83f24e8d334f068eed1bbe335818ee0a36f9987"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/watch.gdb",
+      "size": 386,
+      "sha256": "513babf57f7fa7dcb490274c0697059bd1bbb9abd4f59bf1cdd1d0d06c5f608b"
+    },
+    {
+      "path": "artifacts/doom-determinism-20261012/watch.log",
+      "size": 3883,
+      "sha256": "bd71ff2f3d1eae412df198cde1c6b14b578833edbb850dd4c4f5a1eab3d8abe6"
     },
     {
       "path": "artifacts/doom-m1-20261011/README.md",
@@ -11488,6 +12298,146 @@
       "sha256": "98c3217f969eec7968a57d18909e10f97bd7b87d3dfdd3ec4b88ab6eb6108440"
     },
     {
+      "path": "artifacts/rtems-large-ram-20261012/README.md",
+      "size": 8723,
+      "sha256": "37f22fba05263415d88ebdbede857b5359769c7a195259162a1273b932cd8a9e"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/SHA256SUMS",
+      "size": 2549,
+      "sha256": "4a60442fd0d352a30d993d0d9aa37da391b24657feaa55c147911faa310b9117"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/current-source-manifest.json",
+      "size": 32218,
+      "sha256": "dc5ad7d211289021ab30aca3aa00215e15b38d3cbe0684590b23965045137849"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/archive-validation.json",
+      "size": 592,
+      "sha256": "d58e3f62d484cca881b25de43f6890d544f6e1608995cd1308c248b3b1ade6d3"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/initial-layout.json",
+      "size": 1610,
+      "sha256": "df225163ac921277bed5758b7c5e32d09795682691c8c1341c8f610ceb8f70a9"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/initial-verify-1.json",
+      "size": 10856,
+      "sha256": "a9646d44c0279891a3581989ad8348f947bb227950ab22de803433ce033c7a46"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/mib-10-host-check-failed-control-latency.json",
+      "size": 582,
+      "sha256": "e3f9acafdc4d1ec92448b6cef1182efef607ae731e8ff43296063236b27866b2"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/mib-10-host-check-failed-replay-incomplete.txt",
+      "size": 1719,
+      "sha256": "07f39025e8350d0a29c529db7a47df36d1693305fe4d4c74a0836a87dfa2a999"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/mib-12final-control-latency.json",
+      "size": 709,
+      "sha256": "fafeba575b02ff251b17b929f749d7a1fad33fa68ff427b25955a8692f06e251"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/mib-12final-layout.json",
+      "size": 1611,
+      "sha256": "6990cffc57e3fcadd459630ceee85d9346864e973c8e9b28dabb5cf25f41a068"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/mib-12final-verification.json",
+      "size": 162722,
+      "sha256": "df889632157198e266a2de8339f2853054fbf42eb3fd28d76507921fae89dbc5"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/mib-4-control-latency.json",
+      "size": 555,
+      "sha256": "f4ab916a5276d3832d58001b31e74c2fe89fd1448af882bc3ca608f4ce288a33"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/evidence/mib-4-verification.json",
+      "size": 14176,
+      "sha256": "e7b012b9bb91ddbf9c01cf3a34912904001a27a0effb66692c0b84213c43485b"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/historical-sources.tar.gz",
+      "size": 843680,
+      "sha256": "70f6d98f423d0400690f91e9a46d5276f0d2b2c37e7abfc902c428f18336138b"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/initial.tar.xz",
+      "size": 1666192,
+      "sha256": "e787a9596b7984ae9e2a4722cff4209dd213b91e0a5100bab7a1728a432c2283"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/mib-10-failed.tar.xz",
+      "size": 1182400,
+      "sha256": "ce1db4882370961ffe7e6978e32ffb51453afe347eba1026fb5519e1f688a351"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/mib-10-host-check-failed.tar.xz",
+      "size": 1251344,
+      "sha256": "42df76170111f34cb6a2ce495cc4ee1003f1a3ba79186b606b56d3fcfa6b20b9"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/mib-12final.tar.xz",
+      "size": 3516508,
+      "sha256": "c276f1389adb9c2f53a6c698b4695cc23391dad88ecd6c97164b6ec1894c25fe"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/mib-4.tar.xz",
+      "size": 1269004,
+      "sha256": "312aedc3c00ffc1d0761caa0ce63dcf810d0b0adcca70e514fb3ca4f3c0c85c0"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/native-control-journal.txt",
+      "size": 108,
+      "sha256": "99826e7288e1024fddcddd019499e53faf94ff0fe014d880c6ee8e89875cb57b"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/native-control-wait.txt",
+      "size": 174,
+      "sha256": "180b65c71a99a18efdd94c1aa8bb91c8599e24d25c8e065a7f6d52333e2eb34f"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/native-large-ram.txt",
+      "size": 408,
+      "sha256": "f7cabebd4df70020d6874afcd3a81bc09481a3fbb9a238d9947129ec36cbea7c"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/native-large-snapshot.txt",
+      "size": 247,
+      "sha256": "bfea74fdc4ade6f662f568c584c811a5b8225a4257cf366eeaf93fabf4941cb3"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/native-net-preempt.txt",
+      "size": 260,
+      "sha256": "097ad8dc161d22bf9067ab9b6db2490c884b3f475674877a843cd68230dadfe5"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/offline-tests.txt",
+      "size": 11708,
+      "sha256": "7da22841342b8c833668f3ad71d8278f83cfd82b3554ca716cf16891887e6a83"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/production/host-status.txt",
+      "size": 363,
+      "sha256": "85c2384c173c053deea9e70305e7695485edd3438a9a359fe5e14e6021a6204f"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/production/http-check.json",
+      "size": 321,
+      "sha256": "026c71e396fca29f4d5273923e50ca32d68b8e96ec86230cd1b60022e6f25263"
+    },
+    {
+      "path": "artifacts/rtems-large-ram-20261012/progress-summary.json",
+      "size": 535,
+      "sha256": "634a68d747a939a57c68a24e5baaf3e5f7cc8295410607949fd9d5ca97627d79"
+    },
+    {
       "path": "artifacts/rtems-leaseirq-20261011/README.md",
       "size": 3774,
       "sha256": "38cf4131a5010bc7da247f4ee2b6f865c8d3d33c940bf726562500e5895bc6fa"
@@ -12051,6 +13001,141 @@
       "path": "artifacts/rtems-ram-ownership-20261011/residentnet-ram-scsi.tar.xz",
       "size": 1224372,
       "sha256": "a973ad747a4fd915436049a83b003c222dc79fda5b95cec983a2b7afd4272c18"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/README.md",
+      "size": 6599,
+      "sha256": "cab5906f60b3caabef89e3dd1add6f24a5e870d9596d0dc50a9f1916457d17ab"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/SHA256SUMS",
+      "size": 2293,
+      "sha256": "770864eb7c72ef22dab5f2a86d96c68200625f2e6bb7ef502e561f61632d6dd2"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/control-latency-final.json",
+      "size": 689,
+      "sha256": "e4e1ddc1dfb57c4e3b23f2476e811adfb1b40fffe6f74dc1d0762a7d45f2c778"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/control-latency.json",
+      "size": 712,
+      "sha256": "fdb9b5528dc92c7e011cbff16b4a581fed5559bd0e0d854b205ffbe84ed51ea2"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/current-source-manifest.json",
+      "size": 34597,
+      "sha256": "728d67376eb8092b1d34e1392876149a0ea7faf7a71ee71f44b6589b4bf5c72d"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/failed-concurrent-members.json",
+      "size": 85402,
+      "sha256": "36b99e8f3c20ea763c79bf5c45c3f5c8041c312da9ff851c6938869a830da6a6"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/failed-concurrent.tar.xz",
+      "size": 1207804,
+      "sha256": "5c18a94fbb40adecd93951fc84dffc1853f64f50d3c3175cabf44e72a46d2579"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/failed-wire-layout-members.json",
+      "size": 89982,
+      "sha256": "c12d244eba241e1061dd590ccb1a1b6a8213ff9de95e32e05fe6c4e9ceafb441"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/failed-wire-layout.tar.xz",
+      "size": 1224876,
+      "sha256": "8fb20d2d2c035a617b00ee98d1239beb6c566afd3975fc7cd85ce363daf2d5b6"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/final-concurrent.tar.xz",
+      "size": 1554208,
+      "sha256": "3dd0105d0aeeeb109d4fe6adf3f9317c5cc415cd7588e07dc4f45cb18faa64b7"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/final-members.json",
+      "size": 126980,
+      "sha256": "bcb0ccc60a4cbf65cf912a90d63231a666ac576477a5a6d3d70d4cc399225789"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/host-bound-tests.txt",
+      "size": 174,
+      "sha256": "cf9f740278b767a2aa5f70c448438b33cfaf230589b9d48a9e16b5431d46e47e"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/independent-replay-final.json",
+      "size": 37335,
+      "sha256": "fb33be6bc5b3be169eed7572ab1edb6f869249b284534db3146dea2e9496ec7b"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/independent-replay.json",
+      "size": 24069,
+      "sha256": "1cfca28cb863005f6ae4e7db532d8eef863c541ce817ebee10019fffb988f6b4"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/layout.json",
+      "size": 1667,
+      "sha256": "768ea59babc1af786eae10d5d55153dba3221ec752807b5578a448cd5241a194"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/loader-tests.txt",
+      "size": 1856,
+      "sha256": "fe0147ebed3f1ee41fff51d6c188cf4f442917a5b4167b09a4618efd0bbf9031"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/offline-tests.txt",
+      "size": 12478,
+      "sha256": "1c81cdf9473b476d14235bcc24f0208c7e0de0e7b25d0ce51e108cce5add0a3b"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/production/host-status.txt",
+      "size": 105,
+      "sha256": "f16a20f0377f85ca2830996ddbce67df31ce681db938af5a6a6763830ff51a37"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/production/http-check.json",
+      "size": 199,
+      "sha256": "7850d74d0f1954d45694e2279b0505b30a2daeed0e44d196200bc39564ba0d6c"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/replay-final.json",
+      "size": 37336,
+      "sha256": "7fe8e04bddb76490a99ea77adbd429174ee5366138f7e2b9ed0952633bd66396"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/replay.json",
+      "size": 24070,
+      "sha256": "09ac7164360558165838069774b83bfda0f1996d4484fc186bf3b8441a3b3917"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/successful-members.json",
+      "size": 126696,
+      "sha256": "e90a2c1db708ab69f1a8b0c4f0f7560daf2711efc317d738d40a00421c2d5a30"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/successful.tar.xz",
+      "size": 1513212,
+      "sha256": "5050bb6f427437d2f57a011d6c45442cab4cdd37abb92df8e06d163ad333b2a8"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/summary.json",
+      "size": 610,
+      "sha256": "4fb6482f64d68571d9f3aa42d59362257c20c4618c9abd43d253849e4ecd7874"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/target-source-manifest.json",
+      "size": 17203,
+      "sha256": "34d313971fe90465bc448c44a5601ae1c553de7d23a048910b6561729608c838"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/upload-replay-final.json",
+      "size": 503,
+      "sha256": "8fc7814e0678557c8c8c1c247d17a9e410b2bfeea6ceabc3d414a7b3e9fd3693"
+    },
+    {
+      "path": "artifacts/rtems-resident-upload-20261012/upload-replay.json",
+      "size": 503,
+      "sha256": "3ec43979ecb8cdb07986ecbddd2a04e10f59c14923ed0c966750ad24e24f4bfd"
     },
     {
       "path": "artifacts/rtems-residentnet-20261011/README.md",
@@ -13131,6 +14216,51 @@
       "path": "artifacts/runtime-read-20261010/verification.json",
       "size": 669,
       "sha256": "82f60da19a8d39f4fcb4585664da8b59665bc3853e30e0606da8839b66784eef"
+    },
+    {
+      "path": "artifacts/segmented-loader-20261012/README.md",
+      "size": 2978,
+      "sha256": "2f4c31ecdcb0c68be816b82460a8ce3d281cc08e944c8bd7cc911db1cdc05d48"
+    },
+    {
+      "path": "artifacts/segmented-loader-20261012/SHA256SUMS",
+      "size": 666,
+      "sha256": "561f0c5b8fae5db7e2658ed21d2ccd6045f2b94f04c3a0af4cd646b173bdc009"
+    },
+    {
+      "path": "artifacts/segmented-loader-20261012/archive-members.json",
+      "size": 27525,
+      "sha256": "d5907b58c0f03f36df7803e17b55d74bf9b9e362232e205673fd04cca2a43846"
+    },
+    {
+      "path": "artifacts/segmented-loader-20261012/captures.tar.xz",
+      "size": 520872,
+      "sha256": "c371b952b8069cd563f3406e3dd6a17425cf34202386a7c6ebd640a186fbb612"
+    },
+    {
+      "path": "artifacts/segmented-loader-20261012/http-check.json",
+      "size": 199,
+      "sha256": "8a53c2e55cc18d85fcdafc68b0706157b1efd20c009924092da4be4127c963f6"
+    },
+    {
+      "path": "artifacts/segmented-loader-20261012/initial-sources.tar.xz",
+      "size": 4872,
+      "sha256": "003ddcf77dce75f96969ece522ad8b2122801752ed5a4aa8eb01374f2d98d147"
+    },
+    {
+      "path": "artifacts/segmented-loader-20261012/middle-sources.tar.xz",
+      "size": 4876,
+      "sha256": "3281474b2237cbad1e90c52379feb23accae9f88610f3f98b8698547b47436b3"
+    },
+    {
+      "path": "artifacts/segmented-loader-20261012/offline-tests.txt",
+      "size": 1856,
+      "sha256": "0c24567353d81ca5482f07787cad16848806f6c1b5568cef16ff101d490fb038"
+    },
+    {
+      "path": "artifacts/segmented-loader-20261012/replay.json",
+      "size": 704,
+      "sha256": "22f7eeaa1a88d3055208c5e5ccb3b066d0adfe489b73690049bf295a0a54f684"
     },
     {
       "path": "artifacts/slotopt-20261011/README.md",
@@ -21278,5 +22408,5 @@
       "sha256": "d3dd70a6f4d59633b238fbea5e6ce80e149db8b0d9e82e14258e00000d0f16c6"
     }
   ],
-  "updated_date": "2026-10-11"
+  "updated_date": "2026-10-12"
 }

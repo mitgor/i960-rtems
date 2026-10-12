@@ -4,16 +4,21 @@
 engine translation units compile with GCC 3.3.6 for i960RP and combine into a
 relocatable ELF32 i960 object. Final linking intentionally fails on 58 missing
 external symbols. `doom-engine.o` is an inventory artifact, **not firmware**.
-The next target is a real runtime/platform link and an independently proven RAM
-grant, followed by headless correctness testing.
+The next target is a real runtime/platform link and application launch, followed
+by headless i960 correctness testing.
+
+**2026-10-12 follow-up:** [sprite sampling and deterministic output](DETERMINISM.md)
+resolve the three differing frames. Current i960 static size is 627,096 bytes;
+the tables below preserve the original milestone measurements. RTEMS now has an
+accepted 8 MiB guarded application arena and resident segmented uploads.
 
 ## OS implementation path
 
 The [RTEMS-to-Doom plan](OS-PLAN.md) orders the large-RAM allocator, segmented
 loader, runtime link, host-backed WAD service, task/control integration and
 correctness gates. The exclusive workspace/RAM experiments are separate from
-this engine milestone: a tested reserve is not yet the requested 8 MiB application
-arena, and no Doom image has been run on the card.
+this engine milestone. The later resident-upload profile now grants the requested
+8 MiB arena; libc/task integration remains, and no Doom image has run on the card.
 
 ## Inputs and build changes
 
@@ -30,7 +35,8 @@ The target uses `-mrp -Os -std=gnu99 -ffreestanding -fno-builtin
 structure size are 8 and 16 bytes. The only remaining compiler warning is an
 upstream unsigned-key `>= 0` check that is always true.
 
-Both target and host use `CMAP256`, 320×200, sound disabled, and two source fixes:
+Both target and host use `CMAP256`, 320×200, sound disabled, and the original two source fixes (plus the subsequent bounded sprite sampling
+fix documented in DETERMINISM.md):
 
 - Allocate `DG_ScreenBuffer` using `sizeof(pixel_t)`: upstream reserves four bytes
   per pixel even in indexed mode. This saves 192,000 bytes of ordinary heap.
@@ -80,15 +86,13 @@ Separate low-memory tests terminate with `Z_Malloc` errors: both first demos at
 is not a suitable minimum-RAM guarantee. The stock timedemo fatal cleanup also
 reports recursive `I_Error`/zero-tic timing; target fatal handling needs replacement.
 
-### Repeatability remains an open correctness issue
+### Repeatability follow-up
 
-Before video initialization was fixed, the startup wipe differed. The corrected
-first 100 frames match exactly. Two corrected 2,100-frame traces still differ at
-zero-based frames **497, 1426 and 1817**, while their repeated memory measurements
-match. These differences are preserved, not dismissed as acceptable rendering.
-Do not use the aggregate frame hash as an accepted native oracle yet. Resolve
-this before the first target timedemo correctness comparison. This milestone
-establishes compilation and sampled memory demand, not a working Doom port.
+The original milestone retained three differing frames (497, 1426, 1817).
+[The follow-up investigation](DETERMINISM.md) traces all three to negative
+fixed-point sprite sample indices wrapping to 127, beyond their finite posts.
+The current builder bounds masked sampling. Original evidence remains intact;
+use the new corpus for host reference output. Target equality remains untested.
 
 ## Missing runtime functions
 
@@ -117,7 +121,8 @@ No fake platform implementations were used to conceal unresolved symbols.
 Read [RAM-CONTRACT.md](RAM-CONTRACT.md): request an **8 MiB owned arena** as a
 provisional budget, including a 6 MiB zone, 256 KiB non-zone heap, 64 KiB game stack,
 two frame slots, a 64 KiB WAD window and explicit runtime/guard allowances. The
-computed budget is 8,029,480 bytes, leaving 359,128 bytes in an 8 MiB reservation.
+original computed budget was 8,029,480 bytes; the sprite fix increases it to
+8,029,720 bytes, leaving 358,888 bytes in an 8 MiB reservation.
 Runtime/helper allowances are estimates; reject an oversized final link rather
 than treating this proposal as permission to write card memory.
 

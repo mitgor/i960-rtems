@@ -1,0 +1,42 @@
+{
+  "case": "2:1",
+  "repeat": 2,
+  "heap_fill": 170,
+  "frames": 2100,
+  "command": [
+    "/home/mit/i960-doom-determinism-20261012/after/host32/doom-profile",
+    "-iwad",
+    "/home/mit/i960-doom-m1-eziNKY/freedoom-0.13.0/freedoom2.wad",
+    "-mb",
+    "6",
+    "-nosound",
+    "-timedemo",
+    "demo1"
+  ],
+  "binary_sha256": "281a50ff3210d561127badcc27d2aafeeeaad9706b7e97ed28eaccb57d14c8a2",
+  "wad_sha256": "a8772e088847032510d97ba2312406a6998f21cbab44d4ff10696faa9c0ecd4b",
+  "different_frames": [],
+  "trace_equal": true,
+  "profile": {
+    "pointer_bytes": 4,
+    "frames": 2100,
+    "gametic": 2061,
+    "frame_hash": 4223586248,
+    "engine_malloc_peak": 6456649,
+    "engine_malloc_live": 6456649,
+    "largest_allocation": 6291456,
+    "allocations": 13,
+    "frees": 0,
+    "failed_allocations": 0,
+    "zone_reserved": 6291456,
+    "zone_used_peak_including_headers": 6280180,
+    "zone_nonpurgeable_peak": 1652716,
+    "zone_cache_peak": 5656712,
+    "zone_blocks_peak": 4827,
+    "zone_purges": 1163,
+    "wad_read_calls": 2704,
+    "wad_read_bytes": 15316164,
+    "wad_max_request": 122670,
+    "instrumented_engine_stack_span": 2944
+  }
+}

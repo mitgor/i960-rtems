@@ -14,6 +14,17 @@ def patch(name,old,new):
  f=src/name;s=f.read_text();assert s.count(old)==1,(name,old);f.write_text(s.replace(old,new));patches.append(dict(file=name,before=old,after=new))
 patch('doomgeneric.c','DOOMGENERIC_RESX * DOOMGENERIC_RESY * 4','DOOMGENERIC_RESX * DOOMGENERIC_RESY * sizeof(pixel_t)')
 patch('i_video.c','I_VideoBuffer = (byte*)Z_Malloc (SCREENWIDTH * SCREENHEIGHT, PU_STATIC, NULL);','I_VideoBuffer = (byte*)Z_Malloc (SCREENWIDTH * SCREENHEIGHT, PU_STATIC, NULL);\n    memset(I_VideoBuffer, 0, SCREENWIDTH * SCREENHEIGHT); /* deterministic initial wipe */')
+# Bounds belong to masked posts, not the wrapping wall-texture path.
+shutil.copyfile(here/'bounded_column.h', src/'bounded_column.h')
+patch('r_draw.c', '#include "r_local.h"', '#include "r_local.h"\n#include "bounded_column.h"\nint dc_postlength; /* zero outside masked post dispatch */')
+for old,new,count in [
+ ('dc_source[(frac>>FRACBITS)&127]', 'dc_source[R_ColumnIndex(frac, dc_postlength, 1)]', 2),
+ ('dc_source[frac>>FRACBITS]', 'dc_source[R_ColumnIndex(frac, dc_postlength, 0)]', 3)]:
+ f=src/'r_draw.c';s=f.read_text();assert s.count(old)==count
+ f.write_text(s.replace(old,new));patches.append(dict(file='r_draw.c',before=old,after=new,count=count))
+patch('r_things.c', '#include "r_local.h"', '#include "r_local.h"\nextern int dc_postlength;')
+patch('r_things.c', 'if (dc_yl <= dc_yh)', 'if (dc_yl <= dc_yh && column->length > 0)')
+patch('r_things.c', '    colfunc ();', '    dc_postlength = column->length;\n\t    colfunc ();\n\t    dc_postlength = 0;')
 # The exact same instrument-free engine is used for target sizing.
 objects=re.search(r'^SRC_DOOM = (.*)$',(src/'Makefile').read_text(),re.M)[1].split()
 sources=[src/(s[:-2]+'.c') for s in objects if s!='doomgeneric_xlib.o']

@@ -1,5 +1,15 @@
 # Repository guidance for Claude Code
 
+**Doom host determinism fixed (2026-10-12):** all three variable frames were
+out-of-post sprite reads caused by negative fixed-point samples wrapping to 127.
+Bounded masked sampling now passes 24 host runs / 50,400 draws across both
+Freedoom IWADs and four heap fills, with complete pixel/palette/tic comparisons.
+Focused renderer sanitizers pass. The i960 object is 627,096 bytes (+240), with
+58 unresolved symbols unchanged. No Doom ran on-card. The parallel 8 MiB arena
+is now proven; libc/task/WAD integration is next. [Findings](game/doom/DETERMINISM.md)
+and [exact evidence](artifacts/doom-determinism-20261012/README.md).
+
+
 **Resident RTEMS upload accepted (2026-10-12):**
 [Ownership, bootstrap and protocol](rtems/residentnet/UPLOAD.md) now implement
 opt-in `--resident-upload --owned-mib 12`: an 8 MiB guarded arena, protected

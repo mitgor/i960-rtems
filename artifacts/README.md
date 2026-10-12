@@ -1,5 +1,8 @@
 # Artifacts
 
+[2026-10-12 deterministic Doom host output](doom-determinism-20261012/README.md):
+three-frame root cause, bounded sprite reads, 50,400 draws, full captures and i960 rebuild.
+
 [2026-10-12 resident RTEMS upload](rtems-resident-upload-20261012/README.md): 8 MiB arena, protected bootstrap/tail, live 6 MiB proof, concurrent segmented uploads and networking; two failures retained with fixes.
 
 [2026-10-12 allocator and segmented-loader core](segmented-loader-20261012/README.md): native large-allocation tests, three actual-card segmented execution rehearsals, exact binaries and restored-service evidence.

@@ -1,25 +1,25 @@
 # Doom milestone guidance
 
-Follow [OS-PLAN.md](OS-PLAN.md) for the current RTEMS/RAM integration order.
-Keep the workspace/reserve experiments separate from the Doom application grant;
-resolve the known host-frame repeatability gap before claiming target correctness.
+Read [DETERMINISM.md](DETERMINISM.md), [OS-PLAN.md](OS-PLAN.md), README.md and
+RAM-CONTRACT.md. The three variable frames were out-of-post sprite reads:
+negative fixed-point indices wrapped to 127. Keep bounded_column.h and its
+masked-dispatch bounds on both host and target; preserve wall wrapping.
+Do not suppress frames, weaken comparisons or zero the heap to hide bad reads.
 
+The current i960 relocatable engine is 627,096 bytes and has 58 unresolved
+externals. It is NOT a loadable card image. Runtime code, WAD I/O and arbitrary
+application task launch remain. The prior broad host allocation peak is
+6,456,649 bytes, including the 6 MiB zone; never count zone contents twice.
 
-Read README.md and RAM-CONTRACT.md before changing this prototype. Milestone 1
-compiles 80 engine units for i960 but leaves 58 explicit unresolved externals.
-The relocatable object is NOT a loadable card image. No new RAM grant exists.
+The parallel resident-upload profile now has an accepted guarded 8 MiB arena
+and an on-card contiguous 6 MiB proof. This does not automatically redirect
+libc malloc or prove a final Doom memory manifest. Read residentnet/UPLOAD.md.
 
-Use the pinned DoomGeneric/Freedoom archives and preserve their licenses. Keep
-instrumentation host-only. Engine text/data/BSS total 626,856 bytes; the ordinary
-allocation peak is 6,456,649 bytes including a 6 MiB zone. Do not double count
-zone contents. The proposed 8 MiB arena is a planning request with unmeasured
-runtime/stack headroom, not a verified memory layout.
+Keep the pinned DoomGeneric/Freedoom inputs and licenses. Host captures include
+indexed pixels, RGB palettes and game-tic traces; instrumentation stays host-only.
+The archived original milestone intentionally retains its old failed comparison.
+Use verify_determinism.py for the new corpus, not a changed old verifier.
+Finite host repeatability is not i960 correctness or all-WAD compatibility.
 
-Twenty capped 32-bit host workloads pass 42,000 frames; four small-zone tests
-fail explicitly. Video initialization fixes the startup wipe, but frames 497,
-1426 and 1817 still differ in repeated 2,100-frame traces. Resolve this before
-claiming a deterministic oracle or first-card Doom correctness.
-
-Do not touch the parallel RTEMS files or card owner. Next: runtime/platform
-implementation, proven RAM/loader manifest, then headless target acceptance.
-Keep all paired/full audit contracts until a larger-range contract is proven.
+Do not touch the parallel RTEMS files, card owner or public service during host
+work. Preserve all existing physical memory/ownership audits for target testing.

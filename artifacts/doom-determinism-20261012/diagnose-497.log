@@ -1,0 +1,16 @@
+Breakpoint 1 at 0x37b41: file /home/mit/i960-doom-determinism-20261012/tools/profile.c, line 34.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, DG_DrawFrame () at /home/mit/i960-doom-determinism-20261012/tools/profile.c:34
+34	void DG_DrawFrame(void){unsigned i,one=2166136261u;DG_ZoneSample();for(i=0;i<320*200;i++){hash=(hash^DG_ScreenBuffer[i])*16777619u;one=(one^DG_ScreenBuffer[i])*16777619u;}if(trace)fprintf(trace,"%u %d %u\n",frames,gametic,one);if(raw&&fwrite(DG_ScreenBuffer,1,320*200,raw)!=320*200){perror("frame capture");exit(2);}if(++frames>=frame_limit){Z_CheckHeap();exit(0);}}
+Breakpoint 2 at 0x56581c97: file /home/mit/i960-doom-determinism-20261012/before/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.c, line 374.
+
+Breakpoint 2, R_DrawMaskedColumn (column=0xf7d45648) at /home/mit/i960-doom-determinism-20261012/before/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.c:374
+374		    colfunc ();	
+frame=497 gametic=459 x=170 yl=112 yh=147 length=18 top=35
+sample frac=-15 index=-1 wrapped=127 source=0xf7d4564b
+#0  R_DrawMaskedColumn (column=0xf7d45648) at /home/mit/i960-doom-determinism-20261012/before/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.c:374
+#1  0x56581f2c in R_DrawVisSprite (vis=<optimized out>, x1=<optimized out>, x2=<optimized out>) at /home/mit/i960-doom-determinism-20261012/before/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.c:431
+#2  0x56582866 in R_DrawSprite (spr=0x5661c700 <vissprites>) at /home/mit/i960-doom-determinism-20261012/before/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.c:942
+#3  0x565828e8 in R_DrawMasked () at /home/mit/i960-doom-determinism-20261012/before/doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric/r_things.c:966

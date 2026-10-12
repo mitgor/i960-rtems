@@ -1,8 +1,11 @@
 # DoomGeneric RAM request for RTEMS
 
 Status: milestone 1, host measurements and i960 compile inventory. This document
-requests an ownership contract; it grants no card address range. No Doom image
-has been loaded on the card. Exact measurements are linked from `README.md`.
+records the application budget; it grants no address range itself. The later
+[resident-upload profile](../../rtems/residentnet/UPLOAD.md) now proves an 8 MiB
+guarded arena and contiguous 6 MiB allocation on-card. Production libc/task
+adapters remain. No Doom image has loaded on the card. See README.md and
+[the determinism follow-up](DETERMINISM.md) for the current 627,096-byte engine.
 
 ## Proposed first port
 
@@ -66,7 +69,8 @@ each calling path explicitly, then regenerate the unresolved-symbol report.
 
 1. Finish runtime/platform link without fake successful stubs; generate a final
    code/data/BSS/heap/stack/transport manifest and check it against the arena.
-2. Prove the memory grant and loader layout on the card independently of Doom.
+2. Integrate the already tested resident arena/segmented loader with the final
+   Doom manifest, libc adapters and owned application task.
 3. Run a bounded headless workload with memory guards, WAD identity and safe STOP.
 4. Compare frame/state results, then connect palette/frame publication and input.
 

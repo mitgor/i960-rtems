@@ -89,10 +89,11 @@ including the 6 MiB zone; heavier workloads reject a 2 MiB zone. The proposed
 RTEMS ownership request is **8 MiB**, with explicit runtime/stack/transport allowances.
 
 The indexed-output allocation and uninitialized startup wipe are corrected.
-Three later frames still differ between repeated traces, so deterministic oracle
-acceptance remains open. No Doom code ran on the card. Next: resolve that issue,
-implement the measured missing runtime/platform subset, and prove the larger
-loader/RAM manifest before headless target testing. [Report](game/doom/README.md),
+The [determinism follow-up](game/doom/DETERMINISM.md) now fixes the three later
+variable frames by bounding sprite source reads; current engine static size is
+627,096 bytes. The parallel resident loader also grants a tested 8 MiB arena.
+No Doom code ran on the card. Next: implement the missing runtime/platform and
+application-task integration, then validate the final manifest and target output. [Report](game/doom/README.md),
 [RAM contract for parallel RTEMS work](game/doom/RAM-CONTRACT.md),
 [artifacts](artifacts/doom-m1-20261011/README.md).
 

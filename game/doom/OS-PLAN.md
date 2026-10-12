@@ -66,9 +66,9 @@ imports or relocations; production malloc remains unchanged.
    account explicitly for 35 Hz game ticks on the 100 Hz OS clock.
    STOP drains or quarantines all WAD/frame/heap references. Test noncooperation,
    allocation failure, corrupt input, disconnect and timeout with resources live.
-7. **Headless correctness.** First resolve the existing host repeatability gap:
-   corrected 2,100-frame traces still differ at frames 497, 1426 and 1817. Until
-   resolved, the full host trace is not an accepted oracle. Then use pinned Freedoom input and deterministic commands;
+7. **Headless correctness.** The [host repeatability fix](DETERMINISM.md) now
+   bounds masked sprite sampling; the old three-frame gap is resolved for the
+   captured corpus. Use the new pinned Freedoom corpus and deterministic commands;
    capture game state, palette and frame hashes. Compare against the host profile,
    investigating architecture-dependent differences. Measure stack/heap peaks and
    worst observed tick, control and interrupt delays. A single demo is not proof
@@ -83,9 +83,9 @@ imports or relocations; production malloc remains unchanged.
 
 ## Budget and scope
 
-The current host/i960 inventory gives 626,856 bytes of engine static storage
+The current host/i960 inventory gives 627,096 bytes of engine static storage
 and a maximum observed 6,456,649 bytes of direct allocations (including the
-6 MiB zone). Their sum is 7,083,505 bytes, before the missing runtime, transport
+6 MiB zone). Their sum is 7,083,745 bytes, before the missing runtime, transport
 and stack costs. The measured 5,856-byte x86 stack span is not an i960 bound.
 These sampled workloads support the 8 MiB planning request, not a universal
 Doom/mod memory guarantee.
@@ -98,6 +98,7 @@ acceptance. The application budget already includes its 6 MiB zone; do not count
 zone occupancy twice. DMA networking, direct NIC access, audio, general POSIX and
 arbitrary mods are not prerequisites for the first playable milestone.
 
-The next concrete deliverable after the current RAM batch is a large allocation
-and segmented-loader self-test. It should establish the Doom memory grant before
-loading the game itself.
+The large allocation and resident segmented-loader self-tests have now passed.
+Next implement and test libc/shared-task adapters, the real runtime link and
+host-backed WAD reads before loading Doom. The new host corpus supplies a finite
+reference; it does not establish i960 correctness by itself.
