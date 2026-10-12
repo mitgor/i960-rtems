@@ -2338,6 +2338,48 @@ had now walked through the real door, twice. The next problem was supplying the
 larger visitor's runtime, not guessing whether its addresses could move. After
 the required reboot, the old web page was answering again.
 
+## Giving the visitor a library
+
+The next missing pieces were less glamorous than a renderer: errno, strings,
+formatting, files, a clock, and somewhere for a frame to go. There were forty-four
+unresolved names. We gave the application its own copy of Newlib and its own
+small platform, keeping the kernel's library and heap to themselves. Files could
+read the one pinned WAD. Saving, renaming and launching a shell returned honest
+errors.
+
+The old library had two surprises waiting. Its `%lln` formatter added one pointer
+indirection too many. Its hosted x86 longjmp tried to turn interrupts off and on,
+something Linux does not let an ordinary process do. One needed a local source
+fix; the other needed the library's own hosted setting. Then there was a quieter
+ownership detail: a duplicated string belongs to its caller, even when Newlib
+allocates it through an internal-looking function. Cleanup had to remember that.
+The sanitizer checks passed with that string still protected.
+
+The missing-name count reached zero. The candidate occupied 752,804 bytes before
+its dynamic allocations, and thirteen thousand one hundred and thirteen address
+fixups matched three independent links. That earned it a place in the build
+ledger. It did not yet earn it the right to become a running task.
+
+A smaller visitor went first: the real WAD cache, in 1,760 bytes of relocated
+code. It copied across cache lines into an interior destination while the kernel
+borrowed only its exact bounce buffer. Reading the same bytes again needed no
+new host requests. Bad CRC, short data, a host error and silence all took their
+proper paths, and the next clean entry worked. Both normal calls returned
+**2488633422**.
+
+The build itself briefly fell into a trap made of its own name. A linker wildcard
+for Doom objects also matched “doom” in the working directory, sending ordinary
+kernel code into the small upper window. The limit stopped it before the card
+saw anything. Explicit object names fixed the placement; the old rule still
+failed in the regression fixture.
+
+The real run kept all its audits, moved 812 packets through six rounds of both
+IP versions, and drained at tick 17,855. The cache was correct. It was also slow
+enough to keep us honest: seven wire reads took about twelve seconds with the
+audits running. Doom had a complete library now, but still needed an owned entry
+and exit, a larger admitted manifest, and a better way to bring its WAD data
+across. After the reboot, the old web page was answering again.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

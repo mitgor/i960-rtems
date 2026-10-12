@@ -22,6 +22,7 @@ static void fatal(unsigned v){(void)v;assert(0);}
 static void doom_shared_yield(void);
 #include "../../../../rtems/residentnet/doom_runtime.c"
 #include "probe.c"
+#include "../cache/probe.c"
 static void doom_shared_yield(void){unsigned packet[136]={0},i,n;unsigned char*p=(unsigned char*)(packet+8);ticks++;
  if(mode==4)return;if(mode==5){stopping=1;return;}
  assert(wad.state==WAD_REQUEST&&leases==1&&!locked);
@@ -51,6 +52,14 @@ int main(void){unsigned binding[11]={WAD_MAGIC,1,sizeof(file)},i,h=2166136261u;s
   assert(wad.sequence==before+4);before=wad.sequence;
   assert(doom_cache_read(&c,499,out,sizeof out)==sizeof out&&wad.sequence==before);
   assert(doom_cache_close(&c)&&!heap.blocks&&!leases&&doom_runtime_finish());
+ }
+ {unsigned hc=2166136261u;
+  for(i=0;i<12;i++)hc=(hc^file[i])*16777619u;
+  for(i=499;i<1610;i++)hc=(hc^file[i])*16777619u;
+  for(i=1024;i<1536;i++)hc=(hc^file[i])*16777619u;
+  for(i=sizeof(file)-37;i<sizeof(file);i++)hc=(hc^file[i])*16777619u;
+  for(mode=0;mode<6;mode++){assert(cache_entry(doom_runtime_api())==(mode?3:hc));assert(!heap.blocks&&!leases&&doom_runtime_finish());}
+  stopping=0;mode=0;assert(cache_entry(doom_runtime_api())==hc&&!heap.blocks&&!leases);
  }
  assert(doom_heap_stop(&heap)&&doom_heap_drain(&heap));puts("PASS runtime API: real allocator, uploaded probe logic, WAD success/CRC/short/host error/timeout/STOP, pinned lifetime, recovery");
 }

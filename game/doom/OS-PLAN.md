@@ -170,3 +170,35 @@ engine-specific contract and teardown are reviewed. The proof restores its
 mutable data after each return; this is not yet the engine's persistent state
 lifetime model. Eight MiB still needs room for allocator overhead, runtime,
 image, zone, cache and any retained buffers.
+
+
+## Private runtime/cache checkpoint (2026-10-12)
+
+The private Newlib/platform candidate resolves the previous 44 imports. Its
+752,804-byte image span and 13,113 retained relocations match independent links
+at three addresses. The entire private 32-bit runtime passes sanitizers; its
+actual engine execution, i960 setjmp/longjmp and stack peaks remain untested.
+The cache bridge now runs on the card with full audits and an independent wire
+oracle. [Evidence](../../artifacts/doom-platform-20261012/README.md).
+
+The concrete next gates are now:
+
+1. Extend the application runtime with owned yield, owner/STOP queries and safe
+   termination. Admit and test a small i960 exit/context proof before engine
+   entry, preserving both worker IRQ owners and the runnable control worker.
+2. Define the engine entry and persistent data lifetime; admit the larger image
+   and relocation manifest using exact build identity. Its relocation-offset
+   list alone is 52,452 bytes, so do not embed it in the 32 KiB proof window or
+   weaken the whitelist to fit it. Keep image/metadata pins until consumers drain.
+3. Measure and improve WAD transfer batching with exact length/CRC/identity/loan
+   checks. The seven-read cache probe took 13.2/11.6 seconds under full audits;
+   cache hits are correct, but this is not sufficient startup throughput.
+4. Run bounded initialization with the new runtime, record complete image,
+   zone/cache/stdio/allocator/stack peaks, compare the first frame, then progress
+   through ticks, STOP, browser output/input and endurance.
+
+The old 12,600 host hashes cover the earlier allocator/cache profile, not the
+new private Newlib port. Preserve the 1 MiB conservative image reservation;
+account for private stdio costs and any retained proof allocations before
+claiming final 8 MiB headroom. No general process/filesystem or arbitrary mod
+compatibility is claimed.

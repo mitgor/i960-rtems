@@ -1,6 +1,7 @@
 # Single-IWAD cache and engine backend
 
-**Host/cross-build milestone, not a new card acceptance.** The complete
+**Original host/cross-build milestone; the cache bridge now also passes a
+closed card probe.** The complete
 DoomGeneric engine uses this backend in six 2,100-frame host runs. All 12,600
 pixel/palette/tic hashes match the accepted corpus. The card remains on the
 original public service. [Evidence](../../../../artifacts/doom-cache-20261012/README.md).
@@ -64,3 +65,23 @@ actual runtime/loan integration. Build Doom with `--arena-runtime --wad-cache`.
 `../run_host.py` compares frame hashes and records logical WAD reads;
 `analyze.py` independently replays the cache, including alternatives.
 `verify.py` checks an extracted evidence archive against the tracked corpus.
+
+
+## Physical bridge follow-up
+
+A 1,760-byte, eleven-relocation probe executes this exact cache implementation
+through the runtime table on existing worker 1. It checks cached repeats,
+cross-line copies into an interior destination, EOF, CRC/short/error/timeout and
+fresh-entry recovery. All full paired audits and the earlier runtime/relocation
+proofs remain enabled. The two normal entries require seven wire reads each and
+take 13.218/11.608 seconds under audits; this is correctness acceptance rather
+than an engine startup-speed result. STOP-in-read and same-cache retry remain
+native coverage; physical STOP followed the completed entries.
+[Exact evidence](../../../../artifacts/doom-platform-20261012/README.md).
+
+New runtime builds include only the closed reviewed cache image in command 15.
+It receives the ordinary segmented CRC/cache/pin checks, then an exact-byte gate
+and trusted relocation sites. Post-entry code bytes must still match, the
+original template is restored, and cache synchronization precedes completion.
+The new private Newlib engine candidate is link-complete but remains outside
+this whitelist. Do not use a successful cache probe as engine admission.

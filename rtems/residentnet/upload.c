@@ -103,6 +103,10 @@ static unsigned int run_runtime(unsigned int*value){unsigned int i,ok;const stru
 #endif
 #ifdef I960_DOOM_RELOCATE
 #include "doom_relocate.h"
+#ifdef I960_DOOM_CACHE
+extern unsigned cache_entry(const struct doom_runtime_v1*);
+#include "doom_cache_entry.h"
+#endif
 #endif
 void upload_step(void){unsigned int command,rc=0,value=0,n,i;
  if(!initialized)return;
@@ -142,6 +146,9 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
 #ifdef I960_DOOM_RELOCATE
   else if(command==13)rc=run_relocated(&value);
   else if(command==14){if(image.state!=SEG_READY)rc=1;else value=(unsigned int)((unsigned long)image.base-(unsigned long)UPLOAD_BASE);}
+#ifdef I960_DOOM_CACHE
+  else if(command==15)rc=run_cache_entry(&value);
+#endif
 #endif
 #endif
 #endif

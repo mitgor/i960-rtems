@@ -22,3 +22,15 @@ with tempfile.TemporaryDirectory() as tmp:
  u.sequence=2;s.mode='timeout';s.injected=False;assert s.serve() and u.calls[-1][0]==3
  u.state=0;assert s.serve() is False
 print('PASS host WAD: immutable snapshot, atomic query/reply audit gate, duplicate suppression, timeout without write')
+
+# Invalid completion bounds must be refused before any command publication or
+# sequence consumption; otherwise local validation can leave ownership uncertain.
+from upload_client import Upload as ResidentUpload
+with tempfile.TemporaryDirectory() as tmp:
+ u=ResidentUpload(None,1,tmp);calls=[];u.io=lambda *args:calls.append(args)
+ for timeout in (0,-1,61,float('nan')):
+  try:u.command(6,timeout=timeout)
+  except AssertionError:pass
+  else:raise AssertionError('invalid completion bound accepted')
+  assert not calls and u.sequence==0
+print('PASS upload: invalid completion bounds publish nothing and consume no sequence')

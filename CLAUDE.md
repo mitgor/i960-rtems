@@ -1,5 +1,22 @@
 # Repository guidance for Claude Code
 
+**Private Doom runtime/cache checkpoint (2026-10-12):** the new private
+Newlib/platform candidate has **zero unresolved imports**, a 752,804-byte
+code/data/BSS span and 13,113 relocations matching three independent links.
+The full private 32-bit library/port passes ASan/UBSan. It does not override
+kernel libc and is not admitted for engine launch. The separate 1,760-byte
+cache probe passed real i960 execution: both normal hashes matched, cached
+repeats made no extra reads, and CRC/short/error/timeout/recovery passed.
+Full audits, six network rounds/812 packets, 625-command replay, 48 evidence
+mutations and STOP drain at tick 17,855 passed. The upper loader uses 25,312
+bytes with unchanged boundaries. Explicit Doom object suffixes fix a linker
+wildcard that depended on the workspace name. Public IPv6 HTTP is restored (200).
+Next: owned engine entry/yield/STOP and i960 exit boundary, larger manifest
+admission, WAD batching/initialization budget, then first frame. Keep the current
+closed whitelist; **Doom itself has not run on card**.
+[Runtime contract](game/doom/runtime/platform/README.md) ·
+[Physical evidence](artifacts/doom-platform-20261012/README.md).
+
 **Relocated code/data/BSS proof accepted (2026-10-12):** the reviewed 184-byte
 image executed twice at `0xc02d0050` inside the shared arena, returning
 `1228486293` both times. Six trusted relocation sites, 128 zero-filled BSS bytes,

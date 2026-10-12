@@ -71,11 +71,13 @@ if a.resident_upload:flags+=['-DI960_RESIDENT_UPLOAD']
 if a.doom_heap:flags+=['-DI960_DOOM_HEAP']
 if a.doom_shared:flags+=['-DI960_DOOM_SHARED']
 if a.doom_runtime:
- flags+=['-DI960_DOOM_RUNTIME','-DI960_DOOM_RELOCATE']
+ flags+=['-DI960_DOOM_RUNTIME','-DI960_DOOM_RELOCATE','-DI960_DOOM_CACHE']
  subprocess.run(['python3',str(here.parent/'game/doom/runtime/entry/build.py'),'--out',str(out/'entry'),'--cross',a.cross],check=True)
  shutil.copyfile(out/'entry/runtime_probe_bytes.h',inc/'runtime_probe_bytes.h')
  subprocess.run(['python3',str(here.parent/'game/doom/runtime/relocate/build.py'),'--out',str(out/'entry/relocate'),'--cross',a.cross],check=True)
  shutil.copyfile(out/'entry/relocate/relocated_probe_bytes.h',inc/'relocated_probe_bytes.h')
+ subprocess.run(['python3',str(here.parent/'game/doom/runtime/cache/build_probe.py'),'--out',str(out/'entry/cache'),'--cross',a.cross],check=True)
+ shutil.copyfile(out/'entry/cache/cache_probe_bytes.h',inc/'cache_probe_bytes.h')
 if a.owned_mib:flags+=['-DI960_OWNED_MIB='+str(a.owned_mib)]
 if a.extra_ram:flags+=['-DI960_EXTRA_RAM']
 if a.heap_shared:flags+=['-DI960_HEAP_SHARED']

@@ -178,7 +178,7 @@ def main():
   v=snapshot();assert v[4:36]==w[4:36];control(6)
   if a.resident_upload:
    from upload_client import Upload
-   q=Upload(b.fd,epoch,b.out).query();assert q[3]==q[4]==q[15]==0 and q[9]==(8 if (b.out/"relocate-results.json").exists() else 4 if a.doom_runtime else 3)
+   q=Upload(b.fd,epoch,b.out).query();assert q[3]==q[4]==q[15]==0 and q[9]==(10 if (b.out/"cache-results.json").exists() else 8 if (b.out/"relocate-results.json").exists() else 4 if a.doom_runtime else 3)
    (b.out/'upload-parked.json').write_text(json.dumps(list(q))+'\n')
   (b.out/'last-control.txt').write_text((b.debugfs/'result.txt').read_text())
   print('Resident network tests passed; module retained until reboot.',flush=True)

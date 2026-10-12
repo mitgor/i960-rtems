@@ -1,0 +1,2 @@
+PASS host WAD: immutable snapshot, atomic query/reply audit gate, duplicate suppression, timeout without write
+PASS upload: invalid completion bounds publish nothing and consume no sequence

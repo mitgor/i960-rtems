@@ -177,3 +177,29 @@ full paired-audit and STOP/drain checks remain. The accepted timeout/error/
 recovery run and the first refused tail reply are both preserved in
 [the evidence archive](../../artifacts/doom-entry-20261012/README.md).
 This does not yet load Doom or admit arbitrary application entry points.
+
+## Accepted runtime proof extensions (2026-10-12)
+
+Opt-in `--doom-runtime` now builds three closed reviewed application gates:
+command 11 is the 736-byte PIC runtime/WAD probe; command 13 is the relocated
+184-byte code/data/128-byte-BSS proof; command 15 is the 1,760-byte cache bridge.
+Command 14 reports only the READY image's relative arena allocation offset.
+None of these commands admits arbitrary engine code or accepts a host relocation
+recipe. All ordinary segmented geometry/CRC/zero-fill/pin/cache checks remain.
+Exact-byte whitelists and compiled trusted patch sites gate relocated execution;
+post-entry code/data checks and template restoration precede completion.
+
+[Physical cache and private-runtime evidence](../../artifacts/doom-platform-20261012/README.md)
+records the six normal/error/timeout/recovery entries, full paired audits, actual
+C replay and final task/IRQ drain. The host completion deadline is at most 60 s
+for the seven-read cache probe; each kernel read still has its 500-tick deadline.
+Invalid local deadlines refuse before publishing or consuming a sequence, and
+uncertain writes are never retried. That input guard is native-tested after the
+physical batch; all valid-command behavior is unchanged.
+
+Use explicit complete Doom object suffixes in `link-upload.ld`. A leading
+`*doom*.o` wildcard matches directory names too and can misplace ordinary kernel
+code. The boundary assertion caught that failed offline build. Neutral versus
+Doom-named path fixtures now produce the same layout without widening the window.
+The link-complete private Newlib engine is a separate offline candidate and
+requires its own owned entry/STOP, larger manifest and initialization acceptance.

@@ -12,11 +12,17 @@ def prepare(capture,wad_path,requests,responses):
   h=struct.unpack_from('<8I',res);assert h[:2]==(op,epoch) and h[3]==1 and not h[4]&1 and h[5:]==(0,0,0)
   if op==3:
    assert n==0 and h[2]==32;last=struct.unpack_from('<8I',res,32);assert last[0]==0x31444157 and last[2] in range(4)
+   if last[1]>10:
+    assert (capture/'cache-results.json').exists(), 'unvalidated later WAD query'
+    continue
    if last[2]==1:
     assert last[3]==1 and 0<last[5]<=512 and last[4]<=len(data) and last[6]==len(data)
     if last[1] in seen:assert seen[last[1]]==last[3:7]
     seen[last[1]]=last[3:7]
   else:
+   if struct.unpack_from('<I',req,36)[0]>10:
+    assert (capture/'cache-results.json').exists(), 'unvalidated later WAD reply'
+    continue
    assert last and last[2]==1 and h[2]==n and 32<=n<=544 and n%4==0
    packet=req[32:32+n];w=struct.unpack_from('<8I',packet);assert w[:4]==(0x31444157,last[1],1,last[4]) and not w[7] and w[4]<=512 and n==32+((w[4]+3)&~3)
    assert res[32:32+n]==packet and not any(packet[32+w[4]:]);assert not any(seq==w[1] for seq,_ in replies)
@@ -37,6 +43,8 @@ def prepare(capture,wad_path,requests,responses):
  assert [r['mode'] for r in result['runs']]==['normal','crc','short','host-error','timeout','normal'] and [r['result'] for r in result['runs']]==[oracle,3,3,3,3,oracle]
  assert result['oracle']==oracle and result['runs'][4]['seconds']>=4.9
  report=[w[5] for req,w in zip(requests,responses) if struct.unpack_from('<I',req,8)[0]==12]
+ assert len(report)==(16 if (capture/'cache-results.json').exists() else 8)
+ report=report[:8]
  assert report==result['report']==[0x31444157,10,6,2,1,0,0,len(data)]
  assert result['requests']==[dict(sequence=i,offset=seen[i][1],wanted=seen[i][2],mode=('normal' if i in (1,2,3,8,9,10) else {4:'crc',5:'short',6:'host-error',7:'timeout'}[i])) for i in range(1,11)]
  return probe,replies,dict(wad_sha256=sha,bytes=len(data),requests=len(seen),replies=len(replies),oracle=oracle)

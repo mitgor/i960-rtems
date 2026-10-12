@@ -1,0 +1,100 @@
+# Private Doom Newlib/platform candidate
+
+This is an offline link and runtime-semantic gate. The engine candidate now
+resolves the previously missing libc/platform imports, using pinned Newlib
+1.11.0 sources and the actual soft-float compiler archive. A successful final
+link is not card execution or executable admission. The current UPL1 whitelist
+still accepts only the reviewed proofs.
+
+## Isolation and supported behavior
+
+`build.py` compiles a selected Newlib archive, records every source hash and
+command, then renames its defined libc/port symbols and their references.
+Engine references are renamed with the same map. Newlib's reentrancy object,
+errno, ctype table, streams and allocation calls therefore belong to the
+application. Neither kernel stdio nor the kernel heap is overridden. Compiler
+archive references to libc, such as abort, use the same private mapping.
+
+The application port is single-owner and binds the exact runtime ABI v1 once.
+It uses that table's allocation/release functions over the existing shared arena;
+it does not initialize another allocator over the card RAM. A bounded 128-record
+client ledger supplies size checks for calloc/realloc and permits bulk copying
+without borrowing an interior pointer. Failed realloc preserves the old block.
+The table's existing task-owned allocator remains responsible for guards, pins
+and ownership. The client ledger and kernel heap metadata are different layers. `strdup` and
+its reentrant wrapper use the caller-owned allocation path: Newlib otherwise
+routes them through `_malloc_r`, which would misclassify a returned string as
+private internal storage. Finish must refuse that live caller-owned string.
+
+Read-only stdio admits four live descriptors for one exact immutable IWAD path.
+IDs are not reused and stop before Newlib's signed 16-bit FILE descriptor field
+can overflow. Open/seek/read/EOF, stdio buffering and error flags use actual
+Newlib code. Reads go through the existing 16 KiB cache and exact 512-byte bounce
+allocation. Unknown paths return ENOENT; writes/create/truncate, mkdir, remove and
+rename fail with EROFS; system fails with ENOSYS. There is no successful fake
+save/config write or shell execution. This stdio cache is separate from the
+engine WAD-class cache and is accounted for if both are live.
+
+Formatting/scanning, float conversion, 64-bit numbers, strings and ctype use
+real Newlib routines. `fabs` masks the IEEE sign bit, including signed zero.
+One upstream Newlib defect is patched in a build-local copy: `%lln` used
+`quad_ptr_t *` although `quad_ptr_t` is already a pointer. The corrected
+indirection is recorded with before/after text and hashes; shared upstream
+sources remain untouched. The native i386 setjmp build uses Newlib's
+`_I386MACH_ALLOW_HW_INTERRUPTS` hosted setting so longjmp does not execute
+privileged CLI/STI. The i960 assembly is unchanged and remains untested on card
+in this application candidate.
+
+Platform hooks retain real bounded output: 4 KiB log ring with explicit drop
+counts, the latest 320×200 indexed framebuffer and 768 RGB palette bytes with
+hashes, a 32-event key queue, and the actual runtime clock. Sleep currently
+waits on that preemptible clock. It is not an owned RTEMS yield/STOP interface.
+Consumers may copy output only under this application's owner/lifetime contract;
+no concurrent browser publisher is admitted here.
+
+`doom_platform_call` arms the private setjmp/longjmp exit boundary. Exit records
+status and returns to that owner; it does not implement a general process exit
+or libc atexit facility. The owner must perform teardown. `finish` refuses live
+file descriptors, active invocation, or caller-owned outstanding allocations,
+closes private standard streams, frees remaining private Newlib internal storage,
+and retires the context. It never resets live metadata to simulate cleanup.
+This cleanup is native-tested; future card entry must also prove task/IRQ drain.
+
+## Build and tests
+
+Build the engine with `--arena-runtime --wad-cache --platform-runtime --target
+i960`, then build the private port against that object and the same extracted
+engine headers:
+
+```
+python3 game/doom/runtime/platform/build.py --target i960 --engine ENGINE/doom-engine.o --newlib NEWLIB --doom ENGINE_SOURCE --out PRIVATE
+python3 game/doom/runtime/platform/pack_engine.py --build PRIVATE --out RELOCATION --cross /home/mit/i960/tools/bin/i960-coff-
+```
+
+The native test uses the same Newlib/port sources at 32 bits and the actual
+arena/heap core. It does not interpose on the host's libc:
+
+```
+python3 game/doom/runtime/platform/build.py --target host32 --newlib NEWLIB --doom ENGINE_SOURCE --out NATIVE
+python3 game/doom/runtime/platform/test.py --build NATIVE --newlib NEWLIB --doom ENGINE_SOURCE
+```
+
+Tests cover formatting/truncation/scanning/%lln, allocation/overflow/failed
+realloc, immutable stdio cache/EOF/error paths, explicit unsupported operations,
+frame and palette bytes, key/log bounds, clock wait, exit and full heap drain.
+The same checks also pass with the entire private library and port built under
+ASan/UBSan (`--sanitize` on the host32 build). They are platform-unit tests,
+not complete Doom gameplay under this libc.
+The existing host Doom corpus remains the prior allocation/cache profile.
+
+## Next admission gates
+
+Supply a real API for owned yielding, STOP and controlled engine termination;
+prove the i960 exit boundary and its interaction with the owned IRQ context.
+Add an engine-specific entry and state lifetime, bind the WAD backend, and validate
+all initialization/teardown paths. The engine has over thirteen thousand retained
+relocations; embedding its recipe in the current protected proof window is not
+an option. Admit an independently authenticated manifest/relocation plan without
+relaxing the current code whitelist. Measure actual initialization reads and
+consider larger transport batches before committing to startup latency. Recompute
+runtime/image/zone/cache/allocator/stack peaks, then compare the first frame.

@@ -2,7 +2,8 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--platform-runtime',action='store_true');a=p.parse_args()
+assert not a.platform_runtime or (a.target=='i960' and a.wad_cache), 'private platform requires i960 WAD-cache build'
 assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
 assert hashlib.sha256(a.archive.read_bytes()).hexdigest()=='26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7', 'source hash mismatch'
 here=Path(__file__).resolve().parent;work=a.work.resolve();work.mkdir(parents=True,exist_ok=True)
@@ -41,7 +42,8 @@ else:
  if not a.wad_cache:patch('w_file_stdc.c','    return result;', '    extern void DG_WadRead(unsigned,unsigned);\n    DG_WadRead(buffer_len,result);\n    return result;')
  patch('z_zone.c','    return result;','    DG_ZoneSample();\n    return result;')
  with (src/'z_zone.c').open('a') as f:f.write((here/'zone_profile.inc').read_text())
-if a.arena_runtime:
+runtime_sources=[]
+if a.arena_runtime and not a.platform_runtime:
  runtime_sources=[here/'runtime/heap.c',here/'runtime/libc.c',here/'../../loader/segmented/arena.c']
  sources+=runtime_sources
  flags+=['-I'+str(here/'runtime')]
@@ -52,7 +54,7 @@ if a.wad_cache:
 commands=[];failures=[];objs=[]
 with (out/'compile.log').open('w') as log:
  for f in sources:
-  obj=out/(f.stem+'.o');renames=(['-D'+n+'=doom_'+n for n in ('malloc','calloc','realloc','free','strdup')] if a.arena_runtime and a.target=='i960' and f not in runtime_sources else []);cmd=[cc,*flags,*renames,*(['-finstrument-functions'] if a.target!='i960' and f.name!='profile.c' and not (a.arena_runtime and f in runtime_sources) else []),'-c',str(f),'-o',str(obj)];commands.append(cmd)
+  obj=out/(f.stem+'.o');renames=(['-D'+n+'=doom_'+n for n in ('malloc','calloc','realloc','free','strdup')] if a.arena_runtime and not a.platform_runtime and a.target=='i960' and f not in runtime_sources else []);cmd=[cc,*flags,*renames,*(['-finstrument-functions'] if a.target!='i960' and f.name!='profile.c' and not (a.arena_runtime and f in runtime_sources) else []),'-c',str(f),'-o',str(obj)];commands.append(cmd)
   r=subprocess.run(cmd,stdout=log,stderr=log)
   if r.returncode:failures.append(f.name)
   else:objs.append(str(obj))

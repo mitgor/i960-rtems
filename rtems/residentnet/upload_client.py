@@ -18,11 +18,12 @@ class Upload:
  def record(self,event):
   with (self.out/('wad-journal.jsonl' if event['op'] in (3,4) else 'upload-journal.jsonl')).open('a') as f:f.write(json.dumps(event)+'\n')
  def query(self):return struct.unpack('<16I',self.io(2))
- def command(self,command,a=0,b=0,c=0,data=b'',expected=0,sequence=None):
+ def command(self,command,a=0,b=0,c=0,data=b'',expected=0,sequence=None,timeout=30):
+  assert 0<timeout<=60
   if sequence is None:self.sequence+=1;sequence=self.sequence
   packet=struct.pack('<8I',MAGIC,sequence,command,a,b,c,0,0)+data
   packet+=b'\0'*((-len(packet))%4);self.io(1,packet)
-  deadline=time.monotonic()+30
+  deadline=time.monotonic()+timeout
   while time.monotonic()<deadline:
 
    if self.service and self.service():
