@@ -1,5 +1,13 @@
 # Exact-build larger image and owned engine preflight
 
+**Current checkpoint — 2026-10-12:** the full-engine-linked diagnostic preflight
+is physically accepted, including normal / STOP / normal, exact admission and
+post-return code checks, contiguous 6 MiB allocation and complete drain at tick
+100,085. Full capture replay now passes. This supersedes the earlier pending
+entry/dispatcher gates below, retained as development history. Doom itself has
+not initialized on-card. Next: validated WAD batching, bounded initialization,
+first-frame verification and browser controls. [Evidence](../../../../artifacts/doom-progress-20261012/README.md).
+
 This gate admits the full engine-linked private-library object through **one
 reviewed diagnostic entry**. It does not invoke `doomgeneric_Create`, initialize
 Doom, advance a game tic, or publish a Doom frame to the browser.

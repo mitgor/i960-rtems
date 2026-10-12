@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Actual snapshot wrapper excludes Upload.io until a whole snapshot finishes."""
+"""Actual snapshot wrapper excludes Upload.io during each frozen read group."""
 import ast,threading,time
 from pathlib import Path
 from unittest.mock import patch
 from upload_client import Upload
 root=Path(__file__).resolve().parent
-tree=ast.parse((root/'live.py').read_text());main=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main');snapshot=next(n for n in main.body if isinstance(n,ast.FunctionDef) and n.name=='snapshot')
+tree=ast.parse((root/'live.py').read_text());main=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main');snapshot=next(n for n in main.body if isinstance(n,ast.FunctionDef) and n.name=='frozen_page')
 gate=threading.RLock();inside=threading.Event();release=threading.Event();entered_ioctl=threading.Event();errors=[]
-def body():inside.set();assert release.wait(2);assert not entered_ioctl.is_set();return 42
-ns=dict(io_gate=gate,snapshot_locked=body);exec(compile(ast.Module(body=[snapshot],type_ignores=[]),'actual-snapshot-wrapper','exec'),ns)
+def body(op,index=0):
+ if op==5 and index==0:inside.set();assert release.wait(2);assert not entered_ioctl.is_set()
+ return [0,0,index,0,0,0,0,0]
+ns=dict(io_gate=gate,control=body,time=time);exec(compile(ast.Module(body=[snapshot],type_ignores=[]),'actual-snapshot-wrapper','exec'),ns)
 u=Upload(0,1,root,gate);u.record=lambda e:None
 def ioctl(fd,cmd,raw,mutate):
  entered_ioctl.set();raw[12:16]=(1).to_bytes(4,'little')
@@ -16,11 +18,11 @@ def invoke(fn):
  try:fn()
  except BaseException as e:errors.append(e)
 with patch('upload_client.fcntl.ioctl',ioctl):
- a=threading.Thread(target=invoke,args=(ns['snapshot'],));a.start();assert inside.wait(2)
+ a=threading.Thread(target=invoke,args=(ns['frozen_page'],));a.start();assert inside.wait(2)
  b=threading.Thread(target=invoke,args=(lambda:u.io(2),));b.start()
  assert not entered_ioctl.wait(.05);release.set();a.join(2);b.join(2)
  assert not a.is_alive() and not b.is_alive() and not errors and entered_ioctl.is_set()
-print('PASS actual snapshot wrapper and upload client share a whole-snapshot exclusion gate')
+print('PASS actual snapshot wrapper and upload client serialize each frozen read group without blocking an entire page')
 
 class MaximumPrepare(Upload):
  def __init__(self,finish):self.calls=0;self.finish=finish

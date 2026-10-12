@@ -1,0 +1,13 @@
+total 0
+lrwxrwxrwx 1 root root    0 Oct 12 20:33 0000:37:09.1 -> ../../../../devices/pci0000:00/0000:00:1e.0/0000:37:09.1
+--w------- 1 root root 4096 Oct 12 20:33 bind
+lrwxrwxrwx 1 root root    0 Oct 12 20:33 module -> ../../../../module/dac960auto
+--w------- 1 root root 4096 Oct 12 20:33 new_id
+--w------- 1 root root 4096 Oct 12 20:33 remove_id
+--w------- 1 root root 4096 Oct 12 20:01 uevent
+--w------- 1 root root 4096 Oct 12 20:33 unbind
+HTTP 000
+
+Host-local public-address request above returned HTTP 000 (not proof of service failure).
+External recheck from the development Mac returned HTTP 200.
+Production relay PID 2945; boot 4da2853c-52c1-4399-b908-0ae50e6499dc.

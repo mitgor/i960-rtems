@@ -4,7 +4,7 @@ import argparse,ast,importlib.util,subprocess,tempfile
 from pathlib import Path
 from runtime_replay import native,service
 r=Path(__file__).resolve().parent
-p=argparse.ArgumentParser();p.add_argument('--entry',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--entry',type=Path,required=True);p.add_argument('--wad-poll',action='store_true');a=p.parse_args()
 spec=importlib.util.spec_from_file_location('owned_native',r/'../../game/doom/runtime/owned/native.py');helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
 tree=ast.parse((r/'test_doom_shared.py').read_text());source=next(ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='source' for t in n.targets)).split('int main(void)')[0]
 main=r'''
@@ -34,6 +34,7 @@ with tempfile.TemporaryDirectory() as tmp:
  # native() appends an unused WAD service; this test supplies cancellation only.
  source=source.replace(service([]),'')
  source='#define I960_DOOM_RELOCATE 1\n'+helper.prefix(source)
+ if a.wad_poll:source='#define I960_WAD_POLL 1\n'+source+'\nvoid doom_shared_service(void){runtime_service();}\n'
  (t/'test.c').write_text(source+main)
  for name,folder in [('relocated_probe_bytes.h','relocate'),('cache_probe_bytes.h','cache'),('owned_probe_bytes.h','owned')]:
   if (a.entry/folder/name).exists():(t/name).write_bytes((a.entry/folder/name).read_bytes())

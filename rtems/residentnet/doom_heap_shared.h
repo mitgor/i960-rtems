@@ -15,6 +15,9 @@ void doom_shared_wait(unsigned int);
 unsigned int doom_shared_finish(void);
 unsigned int doom_shared_report(unsigned int);
 void doom_shared_yield(void);
+#ifdef I960_WAD_POLL
+void doom_shared_service(void);
+#endif
 unsigned int doom_shared_application_owner(void);
 #endif
 #endif

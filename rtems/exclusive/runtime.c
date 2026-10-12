@@ -107,6 +107,9 @@ static void control_poll(void){unsigned int token=R(0x1314),index;
  }
  (void)R(0x131c);R(0x1324)=2;(void)R(0x1324);
 }
+#ifdef I960_WAD_POLL
+void exclusive_upload_poll(void){control_poll();}
+#endif
 #ifdef I960_OWNED_MIB
 void exclusive_drain_poll(void){
  if(!done[0]||!done[1]||switch_active[0]||switch_active[1])bounded_fatal(0x57005);
@@ -223,7 +226,11 @@ static void Init(rtems_task_argument arg){rtems_id ids[2];rtems_task_priority ol
  #ifdef I960_DOOM_SHARED
  doom_shared_quiesce(!switch_fault&&done[0]&&done[1]&&!switch_active[0]&&!switch_active[1]&&lifetime_drained(life)&&!_ISR_Nest_level&&!_Thread_Dispatch_disable_level);
 #endif
- if(!exclusive_large_finish()){switch_fault|=64;exclusive_abort();}
+ if(!exclusive_large_finish()){
+#ifdef I960_DOOM_ENGINE
+ {extern void engine_irq_drain_record(void);engine_irq_drain_record();}
+#endif
+ switch_fault|=64;exclusive_abort();}
  workspace_checked=131072;
  if(!_Workspace_Free(workspace_proof))bounded_fatal(0x57004);workspace_freed=1;workspace_proof=0;
 #endif

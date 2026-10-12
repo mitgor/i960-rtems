@@ -56,16 +56,18 @@ def prepare(capture,build,wad,requests,responses,partial=False):
   else:
    assert not n and not any(q[32:]);res=bytes.fromhex(e['response']);h=struct.unpack_from('<8I',res);assert h[:4]==(5,epoch,32,1) and not any(h[4:]);v=struct.unpack_from('<8I',res,32);assert v[0]==0x3252444f;states.append(v)
  assert len(epochs)==1 and accepted==[5] and refused==[4,6,5,6] and states[-1]==tuple(r['runs'][-1]['control'])
+ baseline=json.loads((capture/'cache-results.json').read_text())['report'];assert baseline[0]==0x31444157 and baseline[5:7]==[0,0]
  replies=[];seen={};last=None
  for e in map(json.loads,(capture/'engine-wad-journal.jsonl').read_text().splitlines()):
   q=bytes.fromhex(e['request']);res=bytes.fromhex(e['response']);op,epoch,n,*pad=struct.unpack_from('<8I',q);h=struct.unpack_from('<8I',res);assert op in (3,4) and len(q)==len(res)==1056 and not any(pad) and h[0:2]==(op,epoch) and h[3:]==(1,0,0,0,0)
   if op==3:
    assert not n;last=struct.unpack_from('<8I',res,32);assert last[0]==0x31444157
    if last[2]==1:
-    assert last[3]==1 and last[6]==len(data) and last[7]==0 and 0<last[5]<=512;seen[last[1]]=last
+    assert last[3]==1 and last[6]==len(data) and last[7]==baseline[3] and 0<last[5]<=512;seen[last[1]]=last
   else:
    p=q[32:32+n];w=struct.unpack_from('<8I',p);assert last and last[2]==1 and w[0:4]==(0x31444157,last[1],1,last[4]) and w[4:6]==(last[5],0) and not w[7]
    b=data[last[4]:last[4]+last[5]];assert p[32:32+w[4]]==b and w[6]==zlib.crc32(b) and res[32:32+n]==p and not any(p[32+w[4]:]);replies.append((w[1],p))
+ assert list(seen)==list(range(baseline[1]+1,baseline[1]+4))
  assert len(seen)==len(replies)==3 and [x['sequence'] for x in r['requests']]==list(seen) and all(x['mode']=='normal' and x['wanted']==512 and x['offset']==seen[x['sequence']][4] for x in r['requests'])
  return dict(file_bytes=m['file_bytes'],span=m['memory_bytes'],admission_bytes=m['admission_bytes'],relocations=len(m['relocations']),frame_hash=frame,palette_hash=palette,runs=r['runs'],wad_requests=len(replies),metadata_sha256=m['metadata_sha256']),replies
 

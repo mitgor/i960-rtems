@@ -81,6 +81,9 @@ void exclusive_large_report(unsigned int*w){unsigned int i;for(i=0;i<64;i++)w[i]
  w[8]=LARGE_WORKSPACE;w[9]=262144;w[10]=LARGE_STACKS;w[11]=65536;w[12]=4;w[13]=RESERVE_START;w[14]=LARGE_HI-64-RESERVE_START;w[15]=samples;w[16]=exclusive_large_valid();w[17]=irq_owned_entry_fp;w[18]=final_checked;w[26]=2;
 #ifdef I960_RESIDENT_UPLOAD
  w[26]=3;w[31]=UPLOAD_BASE;w[32]=UPLOAD_BYTES;w[33]=upload_guards();upload_protect_report(w+34);
+#ifdef I960_DOOM_ENGINE
+ {extern volatile unsigned engine_irq_reject[12];for(i=0;i<12;i++)w[40+i]=engine_irq_reject[i];}
+#endif
 #endif
  {extern void exclusive_stack_report(unsigned int*);exclusive_stack_report(w+19);}
 }

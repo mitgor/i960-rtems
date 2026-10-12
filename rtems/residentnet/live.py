@@ -90,7 +90,7 @@ def main():
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
  b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
- io_gate=threading.RLock()
+ io_gate=threading.RLock();abort_upload=threading.Event()
  def save(final=False):
   if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')
   (b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
@@ -100,20 +100,29 @@ def main():
  def control(op,arg=0,e=epoch):
   raw=bytearray(struct.pack('<8I',op,e,arg,0,0,0,0,0));started=time.monotonic_ns();fcntl.ioctl(b.fd,0xc0204d04,raw,True);w=list(struct.unpack('<8I',raw));event=dict(op=op,arg=arg,epoch=e,words=w,ns=time.monotonic_ns()-started);record_control(event)
   assert w[3]==1 and w[6:]==[0,0] and not w[4]&1;return w
+ def frozen_page(page=0):
+  # Only this main thread freezes the monitor's 64-word snapshot. UPL/WAD/
+  # owned/network controls have independent buffers. Yield the host IO gate
+  # between short read groups; do not delay a pending five-second WAD loan.
+  with io_gate:control(7,page)
+  words=[]
+  for begin in range(0,64,4):
+   with io_gate:words.extend(control(5,i)[2] for i in range(begin,begin+4))
+   time.sleep(.001)
+  return words
  def snapshot():
-  with io_gate:return snapshot_locked()
- def snapshot_locked():
-  control(7);w=[control(5,i)[2] for i in range(64)];snaps.append(dict(seconds=time.monotonic()-start,words=w));save()
+  w=frozen_page();snaps.append(dict(seconds=time.monotonic()-start,words=w));save()
   if a.owned_mib:
-   control(7,2);m=[control(5,i)[2] for i in range(64)]
+   m=frozen_page(2)
    with (b.out/'ram-diagnostics.jsonl').open('a') as f:f.write(json.dumps(dict(ticks=w[5],words=m))+'\n')
+   if w[11] or any(m[40:]):abort_upload.set()
    validate_large(m,a.owned_mib,w[2]==2,transition=(w[3] in (1,2) or (a.deadline and w[5]>=a.ticks-100)));validate_large_stacks(w)
   assert w[0]==0x31525845 and w[2] in (1,2) and w[4]==w[11]==w[52]==0 and w[36:42]==[0]*6 and w[63]==(31 if a.general_heap else 15 if a.extra_ram else 7 if a.fault_owner else 3 if a.secondary_reset else 1)
   if a.secondary_reset:assert w[42:46]==[2,0,578,81916] and w[47]==0
   else:assert w[42:46]==[2,18,514,81916]
   assert w[54]==w[55] and w[56]==epoch
   if a.heap_shared and (not diagnostics or w[2]==2 or w[5]-diagnostics[-1]['ticks']>=1000):
-   control(7,1);d=[control(5,i)[2] for i in range(64)];assert d[0]==0x314c5348 and d[54]==0 and d[55]==d[63]==1
+   d=frozen_page(1);assert d[0]==0x314c5348 and d[54]==0 and d[55]==d[63]==1
    diagnostics.append(dict(seconds=time.monotonic()-start,ticks=w[5],words=d));(b.out/'heap-diagnostics.json').write_text(json.dumps(diagnostics,indent=2)+'\n')
   print(json.dumps(dict(seconds=snaps[-1]['seconds'],state=w[2],ticks=w[5],work=w[6:8],queue=w[57:60],packets=w[60:63])),flush=True);return w
  def packet(op,data=b'',e=epoch):
@@ -148,7 +157,7 @@ def main():
    upload_future=None
    if a.upload_concurrent:
     from upload_client import exercise
-    upload_future=pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared,runtime)
+    upload_future=pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared,runtime,abort_upload)
    while not future.done() or (upload_future is not None and not upload_future.done()):
     if time.monotonic()>deadline:raise TimeoutError('resident test exceeded session traffic budget')
     readable,_,_=select.select([g.fd],[],[],0)

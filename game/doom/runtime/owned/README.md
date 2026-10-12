@@ -1,5 +1,13 @@
 # Owned application runtime and non-local exit proof
 
+**Current checkpoint — 2026-10-12:** the full-engine-linked diagnostic preflight
+is physically accepted, including normal / STOP / normal, exact admission and
+post-return code checks, contiguous 6 MiB allocation and complete drain at tick
+100,085. Full capture replay now passes. This supersedes the earlier pending
+entry/dispatcher gates below, retained as development history. Doom itself has
+not initialized on-card. Next: validated WAD batching, bounded initialization,
+first-frame verification and browser controls. [Evidence](../../../../artifacts/doom-progress-20261012/README.md).
+
 The extension preserves ABI v1 as an unchanged prefix. A separate 128-byte i960
 `doom_runtime_owned` table adds an `ODR2` envelope and owner/wait/STOP functions.
 Its prefix points to scope-checked allocation, release, clock and read wrappers;

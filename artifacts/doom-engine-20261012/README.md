@@ -1,5 +1,9 @@
 # Larger exact-build admission and owned engine preflight — 2026-10-12
 
+**Later acceptance:** [the dispatcher/polling follow-up](../doom-progress-20261012/README.md)
+diagnosed the failure retained below and accepted the diagnostic preflight with
+full audits and cleanup. This archive remains the original failed-batch record.
+
 **Not physically accepted for execution.** Native admission and private-libc
 preflight tests pass. The card refused both CRC-valid modified images, but the
 batch hit interrupt/drain fault bit 64 while uploading the clean image, before

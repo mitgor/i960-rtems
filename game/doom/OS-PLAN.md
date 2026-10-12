@@ -1,23 +1,21 @@
 # RTEMS-to-Doom implementation plan — 2026-10-12
 
-**Owned runtime and larger-image checkpoint (2026-10-12):** the small owned
-runtime proof is physically accepted: pinned i960 setjmp/longjmp, normal / STOP /
-normal, stale generation refusal, full audits and STOP drain at tick 21,511.
-The full engine-linked **diagnostic preflight** and exact SHA256-authenticated
-image/relocation gate pass native sanitizers and three linker oracles. On-card
-modified-code/metadata refusal passed; clean entry never ran after interrupt/drain fault bit 64 at tick 46,462. The active-state capture
-favors timer slot rejection; its unregistered/active paths share the flag.
-Do not relax that guard or claim Doom/engine execution. A native-tested 1 MiB
-proof reservation fixes the retained-buffer fragmentation before the 6 MiB zone;
-that host change still needs physical acceptance. The candidate spans 754,448
-bytes with 13,175 relocations; admission storage is 807,148 bytes. Both bootstrap
-code windows stay fully protected. Production IPv6 HTTP is restored (200).
-Next: diagnose the timer rejection with the parallel RTEMS audit, accept normal /
-STOP / normal preflight and full drain, then WAD batching and real Doom startup.
-Keep `--doom-engine` opt-in. The historical global ISR-level getter remains
-unfixed; only the new owner predicate uses a read-only PC query.
-[Owned evidence](../../artifacts/doom-owned-20261012/README.md) ·
-[Larger gate/failure evidence](../../artifacts/doom-engine-20261012/README.md).
+**Current checkpoint — 2026-10-12:** the full-engine-linked diagnostic preflight
+is physically accepted, including normal / STOP / normal, exact admission and
+post-return code checks, contiguous 6 MiB allocation and complete drain at tick
+100,085. Full capture replay now passes. This supersedes the earlier pending
+entry/dispatcher gates below, retained as development history. Doom itself has
+not initialized on-card. Next: validated WAD batching, bounded initialization,
+first-frame verification and browser controls. [Evidence](../../artifacts/doom-progress-20261012/README.md).
+
+**Accepted owned runtime and larger-image checkpoint:** the diagnostic engine
+entry and 1 MiB reservation/6 MiB contiguous-zone layout passed physically with
+full audits. The dispatcher identity/stack failure was diagnosed and fixed in
+an opt-in profile. Native replay now matches the complete physical journal.
+Keep the original [failure evidence](../../artifacts/doom-engine-20261012/README.md)
+and the [accepted follow-up](../../artifacts/doom-progress-20261012/README.md)
+separate. No actual Doom initialization or first-frame result exists on-card.
+
 
 
 The engine's 80 selected translation units compile for i960RP; the relocatable
@@ -201,7 +199,8 @@ actual engine execution, i960 setjmp/longjmp and stack peaks remain untested.
 The cache bridge now runs on the card with full audits and an independent wire
 oracle. [Evidence](../../artifacts/doom-platform-20261012/README.md).
 
-The concrete next gates are now:
+The earlier entry gates below are now accepted as diagnostic proofs (items 1–2).
+Items 3–4 remain the next implementation gates:
 
 1. Extend the application runtime with owned yield, owner/STOP queries and safe
    termination. Admit and test a small i960 exit/context proof before engine
@@ -212,7 +211,8 @@ The concrete next gates are now:
    weaken the whitelist to fit it. Keep image/metadata pins until consumers drain.
 3. Measure and improve WAD transfer batching with exact length/CRC/identity/loan
    checks. The seven-read cache probe took 13.2/11.6 seconds under full audits;
-   cache hits are correct, but this is not sufficient startup throughput.
+   cache hits are correct. The later polled small probe took 0.405/1.218 seconds;
+   full startup throughput still needs batching and measurement.
 4. Run bounded initialization with the new runtime, record complete image,
    zone/cache/stdio/allocator/stack peaks, compare the first frame, then progress
    through ticks, STOP, browser output/input and endurance.

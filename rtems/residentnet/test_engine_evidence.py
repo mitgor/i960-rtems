@@ -14,7 +14,7 @@ assert not pending and len(requests)==len(responses);prepare(a.capture,a.build,a
 for case in ('template','metadata','identity','frame','cleanup','peak','stop_generation','missing_stop','wad_payload','wire_code','wire_reply'):
  with tempfile.TemporaryDirectory() as tmp:
   t=Path(tmp)
-  for name in ('engine-results.json','engine-template.bin','engine-relocations.bin','engine-owned-journal.jsonl','engine-wad-journal.jsonl'):(t/name).write_bytes((a.capture/name).read_bytes())
+  for name in ('engine-results.json','engine-template.bin','engine-relocations.bin','engine-owned-journal.jsonl','engine-wad-journal.jsonl','cache-results.json'):(t/name).write_bytes((a.capture/name).read_bytes())
   prepare(t,a.build,a.wad,requests,responses);r=json.loads((t/'engine-results.json').read_text());rq=list(requests);rs=copy.deepcopy(responses)
   if case in ('template','metadata'):
    f=t/('engine-template.bin' if case=='template' else 'engine-relocations.bin');b=bytearray(f.read_bytes());b[0]^=1;f.write_bytes(b)

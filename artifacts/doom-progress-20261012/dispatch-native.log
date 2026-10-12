@@ -1,0 +1,1 @@
+PASS: actual dispatcher source; old unmask gap reproduced; patched transfer masks heir/FP mismatch and preserves original levels 20/31

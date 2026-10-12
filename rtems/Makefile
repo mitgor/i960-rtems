@@ -8,10 +8,13 @@ test:
 	python3 residentnet/test_upload.py
 	python3 ../game/doom/runtime/cache/test.py
 	python3 ../game/doom/runtime/entry/test.py
+	python3 residentnet/test_replay_clock.py
 	python3 residentnet/test_runtime_client.py
 	python3 residentnet/test_doom_shared.py
 	python3 ../game/doom/runtime/test.py
 	python3 residentnet/test_upload_protect.py
+	python3 test_dispatch_gap.py ../artifacts/doom-progress-20261012/dispatch-original.c
+	python3 residentnet/test_io_fairness.py
 	python3 residentnet/test_control_journal.py
 	python3 residentnet/test_large_snapshot.py
 	python3 residentnet/test_control_wait.py

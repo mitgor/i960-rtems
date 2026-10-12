@@ -1,0 +1,8 @@
+{
+  "payload_sha256": "a64e9b77983094d889b3a4c077b85e2210aeb1d91695050a9f59dc8701e3a5a8",
+  "image_sha256": "0082be7426b9a95d9b1f89bc1d7482ca8a37522f1e3beebd99ee3912ed123a97",
+  "module_sha256": "e2757206a7bfc9b5638001cc51f2bd62a690ba462be69a0e1764bc7694ac9114",
+  "autonomous": true,
+  "module_options": [],
+  "boot_id": "c3989e3e-e0e5-4bd4-a6eb-608befbf798f"
+}

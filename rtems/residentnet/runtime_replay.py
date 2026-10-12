@@ -70,3 +70,16 @@ static void runtime_service(void){unsigned i; if(wad.state!=WAD_REQUEST||replaye
  assert(!doom_runtime_control(0x79,0,0,1));replayed++;
 }
 '''
+
+
+def polled_service():
+ return r"""
+#include <errno.h>
+void doom_shared_service(void){
+ unsigned before=replayed;runtime_service();
+ if(replayed!=before){
+  struct timespec delay={0,10000000};
+  while(nanosleep(&delay,&delay))assert(errno==EINTR);
+ }
+}
+"""

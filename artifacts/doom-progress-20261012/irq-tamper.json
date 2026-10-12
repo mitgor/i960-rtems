@@ -1,0 +1,30 @@
+[
+  {
+    "case": "magic",
+    "rejected": true
+  },
+  {
+    "case": "owner",
+    "rejected": true
+  },
+  {
+    "case": "active",
+    "rejected": true
+  },
+  {
+    "case": "frame",
+    "rejected": true
+  },
+  {
+    "case": "priority",
+    "rejected": true
+  },
+  {
+    "case": "vector",
+    "rejected": true
+  },
+  {
+    "case": "count",
+    "rejected": true
+  }
+]

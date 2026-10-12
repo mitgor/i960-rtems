@@ -1,0 +1,15 @@
+{
+  "comparison": "same card, unchanged cache probe and full paired audits; different boots, two normal runs per batch",
+  "baseline_profile": "diagnostic ISR, fair host snapshots, original sleeping WAD wait; batch later failed on dispatcher window",
+  "new_profile": "atomic dispatcher, fair host snapshots, polled WAD wait",
+  "baseline_cache_seconds": [
+    2.020082381000009,
+    3.654042537999999
+  ],
+  "new_cache_seconds": [
+    0.40503027200003316,
+    1.2181499700000131
+  ],
+  "caveat": "Two normal samples per profile, different boots, combined changes; not an isolated polling benchmark or Doom frame-rate measurement.",
+  "mean_ratio": 3.4956838262203576
+}

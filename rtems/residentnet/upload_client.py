@@ -4,7 +4,7 @@ from contextlib import nullcontext
 from pathlib import Path
 MAGIC=0x314c5055
 class Upload:
- def __init__(self,fd,epoch,out,gate=None):self.fd=fd;self.epoch=epoch;self.out=Path(out);self.sequence=0;self.gate=gate;self.service=None;self.journal_namespace=''
+ def __init__(self,fd,epoch,out,gate=None,abort=None):self.fd=fd;self.epoch=epoch;self.out=Path(out);self.sequence=0;self.gate=gate;self.service=None;self.journal_namespace='';self.abort=abort
  def io(self,op,data=b'',epoch=None):
   raw=bytearray(struct.pack('<8I',op,self.epoch if epoch is None else epoch,len(data),0,0,0,0,0)+data.ljust(1024,b'\0'))
   before=bytes(raw);start=time.monotonic_ns()
@@ -19,6 +19,7 @@ class Upload:
   with (self.out/(self.journal_namespace+'owned-journal.jsonl' if event['op'] in (5,6) else self.journal_namespace+'wad-journal.jsonl' if event['op'] in (3,4) else 'upload-journal.jsonl')).open('a') as f:f.write(json.dumps(event)+'\n')
  def query(self):return struct.unpack('<16I',self.io(2))
  def command(self,command,a=0,b=0,c=0,data=b'',expected=0,sequence=None,timeout=30):
+  if self.abort is not None and self.abort.is_set():raise RuntimeError("card audit failed; stop new uploads, retain until reboot")
   assert 0<timeout<=60
   if sequence is None:self.sequence+=1;sequence=self.sequence
   packet=struct.pack('<8I',MAGIC,sequence,command,a,b,c,0,0)+data
@@ -47,8 +48,8 @@ class Upload:
    if w[5]==2:return w
    assert w[5]==1
   raise AssertionError('unbounded preparation')
-def exercise(fd,epoch,out,gate=None,doom_heap=False,doom_shared=False,runtime=None):
- u=Upload(fd,epoch,out,gate)
+def exercise(fd,epoch,out,gate=None,doom_heap=False,doom_shared=False,runtime=None,abort=None):
+ u=Upload(fd,epoch,out,gate,abort)
  try:u.io(2,epoch=epoch^0x8000);raise AssertionError('stale epoch accepted')
  except OSError as e:assert e.errno==errno.ESTALE
  assert u.command(6)[5]==1

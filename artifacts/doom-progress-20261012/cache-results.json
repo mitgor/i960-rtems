@@ -1,0 +1,192 @@
+{
+  "manifest": {
+    "link_base": 0,
+    "base": 0,
+    "entry": 0,
+    "memory_bytes": 1760,
+    "file_bytes": 1760,
+    "relocations": [
+      112,
+      144,
+      376,
+      456,
+      536,
+      572,
+      656,
+      732,
+      764,
+      828,
+      864
+    ],
+    "sections": [
+      {
+        "name": ".text",
+        "offset": 0,
+        "file_bytes": 1760,
+        "memory_bytes": 1760,
+        "flags": 1
+      }
+    ],
+    "sha256": "fe91bbc3275aa801648dc8df6e747cfd84a69b6fd96b366e54801d5818566f9a",
+    "linker_addresses": [
+      65536,
+      2097152,
+      3224174672
+    ]
+  },
+  "wad_sha256": "7323bcc168c5a45ff10749b339960e98314740a734c30d4b9f3337001f9e703d",
+  "base": 3224174672,
+  "oracle": 2488633422,
+  "runs": [
+    {
+      "mode": "normal",
+      "result": 2488633422,
+      "seconds": 0.40503027200003316
+    },
+    {
+      "mode": "crc",
+      "result": 3,
+      "seconds": 0.11899025299999266
+    },
+    {
+      "mode": "short",
+      "result": 3,
+      "seconds": 0.11528070800000023
+    },
+    {
+      "mode": "host-error",
+      "result": 3,
+      "seconds": 0.07373046100002512
+    },
+    {
+      "mode": "timeout",
+      "result": 3,
+      "seconds": 5.133374902000014
+    },
+    {
+      "mode": "normal",
+      "result": 2488633422,
+      "seconds": 1.2181499700000131
+    }
+  ],
+  "requests": [
+    {
+      "sequence": 11,
+      "offset": 0,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 12,
+      "offset": 512,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 13,
+      "offset": 1024,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 14,
+      "offset": 1536,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 15,
+      "offset": 28744192,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 16,
+      "offset": 28744704,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 17,
+      "offset": 28794880,
+      "wanted": 196,
+      "mode": "normal"
+    },
+    {
+      "sequence": 18,
+      "offset": 0,
+      "wanted": 512,
+      "mode": "crc"
+    },
+    {
+      "sequence": 19,
+      "offset": 0,
+      "wanted": 512,
+      "mode": "short"
+    },
+    {
+      "sequence": 20,
+      "offset": 0,
+      "wanted": 512,
+      "mode": "host-error"
+    },
+    {
+      "sequence": 21,
+      "offset": 0,
+      "wanted": 512,
+      "mode": "timeout"
+    },
+    {
+      "sequence": 22,
+      "offset": 0,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 23,
+      "offset": 512,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 24,
+      "offset": 1024,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 25,
+      "offset": 1536,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 26,
+      "offset": 28744192,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 27,
+      "offset": 28744704,
+      "wanted": 512,
+      "mode": "normal"
+    },
+    {
+      "sequence": 28,
+      "offset": 28794880,
+      "wanted": 196,
+      "mode": "normal"
+    }
+  ],
+  "report": [
+    826556759,
+    28,
+    20,
+    4,
+    2,
+    0,
+    0,
+    28795076
+  ]
+}

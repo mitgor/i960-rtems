@@ -63,6 +63,14 @@ unsigned doom_shared_application_owner(void){if(current()!=2||quiescent||holder=
  return 1;
 #endif
 }
+#if defined(I960_WAD_POLL) && !defined(UPLOAD_NATIVE)
+void doom_shared_service(void){unsigned pc=31u<<16;extern void exclusive_upload_poll(void);
+ if(!doom_shared_application_owner()){exclusive_abort();return;}
+ __asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,%0":"+r"(pc)::"g0","memory");
+ exclusive_upload_poll();
+ __asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,%0":"+r"(pc)::"g0","memory");
+}
+#endif
 static int peer_progress(void*p){(void)p;return !upload_stopping();}
 void doom_shared_wait(unsigned int wanted){unsigned int start=upload_time();
  while(phase!=wanted){if(upload_stopping()||upload_time()-start>200){exclusive_abort();return;}doom_shared_yield();}

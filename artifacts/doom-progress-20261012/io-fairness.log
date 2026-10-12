@@ -1,0 +1,1 @@
+PASS: actual frozen-page reader preserves all 64 words and services WAD between short groups; old page-wide lock fails service budget

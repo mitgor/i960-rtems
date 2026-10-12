@@ -1,0 +1,52 @@
+{
+  "logical_reads": 2183,
+  "hits": 1491,
+  "misses": 27648,
+  "wire_bytes": 14155460,
+  "options": [
+    {
+      "max_bytes": 512,
+      "requests": 27648,
+      "wire_bytes": 14155460,
+      "reduction_percent": 0.0,
+      "extra_bounce_bytes": 0
+    },
+    {
+      "max_bytes": 1024,
+      "requests": 14361,
+      "wire_bytes": 14155460,
+      "reduction_percent": 48.05772569444444,
+      "extra_bounce_bytes": 512
+    },
+    {
+      "max_bytes": 2048,
+      "requests": 7829,
+      "wire_bytes": 14155460,
+      "reduction_percent": 71.68330439814814,
+      "extra_bounce_bytes": 1536
+    },
+    {
+      "max_bytes": 4096,
+      "requests": 4747,
+      "wire_bytes": 14155460,
+      "reduction_percent": 82.83058449074075,
+      "extra_bounce_bytes": 3584
+    },
+    {
+      "max_bytes": 8192,
+      "requests": 3237,
+      "wire_bytes": 14155460,
+      "reduction_percent": 88.29210069444444,
+      "extra_bounce_bytes": 7680
+    },
+    {
+      "max_bytes": 16384,
+      "requests": 2437,
+      "wire_bytes": 14155460,
+      "reduction_percent": 91.18561921296296,
+      "extra_bounce_bytes": 15872
+    }
+  ],
+  "speculative_read_ahead": false,
+  "performance_measured": false
+}

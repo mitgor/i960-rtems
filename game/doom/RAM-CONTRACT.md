@@ -1,10 +1,20 @@
 # DoomGeneric RAM request for RTEMS
 
+**Accepted later baseline (2026-10-12):** 754,448-byte engine span with 13,175
+relocations; 807,148-byte admission storage within a conservative 1 MiB initial
+reservation. Physical preflight allocated a contiguous 6 MiB zone and measured
+6,356,612 bytes in six port blocks. The separate cache/bounce uses 16,896 bytes;
+image, guards, retained proof allocations and RTEMS stacks are additional.
+Do not treat diagnostic peak as a complete Doom gameplay budget. Normal / STOP /
+normal and full arena drain passed. [Exact evidence](../../artifacts/doom-progress-20261012/README.md).
+The older estimates below retain their original host/linkage assumptions.
+
 Status: milestone 1, host measurements and i960 compile inventory. This document
 records the application budget; it grants no address range itself. The later
 [resident-upload profile](../../rtems/residentnet/UPLOAD.md) now proves an 8 MiB
 guarded arena and contiguous 6 MiB allocation on-card. The [scoped allocation adapter](runtime/README.md) now passes a resident card
-proof; system libc and arbitrary task integration remain separate. No Doom image has loaded on the card. See README.md and
+proof; system libc and arbitrary task integration remain separate. The later full-engine-linked diagnostic image has now loaded and run on-card;
+actual Doom initialization has not run. See README.md and
 [the determinism follow-up](DETERMINISM.md) for the base engine. The allocation-integrated object is 631,112 bytes; context
 metadata also needs explicit resident accounting. The earlier estimated combined
 budget rises to 8,033,736 bytes, leaving 354,872 bytes; final linkage still decides.

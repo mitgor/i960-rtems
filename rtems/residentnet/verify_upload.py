@@ -5,7 +5,7 @@ Also reconstruct and CRC-check the two uploaded files independently in Python.
 import ast,argparse,errno,hashlib,json,struct,subprocess,tempfile,zlib
 from pathlib import Path
 r=Path(__file__).resolve().parent
-p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--wad',type=Path);p.add_argument('--entry',type=Path);p.add_argument('--partial-engine',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--wad',type=Path);p.add_argument('--entry',type=Path);p.add_argument('--partial-engine',action='store_true');p.add_argument('--wad-poll',action='store_true');a=p.parse_args()
 assert not a.doom_runtime or (a.doom_shared and a.wad)
 assert not a.doom_shared or a.doom_heap
 events=[json.loads(l) for l in (a.capture/'upload-journal.jsonl').read_text().splitlines()]
@@ -100,6 +100,12 @@ with tempfile.TemporaryDirectory() as tmp:
   relocation_info=prepare_relocated(a.capture,entry.parent/'relocate',requests,responses)
   (t/'relocated_probe_bytes.h').write_bytes((entry.parent/'relocate/relocated_probe_bytes.h').read_bytes())
   prefix='#define I960_DOOM_RELOCATE 1\n'+prefix
+ if a.wad_poll:
+  # Physical PIO replies take nonzero time. Instant native replies can finish
+  # all three reads in one 10 ms tick, correctly failing probe.c's clock check.
+  # Delay only supplied replies; the actual C timeout/error/CRC paths remain.
+  from runtime_replay import polled_service
+  prefix='#define I960_WAD_POLL 1\n'+prefix+polled_service()
  (t/'test.c').write_text(prefix)
  (t/'upload_native.h').write_text('''#define R(a) (*(unsigned int*)(unsigned long)(a))
 static unsigned int upload_stopping(void){return 0;}

@@ -2422,6 +2422,45 @@ That is the next door to understand. The larger preflight remains optional,
 the six-megabyte layout has its native proof, and Doom still has not started.
 After the reboot, Vader was answering over IPv6 again.
 
+## Between two stacks
+
+The guard finally gave us a name for the problem. Worker zero was published as
+running, and its old interrupt continuation was still alive. But the interrupt
+frame was sitting on worker one's stack. For a few instructions, the kernel's
+answer to “who is running?” disagreed with the processor's feet.
+
+The dispatcher had announced the incoming task, enabled interrupts, and only
+then moved the context. We kept interrupts masked across that crossing. Just as
+important, we kept the caller's original interrupt level for the journey home;
+reading it again halfway through would have mistaken our temporary mask for the
+level we owed back. The original dispatcher reproduced the gap in a native test.
+The patched one returned callers to both of the levels we tested, twenty and
+thirty-one. Nobody new was invited onto the interrupt stack.
+
+There was another queue at the door. Reading an entire diagnostic page while
+holding the host lock could keep a WAD reply waiting past its five-second lease.
+We froze the same page and read every word in smaller groups, allowing replies
+through between them. The application could also poll the existing mailbox while
+waiting. Its checks and deadline stayed in place.
+
+This time the larger visitor came in. Normal entry, STOP, normal entry. The
+private library formatted its numbers, the six-megabyte allocation fit, the test
+pattern matched, and the WAD header arrived. After each visit we checked the
+executable bytes again. At tick 100,085 the final STOP had drained the tasks,
+interrupt continuations, image and heap. The rejection record was empty.
+
+Even the replay had one last small trap. On the Mac, recorded WAD replies could
+arrive so quickly that all three reads finished in the same clock tick. The
+probe was supposed to reject a clock that had not moved, and it did. Giving the
+native transport model time to pass made its answer match the card without
+changing the probe or its expected result. All 7,853 recorded commands replayed;
+forty-four deliberate evidence changes were refused.
+
+The visitor was still the diagnostic entry linked with Doom, not Doom opening
+its first level. That distinction matters. We now had a tested way in and a
+tested way home. Moving the game data efficiently, and asking the engine to draw
+its first real frame, came next.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

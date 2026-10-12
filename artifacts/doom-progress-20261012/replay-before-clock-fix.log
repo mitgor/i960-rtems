@@ -1,0 +1,36 @@
+READ seq=1 off=0 n=12 result=12
+READ seq=2 off=28744468 n=512 result=512
+READ seq=3 off=28795039 n=128 result=37
+READ seq=4 off=0 n=12 result=-2
+READ seq=5 off=0 n=12 result=-2
+READ seq=6 off=0 n=12 result=-3
+READ seq=7 off=0 n=12 result=-4
+READ seq=8 off=0 n=12 result=12
+READ seq=9 off=28744468 n=512 result=512
+READ seq=10 off=28795039 n=128 result=37
+READ seq=11 off=0 n=512 result=512
+READ seq=12 off=512 n=512 result=512
+READ seq=13 off=1024 n=512 result=512
+READ seq=14 off=1536 n=512 result=512
+READ seq=15 off=28744192 n=512 result=512
+READ seq=16 off=28744704 n=512 result=512
+READ seq=17 off=28794880 n=196 result=196
+READ seq=18 off=0 n=512 result=-2
+READ seq=19 off=0 n=512 result=-2
+READ seq=20 off=0 n=512 result=-3
+READ seq=21 off=0 n=512 result=-4
+READ seq=22 off=0 n=512 result=512
+READ seq=23 off=512 n=512 result=512
+READ seq=24 off=1024 n=512 result=512
+READ seq=25 off=1536 n=512 result=512
+READ seq=26 off=28744192 n=512 result=512
+READ seq=27 off=28744704 n=512 result=512
+READ seq=28 off=28794880 n=196 result=196
+READ seq=29 off=0 n=512 result=512
+READ seq=30 off=0 n=512 result=512
+READ seq=31 off=0 n=512 result=512
+Traceback (most recent call last):
+  File "/Users/mit/Documents/!Projects/i960/rtems/residentnet/verify_upload.py", line 130, in <module>
+    else:assert w[0:12]==actual[0:12] and w[13:]==actual[13:],(i,w,actual)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (1224, (827478101, 1224, 0, 0, 3, 2710325741, 1224, 8, 1217, 1, 6291456, 1, 3224174656, 8388608, 1224, 513), (827478101, 1224, 0, 0, 3, 3, 1224, 8, 1217, 1, 6291456, 1, 80206976, 8388608, 1224, 513))

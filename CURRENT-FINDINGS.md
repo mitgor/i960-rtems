@@ -1,23 +1,23 @@
 # Current findings and evidence — 2026-10-12
 
-**Owned runtime and larger-image checkpoint (2026-10-12):** the small owned
-runtime proof is physically accepted: pinned i960 setjmp/longjmp, normal / STOP /
-normal, stale generation refusal, full audits and STOP drain at tick 21,511.
-The full engine-linked **diagnostic preflight** and exact SHA256-authenticated
-image/relocation gate pass native sanitizers and three linker oracles. On-card
-modified-code/metadata refusal passed; clean entry never ran after interrupt/drain fault bit 64 at tick 46,462. The active-state capture
-favors timer slot rejection; its unregistered/active paths share the flag.
-Do not relax that guard or claim Doom/engine execution. A native-tested 1 MiB
-proof reservation fixes the retained-buffer fragmentation before the 6 MiB zone;
-that host change still needs physical acceptance. The candidate spans 754,448
-bytes with 13,175 relocations; admission storage is 807,148 bytes. Both bootstrap
-code windows stay fully protected. Production IPv6 HTTP is restored (200).
-Next: diagnose the timer rejection with the parallel RTEMS audit, accept normal /
-STOP / normal preflight and full drain, then WAD batching and real Doom startup.
-Keep `--doom-engine` opt-in. The historical global ISR-level getter remains
-unfixed; only the new owner predicate uses a read-only PC query.
-[Owned evidence](artifacts/doom-owned-20261012/README.md) ·
-[Larger gate/failure evidence](artifacts/doom-engine-20261012/README.md).
+**Accepted engine-preflight baseline (2026-10-12):** the engine-linked diagnostic
+passed on-card normal / STOP / normal, changed-code/metadata refusal, executable
+revalidation and full drain at tick 100,085. The bit-64 failure was a dispatcher
+window: incoming task identity on the outgoing stack. Opt-in `--dispatch-atomic`
+keeps interrupts masked through transfer and preserves the caller's saved level.
+No IRQ guard or owner admission was relaxed. The 1 MiB initial reservation and
+contiguous 6 MiB zone now have physical acceptance; candidate span 754,448 bytes,
+13,175 relocations, admission storage 807,148 bytes, measured port peak 6,356,612
+bytes plus separate cache/image/proof/stack costs. Both bootstrap windows remain
+protected. Keep `--doom-engine`, `--dispatch-atomic` and `--wad-poll` opt-in.
+Full native capture replay passes 7,853 commands; instant host replies had failed
+the probe's clock-liveness check, fixed only in the replay transport model.
+44 runtime/cache/relocation/owned/engine mutations and seven IRQ mutations reject.
+Actual Doom initialization/rendering remains pending. Next: bounded WAD batching,
+then engine initialization and first-frame verification. Preserve all full audits.
+The historical global ISR-level getter remains unfixed; this owner predicate uses
+a read-only PC query. Coordinate card ownership before further hardware tests.
+[Accepted evidence and replay instructions](artifacts/doom-progress-20261012/README.md).
 
 
 **Private Doom runtime/cache checkpoint (2026-10-12):** the new private

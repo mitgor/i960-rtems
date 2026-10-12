@@ -3,7 +3,9 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--doom-engine',type=Path);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--doom-engine',type=Path);p.add_argument('--wad-poll',action='store_true');p.add_argument('--dispatch-atomic',action='store_true');a=p.parse_args()
+if a.dispatch_atomic and a.profile!='residentnet':p.error('atomic dispatch requires residentnet proof profile')
+if a.wad_poll and not a.doom_runtime:p.error('WAD polling requires the owned runtime profile')
 if a.doom_engine and not a.doom_runtime:p.error('engine admission requires owned runtime')
 if a.doom_runtime and not a.doom_shared:p.error('runtime entry requires shared Doom arena')
 if a.doom_shared and not a.doom_heap:p.error('shared arena requires Doom heap')
@@ -81,6 +83,7 @@ if a.doom_runtime:
  shutil.copyfile(out/'entry/cache/cache_probe_bytes.h',inc/'cache_probe_bytes.h')
  subprocess.run(['python3',str(here.parent/'game/doom/runtime/owned/build.py'),'--out',str(out/'entry/owned'),'--cross',a.cross,'--newlib',str(newlib)],check=True)
  shutil.copyfile(out/'entry/owned/owned_probe_bytes.h',inc/'owned_probe_bytes.h')
+if a.wad_poll:flags+=['-DI960_WAD_POLL']
 if a.doom_engine:
  flags+=['-DI960_DOOM_ENGINE']
  shutil.copyfile(a.doom_engine/'engine_identity.h',inc/'engine_identity.h')
@@ -95,9 +98,15 @@ sources=[]
 for folder in ['score/src','rtems/src','sapi/src']:
  sources += [f for f in sorted((src/'cpukit'/folder).glob('*.c')) if not f.stem.endswith('mp') and f.stem not in ('mpci','mppkt','mpproc','posixapi','itronapi')]
 sources += [src/'cpukit/score/cpu/i960/cpu.c']
+dispatch_patch=None
+if a.dispatch_atomic:
+ from dispatch_gap import generate
+ original=src/'cpukit/score/src/threaddispatch.c';patched=out/'patches/threaddispatch.c'
+ dispatch_patch=generate(original,patched);sources=[patched if f==original else f for f in sources]
+ flags+=['-DI960_DISPATCH_ATOMIC']
 objs=[]
 for f in sources:
- obj=out/(f.parent.parent.name+'_'+f.stem+'.o');objs.append(obj)
+ obj=out/(('score' if f==out/'patches/threaddispatch.c' else f.parent.parent.name)+'_'+f.stem+'.o');objs.append(obj)
  r=subprocess.run([a.cross+'gcc',*flags,'-c',str(f),'-o',str(obj)],capture_output=True,text=True)
  if r.returncode:print(r.stderr);raise SystemExit(f'Compile failed: {f}')
 subprocess.run([a.cross+'ar','rcs',str(out/'librtems-bounded.a'),*map(str,objs)],check=True)
@@ -117,5 +126,5 @@ subprocess.run([a.cross.replace('coff-','elf-')+'size',str(out/'kernel.elf')],ch
 
 with (out/'kernel.symbols').open('w') as f:subprocess.run([a.cross+'nm','-n',str(out/'kernel.elf')],stdout=f,check=True)
 
-metadata=dict(profile=a.profile,compiler=subprocess.check_output([a.cross+'gcc','--version'],text=True).splitlines()[0],payload_bytes=(out/'kernel.bin').stat().st_size,payload_sha256=hashlib.sha256((out/'kernel.bin').read_bytes()).hexdigest(),flags=flags,sources=json.loads((here/'sources.json').read_text())['sources'])
+metadata=dict(dispatch_patch=dispatch_patch,profile=a.profile,compiler=subprocess.check_output([a.cross+'gcc','--version'],text=True).splitlines()[0],payload_bytes=(out/'kernel.bin').stat().st_size,payload_sha256=hashlib.sha256((out/'kernel.bin').read_bytes()).hexdigest(),flags=flags,sources=json.loads((here/'sources.json').read_text())['sources'])
 (out/'build.json').write_text(json.dumps(metadata,indent=2)+'\n')

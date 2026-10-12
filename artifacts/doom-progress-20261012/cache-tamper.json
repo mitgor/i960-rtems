@@ -1,0 +1,38 @@
+[
+  {
+    "case": "template",
+    "rejected": true
+  },
+  {
+    "case": "identity",
+    "rejected": true
+  },
+  {
+    "case": "oracle",
+    "rejected": true
+  },
+  {
+    "case": "report",
+    "rejected": true
+  },
+  {
+    "case": "request_offset",
+    "rejected": true
+  },
+  {
+    "case": "payload",
+    "rejected": true
+  },
+  {
+    "case": "crc",
+    "rejected": true
+  },
+  {
+    "case": "missing_reply",
+    "rejected": true
+  },
+  {
+    "case": "run_result",
+    "rejected": true
+  }
+]

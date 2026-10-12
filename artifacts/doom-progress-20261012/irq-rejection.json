@@ -1,0 +1,26 @@
+{
+  "physical_shutdown_accepted": false,
+  "first_rejection": {
+    "tick": 31926,
+    "reason": "active-continuation",
+    "published_owner": 0,
+    "physical_stack_owner": 1,
+    "record": [
+      "0x31524a49",
+      "0x2",
+      "0xc027e768",
+      "0x1",
+      "0x0",
+      "0xc02b35e0",
+      "0x142002",
+      "0x9002",
+      "0xf2",
+      "0xc027e768",
+      "0xc027e8d8",
+      "0x5"
+    ],
+    "dispatcher_window_reproduced_natively": true
+  },
+  "observations": 1,
+  "reject_guard_unchanged": true
+}

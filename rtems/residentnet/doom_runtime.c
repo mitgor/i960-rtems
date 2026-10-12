@@ -27,7 +27,11 @@ static unsigned runtime_stopping(void){
 static void *allocate(unsigned int n){return doom_malloc(n);}
 static unsigned int milliseconds(void){return upload_time()*10u;}
 static int read_wad(unsigned int file,unsigned int offset,void*dst,unsigned int n){
- struct doom_heap*h=doom_arena_context();unsigned int saved,token,start;int result=-1,claimed=0;
+ struct doom_heap*h=doom_arena_context();unsigned int saved,token,start
+#ifdef I960_WAD_POLL
+ ,polls=0
+#endif
+ ;int result=-1,claimed=0;
  if(!bound||!h||runtime_stopping()||file!=1||offset>api.file_bytes||n>512)return -1;
  if(!n||offset==api.file_bytes)return 0;
  token=doom_heap_borrow(h,dst,n);if(!token)return -1;leases++;
@@ -36,7 +40,16 @@ static int read_wad(unsigned int file,unsigned int offset,void*dst,unsigned int 
  while(!claimed){
   if(runtime_stopping()||upload_time()-start>=500){result=-4;break;}
   saved=runtime_lock();claimed=doom_wad_claim(&wad);runtime_unlock(saved);
-  if(!claimed)doom_shared_yield(); /* worker 0 remains runnable */
+  if(!claimed){
+#ifdef I960_WAD_POLL
+   extern void doom_shared_service(void);doom_shared_service();
+   /* Preemptible polling services the same serialized mailbox. Still yield
+    * periodically; no timeout, CRC, scope or destination-loan rule changes. */
+   if(!(++polls&1023u))doom_shared_yield();
+#else
+   doom_shared_yield();
+#endif
+  }
  }
  if(claimed&&!runtime_stopping())result=doom_wad_copy(&wad,dst,n);
  saved=runtime_lock();doom_wad_cancel(&wad);runtime_unlock(saved);
