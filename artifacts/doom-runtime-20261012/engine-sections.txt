@@ -1,0 +1,8 @@
+/home/mit/i960-doom-runtime-20261012/cross/i960/doom-engine.o  :
+section     size   addr
+.text   310960      0
+.data    69888      0
+.bss    250264      0
+Total   631112
+
+

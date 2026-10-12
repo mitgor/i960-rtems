@@ -2178,6 +2178,36 @@ runtime symbols did not disappear, and no Doom instruction ran on the card.
 But with eight megabytes now owned on the hardware side and a repeatable picture
 on the host side, the next disagreement will at least have a proper reference.
 
+## Giving malloc an address
+
+The eight megabytes already had an owner. Giving Doom a second allocator over
+the same memory would have made two convincing maps of the same empty lots.
+Instead, its five allocation functions learned to ask the resident loader's
+arena. The operating system kept its own smaller heap.
+
+A large copy reserved both allocations, stepped outside the bookkeeping lock,
+and checked for STOP every kilobyte. A failed resize left the old pointer alive.
+A cancelled resize did the same. On the host, six demos drew another 12,600
+pictures through this arrangement. Every picture, palette and game tic matched
+the reference; every heap drained. Doom's thousands of internal zone blocks
+turned out to need only thirteen ordinary allocator slots in these runs.
+
+On the card, the test asked calloc for six megabytes beside an uploaded image.
+It checked every zero, grew another buffer, tried a resize that could not fit,
+and checked that the rejected request had left its old data alone. A small
+string made the trip through strdup. Sixty-four kilobytes stayed behind on
+purpose, patterned and pinned until both task and interrupt contexts had stopped.
+Only then did cleanup check the pattern and let the arena become empty.
+
+Six rounds of IPv4 and IPv6 traffic passed alongside it. The complete allocator
+command took fifteen seconds, including the host transport and scheduling; the
+largest observed interrupt gap was about eleven milliseconds. Those are two
+different measurements. Neither is a claim about Doom's frame rate.
+
+The reboot returned, and Vader answered HTTP again. Five unresolved symbols had
+become real functions on the card. Fifty-three remained, along with the work of
+giving Doom its own task and bringing its WAD across from the host.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

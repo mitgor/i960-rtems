@@ -3,7 +3,8 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");p.add_argument('--doom-heap',action='store_true');a=p.parse_args()
+if a.doom_heap and not a.resident_upload:p.error("Doom heap requires resident upload")
 if a.resident_upload and a.owned_mib not in (10,12):p.error("resident upload requires 10 or 12 MiB exclusive ownership")
 if a.owned_mib and (not a.queue_reclaim or a.fault_test or a.heap_test):p.error("owned RAM requires release queue-reclaim profile")
 if a.secondary_reset and a.profile!="residentnet":p.error("secondary reset requires residentnet")
@@ -65,6 +66,7 @@ if a.profile in ('contain','containcases'):flags+=['-DI960_CONTAIN_TEST']
 if a.secondary_reset:flags+=['-DI960_SECONDARY_RESET']
 if a.fault_owner:flags+=['-DI960_FAULT_OWNER','-DI960_FAULT_TEST='+str(a.fault_test)]
 if a.resident_upload:flags+=['-DI960_RESIDENT_UPLOAD']
+if a.doom_heap:flags+=['-DI960_DOOM_HEAP']
 if a.owned_mib:flags+=['-DI960_OWNED_MIB='+str(a.owned_mib)]
 if a.extra_ram:flags+=['-DI960_EXTRA_RAM']
 if a.heap_shared:flags+=['-DI960_HEAP_SHARED']

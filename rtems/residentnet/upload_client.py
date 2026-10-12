@@ -43,7 +43,7 @@ class Upload:
    if w[5]==2:return w
    assert w[5]==1
   raise AssertionError('unbounded preparation')
-def exercise(fd,epoch,out,gate=None):
+def exercise(fd,epoch,out,gate=None,doom_heap=False):
  u=Upload(fd,epoch,out,gate)
  try:u.io(2,epoch=epoch^0x8000);raise AssertionError('stale epoch accepted')
  except OSError as e:assert e.errno==errno.ESTALE
@@ -64,6 +64,9 @@ def exercise(fd,epoch,out,gate=None):
  u.command(2,0,0,4,b'abcd',expected=4)
  ready=u.prepare();assert ready[4]==3
  proof=u.command(7);assert proof[10:12]==(6291456,1)
+ if doom_heap:
+  start=time.monotonic();libc=u.command(8);assert libc[5]==0x444c4942
+  (Path(out)/'doom-heap.json').write_text(json.dumps(dict(result=list(libc),seconds=time.monotonic()-start,retained_until_stop=65536),indent=2)+'\n')
  result=u.command(4);assert result[5]==0xe4f1e4e1 and result[4]==3
  u.command(5);assert u.command(6)[5]==1
  # Cancel incomplete upload, then allocate again: no stale image survives.

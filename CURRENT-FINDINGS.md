@@ -1,5 +1,17 @@
 # Current findings and evidence — 2026-10-12
 
+**Doom allocation runtime accepted (2026-10-12):** namespaced malloc/calloc/
+realloc/free/strdup now use the existing 8 MiB resident arena without replacing
+system libc. Six host demos / 12,600 frames match the accepted pixel/palette/tic
+corpus. The opt-in `--doom-heap` card test passed a 6 MiB calloc, resizing/OOM,
+strdup and a 64 KiB allocation retained until confirmed STOP drain, alongside
+six network rounds. Full replay and native sanitizers passed; reboot returned
+and public IPv6 HTTP is restored (200). The combined i960 object is 631,112 bytes
+with 53 unresolved imports. Single-worker ownership remains; arbitrary task
+launch, shared allocator serialization and other runtime/WAD services are next.
+[Contract](game/doom/runtime/README.md) · [Evidence](artifacts/doom-runtime-20261012/README.md).
+
+
 **Doom host determinism fixed (2026-10-12):** all three variable frames were
 out-of-post sprite reads caused by negative fixed-point samples wrapping to 127.
 Bounded masked sampling now passes 24 host runs / 50,400 draws across both

@@ -1,7 +1,7 @@
 # RTEMS-to-Doom implementation plan — 2026-10-12
 
 The engine's 80 selected translation units compile for i960RP; the relocatable
-object still has 58 unresolved symbols. No Doom image has run on the card.
+base object has 58 unresolved symbols; the allocation-integrated variant has 53. No Doom image has run on the card.
 The [RAM contract](RAM-CONTRACT.md) requests an 8 MiB application arena,
 including a contiguous 6 MiB zone. The [exclusive RAM work](../../rtems/residentnet/LARGE-RAM.md)
 expands the kernel workspace/stacks separately; tested reserve is not automatically
@@ -12,8 +12,9 @@ passed native 6 MiB allocation tests and real i960 execution from a small BIO ar
 The [resident integration](../../rtems/residentnet/UPLOAD.md) now grants an 8 MiB
 arena, proves a contiguous 6 MiB allocation on-card and uploads segments larger
 than 64 KiB through PIO. Bootstrap placement and high-tail protection are explicit.
-Steps 2–3 still need libc/shared-task adapters, arbitrary task launch and runtime
-imports or relocations; production malloc remains unchanged.
+The [allocation adapter](runtime/README.md) now passes actual host Doom and
+a resident card proof. Steps 2–3 still need shared-task ownership, arbitrary task
+launch and runtime imports or relocations; production malloc remains unchanged.
 
 ## Ordered gates
 
@@ -83,9 +84,9 @@ imports or relocations; production malloc remains unchanged.
 
 ## Budget and scope
 
-The current host/i960 inventory gives 627,096 bytes of engine static storage
+The current host/i960 inventory gives 631,112 bytes of engine/allocation-runtime static storage
 and a maximum observed 6,456,649 bytes of direct allocations (including the
-6 MiB zone). Their sum is 7,083,745 bytes, before the missing runtime, transport
+6 MiB zone). Their sum is 7,087,761 bytes, before the missing runtime, transport
 and stack costs. The measured 5,856-byte x86 stack span is not an i960 bound.
 These sampled workloads support the 8 MiB planning request, not a universal
 Doom/mod memory guarantee.
@@ -99,6 +100,7 @@ zone occupancy twice. DMA networking, direct NIC access, audio, general POSIX an
 arbitrary mods are not prerequisites for the first playable milestone.
 
 The large allocation and resident segmented-loader self-tests have now passed.
-Next implement and test libc/shared-task adapters, the real runtime link and
+The allocation libc adapter is now tested; next implement shared-task ownership,
+the remaining real runtime link and
 host-backed WAD reads before loading Doom. The new host corpus supplies a finite
 reference; it does not establish i960 correctness by itself.

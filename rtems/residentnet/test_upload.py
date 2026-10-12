@@ -68,3 +68,14 @@ unsigned int upload_protect_finish(void){return 1;}
  (p/'upload.c').write_text((r/'upload.c').read_text().replace('"../../loader/segmented/image.h"','"image.h"'))
  subprocess.run(['cc','-std=c99','-fsanitize=address,undefined','-g','-I'+str(p),'-I'+str(r),str(p/'test.c'),str(core/'arena.c'),str(p/'image.c'),'-o',str(p/'padded')],check=True)
  subprocess.run([str(p/'padded')],check=True)
+
+ # Opt-in Doom libc uses the SAME arena while a prepared image remains pinned.
+with tempfile.TemporaryDirectory() as tmp:
+ p=Path(tmp);source=prefix.replace('#include "upload.c"','#define I960_DOOM_HEAP 1\n#include "upload.c"\n#include "doom_heap_proof.c"')
+ source=source.replace('send(++seq,4,0,0,0,0,0);assert(!reply[2]', 'send(++seq,8,0,0,0,0,0);assert(!reply[2]&&reply[5]==0x444c4942);\n send(++seq,4,0,0,0,0,0);assert(!reply[2]')
+ (p/'test.c').write_text(source)
+ (p/'upload_native.h').write_text('#define R(a) (*(unsigned int*)(unsigned long)(a))\nstatic unsigned int stopping,now;\nstatic unsigned int upload_stopping(void){return stopping;}\nstatic unsigned int upload_time(void){return ++now;}\nstatic void barrier(void){}\nstatic int sync_code(void*p,unsigned int n){return 1;}\nstatic void exclusive_abort(void){assert(0);}\nunsigned int upload_protect_step(void){return 1;}\nunsigned int upload_protect_finish(void){return 1;}\n')
+ runtime=r.parents[1]/'game/doom/runtime'
+ subprocess.run(['cc','-std=c99','-fsanitize=address,undefined','-g','-I'+str(p),'-I'+str(r),str(p/'test.c'),str(core/'arena.c'),str(core/'image.c'),str(runtime/'heap.c'),str(runtime/'libc.c'),'-o',str(p/'doom')],check=True)
+ subprocess.run([str(p/'doom')],check=True)
+ print('PASS Doom libc proof with pinned image and retained-buffer STOP drain')

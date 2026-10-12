@@ -1,5 +1,9 @@
 # Artifacts
 
+[2026-10-12 Doom allocation runtime](doom-runtime-20261012/README.md): actual
+8 MiB arena libc integration, 12,600 matching host frames, resident card proof,
+full STOP drain and restored public web service.
+
 [2026-10-12 deterministic Doom host output](doom-determinism-20261012/README.md):
 three-frame root cause, bounded sprite reads, 50,400 draws, full captures and i960 rebuild.
 

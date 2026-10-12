@@ -5,7 +5,7 @@ Also reconstruct and CRC-check the two uploaded files independently in Python.
 import argparse,errno,hashlib,json,struct,subprocess,tempfile,zlib
 from pathlib import Path
 r=Path(__file__).resolve().parent
-p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--doom-heap',action='store_true');a=p.parse_args()
 events=[json.loads(l) for l in (a.capture/'upload-journal.jsonl').read_text().splitlines()]
 requests=[];responses=[];current=None;sent=bytearray();files=[bytearray(),bytearray()];manifest=None;first_image=True;stale=0;latencies=[]
 for e in events:
@@ -53,6 +53,8 @@ int main(void){unsigned int packet[256],n,i;assert(upload_init());
   assert(!upload_control(0x72,0,0,1));upload_step();assert(!pending);assert(fwrite(reply,4,16,stdout)==16);
  }assert(upload_finish());return 0;}
 '''
+if a.doom_heap:
+ prefix=prefix.replace('#include "upload.c"','#define I960_DOOM_HEAP 1\n#include "upload.c"\n#include "doom_heap_proof.c"')
 with tempfile.TemporaryDirectory() as tmp:
  t=Path(tmp);(t/'test.c').write_text(prefix)
  (t/'upload_native.h').write_text('''#define R(a) (*(unsigned int*)(unsigned long)(a))
@@ -65,13 +67,16 @@ unsigned int upload_protect_step(void){return 1;}
 unsigned int upload_protect_finish(void){return 1;}
 ''')
  core=r.parents[1]/'loader/segmented'
- subprocess.run(['cc','-std=c99','-fsanitize=address,undefined','-I'+str(t),'-I'+str(r),str(t/'test.c'),str(core/'arena.c'),str(core/'image.c'),'-o',str(t/'replay')],check=True)
+ subprocess.run(['cc','-std=c99','-fsanitize=address,undefined','-I'+str(t),'-I'+str(r),str(t/'test.c'),str(core/'arena.c'),str(core/'image.c'),*([str(r.parents[1]/'game/doom/runtime/heap.c'),str(r.parents[1]/'game/doom/runtime/libc.c')] if a.doom_heap else []),'-o',str(t/'replay')],check=True)
  raw=subprocess.run([str(t/'replay')],input=sent,stdout=subprocess.PIPE,check=True).stdout
  assert len(raw)==64*len(responses)
  for i,w in enumerate(responses):
   actual=struct.unpack_from('<16I',raw,i*64)
   assert w[0:12]==actual[0:12] and w[13:]==actual[13:],(i,w,actual)
   assert w[12]==0xc02d0040
+if a.doom_heap:
+ proof_rows=[w for request,w in zip(requests,responses) if struct.unpack_from('<I',request,8)[0]==8]
+ assert len(proof_rows)==1 and proof_rows[0][2]==0 and proof_rows[0][5]==0x444c4942
 parked=json.loads((a.capture/'upload-parked.json').read_text());assert parked[3]==parked[4]==parked[15]==0 and parked[9]==3
 proof=[w for w in responses if w[10]==6291456];assert proof
 result=dict(commands=len(requests),pio_ioctls=len(latencies),stale_epochs_rejected=stale,code_bytes=len(files[0]),data_bytes=len(files[1]),zero_fill_bytes=196608-len(files[1]),result=hex(expected),simultaneous_allocation_bytes=6291456+327680,stop_cancelled_partial_image=True,latency_ms=dict(max=max(latencies),mean=sum(latencies)/len(latencies)),files_sha256=[hashlib.sha256(b).hexdigest() for b in files])

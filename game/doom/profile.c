@@ -10,6 +10,9 @@
 #include "i_video.h"
 extern void DG_ZoneSample(void);
 void *__real_malloc(size_t);void *__real_calloc(size_t,size_t);void *__real_realloc(void*,size_t);void __real_free(void*);
+#ifdef PROFILE_ARENA
+#include "runtime/host.inc"
+#endif
 struct allocation {void*p;size_t n;};
 static struct allocation records[16384];
 static size_t live,peak,largest,allocations,frees,failed,stack_peak;
@@ -86,4 +89,8 @@ void DG_SleepMs(uint32_t ms){clock_ms+=ms;}
 uint32_t DG_GetTicksMs(void){return clock_ms;}
 int DG_GetKey(int*pressed,unsigned char*key){(void)pressed;(void)key;return 0;}
 void DG_SetWindowTitle(const char*title){(void)title;}
-int main(int argc,char**argv){char stack;const char*n=getenv("DOOM_FRAMES");stack_origin=(uintptr_t)&stack;if(n)frame_limit=strtoul(n,0,10);atexit(report);doomgeneric_Create(argc,argv);for(;;){clock_ms+=29;doomgeneric_Tick();}return 0;}
+int main(int argc,char**argv){char stack;const char*n=getenv("DOOM_FRAMES");stack_origin=(uintptr_t)&stack;if(n)frame_limit=strtoul(n,0,10);atexit(report);
+#ifdef PROFILE_ARENA
+runtime_init();
+#endif
+doomgeneric_Create(argc,argv);for(;;){clock_ms+=29;doomgeneric_Tick();}return 0;}

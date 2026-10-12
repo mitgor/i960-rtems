@@ -79,6 +79,10 @@ Next: validate combined ACK-and-PUBLISH while keeping full audits per request;
 no asynchronous producer, broader RAM ownership or relaxed audit policy is proven.
 [Contract](game/raycaster/queue/README.md), [measurements and failure evidence](artifacts/framequeue-20261011/README.md).
 
+The [Doom allocation runtime](game/doom/runtime/README.md) now passes host
+reference frames and a resident on-card proof. Five allocation imports are
+resolved; shared task ownership and the other 53 runtime imports remain.
+
 ## Doom milestone 1 complete: compile and memory profile
 
 The pinned engine now compiles all 80 translation units for i960RP. Its

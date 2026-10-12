@@ -1,5 +1,11 @@
 # RTEMS working guidance
 
+**Doom allocation adapter:** [../game/doom/runtime/README.md](../game/doom/runtime/README.md).
+`--doom-heap` requires resident-upload, uses its single arena owner and protected
+upper code section, and preserves system malloc. Physical 6 MiB calloc/resize
+and retained-buffer STOP drain passed with six concurrent network rounds.
+Do not generalize its worker-only gate to a multi-task lock.
+
 **Resident integration accepted (2026-10-12):** [residentnet/UPLOAD.md](residentnet/UPLOAD.md).
 Use the opt-in resident-upload profile for the new 8 MiB arena and PIO transport;
 keep the baseline libc allocator and cooperative profiles. The initial upload
@@ -11,7 +17,8 @@ binaries, failed attempts and concurrent acceptance are linked in the contract.
 
 **2026-10-12 allocator/segmented prototype:** [../loader/segmented/README.md](../loader/segmented/README.md) records native
 6 MiB allocation tests and actual-card execution from a guarded 3,728-byte BIO
-arena. This core is not integrated with resident RTEMS. Do not enlarge malloc or
+arena. This original small-arena rehearsal preceded the resident integration above.
+Do not enlarge system malloc or
 remove reserve patterns without the explicit RAM/placement/ownership gates.
 Run `make -C loader test`; preserve generation/pin/quarantine semantics.
 

@@ -12,6 +12,11 @@ resolve the three differing frames. Current i960 static size is 627,096 bytes;
 the tables below preserve the original milestone measurements. RTEMS now has an
 accepted 8 MiB guarded application arena and resident segmented uploads.
 
+**Allocation follow-up:** [runtime integration](runtime/README.md) passes 12,600
+host frames and an actual-card 6 MiB allocation/resize/drain proof. The opt-in
+combined object is 631,112 bytes and has 53 unresolved imports. Other runtime
+services and arbitrary application launch remain.
+
 ## OS implementation path
 
 The [RTEMS-to-Doom plan](OS-PLAN.md) orders the large-RAM allocator, segmented

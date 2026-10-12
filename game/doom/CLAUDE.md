@@ -1,5 +1,12 @@
 # Doom milestone guidance
 
+Run runtime/test.py and runtime/verify_evidence.py for allocator evidence.
+Read [runtime/README.md](runtime/README.md) for the allocation integration.
+Opt-in --arena-runtime resolves the five allocation symbols: 631,112 static
+bytes, 53 imports remain. The baseline inventory below remains historical.
+The resident --doom-heap proof passed on-card; keep the single arena owner and
+separate system libc. Do not expose it to another task without shared serialization.
+
 Read [DETERMINISM.md](DETERMINISM.md), [OS-PLAN.md](OS-PLAN.md), README.md and
 RAM-CONTRACT.md. The three variable frames were out-of-post sprite reads:
 negative fixed-point indices wrapped to 127. Keep bounded_column.h and its

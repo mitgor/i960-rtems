@@ -12,6 +12,9 @@ static int sync_code(void*p,unsigned int n){unsigned int scratch;(void)p;(void)n
 #else
 #include "upload_native.h"
 #endif
+#ifdef I960_DOOM_HEAP
+extern unsigned int doom_arena_proof(struct arena*),doom_arena_finish(void);
+#endif
 static struct arena app_arena;
 static struct seg_image image;
 static unsigned int initialized,packet_bytes,packet_words,inbox[UPLOAD_WORDS],reply[UPLOAD_REPLY],frozen[UPLOAD_REPLY];
@@ -82,6 +85,9 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
   else if(command==5){if(!seg_cancel(&image))rc=4;else cancelled++;}
   else if(command==6)value=arena_valid(&app_arena);
   else if(command==7)rc=proof();
+#ifdef I960_DOOM_HEAP
+  else if(command==8){rc=doom_arena_proof(&app_arena);if(!rc)value=0x444c4942u;}
+#endif
   else rc=3;
  }
 done:
@@ -96,6 +102,9 @@ unsigned int upload_finish(void){unsigned int i;
  if(pending){pending=0;rejected++;}
  if(image.state!=SEG_EMPTY){if(!seg_cancel(&image))return 0;cancelled++;}
  reply[4]=image.state;reply[9]=cancelled;reply[15]=image.handle;
+ #ifdef I960_DOOM_HEAP
+ if(!doom_arena_finish())return 0;
+#endif
  for(i=0;i<ARENA_SLOTS;i++)if(app_arena.slot[i].span)return 0;
  return upload_guards()&&arena_valid(&app_arena)&&upload_protect_finish();
 }

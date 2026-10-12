@@ -1,5 +1,11 @@
 # Resident segmented upload and application arena
 
+**Doom allocation follow-up:** opt-in `--doom-heap` now tests a scoped libc
+adapter on this same arena. [Contract](../../game/doom/runtime/README.md) and
+[physical evidence](../../artifacts/doom-runtime-20261012/README.md). It adds UPL1
+command 8; system malloc remains unchanged. The original accepted layout below
+is historical; use the new image-specific map for this variant.
+
 Opt-in `--resident-upload` integrates the guarded allocator and segmented image
 core into exclusive RTEMS. It requires the release `--owned-mib 10` or `12`
 profile, including secondary SCSI reset, owned faults, extra RAM, shared heap and

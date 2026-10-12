@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 10579,
-      "sha256": "91fdf074fa9087456bc429c58737370b60855108b531836cdb73d1a56d6fa47c"
+      "size": 10787,
+      "sha256": "330eb8b7b01d4b71a36ff9483048e67f3ba7728a118af0abd5d6d8072e55cba1"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -3953,6 +3953,96 @@
       "sha256": "70584d90bcc692fdb817f1719201d7d1cb9a2e07df916d6e849fda9a9cef15d3"
     },
     {
+      "path": "artifacts/doom-runtime-20261012/README.md",
+      "size": 6078,
+      "sha256": "11e4dc5254e0b65ff3cf5775edc11ba6e7bc9df08ff4e7a18a7473c4b699e75a"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/SHA256SUMS.json",
+      "size": 1465,
+      "sha256": "1e30895416fe98e99705e752b225753b5c57300e87278b8abb46583fbf85527d"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/doom-host-builds.tar.gz",
+      "size": 9709075,
+      "sha256": "809581ee067e3dcca672fe84877205e3dc4b0bd951fb67443fd418c92338227c"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/engine-sections.txt",
+      "size": 172,
+      "sha256": "13de548a239aaab93bae46be081039398be5debc6d097830028395d62887ebf6"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/host-results.json",
+      "size": 7141,
+      "sha256": "b360a291c5c5646e7ca75f21efda8999b4f7a53950fa6a37a609abbedcf3884d"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/http-body.html",
+      "size": 2891,
+      "sha256": "19c01283d598d786304bd56450af8be70e4b3315efe56ec690e82e12bbc35ea3"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/http-headers.txt",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/live-evidence.tar.gz",
+      "size": 4195432,
+      "sha256": "aca9a91b9c53dd2d77dd61d576d71584c44d70c974aa5741ace6014c2d8aa288"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/local-replay.json",
+      "size": 24120,
+      "sha256": "06c8aa788f17279eaeb597dd5527b364de347ee1da2dd6595e777e5dd7ef98e0"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/local-upload-replay.json",
+      "size": 501,
+      "sha256": "bc250c30fb409a142e0dc29fef499628216ee128e6036e3223a1207705e4ff7a"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/local-upload-replay.log",
+      "size": 501,
+      "sha256": "bc250c30fb409a142e0dc29fef499628216ee128e6036e3223a1207705e4ff7a"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/native-heap.log",
+      "size": 187,
+      "sha256": "72c62ff32451e98876bf3fbc05d4fe45ec6b266b2eac7dfa4f97ea5019ab41b6"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/production-restore.json",
+      "size": 674,
+      "sha256": "32f89048d864e12d31b8eda6ec7e8f515f83eea99e8f8fa16fdf3d5ef82a257d"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/replay.json",
+      "size": 24121,
+      "sha256": "9b39ef47d96525fb6dbbe34a905a5484fea470c1e84369e1ce7aa5088fc8146c"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/rtems-tests.log",
+      "size": 12768,
+      "sha256": "3c9dc7d8fb251067dc333c8bfd2d3128b7699121d9efa51ed231652054d7c0ba"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/unresolved.txt",
+      "size": 1079,
+      "sha256": "25aca10aaa5c4a7b5231f1ef21055104ef5350ec6d41791903082b5e776c9929"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/upload-replay.json",
+      "size": 502,
+      "sha256": "50944dd6d9051f9892f4d77ce95fb9b8095b9d3bb896465e45b398ce271859e8"
+    },
+    {
+      "path": "artifacts/doom-runtime-20261012/verification.json",
+      "size": 164,
+      "sha256": "a140a4fd8e9de1c002e0ea313ae79657cfcb1dab02d50ba63ee00c63039de647"
+    },
+    {
       "path": "artifacts/dram-hook-audit-20261010/Makefile",
       "size": 540,
       "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
@@ -5091,11 +5181,6 @@
       "path": "artifacts/journal-20261011/card-comparison.json",
       "size": 13197,
       "sha256": "f95ad693a1e5b5c8425210c67c581663a3d7800d44cc009204f9022eedcf7ca5"
-    },
-    {
-      "path": "artifacts/journal-20261011/card-live.tar.gz",
-      "size": 67361802,
-      "sha256": "6d86e589a67fa53fee1a2039f6d286e0847ded0476472801ccb107344add5b15"
     },
     {
       "path": "artifacts/journal-20261011/card-replay.json",

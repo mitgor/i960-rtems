@@ -3,9 +3,11 @@
 Status: milestone 1, host measurements and i960 compile inventory. This document
 records the application budget; it grants no address range itself. The later
 [resident-upload profile](../../rtems/residentnet/UPLOAD.md) now proves an 8 MiB
-guarded arena and contiguous 6 MiB allocation on-card. Production libc/task
-adapters remain. No Doom image has loaded on the card. See README.md and
-[the determinism follow-up](DETERMINISM.md) for the current 627,096-byte engine.
+guarded arena and contiguous 6 MiB allocation on-card. The [scoped allocation adapter](runtime/README.md) now passes a resident card
+proof; system libc and arbitrary task integration remain separate. No Doom image has loaded on the card. See README.md and
+[the determinism follow-up](DETERMINISM.md) for the base engine. The allocation-integrated object is 631,112 bytes; context
+metadata also needs explicit resident accounting. The earlier estimated combined
+budget rises to 8,033,736 bytes, leaving 354,872 bytes; final linkage still decides.
 
 ## Proposed first port
 
