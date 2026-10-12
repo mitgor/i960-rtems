@@ -47,3 +47,6 @@ loader/postinit/test_profile
 
 # Preserved, tested dual-stack RTEMS target.
 !artifacts/rtems-ipv6-20261011/**/*.elf
+
+# Oversized card capture kept locally, not in git (64 MB; over GitHub's soft limit).
+artifacts/journal-20261011/card-live.tar.gz
