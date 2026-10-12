@@ -165,3 +165,15 @@ Next: libc/task ownership adapters, allocator latency at higher occupancy,
 arbitrary owned application contexts, runtime imports/PIC or relocation policy,
 and longer concurrent upload/network endurance. Doom and host-backed WAD I/O
 still need their runtime work. No DMA or direct-NIC path is added here.
+
+## Runtime entry and WAD service (2026-10-12)
+
+The opt-in `--doom-runtime` extension is physically accepted on top of
+`--doom-shared`. It uploads only the reviewed 736-byte probe, passes a versioned
+runtime function table, and serves bounded reads from one immutable host WAD.
+Commands 10–12 and separate WAD ioctl operations 3/4 are described in the
+[ABI contract](../../game/doom/runtime/entry/README.md). All original upload,
+full paired-audit and STOP/drain checks remain. The accepted timeout/error/
+recovery run and the first refused tail reply are both preserved in
+[the evidence archive](../../artifacts/doom-entry-20261012/README.md).
+This does not yet load Doom or admit arbitrary application entry points.

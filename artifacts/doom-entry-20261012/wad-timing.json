@@ -1,0 +1,17 @@
+{
+  "request_query": {
+    "count": 20,
+    "total_ms": 5086.508554,
+    "min_ms": 4.54022,
+    "max_ms": 1000.015375,
+    "median_ms": 30.0089735
+  },
+  "reply_submit": {
+    "count": 9,
+    "total_ms": 1712.891015,
+    "min_ms": 24.325169,
+    "max_ms": 889.800479,
+    "median_ms": 39.763728
+  },
+  "note": "Host ioctl timings include lock waits and scheduling; full audits remain enabled. This is a contract proof, not sustained WAD throughput."
+}

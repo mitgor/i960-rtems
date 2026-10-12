@@ -1,5 +1,16 @@
 # RTEMS working guidance
 
+**Runtime-entry/WAD bridge accepted:** [../game/doom/runtime/entry/README.md](../game/doom/runtime/entry/README.md).
+`--doom-runtime` requires `--doom-shared`. Only the exact reviewed probe may
+enter through the v1 table; this is not arbitrary Doom launch. WAD staging is
+separate from UPL1, maximum 512 bytes, one immutable bound file. Copy in the
+owning worker after claim/CRC; keep its allocation loan until completion or
+cancellation. No cross-task destination pointer, ISR copy, or implicit unpin.
+Keep the host WAD query/reply inside the reentrant audit gate, retain full
+audits and the 500-tick timeout, and never retry uncertain writes. The live
+normal/error/timeout/recovery batch passed; STOP-in-read is native-tested only.
+No Doom engine has yet run on card. Next are imports/linking and a WAD cache.
+
 **Shared arena follow-up accepted:** read [../game/doom/runtime/SHARED-ARENA.md](../game/doom/runtime/SHARED-ARENA.md).
 Use one task mutex and private per-worker allocation records; retain pins during
 unlocked bulk work and reclaim only after both task/IRQ drains. Wrong-task

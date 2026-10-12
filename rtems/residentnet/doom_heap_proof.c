@@ -49,6 +49,7 @@ unsigned int doom_arena_proof(struct arena*a){
  rc=0;
 done:doom_free(copy);doom_free(p);doom_free(zone);return rc;
 }
+struct doom_heap *doom_arena_context(void){return ready?&heap:0;}
 unsigned int doom_arena_finish(void){unsigned int i;
  if(!ready)return 1;
 #ifdef I960_DOOM_SHARED

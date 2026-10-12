@@ -14,7 +14,10 @@ arena, proves a contiguous 6 MiB allocation on-card and uploads segments larger
 than 64 KiB through PIO. Bootstrap placement and high-tail protection are explicit.
 The [allocation adapter](runtime/README.md) now passes actual host Doom and
 a resident card proof. [Shared-task arena ownership](runtime/SHARED-ARENA.md)
-now passes on the two existing workers. Steps 2–3 still need arbitrary task
+now passes on the two existing workers. A [runtime-entry/WAD bridge](runtime/entry/README.md)
+also runs a reviewed uploaded probe through a versioned function table and reads
+the pinned WAD from the host, with timeout/error recovery and full audits. It
+does not yet implement Doom file descriptors or cache. Steps 2–3 still need arbitrary task
 launch and runtime imports or relocations; production malloc remains unchanged.
 
 ## Ordered gates
@@ -115,3 +118,16 @@ blocking both workers is not supported. Before WAD I/O or new task launch,
 either keep the control/network worker runnable or explicitly register, stack,
 and validate the idle interrupt context. Do not fix this by hiding an idle
 fault, force-unlocking a mutex, or relaxing task/IRQ drain.
+
+## Next after accepted runtime entry (2026-10-12)
+
+1. Choose and validate the engine image linking/relocation strategy inside the
+   admitted arena; resolve remaining compiler/libc imports without replacing
+   RTEMS system allocation or admitting unreviewed code by the probe command.
+2. Connect Doom's file operations to one immutable WAD with bounded descriptors,
+   seek/read validation and a measured cache budget. Current 512-byte PIO reads
+   prove ownership/error handling, not acceptable startup throughput.
+3. Run bounded engine initialization, verify zone/cache/image/stack high-water
+   and cleanup, then request the first frame and compare its host oracle.
+4. Add input/frame scheduling only after startup and STOP/recovery are accepted.
+   Preserve worker 0's runnable control path unless idle IRQ ownership is proven.

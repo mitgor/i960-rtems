@@ -63,7 +63,13 @@ static void control_poll(void){unsigned int token=R(0x1314),index;
  if(!resident||((token&65535)!=resident_epoch))return;
  #ifdef I960_RESIDENT_NET
 #ifdef I960_RESIDENT_UPLOAD
- if((token>>24)>=0x70&&(token>>24)<=0x74){
+ if((token>>24)>=0x70&&(token>>24)<=
+#ifdef I960_DOOM_RUNTIME
+ 0x79
+#else
+ 0x74
+#endif
+ ){
   R(0x1318)=upload_control(token>>24,(token>>16)&255,R(0x1310),resident_state==1);(void)R(0x1318);
   R(0x1314)=0;R(0x131c)=token|0x08000000u;(void)R(0x131c);R(0x1324)=2;(void)R(0x1324);return;
  }

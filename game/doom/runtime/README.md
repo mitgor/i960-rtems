@@ -110,3 +110,10 @@ Pinned inputs and the reference corpus are in the previous Doom artifact folders
 [This step's exact builds, captures and physical findings](../../../artifacts/doom-runtime-20261012/README.md)
 record what actually passed. Read that evidence before hardware use; exclusive
 resident tests retain resources until reboot and must not overlap another owner.
+
+The [runtime-entry follow-up](entry/README.md) now proves calls from a reviewed
+uploaded application into this allocator and bounded host WAD reads. The heap
+adds exact-pointer read loans: one per allocation, with non-reused namespace
+tokens and explicit return after the consumer drains. Free/resize/drain refuse
+while pinned; stale or wrong-owner returns cannot unpin a newer loan. System
+libc remains separate. See the follow-up for physical and native coverage.

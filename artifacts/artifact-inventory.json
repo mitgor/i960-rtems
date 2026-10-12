@@ -3888,6 +3888,116 @@
       "sha256": "bd71ff2f3d1eae412df198cde1c6b14b578833edbb850dd4c4f5a1eab3d8abe6"
     },
     {
+      "path": "artifacts/doom-entry-20261012/README.md",
+      "size": 6826,
+      "sha256": "b403f61e5062cbfc164e730472579408969ab5cfa8915887ca814a26027e452b"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/accepted-evidence.tar.gz",
+      "size": 4531570,
+      "sha256": "0c3c3d6f669d3d4e2762ff20b796709e4b483806fcedc851a17820d32591b0d6"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/doom-heap.json",
+      "size": 246,
+      "sha256": "1122a6233cbafe0657f8a3777859fcae58e415381eb674457d08255d6f519b85"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/doom-shared.json",
+      "size": 278,
+      "sha256": "3f5a4eec62b416657ae7f6243509907c821027a78e8d792fc94b4d5a8ff18d1d"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/failed-tail-reply.tar.gz",
+      "size": 4479899,
+      "sha256": "a88a9fa2bc199388b5a0e8783cf90362fda0fdb10b7aa9209a8c3c9e64ad13d8"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/full-replay.json",
+      "size": 24134,
+      "sha256": "c57ff34b31090483b6cd8a3280d2b570f1e7e9d0763a45c2b2cfa797a606d5a5"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/http-headers.txt",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/native-heap-wad.txt",
+      "size": 323,
+      "sha256": "1f1be1d9ae09950a538c8997115e2693db188fa35616dbad182aacc3d8b80960"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/native-host-client.txt",
+      "size": 111,
+      "sha256": "961ac38013190c842267cc8e280668d3abc99ca5cd215299946a8bda913cc1e4"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/native-runtime.txt",
+      "size": 129,
+      "sha256": "5c75cbc17d46ada70291e420abd053f3b87257a6d1132d22a7057b6932d7a910"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/native-shared.txt",
+      "size": 147,
+      "sha256": "95bd07a249b07ae26b7c49491f3c1dfb212b963ac031111d8514666214e9e55d"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/native-thread-sanitizer.txt",
+      "size": 147,
+      "sha256": "95bd07a249b07ae26b7c49491f3c1dfb212b963ac031111d8514666214e9e55d"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/offline-suite.txt",
+      "size": 13641,
+      "sha256": "b6acf79664d4480853a232e4c6d6d5897e6f3ca8744a063e173c7119a0bf1b21"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/prior-upload-replay.json",
+      "size": 502,
+      "sha256": "f7cf46d8f4eb8b512f9f4d134550ab8a2894949c97ec1dbe1eb2c7162431c1d4"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/production-restore.json",
+      "size": 673,
+      "sha256": "c38ea4afa5f9b5fe6534c6ae44c8a5eff5d3c8a8d3d18f518c856041a616a2e3"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/ram-audit.json",
+      "size": 1668,
+      "sha256": "322995b7465b1e2ac2ce33f5460e6c9d76337d8c49e98471093a7da6162f2d24"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/runtime-results.json",
+      "size": 1932,
+      "sha256": "13d0fabaa8912e94fed75e7673ba77332eaa9d62c27a45a9c404502aaaacb645"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/service-status.txt",
+      "size": 1902,
+      "sha256": "e1d508ad42b4b321ff6b96638a824ef25efc568bf53012eead2341b29fc92533"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/tamper-results.json",
+      "size": 427,
+      "sha256": "155eca9e2e294463c86cf4b2686e2ec4571778259af6b4759193a61c262356bc"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/upload-replay.json",
+      "size": 694,
+      "sha256": "b1cf8892309d2b0d78f041741caca36fb90e1407fe4b21e3fd77211cd34d9552"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/upload-replay.txt",
+      "size": 694,
+      "sha256": "b1cf8892309d2b0d78f041741caca36fb90e1407fe4b21e3fd77211cd34d9552"
+    },
+    {
+      "path": "artifacts/doom-entry-20261012/wad-timing.json",
+      "size": 452,
+      "sha256": "804feaf9e8fbf0bae08ab020e1b8bad140ce2ecff2022d1d8aabcd14b588d530"
+    },
+    {
       "path": "artifacts/doom-m1-20261011/README.md",
       "size": 4661,
       "sha256": "e740286ada8e75307ea19803a3e578fba40d2ce5f2385f43d22451db5a2ae1f9"

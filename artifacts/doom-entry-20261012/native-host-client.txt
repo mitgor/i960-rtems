@@ -1,0 +1,1 @@
+PASS host WAD: immutable snapshot, atomic query/reply audit gate, duplicate suppression, timeout without write

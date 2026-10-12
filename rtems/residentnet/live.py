@@ -58,6 +58,8 @@ def main():
  p.add_argument('--resident-upload',action='store_true')
  p.add_argument('--doom-heap',action='store_true')
  p.add_argument('--doom-shared',action='store_true')
+ p.add_argument('--doom-runtime',action='store_true')
+ p.add_argument('--wad',type=Path)
  p.add_argument('--upload-concurrent',action='store_true')
  p.add_argument('--owned-mib',type=int,choices=(0,1,4,10,12),default=0)
  p.add_argument('--heap-shared',action='store_true')
@@ -79,12 +81,15 @@ def main():
  assert not a.doom_heap or a.resident_upload
  assert ('-DI960_DOOM_SHARED' in flags)==a.doom_shared
  assert not a.doom_shared or a.doom_heap
+ assert ('-DI960_DOOM_RUNTIME' in flags)==a.doom_runtime
+ assert not a.doom_runtime or (a.doom_shared and a.wad and a.upload_concurrent)
+ runtime=(a.wad,a.payload.parent/'entry/runtime-probe.bin') if a.doom_runtime else None
  assert not a.upload_concurrent or a.resident_upload
  if a.queue_reclaim:assert a.heap_shared
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
  io_gate=threading.RLock()
  def save(final=False):
   if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')
@@ -143,7 +148,7 @@ def main():
    upload_future=None
    if a.upload_concurrent:
     from upload_client import exercise
-    upload_future=pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared)
+    upload_future=pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared,runtime)
    while not future.done() or (upload_future is not None and not upload_future.done()):
     if time.monotonic()>deadline:raise TimeoutError('resident test exceeded session traffic budget')
     readable,_,_=select.select([g.fd],[],[],0)
@@ -173,7 +178,7 @@ def main():
   v=snapshot();assert v[4:36]==w[4:36];control(6)
   if a.resident_upload:
    from upload_client import Upload
-   q=Upload(b.fd,epoch,b.out).query();assert q[3]==q[4]==q[15]==0 and q[9]==3
+   q=Upload(b.fd,epoch,b.out).query();assert q[3]==q[4]==q[15]==0 and q[9]==(4 if a.doom_runtime else 3)
    (b.out/'upload-parked.json').write_text(json.dumps(list(q))+'\n')
   (b.out/'last-control.txt').write_text((b.debugfs/'result.txt').read_text())
   print('Resident network tests passed; module retained until reboot.',flush=True)

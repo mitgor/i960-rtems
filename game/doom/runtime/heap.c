@@ -28,7 +28,7 @@ static struct doom_allocation *allocate(struct doom_heap*h,unsigned int n) {
  if(i==ARENA_SLOTS||(handle=arena_alloc(h->arena,n))==0){h->error=h->arena->poisoned?DH_CORRUPT:DH_OOM;h->fault|=h->arena->poisoned;return 0;}
  s=h->slots+i;s->pointer=arena_pin(h->arena,handle);
  if(!s->pointer){h->fault=1;h->error=DH_CORRUPT;return 0;}
- s->handle=handle;s->bytes=n;s->busy=0;h->live+=n;h->blocks++;
+ s->handle=handle;s->bytes=n;s->busy=s->loan=0;h->live+=n;h->blocks++;
  if(h->live>h->peak)h->peak=h->live;if(h->blocks>h->peak_blocks)h->peak_blocks=h->blocks;
  h->error=DH_OK;return s;
 }
@@ -43,8 +43,8 @@ int doom_heap_init(struct doom_heap*h,struct arena*a,const struct doom_heap_hook
  if(!h||h->initialized||!a||!hooks||!hooks->enter||!hooks->leave||!hooks->progress)return 0;
  if(!hooks->enter(hooks->cookie))return 0;
  if(!arena_valid(a)){hooks->leave(hooks->cookie);return 0;}
- h->arena=a;h->hooks=*hooks;h->stopping=h->fault=h->error=h->live=h->peak=h->blocks=h->peak_blocks=h->busy=0;
- for(i=0;i<ARENA_SLOTS;i++){h->slots[i].pointer=0;h->slots[i].handle=h->slots[i].bytes=h->slots[i].busy=0;}
+ h->arena=a;h->hooks=*hooks;h->stopping=h->fault=h->error=h->live=h->peak=h->blocks=h->peak_blocks=h->busy=h->loan_sequence=0;
+ for(i=0;i<ARENA_SLOTS;i++){h->slots[i].pointer=0;h->slots[i].handle=h->slots[i].bytes=h->slots[i].busy=h->slots[i].loan=0;}
  h->initialized=1;hooks->leave(hooks->cookie);return 1;
 }
 void *doom_heap_malloc(struct doom_heap*h,unsigned int n) {
@@ -61,7 +61,7 @@ int doom_heap_free(struct doom_heap*h,void*p) {
 static void *bulk(struct doom_heap*h,void*old,unsigned int n,int zero,const char*string) {
  struct doom_allocation*src=0,*dst;unsigned int count,i,j;int ok=1;void*p;
  if(!enter(h))return 0;
- if(old){src=find(h,old);if(!src||!valid(h,src)||src->busy){if(!h->fault)h->error=src?DH_BUSY:DH_INVALID;leave(h);return 0;}}
+ if(old){src=find(h,old);if(!src||!valid(h,src)||src->busy||src->loan){if(!h->fault)h->error=src?DH_BUSY:DH_INVALID;leave(h);return 0;}}
  dst=allocate(h,n);if(!dst){leave(h);return 0;}
  dst->busy=1;if(src)src->busy=1;h->busy++;
  count=src?(src->bytes<n?src->bytes:n):n;p=dst->pointer;leave(h);
@@ -103,4 +103,16 @@ int doom_heap_drain(struct doom_heap*h) {
   if(s->busy||h->arena->slot[(s->handle&255u)-1].pins!=1){h->error=DH_BUSY;leave(h);return 0;}}
  for(i=0;i<ARENA_SLOTS;i++)if(h->slots[i].pointer&&!release(h,h->slots+i)){leave(h);return 0;}
  leave(h);return 1;
+}
+/* Exact-pointer, bounded read lease. Only the owning namespace can acquire or
+ * return it. The borrower must be drained before return; no implicit transfer. */
+unsigned int doom_heap_borrow(struct doom_heap*h,void*p,unsigned int n){struct doom_allocation*s;unsigned int result=0;
+ if(!p||!n||!enter(h))return 0;s=find(h,p);
+ if(s&&valid(h,s)&&!h->stopping&&!s->busy&&!s->loan&&h->loan_sequence!=~0u&&n<=s->bytes&&arena_pin(h->arena,s->handle)==p)result=s->loan=++h->loan_sequence;
+ leave(h);return result;
+}
+int doom_heap_return(struct doom_heap*h,void*p,unsigned int token){struct doom_allocation*s;int result=0;
+ if(!p||!token||!enter(h))return 0;s=find(h,p);
+ if(s&&valid(h,s)&&token&&s->loan==token&&h->arena->slot[(s->handle&255u)-1].pins>1){result=arena_unpin(h->arena,s->handle);if(result)s->loan=0;}
+ leave(h);return result;
 }

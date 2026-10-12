@@ -1,5 +1,20 @@
 # Current findings and evidence — 2026-10-12
 
+**Doom runtime entry/WAD bridge accepted (2026-10-12):** opt-in
+`--doom-runtime` executed a reviewed 736-byte uploaded application using a
+96-byte i960 function table, task-owned allocation and bounded host-backed WAD
+reads. Both normal runs matched the independent hash; CRC, short response,
+host error and 500-tick timeout cases passed, followed by successful recovery.
+Six network rounds, full paired audits, 539-command C replay and capture tamper
+tests passed. STOP drained at tick 11,672 with no outstanding loans. The first
+attempt's refused tail reply is archived; the corrected host keeps query/reply
+together relative to full audits and avoids redundant status polls. Target
+binary and five-second deadline were unchanged. Keep worker 0 runnable; retain
+loans until copy/cancellation completes. **Doom itself is not running yet.**
+The final reboot returned and public IPv6 HTTP was restored and verified (200).
+Next: engine image linking/imports, WAD file adapter/cache, then bounded startup.
+[Contract](game/doom/runtime/entry/README.md) · [Evidence](artifacts/doom-entry-20261012/README.md).
+
 **Shared Doom arena accepted (2026-10-12):** opt-in `--doom-shared` adds one
 priority-inheriting task mutex and separate allocation namespaces over the same
 8 MiB arena. Two existing workers passed 3,305 wrong-task rejection/check rounds,

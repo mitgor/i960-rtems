@@ -4,19 +4,19 @@ from contextlib import nullcontext
 from pathlib import Path
 MAGIC=0x314c5055
 class Upload:
- def __init__(self,fd,epoch,out,gate=None):self.fd=fd;self.epoch=epoch;self.out=Path(out);self.sequence=0;self.gate=gate
+ def __init__(self,fd,epoch,out,gate=None):self.fd=fd;self.epoch=epoch;self.out=Path(out);self.sequence=0;self.gate=gate;self.service=None
  def io(self,op,data=b'',epoch=None):
   raw=bytearray(struct.pack('<8I',op,self.epoch if epoch is None else epoch,len(data),0,0,0,0,0)+data.ljust(1024,b'\0'))
   before=bytes(raw);start=time.monotonic_ns()
   try:
    with self.gate if self.gate is not None else nullcontext():fcntl.ioctl(self.fd,0xc4204d06,raw,True)
   except OSError as e:
-   self.record(dict(op=op,request=before.hex(),errno=e.errno,ns=time.monotonic_ns()-start));raise
-  self.record(dict(op=op,request=before.hex(),response=raw.hex(),ns=time.monotonic_ns()-start))
+   self.record(dict(op=op,start_ns=start,request=before.hex(),errno=e.errno,ns=time.monotonic_ns()-start));raise
+  self.record(dict(op=op,start_ns=start,request=before.hex(),response=raw.hex(),ns=time.monotonic_ns()-start))
   w=struct.unpack_from('<8I',raw);assert w[3]==1 and not w[4]&1 and w[5:]==(0,0,0)
   return bytes(raw[32:32+w[2]])
  def record(self,event):
-  with (self.out/'upload-journal.jsonl').open('a') as f:f.write(json.dumps(event)+'\n')
+  with (self.out/('wad-journal.jsonl' if event['op'] in (3,4) else 'upload-journal.jsonl')).open('a') as f:f.write(json.dumps(event)+'\n')
  def query(self):return struct.unpack('<16I',self.io(2))
  def command(self,command,a=0,b=0,c=0,data=b'',expected=0,sequence=None):
   if sequence is None:self.sequence+=1;sequence=self.sequence
@@ -24,6 +24,9 @@ class Upload:
   packet+=b'\0'*((-len(packet))%4);self.io(1,packet)
   deadline=time.monotonic()+30
   while time.monotonic()<deadline:
+
+   if self.service and self.service():
+    time.sleep(.002);continue
    w=self.query()
    if w[0]==0x31525055 and w[1]==sequence and not w[3]:
     assert w[2]==expected,(command,w);return w
@@ -43,7 +46,7 @@ class Upload:
    if w[5]==2:return w
    assert w[5]==1
   raise AssertionError('unbounded preparation')
-def exercise(fd,epoch,out,gate=None,doom_heap=False,doom_shared=False):
+def exercise(fd,epoch,out,gate=None,doom_heap=False,doom_shared=False,runtime=None):
  u=Upload(fd,epoch,out,gate)
  try:u.io(2,epoch=epoch^0x8000);raise AssertionError('stale epoch accepted')
  except OSError as e:assert e.errno==errno.ESTALE
@@ -73,6 +76,9 @@ def exercise(fd,epoch,out,gate=None,doom_heap=False,doom_shared=False):
   (Path(out)/'doom-shared.json').write_text(json.dumps(dict(magic=hex(stats[0]),phase=stats[1],peer_checks=stats[2],wrong_task_rejections=stats[3],peer_enters=stats[4],owner_enters=stats[5],max_wait_ticks=stats[6],max_hold_ticks=stats[7],timeout_rejections=stats[8],recursive_rejections=stats[9],peer_retained_bytes=98304),indent=2)+'\n')
  result=u.command(4);assert result[5]==0xe4f1e4e1 and result[4]==3
  u.command(5);assert u.command(6)[5]==1
+ if runtime:
+  from runtime_client import exercise_runtime
+  exercise_runtime(u,*runtime)
  # Cancel incomplete upload, then allocate again: no stale image survives.
  u.begin(segments);u.command(5)
  # Keep one partial image pinned until RTEMS STOP drains the worker contexts.

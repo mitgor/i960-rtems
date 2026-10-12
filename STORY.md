@@ -2246,6 +2246,39 @@ The reboot returned, and Vader answered from the original web server again.
 The failed attempt stayed beside the successful one in the archive; the lock
 had acquired both a test and a warning about who was allowed to sleep.
 
+## A game asks for a file
+
+The next visitor was only 736 bytes long. It arrived through the loader, took a
+small table of services, asked for a kilobyte of memory, and opened a conversation
+with the host about a file it could not possibly keep in RAM.
+
+Freedoom's first WAD was nearly twenty-nine megabytes. The card had eight
+megabytes to work with, including everything else we wanted to put there. So the
+host kept the file and the little program asked for three pieces: the header,
+a slice of the directory, and the last thirty-seven bytes. Each reply had a
+sequence number, a length and a checksum. The destination stayed borrowed until
+the application had finished checking and copying it. Even an old completion
+needed its own loan token; it could not return somebody else's newer loan.
+
+The first attempt got as far as the directory. We had left the host free to do
+a full audit between noticing a request and answering it, and we were still
+polling the old command reply in between reads. The tail reply was refused.
+The capture did not give us the final mailbox state, so expiration was a strong
+explanation rather than a recovered confession. We kept the failure, rebooted,
+and put each query and reply together under the host's audit gate. The card's
+five-second deadline and its binary stayed exactly as they were.
+
+On the retry, both ordinary runs returned the same hash as the host. We sent a
+bad checksum, shortened a reply, reported a read error and withheld a reply
+altogether. The last one took 5.12 seconds to come back. Then the application
+read the real file again. Networking kept running, the audits stayed on, and
+STOP found no outstanding loans before reclaiming the arena.
+
+This still was not Doom. It was the smaller, necessary trick: an uploaded
+program could now call the operating system and fetch its own data without
+owning the whole file or stealing another task's memory. The next job was to
+teach the much larger visitor those same manners.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

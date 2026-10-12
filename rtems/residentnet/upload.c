@@ -1,6 +1,10 @@
 #ifdef I960_RESIDENT_UPLOAD
 #include "upload.h"
 #include "doom_heap_shared.h"
+#include "doom_runtime.h"
+#ifdef I960_DOOM_RUNTIME
+#include "runtime_probe_bytes.h"
+#endif
 #ifdef I960_DOOM_SHARED
 #define LOCK() do {if(!doom_shared_enter((void*)1)){exclusive_abort();return;}}while(0)
 #define UNLOCK() doom_shared_leave((void*)1)
@@ -37,6 +41,9 @@ unsigned int upload_init(void){if(initialized)return 0;
  if(!arena_init(&app_arena,(void*)UPLOAD_BASE,UPLOAD_BYTES))return 0;seg_init(&image);initialized=1;return 1;}
 /* ISR/mailbox path only: no allocator, hashes, code execution or image copying. */
 unsigned int upload_control(unsigned int op,unsigned int index,unsigned int value,unsigned int running){unsigned int i;
+ #ifdef I960_DOOM_RUNTIME
+ if(op>=0x75&&op<=0x79)return doom_runtime_control(op,index,value,running);
+#endif
  if(op==0x74){if(index)return ~0u;for(i=0;i<UPLOAD_REPLY;i++)frozen[i]=reply[i];frozen[3]=pending;frozen[4]=image.state;return 0;}
  if(op==0x73)return index<UPLOAD_REPLY?frozen[index]:~0u;
  if(!initialized||!running||upload_stopping())return 0xfffffffeu;
@@ -81,6 +88,19 @@ static unsigned int run_probe(unsigned int *value){unsigned int i;unsigned char*
 #endif
  i=seg_complete(&image);UNLOCK();if(!i)return 4;return 0;
 }
+#ifdef I960_DOOM_RUNTIME
+static unsigned int run_runtime(unsigned int*value){unsigned int i,ok;const struct doom_runtime_v1*a=doom_runtime_api();unsigned int(*fn)(const struct doom_runtime_v1*);
+ if(!a||image.state!=SEG_READY||image.manifest.count!=1||image.manifest.entry||image.manifest.segment[0].offset||image.manifest.segment[0].flags!=SEG_RX||image.manifest.segment[0].file_bytes!=sizeof(runtime_probe_bytes)||image.manifest.segment[0].memory_bytes!=sizeof(runtime_probe_bytes))return 1;
+ for(i=0;i<sizeof(runtime_probe_bytes);i++)if(image.base[i]!=runtime_probe_bytes[i])return 2;
+ if(!doom_shared_enter((void*)1))return 3;fn=(unsigned int(*)(const struct doom_runtime_v1*))seg_start(&image);UNLOCK();if(!fn)return 4;
+#ifndef UPLOAD_NATIVE
+ *value=fn(a);
+#else
+ *value=doom_runtime_probe(a);
+#endif
+ if(!doom_shared_enter((void*)1)){exclusive_abort();return 5;}ok=seg_complete(&image);UNLOCK();return ok?0:6;
+}
+#endif
 void upload_step(void){unsigned int command,rc=0,value=0,n,i;
  if(!initialized)return;
  if(!upload_guards()){exclusive_abort();return;}
@@ -90,6 +110,9 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
  if(inbox[0]!=0x314c5055u||!inbox[1]||sequence==~0u||inbox[1]!=sequence+1||inbox[6]||inbox[7]){rc=1;goto done;}
  sequence=inbox[1];accepted++;
  if(upload_stopping()){rc=2;goto done;}
+ #ifdef I960_DOOM_RUNTIME
+ if(command==10){if(inbox[3]||inbox[4]||inbox[5]||n!=76){rc=3;goto done;}rc=doom_runtime_bind(inbox+8,11);goto done;}
+#endif
  if(command==1){struct manifest m;
   if(n!=32+43*4||inbox[3]||inbox[4]||inbox[5]){rc=3;goto done;}
   m.abi=inbox[8];m.count=inbox[9];m.entry=inbox[10];
@@ -99,7 +122,7 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
  }else if(command==2){if(!inbox[5]||inbox[5]>SEG_CHUNK||n!=32+((inbox[5]+3)&~3u)){rc=3;goto done;}
   LOCK();rc=seg_write(&image,inbox[3],inbox[4],inbox+8,inbox[5])?0:4;UNLOCK();
  }else{
-  if(n!=32||((command!=9)&&inbox[3])||inbox[4]||inbox[5]){rc=3;goto done;}
+  if(n!=32||((command!=9&&command!=12)&&inbox[3])||inbox[4]||inbox[5]){rc=3;goto done;}
   if(command==3){LOCK();value=seg_prepare(&image,sync_code);if(!value)rc=4;UNLOCK();}
   else if(command==4)rc=run_probe(&value);
   else if(command==5){LOCK();if(!seg_cancel(&image))rc=4;else cancelled++;UNLOCK();}
@@ -110,6 +133,10 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
 #endif
   #ifdef I960_DOOM_SHARED
   else if(command==9)value=doom_shared_report(inbox[3]);
+#ifdef I960_DOOM_RUNTIME
+  else if(command==11)rc=run_runtime(&value);
+  else if(command==12)value=doom_runtime_report(inbox[3]);
+#endif
 #endif
   else rc=3;
  }
@@ -122,6 +149,9 @@ done:
 }
 unsigned int upload_finish(void){unsigned int i;
  /* Both workers/IRQ contexts have drained before this call. */
+#ifdef I960_DOOM_RUNTIME
+ if(!doom_runtime_finish())return 0;
+#endif
  if(pending){pending=0;rejected++;}
  if(image.state!=SEG_EMPTY){if(!seg_cancel(&image))return 0;cancelled++;}
  reply[4]=image.state;reply[9]=cancelled;reply[15]=image.handle;
