@@ -1,5 +1,17 @@
 # Repository guidance for Claude Code
 
+**Allocator/segmented-loader core (2026-10-12):**
+[New core and integration gates](loader/segmented/README.md) provide a guarded
+128-slot arena, generation handles, pins/cancellation, and an eight-segment
+copy/CRC/BSS/cache-sync state machine. Native sanitizers passed a contiguous
+6 MiB allocation and failure tests. Three real-card BIO rehearsals passed; the
+second executed copied code reading a separate data segment. The live arena
+was 3,728 bytes; this does **not** grant the 12 MiB reserve to applications or
+extend production RTEMS malloc. Full RAM restoration/module unload passed;
+IPv6 HTTP was restored. [Exact captures](artifacts/segmented-loader-20261012/README.md).
+Next: high-tail protection, bootstrap placement, RTEMS ownership/libc adapters,
+and bounded resident PIO upload without another firmware callback.
+
 **12 MiB exclusive RAM checkpoint (2026-10-12):** `--owned-mib 12`
 passed four startup patterns over `c0240000..c0e40000`, a 35-minute resident run,
 48 dual-stack rounds and independent replay of 3,812 packets. RTEMS now initializes

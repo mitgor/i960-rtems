@@ -1,5 +1,11 @@
 # Loader guidance for Claude Code
 
+**2026-10-12 allocator/segmented prototype:** [segmented/README.md](segmented/README.md) records native
+6 MiB allocation tests and actual-card execution from a guarded 3,728-byte BIO
+arena. This core is not integrated with resident RTEMS. Do not enlarge malloc or
+remove reserve patterns without the explicit RAM/placement/ownership gates.
+Run `make -C loader test`; preserve generation/pin/quarantine semantics.
+
 **Current development roadmap:** [loader memory extension, RTEMS and remaining gaps](../DEVELOPMENT-PLAN.md). Next: M1, generalize the proven larger RAM profile; preserve scalar/BIO1 compatibility.
 
 

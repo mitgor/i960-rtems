@@ -2093,6 +2093,29 @@ a general allocator, a larger executable loader, or the missing Doom runtime.
 Those have their own plan, starting with an explicitly owned application arena
 and a segmented loader that cannot overwrite the monitor keeping it alive.
 
+## A small program with separate rooms
+
+The first allocator and segmented loader were rehearsed in a deliberately small
+room: 3,728 bytes inside the buffer the old returning loader already knew how to
+restore. The allocator gave each allocation a generation and counted its pins.
+Cancelling an owner closed the door to new users; it did not pretend the existing
+ones had disappeared. A pin had to come back before the bytes could be reused.
+
+The loader put instructions in one segment, `DATA` in another, and zeroed the
+rest of the data segment. It checked the bytes, synchronized the caches and
+called the copied instructions. On the actual i960, those instructions read the
+separate data segment and returned `e4f1e4e1`. The cancellation test kept the
+allocation until completion was acknowledged. Then the old loader restored RAM,
+unloaded, and the Vader page went back online.
+
+On the native machine, the same allocator handled a contiguous six-megabyte
+allocation and ten thousand allocation/release operations under sanitizers.
+That was useful evidence, with a precise boundary: six megabytes on the native
+machine, a few kilobytes on the card. The twelve-megabyte reserve still needs its
+ownership contract extended. And the resident image has just 1,456 bytes left in
+its immutable code window. The next loader needs somewhere to stand while it
+builds the larger program around itself.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

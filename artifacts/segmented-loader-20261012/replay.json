@@ -1,0 +1,26 @@
+[
+  {
+    "capture": "live",
+    "return_value": 0,
+    "computed_result": "0xb791f3dd",
+    "prepare_steps": 4,
+    "arena_bytes": 3728,
+    "payload_sha256": "b154aa6b595f32cba8f31f9b2bb110d0023d16cf3fbab2b16ea33b0d998b5d9c"
+  },
+  {
+    "capture": "live-data",
+    "return_value": 0,
+    "computed_result": "0xe4f1e4e1",
+    "prepare_steps": 4,
+    "arena_bytes": 3728,
+    "payload_sha256": "45fbee01fcac1635d6213314b7865f8d255b3d9d35519df241fd55efa633f097"
+  },
+  {
+    "capture": "live-final",
+    "return_value": 0,
+    "computed_result": "0xe4f1e4e1",
+    "prepare_steps": 4,
+    "arena_bytes": 3728,
+    "payload_sha256": "9a3ac8a6e97f8ac7e4406d64f84e1d4a66f310b6f448d2d4f5f7e212932af1d3"
+  }
+]

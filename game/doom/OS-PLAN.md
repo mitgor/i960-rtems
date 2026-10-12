@@ -7,6 +7,11 @@ including a contiguous 6 MiB zone. The [exclusive RAM work](../../rtems/resident
 expands the kernel workspace/stacks separately; tested reserve is not automatically
 an application allocator or executable image grant.
 
+Prototype progress: [arena and segmented core](../../loader/segmented/README.md)
+passed native 6 MiB allocation tests and real i960 execution from a small BIO arena.
+Steps 2–3 remain integration gates: production malloc is unchanged; no resident
+upload service, libc adapter, task launch or large application grant exists yet.
+
 ## Ordered gates
 
 1. **RAM admission and OS capacity.** Validate progressively larger exclusive

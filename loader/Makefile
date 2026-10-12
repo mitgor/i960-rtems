@@ -35,6 +35,7 @@ loadctl: loadctl.c mu.h
 test_protocol: test_protocol.c loadctl.c loader.c mu.h
 	$(HOSTCC) $(HOSTCFLAGS) -o $@ $<
 test: loadctl test_protocol
+	$(PYTHON) segmented/test.py
 	./test_protocol
 	$(PYTHON) -B -m unittest -v test_build.py
 

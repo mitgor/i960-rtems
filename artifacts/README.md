@@ -1,5 +1,7 @@
 # Artifacts
 
+[2026-10-12 allocator and segmented-loader core](segmented-loader-20261012/README.md): native large-allocation tests, three actual-card segmented execution rehearsals, exact binaries and restored-service evidence.
+
 Latest RAM/OS milestone: [12 MiB exclusive RAM and RTEMS workspace](rtems-large-ram-20261012/README.md):
 256 KiB workspace, larger stacks, 35-minute / 48-round networking acceptance,
 responsive final scans, preserved failures, exact binaries and the Doom OS plan.

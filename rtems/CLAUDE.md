@@ -1,5 +1,11 @@
 # RTEMS working guidance
 
+**2026-10-12 allocator/segmented prototype:** [../loader/segmented/README.md](../loader/segmented/README.md) records native
+6 MiB allocation tests and actual-card execution from a guarded 3,728-byte BIO
+arena. This core is not integrated with resident RTEMS. Do not enlarge malloc or
+remove reserve patterns without the explicit RAM/placement/ownership gates.
+Run `make -C loader test`; preserve generation/pin/quarantine semantics.
+
 **12 MiB exclusive RAM checkpoint (2026-10-12):** `--owned-mib 12`
 passed four startup patterns over `c0240000..c0e40000`, a 35-minute resident run,
 48 dual-stack rounds and independent replay of 3,812 packets. RTEMS now initializes

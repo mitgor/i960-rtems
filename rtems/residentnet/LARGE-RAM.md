@@ -87,6 +87,11 @@ keeps its existing 180,000-tick maximum. Each test still has an explicit deadlin
 
 ## Remaining ownership work
 
+The [segmented prototype](../../loader/segmented/README.md) now implements an
+independent guarded arena and image state machine. Native 6 MiB and small real-card
+execution tests passed; no large-RAM allocator/loader integration is claimed.
+The existing reserve patterns and production heap are unchanged.
+
 Even a successful 12 MiB test is not an 11+ MiB malloc arena. Next add a guarded
 allocator arena to the reserve, replace its immutable-pattern contract with
 allocation/reference ownership, and test large allocations, sharing, cancellation,
