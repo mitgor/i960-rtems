@@ -1,0 +1,673 @@
+{
+  "normal_runs": [
+    {
+      "mode": "normal",
+      "limit": 512,
+      "seconds": 2.994942237999794,
+      "result": 1465048495,
+      "report": [
+        826425687,
+        24,
+        24,
+        0,
+        0,
+        0,
+        0,
+        28795076
+      ]
+    },
+    {
+      "mode": "normal",
+      "limit": 4096,
+      "seconds": 2.051056421000112,
+      "result": 1465048495,
+      "report": [
+        826425687,
+        31,
+        31,
+        0,
+        0,
+        0,
+        0,
+        28795076
+      ]
+    },
+    {
+      "mode": "normal",
+      "limit": 4096,
+      "seconds": 1.2587073400000008,
+      "result": 1465048495,
+      "report": [
+        826425687,
+        58,
+        53,
+        2,
+        2,
+        0,
+        0,
+        28795076
+      ]
+    },
+    {
+      "mode": "normal",
+      "limit": 512,
+      "seconds": 4.181854521999867,
+      "result": 1465048495,
+      "report": [
+        826425687,
+        82,
+        77,
+        2,
+        2,
+        0,
+        0,
+        28795076
+      ]
+    }
+  ],
+  "mean_seconds": {
+    "512": 3.5883983799998305,
+    "4096": 1.6548818805000565
+  },
+  "ratio": 2.168371303283303,
+  "reduction_percent": 53.88243708603684,
+  "logical_requests_per_normal_run": {
+    "512": 24,
+    "4096": 7
+  },
+  "normal_fragments_per_run": 24,
+  "batch_wad_ioctls": {
+    "3": {
+      "count": 212,
+      "total_ms": 1694.232109,
+      "mean_ms": 7.991660891509434
+    },
+    "4": {
+      "count": 156,
+      "total_ms": 6199.148684,
+      "mean_ms": 39.73813258974359
+    }
+  },
+  "commands": [
+    {
+      "command": 20,
+      "sequence": 7853,
+      "ioctl_ms": 9.837916,
+      "result": 0,
+      "status": 1
+    },
+    {
+      "command": 22,
+      "sequence": 7863,
+      "ioctl_ms": 16.965004,
+      "result": 1465048495,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7864,
+      "ioctl_ms": 59.426713,
+      "result": 826425687,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7865,
+      "ioctl_ms": 47.838682,
+      "result": 24,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7866,
+      "ioctl_ms": 93.095363,
+      "result": 24,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7867,
+      "ioctl_ms": 48.293244,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7868,
+      "ioctl_ms": 119.927836,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7869,
+      "ioctl_ms": 49.448334,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7870,
+      "ioctl_ms": 157.249748,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7871,
+      "ioctl_ms": 19.343993,
+      "result": 28795076,
+      "status": 0
+    },
+    {
+      "command": 20,
+      "sequence": 7872,
+      "ioctl_ms": 30.666789,
+      "result": 1465048495,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7873,
+      "ioctl_ms": 4.917509,
+      "result": 826425687,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7874,
+      "ioctl_ms": 16.522079,
+      "result": 31,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7875,
+      "ioctl_ms": 16.957465,
+      "result": 31,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7876,
+      "ioctl_ms": 15.699376,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7877,
+      "ioctl_ms": 8.342928,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7878,
+      "ioctl_ms": 18.403084,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7879,
+      "ioctl_ms": 20.123985,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7880,
+      "ioctl_ms": 17.976435,
+      "result": 28795076,
+      "status": 0
+    },
+    {
+      "command": 20,
+      "sequence": 7881,
+      "ioctl_ms": 67.737894,
+      "result": 3,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7882,
+      "ioctl_ms": 18.185157,
+      "result": 826425687,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7883,
+      "ioctl_ms": 15.531787,
+      "result": 35,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7884,
+      "ioctl_ms": 23.737489,
+      "result": 34,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7885,
+      "ioctl_ms": 17.790149,
+      "result": 1,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7886,
+      "ioctl_ms": 5.165833,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7887,
+      "ioctl_ms": 18.708252,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7888,
+      "ioctl_ms": 20.483991,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7889,
+      "ioctl_ms": 220.169858,
+      "result": 28795076,
+      "status": 0
+    },
+    {
+      "command": 20,
+      "sequence": 7890,
+      "ioctl_ms": 153.693051,
+      "result": 3,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7891,
+      "ioctl_ms": 67.853077,
+      "result": 826425687,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7892,
+      "ioctl_ms": 3.698438,
+      "result": 39,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7893,
+      "ioctl_ms": 28.4196,
+      "result": 37,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7894,
+      "ioctl_ms": 9.585977,
+      "result": 2,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7895,
+      "ioctl_ms": 99.82153,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7896,
+      "ioctl_ms": 80.203193,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7897,
+      "ioctl_ms": 29.225423,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7898,
+      "ioctl_ms": 6.935511,
+      "result": 28795076,
+      "status": 0
+    },
+    {
+      "command": 20,
+      "sequence": 7899,
+      "ioctl_ms": 47.905063,
+      "result": 3,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7900,
+      "ioctl_ms": 17.971524,
+      "result": 826425687,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7901,
+      "ioctl_ms": 5.564012,
+      "result": 43,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7902,
+      "ioctl_ms": 18.410309,
+      "result": 40,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7903,
+      "ioctl_ms": 19.391051,
+      "result": 2,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7904,
+      "ioctl_ms": 34.435745,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7905,
+      "ioctl_ms": 17.588394,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7906,
+      "ioctl_ms": 16.542302,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7907,
+      "ioctl_ms": 17.81141,
+      "result": 28795076,
+      "status": 0
+    },
+    {
+      "command": 20,
+      "sequence": 7908,
+      "ioctl_ms": 53.543997,
+      "result": 3,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7909,
+      "ioctl_ms": 136.590753,
+      "result": 826425687,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7910,
+      "ioctl_ms": 109.999746,
+      "result": 47,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7911,
+      "ioctl_ms": 9.32644,
+      "result": 43,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7912,
+      "ioctl_ms": 3.636553,
+      "result": 2,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7913,
+      "ioctl_ms": 45.463493,
+      "result": 1,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7914,
+      "ioctl_ms": 98.577828,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7915,
+      "ioctl_ms": 9.27712,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7916,
+      "ioctl_ms": 88.366224,
+      "result": 28795076,
+      "status": 0
+    },
+    {
+      "command": 20,
+      "sequence": 7917,
+      "ioctl_ms": 28.068318,
+      "result": 3,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7918,
+      "ioctl_ms": 5.057474,
+      "result": 826425687,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7919,
+      "ioctl_ms": 19.34743,
+      "result": 51,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7920,
+      "ioctl_ms": 38.300829,
+      "result": 46,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7921,
+      "ioctl_ms": 16.086818,
+      "result": 2,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7922,
+      "ioctl_ms": 5.147785,
+      "result": 2,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7923,
+      "ioctl_ms": 18.894887,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7924,
+      "ioctl_ms": 16.060211,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7925,
+      "ioctl_ms": 10.35794,
+      "result": 28795076,
+      "status": 0
+    },
+    {
+      "command": 20,
+      "sequence": 7926,
+      "ioctl_ms": 77.000694,
+      "result": 1465048495,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7927,
+      "ioctl_ms": 5.199866,
+      "result": 826425687,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7928,
+      "ioctl_ms": 16.800767,
+      "result": 58,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7929,
+      "ioctl_ms": 16.113708,
+      "result": 53,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7930,
+      "ioctl_ms": 4.800176,
+      "result": 2,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7931,
+      "ioctl_ms": 16.615313,
+      "result": 2,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7932,
+      "ioctl_ms": 9.780488,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7933,
+      "ioctl_ms": 12.407519,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7934,
+      "ioctl_ms": 15.873795,
+      "result": 28795076,
+      "status": 0
+    },
+    {
+      "command": 22,
+      "sequence": 7935,
+      "ioctl_ms": 44.417251,
+      "result": 1465048495,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7936,
+      "ioctl_ms": 17.649767,
+      "result": 826425687,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7937,
+      "ioctl_ms": 14.895668,
+      "result": 82,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7938,
+      "ioctl_ms": 21.085056,
+      "result": 77,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7939,
+      "ioctl_ms": 7.214421,
+      "result": 2,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7940,
+      "ioctl_ms": 17.169564,
+      "result": 2,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7941,
+      "ioctl_ms": 16.443352,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7942,
+      "ioctl_ms": 4.964555,
+      "result": 0,
+      "status": 0
+    },
+    {
+      "command": 21,
+      "sequence": 7943,
+      "ioctl_ms": 17.928654,
+      "result": 28795076,
+      "status": 0
+    }
+  ],
+  "notes": [
+    "Timings include eight report queries per run; two observations per limit, not a statistical benchmark.",
+    "Both limits use WAB1; this is not a direct legacy WAD1 comparison.",
+    "Protocol bytes/fragments are not reduced; metadata request/poll handshakes are amortized.",
+    "No on-card Doom initialization, first frame or FPS measurement."
+  ]
+}

@@ -84,6 +84,11 @@ if a.partial_engine or (a.capture/'engine-results.json').exists():
  from engine_replay import prepare as engine_prepare,native as engine_native
  engine_info,engine_replies=engine_prepare(a.capture,entry.parent/'engine',a.wad,requests,responses,partial=a.partial_engine)
  wad_replies+=engine_replies
+batch_info=None
+if (a.capture/'batch-results.json').exists():
+ assert a.wad_poll
+ from batch_replay import prepare as batch_prepare,native as batch_native
+ batch_info,batch_replies=batch_prepare(a.capture,a.wad,entry.parent/'cache',requests,responses)
 owned_info=None
 if (a.capture/'owned-results.json').exists():
  assert a.doom_runtime
@@ -95,6 +100,7 @@ with tempfile.TemporaryDirectory() as tmp:
  if cache_info:prefix=cache_native(prefix,t,entry.parent/'cache')
  if owned_info:prefix=owned_native(prefix,t,entry.parent/'owned',owned_info)
  if engine_info:prefix=engine_native(prefix,t,entry.parent/'engine',engine_info)
+ if batch_info:prefix=batch_native(prefix,batch_info,batch_replies)
  if (a.capture/'relocate-results.json').exists():
   from relocate_replay import prepare_relocated
   relocation_info=prepare_relocated(a.capture,entry.parent/'relocate',requests,responses)
@@ -112,7 +118,8 @@ static unsigned int upload_stopping(void){return 0;}
 static unsigned int upload_time(void){return 1;}
 static void barrier(void){}
 static int sync_code(void*p,unsigned int n){return 1;}
-static void exclusive_abort(void){assert(0);}
+#include <execinfo.h>
+static void exclusive_abort(void){void *p[32];int n=backtrace(p,32);backtrace_symbols_fd(p,n,2);assert(0);}
 unsigned int upload_protect_step(void){return 1;}
 unsigned int upload_protect_finish(void){return 1;}
 ''')
@@ -145,11 +152,12 @@ if a.doom_shared:
  assert observed['magic']=='0x53484152' and observed['peer_retained_bytes']==98304
  assert [observed[k] for k in ('phase','peer_checks','wrong_task_rejections','peer_enters','owner_enters','max_wait_ticks','max_hold_ticks','timeout_rejections','recursive_rejections')]==stats[1:]
 if not a.partial_engine:
- parked=json.loads((a.capture/'upload-parked.json').read_text());assert parked[3]==parked[4]==parked[15]==0 and parked[9]==(14 if (a.capture/"engine-results.json").exists() else 12 if (a.capture/"owned-results.json").exists() else 10 if (a.capture/"cache-results.json").exists() else 8 if (a.capture/"relocate-results.json").exists() else 4 if a.doom_runtime else 3)
+ parked=json.loads((a.capture/'upload-parked.json').read_text());assert parked[3]==parked[4]==parked[15]==0 and parked[9]==(15 if batch_info else 14 if (a.capture/"engine-results.json").exists() else 12 if (a.capture/"owned-results.json").exists() else 10 if (a.capture/"cache-results.json").exists() else 8 if (a.capture/"relocate-results.json").exists() else 4 if a.doom_runtime else 3)
 proof=[w for w in responses if w[10]==6291456];assert proof
 result=dict(commands=len(requests),pio_ioctls=len(latencies),stale_epochs_rejected=stale,code_bytes=len(files[0]),data_bytes=len(files[1]),zero_fill_bytes=manifest[10]-len(files[1]),result=hex(expected),simultaneous_allocation_bytes=6291456+327680,stop_cancelled_partial_image=not a.partial_engine,native_cleanup_modeled=a.partial_engine,latency_ms=dict(max=max(latencies),mean=sum(latencies)/len(latencies)),files_sha256=[hashlib.sha256(b).hexdigest() for b in files])
 if runtime_info:result['runtime']=runtime_info
 if cache_info:result['cache']=cache_info
+if batch_info:result['batch']=batch_info
 if owned_info:result['owned']=owned_info
 if engine_info:result['engine']=engine_info
 if (a.capture/'relocate-results.json').exists():result['relocation']=relocation_info

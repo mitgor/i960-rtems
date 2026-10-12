@@ -20,6 +20,7 @@ for case in ('template','identity','oracle','report','request_offset','payload',
   t=Path(tmp)
   for name in ('cache-results.json','cache-template.bin','wad-journal.jsonl'):(t/name).write_bytes((a.capture/name).read_bytes())
   if (a.capture/'owned-results.json').exists():(t/'owned-results.json').write_bytes((a.capture/'owned-results.json').read_bytes())
+  if (a.capture/'batch-results.json').exists():(t/'batch-results.json').write_bytes((a.capture/'batch-results.json').read_bytes())
   if (a.capture/'engine-results.json').exists():(t/'engine-results.json').write_bytes((a.capture/'engine-results.json').read_bytes())
   prepare(t,a.wad,a.build,requests,responses) # copied baseline must pass
   r=json.loads((t/'cache-results.json').read_text())

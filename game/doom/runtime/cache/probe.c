@@ -5,7 +5,7 @@
 unsigned cache_entry(const struct doom_runtime_v1*a){
  struct doom_cache c;unsigned char*p;unsigned i,j,dir,n,h=2166136261u,before;int open=0;
  c.api=0;c.active=0;
- if(!a||a->file_bytes<2048)return 1;p=a->allocate(2048);if(!p)return 2;
+ if(!a||a->file_bytes<2048)return 1;p=a->allocate(a->version==DOOM_API_BATCH_VERSION?8208:2048);if(!p)return 2;
  for(i=0;i<7;i++)p[i]=(unsigned char)(0xa0+i);
  if(!doom_cache_open(&c,a))goto bad;open=1;
  if(doom_cache_read(&c,0,p+7,12)!=12)goto bad;
@@ -22,6 +22,10 @@ unsigned cache_entry(const struct doom_runtime_v1*a){
  before=c.misses;if(doom_cache_read(&c,499,p+7,1111)!=1111||c.misses!=before)goto bad;
  if(doom_cache_read(&c,dir,p+7,512)!=512)goto bad;
  for(i=0;i<512;i++)h=(h^p[7+i])*16777619u;
+ if(a->version==DOOM_API_BATCH_VERSION){
+  if(a->file_bytes<16384||doom_cache_read(&c,4099,p+7,8192)!=8192)goto bad;
+  for(i=0;i<8192;i++)h=(h^p[7+i])*16777619u;
+ }
  if(doom_cache_read(&c,a->file_bytes-37,p+7,128)!=37)goto bad;
  for(i=0;i<37;i++)h=(h^p[7+i])*16777619u;
  if(doom_cache_read(&c,a->file_bytes,p+7,1)!=0||doom_cache_read(&c,a->file_bytes+1,p+7,1)>=0)goto bad;

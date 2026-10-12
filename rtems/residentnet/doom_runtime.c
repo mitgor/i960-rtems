@@ -13,6 +13,11 @@ static void runtime_unlock(unsigned int v){__asm__ volatile("lda 0x1f0000,g0;mod
 extern struct doom_heap *doom_arena_context(void);
 static struct doom_wad wad;
 static unsigned int bound,leases;
+#ifdef I960_WAD_BATCH
+static unsigned batch_selected;
+static unsigned batch_idle(void),batch_route(unsigned,unsigned,unsigned,unsigned);
+static void batch_legacy(void);
+#endif
 static struct doom_runtime_v1 api;
 #ifdef I960_DOOM_OWNED
 static void owned_bind(void);
@@ -34,6 +39,9 @@ static int read_wad(unsigned int file,unsigned int offset,void*dst,unsigned int 
  ;int result=-1,claimed=0;
  if(!bound||!h||runtime_stopping()||file!=1||offset>api.file_bytes||n>512)return -1;
  if(!n||offset==api.file_bytes)return 0;
+#ifdef I960_WAD_BATCH
+ batch_legacy();
+#endif
  token=doom_heap_borrow(h,dst,n);if(!token)return -1;leases++;
  saved=runtime_lock();claimed=doom_wad_begin(&wad,file,offset,n,api.file_bytes);runtime_unlock(saved);
  if(!claimed)goto done;claimed=0;start=upload_time();
@@ -66,12 +74,20 @@ unsigned int doom_runtime_bind(const unsigned int*w,unsigned int n){unsigned int
  return 0;
 }
 const struct doom_runtime_v1*doom_runtime_api(void){return bound?&api:0;}
-unsigned int doom_runtime_control(unsigned int op,unsigned int index,unsigned int value,unsigned int running){return doom_wad_control(&wad,op,index,value,running&&!upload_stopping());}
+unsigned int doom_runtime_control(unsigned int op,unsigned int index,unsigned int value,unsigned int running){
+#ifdef I960_WAD_BATCH
+if(batch_selected)return batch_route(op,index,value,running);
+#endif
+return doom_wad_control(&wad,op,index,value,running&&!upload_stopping());}
 unsigned int doom_runtime_report(unsigned int i){unsigned int w[8];w[0]=WAD_MAGIC;w[1]=wad.sequence;w[2]=wad.accepted;w[3]=wad.rejected;w[4]=wad.cancelled;w[5]=leases;w[6]=wad.state;w[7]=api.file_bytes;return i<8?w[i]:~0u;}
 unsigned int doom_runtime_finish(void){return !leases&&wad.state==WAD_IDLE
+#ifdef I960_WAD_BATCH
+ &&batch_idle()
+#endif
 #ifdef I960_DOOM_OWNED
  &&!owned_running
 #endif
  ;}
 #include "doom_owned_runtime.h"
+#include "doom_batch_runtime.h"
 #endif

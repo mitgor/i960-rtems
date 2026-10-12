@@ -1,0 +1,10 @@
+{
+  "boot_id": "900d54e8-90bb-456d-97aa-e98e044e66b2",
+  "relay_pid": 3361,
+  "driver": "dac960auto",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "external_http_status": 200,
+  "body_bytes": 2891,
+  "body_sha256": "e927c1f88bcc1e60103d8445dacfb9737e87de74090f886bd308c772b17aa9f0",
+  "output": "/home/mit/i960-rtems-web-20261011/http-after-doom-batch-20261012"
+}

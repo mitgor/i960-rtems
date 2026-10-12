@@ -1,5 +1,28 @@
 # Doom milestone guidance
 
+**N2 WAD batching checkpoint (2026-10-12):** opt-in `--wad-batch`
+uses owned, pinned 4 KiB requests assembled from ordered 512-byte fragments.
+CRC, exact lengths, sequence/offset binding, STOP, timeout, full image/RAM audits
+and final drain remain enforced. First-frame host trace: 27,648 → 4,747 logical
+requests (82.83% fewer), identical delivered bytes. Small on-card cache probe:
+24 → 7 requests, mean 3.588 → 1.655 s (2.17×; two runs per size, including report
+queries, both using WAB1). No on-card Doom startup or FPS claim. Six host demos
+retain all 12,600 frame hashes. Extra peak payload memory is 7,936 bytes plus
+allocator overhead, within the unchanged 8 MiB arena.
+
+Physical STOP/drain completed at tick 101,897. The live harness then failed an
+obsolete expected-cancellation count (14 rather than 15); the raw failure is
+preserved. A labelled derived view recovers the final raw reply and kernel
+monitor log, separates and validates exception diagnostics, and passes unchanged
+network audits plus full upload/native replay (7,949 commands). Keep this
+qualification when citing acceptance; do not call the original live harness a
+clean pass. The harness is corrected for future runs. Keep the feature opt-in.
+[Evidence, reproduction and limits](../../artifacts/doom-batch-20261012/README.md). Next is N3: bind batching
+into a newly authenticated engine image, perform bounded actual Doom
+initialization, then verify the first frame. The accepted old diagnostic engine
+still uses the 512-byte ABI; do not silently reuse its admission hashes for a
+changed engine. Coordinate hardware ownership before testing.
+
 **Accepted engine-preflight baseline (2026-10-12):** the engine-linked diagnostic
 passed on-card normal / STOP / normal, changed-code/metadata refusal, executable
 revalidation and full drain at tick 100,085. The bit-64 failure was a dispatcher
@@ -13,8 +36,8 @@ protected. Keep `--doom-engine`, `--dispatch-atomic` and `--wad-poll` opt-in.
 Full native capture replay passes 7,853 commands; instant host replies had failed
 the probe's clock-liveness check, fixed only in the replay transport model.
 44 runtime/cache/relocation/owned/engine mutations and seven IRQ mutations reject.
-Actual Doom initialization/rendering remains pending. Next: bounded WAD batching,
-then engine initialization and first-frame verification. Preserve all full audits.
+Actual Doom initialization/rendering remains pending. The original next step was WAD batching; see the N2 checkpoint above.
+Engine initialization and first-frame verification remain pending. Preserve all full audits.
 The historical global ISR-level getter remains unfixed; this owner predicate uses
 a read-only PC query. Coordinate card ownership before further hardware tests.
 [Accepted evidence and replay instructions](../../artifacts/doom-progress-20261012/README.md).

@@ -85,3 +85,14 @@ and trusted relocation sites. Post-entry code bytes must still match, the
 original template is restored, and cache synchronization precedes completion.
 The new private Newlib engine candidate is link-complete but remains outside
 this whitelist. Do not use a successful cache probe as engine admission.
+
+## N2 batching
+
+The cache also accepts the explicitly negotiated batch API (version 0x10001,
+features 15, max_read 512 or 4096). Adjacent misses within a logical read are
+coalesced, stopping at hits or eight lines; there is no speculative read-ahead.
+The legacy v1/512 adapter remains supported. Host testing opts in with
+`DOOM_WAD_BATCH_BYTES=4096`; card builds use `--wad-batch` and the separately
+admitted cache probe. See [protocol](../batch/README.md) and
+[evidence](../../../../artifacts/doom-batch-20261012/README.md). A new authenticated
+engine image must explicitly bind this API before actual Doom benefits on-card.

@@ -1,0 +1,36 @@
+{
+  "original_harness_passed": false,
+  "reason": "obsolete 14 vs 15 cancellation assertion after successful physical STOP; missing convenience files derived from raw records",
+  "last_control_source": "dmesg-after-live.txt (ring-buffer tail, not original debugfs result; same no-submit-since-monitor check)",
+  "source_sha256": {
+    "live/upload-journal.jsonl": "8559d5f8e351fe5f8c47a3696c9f4bf09ab93d384062d29406f67a22a784c718",
+    "live/error.txt": "39b2df9074b61a20ac7d985b96fdf98fd923da85b8b703bb42c056cd1ac072ce",
+    "live/controls.json": "b3537692710fdfaaa2587d17fbea35127a3d524802fd2b596c318cec0201c9c2",
+    "live/control-journal.jsonl": "32876d4d8e0cb0050af98f456d79ad673b357845175c9feabeb4cfa2b6bf317d",
+    "live/failure-snapshot.json": "c898e0d5934c58aa3696679174645ec144b6bac3dca0be33e78705f1575f6bf6",
+    "live/snapshots.json": "533a18f2cea9b30936edf8dcc36f13181f8d1c8e908e1dd22dc3a28b8c668892",
+    "live/ram-diagnostics.jsonl": "7d6241c4eb4a0f469beee51e92df26d6cb3e316deab4204d4e865ea5b58b25a8",
+    "dmesg-after-live.txt": "83fbdbf98978ea1666721b708805854714f023dc10c7527e939986cefb0fd8ff"
+  },
+  "parked_reply": [
+    827478101,
+    7948,
+    0,
+    0,
+    0,
+    0,
+    7948,
+    25,
+    7924,
+    15,
+    6291456,
+    1,
+    3224174656,
+    8388608,
+    7948,
+    0
+  ],
+  "exception_diagnostics": "Last 65 raw control records separated after validating all tags and exact parked state against final regular snapshot; retained in exception-controls.json",
+  "irq_rejection_records_checked": 220,
+  "irq_rejection_records_all_zero": true
+}

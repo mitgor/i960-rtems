@@ -1,0 +1,10 @@
+{
+  "frames": 12600,
+  "matches_reference": true,
+  "host_binary_sha256": "30e35bb1fff186f93c0df9882dfd844606baef843104ce820e138fbc279815e7",
+  "max_host_arena_peak": 6477129,
+  "reserved_image": 1048576,
+  "additional_card_staging": 4352,
+  "card_execution": false,
+  "private_newlib": false
+}

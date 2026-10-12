@@ -1,5 +1,17 @@
 # DoomGeneric RAM request for RTEMS
 
+**N2 measured addition (2026-10-12):** 4 KiB batching uses a 4,096-byte cache
+bounce (3,584 bytes above the 512-byte baseline), plus a separately allocated and
+borrowed 4,352-byte assembly buffer (eight 136-word fragments). Additional peak
+payload is 7,936 bytes plus allocator metadata/alignment. Both allocations remain
+inside the owned 8 MiB arena; staging is returned/freed before the read returns,
+including timeout, STOP and validation failure. No kernel BSS/guard boundary
+expansion. The six batched host demos peak at 6,477,129 arena bytes plus the
+1,048,576-byte image reservation; allow a further 4,352 staging bytes on-card.
+That host profile is not a measured private-Newlib Doom startup peak. The small
+cache probe has on-card evidence and final drain; actual engine initialization
+is N3. See [N2 evidence](../../artifacts/doom-batch-20261012/README.md).
+
 **Accepted later baseline (2026-10-12):** 754,448-byte engine span with 13,175
 relocations; 807,148-byte admission storage within a conservative 1 MiB initial
 reservation. Physical preflight allocated a contiguous 6 MiB zone and measured

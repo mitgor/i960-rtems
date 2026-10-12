@@ -139,7 +139,7 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
  }else if(command==2){if(!inbox[5]||inbox[5]>SEG_CHUNK||n!=32+((inbox[5]+3)&~3u)){rc=3;goto done;}
   LOCK();rc=seg_write(&image,inbox[3],inbox[4],inbox+8,inbox[5])?0:4;UNLOCK();
  }else{
-  if(n!=32||((command!=9&&command!=12&&command!=17&&command!=19)&&inbox[3])||inbox[4]||inbox[5]){rc=3;goto done;}
+  if(n!=32||((command!=9&&command!=12&&command!=17&&command!=19&&command!=21)&&inbox[3])||inbox[4]||inbox[5]){rc=3;goto done;}
   if(command==3){LOCK();value=seg_prepare(&image,sync_code);if(!value)rc=4;UNLOCK();}
   else if(command==4)rc=run_probe(&value);
   else if(command==5){LOCK();if(!seg_cancel(&image))rc=4;else cancelled++;UNLOCK();}
@@ -157,7 +157,12 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
   else if(command==13)rc=run_relocated(&value);
   else if(command==14){if(image.state!=SEG_READY)rc=1;else value=(unsigned int)((unsigned long)image.base-(unsigned long)UPLOAD_BASE);}
 #ifdef I960_DOOM_CACHE
-  else if(command==15)rc=run_cache_entry(&value);
+  else if(command==15)rc=run_cache_entry(&value,0);
+#ifdef I960_WAD_BATCH
+  else if(command==20)rc=run_cache_entry(&value,1);
+  else if(command==22)rc=run_cache_entry(&value,2);
+  else if(command==21)value=doom_runtime_batch_report(inbox[3]);
+#endif
 #ifdef I960_DOOM_OWNED
   else if(command==16)rc=run_owned(&value);
   else if(command==17)value=inbox[3]<8?owned_last[inbox[3]]:~0u;

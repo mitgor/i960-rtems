@@ -18,10 +18,18 @@ static void owned_bind(void){unsigned i;for(i=0;i<sizeof(api);i++)((unsigned cha
  owned_api.magic=DOOM_OWNED_MAGIC;owned_api.version=DOOM_OWNED_VERSION;owned_api.bytes=sizeof(owned_api);owned_api.features=DOOM_OWNED_FEATURES;owned_api.owner=owned_owner;owned_api.wait_ms=owned_wait;owned_api.stopping=owned_stopping;owned_api.reserved=0;
 }
 const struct doom_runtime_owned *doom_runtime_owned_api(void){return bound?&owned_api:0;}
-unsigned doom_runtime_owned_begin(void){unsigned saved;if(!bound||!doom_shared_application_owner()||owned_running||leases||wad.state!=WAD_IDLE)return 0;
+unsigned doom_runtime_owned_begin(void){unsigned saved;if(!bound||!doom_shared_application_owner()||owned_running||leases||wad.state!=WAD_IDLE
+#ifdef I960_WAD_BATCH
+ ||!batch_idle()
+#endif
+ )return 0;
  saved=runtime_lock();if(owned_generation==~0u){runtime_unlock(saved);return 0;}owned_generation++;owned_stop_requested=0;owned_running=1;runtime_unlock(saved);return 1;
 }
-unsigned doom_runtime_owned_end(void){unsigned saved;if(!owned_owner()||leases||wad.state!=WAD_IDLE)return 0;
+unsigned doom_runtime_owned_end(void){unsigned saved;if(!owned_owner()||leases||wad.state!=WAD_IDLE
+#ifdef I960_WAD_BATCH
+ ||!batch_idle()
+#endif
+ )return 0;
  saved=runtime_lock();if(owned_stop_requested||upload_stopping())owned_observed++;owned_running=0;owned_completed++;runtime_unlock(saved);return 1;
 }
 unsigned doom_runtime_owned_control(unsigned op,unsigned index,unsigned value,unsigned running){static unsigned frozen[8];

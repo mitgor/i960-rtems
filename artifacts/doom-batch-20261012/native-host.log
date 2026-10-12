@@ -1,0 +1,1 @@
+PASS batch host: immutable bytes, eight ordered fragments, late CRC/short/error, partial timeout/STOP, stale generation, EOF and no duplicate reply

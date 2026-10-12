@@ -3,8 +3,9 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--doom-engine',type=Path);p.add_argument('--wad-poll',action='store_true');p.add_argument('--dispatch-atomic',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--doom-engine',type=Path);p.add_argument('--wad-batch',action='store_true');p.add_argument('--wad-poll',action='store_true');p.add_argument('--dispatch-atomic',action='store_true');a=p.parse_args()
 if a.dispatch_atomic and a.profile!='residentnet':p.error('atomic dispatch requires residentnet proof profile')
+if a.wad_batch and not (a.wad_poll and a.doom_runtime and a.doom_engine):p.error('WAD batches require polling, owned runtime and the protected engine profile')
 if a.wad_poll and not a.doom_runtime:p.error('WAD polling requires the owned runtime profile')
 if a.doom_engine and not a.doom_runtime:p.error('engine admission requires owned runtime')
 if a.doom_runtime and not a.doom_shared:p.error('runtime entry requires shared Doom arena')
@@ -83,6 +84,9 @@ if a.doom_runtime:
  shutil.copyfile(out/'entry/cache/cache_probe_bytes.h',inc/'cache_probe_bytes.h')
  subprocess.run(['python3',str(here.parent/'game/doom/runtime/owned/build.py'),'--out',str(out/'entry/owned'),'--cross',a.cross,'--newlib',str(newlib)],check=True)
  shutil.copyfile(out/'entry/owned/owned_probe_bytes.h',inc/'owned_probe_bytes.h')
+if a.wad_batch:
+ flags+=['-DI960_WAD_BATCH']
+ (out/'entry/cache/batch-enabled').write_text('WAB1 4096\n')
 if a.wad_poll:flags+=['-DI960_WAD_POLL']
 if a.doom_engine:
  flags+=['-DI960_DOOM_ENGINE']

@@ -1,0 +1,34 @@
+[
+  {
+    "case": "payload",
+    "rejected": true
+  },
+  {
+    "case": "sequence",
+    "rejected": true
+  },
+  {
+    "case": "crc",
+    "rejected": true
+  },
+  {
+    "case": "missing_reply",
+    "rejected": true
+  },
+  {
+    "case": "identity",
+    "rejected": true
+  },
+  {
+    "case": "oracle",
+    "rejected": true
+  },
+  {
+    "case": "probe",
+    "rejected": true
+  },
+  {
+    "case": "report",
+    "rejected": true
+  }
+]

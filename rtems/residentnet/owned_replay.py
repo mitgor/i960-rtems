@@ -16,6 +16,7 @@ def prepare(capture,build,requests,responses):
   assert run['seconds']>=0 and (i==1 or run['seconds']>=10)
   assert len(run['requests'])==int(i==1)
  bases=[w[5] for p,w in zip(requests,responses) if struct.unpack_from('<I',p,8)[0]==14]
+ if (capture/'batch-results.json').exists():bases=bases[:-1]
  if (capture/'engine-results.json').exists():bases=bases[:-3]
  base=bases[-1];assert r['base']==0xc02d0040+base and base%16==0
  epochs={struct.unpack_from('<I',bytes.fromhex(row['request']),4)[0] for row in map(json.loads,(capture/'upload-journal.jsonl').read_text().splitlines()) if 'errno' not in row}

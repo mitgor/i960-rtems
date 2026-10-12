@@ -1,5 +1,28 @@
 # RTEMS-to-Doom implementation plan — 2026-10-12
 
+**N2 WAD batching checkpoint (2026-10-12):** opt-in `--wad-batch`
+uses owned, pinned 4 KiB requests assembled from ordered 512-byte fragments.
+CRC, exact lengths, sequence/offset binding, STOP, timeout, full image/RAM audits
+and final drain remain enforced. First-frame host trace: 27,648 → 4,747 logical
+requests (82.83% fewer), identical delivered bytes. Small on-card cache probe:
+24 → 7 requests, mean 3.588 → 1.655 s (2.17×; two runs per size, including report
+queries, both using WAB1). No on-card Doom startup or FPS claim. Six host demos
+retain all 12,600 frame hashes. Extra peak payload memory is 7,936 bytes plus
+allocator overhead, within the unchanged 8 MiB arena.
+
+Physical STOP/drain completed at tick 101,897. The live harness then failed an
+obsolete expected-cancellation count (14 rather than 15); the raw failure is
+preserved. A labelled derived view recovers the final raw reply and kernel
+monitor log, separates and validates exception diagnostics, and passes unchanged
+network audits plus full upload/native replay (7,949 commands). Keep this
+qualification when citing acceptance; do not call the original live harness a
+clean pass. The harness is corrected for future runs. Keep the feature opt-in.
+[Evidence, reproduction and limits](../../artifacts/doom-batch-20261012/README.md). Next is N3: bind batching
+into a newly authenticated engine image, perform bounded actual Doom
+initialization, then verify the first frame. The accepted old diagnostic engine
+still uses the 512-byte ABI; do not silently reuse its admission hashes for a
+changed engine. Coordinate hardware ownership before testing.
+
 **Current checkpoint — 2026-10-12:** the full-engine-linked diagnostic preflight
 is physically accepted, including normal / STOP / normal, exact admission and
 post-return code checks, contiguous 6 MiB allocation and complete drain at tick

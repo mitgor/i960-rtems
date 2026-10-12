@@ -10,6 +10,7 @@ def prepare_relocated(capture,build,requests,responses):
  assert [w[2] for w in rows]==[1,1,1,1,2,1,2,1,0,0]
  assert [w[5] for w in rows]==[0]*8+[(5*33)^0x49393630]*2
  bases=[w[5] for p,w in zip(requests,responses) if struct.unpack_from('<I',p,8)[0]==14]
+ if (capture/'batch-results.json').exists():bases=bases[:-1]
  if (capture/'engine-results.json').exists():bases=bases[:-3]
  if (capture/'owned-results.json').exists():bases=bases[:-1]
  if (capture/'cache-results.json').exists():bases=bases[:-1]

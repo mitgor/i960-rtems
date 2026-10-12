@@ -42,6 +42,7 @@ def prepare(capture,wad,build,requests,responses):
  report=[w[5] for p,w in zip(requests,responses) if struct.unpack_from('<I',p,8)[0]==12][-8:]
  assert r['report']==report==[0x31444157,10+len(expected),6+2*len(normal),4,2,0,0,len(data)]
  bases=[w[5] for p,w in zip(requests,responses) if struct.unpack_from('<I',p,8)[0]==14]
+ if (capture/'batch-results.json').exists():bases=bases[:-1]
  if (capture/'engine-results.json').exists():bases=bases[:-3]
  if (capture/'owned-results.json').exists():bases=bases[:-1]
  base=bases[-1]

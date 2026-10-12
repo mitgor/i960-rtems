@@ -2461,6 +2461,39 @@ its first level. That distinction matters. We now had a tested way in and a
 tested way home. Moving the game data efficiently, and asking the engine to draw
 its first real frame, came next.
 
+## Eight envelopes, one question
+
+The first-frame trace had a peculiar number in it: 27,648. That was how many
+times the host cache had asked for another 512 bytes of the game. The card could
+read the bytes. It was spending too much effort asking for them.
+
+We kept the small envelopes and changed the question. One request could now
+cover four kilobytes, delivered in eight ordered fragments. Nothing reached the
+caller until the lengths, offsets and checksums all agreed. The temporary
+assembly buffer belonged to the application arena and stayed pinned while the
+host filled it. STOP and the five-second deadline still had the final word.
+
+The same first-frame read trace needed 4,747 questions. The bytes did not change.
+Six host demos kept every one of their 12,600 frame hashes. On the card, the
+smaller cache exercise went from twenty-four requests to seven; its two-run
+average fell from 3.59 seconds to 1.65. Those were transfer measurements, not a
+Doom frame rate. The game still had not opened its first level on the i960.
+
+We broke the last fragment's checksum, shortened it, returned an error, stopped
+mid-delivery, and withheld the rest until time ran out. Then we asked again.
+The good reads still matched, and the final STOP drained at tick 101,897.
+
+The host found one last mistake after that: it expected fourteen cancelled
+images, forgetting the fifteenth image we had just added. Its failed assertion
+stayed in the archive. The final reply was already in the raw journal, so the
+replay could check it without pretending the original harness had passed.
+The reconstructed view was labelled as such, and the full memory and packet
+checks stayed in place. All 7,949 upload commands matched the native replay;
+eighteen new deliberate corruptions of the batching evidence were rejected.
+
+The next visitor would have to do more than read a header. It would have to
+start the engine, stay within its memory grant, and bring back a real frame.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

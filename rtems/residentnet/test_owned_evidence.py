@@ -18,6 +18,7 @@ for case in ('template','magic','generation','missing_stop','refusal','running',
  with tempfile.TemporaryDirectory() as tmp:
   t=Path(tmp)
   for name in ('owned-results.json','owned-template.bin','owned-journal.jsonl','upload-journal.jsonl'):(t/name).write_bytes((a.capture/name).read_bytes())
+  if (a.capture/'batch-results.json').exists():(t/'batch-results.json').write_bytes((a.capture/'batch-results.json').read_bytes())
   if (a.capture/'engine-results.json').exists():(t/'engine-results.json').write_bytes((a.capture/'engine-results.json').read_bytes())
   prepare(t,a.build,requests,responses)
   summary=json.loads((t/'owned-results.json').read_text());rows=[json.loads(s) for s in (t/'owned-journal.jsonl').read_text().splitlines()]

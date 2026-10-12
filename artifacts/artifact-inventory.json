@@ -3078,6 +3078,186 @@
       "sha256": "5931b2ae2ce98a476c38ba3aa2065cd709b99177637bc3e60dc3771f84873959"
     },
     {
+      "path": "artifacts/doom-batch-20261012/README.md",
+      "size": 9953,
+      "sha256": "dab69297454a8fb06fd515e30a3b8cbef2c459a2e1a0ca1eaa7cddf032849f96"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/batch-mutations.json",
+      "size": 996,
+      "sha256": "bbb1bf9e6b321aec14c0d2616da58bb795b1c3df0a83694d716a0061d7cddc92"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/build-layout-rejected.log",
+      "size": 5986,
+      "sha256": "8a06c8d9506cf3c3138e92cf17a578d314c27daf6834f48bba199cfe4b6cba73"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/cache-mutations.json",
+      "size": 492,
+      "sha256": "eb2df41f2a315274707d88d83637061994c198ac78bee3c102632b127200bba6"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/cache-mutations.log",
+      "size": 45,
+      "sha256": "d6acc8939bfb7649a544cffb6243f9ce458808aae382ab6efee2d191a2d7bb86"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/card-evidence-initial.tar.gz",
+      "size": 7939690,
+      "sha256": "d6cdc47b8131a1a5dda2f820452e3892ba1445c7e97d59d455c33b71461e74ee"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/card-network-replay.json",
+      "size": 23885,
+      "sha256": "565159ee4679083f50f2c7da59a5bfdd313091bd4ae7929fe6af2b327834d8ec"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/card-performance.json",
+      "size": 12261,
+      "sha256": "7d50130a969d2ec55c395dc812093ac79f730e4535b7e916001f94e99b6075f0"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/card-upload-replay-repeat.json",
+      "size": 4992,
+      "sha256": "dfd7bcc2a5cc857d7887cd22a94ae677eafcf4be68441922b0df250cfe2e227f"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/card-upload-replay-repeat.log",
+      "size": 4992,
+      "sha256": "dfd7bcc2a5cc857d7887cd22a94ae677eafcf4be68441922b0df250cfe2e227f"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/card-upload-replay.json",
+      "size": 4992,
+      "sha256": "dfd7bcc2a5cc857d7887cd22a94ae677eafcf4be68441922b0df250cfe2e227f"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/card-upload-replay.log",
+      "size": 4992,
+      "sha256": "dfd7bcc2a5cc857d7887cd22a94ae677eafcf4be68441922b0df250cfe2e227f"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/engine-mutations.json",
+      "size": 606,
+      "sha256": "fcfc84e0c13e9553aa89537b1ee8323f0d2ad1fc7b9b5267784257cb077efdd9"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/engine-mutations.log",
+      "size": 70,
+      "sha256": "9b00b8a0247ec07dad88fe893560cb734b0e4669685f176c1ecbbd01356b8538"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/host-evidence.tar.gz",
+      "size": 6206171,
+      "sha256": "7a1faa6e7caa43ab9ea0f6339dfad5117bda00c5478e39a22f95439ac8fbff5e"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/host-replay.json",
+      "size": 295,
+      "sha256": "bfbd665724d1ccb6aaf78b306403d6bb015ad84fd5ae61b83229d13c30e9373a"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/host-results.json",
+      "size": 9481,
+      "sha256": "56444a2afc1df52dbb30f4d3322942c5d035b706b4298e0c71ea5132483a389e"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/measure_capture.py",
+      "size": 1929,
+      "sha256": "bbc43fe6c232a6fefe39b476914801a6e43e69572a4e9504fbddb8bf294091bf"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/native-host-final.log",
+      "size": 148,
+      "sha256": "d59c3a0fab2e80de74f83bcc2b7a7a2ff69439def1eccbcec04a51a0a651cc45"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/native-host.log",
+      "size": 148,
+      "sha256": "d59c3a0fab2e80de74f83bcc2b7a7a2ff69439def1eccbcec04a51a0a651cc45"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/native-runtime-final.log",
+      "size": 382,
+      "sha256": "22103309e8f2af0619c810cabaf9771298d79f8fa6906121bcd16cbd84a49b4e"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/native-runtime.log",
+      "size": 382,
+      "sha256": "22103309e8f2af0619c810cabaf9771298d79f8fa6906121bcd16cbd84a49b4e"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/offline-final.log",
+      "size": 15726,
+      "sha256": "793ccb82fb53cc8c284dafb0dda0775de64c222426ecc9b1bedc2ead3cdeac29"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/offline.log",
+      "size": 15537,
+      "sha256": "3bfd5b9147771f37f5f33153ce265a08fbc9a26b817f32608bb6b86d16e5ed2d"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/owned-mutations.json",
+      "size": 486,
+      "sha256": "5aca11c3b815cee55fb7f4a1cbba83c50879d9c62649962277739fff145259d6"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/owned-mutations.log",
+      "size": 58,
+      "sha256": "bd5b5339a7a7a129418b89e60bd78db328b6197567800bb4bf2423818aa53fe6"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/ram-audit.json",
+      "size": 1696,
+      "sha256": "bb19167131ed600c2314781ee7e6bbe9b5e6e88d429eddab4cb2565d8d46dda9"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/recover_view.py",
+      "size": 3603,
+      "sha256": "26eee0482dc9dc27fc3a56376af3b5ddfeee078b09af95cdaa3f514369db73c0"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/recovery-provenance.json",
+      "size": 1564,
+      "sha256": "ac1f499fce9b38686858e69936c1efa650861ef0b8489dc2dc83adf522049582"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/relocate-mutations.json",
+      "size": 396,
+      "sha256": "173c02ba0d21f5e6edfe6ae55b536c009963fd978d0dcca7cce03e2af6a820ab"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/relocate-mutations.log",
+      "size": 49,
+      "sha256": "745ec20314e84877d0e9f0987d8f5c855ec286dae0e0446caccc3f55d8d25885"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/runtime-mutations.json",
+      "size": 427,
+      "sha256": "155eca9e2e294463c86cf4b2686e2ec4571778259af6b4759193a61c262356bc"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/service-restored.json",
+      "size": 386,
+      "sha256": "a3f82fd84f63aa2abd3a3867011850f485a248a14a588622f9a45f1d5db5206f"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/trace-4096.json",
+      "size": 130,
+      "sha256": "0bb69009a38ccc53e2ad24aecde05ad712a060227c5e90073085974368634dab"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/trace-512.json",
+      "size": 131,
+      "sha256": "855c428841429c9909a23ab41ee888101c5f9be77a0193946c3d037eca005273"
+    },
+    {
+      "path": "artifacts/doom-batch-20261012/trace-comparison.json",
+      "size": 480,
+      "sha256": "98a6166d8e6f9d03a6c336d496564288b3dcd577ea48dc72f88f9f16194a4769"
+    },
+    {
       "path": "artifacts/doom-cache-20261012/README.md",
       "size": 4259,
       "sha256": "c670ec919788431e93a0d23e8e629e2dc51c651fbabcc607f2f613a354713b43"

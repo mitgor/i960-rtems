@@ -73,3 +73,9 @@ def exercise_runtime(u,wad_path,probe_path):
  if root.exists():
   from engine_client import exercise
   exercise(u,root,wad_path)
+
+ # Opt-in manifest marker; old binaries and their exact 512-byte proofs remain.
+ root=Path(probe_path).parent/"cache"
+ if (root/'batch-enabled').exists():
+  from batch_client import exercise as exercise_batch
+  exercise_batch(u,wad_path,root)
