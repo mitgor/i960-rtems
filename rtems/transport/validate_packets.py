@@ -12,7 +12,7 @@ def checksum(b):
 def validate(path):
  b=path.read_bytes();assert len(b)>=24 and struct.unpack_from('<I',b)[0]==0xa1b2c3d4
  assert struct.unpack_from('<I',b,20)[0]==101
- offset=24;counts=collections.Counter();streams=collections.defaultdict(list);dns=[];retransmissions=0;opened=set();resets=set()
+ offset=24;counts=collections.Counter();streams=collections.defaultdict(list);dns=[];retransmissions=0;opened=set();resets=set();connections={};fins=set()
  while offset<len(b):
   sec,usec,n,original=struct.unpack_from('<4I',b,offset);offset+=16;p=b[offset:offset+n];offset+=n
   assert len(p)==n==original and n>=20
@@ -44,11 +44,28 @@ def validate(path):
     if sport==53 or dport==53:dns.append(dict(src=src,dst=dst,source_port=sport,dest_port=dport,payload_hex=data[8:].hex()))
    else:
     hlen=(data[12]>>4)*4;assert 20<=hlen<=len(data)
-    key=(src,sport,dst,dport)
-    if data[13]&2 and not data[13]&16:opened.add(key)
-    if data[13]&4:resets.add(key)
-    seq=struct.unpack_from('!I',data,4)[0];body=data[hlen:]
-    if body:streams[(src,sport,dst,dport)].append((seq,body))
+    flow=(src,sport,dst,dport);reverse=(dst,dport,src,sport)
+    pair=tuple(sorted(((src,sport),(dst,dport))))
+    seq=struct.unpack_from('!I',data,4)[0];flags=data[13]
+    if flags&2 and not flags&16:
+     old=connections.get(pair)
+     if old is None:connections[pair]=(1,flow,seq)
+     elif old[1:]!=(flow,seq):
+      generation=old[0]
+      # A reused four-tuple is a new stream only with a new SYN and evidence
+      # that both previous directions closed (or a reset). Never ignore gaps.
+      assert ((flow+(generation,) in fins and reverse+(generation,) in fins) or
+              flow+(generation,) in resets or reverse+(generation,) in resets), 'TCP tuple reused before captured close'
+      connections[pair]=(generation+1,flow,seq)
+    generation=connections.get(pair,(0,None,None))[0];key=flow+(generation,)
+    if flags&2 and not flags&16:opened.add(key)
+    if flags&2 and flags&16 and generation:
+     old=connections[pair]
+     assert old[1]==reverse and struct.unpack_from('!I',data,8)[0]==(old[2]+1)&0xffffffff, 'SYN-ACK does not match captured SYN'
+    if flags&1:fins.add(key)
+    if flags&4:resets.add(key)
+    body=data[hlen:]
+    if body:streams[key].append((seq,body))
  result=[]
  for key,segments in streams.items():
   segments.sort(key=lambda x:x[0]);start=segments[0][0];payload=bytearray()
@@ -59,15 +76,15 @@ def validate(path):
    if overlap:
     assert payload[pos:pos+overlap]==data[:overlap],'conflicting retransmission';retransmissions+=1
    payload+=data[overlap:]
-  result.append(dict(src=key[0],sport=key[1],dst=key[2],dport=key[3],bytes=len(payload),sha256=hashlib.sha256(payload).hexdigest(),prefix=bytes(payload[:100]).decode('ascii',errors='replace')))
+  result.append(dict(src=key[0],sport=key[1],dst=key[2],dport=key[3],connection=key[4],bytes=len(payload),sha256=hashlib.sha256(payload).hexdigest(),prefix=bytes(payload[:100]).decode('ascii',errors='replace')))
  echoes=[r for r in result if r['sport']==9600 or r['dport']==9600]
  stale=[]
  for flow in echoes:
-  key=(flow['src'],flow['sport'],flow['dst'],flow['dport']);reverse_key=(flow['dst'],flow['dport'],flow['src'],flow['sport'])
+  key=(flow['src'],flow['sport'],flow['dst'],flow['dport'],flow['connection']);reverse_key=(flow['dst'],flow['dport'],flow['src'],flow['sport'],flow['connection'])
   if key not in opened and reverse_key not in opened:
    assert reverse_key in resets,'uncaptured echo connection without a reset response'
    stale.append(dict(src=flow['src'],sport=flow['sport'],dst=flow['dst'],dport=flow['dport'],bytes=flow['bytes'],reset=True));continue
-  reverse=[r for r in echoes if (r['src'],r['sport'],r['dst'],r['dport'])==(flow['dst'],flow['dport'],flow['src'],flow['sport'])]
+  reverse=[r for r in echoes if (r['src'],r['sport'],r['dst'],r['dport'],r['connection'])==reverse_key]
   assert len(reverse)==1,'missing reverse echo stream'
   assert flow['bytes']>0 and (flow['sha256'],flow['bytes'])==(reverse[0]['sha256'],reverse[0]['bytes']),'echo stream mismatch'
  return dict(valid=True,packets=sum(counts.values()),protocols=dict(counts),streams=result,dns=dns,retransmitted_segments=retransmissions,preexisting_echo_streams_reset=stale)

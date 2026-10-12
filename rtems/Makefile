@@ -50,6 +50,7 @@ test:
 	python3 control/test_mu.py
 	python3 control/test_control.py
 	python3 control/demo.py
+	python3 transport/test_validate_packets.py
 	python3 transport/test_wire.py
 	python3 transport/test_visitors.py
 	python3 transport/test_transport.py

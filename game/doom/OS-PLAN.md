@@ -156,3 +156,17 @@ payload changed at this checkpoint.
    The small cache alone is not a startup-throughput solution: observed wire
    bytes increase slightly despite modest request-count savings.
 4. Compare the first frame, then progress to ticks, input, STOP and endurance.
+
+
+## Relocated proof accepted (2026-10-12)
+
+The small three-segment proof above has passed physical execution twice,
+including data/BSS/pointer postconditions, full paired audits and STOP drain.
+[Acceptance record](../../artifacts/doom-relocate-20261012/README.md).
+The next work is the remaining 44 libc/platform imports and the target WAD
+cache/runtime integration, followed by a fresh RAM/stack budget and bounded
+engine initialization. Keep the existing closed admission gate until that
+engine-specific contract and teardown are reviewed. The proof restores its
+mutable data after each return; this is not yet the engine's persistent state
+lifetime model. Eight MiB still needs room for allocator overhead, runtime,
+image, zone, cache and any retained buffers.

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/mit/Documents/!Projects/i960/rtems/residentnet/verify.py", line 191, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--root',type=Path,required=True);p.add_argument('run',type=Path);a=p.parse_args();print(json.dumps(verify(a.root,a.run),indent=2))
+                                                                                                                                                   ~~~~~~^^^^^^^^^^^^^^
+  File "/Users/mit/Documents/!Projects/i960/rtems/residentnet/verify.py", line 126, in verify
+    path=Path(d)/'packets.pcap';path.write_bytes(pcap);packets=validate(path)
+                                                               ~~~~~~~~^^^^^^
+  File "/Users/mit/Documents/!Projects/i960/rtems/transport/validate_packets.py", line 57, in validate
+    assert pos<=len(payload),'gap in TCP stream'
+           ^^^^^^^^^^^^^^^^^
+AssertionError: gap in TCP stream

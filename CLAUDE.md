@@ -1,5 +1,22 @@
 # Repository guidance for Claude Code
 
+**Relocated code/data/BSS proof accepted (2026-10-12):** the reviewed 184-byte
+image executed twice at `0xc02d0050` inside the shared arena, returning
+`1228486293` both times. Six trusted relocation sites, 128 zero-filled BSS bytes,
+all 32 resulting counters and initialized code/data were checked. Eight admission
+refusals, all paired audits, six network rounds and STOP drain at tick 14,903
+passed. Native replay covers 593 requests / 1,511 upload ioctls; 24 snapshot,
+eight WAD and seven relocation evidence mutations are rejected. TCP replay now
+separates reused port tuples only after captured closure and a fresh SYN; gaps,
+conflicting retransmissions and echo mismatches still fail. The exact card
+build is archived. This is a closed returning proof, **not Doom execution**;
+44 engine imports remain. Next: libc/platform imports and i960 cache/runtime
+integration, then bounded initialization. Preserve both worker owners, pins,
+full audits, and exclusive reboot-only release. The reboot completed and the
+original public IPv6 HTTP service is restored (independent HTTP 200).
+[Contract](game/doom/runtime/relocate/README.md) ·
+[Evidence](artifacts/doom-relocate-20261012/README.md).
+
 **Doom cache/link milestone (2026-10-12; host-only):** the single-WAD backend
 now bridges interior zone destinations through a private 512-byte runtime read
 buffer and 16 KiB cache. All 12,600 host frame/palette/tic hashes still match,

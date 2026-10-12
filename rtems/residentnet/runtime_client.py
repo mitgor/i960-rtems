@@ -52,3 +52,9 @@ def exercise_runtime(u,wad_path,probe_path):
  u.command(5)
  result=dict(wad_sha256=server.sha,file_bytes=len(server.data),probe_sha256=hashlib.sha256(probe).hexdigest(),probe_bytes=len(probe),oracle=server.expected(),runs=rows,requests=server.records,report=stats)
  (u.out/'runtime-results.json').write_text(json.dumps(result,indent=2)+'\n');(u.out/'runtime-probe.bin').write_bytes(probe)
+
+ # New builds carry a closed relocation recipe beside the PIC probe.
+ root=Path(probe_path).parent/"relocate"
+ if root.exists():
+  from relocate_client import exercise
+  exercise(u,root)

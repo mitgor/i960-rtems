@@ -4138,6 +4138,91 @@
       "sha256": "70584d90bcc692fdb817f1719201d7d1cb9a2e07df916d6e849fda9a9cef15d3"
     },
     {
+      "path": "artifacts/doom-relocate-20261012/README.md",
+      "size": 7243,
+      "sha256": "2c7fbc3de78818cd48946b8acca9dd2b9c8da10e7e6586e9cc0c3fcee6af7085"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/accepted-evidence.tar.gz",
+      "size": 4579785,
+      "sha256": "eff2d3a17cb2f444481bd2094625a52d7b95c60a7506f700ff432c21c3b45485"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/http-body.html",
+      "size": 2891,
+      "sha256": "48f73113fc320158ff693f3b971655bddb3f82ab467732fcc03d17686e1be432"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/http-headers.txt",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/native.log",
+      "size": 110,
+      "sha256": "df4aae2bcf856d6397d958e6a7e6a196fd4ead18c9565fc9ab86e6caa43ba422"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/offline.log",
+      "size": 14133,
+      "sha256": "44ee73b6e081b4718b2bf3e3200f17f3dc9fb5eee919dd0389eb2db4d8a03e5c"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/prior-network-replay.json",
+      "size": 25334,
+      "sha256": "f0c9f3f131ea0c17c0dbc4d19d23d4f1f9f2dcec854d060c52e15733a1fa5551"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/production-restore.json",
+      "size": 676,
+      "sha256": "a12c75ee47be8167f81218338bf0b171a38590eb87653abb4bc76547237e998b"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/relocation-tamper.json",
+      "size": 396,
+      "sha256": "173c02ba0d21f5e6edfe6ae55b536c009963fd978d0dcca7cce03e2af6a820ab"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/replay-before-flow-fix.log",
+      "size": 943,
+      "sha256": "6b23f00a2d65596427b12dbc82b25d74aa75e19acb359a436b6efc234571af96"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/replay.log",
+      "size": 25328,
+      "sha256": "0d2cab8511d4be1ece84e1e4a2b6371e92026614f4fc0e9ba0c3b31e2c5b081f"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/runtime-tamper.json",
+      "size": 427,
+      "sha256": "155eca9e2e294463c86cf4b2686e2ec4571778259af6b4759193a61c262356bc"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/service-status.txt",
+      "size": 576,
+      "sha256": "928d29d3596bd337af78a5f71647fba06620bca43df606d4f390ac0a335a67ea"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/tcp-reuse-tests.log",
+      "size": 126,
+      "sha256": "0b1f7bbc298571e91d9762a31466ed859801ef776cdc4c6874cce3612d89fc1b"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/upload-replay.json",
+      "size": 983,
+      "sha256": "b3c5a0c23060c756c3b7671ef1015824f7d475a6165498f21abf05149981b14c"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/upload-replay.log",
+      "size": 983,
+      "sha256": "b3c5a0c23060c756c3b7671ef1015824f7d475a6165498f21abf05149981b14c"
+    },
+    {
+      "path": "artifacts/doom-relocate-20261012/verification-update.tar.gz",
+      "size": 4708,
+      "sha256": "7bd873d586727e76504209f11801f593aea0af53f0e0ad0afab26cc4719dacc5"
+    },
+    {
       "path": "artifacts/doom-runtime-20261012/README.md",
       "size": 6078,
       "sha256": "11e4dc5254e0b65ff3cf5775edc11ba6e7bc9df08ff4e7a18a7473c4b699e75a"

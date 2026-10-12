@@ -1,0 +1,203 @@
+python3 residentnet/test_upload_gate.py
+PASS actual snapshot wrapper and upload client share a whole-snapshot exclusion gate
+PASS host preparation bound covers the full 8 MiB arena and terminates on non-completion
+python3 residentnet/test_upload_bootstrap.py
+PASS generated host bootstrap verifier: mutable BSS accepted; sampled upper code reservation bytes and guard boundary protected
+python3 residentnet/test_upload.py
+PASS resident UPL1: bounds, sequence, busy inbox, six-MiB proof, BSS, probe gate, STOP cleanup, checksum quarantine, guard failure
+PASS resident UPL1: bounds, sequence, busy inbox, six-MiB proof, BSS, probe gate, STOP cleanup, checksum quarantine, guard failure
+PASS resident UPL1: bounds, sequence, busy inbox, six-MiB proof, BSS, probe gate, STOP cleanup, checksum quarantine, guard failure
+PASS Doom libc proof with pinned image and retained-buffer STOP drain
+python3 ../game/doom/runtime/cache/test.py
+PASS cache: exact bounce pointer, line/EOF bounds, hits/conflicts, partial/error/timeout, reentry/active-close refusal, allocation rollback, 10000 random reads
+PASS backend: single immutable file, path/double-open refusal, offset reads, EOF, close, stale descriptor cannot reopen
+python3 ../game/doom/runtime/entry/test.py
+PASS runtime API: real allocator, uploaded probe logic, WAD success/CRC/short/host error/timeout/STOP, pinned lifetime, recovery
+python3 residentnet/test_runtime_client.py
+PASS host WAD: immutable snapshot, atomic query/reply audit gate, duplicate suppression, timeout without write
+python3 residentnet/test_doom_shared.py
+PASS shared arena: concurrent owners, ISR/wrong task/recursive refusal, separate namespaces, retained buffers, post-join drain, stale task refusal
+python3 ../game/doom/runtime/test.py
+PASS: 8 MiB arena, 6 MiB calloc plus image/buffers, resize/OOM preservation, overflow, zero-size, 128 slots, 5000 fragmented allocations, STOP during bulk, pins, guard/metadata retention
+PASS WAD mailbox: bounds, order, immutable staging, header mutations, CRC, padding, stale generation, sequence exhaustion, cancellation
+python3 residentnet/test_upload_protect.py
+PASS protected pages: immutable monitor, stage two, BIO, saved tail, cache descriptors, DRAM top; mutable exclusion and drain polls
+python3 residentnet/test_control_journal.py
+Control journal: 2,000 success/error records reconstruct exactly; full history written only at finalization
+python3 residentnet/test_large_snapshot.py
+RAM1: layout, full final scan, stack stress, workspace proof and revision corruption rejected
+External task stack ranges and actual interrupt frames checked
+Authorized cross-page STOP transition accepted; partial and unrequested shutdown rejected
+python3 residentnet/test_control_wait.py
+control wait: prompt reply, completion refusal, stale token and bounded timeout passed
+control wait: prompt reply, completion refusal, stale token and bounded timeout passed
+python3 residentnet/test_large_ram.py
+large RAM admission, four patterns, guards and reserve mutation passed
+large RAM admission, four patterns, guards and reserve mutation passed
+large RAM admission, four patterns, guards and reserve mutation passed
+large RAM admission, four patterns, guards and reserve mutation passed
+All four RAM sizes: positive admission, missing ownership, alias, parked-frame refusal and protected-memory mutation passed
+python3 residentnet/test_heap_snapshot.py
+RNT6: active/parked ownership, heap bounds, retained count and final drain checked
+RNT7: temporary copy allocations and acknowledged STOP transition checked
+RNT7: deadline-authorized drain transition and 100-tick acceptance bound checked
+RNT8: two discontiguous arena sizes bound to protocol version
+RNT8: shared live-burst/replay capacity registry admits 128 slots
+python3 residentnet/test_heap_diagnostics.py
+Shared diagnostics: 64-bit carry, both schemas, 28 corruptions rejected
+Version 3: nonfatal large-allocation refusal telemetry checked
+Version 4: network/packet-copy interrupt-span counters checked
+python3 residentnet/test_packet_log.py
+Packet journal: complete requests/replies, legacy replay, four damaged journals rejected
+python3 residentnet/test_native.py
+packet boundaries/order/commit/STOP, 1481 payload lengths, RAM overflow and reclaim denial passed
+python3 residentnet/test_host.py
+actual host exchange: success, absent reply, stale unconsumed reply, deadline, completion and both mask drifts passed
+One transaction deadline and uncertainty retention guards present.
+python3 residentnet/test_queue.py
+8-slot actual queue: full rejection, backpressure, wrap, drain, oversize passed
+32-slot actual queue: full rejection, backpressure, wrap, drain, oversize passed
+64-slot actual queue: full rejection, backpressure, wrap, drain, oversize passed
+72-slot actual queue: full rejection, backpressure, wrap, drain, oversize passed
+68-slot actual queue: full rejection, backpressure, wrap, drain, oversize passed
+128-slot actual queue: full rejection, backpressure, wrap, drain, oversize passed
+python3 residentnet/test_board.py
+224 identity bit flips rejected; adjacent firmware cache cannot be reclaimed
+python3 residentnet/test_queue_extend.py
+Guarded reclaim: 69 migrations, 70656 guard bit flips and external data isolation passed. Actual queue migration: all 0..68 occupancies preserved, repeated migration/wrong base/active head/overflow rejected
+python3 residentnet/test_net_preempt.py
+Actual network worker: preemptible processing/copy, RX lease, unpublished TX, elapsed ticks, pending RX and STOP retention passed
+Actual network worker: preemptible processing/copy, RX lease, unpublished TX, elapsed ticks, pending RX and STOP retention passed
+python3 residentnet/test_ram_probe.py
+Actual fixed 256 KiB probe: four patterns; 16 alias bits, 32 data faults, changed boundary and missing admission rejected
+python3 residentnet/test_nmi_host.py
+Actual one-shot NMI ioctl: identity/state/mask/latch refusals, duplicate rejection and copy-out uncertainty retain the one-shot latch
+python3 residentnet/test_fault_owner.py
+Actual table installer: 2048 corruption bits and 64 failed writes rejected; local entries reserved words zero
+python3 residentnet/test_scsi_stop.py
+384 DMA bit faults rejected; unknown topology/NMI denied; W1C preserved; 3 stable snapshots required; 3 bounded failures retain reset; repeated entry denied
+python3 residentnet/test_scsi_identity.py
+336 metadata/config identity bit faults rejected; selector restored after mismatch; no reset writes from identity reads
+python3 residentnet/test_ram_transfer.py
+256 missing/corrupt proof bits rejected; all candidate byte boundaries checked; zero/overflow/guards denied; live external RAM grant remains closed
+python3 residentnet/test_traffic.py
+Actual traffic scheduler: spaced rounds, overrun, original zero interval and propagated failure passed
+python3 residentnet/test_pump.py
+three busy replies preserve identical packet; success consumes once; five fatal errors are never retried
+python3 residentnet/test_decode.py
+13 malformed controls rejected; 14 contradictory dispatch fields cannot qualify; RAM grant remains false
+python3 exclusive/test_native.py
+Exclusive admission: 512 cases passed with ASan/UBSan; active/error DMA, existing reset, external arbiter and invalid phases denied.
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Generated host source: one-way state before publication, write lockout, consumed-request acknowledgement and retain-before-STOP ordering verified.
+python3 handoff/test_native.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Handoff gate: 3072 proof/busy/drift combinations; no idle-to-proof promotion; host no-pending/epoch/retention guards passed under ASan/UBSan.
+python3 leaseirq/test_native.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Lease: 192 modeled transitions, deadline/cap/wrap cases, 29 hardware report corruptions, pinned module guards passed under ASan/UBSan.
+python3 persistirq/test_native.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Persistent IRQ: 32400 graph admission/closure cases match independent reachability oracle; 94 unsafe report mutations rejected; terminal reference gate and ASan/UBSan passed.
+python3 ownirq/test_gate.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+OwnIRQ C gate: four cleanup fixtures, outstanding-reference refusal, 112 unsafe mutations rejected; ASan/UBSan passed.
+python3 ownership/test_policy.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Ownership policy: 1000 lease/cancel/restart epochs; stale/duplicate references and quarantine reuse rejected; terminal report gates ASan/UBSan passed
+python3 switch/test_lifetime.py
+Two owned IRQ continuations: interleaved resume, owner/frame/AC mismatch, reentry, bounds and drain-before-release passed
+python3 switch/test_stop.py
+STOP1 host: normal handshake, mask drift, stale nonce, premature completion and both timeout paths passed
+STOP1 target: ownership refusal, stale/duplicate tokens, stop event, drained release and release timeout passed
+STOPCASE host: normal handshake, mask drift, stale nonce, premature completion and both timeout paths passed
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+STOP1 generation: exact-image pin and stop-before-reclaim retention gates passed
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+STOPCASE expected-outcome gates and cleanup retention generated correctly
+python3 switch/test_concurrent.py
+Concurrent ioctl: session lock held by writer, wrong epoch refused, STOP/RELEASE once, window joined, late/duplicate control refused
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Generated concurrent driver: join-before-completion, no inverse lock acquisition, pinned image and retention gates passed
+python3 switch/test_lifecycle.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Lifecycle ordering: normal traces accepted, 13 early-cleanup/join violations rejected; generated capture lifetime and retention gates passed
+python3 switch/test_failed_teardown.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Failed teardown: expected retained states accepted, 16 unsafe snapshots rejected, injection and no-free-before-retention guards verified
+python3 switch/test_contain.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Containment: exact C gate ASan/UBSan and Python reject 91 damaged reports; pinned QUIESCED protocol and pre-cleanup gate verified
+python3 switch/test_contain_cases.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Critical containment: both modes pass; C ASan/UBSan and Python reject 40 damaged critical reports
+python3 switch/test_contain_failures.py
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Containment failure modes: 3 retained states accepted; 18 unsafe snapshots rejected; corrupted local report precedes clean authorization
+python3 control/test_framed.py
+Framed MU: roundtrip, duplicate, STOP/status/halt, epoch/sequence/checksum, altered retry, order, timeout, mask change, watchdog passed
+python3 control/test_mu.py
+MU exact host/target loops: echo, refusal, timeout, masks, W1C isolation, watchdog, restoration passed
+python3 control/test_control.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.356s
+
+OK
+python3 control/demo.py
+{
+  "passed": true,
+  "backend": "native shared-memory simulation; no MMIO or firmware calls",
+  "results": [
+    {
+      "status": 0,
+      "value": 305419896,
+      "stopped": false,
+      "heartbeat": 1
+    },
+    {
+      "status": 0,
+      "value": 0,
+      "stopped": false,
+      "heartbeat": 43
+    },
+    {
+      "status": 0,
+      "value": 0,
+      "stopped": true,
+      "heartbeat": 87
+    }
+  ]
+}
+python3 transport/test_validate_packets.py
+PASS: closed TCP tuple reuse, duplicate segments; gaps, conflicting overlap, unclosed reuse, mismatched echo/SYN-ACK rejected
+python3 transport/test_wire.py
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.430s
+
+OK
+python3 transport/test_visitors.py
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.007s
+
+OK
+python3 transport/test_transport.py
+session: 348 command-boundary faults, stale/malformed requests, 6 output corruptions; ASan/UBSan passed
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+python3 test_network.py
+IPv6 native: UDP 0/1/31/500/1400/1452, mandatory checksums, ICMPv6 and truncated inputs passed
+lwIP native: 10,000 mixed malformed/UDP packets; UDP 0/1/31/500/1400, ICMP, malformed IP, oversize and TX backpressure passed
+System info: uptime formatting, maximum counters and bounded overflow passed
+python3 transport/test_ipv6_gateway.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.080s
+
+OK
+python3 autonomous/test_transport.py
+autonomous: 344 command-failure/timeout boundaries; changing private state; stop-before-restore passed
+autonomous: 344 command-failure/timeout boundaries; changing private state; stop-before-restore passed
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075

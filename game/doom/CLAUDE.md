@@ -1,14 +1,31 @@
 # Doom milestone guidance
 
+**Relocated code/data/BSS proof accepted (2026-10-12):** the reviewed 184-byte
+image executed twice at `0xc02d0050` inside the shared arena, returning
+`1228486293` both times. Six trusted relocation sites, 128 zero-filled BSS bytes,
+all 32 resulting counters and initialized code/data were checked. Eight admission
+refusals, all paired audits, six network rounds and STOP drain at tick 14,903
+passed. Native replay covers 593 requests / 1,511 upload ioctls; 24 snapshot,
+eight WAD and seven relocation evidence mutations are rejected. TCP replay now
+separates reused port tuples only after captured closure and a fresh SYN; gaps,
+conflicting retransmissions and echo mismatches still fail. The exact card
+build is archived. This is a closed returning proof, **not Doom execution**;
+44 engine imports remain. Next: libc/platform imports and i960 cache/runtime
+integration, then bounded initialization. Preserve both worker owners, pins,
+full audits, and exclusive reboot-only release. The reboot completed and the
+original public IPv6 HTTP service is restored (independent HTTP 200).
+[Contract](../../game/doom/runtime/relocate/README.md) ·
+[Evidence](../../artifacts/doom-relocate-20261012/README.md).
+
 **New host-only cache/link checkpoint:** [runtime/cache/README.md](runtime/cache/README.md) and
 [runtime/relocate/README.md](runtime/relocate/README.md). Opt-in `--wad-cache` requires `--arena-runtime`.
 Only the separately allocated bounce base crosses runtime reads; zone interior
 pointers stay in the owning application. Single IWAD, no rebind or reopen after
 close; no general stdio/filesystem shim. Six host demos match 12,600 hashes with
 1 MiB reserved image + at most 6,473,545 dynamic bytes in the 8 MiB arena.
-44 engine imports remain. The REL prototype is offline-only; never bypass the
-current card whitelist or infer relocation records from pointer-looking words.
-Before Doom, admit/test the small relocated proof with full existing audits.
+44 engine imports remain. That REL checkpoint was host-only; the small proof is now accepted above.
+Never bypass its closed card whitelist or infer relocation records from
+pointer-looking words. Doom engine admission remains separate work.
 
 **Runtime-entry/WAD bridge accepted:** [runtime/entry/README.md](runtime/entry/README.md).
 `--doom-runtime` requires `--doom-shared`. Only the exact reviewed probe may

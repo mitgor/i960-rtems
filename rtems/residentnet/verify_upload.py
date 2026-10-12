@@ -72,6 +72,11 @@ if a.doom_runtime:
 with tempfile.TemporaryDirectory() as tmp:
  t=Path(tmp)
  if a.doom_runtime:prefix=native(prefix,t,probe,wad_replies)
+ if (a.capture/'relocate-results.json').exists():
+  from relocate_replay import prepare_relocated
+  relocation_info=prepare_relocated(a.capture,entry.parent/'relocate',requests,responses)
+  (t/'relocated_probe_bytes.h').write_bytes((entry.parent/'relocate/relocated_probe_bytes.h').read_bytes())
+  prefix='#define I960_DOOM_RELOCATE 1\n'+prefix
  (t/'test.c').write_text(prefix)
  (t/'upload_native.h').write_text('''#define R(a) (*(unsigned int*)(unsigned long)(a))
 static unsigned int upload_stopping(void){return 0;}
@@ -108,8 +113,9 @@ if a.doom_shared:
  observed=json.loads((a.capture/'doom-shared.json').read_text())
  assert observed['magic']=='0x53484152' and observed['peer_retained_bytes']==98304
  assert [observed[k] for k in ('phase','peer_checks','wrong_task_rejections','peer_enters','owner_enters','max_wait_ticks','max_hold_ticks','timeout_rejections','recursive_rejections')]==stats[1:]
-parked=json.loads((a.capture/'upload-parked.json').read_text());assert parked[3]==parked[4]==parked[15]==0 and parked[9]==(4 if a.doom_runtime else 3)
+parked=json.loads((a.capture/'upload-parked.json').read_text());assert parked[3]==parked[4]==parked[15]==0 and parked[9]==(8 if (a.capture/"relocate-results.json").exists() else 4 if a.doom_runtime else 3)
 proof=[w for w in responses if w[10]==6291456];assert proof
 result=dict(commands=len(requests),pio_ioctls=len(latencies),stale_epochs_rejected=stale,code_bytes=len(files[0]),data_bytes=len(files[1]),zero_fill_bytes=196608-len(files[1]),result=hex(expected),simultaneous_allocation_bytes=6291456+327680,stop_cancelled_partial_image=True,latency_ms=dict(max=max(latencies),mean=sum(latencies)/len(latencies)),files_sha256=[hashlib.sha256(b).hexdigest() for b in files])
 if runtime_info:result['runtime']=runtime_info
+if (a.capture/'relocate-results.json').exists():result['relocation']=relocation_info
 a.output.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))

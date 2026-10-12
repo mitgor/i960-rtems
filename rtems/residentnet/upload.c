@@ -101,6 +101,9 @@ static unsigned int run_runtime(unsigned int*value){unsigned int i,ok;const stru
  if(!doom_shared_enter((void*)1)){exclusive_abort();return 5;}ok=seg_complete(&image);UNLOCK();return ok?0:6;
 }
 #endif
+#ifdef I960_DOOM_RELOCATE
+#include "doom_relocate.h"
+#endif
 void upload_step(void){unsigned int command,rc=0,value=0,n,i;
  if(!initialized)return;
  if(!upload_guards()){exclusive_abort();return;}
@@ -136,6 +139,10 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
 #ifdef I960_DOOM_RUNTIME
   else if(command==11)rc=run_runtime(&value);
   else if(command==12)value=doom_runtime_report(inbox[3]);
+#ifdef I960_DOOM_RELOCATE
+  else if(command==13)rc=run_relocated(&value);
+  else if(command==14){if(image.state!=SEG_READY)rc=1;else value=(unsigned int)((unsigned long)image.base-(unsigned long)UPLOAD_BASE);}
+#endif
 #endif
 #endif
   else rc=3;

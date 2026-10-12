@@ -2310,6 +2310,34 @@ The next visitor would be that small relocated program, with its own initialized
 data and pointers, before the much larger engine was allowed through the door.
 Meanwhile, the public web page kept answering.
 
+## The small visitor arrives
+
+The next program was only 184 bytes, but it brought luggage: eight bytes of
+initialized data, a pointer into its own BSS, and thirty-two counters that had
+to begin as zero. Six addresses needed to move with it. This was the part a
+position-independent hello world had politely avoided.
+
+The loader gave it a room at `0xc02d0050`, checked the luggage, moved the six
+addresses, and let it run. It allocated through the RTEMS runtime, filled its
+counters, followed the relocated pointer and returned **1228486293**. The loader
+checked every counter and every initialized byte, put the room back as it had
+been, and invited the same program in again. Same answer.
+
+Changed code, changed data and the wrong entry point were refused at the door.
+The full audits stayed on. Six rounds of IPv4 and IPv6 traffic went through,
+and both workers drained at tick 14,903 with their allocations accounted for.
+
+Even the evidence had an archaeological footnote. Linux reused a TCP port for
+a later connection; our replay tool mistook the two conversations for one and
+reported a gap. The handshakes and closes were all there. We taught the verifier
+to recognize that boundary, then checked that a real gap or conflicting
+retransmission still failed. Nothing in the capture needed to be excused.
+
+Doom still had forty-four missing imports. But the little program with luggage
+had now walked through the real door, twice. The next problem was supplying the
+larger visitor's runtime, not guessing whether its addresses could move. After
+the required reboot, the old web page was answering again.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
