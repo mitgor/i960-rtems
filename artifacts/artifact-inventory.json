@@ -4043,6 +4043,126 @@
       "sha256": "a140a4fd8e9de1c002e0ea313ae79657cfcb1dab02d50ba63ee00c63039de647"
     },
     {
+      "path": "artifacts/doom-shared-20261012/README.md",
+      "size": 7090,
+      "sha256": "b93b4404b8914c513221df7eb60c80f50bcaf4b36ca41ca1a4e94d152191d35c"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/SHA256SUMS.json",
+      "size": 2132,
+      "sha256": "8bb5c28aa0f965671734f3ac34d6577fc4a301f5b10bca775e906a1d5dee010c"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/accepted-evidence.tar.gz",
+      "size": 4980296,
+      "sha256": "d571b5e611082ed71e6a6f8eed22b05a0264c0590fa17357bad973d1de053114"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/capture-tamper-tests.json",
+      "size": 800,
+      "sha256": "b1ed24d234e73363e8f31ea102e0aecec8fb77761390a4d8b48b40a9fb0a88c2"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/card-libc.json",
+      "size": 246,
+      "sha256": "622fcc9558120e7ddf5082e06bf001537ab4c2234646dfeb5560d3b493c76e37"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/card-shared.json",
+      "size": 278,
+      "sha256": "a9d82cd9489e70ef015091e81c9417fae1347781f15a736dcb16916e351d147f"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/doom-sections.txt",
+      "size": 182,
+      "sha256": "67fed3645d308a6f4b4eae236175f8db4525dd2a816fe8325e55693a588277e8"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/doom-undefined.txt",
+      "size": 1079,
+      "sha256": "25aca10aaa5c4a7b5231f1ef21055104ef5350ec6d41791903082b5e776c9929"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/failed-idle-attempt.tar.gz",
+      "size": 4558885,
+      "sha256": "67c81c3a296cfdefa6b60cd4ff41c5954e1d4d2ddc9d0cb9add78c84a8b91619"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/http-headers.txt",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/http-page.html",
+      "size": 2890,
+      "sha256": "ae1fcf90af06e641ea6728528de7e1a7af0ff067c8a0fc6ef17bb736993a414a"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/mac-full-replay.json",
+      "size": 24131,
+      "sha256": "e1a3109ff89fe8a4b6c77bc4501afb1e994f827db0899a83a149f6385ddaabf3"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/mac-upload-replay.json",
+      "size": 502,
+      "sha256": "f7cf46d8f4eb8b512f9f4d134550ab8a2894949c97ec1dbe1eb2c7162431c1d4"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/mac-upload-replay.txt",
+      "size": 502,
+      "sha256": "f7cf46d8f4eb8b512f9f4d134550ab8a2894949c97ec1dbe1eb2c7162431c1d4"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/native-runtime.txt",
+      "size": 187,
+      "sha256": "72c62ff32451e98876bf3fbc05d4fe45ec6b266b2eac7dfa4f97ea5019ab41b6"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/native-shared.txt",
+      "size": 147,
+      "sha256": "95bd07a249b07ae26b7c49491f3c1dfb212b963ac031111d8514666214e9e55d"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/native-thread-sanitizer.txt",
+      "size": 147,
+      "sha256": "95bd07a249b07ae26b7c49491f3c1dfb212b963ac031111d8514666214e9e55d"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/native-upload.txt",
+      "size": 463,
+      "sha256": "c6fd3afdc04d5f97fb21a16004a70bcf377c1bc91d964fda92e872634a0cc993"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/prior-upload-replay.json",
+      "size": 501,
+      "sha256": "bc250c30fb409a142e0dc29fef499628216ee128e6036e3223a1207705e4ff7a"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/production-restore.json",
+      "size": 674,
+      "sha256": "8429ca5b586351790269d47b15020accc930bb07c9fb3c8aa4c908ab7a5e7981"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/ram-audit.json",
+      "size": 1668,
+      "sha256": "2b1136aaad05ab002479dbad74e28ba94f1828b83bf054d83ca8623736245d83"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/rtems-tests.txt",
+      "size": 13179,
+      "sha256": "7196c805bad04efc21e9735b1d7be2e2860b67a52397ebe919424c9b800cb462"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/service-status.txt",
+      "size": 1820,
+      "sha256": "f97ba21d3fa2b43fb729cf165eadda9b953a8ff052f4877912da61b90211db7e"
+    },
+    {
+      "path": "artifacts/doom-shared-20261012/summary.json",
+      "size": 293,
+      "sha256": "c94a36c272b3fa9d91f291a198d846562797937ea136c0e6d61eae56132f0f91"
+    },
+    {
       "path": "artifacts/dram-hook-audit-20261010/Makefile",
       "size": 540,
       "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"

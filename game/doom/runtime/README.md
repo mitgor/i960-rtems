@@ -37,6 +37,8 @@ frees p and returns NULL. Overflow/OOM returns NULL; failed nonzero realloc keep
 p and its contents. `free(NULL)` is harmless; invalid/busy free through the libc
 shim invokes the bound fatal handler. Corruption poisons the context/arena.
 The context API returns diagnostic status so tests can exercise refusals.
+Denied callers return failure without changing that context's diagnostic word;
+only an admitted owner may update it.
 Raw C pointers retain normal C lifetime requirements; generation handles do not
 make stale application pointers or arbitrary writes safe.
 
@@ -45,6 +47,13 @@ resident lifetime. Bind a non-returning fatal handler. The engine's allocation
 symbols are renamed only with `build.py --arena-runtime`; resident/system libc
 continues using its established 171,824-byte heap. No errno/newlib reentrancy or
 stdio ABI is claimed by this allocation-only shim.
+
+## Shared task follow-up
+
+The opt-in [shared ownership contract](SHARED-ARENA.md) supersedes the single-
+worker limitation for its tested two-context profile. Wrong-task refusals now
+leave diagnostic metadata untouched too. Historical measurements below belong
+to the original allocation milestone.
 
 ## Tests and memory
 

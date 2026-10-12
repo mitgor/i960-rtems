@@ -1,5 +1,15 @@
 # Doom milestone guidance
 
+**Shared arena follow-up accepted:** read [runtime/SHARED-ARENA.md](runtime/SHARED-ARENA.md).
+Use one task mutex and private per-worker allocation records; retain pins during
+unlocked bulk work and reclaim only after both task/IRQ drains. Wrong-task
+calls must not write diagnostics. `--doom-shared` requires `--doom-heap`.
+Both workers must not block at once: idle still deliberately faults and has no
+registered IRQ owner. Keep a control worker runnable or explicitly admit/test
+idle ownership. Preserve full audits, exclusive reboot-only release and the
+cooperative public service. Earlier single-owner notes below are historical.
+
+
 Run runtime/test.py and runtime/verify_evidence.py for allocator evidence.
 Read [runtime/README.md](runtime/README.md) for the allocation integration.
 Opt-in --arena-runtime resolves the five allocation symbols: 631,112 static

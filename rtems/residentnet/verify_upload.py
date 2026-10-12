@@ -2,10 +2,11 @@
 """Replay a completed resident upload journal through the actual C core.
 Also reconstruct and CRC-check the two uploaded files independently in Python.
 """
-import argparse,errno,hashlib,json,struct,subprocess,tempfile,zlib
+import ast,argparse,errno,hashlib,json,struct,subprocess,tempfile,zlib
 from pathlib import Path
 r=Path(__file__).resolve().parent
-p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--doom-heap',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');a=p.parse_args()
+assert not a.doom_shared or a.doom_heap
 events=[json.loads(l) for l in (a.capture/'upload-journal.jsonl').read_text().splitlines()]
 requests=[];responses=[];current=None;sent=bytearray();files=[bytearray(),bytearray()];manifest=None;first_image=True;stale=0;latencies=[]
 for e in events:
@@ -55,6 +56,12 @@ int main(void){unsigned int packet[256],n,i;assert(upload_init());
 '''
 if a.doom_heap:
  prefix=prefix.replace('#include "upload.c"','#define I960_DOOM_HEAP 1\n#include "upload.c"\n#include "doom_heap_proof.c"')
+if a.doom_shared:
+ tree=ast.parse((r/'test_doom_shared.py').read_text())
+ source=next(ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='source' for t in n.targets))
+ prefix=source.split('int main(void)')[0]+'int main(void)'+prefix.split('int main(void)',1)[1]
+ prefix=prefix.replace('assert(upload_init());','identity=2;pthread_t task;doom_shared_init();assert(upload_init());assert(!pthread_create(&task,0,peer,0));')
+ prefix=prefix.replace('}assert(upload_finish());','}atomic_store(&halted,1);assert(!pthread_join(task,0));identity=3;doom_shared_quiesce(1);assert(upload_finish());')
 with tempfile.TemporaryDirectory() as tmp:
  t=Path(tmp);(t/'test.c').write_text(prefix)
  (t/'upload_native.h').write_text('''#define R(a) (*(unsigned int*)(unsigned long)(a))
@@ -66,17 +73,32 @@ static void exclusive_abort(void){assert(0);}
 unsigned int upload_protect_step(void){return 1;}
 unsigned int upload_protect_finish(void){return 1;}
 ''')
+ if a.doom_shared:
+  f=t/'upload_native.h';s=f.read_text().replace('return 0;}\nstatic unsigned int upload_time(void){return 1;', 'return atomic_load(&halted);}\nstatic unsigned int upload_time(void){struct timespec t;clock_gettime(CLOCK_MONOTONIC,&t);return (unsigned int)(t.tv_sec*100+t.tv_nsec/10000000);')
+  f.write_text(s)
  core=r.parents[1]/'loader/segmented'
- subprocess.run(['cc','-std=c99','-fsanitize=address,undefined','-I'+str(t),'-I'+str(r),str(t/'test.c'),str(core/'arena.c'),str(core/'image.c'),*([str(r.parents[1]/'game/doom/runtime/heap.c'),str(r.parents[1]/'game/doom/runtime/libc.c')] if a.doom_heap else []),'-o',str(t/'replay')],check=True)
+ subprocess.run(['cc','-std=c11','-pthread','-fsanitize=address,undefined','-I'+str(t),'-I'+str(r),str(t/'test.c'),str(core/'arena.c'),str(core/'image.c'),*([str(r.parents[1]/'game/doom/runtime/heap.c'),str(r.parents[1]/'game/doom/runtime/libc.c')] if a.doom_heap else []),'-o',str(t/'replay')],check=True)
  raw=subprocess.run([str(t/'replay')],input=sent,stdout=subprocess.PIPE,check=True).stdout
  assert len(raw)==64*len(responses)
  for i,w in enumerate(responses):
   actual=struct.unpack_from('<16I',raw,i*64)
-  assert w[0:12]==actual[0:12] and w[13:]==actual[13:],(i,w,actual)
+  if a.doom_shared and struct.unpack_from('<I',requests[i],8)[0]==9:
+   assert w[:5]==actual[:5] and w[6:12]==actual[6:12] and w[13:]==actual[13:],(i,w,actual)
+  else:assert w[0:12]==actual[0:12] and w[13:]==actual[13:],(i,w,actual)
   assert w[12]==0xc02d0040
 if a.doom_heap:
  proof_rows=[w for request,w in zip(requests,responses) if struct.unpack_from('<I',request,8)[0]==8]
  assert len(proof_rows)==1 and proof_rows[0][2]==0 and proof_rows[0][5]==0x444c4942
+if a.doom_shared:
+ rows=[(req,w) for req,w in zip(requests,responses) if struct.unpack_from('<I',req,8)[0]==9]
+ assert [struct.unpack_from('<I',req,12)[0] for req,w in rows]==list(range(10))
+ stats=[w[5] for req,w in rows]
+ assert len(stats)==10 and stats[0]==0x53484152 and stats[1]==4 and min(stats[2:6])>0 and stats[8:]==[1,1]
+ assert stats[2]==stats[3] and 2*stats[2]<=stats[4]<=2*stats[2]+10
+ assert stats[6]<=2 and stats[7]>=5
+ observed=json.loads((a.capture/'doom-shared.json').read_text())
+ assert observed['magic']=='0x53484152' and observed['peer_retained_bytes']==98304
+ assert [observed[k] for k in ('phase','peer_checks','wrong_task_rejections','peer_enters','owner_enters','max_wait_ticks','max_hold_ticks','timeout_rejections','recursive_rejections')]==stats[1:]
 parked=json.loads((a.capture/'upload-parked.json').read_text());assert parked[3]==parked[4]==parked[15]==0 and parked[9]==3
 proof=[w for w in responses if w[10]==6291456];assert proof
 result=dict(commands=len(requests),pio_ioctls=len(latencies),stale_epochs_rejected=stale,code_bytes=len(files[0]),data_bytes=len(files[1]),zero_fill_bytes=196608-len(files[1]),result=hex(expected),simultaneous_allocation_bytes=6291456+327680,stop_cancelled_partial_image=True,latency_ms=dict(max=max(latencies),mean=sum(latencies)/len(latencies)),files_sha256=[hashlib.sha256(b).hexdigest() for b in files])

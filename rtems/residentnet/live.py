@@ -57,6 +57,7 @@ def main():
  for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
  p.add_argument('--resident-upload',action='store_true')
  p.add_argument('--doom-heap',action='store_true')
+ p.add_argument('--doom-shared',action='store_true')
  p.add_argument('--upload-concurrent',action='store_true')
  p.add_argument('--owned-mib',type=int,choices=(0,1,4,10,12),default=0)
  p.add_argument('--heap-shared',action='store_true')
@@ -76,12 +77,14 @@ def main():
  assert ('-DI960_RESIDENT_UPLOAD' in flags)==a.resident_upload
  assert ('-DI960_DOOM_HEAP' in flags)==a.doom_heap
  assert not a.doom_heap or a.resident_upload
+ assert ('-DI960_DOOM_SHARED' in flags)==a.doom_shared
+ assert not a.doom_shared or a.doom_heap
  assert not a.upload_concurrent or a.resident_upload
  if a.queue_reclaim:assert a.heap_shared
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
  io_gate=threading.RLock()
  def save(final=False):
   if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')
@@ -132,7 +135,7 @@ def main():
   if a.resident_upload and not a.upload_concurrent:
    from upload_client import exercise
    print('Starting resident segmented upload tests',flush=True)
-   exercise(b.fd,epoch,b.out,doom_heap=a.doom_heap);snapshot()
+   exercise(b.fd,epoch,b.out,doom_heap=a.doom_heap,doom_shared=a.doom_shared);snapshot()
   if a.burst:burst(packet,snapshot,b.out)
   g=Gateway(b.out,ipv6=True)
   with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
@@ -140,7 +143,7 @@ def main():
    upload_future=None
    if a.upload_concurrent:
     from upload_client import exercise
-    upload_future=pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap)
+    upload_future=pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared)
    while not future.done() or (upload_future is not None and not upload_future.done()):
     if time.monotonic()>deadline:raise TimeoutError('resident test exceeded session traffic budget')
     readable,_,_=select.select([g.fd],[],[],0)
@@ -175,6 +178,10 @@ def main():
   (b.out/'last-control.txt').write_text((b.debugfs/'result.txt').read_text())
   print('Resident network tests passed; module retained until reboot.',flush=True)
  except BaseException:
+  try:
+   control(7);failure_words=[control(5,i)[2] for i in range(64)]
+   (b.out/'failure-snapshot.json').write_text(json.dumps(failure_words,indent=2)+'\n')
+  except BaseException as diag_error:(b.out/'failure-snapshot-error.txt').write_text(repr(diag_error)+'\n')
   (b.out/'error.txt').write_text(traceback.format_exc());raise
  finally:
   save(final=True);finish_packets(b.out,packets)

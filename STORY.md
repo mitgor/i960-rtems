@@ -2208,6 +2208,44 @@ The reboot returned, and Vader answered HTTP again. Five unresolved symbols had
 become real functions on the card. Fifty-three remained, along with the work of
 giving Doom its own task and bringing its WAD across from the host.
 
+## Two tenants, one set of keys
+
+The next problem was less dramatic than getting eight megabytes back from a
+RAID controller. Two tasks now wanted to use them without each believing it
+owned the whole building.
+
+They received separate allocation records and one shared lock. The loader kept
+its image pinned; Doom's allocator kept source and destination pinned while a
+large copy stepped outside the lock. A task asking through the other task's
+allocator was turned away before it could change even the diagnostic word.
+On the host, the thread sanitizer approved of this small exercise in manners.
+
+The first card test found a different kind of ownership problem. To test a
+waiting task, the task holding the lock went to sleep. That could leave both
+workers asleep, at which point RTEMS had an idle task to run. Our resident
+profile had deliberately made that task fatal: nobody had yet earned an
+interrupt stack for it. The capture ended with the transport shut down. It did
+not preserve the final fault number, so the code-path explanation stayed an
+explanation, not a recovered confession.
+
+After reboot, the holder stayed runnable with interrupts enabled while the
+other task waited. The timeout worked. So did the recursive-lock refusal.
+At the diagnostic snapshot, the second worker had checked its buffer and tried
+the wrong allocator 3,305 times. Both tasks kept patterned allocations until
+STOP—ninety-six kilobytes for one, sixty-four for the other—and cleanup checked
+every byte only after both tasks and their interrupt continuations had drained.
+The unfinished uploaded image left at the same time. The arena was empty again.
+
+Six rounds of network traffic passed around this negotiation. Full replay
+checked 804 packets and 517 upload commands; damaged captures were rejected.
+The little scheduling lesson stayed in the plan: before Doom waits for its WAD,
+somebody must remain awake to answer the host, or the idle task must finally
+be given a properly owned place to run.
+
+The reboot returned, and Vader answered from the original web server again.
+The failed attempt stayed beside the successful one in the archive; the lock
+had acquired both a test and a warning about who was allowed to sleep.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

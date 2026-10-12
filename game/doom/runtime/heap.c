@@ -2,7 +2,8 @@
 #define CHUNK 1024u
 static int enter(struct doom_heap *h) {
  if(!h||!h->initialized)return 0;
- if(!h->hooks.enter(h->hooks.cookie)){h->error=DH_DENIED;return 0;}
+ /* A denied caller owns no metadata, including the diagnostic word. */
+ if(!h->hooks.enter(h->hooks.cookie))return 0;
  if(h->fault||!arena_valid(h->arena)){h->fault=1;h->error=DH_CORRUPT;h->hooks.leave(h->hooks.cookie);return 0;}
  return 1;
 }
@@ -79,7 +80,7 @@ static void *bulk(struct doom_heap*h,void*old,unsigned int n,int zero,const char
  h->error=DH_OK;leave(h);return p;
 }
 void *doom_heap_calloc(struct doom_heap*h,unsigned int count,unsigned int size) {
- if(size&&count>~0u/size){if(h)h->error=DH_OOM;return 0;}
+ if(size&&count>~0u/size){if(enter(h)){h->error=DH_OOM;leave(h);}return 0;}
  return bulk(h,0,count*size,1,0);
 }
 void *doom_heap_realloc(struct doom_heap*h,void*p,unsigned int n) {
@@ -88,8 +89,8 @@ void *doom_heap_realloc(struct doom_heap*h,void*p,unsigned int n) {
  return bulk(h,p,n,0,0);
 }
 char *doom_heap_strdup(struct doom_heap*h,const char*s) {
- unsigned int n=0;if(!s){if(h)h->error=DH_INVALID;return 0;}
- while(s[n]){if(n==0xfffffffeu){h->error=DH_OOM;return 0;}n++;}
+ unsigned int n=0;if(!s){if(enter(h)){h->error=DH_INVALID;leave(h);}return 0;}
+ while(s[n]){if(n==0xfffffffeu){if(enter(h)){h->error=DH_OOM;leave(h);}return 0;}n++;}
  return bulk(h,0,n+1,0,s);
 }
 int doom_heap_stop(struct doom_heap*h){if(!enter(h))return 0;h->stopping=1;leave(h);return 1;}

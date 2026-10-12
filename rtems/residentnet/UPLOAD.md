@@ -1,5 +1,14 @@
 # Resident segmented upload and application arena
 
+**2026-10-12 shared-owner follow-up:** optional `--doom-shared --doom-heap`
+adds one task mutex for loader and allocator metadata, and separate allocation
+namespaces for the two existing workers. Command 9 exposes its frozen diagnostic
+report. The physical shared proof, timeout/refusal checks and full STOP drain
+passed; see [the ownership contract](../../game/doom/runtime/SHARED-ARENA.md).
+Do not allow both workers to block: idle IRQ ownership remains unimplemented.
+The single-worker description below remains the baseline without these flags.
+
+
 **Doom allocation follow-up:** opt-in `--doom-heap` now tests a scoped libc
 adapter on this same arena. [Contract](../../game/doom/runtime/README.md) and
 [physical evidence](../../artifacts/doom-runtime-20261012/README.md). It adds UPL1

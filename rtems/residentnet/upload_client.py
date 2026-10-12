@@ -43,7 +43,7 @@ class Upload:
    if w[5]==2:return w
    assert w[5]==1
   raise AssertionError('unbounded preparation')
-def exercise(fd,epoch,out,gate=None,doom_heap=False):
+def exercise(fd,epoch,out,gate=None,doom_heap=False,doom_shared=False):
  u=Upload(fd,epoch,out,gate)
  try:u.io(2,epoch=epoch^0x8000);raise AssertionError('stale epoch accepted')
  except OSError as e:assert e.errno==errno.ESTALE
@@ -67,6 +67,10 @@ def exercise(fd,epoch,out,gate=None,doom_heap=False):
  if doom_heap:
   start=time.monotonic();libc=u.command(8);assert libc[5]==0x444c4942
   (Path(out)/'doom-heap.json').write_text(json.dumps(dict(result=list(libc),seconds=time.monotonic()-start,retained_until_stop=65536),indent=2)+'\n')
+ if doom_shared:
+  stats=[u.command(9,i)[5] for i in range(10)]
+  assert stats[0]==0x53484152 and stats[1]==4 and min(stats[2:6])>0 and stats[8:10]==[1,1]
+  (Path(out)/'doom-shared.json').write_text(json.dumps(dict(magic=hex(stats[0]),phase=stats[1],peer_checks=stats[2],wrong_task_rejections=stats[3],peer_enters=stats[4],owner_enters=stats[5],max_wait_ticks=stats[6],max_hold_ticks=stats[7],timeout_rejections=stats[8],recursive_rejections=stats[9],peer_retained_bytes=98304),indent=2)+'\n')
  result=u.command(4);assert result[5]==0xe4f1e4e1 and result[4]==3
  u.command(5);assert u.command(6)[5]==1
  # Cancel incomplete upload, then allocate again: no stale image survives.

@@ -26,6 +26,7 @@ extern void exclusive_timer_isr(void);
 #include "../residentnet/large_ram.h"
 #ifdef I960_RESIDENT_UPLOAD
 #include "../residentnet/upload.h"
+#include "../residentnet/doom_heap_shared.h"
 #endif
 #define workspace ((unsigned char*)LARGE_WORKSPACE)
 #define WORKSPACE_BYTES 262144u
@@ -171,6 +172,9 @@ static void Worker(rtems_task_argument id){
 #endif
 #ifdef I960_RESIDENT_UPLOAD
   if(id)upload_step();
+#ifdef I960_DOOM_SHARED
+  else doom_shared_peer_step();
+#endif
 #endif
   progress[id]++;
  }mask();
@@ -181,6 +185,9 @@ static void Worker(rtems_task_argument id){
 }
 static void Init(rtems_task_argument arg){rtems_id ids[2];rtems_task_priority old;unsigned int i,j;
  memset(switch_irq_areas,0xa5,sizeof(switch_irq_areas));
+#ifdef I960_DOOM_SHARED
+ doom_shared_init();
+#endif
  for(i=0;i<2;i++){CHECK(rtems_task_create(0x45584330+i,2,TASK_BYTES,RTEMS_TIMESLICE|RTEMS_INTERRUPT_LEVEL(31),RTEMS_DEFAULT_ATTRIBUTES,&ids[i]));CHECK(rtems_task_start(ids[i],Worker,i));}
  #ifdef I960_RESIDENT_NET
  resident_net_init();
@@ -205,6 +212,9 @@ static void Init(rtems_task_argument arg){rtems_id ids[2];rtems_task_priority ol
  if(stacks[i][j]!=0xa5)switch_fault|=32;}}
  #ifdef I960_OWNED_MIB
  for(i=0;i<32768;i++){if(!(i&1023))exclusive_drain_poll();if(workspace_proof[i]!=(i^0x574b5350u))bounded_fatal(0x57003);}
+ #ifdef I960_DOOM_SHARED
+ doom_shared_quiesce(!switch_fault&&done[0]&&done[1]&&!switch_active[0]&&!switch_active[1]&&lifetime_drained(life)&&!_ISR_Nest_level&&!_Thread_Dispatch_disable_level);
+#endif
  if(!exclusive_large_finish()){switch_fault|=64;exclusive_abort();}
  workspace_checked=131072;
  if(!_Workspace_Free(workspace_proof))bounded_fatal(0x57004);workspace_freed=1;workspace_proof=0;
@@ -213,7 +223,12 @@ static void Init(rtems_task_argument arg){rtems_id ids[2];rtems_task_priority ol
  _CPU_Context_switch(&_Thread_Executing->Registers,&_Thread_BSP_context);bounded_fatal(0x54000);
 }
 static rtems_initialization_tasks_table tasks[]={{0x494e4954,TASK_BYTES,1,RTEMS_DEFAULT_ATTRIBUTES,Init,RTEMS_INTERRUPT_LEVEL(31),0}};
-static rtems_api_configuration_table api={3,0,0,0,0,0,0,0,1,tasks};
+#ifdef I960_DOOM_SHARED
+#define ARENA_MUTEXES 1
+#else
+#define ARENA_MUTEXES 0
+#endif
+static rtems_api_configuration_table api={3,0,ARENA_MUTEXES,0,0,0,0,0,1,tasks};
 static rtems_configuration_table config={workspace,WORKSPACE_BYTES,0,10000,1,0,0,0,0,0,0,0,&api,0,0};
 static rtems_cpu_table cpu={0,0,0,idle_error,1,2048,2048,0,stack_alloc,stack_free};
 void _ISR_Handler(void){bounded_fatal(0x40000);}

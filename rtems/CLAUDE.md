@@ -1,5 +1,15 @@
 # RTEMS working guidance
 
+**Shared arena follow-up accepted:** read [../game/doom/runtime/SHARED-ARENA.md](../game/doom/runtime/SHARED-ARENA.md).
+Use one task mutex and private per-worker allocation records; retain pins during
+unlocked bulk work and reclaim only after both task/IRQ drains. Wrong-task
+calls must not write diagnostics. `--doom-shared` requires `--doom-heap`.
+Both workers must not block at once: idle still deliberately faults and has no
+registered IRQ owner. Keep a control worker runnable or explicitly admit/test
+idle ownership. Preserve full audits, exclusive reboot-only release and the
+cooperative public service. Earlier single-owner notes below are historical.
+
+
 **Doom allocation adapter:** [../game/doom/runtime/README.md](../game/doom/runtime/README.md).
 `--doom-heap` requires resident-upload, uses its single arena owner and protected
 upper code section, and preserves system malloc. Physical 6 MiB calloc/resize

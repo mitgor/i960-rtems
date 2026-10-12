@@ -13,7 +13,8 @@ The [resident integration](../../rtems/residentnet/UPLOAD.md) now grants an 8 Mi
 arena, proves a contiguous 6 MiB allocation on-card and uploads segments larger
 than 64 KiB through PIO. Bootstrap placement and high-tail protection are explicit.
 The [allocation adapter](runtime/README.md) now passes actual host Doom and
-a resident card proof. Steps 2–3 still need shared-task ownership, arbitrary task
+a resident card proof. [Shared-task arena ownership](runtime/SHARED-ARENA.md)
+now passes on the two existing workers. Steps 2–3 still need arbitrary task
 launch and runtime imports or relocations; production malloc remains unchanged.
 
 ## Ordered gates
@@ -104,3 +105,13 @@ The allocation libc adapter is now tested; next implement shared-task ownership,
 the remaining real runtime link and
 host-backed WAD reads before loading Doom. The new host corpus supplies a finite
 reference; it does not establish i960 correctness by itself.
+
+## Shared-arena scheduling gate (2026-10-12)
+
+The opt-in [shared arena](runtime/SHARED-ARENA.md) preserves two registered
+worker IRQ owners. All loader/Doom metadata access uses one task mutex, and
+unlocked bulk work keeps pins. The old resident idle task deliberately faults;
+blocking both workers is not supported. Before WAD I/O or new task launch,
+either keep the control/network worker runnable or explicitly register, stack,
+and validate the idle interrupt context. Do not fix this by hiding an idle
+fault, force-unlocking a mutex, or relaxing task/IRQ drain.

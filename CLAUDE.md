@@ -1,5 +1,19 @@
 # Repository guidance for Claude Code
 
+**Shared Doom arena accepted (2026-10-12):** opt-in `--doom-shared` adds one
+priority-inheriting task mutex and separate allocation namespaces over the same
+8 MiB arena. Two existing workers passed 3,305 wrong-task rejection/check rounds,
+a deliberate timeout and recursive refusal, and complete retained-buffer/image
+reclamation after task/IRQ drain at tick 9,342. Six network rounds, 804 packets,
+full audits, native sanitizers and independent replay passed. The first blocking
+proof exposed the fatal-idle constraint: keep a control worker runnable or admit
+and test idle IRQ ownership before allowing all tasks to block. No new task,
+flash change or relaxed validation. Doom is still not running; the refreshed
+relocatable object is 631,176 bytes with 53 imports left. After reboot, the
+cooperative public IPv6 HTTP service was restored and verified (200).
+[Contract](game/doom/runtime/SHARED-ARENA.md) · [Evidence](artifacts/doom-shared-20261012/README.md).
+
+
 **Doom allocation runtime accepted (2026-10-12):** namespaced malloc/calloc/
 realloc/free/strdup now use the existing 8 MiB resident arena without replacing
 system libc. Six host demos / 12,600 frames match the accepted pixel/palette/tic

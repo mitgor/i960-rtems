@@ -1,0 +1,4 @@
+PASS resident UPL1: bounds, sequence, busy inbox, six-MiB proof, BSS, probe gate, STOP cleanup, checksum quarantine, guard failure
+PASS resident UPL1: bounds, sequence, busy inbox, six-MiB proof, BSS, probe gate, STOP cleanup, checksum quarantine, guard failure
+PASS resident UPL1: bounds, sequence, busy inbox, six-MiB proof, BSS, probe gate, STOP cleanup, checksum quarantine, guard failure
+PASS Doom libc proof with pinned image and retained-buffer STOP drain

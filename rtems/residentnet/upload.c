@@ -1,5 +1,13 @@
 #ifdef I960_RESIDENT_UPLOAD
 #include "upload.h"
+#include "doom_heap_shared.h"
+#ifdef I960_DOOM_SHARED
+#define LOCK() do {if(!doom_shared_enter((void*)1)){exclusive_abort();return;}}while(0)
+#define UNLOCK() doom_shared_leave((void*)1)
+#else
+#define LOCK() ((void)0)
+#define UNLOCK() ((void)0)
+#endif
 #include "../../loader/segmented/image.h"
 #ifndef UPLOAD_NATIVE
 #define R(a) (*(volatile unsigned int*)(a))
@@ -39,11 +47,17 @@ unsigned int upload_control(unsigned int op,unsigned int index,unsigned int valu
  return ~0u;
 }
 static unsigned int proof(void){unsigned int h,i,rc=0;volatile unsigned int*p;
- h=arena_alloc(&app_arena,6u*1048576u);if(!h)return 1;p=arena_pin(&app_arena,h);if(!p)return 2;
+ #ifdef I960_DOOM_SHARED
+ if(!doom_shared_enter((void*)1))return 5;
+#endif
+ h=arena_alloc(&app_arena,6u*1048576u);p=h?arena_pin(&app_arena,h):0;UNLOCK();if(!p)return 1;
  for(i=0;i<6u*1048576u/4;i++){if(!(i&255)&&upload_stopping()){rc=3;break;}p[i]=i^0xa596317bu;}
  if(!rc)for(i=0;i<6u*1048576u/4;i++){if(!(i&255)&&upload_stopping()){rc=3;break;}if(p[i]!=(i^0xa596317bu)){exclusive_abort();return 4;}}
  if(!rc){proof_bytes=6u*1048576u;proof_checks++;}
- if(!arena_unpin(&app_arena,h)||!arena_release(&app_arena,h))exclusive_abort();return rc;
+ #ifdef I960_DOOM_SHARED
+ if(!doom_shared_enter((void*)1)){exclusive_abort();return 5;}
+#endif
+ if(!arena_unpin(&app_arena,h)||!arena_release(&app_arena,h))exclusive_abort();UNLOCK();return rc;
 }
 /* RUN is deliberately restricted to the reviewed five-word returning probe.
  * Arbitrary task launch needs a separate owned-context/runtime ABI contract. */
@@ -53,13 +67,19 @@ static unsigned int run_probe(unsigned int *value){unsigned int i;unsigned char*
  p=image.base+image.manifest.segment[0].offset;for(i=0;i<sizeof(code);i++)if(p[i]!=((const unsigned char*)code)[i])return 2;
  p=image.base+image.manifest.segment[1].offset;
  for(i=image.manifest.segment[1].file_bytes;i<image.manifest.segment[1].memory_bytes;i++)if(p[i])return 5;
- fn=(unsigned int(*)(unsigned int))seg_start(&image);if(!fn)return 3;
+ #ifdef I960_DOOM_SHARED
+ if(!doom_shared_enter((void*)1))return 6;
+#endif
+ fn=(unsigned int(*)(unsigned int))seg_start(&image);UNLOCK();if(!fn)return 3;
 #ifndef UPLOAD_NATIVE
  *value=fn((unsigned int)(image.base+image.manifest.segment[1].offset));
 #else
  *value=0xe4f1e4e1u;
 #endif
- if(!seg_complete(&image))return 4;return 0;
+ #ifdef I960_DOOM_SHARED
+ if(!doom_shared_enter((void*)1)){exclusive_abort();return 6;}
+#endif
+ i=seg_complete(&image);UNLOCK();if(!i)return 4;return 0;
 }
 void upload_step(void){unsigned int command,rc=0,value=0,n,i;
  if(!initialized)return;
@@ -75,18 +95,21 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
   m.abi=inbox[8];m.count=inbox[9];m.entry=inbox[10];
   for(i=0;i<8;i++){struct segment *p=&m.segment[i];unsigned int *w=inbox+11+5*i;
    p->offset=w[0];p->file_bytes=w[1];p->memory_bytes=w[2];p->flags=w[3];p->crc32=w[4];}
-  rc=seg_begin(&image,&app_arena,&m)?0:4;
+  LOCK();rc=seg_begin(&image,&app_arena,&m)?0:4;UNLOCK();
  }else if(command==2){if(!inbox[5]||inbox[5]>SEG_CHUNK||n!=32+((inbox[5]+3)&~3u)){rc=3;goto done;}
-  rc=seg_write(&image,inbox[3],inbox[4],inbox+8,inbox[5])?0:4;
+  LOCK();rc=seg_write(&image,inbox[3],inbox[4],inbox+8,inbox[5])?0:4;UNLOCK();
  }else{
-  if(n!=32||inbox[3]||inbox[4]||inbox[5]){rc=3;goto done;}
-  if(command==3){value=seg_prepare(&image,sync_code);if(!value)rc=4;}
+  if(n!=32||((command!=9)&&inbox[3])||inbox[4]||inbox[5]){rc=3;goto done;}
+  if(command==3){LOCK();value=seg_prepare(&image,sync_code);if(!value)rc=4;UNLOCK();}
   else if(command==4)rc=run_probe(&value);
-  else if(command==5){if(!seg_cancel(&image))rc=4;else cancelled++;}
-  else if(command==6)value=arena_valid(&app_arena);
+  else if(command==5){LOCK();if(!seg_cancel(&image))rc=4;else cancelled++;UNLOCK();}
+  else if(command==6){LOCK();value=arena_valid(&app_arena);UNLOCK();}
   else if(command==7)rc=proof();
 #ifdef I960_DOOM_HEAP
   else if(command==8){rc=doom_arena_proof(&app_arena);if(!rc)value=0x444c4942u;}
+#endif
+  #ifdef I960_DOOM_SHARED
+  else if(command==9)value=doom_shared_report(inbox[3]);
 #endif
   else rc=3;
  }

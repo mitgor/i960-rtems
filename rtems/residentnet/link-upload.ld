@@ -3,7 +3,7 @@ SECTIONS {
  /* Loaded with the initial bounded upload, outside the BSS clear interval. */
  . = 0xc0f94000;
  _upload_code_start = .;
- .upload_text : { *doom_heap*.o(.text* .rodata*) *upload.o(.text* .rodata*) *upload_arena.o(.text* .rodata*) *upload_image.o(.text* .rodata*) *upload_protect.o(.text* .rodata*) . = ALIGN(16); }
+ .upload_text : { *rtems_sem*.o(.text* .rodata*) *score_coremutex*.o(.text* .rodata*) *score_coresem*.o(.text* .rodata*) *score_threadq*.o(.text* .rodata*) *doom_heap*.o(.text* .rodata*) *upload.o(.text* .rodata*) *upload_arena.o(.text* .rodata*) *upload_image.o(.text* .rodata*) *upload_protect.o(.text* .rodata*) . = ALIGN(16); }
  _upload_code_end = .;
  ASSERT(. <= 0xc0f9bff0, "resident upload code overlaps upper guard")
  . = 0xc0f2c000;
