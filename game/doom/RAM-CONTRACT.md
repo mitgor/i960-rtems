@@ -79,3 +79,21 @@ each calling path explicitly, then regenerate the unresolved-symbol report.
 The frame hashes in host profiling diagnose repeatability; they do not establish
 cross-architecture correctness or predict card FPS. Audio, networking and arbitrary
 WAD/mod compatibility are outside this first-port contract.
+
+## Owned engine preflight / fragmentation checkpoint — 2026-10-12
+
+The new engine-linked image is 754,448 bytes including BSS. Authenticated
+relocation metadata adds 52,700 bytes; the image admission allocates 807,148
+bytes (807,184 with guards/alignment). This remains within the conservative
+1 MiB image allowance. Native private-libc preflight peaks at 6,356,596 tracked
+bytes / six blocks, excluding the direct 16,896-byte WAD cache/bounce and guards.
+Including retained legacy proof buffers and the image leaves roughly 1 MiB
+before further guard/consumer costs. This is not a measured Doom startup peak.
+
+The old 320 KiB proof image places retained buffers where they fragment the
+future image + contiguous 6 MiB zone. An actual guarded-heap/native-port test
+reproduces OOM there and succeeds when 1 MiB is reserved during proof setup.
+The engine host harness now uses that layout, without releasing another owner's
+retained buffers or changing the 8 MiB grant. Physical acceptance remains pending
+the interrupt/drain bit-64 investigation; no engine entry ran in the failed
+batch. See [exact evidence](../../artifacts/doom-engine-20261012/README.md).

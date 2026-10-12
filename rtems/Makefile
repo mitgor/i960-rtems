@@ -2,6 +2,8 @@
 # Offline native tests only. This does not touch the card.
 test:
 	python3 residentnet/test_upload_gate.py
+	python3 ../loader/digest/test.py
+	python3 residentnet/test_upload_bootstrap.py --engine
 	python3 residentnet/test_upload_bootstrap.py
 	python3 residentnet/test_upload.py
 	python3 ../game/doom/runtime/cache/test.py

@@ -4,7 +4,8 @@ import importlib.util,subprocess,tempfile
 from pathlib import Path
 r=Path(__file__).resolve().parent
 spec=importlib.util.spec_from_file_location('resident_builder',r/'build_transport.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-header=m.protect_upload_header((r.parent/'transport/buffer_io.h').read_text())
+engine=__import__('sys').argv[1:]==['--engine']
+header=m.protect_upload_header((r.parent/'transport/buffer_io.h').read_text(),engine)
 with tempfile.TemporaryDirectory() as tmp:
  p=Path(tmp);(p/'buffer_io.h').write_text(header)
  (p/'test.c').write_text(r'''
@@ -20,4 +21,6 @@ int main(void){unsigned int i;bio_put(before+BIO_OFFSET,BIO_MAGIC);bio_put(befor
  after[0x6ffff]^=1;assert(!bio_response_valid(before,after,sizeof(before)));
  puts("PASS generated host bootstrap verifier: mutable BSS accepted; sampled upper code reservation bytes and guard boundary protected");}
 ''')
+ if engine:
+  f=p/'test.c';f.write_text(f.read_text().replace('i=0x68000','i=0x60000'))
  subprocess.run(['cc','-O2',str(p/'test.c'),'-o',str(p/'test')],check=True);subprocess.run([str(p/'test')],check=True)

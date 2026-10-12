@@ -2380,6 +2380,48 @@ audits running. Doom had a complete library now, but still needed an owned entry
 and exit, a larger admitted manifest, and a better way to bring its WAD data
 across. After the reboot, the old web page was answering again.
 
+## A visitor that could leave
+
+The first owned entry refused to open. RTEMS's old interrupt-level getter had a
+small trick in its pocket: restoring the processor control word overwrote the
+value it was about to report. It told a runnable caller that interrupts were
+masked. We kept the failed capture, read the control word without changing it,
+and tried the small visitor again.
+
+This one carried the library's original i960 setjmp and longjmp. It walked six
+nested frames, waited through real task switches, checked its stack canaries,
+and took two deliberate jumps home. Normal entry, application STOP, normal
+entry: all three returned with their buffer freed. A stale invitation could not
+cancel the next guest. The final global STOP drained at tick 21,511. The old
+getter itself stayed in the kernel backlog; the new door no longer trusted it.
+
+## Making room for the larger visitor
+
+The full engine and its private library now occupied 754,448 bytes, with 13,175
+addresses to move. Their recipe alone needed 52,700 bytes. Embedding all that in
+the small trusted loader window was over. We gave the loader a protected SHA256
+gate inside its existing room, and sent the image and address list separately.
+Their exact identities were still decided by the reviewed build, not by the
+visitor carrying its own CRC.
+
+The native preflight formatted real numbers, checked a six-megabyte allocation,
+drew a known test pattern, read the WAD header and cleaned up after STOP. It also
+found a less glamorous obstacle: retained proof buffers split the free arena.
+Eight megabytes in total did not mean six megabytes in one piece. Reserving a
+megabyte for the image before placing those buffers made the native layout work.
+
+On the card, changed code and a changed address list were refused. Then, while
+the clean image was still coming aboard, the interrupt and drain guard reported bit sixty-four. The active-state
+snapshot pointed toward the timer rejecting a task or live continuation, but
+the shared flag could not name the branch. We kept the refusal instead
+of teaching the timer to overlook it. No engine entry had run. The evidence
+replayed the two closed doors and the partial upload; it could not turn that
+into a successful visit.
+
+That is the next door to understand. The larger preflight remains optional,
+the six-megabyte layout has its native proof, and Doom still has not started.
+After the reboot, Vader was answering over IPv6 again.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

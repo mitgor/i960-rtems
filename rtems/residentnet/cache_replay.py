@@ -41,7 +41,10 @@ def prepare(capture,wad,build,requests,responses):
  assert [row['mode'] for row in r['runs']]==['normal','crc','short','host-error','timeout','normal'] and [row['result'] for row in r['runs']]==[oracle,3,3,3,3,oracle] and r['runs'][4]['seconds']>=4.9
  report=[w[5] for p,w in zip(requests,responses) if struct.unpack_from('<I',p,8)[0]==12][-8:]
  assert r['report']==report==[0x31444157,10+len(expected),6+2*len(normal),4,2,0,0,len(data)]
- base=[w[5] for p,w in zip(requests,responses) if struct.unpack_from('<I',p,8)[0]==14][-1]
+ bases=[w[5] for p,w in zip(requests,responses) if struct.unpack_from('<I',p,8)[0]==14]
+ if (capture/'engine-results.json').exists():bases=bases[:-3]
+ if (capture/'owned-results.json').exists():bases=bases[:-1]
+ base=bases[-1]
  assert r['base']==0xc02d0040+base and base%16==0
  return replies,dict(oracle=oracle,normal_wire_requests=len(normal),requests=len(records),replies=len(replies),cache_bytes=16384,bounce_bytes=512,probe_bytes=len(b),relocations=len(m['relocations']))
 

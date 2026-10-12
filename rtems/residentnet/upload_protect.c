@@ -11,6 +11,9 @@ static void range(unsigned int lo,unsigned int hi){unsigned int n;while(lo<hi){n
 void upload_protect_init(void){
  if(count){error=1;return;}
  range(0xc0f2c000u,0xc0f4c000u);
+ #ifdef I960_DOOM_ENGINE
+ {extern unsigned char engine_code_start[],engine_code_end[];range((unsigned)engine_code_start,(unsigned)engine_code_end);}
+#endif
  range((unsigned int)upload_code_start,(unsigned int)upload_code_end);
  /* BIO response, upper guard, saved staging tail, stock cache data/descriptors,
   * top-of-DRAM warm marker: frozen after ARM returns and engines are held. */

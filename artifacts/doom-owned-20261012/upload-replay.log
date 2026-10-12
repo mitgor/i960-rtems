@@ -1,0 +1,64 @@
+{
+  "commands": 677,
+  "pio_ioctls": 1723,
+  "stale_epochs_rejected": 1,
+  "code_bytes": 98304,
+  "data_bytes": 98309,
+  "zero_fill_bytes": 98299,
+  "result": "0xe4f1e4e1",
+  "simultaneous_allocation_bytes": 6619136,
+  "stop_cancelled_partial_image": true,
+  "latency_ms": {
+    "max": 1596.702161,
+    "mean": 49.203391690075456
+  },
+  "files_sha256": [
+    "8e5668cf13b7917fcd4a8d805a222eaf754a3be9e4d820dcee97796bebf7da41",
+    "96967a12e7b8024eb2e20ca15d114b5966f08c8941785fa250a295c7fdac83df"
+  ],
+  "runtime": {
+    "wad_sha256": "7323bcc168c5a45ff10749b339960e98314740a734c30d4b9f3337001f9e703d",
+    "bytes": 28795076,
+    "requests": 10,
+    "replies": 9,
+    "oracle": 2710325741
+  },
+  "cache": {
+    "oracle": 2488633422,
+    "normal_wire_requests": 7,
+    "requests": 18,
+    "replies": 17,
+    "cache_bytes": 16384,
+    "bounce_bytes": 512,
+    "probe_bytes": 1760,
+    "relocations": 11
+  },
+  "owned": {
+    "probe_bytes": 1668,
+    "relocations": 46,
+    "normal_entries": 2,
+    "cancelled_entries": 1,
+    "nonlocal_exits": 6,
+    "threshold": 224,
+    "epochs": [
+      56886
+    ],
+    "refused_stop_generations": [
+      1,
+      1,
+      3,
+      2,
+      3
+    ]
+  },
+  "relocation": {
+    "template_sha256": "5baa46a0e96de9c405071fff22439efc8c66d1136987a59be186ee3c5f4cd0a0",
+    "file_bytes": 184,
+    "memory_bytes": 320,
+    "relocations": 6,
+    "bss_bytes": 128,
+    "successful_entries": 2,
+    "admission_refusals": 8,
+    "oracle": 1228486293
+  }
+}

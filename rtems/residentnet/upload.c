@@ -41,6 +41,9 @@ unsigned int upload_init(void){if(initialized)return 0;
  if(!arena_init(&app_arena,(void*)UPLOAD_BASE,UPLOAD_BYTES))return 0;seg_init(&image);initialized=1;return 1;}
 /* ISR/mailbox path only: no allocator, hashes, code execution or image copying. */
 unsigned int upload_control(unsigned int op,unsigned int index,unsigned int value,unsigned int running){unsigned int i;
+#ifdef I960_DOOM_OWNED
+ if(op>=0x7a&&op<=0x7c)return doom_runtime_owned_control(op,index,value,running);
+#endif
  #ifdef I960_DOOM_RUNTIME
  if(op>=0x75&&op<=0x79)return doom_runtime_control(op,index,value,running);
 #endif
@@ -108,6 +111,13 @@ extern unsigned cache_entry(const struct doom_runtime_v1*);
 #include "doom_cache_entry.h"
 #endif
 #endif
+#ifdef I960_DOOM_OWNED
+extern volatile unsigned owned_result[8];
+#include "doom_owned_entry.h"
+#endif
+#ifdef I960_DOOM_ENGINE
+extern unsigned engine_run(struct seg_image*,int(*)(void*,unsigned),unsigned*),engine_report(unsigned);
+#endif
 void upload_step(void){unsigned int command,rc=0,value=0,n,i;
  if(!initialized)return;
  if(!upload_guards()){exclusive_abort();return;}
@@ -129,7 +139,7 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
  }else if(command==2){if(!inbox[5]||inbox[5]>SEG_CHUNK||n!=32+((inbox[5]+3)&~3u)){rc=3;goto done;}
   LOCK();rc=seg_write(&image,inbox[3],inbox[4],inbox+8,inbox[5])?0:4;UNLOCK();
  }else{
-  if(n!=32||((command!=9&&command!=12)&&inbox[3])||inbox[4]||inbox[5]){rc=3;goto done;}
+  if(n!=32||((command!=9&&command!=12&&command!=17&&command!=19)&&inbox[3])||inbox[4]||inbox[5]){rc=3;goto done;}
   if(command==3){LOCK();value=seg_prepare(&image,sync_code);if(!value)rc=4;UNLOCK();}
   else if(command==4)rc=run_probe(&value);
   else if(command==5){LOCK();if(!seg_cancel(&image))rc=4;else cancelled++;UNLOCK();}
@@ -148,6 +158,14 @@ void upload_step(void){unsigned int command,rc=0,value=0,n,i;
   else if(command==14){if(image.state!=SEG_READY)rc=1;else value=(unsigned int)((unsigned long)image.base-(unsigned long)UPLOAD_BASE);}
 #ifdef I960_DOOM_CACHE
   else if(command==15)rc=run_cache_entry(&value);
+#ifdef I960_DOOM_OWNED
+  else if(command==16)rc=run_owned(&value);
+  else if(command==17)value=inbox[3]<8?owned_last[inbox[3]]:~0u;
+#ifdef I960_DOOM_ENGINE
+  else if(command==18)rc=engine_run(&image,sync_code,&value);
+  else if(command==19)value=engine_report(inbox[3]);
+#endif
+#endif
 #endif
 #endif
 #endif

@@ -64,7 +64,9 @@ static void control_poll(void){unsigned int token=R(0x1314),index;
  #ifdef I960_RESIDENT_NET
 #ifdef I960_RESIDENT_UPLOAD
  if((token>>24)>=0x70&&(token>>24)<=
-#ifdef I960_DOOM_RUNTIME
+#ifdef I960_DOOM_OWNED
+ 0x7c
+#elif defined(I960_DOOM_RUNTIME)
  0x79
 #else
  0x74

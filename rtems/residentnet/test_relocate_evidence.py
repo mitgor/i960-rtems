@@ -20,6 +20,8 @@ for case in ('template','manifest','return_value','missing_entry','base','summar
   t=Path(tmp)
   for name in ('relocate-results.json','relocate-template.bin'):(t/name).write_bytes((a.capture/name).read_bytes())
   if (a.capture/'cache-results.json').exists():(t/'cache-results.json').write_bytes((a.capture/'cache-results.json').read_bytes())
+  if (a.capture/'owned-results.json').exists():(t/'owned-results.json').write_bytes((a.capture/'owned-results.json').read_bytes())
+  if (a.capture/'engine-results.json').exists():(t/'engine-results.json').write_bytes((a.capture/'engine-results.json').read_bytes())
   prepare_relocated(t,a.build,requests,responses) # copied baseline must pass
   req=copy.deepcopy(requests);res=copy.deepcopy(responses);summary=json.loads((t/'relocate-results.json').read_text())
   if case=='template':

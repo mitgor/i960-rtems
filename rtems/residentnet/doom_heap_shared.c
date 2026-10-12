@@ -27,7 +27,13 @@ void doom_shared_yield(void){if(rtems_task_wake_after(1)!=RTEMS_SUCCESSFUL)exclu
 /* No IRQ allocation, recursive entry, implicit task handoff or forced unlock.
  * Only the controller, AFTER the runtime proves both IRQ/task drains, may use
  * the two allocation namespaces for final reclamation. */
-static unsigned int holder,quiescent,enters[2],wait_max,hold_start,hold_max;
+#ifdef UPLOAD_NATIVE
+#include <stdatomic.h>
+static atomic_uint holder;
+#else
+static volatile unsigned int holder;
+#endif
+static unsigned int quiescent,enters[2],wait_max,hold_start,hold_max;
 #ifdef UPLOAD_NATIVE
 #include <stdatomic.h>
 static atomic_uint phase;
@@ -49,6 +55,14 @@ void doom_shared_leave(void *cookie){unsigned int elapsed=upload_time()-hold_sta
  if(elapsed>hold_max)hold_max=elapsed;holder=0;release();
 }
 void doom_shared_quiesce(unsigned int drained){if(current()!=3||!drained||holder){exclusive_abort();return;}quiescent=1;}
+unsigned doom_shared_application_owner(void){if(current()!=2||quiescent||holder==2)return 0;
+#ifndef UPLOAD_NATIVE
+ unsigned pc=0;__asm__ volatile("modpc 0,0,%0":"+r"(pc)::"memory");
+ return ((pc>>16)&31)==20; /* read-only PC query; established runnable priority */
+#else
+ return 1;
+#endif
+}
 static int peer_progress(void*p){(void)p;return !upload_stopping();}
 void doom_shared_wait(unsigned int wanted){unsigned int start=upload_time();
  while(phase!=wanted){if(upload_stopping()||upload_time()-start>200){exclusive_abort();return;}doom_shared_yield();}

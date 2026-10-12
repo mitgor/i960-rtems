@@ -1,0 +1,30 @@
+[
+  {
+    "case": "template",
+    "rejected": true
+  },
+  {
+    "case": "manifest",
+    "rejected": true
+  },
+  {
+    "case": "return_value",
+    "rejected": true
+  },
+  {
+    "case": "missing_entry",
+    "rejected": true
+  },
+  {
+    "case": "base",
+    "rejected": true
+  },
+  {
+    "case": "summary_result",
+    "rejected": true
+  },
+  {
+    "case": "summary_base",
+    "rejected": true
+  }
+]

@@ -58,7 +58,9 @@ def verify(root,out):
  arm=struct.unpack('<4I',req);assert arm[:2]==(0x31415452,1) and arm[3]&255==2;epoch=arm[2]
  audit=gzip.decompress((out/'audit-000001.bin.gz').read_bytes());before=wire.prepare(code)[:wire.bio.OFFSET]+wire.block(req,1)+original[wire.bio.IMAGE_SIZE:]
  assert wire.response(before,audit+original[len(audit):])==(0,raw[32:])
- if '-DI960_RESIDENT_UPLOAD' in flags:assert audit[0x68000:0x6fff0]==before[0x68000:0x6fff0]
+ if '-DI960_RESIDENT_UPLOAD' in flags:
+  start=0x60000 if '-DI960_DOOM_ENGINE' in flags else 0x68000
+  assert audit[start:0x6fff0]==before[start:0x6fff0]
  groups=[];diag_groups=[];ram_groups=[];stops=[];stopped=False;page=0;cur=None;events=json.loads((out/'controls.json').read_text())
  if (out/'control-journal.jsonl').exists():
   journal_version=json.loads((out/'test-options.json').read_text()).get('control_journal_version',1)

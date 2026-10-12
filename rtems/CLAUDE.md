@@ -1,5 +1,25 @@
 # RTEMS working guidance
 
+**Owned runtime and larger-image checkpoint (2026-10-12):** the small owned
+runtime proof is physically accepted: pinned i960 setjmp/longjmp, normal / STOP /
+normal, stale generation refusal, full audits and STOP drain at tick 21,511.
+The full engine-linked **diagnostic preflight** and exact SHA256-authenticated
+image/relocation gate pass native sanitizers and three linker oracles. On-card
+modified-code/metadata refusal passed; clean entry never ran after interrupt/drain fault bit 64 at tick 46,462. The active-state capture
+favors timer slot rejection; its unregistered/active paths share the flag.
+Do not relax that guard or claim Doom/engine execution. A native-tested 1 MiB
+proof reservation fixes the retained-buffer fragmentation before the 6 MiB zone;
+that host change still needs physical acceptance. The candidate spans 754,448
+bytes with 13,175 relocations; admission storage is 807,148 bytes. Both bootstrap
+code windows stay fully protected. Production IPv6 HTTP is restored (200).
+Next: diagnose the timer rejection with the parallel RTEMS audit, accept normal /
+STOP / normal preflight and full drain, then WAD batching and real Doom startup.
+Keep `--doom-engine` opt-in. The historical global ISR-level getter remains
+unfixed; only the new owner predicate uses a read-only PC query.
+[Owned evidence](../artifacts/doom-owned-20261012/README.md) ·
+[Larger gate/failure evidence](../artifacts/doom-engine-20261012/README.md).
+
+
 **Private Doom runtime/cache checkpoint (2026-10-12):** the new private
 Newlib/platform candidate has **zero unresolved imports**, a 752,804-byte
 code/data/BSS span and 13,113 relocations matching three independent links.

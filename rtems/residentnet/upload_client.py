@@ -4,7 +4,7 @@ from contextlib import nullcontext
 from pathlib import Path
 MAGIC=0x314c5055
 class Upload:
- def __init__(self,fd,epoch,out,gate=None):self.fd=fd;self.epoch=epoch;self.out=Path(out);self.sequence=0;self.gate=gate;self.service=None
+ def __init__(self,fd,epoch,out,gate=None):self.fd=fd;self.epoch=epoch;self.out=Path(out);self.sequence=0;self.gate=gate;self.service=None;self.journal_namespace=''
  def io(self,op,data=b'',epoch=None):
   raw=bytearray(struct.pack('<8I',op,self.epoch if epoch is None else epoch,len(data),0,0,0,0,0)+data.ljust(1024,b'\0'))
   before=bytes(raw);start=time.monotonic_ns()
@@ -16,7 +16,7 @@ class Upload:
   w=struct.unpack_from('<8I',raw);assert w[3]==1 and not w[4]&1 and w[5:]==(0,0,0)
   return bytes(raw[32:32+w[2]])
  def record(self,event):
-  with (self.out/('wad-journal.jsonl' if event['op'] in (3,4) else 'upload-journal.jsonl')).open('a') as f:f.write(json.dumps(event)+'\n')
+  with (self.out/(self.journal_namespace+'owned-journal.jsonl' if event['op'] in (5,6) else self.journal_namespace+'wad-journal.jsonl' if event['op'] in (3,4) else 'upload-journal.jsonl')).open('a') as f:f.write(json.dumps(event)+'\n')
  def query(self):return struct.unpack('<16I',self.io(2))
  def command(self,command,a=0,b=0,c=0,data=b'',expected=0,sequence=None,timeout=30):
   assert 0<timeout<=60
@@ -59,7 +59,10 @@ def exercise(fd,epoch,out,gate=None,doom_heap=False,doom_shared=False,runtime=No
  code=struct.pack('<5I',0x90841000,0x8c883000,0xa5a5a5a5,0x58844310,0x0a000000)
  code=code+bytes(i%251 for i in range(98304-len(code)))
  data=b'DATA'+bytes((i*7)%251 for i in range(98309-4))
- segments=[(0,len(code),len(code),1,zlib.crc32(code)),(0x20000,len(data),196608,2,zlib.crc32(data))]
+ # Hold 1 MiB during the initial heap/peer proof so retained proof buffers
+ # land beyond the future engine + contiguous 6 MiB zone, rather than inside it.
+ memory_bytes=1048576-0x20000 if runtime and (Path(runtime[1]).parent/'engine').exists() else 196608
+ segments=[(0,len(code),len(code),1,zlib.crc32(code)),(0x20000,len(data),memory_bytes,2,zlib.crc32(data))]
  u.begin(segments)
  u.command(3,expected=4) # incomplete image cannot prepare or execute
  u.command(4,expected=1)

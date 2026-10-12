@@ -3,7 +3,8 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--doom-engine',type=Path);a=p.parse_args()
+if a.doom_engine and not a.doom_runtime:p.error('engine admission requires owned runtime')
 if a.doom_runtime and not a.doom_shared:p.error('runtime entry requires shared Doom arena')
 if a.doom_shared and not a.doom_heap:p.error('shared arena requires Doom heap')
 if a.doom_heap and not a.resident_upload:p.error("Doom heap requires resident upload")
@@ -71,13 +72,20 @@ if a.resident_upload:flags+=['-DI960_RESIDENT_UPLOAD']
 if a.doom_heap:flags+=['-DI960_DOOM_HEAP']
 if a.doom_shared:flags+=['-DI960_DOOM_SHARED']
 if a.doom_runtime:
- flags+=['-DI960_DOOM_RUNTIME','-DI960_DOOM_RELOCATE','-DI960_DOOM_CACHE']
+ flags+=['-DI960_DOOM_RUNTIME','-DI960_DOOM_RELOCATE','-DI960_DOOM_CACHE','-DI960_DOOM_OWNED']
  subprocess.run(['python3',str(here.parent/'game/doom/runtime/entry/build.py'),'--out',str(out/'entry'),'--cross',a.cross],check=True)
  shutil.copyfile(out/'entry/runtime_probe_bytes.h',inc/'runtime_probe_bytes.h')
  subprocess.run(['python3',str(here.parent/'game/doom/runtime/relocate/build.py'),'--out',str(out/'entry/relocate'),'--cross',a.cross],check=True)
  shutil.copyfile(out/'entry/relocate/relocated_probe_bytes.h',inc/'relocated_probe_bytes.h')
  subprocess.run(['python3',str(here.parent/'game/doom/runtime/cache/build_probe.py'),'--out',str(out/'entry/cache'),'--cross',a.cross],check=True)
  shutil.copyfile(out/'entry/cache/cache_probe_bytes.h',inc/'cache_probe_bytes.h')
+ subprocess.run(['python3',str(here.parent/'game/doom/runtime/owned/build.py'),'--out',str(out/'entry/owned'),'--cross',a.cross,'--newlib',str(newlib)],check=True)
+ shutil.copyfile(out/'entry/owned/owned_probe_bytes.h',inc/'owned_probe_bytes.h')
+if a.doom_engine:
+ flags+=['-DI960_DOOM_ENGINE']
+ shutil.copyfile(a.doom_engine/'engine_identity.h',inc/'engine_identity.h')
+ engine_out=out/'entry/engine';engine_out.mkdir(parents=True,exist_ok=True)
+ for name in ('manifest.json','template.bin','relocations.bin','engine_identity.h'):shutil.copyfile(a.doom_engine/name,engine_out/name)
 if a.owned_mib:flags+=['-DI960_OWNED_MIB='+str(a.owned_mib)]
 if a.extra_ram:flags+=['-DI960_EXTRA_RAM']
 if a.heap_shared:flags+=['-DI960_HEAP_SHARED']
@@ -102,7 +110,7 @@ if a.profile in ('net','autonet','residentnet'):
 for f in sorted(profile_dir.glob('*')):
  if f.suffix not in ('.c','.S') or f.name.startswith(('.', 'test_')):continue
  subprocess.run([a.cross+'gcc',*flags,'-c',str(f),'-o',str(out/(f.stem+'.o'))],check=True)
-subprocess.run([a.cross+'ld','-T',str(profile_dir/('link-upload.ld' if a.resident_upload else 'link.ld')),'-Map='+str(out/'kernel.map'),'-o',str(out/'kernel.elf'),*[str(out/(f.stem+'.o')) for f in sorted(profile_dir.glob('*')) if f.suffix in ('.c','.S') and not f.name.startswith(('.', 'test_'))],str(out/'librtems-bounded.a'),*([str(out/'liblwip.a')] if a.profile in ('net','autonet','residentnet') else [])],check=True)
+subprocess.run([a.cross+'ld','-T',str(profile_dir/('link-engine.ld' if a.doom_engine else 'link-upload.ld' if a.resident_upload else 'link.ld')),'-Map='+str(out/'kernel.map'),'-o',str(out/'kernel.elf'),*[str(out/(f.stem+'.o')) for f in sorted(profile_dir.glob('*')) if f.suffix in ('.c','.S') and not f.name.startswith(('.', 'test_'))],str(out/'librtems-bounded.a'),*([str(out/'liblwip.a')] if a.profile in ('net','autonet','residentnet') else [])],check=True)
 subprocess.run([a.cross+'objcopy','-O','binary',str(out/'kernel.elf'),str(out/'kernel.bin')],check=True)
 with (out/'kernel.dis').open('w') as f:subprocess.run([a.cross+'objdump','-dr',str(out/'kernel.elf')],stdout=f,check=True)
 subprocess.run([a.cross.replace('coff-','elf-')+'size',str(out/'kernel.elf')],check=True)

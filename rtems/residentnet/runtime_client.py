@@ -63,3 +63,13 @@ def exercise_runtime(u,wad_path,probe_path):
  if root.exists():
   from cache_client import exercise
   exercise(u,wad_path,root)
+
+ root=Path(probe_path).parent/"owned"
+ if root.exists():
+  from owned_client import exercise
+  exercise(u,root)
+
+ root=Path(probe_path).parent/"engine"
+ if root.exists():
+  from engine_client import exercise
+  exercise(u,root,wad_path)

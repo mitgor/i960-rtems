@@ -15,6 +15,7 @@ sources += [lib/'stdio'/name for name in re.findall(r'\b\w+\.c\b',stdio)]+[lib/'
 for group,names in {'stdlib':'abs atoi atol atof strtod strtol strtoul dtoa mprec mbtowc mbtowc_r wctomb wctomb_r mblen mblen_r mbstowcs mbstowcs_r wcstombs wcstombs_r strtoll_r strtoull_r', 'locale':'locale', 'reent':'impure reent closer openr readr writer lseekr fstatr unlinkr linkr', 'errno':'errno'}.items():sources += [lib/group/(n+'.c') for n in names.split()]
 sources += [a.newlib/'newlib/libm/math'/n for n in ('s_isinf.c','s_isnan.c','s_infconst.c')]
 sources += [r/'port.c',r/'../cache/cache.c']
+if a.engine:sources += [r/'engine_entry.c']
 sources += [lib/('machine/i960/setjmp.S' if cross else 'machine/i386/setjmp.S')]
 objs=[];commands=[];source_hashes={};patches=[]
 with (a.out/'compile.log').open('w') as log:
@@ -34,7 +35,7 @@ raw=subprocess.check_output([nm,'--defined-only',str(archive)],text=True)
 defined=set(row.split()[-1] for row in raw.splitlines() if len(row.split())>=3 and row.split()[-2].upper() in 'TDBRSCVW')
 # Preserve application API and cache names; namespace all other definitions,
 # including Newlib reentrancy, ctype, errno, syscall and allocation state.
-preserve=lambda s:s.lstrip('_').startswith(('doom_platform_','doom_cache_'))
+preserve=lambda s:s.lstrip('_').startswith(('doom_platform_','doom_cache_','doom_engine_'))
 mapping={s:('_doom_nl'+s if cross else 'doom_nl_'+s) for s in defined if not preserve(s)}
 (a.out/'rename.txt').write_text(''.join(k+' '+v+'\n' for k,v in sorted(mapping.items())))
 private=a.out/'private-newlib.a';subprocess.run([objcopy,'--redefine-syms='+str(a.out/'rename.txt'),str(archive),str(private)],check=True)
@@ -43,12 +44,12 @@ if a.engine:
  engine=a.out/'engine-private.o';subprocess.run([objcopy,'--redefine-syms='+str(a.out/'rename.txt'),str(a.engine),str(engine)],check=True)
  libgcc=Path(subprocess.check_output([cc,*(['-mrp','-msoft-float'] if cross else ['-m32']),'-print-libgcc-file-name'],text=True).strip())
  private_gcc=a.out/'private-libgcc.a';subprocess.run([objcopy,'--redefine-syms='+str(a.out/'rename.txt'),str(libgcc),str(private_gcc)],check=True)
- image=a.out/'doom-platform.o';cmd=[cross+'ld','-r','-d','-o',str(image),str(engine),str(private),str(private_gcc)]
+ image=a.out/'doom-platform.o';cmd=[cross+'ld','-u','_doom_engine_entry','-r','-d','-o',str(image),str(engine),str(private),str(private_gcc)]
  subprocess.run(cmd,check=True)
  undefined=subprocess.check_output([nm,'-u',str(image)],text=True);(a.out/'undefined.txt').write_text(undefined)
  report.update(undefined=sorted(row.split()[-1] for row in undefined.splitlines()),libgcc_sha256=hashlib.sha256(libgcc.read_bytes()).hexdigest(),image_sha256=hashlib.sha256(image.read_bytes()).hexdigest())
  with (a.out/'sections.txt').open('w') as f:subprocess.run([str(Path(cross).parent/'i960-elf-size'),'-A',str(image)],stdout=f,check=True)
  if not undefined.strip():
-  final=a.out/'doom-platform.elf';subprocess.run([cross+'ld','-e','_doomgeneric_Create','-o',str(final),str(image)],check=True);report['final_link_passed']=True
+  final=a.out/'doom-platform.elf';subprocess.run([cross+'ld','-e','_doom_engine_entry','-o',str(final),str(image)],check=True);report['final_link_passed']=True
  else:report['final_link_passed']=False
 (a.out/'build.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({k:v for k,v in report.items() if k not in ('commands','sources','renamed_symbols')},indent=2))

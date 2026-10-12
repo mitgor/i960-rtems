@@ -5,7 +5,7 @@ Also reconstruct and CRC-check the two uploaded files independently in Python.
 import ast,argparse,errno,hashlib,json,struct,subprocess,tempfile,zlib
 from pathlib import Path
 r=Path(__file__).resolve().parent
-p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--wad',type=Path);p.add_argument('--entry',type=Path);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--wad',type=Path);p.add_argument('--entry',type=Path);p.add_argument('--partial-engine',action='store_true');a=p.parse_args()
 assert not a.doom_runtime or (a.doom_shared and a.wad)
 assert not a.doom_shared or a.doom_heap
 events=[json.loads(l) for l in (a.capture/'upload-journal.jsonl').read_text().splitlines()]
@@ -13,6 +13,8 @@ requests=[];responses=[];current=None;sent=bytearray();files=[bytearray(),bytear
 for e in events:
  req=bytes.fromhex(e['request']);assert len(req)==1056
  head=struct.unpack_from('<8I',req);op,epoch,n,*unused=head;assert not any(unused) and epoch and op in (1,2)
+ if 'errno' in e and a.partial_engine and op==1:
+  assert e['errno']==71 and e is events[-1];continue
  if 'errno' in e:
   assert op==2 and e['errno']==116 # Linux ESTALE, independent of replay host OS
   stale+=1;continue
@@ -35,10 +37,12 @@ for e in events:
   if current and not w[3] and w[1]==current[1]:
    responses.append(w);current=None
 assert current is None and stale==1 and len(requests)==len(responses)
-assert manifest and len(files[0])==98304 and len(files[1])==98309
+assert manifest and manifest[10] in (196608,917504) and len(files[0])==98304 and len(files[1])==98309
 for i in (0,1):
  desc=manifest[3+5*i:8+5*i];assert zlib.crc32(files[i])==desc[4]
- assert bytes(files[i])==(a.capture/('uploaded-code.bin' if i==0 else 'uploaded-data.bin')).read_bytes()
+ if a.partial_engine:
+  assert hashlib.sha256(files[i]).hexdigest()==('8e5668cf13b7917fcd4a8d805a222eaf754a3be9e4d820dcee97796bebf7da41','96967a12e7b8024eb2e20ca15d114b5966f08c8941785fa250a295c7fdac83df')[i]
+ else:assert bytes(files[i])==(a.capture/('uploaded-code.bin' if i==0 else 'uploaded-data.bin')).read_bytes()
 expected=struct.unpack_from('<I',files[1])[0]^0xa5a5a5a5
 assert expected==0xe4f1e4e1
 prefix=r'''
@@ -75,10 +79,22 @@ if (a.capture/'cache-results.json').exists():
  from cache_replay import prepare as prepare_cache,native as cache_native
  cache_replies,cache_info=prepare_cache(a.capture,a.wad,entry.parent/'cache',requests,responses)
  wad_replies+=cache_replies
+engine_info=None
+if a.partial_engine or (a.capture/'engine-results.json').exists():
+ from engine_replay import prepare as engine_prepare,native as engine_native
+ engine_info,engine_replies=engine_prepare(a.capture,entry.parent/'engine',a.wad,requests,responses,partial=a.partial_engine)
+ wad_replies+=engine_replies
+owned_info=None
+if (a.capture/'owned-results.json').exists():
+ assert a.doom_runtime
+ from owned_replay import prepare as owned_prepare,native as owned_native
+ owned_info=owned_prepare(a.capture,entry.parent/'owned',requests,responses)
 with tempfile.TemporaryDirectory() as tmp:
  t=Path(tmp)
  if a.doom_runtime:prefix=native(prefix,t,probe,wad_replies)
  if cache_info:prefix=cache_native(prefix,t,entry.parent/'cache')
+ if owned_info:prefix=owned_native(prefix,t,entry.parent/'owned',owned_info)
+ if engine_info:prefix=engine_native(prefix,t,entry.parent/'engine',engine_info)
  if (a.capture/'relocate-results.json').exists():
   from relocate_replay import prepare_relocated
   relocation_info=prepare_relocated(a.capture,entry.parent/'relocate',requests,responses)
@@ -103,7 +119,9 @@ unsigned int upload_protect_finish(void){return 1;}
  assert len(raw)==64*len(responses)
  for i,w in enumerate(responses):
   actual=struct.unpack_from('<16I',raw,i*64)
-  if a.doom_shared and struct.unpack_from('<I',requests[i],8)[0]==9:
+  if owned_info and struct.unpack_from('<2I',requests[i],8) in ((17,3),(17,4)):
+   assert w[:5]==actual[:5] and w[6:12]==actual[6:12] and w[13:]==actual[13:],(i,w,actual)
+  elif a.doom_shared and struct.unpack_from('<I',requests[i],8)[0]==9:
    assert w[:5]==actual[:5] and w[6:12]==actual[6:12] and w[13:]==actual[13:],(i,w,actual)
   else:assert w[0:12]==actual[0:12] and w[13:]==actual[13:],(i,w,actual)
   assert w[12]==0xc02d0040
@@ -120,10 +138,13 @@ if a.doom_shared:
  observed=json.loads((a.capture/'doom-shared.json').read_text())
  assert observed['magic']=='0x53484152' and observed['peer_retained_bytes']==98304
  assert [observed[k] for k in ('phase','peer_checks','wrong_task_rejections','peer_enters','owner_enters','max_wait_ticks','max_hold_ticks','timeout_rejections','recursive_rejections')]==stats[1:]
-parked=json.loads((a.capture/'upload-parked.json').read_text());assert parked[3]==parked[4]==parked[15]==0 and parked[9]==(10 if (a.capture/"cache-results.json").exists() else 8 if (a.capture/"relocate-results.json").exists() else 4 if a.doom_runtime else 3)
+if not a.partial_engine:
+ parked=json.loads((a.capture/'upload-parked.json').read_text());assert parked[3]==parked[4]==parked[15]==0 and parked[9]==(14 if (a.capture/"engine-results.json").exists() else 12 if (a.capture/"owned-results.json").exists() else 10 if (a.capture/"cache-results.json").exists() else 8 if (a.capture/"relocate-results.json").exists() else 4 if a.doom_runtime else 3)
 proof=[w for w in responses if w[10]==6291456];assert proof
-result=dict(commands=len(requests),pio_ioctls=len(latencies),stale_epochs_rejected=stale,code_bytes=len(files[0]),data_bytes=len(files[1]),zero_fill_bytes=196608-len(files[1]),result=hex(expected),simultaneous_allocation_bytes=6291456+327680,stop_cancelled_partial_image=True,latency_ms=dict(max=max(latencies),mean=sum(latencies)/len(latencies)),files_sha256=[hashlib.sha256(b).hexdigest() for b in files])
+result=dict(commands=len(requests),pio_ioctls=len(latencies),stale_epochs_rejected=stale,code_bytes=len(files[0]),data_bytes=len(files[1]),zero_fill_bytes=manifest[10]-len(files[1]),result=hex(expected),simultaneous_allocation_bytes=6291456+327680,stop_cancelled_partial_image=not a.partial_engine,native_cleanup_modeled=a.partial_engine,latency_ms=dict(max=max(latencies),mean=sum(latencies)/len(latencies)),files_sha256=[hashlib.sha256(b).hexdigest() for b in files])
 if runtime_info:result['runtime']=runtime_info
 if cache_info:result['cache']=cache_info
+if owned_info:result['owned']=owned_info
+if engine_info:result['engine']=engine_info
 if (a.capture/'relocate-results.json').exists():result['relocation']=relocation_info
 a.output.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))

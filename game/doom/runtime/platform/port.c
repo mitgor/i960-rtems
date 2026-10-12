@@ -13,6 +13,7 @@
 #include "../cache/cache.h"
 static const struct doom_runtime_v1 *io;
 static const char *iwad;
+static const struct doom_runtime_owned *owned;
 static struct doom_platform_stats stats;
 static struct {void *p;unsigned n,internal;} allocations[128];
 static struct {unsigned id,offset;} files[4];
@@ -26,11 +27,16 @@ static jmp_buf escape;
 extern int errno;
 static int fail(int e){errno=e;_impure_ptr->_errno=e;return -1;}
 static void fatal(int n) __attribute__((noreturn));
-static void fatal(int n){stats.exited=1;stats.exit_code=(unsigned)n;if(armed)longjmp(escape,1);for(;;){/* fatal outside an admitted call: never pretend to return */}}
+static void fatal(int n){stats.exited=1;stats.exit_code=(unsigned)n;if(armed&&(!owned||owned->owner()))longjmp(escape,1);for(;;){/* fatal outside an admitted call: never pretend to return */}}
 int doom_platform_bind(const struct doom_runtime_v1*a,const char*path){
  if(io||!path||!*path||!a||a->magic!=DOOM_API_MAGIC||a->version!=DOOM_API_VERSION||a->bytes!=sizeof(*a)||a->pointer_bytes!=sizeof(void*)||a->features!=DOOM_API_FEATURES||a->little_endian!=1||a->file_id!=1||a->file_bytes<512||a->file_bytes>268435456u||a->reserved[0]||a->reserved[1]||a->max_read!=512||!a->allocate||!a->release||!a->read||!a->ticks_ms)return 0;
  io=a;iwad=path;return 1;
 }
+int doom_platform_bind_owned(const struct doom_runtime_owned*a,const char*path){
+ if(owned||!a||a->magic!=DOOM_OWNED_MAGIC||a->version!=DOOM_OWNED_VERSION||a->bytes!=sizeof(*a)||a->features!=DOOM_OWNED_FEATURES||a->reserved||!a->owner||!a->wait_ms||!a->stopping||!a->owner()||a->stopping())return 0;
+ if(!doom_platform_bind(&a->io,path))return 0;owned=a;return 1;
+}
+int doom_platform_checkpoint(void){if(!io||retired|| (owned&&!owned->owner()))return -1;return owned&&owned->stopping()?1:0;}
 void *malloc(size_t n){unsigned i;void*p;if(!io||retired||n>0xffffffffu)return 0;if(!n)n=1;
  for(i=0;i<128&&allocations[i].p;i++){}if(i==128){fail(ENOMEM);return 0;}
  p=io->allocate((unsigned)n);if(!p){fail(ENOMEM);return 0;}allocations[i].p=p;allocations[i].n=n;allocations[i].internal=0;
@@ -73,14 +79,16 @@ double fabs(double x){union{double d;unsigned long long u;}v;v.d=x;v.u&=0x7fffff
 void DG_Init(void){unsigned i;if(!io||initialized)fatal(207);for(i=0;i<64000;i++)frame[i]=0;initialized=1;}
 void DG_SetWindowTitle(const char*title){if(title){_write(1,title,strlen(title));_write(1,"\n",1);}}
 unsigned DG_GetTicksMs(void){if(!io)fatal(203);return io->ticks_ms();}
-void DG_SleepMs(unsigned n){unsigned start;if(n>0x7fffffffu)fatal(204);start=DG_GetTicksMs();stats.sleeps++;while(DG_GetTicksMs()-start<n){} /* Preemptible clock wait; owned yield/STOP extension remains an admission gate. */}
+void DG_SleepMs(unsigned n){unsigned start;if(n>0x7fffffffu)fatal(204);start=DG_GetTicksMs();stats.sleeps++;
+ if(owned){for(;;){unsigned elapsed=DG_GetTicksMs()-start,remaining;if(elapsed>=n)break;remaining=n-elapsed;if(remaining>1000)remaining=1000;if(owned->wait_ms(remaining)){if(owned->owner()&&owned->stopping())fatal(210);fatal(211);}}}
+ else while(DG_GetTicksMs()-start<n){} /* Preemptible clock wait; owned yield/STOP extension remains an admission gate. */}
 int DG_GetKey(int*p,unsigned char*k){if(!p||!k)fatal(205);if(!key_count)return 0;*p=pressed[key_read];*k=keys[key_read];key_read=(key_read+1)%DPL_KEYS;key_count--;return 1;}
 extern unsigned char *DG_ScreenBuffer;
 void DG_DrawFrame(void){unsigned i,h=2166136261u;if(!DG_ScreenBuffer)fatal(206);for(i=0;i<64000;i++){frame[i]=DG_ScreenBuffer[i];h=(h^frame[i])*16777619u;}stats.frame_hash=h;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colors[i].r;palette[3*i+1]=colors[i].g;palette[3*i+2]=colors[i].b;}for(i=0;i<768;i++)h=(h^palette[i])*16777619u;stats.palette_hash=h;stats.frames++;}
 int doom_platform_key(int p,unsigned char k){unsigned i;if(key_count==DPL_KEYS||p<0||p>1)return 0;i=(key_read+key_count)%DPL_KEYS;keys[i]=k;pressed[i]=p;key_count++;stats.key_events++;return 1;}
 unsigned doom_platform_log(void*dst,unsigned n){unsigned i;unsigned char*p=dst;if(!p&&n)return 0;if(n>log_count)n=log_count;for(i=0;i<n;i++)p[i]=log_ring[(log_start+i)%DPL_LOG];log_start=(log_start+n)%DPL_LOG;log_count-=n;return n;}
 const struct doom_platform_stats *doom_platform_stats(void){return &stats;}
-int doom_platform_call(void(*fn)(void)){int n;if(!io||!fn||armed||retired||stats.exited)return -1;armed=1;n=setjmp(escape);if(!n)fn();armed=0;return stats.exited?(int)stats.exit_code:0;}
+int doom_platform_call(void(*fn)(void)){int n;if(!io||!fn||armed||retired||stats.exited||doom_platform_checkpoint())return -1;armed=1;n=setjmp(escape);if(!n)fn();armed=0;return stats.exited?(int)stats.exit_code:0;}
 int doom_platform_finish(void){unsigned i;if(armed||retired)return 0;for(i=0;i<4;i++)if(files[i].id)return 0;if(cache.api)return 0;for(i=0;i<128;i++)if(allocations[i].p&&!allocations[i].internal)return 0;
  if(fflush(stdout)||fflush(stderr)||fclose(stdout)||fclose(stderr))return 0;
  for(i=0;i<128;i++)if(allocations[i].p)free(allocations[i].p);retired=1;return !stats.blocks;}

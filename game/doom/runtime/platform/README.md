@@ -42,13 +42,13 @@ One upstream Newlib defect is patched in a build-local copy: `%lln` used
 indirection is recorded with before/after text and hashes; shared upstream
 sources remain untouched. The native i386 setjmp build uses Newlib's
 `_I386MACH_ALLOW_HW_INTERRUPTS` hosted setting so longjmp does not execute
-privileged CLI/STI. The i960 assembly is unchanged and remains untested on card
-in this application candidate.
+privileged CLI/STI. The i960 assembly is unchanged. The separate owned-runtime proof now tests it
+on the card; the larger preflight is documented separately.
 
 Platform hooks retain real bounded output: 4 KiB log ring with explicit drop
 counts, the latest 320×200 indexed framebuffer and 768 RGB palette bytes with
-hashes, a 32-event key queue, and the actual runtime clock. Sleep currently
-waits on that preemptible clock. It is not an owned RTEMS yield/STOP interface.
+hashes, a 32-event key queue, and the actual runtime clock. The v1 fallback sleep waits on that preemptible clock. An owned bind uses
+bounded RTEMS waits and owner-safe STOP handling.
 Consumers may copy output only under this application's owner/lifetime contract;
 no concurrent browser publisher is admitted here.
 
@@ -89,12 +89,19 @@ The existing host Doom corpus remains the prior allocation/cache profile.
 
 ## Next admission gates
 
-Supply a real API for owned yielding, STOP and controlled engine termination;
-prove the i960 exit boundary and its interaction with the owned IRQ context.
-Add an engine-specific entry and state lifetime, bind the WAD backend, and validate
-all initialization/teardown paths. The engine has over thirteen thousand retained
-relocations; embedding its recipe in the current protected proof window is not
-an option. Admit an independently authenticated manifest/relocation plan without
-relaxing the current code whitelist. Measure actual initialization reads and
-consider larger transport batches before committing to startup latency. Recompute
-runtime/image/zone/cache/allocator/stack peaks, then compare the first frame.
+The [owned runtime](../owned/README.md) supplies real RTEMS yielding and
+invocation STOP; its small physical proof accepts the pinned i960 exit boundary.
+The [larger gate/preflight](../engine/README.md) supplies exact-build image and
+metadata admission, owner binding and diagnostic teardown. Actual private-libc
+preflight and the corrected retained-buffer layout pass 32-bit native sanitizers.
+
+The physical larger batch refused modified code/metadata but stopped at timer
+ISR slot rejection before clean entry. Keep it opt-in and investigate that
+registered-owner/active-continuation path before claiming physical acceptance.
+See [captures and reproduction](../../../../artifacts/doom-engine-20261012/README.md).
+
+Then measure and batch WAD initialization reads, add reviewed engine startup,
+tic safe points and complete engine allocation cleanup, and recompute the image,
+zone/cache/allocator/stack peaks. Compare the first real Doom frame with the
+established host oracle before browser input and endurance. The known-pattern
+preflight framebuffer is not a Doom frame or a startup performance result.
