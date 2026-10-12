@@ -2279,6 +2279,37 @@ program could now call the operating system and fetch its own data without
 owning the whole file or stealing another task's memory. The next job was to
 teach the much larger visitor those same manners.
 
+## A file that would not fit
+
+The little program could ask for bytes. Doom wanted to put them halfway through
+its six-megabyte zone. Those were different promises: the runtime would lend a
+whole allocation to a read, while the game handed its file layer a pointer into
+something much larger.
+
+The answer was a small waiting room. A separately owned 512-byte buffer received
+the reply, a sixteen-kilobyte cache kept recently seen pieces, and the application
+copied the checked bytes into its own zone. The file layer would open one named
+WAD and no others. Closing it did not turn an old file handle into a new one.
+
+On the host, the actual engine took that route for all six demos. All 12,600
+frame hashes still matched. We made the imaginary engine reservation a full
+megabyte this time, inside the same eight-megabyte arena, and the game still
+finished and gave its allocations back. The cache was useful plumbing, but not
+a miraculous speedup: it saved a few percent of requests while aligned reads
+brought back a little more data. Making it much larger scarcely helped.
+
+The compiler supplied nine more real routines, mostly the arithmetic the chip
+could not do directly. Forty-four imports remained. And the old linker delivered
+one more archaeological surprise: it accepted the option to keep relocations,
+then left them out of the final executable. So we kept the records from the
+relocatable object instead. A small code/data/BSS example, moved using those
+records, matched three independently linked binaries byte for byte.
+
+That last experiment stayed on the host. Doom still had not run on the card.
+The next visitor would be that small relocated program, with its own initialized
+data and pointers, before the much larger engine was allowed through the door.
+Meanwhile, the public web page kept answering.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

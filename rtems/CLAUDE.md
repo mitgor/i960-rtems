@@ -1,5 +1,15 @@
 # RTEMS working guidance
 
+**New host-only cache/link checkpoint:** [../game/doom/runtime/cache/README.md](../game/doom/runtime/cache/README.md) and
+[../game/doom/runtime/relocate/README.md](../game/doom/runtime/relocate/README.md). Opt-in `--wad-cache` requires `--arena-runtime`.
+Only the separately allocated bounce base crosses runtime reads; zone interior
+pointers stay in the owning application. Single IWAD, no rebind or reopen after
+close; no general stdio/filesystem shim. Six host demos match 12,600 hashes with
+1 MiB reserved image + at most 6,473,545 dynamic bytes in the 8 MiB arena.
+44 engine imports remain. The REL prototype is offline-only; never bypass the
+current card whitelist or infer relocation records from pointer-looking words.
+Before Doom, admit/test the small relocated proof with full existing audits.
+
 **Runtime-entry/WAD bridge accepted:** [../game/doom/runtime/entry/README.md](../game/doom/runtime/entry/README.md).
 `--doom-runtime` requires `--doom-shared`. Only the exact reviewed probe may
 enter through the v1 table; this is not arbitrary Doom launch. WAD staging is

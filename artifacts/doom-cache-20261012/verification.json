@@ -1,0 +1,13 @@
+{
+  "frames": 12600,
+  "reference_matches": true,
+  "binary_sha256": "bf37f49626f1859bbc089a146b350a3f2cd900449e0835fe904a5c5c2ed85b61",
+  "peak_dynamic": 6473545,
+  "image_reserved": 1048576,
+  "peak_plus_image": 7522121,
+  "imports": 44,
+  "resolved_helpers": 9,
+  "relocation_linker_match": true,
+  "incomplete_engine_refused": true,
+  "card_execution": false
+}

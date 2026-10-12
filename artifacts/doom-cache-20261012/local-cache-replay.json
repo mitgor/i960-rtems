@@ -1,0 +1,284 @@
+[
+  {
+    "case": "p1-demo1-0",
+    "frames": 2100,
+    "uncached_exact_512": {
+      "requests": 28873,
+      "wire_bytes": 14082836
+    },
+    "options": [
+      {
+        "lines": 8,
+        "bytes": 4608,
+        "hits": 1440,
+        "misses": 28299,
+        "wire_bytes": 14488772
+      },
+      {
+        "lines": 32,
+        "bytes": 16896,
+        "hits": 1510,
+        "misses": 28229,
+        "wire_bytes": 14452932
+      },
+      {
+        "lines": 128,
+        "bytes": 66048,
+        "hits": 1642,
+        "misses": 28097,
+        "wire_bytes": 14385348
+      },
+      {
+        "lines": 256,
+        "bytes": 131584,
+        "hits": 1699,
+        "misses": 28040,
+        "wire_bytes": 14356164
+      },
+      {
+        "lines": 512,
+        "bytes": 262656,
+        "hits": 1747,
+        "misses": 27992,
+        "wire_bytes": 14331588
+      }
+    ],
+    "arena_peak": 6461029,
+    "image_reservation": 1048576
+  },
+  {
+    "case": "p1-demo2-0",
+    "frames": 2100,
+    "uncached_exact_512": {
+      "requests": 29673,
+      "wire_bytes": 14485058
+    },
+    "options": [
+      {
+        "lines": 8,
+        "bytes": 4608,
+        "hits": 1442,
+        "misses": 29106,
+        "wire_bytes": 14901956
+      },
+      {
+        "lines": 32,
+        "bytes": 16896,
+        "hits": 1513,
+        "misses": 29035,
+        "wire_bytes": 14865604
+      },
+      {
+        "lines": 128,
+        "bytes": 66048,
+        "hits": 1643,
+        "misses": 28905,
+        "wire_bytes": 14799044
+      },
+      {
+        "lines": 256,
+        "bytes": 131584,
+        "hits": 1698,
+        "misses": 28850,
+        "wire_bytes": 14770884
+      },
+      {
+        "lines": 512,
+        "bytes": 262656,
+        "hits": 1749,
+        "misses": 28799,
+        "wire_bytes": 14744772
+      }
+    ],
+    "arena_peak": 6461029,
+    "image_reservation": 1048576
+  },
+  {
+    "case": "p1-demo3-0",
+    "frames": 2100,
+    "uncached_exact_512": {
+      "requests": 30828,
+      "wire_bytes": 15051282
+    },
+    "options": [
+      {
+        "lines": 8,
+        "bytes": 4608,
+        "hits": 1456,
+        "misses": 30263,
+        "wire_bytes": 15494340
+      },
+      {
+        "lines": 32,
+        "bytes": 16896,
+        "hits": 1535,
+        "misses": 30184,
+        "wire_bytes": 15453892
+      },
+      {
+        "lines": 128,
+        "bytes": 66048,
+        "hits": 1681,
+        "misses": 30038,
+        "wire_bytes": 15379140
+      },
+      {
+        "lines": 256,
+        "bytes": 131584,
+        "hits": 1745,
+        "misses": 29974,
+        "wire_bytes": 15346372
+      },
+      {
+        "lines": 512,
+        "bytes": 262656,
+        "hits": 1798,
+        "misses": 29921,
+        "wire_bytes": 15319236
+      }
+    ],
+    "arena_peak": 6461029,
+    "image_reservation": 1048576
+  },
+  {
+    "case": "p2-demo1-0",
+    "frames": 2100,
+    "uncached_exact_512": {
+      "requests": 31526,
+      "wire_bytes": 15316164
+    },
+    "options": [
+      {
+        "lines": 8,
+        "bytes": 4608,
+        "hits": 1944,
+        "misses": 30678,
+        "wire_bytes": 15706660
+      },
+      {
+        "lines": 32,
+        "bytes": 16896,
+        "hits": 2012,
+        "misses": 30610,
+        "wire_bytes": 15671844
+      },
+      {
+        "lines": 128,
+        "bytes": 66048,
+        "hits": 2131,
+        "misses": 30491,
+        "wire_bytes": 15610916
+      },
+      {
+        "lines": 256,
+        "bytes": 131584,
+        "hits": 2178,
+        "misses": 30444,
+        "wire_bytes": 15586852
+      },
+      {
+        "lines": 512,
+        "bytes": 262656,
+        "hits": 2215,
+        "misses": 30407,
+        "wire_bytes": 15567908
+      }
+    ],
+    "arena_peak": 6473545,
+    "image_reservation": 1048576
+  },
+  {
+    "case": "p2-demo2-0",
+    "frames": 2100,
+    "uncached_exact_512": {
+      "requests": 31421,
+      "wire_bytes": 15274083
+    },
+    "options": [
+      {
+        "lines": 8,
+        "bytes": 4608,
+        "hits": 1926,
+        "misses": 30582,
+        "wire_bytes": 15657508
+      },
+      {
+        "lines": 32,
+        "bytes": 16896,
+        "hits": 2006,
+        "misses": 30502,
+        "wire_bytes": 15616548
+      },
+      {
+        "lines": 128,
+        "bytes": 66048,
+        "hits": 2124,
+        "misses": 30384,
+        "wire_bytes": 15556132
+      },
+      {
+        "lines": 256,
+        "bytes": 131584,
+        "hits": 2172,
+        "misses": 30336,
+        "wire_bytes": 15531556
+      },
+      {
+        "lines": 512,
+        "bytes": 262656,
+        "hits": 2210,
+        "misses": 30298,
+        "wire_bytes": 15512100
+      }
+    ],
+    "arena_peak": 6473545,
+    "image_reservation": 1048576
+  },
+  {
+    "case": "p2-demo3-0",
+    "frames": 2100,
+    "uncached_exact_512": {
+      "requests": 31104,
+      "wire_bytes": 15117624
+    },
+    "options": [
+      {
+        "lines": 8,
+        "bytes": 4608,
+        "hits": 1924,
+        "misses": 30254,
+        "wire_bytes": 15489572
+      },
+      {
+        "lines": 32,
+        "bytes": 16896,
+        "hits": 1989,
+        "misses": 30189,
+        "wire_bytes": 15456292
+      },
+      {
+        "lines": 128,
+        "bytes": 66048,
+        "hits": 2103,
+        "misses": 30075,
+        "wire_bytes": 15397924
+      },
+      {
+        "lines": 256,
+        "bytes": 131584,
+        "hits": 2154,
+        "misses": 30024,
+        "wire_bytes": 15371812
+      },
+      {
+        "lines": 512,
+        "bytes": 262656,
+        "hits": 2189,
+        "misses": 29989,
+        "wire_bytes": 15353892
+      }
+    ],
+    "arena_peak": 6473545,
+    "image_reservation": 1048576
+  }
+]

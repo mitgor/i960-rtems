@@ -2,7 +2,8 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');a=p.parse_args()
+assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
 assert hashlib.sha256(a.archive.read_bytes()).hexdigest()=='26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7', 'source hash mismatch'
 here=Path(__file__).resolve().parent;work=a.work.resolve();work.mkdir(parents=True,exist_ok=True)
 with tarfile.open(a.archive) as tf:tf.extractall(work,filter='data')
@@ -37,7 +38,7 @@ else:
  sources += [here/'profile.c']
  patch('z_zone.c','memzone_t*\tmainzone;','memzone_t*\tmainzone;\nvoid DG_ZoneSample(void);\nextern unsigned prof_zone_purges;')
  patch('z_zone.c','Z_Free ((byte *)rover+sizeof(memblock_t));','prof_zone_purges++;\n                Z_Free ((byte *)rover+sizeof(memblock_t));')
- patch('w_file_stdc.c','    return result;', '    extern void DG_WadRead(unsigned,unsigned);\n    DG_WadRead(buffer_len,result);\n    return result;')
+ if not a.wad_cache:patch('w_file_stdc.c','    return result;', '    extern void DG_WadRead(unsigned,unsigned);\n    DG_WadRead(buffer_len,result);\n    return result;')
  patch('z_zone.c','    return result;','    DG_ZoneSample();\n    return result;')
  with (src/'z_zone.c').open('a') as f:f.write((here/'zone_profile.inc').read_text())
 if a.arena_runtime:
@@ -45,6 +46,9 @@ if a.arena_runtime:
  sources+=runtime_sources
  flags+=['-I'+str(here/'runtime')]
  if a.target!='i960': flags+=['-DPROFILE_ARENA']
+if a.wad_cache:
+ sources=[f for f in sources if f.name!='w_file_stdc.c']+[here/'runtime/cache/cache.c',here/'runtime/cache/backend.c']
+ flags+=['-DDOOM_WAD_CACHE','-I'+str(here/'runtime/cache')]
 commands=[];failures=[];objs=[]
 with (out/'compile.log').open('w') as log:
  for f in sources:

@@ -1,0 +1,10 @@
+/home/mit/i960-doom-cache-20261012/accepted-link/doom-runtime.o  :
+section      size   addr
+.text      318064      0
+.data       69888      0
+.bss       250600      0
+.stab       28500      0
+.stabstr    57999      0
+Total      725051
+
+

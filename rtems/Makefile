@@ -4,6 +4,7 @@ test:
 	python3 residentnet/test_upload_gate.py
 	python3 residentnet/test_upload_bootstrap.py
 	python3 residentnet/test_upload.py
+	python3 ../game/doom/runtime/cache/test.py
 	python3 ../game/doom/runtime/entry/test.py
 	python3 residentnet/test_runtime_client.py
 	python3 residentnet/test_doom_shared.py

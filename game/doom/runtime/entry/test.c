@@ -4,6 +4,7 @@
 #include "../heap.h"
 #include "../libc.h"
 #include "api.h"
+#include "../cache/cache.h"
 #define UPLOAD_NATIVE 1
 #define I960_DOOM_RUNTIME 1
 static unsigned ticks,stopping,mode,locked;
@@ -44,5 +45,12 @@ int main(void){unsigned binding[11]={WAD_MAGIC,1,sizeof(file)},i,h=2166136261u;s
  for(mode=0;mode<6;mode++){assert(doom_runtime_probe(doom_runtime_api())==(mode?3:h));assert(!heap.blocks&&!leases&&doom_runtime_finish());}
  stopping=0;mode=0;assert(doom_runtime_probe(doom_runtime_api())==h);
  assert(wad.accepted==6&&wad.rejected==2&&wad.cancelled==2&&wad.sequence==11);
+ {struct doom_cache c={0};unsigned char out[1111];unsigned before=wad.sequence;
+  assert(doom_cache_open(&c,doom_runtime_api()));
+  assert(doom_cache_read(&c,499,out,sizeof out)==sizeof out&&!memcmp(out,file+499,sizeof out));
+  assert(wad.sequence==before+4);before=wad.sequence;
+  assert(doom_cache_read(&c,499,out,sizeof out)==sizeof out&&wad.sequence==before);
+  assert(doom_cache_close(&c)&&!heap.blocks&&!leases&&doom_runtime_finish());
+ }
  assert(doom_heap_stop(&heap)&&doom_heap_drain(&heap));puts("PASS runtime API: real allocator, uploaded probe logic, WAD success/CRC/short/host error/timeout/STOP, pinned lifetime, recovery");
 }

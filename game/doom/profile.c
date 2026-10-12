@@ -89,8 +89,14 @@ void DG_SleepMs(uint32_t ms){clock_ms+=ms;}
 uint32_t DG_GetTicksMs(void){return clock_ms;}
 int DG_GetKey(int*pressed,unsigned char*key){(void)pressed;(void)key;return 0;}
 void DG_SetWindowTitle(const char*title){(void)title;}
+#ifdef DOOM_WAD_CACHE
+#include "runtime/cache/host.inc"
+#endif
 int main(int argc,char**argv){char stack;const char*n=getenv("DOOM_FRAMES");stack_origin=(uintptr_t)&stack;if(n)frame_limit=strtoul(n,0,10);atexit(report);
 #ifdef PROFILE_ARENA
 runtime_init();
+#endif
+#ifdef DOOM_WAD_CACHE
+cache_host_init(argc,argv);
 #endif
 doomgeneric_Create(argc,argv);for(;;){clock_ms+=29;doomgeneric_Tick();}return 0;}

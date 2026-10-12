@@ -1,5 +1,18 @@
 # Repository guidance for Claude Code
 
+**Doom cache/link milestone (2026-10-12; host-only):** the single-WAD backend
+now bridges interior zone destinations through a private 512-byte runtime read
+buffer and 16 KiB cache. All 12,600 host frame/palette/tic hashes still match,
+with a 1 MiB image reservation inside the 8 MiB arena; peak dynamic use is
+6,473,545 bytes. Real soft-float helpers reduce unresolved imports from 53 to
+44; the 638,552-byte object remains non-loadable. A restricted REL relocation
+prototype matches three independent linker outputs and refuses the incomplete
+engine. This old linker drops final relocation records despite `--emit-relocs`.
+No new card payload was run; public HTTP remained available. Next physical gate:
+small relocated code/data/BSS proof, then remaining libc/platform services and
+bounded Doom startup. [Contracts](game/doom/runtime/cache/README.md) ·
+[Evidence](artifacts/doom-cache-20261012/README.md).
+
 **Doom runtime entry/WAD bridge accepted (2026-10-12):** opt-in
 `--doom-runtime` executed a reviewed 736-byte uploaded application using a
 96-byte i960 function table, task-owned allocation and bounded host-backed WAD

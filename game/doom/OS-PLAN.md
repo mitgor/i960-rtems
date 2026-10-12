@@ -1,7 +1,8 @@
 # RTEMS-to-Doom implementation plan — 2026-10-12
 
 The engine's 80 selected translation units compile for i960RP; the relocatable
-base object has 58 unresolved symbols; the allocation-integrated variant has 53. No Doom image has run on the card.
+base object has 58 unresolved symbols; the allocation-integrated variant has 53; the new cache + actual compiler-helper
+link leaves 44. No Doom image has run on the card.
 The [RAM contract](RAM-CONTRACT.md) requests an 8 MiB application arena,
 including a contiguous 6 MiB zone. The [exclusive RAM work](../../rtems/residentnet/LARGE-RAM.md)
 expands the kernel workspace/stacks separately; tested reserve is not automatically
@@ -131,3 +132,27 @@ fault, force-unlocking a mutex, or relaxing task/IRQ drain.
    and cleanup, then request the first frame and compare its host oracle.
 4. Add input/frame scheduling only after startup and STOP/recovery are accepted.
    Preserve worker 0's runnable control path unless idle IRQ ownership is proven.
+
+## Cache/link checkpoint and concrete next gates (2026-10-12)
+
+The [single-WAD cache/backend](runtime/cache/README.md) passes the actual engine
+on the host (12,600 reference hashes), reserving 1 MiB for the image inside the
+8 MiB arena. Peak dynamic use is 6,473,545 bytes, including cache/bounce and zone.
+The partial i960 link now resolves nine compiler helpers and occupies 638,552
+static bytes; 44 libc/platform imports still prevent a final link. No card
+payload changed at this checkpoint.
+
+1. Admit the [small REL relocation proof](runtime/relocate/README.md) through the
+   segmented loader, preserving allocation/pin/CRC/BSS/cache-ordering/whitelist
+   checks. Test its initialized data, BSS and indirect pointers on-card. The old
+   linker's `--emit-relocs` does not preserve final relocation records; use the
+   validated relocatable-object records instead of guessing patch sites.
+2. Resolve the remaining import inventory with tested semantics: pure libc,
+   application-local formatting/error state, real platform timing/output/input,
+   and explicit read-only/unsupported file policies. Do not share kernel stdio
+   state or fabricate successful saves/config writes. Recompute the final image.
+3. Connect the cache backend to the accepted runtime table in that admitted
+   image, measure larger WAD transfer options, and run bounded initialization.
+   The small cache alone is not a startup-throughput solution: observed wire
+   bytes increase slightly despite modest request-count savings.
+4. Compare the first frame, then progress to ticks, input, STOP and endurance.
