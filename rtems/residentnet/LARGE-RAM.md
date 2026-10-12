@@ -1,5 +1,11 @@
 # Exclusive RAM, kernel workspace and task stacks
 
+**Resident upload extension:** [UPLOAD.md](UPLOAD.md) describes opt-in
+`--resident-upload`: protected high-tail/code pages, an 8 MiB guarded application
+arena, separate bootstrap placement and resident PIO. It replaces the reserve
+pattern contract only for that explicit grant. The baseline below remains the
+contract when this flag is absent; libc malloc is unchanged.
+
 Accepted on the known card on 2026-10-12: 12 MiB startup patterns, 35 minutes,
 48 dual-stack rounds, two timer wraps, complete allocation drain and full final
 reserve scan. See [captures and failures](../../artifacts/rtems-large-ram-20261012/README.md).
@@ -27,8 +33,9 @@ After every pass it compares hashes of low RAM and the region from the candidate
 end through the immutable upload code. These detect unintended writes to those
 protected intervals, with the usual collision limitation of a 32-bit hash.
 Runtime mutable upload RAM is excluded because the test itself modifies state there.
-The high tail above `c0f4c000` is also outside these hashes; inventory and protect
-it before granting the reserve to a general allocator or executable loader.
+Without `--resident-upload`, the high tail above `c0f4c000` is outside these
+hashes. The upload extension inventories and fingerprints the stable upper
+intervals before granting the application arena; see its separate contract.
 
 Only after successful admission may RTEMS initialize its external workspace and
 stacks. The existing external queue/application heap are then admitted separately.
@@ -88,9 +95,9 @@ keeps its existing 180,000-tick maximum. Each test still has an explicit deadlin
 ## Remaining ownership work
 
 The [segmented prototype](../../loader/segmented/README.md) now implements an
-independent guarded arena and image state machine. Native 6 MiB and small real-card
-execution tests passed; no large-RAM allocator/loader integration is claimed.
-The existing reserve patterns and production heap are unchanged.
+guarded arena and image state machine. It is now integrated by the opt-in
+[resident upload profile](UPLOAD.md), including an on-card 6 MiB proof. Baseline
+reserve patterns and libc heap remain unchanged without that option.
 
 Even a successful 12 MiB test is not an 11+ MiB malloc arena. Next add a guarded
 allocator arena to the reserve, replace its immutable-pattern contract with

@@ -58,6 +58,7 @@ def verify(root,out):
  arm=struct.unpack('<4I',req);assert arm[:2]==(0x31415452,1) and arm[3]&255==2;epoch=arm[2]
  audit=gzip.decompress((out/'audit-000001.bin.gz').read_bytes());before=wire.prepare(code)[:wire.bio.OFFSET]+wire.block(req,1)+original[wire.bio.IMAGE_SIZE:]
  assert wire.response(before,audit+original[len(audit):])==(0,raw[32:])
+ if '-DI960_RESIDENT_UPLOAD' in flags:assert audit[0x68000:0x6fff0]==before[0x68000:0x6fff0]
  groups=[];diag_groups=[];ram_groups=[];stops=[];stopped=False;page=0;cur=None;events=json.loads((out/'controls.json').read_text())
  if (out/'control-journal.jsonl').exists():
   journal_version=json.loads((out/'test-options.json').read_text()).get('control_journal_version',1)
@@ -185,6 +186,6 @@ def verify(root,out):
    assert all(diagnostics['unlocked_copy_preemptions']) and diag_groups[-1][9]>0
   if options['ticks']>=210000:assert diag_groups[-1][9]>=2
  else:assert not diag_groups
- return dict(heap_diagnostics=diagnostics,run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=None if groups[-1][57] in QUEUE_CAPACITY else groups[-1][57:60],queue_telemetry=groups[-1][58:60] if groups[-1][57] in QUEUE_CAPACITY else None,cache_completion_proven=False,secondary_reset_held=reset,exception_ownership=owner,broader_ram_owned=extra,large_ram_mib=owned[0] if owned else 0,external_queue_bytes=192000 if extra else 0,application_heap_bytes=(171824 if reclaim else 69952) if heap else 0,heap_allocations_freed=groups[-1][50] if heap else None,rounds=rounds,burst=burst_result,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
+ return dict(resident_application_arena_bytes=8388608 if '-DI960_RESIDENT_UPLOAD' in flags else 0,heap_diagnostics=diagnostics,run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=None if groups[-1][57] in QUEUE_CAPACITY else groups[-1][57:60],queue_telemetry=groups[-1][58:60] if groups[-1][57] in QUEUE_CAPACITY else None,cache_completion_proven=False,secondary_reset_held=reset,exception_ownership=owner,broader_ram_owned=extra,large_ram_mib=owned[0] if owned else 0,external_queue_bytes=192000 if extra else 0,application_heap_bytes=(171824 if reclaim else 69952) if heap else 0,heap_allocations_freed=groups[-1][50] if heap else None,rounds=rounds,burst=burst_result,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--root',type=Path,required=True);p.add_argument('run',type=Path);a=p.parse_args();print(json.dumps(verify(a.root,a.run),indent=2))

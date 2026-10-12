@@ -1,5 +1,7 @@
 # Artifacts
 
+[2026-10-12 resident RTEMS upload](rtems-resident-upload-20261012/README.md): 8 MiB arena, protected bootstrap/tail, live 6 MiB proof, concurrent segmented uploads and networking; two failures retained with fixes.
+
 [2026-10-12 allocator and segmented-loader core](segmented-loader-20261012/README.md): native large-allocation tests, three actual-card segmented execution rehearsals, exact binaries and restored-service evidence.
 
 Latest RAM/OS milestone: [12 MiB exclusive RAM and RTEMS workspace](rtems-large-ram-20261012/README.md):

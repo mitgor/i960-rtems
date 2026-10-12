@@ -1,0 +1,19 @@
+{
+  "commands": 506,
+  "pio_ioctls": 1290,
+  "stale_epochs_rejected": 1,
+  "code_bytes": 98304,
+  "data_bytes": 98309,
+  "zero_fill_bytes": 98299,
+  "result": "0xe4f1e4e1",
+  "simultaneous_allocation_bytes": 6619136,
+  "stop_cancelled_partial_image": true,
+  "latency_ms": {
+    "max": 289.678546,
+    "mean": 25.330274174418605
+  },
+  "files_sha256": [
+    "8e5668cf13b7917fcd4a8d805a222eaf754a3be9e4d820dcee97796bebf7da41",
+    "96967a12e7b8024eb2e20ca15d114b5966f08c8941785fa250a295c7fdac83df"
+  ]
+}

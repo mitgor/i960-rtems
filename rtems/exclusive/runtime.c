@@ -24,6 +24,9 @@
 extern void exclusive_timer_isr(void);
 #ifdef I960_OWNED_MIB
 #include "../residentnet/large_ram.h"
+#ifdef I960_RESIDENT_UPLOAD
+#include "../residentnet/upload.h"
+#endif
 #define workspace ((unsigned char*)LARGE_WORKSPACE)
 #define WORKSPACE_BYTES 262144u
 #define TASK_BYTES 65536u
@@ -44,6 +47,10 @@ static volatile unsigned int ticks,stop,progress[2],done[2],fault;
 static Context_Control fatal_context;
 static unsigned int resident,resident_epoch,resident_state,stop_reason,snapshot[64],snapshot_id,stop_sent;
 static rtems_id controller;
+#ifdef I960_RESIDENT_UPLOAD
+unsigned int upload_stopping(void){return stop||stop_sent||resident_state!=1;}
+unsigned int upload_time(void){return ticks;}
+#endif
 extern void exclusive_engine_report(unsigned int*);
 void exclusive_report(unsigned int*);
 #ifdef I960_RESIDENT_NET
@@ -54,6 +61,12 @@ static void mask(void),enable(void);
 static void control_poll(void){unsigned int token=R(0x1314),index;
  if(!resident||((token&65535)!=resident_epoch))return;
  #ifdef I960_RESIDENT_NET
+#ifdef I960_RESIDENT_UPLOAD
+ if((token>>24)>=0x70&&(token>>24)<=0x74){
+  R(0x1318)=upload_control(token>>24,(token>>16)&255,R(0x1310),resident_state==1);(void)R(0x1318);
+  R(0x1314)=0;R(0x131c)=token|0x08000000u;(void)R(0x131c);R(0x1324)=2;(void)R(0x1324);return;
+ }
+#endif
  if(resident_net_control(token))return;
 #endif
 #ifdef I960_OWNED_MIB
@@ -155,6 +168,9 @@ static void Worker(rtems_task_argument id){
 #endif
 #ifdef I960_OWNED_MIB
   if(ticks/100!=last_proof){last_proof=ticks/100;for(pi=0;pi<sizeof(proof);pi++)if(proof[pi]!=(unsigned char)(pi^id))bounded_fatal(0x57001);stack_checks[id]++;}
+#endif
+#ifdef I960_RESIDENT_UPLOAD
+  if(id)upload_step();
 #endif
   progress[id]++;
  }mask();

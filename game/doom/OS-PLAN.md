@@ -9,8 +9,11 @@ an application allocator or executable image grant.
 
 Prototype progress: [arena and segmented core](../../loader/segmented/README.md)
 passed native 6 MiB allocation tests and real i960 execution from a small BIO arena.
-Steps 2–3 remain integration gates: production malloc is unchanged; no resident
-upload service, libc adapter, task launch or large application grant exists yet.
+The [resident integration](../../rtems/residentnet/UPLOAD.md) now grants an 8 MiB
+arena, proves a contiguous 6 MiB allocation on-card and uploads segments larger
+than 64 KiB through PIO. Bootstrap placement and high-tail protection are explicit.
+Steps 2–3 still need libc/shared-task adapters, arbitrary task launch and runtime
+imports or relocations; production malloc remains unchanged.
 
 ## Ordered gates
 

@@ -2116,6 +2116,41 @@ ownership contract extended. And the resident image has just 1,456 bytes left in
 its immutable code window. The next loader needs somewhere to stand while it
 builds the larger program around itself.
 
+## The loader moves into the house
+
+The small rehearsal became a resident service. Eight megabytes of the tested
+reserve went to a guarded arena, while the allocator's bookkeeping stayed with
+RTEMS. The loader itself fitted into a separate 6,416-byte section near the top
+of the original upload. Its linker boundary kept it clear of the kernel's BSS.
+The host checked those bytes before takeover, and the card watched 135 protected
+pages covering the monitor, loader and saved upper tail.
+
+The first manifest did not get through. Five integers occupied twenty bytes on
+the host and thirty-two in an i960 C structure; the whole manifest was 172 wire
+bytes and 272 compiler bytes. The card rejected it before allocating anything.
+The fix was to read the words, rather than ask two compilers to agree about the
+space between them.
+
+Then RTEMS received ninety-six kilobytes of code and a separate data segment,
+checked their checksums, cleared the BSS and called the little returning probe.
+The answer was still `e4f1e4e1`. This time a six-megabyte allocation lived beside
+the image, survived a complete fill and readback, and was freed on the card.
+There had been only one firmware callback, before takeover. Everything since
+had crossed the message registers.
+
+Running uploads alongside networking found a less exotic obstruction on the
+host. Upload ioctls slipped between the words of a diagnostic snapshot until the
+relay stopped pumping packets long enough for TCP to time out. Giving a whole
+snapshot a turn fixed it. Ten dual-stack rounds then passed beside the uploads.
+At STOP, a deliberately unfinished image stayed pinned until the task and IRQ
+contexts drained; only then did the arena become empty. The final reserve and
+protected-page checks passed too.
+
+This is room for a program, and a way to bring one in. The libc heap is still the
+old small heap, and arbitrary application tasks still need their runtime and
+ownership contract. Doom has not run. But the six-megabyte number now belongs in
+the card's column of the ledger, not only in the native tests.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -2148,9 +2183,10 @@ So, the ledger, honestly kept:
   processing is now preemptible. A half-hour exclusive run passed forty dual-stack
   rounds and complete application-allocation drain.
   A later exclusive run validated a 12 MiB region, a 256 KiB kernel workspace,
-  64 KiB task stacks and thirty-five minutes of networking. The larger reserve
-  still needs an application allocator and segmented executable loader; graceful
-  engine drain and longer resident service remain open.
+  64 KiB task stacks and thirty-five minutes of networking. An opt-in resident loader now uses an 8 MiB guarded application arena,
+  with a live 6 MiB allocation proof and segmented PIO uploads alongside ten
+  network rounds. General libc/task adapters, arbitrary application launch,
+  graceful engine drain and longer resident service remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

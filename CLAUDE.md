@@ -1,5 +1,21 @@
 # Repository guidance for Claude Code
 
+**Resident RTEMS upload accepted (2026-10-12):**
+[Ownership, bootstrap and protocol](rtems/residentnet/UPLOAD.md) now implement
+opt-in `--resident-upload --owned-mib 12`: an 8 MiB guarded arena, protected
+monitor/loader/high-tail pages, and a separate 6,416-byte loader section inside
+the original upload allocation. A resident PIO transfer loaded 96 KiB code and
+98,309 data bytes, zeroed/checked 98,299 BSS bytes, and executed the reviewed
+returning probe. A simultaneous 6 MiB allocation passed on-card. Ten concurrent
+dual-stack rounds (140 cases, 1,115 packets) and STOP cleanup passed; a partial
+image remained pinned until worker/IRQ drain, then the arena was proved empty.
+The C-struct wire-padding failure and a host snapshot/relay scheduling failure
+are preserved with their fixes. [Exact artifacts](artifacts/rtems-resident-upload-20261012/README.md).
+Libc remains on its 171,824-byte heap. Arbitrary application task launch,
+imports/relocations and Doom remain next work; there is no second firmware
+callback or flash change. The stock/cooperative alternative remains available.
+After reboot, cooperative IPv6 HTTP was restored and independently returned 200.
+
 **Allocator/segmented-loader core (2026-10-12):**
 [New core and integration gates](loader/segmented/README.md) provide a guarded
 128-slot arena, generation handles, pins/cancellation, and an eight-segment

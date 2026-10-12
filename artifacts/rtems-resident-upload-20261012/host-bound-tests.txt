@@ -1,0 +1,2 @@
+PASS actual snapshot wrapper and upload client share a whole-snapshot exclusion gate
+PASS host preparation bound covers the full 8 MiB arena and terminates on non-completion

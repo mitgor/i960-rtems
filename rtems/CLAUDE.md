@@ -1,5 +1,14 @@
 # RTEMS working guidance
 
+**Resident integration accepted (2026-10-12):** [residentnet/UPLOAD.md](residentnet/UPLOAD.md).
+Use the opt-in resident-upload profile for the new 8 MiB arena and PIO transport;
+keep the baseline libc allocator and cooperative profiles. The initial upload
+contains a separately linked upper code section which must remain outside BSS
+and be verified before takeover. Decode manifest words explicitly: i960 C structs
+have different padding. Preserve the whole-snapshot host gate during concurrent
+uploads, sequence/epoch checks, pin retention, and reboot-only release. Exact
+binaries, failed attempts and concurrent acceptance are linked in the contract.
+
 **2026-10-12 allocator/segmented prototype:** [../loader/segmented/README.md](../loader/segmented/README.md) records native
 6 MiB allocation tests and actual-card execution from a guarded 3,728-byte BIO
 arena. This core is not integrated with resident RTEMS. Do not enlarge malloc or

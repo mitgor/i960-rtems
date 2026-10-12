@@ -3,7 +3,8 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");a=p.parse_args()
+if a.resident_upload and a.owned_mib not in (10,12):p.error("resident upload requires 10 or 12 MiB exclusive ownership")
 if a.owned_mib and (not a.queue_reclaim or a.fault_test or a.heap_test):p.error("owned RAM requires release queue-reclaim profile")
 if a.secondary_reset and a.profile!="residentnet":p.error("secondary reset requires residentnet")
 if a.fault_owner and not a.secondary_reset:p.error("fault ownership requires secondary reset")
@@ -63,6 +64,7 @@ if a.profile in ('stopcases','containcases'):flags+=['-DI960_STOP_CASES']
 if a.profile in ('contain','containcases'):flags+=['-DI960_CONTAIN_TEST']
 if a.secondary_reset:flags+=['-DI960_SECONDARY_RESET']
 if a.fault_owner:flags+=['-DI960_FAULT_OWNER','-DI960_FAULT_TEST='+str(a.fault_test)]
+if a.resident_upload:flags+=['-DI960_RESIDENT_UPLOAD']
 if a.owned_mib:flags+=['-DI960_OWNED_MIB='+str(a.owned_mib)]
 if a.extra_ram:flags+=['-DI960_EXTRA_RAM']
 if a.heap_shared:flags+=['-DI960_HEAP_SHARED']
@@ -87,7 +89,7 @@ if a.profile in ('net','autonet','residentnet'):
 for f in sorted(profile_dir.glob('*')):
  if f.suffix not in ('.c','.S') or f.name.startswith(('.', 'test_')):continue
  subprocess.run([a.cross+'gcc',*flags,'-c',str(f),'-o',str(out/(f.stem+'.o'))],check=True)
-subprocess.run([a.cross+'ld','-T',str(profile_dir/'link.ld'),'-Map='+str(out/'kernel.map'),'-o',str(out/'kernel.elf'),*[str(out/(f.stem+'.o')) for f in sorted(profile_dir.glob('*')) if f.suffix in ('.c','.S') and not f.name.startswith(('.', 'test_'))],str(out/'librtems-bounded.a'),*([str(out/'liblwip.a')] if a.profile in ('net','autonet','residentnet') else [])],check=True)
+subprocess.run([a.cross+'ld','-T',str(profile_dir/('link-upload.ld' if a.resident_upload else 'link.ld')),'-Map='+str(out/'kernel.map'),'-o',str(out/'kernel.elf'),*[str(out/(f.stem+'.o')) for f in sorted(profile_dir.glob('*')) if f.suffix in ('.c','.S') and not f.name.startswith(('.', 'test_'))],str(out/'librtems-bounded.a'),*([str(out/'liblwip.a')] if a.profile in ('net','autonet','residentnet') else [])],check=True)
 subprocess.run([a.cross+'objcopy','-O','binary',str(out/'kernel.elf'),str(out/'kernel.bin')],check=True)
 with (out/'kernel.dis').open('w') as f:subprocess.run([a.cross+'objdump','-dr',str(out/'kernel.elf')],stdout=f,check=True)
 subprocess.run([a.cross.replace('coff-','elf-')+'size',str(out/'kernel.elf')],check=True)

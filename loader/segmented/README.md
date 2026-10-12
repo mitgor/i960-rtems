@@ -5,10 +5,12 @@ passed. The second test executed copied position-independent code which read a
 separately loaded data segment. All runs restored staging RAM and unloaded the
 probe. [Evidence](../../artifacts/segmented-loader-20261012/README.md).
 
-This is an independent core, not yet wired into resident RTEMS or its malloc.
-The live arena was **3,728 bytes in the existing BIO output grant**. A contiguous
-6 MiB allocation was tested natively, not on the card. The production RTEMS heap
-remains 171,824 bytes and its 12 MiB admission contract is unchanged.
+The original core rehearsal used **3,728 bytes in the BIO output grant**.
+The subsequent [resident integration](../../rtems/residentnet/UPLOAD.md) now uses
+this core in RTEMS with an explicitly guarded 8 MiB arena, resident PIO upload,
+and an on-card contiguous 6 MiB allocation proof. It is opt-in and does not change
+libc malloc: that existing heap remains 171,824 bytes. The original core captures
+below are historical evidence, not the full resident acceptance record.
 
 ## Arena contract
 
@@ -79,7 +81,11 @@ handle. The BIO result contains SEG1, test status, computed result, prepare-step
 count and arena size, followed by zeros. Its caller verifies full staging
 restoration. This cooperative rehearsal must not run during exclusive RTEMS.
 
-## Next integration gates
+## Integration history and remaining gates
+
+Items 1–2 and the resident mailbox in item 4 are now implemented by the
+[resident profile](../../rtems/residentnet/UPLOAD.md). Libc/task adapters, arbitrary
+application execution and larger endurance remain. The original ordering follows.
 
 1. Inventory/protect the high tail excluded from the current large-RAM hashes.
    Define separate grants for runtime, application arena, executable storage and
