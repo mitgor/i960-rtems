@@ -1,5 +1,14 @@
 # DoomGeneric RAM request for RTEMS
 
+**Height diagnostic (2026-10-13):** unchanged 16,400-byte checkpoint log and
+8 MiB arena; admission storage 801,624 bytes, modeled total 7,550,607. Native
+199-record normal traces plus early STOP fit 512 records. The physical run
+completed 279 full RAM/snapshot pairs but no final Doom frame/drain. The traced
+wrong height comes from a wrong sector selection; a separate scalar probe confirms
+an optimized comparison defect outside RTEMS. No RAM extension or allocator fix
+is inferred from it. [Evidence](../../artifacts/doom-height-20261013/README.md).
+
+
 **Checkpoint diagnostic addition (2026-10-13; physical diagnostic run completed; N3 not accepted):**
 The checkpoint log uses a registered 16,400-byte allocation in the existing
 8 MiB Doom arena, before admitted images. It remains outside private engine

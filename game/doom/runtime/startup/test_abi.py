@@ -3,7 +3,7 @@
 import argparse,json,struct,subprocess
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--doom',type=Path,required=True);p.add_argument('--newlib',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True);r=Path(__file__).resolve().parent
-names=['int','long','short','int64_t','mapthing_t','maplinedef_t','mapsidedef_t','mapvertex_t','mapsector_t','mapseg_t','mapnode_t','mapsubsector_t','ticcmd_t','vertex_t','side_t','seg_t','sector_t','line_t','mobj_t','memblock_t','memzone_t','struct doom_runtime_v1','struct doom_runtime_owned','struct doom_runtime_checkpoint']
+names=['int','long','short','int64_t','mapthing_t','maplinedef_t','mapsidedef_t','mapvertex_t','mapsector_t','mapseg_t','mapnode_t','mapsubsector_t','ticcmd_t','vertex_t','side_t','seg_t','sector_t','line_t','mobj_t','node_t','subsector_t','player_t','memblock_t','memzone_t','struct doom_runtime_v1','struct doom_runtime_owned','struct doom_runtime_checkpoint']
 expressions=[];labels=[]
 for name in names:
  for op in ('sizeof','__alignof__'):expressions.append(f'{op}({name})');labels.append(f'{op} {name}')
@@ -13,7 +13,9 @@ for name in ('io','magic','owner','wait_ms','stopping'):
  expressions.append(f'offsetof(struct doom_runtime_owned,{name})');labels.append('owned offset '+name)
 for name in ('mark','reserved'):
  expressions.append(f'offsetof(struct doom_runtime_checkpoint,{name})');labels.append('checkpoint offset '+name)
-source=a.out/'layout.c';source.write_text('#include <stddef.h>\n#include <stdint.h>\n#include "doomdata.h"\n#include "r_defs.h"\n#include "d_ticcmd.h"\n#include "z_zone.c"\n#include "checkpoint_api.h"\nunsigned abi_sizes[]={'+','.join(expressions)+'};\n')
+for name,fields in [('player_t','mo playerstate cmd viewz viewheight deltaviewheight bob cheats extralight'),('mobj_t','x y z subsector floorz ceilingz momx momy player'),('sector_t','floorheight ceilingheight'),('subsector_t','sector numlines firstline'),('node_t','x y dx dy bbox children'),('seg_t','linedef sidedef frontsector'),('side_t','sector'),('line_t','sidenum')]:
+ for field in fields.split():expressions.append(f'offsetof({name},{field})');labels.append(f'field offset {name}.{field}')
+source=a.out/'layout.c';source.write_text('#include <stddef.h>\n#include <stdint.h>\n#include "doomdata.h"\n#include "r_defs.h"\n#include "d_ticcmd.h"\n#include "d_player.h"\n#include "z_zone.c"\n#include "checkpoint_api.h"\nunsigned abi_sizes[]={'+','.join(expressions)+'};\n')
 def constants(obj):
  b=obj.read_bytes();h=struct.unpack_from('<16sHHIIIIIHHHHHH',b);assert b[:7]==b'\x7fELF\x01\x01\x01';sections=[struct.unpack_from('<10I',b,h[6]+i*40) for i in range(h[12])]
  for s in sections:

@@ -4433,6 +4433,121 @@
       "sha256": "804feaf9e8fbf0bae08ab020e1b8bad140ce2ecff2022d1d8aabcd14b588d530"
     },
     {
+      "path": "artifacts/doom-height-20261013/COMPILER-LEAD.md",
+      "size": 5399,
+      "sha256": "437851822f46eb3a79b6c048dd8d530a78f7215895bf57a44362fea30b2fe4fd"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/README.md",
+      "size": 11724,
+      "sha256": "fc88a35bf3a197a4ea70e38325eec09829387ef597628e8c1f5e0b93744f9559"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/branch-probe-archive.json",
+      "size": 391,
+      "sha256": "91c522a612d7daf71c4e129fce789e571f1754782e0e6578b0a73095d37b042f"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/branch-probe-evidence.tar.xz",
+      "size": 533204,
+      "sha256": "f7e3a7b4301a2ecb33425d3cfdb90548f730e25fa5e216f67b60dcdd004de635"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/branch-probe-replay.json",
+      "size": 5783,
+      "sha256": "ea5e83c4f989110679f9515c2aaffacd372c809a5142e241cfb8d8ea4e4f7d28"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/branch-probe-results.json",
+      "size": 4821,
+      "sha256": "93ea60e347da591dc6c10b055130cf96da4fd4f8982930f02a1c227c159e0bba"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/build-evidence.tar.gz",
+      "size": 21200591,
+      "sha256": "6b3b528a401d769606aa3201f628af38f4fe5b073ae4d96c00f3407cf095e124"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/card-evidence.tar.gz",
+      "size": 17584530,
+      "sha256": "64e3af563bb2ce6e3cba84be16b1a12ee839cc6b2e1de2baf405389fa7317032"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/checkpoint-comparison.json",
+      "size": 1313,
+      "sha256": "7df826c51ce920dceb60f4a97a63c0d8232f571856a76d89ac41232a4388f972"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/checkpoint-tests.log",
+      "size": 311,
+      "sha256": "dae6107eae99b9cdebe9a777e4e287fb2b6a9eab51dc4ea103b508a98973749d"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/comparison-to-previous.json",
+      "size": 142,
+      "sha256": "bb1d8a8b4ad42dc6e258cf69a78bbfaa76a7a95b42abadf4a5427faad8664f81"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/failure-analysis.json",
+      "size": 1738,
+      "sha256": "f575d8566d3e3fdaa64b30fd181c0cdb02b7bdc2868f1924de4b55be1d5fae4d"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/height-comparison.json",
+      "size": 19856,
+      "sha256": "96e51407738b0a9056dd50292babb242b4803c6bcfd1e6b0d0ff0b827ceab06a"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/host-check.json",
+      "size": 1486,
+      "sha256": "d6da25c55ec1ce91ae3b43bc346ccb52a151e807e708ff5f90c528189fdb3826"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/host-check.log",
+      "size": 1486,
+      "sha256": "d6da25c55ec1ce91ae3b43bc346ccb52a151e807e708ff5f90c528189fdb3826"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/i960-height-build-final.sh",
+      "size": 2622,
+      "sha256": "21393d0b24f78adf2488480e705f7847ba6f6446b251530168ea9bc559e96f85"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/layout.json",
+      "size": 10123,
+      "sha256": "478509096daedaeab8aadcd19e4c02639973c1baa316c0de1a61b551f832ad8a"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/native.log",
+      "size": 119,
+      "sha256": "95566e65e0d2de0ac36c78848a800abffd7bb1a5fda30e4aebddb67a98977151"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/r-main-disassembly.txt",
+      "size": 38524,
+      "sha256": "a4997a675985f1ce91f2de6d21f433102eee26a7b3eea9537103285e578f5650"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/ram-audit.json",
+      "size": 1696,
+      "sha256": "3345405a4f4dba2ec1505ef3b94bc22c5b7692c8aa52a06b34ae14f3b1de1fe4"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/restoration.json",
+      "size": 636,
+      "sha256": "1451483562402ea3070e23f6b96b6af6a3191a7a3be96a0b88db544e43359edc"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/spawn-map-compiled-cc.json",
+      "size": 1437,
+      "sha256": "31e4657081ce309afe1e0a06fded725f4d7f2ca0e1fae7ba4794cdae15eae0b0"
+    },
+    {
+      "path": "artifacts/doom-height-20261013/spawn-map-reference.json",
+      "size": 3370,
+      "sha256": "31085bccee0b19abda9fa3e44cad54dc8864c158be420c1864f6ae2dd3e8de61"
+    },
+    {
       "path": "artifacts/doom-m1-20261011/README.md",
       "size": 4661,
       "sha256": "e740286ada8e75307ea19803a3e578fba40d2ce5f2385f43d22451db5a2ae1f9"

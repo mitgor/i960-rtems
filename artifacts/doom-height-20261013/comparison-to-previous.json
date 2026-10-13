@@ -1,0 +1,6 @@
+{
+  "diagnostic_only": true,
+  "actual_requests": 4764,
+  "previous_checkpoint_requests": 4764,
+  "all_offsets_and_lengths_identical": true
+}

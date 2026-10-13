@@ -15,7 +15,7 @@ for i,mode in enumerate((0,1,2,3,0)):
  assert records[-3][4]==w[11] and records[-2][4]==w[11]
  log=(host/f'startup-{i}.log').read_bytes();assert b'ERROR: AddressSanitizer' not in log and b'runtime error:' not in log
  if not mode:
-  assert len(records)==162 and len(trace)==4747*8 and len(b)==64848
+  assert len(records)*2+5<512 and len(trace)==4747*8 and len(b)==64848
   if normal is None:normal=(b,trace,cp)
   else:assert normal==(b,trace,cp)
  rows.append(dict(mode=mode,reference_pixels_results_and_requests_identical=True,checkpoint_records=len(records),checkpoints_sha256=hashlib.sha256(cp).hexdigest(),peak_heap_with_checkpoint=w[16]))

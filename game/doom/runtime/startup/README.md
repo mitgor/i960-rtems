@@ -160,3 +160,22 @@ pinned native trace. Its report always says `accepted:false`: a diagnostic trace
 alone cannot certify a frame, cleanup or a complete session. A complete startup
 acceptance replay additionally requires normal / partial STOP / normal checkpoint
 sequences. The original N3 failure evidence remains separate and unmodified.
+
+
+## Height and delivery diagnosis — 2026-10-13
+
+The extended opt-in markers and 99-constant ABI proof are recorded in
+[the height experiment](../../../../artifacts/doom-height-20261013/README.md).
+They trace the wrong viewing height to spawn subsector/sector selection. A small
+scalar probe confirms the exact optimized `R_PointOnSide` body returns wrong
+answers outside RTEMS; disabling scheduling alone does not fix it. No full-engine
+compiler change or N3 acceptance is established.
+
+`inspect_height.py` validates the wire log before decoding signed height fields;
+`inspect_spawn_map.py` independently walks the pinned WAD, with an explicitly
+labelled optional model of the captured comparison ordering. `branch_probe.py`
+builds bounded probes only; `verify_branch_probe.py` replays their complete loader
+captures and preserves semantic failures. Full acceptance still requires normal,
+partial-read STOP, normal again, byte-exact reference and all full audits/drain.
+Post-render markers are present in the native trace but were not retrieved from
+the failed card run; absent records cannot identify a fault PC.

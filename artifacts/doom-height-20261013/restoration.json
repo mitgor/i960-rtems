@@ -1,0 +1,12 @@
+{
+  "checked_at_utc": "2026-10-13T12:41:25.666551+00:00",
+  "boot_id": "e7e1bcd3-0421-4d31-8fa9-9d6748d7110e",
+  "relay_pid": 19965,
+  "relay_output": "/home/mit/i960-rtems-web-20261011/http-after-doom-height-20261013",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "verification": "Independent Mac curl, IPv6, proxy bypassed",
+  "http_headers": "HTTP/1.0 200 OK\nContent-Type: text/html; charset=utf-8\nConnection: close\nCache-Control: no-store\n\n",
+  "body_sha256": "ba483069377d802ba90892a4fe43ebe270c25607f804008790e9cb73810f68ce",
+  "exclusive_reservation_released": true,
+  "visitor_logs_archived": false
+}

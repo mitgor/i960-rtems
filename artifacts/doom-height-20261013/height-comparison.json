@@ -1,0 +1,1207 @@
+{
+  "accepted": false,
+  "diagnostic_only": true,
+  "wire_validation": {
+    "accepted": false,
+    "diagnostic_only": true,
+    "validated_records": 188,
+    "oracle_records": 199,
+    "epoch": 24582,
+    "uncertain_errno": null,
+    "comparisons": [
+      {
+        "generation": 4,
+        "records": 188,
+        "matching_prefix": 49,
+        "first_difference": {
+          "card": {
+            "stage": "player spawn subsector/sector/input z",
+            "words": [
+              827343684,
+              50,
+              4,
+              63,
+              1394,
+              82,
+              2147483648,
+              4670
+            ],
+            "spawn_selection": {
+              "subsector": 1394,
+              "sector": 82,
+              "input_z_hex": "0x80000000"
+            }
+          },
+          "host": {
+            "stage": "player spawn subsector/sector/input z",
+            "words": [
+              827343684,
+              50,
+              1,
+              63,
+              226,
+              0,
+              2147483648,
+              4670
+            ],
+            "spawn_selection": {
+              "subsector": 226,
+              "sector": 0,
+              "input_z_hex": "0x80000000"
+            }
+          }
+        },
+        "last": {
+          "stage": "planes rendered",
+          "words": [
+            827343684,
+            188,
+            4,
+            43,
+            0,
+            0,
+            0,
+            4760
+          ]
+        }
+      }
+    ]
+  },
+  "host": [
+    {
+      "stage": "sector height fingerprint",
+      "words": [
+        827343684,
+        41,
+        1,
+        27,
+        395,
+        3146200641,
+        0,
+        4598
+      ]
+    },
+    {
+      "stage": "player mapthing",
+      "words": [
+        827343684,
+        49,
+        1,
+        66,
+        0,
+        4294967136,
+        90,
+        4670
+      ]
+    },
+    {
+      "stage": "player spawn subsector/sector/input z",
+      "words": [
+        827343684,
+        50,
+        1,
+        63,
+        226,
+        0,
+        2147483648,
+        4670
+      ],
+      "spawn_selection": {
+        "subsector": 226,
+        "sector": 0,
+        "input_z_hex": "0x80000000"
+      }
+    },
+    {
+      "stage": "player spawn z/floor/ceiling",
+      "words": [
+        827343684,
+        51,
+        1,
+        64,
+        0,
+        0,
+        12582912,
+        4670
+      ],
+      "fixed_16_16": {
+        "z": 0.0,
+        "floorz": 0.0,
+        "ceilingz": 192.0
+      }
+    },
+    {
+      "stage": "player spawn x/y/sector floor",
+      "words": [
+        827343684,
+        52,
+        1,
+        65,
+        0,
+        4284481536,
+        0,
+        4670
+      ],
+      "fixed_16_16": {
+        "x": 0.0,
+        "y": -160.0,
+        "sector_floor": 0.0
+      }
+    },
+    {
+      "stage": "initial viewheight/viewz/delta",
+      "words": [
+        827343684,
+        53,
+        1,
+        67,
+        2686976,
+        0,
+        0,
+        4670
+      ],
+      "fixed_16_16": {
+        "viewheight": 41.0,
+        "viewz": 0.0,
+        "delta": 0.0
+      }
+    },
+    {
+      "stage": "height entry z/floor/ceiling",
+      "words": [
+        827343684,
+        56,
+        1,
+        70,
+        0,
+        0,
+        12582912,
+        4671
+      ],
+      "fixed_16_16": {
+        "z": 0.0,
+        "floorz": 0.0,
+        "ceilingz": 192.0
+      }
+    },
+    {
+      "stage": "height entry viewheight/delta/bob",
+      "words": [
+        827343684,
+        57,
+        1,
+        71,
+        2686976,
+        0,
+        0,
+        4671
+      ],
+      "fixed_16_16": {
+        "viewheight": 41.0,
+        "delta": 0.0,
+        "bob": 0.0
+      }
+    },
+    {
+      "stage": "height ground/cheats/state",
+      "words": [
+        827343684,
+        58,
+        1,
+        72,
+        1,
+        0,
+        0,
+        4671
+      ]
+    },
+    {
+      "stage": "height bob/momx/momy",
+      "words": [
+        827343684,
+        59,
+        1,
+        73,
+        0,
+        0,
+        0,
+        4671
+      ],
+      "fixed_16_16": {
+        "bob": 0.0,
+        "momx": 0.0,
+        "momy": 0.0
+      }
+    },
+    {
+      "stage": "ground height viewheight/bob/z",
+      "words": [
+        827343684,
+        60,
+        1,
+        75,
+        2686976,
+        0,
+        0,
+        4671
+      ],
+      "fixed_16_16": {
+        "viewheight": 41.0,
+        "bob": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "stage": "height result/ceiling/delta",
+      "words": [
+        827343684,
+        61,
+        1,
+        76,
+        2686976,
+        12582912,
+        0,
+        4671
+      ],
+      "fixed_16_16": {
+        "viewz": 41.0,
+        "ceilingz": 192.0,
+        "delta": 0.0
+      }
+    },
+    {
+      "stage": "height entry z/floor/ceiling",
+      "words": [
+        827343684,
+        62,
+        1,
+        70,
+        0,
+        0,
+        12582912,
+        4671
+      ],
+      "fixed_16_16": {
+        "z": 0.0,
+        "floorz": 0.0,
+        "ceilingz": 192.0
+      }
+    },
+    {
+      "stage": "height entry viewheight/delta/bob",
+      "words": [
+        827343684,
+        63,
+        1,
+        71,
+        2686976,
+        0,
+        0,
+        4671
+      ],
+      "fixed_16_16": {
+        "viewheight": 41.0,
+        "delta": 0.0,
+        "bob": 0.0
+      }
+    },
+    {
+      "stage": "height ground/cheats/state",
+      "words": [
+        827343684,
+        64,
+        1,
+        72,
+        1,
+        0,
+        0,
+        4671
+      ]
+    },
+    {
+      "stage": "height bob/momx/momy",
+      "words": [
+        827343684,
+        65,
+        1,
+        73,
+        0,
+        0,
+        0,
+        4671
+      ],
+      "fixed_16_16": {
+        "bob": 0.0,
+        "momx": 0.0,
+        "momy": 0.0
+      }
+    },
+    {
+      "stage": "ground height viewheight/bob/z",
+      "words": [
+        827343684,
+        66,
+        1,
+        75,
+        2686976,
+        0,
+        0,
+        4671
+      ],
+      "fixed_16_16": {
+        "viewheight": 41.0,
+        "bob": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "stage": "height result/ceiling/delta",
+      "words": [
+        827343684,
+        67,
+        1,
+        76,
+        2686976,
+        12582912,
+        0,
+        4671
+      ],
+      "fixed_16_16": {
+        "viewz": 41.0,
+        "ceilingz": 192.0,
+        "delta": 0.0
+      }
+    },
+    {
+      "stage": "display entry",
+      "words": [
+        827343684,
+        68,
+        1,
+        80,
+        0,
+        3,
+        2,
+        4671
+      ]
+    },
+    {
+      "stage": "player position/angle",
+      "words": [
+        827343684,
+        69,
+        1,
+        37,
+        0,
+        4284481536,
+        1073741824,
+        4674
+      ],
+      "position_and_angle": {
+        "x": 0.0,
+        "y": -160.0,
+        "degrees": 90.0
+      }
+    },
+    {
+      "stage": "player viewz/extralight",
+      "words": [
+        827343684,
+        70,
+        1,
+        38,
+        2686976,
+        0,
+        0,
+        4674
+      ],
+      "view_height_map_units": 41.0
+    },
+    {
+      "stage": "view position/angle",
+      "words": [
+        827343684,
+        71,
+        1,
+        40,
+        0,
+        4284481536,
+        1073741824,
+        4674
+      ],
+      "position_and_angle": {
+        "x": 0.0,
+        "y": -160.0,
+        "degrees": 90.0
+      }
+    },
+    {
+      "stage": "view cos/sin/z",
+      "words": [
+        827343684,
+        72,
+        1,
+        41,
+        4294967271,
+        65535,
+        2686976,
+        4674
+      ],
+      "view_height_map_units": 41.0
+    },
+    {
+      "stage": "BSP rendered",
+      "words": [
+        827343684,
+        174,
+        1,
+        42,
+        0,
+        0,
+        0,
+        4698
+      ]
+    },
+    {
+      "stage": "planes rendered",
+      "words": [
+        827343684,
+        175,
+        1,
+        43,
+        0,
+        0,
+        0,
+        4743
+      ]
+    },
+    {
+      "stage": "masked rendered",
+      "words": [
+        827343684,
+        176,
+        1,
+        44,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "player render returned",
+      "words": [
+        827343684,
+        177,
+        1,
+        81,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "HUD finished",
+      "words": [
+        827343684,
+        178,
+        1,
+        82,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "background finished",
+      "words": [
+        827343684,
+        179,
+        1,
+        83,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "border finished",
+      "words": [
+        827343684,
+        180,
+        1,
+        84,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "menu begin",
+      "words": [
+        827343684,
+        181,
+        1,
+        85,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "menu finished",
+      "words": [
+        827343684,
+        182,
+        1,
+        86,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "network update finished",
+      "words": [
+        827343684,
+        183,
+        1,
+        87,
+        1,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "wipe endscreen begin",
+      "words": [
+        827343684,
+        184,
+        1,
+        88,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "wipe endscreen finished",
+      "words": [
+        827343684,
+        185,
+        1,
+        89,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "wipe clock wait begin",
+      "words": [
+        827343684,
+        186,
+        1,
+        90,
+        4294967295,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "wipe clock wait finished",
+      "words": [
+        827343684,
+        187,
+        1,
+        91,
+        0,
+        1,
+        4294967295,
+        4747
+      ]
+    },
+    {
+      "stage": "screen wipe begin",
+      "words": [
+        827343684,
+        188,
+        1,
+        92,
+        1,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "screen wipe finished",
+      "words": [
+        827343684,
+        189,
+        1,
+        93,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "wipe no-blit finished",
+      "words": [
+        827343684,
+        190,
+        1,
+        94,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "wipe menu finished",
+      "words": [
+        827343684,
+        191,
+        1,
+        95,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "video finish dimensions",
+      "words": [
+        827343684,
+        192,
+        1,
+        96,
+        320,
+        200,
+        8,
+        4747
+      ]
+    },
+    {
+      "stage": "video copy scaling/offsets",
+      "words": [
+        827343684,
+        193,
+        1,
+        97,
+        1,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "video copy finished",
+      "words": [
+        827343684,
+        194,
+        1,
+        98,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "DrawFrame entered",
+      "words": [
+        827343684,
+        195,
+        1,
+        50,
+        0,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "frame hashes",
+      "words": [
+        827343684,
+        196,
+        1,
+        51,
+        4000963876,
+        1611003811,
+        1,
+        4747
+      ]
+    },
+    {
+      "stage": "exit requested",
+      "words": [
+        827343684,
+        197,
+        1,
+        60,
+        213,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "owned exit returned",
+      "words": [
+        827343684,
+        198,
+        1,
+        61,
+        213,
+        0,
+        0,
+        4747
+      ]
+    },
+    {
+      "stage": "cleanup finished",
+      "words": [
+        827343684,
+        199,
+        1,
+        62,
+        0,
+        0,
+        0,
+        4747
+      ]
+    }
+  ],
+  "card_by_generation": {
+    "4": [
+      {
+        "stage": "sector height fingerprint",
+        "words": [
+          827343684,
+          41,
+          4,
+          27,
+          395,
+          3146200641,
+          0,
+          4598
+        ]
+      },
+      {
+        "stage": "player mapthing",
+        "words": [
+          827343684,
+          49,
+          4,
+          66,
+          0,
+          4294967136,
+          90,
+          4670
+        ]
+      },
+      {
+        "stage": "player spawn subsector/sector/input z",
+        "words": [
+          827343684,
+          50,
+          4,
+          63,
+          1394,
+          82,
+          2147483648,
+          4670
+        ],
+        "spawn_selection": {
+          "subsector": 1394,
+          "sector": 82,
+          "input_z_hex": "0x80000000"
+        }
+      },
+      {
+        "stage": "player spawn z/floor/ceiling",
+        "words": [
+          827343684,
+          51,
+          4,
+          64,
+          4290248704,
+          4290248704,
+          6291456,
+          4670
+        ],
+        "fixed_16_16": {
+          "z": -72.0,
+          "floorz": -72.0,
+          "ceilingz": 96.0
+        }
+      },
+      {
+        "stage": "player spawn x/y/sector floor",
+        "words": [
+          827343684,
+          52,
+          4,
+          65,
+          0,
+          4284481536,
+          4290248704,
+          4670
+        ],
+        "fixed_16_16": {
+          "x": 0.0,
+          "y": -160.0,
+          "sector_floor": -72.0
+        }
+      },
+      {
+        "stage": "initial viewheight/viewz/delta",
+        "words": [
+          827343684,
+          53,
+          4,
+          67,
+          2686976,
+          0,
+          0,
+          4670
+        ],
+        "fixed_16_16": {
+          "viewheight": 41.0,
+          "viewz": 0.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "stage": "height entry z/floor/ceiling",
+        "words": [
+          827343684,
+          56,
+          4,
+          70,
+          4290248704,
+          4290248704,
+          6291456,
+          4671
+        ],
+        "fixed_16_16": {
+          "z": -72.0,
+          "floorz": -72.0,
+          "ceilingz": 96.0
+        }
+      },
+      {
+        "stage": "height entry viewheight/delta/bob",
+        "words": [
+          827343684,
+          57,
+          4,
+          71,
+          2686976,
+          0,
+          0,
+          4671
+        ],
+        "fixed_16_16": {
+          "viewheight": 41.0,
+          "delta": 0.0,
+          "bob": 0.0
+        }
+      },
+      {
+        "stage": "height ground/cheats/state",
+        "words": [
+          827343684,
+          58,
+          4,
+          72,
+          1,
+          0,
+          0,
+          4671
+        ]
+      },
+      {
+        "stage": "height bob/momx/momy",
+        "words": [
+          827343684,
+          59,
+          4,
+          73,
+          0,
+          0,
+          0,
+          4671
+        ],
+        "fixed_16_16": {
+          "bob": 0.0,
+          "momx": 0.0,
+          "momy": 0.0
+        }
+      },
+      {
+        "stage": "ground height viewheight/bob/z",
+        "words": [
+          827343684,
+          60,
+          4,
+          75,
+          2686976,
+          0,
+          4290248704,
+          4671
+        ],
+        "fixed_16_16": {
+          "viewheight": 41.0,
+          "bob": 0.0,
+          "z": -72.0
+        }
+      },
+      {
+        "stage": "height result/ceiling/delta",
+        "words": [
+          827343684,
+          61,
+          4,
+          76,
+          4292935680,
+          6291456,
+          0,
+          4671
+        ],
+        "fixed_16_16": {
+          "viewz": -31.0,
+          "ceilingz": 96.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "stage": "height entry z/floor/ceiling",
+        "words": [
+          827343684,
+          62,
+          4,
+          70,
+          4290248704,
+          4290248704,
+          6291456,
+          4671
+        ],
+        "fixed_16_16": {
+          "z": -72.0,
+          "floorz": -72.0,
+          "ceilingz": 96.0
+        }
+      },
+      {
+        "stage": "height entry viewheight/delta/bob",
+        "words": [
+          827343684,
+          63,
+          4,
+          71,
+          2686976,
+          0,
+          0,
+          4671
+        ],
+        "fixed_16_16": {
+          "viewheight": 41.0,
+          "delta": 0.0,
+          "bob": 0.0
+        }
+      },
+      {
+        "stage": "height ground/cheats/state",
+        "words": [
+          827343684,
+          64,
+          4,
+          72,
+          1,
+          0,
+          0,
+          4671
+        ]
+      },
+      {
+        "stage": "height bob/momx/momy",
+        "words": [
+          827343684,
+          65,
+          4,
+          73,
+          0,
+          0,
+          0,
+          4671
+        ],
+        "fixed_16_16": {
+          "bob": 0.0,
+          "momx": 0.0,
+          "momy": 0.0
+        }
+      },
+      {
+        "stage": "ground height viewheight/bob/z",
+        "words": [
+          827343684,
+          66,
+          4,
+          75,
+          2686976,
+          0,
+          4290248704,
+          4671
+        ],
+        "fixed_16_16": {
+          "viewheight": 41.0,
+          "bob": 0.0,
+          "z": -72.0
+        }
+      },
+      {
+        "stage": "height result/ceiling/delta",
+        "words": [
+          827343684,
+          67,
+          4,
+          76,
+          4292935680,
+          6291456,
+          0,
+          4671
+        ],
+        "fixed_16_16": {
+          "viewz": -31.0,
+          "ceilingz": 96.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "stage": "display entry",
+        "words": [
+          827343684,
+          68,
+          4,
+          80,
+          0,
+          3,
+          2,
+          4671
+        ]
+      },
+      {
+        "stage": "player position/angle",
+        "words": [
+          827343684,
+          69,
+          4,
+          37,
+          0,
+          4284481536,
+          1073741824,
+          4674
+        ],
+        "position_and_angle": {
+          "x": 0.0,
+          "y": -160.0,
+          "degrees": 90.0
+        }
+      },
+      {
+        "stage": "player viewz/extralight",
+        "words": [
+          827343684,
+          70,
+          4,
+          38,
+          4292935680,
+          0,
+          0,
+          4674
+        ],
+        "view_height_map_units": -31.0
+      },
+      {
+        "stage": "view position/angle",
+        "words": [
+          827343684,
+          71,
+          4,
+          40,
+          0,
+          4284481536,
+          1073741824,
+          4674
+        ],
+        "position_and_angle": {
+          "x": 0.0,
+          "y": -160.0,
+          "degrees": 90.0
+        }
+      },
+      {
+        "stage": "view cos/sin/z",
+        "words": [
+          827343684,
+          72,
+          4,
+          41,
+          4294967271,
+          65535,
+          4292935680,
+          4674
+        ],
+        "view_height_map_units": -31.0
+      },
+      {
+        "stage": "BSP rendered",
+        "words": [
+          827343684,
+          187,
+          4,
+          42,
+          0,
+          0,
+          0,
+          4721
+        ]
+      },
+      {
+        "stage": "planes rendered",
+        "words": [
+          827343684,
+          188,
+          4,
+          43,
+          0,
+          0,
+          0,
+          4760
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "Absent captured marker is not a fault PC or proof of the last executed instruction.",
+    "Matching counts or height fingerprints do not establish every geometry field.",
+    "Full snapshot/RAM/WAD audits and final STOP/repeat/drain gates remain separate."
+  ]
+}

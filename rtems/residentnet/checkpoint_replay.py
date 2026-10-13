@@ -6,6 +6,8 @@ import argparse,hashlib,json,struct
 from pathlib import Path
 MAGIC=0x31504344
 STAGES={1:'owned entry',2:'doomgeneric_Create',3:'Create returned',10:'level setup',11:'blockmap loaded',12:'vertices loaded',13:'sectors loaded',14:'sides loaded',15:'lines loaded',16:'subsectors loaded',17:'nodes loaded',18:'segs loaded',19:'reject loaded',20:'things loaded',21:'side texture fingerprint',22:'level setup done',25:'texture table built',26:'texture lookup done',30:'precache entry',32:'texture present fingerprint',34:'precache patch',36:'precache done',37:'player position/angle',38:'player viewz/extralight',40:'view position/angle',41:'view cos/sin/z',42:'BSP rendered',43:'planes rendered',44:'masked rendered',50:'DrawFrame entered',51:'frame hashes',60:'exit requested',61:'owned exit returned',62:'cleanup finished',99:'composite texture',100:'lookup texture',101:'patch selected',102:'lookup finished'}
+STAGES.update({27:'sector height fingerprint',63:'player spawn subsector/sector/input z',64:'player spawn z/floor/ceiling',65:'player spawn x/y/sector floor',66:'player mapthing',67:'initial viewheight/viewz/delta',70:'height entry z/floor/ceiling',71:'height entry viewheight/delta/bob',72:'height ground/cheats/state',73:'height bob/momx/momy',74:'airborne height result/z/viewheight',75:'ground height viewheight/bob/z',76:'height result/ceiling/delta',80:'display entry',81:'player render returned',82:'HUD finished',83:'background finished',84:'border finished',85:'menu begin',86:'menu finished',87:'network update finished',88:'wipe endscreen begin',89:'wipe endscreen finished',90:'wipe clock wait begin',91:'wipe clock wait finished',92:'screen wipe begin',93:'screen wipe finished',94:'wipe no-blit finished',95:'wipe menu finished',96:'video finish dimensions',97:'video copy scaling/offsets',98:'video copy finished'})
+
 def describe(w,wad=None):
  result=dict(stage=STAGES[w[3]],words=list(w))
  if wad is not None:
@@ -25,6 +27,9 @@ def describe(w,wad=None):
  if w[3] in (38,41):
   z=w[4] if w[3]==38 else w[6];result['view_height_map_units']=(z if z<0x80000000 else z-0x100000000)/65536
  if w[3] in (37,40):result['position_and_angle']=dict(x=(w[4] if w[4]<0x80000000 else w[4]-0x100000000)/65536,y=(w[5] if w[5]<0x80000000 else w[5]-0x100000000)/65536,degrees=w[6]*360/4294967296)
+ fixed_fields={64:('z','floorz','ceilingz'),65:('x','y','sector_floor'),67:('viewheight','viewz','delta'),70:('z','floorz','ceilingz'),71:('viewheight','delta','bob'),73:('bob','momx','momy'),74:('viewz','z','viewheight'),75:('viewheight','bob','z'),76:('viewz','ceilingz','delta')}
+ if w[3] in fixed_fields:result['fixed_16_16']={k:(v if v<0x80000000 else v-0x100000000)/65536 for k,v in zip(fixed_fields[w[3]],w[4:7])}
+ if w[3]==63:result['spawn_selection']=dict(subsector=w[4],sector=w[5],input_z_hex=hex(w[6]))
  return result
 
 def check(capture,build,wad=None):

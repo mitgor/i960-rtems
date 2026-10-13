@@ -2567,6 +2567,46 @@ The next questions became smaller: where did the camera lose seventy-two units,
 and what happened between the end of rendering and the frame callback? They might
 have the same answer. The evidence did not yet give us permission to say so.
 
+## The wrong side of a line
+
+The next notes began earlier, when Doom chose a place for the player to stand.
+Every sector's recorded floor and ceiling heights matched the host. The player's
+coordinates matched too. The card simply put those coordinates in another room:
+sector eighty-two, with a floor seventy-two units below sector zero. Add the usual
+forty-one units of eye height and minus thirty-one was exactly the answer to expect.
+The height calculation had been answering the question it was given.
+
+The generated machine code contained a less innocent sequence. It compared the
+direction of a wall, then compared the player's position while deciding whether
+to branch, then tested the flags from a comparison. The second comparison had
+replaced the first one's flags. On the root partition of this map, that sent the
+player down the wrong side of the tree. Following the emitted order on the original
+map reached precisely the sector the card had reported.
+
+That still deserved a test smaller than Doom. We took the same 160-byte function
+body, checked it against the engine object, and asked it nine questions through
+the ordinary returning RAM loader. There was no RTEMS scheduler or WAD service
+in that experiment. The optimized function answered two questions incorrectly.
+Turning off instruction scheduling corrected one answer and left the other wrong.
+The unoptimized version answered all nine correctly. Each of the twenty-seven
+calls brought its complete paired memory checks and clean restoration home.
+
+The old compiler had become part of the archaeological site. We had not repaired
+it yet, and nine correct answers did not make a replacement toolchain. They did
+explain why changing the camera height would have been the wrong repair.
+
+The long run still failed to deliver its first frame. It brought back 279 complete
+memory-check pairs, thirty-seven network rounds and 188 startup notes. The last
+note retrieved this time said the planes were drawn. The newer notes around the
+HUD, wipe and final copy had not reached the host before control was lost. A note
+written on a stranded card is not the same thing as a note recovered from it.
+The next investigation needed to account for that distinction too.
+
+The public web server went back up after the captures were saved. Doom remained
+unfinished, but the next question was no longer why forty-one had become minus
+thirty-one. It was how to give this processor comparisons whose answers survived
+the compiler.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

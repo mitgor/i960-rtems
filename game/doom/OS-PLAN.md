@@ -1,5 +1,39 @@
 # RTEMS-to-Doom implementation plan — 2026-10-13
 
+**Height/branch diagnosis (2026-10-13; full Doom still unaccepted):**
+The first 49 checkpoints match, including all decoded sector-height and side
+texture-ID fingerprints. At request 4,670 the card spawns in subsector **1394** /
+sector **82** (floor **−72**, ceiling **96**); host and independent WAD decode select
+**226 / 0** (floor **0**, ceiling **192**). Both recorded height calls correctly
+add viewheight **41** to the card's floor, producing **−31**. Do not patch the
+camera height to mask the earlier wrong BSP selection.
+
+A captured `cmpi` / `cmpib` / `testg` ordering loses the intended condition code.
+An explicit model predicts the exact wrong sector. A bounded probe outside RTEMS
+uses the same **160-byte optimized function body** before linking: optimized
+code fails **2/9** vectors, scheduling disabled still fails **1/9**, and `-O0`
+passes **9/9**. All **27 transactions / 2,970 commands / 81 paired staging phases**
+pass full audit, RAM restoration and clean unload. This confirms a function
+miscompilation, not a global compiler fix or full Doom success. Preserve accepted
+kernel/toolchain binaries; disabling scheduling alone is not sufficient.
+
+The long run preserved **279 full snapshot/RAM pairs**, 37 network rounds,
+27,725 exact WAD fragments and 188 retrieved checkpoints. Last retrieved marker:
+planes finished (43). No new post-render/wipe/copy marker was retrieved; this does
+not narrow the exact hang beyond the previous masked-render marker or establish
+a fault PC. First frame, startup STOP/repeat and final drain remain unaccepted.
+
+Next: audit/fix backend condition-code dependencies (or a narrowly verified
+implementation), broaden the small card proof, then rebuild and repeat every
+native/ABI/placement and full N3 gate. Add bounded host-confirmed draining for
+selected hang markers; current nonblocking logging can outrun host retrieval.
+
+Exact binaries, sources, captures and replays are archived. Public HTTP returned
+200 after reboot and the clean probes; reservation released. Production relay
+PID **19965**, boot `e7e1bcd3-0421-4d31-8fa9-9d6748d7110e`, owns the card; stop it
+cleanly and coordinate before future exclusive work. [Evidence](../../artifacts/doom-height-20261013/README.md).
+
+
 **Startup checkpoints (2026-10-13; divergence localized, N3 still unaccepted):**
 The first 50 scalar checkpoints match the native host. Record 51, stage 38,
 first differs: player `viewz` is **−31 map units on i960 versus +41 on host**,

@@ -1,0 +1,222 @@
+{
+  "diagnostic_only": true,
+  "not_card_execution": true,
+  "compiled_axis_cc": false,
+  "map": "E1M6",
+  "map_lump_index": 55,
+  "player_mapthing": [
+    0,
+    -160,
+    90,
+    1,
+    7
+  ],
+  "sector_height_fingerprint": 3146200641,
+  "sector_count": 395,
+  "route": [
+    {
+      "node": 1396,
+      "partition": [
+        1792,
+        544,
+        0,
+        -128
+      ],
+      "branch": "vertical",
+      "side": 0,
+      "child": 1366
+    },
+    {
+      "node": 1366,
+      "partition": [
+        -2240,
+        384,
+        -64,
+        64
+      ],
+      "branch": "fixed multiply",
+      "side": 0,
+      "child": 1190,
+      "left": 143360,
+      "right": 34816,
+      "dx": 146800640,
+      "dy": -35651584
+    },
+    {
+      "node": 1190,
+      "partition": [
+        -1664,
+        1152,
+        0,
+        -672
+      ],
+      "branch": "vertical",
+      "side": 1,
+      "child": 1189
+    },
+    {
+      "node": 1189,
+      "partition": [
+        -1344,
+        -96,
+        0,
+        160
+      ],
+      "branch": "vertical",
+      "side": 0,
+      "child": 1155
+    },
+    {
+      "node": 1155,
+      "partition": [
+        576,
+        1600,
+        0,
+        -320
+      ],
+      "branch": "vertical",
+      "side": 0,
+      "child": 781
+    },
+    {
+      "node": 781,
+      "partition": [
+        -160,
+        672,
+        192,
+        0
+      ],
+      "branch": "horizontal",
+      "side": 0,
+      "child": 460
+    },
+    {
+      "node": 460,
+      "partition": [
+        -704,
+        544,
+        0,
+        96
+      ],
+      "branch": "vertical",
+      "side": 0,
+      "child": 373
+    },
+    {
+      "node": 373,
+      "partition": [
+        -192,
+        32,
+        32,
+        0
+      ],
+      "branch": "horizontal",
+      "side": 0,
+      "child": 279
+    },
+    {
+      "node": 279,
+      "partition": [
+        256,
+        -960,
+        0,
+        272
+      ],
+      "branch": "vertical",
+      "side": 1,
+      "child": 278
+    },
+    {
+      "node": 278,
+      "partition": [
+        -608,
+        -688,
+        192,
+        0
+      ],
+      "branch": "horizontal",
+      "side": 1,
+      "child": 277
+    },
+    {
+      "node": 277,
+      "partition": [
+        -368,
+        -424,
+        0,
+        8
+      ],
+      "branch": "vertical",
+      "side": 0,
+      "child": 239
+    },
+    {
+      "node": 239,
+      "partition": [
+        -144,
+        -208,
+        48,
+        0
+      ],
+      "branch": "horizontal",
+      "side": 1,
+      "child": 238
+    },
+    {
+      "node": 238,
+      "partition": [
+        -208,
+        -96,
+        16,
+        0
+      ],
+      "branch": "horizontal",
+      "side": 0,
+      "child": 229
+    },
+    {
+      "node": 229,
+      "partition": [
+        64,
+        -192,
+        0,
+        -16
+      ],
+      "branch": "vertical",
+      "side": 0,
+      "child": 222
+    },
+    {
+      "node": 222,
+      "partition": [
+        -96,
+        -192,
+        0,
+        -16
+      ],
+      "branch": "vertical",
+      "side": 1,
+      "child": 221
+    },
+    {
+      "node": 221,
+      "partition": [
+        -64,
+        -192,
+        -32,
+        0
+      ],
+      "branch": "horizontal",
+      "side": 0,
+      "child": 32994
+    }
+  ],
+  "subsector": 226,
+  "first_seg": 679,
+  "linedef": 69,
+  "sidedef": 97,
+  "sector": 0,
+  "floor": 0,
+  "ceiling": 192,
+  "stationary_view_height": 41
+}

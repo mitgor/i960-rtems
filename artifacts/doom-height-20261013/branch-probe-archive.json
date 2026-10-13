@@ -1,0 +1,8 @@
+{
+  "source_remote_gzip_sha256": "4176fff941ab0b1ff4c1f689b8fe3c9db6cd33ee39616bd993518e1c986eea56",
+  "archived_xz_sha256": "f7e3a7b4301a2ecb33425d3cfdb90548f730e25fa5e216f67b60dcdd004de635",
+  "identical_uncompressed_tar_sha256": "b5394184e63eb8fa322f15f13fb86ea083841e364176588555ed6268132ccb32",
+  "source_bytes": 51485706,
+  "archived_bytes": 533204,
+  "lossless_recompression": true
+}
