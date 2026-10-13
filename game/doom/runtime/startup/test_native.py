@@ -5,6 +5,8 @@ p=argparse.ArgumentParser();p.add_argument('--checkpoint-failures',action='store
 flags=['-m32','-Os','-fno-builtin','-funsigned-char','-D__SINGLE_THREAD__','-I'+str(a.newlib/'newlib/libc/include')];san=json.loads((a.build/'build.json').read_text())['sanitized']
 if json.loads((a.build/'build.json').read_text()).get('checkpoints'):flags+=['-DDOOM_CHECKPOINTS']
 assert not a.checkpoint_failures or '-DDOOM_CHECKPOINTS' in flags
+visible=json.loads((a.build/'build.json').read_text()).get('visible',False)
+if visible:flags+=['-DDOOM_VISIBLE']
 if san:flags+=['-fsanitize=address,undefined','-g']
 obj=a.build/'startup-native.o';subprocess.run(['gcc',*flags,'-c',str(r/'native.c'),'-o',str(obj)],check=True);private=a.build/'startup-native-private.o';subprocess.run(['objcopy','--redefine-syms='+str(a.build/'rename.txt'),str(obj),str(private)],check=True)
 objs=[private,a.build/'doom-platform.o']
@@ -21,7 +23,7 @@ for i,mode in enumerate([4,5] if a.checkpoint_failures else [0,1,2,3,0]):
  if mode>=4:
   assert result[5:7]==(0,0) and result[11]==(210 if mode==4 else 214)
   cp=list(struct.iter_unpack('<8I',(a.build/f'startup-{i}.checkpoints.bin').read_bytes()));assert any(w[3]==63 for w in cp) and cp[-1][3]==62
- if not mode:assert len(run.stdout)==64848 and result[5:7]==(1,1)
+ if not mode:assert len(run.stdout)==(131152 if visible else 64848) and result[5:7]==(2 if visible else 1,1)
  rows.append(dict(mode=mode,result=result,extra=extra,frame_sha256=hashlib.sha256(run.stdout[80:]).hexdigest() if not mode else None))
 if not a.checkpoint_failures:assert rows[0]==rows[-1]
 (a.build/'startup-results.json').write_text(json.dumps(rows,indent=2)+'\n');print('PASS actual private-libc checkpoint STOP/timeout boundary and heap drain' if a.checkpoint_failures else 'PASS actual private-libc engine first frame, STOP, deadline, read failure, repeatability and complete owned-heap drain')

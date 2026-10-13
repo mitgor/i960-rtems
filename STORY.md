@@ -2721,6 +2721,67 @@ The archive was copied home and hash-checked before reboot. Once Linux returned,
 the unchanged public RTEMS web server answered over IPv6 again. Its visitors
 could return to Darth Vader while Doom waited for its first visible scene.
 
+## The picture comes home
+
+The next change was small enough to sound like cheating: skip the opening wipe.
+Doom had already drawn a room behind that transition. Our one-frame stop had
+caught the curtain coming up, which was technically a frame and mostly black.
+The new, explicitly selected build left the ordinary path alone and stopped
+after two visible presentations instead.
+
+On the native build, a room appeared. So did the enemies, the ammunition counter,
+and the face in the status bar. The two pictures were identical. The checkpoints
+showed game ticks two and three, but nothing visible had moved between them.
+That was a useful correction to make before calling this animation.
+
+Getting the picture home needed a lifetime of its own. Each frame kept 64,000
+palette indices, its 768-byte palette and zero padding. Together the two slots
+occupied 128 KiB. Once Doom had returned and its private allocations had retired,
+the gate checked the complete picture against a compiled digest and copied it
+into a separate allocation in the same eight-megabyte arena. Only then could the
+engine image be discarded. Starting another engine attempt invalidated that
+archive; the final system drain had to return it too.
+
+The host could ask for a generation and a one-kilobyte window. It could not ask
+for an arbitrary card address. Every returned byte had to match the independently
+built native reference before a PNG could appear in the browser. The target
+carried the expected digest, not a hidden copy of the reference picture.
+
+Then the real card did it. All 218 checkpoints matched. The room came back over
+the mailbox, palette and padding included, and the browser showed it. The first
+layout stretched the picture sideways; setting the image height to follow its
+width fixed that ordinary web-page bug. It was a pleasant change of scale from
+finding a compiler comparison on the wrong side of a branch.
+
+STOP invalidated the first archive. A fresh startup returned the same two frames
+again. Across both starts and the intervening stop there were 441 checkpoints
+and sixty-six explicit acknowledgements. Seventy-five network rounds and 604
+pairs of full memory audits reached another clean ending: all 322,731 allocations
+freed, all 9,917 shared handles retired. The native replay accepted all 8,152
+command replies. Deliberately damaged startup evidence failed in twenty-four
+cases, and damaged framebuffer evidence failed in thirteen more.
+
+This still ran at the pace of an investigation. Each startup took about
+twenty-five and a half minutes. Reading the two-frame archive took fifteen
+seconds the first time and eighteen the second, including waits behind the full
+audits. Serving a resulting PNG to the Mac took about nineteen milliseconds.
+Those numbers described three different jobs; dividing two pictures by the
+startup time would not tell us Doom's frame rate.
+
+The browser had Previous, Next and Refresh. It did not have movement or shooting.
+The next step was to demonstrate visible motion, then keep the engine and its
+frame ownership alive long enough to exchange input. But the room on the screen
+was no longer a native preview standing in for a hoped-for result. Its pixels
+had come from the RAID controller, and every one of them had survived the trip.
+
+The archives were copied home and their hashes checked before another reboot.
+Linux returned, the public RTEMS page answered over IPv6 again, and the saved
+Doom gallery came back beside it. Looking at the picture no longer needed to
+borrow the card from its next experiment.
+
+[The exact builds, complete captures and browser instructions](artifacts/doom-visible-20261013/README.md)
+keep the receipts for this part of the story.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -2756,8 +2817,10 @@ So, the ledger, honestly kept:
   64 KiB task stacks and thirty-five minutes of networking. An opt-in resident loader now uses an 8 MiB guarded application arena,
   with a live 6 MiB allocation proof and segmented PIO uploads alongside ten
   network rounds. A small freestanding runtime and owned Doom entry now support two matching
-  first-frame startups, an intervening STOP and complete system drain. Visible
-  gameplay, browser frame delivery and longer engine sessions remain open.
+  first-frame startups, an intervening STOP and complete system drain. A later
+  bounded build returns two visible frames per startup, with byte-exact native
+  comparisons and a browser gallery. Visible motion, interactive input and longer
+  engine sessions remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

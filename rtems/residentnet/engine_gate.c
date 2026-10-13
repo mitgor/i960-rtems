@@ -19,6 +19,10 @@ static int digest(struct seg_image*s,unsigned off,unsigned n,const unsigned char
  while(n){k=n>1024?1024:n;if(!sha256_update(&h,s->base+off,k))return 0;off+=k;n-=k;if(yielding){doom_shared_yield();if(upload_stopping())return 0;}}
  sha256_finish(&h,out);for(i=0;i<32;i++)if(out[i]!=expected[i])return 0;return 1;
 }
+#ifndef ENGINE_FRAME_COUNT
+#define ENGINE_FRAME_COUNT 1u
+#endif
+#include "engine_frames.h"
 unsigned engine_report(unsigned i){return i<12?results[i]:~0u;}
 unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value){unsigned i,j,x,last=0,base=(unsigned)(unsigned long)s->base,ok;void*entry;const struct doom_runtime_owned*a;
 #ifdef ENGINE_STARTUP
@@ -28,6 +32,9 @@ unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value
  a=doom_runtime_owned_batch_api();
 #else
  a=doom_runtime_owned_api();
+#endif
+#ifdef ENGINE_VISIBLE_OFFSET
+ if(!doom_shared_enter((void*)1))return 3;ok=frame_release();doom_shared_leave((void*)1);if(!ok)goto uncertain;
 #endif
  if(!a||s->state!=SEG_READY||s->manifest.count!=4||s->manifest.entry!=ENGINE_ENTRY)return 1;
  for(i=0;i<4;i++){const struct segment*p=s->manifest.segment+i;const unsigned*g=engine_geometry[i];if(p->offset!=g[0]||p->file_bytes!=g[1]||p->memory_bytes!=g[2]||p->flags!=g[3])return 1;}
@@ -49,7 +56,7 @@ unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value
  for(i=0;i<12;i++)results[i]=word(s->base+ENGINE_RESULT+4*i);
 #ifdef ENGINE_STARTUP
  if((*value!=0x454e4700u&&*value!=0x454e4702u)||results[0]!=0x454e4750u||results[1]!=2||results[10]!=1)goto uncertain;
- if(*value==0x454e4700u&&(results[2]!=6291456u||results[3]!=ENGINE_FRAME||results[4]!=ENGINE_PALETTE||results[5]!=1||results[6]!=1||results[9]||results[11]!=213))goto uncertain;
+ if(*value==0x454e4700u&&(results[2]!=6291456u||results[3]!=ENGINE_FRAME||results[4]!=ENGINE_PALETTE||results[5]!=ENGINE_FRAME_COUNT||results[6]!=1||results[9]||results[11]!=213))goto uncertain;
  if(*value==0x454e4702u&&(results[9]<2||results[9]>4||results[5]||results[6]))goto uncertain;
 #else
  if((*value!=0x454e4700u&&*value!=0x454e4702u)||results[0]!=0x454e4750u||results[1]!=1||results[10]!=1||results[11]||results[9]>3)goto uncertain;
@@ -62,6 +69,9 @@ unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value
   * for an independent canonical digest; mutable data is discarded on cancel. */
  for(i=0;i<ENGINE_SITES;i++){x=word(s->base+ENGINE_META+4*i);if(x<ENGINE_TEXT){unsigned v=word(s->base+x);if(v<base||v-base>ENGINE_SPAN)goto uncertain;store(s->base+x,v-base);}}
  if(!digest(s,0,ENGINE_TEXT,engine_text_sha,0)||!sync(s->base,ENGINE_TEXT))goto uncertain;
+#ifdef ENGINE_VISIBLE_OFFSET
+ if(*value==0x454e4700u&&!frame_copy(s))goto uncertain;
+#endif
  /* One-shot lifetime: the engine's libc state is retired, never reused. */
  if(!doom_shared_enter((void*)1))goto uncertain;ok=seg_cancel(s)&&seg_complete(s);doom_shared_leave((void*)1);return ok?0:12;
  uncertain:seg_uncertain(s);exclusive_abort();return 7;

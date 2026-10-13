@@ -2,7 +2,7 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--visible',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');a=p.parse_args()
 assert not a.platform_runtime or (a.target in ('i960','host32') and a.wad_cache), 'private platform requires i960 WAD-cache build'
 assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
 assert hashlib.sha256(a.archive.read_bytes()).hexdigest()=='26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7', 'source hash mismatch'
@@ -34,6 +34,11 @@ if a.checkpoints:
  from instrument import apply
  shutil.copyfile(here/'runtime/startup/checkpoints.h',src/'checkpoints.h')
  apply(patch)
+if a.visible:
+ assert a.startup and a.checkpoints and a.point_side_o0
+ # Keep game rendering; omit only the opening cosmetic wipe in this bounded proof.
+ patch('d_main.c','if (gamestate != wipegamestate)', 'if (0) /* omit cosmetic transition for bounded visible-frame proof */')
+ flags+=['-DDOOM_VISIBLE']
 if a.point_side_o0:
  assert a.startup, 'comparison workaround is restricted to startup experiments'
  text=(src/'r_main.c').read_text();begin=text.index('int\nR_PointOnSide\n');end=text.index('\n\nint\nR_PointOnSegSide\n',begin)

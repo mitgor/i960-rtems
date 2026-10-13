@@ -1,0 +1,71 @@
+{
+  "accepted": true,
+  "url": "http://192.168.2.75:8086",
+  "capture_generation": 1,
+  "full_png_bytes_match": true,
+  "samples": [
+    {
+      "path": "index.html",
+      "bytes": 1582,
+      "ms": 4.899563
+    },
+    {
+      "path": "frames.json",
+      "bytes": 371,
+      "ms": 1.37558
+    },
+    {
+      "path": "card-1-0.png",
+      "bytes": 33982,
+      "ms": 1.391059
+    },
+    {
+      "path": "card-1-0.png",
+      "bytes": 33982,
+      "ms": 1.323942
+    },
+    {
+      "path": "card-1-0.png",
+      "bytes": 33982,
+      "ms": 1.318567
+    },
+    {
+      "path": "card-1-0.png",
+      "bytes": 33982,
+      "ms": 2.224677
+    },
+    {
+      "path": "card-1-0.png",
+      "bytes": 33982,
+      "ms": 1.258513
+    },
+    {
+      "path": "card-1-1.png",
+      "bytes": 33982,
+      "ms": 1.302345
+    },
+    {
+      "path": "card-1-1.png",
+      "bytes": 33982,
+      "ms": 1.28784
+    },
+    {
+      "path": "card-1-1.png",
+      "bytes": 33982,
+      "ms": 1.15376
+    },
+    {
+      "path": "card-1-1.png",
+      "bytes": 33982,
+      "ms": 1.324767
+    },
+    {
+      "path": "card-1-1.png",
+      "bytes": 33982,
+      "ms": 1.225023
+    }
+  ],
+  "mean_image_ms": 1.3810493,
+  "max_image_ms": 2.224677,
+  "rendering_fps_claim": false
+}

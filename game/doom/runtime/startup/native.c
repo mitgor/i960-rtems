@@ -67,7 +67,11 @@ int main(int argc,char**argv){struct doom_runtime_owned a;
 syscall(6,trace_fd);n=doom_platform_log(logbuf,sizeof logbuf);syscall(4,2,logbuf,n);
  extra[0]=value;extra[1]=reads;extra[2]=wire_bytes;extra[3]=heap.blocks;extra[4]=heap.peak;extra[5]=mode;extra[6]=wad_bytes;extra[7]=0;
  syscall(4,1,doom_engine_result,48);syscall(4,1,extra,sizeof extra);
- if(!mode&&doom_platform_frame(frame,sizeof frame,rgb,sizeof rgb)){syscall(4,1,frame,sizeof frame);syscall(4,1,rgb,sizeof rgb);}
+ #ifdef DOOM_VISIBLE
+ if(!mode){extern unsigned char doom_platform_frames[2][65536];syscall(4,1,doom_platform_frames,sizeof doom_platform_frames);}
+#else
+if(!mode&&doom_platform_frame(frame,sizeof frame,rgb,sizeof rgb)){syscall(4,1,frame,sizeof frame);syscall(4,1,rgb,sizeof rgb);}
+ #endif
  if(heap.blocks!=2||!doom_engine_result[10])return 7;
  release(retained[0]);release(retained[1]);if(!arena_unpin(&arena,handle)||!arena_release(&arena,handle))return 8;
  if(!doom_heap_stop(&heap)||!doom_heap_drain(&heap)||!arena_valid(&arena))return 9;

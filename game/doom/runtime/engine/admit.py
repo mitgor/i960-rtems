@@ -11,15 +11,20 @@ sites=m['relocations'];assert sites==sorted(set(sites));meta=b''.join(struct.pac
 for x in sites:assert x%4==0 and x+4<=len(b) and struct.unpack_from('<I',b,x)[0]<=m['memory_bytes']
 m.update(result=result,metadata_offset=off,metadata_bytes=len(meta),metadata_sha256=hashlib.sha256(meta).hexdigest(),text_sha256=hashlib.sha256(b[:m['sections'][0]['file_bytes']]).hexdigest(),admission_bytes=off+len(meta))
 if a.startup_oracle:
- oracle=json.loads(a.startup_oracle.read_text());assert oracle['exact_bytes_match'] and oracle['frame']==0 and oracle['gametic']==2
+ oracle=json.loads(a.startup_oracle.read_text());assert oracle['exact_bytes_match'] and ((oracle.get('visible') and oracle['frame_count']==2 and oracle['frame']==1) or (not oracle.get('visible') and oracle['frame']==0 and oracle['gametic']==2))
  assert a.startup_requests
- trace=a.startup_requests.read_bytes();assert len(trace)==4747*8
+ trace=a.startup_requests.read_bytes();assert len(trace)==oracle.get('request_count',4747)*8
  oracle['requests_sha256']=hashlib.sha256(trace).hexdigest()
  (a.out/'startup-requests.bin').write_bytes(trace)
  if a.startup_checkpoints:
   cp=a.startup_checkpoints.read_bytes();assert cp and len(cp)%32==0
   (a.out/'startup-checkpoints.bin').write_bytes(cp);oracle['checkpoints_sha256']=hashlib.sha256(cp).hexdigest()
  if a.checkpoint_barriers:oracle['checkpoint_barriers']=1
+ if oracle.get('visible'):
+  frames=(a.startup_oracle.parent/'visible-frames.bin').read_bytes();assert len(frames)==131072 and hashlib.sha256(frames).hexdigest()==oracle['frames_sha256']
+  frame_offset=next(int(r.split()[0],16) for r in rows if r.split()[-1]=='_doom_platform_frames')+m['sections'][2]['offset']
+  assert frame_offset>=m['sections'][2]['offset'] and frame_offset+len(frames)<=m['memory_bytes']
+  m['visible_offset']=frame_offset;(a.out/'visible-frames.bin').write_bytes(frames)
  m['startup']=oracle
  assert m['admission_bytes']<=900000, 'native startup reservation proof exceeded'
 (a.out/'template.bin').write_bytes(b);(a.out/'relocations.bin').write_bytes(meta);(a.out/'manifest.json').write_text(json.dumps(m,indent=2)+'\n')
@@ -28,4 +33,7 @@ for k,v in names.items():h+=f'#define ENGINE_{k} {v}u\n'
 for k,v in [('image',m['template_sha256']),('metadata',m['metadata_sha256']),('text',m['text_sha256'])]:h+='static const unsigned char engine_'+k+'_sha[32]={'+','.join(str(x) for x in bytes.fromhex(v))+'};\n'
 h+='static const unsigned engine_geometry[4][4]={'+','.join('{'+','.join(str(s[k]) for k in ('offset','file_bytes','memory_bytes','flags'))+'}' for s in m['sections'])+',{'+f'{off},{len(meta)},{len(meta)},2'+'}};\n'
 if a.startup_oracle:h+='#define ENGINE_STARTUP 1\n#define ENGINE_FRAME '+str(oracle['frame_fnv'])+'u\n#define ENGINE_PALETTE '+str(oracle['palette_fnv'])+'u\n'
+if m.get('startup',{}).get('visible'):
+ h+='#define ENGINE_FRAME_COUNT 2u\n#define ENGINE_VISIBLE_OFFSET '+str(m['visible_offset'])+'u\n'
+ h+='static const unsigned char engine_visible_sha[32]={'+','.join(str(x) for x in bytes.fromhex(oracle['frames_sha256']))+'};\n'
 (a.out/'engine_identity.h').write_text(h);print(json.dumps({k:v for k,v in m.items() if k not in ('relocations','sections')},indent=2))

@@ -58,7 +58,13 @@ static void control_poll(void){unsigned int token=R(0x1314),index;
  if(!resident||((token&65535)!=resident_epoch))return;
  #ifdef I960_RESIDENT_NET
 #ifdef I960_RESIDENT_UPLOAD
- if((token>>24)>=0x70&&(token>>24)<=
+ if((token>>24)>=
+#ifdef I960_DOOM_ENGINE
+ 0x6c
+#else
+ 0x70
+#endif
+ &&(token>>24)<=
 #ifdef I960_DOOM_CHECKPOINT_BARRIERS
  0x7f
 #elif defined(I960_DOOM_CHECKPOINTS)

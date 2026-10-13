@@ -18,6 +18,7 @@ unsigned upload_stopping(void);
 #include "engine_gate.c"
 static struct doom_runtime_owned api;
 static unsigned mode,aborted,begins,ends,yields,stop;
+static unsigned char frame_oracle[131072];
 static unsigned char memory[8*1048576] __attribute__((aligned(16)));
 const struct doom_runtime_owned*doom_runtime_owned_api(void){return &api;}
 const struct doom_runtime_owned*doom_runtime_owned_batch_api(void){return &api;}
@@ -31,15 +32,25 @@ void exclusive_abort(void){aborted++;}
 static int sync(void*p,unsigned n){(void)p;(void)n;return 1;}
 unsigned engine_native_call(struct seg_image*s,const struct doom_runtime_owned*a){unsigned row[12]={0x454e4750,1,6291456,123,456,1,1,6300000,4,0,1,0},i;(void)a;
 #ifdef ENGINE_STARTUP
- row[1]=2;row[3]=ENGINE_FRAME;row[4]=ENGINE_PALETTE;row[11]=213;
+ row[1]=2;row[5]=ENGINE_FRAME_COUNT;row[3]=ENGINE_FRAME;row[4]=ENGINE_PALETTE;row[11]=213;
  if(mode==4){row[5]=0;row[11]=210;}
  if(mode==8)row[3]^=1;if(mode==9)row[4]^=1;if(mode==10)row[10]=0;
 #endif
  if(mode==4){row[6]=0;row[9]=2;}
+#ifdef ENGINE_VISIBLE_OFFSET
+ for(i=0;i<131072;i++)s->base[ENGINE_VISIBLE_OFFSET+i]=frame_oracle[i];
+ if(mode==11)s->base[ENGINE_VISIBLE_OFFSET+123]^=1;
+#endif
  for(i=0;i<12;i++)store(s->base+ENGINE_RESULT+4*i,row[i]);if(mode==5)s->base[0]^=1;return mode==4?0x454e4702:0x454e4700;}
-int main(int argc,char**argv){struct arena arena;struct seg_image image;struct manifest m;unsigned i,n,v,rc,limit;FILE*f;unsigned char block[1024];assert(argc==3);
+int main(int argc,char**argv){struct arena arena;struct seg_image image;struct manifest m;unsigned i,n,v,rc,limit;FILE*f;unsigned char block[1024];assert(argc==3||argc==4);
+#ifdef ENGINE_VISIBLE_OFFSET
+ assert(argc==4);f=fopen(argv[3],"rb");assert(f&&fread(frame_oracle,1,131072,f)==131072);fclose(f);
+#endif
 #ifdef ENGINE_STARTUP
  limit=11;
+#ifdef ENGINE_VISIBLE_OFFSET
+ limit=12;
+#endif
 #else
  limit=8;
 #endif
@@ -53,8 +64,18 @@ int main(int argc,char**argv){struct arena arena;struct seg_image image;struct m
  if(mode==1)image.base[0]^=1;if(mode==2)image.base[ENGINE_META]^=1;if(mode==3)image.base[engine_geometry[2][0]]=1;if(mode==7)stop=1;
  rc=engine_run(&image,sync,&v);
  if(mode==0||mode==4){assert(!rc&&!aborted&&begins==1&&ends==1&&image.state==SEG_EMPTY&&arena_valid(&arena));}
- else if(mode==5||mode==6||mode>=8){assert(rc==7&&aborted==1&&image.state==SEG_QUARANTINED);}
- else {assert(rc==2&&!begins&&!aborted&&image.state==SEG_READY);assert(seg_cancel(&image));}
+#ifdef ENGINE_VISIBLE_OFFSET
+ if(mode==0){unsigned off,k,g=frame_serial;
+  assert(engine_frame_control(0x6e,0,0)==~0u);
+  assert(engine_frame_control(0x6c,0,g+1)==~0u);assert(!engine_frame_control(0x6c,0,g));
+  assert(engine_frame_control(0x6d,0,1)==~0u);assert(engine_frame_control(0x6d,0,131072)==~0u);
+  for(off=0;off<131072;off+=1024){assert(!engine_frame_control(0x6d,0,off));for(k=0;k<256;k++)assert(engine_frame_control(0x6e,k,0)==word(frame_oracle+off+k*4));}
+  assert(engine_frame_control(0x6e,256,0)==~0u);assert(engine_frame_control(0x6e,0,1)==~0u);
+  assert(engine_frame_finish()&&arena_valid(&arena));assert(engine_frame_control(0x6c,0,g)==~0u);
+ }
+#endif
+ if(mode==5||mode==6||mode>=8){assert(rc==7&&aborted==1&&image.state==SEG_QUARANTINED);}
+ else if(mode!=0&&mode!=4){assert(rc==2&&!begins&&!aborted&&image.state==SEG_READY);assert(seg_cancel(&image));}
  }
  puts("PASS: compiled SHA identity, metadata/BSS/STOP refusals, modeled normal/cancel cleanup, post-code and failed-scope quarantine; no i960 execution");return 0;
 }
@@ -62,4 +83,4 @@ int main(int argc,char**argv){struct arena arena;struct seg_image image;struct m
 with tempfile.TemporaryDirectory() as tmp:
  t=Path(tmp);(t/'test.c').write_text(source)
  subprocess.run(['gcc','-m32','-no-pie','-std=c11','-Os','-g','-fsanitize=address,undefined','-I'+str(r),'-I'+str(a.admission),str(t/'test.c'),str(r/'../../loader/digest/sha256.c'),str(r/'../../loader/segmented/image.c'),str(r/'../../loader/segmented/arena.c'),'-o',str(t/'test')],check=True)
- subprocess.run([str(t/'test'),str(a.admission/'template.bin'),str(a.admission/'relocations.bin')],check=True)
+ subprocess.run([str(t/'test'),str(a.admission/'template.bin'),str(a.admission/'relocations.bin')]+([str(a.admission/'visible-frames.bin')] if (a.admission/'visible-frames.bin').exists() else []),check=True)

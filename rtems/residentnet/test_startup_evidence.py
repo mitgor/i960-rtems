@@ -19,7 +19,7 @@ for case in cases:
  with tempfile.TemporaryDirectory() as d:
   t=Path(d)
   for name in ('engine-results.json','engine-template.bin','engine-relocations.bin','engine-owned-journal.jsonl','engine-wad-journal.jsonl'):(t/name).symlink_to((a.capture/name).resolve())
-  for name in ('engine-checkpoint-journal.jsonl','startup-checkpoints.jsonl'):
+  for name in ('engine-checkpoint-journal.jsonl','startup-checkpoints.jsonl','engine-frame-journal.jsonl','visible-1.bin','visible-2.bin','browser'):
    if (a.capture/name).exists():(t/name).symlink_to((a.capture/name).resolve())
   r=json.loads((t/'engine-results.json').read_text());rq=list(requests);rs=copy.deepcopy(responses)
   def write(name,data):

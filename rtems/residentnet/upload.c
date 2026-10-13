@@ -54,6 +54,11 @@ unsigned int upload_control(unsigned int op,unsigned int index,unsigned int valu
  #ifdef I960_DOOM_RUNTIME
  if(op>=0x75&&op<=0x79)return doom_runtime_control(op,index,value,running);
 #endif
+#ifdef I960_DOOM_ENGINE
+ if(op>=0x6c&&op<=0x6e){extern unsigned engine_frame_control(unsigned,unsigned,unsigned);
+  if(!initialized||!running||pending||upload_stopping())return ~0u;
+  return engine_frame_control(op,index,value);}
+#endif
  if(op==0x74){if(index)return ~0u;for(i=0;i<UPLOAD_REPLY;i++)frozen[i]=reply[i];frozen[3]=pending;frozen[4]=image.state;return 0;}
  if(op==0x73)return index<UPLOAD_REPLY?frozen[index]:~0u;
  if(!initialized||!running||upload_stopping())return 0xfffffffeu;
@@ -193,6 +198,9 @@ done:
 }
 unsigned int upload_finish(void){unsigned int i;
  /* Both workers/IRQ contexts have drained before this call. */
+#ifdef I960_DOOM_ENGINE
+ {extern unsigned engine_frame_finish(void);if(!engine_frame_finish())return 0;}
+#endif
 #ifdef I960_DOOM_RUNTIME
  if(!doom_runtime_finish())return 0;
 #endif

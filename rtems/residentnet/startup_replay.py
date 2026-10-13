@@ -11,13 +11,13 @@ def prepare(capture,build,data,r,m,runs,report,bases):
   stopped=[w for w in rows if w[2]==5];assert [w[3] for w in stopped]==[1,2,60,61,62]
   assert [w[4] for w in stopped]==[0,0,210,210,0] and all(w[5:7]==[0,0] for w in stopped) and [w[7] for w in stopped]==[0,0,2,2,2]
  oracle=m['startup'];raw=(build/'startup-requests.bin').read_bytes();assert hashlib.sha256(raw).hexdigest()==oracle['requests_sha256']
- trace=list(struct.iter_unpack('<2I',raw));assert len(trace)==4747 and r['startup'] and r['diagnostic_only'] is False
+ trace=list(struct.iter_unpack('<2I',raw));assert len(trace)==oracle.get('request_count',4747) and r['startup'] and r['diagnostic_only'] is False
  expected=[];last=0
  for i,row in enumerate(r['runs']):
   v=report[i*12:i*12+12];assert row['result']==v and v[:3]==[0x454e4750,2,6291456]
   assert row['stop']==(i==1) and row['value']==runs[i] and row['base']==0xc02d0040+bases[i] and bases[i]%16==0 and row['seconds']>0
   if i==1:assert v[3:7]==[0]*4 and v[9:]==[2,1,210]
-  else:assert v[3:7]==[oracle['frame_fnv'],oracle['palette_fnv'],1,1] and v[9:]==[0,1,213]
+  else:assert v[3:7]==[oracle['frame_fnv'],oracle['palette_fnv'],oracle.get('frame_count',1),1] and v[9:]==[0,1,213]
   assert 0<v[7]<7*1048576 and 0<v[8]<=128
   ctl=row['control'];assert ctl[:4]==[0x3252444f,4+i,0,int(i==1)] and ctl[5]==4+i and ctl[7]==1+int(i>=1)
   wanted=[]
@@ -56,4 +56,8 @@ def prepare(capture,build,data,r,m,runs,report,bases):
    else:
     res=bytes.fromhex(e['response']);assert struct.unpack_from('<8I',res)==(6,epoch,32,1,0,0,0,0) and res[32:64]==q[32:64];accepted.append(w[1])
  assert accepted==[5] and refused==[4,4,5,6] and states[-1]==tuple(r['runs'][-1]['control'])
- return dict(startup=True,file_bytes=m['file_bytes'],span=m['memory_bytes'],admission_bytes=m['admission_bytes'],relocations=len(m['relocations']),frame_hash=oracle['frame_fnv'],palette_hash=oracle['palette_fnv'],runs=r['runs'],wad_requests=len(expected),fragments=fragment_count,metadata_sha256=m['metadata_sha256']),[]
+ frames=None
+ if oracle.get('visible'):
+  from frame_client import verify_frames
+  frames=verify_frames(capture,build)
+ return dict(startup=True,frame_readback=frames,file_bytes=m['file_bytes'],span=m['memory_bytes'],admission_bytes=m['admission_bytes'],relocations=len(m['relocations']),frame_hash=oracle['frame_fnv'],palette_hash=oracle['palette_fnv'],runs=r['runs'],wad_requests=len(expected),fragments=fragment_count,metadata_sha256=m['metadata_sha256']),[]

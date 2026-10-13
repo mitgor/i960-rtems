@@ -1,0 +1,15 @@
+{
+  "boot": "083c2956-4f85-49e6-abb9-3d485c4d7422",
+  "relay_supervisor": 1745,
+  "relay_python": 1843,
+  "gallery_pid": 1746,
+  "card_driver": "dac960auto",
+  "card_bdf": "0000:37:09.1",
+  "public_url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "public_status": 200,
+  "public_body_sha256": "c3765b8ce31010c239645902dbcdfb0270191426c7f16075702b5042cc45cc37",
+  "gallery_url": "http://192.168.2.75:8086/",
+  "gallery_exact_png_bytes_pass": true,
+  "checked_from": "Mac on local network; not an external reachability claim",
+  "reservation_released": true
+}

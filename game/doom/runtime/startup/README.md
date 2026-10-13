@@ -1,5 +1,19 @@
 # N3: one-shot real Doom initialization and first frame
 
+The opt-in `--visible` variant requires `--startup --checkpoints --point-side-o0`
+on the engine build and `--startup --checkpoints --visible` on the platform build.
+It skips the cosmetic opening wipe and exits after exactly two presentations.
+`visible_oracle.py` accepts repeated native output, records ticks 2/3 and preserves
+two 65,536-byte indexed-frame/palette/padding slots. These early frames are
+pixel-identical; movement and interactive input are not established.
+
+Admission binds the BSS slot offset and full 131,072-byte reference digest. The
+resident gate copies an immutable archive only after normal owned cleanup and
+all existing image checks. UPL1 operation 9 reads fixed 1 KiB windows by archive
+generation. Every byte and derived PNG is independently checked before browser
+publication; the next engine attempt and final drain retire that archive.
+[Visible-frame source, exact builds, card evidence and limits](../../../../artifacts/doom-visible-20261013/README.md).
+
 This candidate replaces the diagnostic engine entry only when built explicitly
 with `--startup`, then packed and admitted with `--startup-oracle` and
 `--startup-requests`. Earlier diagnostic identities remain separate. The kernel
@@ -14,7 +28,7 @@ paths. The platform accepts the negotiated WAB1/4096 ABI. Game time is virtual
 (starting at zero, advanced by sleep/tic steps) for repeatability; the startup
 budget uses the independent real RTEMS clock. This is not a real-time game loop.
 
-The first `DG_DrawFrame` copies indexed pixels and palette, computes the existing
+In the default startup build, the first `DG_DrawFrame` copies indexed pixels and palette, computes the existing
 FNV hashes, and exits through the owner-local setjmp boundary. STOP and the
 1,800,000 ms startup budget are checked at safe points, including after a complete
 cache read returns (never while cache assembly owns a destination loan). The

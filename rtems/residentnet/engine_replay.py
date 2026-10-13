@@ -85,8 +85,16 @@ def native(prefix,t,build,info):
  prefix+='\n#include "engine_gate.c"\n#include "../../loader/digest/sha256.c"\n'
  prefix+='static const unsigned engine_recorded[3][12]={'+rows+'};\nstatic const unsigned engine_values[3]={'+values+'};\n'
  if info.get('startup'):
+  if (build/'visible-frames.bin').exists():
+   data=(build/'visible-frames.bin').read_bytes();assert len(data)==131072
+   (t/'visible_bytes.h').write_text('static const unsigned char native_visible_frames[]={'+','.join(map(str,data))+'};\n')
+   prefix+='\n#include "visible_bytes.h"\n'
   if (build/'startup-checkpoints.bin').exists():prefix='#define I960_DOOM_CHECKPOINTS 1\n'+prefix
-  return '#define I960_WAD_BATCH 1\n'+prefix+'\n#include "../../game/doom/runtime/batch/wire.c"\n'+'''unsigned engine_native_call(struct seg_image*s,const struct doom_runtime_owned*a){static unsigned row;unsigned i;assert(row<3);if(row==1)assert(!doom_runtime_owned_control(0x7a,0,owned_generation,1));for(i=0;i<12;i++)store(s->base+ENGINE_RESULT+4*i,engine_recorded[row][i]);return engine_values[row++];}\n'''
+  return '#define I960_WAD_BATCH 1\n'+prefix+'\n#include "../../game/doom/runtime/batch/wire.c"\n'+'''unsigned engine_native_call(struct seg_image*s,const struct doom_runtime_owned*a){static unsigned row;unsigned i;assert(row<3);if(row==1)assert(!doom_runtime_owned_control(0x7a,0,owned_generation,1));for(i=0;i<12;i++)store(s->base+ENGINE_RESULT+4*i,engine_recorded[row][i]);
+#ifdef ENGINE_VISIBLE_OFFSET
+if(row!=1)for(i=0;i<131072;i++)s->base[ENGINE_VISIBLE_OFFSET+i]=native_visible_frames[i];
+#endif
+return engine_values[row++];}\n'''
  prefix+='''unsigned engine_native_call(struct seg_image*s,const struct doom_runtime_owned*a){static unsigned row;unsigned i;unsigned char*p=a->io.allocate(1024);assert(p&&row<3);assert(a->io.read(1,0,p,512)==512);a->io.release(p);
  if(row==1)assert(!doom_runtime_owned_control(0x7a,0,owned_generation,1));
  for(i=0;i<12;i++)store(s->base+ENGINE_RESULT+4*i,engine_recorded[row][i]);return engine_values[row++];}

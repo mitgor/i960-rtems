@@ -1,5 +1,33 @@
 # RTEMS working guidance
 
+<!-- doom-visible-current -->
+**Bounded visible Doom and browser delivery accepted (2026-10-13):**
+The opt-in `--visible` build skips the opening wipe and returns two 320×200
+indexed frames with palettes. Both full card captures match native byte for byte;
+ticks 2/3 have identical pixels, so motion and interactive gameplay remain open.
+The batch passes **604 full snapshot/RAM pairs, 75 dual-stack rounds, 441
+checkpoints / 66 ACKs**, in-engine STOP, repeat and global parked-state drain.
+All **322,731 allocations and 9,917 shared handles** retire. Default full native
+replay accepts **8,152 replies**; 24 startup, 13 frame and 24 snapshot mutations
+are rejected. No shutdown assertion or native replay abort recurred.
+
+Normal result collection takes **1,541.382 / 1,537.299 s**; STOP **26.718 s**.
+Two-slot readbacks take **15.340 / 18.087 s**, including full-audit contention;
+Mac PNG HTTP delivery averages about **19 ms**. These are not rendering FPS.
+The immutable 131,072-byte archive uses the existing 8 MiB arena after private
+engine cleanup; next entry and global drain release it. No RAM grant changes.
+Keep full paired audits, independent native bytes, checkpoint ACKs and
+`--point-side-o0`; uncertain transfers retain the session until reboot.
+Next: bounded visible motion, then persistent frame publication/backpressure and
+input. Keep this mode opt-in. Both archives are locally hash-verified. Public
+IPv6 HTTP and outbound IPv6 are restored in boot
+`083c2956-4f85-49e6-abb9-3d485c4d7422`; relay supervisor **1745**, Python **1843**
+owns the card. Static gallery PID **1746** serves http://192.168.2.75:8086/ and
+never opens the card. Test reservation released; stop the relay cleanly before
+future exclusive work, and never force-unload a retained module.
+[Exact sources, binaries, captures, browser instructions and limits](../artifacts/doom-visible-20261013/README.md).
+<!-- /doom-visible-current -->
+
 **Doom N3 first-frame and shutdown baseline accepted (2026-10-13):**
 The bounded two-worker arrival barrier fixes shared cancellation racing a peer's
 last acquire. A deterministic actual-allocator test reproduces the old SHCHECK 10

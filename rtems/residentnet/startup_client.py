@@ -37,8 +37,11 @@ def exercise(u,root,wad):
    result=[u.command(19,i)[5] for i in range(12)];final=ctl.query();ctl.request(final[1],errno.ESTALE)
    with (u.out/'startup-attempts.jsonl').open('a') as f:f.write(json.dumps(dict(stop=stopped,seconds=time.monotonic()-start,value=w[5],result=result,control=list(final)))+'\n')
    assert w[5]==(0x454e4702 if stopped else 0x454e4700)
-   assert result[:3]==[0x454e4750,2,6291456] and result[5:7]==[int(not stopped)]*2 and result[9:]==[2 if stopped else 0,1,210 if stopped else 213] and not final[2]
+   assert result[:3]==[0x454e4750,2,6291456] and result[5:7]==([0,0] if stopped else [m['startup'].get('frame_count',1),1]) and result[9:]==[2 if stopped else 0,1,210 if stopped else 213] and not final[2]
    if not stopped:assert result[3:5]==[m['startup']['frame_fnv'],m['startup']['palette_fnv']]
+   if m['startup'].get('visible'):
+    from frame_client import capture_frames
+    capture_frames(u,root,0 if stopped else 1 if not rows else 2)
    assert server.injected==stopped
    if stopped:assert server.stop_generation==final[1]
    rows.append(dict(stop=stopped,base=0xc02d0040+base,seconds=time.monotonic()-start,result=result,value=w[5],control=list(final),requests=server.records[first:]))

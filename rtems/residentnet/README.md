@@ -1,5 +1,12 @@
 # Resident networking and RAM ownership
 
+For the optional Doom engine in the existing 8 MiB application arena, see the
+[bounded visible-frame milestone](../../artifacts/doom-visible-20261013/README.md).
+Its new UPL1 operation 9 uses mailbox selectors `0x6c..0x6e` to read a published,
+immutable post-return frame archive. Epoch, session, pending-command and
+uncertainty checks remain mandatory; it exposes no arbitrary address reads.
+The static browser gallery runs on the host and never opens the card.
+
 Shared allocation cancellation and exclusive timer-based heap measurements are
 available with `--heap-shared`; see [the contract and replay instructions](SHARED-HEAP.md).
 
