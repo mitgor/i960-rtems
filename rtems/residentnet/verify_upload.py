@@ -2,10 +2,13 @@
 """Replay a completed resident upload journal through the actual C core.
 Also reconstruct and CRC-check the two uploaded files independently in Python.
 """
-import ast,argparse,errno,hashlib,json,struct,subprocess,tempfile,zlib
+import ast,argparse,errno,hashlib,json,struct,subprocess,sys,tempfile,zlib
+from contextlib import nullcontext
 from pathlib import Path
 r=Path(__file__).resolve().parent
-p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--wad',type=Path);p.add_argument('--entry',type=Path);p.add_argument('--partial-engine',action='store_true');p.add_argument('--wad-poll',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--output',type=Path,required=True);p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--wad',type=Path);p.add_argument('--entry',type=Path);p.add_argument('--partial-engine',action='store_true');p.add_argument('--wad-poll',action='store_true');p.add_argument('--commands-only',action='store_true',help='Diagnose completed command replies only; never accept physical final drain');p.add_argument('--native-work',type=Path,help='Keep generated native replay sources, input, binary and failure output in a new directory');a=p.parse_args()
+if a.native_work:a.native_work=a.native_work.resolve();a.native_work.mkdir(parents=True,exist_ok=False)
+assert not (a.commands_only and a.partial_engine)
 assert not a.doom_runtime or (a.doom_shared and a.wad)
 assert not a.doom_shared or a.doom_heap
 events=[json.loads(l) for l in (a.capture/'upload-journal.jsonl').read_text().splitlines()]
@@ -67,6 +70,13 @@ if a.doom_shared:
  prefix=source.split('int main(void)')[0]+'int main(void)'+prefix.split('int main(void)',1)[1]
  prefix=prefix.replace('assert(upload_init());','identity=2;pthread_t task;doom_shared_init();assert(upload_init());assert(!pthread_create(&task,0,peer,0));')
  prefix=prefix.replace('}assert(upload_finish());','}atomic_store(&halted,1);assert(!pthread_join(task,0));identity=3;doom_shared_quiesce(1);assert(upload_finish());')
+if a.doom_shared:
+ # Real PIO separates commands; an instantaneous producer can starve the
+ # bounded peer mutex waiter under native sanitizers. Pace only transport,
+ # outside every target lock; keep the actual 2-tick mutex deadline unchanged.
+ assert prefix.count('upload_step();assert(!pending);')==1
+ prefix=prefix.replace('upload_step();assert(!pending);',
+  'upload_step();{struct timespec pio_delay={0,1000000};nanosleep(&pio_delay,0);}assert(!pending);')
 runtime_info=None
 if a.doom_runtime:
  from runtime_replay import prepare,native
@@ -94,7 +104,7 @@ if (a.capture/'owned-results.json').exists():
  assert a.doom_runtime
  from owned_replay import prepare as owned_prepare,native as owned_native
  owned_info=owned_prepare(a.capture,entry.parent/'owned',requests,responses)
-with tempfile.TemporaryDirectory() as tmp:
+with (nullcontext(a.native_work) if a.native_work else tempfile.TemporaryDirectory()) as tmp:
  t=Path(tmp)
  if a.doom_runtime:prefix=native(prefix,t,probe,wad_replies)
  if cache_info:prefix=cache_native(prefix,t,entry.parent/'cache')
@@ -127,8 +137,13 @@ unsigned int upload_protect_finish(void){return 1;}
   f=t/'upload_native.h';s=f.read_text().replace('return 0;}\nstatic unsigned int upload_time(void){return 1;', 'return atomic_load(&halted);}\nstatic unsigned int upload_time(void){struct timespec t;clock_gettime(CLOCK_MONOTONIC,&t);return (unsigned int)(t.tv_sec*100+t.tv_nsec/10000000);')
   f.write_text(s)
  core=r.parents[1]/'loader/segmented'
- subprocess.run(['cc','-std=c11','-pthread','-fsanitize=address,undefined','-I'+str(t),'-I'+str(r),str(t/'test.c'),str(core/'arena.c'),str(core/'image.c'),*([str(r.parents[1]/'game/doom/runtime/wad.c')] if a.doom_runtime else []),*([str(r.parents[1]/'game/doom/runtime/heap.c'),str(r.parents[1]/'game/doom/runtime/libc.c')] if a.doom_heap else []),'-o',str(t/'replay')],check=True)
- raw=subprocess.run([str(t/'replay')],input=sent,stdout=subprocess.PIPE,check=True).stdout
+ subprocess.run(['cc','-g','-fno-omit-frame-pointer','-std=c11','-pthread','-fsanitize=address,undefined','-I'+str(t),'-I'+str(r),str(t/'test.c'),str(core/'arena.c'),str(core/'image.c'),*([str(r.parents[1]/'game/doom/runtime/wad.c')] if a.doom_runtime else []),*([str(r.parents[1]/'game/doom/runtime/heap.c'),str(r.parents[1]/'game/doom/runtime/libc.c')] if a.doom_heap else []),'-o',str(t/'replay')],check=True)
+ if a.native_work:
+  (t/'requests.bin').write_bytes(sent);(t/'expected-replies.bin').write_bytes(b''.join(struct.pack('<16I',*w) for w in responses))
+ run=subprocess.run([str(t/'replay')],input=sent,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+ if a.native_work:(t/'replay.stdout.bin').write_bytes(run.stdout);(t/'replay.stderr.log').write_bytes(run.stderr)
+ if run.returncode:sys.stderr.buffer.write(run.stderr);raise subprocess.CalledProcessError(run.returncode,run.args,output=run.stdout,stderr=run.stderr)
+ raw=run.stdout
  assert len(raw)==64*len(responses)
  for i,w in enumerate(responses):
   actual=struct.unpack_from('<16I',raw,i*64)
@@ -151,10 +166,12 @@ if a.doom_shared:
  observed=json.loads((a.capture/'doom-shared.json').read_text())
  assert observed['magic']=='0x53484152' and observed['peer_retained_bytes']==98304
  assert [observed[k] for k in ('phase','peer_checks','wrong_task_rejections','peer_enters','owner_enters','max_wait_ticks','max_hold_ticks','timeout_rejections','recursive_rejections')]==stats[1:]
-if not a.partial_engine:
+if not a.partial_engine and not a.commands_only:
  parked=json.loads((a.capture/'upload-parked.json').read_text());assert parked[3]==parked[4]==parked[15]==0 and parked[9]==(15 if batch_info else 14 if (a.capture/"engine-results.json").exists() else 12 if (a.capture/"owned-results.json").exists() else 10 if (a.capture/"cache-results.json").exists() else 8 if (a.capture/"relocate-results.json").exists() else 4 if a.doom_runtime else 3)
 proof=[w for w in responses if w[10]==6291456];assert proof
 result=dict(commands=len(requests),pio_ioctls=len(latencies),stale_epochs_rejected=stale,code_bytes=len(files[0]),data_bytes=len(files[1]),zero_fill_bytes=manifest[10]-len(files[1]),result=hex(expected),simultaneous_allocation_bytes=6291456+327680,stop_cancelled_partial_image=not a.partial_engine,native_cleanup_modeled=a.partial_engine,latency_ms=dict(max=max(latencies),mean=sum(latencies)/len(latencies)),files_sha256=[hashlib.sha256(b).hexdigest() for b in files])
+result.update(commands_only=a.commands_only,modeled_pio_delay_ms=1 if a.doom_shared else 0)
+if a.commands_only:result.update(accepted=False,diagnostic_only=True,physical_final_drain=False,native_cleanup_modeled=True,stop_cancelled_partial_image=False)
 if runtime_info:result['runtime']=runtime_info
 if cache_info:result['cache']=cache_info
 if batch_info:result['batch']=batch_info

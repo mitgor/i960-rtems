@@ -5338,6 +5338,71 @@
       "sha256": "c94a36c272b3fa9d91f291a198d846562797937ea136c0e6d61eae56132f0f91"
     },
     {
+      "path": "artifacts/doom-shutdown-20261013/README.md",
+      "size": 9382,
+      "sha256": "4b15fda769cea474bc493309388ab69e6cb756780568e2eb94678237ab0e27e7"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/card-evidence.sha256",
+      "size": 87,
+      "sha256": "cea37cce6bf06c53f23fd2c1aa2938278710414f3cb19ff1bac6a2a3037e3525"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/card-evidence.tar.gz",
+      "size": 35173829,
+      "sha256": "30d1b9f186321548637801f1ec30699ecd07b2b00148dd896981d997e7346b44"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/checkpoint-comparison.json",
+      "size": 1694,
+      "sha256": "3a71b715f7d24067a9e07eacab249bf45ede51b85b5ec710566476de3ef84492"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/live.sh",
+      "size": 630,
+      "sha256": "d1d5da60d86e2ad4eaba90611bad39d216b80a448bd5bff5c86d443f61a41a41"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/native-command-replay-macos.json",
+      "size": 1368949,
+      "sha256": "02ad496df0595612bae6aac368d9740984033b02aeac44e3728bebee39ea39fe"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/native-command-replay-macos.log",
+      "size": 1368949,
+      "sha256": "02ad496df0595612bae6aac368d9740984033b02aeac44e3728bebee39ea39fe"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/native-command-replay.json",
+      "size": 1368949,
+      "sha256": "c64ff765615f81cd4781b7773a71d6e0c81ea3074e3e6719cfc49d70cfde655d"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/native-macos.tar.gz",
+      "size": 1455567,
+      "sha256": "b1bc8b9f6f7440427e29e459e06d276102a50eaf22f8ecda30b0e56b04333cce"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/network-replay.json",
+      "size": 265403,
+      "sha256": "8fa754c5b02edecdad963ddd96742e422c4e3ba39cb0d3acee34065bfeac682c"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/postrun.sh",
+      "size": 1620,
+      "sha256": "54f40183d54829c4ed1193672071e80ed9b7cb30ccdf6f1cfa1d8a3f878a47fa"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/startup-evidence-mutations.json",
+      "size": 1326,
+      "sha256": "2bdaa792315e4e98a1d88c5ee2f486066af6c9a091bf23f19fc7828effc185de"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/upload-replay.json",
+      "size": 1368869,
+      "sha256": "8386b6dd22e8fb8033783de9824d5e066f41267aeec4e4a627a81b06d4c12a46"
+    },
+    {
       "path": "artifacts/doom-sidefix-20261013/README.md",
       "size": 8145,
       "sha256": "9c76c163cd95d31e4fd087a2841f106af3461513b41fbdf84871c25031deb987"

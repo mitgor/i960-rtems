@@ -2665,6 +2665,58 @@ server answered again. Doom had reached its first presentation twice. Before
 asking for a visible scene, the next job was to make the ending as dependable as
 the beginning.
 
+## Waiting for the other worker
+
+The ending had a race hidden inside it. One worker could see STOP and start
+returning shared buffers while the other was still finishing its last iteration.
+The second worker had already decided to acquire a handle. Before it reached the
+lock, the first returned the last reference. The acquire then refused a buffer
+that no longer existed, and the assertion did exactly what it had been built to
+do.
+
+A small, freestanding 32-bit program made that order happen deliberately, using
+the actual RTEMS allocator and our actual shared-heap functions. It produced
+error ten, equal allocation and free counts, and zero live bytes—the same
+signature as the card's failed ending. The old card capture could not name the
+particular assertion, so the reproduction was evidence for the race, not a
+recovered instruction-by-instruction account of that run.
+
+The repair was two arrival flags. Each worker had to leave its work loop before
+either could cancel shared references. The first to arrive kept interrupts and
+control polling alive while waiting for its peer. A time bound and an iteration
+bound covered a peer that never arrived. Once both were there, the ordinary
+ownership checks and drains still had their work to do. In the small test, the
+same forced interruption now ended with a valid empty heap.
+
+The native replay had its own, less exotic trouble. Its producer could issue
+commands with none of the card's PIO delay, taking the shared mutex again and
+again while the audit peer waited. Under the native sanitizers, the bounded wait
+could expire. One millisecond between completed host-model commands, outside
+all target locks, let the peer make progress without extending the target's
+mutex deadline.
+
+That exposed an old analysis helper in the remote workspace. It had omitted the
+checkpoint-log allocation, putting a modeled address 17,200 bytes away from the
+card's answer. The current helper already knew about the log. With it restored,
+all 7,832 captured command replies matched on both Linux and macOS. The failed
+physical shutdown remained a failure; passing a repaired replay could not
+rewrite the ending of an earlier run.
+
+The full card repeat kept the same Doom image and every memory audit. Both
+first frames returned, with the same hashes and all 199 normal checkpoints
+matching the native reference each time. STOP between them returned cleanly.
+Then, after seventy-five network rounds, the system-wide STOP finally reached
+its parked state. All 306,981 allocations were freed. All 10,209 shared handles
+were retired. Six hundred and twenty-six pairs of full memory audits survived
+the ending as well as the beginning.
+
+The complete native replay matched all 7,832 replies, including the physical
+parked query. Deliberately damaged startup evidence was refused in all twenty-four
+cases. The initial wipe frame was still mostly black, and each full startup still
+took about twenty-five minutes with these audits. This was no claim of playable
+Doom. It was a smaller, necessary achievement: the first-frame experiment could
+now start, stop, repeat, and give its memory back.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -2699,8 +2751,9 @@ So, the ledger, honestly kept:
   A later exclusive run validated a 12 MiB region, a 256 KiB kernel workspace,
   64 KiB task stacks and thirty-five minutes of networking. An opt-in resident loader now uses an 8 MiB guarded application arena,
   with a live 6 MiB allocation proof and segmented PIO uploads alongside ten
-  network rounds. General libc/task adapters, arbitrary application launch,
-  graceful engine drain and longer resident service remain open.
+  network rounds. A small freestanding runtime and owned Doom entry now support two matching
+  first-frame startups, an intervening STOP and complete system drain. Visible
+  gameplay, browser frame delivery and longer engine sessions remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

@@ -4,7 +4,7 @@ No multilib libc required; only gcc's -m32 backend and Linux IA32 support.
 """
 import argparse,json,hashlib,subprocess,shutil,struct
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--rtems',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument("--shared",action="store_true");p.add_argument("--iterations",type=int,default=1000);p.add_argument("--queue-reclaim",action="store_true");a=p.parse_args();assert not a.queue_reclaim or a.shared;assert 1000<=a.iterations<=100000;out=a.out.resolve();out.mkdir(parents=True,exist_ok=True);root=Path(__file__).resolve().parent
+p=argparse.ArgumentParser();p.add_argument('--rtems',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument("--shared",action="store_true");p.add_argument("--iterations",type=int,default=1000);p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--shutdown-race",choices=["before","after"]);a=p.parse_args();assert not a.queue_reclaim or a.shared;assert 1000<=a.iterations<=100000;out=a.out.resolve();out.mkdir(parents=True,exist_ok=True);root=Path(__file__).resolve().parent
 inc=out/'include';(inc/'rtems/score').mkdir(parents=True,exist_ok=True)
 (inc/'rtems/system.h').write_text('''#ifndef TEST_SYSTEM_H
 #define TEST_SYSTEM_H
@@ -170,11 +170,55 @@ void _start(void){unsigned int i,t,old;unsigned char*p;void*saved;void*slots[64]
  quit(0);
 }
 ''')
+if a.shutdown_race:
+ assert a.shared and a.queue_reclaim
+ h=out/'heap_native.h';text=h.read_text().replace('static unsigned int heap_raw_lock(void){', 'static void (*native_preempt)(void);\nstatic unsigned int heap_raw_lock(void){if(native_preempt&&!native_mask){void(*f)(void)=native_preempt;native_preempt=0;f();}')
+ h.write_text(text)
+ test=(out/'main.c').read_text();test=test[:test.index('void _start(void)')]+r'''
+#include "../exclusive/worker_stop.h"
+static void stop_other(void){
+ native_actor=0;
+#ifdef STOP_BARRIER
+ CHECK(!worker_stop_arrive(0));
+#else
+ resident_heap_drain(0);
+#endif
+ native_actor=1;
+}
+void _start(void){
+ if(__builtin_setjmp(native_jump)){
+#ifndef STOP_BARRIER
+  CHECK(heap_error==10&&allocations==frees&&!live_bytes);quit(0);
+#else
+  quit(99);
+#endif
+ }
+ CHECK(!worker_stop_complete());
+ CHECK(!worker_stop_expired(100,1099,99999999u));CHECK(worker_stop_expired(100,1100,0));
+ CHECK(worker_stop_expired(100,100,100000000u));CHECK(worker_stop_expired(0xfffffff0u,984,0));
+ CHECK(!resident_heap_init());native_actor=0;shared_worker(0,1);CHECK(shared_phase==1);
+ native_actor=1;native_preempt=stop_other;
+ /* Preempt immediately before the actual acquire takes its heap lock. */
+ shared_worker(1,2);
+#ifdef STOP_BARRIER
+ CHECK(worker_stop_arrive(1));native_actor=0;resident_heap_drain(0);
+ native_actor=1;resident_heap_drain(1);CHECK(!heap_error&&resident_heap_valid()&&!live_bytes&&allocations==frees&&shared_created==shared_retired);quit(0);
+#else
+ quit(98); /* the old code must reproduce SHCHECK 10 */
+#endif
+}
+'''
+ if a.shutdown_race=='after':test='#define STOP_BARRIER 1\n'+test
+ (out/'main.c').write_text(test)
 sources=[a.rtems/'cpukit/score/src'/n for n in ['heap.c','heapallocate.c','heapfree.c']];inputs+=sources
 cmd=['gcc','-m32','-nostdlib','-ffreestanding','-fno-builtin','-fno-pie','-no-pie','-fno-stack-protector','-O1','-I'+str(inc),'-I'+str(root),'-I'+str(out),str(out/'main.c'),*map(str,sources),'-o',str(out/'heap-test')]
 subprocess.run(cmd,check=True);run=subprocess.run([str(out/'heap-test')],check=True,stdout=subprocess.PIPE)
+if a.shutdown_race:
+ (out/'result.json').write_text(json.dumps(dict(passed=True,shutdown_race=a.shutdown_race,actual_rtems_allocator=True,pointer_bits=32,old_shcheck10_reproduced=a.shutdown_race=='before',both_workers_quiescent_before_cancel=a.shutdown_race=='after',zero_live_bytes=True),indent=2)+'\n')
+ print('Deterministic shared acquire versus STOP:',a.shutdown_race,'passed');raise SystemExit(0)
 if a.shared:
  assert len(run.stdout)==256
  (out/'diagnostics.json').write_text(json.dumps(list(struct.unpack('<64I',run.stdout)),indent=2)+'\n')
-(out/'result.json').write_text(json.dumps(dict(actual_rtems_sources={str(p.relative_to(a.rtems)):hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs},queue_reclaim=a.queue_reclaim,cross_arena_realloc=a.queue_reclaim,fallback_free_list_pointer_bit_mutations=32 if a.queue_reclaim else 0,shared_enabled=a.shared,shared_random_operations=5000 if a.shared else 0,busy_buffer_reclaim_refused=True,shared_uncertain_ack_retries=1000 if a.shared else 0,generation_exhaustion_tested=a.shared,shared_registry_corruption_contained=a.shared,pointer_bits=32,live_slot_limit=64,empty_free_list_checked=True,realloc_shrink_and_oom_preserve=True,worker_iterations=a.iterations*2,redzone_mutations=32,free_list_pointer_bit_mutations=32,alignment_offset_bit_mutations=32,null_free_list_link_rejected=True,guard_failure_retains_allocations=True,passed=True),indent=2)+'\n')
-print('Actual RTEMS 4.6.6 allocator, 32-bit wrapper: startup/exhaustion/coalescing, worker stress iterations, ISR refusal, 32 redzone, 32 offset and 32 pointer corruptions passed')
+(out/'result.json').write_text(json.dumps(dict(shutdown_race=a.shutdown_race,actual_rtems_sources={str(p.relative_to(a.rtems)):hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs},queue_reclaim=a.queue_reclaim,cross_arena_realloc=a.queue_reclaim,fallback_free_list_pointer_bit_mutations=32 if a.queue_reclaim else 0,shared_enabled=a.shared,shared_random_operations=5000 if a.shared else 0,busy_buffer_reclaim_refused=True,shared_uncertain_ack_retries=1000 if a.shared else 0,generation_exhaustion_tested=a.shared,shared_registry_corruption_contained=a.shared,pointer_bits=32,live_slot_limit=64,empty_free_list_checked=True,realloc_shrink_and_oom_preserve=True,worker_iterations=a.iterations*2,redzone_mutations=32,free_list_pointer_bit_mutations=32,alignment_offset_bit_mutations=32,null_free_list_link_rejected=True,guard_failure_retains_allocations=True,passed=True),indent=2)+'\n')
+if a.shutdown_race:print('Deterministic shared acquire versus STOP:',a.shutdown_race,'passed')
+else:print('Actual RTEMS 4.6.6 allocator, 32-bit wrapper: startup/exhaustion/coalescing, worker stress iterations, ISR refusal, 32 redzone, 32 offset and 32 pointer corruptions passed')

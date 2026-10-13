@@ -12,6 +12,9 @@
 #include <rtems/score/isr.h>
 #include "../switch/lifetime.h"
 #include "session_limit.h"
+#ifdef I960_HEAP_SHARED
+#include "worker_stop.h"
+#endif
 #define R(a) (*(volatile unsigned int*)(a))
 extern void exclusive_timer_isr(void);
 #ifdef I960_OWNED_MIB
@@ -185,6 +188,18 @@ static void Worker(rtems_task_argument id){
 #endif
   progress[id]++;
  }mask();
+#ifdef I960_HEAP_SHARED
+ if(resident&&!worker_stop_arrive(id)){
+  unsigned int start=ticks,polls=0;
+  /* Stay runnable: this profile intentionally has no idle-task IRQ owner. */
+  enable();
+  while(!worker_stop_complete()){
+   mask();control_poll();enable();
+   if(worker_stop_expired(start,ticks,++polls))bounded_fatal(0x57006);
+  }
+  mask();
+ }
+#endif
 #ifdef I960_GENERAL_HEAP
  if(resident)resident_heap_drain(id);
 #endif

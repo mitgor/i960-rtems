@@ -1,30 +1,34 @@
 # RTEMS working guidance
 
-**Doom first-frame repeat (2026-10-13; full drain remains unaccepted):**
-The narrow `--point-side-o0` workaround passed 25/25 exact-function card probes.
-The corrected full-width two-packet ACK then completed real Doom first frame /
-partial-WAD STOP / first frame again. Both 199-record normal checkpoint streams
-match native, all 50 ACKs succeed through record 400, and both outputs match pixel
-FNV 4000963876 / palette FNV 1611003811. Spawn is sector 0, floor 0, view +41.
-Normal times: 1549.424 / 1529.928 s with full audits; STOP: 25.627 s. These are
-initial mostly black wipe frames, not visible gameplay or rendering FPS.
+**Doom N3 first-frame and shutdown baseline accepted (2026-10-13):**
+The bounded two-worker arrival barrier fixes shared cancellation racing a peer's
+last acquire. A deterministic actual-allocator test reproduces the old SHCHECK 10
+and passes with the barrier; the original card capture did not identify its exact
+assertion line. Existing allocator stress and ownership/corruption tests pass.
 
-Global STOP after 75 network rounds deliberately aborted: terminal NMF1 kind 4,
-shared-heap SHCHECK error 10. Preserve 613 valid full audit pairs, the mixed
-EXR1/NMF1 transition read and complete terminal snapshot. Do not bypass this as
-a stack-validator nuisance. Specific assertion and native shared-peer replay
-abort remain unresolved. Completed WAD/checkpoint evidence and 24 startup tamper
-checks pass, but complete native upload replay/final drain do not. Keep N2 as the
-accepted full baseline and startup opt-in; no additional RAM grant is required.
-Next: short shared-heap STOP reproduction and replay diagnosis, then full drain
-acceptance before bounded visible frames/readback/browser work.
+The new card batch passes **626 full snapshot/RAM pairs**, **75 dual-stack network
+rounds**, both normal Doom startups, in-engine STOP, and global STOP/final drain.
+All **306,981 allocations** and **10,209 shared handles** retire; parked upload
+query and full native replay of **7,832 replies** pass. Both 199-record normal
+checkpoint streams match native, with **403 total records / 50 ACKs** across
+normal/STOP/normal. Normal times: **1,522.551 / 1,514.546 s**; STOP: **25.922 s**.
+Pixel FNV **4000963876**, palette FNV **1611003811**. The 24 startup-evidence
+mutations and 24 snapshot corruptions are all rejected.
 
-Exact binaries, sources and failures are archived. Public IPv6 HTTP returned
-200 after power-cycle; reservation released. Production relay supervisor 2998 /
-Python 3017 owns the card in boot `f1aa723f-2de3-44bc-8841-c48f888d6bbf`.
-Coordinate and stop it cleanly before exclusive use.
-[First ACK failure](../artifacts/doom-sidefix-20261013/README.md) ·
-[Corrected ACK batch and shutdown failure](../artifacts/doom-sidefix-ack-20261013/README.md).
+Native replay now models a 1 ms command transport delay outside target locks;
+the target mutex deadline is unchanged. A stale remote checkpoint helper was
+also synchronized. `--commands-only` remains explicitly diagnostic and cannot
+accept physical drain; default full replay was used for this new capture.
+Preserve full paired audits, native oracle, checkpoint ACKs and the narrow
+`--point-side-o0` workaround. The engine and 8 MiB arena are unchanged.
+
+This accepts the bounded initial wipe frame, STOP/repeat and system drain—not
+visible gameplay, browser Doom or rendering FPS. Next: bounded visible-frame
+progression, framebuffer readback and browser delivery, with the same full gates.
+Reboot was requested after local archive verification. SSH has not returned; the
+user was asked to power-cycle if stuck. Public HTTP restoration is pending.
+Coordinate before hardware use.
+[Exact sources, binaries, captures, failure reproductions and results](../artifacts/doom-shutdown-20261013/README.md).
 
 **Height/branch diagnosis (2026-10-13; full Doom still unaccepted):**
 The first 49 checkpoints match, including all decoded sector-height and side
