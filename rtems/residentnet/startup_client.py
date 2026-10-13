@@ -9,7 +9,7 @@ def exercise(u,root,wad):
  assert hashlib.sha256(blob).hexdigest()==m['template_sha256'] and hashlib.sha256(meta).hexdigest()==m['metadata_sha256']
  u.journal_namespace='engine-';server=BatchServer(u,wad);rows=[]
  from checkpoint_client import Checkpoints
- checkpoints=Checkpoints(u) if m['startup'].get('checkpoints_sha256') else None
+ checkpoints=Checkpoints(u,barriers=bool(m['startup'].get('checkpoint_barriers'))) if m['startup'].get('checkpoints_sha256') else None
  def load(b,metadata):
   parts=[b[s['offset']:s['offset']+s['file_bytes']] for s in m['sections']]+[metadata]
   geometry=[(s['offset'],s['file_bytes'],s['memory_bytes'],s['flags']) for s in m['sections']]+[(m['metadata_offset'],len(meta),len(meta),2)]

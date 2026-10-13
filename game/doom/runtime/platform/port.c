@@ -128,8 +128,10 @@ int doom_platform_retire(void){unsigned i;if(armed||retired||!owned||!owned->own
 
 void doom_platform_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
 #ifdef DOOM_CHECKPOINTS
- const struct doom_runtime_checkpoint*t=(const void*)owned;
- if(!t||!owned->owner()||!t->mark(stage,x,y,z)){/* No recursive fatal callback. */stats.exited=1;stats.exit_code=214;if(armed&&owned&&owned->owner())longjmp(escape,1);for(;;){}}
+ const struct doom_runtime_checkpoint*t=(const void*)owned;int rc=0;
+ if(t&&owned->owner())rc=t->mark(stage,x,y,z);
+ if(rc<0&&armed)fatal(210);
+ if(rc<=0){/* No recursive fatal callback. */stats.exited=1;stats.exit_code=214;if(armed&&owned&&owned->owner())longjmp(escape,1);for(;;){}}
 #else
  (void)stage;(void)x;(void)y;(void)z;
 #endif

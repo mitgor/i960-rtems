@@ -1,0 +1,97 @@
+{
+  "accepted": false,
+  "diagnostic_only": true,
+  "barriers": true,
+  "acknowledged_records": 50,
+  "pending_ack": null,
+  "validated_records": 403,
+  "oracle_records": 199,
+  "epoch": 39007,
+  "uncertain_errno": null,
+  "comparisons": [
+    {
+      "generation": 4,
+      "records": 199,
+      "matching_prefix": 199,
+      "first_difference": null,
+      "last": {
+        "stage": "cleanup finished",
+        "words": [
+          827343684,
+          199,
+          4,
+          62,
+          0,
+          0,
+          0,
+          4747
+        ]
+      }
+    },
+    {
+      "generation": 5,
+      "records": 5,
+      "matching_prefix": 2,
+      "first_difference": {
+        "card": {
+          "stage": "exit requested",
+          "words": [
+            827343684,
+            202,
+            5,
+            60,
+            210,
+            0,
+            0,
+            2
+          ]
+        },
+        "host": {
+          "stage": "texture table built",
+          "words": [
+            827343684,
+            3,
+            1,
+            25,
+            963,
+            106608,
+            0,
+            30
+          ]
+        }
+      },
+      "last": {
+        "stage": "cleanup finished",
+        "words": [
+          827343684,
+          204,
+          5,
+          62,
+          0,
+          0,
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "generation": 6,
+      "records": 199,
+      "matching_prefix": 199,
+      "first_difference": null,
+      "last": {
+        "stage": "cleanup finished",
+        "words": [
+          827343684,
+          403,
+          6,
+          62,
+          0,
+          0,
+          0,
+          4747
+        ]
+      }
+    }
+  ]
+}

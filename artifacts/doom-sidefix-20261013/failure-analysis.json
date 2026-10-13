@@ -1,0 +1,124 @@
+{
+  "accepted": false,
+  "diagnostic_only": true,
+  "actual_requests": 9420,
+  "expected_completed_normal_requests": 4747,
+  "first_normal_request_trace_matches": true,
+  "repeat_prefix_requests": 4671,
+  "stop_partial_sequence": 4749,
+  "stop_partial_bytes": 1536,
+  "verified_payload_bytes": 28103048,
+  "fragments": 54890,
+  "all_payloads_match_wad": true,
+  "last_tick": 444373,
+  "last_capture_seconds": 4488.591403765,
+  "full_snapshot_pairs": 605,
+  "complete_snapshots": 605,
+  "additional_unpaired_failure_snapshot": true,
+  "last_partial_page": null,
+  "captured_fault_markers_zero": true,
+  "initial_image_and_paired_audit_checked": true,
+  "full_frozen_pages_reconstructed": true,
+  "checkpoint_replay": {
+    "accepted": false,
+    "diagnostic_only": true,
+    "barriers": true,
+    "acknowledged_records": 26,
+    "pending_ack": [
+      272,
+      6
+    ],
+    "validated_records": 272,
+    "oracle_records": 199,
+    "epoch": 8754,
+    "uncertain_errno": 116,
+    "comparisons": [
+      {
+        "generation": 4,
+        "records": 199,
+        "matching_prefix": 199,
+        "first_difference": null,
+        "last": {
+          "stage": "cleanup finished",
+          "words": [
+            827343684,
+            199,
+            4,
+            62,
+            0,
+            0,
+            0,
+            4747
+          ]
+        }
+      },
+      {
+        "generation": 5,
+        "records": 5,
+        "matching_prefix": 2,
+        "first_difference": {
+          "card": {
+            "stage": "exit requested",
+            "words": [
+              827343684,
+              202,
+              5,
+              60,
+              210,
+              0,
+              0,
+              2
+            ]
+          },
+          "host": {
+            "stage": "texture table built",
+            "words": [
+              827343684,
+              3,
+              1,
+              25,
+              963,
+              106608,
+              0,
+              30
+            ]
+          }
+        },
+        "last": {
+          "stage": "cleanup finished",
+          "words": [
+            827343684,
+            204,
+            5,
+            62,
+            0,
+            0,
+            0,
+            2
+          ]
+        }
+      },
+      {
+        "generation": 6,
+        "records": 68,
+        "matching_prefix": 68,
+        "first_difference": null,
+        "last": {
+          "stage": "display entry",
+          "words": [
+            827343684,
+            272,
+            6,
+            80,
+            0,
+            3,
+            2,
+            4671
+          ]
+        }
+      }
+    ]
+  },
+  "final_repeat_outcome_known": false,
+  "completed_network_rounds": 75
+}

@@ -16,7 +16,7 @@ class Upload:
   w=struct.unpack_from('<8I',raw);assert w[3]==1 and not w[4]&1 and w[5:]==(0,0,0)
   return bytes(raw[32:32+w[2]])
  def record(self,event):
-  with (self.out/(self.journal_namespace+'checkpoint-journal.jsonl' if event['op']==7 else self.journal_namespace+'owned-journal.jsonl' if event['op'] in (5,6) else self.journal_namespace+'wad-journal.jsonl' if event['op'] in (3,4) else 'upload-journal.jsonl')).open('a') as f:f.write(json.dumps(event)+'\n')
+  with (self.out/(self.journal_namespace+'checkpoint-journal.jsonl' if event['op'] in (7,8) else self.journal_namespace+'owned-journal.jsonl' if event['op'] in (5,6) else self.journal_namespace+'wad-journal.jsonl' if event['op'] in (3,4) else 'upload-journal.jsonl')).open('a') as f:f.write(json.dumps(event)+'\n')
  def query(self):return struct.unpack('<16I',self.io(2))
  def command(self,command,a=0,b=0,c=0,data=b'',expected=0,sequence=None,timeout=30):
   if self.abort is not None and self.abort.is_set():raise RuntimeError("card audit failed; stop new uploads, retain until reboot")

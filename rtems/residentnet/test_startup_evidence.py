@@ -13,7 +13,9 @@ for line in (a.capture/'upload-journal.jsonl').read_text().splitlines():
   w=list(struct.unpack_from('<16I',bytes.fromhex(e['response']),32))
   if not w[3] and w[1]==struct.unpack_from('<I',pending,4)[0]:responses.append(w);pending=None
 assert not pending;prepare(a.capture,a.build,a.wad,requests,responses);results=[]
-for case in ('template','metadata','identity','frame','palette','cleanup','peak','stop_generation','missing_stop','payload','sequence','offset','length','total','crc','drop_fragment','duplicate_fragment','wire_code','wire_reply','request_trace'):
+cases=['template','metadata','identity','frame','palette','cleanup','peak','stop_generation','missing_stop','payload','sequence','offset','length','total','crc','drop_fragment','duplicate_fragment','wire_code','wire_reply','request_trace']
+if json.loads((a.build/'manifest.json').read_text()).get('startup',{}).get('checkpoint_barriers'):cases+=['ack_index','ack_generation','ack_missing','ack_duplicate']
+for case in cases:
  with tempfile.TemporaryDirectory() as d:
   t=Path(d)
   for name in ('engine-results.json','engine-template.bin','engine-relocations.bin','engine-owned-journal.jsonl','engine-wad-journal.jsonl'):(t/name).symlink_to((a.capture/name).resolve())
@@ -31,6 +33,16 @@ for case in ('template','metadata','identity','frame','palette','cleanup','peak'
   elif case=='wire_reply':i=next(i for i,q in enumerate(rq) if struct.unpack_from('<I',q,8)[0]==19);rs[i][5]^=1
   elif case=='wire_code':
    begin=next(i for i,q in enumerate(rq) if struct.unpack_from('<I',q,8)[0]==1 and struct.unpack_from('<I',q,36)[0]==4);i=next(i for i in range(begin+1,len(rq)) if struct.unpack_from('<I',rq[i],8)[0]==2);b=bytearray(rq[i]);b[32]^=1;rq[i]=bytes(b)
+  elif case.startswith('ack_'):
+   es=[json.loads(l) for l in (t/'engine-checkpoint-journal.jsonl').read_text().splitlines()]
+   index=next(i for i,e in enumerate(es) if e['op']==8 and 'response' in e)
+   if case=='ack_missing':del es[index]
+   elif case=='ack_duplicate':es.insert(index,copy.deepcopy(es[index]))
+   else:
+    offset=32 if case=='ack_index' else 36
+    for key in ('request','response'):
+     raw=bytearray.fromhex(es[index][key]);raw[offset]^=1;es[index][key]=raw.hex()
+   write('engine-checkpoint-journal.jsonl',''.join(json.dumps(e)+'\n' for e in es).encode())
   else:
    name='engine-owned-journal.jsonl' if case=='missing_stop' else 'engine-wad-journal.jsonl'
    original=(t/name).resolve();(t/name).unlink();changed=False
@@ -54,4 +66,4 @@ for case in ('template','metadata','identity','frame','palette','cleanup','peak'
   try:prepare(t,a.build,a.wad,rq,rs)
   except AssertionError:results.append(dict(case=case,rejected=True))
   else:raise AssertionError(('startup evidence mutation accepted',case))
-a.output.write_text(json.dumps(results,indent=2)+'\n');print('PASS 20 startup evidence mutations rejected after a clean baseline')
+a.output.write_text(json.dumps(results,indent=2)+'\n');print('PASS',len(results),'startup evidence mutations rejected after a clean baseline')

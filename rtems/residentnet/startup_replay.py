@@ -4,7 +4,7 @@ import hashlib,json,struct,zlib
 def prepare(capture,build,data,r,m,runs,report,bases):
  if m['startup'].get('checkpoints_sha256'):
   from checkpoint_replay import check
-  cp=check(capture,build);assert cp['uncertain_errno'] is None
+  cp=check(capture,build);assert cp['uncertain_errno'] is None and cp['pending_ack'] is None
   assert [g['generation'] for g in cp['comparisons']]==[4,5,6]
   for g in (cp['comparisons'][0],cp['comparisons'][2]):assert g['matching_prefix']==g['records']==cp['oracle_records'] and g['first_difference'] is None
   rows=[json.loads(line) for line in (capture/'startup-checkpoints.jsonl').open()]

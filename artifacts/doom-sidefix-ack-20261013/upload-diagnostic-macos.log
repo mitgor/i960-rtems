@@ -1,0 +1,15 @@
+0   replay                              0x00000001026c3188 exclusive_abort + 344
+1   replay                              0x00000001026d8148 doom_shared_peer_step + 2324
+2   replay                              0x00000001026eb518 peer + 180
+3   libclang_rt.asan_osx_dynamic.dylib  0x0000000103915e68 _ZL17asan_thread_startPv + 80
+4   libsystem_pthread.dylib             0x00000001860efc58 _pthread_start + 136
+5   libsystem_pthread.dylib             0x00000001860eac1c thread_start + 8
+Assertion failed: (0), function exclusive_abort, file upload_native.h, line 7.
+Traceback (most recent call last):
+  File "/Users/mit/Documents/!Projects/i960/rtems/residentnet/verify_upload.py", line 138, in <module>
+    raw=subprocess.run([str(t/'replay')],input=sent,stdout=subprocess.PIPE,check=True).stdout
+        ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/tmpoy2ofhd4/replay']' died with <Signals.SIGABRT: 6>.

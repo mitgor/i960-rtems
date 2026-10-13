@@ -1,0 +1,12 @@
+{
+  "boot": "f1aa723f-2de3-44bc-8841-c48f888d6bbf",
+  "supervisor_pid": 2998,
+  "python_pid": 3017,
+  "http_status": 200,
+  "verified_from": "Mac curl IPv6, no proxy",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "body_bytes": 2890,
+  "body_sha256": "8b12e53ec681cf9c2dbb46f073ae9962e877ad74817caa8359da938432bbf340",
+  "headers": "HTTP/1.0 200 OK\nContent-Type: text/html; charset=utf-8\nConnection: close\nCache-Control: no-store\n\n",
+  "exclusive_reservation_released": true
+}

@@ -2607,6 +2607,64 @@ unfinished, but the next question was no longer why forty-one had become minus
 thirty-one. It was how to give this processor comparisons whose answers survived
 the compiler.
 
+## One function, and a receipt
+
+The next change was deliberately small. `R_PointOnSide` moved into a file of
+its own, with its original source and Doom's original types. That file alone
+was compiled without optimization. The rest of the game kept its existing
+flags. So did RTEMS. A broken comparison was not a reason to quietly replace
+the compiler underneath everything that already worked.
+
+The new function occupied 416 bytes. Before asking it to choose a room again,
+we compared those bytes with the small scalar test program, then sent twenty-five
+questions through the card: vertical lines, horizontal lines, both directions,
+points on either side, points exactly on the line, and the original failing
+root-node decision. Twenty-five correct answers came back. Each call still paid
+for the complete memory audits, restoration and clean unload.
+
+There was another lesson from the previous attempt. A checkpoint written by the
+card was not necessarily a checkpoint received by the host. The game could run
+past a marker and fail before we had copied it out. The new experiment therefore
+asked for a receipt at selected boundaries. The host read every word, saved the
+record, and acknowledged its number and invocation. Only then could the card
+continue. A missing receipt had a deadline; STOP still had a way out.
+
+The host's reference frames and all five native checkpoint streams stayed
+unchanged. The small program had answered correctly on real silicon. Then the full
+startup finally answered. The player appeared in sector zero, with the camera
+forty-one units above its floor. All 199 checkpoints matched the host. Rendering
+returned. The wipe ran. The framebuffer copy finished. Doom called `DG_DrawFrame`
+and left through its owned exit, with both frame hashes matching the reference.
+
+It was the first, mostly black wipe frame, not a playable scene. And the two
+changes had run together: the corrected comparison and the acknowledged markers.
+We could say where the player belonged, and that this build reached the end. We
+could not honestly assign the old hang to a single cause from that result alone.
+STOP worked too. The fresh repeat then found a mistake in our receipt: its
+record number travelled through an eight-bit field. The first invocation had
+only 199 records. The second reached record 272, which arrived as sixteen. The
+card refused it, correctly, and we kept the failed capture.
+
+The correction gave the number and the invocation a full word each, in two
+ordered packets. The first packet only staged the number; the second could
+release the checkpoint after checking both. Native tests drove the actual host
+packet builder through record 512. The new card batch crossed record 272, kept going through record 400, and
+returned the same first frame again. Fifty receipts, all accounted for. STOP
+between the two invocations had worked too.
+
+Then the final, system-wide STOP found another boundary. A shared-heap assertion
+put the card into its terminal handler. The host caught a snapshot changing from
+ordinary status to the terminal record halfway through the read, then retrieved
+the complete terminal record separately. We had two matching Doom frames, but
+not a successful global drain. The native shared-peer replay also aborted; we
+kept both failures without pretending they had the same cause.
+
+The archive held 613 clean pairs of full memory audits, every WAD fragment, both
+checkpoint streams, and the failed ending. After a power-cycle the public web
+server answered again. Doom had reached its first presentation twice. Before
+asking for a visible scene, the next job was to make the ending as dependable as
+the beginning.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

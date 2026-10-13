@@ -35,7 +35,7 @@ for name in ('upload-journal.jsonl','engine-checkpoint-journal.jsonl','engine-wa
   e=json.loads(line)
   if e.get('errno')==110:timeouts.append((name,e))
 assert len(timeouts)==1
-timeout_channel,last_upload=timeouts[0];assert last_upload['op'] in (2,3,4,7)
+timeout_channel,last_upload=timeouts[0];assert last_upload['op'] in (2,3,4,7,8)
 assert 'Device or resource busy' in (c/'error.txt').read_text() and not (c/'engine-results.json').exists()
 assert 'SESSION FAILED: retained DMA/module; reboot required' in (c/'retained-close/result.txt').read_text()
 snaps=json.loads((c/'snapshots.json').read_text());ram=[json.loads(l) for l in (c/'ram-diagnostics.jsonl').read_text().splitlines()];assert len(snaps) in (len(ram),len(ram)+1)

@@ -1,0 +1,3 @@
+PASS checkpoint selection, invocation-relative reads, immutable records, invalid indexes and overflow refusal
+PASS host bounded checkpoint draining, persistent rows, overflow and sequence refusal
+PASS 11 checkpoint wire/sequence/padding mutations rejected; honest scalar divergence localized without acceptance

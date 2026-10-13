@@ -1,0 +1,240 @@
+{
+  "diagnostic_only": true,
+  "doom_accepted": false,
+  "transactions": 25,
+  "firmware_commands": 2750,
+  "full_paired_512KiB_staging_phases": 75,
+  "all_restored_and_unloaded": true,
+  "boot_id": "e7e1bcd3-0421-4d31-8fa9-9d6748d7110e",
+  "semantic_failure_cases": {
+    "unoptimized": []
+  },
+  "module_sha256": "0176429b103660a50aa95039952ce993931073aa713733b3a256e8e5626d0f92",
+  "rows": [
+    {
+      "variant": "unoptimized",
+      "case": 0,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 1,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 2,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 3,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 4,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 5,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 6,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 7,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 8,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 9,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 10,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 11,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 12,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 13,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 14,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 15,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 16,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 17,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 18,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 19,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 20,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 21,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 22,
+      "expected_source": 0,
+      "actual": 0,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 23,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    },
+    {
+      "variant": "unoptimized",
+      "case": 24,
+      "expected_source": 1,
+      "actual": 1,
+      "source_match": true,
+      "full_loader_audit": true,
+      "clean_unload": true
+    }
+  ]
+}

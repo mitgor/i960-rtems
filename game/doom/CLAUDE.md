@@ -1,5 +1,31 @@
 # Doom milestone guidance
 
+**Doom first-frame repeat (2026-10-13; full drain remains unaccepted):**
+The narrow `--point-side-o0` workaround passed 25/25 exact-function card probes.
+The corrected full-width two-packet ACK then completed real Doom first frame /
+partial-WAD STOP / first frame again. Both 199-record normal checkpoint streams
+match native, all 50 ACKs succeed through record 400, and both outputs match pixel
+FNV 4000963876 / palette FNV 1611003811. Spawn is sector 0, floor 0, view +41.
+Normal times: 1549.424 / 1529.928 s with full audits; STOP: 25.627 s. These are
+initial mostly black wipe frames, not visible gameplay or rendering FPS.
+
+Global STOP after 75 network rounds deliberately aborted: terminal NMF1 kind 4,
+shared-heap SHCHECK error 10. Preserve 613 valid full audit pairs, the mixed
+EXR1/NMF1 transition read and complete terminal snapshot. Do not bypass this as
+a stack-validator nuisance. Specific assertion and native shared-peer replay
+abort remain unresolved. Completed WAD/checkpoint evidence and 24 startup tamper
+checks pass, but complete native upload replay/final drain do not. Keep N2 as the
+accepted full baseline and startup opt-in; no additional RAM grant is required.
+Next: short shared-heap STOP reproduction and replay diagnosis, then full drain
+acceptance before bounded visible frames/readback/browser work.
+
+Exact binaries, sources and failures are archived. Public IPv6 HTTP returned
+200 after power-cycle; reservation released. Production relay supervisor 2998 /
+Python 3017 owns the card in boot `f1aa723f-2de3-44bc-8841-c48f888d6bbf`.
+Coordinate and stop it cleanly before exclusive use.
+[First ACK failure](../../artifacts/doom-sidefix-20261013/README.md) ·
+[Corrected ACK batch and shutdown failure](../../artifacts/doom-sidefix-ack-20261013/README.md).
+
 **Height/branch diagnosis (2026-10-13; full Doom still unaccepted):**
 The first 49 checkpoints match, including all decoded sector-height and side
 texture-ID fingerprints. At request 4,670 the card spawns in subsector **1394** /

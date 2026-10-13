@@ -1,0 +1,19 @@
+{
+  "physical_doom_acceptance": false,
+  "compilation_scope": [
+    {
+      "target": "host32",
+      "only_o0_file": "r_point_side.c",
+      "unchanged_function_sha256": "6f1bb67d924478c35dadf38a077806f2f6aae317755ff2cdfc7e03cd912f2bc8"
+    },
+    {
+      "target": "i960",
+      "only_o0_file": "r_point_side.c",
+      "unchanged_function_sha256": "6f1bb67d924478c35dadf38a077806f2f6aae317755ff2cdfc7e03cd912f2bc8"
+    }
+  ],
+  "exact_candidate_probe_text_bytes": 416,
+  "candidate_probe_text_sha256": "01da11c8b64da0b60f6e6e82f5097a3a6aa5cdb4b818239a737ed93014902d8f",
+  "admission_bytes": 801920,
+  "checkpoint_barriers": true
+}

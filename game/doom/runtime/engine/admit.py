@@ -2,7 +2,8 @@
 """Generate a small trusted identity, not an embedded engine or relocation list."""
 import argparse,hashlib,json,struct,subprocess
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('packed',type=Path);p.add_argument('--build',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--startup-requests',type=Path);p.add_argument('--startup-checkpoints',type=Path);p.add_argument('--startup-oracle',type=Path);p.add_argument('--cross',required=True);a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
+p=argparse.ArgumentParser();p.add_argument('packed',type=Path);p.add_argument('--build',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--startup-requests',type=Path);p.add_argument('--startup-checkpoints',type=Path);p.add_argument('--checkpoint-barriers',action='store_true');p.add_argument('--startup-oracle',type=Path);p.add_argument('--cross',required=True);a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
+assert not a.checkpoint_barriers or (a.startup_oracle and a.startup_checkpoints)
 m=json.loads((a.packed/'manifest.json').read_text());b=(a.packed/'template.bin').read_bytes();assert m['linker_match'] and not m['admitted'] and hashlib.sha256(b).hexdigest()==m['template_sha256']
 assert len(m['sections'])==3 and [s['name'] for s in m['sections']]==['.text','.data','.bss']
 rows=subprocess.check_output([a.cross+'nm',str(a.build/'doom-platform.o')],text=True).splitlines();result=next(int(r.split()[0],16) for r in rows if r.split()[-1]=='_doom_engine_result')+m['sections'][2]['offset'];assert result+48<=m['memory_bytes']
@@ -18,6 +19,7 @@ if a.startup_oracle:
  if a.startup_checkpoints:
   cp=a.startup_checkpoints.read_bytes();assert cp and len(cp)%32==0
   (a.out/'startup-checkpoints.bin').write_bytes(cp);oracle['checkpoints_sha256']=hashlib.sha256(cp).hexdigest()
+ if a.checkpoint_barriers:oracle['checkpoint_barriers']=1
  m['startup']=oracle
  assert m['admission_bytes']<=900000, 'native startup reservation proof exceeded'
 (a.out/'template.bin').write_bytes(b);(a.out/'relocations.bin').write_bytes(meta);(a.out/'manifest.json').write_text(json.dumps(m,indent=2)+'\n')

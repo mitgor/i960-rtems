@@ -13,7 +13,7 @@ static int trace_fd;
 #include "checkpoint_log.h"
 static struct doom_checkpoint_log *checkpoints;
 static unsigned owner(void);
-static int mark(unsigned stage,unsigned x,unsigned y,unsigned z){return owner()&&doom_checkpoint_put(checkpoints,1,reads,stage,x,y,z);}
+static int mark(unsigned stage,unsigned x,unsigned y,unsigned z){int rc=owner()&&doom_checkpoint_put(checkpoints,1,reads,stage,x,y,z);if(stage==63&&mode==4)return -1;if(stage==63&&mode==5)return 0;return rc;}
 #endif
 static int enter(void*p){if(locked)return 0;locked=1;return 1;}
 static void leave(void*p){locked=0;}

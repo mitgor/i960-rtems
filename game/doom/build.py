@@ -2,7 +2,7 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--platform-runtime',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');a=p.parse_args()
 assert not a.platform_runtime or (a.target in ('i960','host32') and a.wad_cache), 'private platform requires i960 WAD-cache build'
 assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
 assert hashlib.sha256(a.archive.read_bytes()).hexdigest()=='26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7', 'source hash mismatch'
@@ -34,9 +34,17 @@ if a.checkpoints:
  from instrument import apply
  shutil.copyfile(here/'runtime/startup/checkpoints.h',src/'checkpoints.h')
  apply(patch)
+if a.point_side_o0:
+ assert a.startup, 'comparison workaround is restricted to startup experiments'
+ text=(src/'r_main.c').read_text();begin=text.index('int\nR_PointOnSide\n');end=text.index('\n\nint\nR_PointOnSegSide\n',begin)
+ body=text[begin:end]
+ # Preserve the original GPL header and actual Doom types in the split unit.
+ (src/'r_point_side.c').write_text(text[:text.index('#include')]+'\n#include \"r_local.h\"\n'+body+'\n')
+ patch('r_main.c',body,'/* R_PointOnSide is compiled separately; see build.json. */')
 # The exact same instrument-free engine is used for target sizing.
 objects=re.search(r'^SRC_DOOM = (.*)$',(src/'Makefile').read_text(),re.M)[1].split()
 sources=[src/(s[:-2]+'.c') for s in objects if s!='doomgeneric_xlib.o']
+if a.point_side_o0:sources.append(src/'r_point_side.c')
 out=work/a.target;out.mkdir(exist_ok=True)
 if a.target=='i960':
  cc='/home/mit/i960/tools/bin/i960-coff-gcc';prefix='/home/mit/i960/tools/bin/i960-coff-'
@@ -70,11 +78,11 @@ if a.sanitize:
 commands=[];failures=[];objs=[]
 with (out/'compile.log').open('w') as log:
  for f in sources:
-  obj=out/(f.stem+'.o');renames=(['-D'+n+'=doom_'+n for n in ('malloc','calloc','realloc','free','strdup')] if a.arena_runtime and not a.platform_runtime and a.target=='i960' and f not in runtime_sources else []);cmd=[cc,*flags,*renames,*(['-finstrument-functions'] if a.target!='i960' and not a.platform_runtime and f.name!='profile.c' and not (a.arena_runtime and f in runtime_sources) else []),'-c',str(f),'-o',str(obj)];commands.append(cmd)
+  obj=out/(f.stem+'.o');renames=(['-D'+n+'=doom_'+n for n in ('malloc','calloc','realloc','free','strdup')] if a.arena_runtime and not a.platform_runtime and a.target=='i960' and f not in runtime_sources else []);cmd=[cc,*flags,*(['-O0'] if a.point_side_o0 and f.name=='r_point_side.c' else []),*renames,*(['-finstrument-functions'] if a.target!='i960' and not a.platform_runtime and f.name!='profile.c' and not (a.arena_runtime and f in runtime_sources) else []),'-c',str(f),'-o',str(obj)];commands.append(cmd)
   r=subprocess.run(cmd,stdout=log,stderr=log)
   if r.returncode:failures.append(f.name)
   else:objs.append(str(obj))
-(out/'build.json').write_text(json.dumps(dict(target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
+(out/'build.json').write_text(json.dumps(dict(point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
 if failures:raise SystemExit('Compile failed: '+str(failures))
 if a.platform_runtime and a.target=='host32':
  subprocess.run(['ld','-m','elf_i386','-r','-d','-o',str(out/'doom-engine.o'),*objs],check=True)

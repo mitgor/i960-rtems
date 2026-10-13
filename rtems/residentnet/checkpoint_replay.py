@@ -4,6 +4,7 @@ This can diagnose an incomplete startup, never promote it to acceptance.
 """
 import argparse,hashlib,json,struct
 from pathlib import Path
+from checkpoint_client import barrier_stage
 MAGIC=0x31504344
 STAGES={1:'owned entry',2:'doomgeneric_Create',3:'Create returned',10:'level setup',11:'blockmap loaded',12:'vertices loaded',13:'sectors loaded',14:'sides loaded',15:'lines loaded',16:'subsectors loaded',17:'nodes loaded',18:'segs loaded',19:'reject loaded',20:'things loaded',21:'side texture fingerprint',22:'level setup done',25:'texture table built',26:'texture lookup done',30:'precache entry',32:'texture present fingerprint',34:'precache patch',36:'precache done',37:'player position/angle',38:'player viewz/extralight',40:'view position/angle',41:'view cos/sin/z',42:'BSP rendered',43:'planes rendered',44:'masked rendered',50:'DrawFrame entered',51:'frame hashes',60:'exit requested',61:'owned exit returned',62:'cleanup finished',99:'composite texture',100:'lookup texture',101:'patch selected',102:'lookup finished'}
 STAGES.update({27:'sector height fingerprint',63:'player spawn subsector/sector/input z',64:'player spawn z/floor/ceiling',65:'player spawn x/y/sector floor',66:'player mapthing',67:'initial viewheight/viewz/delta',70:'height entry z/floor/ceiling',71:'height entry viewheight/delta/bob',72:'height ground/cheats/state',73:'height bob/momx/momy',74:'airborne height result/z/viewheight',75:'ground height viewheight/bob/z',76:'height result/ceiling/delta',80:'display entry',81:'player render returned',82:'HUD finished',83:'background finished',84:'border finished',85:'menu begin',86:'menu finished',87:'network update finished',88:'wipe endscreen begin',89:'wipe endscreen finished',90:'wipe clock wait begin',91:'wipe clock wait finished',92:'screen wipe begin',93:'screen wipe finished',94:'wipe no-blit finished',95:'wipe menu finished',96:'video finish dimensions',97:'video copy scaling/offsets',98:'video copy finished'})
@@ -33,11 +34,21 @@ def describe(w,wad=None):
  return result
 
 def check(capture,build,wad=None):
- m=json.loads((build/'manifest.json').read_text());raw=(build/'startup-checkpoints.bin').read_bytes();assert hashlib.sha256(raw).hexdigest()==m['startup']['checkpoints_sha256'];oracle=list(struct.iter_unpack('<8I',raw));rows=[];epoch=None;uncertain=None
+ m=json.loads((build/'manifest.json').read_text());raw=(build/'startup-checkpoints.bin').read_bytes();assert hashlib.sha256(raw).hexdigest()==m['startup']['checkpoints_sha256'];oracle=list(struct.iter_unpack('<8I',raw));rows=[];epoch=None;uncertain=None;pending=None;acks=[]
+ barriers=bool(m['startup'].get('checkpoint_barriers'))
  lines=(capture/'engine-checkpoint-journal.jsonl').read_text().splitlines()
  for i,line in enumerate(lines):
   e=json.loads(line);q=bytes.fromhex(e['request']);assert len(q)==1056
-  h=struct.unpack_from('<8I',q);assert h[0]==7 and 0<h[1]<=65535 and h[2:]==(4,0,0,0,0,0)
+  h=struct.unpack_from('<8I',q)
+  if h[0]==8:
+   assert barriers and pending is not None and h==(8,epoch,8,0,0,0,0,0)
+   assert struct.unpack_from('<2I',q,32)==pending and not any(q[40:])
+   if 'errno' in e:
+    assert i==len(lines)-1 and e['errno'] in (16,110,116);uncertain=e['errno'];continue
+   s=bytes.fromhex(e['response']);assert len(s)==1056 and struct.unpack_from('<8I',s)==(8,epoch,8,1,0,0,0,0)
+   assert s[32:]==q[32:];acks.append(pending);pending=None;continue
+  assert pending is None,'next read before required checkpoint acknowledgement'
+  assert h[0]==7 and 0<h[1]<=65535 and h[2:]==(4,0,0,0,0,0)
   index=struct.unpack_from('<I',q,32)[0];assert index==len(rows)+1 and index<=512 and not any(q[36:])
   if epoch is None:epoch=h[1]
   assert h[1]==epoch
@@ -47,6 +58,7 @@ def check(capture,build,wad=None):
   w=struct.unpack_from('<8I',s,32);assert w[0]==MAGIC
   if not w[1]:assert w[2]==len(rows) and not any(w[3:]);continue
   assert w[1]==index and w[2]>0 and w[3] in STAGES;rows.append(w)
+  if barriers and barrier_stage(w[3]):pending=(w[1],w[2])
  assert rows==[tuple(json.loads(l)) for l in (capture/'startup-checkpoints.jsonl').read_text().splitlines()]
  groups={}
  for w in rows:groups.setdefault(w[2],[]).append(w)
@@ -58,6 +70,6 @@ def check(capture,build,wad=None):
   idx=next((i for i,(a,b) in enumerate(zip(observed,oracle)) if a[3:]!=b[3:]),min(len(observed),len(oracle)))
   def desc(w):return describe(w,wad)
   comparisons.append(dict(generation=gen,records=len(observed),matching_prefix=idx,first_difference=None if idx==len(observed) else dict(card=desc(observed[idx]),host=desc(oracle[idx]) if idx<len(oracle) else None),last=desc(observed[-1])))
- return dict(accepted=False,diagnostic_only=True,validated_records=len(rows),oracle_records=len(oracle),epoch=epoch,uncertain_errno=uncertain,comparisons=comparisons)
+ return dict(accepted=False,diagnostic_only=True,barriers=barriers,acknowledged_records=len(acks),pending_ack=pending,validated_records=len(rows),oracle_records=len(oracle),epoch=epoch,uncertain_errno=uncertain,comparisons=comparisons)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('capture',type=Path);p.add_argument('--build',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--wad',type=Path);a=p.parse_args();r=check(a.capture,a.build,a.wad.read_bytes() if a.wad else None);a.output.write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2))

@@ -12,20 +12,33 @@ static long upload_ioctl(struct file*file,unsigned int cmd,unsigned long arg){
  &&op!=5&&op!=6
 #ifdef I960_DOOM_CHECKPOINTS
  &&op!=7
+#ifdef I960_DOOM_CHECKPOINT_BARRIERS
+ &&op!=8
 #endif
 #endif
 #endif
- )||!epoch||epoch>65535||w[3]||w[4]||w[5]||w[6]||w[7]||(op==1&&(n<32||n>1024||(n&3)))||((op==2||op==3||op==5)&&n)||(op==4&&(n<32||n>544||(n&3)))||(op==6&&n!=32)||(op==7&&n!=4)){rc=-EINVAL;goto free;}
+#endif
+ )||!epoch||epoch>65535||w[3]||w[4]||w[5]||w[6]||w[7]||(op==1&&(n<32||n>1024||(n&3)))||((op==2||op==3||op==5)&&n)||(op==4&&(n<32||n>544||(n&3)))||(op==6&&n!=32)||(op==7&&n!=4)||(op==8&&n!=8)){rc=-EINVAL;goto free;}
 #ifdef I960_DOOM_OWNED
  if(op==6){if(w[8]!=0x3252444fu||!w[9]){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
 #endif
 #ifdef I960_DOOM_CHECKPOINTS
  if(op==7){if(!w[8]||w[8]>512){rc=-EINVAL;goto free;}for(i=9;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
 #endif
+#ifdef I960_DOOM_CHECKPOINT_BARRIERS
+ if(op==8){if(!w[8]||w[8]>512||!w[9]){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
+#endif
  mutex_lock(&d->session_lock);
  if(d->removed||d->pinned||!d->owned||!d->mu_resident||d->pending||d->runner_uncertain||!d->irq_may_run||d->response_ready||d->sequence!=1||d->mu_failed||d->mu_halted){rc=-EBUSY;goto unlock;}
  if(epoch!=d->monitor_epoch){rc=-ESTALE;goto unlock;}
  deadline=jiffies+msecs_to_jiffies(10000);
+#ifdef I960_DOOM_CHECKPOINT_BARRIERS
+ if(op==8){
+  rc=packet_exchange(d,0x7f000000u|epoch,w[8],&v,deadline);if(rc)goto uncertain;if(v){rc=-ESTALE;goto unlock;}
+  rc=packet_exchange(d,0x7f010000u|epoch,w[9],&v,deadline);if(rc)goto uncertain;if(v){rc=-ESTALE;goto unlock;}
+ }
+ else
+#endif
 #ifdef I960_DOOM_OWNED
  if(op==6){rc=packet_exchange(d,0x7a000000u|epoch,w[9],&v,deadline);if(rc)goto uncertain;if(v){rc=-ESTALE;goto unlock;}}
  else

@@ -179,3 +179,47 @@ captures and preserves semantic failures. Full acceptance still requires normal,
 partial-read STOP, normal again, byte-exact reference and all full audits/drain.
 Post-render markers are present in the native trace but were not retrieved from
 the failed card run; absent records cannot identify a fault PC.
+
+## Narrow comparison workaround and host-confirmed boundaries
+
+`game/doom/build.py --point-side-o0` is restricted to experimental startup builds.
+It extracts the unchanged `R_PointOnSide` into its own translation unit, preserving
+Doom's real types and license header, and appends `-O0` for that file only. The
+remaining engine files, private library and RTEMS keep their original flags.
+The expanded `branch_probe.py --expanded --candidate-engine ENGINE_CROSS_ROOT`
+requires exact object-text equality with that actual engine function. Its 25-case
+corpus covers both axes, signs, equality, neighbouring positions and the original
+root/fixed-multiply cases. `verify_branch_probe.py --candidate-only` requires all
+25 audited captures to match; the older three-variant failure proof remains valid.
+
+Admission's independent `--checkpoint-barriers` switch enables bounded waits at
+spawn 63, display 80, render completion 42–44, frame 50–51 and delivery 81–98.
+The ABI and stored record layout are unchanged. The host saves and fsyncs each
+selected decoded record before ioctl 8 ACKs its index/generation. The device
+requires the active pending record, matching generation and all eight frozen words
+read. Two packets carry full-width index and generation payloads: token phases
+0 and 1, respectively. The first stages intent, the second validates and consumes
+it. Record numbers must never be packed into the eight-bit token index: the first
+card batch exposed that error at record 272. The regression compiles the actual
+host packet encoder and exercises indices through 512.
+The epoch/session/uncertainty guards and full audits remain in force.
+There is no automatic retry of an uncertain ACK.
+
+Publication stays under the short lock; waiting occurs unlocked, services control
+and periodically yields. STOP exits with owner boundary 210; absent ACK expires
+at 3,000 ticks or 10,000,000 polls and reports checkpoint failure 214. No waiting
+is added inside pixel-copy loops. A successful ACK establishes a retrieved
+boundary, not the CPU location after it. Full acceptance still requires matching
+normal/STOP/normal results, complete paired audits and clean drain.
+
+`test_checkpoint_barriers.py` tests the actual runtime wait/control implementation,
+STOP and both deadline bounds, persistence-before-ACK, and ten malformed/missing/
+duplicate ACK sequences. `checkpoint_replay.py` validates the additional journal
+and exposes an incomplete pending ACK without accepting a frame. Existing captures
+without the admission flag retain their original read-only behaviour.
+
+The first comparison-workaround batch completed the first wipe frame and STOP,
+but refused the repeat ACK described above. See
+[the preserved failure](../../../../artifacts/doom-sidefix-20261013/README.md) and
+[the corrected batch](../../../../artifacts/doom-sidefix-ack-20261013/README.md)
+for current physical status; neither native tests nor one frame accept a batch.

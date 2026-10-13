@@ -43,7 +43,11 @@ unsigned int upload_init(void){if(initialized)return 0;
 unsigned int upload_control(unsigned int op,unsigned int index,unsigned int value,unsigned int running){unsigned int i;
 #ifdef I960_DOOM_OWNED
 #ifdef I960_DOOM_CHECKPOINTS
- if(op==0x7d||op==0x7e)return doom_runtime_checkpoint_control(op,index,value,running);
+ if(op==0x7d||op==0x7e
+#ifdef I960_DOOM_CHECKPOINT_BARRIERS
+ ||op==0x7f
+#endif
+ )return doom_runtime_checkpoint_control(op,index,value,running);
 #endif
  if(op>=0x7a&&op<=0x7c)return doom_runtime_owned_control(op,index,value,running);
 #endif

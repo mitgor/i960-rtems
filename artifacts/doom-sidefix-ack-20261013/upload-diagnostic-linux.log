@@ -1,0 +1,13 @@
+/lib/x86_64-linux-gnu/libasan.so.6(+0x45c0e)[0x7328b4845c0e]
+/tmp/tmp0t7isu7c/replay(+0x45fa4)[0x5d5e48636fa4]
+/tmp/tmp0t7isu7c/replay(+0x4f6dc)[0x5d5e486406dc]
+/tmp/tmp0t7isu7c/replay(+0x5c4ab)[0x5d5e4864d4ab]
+/lib/x86_64-linux-gnu/libc.so.6(+0x94a83)[0x7328b3c94a83]
+/lib/x86_64-linux-gnu/libc.so.6(+0x1268e0)[0x7328b3d268e0]
+replay: /tmp/tmp0t7isu7c/upload_native.h:7: exclusive_abort: Assertion `0' failed.
+Traceback (most recent call last):
+  File "/home/mit/i960-doom-sidefix-ack-20261013/project/rtems/residentnet/verify_upload.py", line 138, in <module>
+    raw=subprocess.run([str(t/'replay')],input=sent,stdout=subprocess.PIPE,check=True).stdout
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/tmp/tmp0t7isu7c/replay']' died with <Signals.SIGABRT: 6>.

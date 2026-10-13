@@ -94,6 +94,7 @@ if a.doom_engine:
  flags+=['-DI960_DOOM_ENGINE']
  if startup_profile:flags+=['-DI960_DOOM_STARTUP']
  if startup_profile and json.loads((a.doom_engine/'manifest.json').read_text())['startup'].get('checkpoints_sha256'):flags+=['-DI960_DOOM_CHECKPOINTS']
+ if startup_profile and json.loads((a.doom_engine/'manifest.json').read_text())['startup'].get('checkpoint_barriers'):flags+=['-DI960_DOOM_CHECKPOINT_BARRIERS']
  shutil.copyfile(a.doom_engine/'engine_identity.h',inc/'engine_identity.h')
  engine_out=out/'entry/engine';engine_out.mkdir(parents=True,exist_ok=True)
  for name in ('manifest.json','template.bin','relocations.bin','engine_identity.h'):shutil.copyfile(a.doom_engine/name,engine_out/name)
