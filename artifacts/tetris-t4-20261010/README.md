@@ -1,6 +1,6 @@
 # T4 SSH Tetris evidence — 2026-10-10
 
-See [TETRIS-TERMINAL.md](../../TETRIS-TERMINAL.md) for the play command,
+See [TETRIS-TERMINAL.md](../../docs/games/TETRIS-TERMINAL.md) for the play command,
 implementation contract, measurements and reproduction instructions.
 
 The 30-minute automated real-SSH run completed **35,846 native-matching frames**

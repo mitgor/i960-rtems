@@ -1,0 +1,275 @@
+[
+  {
+    "frame": 1,
+    "pixel_differences": 7,
+    "palette_equal": true,
+    "padding_equal": true,
+    "differences": [
+      {
+        "offset": 28939,
+        "native": 79,
+        "card": 5
+      },
+      {
+        "offset": 29259,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29260,
+        "native": 78,
+        "card": 5
+      },
+      {
+        "offset": 29261,
+        "native": 5,
+        "card": 239
+      },
+      {
+        "offset": 29579,
+        "native": 5,
+        "card": 78
+      },
+      {
+        "offset": 29580,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29581,
+        "native": 78,
+        "card": 2
+      }
+    ]
+  },
+  {
+    "frame": 2,
+    "pixel_differences": 7,
+    "palette_equal": true,
+    "padding_equal": true,
+    "differences": [
+      {
+        "offset": 28939,
+        "native": 79,
+        "card": 5
+      },
+      {
+        "offset": 29259,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29260,
+        "native": 78,
+        "card": 5
+      },
+      {
+        "offset": 29261,
+        "native": 5,
+        "card": 239
+      },
+      {
+        "offset": 29579,
+        "native": 5,
+        "card": 78
+      },
+      {
+        "offset": 29580,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29581,
+        "native": 78,
+        "card": 2
+      }
+    ]
+  },
+  {
+    "frame": 3,
+    "pixel_differences": 7,
+    "palette_equal": true,
+    "padding_equal": true,
+    "differences": [
+      {
+        "offset": 28939,
+        "native": 79,
+        "card": 5
+      },
+      {
+        "offset": 29259,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29260,
+        "native": 78,
+        "card": 5
+      },
+      {
+        "offset": 29261,
+        "native": 5,
+        "card": 6
+      },
+      {
+        "offset": 29579,
+        "native": 5,
+        "card": 78
+      },
+      {
+        "offset": 29580,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29581,
+        "native": 78,
+        "card": 47
+      }
+    ]
+  },
+  {
+    "frame": 4,
+    "pixel_differences": 8,
+    "palette_equal": true,
+    "padding_equal": true,
+    "differences": [
+      {
+        "offset": 28939,
+        "native": 79,
+        "card": 5
+      },
+      {
+        "offset": 28940,
+        "native": 6,
+        "card": 2
+      },
+      {
+        "offset": 29259,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29260,
+        "native": 78,
+        "card": 2
+      },
+      {
+        "offset": 29261,
+        "native": 5,
+        "card": 1
+      },
+      {
+        "offset": 29579,
+        "native": 5,
+        "card": 79
+      },
+      {
+        "offset": 29580,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29581,
+        "native": 78,
+        "card": 2
+      }
+    ]
+  },
+  {
+    "frame": 5,
+    "pixel_differences": 8,
+    "palette_equal": true,
+    "padding_equal": true,
+    "differences": [
+      {
+        "offset": 28939,
+        "native": 1,
+        "card": 5
+      },
+      {
+        "offset": 28940,
+        "native": 6,
+        "card": 2
+      },
+      {
+        "offset": 29259,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29260,
+        "native": 238,
+        "card": 2
+      },
+      {
+        "offset": 29261,
+        "native": 6,
+        "card": 1
+      },
+      {
+        "offset": 29579,
+        "native": 5,
+        "card": 79
+      },
+      {
+        "offset": 29580,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29581,
+        "native": 79,
+        "card": 2
+      }
+    ]
+  },
+  {
+    "frame": 6,
+    "pixel_differences": 8,
+    "palette_equal": true,
+    "padding_equal": true,
+    "differences": [
+      {
+        "offset": 28939,
+        "native": 1,
+        "card": 2
+      },
+      {
+        "offset": 28940,
+        "native": 6,
+        "card": 2
+      },
+      {
+        "offset": 29259,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29260,
+        "native": 238,
+        "card": 2
+      },
+      {
+        "offset": 29261,
+        "native": 5,
+        "card": 1
+      },
+      {
+        "offset": 29579,
+        "native": 78,
+        "card": 239
+      },
+      {
+        "offset": 29580,
+        "native": 79,
+        "card": 2
+      },
+      {
+        "offset": 29581,
+        "native": 78,
+        "card": 2
+      }
+    ]
+  }
+]

@@ -60,7 +60,7 @@ static void control_poll(void){unsigned int token=R(0x1314),index;
 #ifdef I960_RESIDENT_UPLOAD
  if((token>>24)>=
 #ifdef I960_DOOM_ENGINE
- 0x6c
+ 0x6b
 #else
  0x70
 #endif

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0
 /* HISTORICAL PROBE: do not use for further hardware experiments.
- * Completion/DMA/opcode handling is unsafe; see ../../DUMP-ATTEMPT.md and
+ * Completion/DMA/opcode handling is unsafe; see ../../docs/firmware/DUMP-ATTEMPT.md and
  * ../dump/README.md. The claimed StoreImage direction below is unverified.
  *
  * dac960probe - bind the (myrb-blacklisted) Mylex DAC960 and issue ONE V1 command

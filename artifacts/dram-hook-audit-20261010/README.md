@@ -20,5 +20,5 @@ python3 -B host/dump/validate_dram_hook.py artifacts/dram-hook-audit-20261010/li
 ```
 
 The source is in `host/dump/`. This read established current contents only;
-see [DRAM-HOOK-AUDIT.md](../../DRAM-HOOK-AUDIT.md) for the static analysis and
+see [DRAM-HOOK-AUDIT.md](../../docs/loader/DRAM-HOOK-AUDIT.md) for the static analysis and
 remaining ownership gap. No flash or custom code was run.

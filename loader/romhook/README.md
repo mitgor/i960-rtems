@@ -1,6 +1,6 @@
 # ROM-resident stock command hook
 
-**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](../../FIRMWARE-PROGRAMMED.md).**
+**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](../../docs/firmware/FIRMWARE-PROGRAMMED.md).**
 One 2B/1 programming command succeeded; paired full flash readbacks match
 candidate SHA256 `a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0`.
 After reboot, table C001F9BC points to FEFE001C and two 6F commands returned
@@ -10,13 +10,13 @@ Evidence: `artifacts/programmed-rom-20261010/` from repository root. Older
 pre-programming sections below are historical and superseded by this result.
 
 
-Later live evidence is in [ROM-FETCH-LIVE.md](../../ROM-FETCH-LIVE.md): the
+Later live evidence is in [ROM-FETCH-LIVE.md](../../docs/loader/ROM-FETCH-LIVE.md): the
 card fetched a stock flash `RET` after startup and executed a changed RAM
 dispatch-table word. The new FEFE001C handler remains unflashed. The pinned
 [three-write staging plan](../../artifacts/romhook-20261010/stage-plan/stage-plan.json)
 reconstructs the offline candidate from the exact stock image; it performs
 no hardware access. `stage_plan.py` and `test_stage_plan.py` define and test
-the plan. The [live staging rehearsal](../../STAGING-REHEARSAL.md) passed with full
+the plan. The [live staging rehearsal](../../docs/loader/STAGING-REHEARSAL.md) passed with full
 candidate and restored-stock verification. Programming CPU cache visibility
 and updater integration remain to be resolved.
 
@@ -54,11 +54,11 @@ python3 -B loader/romhook/verify_layout.py \
   --hook artifacts/romhook-20261010/romhook.bin
 ```
 
-See [ROM-HANDLER-STEP3.md](../../ROM-HANDLER-STEP3.md) for the storage decision
+See [ROM-HANDLER-STEP3.md](../../docs/loader/ROM-HANDLER-STEP3.md) for the storage decision
 and remaining hardware gates. **Do not flash this raw image yet.**
 
 Step 4 adds `package_update.py`, which wraps the exact candidate in the
 matching Fujitsu type-2 MIMG after checking donor identity and complete
 reconstruction. The wrapper is archived at
 `artifacts/romhook-20261010/experimental-firmware.img`; it is also
-`flash_ready: false`. See [ROM-HANDLER-STEP4.md](../../ROM-HANDLER-STEP4.md).
+`flash_ready: false`. See [ROM-HANDLER-STEP4.md](../../docs/loader/ROM-HANDLER-STEP4.md).

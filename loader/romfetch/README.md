@@ -1,6 +1,6 @@
 # Live execution probe sources
 
-Read [ROM-FETCH-LIVE.md](../../ROM-FETCH-LIVE.md) before using these files.
+Read [ROM-FETCH-LIVE.md](../../docs/loader/ROM-FETCH-LIVE.md) before using these files.
 The final successful RAM callback is `flash_ret_probe.s` /
 `flash-ret-probe.bin`: it calls a stock `RET` at physical flash address
 `FEFB022C` and returns status `017F`. `ram_status.s` is the first-stage

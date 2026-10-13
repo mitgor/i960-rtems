@@ -18,5 +18,5 @@ python3 test_return_status.py return-status.bin
 
 `objdump` disassembles the final `bx (g1)` poorly at this high linked address,
 but the raw final word is `00 50 04 84`, verified by `test_return_status.py`.
-See [LIVE-EXECUTION-HANDOFF.md](../../LIVE-EXECUTION-HANDOFF.md) for the
+See [LIVE-EXECUTION-HANDOFF.md](../../docs/loader/LIVE-EXECUTION-HANDOFF.md) for the
 firmware evidence and the reason this cannot be used as a live SSH upload.

@@ -57,4 +57,4 @@ lookup. The tests cover the specified interpreter dialect and original project
 demo, not universal CHIP-8 ROM compatibility or a long-duration hardware soak.
 
 [Application and card reproduction](../../game/chip8/README.md),
-[Doom choice and OS dependency plan](../../GAME-PROGRESSION.md).
+[Doom choice and OS dependency plan](../../docs/games/GAME-PROGRESSION.md).

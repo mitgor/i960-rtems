@@ -7,7 +7,11 @@ extern int doom_wad_backend_close(void);
 volatile unsigned doom_engine_result[12];
 extern void doom_platform_mark(unsigned,unsigned,unsigned,unsigned);
 static void start(void){
+#ifdef DOOM_PLAY
+ char *argv[]={"doom","-iwad","/iwad.wad","-mb","6","-nosound","-warp","1","1","-skill","3","-config","/no-config","-extraconfig","/no-extra"};
+#else
  char *argv[]={"doom","-iwad","/iwad.wad","-mb","6","-nosound","-timedemo","demo1","-config","/no-config","-extraconfig","/no-extra"};
+#endif
  doom_platform_mark(2,0,0,0);
  doomgeneric_Create(sizeof(argv)/sizeof(*argv),argv);
  doom_platform_mark(3,0,0,0);

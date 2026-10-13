@@ -1,12 +1,12 @@
 # Returning i960RP programs
 
-**New consumer:** [T2 Tetris step payload](../../TETRIS-STEP.md) is implemented and hardware validated; it returns serialized game state plus framebuffer through BIO1.
+**New consumer:** [T2 Tetris step payload](../../docs/games/TETRIS-STEP.md) is implemented and hardware validated; it returns serialized game state plus framebuffer through BIO1.
 
-See [BUFFER-IO.md](../../BUFFER-IO.md) for the tested BIO1 buffer ABI and text/framebuffer demo. Scalar calls remain supported.
+See [BUFFER-IO.md](../../docs/loader/BUFFER-IO.md) for the tested BIO1 buffer ABI and text/framebuffer demo. Scalar calls remain supported.
 
 This is the hardware-tested runtime loader target, distinct from the historical
 internal-RAM/MU loader in the parent directory. See
-[SOFTWARE-LOADER.md](../../SOFTWARE-LOADER.md) for the complete workflow.
+[SOFTWARE-LOADER.md](../../docs/loader/SOFTWARE-LOADER.md) for the complete workflow.
 
 Implement `unsigned payload(unsigned argument)` as in `demo.c` or `mix.c`.
 Compile with the existing i960 GCC using `-mrp -O2 -ffreestanding -fno-builtin`,

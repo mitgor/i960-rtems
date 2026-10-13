@@ -19,6 +19,9 @@ static void checkpoint_retire(void){unsigned saved=runtime_lock();checkpoints=0;
 static unsigned checkpoint_frozen[8];
 static int checkpoint_mark(unsigned stage,unsigned x,unsigned y,unsigned z){unsigned saved;int rc;
  if(!owned_owner()||!checkpoints)return 0;
+#ifdef I960_DOOM_PLAY
+ {extern int engine_play_mark(unsigned,unsigned,unsigned,unsigned);return engine_play_mark(stage,x,y,z);}
+#endif
  saved=runtime_lock();rc=doom_checkpoint_put(checkpoints,owned_generation,batch.sequence,stage,x,y,z);
 #ifdef I960_DOOM_CHECKPOINT_BARRIERS
  if(rc&&checkpoint_barrier_stage(stage)){checkpoint_generation=owned_generation;checkpoint_ack=checkpoint_ack_index=0;checkpoint_pending=checkpoints->count;}

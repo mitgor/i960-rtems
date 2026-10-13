@@ -55,8 +55,14 @@ unsigned int upload_control(unsigned int op,unsigned int index,unsigned int valu
  if(op>=0x75&&op<=0x79)return doom_runtime_control(op,index,value,running);
 #endif
 #ifdef I960_DOOM_ENGINE
+ if(op==0x6b){extern unsigned engine_play_control(unsigned,unsigned);
+  if(!initialized||!running||upload_stopping())return ~0u;return engine_play_control(index,value);}
  if(op>=0x6c&&op<=0x6e){extern unsigned engine_frame_control(unsigned,unsigned,unsigned);
-  if(!initialized||!running||pending||upload_stopping())return ~0u;
+  if(!initialized||!running||upload_stopping()
+#ifndef I960_DOOM_PLAY
+ ||pending
+#endif
+ )return ~0u;
   return engine_frame_control(op,index,value);}
 #endif
  if(op==0x74){if(index)return ~0u;for(i=0;i<UPLOAD_REPLY;i++)frozen[i]=reply[i];frozen[3]=pending;frozen[4]=image.state;return 0;}

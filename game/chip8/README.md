@@ -131,7 +131,7 @@ production-service cleanup passed. Scripted median callback latency was 51.43 ms
 transport/audits, not just interpreter CPU time. The native demo remains available
 independently; the card browser session was closed to restore production HTTP.
 
-See [the progression and Doom decision](../../GAME-PROGRESSION.md) and
+See [the progression and Doom decision](../../docs/games/GAME-PROGRESSION.md) and
 [build/test evidence](../../artifacts/chip8-20261011/README.md).
 
 ## Replay the preserved card evidence

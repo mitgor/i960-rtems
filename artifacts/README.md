@@ -1,5 +1,10 @@
 # Artifacts
 
+[2026-10-13 interactive browser Doom](doom-play-20261013/README.md): persistent
+engine, native input/STOP proof, fresh build recipe and physical acceptance work.
+[Repository organization ledger](../docs/reorganization-20261013.md) records
+the intentional navigation-only edits to historical artifact indexes.
+
 [2026-10-12 Doom allocation runtime](doom-runtime-20261012/README.md): actual
 8 MiB arena libc integration, 12,600 matching host frames, resident card proof,
 full STOP drain and restored public web service.
@@ -22,7 +27,7 @@ Latest: [T4 SSH Tetris](tetris-t4-20261010/README.md): a 30-minute terminal run,
 
 Latest: [T5 persistent sessions](tetris-t5-20261010/README.md) sustain 20 Hz on the card, with a 1,000-frame verified replay and process-death cleanup evidence. Exact module, target binaries, sources and captures are preserved.
 
-**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](../FIRMWARE-PROGRAMMED.md).**
+**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](../docs/firmware/FIRMWARE-PROGRAMMED.md).**
 One 2B/1 programming command succeeded; paired full flash readbacks match
 candidate SHA256 `a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0`.
 After reboot, table C001F9BC points to FEFE001C and two 6F commands returned
@@ -32,7 +37,7 @@ Evidence: `artifacts/programmed-rom-20261010/` from repository root. Older
 pre-programming sections below are historical and superseded by this result.
 
 
-Latest: [one-shot programming harness](../ONE-SHOT-PROGRAMMING.md) is implemented in `host/program/`
+Latest: [one-shot programming harness](../docs/firmware/ONE-SHOT-PROGRAMMING.md) is implemented in `host/program/`
 (repository-root relative). Native transport/failure tests and a 105-command live
 RAM-only rehearsal passed. Wrong activation token rejected before driver
 registration; no programming doorbell issued. Full stock RAM restored and probe
@@ -42,7 +47,7 @@ readback and patched boot subsequently passed; see FIRMWARE-PROGRAMMED.md.
 Recovery testing remains excluded.
 
 
-Latest (2026-10-10): [programming preflight and live CPU verification](../PROGRAMMING-PREFLIGHT.md)
+Latest (2026-10-10): [programming preflight and live CPU verification](../docs/firmware/PROGRAMMING-PREFLIGHT.md)
 passed. The CPU read all 512 KiB of the candidate through programmer alias
 C1F2C000 with explicit cache invalidation and matched CRC32 2012D01F. All 105
 commands completed cleanly; original staging/table/code restored, probe unloaded.
@@ -54,7 +59,7 @@ is in `artifacts/programming-preflight-20261010/` from the repository root.
 
 ## Live staging rehearsal
 
-[Live staging rehearsal](../STAGING-REHEARSAL.md) passed: six full 512 KiB captures verify the original
+[Live staging rehearsal](../docs/loader/STAGING-REHEARSAL.md) passed: six full 512 KiB captures verify the original
 stock image, the patched candidate in RAM, and complete stock restoration.
 All 74 commands completed cleanly; probe unloaded. Exact binaries, source,
 logs and validation are in `artifacts/staging-rehearsal-20261010/` (relative
@@ -65,7 +70,7 @@ to the repository root). No flash programming or recovery test occurred.
 hardware attempts and three read-only flash-map captures. A changed table
 word executed RAM callbacks; the final callback called a stock flash `RET`
 after startup and restored all RAM. See
-[ROM-FETCH-LIVE.md](../ROM-FETCH-LIVE.md). No flash was written.
+[ROM-FETCH-LIVE.md](../docs/loader/ROM-FETCH-LIVE.md). No flash was written.
 
 `romhook-20261010/stage-plan/` holds the exact offline three-write staging
 plan: 56 upload bytes that reconstruct the 512 KiB candidate from the pinned
@@ -74,35 +79,35 @@ stock image. It has not been applied on hardware.
 **Step-4 preflight:** `romhook-20261010/experimental-firmware.img` is the
 offline Fujitsu MIMG wrapper; `romhook-step4-20261010/` holds the fixed
 read-only live opcode-`0x6F` table capture. See
-[ROM-HANDLER-STEP4.md](../ROM-HANDLER-STEP4.md). Those step-4 artifacts alone
+[ROM-HANDLER-STEP4.md](../docs/loader/ROM-HANDLER-STEP4.md). Those step-4 artifacts alone
 did not prove post-startup flash instruction fetch and do not make the image
 flash-ready; the later live result is documented above.
 
 **Step-3 ROM handler:** `romhook-20261010/` holds a target-built PING handler
 at FEFE001C and its offline 512 KiB candidate. See
-[ROM-HANDLER-STEP3.md](../ROM-HANDLER-STEP3.md). It avoids the unowned DRAM
+[ROM-HANDLER-STEP3.md](../docs/loader/ROM-HANDLER-STEP3.md). It avoids the unowned DRAM
 window but has not been flashed or run.
 
 **Handler DRAM audit:** `dram-hook-audit-20261010/` archives the fixed,
-read-only live C0120000 capture. See [DRAM-HOOK-AUDIT.md](../DRAM-HOOK-AUDIT.md):
+read-only live C0120000 capture. See [DRAM-HOOK-AUDIT.md](../docs/loader/DRAM-HOOK-AUDIT.md):
 the bytes were zero, but the stock-preserving hook still lacks a lifetime
 storage reservation.
 
 **Local archive:** [ROM-INVENTORY.md](ROM-INVENTORY.md) links the original Fujitsu packages, normalized ROMs, complete hardware dumps and supporting captures. [ROM-DUMP-WORKLOG.md](ROM-DUMP-WORKLOG.md) records the investigation, corrections and findings. All binaries are now on this Mac under `artifacts/`.
 
-**Current result:** [In-system recovery succeeded](../SNAPSHOT-RECOVERY.md). A paired
+**Current result:** [In-system recovery succeeded](../docs/firmware/SNAPSHOT-RECOVERY.md). A paired
 512 KiB capture contains the exact 4.07-0-29 firmware and FWTCBBLK boot block,
 plus the independently verified PCI BIOS. This supersedes older no-dump status
 and the 256 KiB layout assumption below.
 
-**Execution boundary:** [LIVE-EXECUTION-HANDOFF.md](../LIVE-EXECUTION-HANDOFF.md)
+**Execution boundary:** [LIVE-EXECUTION-HANDOFF.md](../docs/loader/LIVE-EXECUTION-HANDOFF.md)
 records why the stock mailbox interface can upload staging data but cannot call
 it. `live-handoff-20261010/` preserves a target-built return-status callback for
 the future patched-boot route; it was not uploaded or executed.
 
 **Offline stock-preserving candidate:** `stockhook-20261010/` holds the new
 opcode-0x6F PING boot hook, exact source/target build, 512 KiB candidate and
-manifest. See [STOCK-PRESERVING-HOOK.md](../STOCK-PRESERVING-HOOK.md).
+manifest. See [STOCK-PRESERVING-HOOK.md](../docs/loader/STOCK-PRESERVING-HOOK.md).
 
 ## dac960pg-x86-bios.rom
 The **PCI expansion ROM (x86 option ROM)** of this Mylex DAC960PG — the card's PC-side

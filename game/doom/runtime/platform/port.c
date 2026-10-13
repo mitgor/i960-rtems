@@ -98,7 +98,11 @@ int _write(int fd,const void*src,unsigned n){const unsigned char*p=src;unsigned 
 int _unlink(const char*p){(void)p;return fail(EROFS);}int _link(const char*a,const char*b){(void)a;(void)b;return fail(EROFS);}
 int mkdir(const char*p,unsigned mode){(void)p;(void)mode;return fail(EROFS);}
 int system(const char*p){(void)p;return fail(ENOSYS);}
-void exit(int n){fatal(n);}void _exit(int n){fatal(n);}void abort(void){fatal(202);}
+void exit(int n){
+#ifdef DOOM_PLAY
+ if(!n)n=210; /* menu Quit follows the owned STOP/cleanup contract */
+#endif
+ fatal(n);}void _exit(int n){exit(n);}void abort(void){fatal(202);}
 double fabs(double x){union{double d;unsigned long long u;}v;v.d=x;v.u&=0x7fffffffffffffffull;return v.d;}
 void DG_Init(void){unsigned i;if(!io||initialized)fatal(207);
 #ifdef DOOM_VISIBLE
@@ -112,13 +116,33 @@ unsigned DG_GetTicksMs(void){if(!io)fatal(203);doom_platform_safe();return start
 void DG_SleepMs(unsigned n){unsigned start;if(startup){doom_platform_safe();virtual_ms+=n;return;}if(n>0x7fffffffu)fatal(204);start=DG_GetTicksMs();stats.sleeps++;
  if(owned){for(;;){unsigned elapsed=DG_GetTicksMs()-start,remaining;if(elapsed>=n)break;remaining=n-elapsed;if(remaining>1000)remaining=1000;if(owned->wait_ms(remaining)){if(owned->owner()&&owned->stopping())fatal(210);fatal(211);}}}
  else while(DG_GetTicksMs()-start<n){} /* Preemptible clock wait; owned yield/STOP extension remains an admission gate. */}
-int DG_GetKey(int*p,unsigned char*k){if(!p||!k)fatal(205);if(!key_count)return 0;*p=pressed[key_read];*k=keys[key_read];key_read=(key_read+1)%DPL_KEYS;key_count--;return 1;}
+int DG_GetKey(int*p,unsigned char*k){
+#ifdef DOOM_PLAY
+ const struct doom_runtime_checkpoint*t=(const void*)owned;int event;
+ doom_platform_safe();event=t->mark(101,0,0,0);if(event<0)fatal(210);
+ if(event>1){unsigned v=(unsigned)event-2;if(!p||!k)fatal(205);*p=(v>>8)&1;*k=v&255;return 1;}
+#endif
+if(!p||!k)fatal(205);if(!key_count)return 0;*p=pressed[key_read];*k=keys[key_read];key_read=(key_read+1)%DPL_KEYS;key_count--;return 1;}
 extern unsigned char *DG_ScreenBuffer;
 void DG_DrawFrame(void){unsigned i,h=2166136261u;
 #ifdef DOOM_VISIBLE
-unsigned char *frame,*palette;if(stats.frames>=2)fatal(206);frame=doom_platform_frames[stats.frames];palette=frame+64000;
+unsigned char *frame,*palette;
+#ifdef DOOM_PLAY
+frame=doom_platform_frames[0];
+#else
+if(stats.frames>=2)fatal(206);frame=doom_platform_frames[stats.frames];
 #endif
-doom_platform_mark(50,0,0,0);if(!DG_ScreenBuffer)fatal(206);for(i=0;i<64000;i++){frame[i]=DG_ScreenBuffer[i];h=(h^frame[i])*16777619u;}stats.frame_hash=h;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colors[i].r;palette[3*i+1]=colors[i].g;palette[3*i+2]=colors[i].b;}for(i=0;i<768;i++)h=(h^palette[i])*16777619u;stats.palette_hash=h;stats.frames++;doom_platform_mark(51,stats.frame_hash,stats.palette_hash,stats.frames);if(startup
+palette=frame+64000;
+#endif
+doom_platform_mark(50,0,0,0);if(!DG_ScreenBuffer)fatal(206);for(i=0;i<64000;i++){frame[i]=DG_ScreenBuffer[i];h=(h^frame[i])*16777619u;}stats.frame_hash=h;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colors[i].r;palette[3*i+1]=colors[i].g;palette[3*i+2]=colors[i].b;}for(i=0;i<768;i++)h=(h^palette[i])*16777619u;stats.palette_hash=h;stats.frames++;
+#ifdef DOOM_PLAY
+ if(stats.frames==1)started=io->ticks_ms(); /* loading does not consume play time */
+#endif
+ doom_platform_mark(51,stats.frame_hash,stats.palette_hash,stats.frames);
+#ifdef DOOM_PLAY
+ {const struct doom_runtime_checkpoint*t=(const void*)owned;if(t->mark(100,(unsigned long)frame,65536,stats.frames)<=0)fatal(210);}return;
+#endif
+if(startup
 #ifdef DOOM_VISIBLE
  &&stats.frames==2
 #endif
@@ -133,13 +157,25 @@ int doom_platform_finish(void){unsigned i;if(armed||retired)return 0;for(i=0;i<4
 
 int doom_platform_frame(void*dst,unsigned n,void*rgb,unsigned rn){unsigned i;
 #ifdef DOOM_VISIBLE
-unsigned char *frame=doom_platform_frames[stats.frames?stats.frames-1:0],*palette=frame+64000;
+unsigned char *frame=doom_platform_frames[
+#ifdef DOOM_PLAY
+0
+#else
+stats.frames?stats.frames-1:0
+#endif
+],*palette=frame+64000;
 #endif
 if(!stats.frames||!dst||!rgb||n<64000||rn<768)return 0;for(i=0;i<64000;i++)((unsigned char*)dst)[i]=frame[i];for(i=0;i<768;i++)((unsigned char*)rgb)[i]=palette[i];return 1;}
 
 /* One-shot startup scope. No callback jumps while a cache read owns loans. */
 void doom_platform_startup(unsigned milliseconds){startup=1;started=io->ticks_ms();budget=milliseconds;virtual_ms=0;}
-void doom_platform_safe(void){if(!startup)return;if(doom_platform_checkpoint())fatal(210);if(io->ticks_ms()-started>=budget)fatal(212);}
+void doom_platform_safe(void){if(!startup)return;if(doom_platform_checkpoint())fatal(210);if(io->ticks_ms()-started>=budget)fatal(
+#ifdef DOOM_PLAY
+210
+#else
+212
+#endif
+);}
 int doom_platform_retire(void){unsigned i;if(armed||retired||!owned||!owned->owner())return 0;
  /* Caller has closed the WAD backend, returned all runtime loans and abandoned
   * engine globals. The image is one-shot and cannot be entered again. */
@@ -153,6 +189,9 @@ int doom_platform_retire(void){unsigned i;if(armed||retired||!owned||!owned->own
 
 void doom_platform_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
 #ifdef DOOM_CHECKPOINTS
+#ifdef DOOM_PLAY
+ (void)stage;(void)x;(void)y;(void)z;return;
+#endif
  const struct doom_runtime_checkpoint*t=(const void*)owned;int rc=0;
  if(t&&owned->owner())rc=t->mark(stage,x,y,z);
  if(rc<0&&armed)fatal(210);

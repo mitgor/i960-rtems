@@ -499,7 +499,7 @@ code in this profile. Split long computations into bounded pieces and yield
 back to the host regularly; adding an infinite task loop without blocking can
 stop the firmware command from returning.
 
-Use the [integrated development plan](../DEVELOPMENT-PLAN.md) as the current
+Use the [integrated development plan](../docs/rtems/DEVELOPMENT-PLAN.md) as the current
 backlog: M1 generalizes the proven larger loader profile; R1 adds diagnostics
 and application support; M2 rebalances owned memory if needed; R2 covers
 sys_arch/runtime APIs. M3 and A1–A3 separately address new RAM ownership and

@@ -2,7 +2,7 @@
 
 **Offline prototype only; not ready to flash.** This is a new DRAM-capable profile,
 not a fix to the historical internal-RAM execution demo. No custom code from this
-prototype has run on the card. See [POSTINIT-LOADER.md](../../POSTINIT-LOADER.md)
+prototype has run on the card. See [POSTINIT-LOADER.md](../../docs/loader/POSTINIT-LOADER.md)
 for evidence, exact hook and outstanding hardware gates.
 
 The revision-2 832-byte loader inherits stock memory initialization and early PCI setup.
@@ -54,10 +54,10 @@ proven recovery mechanism after a bad flash.
 ## Read-only live inventory
 
 `sudo python3 preflight.py --bdf 0000:37:09.1` reads sysfs configuration only.
-The live result and current guard design are in [LIVE-TEST-PREFLIGHT.md](../../LIVE-TEST-PREFLIGHT.md).
+The live result and current guard design are in [LIVE-TEST-PREFLIGHT.md](../../docs/loader/LIVE-TEST-PREFLIGHT.md).
 A passing inventory does not permit flashing. V2 hooks before EBCR retry release,
 suppresses ROM exposure and reports 60EF instead of READY if any DMA channel is active.
 
 ## Offline update packaging
 
-See [PROGRAMMING-RECOVERY.md](../../PROGRAMMING-RECOVERY.md) for `package_update.py`, the archived experimental MIMG, and the broader erase map. Packaging is not a live flash procedure; recovery remains unverified.
+See [PROGRAMMING-RECOVERY.md](../../docs/firmware/PROGRAMMING-RECOVERY.md) for `package_update.py`, the archived experimental MIMG, and the broader erase map. Packaging is not a live flash procedure; recovery remains unverified.

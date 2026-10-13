@@ -7,7 +7,7 @@ static long upload_ioctl(struct file*file,unsigned int cmd,unsigned long arg){
  op=w[0];epoch=w[1];n=w[2];
  if((op!=1&&op!=2
 #ifdef I960_DOOM_ENGINE
- &&op!=9
+ &&op!=9&&op!=10
 #endif
 #ifdef I960_DOOM_RUNTIME
  &&op!=3&&op!=4
@@ -21,7 +21,7 @@ static long upload_ioctl(struct file*file,unsigned int cmd,unsigned long arg){
 #endif
 #endif
 #endif
- )||!epoch||epoch>65535||w[3]||w[4]||w[5]||w[6]||w[7]||(op==1&&(n<32||n>1024||(n&3)))||((op==2||op==3||op==5)&&n)||(op==4&&(n<32||n>544||(n&3)))||(op==6&&n!=32)||(op==7&&n!=4)||(op==8&&n!=8)||(op==9&&n!=8)){rc=-EINVAL;goto free;}
+ )||!epoch||epoch>65535||w[3]||w[4]||w[5]||w[6]||w[7]||(op==1&&(n<32||n>1024||(n&3)))||((op==2||op==3||op==5)&&n)||(op==4&&(n<32||n>544||(n&3)))||(op==6&&n!=32)||(op==7&&n!=4)||(op==8&&n!=8)||((op==9||op==10)&&n!=8)){rc=-EINVAL;goto free;}
 #ifdef I960_DOOM_OWNED
  if(op==6){if(w[8]!=0x3252444fu||!w[9]){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
 #endif
@@ -32,6 +32,7 @@ static long upload_ioctl(struct file*file,unsigned int cmd,unsigned long arg){
  if(op==8){if(!w[8]||w[8]>512||!w[9]){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
 #endif
 #ifdef I960_DOOM_ENGINE
+ if(op==10){if(w[8]>2||(w[8]==0&&w[9])||(w[8]==2&&w[9]>511)){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
  if(op==9){if(!w[8]||(w[9]&1023)||w[9]>131072-1024){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
 #endif
  mutex_lock(&d->session_lock);
@@ -39,6 +40,11 @@ static long upload_ioctl(struct file*file,unsigned int cmd,unsigned long arg){
  if(epoch!=d->monitor_epoch){rc=-ESTALE;goto unlock;}
  deadline=jiffies+msecs_to_jiffies(10000);
 #ifdef I960_DOOM_ENGINE
+ if(op==10){
+  rc=packet_exchange(d,0x6b000000u|(w[8]<<16)|epoch,w[9],&v,deadline);if(rc)goto uncertain;
+  memset(w+8,0,1024);n=4;w[8]=v;
+ }
+ else
  if(op==9){
   rc=packet_exchange(d,0x6c000000u|epoch,w[8],&v,deadline);if(rc)goto uncertain;if(v){rc=-ESTALE;goto unlock;}
   rc=packet_exchange(d,0x6d000000u|epoch,w[9],&v,deadline);if(rc)goto uncertain;if(v){rc=-ESTALE;goto unlock;}

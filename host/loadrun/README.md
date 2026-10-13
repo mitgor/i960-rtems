@@ -1,12 +1,12 @@
 # Linux runtime loader
 
-**T3 passed:** [1,000-call hardware replay and latency](../../TETRIS-REPLAY.md), plus a separate 64-call repeat. The full conservative loader runs at roughly 3.26 updates/s; interactive T4 remains planned.
+**T3 passed:** [1,000-call hardware replay and latency](../../docs/games/TETRIS-REPLAY.md), plus a separate 64-call repeat. The full conservative loader runs at roughly 3.26 updates/s; interactive T4 remains planned.
 
-**New consumer:** [T2 Tetris step payload](../../TETRIS-STEP.md) is implemented and hardware validated; it returns serialized game state plus framebuffer through BIO1.
+**New consumer:** [T2 Tetris step payload](../../docs/games/TETRIS-STEP.md) is implemented and hardware validated; it returns serialized game state plus framebuffer through BIO1.
 
-See [BUFFER-IO.md](../../BUFFER-IO.md) for the tested BIO1 buffer ABI and text/framebuffer demo. Scalar calls remain supported.
+See [BUFFER-IO.md](../../docs/loader/BUFFER-IO.md) for the tested BIO1 buffer ABI and text/framebuffer demo. Scalar calls remain supported.
 
-See [SOFTWARE-LOADER.md](../../SOFTWARE-LOADER.md) for live results, build/run
+See [SOFTWARE-LOADER.md](../../docs/loader/SOFTWARE-LOADER.md) for live results, build/run
 commands and limits. This profile requires the installed patched ROM, exact
 board/staging state and an idle driverless card at `0000:37:09.1`.
 

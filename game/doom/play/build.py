@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+"""Fresh-checkout interactive Doom build. Never opens the card or programs flash."""
+import argparse,hashlib,json,shutil,subprocess,tarfile,zipfile
+from pathlib import Path
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
+r=Path(__file__).resolve().parents[3];w=a.work.resolve()
+if w.exists():p.error('choose a new work directory; existing experiments are not overwritten')
+for tool in ('gcc','patch','make',a.cross+'gcc',a.cross+'ld',a.cross+'objcopy'):
+ if not shutil.which(tool):p.error('missing build tool: '+tool)
+w.mkdir(parents=True);(w/'sources').mkdir()
+def run(args,log,cwd=None):
+ print('Building',log,flush=True)
+ with (w/log).open('w') as f:subprocess.run(list(map(str,args)),cwd=cwd,stdout=f,stderr=subprocess.STDOUT,check=True)
+for row in json.loads((r/'rtems/sources.json').read_text())['sources']:
+ src=r/'artifacts/rtems-20261011/sources'/row['name'];assert hashlib.sha256(src.read_bytes()).hexdigest()==row['sha256']
+ shutil.copyfile(src,w/'sources'/row['name'])
+with tarfile.open(w/'sources/newlib-1.11.0.tar.gz') as f:f.extractall(w,filter='data')
+newlib=w/'newlib-1.11.0';run(['patch','-p1','-i',w/'sources/newlib-1.11.0-rtems-20030605.diff'],'newlib-patch.log',newlib)
+with zipfile.ZipFile(r/'artifacts/doom-m1-20261011/freedoom-0.13.0.zip') as f:
+ names=[n for n in f.namelist() if n.endswith('/freedoom1.wad')];assert len(names)==1;wad=f.read(names[0])
+assert hashlib.sha256(wad).hexdigest()=='7323bcc168c5a45ff10749b339960e98314740a734c30d4b9f3337001f9e703d'
+(w/'freedoom1.wad').write_bytes(wad)
+archive=r/'artifacts/doom-m1-20261011/doomgeneric-source.tar.gz';doomdir='doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric'
+for suffix,target in [('host','host32'),('cross','i960')]:
+ extra=['--sanitize'] if target=='host32' else []
+ run(['python3',r/'game/doom/build.py','--work',w/f'engine-{suffix}','--archive',archive,'--target',target,'--cross',a.cross,'--newlib',newlib,'--arena-runtime','--wad-cache','--platform-runtime','--startup','--checkpoints','--point-side-o0','--visible','--play',*extra],f'engine-{suffix}.log')
+ run(['python3',r/'game/doom/runtime/platform/build.py','--newlib',newlib,'--out',w/f'platform-{suffix}','--doom',w/f'engine-{suffix}'/doomdir,'--engine',w/f'engine-{suffix}'/target/'doom-engine.o','--target',target,'--cross',a.cross,'--startup','--checkpoints','--visible','--play',*extra],f'platform-{suffix}.log')
+run(['python3',r/'game/doom/play/test_native.py','--build',w/'platform-host','--newlib',newlib,'--wad',w/'freedoom1.wad'],'native.log')
+run(['python3',r/'game/doom/runtime/startup/test_abi.py','--doom',w/'engine-cross'/doomdir,'--newlib',newlib,'--out',w/'abi-proof','--cross',a.cross],'abi.log')
+run(['python3',r/'game/doom/runtime/platform/pack_engine.py','--build',w/'platform-cross','--out',w/'packed','--cross',a.cross],'packed.log')
+run(['python3',r/'game/doom/runtime/engine/admit.py',w/'packed','--build',w/'platform-cross','--out',w/'admission','--play','--cross',a.cross],'admission.log')
+for test in ('test_play_channel.py','test_frame_protocol.py','test_checkpoint_barriers.py','test_play_stop.py'):run(['python3',r/'rtems/residentnet'/test],test+'.log')
+run(['python3',r/'rtems/build.py','--work',w,'--cross',a.cross,'--profile','residentnet','--secondary-reset','--fault-owner','--extra-ram','--general-heap','--heap-shared','--queue-reclaim','--owned-mib','12','--resident-upload','--doom-heap','--doom-shared','--doom-runtime','--doom-engine',w/'admission','--wad-batch','--wad-poll','--dispatch-atomic'],'kernel.log')
+run(['python3',r/'rtems/residentnet/ram_audit.py',w/'residentnet'],'ram-audit.json')
+run(['python3',r/'rtems/residentnet/build_transport.py','--payload',w/'residentnet/kernel.bin','--out',w/'residentnet-module'],'transport.log')
+run(['make','-C','/lib/modules/'+subprocess.check_output(['uname','-r'],text=True).strip()+'/build','M='+str(w/'residentnet-module'),'modules'],'module.log')
+(w/'play-build.json').write_text(json.dumps(dict(work=str(w),repository=str(r),cross=a.cross,wad_sha256=hashlib.sha256(wad).hexdigest(),kernel_sha256=hashlib.sha256((w/'residentnet/kernel.bin').read_bytes()).hexdigest(),module_sha256=hashlib.sha256((w/'residentnet-module/dac960auto.ko').read_bytes()).hexdigest()),indent=2)+'\n')
+print('Build complete. Card untouched. Run game/doom/play/run.py only on the qualified, free card.')

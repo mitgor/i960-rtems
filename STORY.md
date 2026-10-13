@@ -2782,6 +2782,39 @@ borrow the card from its next experiment.
 [The exact builds, complete captures and browser instructions](artifacts/doom-visible-20261013/README.md)
 keep the receipts for this part of the story.
 
+## A game needs a keyboard
+
+At this point the owner of the card asked a reasonable question: could we stop
+turning every frame into a separate research programme and just play Doom?
+
+The two-frame proof had done its job. The next build kept Doom alive, started
+Freedoom's first level, and gave its renderer a place to wait while Linux read
+the picture. A browser canvas supplied the screen. Key presses travelled back
+through a small queue; the engine still owned its memory, and STOP still had to
+bring that ownership home. The renderer and game remained on the i960. Linux
+encoded the picture and carried the keys.
+
+The first attempt taught us something before it drew anything. Cancelling
+startup worked, but a repeated cancellation caught the host sending one last
+WAD reply after the target had already stopped asking. We saved the evidence,
+removed that race, and gave loading its own time allowance instead of spending
+the player's half hour before the game appeared. The corrected build passed its
+native input and cleanup tests, then delivered six frames on the card. Forward
+input moved the view; release and STOP brought the engine home. Each picture
+took about six seconds to reach the browser. A host comparison found seven or
+eight pixel differences in one tiny patch, which went into the notebook rather
+than becoming another prerequisite to touching the keyboard. The game was
+slow, but now it had a screen, an input path and a way out. A fresh session
+began loading for the person who had asked to play it.
+
+We also put the workshop in order. Forty-six reports left the repository root
+for named documentation folders. Firmware, loader, RTEMS, Tetris, Doom and the
+web server acquired entry points, and Tetris acquired its own source directory.
+The original ROMs, failed experiments and old coexistence work stayed. They are
+how we know what the card did, and how someone with another card can repeat the
+parts that apply to it. A new build recipe now reconstructs the Doom runtime in
+a fresh workspace rather than relying on the archaeology of our home directory.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -2819,8 +2852,10 @@ So, the ledger, honestly kept:
   network rounds. A small freestanding runtime and owned Doom entry now support two matching
   first-frame startups, an intervening STOP and complete system drain. A later
   bounded build returns two visible frames per startup, with byte-exact native
-  comparisons and a browser gallery. Visible motion, interactive input and longer
-  engine sessions remain open.
+  comparisons and a browser gallery. The next persistent browser build delivered
+  six frames, forward/release input and clean owned STOP. It is extremely slow—
+  about one frame every six seconds—and a small native/card pixel discrepancy
+  remains recorded. Longer gameplay and optimization now follow actual use.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 
@@ -2843,8 +2878,8 @@ whole life certain it already has a job.
 It still has that job. It has also learned to answer fifty-five.
 
 *For the reproducible version of these last acts, see
-[ROM-FETCH-LIVE.md](ROM-FETCH-LIVE.md),
-[FIRMWARE-PROGRAMMED.md](FIRMWARE-PROGRAMMED.md), and
-[SOFTWARE-LOADER.md](SOFTWARE-LOADER.md), and
+[ROM-FETCH-LIVE.md](docs/loader/ROM-FETCH-LIVE.md),
+[FIRMWARE-PROGRAMMED.md](docs/firmware/FIRMWARE-PROGRAMMED.md), and
+[SOFTWARE-LOADER.md](docs/loader/SOFTWARE-LOADER.md), and
 [rtems/README.md](rtems/README.md). The story ends here for now; the
 captures don't.*

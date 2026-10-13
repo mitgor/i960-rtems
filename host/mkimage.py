@@ -5,7 +5,7 @@ Strategy (safe): start from the DECODED stock firmware image and only redirect t
 first-instruction pointer at our code, keeping Mylex's known-good PRCB and system tables.
 The i960 therefore initialises exactly as stock, then jumps into our code.
 
-Verified facts this relies on (see FLASHER.md / REFLASH.md):
+Verified facts this relies on (see docs/firmware/FLASHER.md / docs/firmware/REFLASH.md):
   * decoded image = [512-byte MIMG header][payload][10-byte constant trailer]
   * payload is linked so its END maps to 0xFF000000  =>  base = 0xFF000000 - len(payload)
     (stock: payload 0x38000, base 0xFEFC8000)

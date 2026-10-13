@@ -22,7 +22,10 @@ static int digest(struct seg_image*s,unsigned off,unsigned n,const unsigned char
 #ifndef ENGINE_FRAME_COUNT
 #define ENGINE_FRAME_COUNT 1u
 #endif
+#include "engine_play.h"
+#ifndef ENGINE_PLAYABLE
 #include "engine_frames.h"
+#endif
 unsigned engine_report(unsigned i){return i<12?results[i]:~0u;}
 unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value){unsigned i,j,x,last=0,base=(unsigned)(unsigned long)s->base,ok;void*entry;const struct doom_runtime_owned*a;
 #ifdef ENGINE_STARTUP
@@ -48,16 +51,26 @@ unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value
  /* Once RUNNING, uncertainty retains the whole image until a reboot. */
  for(i=0;i<ENGINE_SITES;i++){x=word(s->base+ENGINE_META+4*i);store(s->base+x,word(s->base+x)+base);if(!(i&255))doom_shared_yield();}
  if(!sync(s->base,ENGINE_TEXT)||!doom_runtime_owned_begin())goto uncertain;
+#ifdef ENGINE_PLAYABLE
+ play_allowed=s->base+ENGINE_PLAY_OFFSET;play_api=a;play_sequence=play_ack=play_head=play_tail=0;play_clear();
+#endif
  #ifdef ENGINE_GATE_NATIVE
  {extern unsigned engine_native_call(struct seg_image*,const struct doom_runtime_owned*);*value=engine_native_call(s,a);}
 #else
  *value=((unsigned(*)(const struct doom_runtime_owned*))entry)(a);
 #endif
+#ifdef ENGINE_PLAYABLE
+ play_clear();play_api=0;play_allowed=0;
+#endif
  for(i=0;i<12;i++)results[i]=word(s->base+ENGINE_RESULT+4*i);
 #ifdef ENGINE_STARTUP
  if((*value!=0x454e4700u&&*value!=0x454e4702u)||results[0]!=0x454e4750u||results[1]!=2||results[10]!=1)goto uncertain;
+#ifndef ENGINE_PLAYABLE
  if(*value==0x454e4700u&&(results[2]!=6291456u||results[3]!=ENGINE_FRAME||results[4]!=ENGINE_PALETTE||results[5]!=ENGINE_FRAME_COUNT||results[6]!=1||results[9]||results[11]!=213))goto uncertain;
  if(*value==0x454e4702u&&(results[9]<2||results[9]>4||results[5]||results[6]))goto uncertain;
+#else
+ if(*value!=0x454e4702u||results[2]!=6291456u||results[6]||results[9]!=2||results[11]!=210)goto uncertain;
+#endif
 #else
  if((*value!=0x454e4700u&&*value!=0x454e4702u)||results[0]!=0x454e4750u||results[1]!=1||results[10]!=1||results[11]||results[9]>3)goto uncertain;
  if(*value==0x454e4700u&&(results[2]!=6291456u||!results[5]||!results[6]||results[9]))goto uncertain;

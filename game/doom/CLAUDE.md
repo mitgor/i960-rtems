@@ -1,5 +1,27 @@
 # Doom milestone guidance
 
+<!-- doom-play-current -->
+**Interactive Doom work (2026-10-13; six-frame input/STOP passed):**
+The user chose browser play now, with optimization/debugging driven by use.
+The opt-in persistent engine, bounded input FIFO, immutable frame/ACK channel,
+browser relay and fresh-workspace build/run wrappers are implemented. Sanitized
+native 40-frame input runs are deterministic, differ from no-input, and pass
+owned STOP/heap drain. Channel bounds, stale ACK, overflow, timeout and STOP
+race tests pass. Keep `--point-side-o0`, identity/ownership/guard checks and full
+paired audits (normal play interval 60 s; diagnostic interval 3 s).
+
+The corrected card candidate is running in
+`/home/mit/i960-doom-play-20261013b`, boot
+`83ecfee3-b3a2-47bf-a415-2ce0b7d0602f`, supervisor 2999, browser port 8087.
+It owns the card exclusively; the public autonomous IPv6 HTTP relay is stopped.
+Do not unload or reuse its resources. Six physical frames, forward/release and owned STOP passed; mean readback
+5.473 s, delivery 0.169 frames/s. The first 26 full audit pairs passed. A host
+comparison finds 7–8 differing pixels in a small region; palettes/padding match.
+The fresh user session is loading. Global shutdown is not claimed for this
+active run. Prior ownership and “next”
+statements below are historical. See [current evidence and guide](../../artifacts/doom-play-20261013/README.md).
+<!-- /doom-play-current -->
+
 <!-- doom-visible-current -->
 **Bounded visible Doom and browser delivery accepted (2026-10-13):**
 The opt-in `--visible` build skips the opening wipe and returns two 320×200
@@ -214,7 +236,7 @@ wildcard that depended on the workspace name. Public IPv6 HTTP is restored (200)
 Next: owned engine entry/yield/STOP and i960 exit boundary, larger manifest
 admission, WAD batching/initialization budget, then first frame. Keep the current
 closed whitelist; **Doom itself has not run on card**.
-[Runtime contract](../../game/doom/runtime/platform/README.md) ·
+[Runtime contract](runtime/platform/README.md) ·
 [Physical evidence](../../artifacts/doom-platform-20261012/README.md).
 
 **Relocated code/data/BSS proof accepted (2026-10-12):** the reviewed 184-byte
@@ -231,7 +253,7 @@ build is archived. This is a closed returning proof, **not Doom execution**;
 integration, then bounded initialization. Preserve both worker owners, pins,
 full audits, and exclusive reboot-only release. The reboot completed and the
 original public IPv6 HTTP service is restored (independent HTTP 200).
-[Contract](../../game/doom/runtime/relocate/README.md) ·
+[Contract](runtime/relocate/README.md) ·
 [Evidence](../../artifacts/doom-relocate-20261012/README.md).
 
 **New host-only cache/link checkpoint:** [runtime/cache/README.md](runtime/cache/README.md) and

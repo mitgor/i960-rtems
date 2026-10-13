@@ -4,18 +4,18 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 10787,
-      "sha256": "330eb8b7b01d4b71a36ff9483048e67f3ba7728a118af0abd5d6d8072e55cba1"
+      "size": 11237,
+      "sha256": "883147d6a852831c4249e28694311e875a9187706b21c99661e5b9efc9d2d92b"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
-      "size": 24851,
-      "sha256": "2359956e0c5c194ab6a712718c4d2f6d2cd21e6fce67f697cf16bea48075f14f"
+      "size": 25079,
+      "sha256": "b7818144def7205c80b8e5870911c33f959ae7e73e3c349a0a012b092660a5de"
     },
     {
       "path": "artifacts/ROM-INVENTORY.md",
-      "size": 17160,
-      "sha256": "5ee9a9230a877ff914519e3ae067a432d88bbaa2bba073060bcb1516962e76d1"
+      "size": 17414,
+      "sha256": "f6408a9ae9e03a00703243b08b28695e487a0bb7818de064fccf11dff0991f9a"
     },
     {
       "path": "artifacts/ackpublish-20261011/README.md",
@@ -2809,8 +2809,8 @@
     },
     {
       "path": "artifacts/chip8-20261011/README.md",
-      "size": 3876,
-      "sha256": "3ecf0bf8e5b74ad7975058a7caaa71b57798e9698a8ce7d2754e2aa8fa26dfeb"
+      "size": 3887,
+      "sha256": "026242e1bf2438f324f86a8a0865e1825e48106ec92dc1fb688c1698107a7710"
     },
     {
       "path": "artifacts/chip8-20261011/build.json",
@@ -3064,8 +3064,8 @@
     },
     {
       "path": "artifacts/dma-research-20261011/README.md",
-      "size": 4399,
-      "sha256": "09a6ce3bbbfb1d761a314bd14580a35e7619075470b71914c7da0a93c78e1f0c"
+      "size": 4410,
+      "sha256": "955f5ab606e17c404d57d76fbdb0db635427d03ba1cfb7685f9e9f44b5b9a06f"
     },
     {
       "path": "artifacts/dma-research-20261011/source-hashes.txt",
@@ -4813,6 +4813,151 @@
       "sha256": "303124866f82442558f69d1fc89343ae723f5a2ae5e7f86093952f5dcd72d22d"
     },
     {
+      "path": "artifacts/doom-play-20261013/README.md",
+      "size": 10217,
+      "sha256": "3b1ded3b055126dd6a962d7682f52fc72ba9edc6f3c8bcbf8f7afd9a2c91ced2"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/acceptance-prefix.sha256",
+      "size": 91,
+      "sha256": "7163e53964f07091c7e301c818db0e6fb779b3238925e9056629b6d9ae31587a"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/acceptance-prefix.tar.gz",
+      "size": 14669479,
+      "sha256": "ec990a86c4c196b55d62cf19a1d91bdbe440e3f1bd5f97639dae7b16044fe2c7"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/build-evidence.sha256",
+      "size": 88,
+      "sha256": "8cc0fc5b4a5ce4ac2d4c2a8a946e091a2f3f3fd22efca61b4ffca9f5e72f1a36"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/build-evidence.tar.gz",
+      "size": 24173510,
+      "sha256": "d8e068a7f8d3be574545fae2a9e261a26ae0d80463a72679ac76b1da17f9492c"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/build.sh",
+      "size": 2199,
+      "sha256": "38dfe70bf04cfbd61b5bcfa9ed35ae46be155701916784fe8bfee7553d72c450"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/live.sh",
+      "size": 671,
+      "sha256": "e958790a31cce24fa3e1ddedc00954dc23876dcf2d785ab12f3b53428f683df6"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/native-comparison.json",
+      "size": 4489,
+      "sha256": "16e2e139eafe4ef36a813a2b3524c69b3de4d7d8954175fd7e149b1c0f6c135c"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-1.bin",
+      "size": 65536,
+      "sha256": "f4d1c27a4ec8e8db4437d9e28012107370749765aa0e09c99758eeb54163b8ce"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-1.png",
+      "size": 32283,
+      "sha256": "6f5a63f245e713267ebf063a1129665af54d8a5d95c3cab8ba31ccbff00c0a6e"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-2.bin",
+      "size": 65536,
+      "sha256": "f4d1c27a4ec8e8db4437d9e28012107370749765aa0e09c99758eeb54163b8ce"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-2.png",
+      "size": 32283,
+      "sha256": "6f5a63f245e713267ebf063a1129665af54d8a5d95c3cab8ba31ccbff00c0a6e"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-3.bin",
+      "size": 65536,
+      "sha256": "a759470102c8849eac269bd13c684422ae72e6346e81fceabd7608dbbd11372f"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-3.png",
+      "size": 32186,
+      "sha256": "723fa4c6a5cf8503ce1a5082eddeae4f2d04c60401508950a240d6702de763d2"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-4.bin",
+      "size": 65536,
+      "sha256": "cdd895e16c17cd7fb23f57108ea3c36dab3a2d2fcc676fe154967fe98e7387b7"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-4.png",
+      "size": 32122,
+      "sha256": "517ef8f3361f8e3c86a9870164482724569232ec7a00fc2afd22e2a8002a18d7"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-5.bin",
+      "size": 65536,
+      "sha256": "acf60fb47c71185efaf4e83f0f8477568665bf57e87f3cbc74f914d4a14a4b4b"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-5.png",
+      "size": 32294,
+      "sha256": "a94b3a6da72b09037140db0c9a4d99fa0fe40954fdde63a6c51bae5117849e67"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-6.bin",
+      "size": 65536,
+      "sha256": "dbd12edf853bb75fdd0cd51af7422c7f6ddf649cc7363fb963ebc43591578164"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-0-6.png",
+      "size": 32470,
+      "sha256": "e36e0fea1e31c00aaf48ca40a67ac78c706ee0df5559dd3f25886475b9121bb1"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-frames.jsonl",
+      "size": 1034,
+      "sha256": "23b61e917a7bfe1dbbdfee1502a95c12c1f4ba63a62e12c3b32fb79548f2bed5"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-sessions.jsonl",
+      "size": 208,
+      "sha256": "e327cb1c871bb5f27a6ebddb443fe9e389d208f522456206bb09584388f0cca7"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/preliminary-build.sha256",
+      "size": 91,
+      "sha256": "9f023feb87f7d6f6573aed0016acb45ccf49740f8763d9a3ac0ee872426810fb"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/preliminary-build.tar.gz",
+      "size": 24169115,
+      "sha256": "470d92183c54f15cd788704162655a7e6c63c858d46471a16e5cffdadaf91c91"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/preliminary-card.sha256",
+      "size": 90,
+      "sha256": "f712969a488c9a02772d4baed085cd7609e4ab2c31e15f09a313a6139694e3cd"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/preliminary-card.tar.gz",
+      "size": 3741011,
+      "sha256": "62dc3279064c0f9839f17423585ab6a9c816f7279460522548f68cfd2d78e3ff"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/reproducibility.sha256",
+      "size": 89,
+      "sha256": "ec76b12479fc51e75f47c6c753a80d0417980cae1a1f5f80c4ddc521078d0982"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/reproducibility.tar.gz",
+      "size": 3192253,
+      "sha256": "227e405c96fa74613b3214bb74752b804473efcb58da33e3585e55ede72628b4"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/snapshot-evidence.py",
+      "size": 2358,
+      "sha256": "3895cb2bc29ab6e1b60e5e6affa20f1c28207132029d972d42de49ce5dd678e4"
+    },
+    {
       "path": "artifacts/doom-progress-20261012/PROGRESS.md",
       "size": 3679,
       "sha256": "25b43f6c6ed89f74e4bf95346fcdf986ac41d778143a2eaff5a467790f3487ae"
@@ -5889,8 +6034,8 @@
     },
     {
       "path": "artifacts/dram-hook-audit-20261010/README.md",
-      "size": 1023,
-      "sha256": "72fc4c023a51a53d1f711b682d2fe8cbe0ee0e3a6dbe56bf1df14fb810635228"
+      "size": 1035,
+      "sha256": "03c7c02a17dce14f716aff05d7f79df4848617b47b7f027b1055c67bc3ee1fc8"
     },
     {
       "path": "artifacts/dram-hook-audit-20261010/dac960dump.c",
@@ -7214,8 +7359,8 @@
     },
     {
       "path": "artifacts/live-handoff-20261010/README.md",
-      "size": 1086,
-      "sha256": "4f982635cb181ac95666234bd9f035ab8d05c7a2c52fc66994ff7e6391f2d768"
+      "size": 1098,
+      "sha256": "7be4f56ce3a00e977033f86b646a9c2f820df9be9e2c79129f591b7d4cd71a4d"
     },
     {
       "path": "artifacts/live-handoff-20261010/link.ld",
@@ -12749,8 +12894,8 @@
     },
     {
       "path": "artifacts/romhook-20261010/README.md",
-      "size": 1381,
-      "sha256": "885c2cfdc84c6b6bf71123dc73d535d030b54c743f2a01ef82ad5ba586049ef1"
+      "size": 1405,
+      "sha256": "490620e0521db283debbfe6e4a7442aa7f024e3ca8952ea48663618a8d41061d"
     },
     {
       "path": "artifacts/romhook-20261010/build_image.py",
@@ -12884,8 +13029,8 @@
     },
     {
       "path": "artifacts/romhook-step4-20261010/README.md",
-      "size": 551,
-      "sha256": "d25fbf107ca4067bbb0aa24e7d7858c98685784795553d25b11d75adec0c9d5d"
+      "size": 563,
+      "sha256": "45c3ec1f1c0e8468834c7f61bc571bedfa0c713c4e8a8c6b2b1ec90da43861cf"
     },
     {
       "path": "artifacts/romhook-step4-20261010/dac960dump.c",
@@ -18029,8 +18174,8 @@
     },
     {
       "path": "artifacts/stockhook-20261010/README.md",
-      "size": 1101,
-      "sha256": "fef62506d71b26df512ecbbd4d3fa46855efc86164ece39c06c34aac853c92b6"
+      "size": 1137,
+      "sha256": "184c4b017d28800c057a9fd493b6c148ea2662bc5ed7fa708145096553b2f9f9"
     },
     {
       "path": "artifacts/stockhook-20261010/build_image.py",
@@ -21824,8 +21969,8 @@
     },
     {
       "path": "artifacts/tetris-t4-20261010/README.md",
-      "size": 3311,
-      "sha256": "9f696ac542ecc3196c74309e0c85e13ed93b4bf4150f9e1c2500f9118a0adced"
+      "size": 3322,
+      "sha256": "63d6a6eb2c04522c350a06c142ccf74f43813679bc701138b53aec93a4a943d2"
     },
     {
       "path": "artifacts/tetris-t4-20261010/checkpoint-validation.json",
@@ -22249,8 +22394,8 @@
     },
     {
       "path": "artifacts/tetris-t5-20261010/README.md",
-      "size": 3118,
-      "sha256": "37bd03662def5b34728e6843a990236256746197c1b57af99f0203a8d8e24587"
+      "size": 3130,
+      "sha256": "6eaf7467bbcb755f65cdaa74605cf59f12f96158df347130e88395e05084e159"
     },
     {
       "path": "artifacts/tetris-t5-20261010/cadence-summary.json",

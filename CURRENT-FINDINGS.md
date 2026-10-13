@@ -1,5 +1,27 @@
 # Current findings and evidence — 2026-10-13
 
+<!-- doom-play-current -->
+**Interactive Doom work (2026-10-13; six-frame input/STOP passed):**
+The user chose browser play now, with optimization/debugging driven by use.
+The opt-in persistent engine, bounded input FIFO, immutable frame/ACK channel,
+browser relay and fresh-workspace build/run wrappers are implemented. Sanitized
+native 40-frame input runs are deterministic, differ from no-input, and pass
+owned STOP/heap drain. Channel bounds, stale ACK, overflow, timeout and STOP
+race tests pass. Keep `--point-side-o0`, identity/ownership/guard checks and full
+paired audits (normal play interval 60 s; diagnostic interval 3 s).
+
+The corrected card candidate is running in
+`/home/mit/i960-doom-play-20261013b`, boot
+`83ecfee3-b3a2-47bf-a415-2ce0b7d0602f`, supervisor 2999, browser port 8087.
+It owns the card exclusively; the public autonomous IPv6 HTTP relay is stopped.
+Do not unload or reuse its resources. Six physical frames, forward/release and owned STOP passed; mean readback
+5.473 s, delivery 0.169 frames/s. The first 26 full audit pairs passed. A host
+comparison finds 7–8 differing pixels in a small region; palettes/padding match.
+The fresh user session is loading. Global shutdown is not claimed for this
+active run. Prior ownership and “next”
+statements below are historical. See [current evidence and guide](artifacts/doom-play-20261013/README.md).
+<!-- /doom-play-current -->
+
 <!-- doom-visible-current -->
 **Bounded visible Doom and browser delivery accepted (2026-10-13):**
 The opt-in `--visible` build skips the opening wipe and returns two 320×200
@@ -654,7 +676,7 @@ updates, then 404 browser callbacks including movement/restart. All 21 periodic 
 audits and both RAM restorations/unloads passed. Median callback latency was
 51.43/51.65 ms. Production IPv6 HTTP returned 200; no flash/reboot. The separate
 parallel OS batch completed before these sessions. [Evidence](artifacts/chip8-20261011/README.md),
-[usage](game/chip8/README.md), [progression and DoomGeneric decision](GAME-PROGRESSION.md).
+[usage](game/chip8/README.md), [progression and DoomGeneric decision](docs/games/GAME-PROGRESSION.md).
 Next application: fixed-point raycaster and transport measurements. Doom still
 needs larger owned RAM and runtime services; FastDoom is an optimization reference.
 
@@ -848,7 +870,7 @@ preceded the successful retry. [Implementation](rtems/control/MU-ECHO.md),
 preemption remain unproven; next is framed control plus independent STOP.
 
 
-The current implementation backlog is [the integrated development plan](DEVELOPMENT-PLAN.md),
+The current implementation backlog is [the integrated development plan](docs/rtems/DEVELOPMENT-PLAN.md),
 including a gap ledger G01–G12 and the next loader milestone M1.
 
 This is the current-state index. Earlier reports and artifact source snapshots
@@ -862,18 +884,18 @@ reboot; no additional flash programming or recovery testing occurred.
 | Finding | Evidence and usable implementation |
 | --- | --- |
 | A complete 512 KiB ROM can be recovered while the card is installed, without an external programmer. | [ROM inventory](artifacts/ROM-INVENTORY.md), original dumps and Fujitsu packages in `artifacts/private-dumps/` and `artifacts/vendor-fujitsu/`. |
-| Stock DRAM initialization has been traced, including two candidate board-register profiles; decoded timings in nanoseconds have not been established. | [DRAM analysis](DRAM-ANALYSIS.md). Stock initialization is retained. |
-| A stock-preserving patch has been programmed once and validated after reboot. | [Programming result](FIRMWARE-PROGRAMMED.md), paired full readbacks and postboot PING in `artifacts/programmed-rom-20261010/`. |
+| Stock DRAM initialization has been traced, including two candidate board-register profiles; decoded timings in nanoseconds have not been established. | [DRAM analysis](docs/loader/DRAM-ANALYSIS.md). Stock initialization is retained. |
+| A stock-preserving patch has been programmed once and validated after reboot. | [Programming result](docs/firmware/FIRMWARE-PROGRAMMED.md), paired full readbacks and postboot PING in `artifacts/programmed-rom-20261010/`. |
 | The boot-installed `0x6F` dispatch target is `FEFE001C`; PING returns `017E`. Boot straps remain Mode 3. | Postboot paired table reads and calls; this is software extension of stock firmware, not Mode 0 boot. |
-| Returning i960 programs can be uploaded and executed after the PC has booted, without further flash writes. | [Software loader](SOFTWARE-LOADER.md), `host/loadrun/`, `loader/runtime/`. Cache invalidation and restoration are part of the protocol. |
-| The 64 KiB scalar limit is policy, and a larger RAM profile is already proven. | The initial RTEMS profile uses a 310,772-byte image (the dual-stack revision uses 315,108 bytes) and 471,136-byte prepared upload inside the existing 512 KiB staging window. [Memory limits and extension stages](DEVELOPMENT-PLAN.md#what-can-be-extended-now). This does not establish ownership of the rest of the card's 16 MiB DRAM. |
-| BIO1 returns bounded text/frame data; Tetris has an explicit bounded update/render ABI. | [Buffer I/O](BUFFER-IO.md), [Tetris step](TETRIS-STEP.md), `game/`. 4 KiB input, 8 KiB output; Tetris uses 256-byte requests and 2,160-byte responses. |
-| Repeated execution and persistent sessions are hardware-tested. | [T3 replay](TETRIS-REPLAY.md): 1,000 + 64 calls. [T5 session](PERSISTENT-SESSION.md): 1,000 frames and a separate 400-frame cadence test. |
+| Returning i960 programs can be uploaded and executed after the PC has booted, without further flash writes. | [Software loader](docs/loader/SOFTWARE-LOADER.md), `host/loadrun/`, `loader/runtime/`. Cache invalidation and restoration are part of the protocol. |
+| The 64 KiB scalar limit is policy, and a larger RAM profile is already proven. | The initial RTEMS profile uses a 310,772-byte image (the dual-stack revision uses 315,108 bytes) and 471,136-byte prepared upload inside the existing 512 KiB staging window. [Memory limits and extension stages](docs/rtems/DEVELOPMENT-PLAN.md#what-can-be-extended-now). This does not establish ownership of the rest of the card's 16 MiB DRAM. |
+| BIO1 returns bounded text/frame data; Tetris has an explicit bounded update/render ABI. | [Buffer I/O](docs/loader/BUFFER-IO.md), [Tetris step](docs/games/TETRIS-STEP.md), `game/`. 4 KiB input, 8 KiB output; Tetris uses 256-byte requests and 2,160-byte responses. |
+| Repeated execution and persistent sessions are hardware-tested. | [T3 replay](docs/games/TETRIS-REPLAY.md): 1,000 + 64 calls. [T5 session](docs/loader/PERSISTENT-SESSION.md): 1,000 frames and a separate 400-frame cadence test. |
 | A card-hosted IPv6 HTTP server works. | GET from the Mac to the host global IPv6 port 8080 reached the card through DNAT; bounded HTTP request tests passed. The autonomous service is running for user testing. [Current report](artifacts/rtems-web-autonomous-20261011/README.md). |
 | Hardware timer interrupts can wake RTEMS tasks. | Eight interrupts/eight higher-priority task wakeups during a bounded busy-loop experiment; timer/vector/mask and RAM restored. Background execution passed 2,009 ticks/wakes in 20 host-silent seconds; networking advanced 509 ticks in five silent seconds. SIGTERM/SIGKILL/error cleanup passed. |
 | IPv6 networking works on the current cooperative RTEMS port. | [Dual-stack implementation and live evidence](artifacts/rtems-ipv6-20261011/README.md): ICMPv6, UDP/TCP, AAAA and IPv6 Internet HTTP through NAT66. Static addressing; DNS transport remains IPv4; fragmentation, SLAAC, sockets and TLS remain gaps. |
 | RTEMS Classic tasks and card TCP/IP execute after PC startup. | [Cooperative RTEMS port](rtems/README.md), [exact artifacts](artifacts/rtems-20261011/README.md). Persistent tasks, lwIP ICMP/UDP/TCP, DNS and HTTP through Linux TUN/NAT; clock/progress depend on host polling. |
-| Tetris is playable over SSH. | [Terminal instructions](TETRIS-TERMINAL.md), `host/session/`. T4's five automated SSH runs validated 36,380 frames; the 30-minute run contributed 35,846 at 19.91 Hz. |
+| Tetris is playable over SSH. | [Terminal instructions](docs/games/TETRIS-TERMINAL.md), `host/session/`. T4's five automated SSH runs validated 36,380 frames; the 30-minute run contributed 35,846 at 19.91 Hz. |
 
 Original full-ROM SHA256:
 `43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93`.
@@ -917,7 +939,7 @@ are expected to reject the now-patched card; do not bypass their pinned hashes.
   68 restarts. It is not a human gameplay or uninterrupted-running-game claim.
 - RTEMS tasks and host-routed TCP/IP now work in the [cooperative profile](rtems/README.md).
   Bounded background RTEMS and its hardware clock now pass live tests;
-  independent host transport and exclusive takeover remain unvalidated. The [integrated plan](DEVELOPMENT-PLAN.md) describes
+  independent host transport and exclusive takeover remain unvalidated. The [integrated plan](docs/rtems/DEVELOPMENT-PLAN.md) describes
   those additional gates in A1–A3; a working cooperative session does not satisfy them.
 
 ## Preservation and current host observation
@@ -957,7 +979,7 @@ service also passed twelve sequential TCP connections and UDP.
 
 ## Preemption and DMA roadmap (2026-10-11)
 
-See the [staged preemption and DMA plan](RTEMS-PREEMPTION-DMA-PLAN.md). Order: independent control
+See the [staged preemption and DMA plan](docs/rtems/RTEMS-PREEMPTION-DMA-PLAN.md). Order: independent control
 and ownership prerequisites → arbitrary application-task preemption → host-RAM
 DMA networking → gated direct peer experiments. Read-only direct-DMA research
 has started; current NIC and Mylex occupy separate PCI branches. This is a plan

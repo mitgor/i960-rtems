@@ -3,7 +3,7 @@
 The fixed 128-byte callback reads the full candidate through `C1F2C000`, the
 source alias used by the stock flash programmer. It computes CRC32 and returns
 `017F` for `2012D01F`, otherwise `0180`. The live rehearsal passed and restored
-all RAM. See [PROGRAMMING-PREFLIGHT.md](../../PROGRAMMING-PREFLIGHT.md).
+all RAM. See [PROGRAMMING-PREFLIGHT.md](../../docs/firmware/PROGRAMMING-PREFLIGHT.md).
 
 `start.s` contains an `EXPECTED_CRC` marker. Generate its assembly by replacing
 that marker with `0x2012d01f`, then compile with the existing `i960-coff-gcc -mrp`,

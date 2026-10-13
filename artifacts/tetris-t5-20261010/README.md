@@ -1,6 +1,6 @@
 # Persistent-session T5 evidence, 2026-10-10
 
-See [PERSISTENT-SESSION.md](../../PERSISTENT-SESSION.md) for the implementation,
+See [PERSISTENT-SESSION.md](../../docs/loader/PERSISTENT-SESSION.md) for the implementation,
 measurements, audit tradeoff and reproduction instructions.
 
 - `evidence.tar.xz`: complete remote captures for conservative `smoke` (3 frames),

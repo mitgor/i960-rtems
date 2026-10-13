@@ -2,25 +2,25 @@
 
 **Current index (2026-10-11): [findings, evidence and unresolved questions](../CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
 
-**T4 complete (2026-10-10): [play Tetris over SSH](../TETRIS-TERMINAL.md).** The terminal client passed a 30-minute real-SSH test: 35,846 native-matching frames, 68 restarts, 19.91 Hz. Quit, Ctrl-C, connection loss/reconnect and resize cleanup passed. Use `ssh -t mit@192.168.2.75 /home/mit/i960-tetris-t4/play.sh`. Full RAM restored, module unloaded; no reboot or flash.
+**T4 complete (2026-10-10): [play Tetris over SSH](../docs/games/TETRIS-TERMINAL.md).** The terminal client passed a 30-minute real-SSH test: 35,846 native-matching frames, 68 restarts, 19.91 Hz. Quit, Ctrl-C, connection loss/reconnect and resize cleanup passed. Use `ssh -t mit@192.168.2.75 /home/mit/i960-tetris-t4/play.sh`. Full RAM restored, module unloaded; no reboot or flash.
 
 
-**T5 complete (2026-10-10): [persistent BIO1 sessions](../PERSISTENT-SESSION.md).** 1,000 frames matched native output at 41.1 ms median; a separate 400-frame run sustained 20 Hz. Process-kill/ownership cleanup and full final RAM restoration passed. `host/session/` keeps paired code/payload checks every frame and full staging audits every 32 frames and close. The subsequently completed T4 terminal client uses this transport; no reboot or flash.
+**T5 complete (2026-10-10): [persistent BIO1 sessions](../docs/loader/PERSISTENT-SESSION.md).** 1,000 frames matched native output at 41.1 ms median; a separate 400-frame run sustained 20 Hz. Process-kill/ownership cleanup and full final RAM restoration passed. `host/session/` keeps paired code/payload checks every frame and full staging audits every 32 frames and close. The subsequently completed T4 terminal client uses this transport; no reboot or flash.
 
 
-**T3 complete (2026-10-10): [long Tetris hardware replay](../TETRIS-REPLAY.md).** 1,000-call main replay plus 64 repeat calls matched native state/frame bytes; all RAM restored and probes unloaded. Median full CLI latency 306 ms (~3.26 updates/s), payload-command interval ~6.18 ms. This baseline motivated the now-completed T5 session optimization; T4 terminal play is now complete; see the latest milestone above. No reboot or flash.
+**T3 complete (2026-10-10): [long Tetris hardware replay](../docs/games/TETRIS-REPLAY.md).** 1,000-call main replay plus 64 repeat calls matched native state/frame bytes; all RAM restored and probes unloaded. Median full CLI latency 306 ms (~3.26 updates/s), payload-command interval ~6.18 ms. This baseline motivated the now-completed T5 session optimization; T4 terminal play is now complete; see the latest milestone above. No reboot or flash.
 
-**T2 complete (2026-10-10): [bounded Tetris steps](../TETRIS-STEP.md) run on the card.** Explicit 240-byte state, 20-tick bound, 24×80 rendering; 1,024 native/interpreted transitions agree, and nine live transactions match the native reference byte for byte. RAM restored; no reboot/flash. T3 replay, T5 persistent sessions and T4 terminal play subsequently passed.
+**T2 complete (2026-10-10): [bounded Tetris steps](../docs/games/TETRIS-STEP.md) run on the card.** Explicit 240-byte state, 20-tick bound, 24×80 rendering; 1,024 native/interpreted transitions agree, and nine live transactions match the native reference byte for byte. RAM restored; no reboot/flash. T3 replay, T5 persistent sessions and T4 terminal play subsequently passed.
 
-**T1 complete (2026-10-10): [bounded text/framebuffer I/O](../BUFFER-IO.md) is hardware validated.** BIO1 supports 4 KiB input / 8 KiB output; live text, 24×80 frame, capacity rejection and repeat/scalar regression passed with RAM restored. T2 subsequently converted the blocking game into hardware-tested returning steps.
+**T1 complete (2026-10-10): [bounded text/framebuffer I/O](../docs/loader/BUFFER-IO.md) is hardware validated.** BIO1 supports 4 KiB input / 8 KiB output; live text, 24×80 frame, capacity rejection and repeat/scalar regression passed with RAM restored. T2 subsequently converted the blocking game into hardware-tested returning steps.
 
-**Latest hardware milestone (2026-10-10): [runtime software loader](../SOFTWARE-LOADER.md) works after PC startup.** Three live executions (two C programs) passed without reboot or another flash write. Use `host/loadrun/` and `loader/runtime/` from the repository root; earlier internal-RAM and pre-programming plans below are historical. Supports cooperative returning functions up to 64 KiB, with one argument and a 32-bit result. RAM restored and module unloaded after each run. Recovery remains untested.
+**Latest hardware milestone (2026-10-10): [runtime software loader](../docs/loader/SOFTWARE-LOADER.md) works after PC startup.** Three live executions (two C programs) passed without reboot or another flash write. Use `host/loadrun/` and `loader/runtime/` from the repository root; earlier internal-RAM and pre-programming plans below are historical. Supports cooperative returning functions up to 64 KiB, with one argument and a 32-bit result. RAM restored and module unloaded after each run. Recovery remains untested.
 
 
 > **2026-10-10 architecture correction:** Intel i960 Rx manual §4.1 forbids
 > instruction fetch from internal data RAM (0x000..0x3ff). The hello-at-0x200 /
 > GO milestone described below is invalid on hardware. Current C tests check
-> software behavior only. See [PROJECT-REVIEW.md](../PROJECT-REVIEW.md), item 12.
+> software behavior only. See [PROJECT-REVIEW.md](../docs/project/PROJECT-REVIEW.md), item 12.
 > Executable payloads need verified external memory; code has not yet been fixed.
 
 Stage 1 runs from the DAC960PG boot flash. Stage 2 is uploaded through the i960
@@ -131,7 +131,7 @@ RAM instruction fetch, or register-cache behavior. Review `start.s` and generate
 code against the i960 documentation before flashing. The stack initialization and
 `flushreg` sequence retain the previous implementation and require validation.
 
-Follow [REFLASH.md](../REFLASH.md): obtain an external-programmer flash backup
+Follow [REFLASH.md](../docs/firmware/REFLASH.md): obtain an external-programmer flash backup
 before replacing firmware. Milestone 1 is READY plus a working ping. Milestone 2
 is a verified hello upload followed by the OMR1 payload marker. Record actual
 results and toolchain versions in [REVIEW.md](REVIEW.md).

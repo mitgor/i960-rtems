@@ -3,7 +3,7 @@
 > **2026-10-10 architecture correction:** Intel i960 Rx manual §4.1 forbids
 > instruction fetch from internal data RAM (0x000..0x3ff). The hello-at-0x200 /
 > GO milestone described below is invalid on hardware. Current C tests check
-> software behavior only. See [PROJECT-REVIEW.md](../PROJECT-REVIEW.md), item 12.
+> software behavior only. See [PROJECT-REVIEW.md](../docs/project/PROJECT-REVIEW.md), item 12.
 > Executable payloads need verified external memory; code has not yet been fixed.
 
 Date: 2026-10-10. This records the loader review and implementation for future

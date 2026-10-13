@@ -1,7 +1,7 @@
 # ROM-backed stock hook build artifact — 2026-10-10
 
 This directory holds the exact step-3 target build and 512 KiB offline image
-described in [ROM-HANDLER-STEP3.md](../../ROM-HANDLER-STEP3.md). `start.s`,
+described in [ROM-HANDLER-STEP3.md](../../docs/loader/ROM-HANDLER-STEP3.md). `start.s`,
 `link.ld`, `Makefile` and `build_image.py` are the archived build inputs.
 `romhook.elf`, `.bin`, `.dis` and `.map` are the target outputs; the raw image
 and JSON manifest are `candidate-full-rom.bin` and `.bin.json`.
@@ -21,5 +21,5 @@ Step 4 adds `experimental-firmware.img` and its manifest. The MIMG is a
 The package builder and its regression tests are copied here as exact inputs.
 `recovery-audit/` holds the existing partial vendor/boot-monitor check applied
 to this exact wrapper; it does not establish a working recovery procedure.
-See [ROM-HANDLER-STEP4.md](../../ROM-HANDLER-STEP4.md). It has not been
+See [ROM-HANDLER-STEP4.md](../../docs/loader/ROM-HANDLER-STEP4.md). It has not been
 accepted by the updater or programmed on the card.

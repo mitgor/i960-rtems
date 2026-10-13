@@ -7,7 +7,7 @@
 #
 # This source is OFFLINE ONLY.  The stock host interface has no command which
 # can install this callback in the live board table.  See
-# ../../LIVE-EXECUTION-HANDOFF.md before considering any use.
+# ../../docs/loader/LIVE-EXECUTION-HANDOFF.md before considering any use.
 
     .text
     .globl _start

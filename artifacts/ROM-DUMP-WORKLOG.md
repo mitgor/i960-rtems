@@ -1,6 +1,6 @@
 # ROM dumping work log and findings
 
-**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](../FIRMWARE-PROGRAMMED.md).**
+**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](../docs/firmware/FIRMWARE-PROGRAMMED.md).**
 One 2B/1 programming command succeeded; paired full flash readbacks match
 candidate SHA256 `a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0`.
 After reboot, table C001F9BC points to FEFE001C and two 6F commands returned
@@ -10,7 +10,7 @@ Evidence: `artifacts/programmed-rom-20261010/` from repository root. Older
 pre-programming sections below are historical and superseded by this result.
 
 
-Latest: [one-shot programming harness](../ONE-SHOT-PROGRAMMING.md) is implemented in `host/program/`
+Latest: [one-shot programming harness](../docs/firmware/ONE-SHOT-PROGRAMMING.md) is implemented in `host/program/`
 (repository-root relative). Native transport/failure tests and a 105-command live
 RAM-only rehearsal passed. Wrong activation token rejected before driver
 registration; no programming doorbell issued. Full stock RAM restored and probe
@@ -19,7 +19,7 @@ Actual flash programming, post-program physical readback and patched boot remain
 untested. Recovery testing remains excluded.
 
 
-Latest (2026-10-10): [programming preflight and live CPU verification](../PROGRAMMING-PREFLIGHT.md)
+Latest (2026-10-10): [programming preflight and live CPU verification](../docs/firmware/PROGRAMMING-PREFLIGHT.md)
 passed. The CPU read all 512 KiB of the candidate through programmer alias
 C1F2C000 with explicit cache invalidation and matched CRC32 2012D01F. All 105
 commands completed cleanly; original staging/table/code restored, probe unloaded.
@@ -31,7 +31,7 @@ is in `artifacts/programming-preflight-20261010/` from the repository root.
 
 ## Live staging rehearsal — 2026-10-10
 
-[Live staging rehearsal — 2026-10-10](../STAGING-REHEARSAL.md) passed: six full 512 KiB captures verify the original
+[Live staging rehearsal — 2026-10-10](../docs/loader/STAGING-REHEARSAL.md) passed: six full 512 KiB captures verify the original
 stock image, the patched candidate in RAM, and complete stock restoration.
 All 74 commands completed cleanly; probe unloaded. Exact binaries, source,
 logs and validation are in `artifacts/staging-rehearsal-20261010/` (relative
@@ -40,7 +40,7 @@ to the repository root). No flash programming or recovery test occurred.
 
 ## Later live execution result — 2026-10-10
 
-[ROM-FETCH-LIVE.md](../ROM-FETCH-LIVE.md) records the completed RAM-dispatch
+[ROM-FETCH-LIVE.md](../docs/loader/ROM-FETCH-LIVE.md) records the completed RAM-dispatch
 and post-startup flash-fetch work. A wrapped `0x21` offset changed `0x6F`'s
 RAM table word; target-built callbacks returned `017E` and `017F`. One early
 flash call timed out because the disassembly label `FEFC8208` was not the
@@ -177,43 +177,43 @@ Recovered the installed boot block's metadata-based copy/decompression/handoff
 path and direct DRAM-controller writes. Built a separate experimental loader
 image preserving the stock boot block and compressed program. The prototype
 patches a RAM instruction after early PCI setup, then accepts DRAM payloads.
-Details, validation and outstanding hardware gates: [POSTINIT-LOADER.md](../POSTINIT-LOADER.md). No flash writes or custom execution occurred.
+Details, validation and outstanding hardware gates: [POSTINIT-LOADER.md](../docs/loader/POSTINIT-LOADER.md). No flash writes or custom execution occurred.
 
 ## Live-test preparation, revision 2
 
 Read-only PCI preflight passed on the remote host. Archived the v2 candidate,
 preflight JSON and build evidence in `postinit-preflight-20261010/`; the first
-prototype remains preserved. See [LIVE-TEST-PREFLIGHT.md](../LIVE-TEST-PREFLIGHT.md)
+prototype remains preserved. See [LIVE-TEST-PREFLIGHT.md](../docs/loader/LIVE-TEST-PREFLIGHT.md)
 for the earlier hook, ROM suppression, DMA guard and unresolved installation gates.
 No custom code has executed on the card.
 
 ## Programming audit and offline MIMG — 2026-10-10
 
-Archived `postinit-update-20261010/`: experimental firmware component, manifest, programming map and evidence excerpts. The candidate reconstructs exactly; 14 Python tests and the native dispatcher test passed. The matching programming route rewrites lower 496 KiB, with boot block conditional. No remote or flash operation occurred. See [PROGRAMMING-RECOVERY.md](../PROGRAMMING-RECOVERY.md).
+Archived `postinit-update-20261010/`: experimental firmware component, manifest, programming map and evidence excerpts. The candidate reconstructs exactly; 14 Python tests and the native dispatcher test passed. The matching programming route rewrites lower 496 KiB, with boot block conditional. No remote or flash operation occurred. See [PROGRAMMING-RECOVERY.md](../docs/firmware/PROGRAMMING-RECOVERY.md).
 
 ## Boot-block recovery analysis — 2026-10-10
 
-`boot-recovery-20261010/` contains the extracted 0x2A00-byte recovery monitor, relocated disassembly, evidence excerpts and offline audit. Descriptor/bootstrap-checksum failures reach this monitor; it sets PCI ID 1069:0011 and supports 20/21/2B commands. No hardware entry or programming was attempted. Native test plus 18 Python tests passed. See [BOOT-RECOVERY.md](../BOOT-RECOVERY.md).
+`boot-recovery-20261010/` contains the extracted 0x2A00-byte recovery monitor, relocated disassembly, evidence excerpts and offline audit. Descriptor/bootstrap-checksum failures reach this monitor; it sets PCI ID 1069:0011 and supports 20/21/2B commands. No hardware entry or programming was attempted. Native test plus 18 Python tests passed. See [BOOT-RECOVERY.md](../docs/firmware/BOOT-RECOVERY.md).
 
 ## SSH recovery-entry investigation — 2026-10-10
 
-Archived `ssh-recovery-investigation-20261010/` with read-only live preflight and static evidence. Device remains normal-mode 1069:0010. Traced an unchecked staging-relative address-add lead; staging address and safe handoff remain unknown. No hardware writes or flash. Serial setup instructions and investigation status are in [SSH-RECOVERY-ENTRY.md](../SSH-RECOVERY-ENTRY.md).
+Archived `ssh-recovery-investigation-20261010/` with read-only live preflight and static evidence. Device remains normal-mode 1069:0010. Traced an unchecked staging-relative address-add lead; staging address and safe handoff remain unknown. No hardware writes or flash. Serial setup instructions and investigation status are in [SSH-RECOVERY-ENTRY.md](../docs/firmware/SSH-RECOVERY-ENTRY.md).
 
 ## Staging allocator and live control — 2026-10-10
 
-`staging-allocation-20261010/` archives fresh Enquiry2 and paired offset-zero reads, allocator evidence and the checked geometry report. Predicted staging base C0F2C000 remains unobserved directly. Three bounded control runs completed cleanly; the first two exports failed locally, as documented in [STAGING-ALLOCATION.md](../STAGING-ALLOCATION.md). Native test and 21 Python tests passed. No out-of-window read, upload or flash.
+`staging-allocation-20261010/` archives fresh Enquiry2 and paired offset-zero reads, allocator evidence and the checked geometry report. Predicted staging base C0F2C000 remains unobserved directly. Three bounded control runs completed cleanly; the first two exports failed locally, as documented in [STAGING-ALLOCATION.md](../docs/loader/STAGING-ALLOCATION.md). Native test and 21 Python tests passed. No out-of-window read, upload or flash.
 
 ## Live staging pointer confirmed — 2026-10-10
 
-`staging-pointer-20261010/` archives the six-command transcript, all captures, exact source/header, compiled module and verification report. Two four-byte reads returned C0F2C000 at the derived C0112A70 address; all statuses and guards clean, pending=0. Module removed, card driverless. No upload/execution/flash. See [STAGING-POINTER-VERIFIED.md](../STAGING-POINTER-VERIFIED.md).
+`staging-pointer-20261010/` archives the six-command transcript, all captures, exact source/header, compiled module and verification report. Two four-byte reads returned C0F2C000 at the derived C0112A70 address; all statuses and guards clean, pending=0. Module removed, card driverless. No upload/execution/flash. See [STAGING-POINTER-VERIFIED.md](../docs/loader/STAGING-POINTER-VERIFIED.md).
 
 ## Runtime code and board callbacks verified — 2026-10-10
 
-`runtime-read-20261010/` preserves initial and hardened captures, exact executed sources and modules. The paired reads verified C004A2E0 entry bytes, board C0110780, alias C1000000 and the active callbacks. Both 13-command runs completed cleanly; module removed, card driverless. Native guard and 17 Python tests passed. No upload, execution, recovery or flash. See [RUNTIME-READ-VERIFIED.md](../RUNTIME-READ-VERIFIED.md).
+`runtime-read-20261010/` preserves initial and hardened captures, exact executed sources and modules. The paired reads verified C004A2E0 entry bytes, board C0110780, alias C1000000 and the active callbacks. Both 13-command runs completed cleanly; module removed, card driverless. Native guard and 17 Python tests passed. No upload, execution, recovery or flash. See [RUNTIME-READ-VERIFIED.md](../docs/loader/RUNTIME-READ-VERIFIED.md).
 
 ## Reversible RAM upload verified — 2026-10-10
 
-`ram-scratch-20261010/` archives exact executed source/headers/module, 20 capture blobs, 22-command transcript and verification. Sixteen bytes at C0FAC010 were uploaded, read back and restored; paired surrounding 64-byte reads verified no neighboring changes. Status/guards clean; pending=0, scratch-dirty=0. Module removed; card driverless. Two native guard tests and 20 Python tests passed. No execution/recovery/flash. See [RAM-WRITE-VERIFIED.md](../RAM-WRITE-VERIFIED.md).
+`ram-scratch-20261010/` archives exact executed source/headers/module, 20 capture blobs, 22-command transcript and verification. Sixteen bytes at C0FAC010 were uploaded, read back and restored; paired surrounding 64-byte reads verified no neighboring changes. Status/guards clean; pending=0, scratch-dirty=0. Module removed; card driverless. Two native guard tests and 20 Python tests passed. No execution/recovery/flash. See [RAM-WRITE-VERIFIED.md](../docs/loader/RAM-WRITE-VERIFIED.md).
 
 ## Live execution handoff boundary — 2026-10-10
 
@@ -226,7 +226,7 @@ the dispatcher uses fixed firmware continuations and offers no live callback-tab
 write or branch-to-staging command. `live-handoff-20261010/` preserves a 20-byte
 i960 return-status callback linked at C0FAC100, built with the archived target
 toolchain and verified byte-for-byte. It was not uploaded or executed. See
-[LIVE-EXECUTION-HANDOFF.md](../LIVE-EXECUTION-HANDOFF.md).
+[LIVE-EXECUTION-HANDOFF.md](../docs/loader/LIVE-EXECUTION-HANDOFF.md).
 
 ## Offline stock-preserving command hook — 2026-10-10
 
@@ -236,7 +236,7 @@ DRAM C0120000, replaces unsupported opcode 0x6F in the decompressed RAM
 dispatch table, and branches to the original stock entry. Only padding and
 the metadata entry/checksum differ from the pinned dump (76 bytes). Two offline
 tests passed. No card execution or flash operation occurred. See
-[STOCK-PRESERVING-HOOK.md](../STOCK-PRESERVING-HOOK.md).
+[STOCK-PRESERVING-HOOK.md](../docs/loader/STOCK-PRESERVING-HOOK.md).
 
 ## Handler storage audit and ROM successor — 2026-10-10
 
@@ -253,11 +253,11 @@ FEFE001C. The new raw image differs from stock in 48 bytes, preserving the
 boot block, BIOS, descriptor, bootstrap and compressed program. Both image
 test suites passed. Post-startup ROM instruction fetch, cache visibility,
 recovery and programming interaction remain untested; no card write or custom
-execution occurred. See [ROM-HANDLER-STEP3.md](../ROM-HANDLER-STEP3.md).
+execution occurred. See [ROM-HANDLER-STEP3.md](../docs/loader/ROM-HANDLER-STEP3.md).
 
 ## 2026-10-10 — Runtime software loader implemented and exercised
 
-Implemented `host/loadrun` and `loader/runtime`; see [SOFTWARE-LOADER.md](../SOFTWARE-LOADER.md).
+Implemented `host/loadrun` and `loader/runtime`; see [SOFTWARE-LOADER.md](../docs/loader/SOFTWARE-LOADER.md).
 Uploaded and ran Fibonacci(10)=55, Fibonacci(20)=6765, then a distinct rotate/XOR
 program returning 0x8c2f3b20, all in boot a9429ca4-0144-452d-8a80-7189608ce99b.
 Each transaction completed 110 commands and restored the complete staging image,

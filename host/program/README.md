@@ -1,6 +1,6 @@
 # DAC960PG one-shot programming harness
 
-**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](../../FIRMWARE-PROGRAMMED.md).**
+**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](../../docs/firmware/FIRMWARE-PROGRAMMED.md).**
 One 2B/1 programming command succeeded; paired full flash readbacks match
 candidate SHA256 `a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0`.
 After reboot, table C001F9BC points to FEFE001C and two 6F commands returned
@@ -12,7 +12,7 @@ pre-programming sections below are historical and superseded by this result.
 
 Implemented and tested in simulation and a live **RAM-only rehearsal**.
 No flash programming has been performed with this harness. See
-[ONE-SHOT-PROGRAMMING.md](../../ONE-SHOT-PROGRAMMING.md).
+[ONE-SHOT-PROGRAMMING.md](../../docs/firmware/ONE-SHOT-PROGRAMMING.md).
 
 ## Build and test
 

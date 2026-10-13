@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Doom • i960</title>
+<style>body{background:#141414;color:#eee;font:16px system-ui;max-width:960px;margin:28px auto;padding:0 16px}canvas{width:100%;height:auto;image-rendering:pixelated;background:black;outline:1px solid #555}button{font:inherit;padding:10px 18px;background:#333;color:white;border:1px solid #777;cursor:pointer}p{line-height:1.5}#status{color:#edc36e}small{color:#bbb}</style>
+<h1>Doom on the Mylex i960</h1><p>Rendered by DoomGeneric on the card under RTEMS. Click the game to focus. This experimental session may run slowly.</p>
+<canvas id="screen" width="320" height="200" tabindex="0" aria-label="Interactive Doom framebuffer"></canvas>
+<p id="status">Connecting…</p><p><b>W / ↑</b> forward · <b>S / ↓</b> back · <b>A / D</b> turn · <b>← / →</b> turn · <b>Ctrl / Space</b> fire · <b>E</b> use/open · <b>Shift</b> run · <b>Enter</b> confirm · <b>Escape</b> menu</p>
+<button id="stop">Stop Doom</button><p><small>Keys release when focus is lost. STOP ends the engine session safely. No sound yet.</small></p>
+<script>
+const token='__TOKEN__',screen=document.getElementById('screen'),ctx=screen.getContext('2d'),held=new Set();let chain=Promise.resolve(),last='',busy=false;
+const keys={KeyW:173,ArrowUp:173,KeyS:175,ArrowDown:175,KeyA:172,ArrowLeft:172,KeyD:174,ArrowRight:174,ControlLeft:157,ControlRight:157,Space:157,KeyE:32,ShiftLeft:182,ShiftRight:182,Enter:13,Escape:27,Tab:9};
+function post(path,data){chain=chain.then(async()=>{const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':token},body:JSON.stringify(data)});if(!r.ok)throw Error(await r.text())}).catch(e=>document.getElementById('status').textContent=e.message);return chain}
+screen.onclick=()=>screen.focus();screen.onkeydown=e=>{const k=keys[e.code];if(k===undefined)return;e.preventDefault();if(!held.has(k)){held.add(k);post('/key',{key:k,down:1})}};
+screen.onkeyup=e=>{const k=keys[e.code];if(k===undefined)return;e.preventDefault();if(held.delete(k))post('/key',{key:k,down:0})};
+function release(){for(const k of held)post('/key',{key:k,down:0});held.clear()}
+screen.onblur=release;window.onblur=release;document.getElementById('stop').onclick=()=>{release();post('/stop',{})};
+async function refresh(){if(busy)return;busy=true;try{const s=await(await fetch('/status',{cache:'no-store'})).json();document.getElementById('status').textContent=s.message;if(s.frame&&s.frame!==last){const b=await(await fetch('/frame.png?v='+s.frame,{cache:'no-store'})).blob();const im=await createImageBitmap(b);ctx.drawImage(im,0,0);im.close();last=s.frame}}catch(e){document.getElementById('status').textContent=e.message}finally{busy=false}}
+setInterval(()=>{if(held.size)post('/heartbeat',{})},1000);setInterval(refresh,250);refresh();
+</script></html>

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0
 /* Controlled PG experiments: Enquiry2, LoadImage, and opt-in fixed scratch upload.
  * No opcode 0x22, reset, maintenance mode, or arbitrary opcode interface.
- * Read direction recovered from vendor dataflow: see VENDOR-READ-PATH.md.
+ * Read direction recovered from vendor dataflow: see docs/firmware/VENDOR-READ-PATH.md.
  * Results/captures are exported via debugfs; captures are NOT validated dumps.
  * On uncertain completion, DMA allocation and module are retained until reboot.
  */
@@ -29,7 +29,7 @@
 #define MAX_READ 0xf000u
 /* PG 512 KiB profile: bootstrap C000C600, source FEF80000.
  * Fresh live capture places BIOS at 0x28000 and firmware at 0x30000.
- * See SNAPSHOT-RECOVERY.md; coverage still requires image validation. */
+ * See docs/firmware/SNAPSHOT-RECOVERY.md; coverage still requires image validation. */
 #define IMAGE_WINDOW 0x80000u
 #define WAIT_US 2000000u
 
@@ -64,7 +64,7 @@ module_param(bdf, charp, 0444);
 module_param(attempt, bool, 0444);
 module_param(length, uint, 0444);
 module_param(flash_offset, uint, 0444);
-MODULE_PARM_DESC(attempt, "Attempt two bounded LoadImage reads; see VENDOR-READ-PATH.md");
+MODULE_PARM_DESC(attempt, "Attempt two bounded LoadImage reads; see docs/firmware/VENDOR-READ-PATH.md");
 
 struct capture {
     struct debugfs_blob_wrapper blob;

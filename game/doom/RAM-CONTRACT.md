@@ -1,5 +1,27 @@
 # DoomGeneric RAM request for RTEMS
 
+<!-- doom-play-current -->
+**Interactive Doom work (2026-10-13; six-frame input/STOP passed):**
+The user chose browser play now, with optimization/debugging driven by use.
+The opt-in persistent engine, bounded input FIFO, immutable frame/ACK channel,
+browser relay and fresh-workspace build/run wrappers are implemented. Sanitized
+native 40-frame input runs are deterministic, differ from no-input, and pass
+owned STOP/heap drain. Channel bounds, stale ACK, overflow, timeout and STOP
+race tests pass. Keep `--point-side-o0`, identity/ownership/guard checks and full
+paired audits (normal play interval 60 s; diagnostic interval 3 s).
+
+The corrected card candidate is running in
+`/home/mit/i960-doom-play-20261013b`, boot
+`83ecfee3-b3a2-47bf-a415-2ce0b7d0602f`, supervisor 2999, browser port 8087.
+It owns the card exclusively; the public autonomous IPv6 HTTP relay is stopped.
+Do not unload or reuse its resources. Six physical frames, forward/release and owned STOP passed; mean readback
+5.473 s, delivery 0.169 frames/s. The first 26 full audit pairs passed. A host
+comparison finds 7–8 differing pixels in a small region; palettes/padding match.
+The fresh user session is loading. Global shutdown is not claimed for this
+active run. Prior ownership and “next”
+statements below are historical. See [current evidence and guide](../../artifacts/doom-play-20261013/README.md).
+<!-- /doom-play-current -->
+
 <!-- doom-visible-current -->
 **Bounded visible Doom and browser delivery accepted (2026-10-13):**
 The opt-in `--visible` build skips the opening wipe and returns two 320×200

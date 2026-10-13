@@ -3,7 +3,7 @@
 2026-10-11. No MMIO reads/writes, DMA submission, driver unbind, NIC reset or
 firmware change was performed. PCI configuration/sysfs inventory and source
 inspection only; `i960-http6` remained active. `topology.txt` preserves the
-inventory. Full execution roadmap: [preemption/DMA plan](../../RTEMS-PREEMPTION-DMA-PLAN.md).
+inventory. Full execution roadmap: [preemption/DMA plan](../../docs/rtems/RTEMS-PREEMPTION-DMA-PLAN.md).
 
 ## Observed hardware
 

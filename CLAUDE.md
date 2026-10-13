@@ -1,5 +1,41 @@
 # Repository guidance for Claude Code
 
+<!-- doom-play-current -->
+**Interactive Doom work (2026-10-13; six-frame input/STOP passed):**
+The user chose browser play now, with optimization/debugging driven by use.
+The opt-in persistent engine, bounded input FIFO, immutable frame/ACK channel,
+browser relay and fresh-workspace build/run wrappers are implemented. Sanitized
+native 40-frame input runs are deterministic, differ from no-input, and pass
+owned STOP/heap drain. Channel bounds, stale ACK, overflow, timeout and STOP
+race tests pass. Keep `--point-side-o0`, identity/ownership/guard checks and full
+paired audits (normal play interval 60 s; diagnostic interval 3 s).
+
+The corrected card candidate is running in
+`/home/mit/i960-doom-play-20261013b`, boot
+`83ecfee3-b3a2-47bf-a415-2ce0b7d0602f`, supervisor 2999, browser port 8087.
+It owns the card exclusively; the public autonomous IPv6 HTTP relay is stopped.
+Do not unload or reuse its resources. Six physical frames, forward/release and owned STOP passed; mean readback
+5.473 s, delivery 0.169 frames/s. The first 26 full audit pairs passed. A host
+comparison finds 7–8 differing pixels in a small region; palettes/padding match.
+The fresh user session is loading. Global shutdown is not claimed for this
+active run. Prior ownership and “next”
+statements below are historical. See [current evidence and guide](artifacts/doom-play-20261013/README.md).
+<!-- /doom-play-current -->
+
+## Repository navigation (2026-10-13)
+
+Start with [subprojects](subprojects/README.md) and the
+[stock-card-to-applications guide](docs/reproduce.md). Historical root milestone
+documents have moved into `docs/firmware`, `docs/loader`, `docs/rtems`,
+`docs/games` and `docs/project`; the obsolete root aliases have been removed.
+Edit and link canonical files. Tetris source is now `game/tetris/`; its old
+source paths remain compatibility symlinks for loader builds. Preserve artifact
+captures, source snapshots, binaries and archives. The organization pass updated
+only links in 12 artifact navigation documents; see [change record](docs/reorganization-20261013.md).
+Other source remains in `loader/`, `host/`, `rtems/` and `game/`.
+See [repository policy](docs/repository.md) and [research index](docs/research.md).
+
+
 <!-- doom-visible-current -->
 **Bounded visible Doom and browser delivery accepted (2026-10-13):**
 The opt-in `--visible` build skips the opening wipe and returns two 320×200
@@ -634,7 +670,7 @@ ownership and unrestricted coexistence are not established. Production remains
 autonet. Earlier next-step descriptions below are historical.
 
 
-**Game application track (2026-10-11):** [CHIP-8 → framebuffer → raycaster → Doom](GAME-PROGRESSION.md).
+**Game application track (2026-10-11):** [CHIP-8 → framebuffer → raycaster → Doom](docs/games/GAME-PROGRESSION.md).
 DoomGeneric is the chosen porting base; FastDoom is an optimization reference.
 CHIP-8 passed 705 native-matching RTEMS card replies, browser keys/restart,
 21 periodic full-allocation audits and two clean restorations/unloads. Production IPv6 HTTP restored.
@@ -833,7 +869,7 @@ preemption remain unproven; next is framed control plus independent STOP.
 
 **Current work (2026-10-11):** card-hosted IPv6 HTTP and stock-coexisting autonomous RTEMS now pass live tests. A hardware timer delivered 2,009 ticks/task wakeups during 20 seconds without host polling; the network build advanced 509 ticks during five silent seconds. IPv6 Internet HTTP, dual-stack echo, a one-minute IPv6 stress run, and kernel STOP-before-restore cleanup passed. See [current work report](artifacts/rtems-web-autonomous-20261011/README.md) for artifacts, failed trials, limitations and the published server.
 
-**Current development roadmap:** [loader memory extension, RTEMS and remaining gaps](DEVELOPMENT-PLAN.md). Next: M1, generalize the proven larger RAM profile; preserve scalar/BIO1 compatibility.
+**Current development roadmap:** [loader memory extension, RTEMS and remaining gaps](docs/rtems/DEVELOPMENT-PLAN.md). Next: M1, generalize the proven larger RAM profile; preserve scalar/BIO1 compatibility.
 
 
 **Current index (2026-10-11): [findings, evidence and unresolved questions](CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
@@ -843,24 +879,24 @@ preemption remain unproven; next is framed control plus independent STOP.
 **RTEMS now runs on the card (2026-10-11): [implementation and usage](rtems/README.md).** RTEMS 4.6.6 tasks persist across bounded firmware callbacks; lwIP 2.1.3 provides ICMP, UDP/TCP echo and card-originated DNS/HTTP through a Linux TUN/NAT gateway. The original `net` profile uses host-supplied ticks; the newer `autonet` profile uses hardware timer interrupts with bounded work and preserves stock firmware service. [Exact artifacts and findings](artifacts/rtems-20261011/README.md). No additional flash programming or reboot.
 
 
-**T4 complete (2026-10-10): [play Tetris over SSH](TETRIS-TERMINAL.md).** The terminal client passed a 30-minute real-SSH test: 35,846 native-matching frames, 68 restarts, 19.91 Hz. Quit, Ctrl-C, connection loss/reconnect and resize cleanup passed. Use `ssh -t mit@192.168.2.75 /home/mit/i960-tetris-t4/play.sh`. Full RAM restored, module unloaded; no reboot or flash.
+**T4 complete (2026-10-10): [play Tetris over SSH](docs/games/TETRIS-TERMINAL.md).** The terminal client passed a 30-minute real-SSH test: 35,846 native-matching frames, 68 restarts, 19.91 Hz. Quit, Ctrl-C, connection loss/reconnect and resize cleanup passed. Use `ssh -t mit@192.168.2.75 /home/mit/i960-tetris-t4/play.sh`. Full RAM restored, module unloaded; no reboot or flash.
 
 
-**T5 complete (2026-10-10): [persistent BIO1 sessions](PERSISTENT-SESSION.md).** 1,000 frames matched native output at 41.1 ms median; a separate 400-frame run sustained 20 Hz. Process-kill/ownership cleanup and full final RAM restoration passed. `host/session/` keeps paired code/payload checks every frame and full staging audits every 32 frames and close. The subsequently completed T4 terminal client uses this transport; no reboot or flash.
+**T5 complete (2026-10-10): [persistent BIO1 sessions](docs/loader/PERSISTENT-SESSION.md).** 1,000 frames matched native output at 41.1 ms median; a separate 400-frame run sustained 20 Hz. Process-kill/ownership cleanup and full final RAM restoration passed. `host/session/` keeps paired code/payload checks every frame and full staging audits every 32 frames and close. The subsequently completed T4 terminal client uses this transport; no reboot or flash.
 
 
-**T3 complete (2026-10-10): [long Tetris hardware replay](TETRIS-REPLAY.md).** 1,000-call main replay plus 64 repeat calls matched native state/frame bytes; all RAM restored and probes unloaded. Median full CLI latency 306 ms (~3.26 updates/s), payload-command interval ~6.18 ms. This baseline motivated the now-completed T5 session optimization; T4 terminal play is now complete; see the latest milestone above. No reboot or flash.
+**T3 complete (2026-10-10): [long Tetris hardware replay](docs/games/TETRIS-REPLAY.md).** 1,000-call main replay plus 64 repeat calls matched native state/frame bytes; all RAM restored and probes unloaded. Median full CLI latency 306 ms (~3.26 updates/s), payload-command interval ~6.18 ms. This baseline motivated the now-completed T5 session optimization; T4 terminal play is now complete; see the latest milestone above. No reboot or flash.
 
-**T2 complete (2026-10-10): [bounded Tetris steps](TETRIS-STEP.md) run on the card.** Explicit 240-byte state, 20-tick bound, 24×80 rendering; 1,024 native/interpreted transitions agree, and nine live transactions match the native reference byte for byte. RAM restored; no reboot/flash. T3 replay, T5 persistent sessions and T4 terminal play subsequently passed.
+**T2 complete (2026-10-10): [bounded Tetris steps](docs/games/TETRIS-STEP.md) run on the card.** Explicit 240-byte state, 20-tick bound, 24×80 rendering; 1,024 native/interpreted transitions agree, and nine live transactions match the native reference byte for byte. RAM restored; no reboot/flash. T3 replay, T5 persistent sessions and T4 terminal play subsequently passed.
 
-**T1 complete (2026-10-10): [bounded text/framebuffer I/O](BUFFER-IO.md) is hardware validated.** BIO1 supports 4 KiB input / 8 KiB output; live text, 24×80 frame, capacity rejection and repeat/scalar regression passed with RAM restored. T2 subsequently converted the blocking game into hardware-tested returning steps.
+**T1 complete (2026-10-10): [bounded text/framebuffer I/O](docs/loader/BUFFER-IO.md) is hardware validated.** BIO1 supports 4 KiB input / 8 KiB output; live text, 24×80 frame, capacity rejection and repeat/scalar regression passed with RAM restored. T2 subsequently converted the blocking game into hardware-tested returning steps.
 
-**Next work:** M1 in [the integrated plan](DEVELOPMENT-PLAN.md): generalize the proven larger loader profile inside the existing allocation. Tetris T1–T5 and cooperative RTEMS/networking are already implemented. The older [Tetris plan](TETRIS-ON-CARD-PLAN.md) records its milestone history; [the RTEMS roadmap entry point](RTEMS-HOST-NETWORK-PLAN.md) maps original milestones to the integrated plan.
+**Next work:** M1 in [the integrated plan](docs/rtems/DEVELOPMENT-PLAN.md): generalize the proven larger loader profile inside the existing allocation. Tetris T1–T5 and cooperative RTEMS/networking are already implemented. The older [Tetris plan](docs/games/TETRIS-ON-CARD-PLAN.md) records its milestone history; [the RTEMS roadmap entry point](docs/rtems/RTEMS-HOST-NETWORK-PLAN.md) maps original milestones to the integrated plan.
 
-**Latest hardware milestone (2026-10-10): [runtime software loader](SOFTWARE-LOADER.md) works after PC startup.** Three live executions (two C programs) passed without reboot or another flash write. Use `host/loadrun/` and `loader/runtime/` from the repository root; earlier internal-RAM and pre-programming plans below are historical. Supports cooperative returning functions up to 64 KiB, with one argument and a 32-bit result. RAM restored and module unloaded after each run. Recovery remains untested.
+**Latest hardware milestone (2026-10-10): [runtime software loader](docs/loader/SOFTWARE-LOADER.md) works after PC startup.** Three live executions (two C programs) passed without reboot or another flash write. Use `host/loadrun/` and `loader/runtime/` from the repository root; earlier internal-RAM and pre-programming plans below are historical. Supports cooperative returning functions up to 64 KiB, with one argument and a 32-bit result. RAM restored and module unloaded after each run. Recovery remains untested.
 
 
-**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](FIRMWARE-PROGRAMMED.md).**
+**Current hardware (2026-10-10): [patched firmware is programmed and boot-validated](docs/firmware/FIRMWARE-PROGRAMMED.md).**
 One 2B/1 programming command succeeded; paired full flash readbacks match
 candidate SHA256 `a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0`.
 After reboot, table C001F9BC points to FEFE001C and two 6F commands returned
@@ -870,7 +906,7 @@ Evidence: `artifacts/programmed-rom-20261010/` from repository root. Older
 pre-programming sections below are historical and superseded by this result.
 
 
-Latest: [one-shot programming harness](ONE-SHOT-PROGRAMMING.md) is implemented in `host/program/`
+Latest: [one-shot programming harness](docs/firmware/ONE-SHOT-PROGRAMMING.md) is implemented in `host/program/`
 (repository-root relative). Native transport/failure tests and a 105-command live
 RAM-only rehearsal passed. Wrong activation token rejected before driver
 registration; no programming doorbell issued. Full stock RAM restored and probe
@@ -880,7 +916,7 @@ readback and patched boot subsequently passed; see FIRMWARE-PROGRAMMED.md.
 Recovery testing remains excluded.
 
 
-Latest (2026-10-10): [programming preflight and live CPU verification](PROGRAMMING-PREFLIGHT.md)
+Latest (2026-10-10): [programming preflight and live CPU verification](docs/firmware/PROGRAMMING-PREFLIGHT.md)
 passed. The CPU read all 512 KiB of the candidate through programmer alias
 C1F2C000 with explicit cache invalidation and matched CRC32 2012D01F. All 105
 commands completed cleanly; original staging/table/code restored, probe unloaded.
@@ -890,7 +926,7 @@ failure tests. No flash programming or recovery test occurred. Exact evidence
 is in `artifacts/programming-preflight-20261010/` from the repository root.
 
 
-Latest live experiment: [ROM-FETCH-LIVE.md](ROM-FETCH-LIVE.md). A wrapped
+Latest live experiment: [ROM-FETCH-LIVE.md](docs/loader/ROM-FETCH-LIVE.md). A wrapped
 staging-relative `0x21` upload changed command-table word `C001F9BC`, and
 `0x6F` executed RAM handlers. After cache and RAM-call controls passed, a
 callback called a stock flash `RET` at **FEFB022C** after startup and returned
@@ -900,7 +936,7 @@ the disassembly's FEFC8000 label is not the component's full-ROM location.
 Read the live 8-bit flash-bus mapping evidence before choosing flash targets.
 The *new* FEFE001C handler remains unflashed and untested. No flash write or
 recovery check was performed. This supersedes the older execution boundary.
-The [live staging rehearsal](STAGING-REHEARSAL.md) now passed: all six full
+The [live staging rehearsal](docs/loader/STAGING-REHEARSAL.md) now passed: all six full
 512 KiB captures match stock/candidate/restored-stock hashes; 74 commands
 completed cleanly, original staging restored, module unloaded. Sources and
 binaries are in `artifacts/staging-rehearsal-20261010/`. Next resolve CPU cache
@@ -908,7 +944,7 @@ visibility in the 2B/1 programming path, exact updater inputs, update-time
 handler behavior and fresh physical flash readback. Candidate remains
 `flash_ready: false`; recovery testing is excluded by the user.
 
-Historical step-4 result: [ROM-HANDLER-STEP4.md](ROM-HANDLER-STEP4.md).
+Historical step-4 result: [ROM-HANDLER-STEP4.md](docs/loader/ROM-HANDLER-STEP4.md).
 The exact ROM-backed candidate has an offline Fujitsu type-2 MIMG wrapper,
 and a fixed live read verified opcode `0x6F` dispatch word `C001F9BC` still
 contains stock handler `C001FE98`. The read-only probe was unloaded. The
@@ -916,44 +952,44 @@ MIMG has not been accepted by a vendor updater; at step 4 no table write,
 code execution or flash instruction fetch after EBCR setup had been tested. The
 candidate remains `flash_ready: false`.
 
-Current step-3 candidate: [ROM-HANDLER-STEP3.md](ROM-HANDLER-STEP3.md).
+Current step-3 candidate: [ROM-HANDLER-STEP3.md](docs/loader/ROM-HANDLER-STEP3.md).
 `loader/romhook/` and `artifacts/romhook-20261010/` place the PING handler at
 FEFE001C in verified firmware flash padding. Stock staging memory was rejected
 because reachable stock paths free it. The image is still `flash_ready: false`:
 post-startup flash instruction fetch, table visibility, recovery and programming
 interaction remain untested. Keep the older DRAM candidate for comparison.
 
-Latest DRAM audit: [DRAM-HOOK-AUDIT.md](DRAM-HOOK-AUDIT.md). The pinned stock
+Latest DRAM audit: [DRAM-HOOK-AUDIT.md](docs/loader/DRAM-HOOK-AUDIT.md). The pinned stock
 bootstrap clears C0120000 before the metadata hook, the reviewed allocator
 starts at C0140000, and a fixed live read found 64 zero bytes. This does **not**
 reserve C0120000 for the lifetime of the firmware. The stockhook candidate
 remains `flash_ready: false`; next investigate firmware-owned handler storage.
 
-Current offline candidate: [STOCK-PRESERVING-HOOK.md](STOCK-PRESERVING-HOOK.md). An 84-byte metadata hook installs opcode `0x6F` as a returning PING, then enters the original stock firmware. The candidate is not flashed; `C0120000` remains an unproven exclusive DRAM location. Build sources are in `loader/stockhook/`, artifacts in `artifacts/stockhook-20261010/`.
+Current offline candidate: [STOCK-PRESERVING-HOOK.md](docs/loader/STOCK-PRESERVING-HOOK.md). An 84-byte metadata hook installs opcode `0x6F` as a returning PING, then enters the original stock firmware. The candidate is not flashed; `C0120000` remains an unproven exclusive DRAM location. Build sources are in `loader/stockhook/`, artifacts in `artifacts/stockhook-20261010/`.
 
-Historical execution analysis: [LIVE-EXECUTION-HANDOFF.md](LIVE-EXECUTION-HANDOFF.md) did not account for wrapped 32-bit upload offsets. The later live experiment above established a RAM callback handoff.
+Historical execution analysis: [LIVE-EXECUTION-HANDOFF.md](docs/loader/LIVE-EXECUTION-HANDOFF.md) did not account for wrapped 32-bit upload offsets. The later live experiment above established a RAM callback handoff.
 
-Latest: [RAM-WRITE-VERIFIED.md](RAM-WRITE-VERIFIED.md). Fixed 16-byte scratch upload/readback/restoration passed at C0FAC010 in the extra staging allocation block. All 22 commands clean; original 64 bytes restored, probe removed. No execution/recovery/flash.
+Latest: [RAM-WRITE-VERIFIED.md](docs/loader/RAM-WRITE-VERIFIED.md). Fixed 16-byte scratch upload/readback/restoration passed at C0FAC010 in the extra staging allocation block. All 22 commands clean; original 64 bytes restored, probe removed. No execution/recovery/flash.
 
-Latest: [RUNTIME-READ-VERIFIED.md](RUNTIME-READ-VERIFIED.md). Paired live reads verified entry bytes, board C0110780, alias C1000000 and 512 KiB callbacks. Hardened exact read allowlist passed; no upload/execution/recovery/flash.
+Latest: [RUNTIME-READ-VERIFIED.md](docs/loader/RUNTIME-READ-VERIFIED.md). Paired live reads verified entry bytes, board C0110780, alias C1000000 and 512 KiB callbacks. Hardened exact read allowlist passed; no upload/execution/recovery/flash.
 
-Latest: [STAGING-POINTER-VERIFIED.md](STAGING-POINTER-VERIFIED.md). Live paired four-byte reads confirmed C0F2C000 at C0112A70. Fixed-purpose read gate only; no upload, execution, recovery entry or flash. Probe removed cleanly.
+Latest: [STAGING-POINTER-VERIFIED.md](docs/loader/STAGING-POINTER-VERIFIED.md). Live paired four-byte reads confirmed C0F2C000 at C0112A70. Fixed-purpose read gate only; no upload, execution, recovery entry or flash. Probe removed cleanly.
 
-Allocator derivation: [STAGING-ALLOCATION.md](STAGING-ALLOCATION.md). Enquiry2 plus the traced allocator predicted C0F2C000; [STAGING-POINTER-VERIFIED.md](STAGING-POINTER-VERIFIED.md) later confirmed it by direct read. The normal harness still rejects out-of-window offsets.
+Allocator derivation: [STAGING-ALLOCATION.md](docs/loader/STAGING-ALLOCATION.md). Enquiry2 plus the traced allocator predicted C0F2C000; [STAGING-POINTER-VERIFIED.md](docs/loader/STAGING-POINTER-VERIFIED.md) later confirmed it by direct read. The normal harness still rejects out-of-window offsets.
 
-Latest: [SSH recovery-entry investigation](SSH-RECOVERY-ENTRY.md) and [serial preparation](SERIAL-RECOVERY-SETUP.md). Physical access is available; serial comes later. Read-only SSH preflight passed; RAM-offset lead remains unproven and no recovery transition was attempted.
+Latest: [SSH recovery-entry investigation](docs/firmware/SSH-RECOVERY-ENTRY.md) and [serial preparation](docs/firmware/SERIAL-RECOVERY-SETUP.md). Physical access is available; serial comes later. Read-only SSH preflight passed; RAM-offset lead remains unproven and no recovery transition was attempted.
 
-Latest: [BOOT-RECOVERY.md](BOOT-RECOVERY.md) establishes an embedded recovery monitor (PCI 1069:0011) and partial vendor validation. Entry/restoration remain untested; continue over SSH without forcing a flash fault.
+Latest: [BOOT-RECOVERY.md](docs/firmware/BOOT-RECOVERY.md) establishes an embedded recovery monitor (PCI 1069:0011) and partial vendor validation. Entry/restoration remain untested; continue over SSH without forcing a flash fault.
 
-Latest programming audit: [PROGRAMMING-RECOVERY.md](PROGRAMMING-RECOVERY.md). The matching 512 KiB route uses 2B/1 and rewrites the lower 496 KiB; 22 returns an error on this route. An offline experimental MIMG package is archived, but vendor acceptance and recovery remain unverified.
+Latest programming audit: [PROGRAMMING-RECOVERY.md](docs/firmware/PROGRAMMING-RECOVERY.md). The matching 512 KiB route uses 2B/1 and rewrites the lower 496 KiB; 22 returns an error on this route. An offline experimental MIMG package is archived, but vendor acceptance and recovery remain unverified.
 
-Current test preparation: [LIVE-TEST-PREFLIGHT.md](LIVE-TEST-PREFLIGHT.md). Read-only host preflight passed; v2 candidate guards all three DMA channels and suppresses the option ROM before releasing PCI retry. No custom execution or flash yet.
+Current test preparation: [LIVE-TEST-PREFLIGHT.md](docs/loader/LIVE-TEST-PREFLIGHT.md). Read-only host preflight passed; v2 candidate guards all three DMA channels and suppresses the option ROM before releasing PCI retry. No custom execution or flash yet.
 
-Latest development: [POSTINIT-LOADER.md](POSTINIT-LOADER.md) documents an offline DRAM-loader patch prototype and the recovered metadata handoff. Sources are in loader/postinit/. It is not flashed or hardware validated; do not use the legacy image builder for the full dump.
+Latest development: [POSTINIT-LOADER.md](docs/loader/POSTINIT-LOADER.md) documents an offline DRAM-loader patch prototype and the recovered metadata handoff. Sources are in loader/postinit/. It is not flashed or hardware validated; do not use the legacy image builder for the full dump.
 
 **Local handoff:** See [artifacts/ROM-INVENTORY.md](artifacts/ROM-INVENTORY.md) and [artifacts/ROM-DUMP-WORKLOG.md](artifacts/ROM-DUMP-WORKLOG.md). Original Fujitsu packages (29 and 39), decoded ROMs, all snapshot sessions, disassemblies and collector are local; SSH is unnecessary for offline analysis.
 
-Read **[SNAPSHOT-RECOVERY.md](SNAPSHOT-RECOVERY.md)** first. In-system recovery
+Read **[SNAPSHOT-RECOVERY.md](docs/firmware/SNAPSHOT-RECOVERY.md)** first. In-system recovery
 succeeded: two matching 512 KiB image captures contain the exact 4.07-0-29
 firmware, exact FWTCBBLK boot block, and independently verified PCI BIOS.
 Archived binaries are in artifacts/private-dumps/ and are intended for Git; hashes
@@ -995,7 +1031,7 @@ external-programmer backup gate.
 
 ## Preemption and DMA roadmap (2026-10-11)
 
-See the [staged preemption and DMA plan](RTEMS-PREEMPTION-DMA-PLAN.md). Order: independent control
+See the [staged preemption and DMA plan](docs/rtems/RTEMS-PREEMPTION-DMA-PLAN.md). Order: independent control
 and ownership prerequisites → arbitrary application-task preemption → host-RAM
 DMA networking → gated direct peer experiments. Read-only direct-DMA research
 has started; current NIC and Mylex occupy separate PCI branches. This is a plan

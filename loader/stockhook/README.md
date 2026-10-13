@@ -1,10 +1,10 @@
 # Stock-preserving command hook
 
-Successor: [ROM-HANDLER-STEP3.md](../../ROM-HANDLER-STEP3.md) and
+Successor: [ROM-HANDLER-STEP3.md](../../docs/loader/ROM-HANDLER-STEP3.md) and
 `loader/romhook/` place PING in firmware flash padding. This directory
 preserves the first DRAM-backed design for comparison.
 
-Memory audit: [DRAM-HOOK-AUDIT.md](../../DRAM-HOOK-AUDIT.md). C0120000 was zero
+Memory audit: [DRAM-HOOK-AUDIT.md](../../docs/loader/DRAM-HOOK-AUDIT.md). C0120000 was zero
 in a fixed live read, but exclusive lifetime ownership is unproved. This exact
 candidate remains an offline artifact and is not flash-ready.
 
@@ -36,6 +36,6 @@ python3 loader/stockhook/build_image.py \
 python3 -B -m unittest discover -s loader/stockhook -p 'test_*.py'
 ```
 
-See [STOCK-PRESERVING-HOOK.md](../../STOCK-PRESERVING-HOOK.md) for exact
+See [STOCK-PRESERVING-HOOK.md](../../docs/loader/STOCK-PRESERVING-HOOK.md) for exact
 addresses, what the image preserves, and the unresolved DRAM ownership gate.
 Do not use this raw image as a flashing file.

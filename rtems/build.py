@@ -93,7 +93,8 @@ if a.wad_poll:flags+=['-DI960_WAD_POLL']
 if a.doom_engine:
  flags+=['-DI960_DOOM_ENGINE']
  if startup_profile:flags+=['-DI960_DOOM_STARTUP']
- if startup_profile and json.loads((a.doom_engine/'manifest.json').read_text())['startup'].get('checkpoints_sha256'):flags+=['-DI960_DOOM_CHECKPOINTS']
+ if startup_profile and json.loads((a.doom_engine/'manifest.json').read_text())['startup'].get('play'):flags+=['-DI960_DOOM_PLAY']
+ if startup_profile and any(json.loads((a.doom_engine/'manifest.json').read_text())['startup'].get(k) for k in ('checkpoints_sha256','checkpoint_api')):flags+=['-DI960_DOOM_CHECKPOINTS']
  if startup_profile and json.loads((a.doom_engine/'manifest.json').read_text())['startup'].get('checkpoint_barriers'):flags+=['-DI960_DOOM_CHECKPOINT_BARRIERS']
  shutil.copyfile(a.doom_engine/'engine_identity.h',inc/'engine_identity.h')
  engine_out=out/'entry/engine';engine_out.mkdir(parents=True,exist_ok=True)

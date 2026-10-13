@@ -1,6 +1,6 @@
 # Persistent BIO1 sessions
 
-See [PERSISTENT-SESSION.md](../../PERSISTENT-SESSION.md) for the hardware results,
+See [PERSISTENT-SESSION.md](../../docs/loader/PERSISTENT-SESSION.md) for the hardware results,
 audit coverage, ownership contract and build/use instructions.
 
 - `build.py`: guarded derivation of the existing one-shot transport, distinct driver.
@@ -23,7 +23,7 @@ not propagate the driver's release return value through close(2).
 [terminal.py](terminal.py) provides a 20 Hz SSH terminal client with letter/arrow
 controls, Space to drop, restart, urgent quit, bounded input, elapsed-time gravity,
 ASCII-only row rendering and managed module/session cleanup.
-See [TETRIS-TERMINAL.md](../../TETRIS-TERMINAL.md) for the installed play command.
+See [TETRIS-TERMINAL.md](../../docs/games/TETRIS-TERMINAL.md) for the installed play command.
 
 `play.sh` is the installed launcher (place the payload and module beside it).
 `test_terminal.py` tests keyboard/timing/rendering and terminal exception cleanup.
