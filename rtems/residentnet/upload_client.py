@@ -20,7 +20,7 @@ class Upload:
  def query(self):return struct.unpack('<16I',self.io(2))
  def command(self,command,a=0,b=0,c=0,data=b'',expected=0,sequence=None,timeout=30):
   if self.abort is not None and self.abort.is_set():raise RuntimeError("card audit failed; stop new uploads, retain until reboot")
-  assert 0<timeout<=60
+  assert 0<timeout<=60 or (command==18 and timeout==1860) # reviewed 30-minute startup + 60 s completion/audit allowance
   if sequence is None:self.sequence+=1;sequence=self.sequence
   packet=struct.pack('<8I',MAGIC,sequence,command,a,b,c,0,0)+data
   packet+=b'\0'*((-len(packet))%4);self.io(1,packet)

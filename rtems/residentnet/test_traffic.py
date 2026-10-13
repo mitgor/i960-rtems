@@ -24,3 +24,12 @@ with patch.object(live,'client_round',side_effect=RuntimeError('client failure')
  except RuntimeError:pass
  else:raise AssertionError('client failure swallowed')
 print('Actual traffic scheduler: spaced rounds, overrun, original zero interval and propagated failure passed')
+assert live.traffic_limits([],0)==(180000,60,60)
+assert live.traffic_limits([],12)==(360000,60,60)
+flags=['-DI960_DOOM_STARTUP','-DI960_DOOM_ENGINE','-DI960_WAD_BATCH']
+assert live.traffic_limits(flags,12)==(540000,90,60)
+for bad,owned in [(flags,10),(flags[:-1],12),(flags[:1],12)]:
+ try:live.traffic_limits(bad,owned)
+ except AssertionError:pass
+ else:raise AssertionError('extended budget without startup profile accepted')
+print('90-minute aggregate budget is restricted to the owned startup profile; older limits unchanged')

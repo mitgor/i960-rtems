@@ -23,6 +23,9 @@ static size_t read_file(wad_file_t*f,unsigned offset,void*buffer,size_t n){int g
 #ifdef PROFILE_HOST
  {extern void DG_WadReadAt(unsigned,unsigned,unsigned);DG_WadReadAt(offset,n,got<0?0:got);}
 #endif
+#ifdef DOOM_STARTUP
+ {extern void doom_platform_safe(void);doom_platform_safe();}
+#endif
  return got<0?0:(size_t)got;
 }
 /* Host diagnostics/controlled teardown; card owner must drain before close. */

@@ -1,4 +1,38 @@
-# RTEMS-to-Doom implementation plan — 2026-10-12
+# RTEMS-to-Doom implementation plan — 2026-10-13
+
+**N3 actual startup (2026-10-13; implemented, not physically accepted):**
+The real private-library Doom engine passes ten native first-frame / STOP /
+deadline / read-error / repeat cases, with exact reference pixels and palette.
+Both card attempts entered actual initialization but timed out before returning
+an accepted frame. The first completed 4,769 WAD requests; the compatibility
+retry completed 4,764. Both match the host through request 4,674 and then choose
+the same different texture region. Every captured completed WAD fragment matches
+the pinned file. Preserve both failures; do not substitute host/model success.
+
+Startup-only `-mold-align` corrects an independently measured allocator/layout
+mismatch: 55 Doom/zone/API constants match the 32-bit host and RTEMS callback
+offsets stay unchanged. It did **not** remove the hardware failure. Candidate
+span 744,608 bytes, 13,231 relocations, admission 797,532 bytes, zero unresolved
+imports; no new RAM grant. Its kernel SHA256 is
+`25dd26bc206cec40f77e55a9a7666adb6df1f85cf7c6d662d1c301fed1bec4a5`.
+
+The retry preserved 275 full snapshot/RAM pairs plus one complete snapshot and
+44 words of its final RAM page; captured fault markers are zero, but the fault
+PC and final state are unknown. Packet pumping between four-word audit groups
+allowed 36 complete dual-stack rounds, versus six previously. All full audits
+remain required. The upload query timed out after 2,772.949 ms and the driver
+retained resources until reboot. Startup-only aggregate budget is 90 minutes;
+per-engine 30-minute and per-read five-second limits are unchanged.
+
+Keep startup opt-in and N2 as the accepted baseline. Next: independently readable
+startup checkpoints/fingerprints around level setup, texture precache, draw and
+exit; locate the first state divergence before another full attempt. Then repeat
+normal / partial-read STOP / normal with complete replay and drain. Neither this
+first-wipe milestone nor visible/browser Doom is accepted yet. Both captures are
+saved; reboot cleared retained resources and public IPv6 HTTP returned 200. The
+Doom test reservation is released; coordinate with the public relay before reuse.
+[Evidence and current status](../../artifacts/doom-startup-20261013/README.md).
+
 
 **N2 WAD batching checkpoint (2026-10-12):** opt-in `--wad-batch`
 uses owned, pinned 4 KiB requests assembled from ordered 512-byte fragments.

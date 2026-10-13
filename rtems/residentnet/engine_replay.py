@@ -8,7 +8,7 @@ def fnv(b):
  return h
 
 def prepare(capture,build,wad,requests,responses,partial=False):
- r={} if partial else json.loads((capture/'engine-results.json').read_text());m=json.loads((build/'manifest.json').read_text());blob=(build/'template.bin').read_bytes();meta=(build/'relocations.bin').read_bytes();data=Path(wad).read_bytes();assert partial or (r['manifest']==m and r['diagnostic_only'] is True)
+ r={} if partial else json.loads((capture/'engine-results.json').read_text());m=json.loads((build/'manifest.json').read_text());blob=(build/'template.bin').read_bytes();meta=(build/'relocations.bin').read_bytes();data=Path(wad).read_bytes();assert partial or (r['manifest']==m and r['diagnostic_only'] is (not bool(m.get('startup'))))
  assert hashlib.sha256(blob).hexdigest()==m['template_sha256'] and hashlib.sha256(meta).hexdigest()==m['metadata_sha256']
  if not partial:
   assert (capture/'engine-template.bin').read_bytes()==blob and (capture/'engine-relocations.bin').read_bytes()==meta and hashlib.sha256(blob).hexdigest()==m['template_sha256'] and hashlib.sha256(meta).hexdigest()==m['metadata_sha256'] and r['wad_sha256']==hashlib.sha256(data).hexdigest()
@@ -40,6 +40,9 @@ def prepare(capture,build,wad,requests,responses,partial=False):
   w=json.loads((capture/'snapshots.json').read_text())[-1]['words'];assert w[0]==0x31525845 and w[11]==64 and w[2]==1 and w[3]==0
   return dict(partial=True,admission_refusals=2,engine_entries=0,span=m['memory_bytes'],admission_bytes=m['admission_bytes'],relocations=len(m['relocations']),known_partial_file_bytes=sum(map(len,current)),interrupt_drain_fault_bit=w[11],runs=[]),[]
  assert [c['identity'] for c in candidates]==[False,False,True,True,True] and runs==[0x454e4700,0x454e4702,0x454e4700] and len(bases)==3 and len(report)==36
+ if m.get('startup'):
+  from startup_replay import prepare as startup_prepare
+  return startup_prepare(capture,build,data,r,m,runs,report,bases)
  frame=fnv(bytes(i%239 for i in range(64000)));palette=fnv(bytes(x for i in range(256) for x in (i,255-i,i^85)))
  for i,run in enumerate(r['runs']):
   v=report[12*i:12*i+12];assert run['result']==v and v[:7]==[0x454e4750,1,6291456,frame,palette,1,int(i!=1)] and v[9:]==[2 if i==1 else 0,1,0] and 6356480<=v[7]<7*1048576 and 3<=v[8]<=128
@@ -81,6 +84,8 @@ def native(prefix,t,build,info):
  # physical fields; actual private libc preflight has its own native test.
  prefix+='\n#include "engine_gate.c"\n#include "../../loader/digest/sha256.c"\n'
  prefix+='static const unsigned engine_recorded[3][12]={'+rows+'};\nstatic const unsigned engine_values[3]={'+values+'};\n'
+ if info.get('startup'):
+  return '#define I960_WAD_BATCH 1\n'+prefix+'\n#include "../../game/doom/runtime/batch/wire.c"\n'+'''unsigned engine_native_call(struct seg_image*s,const struct doom_runtime_owned*a){static unsigned row;unsigned i;assert(row<3);if(row==1)assert(!doom_runtime_owned_control(0x7a,0,owned_generation,1));for(i=0;i<12;i++)store(s->base+ENGINE_RESULT+4*i,engine_recorded[row][i]);return engine_values[row++];}\n'''
  prefix+='''unsigned engine_native_call(struct seg_image*s,const struct doom_runtime_owned*a){static unsigned row;unsigned i;unsigned char*p=a->io.allocate(1024);assert(p&&row<3);assert(a->io.read(1,0,p,512)==512);a->io.release(p);
  if(row==1)assert(!doom_runtime_owned_control(0x7a,0,owned_generation,1));
  for(i=0;i<12;i++)store(s->base+ENGINE_RESULT+4*i,engine_recorded[row][i]);return engine_values[row++];}

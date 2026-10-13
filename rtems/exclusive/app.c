@@ -14,15 +14,7 @@ extern unsigned char _bss_start[],_bss_end[];
 #ifdef I960_RESIDENT_NET
 #include "../residentnet/cache_probe.h"
 #endif
-#ifdef I960_RESIDENT_NET
-#ifdef I960_OWNED_MIB
-#define EXCLUSIVE_MAX_TICKS 360000u
-#else
-#define EXCLUSIVE_MAX_TICKS 180000u
-#endif
-#else
-#define EXCLUSIVE_MAX_TICKS 6000u
-#endif
+#include "session_limit.h"
 #define MONITOR_READ() REG(0x1314)
 #define MONITOR_WRITE(v) (REG(0x1314)=(v))
 #include "../handoff/entry.h"

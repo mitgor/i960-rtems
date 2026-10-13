@@ -9,6 +9,7 @@ import wire
 from packet_log import read_packets
 from protocol import QUEUE_CAPACITY
 from large_contract import validate_large_stacks,validate_large,INITIAL_IMAGE
+from live import traffic_limits
 
 def snapshot_gate(w,epoch,reset=False,owner=False,extra=False,heap=False,stopping=False,deadline=None):
  assert len(w)==64 and w[0]==0x31525845 and w[1]>0 and w[2] in (1,2)
@@ -78,6 +79,8 @@ def verify(root,out):
   elif e['op']==5:assert e['arg']==len(cur);cur.append(w[2])
  assert len(cur)==64;(ram_groups if page==2 else diag_groups if page else groups).append(cur);assert groups==[s['words'] for s in json.loads((out/'snapshots.json').read_text())]
  owned=[int(f.split('=')[1]) for f in flags if f.startswith('-DI960_OWNED_MIB=')]
+ max_ticks,max_rounds,max_interval=traffic_limits(flags,owned[0] if owned else 0)
+ assert 100<=arm[3]>>8<=max_ticks
  if owned:
   assert len(ram_groups)==len(groups)
   assert ram_groups==[json.loads(l)['words'] for l in (out/'ram-diagnostics.jsonl').read_text().splitlines()]
@@ -144,11 +147,11 @@ def verify(root,out):
   assert any(w[57:60]==[groups[-1][57],burst_result['drops'],burst_result['queue_highwater']] for w in groups)
  results=json.loads((out/'network-results.json').read_text())
  if (out/'network-progress.json').exists():assert json.loads((out/'network-progress.json').read_text())==results
- rounds=1+max(v.get('round',0) for v in results);assert 1<=rounds<=60 and len(results) in (12*rounds,14*rounds)
+ rounds=1+max(v.get('round',0) for v in results);assert 1<=rounds<=max_rounds and len(results) in (12*rounds,14*rounds)
  if (out/'test-options.json').exists():
   options=json.loads((out/'test-options.json').read_text());assert rounds==options['rounds']
   assert options['ticks']==arm[3]>>8 and bool(options.get('heap_shared',False))==shared and bool(options.get('queue_reclaim',False))==reclaim
-  interval=options.get('round_interval',0);assert 0<=interval<=60
+  interval=options.get('round_interval',0);assert 0<=interval<=max_interval
   if interval:
    assert all(v['completed_seconds']>=v.get('round',0)*interval for v in results)
    assert max(v['completed_seconds'] for v in results)<options['ticks']/100

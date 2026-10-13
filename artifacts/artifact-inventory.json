@@ -5148,6 +5148,96 @@
       "sha256": "c94a36c272b3fa9d91f291a198d846562797937ea136c0e6d61eae56132f0f91"
     },
     {
+      "path": "artifacts/doom-startup-20261013/README.md",
+      "size": 11320,
+      "sha256": "e68973f21d0ff4e57e7ac492c186931e90b1791d33a3f19df814fd6fffad7ab7"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/abi-layouts.json",
+      "size": 5094,
+      "sha256": "d8cb3e8590359c01f7becbecc7bfbd87360da95a169124019ca70351a2ffd34a"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/failed-compatibility-analysis.json",
+      "size": 1525,
+      "sha256": "d11a92bc19fc6501499916f4caceda90cde946d88c8274952ebdfef0e0ff26ab"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/failed-compatibility-card.tar.gz",
+      "size": 19397687,
+      "sha256": "ef3f3caa78a67e9c9cca8140d190df61108567ddc9d4f02874b3a508de03d2fc"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/failed-first-analysis.json",
+      "size": 937,
+      "sha256": "181ff5db517a88410e1e9a359509be29dd7249d9818993d8b5811bfbad607cc4"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/failed-first-card.tar.gz",
+      "size": 17488426,
+      "sha256": "a1cdc85b7e2488efd5eeeda99fbf9ecb296ae1a17cc4b8db2b8340cd9d609e21"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/host-first-frame.png",
+      "size": 993,
+      "sha256": "64c1ebce42794ae8445cf7914d7a55bd2e5cd745c9d4c42b79f9e8bcf3ce3293"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/host-oracle.json",
+      "size": 455,
+      "sha256": "f40b6d2670207dd14250a2a17a8cfc2bf71cf040ada24a7d6ecf58a7ef5f0bb3"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/host-proof.tar.gz",
+      "size": 27547071,
+      "sha256": "4a851227241638a79af45d3af844eb9cda17187917d26a50448255f48b1cd3f5"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/host-verification.json",
+      "size": 636,
+      "sha256": "8cd3edb23b40cbf4bb880f648e96b93267333f03537021c9728e23a0511387cd"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/instruction-exploration.tar.gz",
+      "size": 5729577,
+      "sha256": "1972656957d427edb5e7041c81dcec766d8aefb4037e620dbec51d1af45e434a"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/n2-network-regression.json",
+      "size": 23885,
+      "sha256": "565159ee4679083f50f2c7da59a5bfdd313091bd4ae7929fe6af2b327834d8ec"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/n2-regression.json",
+      "size": 4992,
+      "sha256": "dfd7bcc2a5cc857d7887cd22a94ae677eafcf4be68441922b0df250cfe2e227f"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/n2-regression.log",
+      "size": 4992,
+      "sha256": "dfd7bcc2a5cc857d7887cd22a94ae677eafcf4be68441922b0df250cfe2e227f"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/offline-tests-v2.log",
+      "size": 16218,
+      "sha256": "785f3840630e03ef2b14ddd159230abbab12e89e61cf37a14e9de5997e8022ef"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/offline-tests.log",
+      "size": 15726,
+      "sha256": "60029679977709773d5dc0cb919bf928ae9a00eb87b4b361c15711fc8d036232"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/service-restoration.json",
+      "size": 561,
+      "sha256": "d7cc1816409e9e8b21e857f1a79830c4399ecfd9db762fcbb280ae8f10f3d65a"
+    },
+    {
+      "path": "artifacts/doom-startup-20261013/startup-results.json",
+      "size": 1801,
+      "sha256": "5a14bb99291f54c772250a706d95f3181fd50cc27e4a4451a975a59c4f9c5968"
+    },
+    {
       "path": "artifacts/dram-hook-audit-20261010/Makefile",
       "size": 540,
       "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
@@ -23598,5 +23688,5 @@
       "sha256": "d3dd70a6f4d59633b238fbea5e6ce80e149db8b0d9e82e14258e00000d0f16c6"
     }
   ],
-  "updated_date": "2026-10-12"
+  "updated_date": "2026-10-13"
 }

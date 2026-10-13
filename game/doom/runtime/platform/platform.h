@@ -16,4 +16,7 @@ int doom_platform_key(int,unsigned char);
 int doom_platform_call(void (*)(void));
 int doom_platform_finish(void);
 int doom_platform_frame(void*,unsigned,void*,unsigned);
+void doom_platform_startup(unsigned);
+void doom_platform_safe(void);
+int doom_platform_retire(void);
 #endif

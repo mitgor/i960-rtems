@@ -1,0 +1,11 @@
+{
+  "boot_id": "0679efe6-990e-420c-a930-b502ea84df40",
+  "relay_pid": 2667,
+  "bound_module": "dac960auto",
+  "output": "/home/mit/i960-rtems-web-20261011/http-after-doom-startup-20261013",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "checked_at": "2026-10-13T10:27:38.353203+00:00",
+  "external_http_headers": "HTTP/1.0 200 OK\nContent-Type: text/html; charset=utf-8\nConnection: close\nCache-Control: no-store\n\n",
+  "body_sha256": "7e05ca6da7fe0a65ce32c9424f9e4fb5fb091456d15d661d90ba7f980a45b449",
+  "visitor_logs_archived": false
+}

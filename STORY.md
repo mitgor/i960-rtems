@@ -2494,6 +2494,48 @@ eighteen new deliberate corruptions of the batching evidence were rejected.
 The next visitor would have to do more than read a header. It would have to
 start the engine, stay within its memory grant, and bring back a real frame.
 
+## The first real start
+
+The next image carried the real engine and its own small C library. On the host,
+it could open the WAD, build the level, present a frame and retire all its private
+allocations. We stopped it during a read, made its clock run out, and returned a
+read error. Fresh starts still produced the same pixels. The first picture was
+mostly black: the beginning of Doom's screen wipe, before the level became
+visible. Even that picture required the engine to do its work first.
+
+The card spent most of its first attempt asking for the WAD. We kept the checks
+running beside it. Every delivered fragment was correct. The first 4,674 requests
+followed the host exactly; then the texture requests took another route. After
+4,769 requests, the control channel stopped answering. There was no accepted
+frame and no clean final drain to put in the ledger. The complete failed run
+came home before the machine rebooted.
+
+There was a concrete difference to investigate. This compiler gave several
+ordinary C structures sixteen-byte alignment. Doom's zone allocator promised
+four. A side record occupied thirty-two bytes on the i960 and twenty on the
+host; even the zone's own block header differed. The compiler's older layout
+option brought fifty-five checked layout constants into agreement, while leaving
+the RTEMS function table intact. It belonged inside Doom's private library, not
+across the operating system.
+
+The host needed attention too. Its long audit reads could leave network packets
+waiting between snapshots. Forwarding packets between groups of four audit words
+kept every check and every word. The complete acceptance run also needed room for
+two long starts, so the startup profile received a ninety-minute session budget.
+Each WAD read still had five seconds, and each engine start thirty minutes.
+
+The revised image reached the same fork in the texture requests. It completed
+4,764 requests, all delivered correctly, then lost the control channel too. The
+layout correction was real, but it had not explained the failure. The network
+made it through thirty-six rounds this time instead of six. We saved the final
+incomplete audit page alongside the complete ones, without counting it as a pass.
+
+The next useful evidence is inside the startup itself: where level setup ends,
+which textures it chooses, whether drawing begins, and whether the owned exit is
+reached. Until those checkpoints tell us where the card leaves the host's path,
+there is no first frame to claim. The two failed runs belong in the record just
+as much as the host's matching picture.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

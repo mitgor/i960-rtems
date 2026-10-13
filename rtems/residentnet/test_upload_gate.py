@@ -10,7 +10,7 @@ gate=threading.RLock();inside=threading.Event();release=threading.Event();entere
 def body(op,index=0):
  if op==5 and index==0:inside.set();assert release.wait(2);assert not entered_ioctl.is_set()
  return [0,0,index,0,0,0,0,0]
-ns=dict(io_gate=gate,control=body,time=time);exec(compile(ast.Module(body=[snapshot],type_ignores=[]),'actual-snapshot-wrapper','exec'),ns)
+ns=dict(io_gate=gate,control=body,time=time,pump_packets=lambda:None);exec(compile(ast.Module(body=[snapshot],type_ignores=[]),'actual-snapshot-wrapper','exec'),ns)
 u=Upload(0,1,root,gate);u.record=lambda e:None
 def ioctl(fd,cmd,raw,mutate):
  entered_ioctl.set();raw[12:16]=(1).to_bytes(4,'little')

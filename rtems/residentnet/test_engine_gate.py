@@ -13,12 +13,14 @@ source=r'''
 #define I960_DOOM_RUNTIME 1
 #define I960_DOOM_OWNED 1
 #define ENGINE_GATE_NATIVE 1
+#define I960_WAD_BATCH 1
 unsigned upload_stopping(void);
 #include "engine_gate.c"
 static struct doom_runtime_owned api;
 static unsigned mode,aborted,begins,ends,yields,stop;
 static unsigned char memory[8*1048576] __attribute__((aligned(16)));
 const struct doom_runtime_owned*doom_runtime_owned_api(void){return &api;}
+const struct doom_runtime_owned*doom_runtime_owned_batch_api(void){return &api;}
 unsigned doom_runtime_owned_begin(void){begins++;return mode!=6;}
 unsigned doom_runtime_owned_end(void){ends++;return 1;}
 unsigned upload_stopping(void){return stop;}
@@ -28,10 +30,20 @@ void doom_shared_leave(void*p){(void)p;}
 void exclusive_abort(void){aborted++;}
 static int sync(void*p,unsigned n){(void)p;(void)n;return 1;}
 unsigned engine_native_call(struct seg_image*s,const struct doom_runtime_owned*a){unsigned row[12]={0x454e4750,1,6291456,123,456,1,1,6300000,4,0,1,0},i;(void)a;
+#ifdef ENGINE_STARTUP
+ row[1]=2;row[3]=ENGINE_FRAME;row[4]=ENGINE_PALETTE;row[11]=213;
+ if(mode==4){row[5]=0;row[11]=210;}
+ if(mode==8)row[3]^=1;if(mode==9)row[4]^=1;if(mode==10)row[10]=0;
+#endif
  if(mode==4){row[6]=0;row[9]=2;}
  for(i=0;i<12;i++)store(s->base+ENGINE_RESULT+4*i,row[i]);if(mode==5)s->base[0]^=1;return mode==4?0x454e4702:0x454e4700;}
-int main(int argc,char**argv){struct arena arena;struct seg_image image;struct manifest m;unsigned i,n,v,rc;FILE*f;unsigned char block[1024];assert(argc==3);
- for(mode=0;mode<8;mode++){memset(&arena,0,sizeof arena);assert(arena_init(&arena,memory,sizeof memory));seg_init(&image);memset(&m,0,sizeof m);m.abi=1;m.count=4;m.entry=ENGINE_ENTRY;
+int main(int argc,char**argv){struct arena arena;struct seg_image image;struct manifest m;unsigned i,n,v,rc,limit;FILE*f;unsigned char block[1024];assert(argc==3);
+#ifdef ENGINE_STARTUP
+ limit=11;
+#else
+ limit=8;
+#endif
+ for(mode=0;mode<limit;mode++){memset(&arena,0,sizeof arena);assert(arena_init(&arena,memory,sizeof memory));seg_init(&image);memset(&m,0,sizeof m);m.abi=1;m.count=4;m.entry=ENGINE_ENTRY;
  for(i=0;i<4;i++){struct segment*s=m.segment+i;const unsigned*g=engine_geometry[i];s->offset=g[0];s->file_bytes=g[1];s->memory_bytes=g[2];s->flags=g[3];}
  assert(seg_begin(&image,&arena,&m));
  for(i=0;i<2;i++){f=fopen(argv[1],"rb");assert(f);assert(!fseek(f,engine_geometry[i][0],SEEK_SET));for(n=0;n<engine_geometry[i][1];){unsigned k=engine_geometry[i][1]-n;if(k>1024)k=1024;assert(fread(block,1,k,f)==k);assert(seg_write(&image,i,n,block,k));image.manifest.segment[i].crc32=seg_crc32(image.manifest.segment[i].crc32,block,k);n+=k;}fclose(f);}
@@ -41,7 +53,7 @@ int main(int argc,char**argv){struct arena arena;struct seg_image image;struct m
  if(mode==1)image.base[0]^=1;if(mode==2)image.base[ENGINE_META]^=1;if(mode==3)image.base[engine_geometry[2][0]]=1;if(mode==7)stop=1;
  rc=engine_run(&image,sync,&v);
  if(mode==0||mode==4){assert(!rc&&!aborted&&begins==1&&ends==1&&image.state==SEG_EMPTY&&arena_valid(&arena));}
- else if(mode==5||mode==6){assert(rc==7&&aborted==1&&image.state==SEG_QUARANTINED);}
+ else if(mode==5||mode==6||mode>=8){assert(rc==7&&aborted==1&&image.state==SEG_QUARANTINED);}
  else {assert(rc==2&&!begins&&!aborted&&image.state==SEG_READY);assert(seg_cancel(&image));}
  }
  puts("PASS: compiled SHA identity, metadata/BSS/STOP refusals, modeled normal/cancel cleanup, post-code and failed-scope quarantine; no i960 execution");return 0;

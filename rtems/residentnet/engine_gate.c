@@ -20,7 +20,15 @@ static int digest(struct seg_image*s,unsigned off,unsigned n,const unsigned char
  sha256_finish(&h,out);for(i=0;i<32;i++)if(out[i]!=expected[i])return 0;return 1;
 }
 unsigned engine_report(unsigned i){return i<12?results[i]:~0u;}
-unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value){unsigned i,j,x,last=0,base=(unsigned)(unsigned long)s->base,ok;void*entry;const struct doom_runtime_owned*a=doom_runtime_owned_api();
+unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value){unsigned i,j,x,last=0,base=(unsigned)(unsigned long)s->base,ok;void*entry;const struct doom_runtime_owned*a;
+#ifdef ENGINE_STARTUP
+#ifndef I960_WAD_BATCH
+#error startup needs validated batch runtime
+#endif
+ a=doom_runtime_owned_batch_api();
+#else
+ a=doom_runtime_owned_api();
+#endif
  if(!a||s->state!=SEG_READY||s->manifest.count!=4||s->manifest.entry!=ENGINE_ENTRY)return 1;
  for(i=0;i<4;i++){const struct segment*p=s->manifest.segment+i;const unsigned*g=engine_geometry[i];if(p->offset!=g[0]||p->file_bytes!=g[1]||p->memory_bytes!=g[2]||p->flags!=g[3])return 1;}
  /* The canonical alignment gaps are not file segments. Require and clear them
@@ -39,9 +47,15 @@ unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value
  *value=((unsigned(*)(const struct doom_runtime_owned*))entry)(a);
 #endif
  for(i=0;i<12;i++)results[i]=word(s->base+ENGINE_RESULT+4*i);
+#ifdef ENGINE_STARTUP
+ if((*value!=0x454e4700u&&*value!=0x454e4702u)||results[0]!=0x454e4750u||results[1]!=2||results[10]!=1)goto uncertain;
+ if(*value==0x454e4700u&&(results[2]!=6291456u||results[3]!=ENGINE_FRAME||results[4]!=ENGINE_PALETTE||results[5]!=1||results[6]!=1||results[9]||results[11]!=213))goto uncertain;
+ if(*value==0x454e4702u&&(results[9]<2||results[9]>4||results[5]||results[6]))goto uncertain;
+#else
  if((*value!=0x454e4700u&&*value!=0x454e4702u)||results[0]!=0x454e4750u||results[1]!=1||results[10]!=1||results[11]||results[9]>3)goto uncertain;
  if(*value==0x454e4700u&&(results[2]!=6291456u||!results[5]||!results[6]||results[9]))goto uncertain;
  if(*value==0x454e4702u&&results[9]!=2)goto uncertain;
+#endif
  if(!doom_runtime_owned_end())goto uncertain;
  if(!digest(s,ENGINE_META,ENGINE_SITES*4,engine_metadata_sha,0))goto uncertain;
  /* Executable bytes are immutable. Undo only their authenticated relocations

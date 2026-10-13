@@ -2,8 +2,8 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--platform-runtime',action='store_true');a=p.parse_args()
-assert not a.platform_runtime or (a.target=='i960' and a.wad_cache), 'private platform requires i960 WAD-cache build'
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--platform-runtime',action='store_true');a=p.parse_args()
+assert not a.platform_runtime or (a.target in ('i960','host32') and a.wad_cache), 'private platform requires i960 WAD-cache build'
 assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
 assert hashlib.sha256(a.archive.read_bytes()).hexdigest()=='26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7', 'source hash mismatch'
 here=Path(__file__).resolve().parent;work=a.work.resolve();work.mkdir(parents=True,exist_ok=True)
@@ -34,6 +34,8 @@ out=work/a.target;out.mkdir(exist_ok=True)
 if a.target=='i960':
  cc='/home/mit/i960/tools/bin/i960-coff-gcc';prefix='/home/mit/i960/tools/bin/i960-coff-'
  flags+=['-mrp','-ffreestanding','-fno-builtin','-I'+str(here/'include'),'-I'+str(a.newlib/'newlib/libc/include')]
+elif a.platform_runtime:
+ cc='gcc';prefix='';flags+=['-m32','-D__SINGLE_THREAD__','-funsigned-char','-ffreestanding','-fno-builtin','-I'+str(here/'include'),'-I'+str(a.newlib/'newlib/libc/include')]
 else:
  cc='gcc';prefix='';flags+=['-m32' if a.target=='host32' else '-m64','-g','-fstack-usage','-DPROFILE_HOST']
  sources += [here/'profile.c']
@@ -51,16 +53,25 @@ if a.arena_runtime and not a.platform_runtime:
 if a.wad_cache:
  sources=[f for f in sources if f.name!='w_file_stdc.c']+[here/'runtime/cache/cache.c',here/'runtime/cache/backend.c']
  flags+=['-DDOOM_WAD_CACHE','-I'+str(here/'runtime/cache')]
+if a.startup:
+ assert a.platform_runtime
+ flags+=['-DDOOM_STARTUP']
+ if a.target=='i960':flags+=['-mold-align'] # private Doom zone promises pointer (4-byte) alignment
+if a.sanitize:
+ assert a.platform_runtime and a.target=='host32'
+ flags+=['-fsanitize=address','-g','-fno-omit-frame-pointer']
 commands=[];failures=[];objs=[]
 with (out/'compile.log').open('w') as log:
  for f in sources:
-  obj=out/(f.stem+'.o');renames=(['-D'+n+'=doom_'+n for n in ('malloc','calloc','realloc','free','strdup')] if a.arena_runtime and not a.platform_runtime and a.target=='i960' and f not in runtime_sources else []);cmd=[cc,*flags,*renames,*(['-finstrument-functions'] if a.target!='i960' and f.name!='profile.c' and not (a.arena_runtime and f in runtime_sources) else []),'-c',str(f),'-o',str(obj)];commands.append(cmd)
+  obj=out/(f.stem+'.o');renames=(['-D'+n+'=doom_'+n for n in ('malloc','calloc','realloc','free','strdup')] if a.arena_runtime and not a.platform_runtime and a.target=='i960' and f not in runtime_sources else []);cmd=[cc,*flags,*renames,*(['-finstrument-functions'] if a.target!='i960' and not a.platform_runtime and f.name!='profile.c' and not (a.arena_runtime and f in runtime_sources) else []),'-c',str(f),'-o',str(obj)];commands.append(cmd)
   r=subprocess.run(cmd,stdout=log,stderr=log)
   if r.returncode:failures.append(f.name)
   else:objs.append(str(obj))
 (out/'build.json').write_text(json.dumps(dict(target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
 if failures:raise SystemExit('Compile failed: '+str(failures))
-if a.target=='i960':
+if a.platform_runtime and a.target=='host32':
+ subprocess.run(['ld','-m','elf_i386','-r','-d','-o',str(out/'doom-engine.o'),*objs],check=True)
+elif a.target=='i960':
  subprocess.run([prefix+'ld','-r','-d','-o',str(out/'doom-engine.o'),*objs],check=True)
  for tool,args,name in [('nm',['-u'],'undefined.txt'),('size',['-A'],'sections.txt'),('nm',['-S','--size-sort'],'symbols.txt'),('objdump',['-h'],'headers.txt')]:
   with (out/name).open('w') as f:subprocess.run([('/home/mit/i960/tools/bin/i960-elf-size' if tool=='size' else prefix+tool),*args,str(out/'doom-engine.o')],stdout=f,check=True)

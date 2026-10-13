@@ -23,13 +23,15 @@ static unsigned char log_ring[DPL_LOG],frame[64000],keys[DPL_KEYS],pressed[DPL_K
 static unsigned log_start,log_count,key_read,key_count,armed,initialized,retired;
 static unsigned char palette[768];
 static jmp_buf escape;
+static unsigned startup,started,budget,virtual_ms;
+void doom_platform_safe(void);
 #undef errno
 extern int errno;
 static int fail(int e){errno=e;_impure_ptr->_errno=e;return -1;}
 static void fatal(int n) __attribute__((noreturn));
 static void fatal(int n){stats.exited=1;stats.exit_code=(unsigned)n;if(armed&&(!owned||owned->owner()))longjmp(escape,1);for(;;){/* fatal outside an admitted call: never pretend to return */}}
 int doom_platform_bind(const struct doom_runtime_v1*a,const char*path){
- if(io||!path||!*path||!a||a->magic!=DOOM_API_MAGIC||a->version!=DOOM_API_VERSION||a->bytes!=sizeof(*a)||a->pointer_bytes!=sizeof(void*)||a->features!=DOOM_API_FEATURES||a->little_endian!=1||a->file_id!=1||a->file_bytes<512||a->file_bytes>268435456u||a->reserved[0]||a->reserved[1]||a->max_read!=512||!a->allocate||!a->release||!a->read||!a->ticks_ms)return 0;
+ if(io||!path||!*path||!a||a->magic!=DOOM_API_MAGIC||!((a->version==DOOM_API_VERSION&&a->features==DOOM_API_FEATURES&&a->max_read==512)||(a->version==DOOM_API_BATCH_VERSION&&a->features==DOOM_API_BATCH_FEATURES&&a->max_read==4096))||a->bytes!=sizeof(*a)||a->pointer_bytes!=sizeof(void*)||a->little_endian!=1||a->file_id!=1||a->file_bytes<512||a->file_bytes>268435456u||a->reserved[0]||a->reserved[1]||!a->allocate||!a->release||!a->read||!a->ticks_ms)return 0;
  io=a;iwad=path;return 1;
 }
 int doom_platform_bind_owned(const struct doom_runtime_owned*a,const char*path){
@@ -78,13 +80,13 @@ void exit(int n){fatal(n);}void _exit(int n){fatal(n);}void abort(void){fatal(20
 double fabs(double x){union{double d;unsigned long long u;}v;v.d=x;v.u&=0x7fffffffffffffffull;return v.d;}
 void DG_Init(void){unsigned i;if(!io||initialized)fatal(207);for(i=0;i<64000;i++)frame[i]=0;initialized=1;}
 void DG_SetWindowTitle(const char*title){if(title){_write(1,title,strlen(title));_write(1,"\n",1);}}
-unsigned DG_GetTicksMs(void){if(!io)fatal(203);return io->ticks_ms();}
-void DG_SleepMs(unsigned n){unsigned start;if(n>0x7fffffffu)fatal(204);start=DG_GetTicksMs();stats.sleeps++;
+unsigned DG_GetTicksMs(void){if(!io)fatal(203);doom_platform_safe();return startup?virtual_ms:io->ticks_ms();}
+void DG_SleepMs(unsigned n){unsigned start;if(startup){doom_platform_safe();virtual_ms+=n;return;}if(n>0x7fffffffu)fatal(204);start=DG_GetTicksMs();stats.sleeps++;
  if(owned){for(;;){unsigned elapsed=DG_GetTicksMs()-start,remaining;if(elapsed>=n)break;remaining=n-elapsed;if(remaining>1000)remaining=1000;if(owned->wait_ms(remaining)){if(owned->owner()&&owned->stopping())fatal(210);fatal(211);}}}
  else while(DG_GetTicksMs()-start<n){} /* Preemptible clock wait; owned yield/STOP extension remains an admission gate. */}
 int DG_GetKey(int*p,unsigned char*k){if(!p||!k)fatal(205);if(!key_count)return 0;*p=pressed[key_read];*k=keys[key_read];key_read=(key_read+1)%DPL_KEYS;key_count--;return 1;}
 extern unsigned char *DG_ScreenBuffer;
-void DG_DrawFrame(void){unsigned i,h=2166136261u;if(!DG_ScreenBuffer)fatal(206);for(i=0;i<64000;i++){frame[i]=DG_ScreenBuffer[i];h=(h^frame[i])*16777619u;}stats.frame_hash=h;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colors[i].r;palette[3*i+1]=colors[i].g;palette[3*i+2]=colors[i].b;}for(i=0;i<768;i++)h=(h^palette[i])*16777619u;stats.palette_hash=h;stats.frames++;}
+void DG_DrawFrame(void){unsigned i,h=2166136261u;if(!DG_ScreenBuffer)fatal(206);for(i=0;i<64000;i++){frame[i]=DG_ScreenBuffer[i];h=(h^frame[i])*16777619u;}stats.frame_hash=h;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colors[i].r;palette[3*i+1]=colors[i].g;palette[3*i+2]=colors[i].b;}for(i=0;i<768;i++)h=(h^palette[i])*16777619u;stats.palette_hash=h;stats.frames++;if(startup)fatal(213);}
 int doom_platform_key(int p,unsigned char k){unsigned i;if(key_count==DPL_KEYS||p<0||p>1)return 0;i=(key_read+key_count)%DPL_KEYS;keys[i]=k;pressed[i]=p;key_count++;stats.key_events++;return 1;}
 unsigned doom_platform_log(void*dst,unsigned n){unsigned i;unsigned char*p=dst;if(!p&&n)return 0;if(n>log_count)n=log_count;for(i=0;i<n;i++)p[i]=log_ring[(log_start+i)%DPL_LOG];log_start=(log_start+n)%DPL_LOG;log_count-=n;return n;}
 const struct doom_platform_stats *doom_platform_stats(void){return &stats;}
@@ -94,3 +96,17 @@ int doom_platform_finish(void){unsigned i;if(armed||retired)return 0;for(i=0;i<4
  for(i=0;i<128;i++)if(allocations[i].p)free(allocations[i].p);retired=1;return !stats.blocks;}
 
 int doom_platform_frame(void*dst,unsigned n,void*rgb,unsigned rn){unsigned i;if(!stats.frames||!dst||!rgb||n<64000||rn<768)return 0;for(i=0;i<64000;i++)((unsigned char*)dst)[i]=frame[i];for(i=0;i<768;i++)((unsigned char*)rgb)[i]=palette[i];return 1;}
+
+/* One-shot startup scope. No callback jumps while a cache read owns loans. */
+void doom_platform_startup(unsigned milliseconds){startup=1;started=io->ticks_ms();budget=milliseconds;virtual_ms=0;}
+void doom_platform_safe(void){if(!startup)return;if(doom_platform_checkpoint())fatal(210);if(io->ticks_ms()-started>=budget)fatal(212);}
+int doom_platform_retire(void){unsigned i;if(armed||retired||!owned||!owned->owner())return 0;
+ /* Caller has closed the WAD backend, returned all runtime loans and abandoned
+  * engine globals. The image is one-shot and cannot be entered again. */
+ if(cache.active)return 0;
+ if(cache.api&&!doom_cache_close(&cache))return 0;
+ if(fflush(stdout)||fflush(stderr)||fclose(stdout)||fclose(stderr))return 0;
+ for(i=0;i<4;i++){files[i].id=files[i].offset=0;}open_files=0;
+ for(i=0;i<128;i++)if(allocations[i].p)free(allocations[i].p);
+ retired=1;return !stats.blocks;
+}

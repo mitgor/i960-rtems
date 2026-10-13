@@ -1,0 +1,42 @@
+{
+  "accepted": false,
+  "actual_requests": 4769,
+  "expected_requests": 4747,
+  "matching_prefix_requests": 4674,
+  "verified_payload_bytes": 14204100,
+  "fragments": 27743,
+  "all_completed_payloads_match_wad": true,
+  "host_first_different": {
+    "request": [
+      26527744,
+      2560
+    ],
+    "lumps": [
+      "WALL02_2",
+      "WALL02_3",
+      "WALL03_1"
+    ]
+  },
+  "card_first_different": {
+    "request": [
+      25647104,
+      1536
+    ],
+    "lumps": [
+      "TSCRN8",
+      "TTALL1_2",
+      "TYUNDER1"
+    ]
+  },
+  "last_tick": 230080,
+  "last_capture_seconds": 2345.0817019459996,
+  "full_snapshot_pairs": 347,
+  "complete_snapshots": 347,
+  "last_partial_page": null,
+  "captured_fault_markers_zero": true,
+  "initial_image_and_paired_audit_checked": true,
+  "full_frozen_pages_reconstructed": true,
+  "upload_query_timeout_ms": 2882.424887,
+  "final_engine_outcome_known": false,
+  "completed_network_rounds": 6
+}

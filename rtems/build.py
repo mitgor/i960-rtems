@@ -7,6 +7,8 @@ p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.a
 if a.dispatch_atomic and a.profile!='residentnet':p.error('atomic dispatch requires residentnet proof profile')
 if a.wad_batch and not (a.wad_poll and a.doom_runtime and a.doom_engine):p.error('WAD batches require polling, owned runtime and the protected engine profile')
 if a.wad_poll and not a.doom_runtime:p.error('WAD polling requires the owned runtime profile')
+startup_profile=bool(a.doom_engine and (a.doom_engine/'manifest.json').exists() and json.loads((a.doom_engine/'manifest.json').read_text()).get('startup'))
+if startup_profile and not (a.wad_batch and a.dispatch_atomic and a.owned_mib==12):p.error('Doom startup requires validated batching, atomic dispatch and owned 12 MiB')
 if a.doom_engine and not a.doom_runtime:p.error('engine admission requires owned runtime')
 if a.doom_runtime and not a.doom_shared:p.error('runtime entry requires shared Doom arena')
 if a.doom_shared and not a.doom_heap:p.error('shared arena requires Doom heap')
@@ -90,9 +92,11 @@ if a.wad_batch:
 if a.wad_poll:flags+=['-DI960_WAD_POLL']
 if a.doom_engine:
  flags+=['-DI960_DOOM_ENGINE']
+ if startup_profile:flags+=['-DI960_DOOM_STARTUP']
  shutil.copyfile(a.doom_engine/'engine_identity.h',inc/'engine_identity.h')
  engine_out=out/'entry/engine';engine_out.mkdir(parents=True,exist_ok=True)
  for name in ('manifest.json','template.bin','relocations.bin','engine_identity.h'):shutil.copyfile(a.doom_engine/name,engine_out/name)
+ if (a.doom_engine/'startup-requests.bin').exists():shutil.copyfile(a.doom_engine/'startup-requests.bin',engine_out/'startup-requests.bin')
 if a.owned_mib:flags+=['-DI960_OWNED_MIB='+str(a.owned_mib)]
 if a.extra_ram:flags+=['-DI960_EXTRA_RAM']
 if a.heap_shared:flags+=['-DI960_HEAP_SHARED']

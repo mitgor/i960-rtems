@@ -15,7 +15,7 @@ def control(op,arg=0):
 def service():
  assert pending.wait(2);start=time.monotonic()
  with gate:latency.append(time.monotonic()-start);served.set()
-ns=dict(io_gate=gate,control=control,time=time);exec(compile(ast.Module(body=[node],type_ignores=[]),str(r/'live.py'),'exec'),ns)
+ns=dict(io_gate=gate,control=control,time=time,pump_packets=lambda:None);exec(compile(ast.Module(body=[node],type_ignores=[]),str(r/'live.py'),'exec'),ns)
 for page in range(3):
  pending.clear();served.clear();reads.clear();worker=threading.Thread(target=service);worker.start();out=ns['frozen_page'](page);worker.join(2);assert not worker.is_alive() and served.is_set();assert out==[generation*1000+i for i in range(64)] and reads==list(range(64));assert latency[-1]<.1,latency
 pending.clear();served.clear();worker=threading.Thread(target=service);worker.start()

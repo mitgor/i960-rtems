@@ -12,6 +12,12 @@ from burst import burst
 from packet_log import append_packet,finish_packets
 from large_contract import validate_large_stacks,validate_large
 
+def traffic_limits(flags,owned):
+ if '-DI960_DOOM_STARTUP' in flags:
+  assert owned==12 and '-DI960_DOOM_ENGINE' in flags and '-DI960_WAD_BATCH' in flags
+  return 540000,90,60
+ return (360000 if owned else 180000),60,60
+
 def clients(rounds=1,parallel=False,interval=0,out=None):
  results=[];start=time.monotonic()
  for iteration in range(rounds):
@@ -71,9 +77,11 @@ def main():
  p.add_argument('--burst',action='store_true');p.add_argument('--parallel',action='store_true')
  p.add_argument('--ticks',type=int,default=6000);p.add_argument('--rounds',type=int,default=1)
  p.add_argument('--round-interval',type=float,default=0)
- p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args();assert 100<=a.ticks<=(360000 if a.owned_mib else 180000) and 1<=a.rounds<=60 and 0<=a.round_interval<=60
+ p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args()
  if a.owned_mib:assert a.queue_reclaim
  flags=json.loads((a.payload.parent/'build.json').read_text())['flags']
+ max_ticks,max_rounds,max_interval=traffic_limits(flags,a.owned_mib)
+ assert 100<=a.ticks<=max_ticks and 1<=a.rounds<=max_rounds and 0<=a.round_interval<=max_interval
  owned_flags=[int(f.split('=')[1]) for f in flags if f.startswith('-DI960_OWNED_MIB=')]
  assert owned_flags==([a.owned_mib] if a.owned_mib else [])
  assert ('-DI960_RESIDENT_UPLOAD' in flags)==a.resident_upload
@@ -89,7 +97,7 @@ def main():
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
  io_gate=threading.RLock();abort_upload=threading.Event()
  def save(final=False):
   if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')
@@ -108,6 +116,7 @@ def main():
   words=[]
   for begin in range(0,64,4):
    with io_gate:words.extend(control(5,i)[2] for i in range(begin,begin+4))
+   pump_packets() # keep TUN forwarding live while preserving the entire frozen page
    time.sleep(.001)
   return words
  def snapshot():
@@ -132,8 +141,22 @@ def main():
    record_control(dict(packet_op=op,errno=exc.errno,epoch=e,length=len(data)));save();raise
   w=list(struct.unpack_from('<8I',raw));assert w[3]==1 and not w[4]&1 and w[5:]==[0,0,0]
   if w[2]:
-   record=dict(op=op,ns=time.monotonic_ns()-t,request=before.hex(),response=raw.hex());append_packet(b.out,record);packets.append(record)
+   record=dict(op=op,start_ns=t,ns=time.monotonic_ns()-t,request=before.hex(),response=raw.hex());append_packet(b.out,record);packets.append(record)
   return raw[32:32+w[2]]
+ def pump_packets():
+  nonlocal pending_rx
+  if not traffic_active:return
+  readable,_,_=select.select([g.fd],[],[],0)
+  if pending_rx is None and readable:pending_rx=os.read(g.fd,1536)
+  pending_rx=send_pending(packet,pending_rx)
+  blob=packet(2);offset=0
+  while offset<len(blob):
+   n=struct.unpack_from('<I',blob,offset)[0];offset+=4;frame=blob[offset:offset+n];offset+=n;assert 20<=n<=1500 and len(frame)==n
+   version=frame[0]>>4;ihl=20 if version==4 else 40;proto=frame[9] if version==4 else frame[6]
+   if version in drop and proto==6 and struct.unpack_from('!H',frame,ihl)[0]==9600 and len(frame)>ihl+(frame[ihl+12]>>4)*4:
+    drop.remove(version);dropped.append(dict(version=version,frame=frame.hex()));(b.out/'deliberate-loss.json').write_text(json.dumps(dropped,indent=2)+'\n');continue
+   assert os.write(g.fd,frame)==n
+  assert offset==len(blob)
  try:
   assert len(b.step(struct.pack('<4I',0x31415452,1,epoch,2|(a.ticks<<8))))==640
   for op,data,e in [(1,b'x'*20,epoch)]:
@@ -151,7 +174,7 @@ def main():
    print('Starting resident segmented upload tests',flush=True)
    exercise(b.fd,epoch,b.out,doom_heap=a.doom_heap,doom_shared=a.doom_shared);snapshot()
   if a.burst:burst(packet,snapshot,b.out)
-  g=Gateway(b.out,ipv6=True)
+  g=Gateway(b.out,ipv6=True);traffic_active=True
   with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
    future=pool.submit(clients,a.rounds,a.parallel,a.round_interval,b.out);deadline=time.monotonic()+max(45,a.ticks/100-5);last=time.monotonic()
    upload_future=None
@@ -160,18 +183,9 @@ def main():
     upload_future=pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared,runtime,abort_upload)
    while not future.done() or (upload_future is not None and not upload_future.done()):
     if time.monotonic()>deadline:raise TimeoutError('resident test exceeded session traffic budget')
-    readable,_,_=select.select([g.fd],[],[],0)
-    if pending_rx is None and readable:pending_rx=os.read(g.fd,1536)
-    pending_rx=send_pending(packet,pending_rx)
-    blob=packet(2);offset=0
-    while offset<len(blob):
-     n=struct.unpack_from('<I',blob,offset)[0];offset+=4;frame=blob[offset:offset+n];offset+=n;assert 20<=n<=1500 and len(frame)==n
-     version=frame[0]>>4;ihl=20 if version==4 else 40;proto=frame[9] if version==4 else frame[6]
-     if version in drop and proto==6 and struct.unpack_from('!H',frame,ihl)[0]==9600 and len(frame)>ihl+(frame[ihl+12]>>4)*4:
-      drop.remove(version);dropped.append(dict(version=version,frame=frame.hex()));(b.out/'deliberate-loss.json').write_text(json.dumps(dropped,indent=2)+'\n');continue
-     assert os.write(g.fd,frame)==n
-    assert offset==len(blob)
+    pump_packets()
     if time.monotonic()-last>3:snapshot();last=time.monotonic()
+   traffic_active=False
    if upload_future is not None:upload_future.result()
    result=future.result();(b.out/'network-results.json').write_text(json.dumps(result,indent=2)+'\n')
   if not a.deadline:control(6)

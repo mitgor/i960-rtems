@@ -1,5 +1,19 @@
 # DoomGeneric RAM request for RTEMS
 
+**N3 host startup measurement (2026-10-13; both physical startups failed before frame return):**
+The actual private-Newlib first-frame path peaks at 6,445,535 private allocation
+bytes in 13 blocks. Native total heap use including retained 64 KiB / 96 KiB
+proof buffers and direct cache allocations is 6,629,855 bytes. The admitted
+compatibility engine occupies 797,532 bytes (744,608-byte span plus 13,231 relocation words);
+the native proof conservatively reserves 900,000 bytes. Allow a further 4,352
+bytes for target batch staging plus allocator overhead. These remain within the
+existing 8 MiB arena; no new memory grant or guard movement. The initial 1 MiB
+layout reservation is released before engine admission, as on the card; retaining
+that whole temporary reservation fragments the later 6 MiB zone allocation.
+The native normal / STOP / deadline / read-error / repeat cases drain completely.
+No completed physical startup peak or drain is established. Gameplay peaks and later frames are not established by this first-wipe test.
+[Startup contract](runtime/startup/README.md).
+
 **N2 measured addition (2026-10-12):** 4 KiB batching uses a 4,096-byte cache
 bounce (3,584 bytes above the 512-byte baseline), plus a separately allocated and
 borrowed 4,352-byte assembly buffer (eight 136-word fragments). Additional peak

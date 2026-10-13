@@ -33,3 +33,8 @@ static unsigned batch_idle(void){return batch.state==WAD_IDLE;}
 static void batch_legacy(void){batch_selected=0;}
 unsigned doom_runtime_batch_report(unsigned i){unsigned w[8];w[0]=DOOM_BATCH_MAGIC;w[1]=batch.sequence;w[2]=batch.accepted;w[3]=batch.rejected;w[4]=batch.cancelled;w[5]=leases;w[6]=batch.state;w[7]=api.file_bytes;return i<8?w[i]:~0u;}
 #endif
+
+#ifdef I960_WAD_BATCH
+static struct doom_runtime_owned batch_owned_api;
+const struct doom_runtime_owned *doom_runtime_owned_batch_api(void){const struct doom_runtime_v1*a=doom_runtime_batch_api(4096);if(!a)return 0;batch_owned_api=owned_api;batch_owned_api.io=*a;return &batch_owned_api;}
+#endif

@@ -1,0 +1,127 @@
+# N3: one-shot real Doom initialization and first frame
+
+This candidate replaces the diagnostic engine entry only when built explicitly
+with `--startup`, then packed and admitted with `--startup-oracle` and
+`--startup-requests`. Earlier diagnostic identities remain separate. The kernel
+requires `--wad-batch --wad-poll --dispatch-atomic` and the existing owned 8 MiB
+profile. The startup manifest carries the independent host first-frame reference
+and exact WAD request trace; the compiled identity checks canonical image,
+metadata and executable text as before.
+
+The entry runs the actual pinned DoomGeneric engine with Freedoom Phase 1,
+`-mb 6 -nosound -timedemo demo1`, and explicitly nonexistent read-only config
+paths. The platform accepts the negotiated WAB1/4096 ABI. Game time is virtual
+(starting at zero, advanced by sleep/tic steps) for repeatability; the startup
+budget uses the independent real RTEMS clock. This is not a real-time game loop.
+
+The first `DG_DrawFrame` copies indexed pixels and palette, computes the existing
+FNV hashes, and exits through the owner-local setjmp boundary. STOP and the
+1,800,000 ms startup budget are checked at safe points, including after a complete
+cache read returns (never while cache assembly owns a destination loan). The
+five-second deadline on each runtime read remains unchanged. The host only
+permits the extended 1,860-second command timeout for engine command 18; uncertain
+completion is never retried or reclaimed. Arbitrary CPU faults still require the
+existing quarantine/reboot path, not a promised cooperative return.
+
+After a boundary exit, the WAD backend closes, owned buffers/loans drain and the
+private platform retires. Since this is a one-shot image, the complete private
+allocation table is released after abandoning engine globals; no attempt is made
+to resume them. Application file descriptors are retired with the private image.
+Kernel libc is untouched. The kernel independently checks the output contract,
+ends the owner scope, authenticates metadata again, reverses only authenticated
+text relocations, hashes executable bytes and cancels the image. Unexpected
+identity, output, scope or text conditions quarantine it.
+
+Result words retain the twelve-word reporting channel. Version 2 is mandatory:
+magic, version, requested 6 MiB zone, pixel FNV, palette FNV, frames, first-frame
+completion, peak private bytes, peak blocks, outcome, retired, boundary code.
+Normal completion requires exactly one frame with the compiled reference hashes,
+outcome 0 and boundary 213. Controlled STOP is outcome 2 / boundary 210; deadline
+is outcome 4 / boundary 212; engine errors are outcome 3. Failure is not reported
+as a valid frame. Host acceptance additionally rejects any unexpected outcome.
+
+## Private layout contract
+
+Startup builds use GCC i960 `-mold-align` for both the engine and its private
+Newlib/platform. GCC 3.3's default i960 aggregate rounding raises many records to
+16-byte alignment, while Doom's zone allocator promises only pointer-size
+alignment (four bytes). For example, default i960 `side_t` is 32 bytes and
+`memblock_t` is 32 bytes/aligned 16; the compatibility layout uses 20 and
+24 bytes/aligned four, respectively. Packed WAD records remain unchanged.
+
+`test_abi.py` compiles actual Doom definitions, including `z_zone.c`, and checks
+55 size/alignment/offset constants against the 32-bit host. The runtime API is
+still 96/128 bytes with identical callback offsets. This setting stays inside
+the private engine; RTEMS and its libc keep their existing ABI. The first physical
+hang did not yield a fault PC, so this independently established portability
+fix must not be presented as a proven explanation of that hang by the retry: that retry reproduced the same first texture-request divergence and timed out.
+An exploratory interpreter reproduces the complete host request trace with the
+compatibility image; it models runtime services and cannot accept hardware.
+
+## Host proof
+
+`test_native.py` runs the actual engine with private Newlib against the real
+8 MiB allocator. It models the retained 64 KiB + 96 KiB proof buffers and a
+900,000-byte pinned image reservation after the original 1 MiB layout proof.
+Admission refuses an image larger than that reservation. This matters: keeping
+the full temporary 1 MiB reservation while allocating the initial screen buffer
+fragments the only contiguous 6 MiB hole and is an incorrect native model.
+
+Cases: first frame, STOP after 100 WAD reads, real-clock deadline at read 100,
+read failure at read 100, and a repeated first frame in a fresh process. Each
+case must close/retire and return the real heap to its two retained proof buffers,
+then drain fully. The instrumented build applies ASan to engine memory accesses
+and ASan/UBSan to the private library/port and guarded allocator. Legacy private
+platform and diagnostic-entry regressions remain separate.
+
+The first-frame reference is checked byte-for-byte against the existing corpus:
+64,000 indexed bytes and 768 palette bytes, frame 0 at gametic 2. This first
+presentation is the mostly black initial wipe transition, not a completed
+visible level frame; later bounded frames are still required for a useful display. Request tracing
+records all 4,747 cache requests for the independent physical wire audit. Native
+success is not card acceptance. See the artifact record for physical status.
+
+## Host scheduling and aggregate budget
+
+The initial physical harness forwarded packets only between complete snapshots.
+WAD fragment assembly takes the shared host I/O gate; even though a frozen page
+holds that gate for only four words at a time, waiting between groups can keep
+the main thread away from TUN forwarding for seconds. The revised host pumps
+packets after each four-word group, outside the gate. It still reads every word
+of all snapshot, RAM and heap pages. Only the main thread freezes/reads monitor
+pages; packet and WAD controls keep their independent buffers. The packet pump
+is disabled before startup and after the traffic phase, including parked audits.
+Existing EAGAIN-only packet retry semantics and uncertain-write refusal remain.
+
+`I960_DOOM_STARTUP`, emitted only for the owned 12 MiB startup profile, admits a
+maximum 540,000-tick (90-minute) aggregate acceptance session. Both firmware
+entry and runtime use the same `exclusive/session_limit.h`; old profiles retain
+their original limits. This accommodates two full initializations plus image
+admission, STOP and final drain. It does not change the 30-minute engine budget
+or the five-second WAD read deadline. The new host can schedule up to 90 network
+rounds for this profile; physical acceptance remains required.
+
+## Physical acceptance
+
+The host preserves all previous runtime/cache/relocation/owned proofs, checks
+CRC-valid altered image/metadata refusal, then runs normal / partial-transfer
+STOP / normal in fresh images. WAD data, sequence, order, exact lengths, CRC,
+padding, invocation control and final drain are independently replayed. The old
+N2 small cache benchmark is not repeated after startup: it is a separate accepted
+profile with a different batch sequence namespace.
+
+`engine_replay.py` executes the actual native admission/relocation/lifetime core,
+while modeling the i960-only engine call from independently checked output.
+`startup_replay.py` checks every physical WAD fragment against the pinned file
+and the actual host-engine request trace. This is not an i960 emulator. On-card
+frame verification uses the two independently compiled FNV references, not a
+full pixel readback; only the host reference pixels are retained at this stage.
+Browser rendering and persistent gameplay remain later milestones.
+
+
+Current physical status: both attempts failed before returning a frame. The
+second transferred 27,725 correct fragments and completed 36 network rounds,
+but there is no startup STOP/restart, final drain or successful-capture mutation
+acceptance. See `artifacts/doom-startup-20261013/README.md` for the exact evidence.
+The failure inspector accepts an explicitly identified final partial RAM page
+without treating it as a completed audit; it always returns `accepted:false`.

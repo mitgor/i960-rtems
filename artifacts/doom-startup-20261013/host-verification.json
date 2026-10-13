@@ -1,0 +1,24 @@
+{
+  "actual_engine": true,
+  "private_newlib": true,
+  "host_cases": [
+    {
+      "build": "platform-host",
+      "cases": 5,
+      "normal_frame_and_requests_identical": true
+    },
+    {
+      "build": "platform-host-asan",
+      "cases": 5,
+      "normal_frame_and_requests_identical": true
+    }
+  ],
+  "corpus_frame_sha256": "04cb5a2da32a5bebc02d5b95f1af12bfdc6afb19203b0a97fc6367171b9cae16",
+  "peak_private_bytes": 6445535,
+  "peak_private_blocks": 13,
+  "peak_heap_with_retained_buffers": 6629855,
+  "native_image_reservation": 900000,
+  "extra_card_staging": 4352,
+  "admitted_image_bytes": 807620,
+  "i960_executed": false
+}

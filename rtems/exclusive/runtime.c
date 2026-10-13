@@ -11,15 +11,7 @@
 #include <rtems/score/thread.h>
 #include <rtems/score/isr.h>
 #include "../switch/lifetime.h"
-#ifdef I960_RESIDENT_NET
-#ifdef I960_OWNED_MIB
-#define EXCLUSIVE_MAX_TICKS 360000u
-#else
-#define EXCLUSIVE_MAX_TICKS 180000u
-#endif
-#else
-#define EXCLUSIVE_MAX_TICKS 6000u
-#endif
+#include "session_limit.h"
 #define R(a) (*(volatile unsigned int*)(a))
 extern void exclusive_timer_isr(void);
 #ifdef I960_OWNED_MIB

@@ -6,6 +6,9 @@ from runtime_client import WadServer
 
 def exercise(u,root,wad):
  root=Path(root);m=json.loads((root/'manifest.json').read_text());blob=(root/'template.bin').read_bytes();meta=(root/'relocations.bin').read_bytes()
+ if m.get('startup'):
+  from startup_client import exercise as startup
+  return startup(u,root,wad)
  assert hashlib.sha256(blob).hexdigest()==m['template_sha256'] and hashlib.sha256(meta).hexdigest()==m['metadata_sha256']
  u.journal_namespace='engine-';server=WadServer(u,wad);rows=[]
  def load(b,metadata):

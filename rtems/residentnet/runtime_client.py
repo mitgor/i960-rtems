@@ -73,6 +73,7 @@ def exercise_runtime(u,wad_path,probe_path):
  if root.exists():
   from engine_client import exercise
   exercise(u,root,wad_path)
+  if json.loads((root/'manifest.json').read_text()).get('startup'):return
 
  # Opt-in manifest marker; old binaries and their exact 512-byte proofs remain.
  root=Path(probe_path).parent/"cache"
