@@ -40,7 +40,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0):
     elif self.path=='/heartbeat':
      with lock:input_deadline[0]=time.monotonic()+3
     elif self.path=='/key':
-     assert type(b['key']) is int and b['key'] in (173,175,172,174,157,32,182,13,27,9) and type(b['down']) is int and b['down'] in (0,1)
+     assert type(b['key']) is int and b['key'] in (173,175,172,174,163,162,182,13,27,9,121,110,49,50,51,52,53,54,55) and type(b['down']) is int and b['down'] in (0,1)
      with lock:
       if len(keys)>=128:stop.set();self.reply(429,b'key queue full; stopping to release all keys');return
       keys.append(b['key']+(b['down']<<8));input_deadline[0]=time.monotonic()+3

@@ -1,7 +1,7 @@
 # Interactive browser Doom and repository organization — 2026-10-13
 
-Status: corrected six-frame movement/STOP run passed on the card. A fresh
-interactive session is loading for the user. The preliminary run is not playable
+Status: corrected six-frame movement/STOP run passed on the card. The fresh
+interactive session is running for the user, with browser turn/fire confirmed. The preliminary run is not playable
 acceptance.
 The accepted two-frame baseline remains
 [doom-visible-20261013](../doom-visible-20261013/README.md).
@@ -146,7 +146,9 @@ second upload then began normally; no EAGAIN cancellation race recurred.
 First-frame delivery took 1,369.364 seconds from the engine session's start
 (including its upload/loading). Readback averaged 5.473 seconds per complete
 frame (range 5.436–5.550). Frame 1→6 delivery averaged **0.169 frames/s**, about
-one frame every 5.92 seconds. This is experimental interaction, not smooth Doom.
+one frame every 5.92 seconds. Ten Mac HTTP fetches of an already-published
+32,470-byte PNG averaged 64 ms (`browser-http.json`), excluding rendering and
+card readback. This is experimental interaction, not smooth Doom.
 
 The acceptance prefix has **26 complete snapshot/RAM pairs**, all passing,
 and one dual-stack test round. The resident program is deliberately left alive
@@ -170,3 +172,45 @@ Open gzip streams can lack a footer and append-only journal tails can be partial
 do not treat this prefix as a completed full replay or final restoration record.
 The live originals remain on the host. Its adjacent SHA-256 file was verified
 locally. The six raw card frames and PNGs are also directly browsable here.
+
+## Live browser handoff and key correction
+
+The repeat delivered its first frame in 1,367.137 seconds; its first two full
+frames match the first physical run exactly. The handoff prefix contains
+**130 user-session frames and 57 complete snapshot/RAM pairs**, all passing.
+Browser Right input changed the view. Initial fire/use codes 157/32 were wrong
+for the pinned DoomGeneric, which defines `KEY_FIRE=163` and `KEY_USE=162`.
+Canonical browser/host mapping is corrected, with Y/N and weapon digits added.
+The new `test_keys.py` checks these values against the preserved source headers.
+
+To preserve the already-loaded game, a host-only input bridge on **8088**
+duplicates the existing PID 3001/fd 4 file description (epoch 61819). The original
+owner remains solely responsible for upload, frame readback/ACK and owned STOP.
+The driver's existing session mutex serializes complete ioctls. Bridge supervisor
+118766 / Python 118767 issues only bounded status/key controls and journals them
+separately. It monitors the owner's pidfd, stops on transport uncertainty, handles
+queue overflow by requesting owner STOP, and joins its worker before closing.
+The duplicate delays final file release until closed; no final-close claim is
+made in this active capture. No debugger injection, new module or target patch
+was used. The bridge is a temporary deployment repair; new canonical launches
+use corrected mapping directly on 8087.
+
+Browser Space on 8088 produced a visible muzzle flash and ammo **50→48**.
+The host-only 100-frame fire diagnostic independently shows a four-tic delay
+between input and ammo decrement, explaining why short observation windows were
+misleading. Its source/binary, long/short input traces and clean STOP/drain results
+are in `native-fire-proof.tar.gz`. This is separate from the tiny texture pixel
+mismatch. The bridge's exact ioctl layout and error propagation pass a synthetic
+transport test; its shutdown/overflow paths were reviewed but deliberately not
+fault-injected in the live user session. The physical key journal contains
+accepted corrected fire/release.
+Use/open-door codes are header-validated, but a physical door interaction was not
+tested. Short taps can still be lost around frame timing; hold keys across frames.
+
+`play-handoff.tar.gz` includes the live-prefix journals, 57 audit pairs, exact
+bridge source and key evidence. It has the same non-atomic/open-stream limitations
+as the earlier prefix. SHA-256 was verified locally. `browser-play.png` captures
+actual card-rendered muzzle flash/ammo 48 in the browser. The main owner and bridge
+remain live; public autonet IPv6 HTTP is paused. The game budget expires around
+**23:58 Europe/Berlin on October 13**. Use the page Stop button when finished;
+archive final evidence before reboot/restoration. There is no scheduled reboot.

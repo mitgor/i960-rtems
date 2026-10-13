@@ -2805,7 +2805,12 @@ took about six seconds to reach the browser. A host comparison found seven or
 eight pixel differences in one tiny patch, which went into the notebook rather
 than becoming another prerequisite to touching the keyboard. The game was
 slow, but now it had a screen, an input path and a way out. A fresh session
-began loading for the person who had asked to play it.
+then delivered the same first picture. The browser check caught a less exotic
+mistake: this DoomGeneric wanted its own fire and use codes. We corrected the
+host mapping and used a small, serialized input bridge to avoid throwing away
+the loaded game. The next screenshot had a muzzle flash and forty-eight rounds
+where there had been fifty. The person who had asked to play could finally
+point a browser at it.
 
 We also put the workshop in order. Forty-six reports left the repository root
 for named documentation folders. Firmware, loader, RTEMS, Tetris, Doom and the

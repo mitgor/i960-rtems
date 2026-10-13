@@ -25,6 +25,7 @@ for suffix,target in [('host','host32'),('cross','i960')]:
  extra=['--sanitize'] if target=='host32' else []
  run(['python3',r/'game/doom/build.py','--work',w/f'engine-{suffix}','--archive',archive,'--target',target,'--cross',a.cross,'--newlib',newlib,'--arena-runtime','--wad-cache','--platform-runtime','--startup','--checkpoints','--point-side-o0','--visible','--play',*extra],f'engine-{suffix}.log')
  run(['python3',r/'game/doom/runtime/platform/build.py','--newlib',newlib,'--out',w/f'platform-{suffix}','--doom',w/f'engine-{suffix}'/doomdir,'--engine',w/f'engine-{suffix}'/target/'doom-engine.o','--target',target,'--cross',a.cross,'--startup','--checkpoints','--visible','--play',*extra],f'platform-{suffix}.log')
+run(['python3',r/'game/doom/play/test_keys.py'],'keys.log')
 run(['python3',r/'game/doom/play/test_native.py','--build',w/'platform-host','--newlib',newlib,'--wad',w/'freedoom1.wad'],'native.log')
 run(['python3',r/'game/doom/runtime/startup/test_abi.py','--doom',w/'engine-cross'/doomdir,'--newlib',newlib,'--out',w/'abi-proof','--cross',a.cross],'abi.log')
 run(['python3',r/'game/doom/runtime/platform/pack_engine.py','--build',w/'platform-cross','--out',w/'packed','--cross',a.cross],'packed.log')

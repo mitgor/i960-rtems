@@ -1,0 +1,12 @@
+{
+  "snapshots": 57,
+  "ram_pairs": 57,
+  "last_frame": {
+    "session": 1,
+    "frame": 130,
+    "seconds": 2131.126681568,
+    "readback_seconds": 5.472350085000016,
+    "sha256": "cb28595849e9c02bf87d74ffa054e8e077953c9867f34ea1ab817c4516e9b6f6"
+  },
+  "session1_frames": 130
+}

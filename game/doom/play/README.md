@@ -7,11 +7,11 @@ browser framebuffer delivery. It is separate from the fully replayed two-frame
 
 ## Connect and play
 
-For the current lab deployment, open **http://192.168.2.75:8087/** and click the
+For the current lab deployment, open **http://192.168.2.75:8088/** and click the
 game to focus it. For a machine that reaches the host only through SSH:
 
 ```sh
-ssh -N -L 8097:127.0.0.1:8087 mit@192.168.2.75
+ssh -N -L 8097:127.0.0.1:8088 mit@192.168.2.75
 ```
 
 Then open **http://localhost:8097/**. The page reports engine upload, level
@@ -29,6 +29,8 @@ encoding; Doom simulation and rendering execute on the card. There is no sound.
 | Enter | Confirm |
 | Escape | Menu |
 | Tab | Map |
+| 1–7 | Weapon selection |
+| Y / N | Menu confirmation / cancellation |
 | Stop Doom button | Request owned engine cancellation |
 
 Keys release when browser focus is lost; a short input heartbeat also releases held keys after a disconnected browser stops renewing them. Frame delivery currently uses bounded
@@ -39,7 +41,10 @@ roughly 23-minute initial upload/load. No input reaches the card until a publish
 movement/fire until a new frame appears: a short press and release between
 updates can be consumed in the same game tick. Queue exhaustion requests STOP
 rather than discarding a release event. Use the page’s Stop button to quit;
-in-game Y/N confirmation and weapon-number keys are not mapped in this prototype.
+Y/N menu confirmation and weapon-number keys are now mapped. The pinned
+DoomGeneric uses fire/use codes 163/162, not classic Ctrl/Space codes 157/32.
+Pistol firing has a four-tic animation delay; at this frame rate even an accepted
+press takes tens of real seconds to show the shot.
 
 ## Build and run
 
@@ -70,6 +75,26 @@ Linux kernel headers and accepted loader artifacts. See
 [stock-to-applications](../../../docs/reproduce.md) before using another card.
 The lab scripts use explicit `/home/mit/...` input paths; adapt these in a new
 workspace, keeping the pinned hashes and accepted source directories intact.
+
+### Current-session keyboard correction
+
+The October 13 session on port **8088** uses the temporary `input_bridge.py`
+while the original owner continues framebuffer/WAD/STOP work on port 8087.
+Use only 8088 for this session. Browser turning and firing (ammo 50→48) passed;
+the capture preserves over 130 frames and 57 full audit pairs. The session's
+30-minute play budget expires around **23:58 Europe/Berlin, October 13**.
+
+The bridge duplicates the existing owner's file description using pidfd_getfd;
+it never opens a second card session. The driver session mutex serializes its
+bounded status/key ioctls. It issues no upload, framebuffer select, ACK or direct
+STOP. It monitors the original pidfd and upstream HTTP lifetime, logs every
+ioctl, stops on transport errors and joins its worker before closing the duplicate.
+Queue overflow or terminal bridge failure requests STOP through the original
+owner. The duplicate can delay final file release; do not claim final cleanup
+until both owners close. This is a dated live-session repair, not the normal
+launch path. Future `run.py` launches serve corrected input directly on port 8087
+and require no bridge. `test_keys.py` checks the mapping against pinned headers;
+`test_bridge.py` checks exact ioctl framing/error propagation without hardware.
 
 The new opt-ins are:
 

@@ -6,7 +6,7 @@
 <button id="stop">Stop Doom</button><p><small>Keys release when focus is lost. STOP ends the engine session safely. No sound yet.</small></p>
 <script>
 const token='__TOKEN__',screen=document.getElementById('screen'),ctx=screen.getContext('2d'),held=new Set();let chain=Promise.resolve(),last='',busy=false;
-const keys={KeyW:173,ArrowUp:173,KeyS:175,ArrowDown:175,KeyA:172,ArrowLeft:172,KeyD:174,ArrowRight:174,ControlLeft:157,ControlRight:157,Space:157,KeyE:32,ShiftLeft:182,ShiftRight:182,Enter:13,Escape:27,Tab:9};
+const keys={KeyW:173,ArrowUp:173,KeyS:175,ArrowDown:175,KeyA:172,ArrowLeft:172,KeyD:174,ArrowRight:174,ControlLeft:163,ControlRight:163,Space:163,KeyE:162,ShiftLeft:182,ShiftRight:182,Enter:13,Escape:27,Tab:9,KeyY:121,KeyN:110,Digit1:49,Digit2:50,Digit3:51,Digit4:52,Digit5:53,Digit6:54,Digit7:55};
 function post(path,data){chain=chain.then(async()=>{const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':token},body:JSON.stringify(data)});if(!r.ok)throw Error(await r.text())}).catch(e=>document.getElementById('status').textContent=e.message);return chain}
 screen.onclick=()=>screen.focus();screen.onkeydown=e=>{const k=keys[e.code];if(k===undefined)return;e.preventDefault();if(!held.has(k)){held.add(k);post('/key',{key:k,down:1})}};
 screen.onkeyup=e=>{const k=keys[e.code];if(k===undefined)return;e.preventDefault();if(held.delete(k))post('/key',{key:k,down:0})};

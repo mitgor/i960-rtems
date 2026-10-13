@@ -17,7 +17,8 @@ The accepted baseline delivers two identical visible 320×200 frames and exits.
 Its static browser gallery is a capture viewer, not gameplay. The new persistent
 [play profile](../../artifacts/doom-play-20261013/README.md) passed a six-frame
 physical forward/release/STOP run, delivering about 0.169 frames/s. Its fresh
-user session is loading; use the guide above for browser controls and limits. The user has chosen playability first, then profiling
+user session is live on port 8088 with browser turning/firing confirmed; see
+the guide above for the temporary keyboard bridge, deadline and controls. The user has chosen playability first, then profiling
 and optimization from real use.
 
 Keep the accepted compiler workaround (`--point-side-o0`) and pinned source,

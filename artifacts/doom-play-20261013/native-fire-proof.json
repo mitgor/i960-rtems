@@ -1,0 +1,67 @@
+{
+  "hardware_access": false,
+  "engine": "unchanged platform-host/doom-platform.o from /home/mit/i960-doom-play-20261013b",
+  "key_fire": 163,
+  "press_after_frame": 30,
+  "release_after_frame": 70,
+  "first_attack_frame": 31,
+  "first_ammo_decrement_frame": 35,
+  "first_ammo_decrement_gametic": 35,
+  "ammo_after_100_frames": 47,
+  "no_input_ammo_after_100_frames": 50,
+  "stop_and_heap_drain": "Both sanitized native runs returned 0, STOP210, retired=1; two intentionally retained proof blocks checked before final drain.",
+  "results": {
+    "0": {
+      "engine_result": [
+        1162757968,
+        2,
+        6291456,
+        891851516,
+        1611003811,
+        100,
+        0,
+        6445535,
+        13,
+        2,
+        1,
+        210
+      ],
+      "extra": [
+        1162757890,
+        5045,
+        15024836,
+        2,
+        6646255,
+        0,
+        28795076,
+        0
+      ]
+    },
+    "6": {
+      "engine_result": [
+        1162757968,
+        2,
+        6291456,
+        2983486286,
+        1611003811,
+        100,
+        0,
+        6445535,
+        13,
+        2,
+        1,
+        210
+      ],
+      "extra": [
+        1162757890,
+        5045,
+        15024836,
+        2,
+        6646255,
+        6,
+        28795076,
+        0
+      ]
+    }
+  }
+}

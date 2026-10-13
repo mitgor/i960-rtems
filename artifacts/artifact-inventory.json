@@ -4814,8 +4814,8 @@
     },
     {
       "path": "artifacts/doom-play-20261013/README.md",
-      "size": 10217,
-      "sha256": "3b1ded3b055126dd6a962d7682f52fc72ba9edc6f3c8bcbf8f7afd9a2c91ced2"
+      "size": 13214,
+      "sha256": "27eb6b3131fa7b253aef429e2cf3e06177bca1871fec2fb78bddf2623354e020"
     },
     {
       "path": "artifacts/doom-play-20261013/acceptance-prefix.sha256",
@@ -4826,6 +4826,16 @@
       "path": "artifacts/doom-play-20261013/acceptance-prefix.tar.gz",
       "size": 14669479,
       "sha256": "ec990a86c4c196b55d62cf19a1d91bdbe440e3f1bd5f97639dae7b16044fe2c7"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/browser-http.json",
+      "size": 433,
+      "sha256": "edee6f9145f59c435458c85285e9d5946a0f35e8174681b2fd7ababe8a9ae4fd"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/browser-play.png",
+      "size": 101252,
+      "sha256": "9950ac2a40de7a55cabe9c575164a730bbedda7c24281b1a4186cdd6d40b7d02"
     },
     {
       "path": "artifacts/doom-play-20261013/build-evidence.sha256",
@@ -4843,6 +4853,16 @@
       "sha256": "38dfe70bf04cfbd61b5bcfa9ed35ae46be155701916784fe8bfee7553d72c450"
     },
     {
+      "path": "artifacts/doom-play-20261013/handoff-evidence.py",
+      "size": 2395,
+      "sha256": "c10b14d14f8744df03da20a64460958beda78e80c5f7abde783f8c8f0fabb5c8"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/handoff-summary.json",
+      "size": 281,
+      "sha256": "27bc966ed6666005665c48a841787d6758a1deb00643c8c0fee90d531966d050"
+    },
+    {
       "path": "artifacts/doom-play-20261013/live.sh",
       "size": 671,
       "sha256": "e958790a31cce24fa3e1ddedc00954dc23876dcf2d785ab12f3b53428f683df6"
@@ -4851,6 +4871,21 @@
       "path": "artifacts/doom-play-20261013/native-comparison.json",
       "size": 4489,
       "sha256": "16e2e139eafe4ef36a813a2b3524c69b3de4d7d8954175fd7e149b1c0f6c135c"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/native-fire-proof.json",
+      "size": 1289,
+      "sha256": "bbfd0add443a84d3eec7c9a4b03154357595788bee804d67f7053b89449691f9"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/native-fire-proof.tar.gz",
+      "size": 1157636,
+      "sha256": "479719aa3ddf11659c5de1e0bcc66999d22d9a1a28b90a352061e5677778092e"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/native-fire-proof.tar.gz.sha256",
+      "size": 91,
+      "sha256": "65cd942ae77a1cdbbd297fa6c03307c35578f0987652b1ed3c1aa41f4a4c6fdc"
     },
     {
       "path": "artifacts/doom-play-20261013/play-0-1.bin",
@@ -4916,6 +4951,16 @@
       "path": "artifacts/doom-play-20261013/play-frames.jsonl",
       "size": 1034,
       "sha256": "23b61e917a7bfe1dbbdfee1502a95c12c1f4ba63a62e12c3b32fb79548f2bed5"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-handoff.sha256",
+      "size": 86,
+      "sha256": "7aba489a041b187ddf8e7002cc1deb985ef52450e190e0704819d4fd733e3ce9"
+    },
+    {
+      "path": "artifacts/doom-play-20261013/play-handoff.tar.gz",
+      "size": 29766759,
+      "sha256": "8d8069b93dacbe6e6806d56831d71d4341ea6f74f5985a1efd67066185f446f9"
     },
     {
       "path": "artifacts/doom-play-20261013/play-sessions.jsonl",
