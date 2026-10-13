@@ -25,9 +25,10 @@ Preserve full paired audits, native oracle, checkpoint ACKs and the narrow
 This accepts the bounded initial wipe frame, STOP/repeat and system drain—not
 visible gameplay, browser Doom or rendering FPS. Next: bounded visible-frame
 progression, framebuffer readback and browser delivery, with the same full gates.
-Reboot was requested after local archive verification. SSH has not returned; the
-user was asked to power-cycle if stuck. Public HTTP restoration is pending.
-Coordinate before hardware use.
+After local archive verification and reboot, public IPv6 HTTP returns 200 from
+the Mac; outbound IPv6 fetch also passes. Production relay supervisor **4358** /
+Python **4359** owns the card in boot `c76b2f32-a14d-4c03-952f-cbfa6b254cb9`.
+Test reservation released; coordinate and stop the relay cleanly before reuse.
 [Exact sources, binaries, captures, failure reproductions and results](../../artifacts/doom-shutdown-20261013/README.md).
 
 **Height diagnostic (2026-10-13):** unchanged 16,400-byte checkpoint log and

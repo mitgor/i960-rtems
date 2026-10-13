@@ -2717,6 +2717,10 @@ took about twenty-five minutes with these audits. This was no claim of playable
 Doom. It was a smaller, necessary achievement: the first-frame experiment could
 now start, stop, repeat, and give its memory back.
 
+The archive was copied home and hash-checked before reboot. Once Linux returned,
+the unchanged public RTEMS web server answered over IPv6 again. Its visitors
+could return to Darth Vader while Doom waited for its first visible scene.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

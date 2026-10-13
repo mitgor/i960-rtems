@@ -65,7 +65,8 @@ mode (`native-command-replay.json`). Its physical shutdown failure remains a
 failure. The new 75-round physical batch passes the default full verifier,
 parked upload query, all paired audits, reference checkpoints and mutation tests.
 The public relay was stopped cleanly and its module unloaded before launch.
-Hardware is retained for this task until capture verification and restoration.
+The test reservation was held through capture verification; restoration is
+complete as recorded below.
 
 The paced replay also passes all 7,832 replies on macOS with ASan/UBSan
 (`native-command-replay-macos.json`). Its generated sources, input, expected
@@ -152,5 +153,20 @@ This is the accepted bounded N3 startup/STOP/repeat/global-drain baseline. The
 previous failed batch remains failed. Visible scene progression, framebuffer
 readback, browser delivery, general compiler repair and interactive performance
 are subsequent work. Reboot was requested only after the complete archive was
-copied and hash-checked locally. SSH has not returned; the user was asked to
-power-cycle the PC if stuck. Public service restoration is pending.
+copied and hash-checked locally. SSH initially remained unavailable and the user
+was asked to power-cycle if stuck; it subsequently returned on a new boot.
+Whether a physical power-cycle occurred was not observed.
+
+## Public service restored
+
+Boot `c76b2f32-a14d-4c03-952f-cbfa6b254cb9` had no bound card driver or competing
+relay. The unchanged production relay now owns the card: supervisor **4358**,
+Python **4359**, output directory
+`/home/mit/i960-rtems-web-20261011/http-after-doom-shutdown-20261013`.
+Mac IPv6 curl receives **HTTP/1.0 200 OK** and the Darth Vader / RTEMS system-info
+page at `http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/`; outbound IPv6 fetch
+of example.com also passes. Headers, body and their metadata are saved beside
+this README. This is a Mac-to-host check, not a new external-network reachability
+claim. Visitor statistics continue in their existing host directory and are not
+copied into Git. Test reservation released; stop the relay cleanly before future
+exclusive hardware work.

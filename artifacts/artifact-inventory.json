@@ -5339,8 +5339,8 @@
     },
     {
       "path": "artifacts/doom-shutdown-20261013/README.md",
-      "size": 9382,
-      "sha256": "4b15fda769cea474bc493309388ab69e6cb756780568e2eb94678237ab0e27e7"
+      "size": 10282,
+      "sha256": "02c321db8a265cabb4fe63b8761b5683b3563fc28ec97f2a3b3ef9b30145b104"
     },
     {
       "path": "artifacts/doom-shutdown-20261013/card-evidence.sha256",
@@ -5356,6 +5356,21 @@
       "path": "artifacts/doom-shutdown-20261013/checkpoint-comparison.json",
       "size": 1694,
       "sha256": "3a71b715f7d24067a9e07eacab249bf45ede51b85b5ec710566476de3ef84492"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/http-restored.headers",
+      "size": 97,
+      "sha256": "b9e6a08eb2139e70139786adea5538fe2217688db7bc3a957f374a7cd8b61b24"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/http-restored.headers.gz",
+      "size": 116,
+      "sha256": "dbabea0346301eb1b639f2f83f69f4101de778fa1d1708e0931497d83f75e9f2"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/http-restored.html",
+      "size": 2891,
+      "sha256": "0a2744f89d28c25c9eff374540d2af88aacb2a34f984b8eeefd554f9dcc266ed"
     },
     {
       "path": "artifacts/doom-shutdown-20261013/live.sh",
@@ -5391,6 +5406,11 @@
       "path": "artifacts/doom-shutdown-20261013/postrun.sh",
       "size": 1620,
       "sha256": "54f40183d54829c4ed1193672071e80ed9b7cb30ccdf6f1cfa1d8a3f878a47fa"
+    },
+    {
+      "path": "artifacts/doom-shutdown-20261013/restoration.json",
+      "size": 753,
+      "sha256": "0924cf62e355383abd187bbade74c3ea17a6c717e676dd30ae2d3e14fc23ac62"
     },
     {
       "path": "artifacts/doom-shutdown-20261013/startup-evidence-mutations.json",

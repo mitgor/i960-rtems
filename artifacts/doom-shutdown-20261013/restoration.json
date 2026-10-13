@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-13T17:38:12.665818+00:00",
+  "boot": "c76b2f32-a14d-4c03-952f-cbfa6b254cb9",
+  "relay_supervisor_pid": 4358,
+  "relay_python_pid": 4359,
+  "output": "/home/mit/i960-rtems-web-20261011/http-after-doom-shutdown-20261013",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "client": "Mac curl over IPv6",
+  "body_bytes": 2891,
+  "body_sha256": "0a2744f89d28c25c9eff374540d2af88aacb2a34f984b8eeefd554f9dcc266ed",
+  "outbound_ipv6_fetch": "example.com",
+  "visitor_logs_archived": false,
+  "raw_headers_sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55",
+  "headers_format": "Exact CRLF bytes in http-restored.headers.gz; readable LF copy in http-restored.headers"
+}
