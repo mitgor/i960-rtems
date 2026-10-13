@@ -2,7 +2,7 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--platform-runtime',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--platform-runtime',action='store_true');a=p.parse_args()
 assert not a.platform_runtime or (a.target in ('i960','host32') and a.wad_cache), 'private platform requires i960 WAD-cache build'
 assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
 assert hashlib.sha256(a.archive.read_bytes()).hexdigest()=='26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7', 'source hash mismatch'
@@ -12,8 +12,8 @@ src=work/'doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric'
 # C99 loop declarations are supported by GNU99 even on GCC 3.3.
 flags=['-std=gnu99','-Os','-fno-strict-aliasing','-fcommon','-DCMAP256','-DDOOMGENERIC_RESX=320','-DDOOMGENERIC_RESY=200','-I'+str(src)]
 patches=[]
-def patch(name,old,new):
- f=src/name;s=f.read_text();assert s.count(old)==1,(name,old);f.write_text(s.replace(old,new));patches.append(dict(file=name,before=old,after=new))
+def patch(name,old,new,count=1):
+ f=src/name;s=f.read_text();assert s.count(old)==count,(name,old);f.write_text(s.replace(old,new));patches.append(dict(file=name,before=old,after=new))
 patch('doomgeneric.c','DOOMGENERIC_RESX * DOOMGENERIC_RESY * 4','DOOMGENERIC_RESX * DOOMGENERIC_RESY * sizeof(pixel_t)')
 patch('i_video.c','I_VideoBuffer = (byte*)Z_Malloc (SCREENWIDTH * SCREENHEIGHT, PU_STATIC, NULL);','I_VideoBuffer = (byte*)Z_Malloc (SCREENWIDTH * SCREENHEIGHT, PU_STATIC, NULL);\n    memset(I_VideoBuffer, 0, SCREENWIDTH * SCREENHEIGHT); /* deterministic initial wipe */')
 # Bounds belong to masked posts, not the wrapping wall-texture path.
@@ -27,6 +27,13 @@ for old,new,count in [
 patch('r_things.c', '#include "r_local.h"', '#include "r_local.h"\nextern int dc_postlength;')
 patch('r_things.c', 'if (dc_yl <= dc_yh)', 'if (dc_yl <= dc_yh && column->length > 0)')
 patch('r_things.c', '    colfunc ();', '    dc_postlength = column->length;\n\t    colfunc ();\n\t    dc_postlength = 0;')
+if a.checkpoints:
+ assert a.startup
+ import sys
+ sys.path.insert(0,str(here/'runtime/startup'))
+ from instrument import apply
+ shutil.copyfile(here/'runtime/startup/checkpoints.h',src/'checkpoints.h')
+ apply(patch)
 # The exact same instrument-free engine is used for target sizing.
 objects=re.search(r'^SRC_DOOM = (.*)$',(src/'Makefile').read_text(),re.M)[1].split()
 sources=[src/(s[:-2]+'.c') for s in objects if s!='doomgeneric_xlib.o']

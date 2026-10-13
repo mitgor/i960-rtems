@@ -3333,6 +3333,81 @@
       "sha256": "33aadb86cf155c5ae7fc8f74a966b0564a4a1314dd693007c04abfdadaaa382a"
     },
     {
+      "path": "artifacts/doom-checkpoints-20261013/README.md",
+      "size": 13882,
+      "sha256": "4c6e838e9a7dc1ae630e9d3ad837d01f216f6a2834beaf70f4ec870d6b9bec6a"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/build-evidence.tar.gz",
+      "size": 19296812,
+      "sha256": "8c8fe08ba48a7cf22b5ac24789a17ee1c1f4c5921118c9f67e26739e833bd4a8"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/card-evidence.tar.gz",
+      "size": 19454996,
+      "sha256": "cff5ec0447ddac9b93d0fadd7635df67d3fb7836403db98bff041702f015bfd7"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/checkpoint-comparison.json",
+      "size": 1079,
+      "sha256": "ea6a42e690a36717f6b7650b9db1cf4aed31ef7e8ea46456861a769a206a7abb"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/checkpoint-tests.log",
+      "size": 311,
+      "sha256": "5052ab5468bb391d127b15ec48a6d9e94f0077ba456ee21f1b2a619cfa83cae7"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/comparison-to-previous.json",
+      "size": 349,
+      "sha256": "2dc17bf63616ce49e39d1a24560800ac6246a2488ff3bd7751024bed3d936b70"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/failure-analysis.json",
+      "size": 1545,
+      "sha256": "fccd85c411db3bbdbda21d2d62e90c34315201d9f2686a6f23505f6a7b600d18"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/host-check.json",
+      "size": 1486,
+      "sha256": "3d285f2760087f49182247ede2b700dcc231dc5ae9f79f4a9fa5fede7ced9ad2"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/layout.json",
+      "size": 5626,
+      "sha256": "d70ff9637748b88e9a5d0cbe69967000ab2a5650e7711d81818dc5481a89baa7"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/n2-regression.json",
+      "size": 4992,
+      "sha256": "dfd7bcc2a5cc857d7887cd22a94ae677eafcf4be68441922b0df250cfe2e227f"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/n2-regression.log",
+      "size": 4992,
+      "sha256": "dfd7bcc2a5cc857d7887cd22a94ae677eafcf4be68441922b0df250cfe2e227f"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/native.log",
+      "size": 119,
+      "sha256": "95566e65e0d2de0ac36c78848a800abffd7bb1a5fda30e4aebddb67a98977151"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/offline-tests.log",
+      "size": 16368,
+      "sha256": "443b8ac313ca3441dc77b65fc15d2632250b990fc0669db8b5f03762cb938dd8"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/ram-audit.json",
+      "size": 1696,
+      "sha256": "c91836b607697fa7ba8d9b8bc15ebd16f5864192109a326b75920c0df069fa88"
+    },
+    {
+      "path": "artifacts/doom-checkpoints-20261013/restoration.json",
+      "size": 640,
+      "sha256": "6155a67a913fa1c598d2b8d69be48c429f94fc2c7fb1162252612d714984cd08"
+    },
+    {
       "path": "artifacts/doom-determinism-20261012/README.md",
       "size": 3813,
       "sha256": "75ab0272e9da2177abeb970d5ae5da6b7cf68aa17e6e07227c8f94fa04fe3bad"

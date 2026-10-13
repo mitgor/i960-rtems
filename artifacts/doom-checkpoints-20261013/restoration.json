@@ -1,0 +1,12 @@
+{
+  "checked_at_utc": "2026-10-13T11:32:24.784364+00:00",
+  "boot_id": "5e697ec6-a2e7-488d-95b3-4262e31f9b7f",
+  "relay_pid": 3737,
+  "relay_output": "/home/mit/i960-rtems-web-20261011/http-after-doom-checkpoints-20261013",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "verification": "Independent Mac curl, IPv6, proxy bypassed",
+  "http_headers": "HTTP/1.0 200 OK\nContent-Type: text/html; charset=utf-8\nConnection: close\nCache-Control: no-store\n\n",
+  "body_sha256": "365647a58b48a56b2473b39d05566edad4f570a56a124eb2c6284e8ab8120f07",
+  "exclusive_reservation_released": true,
+  "visitor_logs_archived": false
+}

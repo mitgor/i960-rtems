@@ -18,6 +18,8 @@ test:
 	python3 test_dispatch_gap.py ../artifacts/doom-progress-20261012/dispatch-original.c
 	python3 residentnet/test_io_fairness.py
 	python3 residentnet/test_snapshot_packets.py
+	python3 residentnet/test_checkpoints.py
+	python3 residentnet/test_checkpoint_evidence.py
 	python3 residentnet/test_session_limit.py
 	python3 residentnet/test_control_journal.py
 	python3 residentnet/test_large_snapshot.py

@@ -125,3 +125,38 @@ but there is no startup STOP/restart, final drain or successful-capture mutation
 acceptance. See `artifacts/doom-startup-20261013/README.md` for the exact evidence.
 The failure inspector accepts an explicitly identified final partial RAM page
 without treating it as a completed audit; it always returns `accepted:false`.
+
+
+## Opt-in startup checkpoints
+
+`--checkpoints` on both engine and private-platform builds adds recorded source
+patches from `instrument.py`. Admission additionally requires
+`--startup-checkpoints` pointing to the actual native record stream. The compiled
+identity binds that stream alongside the original first-frame and WAD references.
+The owned checkpoint ABI (version `0x20001`, 144 bytes) is deliberately distinct
+from the existing 128-byte owned API. Callback offset 128 and reserved words are
+checked in both private and kernel layouts.
+
+Stages cover engine entry, each level-loading phase, side texture-ID fingerprint,
+player/view coordinates and directions, texture lookup/composite selection, BSP,
+planes/masked draw, first-frame hashes, owned exit and cleanup. Scalar hashes
+exclude pointers/padding. To bound storage, early lookup records sample texture
+indexes divisible by 64 and omit patch-selection records until invocation-relative
+WAD request 4,600. Other stages are always recorded. No data transfer is skipped.
+Normal native startup records 162 events, including camera and composite records
+around the previously observed request 4,675 discrepancy.
+
+The runtime allocates 16,400 bytes from its registered application heap at binding,
+retains records through all image invocations, and unpublishes the pointer before
+the controller drains that heap. A short runtime lock serializes each publication;
+the callback never allocates, waits or accepts application pointers. Overflow
+refuses the callback and takes the owned error boundary (214); records are never
+overwritten. The host reads a separate frozen eight-word buffer via upload ioctl
+operation 7, with unchanged session/epoch/uncertain-state guards. Complete audit
+pages, exact WAD bytes, executable authentication and STOP rules are unchanged.
+
+`checkpoint_replay.py` validates the complete raw channel and compares it with the
+pinned native trace. Its report always says `accepted:false`: a diagnostic trace
+alone cannot certify a frame, cleanup or a complete session. A complete startup
+acceptance replay additionally requires normal / partial STOP / normal checkpoint
+sequences. The original N3 failure evidence remains separate and unmodified.

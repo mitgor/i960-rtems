@@ -27,7 +27,15 @@ for line in (c/'engine-wad-journal.jsonl').open():
   parts[seq]=done+size;total+=size;fragments+=1
 assert len(epochs)==1 and list(records)==list(range(1,len(records)+1)) and all(parts[k]==n for k,(off,n) in records.items())
 observed=list(records.values());prefix=next((i for i,(x,y) in enumerate(zip(trace,observed)) if x!=y),min(len(trace),len(observed)))
-last_upload=json.loads((c/'upload-journal.jsonl').read_text().splitlines()[-1]);assert last_upload['op']==2 and last_upload['errno']==110
+timeouts=[]
+for name in ('upload-journal.jsonl','engine-checkpoint-journal.jsonl','engine-wad-journal.jsonl'):
+ f=c/name
+ if not f.exists():continue
+ for line in f.open():
+  e=json.loads(line)
+  if e.get('errno')==110:timeouts.append((name,e))
+assert len(timeouts)==1
+timeout_channel,last_upload=timeouts[0];assert last_upload['op'] in (2,3,4,7)
 assert 'Device or resource busy' in (c/'error.txt').read_text() and not (c/'engine-results.json').exists()
 assert 'SESSION FAILED: retained DMA/module; reboot required' in (c/'retained-close/result.txt').read_text()
 snaps=json.loads((c/'snapshots.json').read_text());ram=[json.loads(l) for l in (c/'ram-diagnostics.jsonl').read_text().splitlines()];assert len(snaps) in (len(ram),len(ram)+1)
@@ -52,7 +60,9 @@ for e in events:
 partial_page=None
 if len(words)==64:groups[page].append(words)
 else:
- assert page==2 and 0<len(words)<64 and len(snaps)==len(ram)+1
+ assert page in (0,1,2) and 0<len(words)<64
+ if page==2:assert len(snaps)==len(ram)+1
+ else:assert len(snaps)==len(ram)
  partial_page=dict(page=page,words=words)
 assert groups[0]==[s['words'] for s in snaps] and groups[2]==[r['words'] for r in ram]
 assert groups[1]==[d['words'] for d in json.loads((c/'heap-diagnostics.json').read_text())]
@@ -64,5 +74,5 @@ for x,y in zip(snaps,snaps[1:]):assert y['seconds']>x['seconds'] and all(y['word
 count,directory=struct.unpack_from('<2I',data,4);lumps=[struct.unpack_from('<II8s',data,directory+16*i) for i in range(count)]
 def names(pair):
  off,n=pair;return [name.rstrip(b'\0').decode() for start,size,name in lumps if start<off+n and start+size>off]
-out=dict(accepted=False,actual_requests=len(observed),expected_requests=len(trace),matching_prefix_requests=prefix,verified_payload_bytes=total,fragments=fragments,all_completed_payloads_match_wad=True,host_first_different=dict(request=trace[prefix],lumps=names(trace[prefix])),card_first_different=dict(request=observed[prefix],lumps=names(observed[prefix])),last_tick=snaps[-1]['words'][5],last_capture_seconds=snaps[-1]['seconds'],full_snapshot_pairs=len(ram),complete_snapshots=len(snaps),last_partial_page=partial_page,captured_fault_markers_zero=True,initial_image_and_paired_audit_checked=True,full_frozen_pages_reconstructed=True,upload_query_timeout_ms=last_upload['ns']/1e6,final_engine_outcome_known=False,completed_network_rounds=1+max(r['round'] for r in json.loads((c/'network-progress.json').read_text())))
+out=dict(accepted=False,actual_requests=len(observed),expected_requests=len(trace),matching_prefix_requests=prefix,verified_payload_bytes=total,fragments=fragments,all_completed_payloads_match_wad=True,host_first_different=dict(request=trace[prefix],lumps=names(trace[prefix])) if prefix<len(trace) else None,card_first_different=dict(request=observed[prefix],lumps=names(observed[prefix])) if prefix<len(observed) else None,last_tick=snaps[-1]['words'][5],last_capture_seconds=snaps[-1]['seconds'],full_snapshot_pairs=len(ram),complete_snapshots=len(snaps),last_partial_page=partial_page,captured_fault_markers_zero=True,initial_image_and_paired_audit_checked=True,full_frozen_pages_reconstructed=True,timeout_channel=timeout_channel,timeout_op=last_upload['op'],timeout_ms=last_upload['ns']/1e6,final_engine_outcome_known=False,completed_network_rounds=1+max(r['round'] for r in json.loads((c/'network-progress.json').read_text())))
 a.output.write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))

@@ -1,5 +1,35 @@
 # RTEMS working guidance
 
+**Startup checkpoints (2026-10-13; divergence localized, N3 still unaccepted):**
+The first 50 scalar checkpoints match the native host. Record 51, stage 38,
+first differs: player `viewz` is **−31 map units on i960 versus +41 on host**,
+at WAD request 4,674, before the differing texture read. Position `(0, −160)`,
+angle 90°, view sine/cosine, level counts and the side texture-ID fingerprint
+match. Counts do not prove all geometry contents match. BSP, planes and masked
+rendering finish; no `DG_DrawFrame` checkpoint or owned exit was captured.
+
+The physical run preserved 170 checkpoint records, 274 full snapshot/RAM pairs,
+one extra snapshot plus 40 final RAM words, and 37 network rounds. All 27,725
+completed WAD fragments (14,194,884 bytes / 4,764 requests) match the pinned WAD.
+An upload-query timeout retained the module. Final fault PC, first frame, STOP,
+repeat and drain remain unknown/unaccepted; do not weaken their gates.
+
+The opt-in 144-byte API and separate read-only channel use a non-overwriting
+512-record, 16,400-byte registered log inside the existing 8 MiB arena. Native
+normal/STOP/deadline/read-error/repeat and the accepted N2 replay pass. Runtime
+code fits the existing guarded engine window. Exact card/build archives are local.
+After hash verification and reboot, public IPv6 HTTP returned 200 from the Mac.
+Exclusive reservation released; production relay PID 3737 in boot
+`5e697ec6-a2e7-488d-95b3-4262e31f9b7f` owns the card. Coordinate and stop that relay
+cleanly before future exclusive use.
+
+Next: checkpoint player spawn and height calculation (`mo->z`, floor/ceiling,
+viewheight, bob, sector/subsector selection), compare relevant field offsets and
+signed fixed-point operations. Independently bracket the path from completed
+masked rendering to `DG_DrawFrame`; the wrong height does not yet explain the hang.
+[Evidence and reproduction](../artifacts/doom-checkpoints-20261013/README.md).
+
+
 **N3 actual startup (2026-10-13; implemented, not physically accepted):**
 The real private-library Doom engine passes ten native first-frame / STOP /
 deadline / read-error / repeat cases, with exact reference pixels and palette.

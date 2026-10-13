@@ -1,0 +1,58 @@
+{
+  "accepted": false,
+  "diagnostic_only": true,
+  "validated_records": 170,
+  "oracle_records": 162,
+  "epoch": 39230,
+  "uncertain_errno": null,
+  "comparisons": [
+    {
+      "generation": 4,
+      "records": 170,
+      "matching_prefix": 50,
+      "first_difference": {
+        "card": {
+          "stage": "player viewz/extralight",
+          "words": [
+            827343684,
+            51,
+            4,
+            38,
+            4292935680,
+            0,
+            0,
+            4674
+          ],
+          "view_height_map_units": -31.0
+        },
+        "host": {
+          "stage": "player viewz/extralight",
+          "words": [
+            827343684,
+            51,
+            1,
+            38,
+            2686976,
+            0,
+            0,
+            4674
+          ],
+          "view_height_map_units": 41.0
+        }
+      },
+      "last": {
+        "stage": "masked rendered",
+        "words": [
+          827343684,
+          170,
+          4,
+          44,
+          0,
+          0,
+          0,
+          4764
+        ]
+      }
+    }
+  ]
+}

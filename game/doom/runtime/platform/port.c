@@ -23,19 +23,34 @@ static unsigned char log_ring[DPL_LOG],frame[64000],keys[DPL_KEYS],pressed[DPL_K
 static unsigned log_start,log_count,key_read,key_count,armed,initialized,retired;
 static unsigned char palette[768];
 static jmp_buf escape;
+#include "../startup/checkpoint_api.h"
 static unsigned startup,started,budget,virtual_ms;
 void doom_platform_safe(void);
+void doom_platform_mark(unsigned,unsigned,unsigned,unsigned);
 #undef errno
 extern int errno;
 static int fail(int e){errno=e;_impure_ptr->_errno=e;return -1;}
 static void fatal(int n) __attribute__((noreturn));
-static void fatal(int n){stats.exited=1;stats.exit_code=(unsigned)n;if(armed&&(!owned||owned->owner()))longjmp(escape,1);for(;;){/* fatal outside an admitted call: never pretend to return */}}
+static void fatal(int n){
+#ifdef DOOM_CHECKPOINTS
+ doom_platform_mark(60,n,0,0);
+#endif
+ stats.exited=1;stats.exit_code=(unsigned)n;if(armed&&(!owned||owned->owner()))longjmp(escape,1);for(;;){/* fatal outside an admitted call: never pretend to return */}}
 int doom_platform_bind(const struct doom_runtime_v1*a,const char*path){
  if(io||!path||!*path||!a||a->magic!=DOOM_API_MAGIC||!((a->version==DOOM_API_VERSION&&a->features==DOOM_API_FEATURES&&a->max_read==512)||(a->version==DOOM_API_BATCH_VERSION&&a->features==DOOM_API_BATCH_FEATURES&&a->max_read==4096))||a->bytes!=sizeof(*a)||a->pointer_bytes!=sizeof(void*)||a->little_endian!=1||a->file_id!=1||a->file_bytes<512||a->file_bytes>268435456u||a->reserved[0]||a->reserved[1]||!a->allocate||!a->release||!a->read||!a->ticks_ms)return 0;
  io=a;iwad=path;return 1;
 }
 int doom_platform_bind_owned(const struct doom_runtime_owned*a,const char*path){
- if(owned||!a||a->magic!=DOOM_OWNED_MAGIC||a->version!=DOOM_OWNED_VERSION||a->bytes!=sizeof(*a)||a->features!=DOOM_OWNED_FEATURES||a->reserved||!a->owner||!a->wait_ms||!a->stopping||!a->owner()||a->stopping())return 0;
+ if(owned||!a||a->magic!=DOOM_OWNED_MAGIC||
+#ifdef DOOM_CHECKPOINTS
+ a->version!=DOOM_CHECKPOINT_VERSION||a->bytes!=sizeof(struct doom_runtime_checkpoint)||a->features!=DOOM_CHECKPOINT_FEATURES
+#else
+ a->version!=DOOM_OWNED_VERSION||a->bytes!=sizeof(*a)||a->features!=DOOM_OWNED_FEATURES
+#endif
+||a->reserved||!a->owner||!a->wait_ms||!a->stopping||!a->owner()||a->stopping())return 0;
+ #ifdef DOOM_CHECKPOINTS
+ {const struct doom_runtime_checkpoint*t=(const void*)a;if(!t->mark||t->reserved[0]||t->reserved[1]||t->reserved[2])return 0;}
+#endif
  if(!doom_platform_bind(&a->io,path))return 0;owned=a;return 1;
 }
 int doom_platform_checkpoint(void){if(!io||retired|| (owned&&!owned->owner()))return -1;return owned&&owned->stopping()?1:0;}
@@ -86,7 +101,7 @@ void DG_SleepMs(unsigned n){unsigned start;if(startup){doom_platform_safe();virt
  else while(DG_GetTicksMs()-start<n){} /* Preemptible clock wait; owned yield/STOP extension remains an admission gate. */}
 int DG_GetKey(int*p,unsigned char*k){if(!p||!k)fatal(205);if(!key_count)return 0;*p=pressed[key_read];*k=keys[key_read];key_read=(key_read+1)%DPL_KEYS;key_count--;return 1;}
 extern unsigned char *DG_ScreenBuffer;
-void DG_DrawFrame(void){unsigned i,h=2166136261u;if(!DG_ScreenBuffer)fatal(206);for(i=0;i<64000;i++){frame[i]=DG_ScreenBuffer[i];h=(h^frame[i])*16777619u;}stats.frame_hash=h;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colors[i].r;palette[3*i+1]=colors[i].g;palette[3*i+2]=colors[i].b;}for(i=0;i<768;i++)h=(h^palette[i])*16777619u;stats.palette_hash=h;stats.frames++;if(startup)fatal(213);}
+void DG_DrawFrame(void){unsigned i,h=2166136261u;doom_platform_mark(50,0,0,0);if(!DG_ScreenBuffer)fatal(206);for(i=0;i<64000;i++){frame[i]=DG_ScreenBuffer[i];h=(h^frame[i])*16777619u;}stats.frame_hash=h;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colors[i].r;palette[3*i+1]=colors[i].g;palette[3*i+2]=colors[i].b;}for(i=0;i<768;i++)h=(h^palette[i])*16777619u;stats.palette_hash=h;stats.frames++;doom_platform_mark(51,stats.frame_hash,stats.palette_hash,stats.frames);if(startup)fatal(213);}
 int doom_platform_key(int p,unsigned char k){unsigned i;if(key_count==DPL_KEYS||p<0||p>1)return 0;i=(key_read+key_count)%DPL_KEYS;keys[i]=k;pressed[i]=p;key_count++;stats.key_events++;return 1;}
 unsigned doom_platform_log(void*dst,unsigned n){unsigned i;unsigned char*p=dst;if(!p&&n)return 0;if(n>log_count)n=log_count;for(i=0;i<n;i++)p[i]=log_ring[(log_start+i)%DPL_LOG];log_start=(log_start+n)%DPL_LOG;log_count-=n;return n;}
 const struct doom_platform_stats *doom_platform_stats(void){return &stats;}
@@ -109,4 +124,13 @@ int doom_platform_retire(void){unsigned i;if(armed||retired||!owned||!owned->own
  for(i=0;i<4;i++){files[i].id=files[i].offset=0;}open_files=0;
  for(i=0;i<128;i++)if(allocations[i].p)free(allocations[i].p);
  retired=1;return !stats.blocks;
+}
+
+void doom_platform_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
+#ifdef DOOM_CHECKPOINTS
+ const struct doom_runtime_checkpoint*t=(const void*)owned;
+ if(!t||!owned->owner()||!t->mark(stage,x,y,z)){/* No recursive fatal callback. */stats.exited=1;stats.exit_code=214;if(armed&&owned&&owned->owner())longjmp(escape,1);for(;;){}}
+#else
+ (void)stage;(void)x;(void)y;(void)z;
+#endif
 }

@@ -23,6 +23,10 @@ static struct doom_runtime_v1 api;
 static void owned_bind(void);
 static volatile unsigned owned_generation,owned_running,owned_stop_requested;
 #endif
+#ifdef I960_DOOM_CHECKPOINTS
+static int checkpoint_init(void);
+static void checkpoint_retire(void);
+#endif
 static unsigned runtime_stopping(void){
 #ifdef I960_DOOM_OWNED
  if(owned_running&&owned_stop_requested)return 1;
@@ -66,6 +70,9 @@ done:
 }
 unsigned int doom_runtime_bind(const unsigned int*w,unsigned int n){unsigned int i;
  if(bound||n!=11||w[0]!=WAD_MAGIC||w[1]!=1||w[2]<512||w[2]>268435456u||!doom_arena_context())return 1;
+#ifdef I960_DOOM_CHECKPOINTS
+ if(!checkpoint_init())return 1;
+#endif
  api.magic=DOOM_API_MAGIC;api.version=DOOM_API_VERSION;api.bytes=sizeof(api);api.features=DOOM_API_FEATURES;api.pointer_bytes=sizeof(void*);api.little_endian=1;api.arena_bytes=8u*1048576u;api.max_read=512;api.file_id=1;api.file_bytes=w[2];
  for(i=0;i<8;i++)api.sha256[i]=w[3+i];api.allocate=allocate;api.release=doom_free;api.ticks_ms=milliseconds;api.read=read_wad;api.reserved[0]=api.reserved[1]=0;bound=1;
 #ifdef I960_DOOM_OWNED
@@ -80,14 +87,18 @@ if(batch_selected)return batch_route(op,index,value,running);
 #endif
 return doom_wad_control(&wad,op,index,value,running&&!upload_stopping());}
 unsigned int doom_runtime_report(unsigned int i){unsigned int w[8];w[0]=WAD_MAGIC;w[1]=wad.sequence;w[2]=wad.accepted;w[3]=wad.rejected;w[4]=wad.cancelled;w[5]=leases;w[6]=wad.state;w[7]=api.file_bytes;return i<8?w[i]:~0u;}
-unsigned int doom_runtime_finish(void){return !leases&&wad.state==WAD_IDLE
+unsigned int doom_runtime_finish(void){unsigned ok=!leases&&wad.state==WAD_IDLE
 #ifdef I960_WAD_BATCH
  &&batch_idle()
 #endif
 #ifdef I960_DOOM_OWNED
  &&!owned_running
 #endif
- ;}
+ ;
+#ifdef I960_DOOM_CHECKPOINTS
+ if(ok)checkpoint_retire();
+#endif
+ return ok;}
 #include "doom_owned_runtime.h"
 #include "doom_batch_runtime.h"
 #endif

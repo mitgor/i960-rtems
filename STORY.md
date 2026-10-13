@@ -2536,6 +2536,37 @@ reached. Until those checkpoints tell us where the card leaves the host's path,
 there is no first frame to claim. The two failed runs belong in the record just
 as much as the host's matching picture.
 
+## The height of the camera
+
+We put small numbered notes inside startup. The engine could report four integers
+without allocating anything or waiting for the host. A separate read-only channel
+collected them while the full memory and packet checks kept running. The notebook
+had room for 512 entries; it would refuse more rather than overwrite the beginning
+of the story. Its sixteen kilobytes came from the same eight-megabyte allowance.
+
+The first fifty notes agreed. Textures had been built. Level counts matched, and
+a fingerprint of every side's texture numbers matched too. The player stood at
+zero, minus one hundred and sixty, facing north. Then the two machines disagreed
+about where the player's eyes were. The host said forty-one units high. The card
+said minus thirty-one. The difference was already there before the texture reads
+went their separate ways.
+
+That did not prove which calculation was wrong. A matching count is not a matching
+map, and the new notes had not yet recorded the player's floor, ceiling or height
+updates. But the search had moved from thousands of file reads to a particular
+piece of game state. Every delivered WAD byte still matched the original file.
+
+The card got further than silence had allowed us to see. It finished the BSP
+render, drew the planes, and finished the masked objects. Then the notes stopped,
+before the frame callback. The control channel timed out again. We saved 170 notes,
+274 complete memory-check pairs and the unfinished final page. Thirty-seven network
+rounds had completed beside the engine. There was still no returned frame, no tested
+STOP for that invocation and no clean drain to claim.
+
+The next questions became smaller: where did the camera lose seventy-two units,
+and what happened between the end of rendering and the frame callback? They might
+have the same answer. The evidence did not yet give us permission to say so.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

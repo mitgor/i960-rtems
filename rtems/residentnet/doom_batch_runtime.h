@@ -35,6 +35,16 @@ unsigned doom_runtime_batch_report(unsigned i){unsigned w[8];w[0]=DOOM_BATCH_MAG
 #endif
 
 #ifdef I960_WAD_BATCH
+#include "doom_checkpoint_runtime.h"
+#ifdef I960_DOOM_CHECKPOINTS
+static struct doom_runtime_checkpoint checkpoint_api;
+#define batch_owned_api checkpoint_api.base
+#else
 static struct doom_runtime_owned batch_owned_api;
-const struct doom_runtime_owned *doom_runtime_owned_batch_api(void){const struct doom_runtime_v1*a=doom_runtime_batch_api(4096);if(!a)return 0;batch_owned_api=owned_api;batch_owned_api.io=*a;return &batch_owned_api;}
+#endif
+const struct doom_runtime_owned *doom_runtime_owned_batch_api(void){const struct doom_runtime_v1*a=doom_runtime_batch_api(4096);if(!a)return 0;batch_owned_api=owned_api;batch_owned_api.io=*a;
+#ifdef I960_DOOM_CHECKPOINTS
+ batch_owned_api.version=DOOM_CHECKPOINT_VERSION;batch_owned_api.bytes=sizeof(checkpoint_api);batch_owned_api.features=DOOM_CHECKPOINT_FEATURES;checkpoint_api.mark=checkpoint_mark;
+#endif
+ return &batch_owned_api;}
 #endif

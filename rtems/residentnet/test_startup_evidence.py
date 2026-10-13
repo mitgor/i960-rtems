@@ -17,6 +17,8 @@ for case in ('template','metadata','identity','frame','palette','cleanup','peak'
  with tempfile.TemporaryDirectory() as d:
   t=Path(d)
   for name in ('engine-results.json','engine-template.bin','engine-relocations.bin','engine-owned-journal.jsonl','engine-wad-journal.jsonl'):(t/name).symlink_to((a.capture/name).resolve())
+  for name in ('engine-checkpoint-journal.jsonl','startup-checkpoints.jsonl'):
+   if (a.capture/name).exists():(t/name).symlink_to((a.capture/name).resolve())
   r=json.loads((t/'engine-results.json').read_text());rq=list(requests);rs=copy.deepcopy(responses)
   def write(name,data):
    f=t/name;f.unlink();f.write_bytes(data)

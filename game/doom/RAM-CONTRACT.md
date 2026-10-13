@@ -1,5 +1,20 @@
 # DoomGeneric RAM request for RTEMS
 
+**Checkpoint diagnostic addition (2026-10-13; physical diagnostic run completed; N3 not accepted):**
+The checkpoint log uses a registered 16,400-byte allocation in the existing
+8 MiB Doom arena, before admitted images. It remains outside private engine
+allocation/retirement and is unpublished before final controller heap drain.
+The native proof mirrors that placement and peaks at 6,646,255 heap bytes;
+with the conservative 900,000-byte image reservation and 4,352-byte target
+staging allowance, total modeled use is 7,550,607 bytes. No memory grant or guard
+boundary changes. Current admission storage: 799,852 bytes. The card completed 274 full RAM/snapshot
+audit pairs, but hung before first-frame return; no physical final peak/drain
+is claimed. Link assertions
+rejected static log storage; runtime text was placed in the existing protected
+engine window. The successful placement audit is in
+[checkpoint evidence](../../artifacts/doom-checkpoints-20261013/README.md).
+
+
 **N3 host startup measurement (2026-10-13; both physical startups failed before frame return):**
 The actual private-Newlib first-frame path peaks at 6,445,535 private allocation
 bytes in 13 blocks. Native total heap use including retained 64 KiB / 96 KiB

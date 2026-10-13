@@ -8,6 +8,8 @@ def exercise(u,root,wad):
  root=Path(root);m=json.loads((root/'manifest.json').read_text());blob=(root/'template.bin').read_bytes();meta=(root/'relocations.bin').read_bytes()
  assert hashlib.sha256(blob).hexdigest()==m['template_sha256'] and hashlib.sha256(meta).hexdigest()==m['metadata_sha256']
  u.journal_namespace='engine-';server=BatchServer(u,wad);rows=[]
+ from checkpoint_client import Checkpoints
+ checkpoints=Checkpoints(u) if m['startup'].get('checkpoints_sha256') else None
  def load(b,metadata):
   parts=[b[s['offset']:s['offset']+s['file_bytes']] for s in m['sections']]+[metadata]
   geometry=[(s['offset'],s['file_bytes'],s['memory_bytes'],s['flags']) for s in m['sections']]+[(m['metadata_offset'],len(meta),len(meta),2)]
@@ -23,10 +25,12 @@ def exercise(u,root,wad):
   for stopped in (False,True,False):
    load(blob,meta);base=u.command(14)[5];ctl=Control(u,False);server.mode="stop" if stopped else "normal";server.injected=False;first=len(server.records)
    def serve():
+    if checkpoints:checkpoints.pump()
     return server.serve()
    u.service=serve;start=time.monotonic()
    try:w=u.command(18,timeout=1860)
    finally:u.service=None
+   if checkpoints:checkpoints.pump(True)
    assert w[2]==0 and w[4]==0
    # Preserve a cleanly returned engine error/deadline report before rejecting
    # it as an unexpected outcome; never turn that report into acceptance.

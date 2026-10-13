@@ -10,11 +10,17 @@ static long upload_ioctl(struct file*file,unsigned int cmd,unsigned long arg){
  &&op!=3&&op!=4
 #ifdef I960_DOOM_OWNED
  &&op!=5&&op!=6
+#ifdef I960_DOOM_CHECKPOINTS
+ &&op!=7
 #endif
 #endif
- )||!epoch||epoch>65535||w[3]||w[4]||w[5]||w[6]||w[7]||(op==1&&(n<32||n>1024||(n&3)))||((op==2||op==3||op==5)&&n)||(op==4&&(n<32||n>544||(n&3)))||(op==6&&n!=32)){rc=-EINVAL;goto free;}
+#endif
+ )||!epoch||epoch>65535||w[3]||w[4]||w[5]||w[6]||w[7]||(op==1&&(n<32||n>1024||(n&3)))||((op==2||op==3||op==5)&&n)||(op==4&&(n<32||n>544||(n&3)))||(op==6&&n!=32)||(op==7&&n!=4)){rc=-EINVAL;goto free;}
 #ifdef I960_DOOM_OWNED
  if(op==6){if(w[8]!=0x3252444fu||!w[9]){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
+#endif
+#ifdef I960_DOOM_CHECKPOINTS
+ if(op==7){if(!w[8]||w[8]>512){rc=-EINVAL;goto free;}for(i=9;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
 #endif
  mutex_lock(&d->session_lock);
  if(d->removed||d->pinned||!d->owned||!d->mu_resident||d->pending||d->runner_uncertain||!d->irq_may_run||d->response_ready||d->sequence!=1||d->mu_failed||d->mu_halted){rc=-EBUSY;goto unlock;}
@@ -29,9 +35,9 @@ static long upload_ioctl(struct file*file,unsigned int cmd,unsigned long arg){
   for(i=0;i<n/4;i++){rc=packet_exchange(d,(op==1?0x71000000u:0x78000000u)|(i<<16)|epoch,w[8+i],&v,deadline);if(rc)goto uncertain;if(v){rc=-EPROTO;goto uncertain;}}
   rc=packet_exchange(d,(op==1?0x72000000u:0x79000000u)|epoch,0,&v,deadline);if(rc)goto uncertain;if(v){rc=-ESHUTDOWN;goto unlock;}
  }else{
-  rc=packet_exchange(d,(op==2?0x74000000u:op==5?0x7b000000u:0x75000000u)|epoch,0,&v,deadline);if(rc)goto uncertain;if(v){rc=-EPROTO;goto uncertain;}
+  rc=packet_exchange(d,(op==2?0x74000000u:op==5?0x7b000000u:op==7?0x7d000000u:0x75000000u)|epoch,op==7?w[8]:0,&v,deadline);if(rc)goto uncertain;if(v){rc=-EPROTO;goto uncertain;}
   memset(w+8,0,1024);n=op==2?64:32;
-  for(i=0;i<n/4;i++){rc=packet_exchange(d,(op==2?0x73000000u:op==5?0x7c000000u:0x76000000u)|(i<<16)|epoch,0,&w[8+i],deadline);if(rc)goto uncertain;}
+  for(i=0;i<n/4;i++){rc=packet_exchange(d,(op==2?0x73000000u:op==5?0x7c000000u:op==7?0x7e000000u:0x76000000u)|(i<<16)|epoch,0,&w[8+i],deadline);if(rc)goto uncertain;}
  }
  w[2]=n;w[3]=d->sequence;w[4]=readl(d->bar+ODB);w[5]=d->pending;w[6]=d->runner_uncertain;
  if(w[4]&1||w[5]||w[6]){rc=-EPROTO;goto uncertain;}

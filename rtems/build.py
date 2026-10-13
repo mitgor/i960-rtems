@@ -93,9 +93,11 @@ if a.wad_poll:flags+=['-DI960_WAD_POLL']
 if a.doom_engine:
  flags+=['-DI960_DOOM_ENGINE']
  if startup_profile:flags+=['-DI960_DOOM_STARTUP']
+ if startup_profile and json.loads((a.doom_engine/'manifest.json').read_text())['startup'].get('checkpoints_sha256'):flags+=['-DI960_DOOM_CHECKPOINTS']
  shutil.copyfile(a.doom_engine/'engine_identity.h',inc/'engine_identity.h')
  engine_out=out/'entry/engine';engine_out.mkdir(parents=True,exist_ok=True)
  for name in ('manifest.json','template.bin','relocations.bin','engine_identity.h'):shutil.copyfile(a.doom_engine/name,engine_out/name)
+ if (a.doom_engine/'startup-checkpoints.bin').exists():shutil.copyfile(a.doom_engine/'startup-checkpoints.bin',engine_out/'startup-checkpoints.bin')
  if (a.doom_engine/'startup-requests.bin').exists():shutil.copyfile(a.doom_engine/'startup-requests.bin',engine_out/'startup-requests.bin')
 if a.owned_mib:flags+=['-DI960_OWNED_MIB='+str(a.owned_mib)]
 if a.extra_ram:flags+=['-DI960_EXTRA_RAM']

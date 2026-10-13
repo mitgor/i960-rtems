@@ -1,0 +1,8 @@
+{
+  "diagnostic_only": true,
+  "checkpoint_run_requests": 4764,
+  "previous_compatibility_run_requests": 4764,
+  "all_request_offsets_and_lengths_identical": true,
+  "card_kernel_sha256": "a7c1118d338a9d9e75064e89cac0528acb6bacdeb0c7d68af35fac089144c011",
+  "card_module_sha256": "da20c1bd021db2c65134a3567a37a03c6ced3a350fed42364b00bbae5deaf6c6"
+}

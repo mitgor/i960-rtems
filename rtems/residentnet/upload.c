@@ -42,6 +42,9 @@ unsigned int upload_init(void){if(initialized)return 0;
 /* ISR/mailbox path only: no allocator, hashes, code execution or image copying. */
 unsigned int upload_control(unsigned int op,unsigned int index,unsigned int value,unsigned int running){unsigned int i;
 #ifdef I960_DOOM_OWNED
+#ifdef I960_DOOM_CHECKPOINTS
+ if(op==0x7d||op==0x7e)return doom_runtime_checkpoint_control(op,index,value,running);
+#endif
  if(op>=0x7a&&op<=0x7c)return doom_runtime_owned_control(op,index,value,running);
 #endif
  #ifdef I960_DOOM_RUNTIME

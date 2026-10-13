@@ -2,6 +2,14 @@
 import hashlib,json,struct,zlib
 
 def prepare(capture,build,data,r,m,runs,report,bases):
+ if m['startup'].get('checkpoints_sha256'):
+  from checkpoint_replay import check
+  cp=check(capture,build);assert cp['uncertain_errno'] is None
+  assert [g['generation'] for g in cp['comparisons']]==[4,5,6]
+  for g in (cp['comparisons'][0],cp['comparisons'][2]):assert g['matching_prefix']==g['records']==cp['oracle_records'] and g['first_difference'] is None
+  rows=[json.loads(line) for line in (capture/'startup-checkpoints.jsonl').open()]
+  stopped=[w for w in rows if w[2]==5];assert [w[3] for w in stopped]==[1,2,60,61,62]
+  assert [w[4] for w in stopped]==[0,0,210,210,0] and all(w[5:7]==[0,0] for w in stopped) and [w[7] for w in stopped]==[0,0,2,2,2]
  oracle=m['startup'];raw=(build/'startup-requests.bin').read_bytes();assert hashlib.sha256(raw).hexdigest()==oracle['requests_sha256']
  trace=list(struct.iter_unpack('<2I',raw));assert len(trace)==4747 and r['startup'] and r['diagnostic_only'] is False
  expected=[];last=0
@@ -35,6 +43,7 @@ def prepare(capture,build,data,r,m,runs,report,bases):
    assert w[4:7]==(want,0,zlib.crc32(payload)) and q[64:64+want]==payload and n==32+((want+3)&~3) and not any(q[64+want:32+n])
    parts[seq]=index+1;fragment_count+=1
  assert list(seen)==list(records) and len(epochs)==1
+ if m['startup'].get('checkpoints_sha256'):assert cp['epoch'] in epochs
  for seq,row in records.items():assert parts.get(seq,0)==(3 if row['mode']=='stop' else (row['wanted']+511)//512)
  accepted=[];refused=[];states=[]
  for e in map(json.loads,(capture/'engine-owned-journal.jsonl').open()):

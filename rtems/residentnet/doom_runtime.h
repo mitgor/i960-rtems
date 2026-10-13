@@ -22,3 +22,7 @@ unsigned doom_runtime_owned_control(unsigned,unsigned,unsigned,unsigned);
 #ifdef I960_WAD_BATCH
 const struct doom_runtime_owned *doom_runtime_owned_batch_api(void);
 #endif
+
+#ifdef I960_DOOM_CHECKPOINTS
+unsigned doom_runtime_checkpoint_control(unsigned,unsigned,unsigned,unsigned);
+#endif

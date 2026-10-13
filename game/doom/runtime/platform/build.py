@@ -2,9 +2,12 @@
 """Build private pinned Newlib, rename every libc/port symbol, final-link oracle."""
 import argparse,hashlib,json,re,subprocess
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--newlib',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--engine',type=Path);p.add_argument('--doom',type=Path,required=True);p.add_argument('--target',choices=('i960','host32'),default='i960');p.add_argument('--startup',action='store_true');p.add_argument('--sanitize',action='store_true');a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
+p=argparse.ArgumentParser();p.add_argument('--newlib',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--engine',type=Path);p.add_argument('--doom',type=Path,required=True);p.add_argument('--target',choices=('i960','host32'),default='i960');p.add_argument('--startup',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--sanitize',action='store_true');a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
 r=Path(__file__).resolve().parent;lib=a.newlib/'newlib/libc';cross='/home/mit/i960/tools/bin/i960-coff-' if a.target=='i960' else '';cc=cross+'gcc' if cross else 'gcc'
 flags=['-Os','-fno-builtin','-ffreestanding','-D__SINGLE_THREAD__','-DWANT_PRINTF_LONG_LONG','-DCMAP256','-I'+str(lib/'include'),'-I'+str(a.newlib/'newlib/libm/common'),'-I'+str(r.parents[1]/'include'),'-I'+str(a.doom),'-I'+str(r)]+(['-mrp','-msoft-float'] if cross else ['-m32','-D__i386__','-funsigned-char','-D_I386MACH_ALLOW_HW_INTERRUPTS'])
+if a.checkpoints:
+ assert a.startup
+ flags+=['-DDOOM_CHECKPOINTS']
 if a.startup and cross:flags+=['-mold-align'] # same private ABI as the admitted engine
 if a.sanitize:
  assert a.target=='host32'
@@ -40,7 +43,7 @@ preserve=lambda s:s.lstrip('_').startswith(('doom_platform_','doom_cache_','doom
 mapping={s:('_doom_nl'+s if cross else 'doom_nl_'+s) for s in defined if not preserve(s)}
 (a.out/'rename.txt').write_text(''.join(k+' '+v+'\n' for k,v in sorted(mapping.items())))
 private=a.out/'private-newlib.a';subprocess.run([objcopy,'--redefine-syms='+str(a.out/'rename.txt'),str(archive),str(private)],check=True)
-report=dict(target=a.target,sanitized=a.sanitize,patches=patches,sources=source_hashes,commands=commands,renamed_symbols=mapping,archive_sha256=hashlib.sha256(private.read_bytes()).hexdigest())
+report=dict(checkpoints=a.checkpoints,target=a.target,sanitized=a.sanitize,patches=patches,sources=source_hashes,commands=commands,renamed_symbols=mapping,archive_sha256=hashlib.sha256(private.read_bytes()).hexdigest())
 if a.engine:
  engine=a.out/'engine-private.o';subprocess.run([objcopy,'--redefine-syms='+str(a.out/'rename.txt'),str(a.engine),str(engine)],check=True)
  libgcc=Path(subprocess.check_output([cc,*(['-mrp','-msoft-float'] if cross else ['-m32']),'-print-libgcc-file-name'],text=True).strip())
