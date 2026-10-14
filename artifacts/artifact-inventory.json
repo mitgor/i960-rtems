@@ -3694,8 +3694,8 @@
     },
     {
       "path": "artifacts/doom-detail-20261014/README.md",
-      "size": 8726,
-      "sha256": "7739714a9c8715113ac75e471bea7ff5f5e27a02e740f62ea06e5186bf4ae768"
+      "size": 8980,
+      "sha256": "4390e1fb9159ec5f07d0c3adca922568a98b79bd813e04455613c9224f5ce75f"
     },
     {
       "path": "artifacts/doom-detail-20261014/analyze.py",
@@ -3814,8 +3814,13 @@
     },
     {
       "path": "artifacts/doom-detail-20261014/restoration.json",
-      "size": 355,
-      "sha256": "de298eaf395e3fbb7377881e1aaf2e6b98169d1e092dbae40ac6fdf75f62dbf4"
+      "size": 563,
+      "sha256": "4618cd665f69586b5f3e1e78b6d21382a9e3206e35e0ad6a0e7e6dececbeade2"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/restore-relay.log",
+      "size": 1298,
+      "sha256": "2d0354aba87ef7343239d1b7edc2b32d7ab830268b4cb7be6ad4e0ae389aa6bb"
     },
     {
       "path": "artifacts/doom-detail-20261014/restore.sh",

@@ -146,6 +146,10 @@ The test owner closed on boot `e20b227d-5c5a-4432-b11d-1f6842271218`.
 Normal reboot was requested after local verification. See `restoration.json`
 for final reachability/service state and `restore.sh` for the exact relay command.
 
-**Final service state:** SSH timed out after the release reboot. A user power
-cycle was requested; public IPv6 HTTP restoration remains pending. No retained
-module was force-unloaded. All accepted evidence was already verified locally.
+**Final service state:** SSH initially timed out after reboot and a power-cycle
+request was issued. The PC subsequently returned on boot
+`1917f487-902d-4579-bbea-5b5b859db300`. Public IPv6 HTTP is restored and checked
+from the local Mac: HTTP 200, RTEMS content. Current relay supervisor **1497**,
+Python **1521**, bound `dac960auto`; output
+`/home/mit/i960-rtems-web-20261011/http-after-doom-detail-20261014`.
+Stop that relay normally before another exclusive test; never force-unload it.

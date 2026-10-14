@@ -12,8 +12,9 @@ Build `--pipeline --detail-test` for bounded high/low/low/high; fixed optional
 `--low-detail --no-fnv --direct-frame` for a separate interactive candidate.
 Do not claim 10 FPS or long interactive acceptance. Evidence and exact binaries:
 `artifacts/doom-detail-20261014/README.md`. Test closed and local replay passed;
-SSH has not returned after normal reboot; user power-cycle requested and public
-HTTP restoration pending. Consult `restoration.json` there for service state.
+Public IPv6 HTTP restored (200), boot `1917f487-902d-4579-bbea-5b5b859db300`;
+relay supervisor 1497 / Python 1521 owns `dac960auto`. Stop it normally before
+new card work. Consult `restoration.json` there for service state.
 Never force-unload retained resources or overlap hardware owners.
 <!-- /doom-detail-current -->
 

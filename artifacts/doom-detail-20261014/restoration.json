@@ -1,11 +1,16 @@
 {
+  "checked_utc": "2026-10-14T21:41:59.163561+00:00",
   "test_owner_closed": true,
-  "test_boot_id": "e20b227d-5c5a-4432-b11d-1f6842271218",
   "local_archives_sha256_verified": true,
   "local_full_replays_passed": true,
-  "normal_reboot_requested": true,
-  "ssh_after_reboot": "Connection timed out",
-  "public_http_restored": false,
-  "user_power_cycle_requested": true,
+  "boot_id": "1917f487-902d-4579-bbea-5b5b859db300",
+  "supervisor_pid": 1497,
+  "python_pid": 1521,
+  "driver": "dac960auto",
+  "output": "/home/mit/i960-rtems-web-20261011/http-after-doom-detail-20261014",
+  "public_url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "body_contains_rtems": true,
+  "public_http_restored": true,
   "restore_script": "restore.sh"
 }
