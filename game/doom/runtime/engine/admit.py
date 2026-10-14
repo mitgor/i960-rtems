@@ -19,7 +19,7 @@ if a.play:
  assert frame_offset>=m['sections'][2]['offset'] and frame_offset+131072<=m['memory_bytes']
  assert m['admission_bytes']<=900000
  m['play_offset']=frame_offset
- for key in ('frame_profile','no_fnv','direct_frame','presentation_test'):m[key]=bool(json.loads((a.build/'build.json').read_text()).get(key))
+ for key in ('frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile'):m[key]=bool(json.loads((a.build/'build.json').read_text()).get(key))
  m['double_buffer']=bool(json.loads((a.build/'build.json').read_text()).get('double_buffer'))
  if a.dma_stress:m['dma_stress']=1
 if a.startup_oracle:
@@ -46,6 +46,7 @@ for k,v in [('image',m['template_sha256']),('metadata',m['metadata_sha256']),('t
 h+='static const unsigned engine_geometry[4][4]={'+','.join('{'+','.join(str(s[k]) for k in ('offset','file_bytes','memory_bytes','flags'))+'}' for s in m['sections'])+',{'+f'{off},{len(meta)},{len(meta)},2'+'}};\n'
 if a.play:h+='#define ENGINE_STARTUP 1\n#define ENGINE_PLAYABLE 1\n#define ENGINE_PLAY_OFFSET '+str(m['play_offset'])+'u\n'
 if m.get('frame_profile'):h+='#define ENGINE_FRAME_PROFILE 1\n'
+if m.get('cpu_profile'):h+='#define ENGINE_CPU_PROFILE 1\n'
 if m.get('double_buffer'):h+='#define ENGINE_PLAY_DOUBLE 1\n'
 if a.startup_oracle:h+='#define ENGINE_STARTUP 1\n#define ENGINE_FRAME '+str(oracle['frame_fnv'])+'u\n#define ENGINE_PALETTE '+str(oracle['palette_fnv'])+'u\n'
 if m.get('startup',{}).get('visible'):

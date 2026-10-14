@@ -3693,6 +3693,166 @@
       "sha256": "6155a67a913fa1c598d2b8d69be48c429f94fc2c7fb1162252612d714984cd08"
     },
     {
+      "path": "artifacts/doom-detail-20261014/README.md",
+      "size": 8726,
+      "sha256": "7739714a9c8715113ac75e471bea7ff5f5e27a02e740f62ea06e5186bf4ae768"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/analyze.py",
+      "size": 2079,
+      "sha256": "df20917d4fb67423e9f73580faf5c110b64f5569e07a0ecb4836a74a74f4c439"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/browser-binary.log",
+      "size": 97,
+      "sha256": "573f3dc787edfb95402b60b3009578440e99cfab27a6cfabc28cd25b23bc8976"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/build-evidence.tar.gz",
+      "size": 44031717,
+      "sha256": "8f3130b706c9fb4f02248513aa21efe27baa76154cd3051debf10e107d748684"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/build.sh",
+      "size": 2413,
+      "sha256": "8bb5600a2d291996ee648bfabfd1ac8fc61f3b8129401ac6b1b30e18f88e81c8"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/card-evidence.tar.gz",
+      "size": 18111112,
+      "sha256": "a8cb7a60d96a27768f79743c2c514e4dd37bc8ae431cfde623f3f5f24cbfda43"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/card-high.png",
+      "size": 33065,
+      "sha256": "542d03054dc93b830eaa12a319d595c57af76abaf5e874795b70887cac19395c"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/card-low.png",
+      "size": 24594,
+      "sha256": "645746f5f6996ac7b6eab7a76daced85cfbf50d9be35fb6f33823a50ebfb5e50"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/close.sh",
+      "size": 1058,
+      "sha256": "46b007d7b9914ddb99925e63d89b59c442fc944bf1e20f053fc3c701e8d6549f"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/final-ram-audit.json",
+      "size": 1696,
+      "sha256": "4740db122d8812c34f5f3723eb53130373289c215aeaf6408759884a7870bee6"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/frames.json",
+      "size": 1479,
+      "sha256": "3712d92e6c74d5a50d8c2c2fcedc1bcf1a352f042531b34cb0e656a83b1b121c"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/http-observations.jsonl",
+      "size": 13766,
+      "sha256": "67667dfa33f28eb43f58dea9e201ab155a688c36d8d13fc54f3b38df5fbde42f"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/http-verification.json",
+      "size": 740,
+      "sha256": "517fffa5d2e56d296126dd3b99d2c2ae46843cbbdc7e0fe492d73eed4a4a44a5"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/legacy-pipeline.log",
+      "size": 190,
+      "sha256": "9e79dca47414bef10affcd30a52d5e56357ca4035fb20502c5436cd679d0e674"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/local-frames.json",
+      "size": 1479,
+      "sha256": "3712d92e6c74d5a50d8c2c2fcedc1bcf1a352f042531b34cb0e656a83b1b121c"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/local-measurements.json",
+      "size": 39332,
+      "sha256": "4b9e72d744a3ffadacdd5f6e70afe3843ac6e058d6cc42fb4fd3a20a50e603ce"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/local-system.json",
+      "size": 6352,
+      "sha256": "e1c50585f18df89ba1a1576c6c686c0908b2c8c921dc31f15f2bba522501c04f"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/local-wad.json",
+      "size": 257,
+      "sha256": "b8b46168392e489c39b159c32f1ca88edb829ecc018876db82b12da71734b302"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/measurements.json",
+      "size": 39332,
+      "sha256": "4b9e72d744a3ffadacdd5f6e70afe3843ac6e058d6cc42fb4fd3a20a50e603ce"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/native_frames.py",
+      "size": 1965,
+      "sha256": "63688222981df97431fac6b3e980676f671c43fcbfa7b4170f6d7ffbd413cdec"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/preliminary.json",
+      "size": 39331,
+      "sha256": "86e89a0954f589f4bf4212d728dfa4a6cda2ac56f048bea91bc4868b808f8045"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/profile-schema.log",
+      "size": 84,
+      "sha256": "c6fc3c8508863c6a3ee76221b0cae18c7d1c21d1a08ae121a18c78a653f8a517"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/replay.py",
+      "size": 1930,
+      "sha256": "e9be009f40ca59f7040c453e415637e2b27ba4de68229554f32c1ea62cb8fc7c"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/restoration.json",
+      "size": 355,
+      "sha256": "de298eaf395e3fbb7377881e1aaf2e6b98169d1e092dbae40ac6fdf75f62dbf4"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/restore.sh",
+      "size": 855,
+      "sha256": "f5594141910bb02526876e6efd6c8c26ad8d37beaf4c99947677df6565252b86"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/run.sh",
+      "size": 777,
+      "sha256": "847d2e91485a178b39ba997700f471220baf47e2258b240b05860b4f2d6db399"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/system.json",
+      "size": 6352,
+      "sha256": "e1c50585f18df89ba1a1576c6c686c0908b2c8c921dc31f15f2bba522501c04f"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/tamper.json",
+      "size": 2906,
+      "sha256": "657e143373d6b38c1d098d56efbe63c835766cc065d8b6bc7ea6e39ed06a68f0"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/visual-check.json",
+      "size": 345,
+      "sha256": "3c027bcd4ccb5e054734f97bd6437ea3d8803ebf5724a85c5a93f9935d72824f"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/wad.json",
+      "size": 257,
+      "sha256": "b8b46168392e489c39b159c32f1ca88edb829ecc018876db82b12da71734b302"
+    },
+    {
+      "path": "artifacts/doom-detail-20261014/wait-close.py",
+      "size": 414,
+      "sha256": "a41a2a2d17a060c364ed874b5714c29d9a13a6fa06260441f05e7d0e98ed0e28"
+    },
+    {
       "path": "artifacts/doom-determinism-20261012/README.md",
       "size": 3813,
       "sha256": "75ab0272e9da2177abeb970d5ae5da6b7cf68aa17e6e07227c8f94fa04fe3bad"

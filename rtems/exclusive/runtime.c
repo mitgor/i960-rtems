@@ -40,6 +40,13 @@ volatile unsigned int switch_threads[2],switch_active[2],switch_fault;
 static struct irq_lifetime life[2];
 static unsigned int allocated,sizes[4],initialized,limit,handoffs;
 static volatile unsigned int ticks,stop,progress[2],done[2],fault;
+#ifdef I960_DOOM_CPU_PROFILE
+/* Independent statistical counter: RTEMS ticks_executed also counts switches.
+ * Sample the interrupted task before tick processing/dispatch. Includes ISR
+ * attribution and sampling error; never advertise cycle-exact CPU time. */
+static volatile unsigned doom_cpu_samples;
+unsigned doom_profile_samples(void){return doom_cpu_samples;}
+#endif
 static Context_Control fatal_context;
 static unsigned int resident,resident_epoch,resident_state,stop_reason,snapshot[64],snapshot_id,stop_sent;
 static rtems_id controller;
@@ -140,6 +147,9 @@ static void stack_free(void*p){bounded_fatal(0x51001);}
 static void idle_error(void){bounded_fatal(0xdead);}
 void switch_irq_enter(unsigned int id,unsigned int fp){if(!lifetime_enter(&life[id],(unsigned int)_Thread_Executing,fp,R(fp-16),R(fp-12),R(fp-8)))switch_fault|=1;}
 void switch_irq_body(void){
+#ifdef I960_DOOM_CPU_PROFILE
+ if(switch_threads[1]&&(unsigned)_Thread_Executing==switch_threads[1])doom_cpu_samples++;
+#endif
 #ifdef I960_HEAP_SHARED
  resident_heap_irq_sample();
 #endif

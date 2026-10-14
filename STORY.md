@@ -3222,6 +3222,40 @@ But it was a useful answer. The bus was no longer where most of the time went.
 The next substantial gain would have to come from understanding the renderer
 and its scheduling, or asking it to draw less.
 
+## Drawing less, and finding the other half
+
+Doom already knew how to draw wider columns. We gave that old low-detail path a
+controlled entrance: the same picture size, the same palette, the same DMA
+packet, but half as many horizontal view samples. The experiment went high,
+low, low, high. Nothing else got a holiday—not the guards, the ownership checks,
+the full RAM audits, or the final drain.
+
+We also stopped calling all elapsed rendering time CPU time. RTEMS's old usage
+counter counted context switches as well as ticks, which made it unsuitable for
+this question. A separate sampler counted timer interrupts that found the Doom
+task running. It was still a ten-millisecond sample, with all the limits that
+implies, but it could distinguish the task from its peers.
+
+High detail delivered 2.48 frames per second. Low detail delivered 3.18, a 28%
+gain. One low block managed 3.50; another managed 2.91, including an 884-millisecond
+frame interval. We kept that interval in the result. Its long host completion
+wait did not become evidence of a slow PCI bus merely because it happened in the
+transfer code.
+
+The more useful number was underneath: roughly 315 milliseconds of high-detail
+rendering contained 158 milliseconds attributed to Doom. Low detail reduced
+those to 210 and 105. The renderer appeared to have about half the processor.
+That made scheduling worth measuring next, without pretending it would erase
+the remaining screen copy or turn a hundred-millisecond renderer into ten frames
+per second for free.
+
+Fifty-two frames, fourteen full audit pairs and the owned shutdown passed. The
+high-detail pictures matched the earlier card run. Low detail retained four
+native/card pixel differences in the same tiny region where high detail had
+seven. The wider columns made the game cheaper; they did not make that old
+rendering discrepancy cease to exist. Both pictures and every differing pixel
+went into the record.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

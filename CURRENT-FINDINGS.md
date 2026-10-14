@@ -1,5 +1,22 @@
 # Current findings and evidence — 2026-10-14
 
+<!-- doom-detail-current -->
+**Low detail accepted, 2026-10-14:** high **2.481 → low 3.178 FPS (+28.09%)**;
+low blocks vary 2.908–3.503, including the 884 ms frame-40 interval. All 52
+frames, 14 full audit pairs, ownership/ACK, STOP/drain and 35 tamper cases pass.
+Renderer wall **315.5 → 210.0 ms**, timer-sampled Doom CPU **158.2 → 105.0 ms**:
+approximately half CPU share. This is 10 ms sampled attribution, not cycle-exact
+or higher-resolution timing. Prior high-detail card images match exactly; low
+has four unresolved native pixel differences in the existing small region.
+Build `--pipeline --detail-test` for bounded high/low/low/high; fixed optional
+`--low-detail --no-fnv --direct-frame` for a separate interactive candidate.
+Do not claim 10 FPS or long interactive acceptance. Evidence and exact binaries:
+`artifacts/doom-detail-20261014/README.md`. Test closed and local replay passed;
+SSH has not returned after normal reboot; user power-cycle requested and public
+HTTP restoration pending. Consult `restoration.json` there for service state.
+Never force-unload retained resources or overlap hardware owners.
+<!-- /doom-detail-current -->
+
 <!-- doom-present-current -->
 **2026-10-14 presentation accepted:** optional FNV and direct delivery-slot
 presentation measured **1.965 → 2.474 FPS (+25.94%)** with full audits. All 52

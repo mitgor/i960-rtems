@@ -37,6 +37,9 @@ static int play_wait(void){unsigned start=play_api->io.ticks_ms(),polls=0;
 }
 int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
  if(!play_api||!play_api->owner()||play_api->stopping())return -1;
+#ifdef ENGINE_CPU_PROFILE
+ if(stage==102){extern unsigned doom_profile_samples(void);return (int)doom_profile_samples();}
+#endif
  if(stage==101){unsigned t=play_tail,v;
 #ifdef ENGINE_PLAY_DOUBLE
 #ifdef I960_DOOM_DMA

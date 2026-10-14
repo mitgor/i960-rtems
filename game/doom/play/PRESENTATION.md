@@ -64,3 +64,23 @@ completion wait, guarded readback, and profile decode/query overhead.
 [Physical evidence and results](../../../artifacts/doom-present-20261014/README.md)
 track acceptance, hashes, native tests and failed/preliminary attempts.
 [Browser controls](PLAY.md) are unchanged.
+
+## Low detail and task CPU samples
+
+`--low-detail` selects Doom's native wide-column renderer while keeping the
+320×200 output and existing browser controls. Combine it with
+`--pipeline --no-fnv --direct-frame`; add `--frame-profile --cpu-profile` for
+phase wall times and timer-sampled Doom-task CPU attribution. Sample counts use
+the unchanged 10 ms timer; they are not higher-resolution hardware timestamps.
+They exclude samples attributed to peer tasks, with periodic sampling error and
+interrupt attribution. Do not interpret `wall - sampled CPU` as exact wait time.
+
+`--detail-test` implies profiling, no FNV and direct presentation. Run only with
+`--pipeline --pipeline-test --wad-dma`: frames 1–16 and 41–52 are high detail,
+17–40 low detail, all CRCs off. Full audits and ownership remain. Renderer mode
+is checked from actual `detailshift`, not just the requested setting. First-frame
+setup costs are excluded from each block's FPS intervals and phase averages.
+The extra `CPU1` trailer follows PFR1; replay checks its mode, sums, sample bounds
+and reserved padding. A mixed benchmark engine cannot be launched interactively.
+
+[Low-detail evidence and acceptance status](../../../artifacts/doom-detail-20261014/README.md).

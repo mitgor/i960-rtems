@@ -34,6 +34,7 @@ static jmp_buf escape;
 static unsigned startup,started,budget,virtual_ms;
 extern unsigned char *DG_ScreenBuffer;
 #ifdef DOOM_PLAY
+static void fatal(int n) __attribute__((noreturn));
 #include "presentation.h"
 #endif
 void doom_platform_safe(void);
@@ -142,6 +143,9 @@ extern unsigned char *DG_ScreenBuffer;
 void DG_DrawFrame(void){unsigned i,h=2166136261u;
 #ifdef DOOM_PLAY
 unsigned mode=present_mode(stats.frames+1),begin=io->ticks_ms(),wait_begin;
+#ifdef DOOM_CPU_PROFILE
+ present_cpu_begin=present_sample();
+#endif
 #else
 unsigned mode=1;
 #endif

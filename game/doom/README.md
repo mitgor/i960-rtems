@@ -1,5 +1,9 @@
 # DoomGeneric milestone 1: i960 compile and host memory profile
 
+Low-detail benchmark: **2.481 → 3.178 FPS (+28.09%)**, 52 frames and all 14
+full audit pairs/STOP/drain pass. Renderer ~210 ms wall / ~105 ms timer-sampled
+Doom CPU. [Results, images, limitations and reproduction](../../artifacts/doom-detail-20261014/README.md).
+
 Presentation profiling: optional FNV and removal of the second framebuffer copy
 passed 52 card frames, 14 full audit pairs and STOP/drain: **1.965 → 2.474 FPS**
 (+25.94%, instrumented same-run comparison). Renderer remains ~317 ms/frame.

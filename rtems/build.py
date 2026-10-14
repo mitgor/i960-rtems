@@ -96,6 +96,7 @@ if a.wad_batch:
 if a.wad_poll:flags+=['-DI960_WAD_POLL']
 if a.doom_engine:
  flags+=['-DI960_DOOM_ENGINE']
+ if json.loads((a.doom_engine/'manifest.json').read_text()).get('cpu_profile'):flags+=['-DI960_DOOM_CPU_PROFILE']
  if startup_profile:flags+=['-DI960_DOOM_STARTUP']
  if startup_profile and json.loads((a.doom_engine/'manifest.json').read_text())['startup'].get('play'):flags+=['-DI960_DOOM_PLAY']
  if startup_profile and any(json.loads((a.doom_engine/'manifest.json').read_text())['startup'].get(k) for k in ('checkpoints_sha256','checkpoint_api')):flags+=['-DI960_DOOM_CHECKPOINTS']

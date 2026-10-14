@@ -1,3 +1,20 @@
+/* CPU fields are timer-sampled task attribution, not cycle counters. */
+#if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST)
+extern int screenblocks,detailLevel,detailshift;
+extern void R_SetViewSize(int,int);
+static unsigned detail_mode(unsigned g){
+#ifdef DOOM_DETAIL_TEST
+ static const unsigned char modes[64]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+ return modes[g&63];
+#else
+ (void)g;return 1;
+#endif
+}
+#endif
+#ifdef DOOM_CPU_PROFILE
+static unsigned present_cpu[7],present_cpu_begin;
+static unsigned present_sample(void){const struct doom_runtime_checkpoint*t=(const void*)owned;int n=t->mark(102,0,0,0);if(n<0)fatal(210);return (unsigned)n;}
+#endif
 /* Per-frame timing uses the owned 10 ms clock, never Doom's virtual game time.
  * Only the delivery-slot copy is removed; I_VideoBuffer stays persistent. */
 #define PRESENT_OFFSET 64768u
@@ -22,10 +39,16 @@ static unsigned present_mode(unsigned generation){
 #endif
 }
 static void present_mark(unsigned stage){
+#if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST)
+ if(stage==80){unsigned d=detail_mode(stats.frames+1);if((unsigned)detailLevel!=d){detailLevel=d;R_SetViewSize(screenblocks,detailLevel);}}
+#endif
 #ifdef DOOM_FRAME_PROFILE
  unsigned slot;
  switch(stage){case 37:slot=0;break;case 42:slot=1;break;case 43:slot=2;break;case 44:slot=3;break;case 80:slot=4;break;case 96:slot=5;break;case 98:slot=6;break;default:return;}
  present_times[slot]=io->ticks_ms();
+#ifdef DOOM_CPU_PROFILE
+ present_cpu[slot]=present_sample();
+#endif
 #else
  (void)stage;
 #endif
@@ -40,6 +63,18 @@ static void present_record(unsigned char *frame,unsigned generation,unsigned mod
  p[9]=io->ticks_ms()-begin; /* adapter copy/hash/palette */
  p[10]=present_previous_wait; /* previous publication backpressure */
  p[11]=present_times[5]-present_times[4]; /* display before I_FinishUpdate */
+ #ifdef DOOM_CPU_PROFILE
+ {unsigned*q=p+16;unsigned end=present_sample();
+ q[0]=0x31555043u;q[1]=1;
+#if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST)
+ q[2]=(unsigned)detailshift; /* renderer state, not merely requested mode */
+#else
+ q[2]=0;
+#endif
+ q[3]=10;q[4]=present_cpu[3]-present_cpu[0];
+ q[5]=present_cpu[1]-present_cpu[0];q[6]=present_cpu[2]-present_cpu[1];q[7]=present_cpu[3]-present_cpu[2];
+ q[8]=present_cpu[6]-present_cpu[5];q[9]=end-present_cpu_begin;q[10]=q[11]=0;}
+#endif
  p[12]=stats.frame_hash;p[13]=stats.palette_hash;p[14]=10;p[15]=0;
 #else
  (void)frame;(void)generation;(void)mode;(void)begin;

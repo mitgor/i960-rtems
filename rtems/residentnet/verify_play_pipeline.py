@@ -7,7 +7,7 @@ from frame_client import png
 def verify(out):
  out=Path(out);frames=[json.loads(l) for l in (out/'play-frames.jsonl').read_text().splitlines()]
  profile=json.loads((out/'presentation-options.json').read_text()) if (out/'presentation-options.json').exists() else {}
- presentation_test=profile.get('presentation_test',False)
+ presentation_test=profile.get('presentation_test',False) or profile.get('detail_test',False)
  dma=[json.loads(l) for l in (out/'frame-dma-journal.jsonl').read_text().splitlines()]
  mailbox=[json.loads(l) for l in (out/'frame-journal.jsonl').read_text().splitlines()]
  reports=[json.loads(l) for l in (out/'frame-dma-results.jsonl').read_text().splitlines()]
@@ -55,7 +55,7 @@ def verify(out):
   assert data==(out/f'play-0-{g}.bin').read_bytes() and (struct.pack('<8I',0x31424644,1,0,g,320,200,65536,int(crc))+data)==(out/f'play-0-{g}.dfb').read_bytes()
   if profile:
    from presentation_profile import decode
-   decoded=decode(data,g,presentation_test);assert all(f['profile'][k]==v for k,v in decoded.items())
+   decoded=decode(data,g,profile.get('presentation_test',False),profile);assert all(f['profile'][k]==v for k,v in decoded.items())
   assert hashlib.sha256(data).hexdigest()==f['sha256'] and f['transfer_seconds']>0 and f['png_seconds']>0
   if g<=4:
    assert mread(g)==data
