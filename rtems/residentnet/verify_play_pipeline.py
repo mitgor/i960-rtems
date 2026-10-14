@@ -45,7 +45,7 @@ def verify(out):
    assert r[3]==base+4096 and 0<base<=0xffffffff-73728
    capture=b''.join(dcall(3,g,i) for i in range(0,73728,1024));assert capture==(out/f'frame-dma-{g:03}.bin').read_bytes()
    assert capture[:4096]==capture[69632:]==b'\xa5'*4096
-   data=capture[4096:69632];assert dcall(3,g,4096)==data[:1024] 
+   data=capture[4096:69632];assert dcall(3,g,4096)==data[:1024]
    if crc:assert zlib.crc32(data)==r[5]
    else:assert r[5]==r[6]==0
    assert reports[ri]['frame']==g and reports[ri]['report']==r and reports[ri]['seconds']>0;ri+=1
