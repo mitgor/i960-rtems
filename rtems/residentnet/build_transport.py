@@ -29,6 +29,11 @@ def build(out,payload):
   header=out/'buffer_io.h';header.write_text(protect_upload_header(header.read_text(),'-DI960_DOOM_ENGINE' in flags))
   s=m.replace(s,'static const struct file_operations session_fops=',(HERE/'upload_host.h').read_text()+'\nstatic const struct file_operations session_fops=')
   s=m.replace(s,'.unlocked_ioctl=resident_ioctl,','.unlocked_ioctl=upload_ioctl,')
+ if '-DI960_DMA_PROOF' in flags:
+  s=m.replace(s,'void *dma_buf;', 'void *dma_buf; void *proof_buf; struct debugfs_blob_wrapper proof_blob; dma_addr_t proof_dma; unsigned proof_seq; bool proof_valid;')
+  s=m.replace(s,'static const struct file_operations session_fops=',(HERE.parent/'dma/host.h').read_text()+'\nstatic const struct file_operations session_fops=')
+  s=m.replace(s,'.unlocked_ioctl=resident_ioctl,','.unlocked_ioctl=dma_proof_ioctl,')
+  s=m.replace(s,'    dma_free_coherent(&pdev->dev,DMA_SIZE,d->dma_buf,d->dma);', '    if(d->proof_buf)dma_free_coherent(&pdev->dev,73728,d->proof_buf,d->proof_dma);\n    dma_free_coherent(&pdev->dev,DMA_SIZE,d->dma_buf,d->dma);')
  if '-DI960_FAULT_TEST=3' in flags:
   s=m.replace(s,'mu_resident;', 'mu_resident,mu_nmi_injected;')
   s=m.replace(s,'static const struct file_operations session_fops=',(HERE/'nmi_test_host.h').read_text()+'\nstatic const struct file_operations session_fops=')

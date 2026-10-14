@@ -1,5 +1,24 @@
 # Preemptive RTEMS and DMA networking plan
 
+## October 14 DMA checkpoint
+
+The user authorized exclusive DMA ownership, memory remapping, and firmware
+changes if needed. The [bounded DMA1 proof](../../rtems/dma/README.md) now passes
+24 card-to-host transfers with 61 full audit pairs, exact destination/guard
+checks and normal system drain. No ATU remap or flash change was necessary.
+This advances H0 and the card-to-host portion of H1, not the full bidirectional
+or active-abort/lifetime gates. The first wrong-DAR timeout is preserved alongside
+the corrected accepted run in [the evidence](../../artifacts/dma-owned-20261014/README.md).
+
+Before Doom or H2 queues, move preparation/checking out of interrupt context
+(the proof measured a 111.481 ms maximum IRQ gap), add task-owned asynchronous
+completion and test pending-job STOP/deadline/disconnect. Keep coherent mappings
+retained on uncertainty. Then compare DMA/mailbox bytes of identical frozen
+frames with all full audits. Existing entries below describe the earlier roadmap;
+"no changing active ATU windows" was the initial test gate, not a standing ban
+on the newly authorized remapping investigation.
+
+
 **Exclusive RTEMS track (2026-10-11):** the user explicitly permits RAID/SCSI
 shutdown during RTEMS and reboot/power-cycle to exit. `exclusive` now runs real
 preemptible RTEMS after the ARM callback returns, with inactive i960 DMA disabled,

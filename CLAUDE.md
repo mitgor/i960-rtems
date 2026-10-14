@@ -1,5 +1,27 @@
 # Repository guidance for Claude Code
 
+<!-- exclusive-dma-current -->
+**Exclusive DMA1 proof accepted (2026-10-14):** opt-in `--dma-proof` completes
+24 exact card-to-host transfers (1 byte–64 KiB, including unaligned destinations),
+61 full monitor/RAM pairs, 54 refusals, dual-stack networking and normal STOP.
+All 1,709 application allocations and 118 shared handles retire. Independent
+replays pass; 23 DMA-capture and 24 snapshot mutations are rejected. The original
+attempt timed out because DAR1 was incorrectly read at 0x1448; the corrected
+address is 0x144c. Both attempts, exact binaries and source are preserved.
+The kernel owns a dedicated 73,728-byte coherent mapping for the Mylex and retains
+it until reboot, including on uncertainty. No firmware write or ATU remapping
+was needed. DMA is **not integrated into Doom**. Diagnostic transactions take
+106–138 ms, not a DMA-throughput/FPS result; the maximum IRQ gap is 111.481 ms.
+Next: task-owned asynchronous preparation/completion and STOP/lifetime tests,
+then same-frame DMA/mailbox comparisons before measuring Doom FPS. Preserve all
+full audits. Both archives are hash-verified locally; reboot completed and the
+public IPv6 HTTP service returned 200 from the Mac. Public relay Python 3261
+(supervisor 3259), boot `0d28644e-e63e-43a7-8faa-2d36bf2bb3b3`, owns the card;
+test reservation released. Stop the relay normally before future card work.
+The replay now uses Linux errno numbers explicitly so Mac replay works too.
+[Evidence and limitations](artifacts/dma-owned-20261014/README.md).
+<!-- /exclusive-dma-current -->
+
 <!-- doom-bulk-current -->
 **Doom mailbox bulk accepted (2026-10-14):** opt-in `--bulk` uses eight-byte
 MU beats in fixed 1 KiB reads; no DMA or new RAM aperture. Same-run readback

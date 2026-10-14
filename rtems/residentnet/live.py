@@ -61,6 +61,7 @@ def client_round(families=None):
 def main():
  p=argparse.ArgumentParser()
  for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
+ p.add_argument('--dma-proof',action='store_true')
  p.add_argument('--play-bulk',action='store_true')
  p.add_argument('--play-bulk-test',action='store_true')
  p.add_argument('--play-port',type=int,default=0)
@@ -91,6 +92,7 @@ def main():
  if a.owned_mib:assert a.queue_reclaim
  flags=json.loads((a.payload.parent/'build.json').read_text())['flags']
  assert ('-DI960_DOOM_PLAY' in flags)==bool(a.play_port), 'play image requires the interactive runner'
+ assert ('-DI960_DMA_PROOF' in flags)==a.dma_proof
  max_ticks,max_rounds,max_interval=traffic_limits(flags,a.owned_mib)
  assert 100<=a.ticks<=max_ticks and 1<=a.rounds<=max_rounds and 0<=a.round_interval<=max_interval
  owned_flags=[int(f.split('=')[1]) for f in flags if f.startswith('-DI960_OWNED_MIB=')]
@@ -108,7 +110,7 @@ def main():
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(dma_proof=a.dma_proof,play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
  io_gate=threading.RLock();abort_upload=threading.Event()
  def save(final=False):
   if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')
@@ -184,6 +186,10 @@ def main():
    from upload_client import exercise
    print('Starting resident segmented upload tests',flush=True)
    exercise(b.fd,epoch,b.out,doom_heap=a.doom_heap,doom_shared=a.doom_shared);snapshot()
+  if a.dma_proof:
+   sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'dma'))
+   from client import exercise as dma_exercise
+   dma_exercise(b.fd,epoch,b.out,snapshot)
   if a.burst:burst(packet,snapshot,b.out)
   g=Gateway(b.out,ipv6=True);traffic_active=True
   with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:

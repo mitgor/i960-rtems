@@ -1,0 +1,146 @@
+# Exclusive DMA ownership — October 14, 2026
+
+**Bounded DMA1 card-to-host acceptance passed.** The corrected batch completed
+24 exact transfers, 61 full monitor/RAM pairs, 54 refused requests, dual-stack
+UDP/TCP/HTTP, normal STOP and full heap drain. Independent system and DMA replay
+passed; 23 DMA capture mutations and 24 snapshot mutations were rejected.
+Doom integration and FPS improvement are not claimed.
+Implementation and lifetime contract: [rtems/dma](../../rtems/dma/README.md).
+
+The first physical attempt admitted the existing 12 MiB exclusive profile and
+passed three full monitor/RAM pairs, then conservatively rejected its first
+one-byte transfer at the 200,000-poll bound (target error 7). No successful DMA
+transfer is claimed from this attempt. The original completion predicate used
+0x1448 for DAR1; Intel table 20-2 specifies **0x144c**. The native model repeated
+that mistake, so native success did not catch it. The corrected model explicitly
+rejects reads of reserved 0x1448. Both controls were disabled and the coherent
+mapping/module retained. There was no forced unload or firmware return.
+
+The original host collected no full DMA destination capture on that failure,
+so whether bytes actually arrived is unproved. The accepted candidate also exposes
+its coherent buffer as a read-only debugfs capture and collects target error
+reports before poisoning the session. These are diagnostic reads, not a retry.
+
+`first-attempt.tar.gz` contains the exact original project, target/module builds,
+three audit pairs, failed journal, kernel log, PCI inventory, and retained-close
+evidence. SHA256:
+`6241dbe7a31458e04f08613b79105751bd7e38a242194148d49fc5a1453c5fab`.
+The archive was copied and hash-verified on the Mac before reboot.
+
+Workspace: `/home/mit/i960-dma-owned-20261014`. The accepted run has ended;
+its retained module was released by reboot and the public HTTP service restored. Public HTTP was stopped normally; its prior summary confirms
+109,811 steps, restored RAM, unloaded module and unbound driver. Visitor records
+remain private on the host and are not part of the artifact archive.
+
+Use `build.sh` in a fresh workspace with the pinned source archives and checked
+project paths. `live.sh` requires an unbound card. It preserves all existing
+monitor/RAM audits, exercises 24 guarded transfers and invalid requests, then
+runs the existing dual-stack network and STOP/heap-drain tests. Never rerun on
+a retained resident session; archive and reboot first.
+
+## Accepted physical result
+
+- Boot: `467b0944-059f-4a41-8551-7bde7c7f8c8f`.
+- Kernel SHA256: `ee6c66dc90d05a7e2fddb1d8706c775d3a9c9747ff04f6b4ce917a46ccb005bc`.
+- Module SHA256: `4e102f1e602b340129ec0f16d5ca437fc1be7241177a8065c22ced6fada7cb0f`.
+- Linux coherent DMA address: `0xfffa0000`; allocation 73,728 bytes.
+- Card source: `0xc0f69f70`; aligned descriptor: `0xc0f79fc0`.
+- Two passes through lengths 1, 3, 4, 31, 64, 511, 1024, 2048, 4095,
+  4096, 65536 and 65536. Offsets include 0, 1, 2, 3 and 4095.
+- All 24 complete 73,728-byte destination captures (1,769,472 captured bytes)
+  match the independent deterministic oracle. All non-payload bytes stay `a5`.
+  The final debugfs buffer also matches capture 24 after normal close.
+- Target checks inactive/error-free DMA1, consumed next pointer, correct DAR1,
+  zero count, unchanged source/guards and restored all-channel isolation.
+  Source and descriptor are inside the existing owned image; all other DMA
+  channels and secondary masters remain isolated.
+- All 61 monitor/RAM audit pairs pass unchanged. Normal STOP ends at tick 1509;
+  all 1,709 application allocations and 118 shared handles retire. The dedicated
+  coherent DMA allocation is deliberately retained until reboot.
+- Existing IPv4/IPv6 UDP, TCP and HTTP checks pass after the DMA tests: 84
+  captured IP packets, 48 inbound/36 outbound transport ioctls.
+
+Transaction latency is **106.240–138.248 ms**, median **116.608 ms**. It includes
+source generation and verification, 37 MU command exchanges and the kernel's
+complete destination/guard check. It excludes the subsequent userspace capture
+reads and surrounding audit pairs. This is neither DMA wire throughput nor a
+Doom frame-rate measurement. The runner's outer timings additionally include
+journal serialization; `dma-replay.json` uses the ioctl journal timings.
+
+The maximum measured IRQ gap is **111.481 ms**. This prototype executes pattern
+preparation, polling and source verification synchronously in the existing
+control context. It is acceptable as a bounded proof but unsuitable as the final
+interactive transfer architecture. Move preparation/validation into an owned
+task and make IRQ-side submission/completion bounded before Doom integration.
+
+## Scope and remaining gates
+
+This establishes exclusive ownership of **DMA1 for these single-descriptor,
+card-to-host transfers**. It is not complete ownership of every board engine,
+active-channel abort, host-to-card DMA, NIC peer DMA, sustained throughput,
+physical process-death stress, or an arbitrary memory-reclamation proof.
+The host retains mappings on uncertainty, rather than claiming an unmap/drain
+protocol. Native tests cover actual host/target timeout/error and copyout paths;
+the first physical attempt also exercised timeout and retained close, but does
+not prove a timed-out active engine can safely be unmapped.
+
+Before integrating Doom:
+
+1. Introduce a task-owned asynchronous DMA job; keep long fills, hashes and
+   source verification out of the interrupt/control path.
+2. Preserve frame pins, generations, single producer, exact mapped bounds and
+   the independent STOP channel. Test STOP/deadline/disconnect with a job pending
+   and retain mappings whenever completion is uncertain.
+3. Compare DMA and mailbox copies of the same immutable Doom frame byte for byte,
+   with every full audit. Only then measure delivery/FPS and consider opt-in use.
+
+No flash write or ATU-window change was required. User permission for later
+firmware/remapping work remains applicable if a concrete need is found.
+
+## Archive and replay
+
+`accepted-evidence.tar.gz` SHA256:
+`0ae396388b472eb7aa0feef5aaf862264265096ded11cc5fb3648921a61bd13e`.
+It contains exact target/module binaries, generated module source, project source,
+pinned source archives, build/disassembly/map files, all closed captures and
+replay/tamper results. Both this and the failed archive were copied and
+hash-verified locally before their respective reboot. Extract into a fresh
+directory, then run:
+
+```sh
+python3 project/rtems/residentnet/verify.py --root "$PWD" live
+python3 project/rtems/dma/verify.py --root "$PWD" live
+python3 project/rtems/dma/tamper.py "$PWD"
+```
+
+Native checks also include the actual target C (bounds, guards, stale sequence,
+active/error admission, timeout and STOP), actual host ioctl C (32-bit allocation,
+all 37 exchange failures, target error diagnostics and copyout retention), the
+capture-client/replay fixture, and existing resident/exclusive regressions.
+The immutable 128 KiB code and original mutable-image boundaries were preserved.
+The COFF alignment limitation is handled by rounding an oversized descriptor
+storage array; the code-size constraint was resolved by factoring repeated code,
+not by changing the audited memory layout or compiler optimization level.
+
+## Cross-platform replay correction
+
+Replaying the copied archive on macOS exposed a verifier portability error:
+Linux ioctl captures use ESTALE **116**, while macOS's Python `errno.ESTALE`
+is **70**. The target/module and physical result are unchanged. The repository
+verifier now checks the captured Linux ABI explicitly, and its fixture simulates
+Linux error numbers on either host. `replay-portability.patch` records the two
+Python-only changes relative to the immutable accepted archive. Apply it with
+`patch -p1 < /path/to/replay-portability.patch` after extracting that archive, or
+use the current repository's DMA verifier. The full system replay already passed
+on both hosts; the corrected DMA replay and all 23 physical capture mutations
+also pass locally. No capture was changed to make replay pass.
+
+## Restoration
+
+Both archives were hash-verified locally before reboot. The host returned in boot
+`0d28644e-e63e-43a7-8faa-2d36bf2bb3b3`. Public relay Python **3261**, supervisor
+**3259**, now owns the card. Startup IPv4/IPv6 ping, UDP and TCP checks pass;
+HTTP returned **200 from the Mac** at the public IPv6 URL. The fetched HTML and
+compressed headers are preserved; `restoration.json` records the service identity.
+Output: `/home/mit/i960-rtems-web-20261011/http-after-dma-owned-20261014`.
+Test reservation released. Stop the relay normally before another exclusive run.

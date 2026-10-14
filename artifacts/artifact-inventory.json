@@ -3063,6 +3063,86 @@
       "sha256": "f292ced6f809fedf5446f048495fcb983021d620923daba2b8690242c612e624"
     },
     {
+      "path": "artifacts/dma-owned-20261014/README.md",
+      "size": 8706,
+      "sha256": "b9aac497df02097f0d056db3a42948702bf89a70bcd8bb26a65d7bda587a9928"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/accepted-evidence.tar.gz",
+      "size": 4795807,
+      "sha256": "0ae396388b472eb7aa0feef5aaf862264265096ded11cc5fb3648921a61bd13e"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/build.sh",
+      "size": 684,
+      "sha256": "c4eb0f903254cb7916e2cd85d99f4cd08297417a22832101dd44625a25449678"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/dma-replay.json",
+      "size": 414,
+      "sha256": "615638802a39edcab773bfae6f3cb20250fb0c3a83e1942df03309edd152ce70"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/dma-results.json",
+      "size": 10795,
+      "sha256": "edf8ae04ca3435f87a9cf4108f585051c841ce4e9e93d81016a0a52e29590e58"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/first-attempt.tar.gz",
+      "size": 5006617,
+      "sha256": "6241dbe7a31458e04f08613b79105751bd7e38a242194148d49fc5a1453c5fab"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/live.sh",
+      "size": 358,
+      "sha256": "396c728508ef1d9872c1c582666f3d17f5024cd11b3e4899dfc5a4e847927f19"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/local-dma-replay.json",
+      "size": 414,
+      "sha256": "615638802a39edcab773bfae6f3cb20250fb0c3a83e1942df03309edd152ce70"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/manual-sha256.txt",
+      "size": 108,
+      "sha256": "ffb56ef8e862071a49e0fe7bf5852fe0df41c2de865d581302e455d31aa1d3e0"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/replay-portability.patch",
+      "size": 977,
+      "sha256": "b1a0bbf682e296ff825b810732a4d499a6a40c96022223dbe6d8605f8a79b070"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/restoration.json",
+      "size": 384,
+      "sha256": "676d686fb045617e117d6a3dda944960ecce39267e19e899b93be13d2f11e453"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/restore.sh",
+      "size": 856,
+      "sha256": "e09492c0f87832fbb4ddecf8d6fd0160ff3d2da1c383a21aa58e4fd1d27df995"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/restored-http-headers.txt.gz",
+      "size": 116,
+      "sha256": "dbabea0346301eb1b639f2f83f69f4101de778fa1d1708e0931497d83f75e9f2"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/restored-http.html",
+      "size": 2891,
+      "sha256": "0c41a55d12ed24fbb8f35f41d8eba210015727840b58b8d6bba8a5f969f885c7"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/system-replay.json",
+      "size": 6330,
+      "sha256": "4bdc5d0f81763ac9df93e43914acb22ceb55529a011ba9986da0be2bfa0b4914"
+    },
+    {
+      "path": "artifacts/dma-owned-20261014/tamper-results.json",
+      "size": 1151,
+      "sha256": "d78adce8dcf167cb849429e069f814de32a595f1ddd974e537380581efa0199c"
+    },
+    {
       "path": "artifacts/dma-research-20261011/README.md",
       "size": 4410,
       "sha256": "955f5ab606e17c404d57d76fbdb0db635427d03ba1cfb7685f9e9f44b5b9a06f"

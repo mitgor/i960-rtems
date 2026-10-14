@@ -2855,6 +2855,44 @@ measure. The twenty-three-minute level load also remains its own problem. After 
 captures were safely home, we rebooted the retained test module and restored
 the public IPv6 web page.
 
+## Letting the I/O processor move the bytes
+
+The next question was fair: this was a RAID controller. Why were we asking its
+CPU to hand over pixels a few bytes at a time when the chip had DMA engines?
+The exclusive profile had deliberately disabled them. Owning the processor and
+owning a device that can write into the host's memory were separate promises.
+
+We gave DMA1 a small, explicit job. Linux allocated a guarded buffer for this
+card. The i960 got one descriptor, one fixed source, and no next link. Firmware
+stayed parked, the other channels stayed disabled, and every transfer had to
+return the primary bus to its isolated state. All the full memory audits stayed.
+There was no new flash patch and no need to move the PCI window.
+
+The first attempt timed out. This one was our mistake: the completion check read
+0x1448 where the manual said 0x144c. The native model had repeated the same error.
+We kept that failed run, retained the mapping, and rebooted. The corrected model
+now refuses the reserved address, and the driver saves the destination buffer
+and error report instead of leaving the next diagnosis short of evidence.
+
+The second run moved the bytes. Twenty-four transfers ranged from one byte to
+64 KiB, including deliberately unaligned destinations. Every complete host
+buffer matched, guards included. Sixty-one full audit pairs passed. The network
+still answered over IPv4 and IPv6, STOP drained the workers, and all 1,709
+application allocations were freed. The DMA mapping itself stayed pinned until
+reboot; a completed experiment was not permission to invent a new unmap protocol.
+
+There was a useful warning in the stopwatch. Preparing the pattern, polling the
+engine and checking the source inside the control path left a worst interrupt
+gap of about 111 milliseconds. The proof had established a way home for the
+bytes, but it was not yet the right way to schedule a game. The next version
+needs task-owned preparation and a short completion path. Only after that do we
+compare DMA and mailbox copies of the same Doom frame and count frames again.
+The [DMA batch](artifacts/dma-owned-20261014/README.md) keeps both attempts.
+Replaying it on the Mac found one last boundary: Linux and macOS assign different
+numbers to ESTALE. The reader now checks the Linux ABI that produced the capture.
+The bytes stayed unchanged. After both archives were safely home and the retained
+session had been rebooted, the public Vader page answered again.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

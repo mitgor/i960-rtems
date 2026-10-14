@@ -1,0 +1,15 @@
+{
+  "transfers": 24,
+  "captured_bytes": 1769472,
+  "refusals": 54,
+  "full_audit_pairs": 61,
+  "dma_address": "0xfffa0000",
+  "descriptor": "0xc0f79fc0",
+  "source": "0xc0f69f70",
+  "transaction_ms": {
+    "min": 106.240258,
+    "median": 116.60789,
+    "max": 138.247874
+  },
+  "note": "Includes target pattern generation/check, 37 mailbox exchanges and host full-buffer check; not DMA throughput or Doom FPS"
+}

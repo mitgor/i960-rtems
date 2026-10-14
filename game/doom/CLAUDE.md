@@ -1,5 +1,11 @@
 # Doom milestone guidance
 
+The [exclusive DMA1 proof](../../rtems/dma/README.md) passes 24 card-to-host
+transfers and 61 full audits. It is separate from Doom: do not enable it in a
+play build. Move its synchronous work out of interrupt context (111.481 ms gap),
+prove task/frame ownership and pending-job STOP, then compare DMA and mailbox
+copies of the same frozen frame before claiming a Doom speedup.
+
 <!-- doom-bulk-current -->
 **Doom mailbox bulk accepted (2026-10-14):** opt-in `--bulk` uses eight-byte
 MU beats in fixed 1 KiB reads; no DMA or new RAM aperture. Same-run readback

@@ -54,8 +54,17 @@ void bounded_fatal(unsigned int);
 static void mask(void),enable(void);
 #include "../residentnet/net_runtime.h"
 #endif
+#ifdef I960_DMA_PROOF
+#include "../dma/target.h"
+#endif
 static void control_poll(void){unsigned int token=R(0x1314),index;
  if(!resident||((token&65535)!=resident_epoch))return;
+#ifdef I960_DMA_PROOF
+ if((token>>24)>=0x50&&(token>>24)<=0x52){
+  R(0x1318)=dma_control(token>>24,(token>>16)&255,R(0x1310),resident_state==1&&!stop&&!stop_sent);(void)R(0x1318);
+  R(0x1314)=0;R(0x131c)=token|0x08000000u;(void)R(0x131c);R(0x1324)=2;(void)R(0x1324);return;
+ }
+#endif
  #ifdef I960_RESIDENT_NET
 #ifdef I960_RESIDENT_UPLOAD
  if((token>>24)>=
