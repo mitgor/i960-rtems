@@ -1,11 +1,16 @@
 # Pinned Doom frame DMA/mailbox comparison
 
-**Physical result:** two subsequent complete 28-frame runs passed all audits,
-STOP and drain, measuring **42.45–43.26% higher delivery FPS** (about 0.97→1.38).
-One used the exact earlier target binary. The earlier frame-12 timeout did not
-recur and **is not diagnosed or fixed**. Keep DMA opt-in. See the
-[diagnosis batch](../../artifacts/doom-dma-cleanup-20261014/README.md) and
-[original failure](../../artifacts/doom-dma-20261014/README.md).
+**Latest:** the [finite frame stress test](../../artifacts/frame-dma-stress-20261014/README.md)
+reproduced the timeout at frame 41: a scheduled peer's heap check rejected an
+intentionally active, owned DMA transaction. The ownership-aware isolation check
+passed 512 frames, 89 observed active-transaction checks, 20 full mailbox pairs,
+30 full monitor/RAM audits, owned STOP and global drain. No timeout bounds or
+completion checks were relaxed. DMA stays opt-in pending a fresh Doom comparison.
+
+Earlier complete Doom comparisons measured 42.45–43.26% higher delivery FPS
+(about 0.97→1.38); those predate this fix. The stress producer's 2.9759 FPS is
+**not Doom FPS**. See the [previous diagnosis](../../artifacts/doom-dma-cleanup-20261014/README.md)
+and [original failure](../../artifacts/doom-dma-20261014/README.md).
 
 Opt-in bounded acceptance: build `game/doom/play/build.py --dma`, then run
 `game/doom/play/run.py --dma-test` in a fresh isolated workspace on the qualified
@@ -109,3 +114,17 @@ evidence only, including when all 96 words arrive. A card that never reaches the
 terminal monitor may produce no verified terminal identity. Destination arrival
 and diagnostic visibility do not prove DMA retirement. See the
 [diagnostic experiment](../../artifacts/doom-dma-cleanup-20261014/README.md).
+
+## Isolation during scheduled DMA
+
+The strict idle postcheck remains mandatory outside the narrowly validated
+DMA1 transaction. During stages 4–10, `frame_dma_isolation_snapshot()` validates
+the current pin, sequence, addresses, complete descriptor and allowed engine
+states before adjusting a local snapshot. Secondary reset/arbitration and other
+engine checks still run unchanged. This permits a peer heap check while the DMA
+worker is preempted; it does not mask interrupts or skip guards. Final completion
+still requires idle hardware and bus mastering disabled.
+
+Control `(5,16)` is a read-only count of recognized active-transaction checks.
+Only DMA-enabled host builds expose it, and the builder emits the corresponding
+feature macro. The stress runner checks initial zero and final positive values.

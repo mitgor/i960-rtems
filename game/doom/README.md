@@ -2,7 +2,11 @@
 
 For the current playable RTEMS profile, use the [browser play guide](play/README.md).
 The [October 14 bulk-transfer batch](../../artifacts/doom-bulk-20261014/README.md)
-measured 0.999 FPS with full audits. The original milestone below is historical.
+measured 0.999 FPS with full audits. Later DMA comparisons measured about
+1.38 FPS. The [frame stress test](../../artifacts/frame-dma-stress-20261014/README.md)
+now fixes a reproduced isolation-check halt during owned DMA, with 512-frame
+physical acceptance. Re-run the Doom comparison before making DMA the default.
+The original milestone below is historical.
 
 **Completed 2026-10-11. No Doom code was loaded on the card.** All 80 selected
 engine translation units compile with GCC 3.3.6 for i960RP and combine into a

@@ -2,7 +2,7 @@
 """Generate a small trusted identity, not an embedded engine or relocation list."""
 import argparse,hashlib,json,struct,subprocess
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('packed',type=Path);p.add_argument('--build',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--startup-requests',type=Path);p.add_argument('--startup-checkpoints',type=Path);p.add_argument('--checkpoint-barriers',action='store_true');p.add_argument('--startup-oracle',type=Path);p.add_argument('--play',action='store_true');p.add_argument('--cross',required=True);a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
+p=argparse.ArgumentParser();p.add_argument('packed',type=Path);p.add_argument('--build',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--startup-requests',type=Path);p.add_argument('--startup-checkpoints',type=Path);p.add_argument('--checkpoint-barriers',action='store_true');p.add_argument('--startup-oracle',type=Path);p.add_argument('--play',action='store_true');p.add_argument('--dma-stress',action='store_true');p.add_argument('--cross',required=True);a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
 assert not a.checkpoint_barriers or (a.startup_oracle and a.startup_checkpoints)
 m=json.loads((a.packed/'manifest.json').read_text());b=(a.packed/'template.bin').read_bytes();assert m['linker_match'] and not m['admitted'] and hashlib.sha256(b).hexdigest()==m['template_sha256']
 assert len(m['sections'])==3 and [s['name'] for s in m['sections']]==['.text','.data','.bss']
@@ -10,6 +10,7 @@ rows=subprocess.check_output([a.cross+'nm',str(a.build/'doom-platform.o')],text=
 sites=m['relocations'];assert sites==sorted(set(sites));meta=b''.join(struct.pack('<I',x) for x in sites);off=(m['memory_bytes']+15)&~15
 for x in sites:assert x%4==0 and x+4<=len(b) and struct.unpack_from('<I',b,x)[0]<=m['memory_bytes']
 m.update(result=result,metadata_offset=off,metadata_bytes=len(meta),metadata_sha256=hashlib.sha256(meta).hexdigest(),text_sha256=hashlib.sha256(b[:m['sections'][0]['file_bytes']]).hexdigest(),admission_bytes=off+len(meta))
+assert not a.dma_stress or (a.play and json.loads((a.build/'build.json').read_text()).get('dma_stress')==1)
 if a.play:
  assert not a.startup_oracle and not a.checkpoint_barriers
  assert json.loads((a.build/'build.json').read_text()).get('play')
@@ -18,6 +19,7 @@ if a.play:
  assert frame_offset>=m['sections'][2]['offset'] and frame_offset+131072<=m['memory_bytes']
  assert m['admission_bytes']<=900000
  m['play_offset']=frame_offset
+ if a.dma_stress:m['dma_stress']=1
 if a.startup_oracle:
  oracle=json.loads(a.startup_oracle.read_text());assert oracle['exact_bytes_match'] and ((oracle.get('visible') and oracle['frame_count']==2 and oracle['frame']==1) or (not oracle.get('visible') and oracle['frame']==0 and oracle['gametic']==2))
  assert a.startup_requests
@@ -45,4 +47,5 @@ if a.startup_oracle:h+='#define ENGINE_STARTUP 1\n#define ENGINE_FRAME '+str(ora
 if m.get('startup',{}).get('visible'):
  h+='#define ENGINE_FRAME_COUNT 2u\n#define ENGINE_VISIBLE_OFFSET '+str(m['visible_offset'])+'u\n'
  h+='static const unsigned char engine_visible_sha[32]={'+','.join(str(x) for x in bytes.fromhex(oracle['frames_sha256']))+'};\n'
+if a.dma_stress:h+='#define ENGINE_DMA_STRESS 1\n'
 (a.out/'engine_identity.h').write_text(h);print(json.dumps({k:v for k,v in m.items() if k not in ('relocations','sections')},indent=2))

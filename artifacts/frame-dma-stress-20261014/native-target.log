@@ -1,0 +1,11 @@
+In file included from /var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/tmpram0_09y/test.c:41:
+In file included from /Users/mit/Documents/!Projects/i960/rtems/residentnet/scsi_target.h:9:
+/Users/mit/Documents/!Projects/i960/rtems/residentnet/scsi_stop.h:27:21: warning: unused function 'scsi_stop_hold' [-Wunused-function]
+   27 | static unsigned int scsi_stop_hold(struct scsi_stop_state*s,unsigned int topology){
+      |                     ^~~~~~~~~~~~~~
+In file included from /var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/tmpram0_09y/test.c:41:
+/Users/mit/Documents/!Projects/i960/rtems/residentnet/scsi_target.h:11:21: warning: unused function 'scsi_target_identity' [-Wunused-function]
+   11 | static unsigned int scsi_target_identity(void){unsigned int saved,id;
+      |                     ^~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+PASS actual atomic frame release, interrupt-boundary submission, frame pin, pending ACK/mutation refusal, exact DMA, independent CRC, stale generation, STOP, timeout/error/source/descriptor quarantine

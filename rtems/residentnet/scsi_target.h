@@ -28,5 +28,11 @@ static unsigned int scsi_target_identity(void){unsigned int saved,id;
 }
 unsigned int scsi_target_verified(void){unsigned int w[16];
  if(!scsi_stop.verified)return 0;
- engine_snapshot(w);return !scsi_stop_postcheck(w,scsi_stop.before);
+ engine_snapshot(w);
+ if(!scsi_stop_postcheck(w,scsi_stop.before))return 1;
+#ifdef I960_DOOM_DMA
+ {extern unsigned frame_dma_isolation_snapshot(unsigned*);
+  if(frame_dma_isolation_snapshot(w))return !scsi_stop_postcheck(w,scsi_stop.before);}
+#endif
+ return 0;
 }

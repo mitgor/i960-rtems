@@ -1,0 +1,19 @@
+{
+  "frames": 512,
+  "producer": "deterministic byte pattern; not Doom FPS",
+  "elapsed_first_to_last": 171.711797021,
+  "fps_first_to_last": 2.9759166747145844,
+  "transfer_seconds": {
+    "mean": 0.22557964946289177,
+    "median": 0.22632928950001485,
+    "min": 0.21440331499999843,
+    "max": 0.23324556899999038
+  },
+  "paired_frames": 20,
+  "isolation_checks": 89,
+  "full_monitor_ram_pairs": 30,
+  "final_tick": 19574,
+  "stop_reason": 1,
+  "full_dma_bytes": 37748736,
+  "zero_wad_reads": true
+}

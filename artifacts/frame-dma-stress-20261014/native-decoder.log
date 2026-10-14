@@ -1,0 +1,1 @@
+PASS terminal decoder: exact fields, partial counts, wrong identity, invalid metadata; never accepts transfer

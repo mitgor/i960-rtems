@@ -11,10 +11,14 @@ w[:4]=[0x31464446,42,96,0]
 w[4:8]=[0x31464d4e,42,1,0xc0241000]
 w[68:72]=[0x314d4446,1,12,0x101000]
 w[84:92]=[7,100,0,0xc0f4eb40,0,0,1,6]
+w[52]=0x31504548;w[55]=1;w[56]=7;w[63]=0;w[66]=3
+w[20:23]=[1,0,1]
 r=decode(packed(w))
 assert r['terminal_identity_verified'] and not r['accepted_transfer']
 assert r['dma']['generation']==12 and r['dma']['stage']==7
 assert r['dma']['pci_command']=='0x0006'
+assert r['heap']==dict(ready=1,error=7,valid=0,extra_guard_mask=3)
+assert r['isolation']==dict(exception_owner_valid=1,scsi_verified=0,exception_guards_valid=1)
 for count in (0,1,2,63,64,87):
     p=w.copy();p[2:4]=[count,1];r=decode(packed(p))
     assert not r['accepted_transfer'] and 'dma' not in r

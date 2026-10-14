@@ -1,0 +1,10 @@
+{
+  "isolation_checks": 89,
+  "frames": 512,
+  "paired": 20,
+  "pending_polls": 23963,
+  "full_guarded_bytes": 37748736,
+  "mailbox_reads": 1300,
+  "exact_pattern_bytes": 33554432,
+  "owned_stop": true
+}

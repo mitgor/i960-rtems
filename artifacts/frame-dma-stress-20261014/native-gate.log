@@ -1,0 +1,2 @@
+Executed on Linux with gcc -m32 and ASan/UBSan against stress-engine/admission:
+PASS: compiled SHA identity, metadata/BSS/STOP refusals, modeled normal/cancel cleanup, post-code and failed-scope quarantine; no i960 execution

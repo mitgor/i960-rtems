@@ -33,6 +33,11 @@ def decode(data):
     if len(t) >= 8:
         result.update(trap_kind=t[2], frame_pointer=f"0x{t[3]:08x}",
                       hardware_record=[f"0x{x:08x}" for x in t[4:8]])
+    if len(t) >= 64 and t[48] == 0x31504548:
+        result["heap"] = dict(ready=t[51], error=t[52], valid=t[59],
+                              extra_guard_mask=t[62])
+        result["isolation"] = dict(exception_owner_valid=t[16],
+                                   scsi_verified=t[17], exception_guards_valid=t[18])
     if len(t) >= 88:
         d = t[64:]
         result["dma"] = dict(phase=d[1], generation=d[2], error=d[13],

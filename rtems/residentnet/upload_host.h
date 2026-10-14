@@ -52,7 +52,11 @@ static long upload_ioctl(struct file*file,unsigned int cmd,unsigned long arg){
  if(op==8){if(!w[8]||w[8]>512||!w[9]){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
 #endif
 #ifdef I960_DOOM_ENGINE
- if(op==10){if(w[8]>2||(w[8]==0&&w[9])||(w[8]==2&&w[9]>511)){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
+ if(op==10){if((w[8]>2
+#ifdef I960_DOOM_DMA
+ &&!(w[8]==5&&w[9]==16) /* read-only owned-isolation counter, no DMA submit/address */
+#endif
+ )||(w[8]==0&&w[9])||(w[8]==2&&w[9]>511)){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
  if(op==9||op==11){if(!w[8]||(w[9]&1023)||w[9]>(op==11?65536:131072)-1024){rc=-EINVAL;goto free;}for(i=10;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}}
 #endif
  mutex_lock(&d->session_lock);

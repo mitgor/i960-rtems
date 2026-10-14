@@ -64,12 +64,22 @@ unsigned engine_run(struct seg_image*s,int(*sync)(void*,unsigned),unsigned*value
 #endif
  for(i=0;i<12;i++)results[i]=word(s->base+ENGINE_RESULT+4*i);
 #ifdef ENGINE_STARTUP
+ #ifdef ENGINE_DMA_STRESS
+ if(*value!=0x454e4702u||results[0]!=0x454e4750u||results[1]!=3||results[2]!=65536u||results[10]!=1)goto uncertain;
+#else
  if((*value!=0x454e4700u&&*value!=0x454e4702u)||results[0]!=0x454e4750u||results[1]!=2||results[10]!=1)goto uncertain;
+#endif
 #ifndef ENGINE_PLAYABLE
  if(*value==0x454e4700u&&(results[2]!=6291456u||results[3]!=ENGINE_FRAME||results[4]!=ENGINE_PALETTE||results[5]!=ENGINE_FRAME_COUNT||results[6]!=1||results[9]||results[11]!=213))goto uncertain;
  if(*value==0x454e4702u&&(results[9]<2||results[9]>4||results[5]||results[6]))goto uncertain;
 #else
- if(*value!=0x454e4702u||results[2]!=6291456u||results[6]||results[9]!=2||results[11]!=210)goto uncertain;
+ if(*value!=0x454e4702u||results[2]!=
+#ifdef ENGINE_DMA_STRESS
+ 65536u
+#else
+ 6291456u
+#endif
+ ||results[6]||results[9]!=2||results[11]!=210)goto uncertain;
 #endif
 #else
  if((*value!=0x454e4700u&&*value!=0x454e4702u)||results[0]!=0x454e4750u||results[1]!=1||results[10]!=1||results[11]||results[9]>3)goto uncertain;

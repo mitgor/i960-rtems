@@ -7043,6 +7043,186 @@
       "sha256": "f4148e76b199f02b8a4b1c6c7e8a9780cf4ffcf970acd60067d21be928ee3eb3"
     },
     {
+      "path": "artifacts/frame-dma-stress-20261014/README.md",
+      "size": 9709,
+      "sha256": "702c4731761862ebba675e3f74655774737fd050f35e5e0f734fb0f450be5db7"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/build.sh",
+      "size": 1427,
+      "sha256": "a756b023d1ba456eda627777e7d0bfa605706400f6d85ea5c817746a930edc82"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/close_capture.sh",
+      "size": 1005,
+      "sha256": "fe1fc5d1e84c4b97dee41b0d030b8b3e66c76fb7246b68be4ea02a5e1e5b4b7f"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/counter-build-evidence.tar.gz",
+      "size": 2297603,
+      "sha256": "d85f0b0e007bcd3bb73578f8e041a62bc5475c1952f5ecad07da8c5590c5023c"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/counter-card-evidence.tar.gz",
+      "size": 48798286,
+      "sha256": "268748a7b93249222fb2f2710f66fefa0280a438b34ee85a0abde89801426007"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/counter-negative-replay.json",
+      "size": 184,
+      "sha256": "cfd10fd7477bbdb3a83ada9ea1007376c022a9affeb499ef287b248c23b2b664"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/counter-preflight-evidence.tar.gz",
+      "size": 2655071,
+      "sha256": "9a004a4c35d737feefb11dc8bfbc15dd2f2c6c008b85f268945a07324a66014f"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/failed-build-evidence.tar.gz",
+      "size": 2345592,
+      "sha256": "5c1bc749a588d582e1efdd87b4557f24974dfc99d010e085b7dc6ddfad3804d0"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/failed-card-evidence.tar.gz",
+      "size": 6193970,
+      "sha256": "43c406bb2f17a3d12d3e07bad155065e9768f506b30151f782c2bbd283706162"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/failed-fault-decoded.json",
+      "size": 2548,
+      "sha256": "0550ce99ca3bbf2910aabcf9a5dea2feed70d04b568b8b30d4275ac538968b24"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/failed-frames-replay.json",
+      "size": 273,
+      "sha256": "b25025336bb3b877eba74eb02dd6b87460dd669fceab0088eb6ccf16a3ead7af"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/failed-system-replay.json",
+      "size": 241,
+      "sha256": "b5f70e2442611507c8c6fab079858d9966dc45d650fd2f23cde1a97082f0fd66"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/fixed-build-evidence.tar.gz",
+      "size": 2302109,
+      "sha256": "f5d318bf75169a041a36a94ffd2dd82f74fd0ca46a0c16a1617ffc7fd82247c4"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/fixed-card-evidence.tar.gz",
+      "size": 48843851,
+      "sha256": "fb50e284c76bedc7783d9026f3ace7e2dcf479e1410d228529c924236712a522"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/fixed-stress-local-replay.json",
+      "size": 204,
+      "sha256": "7562c11341d8dc1db7f69ba922c35145196c5e569bd2f69d050100390394a0bc"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/fixed-system-local-replay.json",
+      "size": 6347,
+      "sha256": "f6750f3f707b0453afaa96ba541c527cba2a46fa623102ee5ac0f27da934296e"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/generated-counter-test.log",
+      "size": 122,
+      "sha256": "b135dca16c84f65a7ad98156cb14d6a29517500a976fbec94d2a0ede78fed4b2"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/live.sh",
+      "size": 655,
+      "sha256": "9f581308bb57130e010e3bbea3f70f58a849dad1be277a9f9841796636db6930"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/measure.py",
+      "size": 900,
+      "sha256": "6174bf7be03201c0e5804236982bfe2d122a699dfab5f57ebb812a6810c99be9"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/measurements.json",
+      "size": 503,
+      "sha256": "1f3d2e06246d06f3c3135f3ecc17d5369d29074103554367dc351fb88cd2c0f7"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/native-counter.log",
+      "size": 122,
+      "sha256": "b135dca16c84f65a7ad98156cb14d6a29517500a976fbec94d2a0ede78fed4b2"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/native-decoder.log",
+      "size": 110,
+      "sha256": "b4c93aba2b650e2f89c01dd1963131a5fa2874a58bfa00735a4b34149d24bd25"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/native-engine.log",
+      "size": 230,
+      "sha256": "d49a1bb5348dc0f59c94b7357c471e0a871268daa676a310ff448cb79b7d24fe"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/native-gate.log",
+      "size": 225,
+      "sha256": "a95e12ae5ec7eb56cc1b88c7598977bced0cb6f4ec9684d077dc77c08833f6db"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/native-generated-negative.log",
+      "size": 447,
+      "sha256": "1cbade752359f4e0bf5f10a9c8ac88585330972d5f09588cced3ec6a830838f8"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/native-host.log",
+      "size": 127,
+      "sha256": "d07dbc045923ce48692d1fe76812c4055b18f0f63b80d0fbfe7441b90e97d837"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/native-replay.log",
+      "size": 78,
+      "sha256": "0b93b80312ee0002de037109522a143f729146cbfdfa7c8349750402fba3f3a3"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/native-scsi.log",
+      "size": 120,
+      "sha256": "280bb0bc50fe630bae75aead2e818ab1c3bd57459b08e74b83e2c9ca7758c4d5"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/native-target.log",
+      "size": 1044,
+      "sha256": "213caadc9bbf6bfc03f9927afda009faa19edc75e11d8bf410bb81f9451bfa60"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/restoration.json",
+      "size": 472,
+      "sha256": "ec808aff274dc1612787907b36ace145afa08855d8e0169fa5946979593ffe2a"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/restore.sh",
+      "size": 866,
+      "sha256": "6ce2bdf4d0aa61b5e74166e88426bf8c08788dff58888b9468299a3844f55616"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/restored-http.headers.gz",
+      "size": 116,
+      "sha256": "dbabea0346301eb1b639f2f83f69f4101de778fa1d1708e0931497d83f75e9f2"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/restored-http.html.gz",
+      "size": 1371,
+      "sha256": "b7d9e5b250ff2a34244e47125737ba243db037df902d86919f9a83dfda1e4a25"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/tamper-results.json",
+      "size": 2802,
+      "sha256": "72c4e4727ebdbb5a51d22fb218ad80dfdc625a0287ed9b1bb57d29f1aa75d79a"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/verify_failed_frames.py",
+      "size": 2206,
+      "sha256": "aeb2ed188489b04515c9c1c25c02cff1d8eb2e2e86bc0451a8c8e88df0e5eabd"
+    },
+    {
+      "path": "artifacts/frame-dma-stress-20261014/verify_failed_system.py",
+      "size": 1999,
+      "sha256": "c5516b59d8dcdb8241d8f21dd38d8beabeafe041322c817edcd727090afafe28"
+    },
+    {
       "path": "artifacts/framequeue-20261011/README.md",
       "size": 7279,
       "sha256": "6e4ed25b2a8334a955ab3c310385e3451ec8ce38bb783e7eba54f52a99717db8"

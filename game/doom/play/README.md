@@ -13,7 +13,11 @@ four identical pinned frames through DMA and paired mailbox, then measures
 mailbox/DMA/DMA/mailbox blocks while retaining the normal full audits. It uses
 the same renderer, frame format and input sequence. See the
 [ownership contract](../../../rtems/dma/FRAME-DMA.md) and
-[dated evidence](../../../artifacts/doom-dma-20261014/README.md).
+[original dated evidence](../../../artifacts/doom-dma-20261014/README.md).
+The [subsequent stress test](../../../artifacts/frame-dma-stress-20261014/README.md)
+fixes a reproduced peer-isolation halt during owned DMA; it passed 512 synthetic
+frames with full audits and shutdown. A fresh Doom comparison with that fix is
+the next acceptance step.
 Do not combine this test with `--bulk`, `--bulk-test` or `--self-test`, or use a
 DMA kernel with a non-DMA runner. The accepted normal play modes are unchanged.
 

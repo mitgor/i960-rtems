@@ -1,25 +1,30 @@
 # Current findings and evidence — 2026-10-14
 
-<!-- doom-dma-cleanup-current -->
-**Doom DMA diagnosis batch (2026-10-14):** two complete comparisons passed:
-instrumented target 0.966→1.384 FPS (+43.26%), exact earlier target
-0.969→1.380 FPS (+42.45%). Each kept 28 full monitor/RAM pairs, four exact
-same-frame comparisons, 16 guarded DMA captures, 28 previous-card-exact images,
-owned STOP and global drain. Full replay/tamper checks pass. **The earlier
-intermittent timeout did not recur and is not diagnosed or fixed.** New phase
-markers and bounded failure-only fault capture are diagnostic, not a proven
-cure; the live fault path remains unexercised. Keep DMA opt-in and all audits.
-Both closed runs were copied, hash-verified and replayed locally before reboot.
-Public IPv6 HTTP restored and returned 200 from the Mac. Current card owner:
-public relay supervisor 2619 / Python 2622, boot
-`333a779d-bfd4-4a59-8562-1cce3176b5e6`, bound `dac960auto`.
-Next: a fast repeated-frame stress harness covering timer interruption of
-polling/cleanup, then fix a reproduced defect. Evidence:
-`artifacts/doom-dma-cleanup-20261014/README.md`.
-<!-- /doom-dma-cleanup-current -->
+
+<!-- frame-dma-stress-current -->
+**Frame DMA stress acceptance (2026-10-14):** the tiny admitted producer
+reproduced the timeout at frame 41. A scheduled peer heap check required all
+DMA idle and rejected the intentionally owned DMA1 transaction. Frozen evidence
+shows software abort, heap error 1, completed bytes and cleanup not yet run.
+The ownership-aware isolation check passed **512 frames, 89 active-transaction
+checks, 20 exact mailbox/DMA pairs, 30 full monitor/RAM pairs, owned STOP and
+global drain**. Full local replay passes; 34 capture and 24 snapshot corruptions
+are rejected. Counter-query integration failures are separately archived and
+are not accepted runs. No timeout bounds, interrupts or full audits were relaxed.
+Synthetic delivery is 2.9759 FPS, mean DMA capture 225.58 ms; this is not Doom FPS.
+Keep DMA opt-in. Next: repeat the pinned Doom A/B/B/A comparison with this fix,
+then longer interactive acceptance. No firmware reflash was needed.
+Evidence: `artifacts/frame-dma-stress-20261014/README.md`; harness:
+`rtems/dma/stress/README.md`. Closed archives were hash-verified and replayed
+locally before reboot. Public IPv6 HTTP is restored and returned 200 from the
+Mac. Stress ownership is released. Current owner: public relay supervisor 2430,
+Python 2432, boot `5ae888c7-143b-400b-80ea-5e2a24392de6`, bound `dac960auto`.
+Stop that relay normally before new hardware work; never force-unload a retained
+exclusive test module.
+<!-- /frame-dma-stress-current -->
 
 <!-- doom-dma-current -->
-**Doom DMA comparison failed full acceptance (2026-10-14):** four pinned
+**Historical first Doom DMA comparison (2026-10-14), before the fix above:** four pinned
 frames matched mailbox/DMA exactly; same-frame transfer improved **0.498802 →
 0.225233 s (2.2146×)**. Five DMA frames and eleven delivered frames passed, then
 frame-12 completion polling timed out. Retained destination bytes match the old

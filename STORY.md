@@ -3021,6 +3021,54 @@ routine, without paying for a whole level load each time. The root cause is
 still open; ordinary browser play has not been switched to DMA. Both archives
 were checked locally before reboot, and the public IPv6 page answered again.
 
+## The safety check that stopped a successful transfer
+
+The smaller test did what another level load could not. A few hundred bytes of
+admitted i960 code filled the same pinned framebuffer with a known pattern and
+asked the same DMA worker to send it. No monsters, no WAD cache, no renderer to
+suspect. On frame forty-one, the receipt failed to arrive again.
+
+This time the card could tell us why. The descriptor had finished: byte count
+zero, next descriptor zero, every destination byte correct. The worker had not
+yet disabled its channel or bus mastering. A timer interruption had let another
+RTEMS task run, and that task checked its heap before doing any work.
+
+The heap check was quite deliberately suspicious. To trust its RAM, it required
+exclusive isolation. The isolation check still carried an older rule: all DMA
+engines must be idle. We had taught one worker to use an engine, but had not
+taught its neighbour how to recognize that worker's ownership. The neighbour
+saw bus mastering enabled, poisoned the heap, and stopped the machine. Linux
+reported a timeout because the card had obeyed its own safety rules too well.
+
+The fix gives that rule a precise exception. A pending transfer must name the
+current pinned frame, the exact descriptor and destination, and one of the
+known enable, poll or cleanup stages. Descriptor contents, error bits, other
+engines and the secondary-bus reset are still checked. The exception changes a
+local validation snapshot; it neither writes the hardware nor holds off the
+timer. Completion still has to restore the original idle state.
+
+There was one more mundane stumble. The first fixed run delivered all 512
+pictures, then Linux rejected a new read-only diagnostic query because I had
+forgotten its ioctl allowlist entry. That run did not earn a shutdown pass. Its
+captures were kept, the specific query was added and tested, and an early check was added before asking the producer to start. That check
+caught the companion build-script omission too: the generated driver lacked the
+feature macro for the new query. Both small mistakes kept their captures;
+neither became a DMA success by being inconvenient.
+
+The final repeat delivered all 512 pictures. Eighty-nine times, a safety check
+saw the owned transaction in progress and correctly let it continue. Thirty
+complete memory-audit pairs passed, followed by owned STOP and global shutdown.
+The little producer sustained just under three frames per second with those
+checks included. The important number was eighty-nine: this time we knew the
+awkward timing window had actually happened.
+
+The [stress-test evidence](artifacts/frame-dma-stress-20261014/README.md) keeps
+both incomplete runs as well as the final acceptance results. Ordinary browser
+play remains on its existing transport until the fixed worker has its next
+Doom comparison. A pattern producer is excellent at finding this fault; it is
+not a new Doom frame-rate result. The closed captures were checked locally
+before the final reboot, and the public IPv6 page was answering again afterward.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3067,7 +3115,10 @@ So, the ledger, honestly kept:
   pictures 2.21 times faster, but a later completion timeout initially prevented
   FPS and cleanup acceptance. Two subsequent complete runs pass all audits and
   drain and measure about 42–43% higher FPS with DMA. The original binary passes
-  too, so the intermittent timeout remains unexplained; DMA stays opt-in.
+  too. A later small frame producer reproduced a peer heap check incorrectly
+  rejecting owned DMA; the corrected isolation check passed 512 frames, 89
+  active-transaction checks and full STOP/drain. DMA stays opt-in pending the
+  next Doom comparison.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 
