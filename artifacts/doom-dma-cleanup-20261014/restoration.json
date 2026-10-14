@@ -1,0 +1,14 @@
+{
+  "boot_id": "333a779d-bfd4-4a59-8562-1cce3176b5e6",
+  "supervisor_pid": 2619,
+  "python_pid": 2622,
+  "bound_driver": "dac960auto",
+  "owner": "public RTEMS autonet relay",
+  "workspace": "/home/mit/i960-rtems-web-20261011",
+  "output": "/home/mit/i960-rtems-web-20261011/http-after-doom-dma-cleanup-20261014",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status_from_mac": 200,
+  "http_body_sha256": "5184cb7f4ee8e4761f078f10c1fd40405773b9858f624108c12b59efba8d7ea5",
+  "ipv4_ipv6_startup_checks": "passed",
+  "retained_test_modules": "released by reboot after local archive verification"
+}

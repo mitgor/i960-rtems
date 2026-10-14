@@ -1,5 +1,23 @@
 # Repository guidance for Claude Code
 
+<!-- doom-dma-cleanup-current -->
+**Doom DMA diagnosis batch (2026-10-14):** two complete comparisons passed:
+instrumented target 0.966→1.384 FPS (+43.26%), exact earlier target
+0.969→1.380 FPS (+42.45%). Each kept 28 full monitor/RAM pairs, four exact
+same-frame comparisons, 16 guarded DMA captures, 28 previous-card-exact images,
+owned STOP and global drain. Full replay/tamper checks pass. **The earlier
+intermittent timeout did not recur and is not diagnosed or fixed.** New phase
+markers and bounded failure-only fault capture are diagnostic, not a proven
+cure; the live fault path remains unexercised. Keep DMA opt-in and all audits.
+Both closed runs were copied, hash-verified and replayed locally before reboot.
+Public IPv6 HTTP restored and returned 200 from the Mac. Current card owner:
+public relay supervisor 2619 / Python 2622, boot
+`333a779d-bfd4-4a59-8562-1cce3176b5e6`, bound `dac960auto`.
+Next: a fast repeated-frame stress harness covering timer interruption of
+polling/cleanup, then fix a reproduced defect. Evidence:
+`artifacts/doom-dma-cleanup-20261014/README.md`.
+<!-- /doom-dma-cleanup-current -->
+
 <!-- doom-dma-current -->
 **Doom DMA comparison failed full acceptance (2026-10-14):** four pinned
 frames matched mailbox/DMA exactly; same-frame transfer improved **0.498802 →

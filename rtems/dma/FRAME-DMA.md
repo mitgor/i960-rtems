@@ -1,8 +1,11 @@
 # Pinned Doom frame DMA/mailbox comparison
 
-**Physical result:** four exact same-frame comparisons and 2.2146× faster
-transfer, followed by a frame-12 completion timeout. The full batch failed;
-no DMA FPS/drain acceptance. See [captured evidence](../../artifacts/doom-dma-20261014/README.md).
+**Physical result:** two subsequent complete 28-frame runs passed all audits,
+STOP and drain, measuring **42.45–43.26% higher delivery FPS** (about 0.97→1.38).
+One used the exact earlier target binary. The earlier frame-12 timeout did not
+recur and **is not diagnosed or fixed**. Keep DMA opt-in. See the
+[diagnosis batch](../../artifacts/doom-dma-cleanup-20261014/README.md) and
+[original failure](../../artifacts/doom-dma-20261014/README.md).
 
 Opt-in bounded acceptance: build `game/doom/play/build.py --dma`, then run
 `game/doom/play/run.py --dma-test` in a fresh isolated workspace on the qualified
@@ -83,3 +86,26 @@ known small native/card pixel differences instead of silently accepting new ones
 The proof supports one owned engine invocation per resident session. Reusable
 mapping lifetime, generation restart, disconnect/recovery and production DMA
 play remain separate acceptance work. Initial level load is unchanged.
+
+## Failure-only terminal diagnostics
+
+The current diagnostic candidate adds persistent phase markers and an iteration
+counter. If the terminal fault owner runs, it freezes the DMA report and live
+CSR/DAR/NDAR/BCR/CCR/PCI-command fields before other fault reporting. Terminal
+read indices 64–95 expose that frozen extension. Existing normal completion and
+full audit protocols are unchanged.
+
+After a failed frame-DMA exchange poisons the driver, a separate diagnostic
+helper can request the existing terminal read protocol. It has a two-second
+total deadline and 2,000-poll per-word cap, checks masks/doorbell and exact
+NMF1/epoch identity, and writes only read-request tokens. It cannot ACK, resume
+RTEMS, disable DMA, clear poison or free retained resources. The captured
+`frame-dma-fault.bin` is 100 little-endian words: FDF1 magic, epoch, received
+word count, diagnostic error, then up to 96 frozen terminal words. Error values
+are 1 deadline, 2 mask/doorbell, 3 poll exhaustion, 4 wrong terminal identity.
+
+Use `python3 rtems/dma/decode_frame_fault.py PATH` for diagnosis. This is negative
+evidence only, including when all 96 words arrive. A card that never reaches the
+terminal monitor may produce no verified terminal identity. Destination arrival
+and diagnostic visibility do not prove DMA retirement. See the
+[diagnostic experiment](../../artifacts/doom-dma-cleanup-20261014/README.md).

@@ -1,0 +1,1 @@
+PASS diagnostic helper: exact frozen 96-word report, wrong magic/epoch, mask/doorbell, bounded silence; poison retained, only read-request writes

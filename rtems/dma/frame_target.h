@@ -11,7 +11,12 @@ static void fd_unlock(unsigned pc){__asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,
 #define FD_UNLOCK(pc) fd_unlock(pc)
 #endif
 static unsigned fd_report[16],fd_destination;
-static volatile unsigned fd_phase;
+static volatile unsigned fd_phase,fd_stage,fd_loops;
+#define FD_STAGE(n) do{__asm__ volatile("":::"memory");fd_stage=(n);__asm__ volatile("":::"memory");}while(0)
+unsigned frame_dma_diagnostic(unsigned i){
+ if(i<16)return i==1?fd_phase:fd_report[i];
+ switch(i){case 16:return fd_stage;case 17:return fd_loops;case 18:return FD_R(0x1444);case 19:return FD_R(0x144c);case 20:return FD_R(0x1450);case 21:return FD_R(0x1460);case 22:return FD_R(0x1440);case 23:return FD_S(0x1204);default:return 0;}
+}
 static volatile unsigned fd_storage[16] __attribute__((aligned(16)));
 #define fd_desc ((volatile unsigned*)(((unsigned long)fd_storage+31)&~31UL))
 static unsigned fd_crc(const unsigned char*p){
@@ -33,24 +38,24 @@ static unsigned fd_control(unsigned index,unsigned value){
 static void fd_step(void){unsigned i,csr=0,rc=0;const unsigned char*source=play_frame;
  if(fd_phase!=1)return;
  if(!source||play_ack||play_sequence!=fd_report[2]||!fd_idle()){rc=1;goto failed;}
- fd_report[5]=fd_crc(source);
+ FD_STAGE(1);fd_loops=0;fd_report[5]=fd_crc(source);FD_STAGE(2);
  fd_desc[0]=0;fd_desc[1]=fd_destination;fd_desc[2]=0;fd_desc[3]=FD_ADDR(source);fd_desc[4]=65536;fd_desc[5]=7;fd_desc[6]=0xfacefeed;fd_desc[7]=0xfacefeed;
- fd_report[15]=FD_ADDR(fd_desc);
+ fd_report[15]=FD_ADDR(fd_desc);FD_STAGE(3);
  if(play_api->stopping()){rc=2;goto failed;}
- __asm__ volatile("":::"memory");FD_S(0x1204)=6;if(FD_S(0x1204)!=6){rc=3;goto cleanup;}
- FD_R(0x1450)=FD_ADDR(fd_desc);(void)FD_R(0x1450);FD_R(0x1440)=1;(void)FD_R(0x1440);
+ FD_STAGE(4);FD_S(0x1204)=6;if(FD_S(0x1204)!=6){rc=3;goto cleanup;}
+ FD_STAGE(5);FD_R(0x1450)=FD_ADDR(fd_desc);(void)FD_R(0x1450);FD_STAGE(6);FD_R(0x1440)=1;(void)FD_R(0x1440);FD_STAGE(7);
  for(i=0;i<200000;i++){
-  csr=FD_R(0x1444);if(csr&~0x400u){rc=4;break;}
+  fd_loops=i;csr=FD_R(0x1444);if(csr&~0x400u){rc=4;break;}
   if(!csr&&!FD_R(0x1450)&&FD_R(0x144c)==FD_ADDR(fd_desc)&&!FD_R(0x1460))break;
  }
- if(i==200000)rc=5;
+ FD_STAGE(8);if(i==200000)rc=5;
  fd_report[7]=csr;fd_report[8]=FD_R(0x144c);fd_report[9]=FD_R(0x1450);fd_report[10]=FD_R(0x1460);fd_report[11]=FD_R(0x1464);fd_report[12]=i;
 cleanup:
- FD_R(0x1440)=0;(void)FD_R(0x1440);FD_S(0x1204)=2;(void)FD_S(0x1204);
+ FD_STAGE(9);FD_R(0x1440)=0;(void)FD_R(0x1440);FD_STAGE(10);FD_S(0x1204)=2;(void)FD_S(0x1204);FD_STAGE(11);
  if(rc)goto failed;
- fd_report[6]=fd_crc(source);
+ fd_report[6]=fd_crc(source);FD_STAGE(12);
  if(!fd_idle()||FD_R(0x1450)||fd_report[5]!=fd_report[6]||fd_desc[6]!=0xfacefeed||fd_desc[7]!=0xfacefeed){rc=6;goto failed;}
- __asm__ volatile("":::"memory");fd_phase=2;return;
+ FD_STAGE(13);__asm__ volatile("":::"memory");fd_phase=2;return;
 failed:
  fd_report[13]=rc;FD_FATAL(); /* nonreturning quarantine, frame remains pinned */
 }

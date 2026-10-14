@@ -2,6 +2,9 @@
  * DMA address is accepted. The renderer pin spans submit, validation and ACK. */
 #include <linux/crc32.h>
 #define FRAME_DMA_BYTES 73728u
+#ifndef FRAME_DMA_DIAG
+#define FRAME_DMA_DIAG(d,e) ((void)0)
+#endif
 static long frame_dma_ioctl(struct file*file,unsigned cmd,unsigned long arg){
  struct experiment*d=file->private_data;unsigned*w,op,epoch,g,off,i,v=0;int rc=0;unsigned long deadline;
  if(cmd!=0xc4204d08u)return upload_ioctl(file,cmd,arg);
@@ -43,7 +46,7 @@ static long frame_dma_ioctl(struct file*file,unsigned cmd,unsigned long arg){
  d->frame_dma_pending=false;d->frame_dma_valid=true;
  record(d,"FRAME DMA generation=%u CRC=%08x complete; all bytes and guards validated\n",g,w[13]);
 copy:session_log_end(d);if(copy_to_user((void __user*)arg,w,1056))rc=-EFAULT;goto unlock;
-uncertain:if(!rc)rc=-EIO;d->frame_dma_valid=false;d->mu_failed=true;d->ready=false;record(d,"FRAME DMA uncertain rc=%d target=%u; retain mapping and image\n",rc,v);session_log_end(d);
+uncertain:if(!rc)rc=-EIO;d->frame_dma_valid=false;d->mu_failed=true;d->ready=false;record(d,"FRAME DMA uncertain rc=%d target=%u; retain mapping and image\n",rc,v);FRAME_DMA_DIAG(d,epoch);session_log_end(d);
 unlock:mutex_unlock(&d->session_lock);
 free:kfree(w);return rc;
 }

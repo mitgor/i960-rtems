@@ -49,7 +49,14 @@ extern void resident_heap_report(unsigned int*);
 #include "large_ram.h"
 static unsigned int terminal_ram[64],terminal_ram_selected;
 #endif
+#ifdef I960_DOOM_DMA
+extern unsigned frame_dma_diagnostic(unsigned);
+static unsigned dma_terminal[32];
+#endif
 void exclusive_trap_park(void){unsigned int token,index,i,s[17];
+#ifdef I960_DOOM_DMA
+ for(i=0;i<32;i++)dma_terminal[i]=frame_dma_diagnostic(i);
+#endif
  exclusive_trap_words[37]=V(0x1320);exclusive_trap_words[38]=V(0x1328);exclusive_trap_words[39]=V(0x1324);
  V(0x1328)=0x1fb; /* mask the test source before clearing its latch */
  if(exclusive_trap_words[2]==2)V(0x1320)=0x80000000u;
@@ -74,7 +81,11 @@ void exclusive_trap_park(void){unsigned int token,index,i,s[17];
   if(token==(0x90000000u|owner_epoch))terminal_ram_selected=0;
 #endif
   if(token==(0x90000000u|owner_epoch)){V(0x1314)=0;V(0x131c)=0x95000000u|owner_epoch;}
-  else if((token&0xff000000u)==0x91000000u){index=(token>>16)&255;if(index>=64)continue;V(0x1318)=
+  else if((token&0xff000000u)==0x91000000u){index=(token>>16)&255;
+#ifdef I960_DOOM_DMA
+   if(index>=64&&index<96){V(0x1318)=dma_terminal[index-64];V(0x1314)=0;V(0x131c)=0x92000000u|(index<<16)|owner_epoch;(void)V(0x131c);V(0x1324)=2;continue;}
+#endif
+   if(index>=64)continue;V(0x1318)=
 #ifdef I960_OWNED_MIB
  terminal_ram_selected?terminal_ram[index]:
 #endif

@@ -2986,6 +2986,41 @@ page answered over IPv6 again afterward. Ordinary
 browser play keeps its accepted transport while this path earns the rest of its
 proof.
 
+## Giving the stalled transfer a voice
+
+A picture reaching the host was not enough. The twelfth picture had arrived,
+but the processor had not told us that the transfer was retired. We added a
+small trail of phase markers: checksum, descriptor, start, polling, channel off,
+bus master off, checksum again. If the card reached its terminal fault handler,
+it would freeze those markers with the fault record. A poisoned host session
+could ask for that record, within a fixed deadline, without gaining permission
+to acknowledge another frame or recycle the memory.
+
+Then the diagnostic build did something inconveniently useful: it passed.
+Twenty-eight pictures, four complete mailbox-versus-DMA comparisons, sixteen
+DMA transfers, twenty-eight full memory audit pairs, owned STOP and global
+shutdown. Every picture matched the earlier physical mailbox run. The browser
+showed frame twenty-eight. Mailbox delivery measured 0.966 frames per second;
+DMA measured 1.384, about forty-three percent more. Copying the picture itself
+was about 2.29 times faster, but Doom still had to render it.
+
+That was a measurement, not an explanation. Adding stores changes timing, and
+adding C changes what this old compiler emits. We saved and replayed the whole
+batch, rebooted, and prepared another run with the exact previously failing
+processor binary. Only the host gained the ability to ask for a frozen fault
+record. If the failure returned, we wanted its address, not another guess.
+
+The [diagnosis batch](artifacts/doom-dma-cleanup-20261014/README.md) keeps the
+instrumented build and its successful comparison. The exact earlier binary passed too: another twenty-eight pictures, twenty-eight
+full audits and complete shutdown, at 1.380 versus 0.969 frames per second.
+That made the performance result repeatable and the failure intermittent. It
+also took away the tempting explanation that the new markers had cured it.
+There was no new fault record to explain. The next tool should be a small,
+repeated-frame stress test that makes interruption during polling and cleanup
+routine, without paying for a whole level load each time. The root cause is
+still open; ordinary browser play has not been switched to DMA. Both archives
+were checked locally before reboot, and the public IPv6 page answered again.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3029,8 +3064,10 @@ So, the ledger, honestly kept:
   remains recorded. The subsequent paired-mailbox reader reaches about one frame per second,
   with full audits and shutdown passing. Startup and the small rendering
   discrepancy remain open. A subsequent DMA comparison moves the same four
-  pictures 2.21 times faster, but a later completion timeout prevents acceptance
-  of DMA FPS, post-transfer audits and final cleanup.
+  pictures 2.21 times faster, but a later completion timeout initially prevented
+  FPS and cleanup acceptance. Two subsequent complete runs pass all audits and
+  drain and measure about 42–43% higher FPS with DMA. The original binary passes
+  too, so the intermittent timeout remains unexplained; DMA stays opt-in.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 
