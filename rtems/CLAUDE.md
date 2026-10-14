@@ -1,25 +1,31 @@
 # RTEMS working guidance
 
 <!-- exclusive-dma-current -->
-**Exclusive DMA1 proof accepted (2026-10-14):** opt-in `--dma-proof` completes
-24 exact card-to-host transfers (1 byte–64 KiB, including unaligned destinations),
-61 full monitor/RAM pairs, 54 refusals, dual-stack networking and normal STOP.
-All 1,709 application allocations and 118 shared handles retire. Independent
-replays pass; 23 DMA-capture and 24 snapshot mutations are rejected. The original
-attempt timed out because DAR1 was incorrectly read at 0x1448; the corrected
-address is 0x144c. Both attempts, exact binaries and source are preserved.
-The kernel owns a dedicated 73,728-byte coherent mapping for the Mylex and retains
-it until reboot, including on uncertainty. No firmware write or ATU remapping
-was needed. DMA is **not integrated into Doom**. Diagnostic transactions take
-106–138 ms, not a DMA-throughput/FPS result; the maximum IRQ gap is 111.481 ms.
-Next: task-owned asynchronous preparation/completion and STOP/lifetime tests,
-then same-frame DMA/mailbox comparisons before measuring Doom FPS. Preserve all
-full audits. Both archives are hash-verified locally; reboot completed and the
-public IPv6 HTTP service returned 200 from the Mac. Public relay Python 3261
-(supervisor 3259), boot `0d28644e-e63e-43a7-8faa-2d36bf2bb3b3`, owns the card;
-test reservation released. Stop the relay normally before future card work.
-The replay now uses Linux errno numbers explicitly so Mac replay works too.
-[Evidence and limitations](../artifacts/dma-owned-20261014/README.md).
+**Task-owned asynchronous DMA accepted (2026-10-14):** worker 1 now prepares,
+launches and checks DMA1 with interrupts enabled; the MU handler only publishes
+jobs and reads status. Host submit/poll calls release the session mutex between
+commands. Two physical runs passed **48 exact transfers, 124 full monitor/RAM
+pairs, 108 malformed/stale refusals and two canceled 64 KiB jobs**. Explicit
+STOP acknowledged in **1.258 ms**; the independent 3,000-tick session deadline
+also canceled before launch. Every canceled destination byte remained unchanged.
+Maximum IRQ gaps are **10.710 / 10.990 ms**, versus **111.481 ms** synchronously
+(90.1–90.4% smaller). All application allocations and shared handles retire.
+Full system, DMA and cancellation replays pass on Linux and macOS; current
+checks reject 24 DMA mutations, 42 cancellation mutations and 24 snapshot
+mutations per applicable capture. The 73,728-byte coherent mapping stays pinned
+until reboot. No forced unload, flash change, ATU remap or weakened audit.
+This is still opt-in `--dma-proof`, **not Doom DMA/FPS acceptance**. Diagnostic
+job wall time increases because source fill/check share CPU time; the measured
+benefit is interrupt responsiveness. A physically stuck DMA engine/abort is not
+claimed: native tests cover polling exhaustion/error/retention, while hardware
+covers explicit STOP and RTEMS session timeout. Next: same-frame DMA/mailbox
+comparison with a pinned Doom frame, then measured browser FPS and lifetime work.
+Both archives are locally hash-verified and replayed; the public IPv6 page
+returned HTTP 200 after reboot. Relay Python 2721 (supervisor 2717), boot
+`33cafc40-6142-46dd-9c79-0156c77f2e4e`, owns the card. Test reservation released;
+stop the relay normally before new hardware work. The archived physical modules
+precede a native-tested logging-only diagnostic follow-up in the current host.
+[Evidence, exact binaries and limits](../artifacts/dma-async-20261014/README.md).
 <!-- /exclusive-dma-current -->
 
 <!-- doom-bulk-current -->

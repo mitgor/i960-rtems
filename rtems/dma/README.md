@@ -1,9 +1,20 @@
 # Exclusive card-to-host DMA proof
 
-Bounded physical acceptance passed: 24 exact transfers, 61 full audit pairs,
-54 refusals and normal STOP/heap drain. Opt-in `--dma-proof`; not used by Doom
-or the public HTTP service. The 111.481 ms maximum IRQ gap requires a task-owned
-asynchronous path before interactive integration.
+Task-owned asynchronous physical acceptance passed in two runs: 48 exact
+transfers, 124 full audit pairs, explicit STOP and session-deadline cancellation.
+Maximum IRQ gap is 10.710–10.990 ms, down from 111.481 ms. Opt-in `--dma-proof`;
+not used by Doom or public HTTP. See the [asynchronous batch](../../artifacts/dma-async-20261014/README.md).
+
+Worker 1 prepares, launches, polls and validates with interrupts enabled, using
+its existing audited IRQ stack. Control handlers only stage/publish jobs and
+read reports. Phase word 31 is 1 while pending and 2 when terminal. Argument
+mutation is refused while pending. Linux op 1 submits; op 3 checks completion
+(EAGAIN while pending); op 2 reads validated data. The session mutex is released
+between calls. Full byte/guard validation remains mandatory before readback.
+STOP before launch returns error 10 without writes; STOP after launch permits
+bounded completion before retirement. Known prelaunch cancellation remains
+readable but forbids new jobs. No timeout authorizes recycling resources.
+
 The October 14 user request permits exclusive DMA ownership, remapping and
 firmware changes if necessary. This prototype changes neither flash nor ATU
 windows. Firmware bootstraps the existing owned RTEMS profile and remains parked.
@@ -36,7 +47,8 @@ Each run transfers lengths 1–65,536 at aligned and unaligned offsets, repeats
 with new seeds, and captures the entire coherent allocation after every transfer.
 Full existing monitor/RAM audit pairs surround every transfer. Bad size/offset,
 stale epoch/sequence and stale readback are refused. Normal STOP and full heap
-retirement are checked by the existing resident harness and independent replay.
+retirement are checked by the existing resident harness and independent replay. Hardware also tests a
+3,000-tick RTEMS deadline canceling a pending job before launch.
 Native tests execute the actual target and host C, including error/timeout and
 copyout failures. Physical fault injection and an active DMA abort are not claimed.
 

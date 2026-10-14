@@ -7,7 +7,7 @@ static long dma_proof_ioctl(struct file*file,unsigned int cmd,unsigned long arg)
  if(cmd!=0xc4204d07u)return resident_ioctl(file,cmd,arg);
  w=memdup_user((void __user*)arg,1056);if(IS_ERR(w))return PTR_ERR(w);
  op=w[0];epoch=w[1];n=w[2];offset=w[3];seq=w[4];seed=w[5];
- if(!epoch||epoch>65535||!seq||w[6]||w[7]||(op!=1&&op!=2)||(op==1&&(!n||n>65536||offset>4095))||(op==2&&(n!=1024||offset>DMA_PROOF_BYTES-1024||(offset&1023)||seed))){rc=-EINVAL;goto free;}
+ if(!epoch||epoch>65535||!seq||w[6]||w[7]||(op!=1&&op!=2&&op!=3)||(op==1&&(!n||n>65536||offset>4095))||(op==3&&(n||offset||seed))||(op==2&&(n!=1024||offset>DMA_PROOF_BYTES-1024||(offset&1023)||seed))){rc=-EINVAL;goto free;}
  for(i=8;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}
  mutex_lock(&d->session_lock);
  if(d->removed||d->pinned||!d->owned||!d->mu_resident||d->pending||d->runner_uncertain||!d->irq_may_run||d->response_ready||d->sequence!=1||d->mu_failed||d->mu_halted){rc=-EBUSY;goto unlock;}
@@ -16,6 +16,15 @@ static long dma_proof_ioctl(struct file*file,unsigned int cmd,unsigned long arg)
   if(!d->proof_valid||seq!=d->proof_seq){rc=-ESTALE;goto unlock;}
   dma_rmb();memcpy(w+8,(u8*)d->proof_buf+offset,1024);goto copy;
  }
+ deadline=jiffies+msecs_to_jiffies(10000);
+ if(op==3){
+  if(seq!=d->proof_seq||!d->proof_pending){rc=-ESTALE;goto unlock;}
+  rc=packet_exchange(d,0x521f0000u|epoch,0,&v,deadline);if(rc)goto uncertain;
+  if(v==1){rc=-EAGAIN;goto unlock;}
+  if(v!=2){rc=-EPROTO;goto uncertain;}
+  goto completed;
+ }
+ if(d->proof_pending||d->proof_cancelled){rc=-EBUSY;goto unlock;}
  if(seq!=d->proof_seq+1){rc=-ESTALE;goto unlock;}
  if(!d->proof_buf){
   d->proof_buf=dma_alloc_coherent(&d->pdev->dev,DMA_PROOF_BYTES,&d->proof_dma,GFP_KERNEL);
@@ -31,23 +40,27 @@ static long dma_proof_ioctl(struct file*file,unsigned int cmd,unsigned long arg)
  d->proof_seq=seq;
  rc=packet_exchange(d,0x51000000u|epoch,0,&v,deadline);if(rc)goto uncertain;
  if(v){unsigned target_error=v,diagnostic;
-  /* A replied target error permits read-only frozen diagnostics, never retry. */
+  /* Preserve rejected-submit diagnostics without retrying the job. */
   for(i=0;i<32;i++){
-   rc=packet_exchange(d,0x52000000u|(i<<16)|epoch,0,&diagnostic,deadline);
-   if(rc)break;
+   rc=packet_exchange(d,0x52000000u|(i<<16)|epoch,0,&diagnostic,deadline);if(rc)break;
    record(d,"DMA FAILURE report[%u]=%08x\n",i,diagnostic);
   }
   v=target_error;rc=-EIO;goto uncertain;
  }
+ d->proof_pending=true;d->proof_n=n;d->proof_offset=offset;d->proof_seed=seed;
+ goto copy;
+completed:
+ n=d->proof_n;offset=d->proof_offset;seed=d->proof_seed;
  for(i=0;i<32;i++){rc=packet_exchange(d,0x52000000u|(i<<16)|epoch,0,&w[8+i],deadline);if(rc)goto uncertain;}
- if(w[8]!=0x31414d44||w[9]!=seq||w[10]!=(unsigned)d->proof_dma+4096+offset||w[11]!=n||w[12]!=seed||w[13]||w[16]||w[17]||w[18]!=7||w[19]!=2||w[20]||w[21]||w[22]!=1||w[23]){rc=-EPROTO;goto uncertain;}
+ if(w[23]&&w[23]!=10)for(i=0;i<32;i++)record(d,"DMA FAILURE report[%u]=%08x\n",i,w[8+i]);
+ if(w[8]!=0x31414d44||w[9]!=seq||w[10]!=(unsigned)d->proof_dma+4096+offset||w[11]!=n||w[12]!=seed||(!w[23]&&(w[13]||w[16]||w[17]||w[18]!=7))||w[19]!=2||w[20]||w[21]||!((w[22]==1&&w[23]==0)||(w[22]==0&&w[23]==10))||w[39]!=2){rc=-EPROTO;goto uncertain;}
  dma_rmb();
  for(i=0;i<DMA_PROOF_BYTES;i++){
-  unsigned j=i-(4096+offset);u8 expected=j<n?(u8)(j*13u^seed^(j>>8)):0xa5;
+  unsigned j=i-(4096+offset);u8 expected=w[23]==0&&j<n?(u8)(j*13u^seed^(j>>8)):0xa5;
   if(((u8*)d->proof_buf)[i]!=expected){rc=-EILSEQ;goto uncertain;}
  }
- d->proof_valid=true;
- record(d,"DMA PROOF seq=%u length=%u offset=%u complete; all %u bytes and guards checked\n",seq,n,offset,DMA_PROOF_BYTES);
+ d->proof_valid=true;d->proof_pending=false;d->proof_cancelled=w[23]==10;
+ record(d,"DMA PROOF seq=%u length=%u offset=%u terminal; all %u bytes and guards checked\n",seq,n,offset,DMA_PROOF_BYTES);
 copy:
  session_log_end(d);if(copy_to_user((void __user*)arg,w,1056))rc=-EFAULT;goto unlock;
 uncertain:

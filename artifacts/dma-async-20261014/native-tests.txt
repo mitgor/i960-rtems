@@ -1,0 +1,15 @@
+$ python3 rtems/dma/test_target.py
+Actual target: 11 lengths, alignment, repeat/stale, idle admission, timeout, error, STOP and bounds passed
+$ python3 rtems/dma/test_host.py
+Actual host ioctl: guards, bounds, epochs, 32-bit mapping, all 38 uncertain exchanges, corruption, copyout retention passed
+$ python3 rtems/dma/test_replay.py
+Capture client and independent replay: 24 buffers, 54 refusals, 24 mutations rejected
+$ python3 rtems/residentnet/test_native.py
+packet boundaries/order/commit/STOP, 1481 payload lengths, RAM overflow and reclaim denial passed
+$ python3 rtems/residentnet/test_host.py
+actual host exchange: success, absent reply, stale unconsumed reply, deadline, completion and both mask drifts passed
+One transaction deadline and uncertainty retention guards present.
+$ python3 rtems/exclusive/test_native.py
+Exclusive admission: 512 cases passed with ASan/UBSan; active/error DMA, existing reset, external arbiter and invalid phases denied.
+Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
+Generated host source: one-way state before publication, write lockout, consumed-request acknowledgement and retain-before-STOP ordering verified.

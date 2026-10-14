@@ -14,9 +14,9 @@ typedef unsigned char u8;typedef uint64_t dma_addr_t;
 struct pci_dev{int dev;};
 struct debugfs_blob_wrapper{void*data;unsigned size;};
 #define debugfs_create_blob(...) ((void)0)
-struct experiment{struct pci_dev*pdev;void*proof_buf;struct debugfs_blob_wrapper proof_blob;dma_addr_t proof_dma;unsigned proof_seq,monitor_epoch,sequence;bool proof_valid,removed,pinned,owned,mu_resident,pending,runner_uncertain,irq_may_run,response_ready,mu_failed,mu_halted,ready;int session_lock;};
+struct experiment{struct pci_dev*pdev;void*proof_buf;struct debugfs_blob_wrapper proof_blob;dma_addr_t proof_dma;unsigned proof_n,proof_offset,proof_seed,proof_seq,monitor_epoch,sequence;bool proof_cancelled,proof_pending,proof_valid,removed,pinned,owned,mu_resident,pending,runner_uncertain,irq_may_run,response_ready,mu_failed,mu_halted,ready;int session_lock;};
 struct file{void*private_data;};
-static unsigned calls,fail_at,bad_byte,copy_fail,freed,target_error,staged[4];static uint64_t address=0x100000;
+static unsigned calls,fail_at,bad_byte,copy_fail,freed,target_error,cancelled,phase,report_error,diagnostics,staged[4];static uint64_t address=0x100000;
 #define __user
 #define GFP_KERNEL 0
 #define IS_ERR(p) (!(p))
@@ -27,7 +27,7 @@ static unsigned calls,fail_at,bad_byte,copy_fail,freed,target_error,staged[4];st
 #define mutex_unlock(p) ((void)0)
 #define dma_rmb() ((void)0)
 #define dma_wmb() ((void)0)
-#define record(...) ((void)0)
+#define record(d,fmt,...) do { if(strncmp(fmt,"DMA FAILURE",11)==0)diagnostics++; } while(0)
 #define session_log_end(p) ((void)0)
 #define kfree free
 static void*memdup_user(void*p,unsigned n){void*q=malloc(n);memcpy(q,p,n);return q;}
@@ -39,10 +39,10 @@ static int packet_exchange(struct experiment*d,unsigned token,unsigned value,uns
  unsigned op=token>>24,index=(token>>16)&255,i;calls++;if(calls==fail_at)return -ETIMEDOUT;assert((token&65535)==42);*v=0;
  if(op==0x50){assert(index<4);staged[index]=value;}
  else if(op==0x51){
-  for(i=0;i<staged[1];i++)((u8*)d->proof_buf)[staged[0]-address+i]=(i*13u^staged[2]^(i>>8))&255;
+  for(i=0;!cancelled&&i<staged[1];i++)((u8*)d->proof_buf)[staged[0]-address+i]=(i*13u^staged[2]^(i>>8))&255;
   if(bad_byte)((u8*)d->proof_buf)[0]^=1;*v=target_error;
  }else{unsigned report[32]={0x31414d44,staged[3],staged[0],staged[1],staged[2],0,1,0xc0f70000,0,0,7,2,0,0,1,0};
-  assert(op==0x52&&index<32);*v=report[index];}
+  report[14]=!cancelled;report[15]=report_error?report_error:cancelled?10:0;report[31]=phase?phase:2;assert(op==0x52&&index<32);*v=report[index];}
  return 0;
 }
 #include "host.h"
@@ -50,19 +50,26 @@ static struct pci_dev pdev;
 static struct experiment d;
 static struct file f={&d};
 static unsigned w[264];
-static void reset(void){free(d.proof_buf);memset(&d,0,sizeof(d));d.pdev=&pdev;d.monitor_epoch=42;d.sequence=1;d.owned=d.mu_resident=d.irq_may_run=1;calls=fail_at=bad_byte=copy_fail=freed=target_error=0;address=0x100000;memset(w,0,sizeof(w));w[0]=1;w[1]=42;w[2]=65536;w[3]=4095;w[4]=1;w[5]=17;}
-static long run(void){return dma_proof_ioctl(&f,0xc4204d07,(unsigned long)w);}
+static void reset(void){free(d.proof_buf);memset(&d,0,sizeof(d));d.pdev=&pdev;d.monitor_epoch=42;d.sequence=1;d.owned=d.mu_resident=d.irq_may_run=1;calls=fail_at=bad_byte=copy_fail=freed=target_error=cancelled=phase=report_error=diagnostics=0;address=0x100000;memset(w,0,sizeof(w));w[0]=1;w[1]=42;w[2]=65536;w[3]=4095;w[4]=1;w[5]=17;}
+static long raw(void){return dma_proof_ioctl(&f,0xc4204d07,(unsigned long)w);}
+static long run(void){long rc=raw();if(!rc&&w[0]==1){memset(w,0,sizeof(w));w[0]=3;w[1]=42;w[4]=1;rc=raw();}return rc;}
 int main(void){unsigned i;
- reset();assert(run()==0&&calls==37&&d.proof_valid&&!freed);assert(run()==-EINVAL); /* output report cannot be reused as input */
+ reset();assert(run()==0&&calls==38&&d.proof_valid&&!freed);assert(run()==-EINVAL); /* output report cannot be reused as input */
+ reset();assert(raw()==0&&calls==5&&d.proof_pending&&!d.proof_valid);
+ memset(w,0,sizeof(w));w[0]=1;w[1]=42;w[2]=1;w[4]=2;assert(raw()==-EBUSY);
+ memset(w,0,sizeof(w));w[0]=3;w[1]=42;w[4]=1;phase=1;assert(raw()==-EAGAIN&&d.proof_pending&&!d.mu_failed);phase=2;assert(raw()==0&&d.proof_valid);
+ reset();cancelled=1;assert(run()==0&&d.proof_cancelled&&d.proof_valid&&!d.mu_failed&&w[23]==10);
+ memset(w,0,sizeof(w));w[0]=1;w[1]=42;w[2]=1;w[4]=2;assert(raw()==-EBUSY&&!d.mu_failed);
  reset();w[2]=65537;assert(run()==-EINVAL&&!calls&&!d.proof_buf);
  reset();w[3]=4096;assert(run()==-EINVAL&&!calls);
  reset();w[1]=41;assert(run()==-ESTALE&&!calls);
  reset();w[4]=2;assert(run()==-ESTALE&&!calls);
  reset();address=0xfffff000;assert(run()==-ERANGE&&!calls&&freed==1&&!d.proof_buf);
- for(i=1;i<=37;i++){reset();fail_at=i;assert(run()==-ETIMEDOUT&&d.mu_failed&&d.proof_buf&&!d.proof_valid&&!freed);}
- reset();target_error=7;assert(run()==-EIO&&calls==37&&d.mu_failed&&d.proof_buf&&!d.proof_valid&&!freed);
+ for(i=1;i<=38;i++){reset();fail_at=i;assert(run()==-ETIMEDOUT&&d.mu_failed&&d.proof_buf&&!d.proof_valid&&!freed);}
+ reset();target_error=7;assert(run()==-EIO&&diagnostics==32&&calls==37&&d.mu_failed&&d.proof_buf&&!d.proof_valid&&!freed);
+ reset();report_error=7;assert(run()==-EPROTO&&diagnostics==32&&d.mu_failed&&d.proof_buf&&!freed);
  reset();bad_byte=1;assert(run()==-EILSEQ&&d.mu_failed&&!d.proof_valid&&!freed);
- reset();copy_fail=1;assert(run()==-EFAULT&&d.proof_valid&&d.proof_buf&&!freed);
+ reset();assert(raw()==0&&d.proof_pending&&!d.proof_valid);memset(w,0,sizeof(w));w[0]=3;w[1]=42;w[4]=1;copy_fail=1;assert(raw()==-EFAULT&&d.proof_valid&&d.proof_buf&&!freed);
  copy_fail=0;memset(w,0,sizeof(w));w[0]=2;w[1]=42;w[2]=1024;w[4]=1;assert(run()==0);
  memset(w+8,0,1024);w[3]=73728;assert(run()==-EINVAL);
  free(d.proof_buf);return 0;
@@ -72,4 +79,4 @@ with tempfile.TemporaryDirectory() as d:
  p=Path(d);(p/'test.c').write_text(source)
  subprocess.run(['cc','-std=c99','-fsanitize=address,undefined','-fno-sanitize-recover=all','-I'+str(HERE),str(p/'test.c'),'-o',str(p/'test')],check=True)
  subprocess.run([str(p/'test')],check=True)
-print('Actual host ioctl: guards, bounds, epochs, 32-bit mapping, all 37 uncertain exchanges, corruption, copyout retention passed')
+print('Actual host ioctl: guards, bounds, epochs, 32-bit mapping, all 38 uncertain exchanges, corruption, copyout retention passed')

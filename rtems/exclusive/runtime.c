@@ -55,6 +55,7 @@ static void mask(void),enable(void);
 #include "../residentnet/net_runtime.h"
 #endif
 #ifdef I960_DMA_PROOF
+#define DMA_STOP() (stop|stop_sent)
 #include "../dma/target.h"
 #endif
 static void control_poll(void){unsigned int token=R(0x1314),index;
@@ -171,7 +172,11 @@ static void Worker(rtems_task_argument id){
 #endif
  switch_threads[id]=(unsigned int)_Thread_Executing;life[id].owner=switch_threads[id];
  life[id].low=(unsigned int)_Thread_Executing->Start.Initial_stack.area;life[id].high=life[id].low+TASK_BYTES;
- enable();while(!stop){
+ enable();for(;;){
+#ifdef I960_DMA_PROOF
+  if(id)dma_step(); /* Includes jobs accepted immediately before STOP. */
+#endif
+  if(stop)break;
 #ifdef I960_OWNED_MIB
   /* Both runnable workers service the same serialized PIO channel. A CPU-bound
    * heap worker must not force every host word to wait for the next timer IRQ. */
@@ -202,7 +207,8 @@ static void Worker(rtems_task_argument id){
 #endif
 #endif
   progress[id]++;
- }mask();
+ }
+ mask();
 #ifdef I960_HEAP_SHARED
  if(resident&&!worker_stop_arrive(id)){
   unsigned int start=ticks,polls=0;

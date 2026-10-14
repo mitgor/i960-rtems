@@ -1,7 +1,9 @@
 # RTEMS on the DAC960PG
 
 The opt-in [exclusive DMA1 proof](dma/README.md) now passes bounded card-to-host
-transfers with full audits. Production Doom DMA remains a separate next step.
+transfers with full audits. Task-owned preparation/checking now reduces the
+maximum IRQ gap from 111.481 ms to 10.710–10.990 ms; explicit STOP and session
+deadline cancellation pass on the card. Production Doom DMA remains a separate next step.
 
 Shared allocation cancellation and exclusive timer-based heap measurements are
 available with `--heap-shared`; see [the contract and replay instructions](residentnet/SHARED-HEAP.md).

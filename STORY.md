@@ -2893,6 +2893,43 @@ numbers to ESTALE. The reader now checks the Linux ABI that produced the capture
 The bytes stayed unchanged. After both archives were safely home and the retained
 session had been rebooted, the public Vader page answered again.
 
+## Let the timer have its turn
+
+Moving bytes was not permission to silence the clock. We moved the preparation,
+launch and checking into the second RTEMS worker, which already owned a proper
+interrupt stack. The command handler now accepts a job and gets out of the way.
+Linux asks for completion separately, releasing its lock between questions so
+STOP can still get through. The fixed code region remained exactly 128 KiB.
+Nothing was gained by quietly borrowing a few more bytes beyond its boundary.
+
+The same twenty-four transfers passed again, with every buffer byte and full
+memory audit intact. This time the worst interrupt gap was 10.71 milliseconds,
+down from 111.48. The diagnostic job itself took longer: filling and checking
+64 KiB now had to share the processor. That was the intended trade. We had made
+the clock responsive, not yet made a claim about frames per second.
+
+Then we submitted another large job and asked it to stop. The reply came back
+in 1.26 milliseconds. The worker canceled before launch; every byte of the host
+buffer still held its original guard pattern. After saving and replaying that
+run, we rebooted and repeated the transfers with the same target and module.
+This time the thirty-second RTEMS deadline did the stopping. Again, the pending
+job was canceled before it could write into the host. The worst interrupt gap
+was 10.99 milliseconds. Both workers retired and both sets of heaps emptied.
+
+There is still a distinction worth keeping. We tested a real session timeout
+on the card. We did not deliberately wedge its DMA engine and then declare that
+clearing an enable bit had repaired it. The native tests exercise polling
+exhaustion and retention; a genuinely stuck physical engine remains another
+experiment. The mappings stayed pinned until reboot in both successful runs.
+
+The [asynchronous DMA batch](artifacts/dma-async-20261014/README.md) keeps the
+exact builds, both captures and the independent replays. Forty-eight transfers
+and 124 full audit pairs later, the next experiment is finally about pixels:
+copy the same pinned Doom frame through DMA and the mailbox, compare every byte,
+and only then count browser frames again. After the second archive was safely
+home, the retained mapping was released by reboot and the public Vader page
+answered over IPv6 once more.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

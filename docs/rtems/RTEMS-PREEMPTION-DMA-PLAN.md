@@ -396,3 +396,16 @@ rerunning. [Contract and findings](../../rtems/switch/LIFECYCLE.md),
 [evidence](../../artifacts/irq-lifecycle-20261011/README.md).
 Logical unbind is tested; physical hot-unplug and failing control during teardown
 remain unproven. Task shutdown still cooperates with a stop flag.
+
+
+## Task-owned DMA acceptance — 2026-10-14
+
+The [asynchronous DMA batch](../../artifacts/dma-async-20261014/README.md)
+passes 48 transfers, 124 full audit pairs, explicit STOP and session-deadline
+prelaunch cancellation. Worker 1 owns preparation/polling/checking; no third
+interrupt-stack owner was introduced. Maximum IRQ gap falls from 111.481 ms to
+10.710–10.990 ms. This completes the task-context prerequisite for a same-frame
+Doom DMA/mailbox experiment, not production networking DMA or direct NIC access.
+Next preserve the immutable frame/generation/ACK pin, compare all bytes through
+both transports, then measure browser FPS. Keep the retained-until-reboot rule;
+physical hung-engine recovery and reusable buffer lifetime remain open.

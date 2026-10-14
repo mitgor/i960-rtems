@@ -10,9 +10,9 @@ with tempfile.TemporaryDirectory() as d:
   if p.is_file() and p.name!='dma-journal.jsonl':(out/p.name).symlink_to(p)
  def save(): (out/'dma-journal.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows))
  save();verify(root,out)
- success=next(i for i,r in enumerate(rows) if 'response' in r)
+ success=next(i for i,r in enumerate(rows) if 'response' in r and int.from_bytes(bytes.fromhex(r['request'])[:4],'little')==3)
  readback=success+1
- cases=[(success,'request',n) for n in (4,8,12,16,20)]+[(success,'response',n) for n in (32,36,40,44,48,52,56,60,64,68,72,76,88,92)]+[(readback,'response',n) for n in (12,32,1055)]
+ cases=[(success,'request',n) for n in (4,8,12,16,20)]+[(success,'response',n) for n in (32,36,40,44,48,52,56,60,64,68,72,76,88,92,156)]+[(readback,'response',n) for n in (12,32,1055)]
  for i,field,offset in cases:
   old=rows[i][field];b=bytearray.fromhex(old);b[offset]^=1;rows[i][field]=b.hex();save()
   try:verify(root,out)

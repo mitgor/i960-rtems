@@ -1,10 +1,12 @@
 # Doom milestone guidance
 
-The [exclusive DMA1 proof](../../rtems/dma/README.md) passes 24 card-to-host
-transfers and 61 full audits. It is separate from Doom: do not enable it in a
-play build. Move its synchronous work out of interrupt context (111.481 ms gap),
-prove task/frame ownership and pending-job STOP, then compare DMA and mailbox
-copies of the same frozen frame before claiming a Doom speedup.
+The [task-owned DMA proof](../../rtems/dma/README.md) passes two physical runs,
+48 exact transfers and 124 full audit pairs, including STOP and session-deadline
+cancellation. Maximum IRQ gap is now 10.710–10.990 ms versus 111.481 ms.
+DMA is not in the Doom play build. Next compare DMA and mailbox reads of the
+same pinned frame, keeping every generation/ACK check and full audit, then
+measure browser FPS. Diagnostic DMA job latency is not Doom throughput.
+Mappings remain pinned until reboot; do not force unload.
 
 <!-- doom-bulk-current -->
 **Doom mailbox bulk accepted (2026-10-14):** opt-in `--bulk` uses eight-byte

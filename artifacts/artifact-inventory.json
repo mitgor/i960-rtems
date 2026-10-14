@@ -3063,6 +3063,101 @@
       "sha256": "f292ced6f809fedf5446f048495fcb983021d620923daba2b8690242c612e624"
     },
     {
+      "path": "artifacts/dma-async-20261014/README.md",
+      "size": 8557,
+      "sha256": "53b57ce142f1e474c82802506cfb7546123cf126cb06ca8295b4fdee42d82fb7"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/deadline-cancellation-tamper.json",
+      "size": 2108,
+      "sha256": "0b68555a7cca84155e730ba59eb1b732baf41a0b52a44552bb27634435d8e814"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/deadline-dma-replay.json",
+      "size": 465,
+      "sha256": "95d4c72e5c79df8d3d56fd5e4d93774fe5fe11da0412df7b0a29d4ed7844a4df"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/deadline-evidence.tar.gz",
+      "size": 5712910,
+      "sha256": "6c38bef5fe133df907f498d477a934d4e501219c42a7bd458f8263c71f173e1d"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/deadline-replay.json",
+      "size": 113,
+      "sha256": "9fff62ad4930bd7ac53fdc2eb340ac35e84fa2dde9f9ed56f7fab6ba52f403e3"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/deadline-system-replay.json",
+      "size": 6335,
+      "sha256": "ec13b035541dbd55f73ac1f3001143f73846a051b36cb300f0aaf8f884b372a5"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/deadline-tamper.json",
+      "size": 1224,
+      "sha256": "1fdd06b77d732041c86782a1b396bd59effd1803326979c81488d1d4299343c3"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/final-host-build.tar.gz",
+      "size": 539660,
+      "sha256": "1be340e8760d43a025e1c07e960c15f2de20f04b93a5e0fbdc87caa6fe5e9196"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/native-tests.txt",
+      "size": 1220,
+      "sha256": "04f180ec7617d93a60fac032a71d9f945d8e9ce1a571a4e111141dc1485f32b3"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/restoration.json",
+      "size": 472,
+      "sha256": "b2b39df15532f6183b3e6b34e67760d6b9fc4f19111b43ef0a4ccb87f4f64af4"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/restore.sh",
+      "size": 856,
+      "sha256": "7790643e6e62ed2131a5e27b1690c6ae9bbc84e0fa5560babb5fa5af09d500ac"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/restored-http-headers.txt.gz",
+      "size": 116,
+      "sha256": "dbabea0346301eb1b639f2f83f69f4101de778fa1d1708e0931497d83f75e9f2"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/restored-http.html",
+      "size": 2891,
+      "sha256": "1edecfe1ec472142f693be531ed2ce19a5cc38e3eede5ce04b85f5df6d00fc9e"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/stop-cancellation-tamper.json",
+      "size": 2143,
+      "sha256": "593785dbcc5ee690d1b76ffd852fea892a75f3eb25d1e44726473f6c755cf670"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/stop-current-tamper.json",
+      "size": 1224,
+      "sha256": "977b1be06e1722a5fd1c677b9660349e0fb20f42fcaec2659333b96035862b02"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/stop-dma-replay.json",
+      "size": 464,
+      "sha256": "566409f0594b49a11260c45c2245c5b1537a1be818890b0016a3b261f7a0874e"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/stop-evidence.tar.gz",
+      "size": 5709414,
+      "sha256": "8bf3f9d5c0fbeda81240f5450f526036a1d5efb756404f99965c5547af030dee"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/stop-replay.json",
+      "size": 113,
+      "sha256": "8f47bc361b94ed987ef157d206af3c38bf9601076a4d217312e7dc1166821624"
+    },
+    {
+      "path": "artifacts/dma-async-20261014/stop-system-replay.json",
+      "size": 6330,
+      "sha256": "f957b44da0dc571f68eafe5d6e46b592686c66933cc751cb99c02f40787caf22"
+    },
+    {
       "path": "artifacts/dma-owned-20261014/README.md",
       "size": 8706,
       "sha256": "b9aac497df02097f0d056db3a42948702bf89a70bcd8bb26a65d7bda587a9928"

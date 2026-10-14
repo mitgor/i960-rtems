@@ -23,7 +23,14 @@ def exercise(fd,epoch,out,audit):
  cases=[(1,0),(3,1),(4,2),(31,3),(64,0),(511,1),(1024,0),(2048,0),(4095,3),(4096,0),(65536,0),(65536,4095)]*2
  results=[]
  for seq,(n,offset) in enumerate(cases,1):
-  audit();seed=0x13570000+seq;start=time.monotonic_ns();raw=call(1,n,offset,seq,seed);elapsed=time.monotonic_ns()-start
+  audit();seed=0x13570000+seq;start=time.monotonic_ns();raw=call(1,n,offset,seq,seed);deadline=time.monotonic()+10
+  while True:
+   try:raw=call(3,0,0,seq);break
+   except OSError as exc:
+    assert exc.errno==errno.EAGAIN
+    assert time.monotonic()<deadline
+    time.sleep(.001)
+  elapsed=time.monotonic_ns()-start
   report=list(struct.unpack_from('<32I',raw,32));assert report[0:2]==[0x31414d44,seq] and report[3:5]==[n,seed] and report[14:16]==[1,0]
   data=b''.join(call(2,1024,i,seq)[32:] for i in range(0,73728,1024))
   expected=bytearray(b'\xa5'*73728);expected[4096+offset:4096+offset+n]=bytes((i*13^seed^(i>>8))&255 for i in range(n));assert data==expected
@@ -34,3 +41,27 @@ def exercise(fd,epoch,out,audit):
   (out/'dma-results.json').write_text(json.dumps(results,indent=2)+'\n');print('DMA exact buffer/audits passed',seq,n,flush=True)
  refuse(2,1024,73728,seq);refuse(2,1024,1,seq)
  return results
+
+
+def stop_exercise(fd,epoch,out,stop,reason="stop"):
+ """STOP a freshly submitted 64 KiB job; preserve every ABI exchange and byte."""
+ log=out/'dma-stop.jsonl'
+ def call(op,n,off,seq,seed=0):
+  raw=bytearray(struct.pack('<8I',op,epoch,n,off,seq,seed,0,0)+bytes(1024));before=raw.hex();t=time.monotonic_ns()
+  try:fcntl.ioctl(fd,CMD,raw,True)
+  except OSError as exc:
+   with log.open('a') as f:f.write(json.dumps(dict(request=before,errno=exc.errno,ns=time.monotonic_ns()-t))+'\n')
+   raise
+  with log.open('a') as f:f.write(json.dumps(dict(request=before,response=raw.hex(),ns=time.monotonic_ns()-t))+'\n')
+  return raw
+ call(1,65536,0,25,0x13570019)
+ t=time.monotonic_ns();stop();stop_ns=time.monotonic_ns()-t
+ until=time.monotonic()+10
+ while True:
+  try:raw=call(3,0,0,25);break
+  except OSError as exc:
+   assert exc.errno==errno.EAGAIN and time.monotonic()<until;time.sleep(.001)
+ report=list(struct.unpack_from('<32I',raw,32));assert report[1]==25 and report[14:16]==[0,10] and report[31]==2
+ data=b''.join(call(2,1024,i,25)[32:] for i in range(0,73728,1024));assert data==b'\xa5'*73728
+ (out/'dma-stop-buffer.bin').write_bytes(data)
+ (out/'dma-stop-result.json').write_text(json.dumps(dict(reason=reason,stop_ns=stop_ns,report=report,untouched_bytes=len(data)),indent=2)+'\n')
