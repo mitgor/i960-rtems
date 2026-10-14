@@ -31,7 +31,8 @@ unsigned int scsi_target_verified(void){unsigned int w[16];
  engine_snapshot(w);
  if(!scsi_stop_postcheck(w,scsi_stop.before))return 1;
 #ifdef I960_DOOM_DMA
- {extern unsigned frame_dma_isolation_snapshot(unsigned*);
+ {extern unsigned frame_dma_isolation_snapshot(unsigned*),wad_dma_isolation_snapshot(unsigned*);
+  if(wad_dma_isolation_snapshot(w))return !scsi_stop_postcheck(w,scsi_stop.before);
   if(frame_dma_isolation_snapshot(w))return !scsi_stop_postcheck(w,scsi_stop.before);}
 #endif
  return 0;

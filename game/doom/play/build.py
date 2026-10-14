@@ -35,10 +35,11 @@ for test in ('test_play_channel.py','test_frame_protocol.py','test_bulk_protocol
 if a.pipeline:
  for test in ('rtems/residentnet/test_double_buffer.py','rtems/dma/test_pipeline_replay.py','rtems/residentnet/test_play_abort.py'):run(['python3',r/test],Path(test).name+'.log')
 if a.dma:
- for test in ('test_frame_target.py','test_frame_host.py','test_frame_replay.py'):run(['python3',r/'rtems/dma'/test],test+'.log')
+ for test in ('test_frame_target.py','test_frame_host.py','test_frame_replay.py','test_wad_target.py','test_wad_host.py','test_wad_client.py'):run(['python3',r/'rtems/dma'/test],test+'.log')
 run(['python3',r/'rtems/build.py','--work',w,'--cross',a.cross,'--profile','residentnet','--secondary-reset','--fault-owner','--extra-ram','--general-heap','--heap-shared','--queue-reclaim','--owned-mib','12','--resident-upload','--doom-heap','--doom-shared','--doom-runtime','--doom-engine',w/'admission','--wad-batch','--wad-poll','--dispatch-atomic',*(['--doom-dma'] if a.dma else [])],'kernel.log')
 run(['python3',r/'rtems/residentnet/ram_audit.py',w/'residentnet'],'ram-audit.json')
 run(['python3',r/'rtems/residentnet/build_transport.py','--payload',w/'residentnet/kernel.bin','--out',w/'residentnet-module'],'transport.log')
+if a.dma:run(['python3',r/'rtems/dma/test_wad_poll.py','--generated',w/'residentnet-module/dac960auto.c'],'test_wad_poll.py.log')
 run(['make','-C','/lib/modules/'+subprocess.check_output(['uname','-r'],text=True).strip()+'/build','M='+str(w/'residentnet-module'),'modules'],'module.log')
 (w/'play-build.json').write_text(json.dumps(dict(pipeline=a.pipeline,dma=a.dma,work=str(w),repository=str(r),cross=a.cross,wad_sha256=hashlib.sha256(wad).hexdigest(),kernel_sha256=hashlib.sha256((w/'residentnet/kernel.bin').read_bytes()).hexdigest(),module_sha256=hashlib.sha256((w/'residentnet-module/dac960auto.ko').read_bytes()).hexdigest()),indent=2)+'\n')
 print('Build complete. Card untouched. Run game/doom/play/run.py only on the qualified, free card.')

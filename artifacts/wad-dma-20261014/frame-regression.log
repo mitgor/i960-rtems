@@ -1,0 +1,2 @@
+PASS actual client: 52 guarded DMA buffers; 52 frames, four exact pairs, A/B/B/A, WAD service during pending DMA, both CRC modes, alternating slots and all ACK events; 27 mutations rejected
+PASS network failure keeps control loop alive, records error, requests owned STOP exactly once

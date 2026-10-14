@@ -1,5 +1,9 @@
 # Browser Doom on the i960
 
+For connection instructions, controls and launch commands, see [PLAY.md](PLAY.md).
+Bulk host-to-card WAD transport is documented in [WAD-DMA.md](../../../rtems/dma/WAD-DMA.md);
+its dated acceptance status is [here](../../../artifacts/wad-dma-20261014/README.md).
+
 This experimental profile keeps the actual DoomGeneric engine running under
 RTEMS while Linux supplies its immutable Freedoom WAD, keyboard events and
 browser framebuffer delivery. It is separate from the fully replayed two-frame

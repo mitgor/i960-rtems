@@ -1,5 +1,15 @@
 # Doom milestone guidance
 
+Bulk WAD DMA is physically accepted (2026-10-14). Use
+`--pipeline --no-crc --wad-dma`; WAD and framebuffer CRC are separately optional,
+while image admission, ownership, bounds, guards and full audits remain.
+First level 1642.751 → 318.183 s; warm same-level restart 10.291 → 3.068 s.
+All 52 frames match mailbox; 14 paired full audits, STOP and heap drain pass.
+Evidence: `artifacts/wad-dma-20261014/README.md`; manual: `game/doom/play/PLAY.md`.
+Network proof now completes before large game upload, with unchanged checks and
+deadlines. Never force-unload retained resources; verify actual hardware owner.
+
+
 <!-- doom-dma-cleanup-current -->
 **Doom DMA diagnosis batch (2026-10-14):** two complete comparisons passed:
 instrumented target 0.966→1.384 FPS (+43.26%), exact earlier target

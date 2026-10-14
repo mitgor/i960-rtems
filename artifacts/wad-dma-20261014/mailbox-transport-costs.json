@@ -1,0 +1,16 @@
+{
+  "driver_calls": {
+    "wad-journal.jsonl:3": {
+      "calls": 11199,
+      "total_ms": 196430.8478199991,
+      "mean_ms": 17.540034629877585
+    },
+    "wad-journal.jsonl:4": {
+      "calls": 29617,
+      "total_ms": 1314433.9022179956,
+      "mean_ms": 44.38106162737602
+    }
+  },
+  "mailbox_control_exchanges": 4187858,
+  "payload_crc": true
+}

@@ -25098,6 +25098,296 @@
       "sha256": "6d35598e082f72c83fcc6030e3b4788dfb6f7c334ada569f7e2a140a9195a3fe"
     },
     {
+      "path": "artifacts/wad-dma-20261014/README.md",
+      "size": 11968,
+      "sha256": "8691f3dfb383e607acb196f7a5499f66c351ca4add915b6f4ca0f9bcc12e6b5f"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/analyze.py",
+      "size": 917,
+      "sha256": "7d610f037152520b3fab59ee499211baafe00f583e30942425fc0eb87a65c19c"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-build.tar.gz",
+      "size": 22757431,
+      "sha256": "7a45a13c0888af5bfaf47af4f38fdc2677de72f8e0ebc4eda1a8fadaa6f29ef7"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-browser.png",
+      "size": 92483,
+      "sha256": "9c963e109d10a969a54a240001bd9d10595175b8581755b367593778b70ed65e"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-card.tar.gz",
+      "size": 18722345,
+      "sha256": "040e5f2bc2539fa91c4bec81565b3fb141ddc93d1d30b176a00b3170b7950dd1"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-frame-replay.json",
+      "size": 1536,
+      "sha256": "64f682becc4cbfbcba12bce4fdc4e5b85e42671cc4af38e814b33b3728385e47"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-http-observations.jsonl",
+      "size": 13741,
+      "sha256": "50aebd8b4556d8ed9ff1f0cd7f969ca18efa6cdc07ded68d0b2eb782aa94d860"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-http-replay.json",
+      "size": 55,
+      "sha256": "a4668e49c51203e8f92e54894030b3b1c141062b2551ce5dc98288ed5cf4f38b"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-local-frames.json",
+      "size": 1536,
+      "sha256": "64f682becc4cbfbcba12bce4fdc4e5b85e42671cc4af38e814b33b3728385e47"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-local-system.json",
+      "size": 6349,
+      "sha256": "80ec8af2a904d82699799182409fe7dcc547578f946dfcf011eb2041b4692366"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-local-wad.json",
+      "size": 258,
+      "sha256": "b637235d2dec0240c1d389544f9e42263a2c993e84a33398e6e8ce2ffc64d251"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-system-replay.json",
+      "size": 6356,
+      "sha256": "b014967c3b6e25342edbf11b77ef522969320f5c011a8d0e6727269b432cfc95"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-tamper.json",
+      "size": 2906,
+      "sha256": "cd925841cbdb9324c2d7548d3021cf40eb166edae4d2a2ebca8c7a8e86d7a906"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-transport-costs.json",
+      "size": 635,
+      "sha256": "a05616419055a662349b4073a4be32c04dc2f8aff26790079cb7366a13e4907f"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/bulk-repeat-wad-replay.json",
+      "size": 258,
+      "sha256": "b637235d2dec0240c1d389544f9e42263a2c993e84a33398e6e8ce2ffc64d251"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/client-test.log",
+      "size": 109,
+      "sha256": "1d6ae281fe5711ab765ed45bcb0f5282c597433a5746c982cff2d9e15407d8ac"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/close-preliminary.sh",
+      "size": 1587,
+      "sha256": "d324012991764f0436446b6b1462bc01e40109302c09ac3ac2b80a17da443f3b"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/close-run.sh",
+      "size": 2101,
+      "sha256": "ec3c4105490eed9f4825848e4543da27258ccafcd4e2d390bd5e494a91e41c6d"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/compare.py",
+      "size": 2239,
+      "sha256": "72a38bc045c837b268ad4a89a3ee15506f8cc135d9c98a25562a89aede5ee51c"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/double-buffer-regression.log",
+      "size": 96,
+      "sha256": "9df3bae7d72186f9b67e66d2e694c127d731653f5726860ad6d0fdc201879c32"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/failed-network-build.tar.gz",
+      "size": 19851196,
+      "sha256": "3e91b1b1dfa947da97b9f37d68db0f4d412ab566d47f5ed42eea5136f3931994"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/failed-network-card.tar.gz",
+      "size": 2168543,
+      "sha256": "ae2f6c1e586b07f8ad0dac78aff9b8436f224d6304c0b6f6a2e2fccc48b9c819"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/failed-network-initial-replay.txt",
+      "size": 77,
+      "sha256": "d61a47a5b59c806ee28c79618c81d817d52ed693353537a19ae3489f54e6692f"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/fast-driver.diff",
+      "size": 478,
+      "sha256": "18aab402d3d1cffe58fd21e3f9eed7fc80f981160c8bd8c870e1631b95accdb1"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/fast-poll-test.log",
+      "size": 137,
+      "sha256": "ff0cf42799d5d82fea2973d0832862a169654efc57c6bec1ecd4db8d811768b8"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/final-build.tar.gz",
+      "size": 22742365,
+      "sha256": "ff3c8f85eae048120deb86c5e71aeab92970cca94da125a08e8d8a88a39ca6ea"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/frame-host-regression.log",
+      "size": 127,
+      "sha256": "3402bf0743d8289c04593bef251f61ce9c73a88cb38234ea4a627a0657af87f7"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/frame-regression.log",
+      "size": 285,
+      "sha256": "98cbb16c0126b749e9b9a56f89ffd4f168326a26f1044419b306779dc0886d86"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/host-test.log",
+      "size": 127,
+      "sha256": "c14b06cf7346ce4e4ea082327d8fb79345a3fe624d9f53b8fad96a88d8489dda"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/interactive-browser.png",
+      "size": 93254,
+      "sha256": "c37419c02e97011dd07f69e1956071b9cc9216437ec3f2807d336276751a2a6e"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/interactive-handoff.json",
+      "size": 5444,
+      "sha256": "501488a8cbcf0e7e952929d430f6b48ded421e7284855213b51972aa79449bd9"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/local-fast-poll-test.log",
+      "size": 137,
+      "sha256": "ff0cf42799d5d82fea2973d0832862a169654efc57c6bec1ecd4db8d811768b8"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/mailbox-card.tar.gz",
+      "size": 19205514,
+      "sha256": "0e9e0559fc6f8d0e7be01225be301c92b427ad73d1149b7786ccc3850bd74078"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/mailbox-http-observations.jsonl",
+      "size": 13730,
+      "sha256": "959971c3d345334a6d23253b5a0a1b5cf606e58b4a3cb003a48501da364daec3"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/mailbox-local-frames.json",
+      "size": 1540,
+      "sha256": "f33664fe137395115b5025c66908bd63ce7c4d64d8110f0a58301109cfd64905"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/mailbox-local-system.json",
+      "size": 6367,
+      "sha256": "9b42aa71924f714757e9d8b2c21d7bf51ae6f5227db289de2b05c451c46e55bd"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/mailbox-transport-costs.json",
+      "size": 352,
+      "sha256": "68cdb9c7bca3c67243eefa95df363f347a3bbd01c5c751ca629835068ec95900"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/measurements.json",
+      "size": 2471,
+      "sha256": "6e0411ab69e5fff3e06558bf6fa281c97bf821eeecac71adbfaee805d5c63e97"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/native_levels.py",
+      "size": 2123,
+      "sha256": "dc684a57375621237c9f5d273fab5796defd697debda997c75f38e1a8f4f4c70"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-browser.png",
+      "size": 92493,
+      "sha256": "e339437a310af27a97046e960c8244d117f61fffaccf09417d941edc36f115b6"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-build.tar.gz",
+      "size": 22740545,
+      "sha256": "3458a5a2d3d62205e56ff2e2725d68b12cdc9bcd8986a2e1e8fac5da8c69f27d"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-card.tar.gz",
+      "size": 18535741,
+      "sha256": "68abb10114bfee773a36276bdee25c298520ecea839aa50f1a0c114f202392cf"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-http-observations.jsonl",
+      "size": 13728,
+      "sha256": "a2ef686657ebd82e31d1e32b7a543b73e0402b40cd64123056ba6a5a71738a14"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-local-frames.json",
+      "size": 1515,
+      "sha256": "503a0202ea7c01f5c000fc0d35e317d62bbf7dd6e3518ff800926211e254d601"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-local-system.json",
+      "size": 6363,
+      "sha256": "24aa455b1f2126ba682b51dd60447b2fbb3bffb3e7b8d8b59a9e0fe2be5150c0"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-local-wad.json",
+      "size": 257,
+      "sha256": "682f922f1567f61b74ffe1baaf257b2a52b04f9342e5a1eea494213884d2bc4e"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-measurements.json",
+      "size": 761,
+      "sha256": "3ac1d4bc38f76a45a210231f89fb44924ebed7d33af1cd2586635f878e8e4f14"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-transport-costs.json",
+      "size": 633,
+      "sha256": "d452cba427703534491d29fa9da0c8b6186baee1ab5534c2ec2af29eab00faee"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/preliminary-vs-mailbox.json",
+      "size": 41,
+      "sha256": "759f624a56ed63d63efb0c3b9b200c1a594aa5d4e92f7a25c81ad7c576896688"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/run-bulk.sh",
+      "size": 304,
+      "sha256": "3bcbf377d35cd48410ad7aa6f898aca9ce7eb0bb535a561578bb0b98f4947fdb"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/run-final-bulk.sh",
+      "size": 1363,
+      "sha256": "d8d1148e00809c77d9f81d735a139fa862e873624b09c5baffdcde4409dc1684"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/run-mailbox.sh",
+      "size": 357,
+      "sha256": "646fd14ff57a516d661f23d7a3356cd74410a331819e745f84725a8b3de654ec"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/run-play.sh",
+      "size": 364,
+      "sha256": "91a2a76c789ca7abbd2a31cb0646667e38ce3e5502ad5490ef24ec5ec2668d93"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/startup-order-test.log",
+      "size": 176,
+      "sha256": "b02d18d098ea64df96ff28b88ed6d8adb3afa54b6279b3196f49d2fd55ecfedb"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/target-test.log",
+      "size": 161,
+      "sha256": "1e82b54375a977719d2fc7062a405e833b1ca2fb18c3274e3d1d8b37c5a00f1b"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/transport_costs.py",
+      "size": 1020,
+      "sha256": "dd42d34be6a51b8d26f71d8ad08f44f6e2b6c5e3a5b6121dda668758aefc663e"
+    },
+    {
+      "path": "artifacts/wad-dma-20261014/wait-close.py",
+      "size": 659,
+      "sha256": "254385988e679a6439db56e01314595f9aa13f8a6b7a774d0f38f162082b3f64"
+    },
+    {
       "path": "artifacts/word-memory-20261011/README.md",
       "size": 10016,
       "sha256": "76d7cc0f8c0ca37ca2d4c92c12ed7356aa9412fbb1c903d4162ecc6deaf3afec"

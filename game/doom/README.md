@@ -1,5 +1,11 @@
 # DoomGeneric milestone 1: i960 compile and host memory profile
 
+Bulk host-to-card WAD DMA now passes full physical acceptance: **27m 23s → 5m 18s**
+for initial level loading (**5.16×**), and **10.29s → 3.07s** for a warm restart.
+All 52 frames match mailbox exactly; full audits and STOP/drain pass.
+Use `--pipeline --no-crc --wad-dma`; see [measurements and artifacts](../../artifacts/wad-dma-20261014/README.md).
+
+
 The opt-in [two-buffer binary pipeline](../../artifacts/doom-pipeline-20261014/README.md) now passes 52 frames,
 29 full audit pairs and STOP/drain. CRC-on delivers **1.396095 FPS**; explicit
 CRC-off **2.070201 FPS (+48.285%)**. Ownership and full system audits remain;

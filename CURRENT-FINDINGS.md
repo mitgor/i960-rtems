@@ -1,5 +1,22 @@
 # Current findings and evidence — 2026-10-14
 
+<!-- wad-dma-current -->
+**2026-10-14 bulk WAD DMA accepted:** `--pipeline --no-crc --wad-dma` uses
+4096-byte host-to-card DMA without WAD/frame payload CRC, retaining ownership,
+guards, hardware completion and all full audits. First level: **1642.751 →
+318.183 s (5.163×)**; warm same-level restart: **10.291 → 3.068 s (3.354×)**.
+52 frames match mailbox exactly; 14 full audit pairs, owned STOP and heap drain
+pass. Full system/frame/WAD replay passes on Linux and Mac. Known native pixel
+differences remain. Legacy CRC mailbox stays default; image admission is unchanged.
+Evidence: `artifacts/wad-dma-20261014/README.md`; manual: `game/doom/play/PLAY.md`.
+The failed pre-WAD startup TCP attempt is preserved. Host now finishes network
+proof before large game upload, retaining checks/deadlines/audits. Metadata queries
+still cost 181.255 s. No arbitrary in-bounds corruption detection without CRC.
+Remote workspace `/home/mit/i960-wad-dma-20261014`; interactive `play` on port 8087, supervisor 1469,
+boot `5e6b2f6d-b685-486e-97cc-ca33dcc4e6b4`, live and browser keyboard verified. Do not force-unload retained resources or start another owner.
+<!-- /wad-dma-current -->
+
+
 <!-- doom-pipeline-current -->
 **Two-buffer Doom/binary pipeline accepted (2026-10-14):** CRC-on **1.396095 FPS**,
 CRC-off **2.070201 FPS (+48.285%)** in 52-frame on/off/off/on testing. All **29

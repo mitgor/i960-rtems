@@ -1,0 +1,199 @@
+{
+  "resident_application_arena_bytes": 8388608,
+  "heap_diagnostics": {
+    "network_irq_spanning_calls": [
+      6,
+      107
+    ],
+    "large_workload_allocation_refusals": 0,
+    "unlocked_copy_preemptions": [
+      179,
+      179
+    ],
+    "counter_hz_nominal": 4166700,
+    "irq_samples": 179725,
+    "irq_max_gap_us": 10816.71346629227,
+    "irq_max_entry_phase_us": 9377.684978520172,
+    "irq_mean_period_us": 10000.1879039518,
+    "operations": {
+      "check": {
+        "samples": 401952,
+        "max_counter_ticks": 2112,
+        "max_us": 506.8759449924401,
+        "mean_us": 476.7690649972293
+      },
+      "malloc": {
+        "samples": 107999,
+        "max_counter_ticks": 9785,
+        "max_us": 2348.3812129502967,
+        "mean_us": 456.182450041321
+      },
+      "calloc": {
+        "samples": 363,
+        "max_counter_ticks": 2015,
+        "max_us": 483.5961312309502,
+        "mean_us": 469.3317825358224
+      },
+      "realloc": {
+        "samples": 1005,
+        "max_counter_ticks": 9685,
+        "max_us": 2324.3814049487605,
+        "mean_us": 462.96035601864446
+      },
+      "free": {
+        "samples": 108819,
+        "max_counter_ticks": 9837,
+        "max_us": 2360.861113111095,
+        "mean_us": 486.545463906793
+      },
+      "share": {
+        "samples": 5129,
+        "max_counter_ticks": 1934,
+        "max_us": 464.15628674970606,
+        "mean_us": 434.46357829800263
+      },
+      "cancel": {
+        "samples": 6465,
+        "max_counter_ticks": 2007,
+        "max_us": 481.67614659082733,
+        "mean_us": 436.1512764510413
+      },
+      "empty": {
+        "samples": 32,
+        "max_counter_ticks": 7,
+        "max_us": 1.6799865601075192,
+        "mean_us": 1.3874889000887993
+      }
+    },
+    "shared_created": 642,
+    "shared_retired": 642,
+    "completed_cycles": 640,
+    "deferred_acknowledgements": 2614,
+    "rejected_operations": 1284,
+    "retained_content_checks": 2613
+  },
+  "run": "mailbox",
+  "boot": "61ff0a42-75ca-40c2-99b5-54d97bb2c463",
+  "ticks": 179725,
+  "stop_reason": 1,
+  "ioctls": [
+    62,
+    46
+  ],
+  "cache_observations": null,
+  "queue_telemetry": [
+    0,
+    21
+  ],
+  "cache_completion_proven": false,
+  "secondary_reset_held": true,
+  "exception_ownership": true,
+  "broader_ram_owned": true,
+  "large_ram_mib": 12,
+  "external_queue_bytes": 192000,
+  "application_heap_bytes": 171824,
+  "heap_allocations_freed": 108999,
+  "rounds": 1,
+  "burst": null,
+  "snapshot_corruptions_rejected": 24,
+  "bulk_latency_ms": {
+    "min": 1.298117,
+    "max": 1059.35936,
+    "mean": 179.34220067592594
+  },
+  "packets": {
+    "valid": true,
+    "packets": 110,
+    "protocols": {
+      "17": 10,
+      "ipv6_17": 10,
+      "6": 45,
+      "ipv6_6": 45
+    },
+    "streams": [
+      {
+        "src": "10.196.0.1",
+        "sport": 35000,
+        "dst": "10.196.0.2",
+        "dport": 9600,
+        "connection": 1,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 9600,
+        "dst": "10.196.0.1",
+        "dport": 35000,
+        "connection": 1,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 55526,
+        "dst": "fd96:196:960::2",
+        "dport": 9600,
+        "connection": 1,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 9600,
+        "dst": "fd96:196:960::1",
+        "dport": 55526,
+        "connection": 1,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 38274,
+        "dst": "fd96:196:960::2",
+        "dport": 80,
+        "connection": 1,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 80,
+        "dst": "fd96:196:960::1",
+        "dport": 38274,
+        "connection": 1,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      },
+      {
+        "src": "10.196.0.1",
+        "sport": 56044,
+        "dst": "10.196.0.2",
+        "dport": 80,
+        "connection": 1,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 80,
+        "dst": "10.196.0.1",
+        "dport": 56044,
+        "connection": 1,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      }
+    ],
+    "dns": [],
+    "retransmitted_segments": 10,
+    "preexisting_echo_streams_reset": []
+  }
+}

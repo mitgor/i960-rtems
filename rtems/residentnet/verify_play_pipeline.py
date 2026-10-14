@@ -67,8 +67,11 @@ def verify(out):
   i,v=struct.unpack_from('<2I',q,32);result=struct.unpack_from('<I',s,32)[0];assert i in (0,1,2)
   if i==0:assert v==0 and result!=0xffffffff
   else:assert result==0;controls.append((i,v))
+ load_test=json.loads((out/'test-options.json').read_text()).get('wad_load_test',False) if (out/'test-options.json').exists() else False
  expected=[]
  for g in range(1,53):
+  if load_test and g in (10,12,14,16):
+   k=27 if g==10 else 13;expected.extend([(2,256+k),(2,k)])
   expected.append((1,g))
  assert controls==expected
  sessions=[json.loads(l) for l in (out/'play-sessions.jsonl').read_text().splitlines()];assert len(sessions)==1 and sessions[0]['result'][9:]==[2,1,210]
@@ -77,7 +80,7 @@ def verify(out):
   f=frames[a-1:b];elapsed=f[-1]['seconds']-f[0]['seconds'];assert elapsed>0
   blocks.append(dict(crc=f[0]['crc'],first=a,last=b,fps=11/elapsed,mean_transfer_seconds=sum(x['transfer_seconds'] for x in f)/12))
  fps={str(crc):22/sum(11/b['fps'] for b in blocks if b['crc']==crc) for crc in (True,False)}
- return dict(full_frames=52,paired_comparisons=4,refusals=3,dma_frames=52,full_guarded_bytes=52*73728,pending_polls=pending,mailbox_reads=260,blocks=blocks,paired_seconds=compared,fps=fps,fps_speedup=fps['False']/fps['True'],epoch=epoch,source=hex(source),descriptor=hex(desc),dma_base=hex(base))
+ return dict(full_frames=52,paired_comparisons=4,refusals=3,dma_frames=52,full_guarded_bytes=52*73728,pending_polls=pending,mailbox_reads=260,blocks=blocks,paired_seconds=compared,fps=fps,fps_comparison_valid=not load_test,fps_speedup=None if load_test else fps['False']/fps['True'],epoch=epoch,source=hex(source),descriptor=hex(desc),dma_base=hex(base))
 
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('capture',type=Path);a=p.parse_args();print(json.dumps(verify(a.capture),indent=2))

@@ -3141,6 +3141,47 @@ Both machines replayed the evidence and rejected all deliberate corruptions
 before the host rebooted to release the mapping. [The pipeline ledger](artifacts/doom-pipeline-20261014/README.md)
 records the acceptance status, the failures and the exact builds together.
 
+## Bringing the level through the other door
+
+The pictures were finally arriving faster. The level still took almost half an
+hour to arrive at all. The host had the WAD in memory; Doom was waiting for us
+to carry it across the mailbox, a few words at a time. The reference run counted
+more than four million control exchanges for 5,100 reads.
+
+The DMA engine already knew how to take a picture out of the card. PCI Memory
+Read let the owning task bring a block in. A coherent host allocation supplied
+4 KiB at a time, with guards on both sides. The card used a separate guarded
+staging allocation and kept it pinned until the host checked and acknowledged
+the exact completion. Only then did Doom receive the bytes. WAD CRC was omitted
+by explicit choice; identity, bounds, ownership, guards and full system audits
+stayed. Those checks cannot detect every changed byte inside a valid block.
+
+The first physical run completed all fifty-two pictures and the menu restart.
+They matched the mailbox run byte for byte. Review still found a teardown race:
+a late interrupt could queue work between checking the stage and freeing it.
+The corrected release masks interrupts and refuses outstanding work. Passing a
+run did not make that race acceptable.
+
+Bulk data exposed another expense. Request-query calls alone had consumed more
+than two hundred seconds. The next driver gave WAD control replies sixteen
+short polls before returning to the existing sleep, with the same deadlines and
+completion checks. The first attempt never reached that code: concurrent engine
+upload starved a startup TCP check. Its failure archive remains in the ledger.
+The host now finishes the network proof before admitting the large upload;
+packet service and periodic audits continue while it waits.
+
+The final run brought initial loading down from twenty-seven minutes and
+twenty-three seconds to five minutes and eighteen seconds: 5.16 times faster.
+Restarting the same level fell from 10.29 seconds to 3.07. All fifty-two pictures
+matched the mailbox captures exactly; fourteen full audit pairs, owned STOP and
+heap drain passed. The Mac received every binary frame with the expected hash.
+Request queries still consumed 181 seconds. There was another bottleneck to
+investigate, but now the experiment could end with someone actually playing.
+
+The [WAD transfer ledger](artifacts/wad-dma-20261014/README.md) records the final
+comparison, exact images and failed attempts. The [play instructions](game/doom/play/PLAY.md)
+cover getting into the game without having to reconstruct the experiment.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

@@ -1,0 +1,11 @@
+--- baseline
++++ bulk-fast
+@@ -706,7 +706,7 @@
+   if((readl(d->bar+ODB)&1)||readl(d->bar+0x28)!=0x1fb||readl(d->bar+0x34)!=0xff)return -EPROTO;
+   seen=readl(d->bar+0x1c);
+   if(seen==(token|0x08000000u)&&readl(d->bar+0x14)==0){*value=readl(d->bar+0x18);return 0;}
+-  usleep_range(50,100);
++  if(d->wad_dma_gen && ((token>>24)==0x75u || (token>>24)==0x76u || ((token>>24)==0x77u && ((token>>16)&255u))) && i<16)cpu_relax();else usleep_range(50,100);
+  }
+  return -ETIMEDOUT;
+ }

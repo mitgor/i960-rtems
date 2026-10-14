@@ -9,7 +9,7 @@ from batch_client import BatchServer
 from owned_client import Control
 from frame_client import png
 
-def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False,dma_test=False,pipeline=False,pipeline_test=False,no_crc=False):
+def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False,dma_test=False,pipeline=False,pipeline_test=False,no_crc=False,wad_dma=False,wad_load_test=False):
  from upload_client import Upload
  u=Upload(fd,epoch,out,gate,abort);root=Path(root);out=Path(out)
  m=json.loads((root/'manifest.json').read_text());assert m['startup']['play']
@@ -61,23 +61,26 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
  def message(s):
   with lock:state['message']=s
   print(s,flush=True)
- server=BatchServer(u,wad)
+ if wad_dma:
+  from wad_dma_client import BulkServer
+  server=BulkServer(u,wad)
+ else:server=BatchServer(u,wad)
  def ctl(i=0,v=0):return struct.unpack('<I',u.io(10,struct.pack('<2I',i,v)))[0]
  try:
   # Preserve the proven 1 MiB placement gap while establishing both heap owners.
   u.begin([(0,4,4,1,0),(16,0,1048576-16,2,0)]);assert u.command(8)[5]==0x444c4942;u.command(5)
   u.command(10,data=struct.pack('<3I',0x31444157,1,len(server.data))+bytes.fromhex(server.sha))
   for session in range(2 if accept_frames and not (bulk_test or dma_test) else 1):
-   stop.clear();seen=0;control=Control(u,False);started=time.monotonic();last_poll=0;stop_sent=False;request_base=len(server.records)
+   stop.clear();seen=0;control=Control(u,False);started=time.monotonic();last_poll=0;stop_sent=False;request_base=len(server.records);last_loading_message=0
    parts=[blob[s['offset']:s['offset']+s['file_bytes']] for s in m['sections']]+[meta]
    geometry=[(s['offset'],s['file_bytes'],s['memory_bytes'],s['flags']) for s in m['sections']]+[(m['metadata_offset'],len(meta),len(meta),2)]
    message('Uploading Doom engine…')
    u.begin([(*s,zlib.crc32(p)) for s,p in zip(geometry,parts)],m['entry'])
    for i,p in enumerate(parts):
     if p:u.write(i,p)
-   u.prepare();message('Loading the first level on the i960; please wait…')
+   u.prepare();engine_ready=time.monotonic();message('Loading the first level on the i960; please wait…')
    def serve():
-    nonlocal image,binary,seen,last_poll,stop_sent
+    nonlocal image,binary,seen,last_poll,stop_sent,last_loading_message
     if abort is not None and abort.is_set():stop.set()
     if stop.is_set() and not stop_sent and (seen or len(server.records)>request_base):
      q=control.query()
@@ -85,7 +88,11 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     # Never race frame teardown after an owned STOP request.
     if stop_sent:return False
     # WAD requests must be serviced promptly even during startup.
-    if server.serve():return True
+    if server.serve():
+     if not seen and time.monotonic()-last_loading_message>=2:
+      last_loading_message=time.monotonic()
+      with lock:state['message']=f'Loading the first level on the i960 · {len(server.records)-request_base:,} WAD blocks received · {time.monotonic()-engine_ready:.0f}s'
+     return True
     if time.monotonic()-last_poll<.01:return False
     last_poll=time.monotonic();g=ctl()
     if g==0xffffffff:raise RuntimeError('interactive frame channel refused')
@@ -134,8 +141,11 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     if (accept_frames or bulk_test or dma_test) and session==0:
      if g==2:assert ctl(2,256+173)==0
      if g==4:assert ctl(2,173)==0
+    if wad_load_test and g in (10,12,14,16):
+     key=27 if g==10 else 13
+     assert ctl(2,256+key)==0 and ctl(2,key)==0
     assert ctl(1,g)==0;seen=g
-    row=dict(crc=crc,binary=pipeline,method=method,comparison=comparison,transfer_seconds=transfer_seconds,png_seconds=png_seconds,session=session,frame=g,seconds=time.monotonic()-started,readback_seconds=time.monotonic()-begin,sha256=hashlib.sha256(raw).hexdigest())
+    row=dict(wad_requests=len(server.records)-request_base,engine_seconds=time.monotonic()-engine_ready,crc=crc,binary=pipeline,method=method,comparison=comparison,transfer_seconds=transfer_seconds,png_seconds=png_seconds,session=session,frame=g,seconds=time.monotonic()-started,readback_seconds=time.monotonic()-begin,sha256=hashlib.sha256(raw).hexdigest())
     with (out/'play-frames.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
     if g<=8 or bulk_test or dma_test or pipeline_test:
      (out/f'play-{session}-{g}.bin').write_bytes(raw)

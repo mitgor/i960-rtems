@@ -1,0 +1,26 @@
+{
+  "driver_calls": {
+    "wad-journal.jsonl:3": {
+      "calls": 12434,
+      "total_ms": 207849.77876100029,
+      "mean_ms": 16.716244069567338
+    },
+    "wad-dma-journal.jsonl:1": {
+      "calls": 5100,
+      "total_ms": 18969.624843000012,
+      "mean_ms": 3.719534282941179
+    },
+    "wad-dma-journal.jsonl:2:pending": {
+      "calls": 11699,
+      "total_ms": 15311.667363999988,
+      "mean_ms": 1.308801381656551
+    },
+    "wad-dma-journal.jsonl:2": {
+      "calls": 5100,
+      "total_ms": 30539.950224000077,
+      "mean_ms": 5.988225534117662
+    }
+  },
+  "mailbox_control_exchanges": 251105,
+  "payload_crc": false
+}

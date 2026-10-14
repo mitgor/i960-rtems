@@ -67,7 +67,7 @@ def main():
  p.add_argument('--play-dma-test',action='store_true')
  p.add_argument('--play-pipeline',action='store_true')
  p.add_argument('--play-pipeline-test',action='store_true')
- p.add_argument('--play-no-crc',action='store_true')
+ p.add_argument('--play-no-crc',action='store_true');p.add_argument('--wad-dma',action='store_true');p.add_argument('--wad-load-test',action='store_true')
  p.add_argument('--frame-dma-stress',type=int,default=0)
  p.add_argument('--play-bulk',action='store_true')
  p.add_argument('--play-bulk-test',action='store_true')
@@ -92,6 +92,8 @@ def main():
  p.add_argument('--round-interval',type=float,default=0)
  p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args()
  assert not a.frame_dma_stress or (1<=a.frame_dma_stress<=2048 and a.doom_runtime and a.owned_mib==12 and a.upload_concurrent and not a.play_port and not a.play_dma_test)
+ assert not a.wad_load_test or a.play_pipeline_test
+ assert not a.wad_dma or a.play_pipeline
  assert not a.play_pipeline_test or a.play_pipeline
  assert not a.play_no_crc or (a.play_pipeline and not a.play_pipeline_test)
  assert not a.play_pipeline or (a.play_port and not (a.play_dma_test or a.play_bulk or a.play_bulk_test or a.play_accept_frames or a.frame_dma_stress))
@@ -107,6 +109,9 @@ def main():
  if a.play_port or a.frame_dma_stress:
   admission=json.loads((a.payload.parent/'entry/engine/manifest.json').read_text())
   assert bool(admission.get('dma_stress'))==bool(a.frame_dma_stress), 'producer/runner mismatch'
+ if a.wad_dma:
+  assert '_wad_dma_isolation_snapshot' in (a.payload.parent/'kernel.map').read_text(), 'rebuild the resident kernel for bulk WAD support'
+  assert 'wad_dma_ioctl' in (a.module.parent/'dac960auto.c').read_text(), 'rebuild the matching bulk WAD driver'
  flags=json.loads((a.payload.parent/'build.json').read_text())['flags']
  assert ('-DI960_DOOM_PLAY' in flags)==bool(a.play_port or a.frame_dma_stress), 'play image requires the interactive runner'
  assert ('-DI960_DOOM_DMA' in flags)==bool(a.play_dma_test or a.play_pipeline or a.frame_dma_stress)
@@ -128,7 +133,7 @@ def main():
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(play_pipeline=a.play_pipeline,play_pipeline_test=a.play_pipeline_test,play_no_crc=a.play_no_crc,frame_dma_stress=a.frame_dma_stress,play_dma_test=a.play_dma_test,dma_deadline_job=a.dma_deadline_job,dma_stop=a.dma_stop,dma_proof=a.dma_proof,play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(wad_load_test=a.wad_load_test,wad_dma=a.wad_dma,play_pipeline=a.play_pipeline,play_pipeline_test=a.play_pipeline_test,play_no_crc=a.play_no_crc,frame_dma_stress=a.frame_dma_stress,play_dma_test=a.play_dma_test,dma_deadline_job=a.dma_deadline_job,dma_stop=a.dma_stop,dma_proof=a.dma_proof,play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
  io_gate=threading.RLock();abort_upload=threading.Event()
  def save(final=False):
   if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')
@@ -213,17 +218,21 @@ def main():
   with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
    future=pool.submit(clients,a.rounds,a.parallel,a.round_interval,b.out);deadline=time.monotonic()+max(45,a.ticks/100-5);last=time.monotonic()
    upload_future=None
-   if a.upload_concurrent:
+   def start_upload():
     from upload_client import exercise
     if a.frame_dma_stress:
      sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'dma/stress'))
      from stress_client import exercise as stress
-     upload_future=pool.submit(stress,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',abort_upload,a.frame_dma_stress)
+     return pool.submit(stress,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',abort_upload,a.frame_dma_stress)
     elif a.play_port:
      from play_client import exercise as play
-     upload_future=pool.submit(play,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',a.play_port,abort_upload,a.play_accept_frames,a.play_bulk,a.play_bulk_test,a.play_dma_test,a.play_pipeline,a.play_pipeline_test,a.play_no_crc)
-    else:upload_future=pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared,runtime,abort_upload)
-   while not future.done() or (upload_future is not None and not upload_future.done()):
+     return pool.submit(play,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',a.play_port,abort_upload,a.play_accept_frames,a.play_bulk,a.play_bulk_test,a.play_dma_test,a.play_pipeline,a.play_pipeline_test,a.play_no_crc,a.wad_dma,a.wad_load_test)
+    else:return pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared,runtime,abort_upload)
+   # Complete the network proof before a large game upload can monopolize
+   # the packet gate. The main loop still pumps packets and performs audits.
+   upload_pending=a.upload_concurrent and bool(a.play_port or a.frame_dma_stress)
+   if a.upload_concurrent and not upload_pending:upload_future=start_upload()
+   while not future.done() or upload_pending or (upload_future is not None and not upload_future.done()):
     if time.monotonic()>deadline:raise TimeoutError('resident test exceeded session traffic budget')
     if (a.play_port or a.frame_dma_stress) and future.done():
      traffic_active=False
@@ -233,6 +242,10 @@ def main():
       # then propagate the original network failure after the owner exits.
       abort_upload.set()
       (b.out/'network-error.txt').write_text(repr(future.exception())+'\n')
+    if upload_pending and future.done():
+     # Propagate the original error before admitting any engine upload.
+     future.result()
+     upload_future=start_upload();upload_pending=False
     pump_packets()
     if a.play_port or a.frame_dma_stress:time.sleep(.001)
     if time.monotonic()-last>a.audit_interval:snapshot();last=time.monotonic()

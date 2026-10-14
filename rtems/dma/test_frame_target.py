@@ -43,6 +43,7 @@ static unsigned isolation_words[16];
 static void engine_snapshot(unsigned *w){memcpy(w,isolation_words,sizeof isolation_words);}
 #define EREG(a) FD_R(a)
 #define ESHORT(a) FD_S(a)
+unsigned wad_dma_isolation_snapshot(unsigned*w){(void)w;return 0;}
 #include "rtems/residentnet/scsi_target.h"
 static void isolation_test(void){unsigned w[16],saved[8],i,j,old;
  for(i=0;i<8;i++)saved[i]=fd_desc[i];
