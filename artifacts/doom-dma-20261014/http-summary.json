@@ -1,0 +1,41 @@
+{
+  "frames": 11,
+  "matching_named_pngs": 11,
+  "mean_fetch_seconds": 0.05914474244822155,
+  "blocks": [
+    {
+      "first": 5,
+      "last": 10,
+      "observed": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "fps": 0.9207261958173526
+    },
+    {
+      "first": 11,
+      "last": 16,
+      "observed": [
+        11
+      ],
+      "fps": null
+    },
+    {
+      "first": 17,
+      "last": 22,
+      "observed": [],
+      "fps": null
+    },
+    {
+      "first": 23,
+      "last": 28,
+      "observed": [],
+      "fps": null
+    }
+  ],
+  "measurement": "HTTP receipt, 250 ms polling; not browser paint"
+}

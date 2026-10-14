@@ -1,0 +1,57 @@
+[
+  {
+    "frame": 1,
+    "exact": true,
+    "sha256": "f4d1c27a4ec8e8db4437d9e28012107370749765aa0e09c99758eeb54163b8ce"
+  },
+  {
+    "frame": 2,
+    "exact": true,
+    "sha256": "f4d1c27a4ec8e8db4437d9e28012107370749765aa0e09c99758eeb54163b8ce"
+  },
+  {
+    "frame": 3,
+    "exact": true,
+    "sha256": "a759470102c8849eac269bd13c684422ae72e6346e81fceabd7608dbbd11372f"
+  },
+  {
+    "frame": 4,
+    "exact": true,
+    "sha256": "cdd895e16c17cd7fb23f57108ea3c36dab3a2d2fcc676fe154967fe98e7387b7"
+  },
+  {
+    "frame": 5,
+    "exact": true,
+    "sha256": "acf60fb47c71185efaf4e83f0f8477568665bf57e87f3cbc74f914d4a14a4b4b"
+  },
+  {
+    "frame": 6,
+    "exact": true,
+    "sha256": "dbd12edf853bb75fdd0cd51af7422c7f6ddf649cc7363fb963ebc43591578164"
+  },
+  {
+    "frame": 7,
+    "exact": true,
+    "sha256": "8d0ed5ecda26608aefb0493f1be5ff628ce2348f9d4e7a56a9bd373a5f60df68"
+  },
+  {
+    "frame": 8,
+    "exact": true,
+    "sha256": "644a9d472e9f65cd3d5d8ebc2d7f410b9b1b4a42e024fe932e3d283929902926"
+  },
+  {
+    "frame": 9,
+    "exact": true,
+    "sha256": "112c7a9627751c6d9c87e22767293648302ded1e15bcf7a9fb5e49ce8483f182"
+  },
+  {
+    "frame": 10,
+    "exact": true,
+    "sha256": "d750895bca77f76d433f6cf929bbcdfb8133cd78cf22e58d17d8e024fc90ca1b"
+  },
+  {
+    "frame": 11,
+    "exact": true,
+    "sha256": "980287f8ed43bc8254d711fc368ad111832fc57df2b488ee2ddd6c4631fa5d90"
+  }
+]

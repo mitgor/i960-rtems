@@ -8,7 +8,19 @@ static unsigned char *volatile play_frame;
 static volatile unsigned play_sequence,play_ack,play_head,play_tail;
 static unsigned play_keys[32];
 static unsigned play_selected,play_offset,play_window;
-static void play_clear(void){play_frame=0;play_selected=play_window=0;}
+#ifdef I960_DOOM_DMA
+#include "../dma/frame_target.h"
+#endif
+static void play_clear(void){
+#ifdef I960_DOOM_DMA
+ unsigned pc=FD_LOCK();
+ if(fd_phase==1){FD_FATAL();for(;;){}} /* Never release a queued/active DMA pin. */
+#endif
+ play_frame=0;play_selected=play_window=0;
+#ifdef I960_DOOM_DMA
+ FD_UNLOCK(pc);
+#endif
+}
 int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){unsigned start,polls=0;
  if(!play_api||!play_api->owner()||play_api->stopping())return -1;
  if(stage==101){unsigned t=play_tail,v;if(t==play_head)return 1;v=play_keys[t];play_tail=(t+1)&31;return (int)v+2;}
@@ -17,6 +29,9 @@ int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){unsigned s
  play_ack=0;play_sequence=z;play_selected=play_window=0;
  __asm__ volatile("":::"memory");play_frame=play_allowed;start=play_api->io.ticks_ms();
  while(!play_ack){
+#ifdef I960_DOOM_DMA
+  fd_step();
+#endif
   if(play_api->stopping()||play_api->io.ticks_ms()-start>=60000||++polls>=10000000u){play_clear();return -1;}
   {extern void doom_shared_service(void);doom_shared_service();}
   if(!(polls&1023u))doom_shared_yield();
@@ -24,6 +39,10 @@ int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){unsigned s
  play_clear();return 1;
 }
 unsigned engine_play_control(unsigned index,unsigned value){
+ #ifdef I960_DOOM_DMA
+ if(index>=3&&index<=5)return fd_control(index,value);
+ if(index==1&&fd_phase==1)return ~0u;
+#endif
  if(index==0)return play_frame?play_sequence:0;
  if(!play_api||!play_frame)return ~0u;
  if(index==1){if(!value||value!=play_sequence||play_ack)return ~0u;play_ack=1;return 0;}

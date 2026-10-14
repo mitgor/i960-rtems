@@ -29,6 +29,11 @@ def build(out,payload):
   header=out/'buffer_io.h';header.write_text(protect_upload_header(header.read_text(),'-DI960_DOOM_ENGINE' in flags))
   s=m.replace(s,'static const struct file_operations session_fops=',(HERE/'upload_host.h').read_text()+'\nstatic const struct file_operations session_fops=')
   s=m.replace(s,'.unlocked_ioctl=resident_ioctl,','.unlocked_ioctl=upload_ioctl,')
+ if '-DI960_DOOM_DMA' in flags:
+  s=m.replace(s,'void *dma_buf;', 'void *dma_buf;void *frame_dma_buf;dma_addr_t frame_dma_bus;struct debugfs_blob_wrapper frame_dma_blob;unsigned frame_dma_gen;bool frame_dma_pending,frame_dma_valid;')
+  s=m.replace(s,'static const struct file_operations session_fops=',(HERE.parent/'dma/frame_host.h').read_text()+'\nstatic const struct file_operations session_fops=')
+  s=m.replace(s,'.unlocked_ioctl=upload_ioctl,','.unlocked_ioctl=frame_dma_ioctl,')
+  s=m.replace(s,'    dma_free_coherent(&pdev->dev,DMA_SIZE,d->dma_buf,d->dma);','    if(d->frame_dma_buf)dma_free_coherent(&pdev->dev,73728,d->frame_dma_buf,d->frame_dma_bus);\n    dma_free_coherent(&pdev->dev,DMA_SIZE,d->dma_buf,d->dma);')
  if '-DI960_DMA_PROOF' in flags:
   s=m.replace(s,'void *dma_buf;', 'void *dma_buf; void *proof_buf; struct debugfs_blob_wrapper proof_blob; dma_addr_t proof_dma; unsigned proof_seq; bool proof_valid,proof_pending,proof_cancelled;unsigned proof_n,proof_offset,proof_seed;')
   s=m.replace(s,'static const struct file_operations session_fops=',(HERE.parent/'dma/host.h').read_text()+'\nstatic const struct file_operations session_fops=')

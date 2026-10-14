@@ -1,0 +1,10 @@
+PASS immutable frame, stale ACK, bounds, bounded key FIFO, STOP, timeout, final release
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.067s
+
+OK
+PASS actual 130-exchange paired frame request, generation refusal and uncertainty at every exchange
+PASS actual paired MMIO: two-word visibility, 16-poll fallback, mask/doorbell refusals, stale completion, deadline and iteration bounds
+PASS actual 258-exchange frame request, generation refusal and uncertainty at every exchange
+PASS actual elapsed-duration audit gates; maximum budget cannot demand unelapsed timer wraps

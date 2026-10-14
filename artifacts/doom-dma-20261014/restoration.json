@@ -1,0 +1,13 @@
+{
+  "boot": "91493f0a-3c46-4afa-a40c-6b62ad8304be",
+  "supervisor": 1604,
+  "python": 1675,
+  "driver": "dac960auto",
+  "owner": "public autonomous IPv6 HTTP relay",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "checked_from": "Mac via direct IPv6 curl",
+  "output": "/home/mit/i960-rtems-web-20261011/http-after-doom-dma-20261014",
+  "checked_at": "2026-10-14T11:30:53.242231+00:00",
+  "dma_test_reservation_released": true
+}

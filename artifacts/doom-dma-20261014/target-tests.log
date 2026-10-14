@@ -1,0 +1,1 @@
+PASS actual atomic frame release, interrupt-boundary submission, frame pin, pending ACK/mutation refusal, exact DMA, independent CRC, stale generation, STOP, timeout/error/source/descriptor quarantine

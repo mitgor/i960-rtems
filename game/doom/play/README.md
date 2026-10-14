@@ -5,6 +5,18 @@ RTEMS while Linux supplies its immutable Freedoom WAD, keyboard events and
 browser framebuffer delivery. It is separate from the fully replayed two-frame
 [acceptance baseline](../../../artifacts/doom-visible-20261013/README.md).
 
+## Bounded DMA comparison
+
+The opt-in `build.py --dma` and `run.py --dma-test` pair builds and runs a
+single 28-frame acceptance, not a persistent interactive DMA session. It reads
+four identical pinned frames through DMA and paired mailbox, then measures
+mailbox/DMA/DMA/mailbox blocks while retaining the normal full audits. It uses
+the same renderer, frame format and input sequence. See the
+[ownership contract](../../../rtems/dma/FRAME-DMA.md) and
+[dated evidence](../../../artifacts/doom-dma-20261014/README.md).
+Do not combine this test with `--bulk`, `--bulk-test` or `--self-test`, or use a
+DMA kernel with a non-DMA runner. The accepted normal play modes are unchanged.
+
 ## Connect and play
 
 The October 14 acceptance session has ended; the public web service currently

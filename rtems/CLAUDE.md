@@ -1,5 +1,28 @@
 # RTEMS working guidance
 
+<!-- doom-dma-current -->
+**Doom DMA comparison failed full acceptance (2026-10-14):** four pinned
+frames matched mailbox/DMA exactly; same-frame transfer improved **0.498802 →
+0.225233 s (2.2146×)**. Five DMA frames and eleven delivered frames passed, then
+frame-12 completion polling timed out. Retained destination bytes match the old
+physical frame and guards remain intact, but bus mastering remained enabled.
+Do not confuse delivered bytes with quiescence. **No DMA FPS improvement or
+final heap drain is accepted.** All 23 recorded full monitor/RAM pairs precede
+the first frame; no post-DMA audit was obtained. The full verifier rejects the
+run; explicit failed-prefix replay passes and rejects 30 frame/journal and 24
+snapshot mutations. Two review-found release races were closed with an atomic
+pending check/pointer clear; both earlier startups were stopped before DMA and
+archived. Default play remains unchanged; `--dma` / `--dma-test` is experimental.
+Next instrument completion/cleanup and terminal fault diagnostics, reproduce the
+stall, then repeat full A/B/B/A and STOP/drain. Do not enlarge timeouts, remove
+checks or recycle retained resources. The failed capture and exact build are
+locally hash-verified. Reboot completed; public IPv6 HTTP returned 200 from the
+Mac. Relay Python 1675 (supervisor 1604), boot
+`91493f0a-3c46-4afa-a40c-6b62ad8304be`, owns the card. Test reservation released;
+stop that relay normally before further exclusive tests.
+[Evidence and limits](../artifacts/doom-dma-20261014/README.md).
+<!-- /doom-dma-current -->
+
 <!-- exclusive-dma-current -->
 **Task-owned asynchronous DMA accepted (2026-10-14):** worker 1 now prepares,
 launches and checks DMA1 with interrupts enabled; the MU handler only publishes

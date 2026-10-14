@@ -2930,6 +2930,62 @@ and only then count browser frames again. After the second archive was safely
 home, the retained mapping was released by reboot and the public Vader page
 answered over IPv6 once more.
 
+## The pixels arrive before the receipt
+
+The next experiment finally put Doom's own picture in the DMA descriptor. Same
+engine, same WAD, same 64 KiB framebuffer. First read a pinned frame through DMA,
+then read it again through the mailbox and compare every byte. After four of
+those, alternate timing blocks. Let the card move the picture, and keep the
+receipt just as strict as before.
+
+Review interrupted the first two startups. A DMA submission could arrive between
+the worker checking for work and deciding to release the frame on STOP. Adding
+a pending check exposed the smaller version of the same problem: an interrupt
+could still arrive between that check and clearing the pointer. The final fix
+masks interrupts across those few operations and restores the old priority.
+Preparation, checksums and DMA polling still run in the task with interrupts
+on. Both interrupted startups stopped cleanly before issuing any frame DMA.
+Their captures stayed in the archive. They were review findings, not corrupted
+pictures, and pretending they had never happened would make a poor field report.
+
+On the third startup, four pictures came home through both paths and matched
+exactly. The mailbox took about 499 milliseconds per picture; DMA, including
+both source CRC passes and complete destination guards, took about 225. A little
+over twice as fast. The browser showed the scene, and the first mailbox timing
+block managed about 0.95 frames per second.
+
+Frame eleven made it through DMA too. Frame twelve was the reminder that a
+picture and a receipt are different things.
+
+The host submitted the transfer, received pending replies, and then the completion
+poll timed out. The driver refused further work and retained everything. Reading
+the retained host buffer later showed the exact expected twelfth picture, with
+both guards untouched. But PCI bus mastering was still enabled. The final state
+had never been proved. We had no right to acknowledge that frame or hand its
+memory back merely because the pixels looked convincing.
+
+So this entry has a useful number and an unfinished result. Four same-frame
+comparisons establish a 2.21-fold transfer improvement. They do not establish a
+DMA frame rate: the first DMA timing block never finished. The twenty-three full
+memory audits all passed before the pictures started; there is no post-DMA audit
+or successful final heap drain to quietly borrow from another run. The full
+verifier rejects this capture. A separately labelled failed-prefix inspection
+reconstructs the eleven delivered frames and the recorded audits, and deliberate
+mutations still get rejected.
+
+The small native/card rendering discrepancy stayed in its familiar three-by-three
+patch. The new mystery is elsewhere: after the bytes arrive, before the transfer
+gets its validated terminal state. The next job is to mark those phases and retain
+fault/context evidence through a transport failure, then reproduce the stall.
+Longer timeouts and fewer checks would only make the receipt less honest.
+
+The [complete failed batch](artifacts/doom-dma-20261014/README.md) preserves all
+three builds and runs, the retained twelfth picture, and the exact limits of what
+we learned. The archive was copied and checked locally before reboot; the public Vader
+page answered over IPv6 again afterward. Ordinary
+browser play keeps its accepted transport while this path earns the rest of its
+proof.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -2972,7 +3028,9 @@ So, the ledger, honestly kept:
   about one frame every six seconds—and a small native/card pixel discrepancy
   remains recorded. The subsequent paired-mailbox reader reaches about one frame per second,
   with full audits and shutdown passing. Startup and the small rendering
-  discrepancy remain open.
+  discrepancy remain open. A subsequent DMA comparison moves the same four
+  pictures 2.21 times faster, but a later completion timeout prevents acceptance
+  of DMA FPS, post-transfer audits and final cleanup.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

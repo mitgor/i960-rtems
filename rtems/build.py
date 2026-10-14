@@ -3,7 +3,8 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,hashlib
 from lwip_patches import apply as patch_lwip
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--doom-engine',type=Path);p.add_argument('--wad-batch',action='store_true');p.add_argument('--wad-poll',action='store_true');p.add_argument('--dispatch-atomic',action='store_true');p.add_argument('--dma-proof',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--profile',choices=['bounded','session','net','irq','auto','autonet','mu','muctl','irqctx','muctx','switch','defer','mustop','stopcases','contain','containcases','ownership','ownirq','persistirq','leaseirq','handoff','exclusive','residentnet'],default='bounded');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument("--secondary-reset",action="store_true");p.add_argument("--fault-owner",action="store_true");p.add_argument("--fault-test",type=int,choices=(0,1,2,3),default=0);p.add_argument("--extra-ram",action="store_true");p.add_argument("--general-heap",action="store_true");p.add_argument("--heap-test",type=int,choices=(0,1,2,3,4,5,6),default=0);p.add_argument("--heap-shared",action="store_true");p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--owned-mib",type=int,choices=(0,1,4,10,12),default=0);p.add_argument("--resident-upload",action="store_true");p.add_argument('--doom-heap',action='store_true');p.add_argument('--doom-shared',action='store_true');p.add_argument('--doom-runtime',action='store_true');p.add_argument('--doom-engine',type=Path);p.add_argument('--wad-batch',action='store_true');p.add_argument('--wad-poll',action='store_true');p.add_argument('--dispatch-atomic',action='store_true');p.add_argument('--doom-dma',action='store_true');p.add_argument('--dma-proof',action='store_true');a=p.parse_args()
+if a.doom_dma and not (a.doom_engine and a.resident_upload and a.owned_mib==12 and a.dispatch_atomic):p.error('Doom DMA requires owned play engine and atomic dispatch')
 if a.dma_proof and not (a.profile=='residentnet' and a.owned_mib==12 and a.dispatch_atomic and not a.resident_upload):p.error('DMA proof requires isolated owned 12 MiB without application upload')
 if a.dispatch_atomic and a.profile!='residentnet':p.error('atomic dispatch requires residentnet proof profile')
 if a.wad_batch and not (a.wad_poll and a.doom_runtime and a.doom_engine):p.error('WAD batches require polling, owned runtime and the protected engine profile')
@@ -72,6 +73,7 @@ if a.profile=='defer':flags+=['-DI960_DEFER_TEST']
 if a.profile in ('mustop','stopcases','contain','containcases'):flags+=['-DI960_STOP_TEST']
 if a.profile in ('stopcases','containcases'):flags+=['-DI960_STOP_CASES']
 if a.profile in ('contain','containcases'):flags+=['-DI960_CONTAIN_TEST']
+if a.doom_dma:flags+=['-DI960_DOOM_DMA']
 if a.dma_proof:flags+=['-DI960_DMA_PROOF']
 if a.secondary_reset:flags+=['-DI960_SECONDARY_RESET']
 if a.fault_owner:flags+=['-DI960_FAULT_OWNER','-DI960_FAULT_TEST='+str(a.fault_test)]
@@ -104,6 +106,7 @@ if a.doom_engine:
  if (a.doom_engine/'visible-frames.bin').exists():shutil.copyfile(a.doom_engine/'visible-frames.bin',engine_out/'visible-frames.bin')
  if (a.doom_engine/'startup-checkpoints.bin').exists():shutil.copyfile(a.doom_engine/'startup-checkpoints.bin',engine_out/'startup-checkpoints.bin')
  if (a.doom_engine/'startup-requests.bin').exists():shutil.copyfile(a.doom_engine/'startup-requests.bin',engine_out/'startup-requests.bin')
+if a.doom_dma and '-DI960_DOOM_PLAY' not in flags:p.error('Doom DMA requires a playable engine manifest')
 if a.owned_mib:flags+=['-DI960_OWNED_MIB='+str(a.owned_mib)]
 if a.extra_ram:flags+=['-DI960_EXTRA_RAM']
 if a.heap_shared:flags+=['-DI960_HEAP_SHARED']

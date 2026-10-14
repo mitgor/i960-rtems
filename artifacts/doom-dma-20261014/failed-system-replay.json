@@ -1,0 +1,10 @@
+{
+  "acceptance": false,
+  "monitor_ram_pairs": 23,
+  "heap_pages": 22,
+  "last_audited_tick": 134641,
+  "terminal_snapshot": false,
+  "heap_drain_proven": false,
+  "full_verifier_correctly_rejected": true,
+  "snapshot_mutations_rejected": 24
+}

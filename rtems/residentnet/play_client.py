@@ -9,14 +9,20 @@ from batch_client import BatchServer
 from owned_client import Control
 from frame_client import png
 
-def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False):
+def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False,dma_test=False):
  from upload_client import Upload
  u=Upload(fd,epoch,out,gate,abort);root=Path(root);out=Path(out)
  m=json.loads((root/'manifest.json').read_text());assert m['startup']['play']
  blob=(root/'template.bin').read_bytes();meta=(root/'relocations.bin').read_bytes()
  assert hashlib.sha256(blob).hexdigest()==m['template_sha256'] and hashlib.sha256(meta).hexdigest()==m['metadata_sha256']
  token=secrets.token_hex(24);lock=threading.Lock();keys=deque();stop=threading.Event();held_keys=set();input_deadline=[0.]
- state=dict(frame='',message='Starting the RTEMS Doom runtime…');image=b''
+ dma=None
+ if dma_test:
+  import sys
+  sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'dma'))
+  from frame_dma_client import FrameDMA
+  dma=FrameDMA(fd,epoch,out,gate)
+ state=dict(frame='', message='Starting the RTEMS Doom runtime…');image=b''
  page=(Path(__file__).resolve().parents[2]/'game/doom/play/index.html').read_text().replace('__TOKEN__',token).encode()
  class Handler(BaseHTTPRequestHandler):
   def log_message(self,*args):pass
@@ -59,7 +65,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
   # Preserve the proven 1 MiB placement gap while establishing both heap owners.
   u.begin([(0,4,4,1,0),(16,0,1048576-16,2,0)]);assert u.command(8)[5]==0x444c4942;u.command(5)
   u.command(10,data=struct.pack('<3I',0x31444157,1,len(server.data))+bytes.fromhex(server.sha))
-  for session in range(2 if accept_frames and not bulk_test else 1):
+  for session in range(2 if accept_frames and not (bulk_test or dma_test) else 1):
    stop.clear();seen=0;control=Control(u,False);started=time.monotonic();last_poll=0;stop_sent=False;request_base=len(server.records)
    parts=[blob[s['offset']:s['offset']+s['file_bytes']] for s in m['sections']]+[meta]
    geometry=[(s['offset'],s['file_bytes'],s['memory_bytes'],s['flags']) for s in m['sections']]+[(m['metadata_offset'],len(meta),len(meta),2)]
@@ -86,6 +92,10 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      assert len(data)==65536 and data[:1024]==u.io(op,struct.pack('<2I',g,0))
      assert ctl()==g, 'frame expired during transfer; never ACK uncertain bytes'
      return data,time.monotonic()-t
+    if dma_test and g==1:
+     for op,generation,offset,expected in ((1,g+1,0,errno.ESTALE),(3,g,73728,errno.EINVAL),(3,g,4,errno.EINVAL)):
+      try:dma.call(op,generation,offset);raise AssertionError("invalid DMA frame request accepted")
+      except OSError as e:assert e.errno==expected
     if bulk_test and g==1:
      for generation,offset,expected in ((g+1,0,errno.ESTALE),(g,65536,errno.EINVAL),(g,4,errno.EINVAL)):
       try:u.io(11,struct.pack('<2I',generation,offset));raise AssertionError('invalid bulk request accepted')
@@ -94,7 +104,12 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     # Four same-frame comparisons followed by scalar/bulk/bulk/scalar blocks.
     # Full snapshot/RAM audits continue independently at the unchanged interval.
     if bulk_test:method=11 if g<=4 or 11<=g<=22 else 9
-    raw,transfer_seconds=read_frame(method)
+    if dma_test:method=12 if g<=4 or 11<=g<=22 else 11
+    raw,transfer_seconds=dma.read(g) if method==12 else read_frame(method)
+    if method==12:assert ctl()==g, 'DMA frame expired; never ACK uncertain bytes'
+    if dma_test and g<=4:
+     other,other_seconds=read_frame(11);assert other==raw, 'DMA/mailbox frame mismatch'
+     comparison=dict(mailbox_seconds=other_seconds,dma_seconds=transfer_seconds,bytes=65536)
     if bulk_test and g<=4:
      other,other_seconds=read_frame(9)
      assert other==raw, 'bulk and scalar frame bytes differ'
@@ -109,16 +124,16 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      while keys:
       if ctl(2,keys[0])!=0:break
       keys.popleft()
-    if (accept_frames or bulk_test) and session==0:
+    if (accept_frames or bulk_test or dma_test) and session==0:
      if g==2:assert ctl(2,256+173)==0
      if g==4:assert ctl(2,173)==0
     assert ctl(1,g)==0;seen=g
     row=dict(method=method,comparison=comparison,transfer_seconds=transfer_seconds,png_seconds=png_seconds,session=session,frame=g,seconds=time.monotonic()-started,readback_seconds=time.monotonic()-begin,sha256=hashlib.sha256(raw).hexdigest())
     with (out/'play-frames.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
-    if g<=8 or bulk_test:(out/f'play-{session}-{g}.bin').write_bytes(raw);(out/f'play-{session}-{g}.png').write_bytes(picture)
+    if g<=8 or bulk_test or dma_test:(out/f'play-{session}-{g}.bin').write_bytes(raw);(out/f'play-{session}-{g}.png').write_bytes(picture)
     with lock:image=picture;state.update(frame=f'{session}-{g}',message=f'Live i960 Doom · frame {g} · readback {row["readback_seconds"]:.2f}s · click game for keyboard')
     print(json.dumps(row),flush=True)
-    if (bulk_test and g>=28) or (accept_frames and session==0 and g>=accept_frames):stop.set()
+    if ((bulk_test or dma_test) and g>=28) or (accept_frames and session==0 and g>=accept_frames):stop.set()
     return False
    u.service=serve
    try:reply=u.command(18,timeout=3660)

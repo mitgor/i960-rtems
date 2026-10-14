@@ -3,7 +3,9 @@
 Task-owned asynchronous physical acceptance passed in two runs: 48 exact
 transfers, 124 full audit pairs, explicit STOP and session-deadline cancellation.
 Maximum IRQ gap is 10.710–10.990 ms, down from 111.481 ms. Opt-in `--dma-proof`;
-not used by Doom or public HTTP. See the [asynchronous batch](../../artifacts/dma-async-20261014/README.md).
+not used by normal Doom play or public HTTP. The separate
+[pinned-frame comparison](FRAME-DMA.md) is opt-in; four frame comparisons passed but the full batch failed on a
+completion timeout. No Doom DMA FPS acceptance. See the [asynchronous batch](../../artifacts/dma-async-20261014/README.md).
 
 Worker 1 prepares, launches, polls and validates with interrupts enabled, using
 its existing audited IRQ stack. Control handlers only stage/publish jobs and
