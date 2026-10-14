@@ -1,0 +1,74 @@
+{
+  "full_frames": 28,
+  "paired_comparisons": 4,
+  "refusals": 3,
+  "dma_frames": 16,
+  "full_guarded_bytes": 1179648,
+  "pending_polls": 720,
+  "mailbox_reads": 1040,
+  "blocks": [
+    {
+      "method": 11,
+      "first": 5,
+      "last": 10,
+      "fps": 0.943832383647217,
+      "mean_transfer_seconds": 0.5030032988333156
+    },
+    {
+      "method": 12,
+      "first": 11,
+      "last": 16,
+      "fps": 1.381331751035859,
+      "mean_transfer_seconds": 0.2279342848332817
+    },
+    {
+      "method": 12,
+      "first": 17,
+      "last": 22,
+      "fps": 1.3722591616640047,
+      "mean_transfer_seconds": 0.22966025000001386
+    },
+    {
+      "method": 11,
+      "first": 23,
+      "last": 28,
+      "fps": 1.0036357072834314,
+      "mean_transfer_seconds": 0.503974165499964
+    }
+  ],
+  "paired_seconds": [
+    {
+      "mailbox_seconds": 0.5036513740001283,
+      "dma_seconds": 0.23124973299991325,
+      "bytes": 65536
+    },
+    {
+      "mailbox_seconds": 0.5001466999999593,
+      "dma_seconds": 0.22065866200000528,
+      "bytes": 65536
+    },
+    {
+      "mailbox_seconds": 0.5017614949999825,
+      "dma_seconds": 0.22048022300009507,
+      "bytes": 65536
+    },
+    {
+      "mailbox_seconds": 0.49120689699998366,
+      "dma_seconds": 0.23065656600010698,
+      "bytes": 65536
+    }
+  ],
+  "mean_transfer_seconds": {
+    "11": 0.5034887321666398,
+    "12": 0.22879726741664777
+  },
+  "fps": {
+    "11": 0.9728158179640385,
+    "12": 1.376780510070597
+  },
+  "fps_speedup": 1.4152530053962298,
+  "epoch": 58453,
+  "source": "0xc037ad40",
+  "descriptor": "0xc0f4eb40",
+  "dma_base": "0xfffa0000"
+}

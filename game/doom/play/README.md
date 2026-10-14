@@ -16,8 +16,12 @@ the same renderer, frame format and input sequence. See the
 [original dated evidence](../../../artifacts/doom-dma-20261014/README.md).
 The [subsequent stress test](../../../artifacts/frame-dma-stress-20261014/README.md)
 fixes a reproduced peer-isolation halt during owned DMA; it passed 512 synthetic
-frames with full audits and shutdown. A fresh Doom comparison with that fix is
-the next acceptance step.
+frames with full audits and shutdown. The
+[fixed Doom comparison](../../../artifacts/doom-dma-fixed-20261014/README.md)
+passed all 28 frames, 29 full monitor/RAM pairs, owned STOP and global drain.
+Mailbox delivered 0.972816 FPS versus DMA 1.376781 FPS (+41.525%); average
+transfer fell from 503.489 to 228.797 ms. All buffers match the earlier physical
+run. Longer interactive lifecycle acceptance is next; DMA remains opt-in.
 Do not combine this test with `--bulk`, `--bulk-test` or `--self-test`, or use a
 DMA kernel with a non-DMA runner. The accepted normal play modes are unchanged.
 

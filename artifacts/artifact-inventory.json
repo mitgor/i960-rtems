@@ -4903,6 +4903,156 @@
       "sha256": "3d70d943efe4b97caf51db8148c4180448304dc21bd7fda0620cf6a9431b4608"
     },
     {
+      "path": "artifacts/doom-dma-fixed-20261014/README.md",
+      "size": 6500,
+      "sha256": "bb85d8add024c97fc4f6a403afa25870f5eca7ca9d6f70e7c3ab994d6b1720d5"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/analyze.py",
+      "size": 1557,
+      "sha256": "ea794f8a8bf031f589fcc43411a48389c59f40f1bf904dacbf6e01b2e1e00ec5"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/build-evidence.tar.gz",
+      "size": 21901076,
+      "sha256": "e952ec8c797f841d2a824d2424c3feeebfebf4c8d177bdf7f6b604aeb01bf9d4"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/build.sh",
+      "size": 1382,
+      "sha256": "86a41beaf20a3db0c6aaa15914a05a5f8eee23a662d2832856c7819452facf4e"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/capture_failure.sh",
+      "size": 975,
+      "sha256": "51086b5484a6ca240bb38c208047a84dcf08b66d6e79bf9dce98ce0c568edd2c"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/card-evidence.tar.gz",
+      "size": 16370946,
+      "sha256": "429f6cd80c05f92328f07034ba6ae31c641409572d1dbfb1b2a704210905c5ae"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/close_capture.sh",
+      "size": 1112,
+      "sha256": "60ad3e6cd7ee5c4c92ba43768bd8916ff6990420fc7906c2699587930839c74d"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/dma-replay.json",
+      "size": 1615,
+      "sha256": "c921e201e65570a7d3382f122617e0ef3590bc876aaf67277baf43d0b3b46ea0"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/frame-28.png",
+      "size": 33427,
+      "sha256": "aa58f78bebceaa473fff5108137360730806d662e592a5409a3a174b76074077"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/http-observations.jsonl",
+      "size": 5055,
+      "sha256": "f2c8cb3aef8e0ad34a0bdeb7a728f52d6c1f66f5cebfac2c9107fdc0ab24a9bf"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/http-summary.json",
+      "size": 901,
+      "sha256": "b6017bf050a5e1bffeea7862e90527a4ea37d0c81db7c49c09bfa69db32dfd3c"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/http_summary.py",
+      "size": 914,
+      "sha256": "76d21bee2abe00268fcdf3a0ed53e7592ab9fe194dbfa009c6ddef10b3dcf173"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/journal-costs.json",
+      "size": 1052,
+      "sha256": "b4a85137adebd1ed2d3255deac37f13bb5c184bf27a995c2615fdc16e9796db3"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/journal_costs.py",
+      "size": 721,
+      "sha256": "6e45e89554589304a5c169886413bcfdf0d72a7bc266d84795c3ea3089dcbe6d"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/live.sh",
+      "size": 668,
+      "sha256": "e18110785aa7812ab75aba8a1ce54aa0439ceee84fb0a055c100db3406276246"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/local-dma-replay.json",
+      "size": 1615,
+      "sha256": "c921e201e65570a7d3382f122617e0ef3590bc876aaf67277baf43d0b3b46ea0"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/local-system-replay.json",
+      "size": 6365,
+      "sha256": "b29333486adb5056c8356a14e8feb63149fdf03aa200db773fa5090b77c6dd68"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/local-tamper-results.json",
+      "size": 2486,
+      "sha256": "d19dcb304f0ab4e16f085f995d22b41977aa7fb9316ed49cf72568a18fcd30d8"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/measurements.json",
+      "size": 5591,
+      "sha256": "deeefbf138a4e14157013649d821f070bd5ca1a8d301a8fdd1c828cb515a6002"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/native.log",
+      "size": 92,
+      "sha256": "c29c1161a210c52e8342e2744b8f3aab8d8e8b79737c7e6026661fb1d96facd1"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/native_frames.py",
+      "size": 1984,
+      "sha256": "8599d4390c06470bc557674e4ba6716af3ee7a4025763dfb4a92a4abceba7dae"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/observe_http.py",
+      "size": 938,
+      "sha256": "d801f9b08a5ece8215a3848f84b5c95e673851e2ff2479770887aaf39da89c51"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/progress.py",
+      "size": 923,
+      "sha256": "0ff9914ecc685fe77151067c1fc3738b2df62cde48b962e75991d266f4652dcf"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/read_retained_mu.py",
+      "size": 490,
+      "sha256": "5b4f32a19cc65624b8b9e293b824a7b2c245e06a4d1c7cec6cce00f27f88c435"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/restoration.json",
+      "size": 526,
+      "sha256": "b8c5f9d5db87d8c0831dfc7237c8f51aa661182e03e8b102bd1328e09bc4e33f"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/restore.sh",
+      "size": 866,
+      "sha256": "e2bf31fbf5532c93d396b7c719d1c6671b680f22fa5ca1075672bb91155afc96"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/restored-http-body.html.gz",
+      "size": 1369,
+      "sha256": "3bae07a3af4ecfb82944183ee0a673ea1ac7b24a0c75c7118d04c295cbf5a991"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/restored-http-headers.gz",
+      "size": 116,
+      "sha256": "dbabea0346301eb1b639f2f83f69f4101de778fa1d1708e0931497d83f75e9f2"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/system-replay.json",
+      "size": 6365,
+      "sha256": "b29333486adb5056c8356a14e8feb63149fdf03aa200db773fa5090b77c6dd68"
+    },
+    {
+      "path": "artifacts/doom-dma-fixed-20261014/tamper-results.json",
+      "size": 2486,
+      "sha256": "d19dcb304f0ab4e16f085f995d22b41977aa7fb9316ed49cf72568a18fcd30d8"
+    },
+    {
       "path": "artifacts/doom-engine-20261012/README.md",
       "size": 8763,
       "sha256": "1495652515dc2c0b5d5c96296fa3d4ac13e1982da6c6c62e0a0f4a44fdec2289"

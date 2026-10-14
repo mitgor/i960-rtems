@@ -1,5 +1,24 @@
 # Current findings and evidence — 2026-10-14
 
+<!-- doom-dma-fixed-current -->
+**Fixed Doom DMA comparison accepted (2026-10-14):** unchanged engine and full
+A/B/B/A protocol pass **28 frames, four exact paired reads, sixteen guarded DMA
+captures, 29 full monitor/RAM pairs, owned STOP and global drain**. Mailbox
+**0.972816 FPS → DMA 1.376781 FPS (+41.525%)**; mean transfer **503.489 →
+228.797 ms (2.2006× faster)**. Every buffer matches the earlier physical run;
+known native/card pixel differences remain unchanged. Linux/macOS full replay
+passes and rejects 30 frame/journal plus 24 snapshot corruptions. All 28 HTTP
+PNGs match; these are delivery measurements, not browser paint rates.
+No new runtime change, firmware reflash or relaxed check was needed. Keep DMA
+opt-in; next is longer interactive input/STOP/disconnect and mapping lifecycle
+acceptance. Evidence: `artifacts/doom-dma-fixed-20261014/README.md`.
+Closed archives were hash-verified and replayed locally before reboot. Test
+ownership is released. Public IPv6 HTTP returned 200 from the Mac. Current owner:
+public relay supervisor **2120**, Python **2122**, boot
+`36938147-8109-4114-b7c8-9dc9dcdaf09d`, bound `dac960auto`. Stop that relay normally
+before new hardware work; never force-unload retained exclusive resources.
+The older ownership records below are historical, not current reservations.
+<!-- /doom-dma-fixed-current -->
 
 <!-- frame-dma-stress-current -->
 **Frame DMA stress acceptance (2026-10-14):** the tiny admitted producer
@@ -12,12 +31,12 @@ global drain**. Full local replay passes; 34 capture and 24 snapshot corruptions
 are rejected. Counter-query integration failures are separately archived and
 are not accepted runs. No timeout bounds, interrupts or full audits were relaxed.
 Synthetic delivery is 2.9759 FPS, mean DMA capture 225.58 ms; this is not Doom FPS.
-Keep DMA opt-in. Next: repeat the pinned Doom A/B/B/A comparison with this fix,
-then longer interactive acceptance. No firmware reflash was needed.
+Keep DMA opt-in. The pinned Doom repeat is now accepted above; longer
+interactive acceptance remains next. No firmware reflash was needed.
 Evidence: `artifacts/frame-dma-stress-20261014/README.md`; harness:
 `rtems/dma/stress/README.md`. Closed archives were hash-verified and replayed
 locally before reboot. Public IPv6 HTTP is restored and returned 200 from the
-Mac. Stress ownership is released. Current owner: public relay supervisor 2430,
+Mac. Stress ownership is released. Historical owner at stress closure: supervisor 2430,
 Python 2432, boot `5ae888c7-143b-400b-80ea-5e2a24392de6`, bound `dac960auto`.
 Stop that relay normally before new hardware work; never force-unload a retained
 exclusive test module.

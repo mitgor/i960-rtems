@@ -3069,6 +3069,38 @@ Doom comparison. A pattern producer is excellent at finding this fault; it is
 not a new Doom frame-rate result. The closed captures were checked locally
 before the final reboot, and the public IPv6 page was answering again afterward.
 
+## The fix returns to Doom
+
+The little producer had explained why a successful transfer could still end in
+a fault. It had not yet earned a result for Doom. So the next run put the same
+engine back on the card, with the same WAD, the same brief forward movement,
+and the same four blocks: mailbox, DMA, DMA, mailbox.
+
+The familiar twenty-three-minute startup was still there. The fix was about
+ownership during a transfer, not loading a level. Full audits kept running
+while the game made its way through that work. Then the pictures arrived.
+
+This time all twenty-eight frames completed. The four frames read through both
+paths were identical, and every frame matched the earlier physical mailbox
+capture. The small native/card rendering difference was still there too;
+changing how a picture travels does not fix how it was drawn. Twenty-nine full
+monitor/RAM pairs passed, followed by owned STOP and the final heap drain.
+
+The mailbox delivered 0.973 frames per second. DMA delivered 1.377: a 41.5 percent
+increase, with average transfer time falling from 503 to 229 milliseconds.
+The Mac received all twenty-eight PNGs with matching hashes. That measured
+image delivery, not the browser's paint clock, and it described this short
+scripted scene rather than every possible fight in Doom.
+
+Both machines replayed the complete evidence. Thirty damaged frame/journal
+records and twenty-four damaged snapshots were rejected. Only after the exact
+build and captures were safely copied and replayed locally did the host reboot
+to release the retained mapping. DMA remains an explicit option; the next test
+is a longer session with a person at the controls and its lifecycle exercised.
+The fix has now survived both the small stress producer and the actual game.
+[The fixed comparison](artifacts/doom-dma-fixed-20261014/README.md) keeps the
+numbers and the captures together.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3117,8 +3149,9 @@ So, the ledger, honestly kept:
   drain and measure about 42–43% higher FPS with DMA. The original binary passes
   too. A later small frame producer reproduced a peer heap check incorrectly
   rejecting owned DMA; the corrected isolation check passed 512 frames, 89
-  active-transaction checks and full STOP/drain. DMA stays opt-in pending the
-  next Doom comparison.
+  active-transaction checks and full STOP/drain. The fixed Doom repeat then
+  passed 28 frames and 29 full audit pairs, delivering 1.377 FPS with DMA versus
+  0.973 with mailbox. DMA stays opt-in pending longer interactive acceptance.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

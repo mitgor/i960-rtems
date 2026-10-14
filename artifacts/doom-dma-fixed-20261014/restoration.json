@@ -1,0 +1,15 @@
+{
+  "checked_utc": "2026-10-14T14:00:00.541886+00:00",
+  "boot_id": "36938147-8109-4114-b7c8-9dc9dcdaf09d",
+  "supervisor_pid": 2120,
+  "python_pid": 2122,
+  "driver": "dac960auto",
+  "pci": "0000:37:09.1",
+  "output": "/home/mit/i960-rtems-web-20261011/http-after-doom-dma-fixed-20261014",
+  "public_url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "body_contains_rtems": true,
+  "test_owner_released": true,
+  "local_archive_hashes_verified": true,
+  "local_full_replays_passed": true
+}

@@ -7,8 +7,10 @@ deadline cancellation pass on the card. The later [Doom frame comparison](dma/FR
 mailbox/DMA pairs and 2.21× faster transfer, but frame-12 completion timed out.
 The subsequent [stress test](../artifacts/frame-dma-stress-20261014/README.md)
 reproduced a peer isolation check rejecting owned DMA. Its fix passed 512 frames,
-89 active-transaction checks and full STOP/drain audits. DMA remains opt-in;
-the next step is a fresh Doom comparison with this fix.
+89 active-transaction checks and full STOP/drain audits. The fixed
+[Doom repeat](../artifacts/doom-dma-fixed-20261014/README.md) now passes 28 frames,
+29 full audit pairs and shutdown: **0.972816 → 1.376781 FPS (+41.525%)**.
+DMA remains opt-in pending longer interactive lifecycle acceptance.
 
 Shared allocation cancellation and exclusive timer-based heap measurements are
 available with `--heap-shared`; see [the contract and replay instructions](residentnet/SHARED-HEAP.md).

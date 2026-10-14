@@ -128,3 +128,19 @@ still requires idle hardware and bus mastering disabled.
 Control `(5,16)` is a read-only count of recognized active-transaction checks.
 Only DMA-enabled host builds expose it, and the builder emits the corresponding
 feature macro. The stress runner checks initial zero and final positive values.
+
+## Doom acceptance with the isolation fix
+
+The [fixed repeat](../../artifacts/doom-dma-fixed-20261014/README.md) passed all
+28 scripted frames, four exact paired reads, sixteen guarded DMA captures,
+29 full monitor/RAM pairs, owned STOP and global drain. Independent Linux/macOS
+replays and 30 frame/journal plus 24 snapshot mutations passed. All 28 frame
+buffers match the earlier physical run exactly; the known native/card rendering
+difference remains unchanged.
+
+Mailbox delivered 0.972816 FPS and DMA 1.376781 FPS, a 41.525% increase.
+Mean transfer decreased from 503.489 to 228.797 ms (2.2006×). These are bounded
+server delivery measurements; HTTP receipts are recorded separately and no
+browser paint-rate claim is made. No timeout, validation or audit was relaxed.
+The fixed runtime source is unchanged from the 512-frame stress acceptance.
+DMA stays opt-in until longer interactive input and lifecycle tests pass.

@@ -5,7 +5,10 @@ The [October 14 bulk-transfer batch](../../artifacts/doom-bulk-20261014/README.m
 measured 0.999 FPS with full audits. Later DMA comparisons measured about
 1.38 FPS. The [frame stress test](../../artifacts/frame-dma-stress-20261014/README.md)
 now fixes a reproduced isolation-check halt during owned DMA, with 512-frame
-physical acceptance. Re-run the Doom comparison before making DMA the default.
+physical acceptance. The [fixed Doom repeat](../../artifacts/doom-dma-fixed-20261014/README.md)
+passed 28 frames and 29 full audit pairs at 1.376781 FPS with DMA versus
+0.972816 FPS with mailbox (+41.525%). Keep DMA opt-in pending longer interactive
+lifecycle acceptance.
 The original milestone below is historical.
 
 **Completed 2026-10-11. No Doom code was loaded on the card.** All 80 selected
