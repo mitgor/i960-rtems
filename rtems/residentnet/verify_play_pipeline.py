@@ -7,7 +7,7 @@ from frame_client import png
 def verify(out):
  out=Path(out);frames=[json.loads(l) for l in (out/'play-frames.jsonl').read_text().splitlines()]
  profile=json.loads((out/'presentation-options.json').read_text()) if (out/'presentation-options.json').exists() else {}
- presentation_test=profile.get('presentation_test',False) or profile.get('detail_test',False)
+ presentation_test=profile.get('presentation_test',False) or profile.get('detail_test',False) or profile.get('column_test',False)
  dma=[json.loads(l) for l in (out/'frame-dma-journal.jsonl').read_text().splitlines()]
  mailbox=[json.loads(l) for l in (out/'frame-journal.jsonl').read_text().splitlines()]
  reports=[json.loads(l) for l in (out/'frame-dma-results.jsonl').read_text().splitlines()]

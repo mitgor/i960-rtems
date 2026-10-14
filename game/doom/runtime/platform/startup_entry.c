@@ -12,6 +12,10 @@ static void start(void){
 #else
  char *argv[]={"doom","-iwad","/iwad.wad","-mb","6","-nosound","-timedemo","demo1","-config","/no-config","-extraconfig","/no-extra"};
 #endif
+#ifdef DOOM_COLUMN_TEST
+ {extern int doom_column_selftest(void);extern void abort(void);
+ if(!doom_column_selftest())abort();}
+#endif
  doom_platform_mark(2,0,0,0);
  doomgeneric_Create(sizeof(argv)/sizeof(*argv),argv);
  doom_platform_mark(3,0,0,0);

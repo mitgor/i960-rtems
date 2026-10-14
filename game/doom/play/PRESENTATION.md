@@ -84,3 +84,12 @@ The extra `CPU1` trailer follows PFR1; replay checks its mode, sums, sample boun
 and reserved padding. A mixed benchmark engine cannot be launched interactively.
 
 [Low-detail evidence and acceptance status](../../../artifacts/doom-detail-20261014/README.md).
+
+## Bounded column-kernel comparison
+
+`--pipeline --column-test` builds a low-detail baseline/C/assembly/baseline
+experiment with all audits retained. It requires `--pipeline-test` at launch.
+It is not an interactive play option. CPU1 words 10 and 11 hold the actual
+column implementation and the 96-case target self-test result; legacy profiles
+still require zero. See [column kernels](../columns/README.md) and
+[physical evidence](../../../artifacts/doom-columns-20261015/README.md).

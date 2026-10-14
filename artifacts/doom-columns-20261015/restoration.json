@@ -1,0 +1,16 @@
+{
+  "status": "restored and verified from Mac",
+  "checked_utc": "2026-10-14T22:17:29.954793+00:00",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "response_bytes": 2891,
+  "response_sha256": "6eabf7a480c10adda5e7a20b2d99294d037294880cd70071a5e58bcb22bd3c38",
+  "boot_id": "03e2a874-bffb-4c2e-b4f6-ec6d90e7a3db",
+  "supervisor_pid": 1427,
+  "relay_pid": 1432,
+  "bound_module": "dac960auto",
+  "remote_output": "/home/mit/i960-rtems-web-20261011/http-after-doom-columns-20261015",
+  "evidence_saved_locally": true,
+  "local_replay_passed": true,
+  "forced_unload": false
+}

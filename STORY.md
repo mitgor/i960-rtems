@@ -3256,6 +3256,40 @@ seven. The wider columns made the game cheaper; they did not make that old
 rendering discrepancy cease to exist. Both pictures and every differing pixel
 went into the record.
 
+## A function call for every pixel
+
+The game was already running native i960 instructions. There was no interpreter
+left to remove. But the disassembly had a smaller embarrassment: an ordinary
+column called a helper for every pixel, then loaded the texture and colormap
+pointers again. The helper kept masked sprites inside their finite posts. That
+was a useful rule, and one we were not going to optimize away.
+
+We moved the decisions outside the loop instead. One C routine handled wrapping
+walls and clamped posts, with separate single and doubled stores. A small i960
+assembly routine did the same job in local registers. No self-modifying code,
+no masked interrupts, no borrowed ownership. Before Doom loaded, both routines
+had to pass forty-eight Python-generated cases on the actual card: negative
+fractions, overflow, empty columns, full-height columns and the untouched bytes
+around them. Ninety-six successful checks bought them admission to the picture.
+
+Then the experiment went original, C, assembly, original. The original delivered
+3.48 frames per second. C delivered 3.86. Assembly delivered 3.82. Both brought
+rendering from about 211 milliseconds to 180, and sampled Doom CPU from 106 to
+90. Writing assembly had not bought another meaningful step. Showing the old
+compiler a simpler C loop had done most of the useful work.
+
+The eleven-percent gain was real for that bounded scene; ten frames per second
+was still not. We kept all fifty-two guarded frames, fourteen full audit pairs,
+the paired mailbox reads, STOP and the final drain. The optimized images matched
+the previous card images exactly. The same four pixels still disagreed with the
+native oracle. Thirty-five corrupted replays still failed. The full set of HTTP
+frames matched the captures too.
+
+The next candidate would therefore be C, with the assembly kept as a reference.
+There were still planes to draw, a screen to copy and another half of the CPU's
+time to account for. The card had not needed a new language. It had needed one
+less conversation per pixel.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

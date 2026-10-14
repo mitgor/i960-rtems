@@ -1,5 +1,27 @@
 # Doom milestone guidance
 
+<!-- doom-columns-current -->
+**Column kernels accepted in bounded low-detail testing, 2026-10-15:** baseline
+**3.478 FPS**, specialized C **3.857 (+10.89%)**, i960 assembly **3.821 (+9.86%)**.
+Both reduce renderer wall **211.4 → 180 ms**, sampled CPU **105.9 → 90 ms**.
+Assembly has no demonstrated extra advantage; prefer C for a future fixed play
+build. `--pipeline --column-test` is a bounded baseline/C/assembly/baseline
+experiment requiring `--pipeline-test`; it must not run interactively. Defaults
+remain unchanged. 96 target oracle cases (real assembly), 52 guarded frames,
+14 full audit pairs, exact first four DMA/mailbox pairs, STOP/drain, Linux/Mac
+system/frame/WAD replay and 35 tamper cases pass. All optimized images match
+prior card frames exactly; the four existing native/card pixels remain unresolved.
+All 52 HTTP payloads match. No new timer policy, firmware or arena expansion.
+Evidence: `artifacts/doom-columns-20261015/README.md`; code/manual:
+`game/doom/columns/README.md`. Admission 872,376 bytes; kernel tail still 400.
+The exclusive test has ended; archives are saved locally and replayed. Normal
+reboot released the test module. Public IPv6 HTTP is restored and verified 200
+from the Mac; boot `03e2a874-bffb-4c2e-b4f6-ec6d90e7a3db`, supervisor 1427 /
+relay 1432 owns `dac960auto`. See `restoration.json`. Inspect actual owner before
+card work; never force-unload retained mappings. Older service/PID notes below
+are historical and superseded by this entry.
+<!-- /doom-columns-current -->
+
 <!-- doom-detail-current -->
 **Low detail accepted, 2026-10-14:** high **2.481 → low 3.178 FPS (+28.09%)**;
 low blocks vary 2.908–3.503, including the 884 ms frame-40 interval. All 52

@@ -1,3 +1,6 @@
+#ifdef DOOM_COLUMN_TEST
+#include "column.h"
+#endif
 /* CPU fields are timer-sampled task attribution, not cycle counters. */
 #if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST)
 extern int screenblocks,detailLevel,detailshift;
@@ -39,6 +42,9 @@ static unsigned present_mode(unsigned generation){
 #endif
 }
 static void present_mark(unsigned stage){
+#ifdef DOOM_COLUMN_TEST
+ if(stage==80)doom_column_begin(stats.frames+1);
+#endif
 #if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST)
  if(stage==80){unsigned d=detail_mode(stats.frames+1);if((unsigned)detailLevel!=d){detailLevel=d;R_SetViewSize(screenblocks,detailLevel);}}
 #endif
@@ -73,7 +79,11 @@ static void present_record(unsigned char *frame,unsigned generation,unsigned mod
 #endif
  q[3]=10;q[4]=present_cpu[3]-present_cpu[0];
  q[5]=present_cpu[1]-present_cpu[0];q[6]=present_cpu[2]-present_cpu[1];q[7]=present_cpu[3]-present_cpu[2];
- q[8]=present_cpu[6]-present_cpu[5];q[9]=end-present_cpu_begin;q[10]=q[11]=0;}
+ q[8]=present_cpu[6]-present_cpu[5];q[9]=end-present_cpu_begin;q[10]=q[11]=0;
+#ifdef DOOM_COLUMN_TEST
+ q[10]=doom_column_mode;q[11]=doom_column_cases;
+#endif
+ }
 #endif
  p[12]=stats.frame_hash;p[13]=stats.palette_hash;p[14]=10;p[15]=0;
 #else

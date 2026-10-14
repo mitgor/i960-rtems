@@ -16,11 +16,11 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
  assert bool(m.get('double_buffer'))==pipeline, 'pipeline requires the admitted two-buffer engine'
  blob=(root/'template.bin').read_bytes();meta=(root/'relocations.bin').read_bytes()
  assert hashlib.sha256(blob).hexdigest()==m['template_sha256'] and hashlib.sha256(meta).hexdigest()==m['metadata_sha256']
- profile=bool(m.get('frame_profile'));presentation_test=bool(m.get('presentation_test') or m.get('detail_test'))
+ profile=bool(m.get('frame_profile'));presentation_test=bool(m.get('presentation_test') or m.get('detail_test') or m.get('column_test'))
  if presentation_test:assert pipeline_test and not wad_load_test
  if profile:
   assert pipeline
-  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile')})+'\n')
+  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')})+'\n')
  token=secrets.token_hex(24);lock=threading.Lock();keys=deque();stop=threading.Event();held_keys=set();input_deadline=[0.]
  dma=None
  if dma_test or pipeline:
