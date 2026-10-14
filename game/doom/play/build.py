@@ -2,7 +2,9 @@
 """Fresh-checkout interactive Doom build. Never opens the card or programs flash."""
 import argparse,hashlib,json,shutil,subprocess,tarfile,zipfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--dma',action='store_true');p.add_argument('--pipeline',action='store_true');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--dma',action='store_true');p.add_argument('--pipeline',action='store_true');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--frame-profile',action='store_true');p.add_argument('--no-fnv',action='store_true');p.add_argument('--direct-frame',action='store_true');p.add_argument('--presentation-test',action='store_true');a=p.parse_args()
+if a.presentation_test:a.frame_profile=True
+if a.frame_profile or a.no_fnv or a.direct_frame:assert a.pipeline
 if a.pipeline:a.dma=True
 r=Path(__file__).resolve().parents[3];w=a.work.resolve()
 if w.exists():p.error('choose a new work directory; existing experiments are not overwritten')
@@ -25,13 +27,14 @@ archive=r/'artifacts/doom-m1-20261011/doomgeneric-source.tar.gz';doomdir='doomge
 for suffix,target in [('host','host32'),('cross','i960')]:
  extra=['--sanitize'] if target=='host32' else []
  run(['python3',r/'game/doom/build.py','--work',w/f'engine-{suffix}','--archive',archive,'--target',target,'--cross',a.cross,'--newlib',newlib,'--arena-runtime','--wad-cache','--platform-runtime','--startup','--checkpoints','--point-side-o0','--visible','--play',*extra],f'engine-{suffix}.log')
- run(['python3',r/'game/doom/runtime/platform/build.py','--newlib',newlib,'--out',w/f'platform-{suffix}','--doom',w/f'engine-{suffix}'/doomdir,'--engine',w/f'engine-{suffix}'/target/'doom-engine.o','--target',target,'--cross',a.cross,'--startup','--checkpoints','--visible','--play',*(['--double-buffer'] if a.pipeline else []),*extra],f'platform-{suffix}.log')
+ run(['python3',r/'game/doom/runtime/platform/build.py','--newlib',newlib,'--out',w/f'platform-{suffix}','--doom',w/f'engine-{suffix}'/doomdir,'--engine',w/f'engine-{suffix}'/target/'doom-engine.o','--target',target,'--cross',a.cross,'--startup','--checkpoints','--visible','--play',*(['--double-buffer'] if a.pipeline else []),*[flag for enabled,flag in [(a.frame_profile,'--frame-profile'),(a.no_fnv,'--no-fnv'),(a.direct_frame,'--direct-frame'),(a.presentation_test,'--presentation-test')] if enabled],*extra],f'platform-{suffix}.log')
 run(['python3',r/'game/doom/play/test_keys.py'],'keys.log')
 run(['python3',r/'game/doom/play/test_native.py','--build',w/'platform-host','--newlib',newlib,'--wad',w/'freedoom1.wad'],'native.log')
 run(['python3',r/'game/doom/runtime/startup/test_abi.py','--doom',w/'engine-cross'/doomdir,'--newlib',newlib,'--out',w/'abi-proof','--cross',a.cross],'abi.log')
 run(['python3',r/'game/doom/runtime/platform/pack_engine.py','--build',w/'platform-cross','--out',w/'packed','--cross',a.cross],'packed.log')
 run(['python3',r/'game/doom/runtime/engine/admit.py',w/'packed','--build',w/'platform-cross','--out',w/'admission','--play','--cross',a.cross],'admission.log')
 for test in ('test_play_channel.py','test_frame_protocol.py','test_bulk_protocol.py','test_bulk_poll.py','test_play_bulk_replay.py','test_checkpoint_barriers.py','test_play_stop.py'):run(['python3',r/'rtems/residentnet'/test],test+'.log')
+if a.frame_profile:run(['python3',r/'game/doom/play/test_presentation.py'],'presentation-test.log')
 if a.pipeline:
  for test in ('rtems/residentnet/test_double_buffer.py','rtems/dma/test_pipeline_replay.py','rtems/residentnet/test_play_abort.py'):run(['python3',r/test],Path(test).name+'.log')
 if a.dma:

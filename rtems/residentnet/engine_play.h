@@ -64,6 +64,9 @@ int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
 unsigned engine_play_control(unsigned index,unsigned value){
  #ifdef I960_DOOM_DMA
  if(index>=3&&index<=6)return fd_control(index,value);
+#ifdef ENGINE_FRAME_PROFILE
+ if(index==7)return fd_control(index,value);
+#endif
  if(index==1&&fd_phase==1)return ~0u;
 #endif
  if(index==0)return play_frame?play_sequence:0;

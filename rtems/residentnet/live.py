@@ -108,6 +108,8 @@ def main():
  if a.owned_mib:assert a.queue_reclaim
  if a.play_port or a.frame_dma_stress:
   admission=json.loads((a.payload.parent/'entry/engine/manifest.json').read_text())
+  from presentation_profile import preflight
+  preflight(admission,a.play_pipeline,a.play_pipeline_test,a.wad_load_test)
   assert bool(admission.get('dma_stress'))==bool(a.frame_dma_stress), 'producer/runner mismatch'
  if a.wad_dma:
   assert '_wad_dma_isolation_snapshot' in (a.payload.parent/'kernel.map').read_text(), 'rebuild the resident kernel for bulk WAD support'

@@ -6098,6 +6098,196 @@
       "sha256": "3895cb2bc29ab6e1b60e5e6affa20f1c28207132029d972d42de49ce5dd678e4"
     },
     {
+      "path": "artifacts/doom-present-20261014/README.md",
+      "size": 12310,
+      "sha256": "30ff18abef324b8f15e86ae4f14c370694aedb46da9ee8e0d20b7ced889f67a5"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/analyze.py",
+      "size": 2095,
+      "sha256": "ab338ad9754b74f6f87a0bc25d5f9606c2e0494522d0874687cbd18d6b56c697"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/browser-binary-regression.log",
+      "size": 97,
+      "sha256": "573f3dc787edfb95402b60b3009578440e99cfab27a6cfabc28cd25b23bc8976"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/build-final.sh",
+      "size": 2390,
+      "sha256": "04d6fe08e06252a915f1d234c266e682809d50115a936458bd01199ccae73d70"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/build.sh",
+      "size": 2305,
+      "sha256": "aedbb2dec5cc419a6a14b4f1c3d27bf8b8a820be5117e020a66683d3e838c32e"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/close.sh",
+      "size": 1747,
+      "sha256": "c8f089478a60dc07ba91592c7f816fdb57b4c2feafdd16e03513d7d1e3b56828"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/failed-selector-build.tar.gz",
+      "size": 34588148,
+      "sha256": "a9bfd475ad6eef1314824e0728e2d13d36eda50f4236ae4a4833b9e2de33d1ca"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/failed-selector-card.tar.gz",
+      "size": 12808582,
+      "sha256": "922aeb9daf3464c4a35a4dc5281ecfbdafa8c95bde89cbc29d481898a1cd2302"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/failed-selector-prefix.json",
+      "size": 428,
+      "sha256": "33d4de6ad1fe49552aa03e35d7c86c7576f29a2fa5422b34e481a2c2cedb47d8"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/frame-target-native.log",
+      "size": 1044,
+      "sha256": "599908e57ff753aae59aaf3a8b0c4da3f34f249431b3b72e04b68aada03e9fce"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/http-observations.jsonl",
+      "size": 13757,
+      "sha256": "e73c7ce783d7fbbf4f69eee70b7da00abeaef097610c00bef785f95726b528f1"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/http-verification.json",
+      "size": 741,
+      "sha256": "6def82aaa5715a9a39216954185df3a921e0874430b2da3ccc6fbef5a500c4f6"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/interactive-full-closed.tar.gz",
+      "size": 35714422,
+      "sha256": "529cb58f3e334309f3eab3650e6e3b14d12c78762714a88df431792071fc222a"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/legacy-pipeline-regression.log",
+      "size": 190,
+      "sha256": "9e79dca47414bef10affcd30a52d5e56357ca4035fb20502c5436cd679d0e674"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/local-frames.json",
+      "size": 1472,
+      "sha256": "c02cb8ccbc726f5cccecfa73fcb67a8f0e5d6dfd3797fde472891b6f0a685eb0"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/local-measurements.json",
+      "size": 4264,
+      "sha256": "8f02407b34db4c4eb716c9e6732acfa9c1b5d4b8463bdaea8b90787d8f3ab04b"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/local-system.json",
+      "size": 6352,
+      "sha256": "03abbe71f4338d7ff3bdc3cf3a533fadba00d5e3f9f1959046dd4f62377f57ec"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/local-wad.json",
+      "size": 258,
+      "sha256": "5fbbaaa9226adfb1a456daf1f2d47402ff0f988c8a9527b3cedf1e80ed91a977"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/native_frames.py",
+      "size": 1966,
+      "sha256": "9130af85ce26684e2a854ac23a9324fae2cc69dc0394aa99452dae397a58bbbe"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/native_frames_final.py",
+      "size": 1996,
+      "sha256": "1095acb7c82394eee30ab088a962b90f5b70b8fe9849e0ef345fdf89846e3265"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/prior-play-system.json",
+      "size": 6354,
+      "sha256": "371f87672fdc8a2ca25fde6779dcc791448d1a84a79d1f7b03f631c0fb8cf4c8"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/profile-control-test.log",
+      "size": 131,
+      "sha256": "91efaf96eac6d026374401803ede10a8658e1bd7cda9a0b974469b7a89a8c007"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/profile-schema-test.log",
+      "size": 192,
+      "sha256": "56e6d8d16b3e177cd03e2d18266805ea263e60371fb2de1b5fb963034b310731"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/repeat-build.tar.gz",
+      "size": 44381438,
+      "sha256": "17b7ade6e89cb8755bfc47f4ead93c1f8f178e9fd4fa78fc334a628736fa9234"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/repeat-card.tar.gz",
+      "size": 18612826,
+      "sha256": "10c3663049eba2d8218e1a8e1ad78abc5c77ad1f5b26c864159b127629bb4b3b"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/repeat-frames.json",
+      "size": 1472,
+      "sha256": "c02cb8ccbc726f5cccecfa73fcb67a8f0e5d6dfd3797fde472891b6f0a685eb0"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/repeat-measurements.json",
+      "size": 4264,
+      "sha256": "8f02407b34db4c4eb716c9e6732acfa9c1b5d4b8463bdaea8b90787d8f3ab04b"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/repeat-system.json",
+      "size": 6354,
+      "sha256": "bd1107426bd9a5a3dfc98f70d632445fa4a3e88055f46b98cf1c3eb120fb5e36"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/repeat-tamper.json",
+      "size": 2906,
+      "sha256": "2a5166aba6e6cb2f0b7d5059f3ec4929e138a1cbf137cca1e0ab1e4db2d4d2ad"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/repeat-wad.json",
+      "size": 258,
+      "sha256": "5fbbaaa9226adfb1a456daf1f2d47402ff0f988c8a9527b3cedf1e80ed91a977"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/replay_failed.py",
+      "size": 2338,
+      "sha256": "ff356b04492e05ed303b5799608fe42b3c9a28381c38e5fef314459609633030"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/restoration.json",
+      "size": 293,
+      "sha256": "4eb5fbecdc5033c023bd9bc35887d35d1b7c31fb6038d5b38ee194dd1392a72d"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/restore.sh",
+      "size": 857,
+      "sha256": "3c29a2404bc5c23ee420755fd622e0fcfed1fbb8f4ddabc1e4f02989effa555f"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/run-final.sh",
+      "size": 893,
+      "sha256": "a5df5473351d40c86a43eb54b4883b311d196efde5bbf629f7c8a9b401e684ec"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/run.sh",
+      "size": 847,
+      "sha256": "519c1a6d09ccda832842c718158f5b7fc45611cc4e00209356e5ca27df6f8b77"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/startup-order-regression.log",
+      "size": 176,
+      "sha256": "b02d18d098ea64df96ff28b88ed6d8adb3afa54b6279b3196f49d2fd55ecfedb"
+    },
+    {
+      "path": "artifacts/doom-present-20261014/wait-close.py",
+      "size": 650,
+      "sha256": "cdabe033da3b8e3d51043ee4d8298c881f421034342cbfd76e3192c6111c596a"
+    },
+    {
       "path": "artifacts/doom-progress-20261012/PROGRESS.md",
       "size": 3679,
       "sha256": "25b43f6c6ed89f74e4bf95346fcdf986ac41d778143a2eaff5a467790f3487ae"

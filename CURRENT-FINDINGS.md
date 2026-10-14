@@ -1,5 +1,21 @@
 # Current findings and evidence — 2026-10-14
 
+<!-- doom-present-current -->
+**2026-10-14 presentation accepted:** optional FNV and direct delivery-slot
+presentation measured **1.965 → 2.474 FPS (+25.94%)** with full audits. All 52
+frames, 14 audit pairs, exact ACK/ownership, STOP/drain and 35 tamper cases pass.
+Pixels/palette match the prior card run; known seven native pixel differences
+remain. Renderer ~317 ms, retained screen copy ~47 ms, DMA hardware quantized
+mean ~3 ms. Profile query/host FNV validation affects measured FPS; do not claim
+an uninstrumented or 10 FPS result. Default remains conservative; features opt-in.
+The first selector attempt failed and is archived separately; table selection
+passes. See `artifacts/doom-present-20261014/README.md` and
+`game/doom/play/PRESENTATION.md`. Test owner closed and evidence verified before normal reboot. SSH has not
+returned; user power-cycle requested. Public HTTP restoration pending; see
+`artifacts/doom-present-20261014/restoration.json` and `restore.sh`. Never
+force-unload retained exclusive mappings.
+<!-- /doom-present-current -->
+
 <!-- wad-dma-current -->
 **2026-10-14 bulk WAD DMA accepted:** `--pipeline --no-crc --wad-dma` uses
 4096-byte host-to-card DMA without WAD/frame payload CRC, retaining ownership,

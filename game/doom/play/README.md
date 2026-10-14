@@ -1,5 +1,7 @@
 # Browser Doom on the i960
 
+See [presentation profiling and optional FNV/direct delivery](PRESENTATION.md) for the new experimental build modes and acceptance evidence.
+
 For connection instructions, controls and launch commands, see [PLAY.md](PLAY.md).
 Bulk host-to-card WAD transport is documented in [WAD-DMA.md](../../../rtems/dma/WAD-DMA.md);
 its dated acceptance status is [here](../../../artifacts/wad-dma-20261014/README.md).

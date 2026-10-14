@@ -16,6 +16,11 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
  assert bool(m.get('double_buffer'))==pipeline, 'pipeline requires the admitted two-buffer engine'
  blob=(root/'template.bin').read_bytes();meta=(root/'relocations.bin').read_bytes()
  assert hashlib.sha256(blob).hexdigest()==m['template_sha256'] and hashlib.sha256(meta).hexdigest()==m['metadata_sha256']
+ profile=bool(m.get('frame_profile'));presentation_test=bool(m.get('presentation_test'))
+ if presentation_test:assert pipeline_test and not wad_load_test
+ if profile:
+  assert pipeline
+  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('frame_profile','no_fnv','direct_frame','presentation_test')})+'\n')
  token=secrets.token_hex(24);lock=threading.Lock();keys=deque();stop=threading.Event();held_keys=set();input_deadline=[0.]
  dma=None
  if dma_test or pipeline:
@@ -117,7 +122,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     if dma_test:method=12 if g<=4 or 11<=g<=22 else 11
     if pipeline:method=12
     crc=not no_crc
-    if pipeline_test:crc=g<=2 or 5<=g<=16 or g>=41
+    if pipeline_test:crc=False if presentation_test else g<=2 or 5<=g<=16 or g>=41
     raw,transfer_seconds=(dma.read(g,crc,server.serve) if pipeline else dma.read(g)) if method==12 else read_frame(method)
     if method==12:assert ctl()==g, 'DMA frame expired; never ACK uncertain bytes'
     if (dma_test or pipeline_test) and g<=4:
@@ -127,6 +132,13 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      other,other_seconds=read_frame(9)
      assert other==raw, 'bulk and scalar frame bytes differ'
      comparison=dict(scalar_seconds=other_seconds,bulk_seconds=transfer_seconds,bytes=65536)
+    profile_begin=time.monotonic();profile_row=None
+    if profile:
+     from presentation_profile import decode
+     profile_row=decode(raw,g,presentation_test)
+     timing=[ctl(7,i) for i in range(5)]
+     assert timing[0]==g and timing[4]==sum(timing[1:4]) and all(x<60000 for x in timing[1:])
+     profile_row['dma']=dict(zip(('frame','prepare_ms','hardware_ms','cleanup_ms','total_ms'),timing))
     convert=time.monotonic()
     picture=b'' if pipeline else png(raw);png_seconds=time.monotonic()-convert
     packet=struct.pack('<8I',0x31424644,1,session,g,320,200,65536,int(crc))+raw if pipeline else b''
@@ -146,6 +158,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      assert ctl(2,256+key)==0 and ctl(2,key)==0
     assert ctl(1,g)==0;seen=g
     row=dict(wad_requests=len(server.records)-request_base,engine_seconds=time.monotonic()-engine_ready,crc=crc,binary=pipeline,method=method,comparison=comparison,transfer_seconds=transfer_seconds,png_seconds=png_seconds,session=session,frame=g,seconds=time.monotonic()-started,readback_seconds=time.monotonic()-begin,sha256=hashlib.sha256(raw).hexdigest())
+    if profile:row['profile']=profile_row;row['profile_read_seconds']=convert-profile_begin
     with (out/'play-frames.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
     if g<=8 or bulk_test or dma_test or pipeline_test:
      (out/f'play-{session}-{g}.bin').write_bytes(raw)

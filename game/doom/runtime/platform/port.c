@@ -32,6 +32,10 @@ static unsigned char palette[768];
 static jmp_buf escape;
 #include "../startup/checkpoint_api.h"
 static unsigned startup,started,budget,virtual_ms;
+extern unsigned char *DG_ScreenBuffer;
+#ifdef DOOM_PLAY
+#include "presentation.h"
+#endif
 void doom_platform_safe(void);
 void doom_platform_mark(unsigned,unsigned,unsigned,unsigned);
 #undef errno
@@ -110,6 +114,17 @@ for(i=0;i<sizeof doom_platform_frames;i++)((unsigned char*)doom_platform_frames)
 #else
 for(i=0;i<64000;i++)frame[i]=0;
 #endif
+#ifdef DOOM_PLAY
+#ifdef DOOM_PRESENT_TEST
+/* Fail before level loading if mode selection differs on the target. */
+if(present_mode(1)!=1)fatal(206);
+if(present_mode(17)!=0)fatal(206);
+if(present_mode(29)!=2)fatal(206);
+if(present_mode(41)!=1)fatal(206);
+#endif
+present_scratch=DG_ScreenBuffer;
+if(present_mode(1)&2)DG_ScreenBuffer=doom_platform_frames[0];
+#endif
 initialized=1;}
 void DG_SetWindowTitle(const char*title){if(title){_write(1,title,strlen(title));_write(1,"\n",1);}}
 unsigned DG_GetTicksMs(void){if(!io)fatal(203);doom_platform_safe();return startup?virtual_ms:io->ticks_ms();}
@@ -125,6 +140,11 @@ int DG_GetKey(int*p,unsigned char*k){
 if(!p||!k)fatal(205);if(!key_count)return 0;*p=pressed[key_read];*k=keys[key_read];key_read=(key_read+1)%DPL_KEYS;key_count--;return 1;}
 extern unsigned char *DG_ScreenBuffer;
 void DG_DrawFrame(void){unsigned i,h=2166136261u;
+#ifdef DOOM_PLAY
+unsigned mode=present_mode(stats.frames+1),begin=io->ticks_ms(),wait_begin;
+#else
+unsigned mode=1;
+#endif
 #ifdef DOOM_VISIBLE
 unsigned char *frame,*palette;
 #ifdef DOOM_PLAY
@@ -138,13 +158,22 @@ if(stats.frames>=2)fatal(206);frame=doom_platform_frames[stats.frames];
 #endif
 palette=frame+64000;
 #endif
-doom_platform_mark(50,0,0,0);if(!DG_ScreenBuffer)fatal(206);for(i=0;i<64000;i++){frame[i]=DG_ScreenBuffer[i];h=(h^frame[i])*16777619u;}stats.frame_hash=h;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colors[i].r;palette[3*i+1]=colors[i].g;palette[3*i+2]=colors[i].b;}for(i=0;i<768;i++)h=(h^palette[i])*16777619u;stats.palette_hash=h;stats.frames++;
+doom_platform_mark(50,0,0,0);if(!DG_ScreenBuffer)fatal(206);if(mode&2){if(frame!=DG_ScreenBuffer)fatal(206);if(mode&1)for(i=0;i<64000;i++)h=(h^frame[i])*16777619u;}
+else if(mode&1){for(i=0;i<64000;i++){frame[i]=DG_ScreenBuffer[i];h=(h^frame[i])*16777619u;}}
+else {for(i=0;i<64000;i++)frame[i]=DG_ScreenBuffer[i];}
+stats.frame_hash=(mode&1)?h:0;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colors[i].r;palette[3*i+1]=colors[i].g;palette[3*i+2]=colors[i].b;}if(mode&1)for(i=0;i<768;i++)h=(h^palette[i])*16777619u;stats.palette_hash=(mode&1)?h:0;stats.frames++;
 #ifdef DOOM_PLAY
  if(stats.frames==1)started=io->ticks_ms(); /* loading does not consume play time */
 #endif
  doom_platform_mark(51,stats.frame_hash,stats.palette_hash,stats.frames);
 #ifdef DOOM_PLAY
- {const struct doom_runtime_checkpoint*t=(const void*)owned;if(t->mark(100,(unsigned long)frame,65536,stats.frames)<=0)fatal(210);}return;
+ present_record(frame,stats.frames,mode,begin);wait_begin=io->ticks_ms();
+ {const struct doom_runtime_checkpoint*t=(const void*)owned;if(t->mark(100,(unsigned long)frame,65536,stats.frames)<=0)fatal(210);}
+ present_previous_wait=io->ticks_ms()-wait_begin;
+ /* mark(100) waited for the preceding slot's exact ACK before publishing this
+  * one. The opposite slot is now free; never rotate before successful return. */
+ DG_ScreenBuffer=(present_mode(stats.frames+1)&2)?doom_platform_frames[stats.frames&1]:present_scratch;
+ return;
 #endif
 if(startup
 #ifdef DOOM_VISIBLE
@@ -198,7 +227,7 @@ int doom_platform_retire(void){unsigned i;if(armed||retired||!owned||!owned->own
 void doom_platform_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
 #ifdef DOOM_CHECKPOINTS
 #ifdef DOOM_PLAY
- (void)stage;(void)x;(void)y;(void)z;return;
+ present_mark(stage);(void)x;(void)y;(void)z;return;
 #endif
  const struct doom_runtime_checkpoint*t=(const void*)owned;int rc=0;
  if(t&&owned->owner())rc=t->mark(stage,x,y,z);

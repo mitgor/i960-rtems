@@ -1,0 +1,2 @@
+PASS timing schema, mode/sequence, sums, reserved bytes, FNV recomputation; disabled mode makes no pixel-integrity claim
+PASS profile preflight rejects incompatible launch before opening card

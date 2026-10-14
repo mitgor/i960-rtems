@@ -1,0 +1,10 @@
+{
+  "test_owner_closed": true,
+  "local_archives_sha256_verified": true,
+  "local_full_replays_passed": true,
+  "normal_reboot_requested": true,
+  "ssh_after_reboot": "No route to host",
+  "public_http_restored": false,
+  "user_power_cycle_requested": true,
+  "restore_script": "restore.sh"
+}

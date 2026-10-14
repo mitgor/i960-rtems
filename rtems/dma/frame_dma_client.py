@@ -13,7 +13,7 @@ class FrameDMA:
   with (self.out/'frame-dma-journal.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
  def read(self,g,crc=True,service=None):
   with self.gate:
-   t=time.monotonic();self.call(1,g,0 if crc else 1);deadline=t+10
+   t=time.monotonic();self.call(1,g,0 if crc else 1);submitted=time.monotonic();deadline=t+10
    while True:
     try:r=self.call(2,g);break
     except OSError as e:
@@ -22,6 +22,7 @@ class FrameDMA:
      # task-level DMA service point. Keep that independent channel live.
      if service:service()
      time.sleep(.001)
+   completed=time.monotonic()
    report=list(struct.unpack_from('<16I',r));assert report[0:3]==[0x314d4446,2,g] and report[13]==0
    data=b''.join(self.call(3,g,i) for i in range(0,73728,1024))
    assert data[:4096]==data[69632:]==b'\xa5'*4096
@@ -30,5 +31,5 @@ class FrameDMA:
    if crc:assert zlib.crc32(payload)==report[5]==report[6]
    else:assert report[5]==report[6]==0
    (self.out/f'frame-dma-{g:03}.bin').write_bytes(data)
-   with (self.out/'frame-dma-results.jsonl').open('a') as f:f.write(json.dumps(dict(frame=g,report=report,seconds=time.monotonic()-t))+'\n')
+   with (self.out/'frame-dma-results.jsonl').open('a') as f:f.write(json.dumps(dict(frame=g,report=report,seconds=time.monotonic()-t,submit_seconds=submitted-t,completion_wait_seconds=completed-submitted,guarded_readback_seconds=time.monotonic()-completed))+'\n')
    return payload,time.monotonic()-t

@@ -9,6 +9,7 @@ code=r'''
 #include <string.h>
 #include "game/doom/runtime/owned/api.h"
 #define ENGINE_PLAYABLE 1
+#define ENGINE_FRAME_PROFILE 1
 #define I960_DOOM_DMA 1
 static unsigned regs[0x1800/4],cmd[2],stop,mode,writes,locked,inject;
 static unsigned lock(void);static void unlock(unsigned);
@@ -77,8 +78,9 @@ static void isolation_test(void){unsigned w[16],saved[8],i,j,old;
  fd_stage=13;fd_phase=2;
 }
 static unsigned stopping(void){return stop;}
+static unsigned clock_ms(void){static unsigned t;return t+=10;}
 static unsigned crc(const unsigned char*p){unsigned c=~0u,i,j;for(i=0;i<65536;i++){c^=p[i];for(j=0;j<8;j++)c=(c>>1)^(0xedb88320u&-(c&1));}return ~c;}
-static void reset(void){unsigned i;static struct doom_runtime_owned a;memset(&a,0,sizeof a);a.stopping=stopping;play_api=&a;
+static void reset(void){unsigned i;static struct doom_runtime_owned a;memset(&a,0,sizeof a);a.stopping=stopping;a.io.ticks_ms=clock_ms;play_api=&a;
  memset(regs,0,sizeof regs);memset(fd_report,0,sizeof fd_report);cmd[0]=2;cmd[1]=0;regs[0x104c/4]=0x13ffc;stop=mode=writes=fd_phase=fd_destination=locked=inject=fd_isolation_checks=fd_no_crc=0;
  play_frame=play_allowed=memory;play_sequence=1;play_ack=0;for(i=0;i<65536;i++)memory[i]=(i*7)^(i>>8);
 }
@@ -87,8 +89,8 @@ static void submit(void){assert(!engine_play_control(3,0x101000));assert(!engine
 }
 int main(void){unsigned i;
  reset();assert(engine_play_control(4,1)==~0u);assert(engine_play_control(3,0xfffffff0)==~0u);assert(engine_play_control(5,16)==0);
- submit();fd_step();assert(fd_phase==2&&writes&&cmd[0]==2&&!regs[0x1440/4]);assert(!memcmp(memory,host,65536));isolation_test();assert(fd_report[5]==crc(memory)&&fd_report[6]==crc(host));
- assert(engine_play_control(4,1)==~0u);assert(!engine_play_control(1,1)&&play_ack);
+ submit();assert(engine_play_control(7,0)==~0u);fd_step();assert(engine_play_control(7,0)==1&&engine_play_control(7,1)==10&&engine_play_control(7,2)==10&&engine_play_control(7,3)==10&&engine_play_control(7,4)==30&&engine_play_control(7,5)==~0u);assert(fd_phase==2&&writes&&cmd[0]==2&&!regs[0x1440/4]);assert(!memcmp(memory,host,65536));isolation_test();assert(fd_report[5]==crc(memory)&&fd_report[6]==crc(host));
+ assert(engine_play_control(4,1)==~0u);assert(!engine_play_control(1,1)&&play_ack);assert(engine_play_control(7,0)==~0u);
  for(i=1;i<=4;i++){reset();submit();mode=i;if(!setjmp(failed)){fd_step();assert(0);}assert(fd_phase==1&&play_frame&&fd_report[13]&&cmd[0]==2&&!play_ack);}
  reset();submit();stop=1;if(!setjmp(failed)){fd_step();assert(0);}assert(!writes&&play_frame&&fd_phase==1);
  reset();submit();mode=5;fd_step();assert(stop&&fd_phase==2&&play_frame&&!play_ack);

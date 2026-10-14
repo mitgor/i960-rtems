@@ -3182,6 +3182,46 @@ The [WAD transfer ledger](artifacts/wad-dma-20261014/README.md) records the fina
 comparison, exact images and failed attempts. The [play instructions](game/doom/play/PLAY.md)
 cover getting into the game without having to reconstruct the experiment.
 
+## The frame that was copied twice
+
+Removing the framebuffer CRC had made Doom less patient. It had not made it
+fast. There was still another checksum, FNV, in the adapter, and there was still
+another copy. Doom drew into its persistent screen, copied that into its display
+buffer, and the adapter copied the display buffer into the slot the host could
+read. The second copy had become a habit rather than a requirement.
+
+We kept Doom's persistent screen. Partial redraws and cached pointers gave it a
+reason to exist. Instead, we pointed the display buffer at the next free delivery
+slot. “Free” still meant something precise: the preceding slot's exact ACK had
+arrived, publication had succeeded, and the host could no longer be reading it.
+A failed publication could not rotate the pointer. Native tests held ACKs back
+and checked that the old picture did not change underneath them.
+
+The first physical experiment found another contribution from the old compiler.
+A range selector chose the wrong benchmark mode on frame one. The host rejected
+it; that run earned no performance number. Its disassembly and failed capture
+went into the archive. A tiny table replaced the range comparisons, and the next
+run selected every mode correctly.
+
+Then came fifty-two pictures: checksum and copy, no checksum and copy, no checksum
+and no second copy, and back to the beginning. The two baseline blocks delivered
+1.95 and 1.98 frames per second. The direct path delivered 2.47. Four complete
+DMA/mailbox comparisons, fourteen full audit pairs, every guarded frame, STOP
+and the final allocation drain all passed. The pictures matched the earlier card
+run exactly; the familiar seven-pixel difference from the native renderer stayed
+visible in the findings rather than disappearing into a tolerance.
+
+The clocks also made the next problem clearer. Rendering occupied about 317
+milliseconds. The screen copy we still needed cost about 47. The hardware DMA
+interval averaged only a few milliseconds on a ten-millisecond clock. Waiting
+for the task to service DMA was much longer than DMA itself. The measured 26%
+gain included the host no longer recomputing FNV during profiling, so it was not
+a promise about an uninstrumented game. Nor was it ten frames per second.
+
+But it was a useful answer. The bus was no longer where most of the time went.
+The next substantial gain would have to come from understanding the renderer
+and its scheduling, or asking it to draw less.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
