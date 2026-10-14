@@ -1,0 +1,63 @@
+{
+  "full_frames": 28,
+  "paired_comparisons": 4,
+  "refusals": 3,
+  "successful_reads": 2080,
+  "blocks": [
+    {
+      "method": 9,
+      "first": 5,
+      "last": 10,
+      "fps": 0.1666233154233612,
+      "mean_transfer_seconds": 5.441563194500077
+    },
+    {
+      "method": 11,
+      "first": 11,
+      "last": 16,
+      "fps": 0.9964116391052583,
+      "mean_transfer_seconds": 0.5071160816667089
+    },
+    {
+      "method": 11,
+      "first": 17,
+      "last": 22,
+      "fps": 1.001813516087042,
+      "mean_transfer_seconds": 0.5104546810000556
+    },
+    {
+      "method": 9,
+      "first": 23,
+      "last": 28,
+      "fps": 0.16816992262103544,
+      "mean_transfer_seconds": 5.4518748731666165
+    }
+  ],
+  "paired_seconds": [
+    {
+      "scalar_seconds": 5.420789739999918,
+      "bulk_seconds": 0.5129265929999747,
+      "bytes": 65536
+    },
+    {
+      "scalar_seconds": 5.466397068000106,
+      "bulk_seconds": 0.505649817999938,
+      "bytes": 65536
+    },
+    {
+      "scalar_seconds": 5.434666890000017,
+      "bulk_seconds": 0.5050662599999214,
+      "bytes": 65536
+    },
+    {
+      "scalar_seconds": 5.398614886999894,
+      "bulk_seconds": 0.5164721510000163,
+      "bytes": 65536
+    }
+  ],
+  "mean_transfer_seconds": {
+    "9": 5.446719033833347,
+    "11": 0.5087853813333822
+  },
+  "epoch": 658
+}

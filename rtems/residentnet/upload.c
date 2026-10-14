@@ -57,6 +57,11 @@ unsigned int upload_control(unsigned int op,unsigned int index,unsigned int valu
 #ifdef I960_DOOM_ENGINE
  if(op==0x6b){extern unsigned engine_play_control(unsigned,unsigned);
   if(!initialized||!running||upload_stopping())return ~0u;return engine_play_control(index,value);}
+#ifdef I960_DOOM_PLAY
+ if(op==0x6f){extern unsigned engine_frame_pair(unsigned,unsigned,unsigned*);unsigned second=0,first;
+  if(!initialized||!running||upload_stopping())return ~0u;
+  first=engine_frame_pair(index,value,&second);R(0x1310)=second;(void)R(0x1310);return first;}
+#endif
  if(op>=0x6c&&op<=0x6e){extern unsigned engine_frame_control(unsigned,unsigned,unsigned);
   if(!initialized||!running||upload_stopping()
 #ifndef I960_DOOM_PLAY

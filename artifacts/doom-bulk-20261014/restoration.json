@@ -1,0 +1,12 @@
+{
+  "boot": "cbeb9d86-ab62-4ac1-a830-1b30433e2e46",
+  "supervisor": 2125,
+  "python": 2127,
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "bytes": 2891,
+  "sha256": "3670bad2caaf6fb09602dd473a8aa37f4be3b7daf08c65809445387990dd692e",
+  "checked_from": "Mac",
+  "exclusive_test_released": true,
+  "public_relay_owns_card": true
+}

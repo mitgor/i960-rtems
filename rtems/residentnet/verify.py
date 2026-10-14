@@ -187,9 +187,11 @@ def verify(root,out):
   from verify_heap_diagnostics import validate_diagnostics
   assert diag_groups==[d['words'] for d in json.loads((out/'heap-diagnostics.json').read_text())]
   diagnostics=validate_diagnostics(diag_groups,groups[-1])
-  if options['ticks']>=180000:
+  # ticks is a maximum session budget, not the duration of a successful
+  # bounded play run. Rollover coverage depends on the audited elapsed ticks.
+  if groups[-1][5]>=180000:
    assert all(diagnostics['unlocked_copy_preemptions']) and diag_groups[-1][9]>0
-  if options['ticks']>=210000:assert diag_groups[-1][9]>=2
+  if groups[-1][5]>=210000:assert diag_groups[-1][9]>=2
  else:assert not diag_groups
  return dict(resident_application_arena_bytes=8388608 if '-DI960_RESIDENT_UPLOAD' in flags else 0,heap_diagnostics=diagnostics,run=out.name,boot=identity['boot_id'],ticks=groups[-1][5],stop_reason=groups[-1][3],ioctls=counts,cache_observations=None if groups[-1][57] in QUEUE_CAPACITY else groups[-1][57:60],queue_telemetry=groups[-1][58:60] if groups[-1][57] in QUEUE_CAPACITY else None,cache_completion_proven=False,secondary_reset_held=reset,exception_ownership=owner,broader_ram_owned=extra,large_ram_mib=owned[0] if owned else 0,external_queue_bytes=192000 if extra else 0,application_heap_bytes=(171824 if reclaim else 69952) if heap else 0,heap_allocations_freed=groups[-1][50] if heap else None,rounds=rounds,burst=burst_result,snapshot_corruptions_rejected=bad,bulk_latency_ms=dict(min=min(latencies),max=max(latencies),mean=sum(latencies)/len(latencies)),packets=packets)
 if __name__=='__main__':

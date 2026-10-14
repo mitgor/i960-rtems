@@ -1,5 +1,28 @@
 # Current findings and evidence — 2026-10-13
 
+<!-- doom-bulk-current -->
+**Doom mailbox bulk accepted (2026-10-14):** opt-in `--bulk` uses eight-byte
+MU beats in fixed 1 KiB reads; no DMA or new RAM aperture. Same-run readback
+improves **5.447 → 0.509 s** and delivered FPS **0.167 → 0.999 (5.97×)**.
+Four complete same-frame comparisons, 28 frames, 30 full monitor/RAM pairs,
+three refusals, exact input/ACK replay and owned/global STOP pass. All 95,622
+allocations and 638 shared handles drain. Physical capture and snapshot
+mutation tests each reject 24 corruptions. Preserve every audit, generation/
+window check, reread, pin, STOP and uncertainty rule; scalar remains default.
+The engine is unchanged. Native/card still differs by 6–8 pixels in the known
+small region; palettes/padding and the first six previous card frames match.
+Startup remains about 23 minutes. Replay timer-wrap coverage now depends on
+actual audited elapsed ticks rather than the maximum configured budget.
+The test workspace is `/home/mit/i960-doom-bulk-20261014`; port 8087 is stopped.
+Both complete archives are saved and hash-verified locally. Reboot completed;
+public IPv6 HTTP returned 200 from the Mac. Public relay Python 2127 now owns
+the card in boot `cbeb9d86-ab62-4ac1-a830-1b30433e2e46`; the test reservation
+is released. Stop the relay normally and coordinate before future card work.
+Older ownership and next-step notes below are historical. Next: profile the remaining
+render/service/ACK costs before any larger DMA transport.
+[Exact results, sources, binaries and reproduction](artifacts/doom-bulk-20261014/README.md).
+<!-- /doom-bulk-current -->
+
 <!-- doom-play-current -->
 **Interactive Doom work (2026-10-13; six-frame input/STOP passed):**
 The user chose browser play now, with optimization/debugging driven by use.

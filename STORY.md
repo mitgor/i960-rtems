@@ -2820,6 +2820,41 @@ how we know what the card did, and how someone with another card can repeat the
 parts that apply to it. A new build recipe now reconstructs the Doom runtime in
 a fresh workspace rather than relying on the archaeology of our home directory.
 
+## Two words at a time
+
+The room was on screen. Getting its pixels home was taking most of the time.
+The playable reader asked the card for a single 32-bit word, waited for its
+reply, and asked again. Including the checks and first-window reread, each
+picture needed 16,770 message exchanges. The card spent more than five seconds
+holding a finished frame while the host collected it.
+
+A larger shared buffer would need a new ownership proof. The existing low PCI
+window still contained firmware tables and stack state. We stayed inside the
+message registers we already owned: one word in the usual reply register and
+a second in the consumed request register. A short bounded poll caught quick
+replies before putting the Linux task to sleep. The frame stayed immutable,
+its generation stayed checked, and all the memory audits stayed in place.
+
+Four frozen frames came back byte for byte through both readers. Then we ran
+the old path, the new path twice, and the old path again. Readback fell from
+5.447 seconds to 0.509. Delivery rose from 0.167 frames per second to 0.999—
+almost six times faster. One frame a second still leaves plenty of work, but
+the wait between pictures had become visibly shorter.
+
+All twenty-eight frames reached the Mac. Thirty full audit pairs passed, the
+engine stopped, both workers drained, and all 95,622 application allocations
+were freed. The native comparison still found six to eight differing pixels
+in the same tiny patch of the room. The first six card pictures exactly matched
+the earlier card run. We had improved their journey home without hiding that
+remaining rendering question.
+
+The complete captures, exact binaries and replay checks now live in
+[the bulk-transfer batch](artifacts/doom-bulk-20261014/README.md). About half a
+second per frame remains outside the new transfer. That is the next place to
+measure. The twenty-three-minute level load also remains its own problem. After the
+captures were safely home, we rebooted the retained test module and restored
+the public IPv6 web page.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -2860,7 +2895,9 @@ So, the ledger, honestly kept:
   comparisons and a browser gallery. The next persistent browser build delivered
   six frames, forward/release input and clean owned STOP. It is extremely slow—
   about one frame every six seconds—and a small native/card pixel discrepancy
-  remains recorded. Longer gameplay and optimization now follow actual use.
+  remains recorded. The subsequent paired-mailbox reader reaches about one frame per second,
+  with full audits and shutdown passing. Startup and the small rendering
+  discrepancy remain open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

@@ -1,5 +1,9 @@
 # DoomGeneric milestone 1: i960 compile and host memory profile
 
+For the current playable RTEMS profile, use the [browser play guide](play/README.md).
+The [October 14 bulk-transfer batch](../../artifacts/doom-bulk-20261014/README.md)
+measured 0.999 FPS with full audits. The original milestone below is historical.
+
 **Completed 2026-10-11. No Doom code was loaded on the card.** All 80 selected
 engine translation units compile with GCC 3.3.6 for i960RP and combine into a
 relocatable ELF32 i960 object. Final linking intentionally fails on 58 missing

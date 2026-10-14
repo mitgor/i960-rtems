@@ -16,11 +16,16 @@ engine executes on the card.
 The accepted baseline delivers two identical visible 320×200 frames and exits.
 Its static browser gallery is a capture viewer, not gameplay. The new persistent
 [play profile](../../artifacts/doom-play-20261013/README.md) passed a six-frame
-physical forward/release/STOP run, delivering about 0.169 frames/s. Its fresh
-user session is live on port 8088 with browser turning/firing confirmed; see
-the guide above for the temporary keyboard bridge, deadline and controls. The user has chosen playability first, then profiling
+physical forward/release/STOP run, delivering about 0.169 frames/s. Its subsequent 305-frame user session confirmed browser turning/firing and
+completed cleanly. The old port 8088 keyboard bridge is no longer running;
+new sessions use the ordinary play runner on port 8087. The user has chosen playability first, then profiling
 and optimization from real use.
 
 Keep the accepted compiler workaround (`--point-side-o0`) and pinned source,
 WAD and runtime dependencies when reproducing the baseline. Full audit and
 native replay captures distinguish real execution results from static assets.
+
+The [October 14 mailbox bulk acceptance](../../artifacts/doom-bulk-20261014/README.md)
+raises measured delivery from 0.167 to 0.999 FPS, retaining all full audits.
+Use the play wrapper's `--bulk` option with the matching rebuilt kernel/module.
+Startup and the small native/card renderer discrepancy remain open.

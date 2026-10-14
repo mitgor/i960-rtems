@@ -16,7 +16,7 @@ static void doom_shared_yield(void){}
 static unsigned owner(void){return 1;}
 static unsigned stopping(void){return stop;}
 static unsigned clock_ms(void){return now;}
-void doom_shared_service(void){unsigned i;calls++;
+void doom_shared_service(void){unsigned i,j,second;calls++;
  if(mode==1){stop=1;return;}if(mode==2){now=60000;return;}
  assert(engine_play_control(0,0)==1);
  assert(engine_frame_control(0x6e,0,0)==~0u);
@@ -27,13 +27,22 @@ void doom_shared_service(void){unsigned i;calls++;
  assert(!engine_frame_control(0x6d,0,0));
  for(i=0;i<256;i++)assert(engine_frame_control(0x6e,i,0)==word(memory+4*i));
  assert(engine_frame_control(0x6e,256,0)==~0u);
+ for(j=0;j<65536;j+=1024){
+  assert(!engine_frame_control(0x6d,0,j));
+  for(i=0;i<128;i++){second=0xdeadbeef;assert(engine_frame_pair(i,0,&second)==word(memory+j+8*i));assert(second==word(memory+j+8*i+4));}
+ }
+ second=123;assert(engine_frame_pair(128,0,&second)==~0u&&second==123);
+ assert(engine_frame_pair(0,1,&second)==~0u&&second==123);
+ assert(engine_frame_control(0x6c,0,2)==~0u);assert(engine_frame_pair(0,0,&second)==~0u&&second==123);
+ assert(!engine_frame_control(0x6c,0,1));assert(engine_frame_pair(0,0,&second)==~0u);
+ assert(!engine_frame_control(0x6d,0,0));
  assert(engine_play_control(1,2)==~0u);
  for(i=0;i<31;i++)assert(!engine_play_control(2,i));
  assert(engine_play_control(2,31)==~0u);assert(engine_play_control(2,512)==~0u);
- assert(!engine_play_control(1,1));assert(engine_frame_control(0x6e,0,0)==~0u);
+ assert(!engine_play_control(1,1));assert(engine_frame_pair(0,0,&second)==~0u);assert(engine_frame_control(0x6e,0,0)==~0u);
 }
 int main(void){struct doom_runtime_owned a;unsigned i;memset(&a,0,sizeof a);a.owner=owner;a.stopping=stopping;a.io.ticks_ms=clock_ms;play_api=&a;play_allowed=memory;
- for(i=0;i<65536;i++)memory[i]=(unsigned char)i;
+ for(i=0;i<65536;i++)memory[i]=(unsigned char)(i^(i>>8)^(i>>13));
  assert(!engine_play_mark(100,(unsigned long)memory+1,65536,1));
  assert(engine_play_mark(100,(unsigned long)memory,65536,1)==1&&calls==1&&!play_frame);
  for(i=0;i<31;i++)assert(engine_play_mark(101,0,0,0)==(int)i+2);

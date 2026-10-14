@@ -38,6 +38,14 @@ unsigned engine_frame_control(unsigned op,unsigned index,unsigned value){
  if(op==0x6e&&play_window&&index<256&&!value)return word(play_frame+play_offset+index*4);
  return ~0u;
 }
+/* The caller owns the four MU words for the entire exchange. Reuse IMR0
+ * for the second result only after its zero request value has been consumed.
+ * No RAM aperture, DMA address or additional target pointer crosses the ABI. */
+unsigned engine_frame_pair(unsigned index,unsigned value,unsigned *second){
+ if(!play_frame||play_ack||play_selected!=play_sequence||!play_window||index>=128||value)return ~0u;
+ *second=word(play_frame+play_offset+index*8+4);
+ return word(play_frame+play_offset+index*8);
+}
 unsigned engine_frame_finish(void){return !play_api&&!play_frame;}
 #else
 int engine_play_mark(unsigned s,unsigned x,unsigned y,unsigned z){(void)s;(void)x;(void)y;(void)z;return 0;}

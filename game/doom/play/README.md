@@ -7,11 +7,12 @@ browser framebuffer delivery. It is separate from the fully replayed two-frame
 
 ## Connect and play
 
-For the current lab deployment, open **http://192.168.2.75:8088/** and click the
-game to focus it. For a machine that reaches the host only through SSH:
+The October 14 acceptance session has ended; the public web service currently
+owns the card. After launching a new play session as described below, open
+**http://192.168.2.75:8087/** and click the game to focus it. For a machine that reaches the host only through SSH:
 
 ```sh
-ssh -N -L 8097:127.0.0.1:8088 mit@192.168.2.75
+ssh -N -L 8097:127.0.0.1:8087 mit@192.168.2.75
 ```
 
 Then open **http://localhost:8097/**. The page reports engine upload, level
@@ -147,3 +148,22 @@ bound driver before starting the existing autonomous web profile from
 matching payload, system-info module and IPv6 relay options; adapt its dated
 output paths rather than overwriting an old result. Verify HTTP and outbound
 IPv6 again. No automatic reboot or web restoration is scheduled during play.
+
+## Opt-in mailbox bulk reader (October 14 accepted batch)
+
+Add `--bulk` to `run.py` to select fixed 1 KiB transfers using eight-byte
+message-register beats. Scalar readback remains the default. The module and
+RTEMS image must both be rebuilt; this cannot be enabled in an older running
+module. No new DMA mapping or card RAM aperture is used. Full paired audits,
+immutable frame ownership, the first-window reread, post-read generation check,
+STOP and uncertainty retention remain required.
+
+`--bulk-test` runs four byte-exact same-frame comparisons and three refusal
+checks, then six-frame scalar/bulk/bulk/scalar blocks. It exits at frame 28
+with owned STOP and global shutdown. Use it by itself, without `--self-test`,
+and avoid manual keyboard input during measurement. Replay with
+`rtems/residentnet/verify_play_bulk.py` plus the full system verifier.
+See the [dated results and reproduction](../../../artifacts/doom-bulk-20261014/README.md)
+for the full evidence: mean transfer **5.447 → 0.509 s**, delivered FPS
+**0.167 → 0.999**, with all 30 full audit pairs and STOP/drain passing.
+The earlier native/card pixel discrepancy remains documented.
