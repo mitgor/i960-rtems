@@ -128,7 +128,11 @@ void DG_DrawFrame(void){unsigned i,h=2166136261u;
 #ifdef DOOM_VISIBLE
 unsigned char *frame,*palette;
 #ifdef DOOM_PLAY
+#ifdef DOOM_DOUBLE_BUFFER
+frame=doom_platform_frames[stats.frames&1];
+#else
 frame=doom_platform_frames[0];
+#endif
 #else
 if(stats.frames>=2)fatal(206);frame=doom_platform_frames[stats.frames];
 #endif
@@ -159,7 +163,11 @@ int doom_platform_frame(void*dst,unsigned n,void*rgb,unsigned rn){unsigned i;
 #ifdef DOOM_VISIBLE
 unsigned char *frame=doom_platform_frames[
 #ifdef DOOM_PLAY
+#ifdef DOOM_DOUBLE_BUFFER
+(stats.frames-1)&1
+#else
 0
+#endif
 #else
 stats.frames?stats.frames-1:0
 #endif

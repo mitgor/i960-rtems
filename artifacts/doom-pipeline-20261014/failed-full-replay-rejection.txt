@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/mit/Documents/!Projects/i960/rtems/residentnet/verify_play_pipeline.py", line 83, in <module>
+    p=argparse.ArgumentParser();p.add_argument('capture',type=Path);a=p.parse_args();print(json.dumps(verify(a.capture),indent=2))
+                                                                                                      ~~~~~~^^^^^^^^^^^
+  File "/Users/mit/Documents/!Projects/i960/rtems/residentnet/verify_play_pipeline.py", line 12, in verify
+    assert len(frames)==52 and len(mailbox)==260 and len(reports)==52
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

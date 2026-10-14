@@ -25,6 +25,33 @@ run. Longer interactive lifecycle acceptance is next; DMA remains opt-in.
 Do not combine this test with `--bulk`, `--bulk-test` or `--self-test`, or use a
 DMA kernel with a non-DMA runner. The accepted normal play modes are unchanged.
 
+## Two-buffer binary pipeline (bounded acceptance passed)
+
+Build with `build.py --work NEW_DIRECTORY --pipeline`, then run with
+`sudo python3 game/doom/play/run.py --work NEW_DIRECTORY --output NEW_OUTPUT --pipeline`.
+This selects a separately admitted engine with two alternating 64 KiB slots,
+DMA readback and indexed binary Canvas delivery. CRC stays enabled by default;
+add `--no-crc` only to explicitly omit payload CRC. Image admission, generation,
+bounds, DMA completion/quiescence, guard checks and full system audits remain.
+The host logs payload hashes for evidence even in CRC-off mode.
+
+`--pipeline --pipeline-test` runs the finite 52-frame CRC-on/off/off/on acceptance,
+including four exact mailbox/DMA pairs. It cannot be combined with other test
+modes or `--no-crc`. Run `verify_play_pipeline.py` and the full system verifier;
+neither replaces the other. See the [dated experiment](../../../artifacts/doom-pipeline-20261014/README.md)
+for physical acceptance status and performance. Never mix a two-buffer engine
+with the one-buffer runner or reuse a retained exclusive mapping after failure.
+
+The 52-frame physical test passed all 29 full audit pairs, STOP and heap drain.
+CRC-on delivered **1.396095 FPS**; CRC-off **2.070201 FPS (+48.285%)**. The
+first attempt exposed WAD starvation during DMA polling; the host now services
+WAD requests during that wait. CRC stays on by default and the pipeline remains
+opt-in pending longer interactive acceptance.
+
+The browser uses `/frame.bin` with an embedded session/generation, geometry and
+CRC-mode header. It can skip superseded display frames without retaining card
+memory. Input queues remain bounded and lost focus releases held keys.
+
 ## Connect and play
 
 The October 14 acceptance session has ended; the public web service currently

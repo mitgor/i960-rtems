@@ -10,7 +10,7 @@ static void fd_unlock(unsigned pc){__asm__ volatile("lda 0x1f0000,g0;modpc 0,g0,
 #define FD_LOCK() fd_lock()
 #define FD_UNLOCK(pc) fd_unlock(pc)
 #endif
-static unsigned fd_report[16],fd_destination;
+static unsigned fd_report[16],fd_destination,fd_no_crc;
 static volatile unsigned fd_phase,fd_stage,fd_loops;
 static unsigned fd_isolation_checks;
 #define FD_STAGE(n) do{__asm__ volatile("":::"memory");fd_stage=(n);__asm__ volatile("":::"memory");}while(0)
@@ -55,16 +55,17 @@ static unsigned fd_idle(void){
 static unsigned fd_control(unsigned index,unsigned value){
  if(index==5)return value==16?fd_isolation_checks:value==1?fd_phase:value<16?fd_report[value]:~0u;
  if(fd_phase==1||!play_frame||play_ack)return ~0u;
+ if(index==6){if(value>1)return ~0u;fd_no_crc=value;return 0;}
  if(index==3){if(!value||value>0xffffffffu-65536)return ~0u;fd_destination=value;return 0;}
  if(index!=4||!fd_destination||!value||value!=play_sequence||value<=fd_report[2])return ~0u;
  fd_report[0]=0x314d4446;fd_report[2]=value;fd_report[3]=fd_destination;
- fd_report[4]=FD_ADDR(play_frame);fd_report[13]=0;
+ fd_report[4]=FD_ADDR(play_frame);fd_report[13]=0;fd_report[14]=fd_no_crc;
  __asm__ volatile("":::"memory");fd_phase=1;return 0;
 }
 static void fd_step(void){unsigned i,csr=0,rc=0;const unsigned char*source=play_frame;
  if(fd_phase!=1)return;
  if(!source||play_ack||play_sequence!=fd_report[2]||!fd_idle()){rc=1;goto failed;}
- FD_STAGE(1);fd_loops=0;fd_report[5]=fd_crc(source);FD_STAGE(2);
+ FD_STAGE(1);fd_loops=0;fd_report[5]=fd_no_crc?0:fd_crc(source);FD_STAGE(2);
  fd_desc[0]=0;fd_desc[1]=fd_destination;fd_desc[2]=0;fd_desc[3]=FD_ADDR(source);fd_desc[4]=65536;fd_desc[5]=7;fd_desc[6]=0xfacefeed;fd_desc[7]=0xfacefeed;
  fd_report[15]=FD_ADDR(fd_desc);FD_STAGE(3);
  if(play_api->stopping()){rc=2;goto failed;}
@@ -79,7 +80,7 @@ static void fd_step(void){unsigned i,csr=0,rc=0;const unsigned char*source=play_
 cleanup:
  FD_STAGE(9);FD_R(0x1440)=0;(void)FD_R(0x1440);FD_STAGE(10);FD_S(0x1204)=2;(void)FD_S(0x1204);FD_STAGE(11);
  if(rc)goto failed;
- fd_report[6]=fd_crc(source);FD_STAGE(12);
+ fd_report[6]=fd_no_crc?0:fd_crc(source);FD_STAGE(12);
  if(!fd_idle()||FD_R(0x1450)||fd_report[5]!=fd_report[6]||fd_desc[6]!=0xfacefeed||fd_desc[7]!=0xfacefeed){rc=6;goto failed;}
  FD_STAGE(13);__asm__ volatile("":::"memory");fd_phase=2;return;
 failed:

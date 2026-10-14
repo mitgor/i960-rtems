@@ -1,0 +1,1 @@
+PASS network failure keeps control loop alive, records error, requests owned STOP exactly once

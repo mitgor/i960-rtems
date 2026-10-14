@@ -1,0 +1,1 @@
+PASS actual client: 16 guarded DMA buffers; 28 frames, four exact pairs, A/B/B/A, all ACK/input events; 22 mutations rejected

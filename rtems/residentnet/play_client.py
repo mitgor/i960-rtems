@@ -1,5 +1,5 @@
 """Interactive Doom relay; only the upload worker accesses card ioctls.
-HTTP threads exchange bounded keys and an immutable latest PNG, never card RAM.
+HTTP threads exchange bounded keys and immutable PNG/binary bytes, never card RAM.
 """
 import errno,hashlib,json,secrets,struct,threading,time,zlib
 from collections import deque
@@ -9,20 +9,21 @@ from batch_client import BatchServer
 from owned_client import Control
 from frame_client import png
 
-def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False,dma_test=False):
+def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False,dma_test=False,pipeline=False,pipeline_test=False,no_crc=False):
  from upload_client import Upload
  u=Upload(fd,epoch,out,gate,abort);root=Path(root);out=Path(out)
  m=json.loads((root/'manifest.json').read_text());assert m['startup']['play']
+ assert bool(m.get('double_buffer'))==pipeline, 'pipeline requires the admitted two-buffer engine'
  blob=(root/'template.bin').read_bytes();meta=(root/'relocations.bin').read_bytes()
  assert hashlib.sha256(blob).hexdigest()==m['template_sha256'] and hashlib.sha256(meta).hexdigest()==m['metadata_sha256']
  token=secrets.token_hex(24);lock=threading.Lock();keys=deque();stop=threading.Event();held_keys=set();input_deadline=[0.]
  dma=None
- if dma_test:
+ if dma_test or pipeline:
   import sys
   sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'dma'))
   from frame_dma_client import FrameDMA
   dma=FrameDMA(fd,epoch,out,gate)
- state=dict(frame='', message='Starting the RTEMS Doom runtime…');image=b''
+ state=dict(frame='',binary=pipeline, message='Starting the RTEMS Doom runtime…');image=b'';binary=b''
  page=(Path(__file__).resolve().parents[2]/'game/doom/play/index.html').read_text().replace('__TOKEN__',token).encode()
  class Handler(BaseHTTPRequestHandler):
   def log_message(self,*args):pass
@@ -34,7 +35,8 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
    with lock:
     if self.path=='/':data,kind=page,'text/html; charset=utf-8'
     elif self.path=='/status':data,kind=json.dumps(state).encode(),'application/json'
-    elif self.path.startswith('/frame.png?'):data,kind=image,'image/png'
+    elif self.path.startswith('/frame.png?') and not pipeline:data,kind=image,'image/png'
+    elif self.path.startswith('/frame.bin?') and pipeline:data,kind=binary,'application/octet-stream'
     else:self.reply(404,b'not found','text/plain');return
    self.reply(200,data,kind)
   def do_POST(self):
@@ -75,7 +77,8 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     if p:u.write(i,p)
    u.prepare();message('Loading the first level on the i960; please wait…')
    def serve():
-    nonlocal image,seen,last_poll,stop_sent
+    nonlocal image,binary,seen,last_poll,stop_sent
+    if abort is not None and abort.is_set():stop.set()
     if stop.is_set() and not stop_sent and (seen or len(server.records)>request_base):
      q=control.query()
      if q[2]:control.request(q[1]);stop_sent=True
@@ -92,7 +95,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      assert len(data)==65536 and data[:1024]==u.io(op,struct.pack('<2I',g,0))
      assert ctl()==g, 'frame expired during transfer; never ACK uncertain bytes'
      return data,time.monotonic()-t
-    if dma_test and g==1:
+    if (dma_test or pipeline_test) and g==1:
      for op,generation,offset,expected in ((1,g+1,0,errno.ESTALE),(3,g,73728,errno.EINVAL),(3,g,4,errno.EINVAL)):
       try:dma.call(op,generation,offset);raise AssertionError("invalid DMA frame request accepted")
       except OSError as e:assert e.errno==expected
@@ -105,9 +108,12 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     # Full snapshot/RAM audits continue independently at the unchanged interval.
     if bulk_test:method=11 if g<=4 or 11<=g<=22 else 9
     if dma_test:method=12 if g<=4 or 11<=g<=22 else 11
-    raw,transfer_seconds=dma.read(g) if method==12 else read_frame(method)
+    if pipeline:method=12
+    crc=not no_crc
+    if pipeline_test:crc=g<=2 or 5<=g<=16 or g>=41
+    raw,transfer_seconds=(dma.read(g,crc,server.serve) if pipeline else dma.read(g)) if method==12 else read_frame(method)
     if method==12:assert ctl()==g, 'DMA frame expired; never ACK uncertain bytes'
-    if dma_test and g<=4:
+    if (dma_test or pipeline_test) and g<=4:
      other,other_seconds=read_frame(11);assert other==raw, 'DMA/mailbox frame mismatch'
      comparison=dict(mailbox_seconds=other_seconds,dma_seconds=transfer_seconds,bytes=65536)
     if bulk_test and g<=4:
@@ -115,8 +121,9 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      assert other==raw, 'bulk and scalar frame bytes differ'
      comparison=dict(scalar_seconds=other_seconds,bulk_seconds=transfer_seconds,bytes=65536)
     convert=time.monotonic()
-    picture=png(raw);png_seconds=time.monotonic()-convert
-    # Send input only while the renderer is parked; a full card queue keeps
+    picture=b'' if pipeline else png(raw);png_seconds=time.monotonic()-convert
+    packet=struct.pack('<8I',0x31424644,1,session,g,320,200,65536,int(crc))+raw if pipeline else b''
+    # Send input through the bounded IRQ FIFO; a full card queue keeps
     # remaining host keys for the next frame, including release events.
     with lock:
      if held_keys and time.monotonic()>input_deadline[0]:
@@ -128,12 +135,15 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      if g==2:assert ctl(2,256+173)==0
      if g==4:assert ctl(2,173)==0
     assert ctl(1,g)==0;seen=g
-    row=dict(method=method,comparison=comparison,transfer_seconds=transfer_seconds,png_seconds=png_seconds,session=session,frame=g,seconds=time.monotonic()-started,readback_seconds=time.monotonic()-begin,sha256=hashlib.sha256(raw).hexdigest())
+    row=dict(crc=crc,binary=pipeline,method=method,comparison=comparison,transfer_seconds=transfer_seconds,png_seconds=png_seconds,session=session,frame=g,seconds=time.monotonic()-started,readback_seconds=time.monotonic()-begin,sha256=hashlib.sha256(raw).hexdigest())
     with (out/'play-frames.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
-    if g<=8 or bulk_test or dma_test:(out/f'play-{session}-{g}.bin').write_bytes(raw);(out/f'play-{session}-{g}.png').write_bytes(picture)
-    with lock:image=picture;state.update(frame=f'{session}-{g}',message=f'Live i960 Doom · frame {g} · readback {row["readback_seconds"]:.2f}s · click game for keyboard')
+    if g<=8 or bulk_test or dma_test or pipeline_test:
+     (out/f'play-{session}-{g}.bin').write_bytes(raw)
+     if not pipeline:(out/f'play-{session}-{g}.png').write_bytes(picture)
+     else:(out/f'play-{session}-{g}.dfb').write_bytes(packet)
+    with lock:image=picture;binary=packet;state.update(frame=f'{session}-{g}',message=f'Live i960 Doom · frame {g} · readback {row["readback_seconds"]:.2f}s · click game for keyboard')
     print(json.dumps(row),flush=True)
-    if ((bulk_test or dma_test) and g>=28) or (accept_frames and session==0 and g>=accept_frames):stop.set()
+    if (pipeline_test and g>=52) or ((bulk_test or dma_test) and g>=28) or (accept_frames and session==0 and g>=accept_frames):stop.set()
     return False
    u.service=serve
    try:reply=u.command(18,timeout=3660)

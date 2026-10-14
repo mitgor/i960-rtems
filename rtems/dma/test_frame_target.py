@@ -78,7 +78,7 @@ static void isolation_test(void){unsigned w[16],saved[8],i,j,old;
 static unsigned stopping(void){return stop;}
 static unsigned crc(const unsigned char*p){unsigned c=~0u,i,j;for(i=0;i<65536;i++){c^=p[i];for(j=0;j<8;j++)c=(c>>1)^(0xedb88320u&-(c&1));}return ~c;}
 static void reset(void){unsigned i;static struct doom_runtime_owned a;memset(&a,0,sizeof a);a.stopping=stopping;play_api=&a;
- memset(regs,0,sizeof regs);memset(fd_report,0,sizeof fd_report);cmd[0]=2;cmd[1]=0;regs[0x104c/4]=0x13ffc;stop=mode=writes=fd_phase=fd_destination=locked=inject=fd_isolation_checks=0;
+ memset(regs,0,sizeof regs);memset(fd_report,0,sizeof fd_report);cmd[0]=2;cmd[1]=0;regs[0x104c/4]=0x13ffc;stop=mode=writes=fd_phase=fd_destination=locked=inject=fd_isolation_checks=fd_no_crc=0;
  play_frame=play_allowed=memory;play_sequence=1;play_ack=0;for(i=0;i<65536;i++)memory[i]=(i*7)^(i>>8);
 }
 static void submit(void){assert(!engine_play_control(3,0x101000));assert(!engine_play_control(4,1));assert(fd_phase==1&&!writes);
@@ -94,6 +94,8 @@ int main(void){unsigned i;
  reset();submit();if(!setjmp(failed)){play_clear();assert(0);}assert(play_frame&&fd_phase==1);
  reset();assert(!engine_play_control(3,0x101000));inject=1;if(!setjmp(failed)){play_clear();assert(0);}assert(locked&&play_frame&&fd_phase==1);
  reset();assert(!engine_play_control(3,0x101000));inject=2;play_clear();assert(!locked&&!play_frame&&!fd_phase&&!inject);
+ reset();assert(!engine_play_control(6,1));submit();assert(engine_play_control(6,0)==~0u);fd_step();assert(fd_report[14]==1&&!fd_report[5]&&!fd_report[6]&&fd_phase==2);
+ reset();assert(engine_play_control(6,2)==~0u);
  reset();regs[0x1400/4]=1;submit();if(!setjmp(failed)){fd_step();assert(0);}assert(!writes&&play_frame);
  return 0;
 }

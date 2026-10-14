@@ -144,3 +144,36 @@ server delivery measurements; HTTP receipts are recorded separately and no
 browser paint-rate claim is made. No timeout, validation or audit was relaxed.
 The fixed runtime source is unchanged from the 512-frame stress acceptance.
 DMA stays opt-in until longer interactive input and lifecycle tests pass.
+
+## Optional CRC and two-buffer delivery
+
+The [pipeline experiment](../../artifacts/doom-pipeline-20261014/README.md)
+adds explicit per-submit CRC selection: operation 1 offset word 0 means checked,
+1 means unchecked, and other values are refused. Operations 2/3 retain their
+existing offset contracts. Kernel-only control index 6 configures the target;
+it is not exposed by the general upload control ioctl. Completion report word
+14 echoes the selection. CRC-off requires both CRC words to be zero; checked
+mode requires both source CRCs and the destination CRC to agree. All descriptor,
+bounds, generation, guard, completion and quiescence checks still apply.
+The driver pins its expected mode across pending polls and checks the report
+against it. A mismatching mode is a protocol fault, not permission to skip CRC.
+
+A separately admitted `ENGINE_PLAY_DOUBLE` image uses two alternating slots.
+The engine task prepares at most one frame ahead, waits for the old ACK before
+publishing the new slot, and services DMA only at task-level input/wait points.
+The host copies and validates the complete destination before ACK; HTTP then
+uses immutable host bytes. No browser operation owns a card buffer. CPU CRC and
+rendering do not execute concurrently, and no new interrupt-context work or
+unbounded queue is introduced. The finite runner compares CRC modes while
+retaining full system audits. Physical results belong to the dated experiment;
+old single-buffer captures keep their original strict verifier.
+
+The accepted 52-frame repeat passes 29 full audit pairs and STOP/drain, with
+1.396095 FPS CRC-on versus 2.070201 FPS CRC-off. Full local/remote replay rejects
+35 frame/journal and 24 snapshot mutations. The original candidate exposed a
+WAD/DMA wait dependency: pending DMA polling must service the WAD channel,
+because the renderer can need WAD data before reaching a DMA service point.
+This is now regression-tested; no deadline was extended. A separate startup
+TCP failure is preserved, and the harness now requests owned STOP while keeping
+audits active before propagating such network failures. See the dated ledger
+for both incomplete attempts, accepted evidence and exact performance limits.

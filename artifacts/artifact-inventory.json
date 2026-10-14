@@ -5528,6 +5528,266 @@
       "sha256": "bcde01b7d3455596bf3a9792d48b8301af45fa9feeb9dab6b19426dba037e409"
     },
     {
+      "path": "artifacts/doom-pipeline-20261014/README.md",
+      "size": 11295,
+      "sha256": "43c1b58772bdb52a590012b0d653ee1c5dceaf9362372c4c7cf6fd771aaed0cd"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/analyze.py",
+      "size": 1360,
+      "sha256": "3c0fc259900f9091d8a5eb77b3d204d512bd25eb19df225dfabf66eb01a4de07"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/browser-live.png",
+      "size": 92660,
+      "sha256": "86abdeab1658c6a62887c6537f499f8368d39697e07c2e1af8bec65471dfa552"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/browser-repeat-live.png",
+      "size": 92475,
+      "sha256": "e653620474486389ad99af63bb396ccdafeb3e6e7d52e7ac3efd83690b104ef3"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/build-evidence.tar.gz",
+      "size": 22464106,
+      "sha256": "e96ee72453e937a1209b8df1b5c90b5975576ce52095f40541aecf7512e3b562"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/capture_failure.sh",
+      "size": 975,
+      "sha256": "51086b5484a6ca240bb38c208047a84dcf08b66d6e79bf9dce98ce0c568edd2c"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/card-evidence.tar.gz",
+      "size": 19073069,
+      "sha256": "c937ed93c7ebc1b5c99e81aed460ccc3ae5e9c05729722269bf265cf7007c8fb"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/close_capture.sh",
+      "size": 1077,
+      "sha256": "7106a94039705eeb7c6d3bcb05d3ccd814017a044dd52f8faa7c4d4c85b6c615"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/failed-build-evidence.tar.gz",
+      "size": 62852393,
+      "sha256": "6537ce9bd686193036cd9c7f83bc91ab25854982d4a889bf03a8e2ebf4f59249"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/failed-card-evidence.tar.gz",
+      "size": 14104752,
+      "sha256": "ff13415b307f29992bedeeecc77bdb33ac86808fa8058aedb7d08429416a18a6"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/failed-full-replay-rejection.txt",
+      "size": 657,
+      "sha256": "5ec554a1e914ca6f5851b6b96c02c2ff511847b7d5cc267c32d3d0ac184ee4d6"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/failed-http-observations.jsonl",
+      "size": 1842,
+      "sha256": "0c073c089bb4388317771dbcf3f6a15abff41ccd7e5b2798ffc731a60afe1a1d"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/failed-prefix-verification.json",
+      "size": 150,
+      "sha256": "b3dbf88435d14a8c7117a90a2231b8538951d7bd1ad0a40bf33c476e0fa5adf7"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/final-close_capture.sh",
+      "size": 1089,
+      "sha256": "917aa1aae760da6f87a77657a4f89cc03789c2a9b493b1a2ebbd228f54ba094a"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/final-live.sh",
+      "size": 275,
+      "sha256": "de78c9b5dd2655b01e269af4a3a652ebdbf692e0b17367555bb090e9765fbb57"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/final-progress.py",
+      "size": 923,
+      "sha256": "16b6329b7af86aefd590f2751a70dd60446efae08c0e22a995c49e3b9cc2a9e7"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/final-restore.sh",
+      "size": 865,
+      "sha256": "854b12945b731bfb94a398b909833d27f7312c7b3a1ec3ba28bb1e7a8d844c26"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/finish_build.sh",
+      "size": 724,
+      "sha256": "0844cb3425bd2a31cba356a88e24d155ec6e30708532c5762138689f7ace8c06"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/host-regression.log",
+      "size": 285,
+      "sha256": "c66548938e5f95f658a9d2a4de19fc350db25871d6e537eb318105e275fc45e4"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/http-observations.jsonl",
+      "size": 13736,
+      "sha256": "4909885d6e6e777878c4194760325328a60b0994271f31ae687c0f7d941fe7f6"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/http-summary.json",
+      "size": 1199,
+      "sha256": "4488e18d2482805b342d523691b4be67f35d835f1f53a2e95287136ae7f12a01"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/http_summary.py",
+      "size": 962,
+      "sha256": "b8455aecc6ab671a2ccc04fd8f1ada52fc03e4fa4a0f0b083adcedb1c103e757"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/journal-costs.json",
+      "size": 1062,
+      "sha256": "d9a29578900232031c6c91081bc8efbb1603f19926620416ae9586f6ebcc9da5"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/journal_costs.py",
+      "size": 721,
+      "sha256": "6e45e89554589304a5c169886413bcfdf0d72a7bc266d84795c3ea3089dcbe6d"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/live.sh",
+      "size": 274,
+      "sha256": "5b87d40e3676ee0f65ef126764ba6927aabd9e578b648117d3c079cbfdfb8cdd"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/local-abort-test.log",
+      "size": 95,
+      "sha256": "690fb4c524f92d1668306872adec830281b34b15f57ea31732786f4fb94c0533"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/local-browser-test.log",
+      "size": 97,
+      "sha256": "573f3dc787edfb95402b60b3009578440e99cfab27a6cfabc28cd25b23bc8976"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/local-host-test.log",
+      "size": 127,
+      "sha256": "3402bf0743d8289c04593bef251f61ce9c73a88cb38234ea4a627a0657af87f7"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/local-legacy-replay-test.log",
+      "size": 126,
+      "sha256": "b608bf50e31d93776f239343ecf131c7a26d7566120de90714b3f183f62f4bcf"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/local-pipeline-replay.json",
+      "size": 1519,
+      "sha256": "bbda00e97f40eac12db726eda701d6eb8685876cd8980bf611788c45ad13dfde"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/local-pipeline-test.log",
+      "size": 190,
+      "sha256": "9e79dca47414bef10affcd30a52d5e56357ca4035fb20502c5436cd679d0e674"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/local-system-replay.json",
+      "size": 6366,
+      "sha256": "b4310fc25a6b1297ea80567f4841c244ef885fd933ec9d7781751734ffeccb99"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/local-tamper-results.json",
+      "size": 2906,
+      "sha256": "7b1316f71b7db2cd7e69da0ea9eb569b2939885560897a0dabbd2295b55dabc6"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/measurements.json",
+      "size": 8449,
+      "sha256": "1bf4a71d0f4f66c2f7789aab11cb110aa052a8c2f6eef297e3dfd3d0c05c5fba"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/native_frames.py",
+      "size": 1856,
+      "sha256": "b80c1a3d9b363a81130077b13825d4f96b2712056298e15cb57681723b6f90be"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/pipeline-replay.json",
+      "size": 1519,
+      "sha256": "bbda00e97f40eac12db726eda701d6eb8685876cd8980bf611788c45ad13dfde"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/progress.py",
+      "size": 922,
+      "sha256": "c0d20d50f372cc53e147e48e2cbd588a300dac78ad9d664fe1dc3f545f1b8324"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/read_retained_mu.py",
+      "size": 490,
+      "sha256": "5b4f32a19cc65624b8b9e293b824a7b2c245e06a4d1c7cec6cce00f27f88c435"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/repeat-close_capture.sh",
+      "size": 1015,
+      "sha256": "46d522a629290fd7e487d9647379a5364d4dc57cb189393c74db3f5c6cd3fbe4"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/repeat-live.sh",
+      "size": 275,
+      "sha256": "89d6e996094eaeb8fe7ac6898179c623a0e21ab0f4d6d2b941fd5c4c18f14d62"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/repeat-progress.py",
+      "size": 923,
+      "sha256": "a8460a1f73e8e5cd578dcd6b7a26edf2e9d18eeb7ecb516c29ab6ff592370e55"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/repeat-restore.sh",
+      "size": 865,
+      "sha256": "2b81cf69d8f4703930fc8fca22f6e82e784a5929b7cb590feb9eaf0621d8076b"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/restoration.json",
+      "size": 525,
+      "sha256": "8075bac487ae1b8bd2c61acf40dcbe4090d79202ea8c8cee1a9ec983c38b3cd6"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/restore.sh",
+      "size": 864,
+      "sha256": "fd83bfe6d669f1b0c9652ec1779d6fcc4002bfd86b10484e8392f1177c20df61"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/restored-http-body.html.gz",
+      "size": 1371,
+      "sha256": "d25db7a329689ec79fb67e1a78105aeea7fa4282fb859ef0f7cdec6bd0f091e8"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/restored-http-headers.gz",
+      "size": 116,
+      "sha256": "dbabea0346301eb1b639f2f83f69f4101de778fa1d1708e0931497d83f75e9f2"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/retained-fault-decoded.json",
+      "size": 2555,
+      "sha256": "4bcda8cd9f8127eae225b9e271fdc48448d86cd81805ec2d739f3e48b7c0ea1a"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/stopped-network-evidence.tar.gz",
+      "size": 21707060,
+      "sha256": "fc573ef0ffbea41d884cac29b68061f66764d2b46785b5a5a359668bbe8506a1"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/system-replay.json",
+      "size": 6366,
+      "sha256": "b4310fc25a6b1297ea80567f4841c244ef885fd933ec9d7781751734ffeccb99"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/tamper-results.json",
+      "size": 2906,
+      "sha256": "7b1316f71b7db2cd7e69da0ea9eb569b2939885560897a0dabbd2295b55dabc6"
+    },
+    {
+      "path": "artifacts/doom-pipeline-20261014/verify_failure.py",
+      "size": 1475,
+      "sha256": "764c62d0a400f85c6fb55e024a263d23d98ac2bd0a44fb1139e6e5522ad443d4"
+    },
+    {
       "path": "artifacts/doom-platform-20261012/README.md",
       "size": 10962,
       "sha256": "898e1af41db49384146bb23e07579c64e8537d47e6f726fd7047154bc7ccfe98"

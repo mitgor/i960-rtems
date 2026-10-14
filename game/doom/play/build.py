@@ -2,7 +2,8 @@
 """Fresh-checkout interactive Doom build. Never opens the card or programs flash."""
 import argparse,hashlib,json,shutil,subprocess,tarfile,zipfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--dma',action='store_true');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--dma',action='store_true');p.add_argument('--pipeline',action='store_true');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');a=p.parse_args()
+if a.pipeline:a.dma=True
 r=Path(__file__).resolve().parents[3];w=a.work.resolve()
 if w.exists():p.error('choose a new work directory; existing experiments are not overwritten')
 for tool in ('gcc','patch','make',a.cross+'gcc',a.cross+'ld',a.cross+'objcopy'):
@@ -24,18 +25,20 @@ archive=r/'artifacts/doom-m1-20261011/doomgeneric-source.tar.gz';doomdir='doomge
 for suffix,target in [('host','host32'),('cross','i960')]:
  extra=['--sanitize'] if target=='host32' else []
  run(['python3',r/'game/doom/build.py','--work',w/f'engine-{suffix}','--archive',archive,'--target',target,'--cross',a.cross,'--newlib',newlib,'--arena-runtime','--wad-cache','--platform-runtime','--startup','--checkpoints','--point-side-o0','--visible','--play',*extra],f'engine-{suffix}.log')
- run(['python3',r/'game/doom/runtime/platform/build.py','--newlib',newlib,'--out',w/f'platform-{suffix}','--doom',w/f'engine-{suffix}'/doomdir,'--engine',w/f'engine-{suffix}'/target/'doom-engine.o','--target',target,'--cross',a.cross,'--startup','--checkpoints','--visible','--play',*extra],f'platform-{suffix}.log')
+ run(['python3',r/'game/doom/runtime/platform/build.py','--newlib',newlib,'--out',w/f'platform-{suffix}','--doom',w/f'engine-{suffix}'/doomdir,'--engine',w/f'engine-{suffix}'/target/'doom-engine.o','--target',target,'--cross',a.cross,'--startup','--checkpoints','--visible','--play',*(['--double-buffer'] if a.pipeline else []),*extra],f'platform-{suffix}.log')
 run(['python3',r/'game/doom/play/test_keys.py'],'keys.log')
 run(['python3',r/'game/doom/play/test_native.py','--build',w/'platform-host','--newlib',newlib,'--wad',w/'freedoom1.wad'],'native.log')
 run(['python3',r/'game/doom/runtime/startup/test_abi.py','--doom',w/'engine-cross'/doomdir,'--newlib',newlib,'--out',w/'abi-proof','--cross',a.cross],'abi.log')
 run(['python3',r/'game/doom/runtime/platform/pack_engine.py','--build',w/'platform-cross','--out',w/'packed','--cross',a.cross],'packed.log')
 run(['python3',r/'game/doom/runtime/engine/admit.py',w/'packed','--build',w/'platform-cross','--out',w/'admission','--play','--cross',a.cross],'admission.log')
 for test in ('test_play_channel.py','test_frame_protocol.py','test_bulk_protocol.py','test_bulk_poll.py','test_play_bulk_replay.py','test_checkpoint_barriers.py','test_play_stop.py'):run(['python3',r/'rtems/residentnet'/test],test+'.log')
+if a.pipeline:
+ for test in ('rtems/residentnet/test_double_buffer.py','rtems/dma/test_pipeline_replay.py','rtems/residentnet/test_play_abort.py'):run(['python3',r/test],Path(test).name+'.log')
 if a.dma:
  for test in ('test_frame_target.py','test_frame_host.py','test_frame_replay.py'):run(['python3',r/'rtems/dma'/test],test+'.log')
 run(['python3',r/'rtems/build.py','--work',w,'--cross',a.cross,'--profile','residentnet','--secondary-reset','--fault-owner','--extra-ram','--general-heap','--heap-shared','--queue-reclaim','--owned-mib','12','--resident-upload','--doom-heap','--doom-shared','--doom-runtime','--doom-engine',w/'admission','--wad-batch','--wad-poll','--dispatch-atomic',*(['--doom-dma'] if a.dma else [])],'kernel.log')
 run(['python3',r/'rtems/residentnet/ram_audit.py',w/'residentnet'],'ram-audit.json')
 run(['python3',r/'rtems/residentnet/build_transport.py','--payload',w/'residentnet/kernel.bin','--out',w/'residentnet-module'],'transport.log')
 run(['make','-C','/lib/modules/'+subprocess.check_output(['uname','-r'],text=True).strip()+'/build','M='+str(w/'residentnet-module'),'modules'],'module.log')
-(w/'play-build.json').write_text(json.dumps(dict(work=str(w),repository=str(r),cross=a.cross,wad_sha256=hashlib.sha256(wad).hexdigest(),kernel_sha256=hashlib.sha256((w/'residentnet/kernel.bin').read_bytes()).hexdigest(),module_sha256=hashlib.sha256((w/'residentnet-module/dac960auto.ko').read_bytes()).hexdigest()),indent=2)+'\n')
+(w/'play-build.json').write_text(json.dumps(dict(pipeline=a.pipeline,dma=a.dma,work=str(w),repository=str(r),cross=a.cross,wad_sha256=hashlib.sha256(wad).hexdigest(),kernel_sha256=hashlib.sha256((w/'residentnet/kernel.bin').read_bytes()).hexdigest(),module_sha256=hashlib.sha256((w/'residentnet-module/dac960auto.ko').read_bytes()).hexdigest()),indent=2)+'\n')
 print('Build complete. Card untouched. Run game/doom/play/run.py only on the qualified, free card.')

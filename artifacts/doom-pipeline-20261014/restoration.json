@@ -1,0 +1,15 @@
+{
+  "checked_utc": "2026-10-14T15:26:09.887302+00:00",
+  "boot_id": "d18b781d-a8e7-4604-b8fc-4a048e18506e",
+  "supervisor_pid": 2796,
+  "python_pid": 2798,
+  "driver": "dac960auto",
+  "pci": "0000:37:09.1",
+  "output": "/home/mit/i960-rtems-web-20261011/http-after-doom-pipeline-20261014",
+  "public_url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "body_contains_rtems": true,
+  "test_owner_released": true,
+  "local_archive_hashes_verified": true,
+  "local_full_replays_passed": true
+}

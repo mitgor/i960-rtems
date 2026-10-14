@@ -3101,6 +3101,46 @@ The fix has now survived both the small stress producer and the actual game.
 [The fixed comparison](artifacts/doom-dma-fixed-20261014/README.md) keeps the
 numbers and the captures together.
 
+## Two pictures and a missing waiter
+
+The next experiment stopped treating every image as a photograph to encode.
+Doom already had indexed pixels and a palette. The browser could turn those
+into a Canvas image itself. Two frame slots would let the card prepare one
+picture while the host dealt with the preceding one. CRC became an explicit
+choice for play, with bounds, guards, generations and hardware completion still
+mandatory in either mode.
+
+The first pictures arrived. Four mailbox/DMA pairs matched, including two with
+CRC disabled, and the browser displayed the indexed image correctly. Then the
+eighth frame stopped everything. The destination buffer had not been touched.
+The card's heap and isolation checks were healthy, but a DMA request was queued.
+
+Allowing the renderer to get ahead had introduced another dependency. Doom
+could ask the host for WAD data before reaching the next point where its task
+serviced DMA. The host was waiting for DMA and no longer serving that WAD
+request. The correction kept the WAD channel moving during pending DMA polls.
+A model now refuses to complete DMA until that service happens, so the wait
+cannot quietly become exclusive again.
+
+A second attempt exposed a different problem before rendering: a TCP startup
+test timed out, and executor shutdown waited for Doom while the main audit loop
+had already unwound. WAD progress looked reassuring; it was not full acceptance.
+That run was stopped through the normal owner path. The harness now records the
+network error, requests owned STOP and keeps auditing until the owner exits,
+then reports the failure. Neither timeout was enlarged.
+
+Both incomplete attempts were preserved before reboot. The next comparison
+used the same card binaries, the corrected host service loop, and all full
+system audits. This time all fifty-two frames completed. Twenty-nine full audit
+pairs, owned STOP and heap drain passed. CRC-on delivered 1.396 frames per
+second; CRC-off delivered 2.070, a 48.3 percent increase. It was a useful gain,
+not the hoped-for three to five times. Every binary packet reached the Mac
+with its expected hash, and the browser displayed the final frame. The seven
+native/card pixel differences remained, with identical palettes and padding.
+Both machines replayed the evidence and rejected all deliberate corruptions
+before the host rebooted to release the mapping. [The pipeline ledger](artifacts/doom-pipeline-20261014/README.md)
+records the acceptance status, the failures and the exact builds together.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3151,7 +3191,9 @@ So, the ledger, honestly kept:
   rejecting owned DMA; the corrected isolation check passed 512 frames, 89
   active-transaction checks and full STOP/drain. The fixed Doom repeat then
   passed 28 frames and 29 full audit pairs, delivering 1.377 FPS with DMA versus
-  0.973 with mailbox. DMA stays opt-in pending longer interactive acceptance.
+  0.973 with mailbox. The later two-buffer binary build passes 52 frames and
+  29 audit pairs at 1.396 FPS with CRC and 2.070 without CRC. DMA stays opt-in
+  pending longer interactive acceptance.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

@@ -1,5 +1,29 @@
 # RTEMS working guidance
 
+<!-- doom-pipeline-current -->
+**Two-buffer Doom/binary pipeline accepted (2026-10-14):** CRC-on **1.396095 FPS**,
+CRC-off **2.070201 FPS (+48.285%)** in 52-frame on/off/off/on testing. All **29
+full monitor/RAM pairs**, four exact mailbox/DMA pairs, owned STOP and global
+heap drain pass. Linux/macOS replay rejects 35 frame/journal and 24 snapshot
+mutations. All 52 binary HTTP packets match; native comparisons retain seven
+pixel differences per frame with identical palettes/padding. This is delivery
+FPS, not paint FPS or a 3–5× gain. Earlier single-buffer results used different
+inputs, so do not attribute their difference solely to buffering or binary HTTP.
+Build/run opt-in `--pipeline`; CRC remains on unless `--no-crc` is explicit.
+Never remove ownership, generation, bounds, guards or hardware quiescence checks.
+The initial run exposed WAD starvation during pending DMA; the host now services
+WAD requests during polling. A separate TCP startup failure exposed executor
+shutdown suspending audits; failures now request owned STOP while keeping the
+control loop active. Both incomplete attempts are preserved, not accepted.
+Evidence: `artifacts/doom-pipeline-20261014/README.md`. Longer interactive and
+disconnect acceptance remains future work. No firmware or RAM remap change.
+All test ownership is released after archive verification/replay and reboot.
+Public IPv6 HTTP returned 200. Current owner: relay supervisor **2796**, Python
+**2798**, boot `d18b781d-a8e7-4604-b8fc-4a048e18506e`, bound `dac960auto`.
+Stop that relay normally before new tests; never force-unload retained resources.
+Ownership records below are historical, not current reservations.
+<!-- /doom-pipeline-current -->
+
 <!-- doom-dma-cleanup-current -->
 **Doom DMA diagnosis batch (2026-10-14):** two complete comparisons passed:
 instrumented target 0.966→1.384 FPS (+43.26%), exact earlier target

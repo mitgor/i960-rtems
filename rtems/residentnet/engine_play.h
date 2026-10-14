@@ -1,4 +1,5 @@
-/* Interactive ownership: the renderer blocks while its single frame is visible.
+/* Interactive ownership: one published immutable frame; an admitted two-slot
+ * producer may prepare one further frame before waiting for the published ACK.
  * IRQ only reads immutable bytes and appends bounded key events. No host address
  * is accepted. The image stays pinned until the owned invocation has returned. */
 #ifdef ENGINE_PLAYABLE
@@ -21,14 +22,10 @@ static void play_clear(void){
  FD_UNLOCK(pc);
 #endif
 }
-int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){unsigned start,polls=0;
- if(!play_api||!play_api->owner()||play_api->stopping())return -1;
- if(stage==101){unsigned t=play_tail,v;if(t==play_head)return 1;v=play_keys[t];play_tail=(t+1)&31;return (int)v+2;}
- if(stage!=100)return 1;
- if((unsigned long)play_allowed!=x||y!=65536||!z||z!=play_sequence+1||play_frame)return 0;
- play_ack=0;play_sequence=z;play_selected=play_window=0;
- __asm__ volatile("":::"memory");play_frame=play_allowed;start=play_api->io.ticks_ms();
- while(!play_ack){
+/* Only the engine task services DMA. A dual-buffer producer can render into
+ * the other slot while this immutable published slot is being read by host. */
+static int play_wait(void){unsigned start=play_api->io.ticks_ms(),polls=0;
+ while(play_frame&&!play_ack){
 #ifdef I960_DOOM_DMA
   fd_step();
 #endif
@@ -38,9 +35,35 @@ int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){unsigned s
  }
  play_clear();return 1;
 }
+int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
+ if(!play_api||!play_api->owner()||play_api->stopping())return -1;
+ if(stage==101){unsigned t=play_tail,v;
+#ifdef ENGINE_PLAY_DOUBLE
+#ifdef I960_DOOM_DMA
+  fd_step();
+#endif
+#endif
+  if(t==play_head)return 1;v=play_keys[t];play_tail=(t+1)&31;return (int)v+2;
+ }
+ if(stage!=100)return 1;
+ if(y!=65536||!z||z!=play_sequence+1)return 0;
+#ifdef ENGINE_PLAY_DOUBLE
+ if((unsigned long)(play_allowed+((z-1)&1)*65536)!=x)return 0;
+ if(play_wait()<0)return -1;
+#else
+ if((unsigned long)play_allowed!=x||play_frame)return 0;
+#endif
+ play_ack=0;play_sequence=z;play_selected=play_window=0;
+ __asm__ volatile("":::"memory");play_frame=(unsigned char*)(unsigned long)x;
+#ifdef ENGINE_PLAY_DOUBLE
+ return 1;
+#else
+ return play_wait();
+#endif
+}
 unsigned engine_play_control(unsigned index,unsigned value){
  #ifdef I960_DOOM_DMA
- if(index>=3&&index<=5)return fd_control(index,value);
+ if(index>=3&&index<=6)return fd_control(index,value);
  if(index==1&&fd_phase==1)return ~0u;
 #endif
  if(index==0)return play_frame?play_sequence:0;

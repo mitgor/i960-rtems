@@ -1,5 +1,11 @@
 # RTEMS on the DAC960PG
 
+The opt-in [two-buffer binary pipeline](../artifacts/doom-pipeline-20261014/README.md) now passes 52 frames,
+29 full audit pairs and STOP/drain. CRC-on delivers **1.396095 FPS**; explicit
+CRC-off **2.070201 FPS (+48.285%)**. Ownership and full system audits remain;
+CRC defaults on. WAD service during DMA waits and network-failure STOP handling
+are included. This is bounded acceptance, not a long-session gameplay claim.
+
 The opt-in [exclusive DMA1 proof](dma/README.md) now passes bounded card-to-host
 transfers with full audits. Task-owned preparation/checking now reduces the
 maximum IRQ gap from 111.481 ms to 10.710–10.990 ms; explicit STOP and session
