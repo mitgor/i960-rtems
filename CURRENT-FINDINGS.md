@@ -1,5 +1,14 @@
 # Current findings and evidence — 2026-10-15
 
+**Bulk FPS follow-up:** timestamp decomposition shows 82.4% of the apparent
+5.192 → 4.802 FPS drop comes from changed delivery backlog at the window endpoints.
+Card publication in the same window is 4.866 → 4.801 FPS; a post-restart check
+instead improves 4.581 → 4.833 host FPS. No consistent overall regression is
+established. Release timings include the shared audit-gate wait, not just the
+ioctl/card. Split those timings before changing scheduling. A sustained 5.19 FPS
+requires about 15.6 ms/frame less publication time. Reproducible analysis and
+next experiment: `artifacts/bulk-capture-20261015/README.md` (follow-up section).
+
 <!-- bulk-capture-current -->
 **2026-10-15 bulk guarded framebuffer capture accepted:** steady ping-pong now
 uses one 73,728-byte capture read instead of 72 small reads. Exact epoch/generation,

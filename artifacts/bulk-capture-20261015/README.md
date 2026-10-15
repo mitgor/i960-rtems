@@ -104,3 +104,67 @@ returned automatically. Public IPv6 HTTP is restored and independently returned
 `27cc6b32-2d2f-4701-ba88-1c6d34484a42`; relay PID 1555, supervisor 1552 owns
 `dac960auto`. Doom port 8087 is closed after the bounded test. Inspect current
 ownership before any future run; these PIDs are historical observations.
+
+## Follow-up: why the reported FPS fell
+
+The original 5.192 → 4.802 host-delivery comparison is retained above. A closer
+analysis of the same captures changes its interpretation: **most of that drop
+is an endpoint/queued-delivery effect**, not slower card publication.
+`analyze_fps.py BASELINE CANDIDATE` reproduces `fps-analysis.json`.
+
+For frames 21–50 (29 intervals):
+
+| Quantity | Chunked | Bulk |
+| --- | ---: | ---: |
+| Host delivery elapsed | 5.5857 s | 6.0397 s |
+| Card DMA-publication marker elapsed | 5.960 s | 6.040 s |
+| Card publication rate | 4.866 FPS | 4.801 FPS |
+| Change in host delivery lag over window | −374.3 ms | −0.3 ms |
+
+Host elapsed equals card elapsed plus the change in delivery lag. Thus **374.0
+ms of the 454.0 ms difference (82.4%)** is changed delivery-lag behavior; only
+80 ms is additional card publication time, about 1.3%. The old window began with
+more delayed delivery and caught up, inflating host FPS relative to publication.
+No clocks need absolute synchronization for this subtraction. Card markers are
+10 ms quantized; the percentages are descriptive estimates, not cycle-exact
+causal attribution. Marker time is DMA publication start, not renderer completion
+or browser paint. The intentional frame-17 stall and recurring full audits can
+change backlog/endpoint phase. Existing logs do not isolate every pause's cause.
+
+Retrospective checks (not replacements for the predeclared acceptance window):
+frames 21–59 give card publication 4.859 → 4.841 FPS; post-restart frames 69–98
+give host 4.581 → 4.833 FPS and card publication 4.574 → 4.882 FPS. This is not
+consistent evidence of a general throughput regression. Mean renderer time in
+the original window is 188.33 → 189.67 ms. Publication-wait telemetry for frames
+22–50 decreases from 8.62 ms to zero.
+
+The release-cost label also needs care. `PingPong.call()` starts timing **before**
+acquiring `io_gate`; its `ns` includes host lock wait, driver mutex wait and ioctl
+execution. Bulk frames 29–40 each show about 46 ms, while the remaining releases
+are below 10 ms. Full-audit reads hold that same gate in four-word groups. This
+makes audit-gate contention a strong candidate, but logs lack separate timestamps
+to prove it. The target `pp_control(11)` only validates generation and records a
+release; it does not wait for DMA cleanup. The driver uses 50–100 **microsecond**
+poll sleeps, not an intentional 50 ms release delay. Do not treat the observed
+22.33 ms mean as measured card execution time or simply add it to renderer time;
+the stages overlap.
+
+Recommended next experiment, retaining every full audit and ownership check:
+
+1. Record gate-wait and actual ioctl duration separately, plus audit group start/
+   end times and publication/capture/release timestamps. Run longer matched
+   chunk/bulk/bulk/chunk windows with stall/STOP tests outside the FPS window.
+2. If the gate dominates, let pending releases run between shorter audit groups
+   (still read every frozen word and every full capture). Publish the validated
+   immutable host copy to HTTP before waiting for release; if necessary use a
+   bounded release queue with exact generation tracking, deadlines and STOP drain.
+   This first targets latency; FPS benefit must be measured.
+3. For a genuine sustained 5.19 FPS, reduce publication interval from 208.28 to
+   192.68 ms: approximately **15.60 ms/frame**. Profile the remaining serial gaps
+   and the private Doom memory/renderer routines already on the parallel backlog.
+   An equivalent roughly 8% reduction in the ~190 ms renderer is a useful target,
+   not a promised gain. Do not restore the slow capture to recreate a favorable
+   short-window FPS number.
+
+This follow-up used saved evidence only; the restored public server was not
+interrupted. No runtime code or audit policy changed.

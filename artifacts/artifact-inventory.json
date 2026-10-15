@@ -2524,8 +2524,13 @@
     },
     {
       "path": "artifacts/bulk-capture-20261015/README.md",
-      "size": 5971,
-      "sha256": "f296f5b712919fbfc4c311cc371e498389c8ae0b621b73763b9a69eeee3a3dca"
+      "size": 9817,
+      "sha256": "4cab9c0ced6103bd9a38a8ac0ffc6057668b7aa55507fa27e7f3b299f10e6d37"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/analyze_fps.py",
+      "size": 1734,
+      "sha256": "2d51c683cb45a830167c81a9babe812f1fac9fbaecfef30748fe915c96892d8c"
     },
     {
       "path": "artifacts/bulk-capture-20261015/archive.sh",
@@ -2576,6 +2581,11 @@
       "path": "artifacts/bulk-capture-20261015/extract.py",
       "size": 657,
       "sha256": "6db72fe3601e002f465baa6aabdd0abaac485eaa61dd9d2d819522cee7340f08"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/fps-analysis.json",
+      "size": 2718,
+      "sha256": "de8a11c8ff4c4f516f652533cade121048866e97fd58a910b2ef5c20bad47774"
     },
     {
       "path": "artifacts/bulk-capture-20261015/frame-tamper-mac.json",

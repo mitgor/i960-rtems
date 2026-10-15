@@ -1,0 +1,85 @@
+{
+  "baseline": {
+    "21-50": {
+      "intervals": 29,
+      "host_seconds": 5.585708062000037,
+      "publication_seconds": 5.96,
+      "delivery_lag_change_seconds": -0.3742919379999625,
+      "host_fps": 5.191821641608703,
+      "publication_fps": 4.865771812080537
+    },
+    "21-59": {
+      "intervals": 38,
+      "host_seconds": 7.345939795000049,
+      "publication_seconds": 7.82,
+      "delivery_lag_change_seconds": -0.47406020499995094,
+      "host_fps": 5.172925597057625,
+      "publication_fps": 4.859335038363171
+    },
+    "51-59": {
+      "intervals": 8,
+      "host_seconds": 1.640109050000035,
+      "publication_seconds": 1.65,
+      "delivery_lag_change_seconds": -0.009890949999964871,
+      "host_fps": 4.87772444155456,
+      "publication_fps": 4.848484848484849
+    },
+    "69-98": {
+      "intervals": 29,
+      "host_seconds": 6.33012918899999,
+      "publication_seconds": 6.34,
+      "delivery_lag_change_seconds": -0.009870811000009638,
+      "host_fps": 4.581265110733279,
+      "publication_fps": 4.574132492113565
+    },
+    "renderer_mean_ms": 188.33333333333334,
+    "publication_wait_mean_ms_22_50": 8.620689655172415
+  },
+  "candidate": {
+    "21-50": {
+      "intervals": 29,
+      "host_seconds": 6.03971801900002,
+      "publication_seconds": 6.04,
+      "delivery_lag_change_seconds": -0.0002819809999801137,
+      "host_fps": 4.801548666472587,
+      "publication_fps": 4.801324503311259
+    },
+    "21-59": {
+      "intervals": 38,
+      "host_seconds": 7.900067371999967,
+      "publication_seconds": 7.85,
+      "delivery_lag_change_seconds": 0.050067371999967136,
+      "host_fps": 4.810085561381737,
+      "publication_fps": 4.840764331210191
+    },
+    "51-59": {
+      "intervals": 8,
+      "host_seconds": 1.6703492350000033,
+      "publication_seconds": 1.6,
+      "delivery_lag_change_seconds": 0.07034923500000323,
+      "host_fps": 4.789417585478754,
+      "publication_fps": 5.0
+    },
+    "69-98": {
+      "intervals": 29,
+      "host_seconds": 6.000627348999956,
+      "publication_seconds": 5.94,
+      "delivery_lag_change_seconds": 0.060627348999955366,
+      "host_fps": 4.832828021695605,
+      "publication_fps": 4.8821548821548815
+    },
+    "renderer_mean_ms": 189.66666666666666,
+    "publication_wait_mean_ms_22_50": 0
+  },
+  "window_decomposition": {
+    "extra_host_seconds": 0.4540099569999825,
+    "publication_seconds_change": 0.08000000000000007,
+    "delivery_lag_change_difference_seconds": 0.3740099569999824,
+    "lag_share_percent": 82.37924107906665
+  },
+  "target_5_19": {
+    "frame_budget_ms": 192.67822736030828,
+    "current_publication_interval_ms": 208.2758620689655,
+    "required_interval_reduction_ms": 15.59763470865721
+  }
+}
