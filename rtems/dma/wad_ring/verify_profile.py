@@ -5,7 +5,9 @@ from pathlib import Path
 NAMES=('read_total','frame_barrier','allocation_and_loans','staging_init','release_and_returns','guards','dma_start_to_completion','transfer_total','response_wait','service_yield','staging_copy','benchmark_transfer','benchmark_hardware','benchmark_guards','empty_bracket','benchmark_verify','response_transfer','allocation_only','free_only')
 def verify(path):
  p=Path(path);words=json.loads((p/'wad-profile.json').read_text())['words']
- assert len(words)==65 and words[:8]==[0x31525057,2,4166700,64,64,32768,0,0]
+ assert len(words)==65 and words[0]==0x31525057 and words[1] in (2,3,4) and words[2:6]==[4166700,64,64,32768]
+ if words[1]==2:assert words[6:8]==[0,0]
+ else:assert 0<words[6]<=100 and words[7]>0, 'peer service gap exceeds one-second acceptance bound'
  requests=[];replies={}
  for line in (p/'upload-journal.jsonl').read_text().splitlines():
   row=json.loads(line);q=bytes.fromhex(row['request'])
@@ -44,6 +46,6 @@ def verify(path):
  names=('runtime_read','fill_cache','miss_copy_to_doom','hit_copy_to_doom')
  def decode(w):return dict(seconds={n:w[2+i]/1000 for i,n in enumerate(names)},calls=dict(zip(names,w[6:10])),wire_bytes=w[10],copied_bytes=w[11],logical_reads=w[12],cache_hits=w[13],cache_line_misses=w[14])
  host=json.loads((p/'wad-ring-service.json').read_text())
- return dict(timer_hz_nominal=words[2],timer_is_elapsed_not_cpu=True,metrics=metrics,benchmark_bytes=64*32768,benchmark_hardware_MBps=(64*32768/1e6)/s('benchmark_hardware'),benchmark_checked_MBps=(64*32768/1e6)/s('benchmark_transfer'),response_wait_excluding_response_dma_seconds=s('response_wait')-s('response_transfer'),first_frame_cache=decode(cache[0]),final_cache=decode(cache[-1]),warm_restart_cache_ms=[cache[67][i]-cache[65][i] for i in range(2,6)],host=host)
+ return dict(peer_policy={2:"equal-timeslice",3:"all-service-passes",4:"owned-execution-only"}[words[1]],peer_yield=words[1]>=3,peer_max_gap_ms=words[6]*10 if words[1]>=3 else None,peer_completed_passes=words[7] if words[1]>=3 else None,timer_hz_nominal=words[2],timer_is_elapsed_not_cpu=True,metrics=metrics,benchmark_bytes=64*32768,benchmark_hardware_MBps=(64*32768/1e6)/s('benchmark_hardware'),benchmark_checked_MBps=(64*32768/1e6)/s('benchmark_transfer'),response_wait_excluding_response_dma_seconds=s('response_wait')-s('response_transfer'),first_frame_cache=decode(cache[0]),final_cache=decode(cache[-1]),warm_restart_cache_ms=[cache[67][i]-cache[65][i] for i in range(2,6)],host=host)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('capture');a=p.parse_args();print(json.dumps(verify(a.capture),indent=2))

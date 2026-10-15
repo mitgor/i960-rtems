@@ -9,6 +9,9 @@ code=r'''
 #include <stdlib.h>
 #include <setjmp.h>
 #include <stddef.h>
+#ifdef I960_PEER_YIELD
+unsigned exclusive_peer_report(unsigned i){return i?42:3;}
+#endif
 struct doom_heap {unsigned dummy;};static struct doom_heap heap;
 static struct {unsigned file_bytes;}api;
 static struct {unsigned sequence,accepted;}batch;
@@ -77,6 +80,11 @@ int main(void){unsigned char out[65536];unsigned i;
 #ifdef I960_WAD_PROFILE
  assert(wp_done==64&&wp_stats[11][0]==64&&wp_stats[12][0]==64&&wp_stats[13][0]==128&&wp_stats[15][0]==64);
  assert(wp_report(0)==0x31525057&&wp_report(3)==64&&wp_report(65)==~0u);
+#ifdef I960_PEER_YIELD
+ assert(wp_report(1)==4&&wp_report(6)==3&&wp_report(7)==42);
+#else
+ assert(wp_report(1)==2&&wp_report(6)==0&&wp_report(7)==0);
+#endif
  owned_running=1;assert(wp_report(0)==~0u);owned_running=0;
  wp_stats[14][1]=~0u;wp_stats[14][2]=0;{unsigned t=wp_now();wp_add(14,t);assert(wp_stats[14][2]==1);}
 #endif
@@ -100,7 +108,7 @@ int main(void){unsigned char out[65536];unsigned i;
 '''
 with tempfile.TemporaryDirectory() as d:
  p=Path(d);(p/'test.c').write_text(code)
- for flags in ([],['-DI960_WAD_PROFILE']):
+ for flags in ([],['-DI960_WAD_PROFILE'],['-DI960_WAD_PROFILE','-DI960_PEER_YIELD']):
   subprocess.run(['cc',*flags,'-std=c99','-fsanitize=address,undefined','-fno-sanitize-recover=all','-I'+str(root),str(p/'test.c'),'-o',str(p/'test')],check=True)
   subprocess.run([str(p/'test')],check=True)
 print('PASS ring target: two-slot read, wrap/reuse, EOF padding, active lease audits, malformed completion, host timeout, hardware quarantine, 256 descriptor mutations, STOP before start and during host wait')

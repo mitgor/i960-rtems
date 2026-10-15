@@ -1,5 +1,33 @@
 # Repository guidance for Claude Code
 
+<!-- peer-yield-current -->
+**2026-10-15 optional worker service yielding tested:** reviewed parallel chat
+“Find i960MC board design guidance” and implemented `--peer-yield`. Worker 0
+completes every network/control/shared-heap pass, then yields only while owned
+application code runs. Both workers retain priority 2, controller priority 1,
+10 ms ticks and original STOP/drain; ownership checks and full audits remain.
+Matched Doom delivery improves **4.517 → 5.273 FPS (+16.73%)**; first-frame
+execution **116.923 → 100.105 s**, upload **79.615 → 80.086 s**, warm restart
+**2.780 → 2.830 s** (no restart improvement). 100 frames, 58 full paired audits,
+held-buffer STOP, global heap drain, exact baseline pixels/palettes, Linux/Mac
+replay and 35 capture mutation rejections pass. Four known native pixel
+differences remain. Schema 4 adds peer telemetry; maximum completed-service gap
+was 200 ms, sampled pass count 45,569, bounded by final worker progress 45,751.
+**Keep opt-in:** final maximum IRQ gap was **59.855 ms**, versus baseline
+10.546 ms and first candidate 10.623 ms. Aggregate capture cannot locate its
+cause. Functional audit success does not qualify worst-case interrupt latency.
+Next instrument long IRQ gaps with task/PC/phase attribution before default
+promotion. Timer CPU attribution is phase-biased by yielding; use measured
+wall/FPS, not a claimed CPU-share gain. First all-session-yield candidate remains
+archived: 5.321 FPS but upload regressed to 106.514 s, so preparation now retains
+original scheduling. See `artifacts/peer-yield-20261015/README.md` and
+`rtems/exclusive/PEER-YIELD.md`. Historical ownership IDs below are superseded;
+check actual remote ownership before hardware work.
+Public IPv6 HTTP restored and independently verified: 200 / 2,891 bytes; boot
+`74c0c2d0-c166-4185-9c75-8754a93ce11d`, relay 1658 (supervisor 1656)
+owns `dac960auto`. Bounded Doom port 8087 is closed.
+<!-- /peer-yield-current -->
+
 <!-- screen-copy-current -->
 **2026-10-15 remaining screen copy optimized and card-accepted:** fixed 320×200
 indexed scale-one presentation uses one exact unrolled aligned word copy rather

@@ -25,6 +25,10 @@ static unsigned wr_control(unsigned,unsigned),wr_isolation_snapshot(unsigned*);
 #ifdef I960_DOOM_OWNED
 static void owned_bind(void);
 static volatile unsigned owned_generation,owned_running,owned_stop_requested;
+#ifdef I960_PEER_YIELD
+#define PEER_YIELD_ACTIVE() owned_running
+#include "../exclusive/peer_yield.h"
+#endif
 #endif
 #ifdef I960_DOOM_CHECKPOINTS
 static int checkpoint_init(void);

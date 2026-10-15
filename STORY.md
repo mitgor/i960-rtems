@@ -3566,6 +3566,32 @@ The copy is no longer the large easy target. Doom still spends roughly two
 hundred milliseconds of wall time rendering a frame, and that is where the
 next serious question lives.
 
+## Letting the other worker finish its sentence
+
+A parallel investigation asked whether the original RAID firmware was stealing
+our time. In exclusive mode it was parked. The competitor was ours: a second
+RTEMS worker, at the same priority as Doom, continually doing useful checks and
+then taking another turn. Raising Doom's priority would have made the pictures
+happier by making the control path less dependable. That was a poor bargain.
+
+Instead, the peer finished a complete service pass and yielded the rest of its
+turn while the owned engine was running. Nothing skipped its heap check. Neither
+worker went to sleep, and STOP kept its familiar two-worker rendezvous. The first
+experiment reached 5.32 FPS, but made upload take 107 seconds. That was a useful
+reminder that a scheduling policy has more than one customer. Restricting the
+yield to owned execution brought upload back to 80 seconds and delivered 5.27 FPS,
+up from 4.52. Startup execution fell from 117 seconds to 100.
+
+One hundred pictures, fifty-eight full paired audits, held buffers, STOP and heap
+drain all passed. The pictures still matched the previous card run, including
+the four pixels where the native comparison already disagreed. But the final
+interrupt report had a 59.9 ms maximum gap where the earlier runs had roughly
+10.6 ms. The capture could tell us it happened, not where. So the faster policy
+stays an option, not the default. The next instrument needs to catch the long gap
+in the act. Even the CPU samples needed care: yielding near the timer changes
+which worker the timer sees. The frame rate was measured; a claim that we had
+magically doubled the processor would not have been.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

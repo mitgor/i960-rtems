@@ -10433,6 +10433,316 @@
       "sha256": "8a49df0ad72b7e01c74f7646d6f8df53e8e03414e21095e0acf75aadcd7316ba"
     },
     {
+      "path": "artifacts/peer-yield-20261015/README.md",
+      "size": 7817,
+      "sha256": "902303444577dc4bcf02141a04b8807ef2ba902e16778610437c40939cbc880f"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/build-owned.log",
+      "size": 403,
+      "sha256": "0181b537276529d7e6feae0dfaaeb80a746374e921afdeb7d372955d5050b5da"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/build.sh",
+      "size": 2963,
+      "sha256": "7be10e829a192db12fca15e4fe15d5f684a6ed86cca9408c86dbc1f6e7e076cd"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/candidate-owned.tar.gz",
+      "size": 14710868,
+      "sha256": "388ededad3c2f8205de228fe42132f4b75a1bec5dc81b9b5475c6cfe63fda07c"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/candidate-owned.tar.gz.sha256",
+      "size": 89,
+      "sha256": "186fd6f69a96fad00d6a7563dbe052428fbec095bcc652ce802260777be6ed1c"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/card-owned.tar.gz",
+      "size": 41995399,
+      "sha256": "ec70867df64917559a1a849ff20c7632504819687dff80abd4fcf141f93b206b"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/card-owned.tar.gz.sha256",
+      "size": 84,
+      "sha256": "76a22fe940791d30c4509a0c81229d970729f27e2704b335c6faf9ba4d594982"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/compare.py",
+      "size": 2501,
+      "sha256": "444701206b5baa42dfebe47d2afbe3775a1c6314b341afbf09c9b6b8b8293e26"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/comparison.json",
+      "size": 3417,
+      "sha256": "e33c7b994e149bb802042532d6db23ebd0103d3052931ec427cbaa555a4256fa"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/final-ram-audit.json",
+      "size": 1721,
+      "sha256": "e215167f922cfc13973d075783981ccbce3fc9bc9fe181d4d5b8b9adb8c05860"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/frame-tamper.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/frames.json",
+      "size": 1207,
+      "sha256": "d08d596eb77469d5fdd55aa6d4561bf8b7cc81840f6f8eb6399a730b73856f11"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/http-observations.jsonl",
+      "size": 23318,
+      "sha256": "433161d94f7813840953d061aad90abe4f44007fe2106407fa4b21063b6d6e27"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/http-observer.log",
+      "size": 23318,
+      "sha256": "433161d94f7813840953d061aad90abe4f44007fe2106407fa4b21063b6d6e27"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/http-verification.json",
+      "size": 166,
+      "sha256": "2139bf190185d540b75235f3809743876eda56175c929e20ed7d004d13b9275a"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/local-replay.log",
+      "size": 11284,
+      "sha256": "fa4308ff9a5c8416b3460367adbcc9cc18590ff4de2a50a7e8ce7c2ec671d458"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/native-comparison.json",
+      "size": 54,
+      "sha256": "0a80ca9da4e8092f70a4291849442fd80f8d4bb1e46ddc7866f415396df52e4c"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/native-frames.py",
+      "size": 2432,
+      "sha256": "1a4f8d30e079a4dfac50013bd883f377201700e23ef82bd037b16bd9277810c0"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/native-owned.log",
+      "size": 149,
+      "sha256": "db50e0107d7d0679d42aa4d2023342a530c6fbc7dbe870931a41cb4397554be9"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/native-owned.py",
+      "size": 2432,
+      "sha256": "ac43f8a25b0f7bb5f43446287d0117042ad81103b377002da9ae8c5360ceb658"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/peer-owned-test.log",
+      "size": 103,
+      "sha256": "eb0bd1f3831e6f939e741bca0e68ce6d71ad0ea4c919a9b883dafb7b5c1f0e50"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/profile-tamper.json",
+      "size": 54,
+      "sha256": "7be29d0b9f80ab9d0a8f47ac23e7e431d887ab0e1df4cfd2340a3022d3102a79"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/profile.json",
+      "size": 3228,
+      "sha256": "89686331c5ad54287906cd9f214e8b884113bc6a09003a594ad837743e1cdf97"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/rebuild-kernel.sh",
+      "size": 1525,
+      "sha256": "9d54fc439cc77f520492979c805643eee1c974da1b24491e48b29a6b9d1b8d8f"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/rebuild-owned.sh",
+      "size": 1525,
+      "sha256": "e515ccab246d1246891c0499091ef335162257edcf0ee67d6b30424629ecf6a4"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/replay-owned.sh",
+      "size": 586,
+      "sha256": "43390b57328098d2b2a8cd889e05f9025196a4107b4da66fe9e9718dbb84a01b"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/replay.sh",
+      "size": 579,
+      "sha256": "798a7c05ee0e3aea96dba85729678e4690893c86a2ee5fd1f26002081a88eda2"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/restoration.json",
+      "size": 325,
+      "sha256": "f3a627c119127560fb2b7483ebfa08718dc017ed47bcd39d69c935923f88615a"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/restore-relay.log",
+      "size": 1300,
+      "sha256": "ee909437d875257beafbb57909a65bb711784c7102307da65b83cdacd59ff6d0"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/restore.sh",
+      "size": 858,
+      "sha256": "33f32ac91c2b53c8632e500e719a7b7bccb80e1298d083084a90b20639a01186"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/run-owned.sh",
+      "size": 866,
+      "sha256": "34af134327c9f459bcbe95e29b3efdb7a4302d098566df336ca1f7434b37b5f6"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/run.sh",
+      "size": 864,
+      "sha256": "d9eee77415ffa69b0d2c4845ffbe2eb27a8c4dd1efda8925c6b5c4ec88d6fa3f"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/source-check.json",
+      "size": 107802,
+      "sha256": "8aaaf72689fb95b941b32b85cccdfa8c85bfb74b1cb77550e70c332a52a71d8b"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/system.json",
+      "size": 6381,
+      "sha256": "34a2d768db6ed470871fd34f63dbed3b3b395764abebddd08286e56531a75ab4"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/target-owned-test.log",
+      "size": 201,
+      "sha256": "5e3ae59b469262a73720012ec1079cf17987aca4f5d4977e4b5a7b1c267cf55c"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/baseline-profile.json",
+      "size": 3189,
+      "sha256": "5a84988fbeea6b5b294ad615db5824dd936ede7257faa01e158daa2ce864b29b"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/baseline-system.json",
+      "size": 6383,
+      "sha256": "4b9d7fc4f0cc1191078e2c3c6f60a3715ec8c84cc7b7f7c723ae898b2b993e3e"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/candidate.tar.gz",
+      "size": 14704299,
+      "sha256": "ce7543a8ef624aea44b00b50ecb69cf047d06a5bb9dded2f14fab1988bb59906"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/candidate.tar.gz.sha256",
+      "size": 83,
+      "sha256": "c1283caf4b7eab3cb2516bda1789db3d4ea6249c79893c67d5fa1b739824f62b"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/card.tar.gz",
+      "size": 41967137,
+      "sha256": "e812fb2499765da968ab9632e12153dae4c788969e6e908b44bac2542ad61651"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/card.tar.gz.sha256",
+      "size": 78,
+      "sha256": "3445696dc39404346355af863c0a53a251c195e35ced68cbeaf90ad7548397f9"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/comparison.json",
+      "size": 3457,
+      "sha256": "ac23dad7017d7b148205577e091f4ce00074ef6fd1aa4076e9ee5143d08670a1"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/final-ram-audit.json",
+      "size": 1721,
+      "sha256": "583a7112a71b513498611288a92d283be0a763a097d6b3e1e38c63fdcd58768b"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/frame-tamper.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/frames.json",
+      "size": 1212,
+      "sha256": "b409bf843a2e6a8db5c19c3ffd4ed11311f46bd3db4d3e85fcc520ebf0bab7a6"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/http-observations.jsonl",
+      "size": 23617,
+      "sha256": "fd4b06e7bbf88d9b54e0eadc40842e396164fd96d95092f119db6998fe7fb602"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/http-observer.log",
+      "size": 23617,
+      "sha256": "fd4b06e7bbf88d9b54e0eadc40842e396164fd96d95092f119db6998fe7fb602"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/http-verification.json",
+      "size": 113,
+      "sha256": "af8d9f1847f96877acc599da891a82a382b140a72fb56f9ca8de163116f23c88"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/local-replay.log",
+      "size": 11252,
+      "sha256": "a802a80ff39205b6637963d9b114453e022ac4b0a41e56a7fd17e55adcc628dd"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/native-comparison.json",
+      "size": 54,
+      "sha256": "0a80ca9da4e8092f70a4291849442fd80f8d4bb1e46ddc7866f415396df52e4c"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/profile-tamper.json",
+      "size": 54,
+      "sha256": "7be29d0b9f80ab9d0a8f47ac23e7e431d887ab0e1df4cfd2340a3022d3102a79"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/profile.json",
+      "size": 3188,
+      "sha256": "f6818eb26557c72ab87afceeb17d7e94b42805942d11efff13bdc156d14452f3"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/source-check.json",
+      "size": 107802,
+      "sha256": "bb3ba94f50c85e9acd5bca6c6ade5480ac728db19f789704bd09a3c545785c3e"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/system-counter-crosscheck.json",
+      "size": 6384,
+      "sha256": "0891be932b931358a60c06b5f33a96a2e65910b37ddd290ca27b3074eae5233d"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/system.json",
+      "size": 6384,
+      "sha256": "014f48973207d9d9b11f2ece51e0b446c3a1b1e428994b0409d926205c4c844e"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/wad-tamper.json",
+      "size": 101,
+      "sha256": "3c1461c46ff9ccca70dfe1d96373c1802e95a71a53a28cf29e1e26da4f66c782"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/v1/wad.json",
+      "size": 269,
+      "sha256": "718c2bf2de8fcfbe14bb947193bd8526f18bd4bf4bd666397df96f8c89bf2a00"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/verify-owned.sh",
+      "size": 654,
+      "sha256": "98a0e6b95520047dc55a7e08ea0b8df84f6f6b47a88c85329d79b30b23ac28e8"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/verify-remote.sh",
+      "size": 653,
+      "sha256": "7b69ef7ba0a7cac48ce78690173f77824d636c24bc174f639e5b8a205116fec3"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/wad-tamper.json",
+      "size": 101,
+      "sha256": "3c1461c46ff9ccca70dfe1d96373c1802e95a71a53a28cf29e1e26da4f66c782"
+    },
+    {
+      "path": "artifacts/peer-yield-20261015/wad.json",
+      "size": 269,
+      "sha256": "944954260559c19500120fcfa04902d2c62f4a700ac49d47ea0679b38eb1dc67"
+    },
+    {
       "path": "artifacts/postinit-preflight-20261010/experimental-full-rom.bin",
       "size": 524288,
       "sha256": "2739ea3e1efbdfec928c9b779317de3025afee3f0c31b20ac7263b9573ecb657"

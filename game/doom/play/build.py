@@ -2,7 +2,7 @@
 """Fresh-checkout interactive Doom build. Never opens the card or programs flash."""
 import argparse,hashlib,json,shutil,subprocess,tarfile,zipfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--dma',action='store_true');p.add_argument('--pipeline',action='store_true');p.add_argument('--pingpong',action='store_true');p.add_argument('--wad-ring',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--frame-profile',action='store_true');p.add_argument('--no-fnv',action='store_true');p.add_argument('--direct-frame',action='store_true');p.add_argument('--presentation-test',action='store_true');p.add_argument('--low-detail',action='store_true');p.add_argument('--detail-test',action='store_true');p.add_argument('--cpu-profile',action='store_true');p.add_argument('--column-test',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--dma',action='store_true');p.add_argument('--pipeline',action='store_true');p.add_argument('--pingpong',action='store_true');p.add_argument('--wad-ring',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--peer-yield',action='store_true');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--frame-profile',action='store_true');p.add_argument('--no-fnv',action='store_true');p.add_argument('--direct-frame',action='store_true');p.add_argument('--presentation-test',action='store_true');p.add_argument('--low-detail',action='store_true');p.add_argument('--detail-test',action='store_true');p.add_argument('--cpu-profile',action='store_true');p.add_argument('--column-test',action='store_true');a=p.parse_args()
 assert not (a.column_test and (a.detail_test or a.presentation_test))
 if a.column_test:a.cpu_profile=True;a.no_fnv=True;a.direct_frame=True;a.low_detail=True
 if a.detail_test:a.cpu_profile=True;a.no_fnv=True;a.direct_frame=True
@@ -10,6 +10,7 @@ if a.cpu_profile:a.frame_profile=True
 if a.presentation_test:a.frame_profile=True
 assert not (a.detail_test and (a.presentation_test or a.low_detail))
 if a.frame_profile or a.no_fnv or a.direct_frame or a.low_detail:assert a.pipeline
+if a.peer_yield:assert a.wad_profile
 if a.wad_profile:assert a.wad_ring and a.frame_profile
 if a.wad_ring:assert a.pingpong
 if a.pingpong:assert a.pipeline
@@ -59,10 +60,10 @@ if a.pingpong:
  for test in ('test_target.py','test_host.py','test_client.py','test_protection.py','test_wad_handoff.py'):run(['python3',r/'rtems/dma/pingpong'/test],'pingpong-'+test+'.log')
 if a.dma:
  for test in ('test_frame_target.py','test_frame_host.py','test_frame_replay.py','test_wad_target.py','test_wad_host.py','test_wad_client.py'):run(['python3',r/'rtems/dma'/test],test+'.log')
-run(['python3',r/'rtems/build.py','--work',w,'--cross',a.cross,'--profile','residentnet','--secondary-reset','--fault-owner','--extra-ram','--general-heap','--heap-shared','--queue-reclaim','--owned-mib','12','--resident-upload','--doom-heap','--doom-shared','--doom-runtime','--doom-engine',w/'admission','--wad-batch','--wad-poll','--dispatch-atomic',*(['--doom-dma'] if a.dma else []),*(['--wad-ring'] if a.wad_ring else []),*(['--wad-profile'] if a.wad_profile else [])],'kernel.log')
+run(['python3',r/'rtems/build.py','--work',w,'--cross',a.cross,'--profile','residentnet','--secondary-reset','--fault-owner','--extra-ram','--general-heap','--heap-shared','--queue-reclaim','--owned-mib','12','--resident-upload','--doom-heap','--doom-shared','--doom-runtime','--doom-engine',w/'admission','--wad-batch','--wad-poll','--dispatch-atomic',*(['--doom-dma'] if a.dma else []),*(['--wad-ring'] if a.wad_ring else []),*(['--wad-profile'] if a.wad_profile else []),*(['--peer-yield'] if a.peer_yield else [])],'kernel.log')
 run(['python3',r/'rtems/residentnet/ram_audit.py',w/'residentnet'],'ram-audit.json')
 run(['python3',r/'rtems/residentnet/build_transport.py','--payload',w/'residentnet/kernel.bin','--out',w/'residentnet-module'],'transport.log')
 if a.dma:run(['python3',r/'rtems/dma/test_wad_poll.py','--generated',w/'residentnet-module/dac960auto.c'],'test_wad_poll.py.log')
 run(['make','-C','/lib/modules/'+subprocess.check_output(['uname','-r'],text=True).strip()+'/build','M='+str(w/'residentnet-module'),'modules'],'module.log')
-(w/'play-build.json').write_text(json.dumps(dict(wad_profile=a.wad_profile,wad_ring=a.wad_ring,pipeline=a.pipeline,dma=a.dma,work=str(w),repository=str(r),cross=a.cross,wad_sha256=hashlib.sha256(wad).hexdigest(),kernel_sha256=hashlib.sha256((w/'residentnet/kernel.bin').read_bytes()).hexdigest(),module_sha256=hashlib.sha256((w/'residentnet-module/dac960auto.ko').read_bytes()).hexdigest()),indent=2)+'\n')
+(w/'play-build.json').write_text(json.dumps(dict(peer_yield=a.peer_yield,wad_profile=a.wad_profile,wad_ring=a.wad_ring,pipeline=a.pipeline,dma=a.dma,work=str(w),repository=str(r),cross=a.cross,wad_sha256=hashlib.sha256(wad).hexdigest(),kernel_sha256=hashlib.sha256((w/'residentnet/kernel.bin').read_bytes()).hexdigest(),module_sha256=hashlib.sha256((w/'residentnet-module/dac960auto.ko').read_bytes()).hexdigest()),indent=2)+'\n')
 print('Build complete. Card untouched. Run game/doom/play/run.py only on the qualified, free card.')

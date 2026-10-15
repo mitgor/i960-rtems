@@ -47,6 +47,9 @@ static volatile unsigned int ticks,stop,progress[2],done[2],fault;
 static volatile unsigned doom_cpu_samples;
 unsigned doom_profile_samples(void){return doom_cpu_samples;}
 #endif
+#ifdef I960_PEER_YIELD
+unsigned peer_service_complete(unsigned);
+#endif
 static Context_Control fatal_context;
 static unsigned int resident,resident_epoch,resident_state,stop_reason,snapshot[64],snapshot_id,stop_sent;
 static rtems_id controller;
@@ -217,6 +220,11 @@ static void Worker(rtems_task_argument id){
 #endif
 #endif
   progress[id]++;
+#ifdef I960_PEER_YIELD
+  if(resident&&!id&&!stop){
+   if(peer_service_complete(ticks))CHECK(rtems_task_wake_after(RTEMS_YIELD_PROCESSOR));
+  }
+#endif
  }
  mask();
 #ifdef I960_HEAP_SHARED
