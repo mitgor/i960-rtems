@@ -1,5 +1,35 @@
 # Repository guidance for Claude Code
 
+<!-- dma-pingpong-current -->
+**2026-10-15 card-initiated ping-pong DMA accepted (v10):** two persistent host
+buffers, task-owned payload/completion chains, explicit generation release.
+Synthetic producer **7.921 → 14.242 FPS (+79.80%)**, with 256 delivered + 2 held
+frames, **20 full audit pairs**, five full mailbox comparisons, two 3-second host
+stalls, resumed delivery, owned STOP and global drain. Linux/Mac full replay and
+24 evidence mutations pass. Five full system snapshots validated active owned
+DMA leases. Card start→host observation estimated mean **8–30 ms**; full validated
+capture/release **62–83 ms**. These are not Doom/browser FPS or pure DMA latency.
+The final host queries unrelated Upload completion once/second, immediately on
+STOP. Ownership checks, full captures, guards and audits remain. Native tests
+cover active-transfer STOP, hardware timeout quarantine and the stalled wait bound.
+The protected table covers 145 pages; offline capacity check and per-page mutation
+tests pass; kernel tail 304 bytes. The faster v9 attempt exposed a snapshot path
+that did not recognize owned DMA. V10 validates the exact lease before changing
+only its local report; foreign DMA and descriptor corruption remain errors.
+All earlier failures are preserved, including v9 whose frame/STOP pass is not full
+system acceptance. See `artifacts/dma-pingpong-20261015/README.md` and
+`rtems/dma/pingpong/README.md`. Doom remains excluded from admission: WAD and
+frame traffic share DMA1 and need explicit coordination, followed by browser,
+input/disconnect and pixel/palette acceptance. No flash change or RAM remap.
+Final archives are local and replayed; normal reboot released the test module.
+Public IPv6 HTTP is restored and verified 200 from the Mac. Current boot
+`2225b1d9-c77e-4cb6-900e-9841154cd719`, supervisor 2569 / relay 2571 owns
+`dac960auto`. See `restoration.json`; inspect actual owner before card work and
+stop this relay normally. Never force-unload retained mappings.
+Older ownership/service notes below are historical.
+<!-- /dma-pingpong-current -->
+
+
 <!-- doom-columns-current -->
 **Column kernels accepted in bounded low-detail testing, 2026-10-15:** baseline
 **3.478 FPS**, specialized C **3.857 (+10.89%)**, i960 assembly **3.821 (+9.86%)**.

@@ -3290,6 +3290,78 @@ There were still planes to draw, a screen to copy and another half of the CPU's
 time to account for. The card had not needed a new language. It had needed one
 less conversation per pixel.
 
+## Two landing pads, one receipt
+
+The next suggestion was appealingly direct: let the card put the next picture
+in host RAM itself. Give it two places to land. While Linux reads one, the card
+fills the other. Stop asking the RAID controller for permission to move every
+single frame.
+
+That needs two kinds of ownership. The card cannot reuse its source until DMA
+really finishes; the host destination cannot be overwritten until Linux releases
+it. I built a small producer to separate those rules from Doom. Each transfer
+has two descriptors: the picture, then a receipt containing its generation and
+address. Linux checks that receipt in its own RAM. It still has to release the
+slot, but it no longer has to start each transfer or fetch the receipt over the
+mailbox. Two full landing pads mean waiting, not overwriting a picture somebody
+is still reading.
+
+The first thing the real card taught us had nothing to do with DMA. The larger
+service crossed another code page. Our protection table had room for 144 pages;
+the image now needed 145. Admission refused to proceed. That was a useful failure:
+the right fix was another table entry, plus an offline capacity check, rather
+than leaving a page out of the audit. A native test now corrupts every one of
+the 145 modeled pages and checks that each corruption is caught. There are 304
+bytes left at the end of the mutable kernel region.
+
+The next attempt got through RAM admission and networking, then stopped on a
+missing Python import path before the producer started. I had tested the C
+pieces but missed that integration detail. The runner now imports this client
+before taking ownership of the card. The next host check caught a timeout value outside the uploader's allowed
+budgets. Then the first real baseline request exposed a missing fallback: before
+ping-pong activation, the new service had forgotten to service the old path.
+That produced a pending request, not an accepted measurement. Those failures are
+preserved too, and the tests now cover the full client sequence and the switch
+from host-started DMA to card-started DMA.
+
+The completed run delivered 80 frames and deliberately left two more waiting in
+host memory. Both three-second stalls left the buffers unchanged. Delivery
+resumed after the first; STOP ended the engine during the second. All 17 complete
+system audits passed, along with every captured byte, five mailbox comparisons
+and the final allocation drain. The little producer moved from 8.12 to 9.82 frames
+per second. This was a transport proof, not Doom suddenly reaching ten FPS.
+
+The timing also found an old waiter still hanging around. Although frame
+completion now lived in host memory, the generic uploader still asked the card
+whether the entire engine had returned after every frame. Those questions cost
+about 42.5 milliseconds each. Asking that separate question once a second made the producer faster, and
+uncovered another old assumption. A full system snapshot saw our own running
+DMA channel and marked it unexpected. The heap checker already knew how to
+validate that exact lease; the snapshot path did not. Previously the host lock
+had kept those snapshots away from active transfers. The new overlap removed
+that accidental protection.
+
+I did not accept the faster run just because the pictures and STOP passed. The
+full audit had failed. The snapshot now validates the same pinned source,
+generation, destination and descriptor chain before representing the transaction
+as owned activity in its local report. A wrong descriptor or another active DMA
+channel still raises an error. The next run explicitly required an audit to
+catch DMA in progress. It caught five.
+
+That final run delivered 256 frames, held two more, passed 20 complete audit
+pairs and drained cleanly. The synthetic producer went from 7.92 to 14.24 frames
+per second, about eighty percent faster. The host observed completion an
+estimated 8–30 milliseconds after the card's start marker; copying, checking,
+logging and releasing the whole capture brought that to 62–83 milliseconds.
+Those are coarse-clock transport measurements, not a claim about Doom's render
+time or what a browser has painted. Every capture can be replayed, and corrupted
+copies are rejected.
+
+Doom still needs one more piece of plumbing before using this: its WAD transfers
+and the frame transfers both program DMA1. They need an explicit turn-taking
+rule. The two landing pads work; we still have to keep the game from sending
+another aircraft down the same runway.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

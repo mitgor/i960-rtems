@@ -23,7 +23,7 @@ def validate_large(w,mib,parked=False,revision=None,transition=False):
   assert w[29:31]==([131072,1] if complete else [0,0])
  if w[26]==3:
   assert mib in (10,12) and w[31:34]==[0xc02d0040,8388608,1]
-  assert 134<=w[34]<=144 and w[35]>=w[34]*5 and w[36:38]==[0,0]
+  assert 134<=w[34]<=145 and w[35]>=w[34]*5 and w[36:38]==[0,0]
   assert w[38]==0xc0f94000 and w[38]<w[39]<=0xc0f9bff0 and w[39]%16==0
   assert w[40:]==[0]*24
  else:assert w[31:]==[0]*33

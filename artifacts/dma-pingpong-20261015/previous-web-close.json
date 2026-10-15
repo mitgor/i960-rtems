@@ -1,0 +1,11 @@
+{
+  "steps": 748114,
+  "restored": true,
+  "unloaded": true,
+  "driver_bound": false,
+  "latency_ms": {
+    "min": 59.000269,
+    "max": 110.108091,
+    "mean": 61.3999527828042
+  }
+}

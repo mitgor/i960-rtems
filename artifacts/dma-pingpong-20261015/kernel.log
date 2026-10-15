@@ -1,0 +1,178 @@
+{
+  "link_base": 0,
+  "base": 2097152,
+  "entry": 2097200,
+  "memory_bytes": 320,
+  "file_bytes": 184,
+  "relocations": [
+    4,
+    32,
+    112,
+    124,
+    148,
+    180
+  ],
+  "sections": [
+    {
+      "name": ".text",
+      "offset": 0,
+      "file_bytes": 176,
+      "memory_bytes": 176,
+      "flags": 1
+    },
+    {
+      "name": ".data",
+      "offset": 176,
+      "file_bytes": 8,
+      "memory_bytes": 8,
+      "flags": 2
+    },
+    {
+      "name": ".bss",
+      "offset": 192,
+      "file_bytes": 0,
+      "memory_bytes": 128,
+      "flags": 2
+    }
+  ],
+  "sha256": "62b87c4b41024c820f57242b1657e72b6d4d0d7d7292aae89478cd571279a724",
+  "linker_bytes_match_all_addresses": true,
+  "link_addresses": [
+    65536,
+    2097152,
+    3224174672
+  ],
+  "final_emit_relocs_present": false,
+  "negative_tests": [
+    "wrong_machine",
+    "wrong_kind",
+    "huge_sections",
+    "truncated",
+    "misaligned_base",
+    "overflow_base",
+    "foreign_relocation",
+    "escaping_addend",
+    "duplicate",
+    "stripped_relocations"
+  ],
+  "executed_on_card": false
+}
+{
+  "link_base": 0,
+  "base": 0,
+  "entry": 0,
+  "memory_bytes": 2144,
+  "file_bytes": 2144,
+  "relocations": [
+    136,
+    168,
+    400,
+    480,
+    560,
+    596,
+    708,
+    800,
+    876,
+    908,
+    972,
+    1008
+  ],
+  "sections": [
+    {
+      "name": ".text",
+      "offset": 0,
+      "file_bytes": 2144,
+      "memory_bytes": 2144,
+      "flags": 1
+    }
+  ],
+  "sha256": "c11edadb4fef02c2c1c8dfc1bd8608dbfb7a531544e990b7d6851c5b075d0081",
+  "linker_addresses": [
+    65536,
+    2097152,
+    3224174672
+  ]
+}
+{
+  "link_base": 0,
+  "base": 0,
+  "entry": 400,
+  "memory_bytes": 1872,
+  "file_bytes": 1668,
+  "relocations": [
+    8,
+    32,
+    68,
+    92,
+    116,
+    148,
+    164,
+    232,
+    252,
+    276,
+    308,
+    316,
+    336,
+    360,
+    376,
+    384,
+    608,
+    616,
+    656,
+    688,
+    708,
+    716,
+    744,
+    752,
+    764,
+    952,
+    964,
+    980,
+    1004,
+    1016,
+    1088,
+    1164,
+    1216,
+    1224,
+    1240,
+    1264,
+    1272,
+    1316,
+    1340,
+    1364,
+    1372,
+    1412,
+    1428,
+    1452,
+    1468,
+    1484
+  ],
+  "sections": [
+    {
+      "name": ".text",
+      "offset": 0,
+      "file_bytes": 1664,
+      "memory_bytes": 1664,
+      "flags": 1
+    },
+    {
+      "name": ".data",
+      "offset": 1664,
+      "file_bytes": 4,
+      "memory_bytes": 4,
+      "flags": 2
+    },
+    {
+      "name": ".bss",
+      "offset": 1680,
+      "file_bytes": 0,
+      "memory_bytes": 192,
+      "flags": 2
+    }
+  ],
+  "sha256": "ce65aa2634f9a90fbfa53a7ce8a0b87d83c6d05307de111ad68a5b811ec00173",
+  "result_offset": 1840,
+  "setjmp_source_sha256": "985670ef149136309d06a65a982467ffbd7a3606ec470f1d382e0f07d2132237"
+}
+   text	   data	    bss	    dec	    hex	filename
+ 175888	    512	 261312	 437712	  6add0	/home/mit/i960-pingpong-20261015/build/residentnet/kernel.elf

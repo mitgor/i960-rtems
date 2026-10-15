@@ -21,7 +21,13 @@ unsigned frame_dma_diagnostic(unsigned i){
  if(i<16)return i==1?fd_phase:fd_report[i];
  switch(i){case 16:return fd_stage;case 17:return fd_loops;case 18:return FD_R(0x1444);case 19:return FD_R(0x144c);case 20:return FD_R(0x1450);case 21:return FD_R(0x1460);case 22:return FD_R(0x1440);case 23:return FD_S(0x1204);default:return 0;}
 }
-static volatile unsigned fd_storage[16] __attribute__((aligned(16)));
+#ifdef ENGINE_PINGPONG
+#include "pingpong/state.h"
+#define FD_STORAGE_WORDS 24
+#else
+#define FD_STORAGE_WORDS 16
+#endif
+static volatile unsigned fd_storage[FD_STORAGE_WORDS] __attribute__((aligned(16)));
 #define fd_desc ((volatile unsigned*)(((unsigned long)fd_storage+31)&~31UL))
 /* A scheduled peer may validate heap/isolation while this worker is paused
  * inside its owned transaction. Normalize only that exact DMA1 lease in the
@@ -37,8 +43,20 @@ unsigned frame_dma_isolation_snapshot(unsigned *w){unsigned i;
     fd_report[15]>0xc0f8bfe0u||(fd_report[15]&31))return 0;
  for(i=0;i<8;i++){
   unsigned expected=i==1?fd_destination:i==3?fd_report[4]:i==4?65536:i==5?7:i>=6?0xfacefeed:0;
+  #ifdef ENGINE_PINGPONG
+  if(pp_active&&i==0)expected=FD_ADDR(PP_NEXT);
+#endif
   if(fd_desc[i]!=expected)return 0;
  }
+#ifdef ENGINE_PINGPONG
+ if(pp_active){
+  if(pp_slot>1||FD_ADDR(PP_NEXT)>0xc0f8bfe0u||pp_gen[pp_slot]!=play_sequence||fd_destination!=pp_bus[pp_slot])return 0;
+  for(i=0;i<8;i++){
+   unsigned expected=i==1?fd_destination+69600:i==3?FD_ADDR(pp_marker):i==4?32:i==5?7:i>=6?0xfacefeed:0;
+   if(PP_NEXT[i]!=expected)return 0;
+  }
+ }
+#endif
  if(w[0]||w[1]||w[4]||w[5]||w[2]>1||(w[3]&~0x400u)||
     (w[6]!=2&&w[6]!=6))return 0;
  if(fd_stage==4&&(w[2]||w[3]))return 0;
@@ -60,6 +78,9 @@ static unsigned fd_control(unsigned index,unsigned value){
  if(index==7)return value<5&&fd_phase==2&&play_frame&&!play_ack&&fd_timing[0]==play_sequence?fd_timing[value]:~0u;
 #endif
  if(index==5)return value==16?fd_isolation_checks:value==1?fd_phase:value<16?fd_report[value]:~0u;
+#ifdef ENGINE_PINGPONG
+ if(pp_active)return ~0u;
+#endif
  if(fd_phase==1||!play_frame||play_ack)return ~0u;
  if(index==6){if(value>1)return ~0u;fd_no_crc=value;return 0;}
  if(index==3){if(!value||value>0xffffffffu-65536)return ~0u;fd_destination=value;return 0;}
@@ -73,12 +94,20 @@ static void fd_step(void){unsigned i,csr=0,rc=0;const unsigned char*source=play_
  unsigned t0,t1,t2;
 #endif
  if(fd_phase!=1)return;
+#ifdef ENGINE_PINGPONG
+ if(pp_active&&fd_stage==7)goto polling;
+#endif
 #ifdef ENGINE_FRAME_PROFILE
  t0=play_api->io.ticks_ms();fd_timing[0]=0;
 #endif
  if(!source||play_ack||play_sequence!=fd_report[2]||!fd_idle()){rc=1;goto failed;}
  FD_STAGE(1);fd_loops=0;fd_report[5]=fd_no_crc?0:fd_crc(source);FD_STAGE(2);
  fd_desc[0]=0;fd_desc[1]=fd_destination;fd_desc[2]=0;fd_desc[3]=FD_ADDR(source);fd_desc[4]=65536;fd_desc[5]=7;fd_desc[6]=0xfacefeed;fd_desc[7]=0xfacefeed;
+#ifdef ENGINE_PINGPONG
+ if(pp_active){
+  fd_desc[0]=FD_ADDR(PP_NEXT);PP_NEXT[0]=0;PP_NEXT[1]=fd_destination+69600;PP_NEXT[2]=0;PP_NEXT[3]=FD_ADDR(pp_marker);PP_NEXT[4]=32;PP_NEXT[5]=7;PP_NEXT[6]=PP_NEXT[7]=0xfacefeed;
+ }
+#endif
  fd_report[15]=FD_ADDR(fd_desc);FD_STAGE(3);
  if(play_api->stopping()){rc=2;goto failed;}
 #ifdef ENGINE_FRAME_PROFILE
@@ -86,9 +115,19 @@ static void fd_step(void){unsigned i,csr=0,rc=0;const unsigned char*source=play_
 #endif
  FD_STAGE(4);FD_S(0x1204)=6;if(FD_S(0x1204)!=6){rc=3;goto cleanup;}
  FD_STAGE(5);FD_R(0x1450)=FD_ADDR(fd_desc);(void)FD_R(0x1450);FD_STAGE(6);FD_R(0x1440)=1;(void)FD_R(0x1440);FD_STAGE(7);
+#ifdef ENGINE_PINGPONG
+ if(pp_active)return;
+polling:
+#endif
  for(i=0;i<200000;i++){
   fd_loops=i;csr=FD_R(0x1444);if(csr&~0x400u){rc=4;break;}
-  if(!csr&&!FD_R(0x1450)&&FD_R(0x144c)==FD_ADDR(fd_desc)&&!FD_R(0x1460))break;
+  if(!csr&&!FD_R(0x1450)&&FD_R(0x144c)==
+#ifdef ENGINE_PINGPONG
+ (pp_active?FD_ADDR(PP_NEXT):FD_ADDR(fd_desc))
+#else
+ FD_ADDR(fd_desc)
+#endif
+ &&!FD_R(0x1460))break;
  }
 #ifdef ENGINE_FRAME_PROFILE
  t2=play_api->io.ticks_ms();
@@ -103,7 +142,14 @@ cleanup:
 #ifdef ENGINE_FRAME_PROFILE
  fd_timing[1]=t1-t0;fd_timing[2]=t2-t1;fd_timing[3]=play_api->io.ticks_ms()-t2;fd_timing[4]=fd_timing[1]+fd_timing[2]+fd_timing[3];fd_timing[0]=play_sequence;
 #endif
+#ifdef ENGINE_PINGPONG
+ if(pp_active&&(PP_NEXT[6]!=0xfacefeed||PP_NEXT[7]!=0xfacefeed)){rc=7;goto failed;}
+#endif
  FD_STAGE(13);__asm__ volatile("":::"memory");fd_phase=2;return;
 failed:
  fd_report[13]=rc;FD_FATAL(); /* nonreturning quarantine, frame remains pinned */
 }
+
+#ifdef ENGINE_PINGPONG
+#include "pingpong/target.h"
+#endif

@@ -3238,6 +3238,276 @@
       "sha256": "d78adce8dcf167cb849429e069f814de32a595f1ddd974e537380581efa0199c"
     },
     {
+      "path": "artifacts/dma-pingpong-20261015/README.md",
+      "size": 9388,
+      "sha256": "33b75a43f6ebae9787da42d4c5378c7ce9248290ce9766da1129434f0ed08cb9"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/analyze.py",
+      "size": 1188,
+      "sha256": "08fe418bb6a13a9969be8af83372164724534c34633f2536c1bd228c910dd2f3"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/build-evidence.tar.gz",
+      "size": 2662478,
+      "sha256": "3ad871df93c79f80a7b02f5dabaa438e42f3267089b90164bee995e67e080457"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/build-v10.tar.gz",
+      "size": 2602953,
+      "sha256": "303cc3e0fec654bd9493d173c5f4a25c83269efb63ab3b80c966b3a043cc96de"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/build-v7.tar.gz",
+      "size": 2686459,
+      "sha256": "f654a9acb09deca2ee25ba64a1e24a9f4c8edee2f90164e0b5de7003fa14714f"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/build-v8.tar.gz",
+      "size": 2600486,
+      "sha256": "eb6e4add52d847b1e260a53d04f049c0366aab7ec8e217fb2be9d94a957468c8"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/build.sh",
+      "size": 1083,
+      "sha256": "3e8e2168502fb5db7bdb9035b55ab1cc99c755f7c0ff303cda23f6dbf45a720e"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/card-v10.tar.gz",
+      "size": 25459394,
+      "sha256": "629f3b140842bf05d129017d78d7050312d1dcd2a858242c696ab87d5cdd7e79"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/card-v8.tar.gz",
+      "size": 10286538,
+      "sha256": "531fdf6496b112f4492ff2cf948f208a002865f0048997f918a74be229c78505"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/client-model-test.log",
+      "size": 2282,
+      "sha256": "5cc6b1b5bfc2dcc137b8e43f871132a95ae0ecdfa1eed07941ea0eaf10691625"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/client-model-v10.log",
+      "size": 2289,
+      "sha256": "e9d299bfb19b4b5c42cf418ca49afc529640403c5ada11ae30f9920bde5e6909"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/client-model-v9.log",
+      "size": 2289,
+      "sha256": "e9d299bfb19b4b5c42cf418ca49afc529640403c5ada11ae30f9920bde5e6909"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/client-test-v10.log",
+      "size": 2289,
+      "sha256": "e9d299bfb19b4b5c42cf418ca49afc529640403c5ada11ae30f9920bde5e6909"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/engine.log",
+      "size": 1851,
+      "sha256": "3b59aff8ecbbd69bc301de18ad1c76301f6b1e52198126da80ffec485b0bd51e"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/failed-admission.tar.gz",
+      "size": 2432206,
+      "sha256": "e8ac2c95d8c2ab02558c63a91687588ae6c0aacc5e8dc8b10b0476e819320aef"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/failed-client-deadline.tar.gz",
+      "size": 2158163,
+      "sha256": "5e7566fec07b723419599f95449288eb0474833206f5d7a275dfb62a0d6d7880"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/failed-client-import.tar.gz",
+      "size": 2125395,
+      "sha256": "c38b4977f814cf0cdd232640a53a4d83dd9996db81d66ef44a4fce1cf3b43631"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/failed-legacy-transition.tar.gz",
+      "size": 2217739,
+      "sha256": "eed8f70ff573661febeb15a7af089576803c42b449d2bd18a0267794daf5f6fc"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/failed-system-audit-v9.tar.gz",
+      "size": 10267927,
+      "sha256": "2596bf529e16cf9ff36cb532672fea925a1aef1b232cf0d30f34bd87e61bcfcc"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/host-test-v10.log",
+      "size": 171,
+      "sha256": "4307139eb1577086251ca60f7dd2289986b79bdea7bfb6dc5abb4b9b23257ab9"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/host-test.log",
+      "size": 171,
+      "sha256": "4307139eb1577086251ca60f7dd2289986b79bdea7bfb6dc5abb4b9b23257ab9"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/host-v9-source.tar.gz",
+      "size": 23370,
+      "sha256": "7f4ffe2fe5b07ca954be85fd25aa347f29ff1331a6899ff53060e7b46ddea4e8"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/kernel.log",
+      "size": 2874,
+      "sha256": "094269fe86d542b773350ea1b1afcc321e21a8f8bcd6668d345dbd29c7299ade"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/lease-tamper-v10.log",
+      "size": 103,
+      "sha256": "259f644cefa9af2404aaeffe07c5878dc944c1e45d3b132a1a6156b88b23fb63"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/legacy-host-test.log",
+      "size": 127,
+      "sha256": "3402bf0743d8289c04593bef251f61ce9c73a88cb38234ea4a627a0657af87f7"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/legacy-target-test.log",
+      "size": 1700,
+      "sha256": "f54b3705018385e7903618d1ffa731033afad10c5ec4c2c6b0a8e8baf6d0e2fe"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/local-overhead-v10.json",
+      "size": 500,
+      "sha256": "b8c9450a37183ee3fc32e3e9796118e1e686be520bf04e57b70870ddbd1c3948"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/local-pingpong-v10.json",
+      "size": 2589,
+      "sha256": "b38f1b2a4e2616bf115d3ad02eff337e677ff968a156abbd075f0b7941568cbc"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/local-pingpong.json",
+      "size": 2403,
+      "sha256": "a546e4ffebb36cd7b29374cb78e0d6d8ac517393c9cbaf5a85565c9c80a42ec2"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/local-system-v10.json",
+      "size": 6332,
+      "sha256": "15f58315384a30a5966cad2ee8e6bc4953a58474decd575723cad7e300cc9b06"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/local-system.json",
+      "size": 6342,
+      "sha256": "2cf7bc24ae3189220a86c229a750973f38dade684ab10e950f334a7f2bc3669a"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/local-tamper-v10.log",
+      "size": 58,
+      "sha256": "5563af275afb3f734d39e1c60ec384229008f1a2d9d97ad8b527a0589a31eda2"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/local-tamper.log",
+      "size": 58,
+      "sha256": "afa0bd5d90297c69171b5ef95a9f23b47846b8afedd9a1d29e7a735e65174dde"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/mac-host-test.log",
+      "size": 171,
+      "sha256": "4307139eb1577086251ca60f7dd2289986b79bdea7bfb6dc5abb4b9b23257ab9"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/mac-ram-contract.log",
+      "size": 247,
+      "sha256": "bfea74fdc4ade6f662f568c584c811a5b8225a4257cf366eeaf93fabf4941cb3"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/module.log",
+      "size": 1691,
+      "sha256": "2f715fab1b0221071a13b5cdbf498d815ed57942a3219d1ac748ea39fbbf627f"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/overhead-v8.json",
+      "size": 504,
+      "sha256": "93cfb587a43b947d024e1259b972ee64f777758fd2bbe171bb740b3760b5a906"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/previous-web-close.json",
+      "size": 184,
+      "sha256": "14e085732fae49ba90d07ea605d329ef519110836fb635e2925c680f7ddaecf3"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/protection-test.log",
+      "size": 107,
+      "sha256": "9106ecc541a2d03d581aff894e9da645cc6eb191e8f583e4544d0d49c297d352"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/ram-audit-v10.json",
+      "size": 1722,
+      "sha256": "eb265789a75eac17f57dd88d51287fba8af7638e2bb9b8af191efc130a20ac40"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/ram-audit-v8.json",
+      "size": 1722,
+      "sha256": "aab47c23649ab21ea7e114ec5199cc769affee033fa9fd9e191637391db157e0"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/ram-audit.json",
+      "size": 1722,
+      "sha256": "0448491ca7efbd72327d90e9322ff6df0f1669c2cd4ee2449ad2aa37a493d2cc"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/rejected-v9.txt",
+      "size": 144,
+      "sha256": "b08c287717de21ff60ecbb9314d2be4eb10bccf902696fc589c34505efe12a42"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/replay.sh",
+      "size": 444,
+      "sha256": "bbe4b8d89deb575266121998d66e16166c678a90c196ba4ba384b7a62abbac3f"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/restoration.json",
+      "size": 655,
+      "sha256": "2ecb43783a8707a80033808d03102cca044a2cc9dfdd3e45cf665586f64c6175"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/restore-relay.log",
+      "size": 1428,
+      "sha256": "a2eb0896697070b4ebb5fdfa20c984711fdcf4b9614dd52d4f15a0144df9b0d2"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/restore.sh",
+      "size": 858,
+      "sha256": "65c7c810157506e4eb942cdf6793a2fe3543187ea50042ef711c8abfdaf3299c"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/run.sh",
+      "size": 674,
+      "sha256": "7b4cb3678e20007daca7d94fc197074f73526573796e9e5556625995dac9a146"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/runner-final-source.tar.gz",
+      "size": 58642,
+      "sha256": "e84244a4627aefe83e57b8e4c91f6c19ebaee6a323333397133a5bd362444778"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/runner-source.tar.gz",
+      "size": 51669,
+      "sha256": "7b629572cb405739416b3d73e16633dc34c37744282da5c9b8a698e09dc08173"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/target-test-v10.log",
+      "size": 168,
+      "sha256": "29b6eb76e3b5a92df12771d56b3044022ec29c1c56891fed64968ba2e835d45a"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/target-test-v8.log",
+      "size": 168,
+      "sha256": "29b6eb76e3b5a92df12771d56b3044022ec29c1c56891fed64968ba2e835d45a"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/target-test.log",
+      "size": 168,
+      "sha256": "29b6eb76e3b5a92df12771d56b3044022ec29c1c56891fed64968ba2e835d45a"
+    },
+    {
+      "path": "artifacts/dma-pingpong-20261015/transport.log",
+      "size": 112,
+      "sha256": "aa26c603c7160cb287a076acc56ab1d18a6fc6107d75340eb42d9b3ee671c913"
+    },
+    {
       "path": "artifacts/dma-research-20261011/README.md",
       "size": 4410,
       "sha256": "955f5ab606e17c404d57d76fbdb0db635427d03ba1cfb7685f9e9f44b5b9a06f"

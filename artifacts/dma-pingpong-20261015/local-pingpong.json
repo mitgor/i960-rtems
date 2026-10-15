@@ -1,0 +1,125 @@
+{
+  "ioctl_costs": {
+    "frame-dma-journal.jsonl": {
+      "1": {
+        "calls": 16,
+        "mean_ms": 6.58206375,
+        "max_ms": 15.168163
+      },
+      "2": {
+        "calls": 28,
+        "mean_ms": 2.895519964285714,
+        "max_ms": 8.063766
+      },
+      "3": {
+        "calls": 1168,
+        "mean_ms": 0.010537255136986301,
+        "max_ms": 0.030981
+      }
+    },
+    "pingpong-journal.jsonl": {
+      "1": {
+        "calls": 1,
+        "mean_ms": 0.411658,
+        "max_ms": 0.411658
+      },
+      "7": {
+        "calls": 6,
+        "mean_ms": 2.4178935,
+        "max_ms": 7.344305
+      },
+      "6": {
+        "calls": 1,
+        "mean_ms": 1.031072,
+        "max_ms": 1.031072
+      },
+      "2": {
+        "calls": 1262,
+        "mean_ms": 0.07911613074484945,
+        "max_ms": 7.399277
+      },
+      "3": {
+        "calls": 5328,
+        "mean_ms": 0.05786530705705706,
+        "max_ms": 13.886426
+      },
+      "4": {
+        "calls": 67,
+        "mean_ms": 0.6514666716417911,
+        "max_ms": 6.704333
+      },
+      "5": {
+        "calls": 3,
+        "mean_ms": 3.39315,
+        "max_ms": 8.565026
+      }
+    }
+  },
+  "frames": 80,
+  "guarded_frames": 82,
+  "paired_mailbox_frames": 5,
+  "full_guarded_bytes": 6045696,
+  "exact_pattern_bytes": 5373952,
+  "stalls": [
+    {
+      "first": 17,
+      "seconds": 3.0924566430000198,
+      "unchanged": true,
+      "stats": [
+        2,
+        45404,
+        17,
+        18,
+        2
+      ]
+    },
+    {
+      "first": 81,
+      "seconds": 3.166654254000008,
+      "unchanged": true,
+      "stats": [
+        66,
+        133458,
+        81,
+        82,
+        2
+      ]
+    }
+  ],
+  "owned_stop": true,
+  "host_started_fps": 8.116786710275992,
+  "card_started_fps": 9.824641507378008,
+  "improvement_percent": 21.041021010689388,
+  "baseline_interval_frames": [
+    5,
+    15
+  ],
+  "ring_interval_frames": [
+    21,
+    80
+  ],
+  "card_started_stall_inclusive_fps": 6.571102383402356,
+  "ready_to_copy_release_mean_ms": 55.57476831666814,
+  "start_to_host_observed_mean_bounds_ms": [
+    131.10030645001217,
+    157.79843244997807
+  ],
+  "clock_offset_windows": [
+    [
+      131.91692805300002,
+      131.924341765
+    ],
+    [
+      131.92391272,
+      131.933626179
+    ]
+  ],
+  "ioctl_counts": {
+    "host_started": 1212,
+    "card_started": 6668
+  },
+  "sources": {
+    "0": 3224191552,
+    "1": 3224257088
+  }
+}

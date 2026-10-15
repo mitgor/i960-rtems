@@ -1,0 +1,15 @@
+{
+  "checked_utc": "2026-10-15T12:50:56.465405+00:00",
+  "boot": "2225b1d9-c77e-4cb6-900e-9841154cd719",
+  "supervisor_pid": 2569,
+  "relay_pid": 2571,
+  "driver": "dac960auto",
+  "pci": "0000:37:09.1",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "response_bytes": 2891,
+  "response_sha256": "5018e9e928a14b3297f60366262a707c903e69080b67a46307311f8b0668e974",
+  "source": "Mac curl IPv6; SSH process and bound-driver inspection",
+  "remote_output": "/home/mit/i960-rtems-web-20261011/http-after-dma-pingpong-20261015",
+  "test_module_released_by": "normal reboot after local archive verification and replay"
+}

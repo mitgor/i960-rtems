@@ -3,7 +3,11 @@
 extern unsigned char upload_code_start[],upload_code_end[];
 extern void exclusive_drain_poll(void);
 #define R(a) (*(volatile unsigned int*)(a))
+#ifdef I960_PINGPONG
+#define PAGES 145u
+#else
 #define PAGES 144u
+#endif
 static unsigned int addresses[PAGES],lengths[PAGES],hashes[PAGES],count,next,checks,error,bad;
 static unsigned int hash(unsigned int a,unsigned int n){unsigned int h=2166136261u;for(;n;n-=4,a+=4)h=(h^R(a))*16777619u;return h;}
 static void range(unsigned int lo,unsigned int hi){unsigned int n;while(lo<hi){n=hi-lo;if(n>4096)n=4096;

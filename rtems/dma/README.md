@@ -1,5 +1,10 @@
 # Exclusive card-to-host DMA proof
 
+For the newer card-initiated two-host-buffer producer, see
+[ping-pong DMA](pingpong/README.md) and its
+[acceptance record](../../artifacts/dma-pingpong-20261015/README.md).
+The historical proof below uses individually submitted transfers.
+
 Task-owned asynchronous physical acceptance passed in two runs: 48 exact
 transfers, 124 full audit pairs, explicit STOP and session-deadline cancellation.
 Maximum IRQ gap is 10.710–10.990 ms, down from 111.481 ms. Opt-in `--dma-proof`;

@@ -14,6 +14,9 @@ static unsigned play_selected,play_offset,play_window;
 #endif
 static void play_clear(void){
 #ifdef I960_DOOM_DMA
+#ifdef ENGINE_PINGPONG
+ if(pp_active&&fd_phase==1)fd_step();
+#endif
  unsigned pc=FD_LOCK();
  if(fd_phase==1){FD_FATAL();for(;;){}} /* Never release a queued/active DMA pin. */
 #endif
@@ -27,7 +30,11 @@ static void play_clear(void){
 static int play_wait(void){unsigned start=play_api->io.ticks_ms(),polls=0;
  while(play_frame&&!play_ack){
 #ifdef I960_DOOM_DMA
+#ifdef ENGINE_PINGPONG
+  pp_service();
+#else
   fd_step();
+#endif
 #endif
   if(play_api->stopping()||play_api->io.ticks_ms()-start>=60000||++polls>=10000000u){play_clear();return -1;}
   {extern void doom_shared_service(void);doom_shared_service();}
@@ -43,7 +50,11 @@ int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
  if(stage==101){unsigned t=play_tail,v;
 #ifdef ENGINE_PLAY_DOUBLE
 #ifdef I960_DOOM_DMA
+#ifdef ENGINE_PINGPONG
+  pp_service();
+#else
   fd_step();
+#endif
 #endif
 #endif
   if(t==play_head)return 1;v=play_keys[t];play_tail=(t+1)&31;return (int)v+2;
@@ -58,6 +69,9 @@ int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
 #endif
  play_ack=0;play_sequence=z;play_selected=play_window=0;
  __asm__ volatile("":::"memory");play_frame=(unsigned char*)(unsigned long)x;
+#ifdef ENGINE_PINGPONG
+ pp_service();
+#endif
 #ifdef ENGINE_PLAY_DOUBLE
  return 1;
 #else
@@ -66,6 +80,10 @@ int engine_play_mark(unsigned stage,unsigned x,unsigned y,unsigned z){
 }
 unsigned engine_play_control(unsigned index,unsigned value){
  #ifdef I960_DOOM_DMA
+#ifdef ENGINE_PINGPONG
+ if(index>=8&&index<=12)return pp_control(index,value);
+ if(pp_active&&index==1)return ~0u;
+#endif
  if(index>=3&&index<=6)return fd_control(index,value);
 #ifdef ENGINE_FRAME_PROFILE
  if(index==7)return fd_control(index,value);

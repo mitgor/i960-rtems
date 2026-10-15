@@ -21,7 +21,9 @@ if a.play:
  m['play_offset']=frame_offset
  for key in ('frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test'):m[key]=bool(json.loads((a.build/'build.json').read_text()).get(key))
  m['double_buffer']=bool(json.loads((a.build/'build.json').read_text()).get('double_buffer'))
- if a.dma_stress:m['dma_stress']=1
+ if a.dma_stress:
+  m['dma_stress']=1
+  m['pingpong']=bool(json.loads((a.build/'build.json').read_text()).get('pingpong'))
 if a.startup_oracle:
  oracle=json.loads(a.startup_oracle.read_text());assert oracle['exact_bytes_match'] and ((oracle.get('visible') and oracle['frame_count']==2 and oracle['frame']==1) or (not oracle.get('visible') and oracle['frame']==0 and oracle['gametic']==2))
  assert a.startup_requests
@@ -52,5 +54,7 @@ if a.startup_oracle:h+='#define ENGINE_STARTUP 1\n#define ENGINE_FRAME '+str(ora
 if m.get('startup',{}).get('visible'):
  h+='#define ENGINE_FRAME_COUNT 2u\n#define ENGINE_VISIBLE_OFFSET '+str(m['visible_offset'])+'u\n'
  h+='static const unsigned char engine_visible_sha[32]={'+','.join(str(x) for x in bytes.fromhex(oracle['frames_sha256']))+'};\n'
+if m.get('pingpong'):assert a.dma_stress and m['double_buffer'] and not m['frame_profile']
+if m.get('pingpong'):h+='#define ENGINE_PINGPONG 1\n'
 if a.dma_stress:h+='#define ENGINE_DMA_STRESS 1\n'
 (a.out/'engine_identity.h').write_text(h);print(json.dumps({k:v for k,v in m.items() if k not in ('relocations','sections')},indent=2))
