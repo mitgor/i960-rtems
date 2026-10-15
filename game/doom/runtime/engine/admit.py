@@ -19,7 +19,7 @@ if a.play:
  assert frame_offset>=m['sections'][2]['offset'] and frame_offset+131072<=m['memory_bytes']
  assert m['admission_bytes']<=900000
  m['play_offset']=frame_offset
- for key in ('runtime_detail','fast_columns','fast_render','fast_memory','wad_profile','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test'):m[key]=bool(json.loads((a.build/'build.json').read_text()).get(key))
+ for key in ('fixed_div_profile','fast_fixed_div','runtime_detail','fast_columns','fast_render','fast_memory','wad_profile','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test'):m[key]=bool(json.loads((a.build/'build.json').read_text()).get(key))
  m['double_buffer']=bool(json.loads((a.build/'build.json').read_text()).get('double_buffer'))
  if a.dma_stress:
   m['dma_stress']=1

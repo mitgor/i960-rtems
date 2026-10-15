@@ -8,6 +8,7 @@ def fnv(data):
  return h
 def decode(raw,g,test=False,options=None):
  options=options or {}
+ assert not options.get("fast_fixed_div") or options.get("fixed_div_profile")
  assert len(raw)==65536
  w=struct.unpack_from('<16I',raw,OFFSET);d=dict(zip(NAMES,w))
  assert w[:3]==(0x31524650,1,g) and w[3] in (0,1,2,3) and w[14:]==(10,0)
@@ -34,12 +35,23 @@ def decode(raw,g,test=False,options=None):
   assert q[:2]==(0x31435057,1) and q[15]==10 and q[6]==q[7]==q[8]
   assert all(x%10==0 for x in q[2:6])
   d['wad_cache']=list(q);end=65024
+ if options.get('fixed_div_profile'):
+  assert end<=65024 and not any(raw[end:65024])
+  q=struct.unpack_from('<128I',raw,65024)
+  assert q[0:2]==(0x31564446,1) and q[2]==47
+  assert q[3]==int(bool(options.get('fast_fixed_div'))) and q[4]==4166700 and q[7]==0
+  assert q[5]==g*32 and not any(q[8+2*q[2]:])
+  assert all(x<10000000 for x in q[8:8+2*q[2]:2])
+  d['fixed_div']=dict(sites=q[2],fast=bool(q[3]),hz=q[4],checks=q[5],clock_read_ticks=q[6],counts=list(q[8:8+2*q[2]:2]),ticks=list(q[9:8+2*q[2]:2]))
+  end=65536
  assert not any(raw[end:])
  if w[3]&1:assert w[12]==fnv(raw[:64000]) and w[13]==fnv(raw[64000:64768])
  else:assert w[12:14]==(0,0)
  return d
 
 def preflight(admission,pipeline,pipeline_test,wad_load_test):
+ if admission.get("fixed_div_profile"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer")
+ if admission.get("fast_fixed_div"):assert admission.get("fixed_div_profile")
  if any(admission.get(k) for k in ('runtime_detail','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')):
   assert pipeline and admission.get('double_buffer'), 'presentation features require admitted two-slot ownership'
  if admission.get('runtime_detail'):

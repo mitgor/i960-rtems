@@ -1,0 +1,237 @@
+[
+  {
+    "id": 0,
+    "file": "am_map.c",
+    "line": 747
+  },
+  {
+    "id": 1,
+    "file": "am_map.c",
+    "line": 586
+  },
+  {
+    "id": 2,
+    "file": "am_map.c",
+    "line": 576
+  },
+  {
+    "id": 3,
+    "file": "am_map.c",
+    "line": 532
+  },
+  {
+    "id": 4,
+    "file": "am_map.c",
+    "line": 529
+  },
+  {
+    "id": 5,
+    "file": "am_map.c",
+    "line": 387
+  },
+  {
+    "id": 6,
+    "file": "am_map.c",
+    "line": 384
+  },
+  {
+    "id": 7,
+    "file": "am_map.c",
+    "line": 383
+  },
+  {
+    "id": 8,
+    "file": "am_map.c",
+    "line": 337
+  },
+  {
+    "id": 9,
+    "file": "am_map.c",
+    "line": 336
+  },
+  {
+    "id": 10,
+    "file": "am_map.c",
+    "line": 286
+  },
+  {
+    "id": 11,
+    "file": "am_map.c",
+    "line": 284
+  },
+  {
+    "id": 12,
+    "file": "p_map.c",
+    "line": 1042
+  },
+  {
+    "id": 13,
+    "file": "p_map.c",
+    "line": 1034
+  },
+  {
+    "id": 14,
+    "file": "p_map.c",
+    "line": 1029
+  },
+  {
+    "id": 15,
+    "file": "p_map.c",
+    "line": 996
+  },
+  {
+    "id": 16,
+    "file": "p_map.c",
+    "line": 983
+  },
+  {
+    "id": 17,
+    "file": "p_map.c",
+    "line": 976
+  },
+  {
+    "id": 18,
+    "file": "p_map.c",
+    "line": 968
+  },
+  {
+    "id": 19,
+    "file": "p_map.c",
+    "line": 964
+  },
+  {
+    "id": 20,
+    "file": "p_map.c",
+    "line": 906
+  },
+  {
+    "id": 21,
+    "file": "p_map.c",
+    "line": 901
+  },
+  {
+    "id": 22,
+    "file": "p_map.c",
+    "line": 880
+  },
+  {
+    "id": 23,
+    "file": "p_map.c",
+    "line": 872
+  },
+  {
+    "id": 24,
+    "file": "p_maputl.c",
+    "line": 948
+  },
+  {
+    "id": 25,
+    "file": "p_maputl.c",
+    "line": 942
+  },
+  {
+    "id": 26,
+    "file": "p_maputl.c",
+    "line": 926
+  },
+  {
+    "id": 27,
+    "file": "p_maputl.c",
+    "line": 920
+  },
+  {
+    "id": 28,
+    "file": "p_maputl.c",
+    "line": 245
+  },
+  {
+    "id": 29,
+    "file": "p_setup.c",
+    "line": 425
+  },
+  {
+    "id": 30,
+    "file": "p_sight.c",
+    "line": 239
+  },
+  {
+    "id": 31,
+    "file": "p_sight.c",
+    "line": 232
+  },
+  {
+    "id": 32,
+    "file": "p_sight.c",
+    "line": 118
+  },
+  {
+    "id": 33,
+    "file": "r_main.c",
+    "line": 686
+  },
+  {
+    "id": 34,
+    "file": "r_main.c",
+    "line": 680
+  },
+  {
+    "id": 35,
+    "file": "r_main.c",
+    "line": 575
+  },
+  {
+    "id": 36,
+    "file": "r_main.c",
+    "line": 503
+  },
+  {
+    "id": 37,
+    "file": "r_main.c",
+    "line": 437
+  },
+  {
+    "id": 38,
+    "file": "r_main.c",
+    "line": 421
+  },
+  {
+    "id": 39,
+    "file": "r_main.c",
+    "line": 418
+  },
+  {
+    "id": 40,
+    "file": "r_main.c",
+    "line": 361
+  },
+  {
+    "id": 41,
+    "file": "r_main.c",
+    "line": 351
+  },
+  {
+    "id": 42,
+    "file": "r_plane.c",
+    "line": 201
+  },
+  {
+    "id": 43,
+    "file": "r_plane.c",
+    "line": 200
+  },
+  {
+    "id": 44,
+    "file": "r_segs.c",
+    "line": 439
+  },
+  {
+    "id": 45,
+    "file": "r_things.c",
+    "line": 555
+  },
+  {
+    "id": 46,
+    "file": "r_things.c",
+    "line": 490
+  }
+]

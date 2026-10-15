@@ -1,0 +1,448 @@
+00058420 <___divdi3>:
+   58420:	10 48 08 59 	addo	16,sp,sp
+
+00058424 <LBB2>:
+   58424:	10 16 20 5f 	movq	g0,r4
+
+00058428 <LM3>:
+   58428:	00 1e 50 5c 	mov	0,r10
+
+0005842c <LM4>:
+   5842c:	28 64 01 39 	cmpibg	0,r5,58854 <LM72>
+
+00058430 <LM5>:
+   58430:	0c e4 01 39 	cmpibg	0,r7,5883c <LBE26>
+
+00058434 <LBB3>:
+   58434:	05 16 88 5c 	mov	r5,g1
+
+00058438 <LM7>:
+   58438:	06 16 18 5c 	mov	r6,r3
+
+0005843c <LM8>:
+   5843c:	07 16 e8 5c 	mov	r7,g13
+
+00058440 <LM9>:
+   58440:	b8 e2 01 35 	cmpobne	0,r7,586f8 <LBE17>
+
+00058444 <LM10>:
+   58444:	18 81 29 33 	cmpobge	r5,r6,5855c <LBE10>
+
+00058448 <LBB5>:
+   58448:	06 16 90 5c 	mov	r6,g2
+   5844c:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   58450:	ff ff 00 00
+   58454:	f0 80 a1 34 	cmpobl	g4,r6,58544 <LBB10>
+   58458:	ff 00 a0 8c 	lda	0xff,g4
+   5845c:	06 20 05 5a 	cmpo	r6,g4
+   58460:	00 00 a8 21 	testg	g5
+   58464:	03 4e 85 59 	shlo	3,g5,g0
+
+00058468 <_doom_nlL9>:
+   58468:	10 84 ac 59 	shro	g0,g2,g5
+   5846c:	1f 58 b0 59 	addo	31,1,g6
+   58470:	00 74 a5 80 	ldob	0 <_I_InitTimidityConfig>(g5),g4
+   58474:	00 00 00 00
+   58478:	10 00 a5 59 	addo	g0,g4,g4
+   5847c:	14 81 85 59 	subo	g4,g6,g0
+
+00058480 <LBE5>:
+   58480:	1c 20 04 32 	cmpobe	0,g0,5849c <LBB6>
+
+00058484 <LM13>:
+   58484:	10 81 a5 59 	subo	g0,g6,g4
+   58488:	14 04 a1 59 	shro	g4,r4,g4
+   5848c:	10 46 ac 59 	shlo	g0,g1,g5
+
+00058490 <LM14>:
+   58490:	10 06 21 59 	shlo	g0,r4,r4
+
+00058494 <LM15>:
+   58494:	10 c6 18 59 	shlo	g0,r3,r3
+
+00058498 <LM16>:
+   58498:	95 03 8d 58 	or	g5,g4,g1
+
+0005849c <LBB6>:
+   5849c:	10 cc 98 59 	shro	16,r3,g3
+   584a0:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   584a4:	ff ff 00 00
+   584a8:	93 45 ec 70 	divo	g3,g1,g13
+   584ac:	13 44 bc 70 	remo	g3,g1,g7
+   584b0:	83 00 85 58 	and	r3,g4,g0
+   584b4:	10 0c a9 59 	shro	16,r4,g5
+   584b8:	9d 00 94 70 	mulo	g13,g0,g2
+   584bc:	10 ce a5 59 	shlo	16,g7,g4
+   584c0:	95 03 bd 58 	or	g5,g4,g7
+   584c4:	1c c0 95 36 	cmpoble	g2,g7,584e0 <_doom_nlL23>
+   584c8:	01 49 ef 59 	subo	1,g13,g13
+   584cc:	17 c0 b8 59 	addo	g7,r3,g7
+   584d0:	10 c0 1d 31 	cmpobg	r3,g7,584e0 <_doom_nlL23>
+   584d4:	0c c0 95 36 	cmpoble	g2,g7,584e0 <_doom_nlL23>
+   584d8:	01 49 ef 59 	subo	1,g13,g13
+   584dc:	17 c0 b8 59 	addo	g7,r3,g7
+
+000584e0 <_doom_nlL23>:
+   584e0:	12 c1 bd 59 	subo	g2,g7,g7
+   584e4:	93 c5 b5 70 	divo	g3,g7,g6
+   584e8:	13 c4 ad 70 	remo	g3,g7,g5
+   584ec:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   584f0:	ff ff 00 00
+   584f4:	84 00 a5 58 	and	r4,g4,g4
+   584f8:	96 00 94 70 	mulo	g6,g0,g2
+   584fc:	10 4e ad 59 	shlo	16,g5,g5
+   58500:	94 43 ad 58 	or	g4,g5,g5
+   58504:	18 40 95 36 	cmpoble	g2,g5,5851c <_doom_nlL26>
+   58508:	01 89 b5 59 	subo	1,g6,g6
+   5850c:	15 c0 a8 59 	addo	g5,r3,g5
+   58510:	0c 40 1d 31 	cmpobg	r3,g5,5851c <_doom_nlL26>
+   58514:	08 40 95 36 	cmpoble	g2,g5,5851c <_doom_nlL26>
+   58518:	01 89 b5 59 	subo	1,g6,g6
+
+0005851c <_doom_nlL26>:
+   5851c:	10 4e a7 59 	shlo	16,g13,g4
+
+00058520 <LBE6>:
+   58520:	00 1e 80 5c 	mov	0,g0
+
+00058524 <LBB7>:
+   58524:	94 83 b5 58 	or	g4,g6,g6
+
+00058528 <LBE7>:
+   58528:	16 16 40 5c 	mov	g6,r8
+
+0005852c <LM22>:
+   5852c:	10 16 48 5c 	mov	g0,r9
+
+00058530 <LBE3>:
+   58530:	08 16 80 5d 	movl	r8,g0
+
+00058534 <LM24>:
+   58534:	0c a0 02 32 	cmpobe	0,r10,58540 <LM26>
+
+00058538 <LM25>:
+   58538:	00 30 00 86 	callx	0 <_I_InitTimidityConfig>
+   5853c:	00 00 00 00
+
+00058540 <LM26>:
+   58540:	00 00 00 0a 	ret
+
+00058544 <LBB10>:
+   58544:	10 1e 80 5c 	mov	16,g0
+   58548:	00 30 a0 8c 	lda	ffffff <_doom_engine_result+0xfa238f>,g4
+   5854c:	ff ff ff 00
+   58550:	18 9f a1 33 	cmpobge	g4,r6,58468 <_doom_nlL9>
+   58554:	18 1e 80 5c 	mov	24,g0
+   58558:	10 ff ff 08 	b	58468 <_doom_nlL9>
+
+0005855c <LBE10>:
+   5855c:	08 a0 01 35 	cmpobne	0,r6,58564 <LBB11>
+
+00058560 <LM28>:
+   58560:	80 5d 18 70 	divo	0,1,r3
+
+00058564 <LBB11>:
+   58564:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   58568:	ff ff 00 00
+   5856c:	74 c1 a0 34 	cmpobl	g4,r3,586e0 <LBB17>
+   58570:	ff 00 a0 8c 	lda	0xff,g4
+   58574:	03 20 05 5a 	cmpo	r3,g4
+   58578:	00 00 a8 21 	testg	g5
+   5857c:	03 4e b5 59 	shlo	3,g5,g6
+
+00058580 <_doom_nlL34>:
+   58580:	16 c4 a8 59 	shro	g6,r3,g5
+   58584:	1f 58 b8 59 	addo	31,1,g7
+   58588:	00 74 a5 80 	ldob	0 <_I_InitTimidityConfig>(g5),g4
+   5858c:	00 00 00 00
+   58590:	16 00 a5 59 	addo	g6,g4,g4
+   58594:	14 c1 85 59 	subo	g4,g7,g0
+
+00058598 <LBE11>:
+   58598:	94 20 04 35 	cmpobne	0,g0,5862c <LBE12>
+
+0005859c <LM31>:
+   5859c:	10 cc 98 59 	shro	16,r3,g3
+
+000585a0 <LM32>:
+   585a0:	03 41 8c 59 	subo	r3,g1,g1
+
+000585a4 <LM33>:
+   585a4:	01 1e 80 5c 	mov	1,g0
+
+000585a8 <LBB12>:
+   585a8:	13 44 bc 70 	remo	g3,g1,g7
+   585ac:	93 45 ec 70 	divo	g3,g1,g13
+   585b0:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   585b4:	ff ff 00 00
+   585b8:	10 0c a9 59 	shro	16,r4,g5
+   585bc:	83 00 8d 58 	and	r3,g4,g1
+   585c0:	9d 40 94 70 	mulo	g13,g1,g2
+   585c4:	10 ce a5 59 	shlo	16,g7,g4
+   585c8:	95 03 bd 58 	or	g5,g4,g7
+   585cc:	1c c0 95 36 	cmpoble	g2,g7,585e8 <_doom_nlL56>
+   585d0:	01 49 ef 59 	subo	1,g13,g13
+   585d4:	17 c0 b8 59 	addo	g7,r3,g7
+   585d8:	10 c0 1d 31 	cmpobg	r3,g7,585e8 <_doom_nlL56>
+   585dc:	0c c0 95 36 	cmpoble	g2,g7,585e8 <_doom_nlL56>
+   585e0:	01 49 ef 59 	subo	1,g13,g13
+   585e4:	17 c0 b8 59 	addo	g7,r3,g7
+
+000585e8 <_doom_nlL56>:
+   585e8:	12 c1 bd 59 	subo	g2,g7,g7
+   585ec:	93 c5 b5 70 	divo	g3,g7,g6
+   585f0:	13 c4 ad 70 	remo	g3,g7,g5
+   585f4:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   585f8:	ff ff 00 00
+   585fc:	84 00 a5 58 	and	r4,g4,g4
+   58600:	96 40 94 70 	mulo	g6,g1,g2
+   58604:	10 4e ad 59 	shlo	16,g5,g5
+   58608:	94 43 ad 58 	or	g4,g5,g5
+   5860c:	18 40 95 36 	cmpoble	g2,g5,58624 <_doom_nlL59>
+   58610:	01 89 b5 59 	subo	1,g6,g6
+   58614:	15 c0 a8 59 	addo	g5,r3,g5
+   58618:	0c 40 1d 31 	cmpobg	r3,g5,58624 <_doom_nlL59>
+   5861c:	08 40 95 36 	cmpoble	g2,g5,58624 <_doom_nlL59>
+   58620:	01 89 b5 59 	subo	1,g6,g6
+
+00058624 <_doom_nlL59>:
+   58624:	10 4e a7 59 	shlo	16,g13,g4
+   58628:	fc fe ff 08 	b	58524 <LBB7>
+
+0005862c <LBE12>:
+   5862c:	10 c6 18 59 	shlo	g0,r3,r3
+
+00058630 <LM36>:
+   58630:	10 c1 bd 59 	subo	g0,g7,g7
+
+00058634 <LM37>:
+   58634:	17 44 b4 59 	shro	g7,g1,g6
+
+00058638 <LBB13>:
+   58638:	10 cc 98 59 	shro	16,r3,g3
+
+0005863c <LBE13>:
+   5863c:	10 46 ac 59 	shlo	g0,g1,g5
+
+00058640 <LBB14>:
+   58640:	13 84 95 70 	remo	g3,g6,g2
+   58644:	93 85 ed 70 	divo	g3,g6,g13
+   58648:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   5864c:	ff ff 00 00
+   58650:	83 00 2d 58 	and	r3,g4,r5
+   58654:	10 8e a4 59 	shlo	16,g2,g4
+
+00058658 <LBE14>:
+   58658:	17 04 b1 59 	shro	g7,r4,g6
+   5865c:	95 83 8d 58 	or	g5,g6,g1
+
+00058660 <LBB15>:
+   58660:	9d 40 b1 70 	mulo	g13,r5,g6
+   58664:	10 4c bc 59 	shro	16,g1,g7
+
+00058668 <LBE15>:
+   58668:	10 06 21 59 	shlo	g0,r4,r4
+
+0005866c <LM44>:
+   5866c:	13 16 a8 5c 	mov	g3,g5
+
+00058670 <LBB16>:
+   58670:	94 c3 95 58 	or	g4,g7,g2
+   58674:	1c 80 b4 36 	cmpoble	g6,g2,58690 <_doom_nlL49>
+   58678:	01 49 ef 59 	subo	1,g13,g13
+   5867c:	12 c0 90 59 	addo	g2,r3,g2
+   58680:	10 80 1c 31 	cmpobg	r3,g2,58690 <_doom_nlL49>
+   58684:	0c 80 b4 36 	cmpoble	g6,g2,58690 <_doom_nlL49>
+   58688:	01 49 ef 59 	subo	1,g13,g13
+   5868c:	12 c0 90 59 	addo	g2,r3,g2
+
+00058690 <_doom_nlL49>:
+   58690:	16 81 94 59 	subo	g6,g2,g2
+   58694:	95 85 bc 70 	divo	g5,g2,g7
+   58698:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   5869c:	ff ff 00 00
+   586a0:	91 00 a5 58 	and	g1,g4,g4
+   586a4:	15 84 ac 70 	remo	g5,g2,g5
+   586a8:	97 40 b1 70 	mulo	g7,r5,g6
+   586ac:	10 4e ad 59 	shlo	16,g5,g5
+   586b0:	94 43 ad 58 	or	g4,g5,g5
+   586b4:	1c 40 b5 36 	cmpoble	g6,g5,586d0 <_doom_nlL52>
+   586b8:	01 c9 bd 59 	subo	1,g7,g7
+   586bc:	15 c0 a8 59 	addo	g5,r3,g5
+   586c0:	10 40 1d 31 	cmpobg	r3,g5,586d0 <_doom_nlL52>
+   586c4:	0c 40 b5 36 	cmpoble	g6,g5,586d0 <_doom_nlL52>
+   586c8:	01 c9 bd 59 	subo	1,g7,g7
+   586cc:	15 c0 a8 59 	addo	g5,r3,g5
+
+000586d0 <_doom_nlL52>:
+   586d0:	10 4e a7 59 	shlo	16,g13,g4
+   586d4:	16 41 8d 59 	subo	g6,g5,g1
+   586d8:	94 c3 85 58 	or	g4,g7,g0
+   586dc:	cc fe ff 08 	b	585a8 <LBB12>
+
+000586e0 <LBB17>:
+   586e0:	10 1e b0 5c 	mov	16,g6
+   586e4:	00 30 a0 8c 	lda	ffffff <_doom_engine_result+0xfa238f>,g4
+   586e8:	ff ff ff 00
+   586ec:	94 de a0 33 	cmpobge	g4,r3,58580 <_doom_nlL34>
+   586f0:	18 1e b0 5c 	mov	24,g6
+   586f4:	8c fe ff 08 	b	58580 <_doom_nlL34>
+
+000586f8 <LBE17>:
+   586f8:	00 1e b0 5c 	mov	0,g6
+
+000586fc <LM46>:
+   586fc:	4c c0 29 34 	cmpobl	r5,r7,58748 <LBB19>
+
+00058700 <LBB18>:
+   58700:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   58704:	ff ff 00 00
+   58708:	1c c1 a1 34 	cmpobl	g4,r7,58824 <LBB26>
+   5870c:	ff 00 a0 8c 	lda	0xff,g4
+   58710:	07 20 05 5a 	cmpo	r7,g4
+   58714:	00 00 a8 21 	testg	g5
+   58718:	03 4e b5 59 	shlo	3,g5,g6
+
+0005871c <_doom_nlL70>:
+   5871c:	16 44 af 59 	shro	g6,g13,g5
+   58720:	1f 58 b8 59 	addo	31,1,g7
+   58724:	00 74 a5 80 	ldob	0 <_I_InitTimidityConfig>(g5),g4
+   58728:	00 00 00 00
+   5872c:	16 00 a5 59 	addo	g6,g4,g4
+   58730:	14 c1 85 59 	subo	g4,g7,g0
+
+00058734 <LBE18>:
+   58734:	1c 20 04 35 	cmpobne	0,g0,58750 <LM53>
+
+00058738 <LM49>:
+   58738:	0c 40 ec 34 	cmpobl	g13,g1,58744 <LM51>
+
+0005873c <LM50>:
+   5873c:	00 1e b0 5c 	mov	0,g6
+   58740:	08 00 19 31 	cmpobg	r3,r4,58748 <LBB19>
+
+00058744 <LM51>:
+   58744:	01 1e b0 5c 	mov	1,g6
+
+00058748 <LBB19>:
+   58748:	00 1e 80 5c 	mov	0,g0
+   5874c:	dc fd ff 08 	b	58528 <LBE7>
+
+00058750 <LM53>:
+   58750:	10 c1 bd 59 	subo	g0,g7,g7
+
+00058754 <LM54>:
+   58754:	17 c4 a0 59 	shro	g7,r3,g4
+   58758:	10 46 af 59 	shlo	g0,g13,g5
+
+0005875c <LM55>:
+   5875c:	17 44 b4 59 	shro	g7,g1,g6
+
+00058760 <LM56>:
+   58760:	95 03 ed 58 	or	g5,g4,g13
+
+00058764 <LBB20>:
+   58764:	10 4c 2f 59 	shro	16,g13,r5
+   58768:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   5876c:	ff ff 00 00
+   58770:	05 84 95 70 	remo	r5,g6,g2
+   58774:	85 85 35 70 	divo	r5,g6,r6
+   58778:	9d 00 3d 58 	and	g13,g4,r7
+
+0005877c <LBE20>:
+   5877c:	10 46 ac 59 	shlo	g0,g1,g5
+
+00058780 <LM59>:
+   58780:	10 c6 18 59 	shlo	g0,r3,r3
+
+00058784 <LBB21>:
+   58784:	10 8e a4 59 	shlo	16,g2,g4
+
+00058788 <LBE21>:
+   58788:	17 04 b1 59 	shro	g7,r4,g6
+
+0005878c <LBB22>:
+   5878c:	86 c0 99 70 	mulo	r6,r7,g3
+
+00058790 <LBE22>:
+   58790:	95 83 8d 58 	or	g5,g6,g1
+
+00058794 <LBB23>:
+   58794:	10 4c bc 59 	shro	16,g1,g7
+
+00058798 <LBE23>:
+   58798:	10 06 21 59 	shlo	g0,r4,r4
+
+0005879c <LBB24>:
+   5879c:	94 c3 95 58 	or	g4,g7,g2
+   587a0:	1c 80 9c 36 	cmpoble	g3,g2,587bc <_doom_nlL90>
+   587a4:	01 89 31 59 	subo	1,r6,r6
+   587a8:	12 40 97 59 	addo	g2,g13,g2
+   587ac:	10 80 ec 31 	cmpobg	g13,g2,587bc <_doom_nlL90>
+   587b0:	0c 80 9c 36 	cmpoble	g3,g2,587bc <_doom_nlL90>
+   587b4:	01 89 31 59 	subo	1,r6,r6
+   587b8:	12 40 97 59 	addo	g2,g13,g2
+
+000587bc <_doom_nlL90>:
+   587bc:	13 81 94 59 	subo	g3,g2,g2
+   587c0:	85 85 bc 70 	divo	r5,g2,g7
+   587c4:	00 30 a0 8c 	lda	ffff <_doom_nlL64+0x77>,g4
+   587c8:	ff ff 00 00
+   587cc:	91 00 a5 58 	and	g1,g4,g4
+   587d0:	05 84 94 70 	remo	r5,g2,g2
+   587d4:	97 c0 99 70 	mulo	g7,r7,g3
+   587d8:	10 8e ac 59 	shlo	16,g2,g5
+   587dc:	94 43 95 58 	or	g4,g5,g2
+   587e0:	1c 80 9c 36 	cmpoble	g3,g2,587fc <_doom_nlL93>
+   587e4:	01 c9 bd 59 	subo	1,g7,g7
+   587e8:	12 40 97 59 	addo	g2,g13,g2
+   587ec:	10 80 ec 31 	cmpobg	g13,g2,587fc <_doom_nlL93>
+   587f0:	0c 80 9c 36 	cmpoble	g3,g2,587fc <_doom_nlL93>
+   587f4:	12 40 97 59 	addo	g2,g13,g2
+   587f8:	01 c9 bd 59 	subo	1,g7,g7
+
+000587fc <_doom_nlL93>:
+   587fc:	10 8e b1 59 	shlo	16,r6,g6
+   58800:	13 81 94 59 	subo	g3,g2,g2
+   58804:	96 c3 b5 58 	or	g6,g7,g6
+
+00058808 <LBB25>:
+   58808:	03 80 a5 67 	emul	r3,g6,g4
+   5880c:	14 16 b8 5c 	mov	g4,g7
+
+00058810 <LBE25>:
+   58810:	0c 40 95 34 	cmpobl	g2,g5,5881c <LM69>
+   58814:	34 5f 95 35 	cmpobne	g2,g5,58748 <LBB19>
+   58818:	30 df 25 33 	cmpobge	r4,g7,58748 <LBB19>
+
+0005881c <LM69>:
+   5881c:	01 89 b5 59 	subo	1,g6,g6
+
+00058820 <LM70>:
+   58820:	28 ff ff 08 	b	58748 <LBB19>
+
+00058824 <LBB26>:
+   58824:	10 1e b0 5c 	mov	16,g6
+   58828:	00 30 a0 8c 	lda	ffffff <_doom_engine_result+0xfa238f>,g4
+   5882c:	ff ff ff 00
+   58830:	ec de a1 33 	cmpobge	g4,r7,5871c <_doom_nlL70>
+   58834:	18 1e b0 5c 	mov	24,g6
+   58838:	e4 fe ff 08 	b	5871c <_doom_nlL70>
+
+0005883c <LBE26>:
+   5883c:	06 16 80 5d 	movl	r6,g0
+   58840:	00 30 00 86 	callx	0 <_I_InitTimidityConfig>
+   58844:	00 00 00 00
+   58848:	10 16 30 5d 	movl	g0,r6
+   5884c:	0a 15 50 58 	not	r10,r10
+   58850:	e4 fb ff 08 	b	58434 <LBB3>
+
+00058854 <LM72>:
+   58854:	00 30 00 86 	callx	0 <_I_InitTimidityConfig>
+   58858:	00 00 00 00
+   5885c:	10 16 20 5d 	movl	g0,r4
+   58860:	01 19 50 59 	subo	1,0,r10
+   58864:	cc fb ff 08 	b	58430 <LM5>
+
+00058868 <LBE2>:
+	...

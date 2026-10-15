@@ -15,13 +15,20 @@ of that parallel research work.
 3. **Done:** one-binary runtime high/low detail selection (`--runtime-detail`).
    Native and card tests confirm low/high/low with F5 and safe STOP/drain. Fixed
    benchmark builds remain fixed. See [controls and proof](../../artifacts/columns-20261015/QUALITY.md).
-4. **Next optimization:** measure exact `FixedDiv` call counts and per-site cost,
-   including the actual `___divdi3` implementation, before choosing a replacement.
-   Preserve saturation, signs, zero/INT_MIN behavior and rounding. No approximate
-   gameplay arithmetic by default.
-5. **Validation follow-up:** record the frame/tic consuming scripted input; the
-   asynchronous pipeline can otherwise produce a transient menu-timing difference.
-6. Then test bounded BSP changes, further selective compiler settings, measured
+4. **Measured, opt-in:** exact bounded FixedDiv via unsigned i960 `ediv`.
+   `--fixed-div-profile` measures 47 source call sites; `--fast-fixed-div`
+   selects the candidate and currently requires that profiling flag. Matched
+   instrumented A/B/B/A: **6.047 → 6.309 FPS (+4.34%)**, renderer 144.94 →
+   138.08 ms, inclusive divide brackets 9.588 → 3.669 ms/frame. All 2,080 images
+   and call-count traces agree; 231 full paired audits and 66,560 on-card
+   arithmetic comparisons pass. See [evidence](../../artifacts/fixeddiv-20261016/README.md).
+   Preserve saturation, signs, rounding and the original INT_MIN fallback.
+5. **Next:** qualify the exact divide without per-call profiling/self-test
+   overhead. Do not equate this instrumented benchmark with ordinary-play FPS.
+6. **Validation follow-up:** record the frame/tic consuming scripted input;
+   the latest batch agrees, but it does not explain the earlier transient menu
+   difference in the asynchronous pipeline.
+7. Then test bounded BSP changes, further selective compiler settings, measured
    memory hot spots and cache/layout changes one at a time on the latest baseline.
 
 Quality reductions must have explicit independent controls, preferably at runtime

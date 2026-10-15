@@ -1,4 +1,30 @@
-# Current findings and evidence — 2026-10-15
+# Current findings and evidence — 2026-10-16
+
+<!-- fixeddiv-current -->
+**2026-10-16 exact divide measured, opt-in:** add `--fixed-div-profile` and
+`--fast-fixed-div` to the fixed-column/span build. Four matched 520-frame runs
+measure **6.047 → 6.309 FPS (+4.34%)**, renderer **144.94 → 138.08 ms**,
+and inclusive FixedDiv elapsed **9.588 → 3.669 ms/frame** at 480.67 calls/frame.
+Both builds carry profiling and 32 differential checks per display; this is
+not an uninstrumented FPS claim. Timer brackets include calls, clock reads,
+interrupts and preemption, not pure CPU cycles. Exact sign/saturation/rounding
+is preserved; INT_MIN retains the legacy path. No approximate reciprocals.
+
+All **2,080 corresponding images and call-count traces agree**, 231 full paired
+audits pass, 66,560 on-card arithmetic comparisons pass, plus STOP/stall/drain,
+full replay and tamper tests. Maximum IRQ gap 10.810 ms. All 1,944 observed HTTP
+payloads are exact. Ownership/release/audit policy is unchanged; HTTP latency
+has no demonstrated improvement. Both admissions stay below 900,000 bytes;
+point-side O0 object unchanged. No flash writes. Evidence and reproduction:
+`artifacts/fixeddiv-20261016/README.md`, `game/doom/fixed_div/README.md`.
+
+Next: qualify the fast path without profiler overhead, then broader scenes and
+high detail. The earlier asynchronous menu discrepancy is still unexplained;
+this batch's strict image pass does not replace input-consumption tracing.
+Public IPv6 HTTP is restored: HTTP 200 / 2,890 bytes, boot
+`1df1fad6-1e16-41da-bc60-bf6815b42697`. Exact sources/binaries and all captures
+are saved and hash-verified locally. See the experiment restoration evidence.
+<!-- /fixeddiv-current -->
 
 <!-- renderer-current -->
 **2026-10-15 fast renderer accepted in bounded low-detail card tests:** opt-in

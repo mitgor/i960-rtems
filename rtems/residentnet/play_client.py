@@ -23,7 +23,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
  if presentation_test:assert pipeline_test and not wad_load_test
  if profile:
   assert pipeline
-  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('runtime_detail','wad_profile','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')})+'\n')
+  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('fixed_div_profile','fast_fixed_div','runtime_detail','wad_profile','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')})+'\n')
  token=secrets.token_hex(24);lock=threading.Lock();keys=deque();stop=threading.Event();held_keys=set();input_deadline=[0.]
  pp=None;pp_active=False;last_completion=0.;clocks=[]
  dma=None

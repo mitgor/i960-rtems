@@ -3757,6 +3757,40 @@ the parentheses and kept the test. The real capture passed; the edited one no
 longer did. Faster columns and a detail button were useful. So was a check that
 had learned to say no in one more case.
 
+## The division underneath
+
+The next suspect was not a pixel loop. It was the small fixed-point divide that
+Doom called from its wall and sprite calculations. The linked code led into a
+general 64-bit helper, with normalization, quotient correction and several
+hardware divide/remainder operations. The processor had a narrower instruction
+for the job we actually needed.
+
+We kept the original saturation rule, divided unsigned magnitudes with `ediv`,
+and restored the sign. The awkward INT_MIN cases kept their original path.
+There was no reciprocal approximation to explain away later. A profiler counted
+47 source call sites, and both builds compared the new routine with the old one
+32 times before every display. Those checks happened on the i960 itself.
+
+Four more 520-frame runs put the instrumented original at 6.047 frames per
+second and the candidate at 6.309. Rendering fell from 144.94 to 138.08
+milliseconds. The division brackets fell from 9.588 to 3.669 milliseconds per
+frame, mostly in wall scaling and point-to-distance work. They included timer
+reads and interruptions; calling them exact CPU time would have made the story
+neater and the measurement wrong. Both builds paid the profiling overhead, so
+ordinary-play speed still needed its own test.
+
+This time all corresponding pictures agreed, including the menus. So did every
+per-frame divide count. We had 231 full paired audits, 66,560 successful target
+arithmetic comparisons, the same four native pixel differences, and clean stall,
+STOP and drain tests. The largest interrupt gap was 10.81 milliseconds. Frame
+delivery itself had not become faster. The renderer simply finished its work
+about seven milliseconds sooner.
+
+The new switch stays optional. It is a measured gain in one scene, not a promise
+about every map. The earlier menu-timing discrepancy still needs input-consumption
+tracing, and the profiler still needs to come out before we quote a new ordinary
+play rate. A smaller job for division was enough progress for this experiment.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

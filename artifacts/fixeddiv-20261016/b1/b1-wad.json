@@ -1,0 +1,9 @@
+{
+  "blocks": 1805,
+  "logical_bytes": 59138244,
+  "dma_payload_bytes": 59146240,
+  "successful_ioctl_seconds": 0.157860609,
+  "source_sha256": "7323bcc168c5a45ff10749b339960e98314740a734c30d4b9f3337001f9e703d",
+  "complete_generations": 1805,
+  "payload_crc": false
+}

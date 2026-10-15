@@ -1,0 +1,53 @@
+{
+  "strict_all_run_image_acceptance": true,
+  "runs": {
+    "a1": {
+      "pixel_palette_mismatch_frames": [],
+      "all_images_equal": true,
+      "measurement_window_images_equal": true,
+      "http_exact_frames": 488,
+      "native_first_52_known_differences": [
+        29260,
+        29261,
+        29580,
+        29581
+      ]
+    },
+    "b1": {
+      "pixel_palette_mismatch_frames": [],
+      "all_images_equal": true,
+      "measurement_window_images_equal": true,
+      "http_exact_frames": 486,
+      "native_first_52_known_differences": [
+        29260,
+        29261,
+        29580,
+        29581
+      ]
+    },
+    "b2": {
+      "pixel_palette_mismatch_frames": [],
+      "all_images_equal": true,
+      "measurement_window_images_equal": true,
+      "http_exact_frames": 479,
+      "native_first_52_known_differences": [
+        29260,
+        29261,
+        29580,
+        29581
+      ]
+    },
+    "a2": {
+      "pixel_palette_mismatch_frames": [],
+      "all_images_equal": true,
+      "measurement_window_images_equal": true,
+      "http_exact_frames": 491,
+      "native_first_52_known_differences": [
+        29260,
+        29261,
+        29580,
+        29581
+      ]
+    }
+  }
+}
