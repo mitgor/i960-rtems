@@ -57,7 +57,7 @@ def verify(out):
    assert (op==2 and e['errno']==11 and g==nextg[(g-1)&1]) or (op==4 and e['errno']==116 and g in (15,n-1)) or (op==4 and e['errno']==16 and g==19)
    errors.append((op,g,e['errno']));continue
   q=bytes.fromhex(e['request']);r=bytes.fromhex(e['response']);h=struct.unpack_from('<8I',q);op,ep,g,off=h[:4]
-  assert len(q)==len(r)==1056 and ep==epoch and h[4:]==(0,0,0,0) and q[32:]==bytes(1024) and r[:32]==q[:32]
+  assert len(q)==len(r)==(73760 if op==8 else 1056) and ep==epoch and h[4:]==(0,0,0,0) and q[32:]==bytes(len(q)-32) and r[:32]==q[:32]
   b=r[32:];slot=(g-1)&1
   if op==1:
    assert not setup and not g and not off;setup=True;addresses=list(struct.unpack_from('<2I',b));assert addresses==final['addresses'] and b[8:]==bytes(1016)
@@ -68,6 +68,7 @@ def verify(out):
   else:
    assert enabled and g==nextg[slot] and 17<=g<=n+2
    if op==2:assert not off and b[:32]==caps[g][73696:] and b[32:]==bytes(992)
+   elif op==8:assert off==73728 and b==caps[g];read[slot]=set(range(0,73728,1024))
    elif op==3:assert off%1024==0 and 0<=off<=72704 and b==caps[g][off:off+1024];read[slot].add(off)
    else:
     assert op==4 and not off and b==bytes(1024) and read[slot]==set(range(0,73728,1024));releases.append(g);read[slot].clear();nextg[slot]+=2

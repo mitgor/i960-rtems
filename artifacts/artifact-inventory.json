@@ -2523,6 +2523,151 @@
       "sha256": "68e4566437d7a3915406752249d1daf5b7a578055df8c9bb93053ff69328c112"
     },
     {
+      "path": "artifacts/bulk-capture-20261015/README.md",
+      "size": 5971,
+      "sha256": "f296f5b712919fbfc4c311cc371e498389c8ae0b621b73763b9a69eeee3a3dca"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/archive.sh",
+      "size": 684,
+      "sha256": "4352c1625a54e68688e41661558b9ea2eb0ad9948f9c0b38b5e575746a53e2ef"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/archives.sha256",
+      "size": 161,
+      "sha256": "34d13c02c061be0a614595a01e17917d63d9810b31b670c44f0b6464e7ebccc8"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/build.sh",
+      "size": 1083,
+      "sha256": "cd7a910b5e98126abd3a2c681cd1e834ad8170e8afd7c054dac58633b4207bfe"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/bulk-replay-mac.log",
+      "size": 76,
+      "sha256": "9e6b1857d75408a045bc2ab41b2307e52a4f188c09558f536ff5e594878f3655"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/candidate.tar.gz",
+      "size": 32619842,
+      "sha256": "2d2b80cb654048023be0e3fa54f480d7ab11668c296faa0a51ff8e7b9184074a"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/card.tar.gz",
+      "size": 39692759,
+      "sha256": "998850dfa263ab695d38032af572a29ca48db25950b3b24ec5bf673d6108f420"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/client-abi-test.log",
+      "size": 77,
+      "sha256": "7779768db91646c57d149e722d3c3d2d3c4090ac2289d48269392de661b95e03"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/client-flow-test.log",
+      "size": 2289,
+      "sha256": "e9d299bfb19b4b5c42cf418ca49afc529640403c5ada11ae30f9920bde5e6909"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/comparison.json",
+      "size": 3488,
+      "sha256": "908aa6a9f3970d3173b02862d2b46db6a5c6b21e118e5f1ff78c1acee23b8477"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/extract.py",
+      "size": 657,
+      "sha256": "6db72fe3601e002f465baa6aabdd0abaac485eaa61dd9d2d819522cee7340f08"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/frame-tamper-mac.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/frames-mac.json",
+      "size": 1211,
+      "sha256": "41119fc7f7f771e0bae2260411e5cdfd7e6b762681ae73a028cddb1f525fc997"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/host-test-mac.log",
+      "size": 171,
+      "sha256": "4307139eb1577086251ca60f7dd2289986b79bdea7bfb6dc5abb4b9b23257ab9"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/http-observations.jsonl",
+      "size": 25183,
+      "sha256": "8c554716b8a51b55971ac3b612a842bb2f438355f5e25f4a149f12fdba2959a3"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/http-observer.log",
+      "size": 25183,
+      "sha256": "8c554716b8a51b55971ac3b612a842bb2f438355f5e25f4a149f12fdba2959a3"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/legacy-bulk-replay.log",
+      "size": 76,
+      "sha256": "9e6b1857d75408a045bc2ab41b2307e52a4f188c09558f536ff5e594878f3655"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/legacy-synthetic-replay.json",
+      "size": 2589,
+      "sha256": "b38f1b2a4e2616bf115d3ad02eff337e677ff968a156abbd075f0b7941568cbc"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/measure.py",
+      "size": 1935,
+      "sha256": "4e8e5b0e095d960429ab8dcd10faf1ba23fe51a53236818851815c854816194e"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/measurements.json",
+      "size": 1098,
+      "sha256": "2b496549cef0f841fbf1fb7a3e906e23458149c8bbfef07ca432b5b0448cc6f2"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/restoration.json",
+      "size": 224,
+      "sha256": "2ed6ef9108a0a244a20eaa9f4e092b2cce6a1010e823c2f34843a7730c107e03"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/restore-relay.log",
+      "size": 1300,
+      "sha256": "85ccd54160e90c1aa310a4c31e96f508e47fe4386cf087d29c4817809f8cd085"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/restore.sh",
+      "size": 862,
+      "sha256": "9670628ee4f92c9d59ef9fa73ecdbe27a59b2019a2ccab90a94446bfe4d5f8b2"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/restored-http.headers",
+      "size": 97,
+      "sha256": "b9e6a08eb2139e70139786adea5538fe2217688db7bc3a957f374a7cd8b61b24"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/restored-http.html",
+      "size": 2890,
+      "sha256": "0cb94a5539e030f9ae283b4b0444a8608cdf1e9606c8e8940d3626add92993e5"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/run.sh",
+      "size": 368,
+      "sha256": "ec0dcb17b8bb7bfbca1018ecc5ba84420bcdd8dc9b496dba7b57512853025beb"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/system-mac.json",
+      "size": 6705,
+      "sha256": "342b85f556b41b1bf8f8775a6066c864658c7755480fdbb05e20622420966a60"
+    },
+    {
+      "path": "artifacts/bulk-capture-20261015/verify.sh",
+      "size": 811,
+      "sha256": "e28d43efade28469e6e444e2b4ef8a5dae8839ef2f5833711c650ed1181a6ebf"
+    },
+    {
       "path": "artifacts/callback-20261011/README.md",
       "size": 7810,
       "sha256": "ce31d3754a48fde4b19cc167a7f48a9e4a14d90039877469878a17ca15dffa36"

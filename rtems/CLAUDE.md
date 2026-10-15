@@ -1,5 +1,34 @@
 # RTEMS working guidance
 
+<!-- bulk-capture-current -->
+**2026-10-15 bulk guarded framebuffer capture accepted:** steady ping-pong now
+uses one 73,728-byte capture read instead of 72 small reads. Exact epoch/generation,
+completion ordering, both guards, full raw journals and separate release remain.
+Release credit is granted only after successful full copyout; partial-copy faults
+also no longer grant credit in the legacy chunk path. The extended operation-8
+buffer is 73,760 bytes despite the legacy ioctl number's size encoding; use the
+matching new client/module. Card kernel and Doom engine are unchanged.
+
+100 frames / 51 full paired audits, held-slot stall and STOP, heap drain, native
+oracle and 45 evidence mutation checks pass. 95 HTTP payloads match captures.
+Capture ioctl time fell **43.178 → 0.278 ms/frame**, completion-to-release
+**61.398 → 26.405 ms**. Overall FPS was **5.192 → 4.802 (-7.52%)** in this
+comparison; do not claim an FPS gain. Release ioctl waits rose 4.264 → 22.330 ms;
+renderer time remains about 190 ms and audit/scheduling phases differ. Repeat
+interleaved measurements before attributing the FPS difference to the new path.
+Maximum IRQ gap: **10.488 ms**. First 52 card frames/palettes match the accepted
+baseline; the same four known native pixel differences remain.
+
+Initial 16 host-started comparison frames retain their old capture path. Bulk
+capture is used by the existing opt-in ping-pong profile, not a new card protocol.
+Evidence, exact binaries, ABI and replay: `artifacts/bulk-capture-20261015/README.md`.
+Public IPv6 HTTP restored: 200 / 2890 bytes; boot
+`27cc6b32-2d2f-4701-ba88-1c6d34484a42`, relay 1555 / supervisor 1552 owns
+`dac960auto`. Doom 8087 closed. Historical PIDs below are stale; inspect actual
+ownership before use.
+<!-- /bulk-capture-current -->
+
+
 <!-- irq-drain-current -->
 **2026-10-15 IRQ gap diagnosed and peer-yield shutdown fixed:** the original
 59.855 ms spike occurred after STOP, not during rendering. The inherited outer

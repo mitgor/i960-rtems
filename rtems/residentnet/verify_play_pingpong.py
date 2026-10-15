@@ -14,7 +14,7 @@ def verify_transport(out,frames,epoch,source,compared,controls):
   if 'errno' in r:
    assert r['op']==2 and r['errno']==11 and 17<=r['g']<=n and r['off']==0
    continue
-  q=bytes.fromhex(r['request']);b=bytes.fromhex(r['response']);assert len(q)==len(b)==1056 and q[:32]==b[:32] and not any(q[32:])
+  q=bytes.fromhex(r['request']);b=bytes.fromhex(r['response']);assert len(q)==len(b)==(73760 if struct.unpack_from("<I",q)[0]==8 else 1056) and q[:32]==b[:32] and not any(q[32:])
   op,e,g,off,*zero=struct.unpack_from('<8I',q);assert e==epoch and not any(zero);v=b[32:]
   if op==1:
    assert base is None and not g and not off;base=struct.unpack_from('<2I',v);assert not any(v[8:])
@@ -31,12 +31,17 @@ def verify_transport(out,frames,epoch,source,compared,controls):
     assert m[:5]==(0x31505044,g,(g-1)&1,65536,source+((g-1)&1)*65536) and m[6:]==((~g)&0xffffffff,g)
     assert tuple(m)==struct.unpack_from('<8I',(out/f'pingpong-{g:03}.bin').read_bytes(),73696)
     completions.add(g)
-   elif op==3:
-    assert g in completions and off%1024==0 and 0<=off<=72704
+   elif op in (3,8):
+    assert g in completions
+    assert (op==8 and off==73728) or (op==3 and off%1024==0 and 0<=off<=72704)
     d=sets.setdefault(g,{})
-    if off==0 and len(d)==72:d.clear()
-    assert off==len(d)*1024
-    d[off]=v
+    if op==8:
+     assert not d or len(d)==72
+     d.clear();d.update({i:v[i:i+1024] for i in range(0,73728,1024)})
+    else:
+     if off==0 and len(d)==72:d.clear()
+     assert off==len(d)*1024
+     d[off]=v
     if len(d)==72:
      cycles[g]=cycles.get(g,0)+1
      capture=b''.join(d[o] for o in range(0,73728,1024));assert capture==(out/f'pingpong-{g:03}.bin').read_bytes()

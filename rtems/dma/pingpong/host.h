@@ -8,7 +8,7 @@ static long pingpong_ioctl(struct file*file,unsigned cmd,unsigned long arg){
  if(cmd!=0xc4204d0au)return wad_dma_ioctl(file,cmd,arg);
  w=memdup_user((void __user*)arg,1056);if(IS_ERR(w))return PTR_ERR(w);
  op=w[0];epoch=w[1];g=w[2];off=w[3];slot=(g-1)&1;
- if(op<1||op>7||!epoch||epoch>65535||w[4]||w[5]||w[6]||w[7]||(op==1&&(g||off))||(op>=2&&op<=4&&!g)||(op!=3&&off)||(op==3&&((off&1023)||off>72704))){rc=-EINVAL;goto free;}
+ if(op<1||op>8||!epoch||epoch>65535||w[4]||w[5]||w[6]||w[7]||(op==1&&(g||off))||((op>=2&&op<=4||op==8)&&!g)||(op!=3&&op!=8&&off)||(op==8&&off!=PP_BYTES)||(op==3&&((off&1023)||off>72704))){rc=-EINVAL;goto free;}
  for(i=8;i<264;i++)if(w[i]){rc=-EINVAL;goto free;}
  mutex_lock(&d->session_lock);
  if(d->removed||d->pinned||!d->owned||!d->mu_resident||d->pending||d->runner_uncertain||!d->irq_may_run||d->response_ready||d->sequence!=1||d->mu_failed||d->mu_halted){rc=-EBUSY;goto unlock;}
@@ -40,16 +40,23 @@ static long pingpong_ioctl(struct file*file,unsigned cmd,unsigned long arg){
  if(READ_ONCE(m[7])!=g){rc=-EAGAIN;goto unlock;}
  dma_rmb();
  if(m[0]!=0x31505044u||m[1]!=g||m[2]!=slot||m[3]!=65536||(m[4]&3)||m[4]<0xc0240000u||m[4]>0xc0e30000u||m[6]!=~g||READ_ONCE(m[7])!=g){rc=-EPROTO;goto uncertain;}
- if(op==2){
+ if(op==2||op==8){
   for(i=0;i<4096;i++)if(((u8*)d->pp_buf[slot])[i]!=0xa5){rc=-EILSEQ;goto uncertain;}
   for(i=69632;i<PP_MARK;i++)if(((u8*)d->pp_buf[slot])[i]!=0xa5){rc=-EILSEQ;goto uncertain;}
+  if(op==8){
+   /* The slot stays owned under session_lock throughout the full copy.
+    * No release credit on a short/faulting userspace copy. */
+   if(copy_to_user((u8 __user*)arg+32,d->pp_buf[slot],PP_BYTES)){rc=-EFAULT;goto unlock;}
+   d->pp_reads[slot][0]=~0u;d->pp_reads[slot][1]=~0u;d->pp_reads[slot][2]=255;
+   goto unlock;
+  }
   memcpy(w+8,m,32);goto copy;
  }
- if(op==3){memcpy(w+8,(u8*)d->pp_buf[slot]+off,1024);i=off/1024;d->pp_reads[slot][i/32]|=1u<<(i%32);goto copy;}
+ if(op==3){memcpy(w+8,(u8*)d->pp_buf[slot]+off,1024);goto copy;}
  if(d->pp_reads[slot][0]!=~0u||d->pp_reads[slot][1]!=~0u||d->pp_reads[slot][2]!=255){rc=-EBUSY;goto unlock;}
  rc=packet_exchange(d,0x6b0b0000u|epoch,g,&v,deadline);if(rc||v)goto uncertain;
  memset(d->pp_reads[slot],0,sizeof(d->pp_reads[slot]));d->pp_next[slot]+=2;
-copy:session_log_end(d);if(copy_to_user((void __user*)arg,w,1056))rc=-EFAULT;goto unlock;
+copy:session_log_end(d);if(copy_to_user((void __user*)arg,w,1056))rc=-EFAULT;else if(op==3){i=off/1024;d->pp_reads[slot][i/32]|=1u<<(i%32);}goto unlock;
 uncertain:if(!rc)rc=-EIO;d->mu_failed=true;d->ready=false;record(d,"PINGPONG uncertain rc=%d; retain both mappings\n",rc);FRAME_DMA_DIAG(d,epoch);session_log_end(d);
 unlock:mutex_unlock(&d->session_lock);
 free:kfree(w);return rc;

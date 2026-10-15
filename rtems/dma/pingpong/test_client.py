@@ -54,6 +54,7 @@ class P(client.PingPong):
   if op==5:return struct.pack('<6I',m.seen,100,*m.next,2,1)+b[24:]
   if g!=m.next[slot]:m.errors.append(errno.ESTALE);raise OSError(errno.ESTALE,'stale')
   if op==2:return m.data(g)[73696:]+b[32:]
+  if op==8:m.read[slot]=set(range(0,73728,1024));return m.data(g)
   if op==3:m.read[slot].add(off);return m.data(g)[off:off+1024]
   assert op==4
   if len(m.read[slot])!=72:m.errors.append(errno.EBUSY);raise OSError(errno.EBUSY,'unread')

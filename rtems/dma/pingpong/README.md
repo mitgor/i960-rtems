@@ -102,3 +102,35 @@ completion descriptor and an active foreign DMA channel through the actual
 system-report wrapper. Earlier v9 evidence demonstrates why this is necessary:
 its frame and STOP checks passed, but the unadapted snapshot latched 0x100 and the
 full verifier rejected the run.
+
+## Bulk host capture (2026-10-15)
+
+`PingPong.capture()` uses operation **8** of `0xc4204d0a` once per capture,
+replacing 72 operation-3 calls. This is a host coherent-RAM copy, not a new PCI
+DMA submission. The card kernel, descriptors and source/destination ownership
+protocol are unchanged. The first 16 host-started comparison frames deliberately
+retain their older transport in the bounded acceptance test.
+
+Operation 8 has an explicitly bounded extended buffer ABI: **73,760 bytes**,
+32-byte header `<8I>(8, epoch, generation, 73728, 0, 0, 0, 0)`, followed by a
+73,728-byte output area. The ioctl number retains the legacy 1,056-byte encoding;
+callers must allocate the full operation-specific size, not `_IOC_SIZE(cmd)`.
+The Python client zero-initializes the entire buffer. The kernel validates the
+legacy header/reserved input prefix, exact length, session and generation; checks
+the completion record after `dma_rmb()` and scans both complete guards. Under
+`session_lock`, it copies the entire guarded allocation to userspace in one
+`copy_to_user`. It grants all 72 read credits only after that copy succeeds.
+A short/faulting copy returns `EFAULT`, does not grant new release credit, and
+retains ownership and both mappings. Old operation 3 remains available and now
+also grants its individual credit only after successful copyout.
+
+Release remains a separate generation-checked operation. Capture does not ACK,
+recycle, rearm or accept a userspace DMA address. Full raw request/response bytes
+are journaled; replay accepts both historical chunked captures and new bulk
+captures and compares all guards, pixels, palette and completion words.
+
+Tests: `test_host.py` executes the actual ioctl with partial-copy failures and
+corrupted metadata/guards; `test_bulk_client.py` asserts a single ioctl and the
+exact ABI; `test_bulk_replay.py CAPTURE` checks backward compatibility and rejects
+truncated, wrong-length, corrupted and missing bulk journal records. Hardware
+acceptance and measured costs: `artifacts/bulk-capture-20261015/README.md`.

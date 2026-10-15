@@ -9,7 +9,7 @@ from stress_client import pattern
 class PingPong:
  def __init__(self,fd,epoch,out,gate):self.fd=fd;self.epoch=epoch;self.out=Path(out);self.gate=gate
  def call(self,op,g=0,off=0):
-  b=bytearray(struct.pack('<8I',op,self.epoch,g,off,0,0,0,0)+bytes(1024));request=b.hex();t=time.monotonic_ns()
+  b=bytearray(struct.pack('<8I',op,self.epoch,g,off,0,0,0,0)+bytes(73728 if op==8 else 1024));request=b.hex();t=time.monotonic_ns()
   with self.gate:
    try:fcntl.ioctl(self.fd,0xc4204d0a,b,True)
    except OSError as e:
@@ -19,7 +19,7 @@ class PingPong:
   with (self.out/'pingpong-journal.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
  def ready(self,g):return list(struct.unpack_from('<8I',self.call(2,g)))
  def capture(self,g,synthetic=True):
-  b=b''.join(self.call(3,g,i) for i in range(0,73728,1024))
+  b=bytes(self.call(8,g,73728))
   assert b[:4096]==b'\xa5'*4096 and b[69632:73696]==b'\xa5'*4064
   m=list(struct.unpack_from('<8I',b,73696));assert m[:4]==[0x31505044,g,(g-1)&1,65536] and m[6:]==[(~g)&0xffffffff,g]
   if synthetic:assert b[4096:69632]==pattern(g)

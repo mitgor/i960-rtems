@@ -3625,6 +3625,35 @@ a shutdown repair, not another renderer speedup. The evidence now keeps elapsed
 drain time and tick progress beside the full audits, so a last long masked scan
 cannot disappear merely because there is no following interrupt to measure it.
 
+## Seventy-two trips for one picture
+
+The card was already putting a whole frame into host memory. We then collected
+it with seventy-two separate reads. The bus had finished its work; our host
+interface was still asking for the picture a kilobyte at a time.
+
+The replacement was deliberately mundane: one bounded copy of the entire
+73,728-byte allocation, guards and completion record included. Nothing became
+writable sooner. The slot stayed owned until a complete successful copy, then
+an explicit release. A partial copy earned no release credit. That last rule
+also exposed a small flaw in the older chunk path, which now follows it too.
+
+One hundred frames later, all fifty-one full audit pairs had passed, along with
+the held-slot stall, STOP and shared-heap drain. Ninety-five frames fetched over
+HTTP matched the saved bytes. The kernel and Doom engine were the same binaries
+as before. Capture calls fell from seventy-two to one, and their summed time
+fell from 43.18 milliseconds to 0.28. Completion through release fell from
+61.40 milliseconds to 26.40.
+
+The FPS counter refused to join the celebration: 5.19 became 4.80 in this run.
+The renderer still occupied roughly 190 milliseconds, and the earlier release
+now spent longer waiting in the control path. Audit and scheduling phase moved
+too. We had removed a real inefficiency, but had not demonstrated a faster game.
+The evidence says both things, and keeps all the inconvenient intervals.
+
+The full captures, exact module and replay instructions are in
+`artifacts/bulk-capture-20261015/`. The next question is what release is waiting
+for—not whether we can make the audits look away.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

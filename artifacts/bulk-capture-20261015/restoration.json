@@ -1,0 +1,9 @@
+{
+  "boot_id": "27cc6b32-2d2f-4701-ba88-1c6d34484a42",
+  "relay_pid": 1555,
+  "supervisor_pid": 1552,
+  "bound_driver": "dac960auto",
+  "http_status": 200,
+  "http_bytes": 2890,
+  "doom_port_8087": "bounded session ended"
+}

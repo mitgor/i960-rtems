@@ -1,0 +1,50 @@
+{
+  "baseline": {
+    "fps": 5.191821641608703,
+    "capture_calls_per_frame": [
+      72
+    ],
+    "capture_ioctl_mean_ms": 43.1779778,
+    "ready_to_release_mean_ms": 61.39809426666527,
+    "operations": {
+      "2": {
+        "calls": 30,
+        "mean_ms": 0.025761466666666667
+      },
+      "3": {
+        "calls": 2160,
+        "mean_ms": 0.5996941361111111
+      },
+      "4": {
+        "calls": 30,
+        "mean_ms": 4.2637796
+      }
+    }
+  },
+  "candidate": {
+    "fps": 4.801548666472587,
+    "capture_calls_per_frame": [
+      1
+    ],
+    "capture_ioctl_mean_ms": 0.2781145,
+    "ready_to_release_mean_ms": 26.404515466659483,
+    "operations": {
+      "2": {
+        "calls": 30,
+        "mean_ms": 0.027355333333333332
+      },
+      "8": {
+        "calls": 30,
+        "mean_ms": 0.2781145
+      },
+      "4": {
+        "calls": 30,
+        "mean_ms": 22.330422533333333
+      }
+    }
+  },
+  "fps_change_percent": -7.5170720813742875,
+  "capture_ioctl_reduction_percent": 99.35588808422612,
+  "ready_to_release_reduction_percent": 56.99456834608101,
+  "http_exact_frames": 95
+}
