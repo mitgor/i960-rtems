@@ -49,6 +49,7 @@ unsigned doom_profile_samples(void){return doom_cpu_samples;}
 #endif
 #ifdef I960_PEER_YIELD
 unsigned peer_service_complete(unsigned);
+void peer_heap_drain(unsigned),peer_drain_report(unsigned*);
 #endif
 static Context_Control fatal_context;
 static unsigned int resident,resident_epoch,resident_state,stop_reason,snapshot[64],snapshot_id,stop_sent;
@@ -110,6 +111,12 @@ static void control_poll(void){unsigned int token=R(0x1314),index;
  }
 #endif
 #ifdef I960_HEAP_SHARED
+ #ifdef I960_PEER_YIELD
+ if(token==(0x9a000000u|resident_epoch)){
+  peer_drain_report(snapshot);R(0x1314)=0;R(0x131c)=0x9b000000u|resident_epoch;
+  (void)R(0x131c);R(0x1324)=2;(void)R(0x1324);return;
+ }
+#endif
  if(token==(0x96000000u|resident_epoch)){
   resident_heap_diagnostics(snapshot);R(0x1314)=0;R(0x131c)=0x97000000u|resident_epoch;
   (void)R(0x131c);R(0x1324)=2;(void)R(0x1324);return;
@@ -240,7 +247,12 @@ static void Worker(rtems_task_argument id){
  }
 #endif
 #ifdef I960_GENERAL_HEAP
- if(resident)resident_heap_drain(id);
+ if(resident)
+#ifdef I960_PEER_YIELD
+ peer_heap_drain(id);
+#else
+ resident_heap_drain(id);
+#endif
 #endif
  done[id]=1;CHECK(rtems_task_suspend(RTEMS_SELF));bounded_fatal(0x53000);
 }

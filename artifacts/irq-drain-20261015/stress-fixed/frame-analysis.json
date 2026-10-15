@@ -1,0 +1,44 @@
+{
+  "live-masked": {
+    "first_frame_seconds": 100.4409366559994,
+    "engine_upload_seconds": 79.11874181000076,
+    "first_frame_requests": 1755,
+    "total_requests": 1805,
+    "warm_restart_seconds": 2.8101959340001486,
+    "warm_restart_requests": 38,
+    "restart_interval_frames": [
+      66,
+      68
+    ],
+    "full_audit_pairs": 52,
+    "pingpong_fps": 4.777394102804858,
+    "known_native_pixel_differences": [
+      29260,
+      29261,
+      29580,
+      29581
+    ],
+    "all_52_palettes_exact": true
+  },
+  "live-stress-fixed": {
+    "first_frame_seconds": 100.57304244399995,
+    "engine_upload_seconds": 361.09753522700004,
+    "first_frame_requests": 1755,
+    "total_requests": 1805,
+    "warm_restart_seconds": 2.400027213000044,
+    "warm_restart_requests": 38,
+    "restart_interval_frames": [
+      66,
+      68
+    ],
+    "full_audit_pairs": 73,
+    "pingpong_fps": 5.466500641753469,
+    "known_native_pixel_differences": [
+      29260,
+      29261,
+      29580,
+      29581
+    ],
+    "all_52_palettes_exact": true
+  }
+}

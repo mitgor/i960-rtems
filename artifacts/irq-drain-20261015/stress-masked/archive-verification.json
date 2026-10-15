@@ -1,0 +1,10 @@
+[
+  {
+    "file": "stress-masked-candidate.tar.gz",
+    "sha256": "baaa3bd749ec89119a92569ea7e3a65e6413fd15bf805f0cb8c087f35dfaea13"
+  },
+  {
+    "file": "stress-masked-card.tar.gz",
+    "sha256": "897ede96ed54135f5cace183cb008e92f99cafc1584116aea95de8b49481b0d1"
+  }
+]

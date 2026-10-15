@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-15T19:07:18.718537+00:00",
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "status": 200,
+  "bytes": 2891,
+  "contains_RTEMS": true,
+  "boot": "a32b6a8c-aedd-4f62-8537-0509ef285a26",
+  "relay_pid": 1434,
+  "supervisor_pid": 1416,
+  "driver": "dac960auto",
+  "doom_8087_closed": true
+}

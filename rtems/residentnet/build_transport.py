@@ -19,6 +19,10 @@ def build(out,payload):
  if any(f.startswith('-DI960_OWNED_MIB=') for f in flags):
   s=m.replace(s,'if(w[0]==7&&w[2]>1)', 'if(w[0]==7&&w[2]>2)')
   s=m.replace(s,'else{token=w[2]?0x96000000u:0x90000000u;reply=w[2]?0x97000000u:0x95000000u;}', 'else{token=w[2]==2?0x98000000u:w[2]?0x96000000u:0x90000000u;reply=w[2]==2?0x99000000u:w[2]?0x97000000u:0x95000000u;}')
+ if '-DI960_PEER_YIELD' in flags:
+  s=m.replace(s,'if(w[0]==7&&w[2]>2)', 'if(w[0]==7&&w[2]>3)')
+  s=m.replace(s,'token=w[2]==2?', 'token=w[2]==3?0x9a000000u:w[2]==2?')
+  s=m.replace(s,'reply=w[2]==2?', 'reply=w[2]==3?0x9b000000u:w[2]==2?')
  if '-DI960_DOOM_PLAY' in flags:s='#define I960_DOOM_PLAY 1\n'+s
  if '-DI960_DOOM_ENGINE' in flags:s='#define I960_DOOM_ENGINE 1\n'+s
  if '-DI960_DOOM_RUNTIME' in flags:s='#define I960_DOOM_RUNTIME 1\n'+s

@@ -3592,6 +3592,39 @@ in the act. Even the CPU samples needed care: yielding near the timer changes
 which worker the timer sees. The frame rate was measured; a claim that we had
 magically doubled the processor would not have been.
 
+## The missing six ticks
+
+The 59.9 ms gap turned out to have a useful address in time: after the last
+picture, during STOP. The saved reports stayed below eleven milliseconds through
+gameplay. Then one worker went through its final buffer checks with interrupts
+masked, as the old shutdown path had always asked it to do.
+
+The ordinary repeats were frustratingly polite. Their remaining buffers were
+small, the drains took a few milliseconds, and the gap did not return. So we made
+the existing large-buffer case easier to hit: an 80 KiB shared pin every cycle,
+held longer. Nothing stopped checking its contents. On the card, the old drain
+took 56 milliseconds while the RTEMS tick count did not move at all. The IRQ gap
+was 60.24 milliseconds. We had found the missing time.
+
+Both workers already had to reach a STOP barrier before either could cancel its
+shared references. After that barrier, no new work could begin, and the payload
+being checked still had its pin. Its allocator operations already had their own
+short locks. The outer interrupt mask was keeping the timer out of a byte scan
+that did not need it. We let the timer back in for the drain, then masked again
+before publishing completion and suspending. The controller still demanded both
+workers and both interrupt continuations back before reclaiming anything.
+
+The same large-buffer test with the fix took 60.75 milliseconds to drain, and
+six timer ticks arrived during it. The maximum IRQ gap stayed at 10.50 ms. The
+scan had not become faster; it had stopped silencing the clock. Across the two
+normal runs and the two stress runs, four hundred pictures and 249 full paired
+audits kept the memory and ownership evidence alongside the timing result.
+
+The normal fixed run delivered 5.19 FPS and a 10.73 ms maximum IRQ gap. This was
+a shutdown repair, not another renderer speedup. The evidence now keeps elapsed
+drain time and tick progress beside the full audits, so a last long masked scan
+cannot disappear merely because there is no following interrupt to measure it.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

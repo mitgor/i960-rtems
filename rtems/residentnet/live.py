@@ -121,6 +121,7 @@ def main():
   assert '_wad_dma_isolation_snapshot' in (a.payload.parent/'kernel.map').read_text(), 'rebuild the resident kernel for bulk WAD support'
   assert 'wad_dma_ioctl' in (a.module.parent/'dac960auto.c').read_text(), 'rebuild the matching bulk WAD driver'
  flags=json.loads((a.payload.parent/'build.json').read_text())['flags']
+ drain_telemetry='-DI960_PEER_YIELD' in flags and '_peer_drain_report' in (a.payload.parent/'kernel.symbols').read_text()
  if '-DI960_WAD_PROFILE' in flags:
   assert a.wad_ring and a.wad_load_test and a.audit_interval==3 and admission.get('wad_profile'), 'WAD profiling requires matching bounded engine and full audits'
  if a.pingpong:
@@ -183,6 +184,9 @@ def main():
   if a.heap_shared and (not diagnostics or w[2]==2 or w[5]-diagnostics[-1]['ticks']>=1000):
    d=frozen_page(1);assert d[0]==0x314c5348 and d[54]==0 and d[55]==d[63]==1
    diagnostics.append(dict(seconds=time.monotonic()-start,ticks=w[5],words=d));(b.out/'heap-diagnostics.json').write_text(json.dumps(diagnostics,indent=2)+'\n')
+  if drain_telemetry:
+   d=frozen_page(3)
+   with (b.out/'drain-diagnostics.jsonl').open('a') as f:f.write(json.dumps(dict(ticks=w[5],words=d))+'\n')
   print(json.dumps(dict(seconds=snaps[-1]['seconds'],state=w[2],ticks=w[5],work=w[6:8],queue=w[57:60],packets=w[60:63])),flush=True);return w
  def packet(op,data=b'',e=epoch):
   raw=bytearray(struct.pack('<8I',op,e,len(data),0,0,0,0,0)+data.ljust(1536,b'\0'));before=bytes(raw);t=time.monotonic_ns()

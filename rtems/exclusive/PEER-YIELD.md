@@ -34,8 +34,20 @@ Run `rtems/exclusive/test_peer_yield.py` for wrap/maximum counter behavior and
 
 [Physical acceptance and exact reproduction](../../artifacts/peer-yield-20261015/README.md)
 
-Final card run: 4.517 → 5.273 FPS, all 58 paired audits and STOP/drain pass.
-Keep opt-in: maximum IRQ gap was 59.855 ms versus baseline 10.546 ms. Long-gap
-phase/PC attribution and repeat qualification remain pending; aggregate counters
-cannot establish the cause. Yielding biases tick CPU samples; compare elapsed
-wall time and delivered FPS instead of inferring CPU share.
+The initial card run reached 5.273 FPS but recorded a 59.855 ms final IRQ gap.
+Subsequent investigation isolated an inherited priority-31 shutdown scan and
+reproduced a 55.997 ms masked drain / 60.237 ms IRQ gap with the existing 80 KiB
+shared payload. Current peer-yield builds enable timer interrupts across that
+post-barrier drain, restoring priority 31 before done/suspend. No byte check,
+internal allocator lock, shared pin, arrival barrier or controller drain changes.
+Read-only frozen control page 3 records both workers' elapsed downcounter counts,
+RTEMS tick progress and completion counts; schema 1 archives the masked baseline,
+schema 2 the interruptible fix. Replay requires all original audit pages and
+matches this page to the raw control journal. Schema 2 additionally requires a
+full-session IRQ gap below 20 ms and tick progress consistent with drain elapsed
+time, including when there is no later IRQ to expose a final masked gap.
+The normal fixed run delivered 5.192 FPS with 10.731 ms maximum IRQ gap. This is
+a shutdown latency fix, not a demonstrated FPS optimization. Stress qualification
+and full evidence are recorded in `artifacts/irq-drain-20261015/README.md`.
+Keep opt-in pending longer interactive qualification. Yielding biases tick CPU
+samples; compare wall time and delivered FPS instead of inferring CPU share.

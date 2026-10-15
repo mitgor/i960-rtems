@@ -4,7 +4,7 @@ No multilib libc required; only gcc's -m32 backend and Linux IA32 support.
 """
 import argparse,json,hashlib,subprocess,shutil,struct
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--rtems',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument("--shared",action="store_true");p.add_argument("--iterations",type=int,default=1000);p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--shutdown-race",choices=["before","after"]);a=p.parse_args();assert not a.queue_reclaim or a.shared;assert 1000<=a.iterations<=100000;out=a.out.resolve();out.mkdir(parents=True,exist_ok=True);root=Path(__file__).resolve().parent
+p=argparse.ArgumentParser();p.add_argument('--rtems',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument("--shared",action="store_true");p.add_argument("--iterations",type=int,default=1000);p.add_argument("--queue-reclaim",action="store_true");p.add_argument("--shutdown-race",choices=["before","after","drain","drain-reverse"]);a=p.parse_args();assert not a.queue_reclaim or a.shared;assert 1000<=a.iterations<=100000;out=a.out.resolve();out.mkdir(parents=True,exist_ok=True);root=Path(__file__).resolve().parent
 inc=out/'include';(inc/'rtems/score').mkdir(parents=True,exist_ok=True)
 (inc/'rtems/system.h').write_text('''#ifndef TEST_SYSTEM_H
 #define TEST_SYSTEM_H
@@ -208,13 +208,20 @@ void _start(void){
 #endif
 }
 '''
- if a.shutdown_race=='after':test='#define STOP_BARRIER 1\n'+test
+ if a.shutdown_race in ('after','drain','drain-reverse'):test='#define STOP_BARRIER 1\n'+test
+ if a.shutdown_race in ('drain','drain-reverse'):
+  test=test.replace('void _start(void){', 'static void drain_other(void){native_actor=1;resident_heap_drain(1);native_actor=0;}\nvoid _start(void){')
+  test=test.replace('native_actor=0;resident_heap_drain(0);', 'native_actor=0;native_preempt=drain_other;resident_heap_drain(0);CHECK(!native_preempt);')
+
+ if a.shutdown_race=='drain-reverse':
+  test=test.replace('static void drain_other(void){native_actor=1;resident_heap_drain(1);native_actor=0;}', 'static void drain_other(void){native_actor=0;resident_heap_drain(0);native_actor=1;}')
+  test=test.replace('native_actor=0;native_preempt=drain_other;resident_heap_drain(0);CHECK(!native_preempt);', 'native_actor=1;native_preempt=drain_other;resident_heap_drain(1);CHECK(!native_preempt);')
  (out/'main.c').write_text(test)
 sources=[a.rtems/'cpukit/score/src'/n for n in ['heap.c','heapallocate.c','heapfree.c']];inputs+=sources
 cmd=['gcc','-m32','-nostdlib','-ffreestanding','-fno-builtin','-fno-pie','-no-pie','-fno-stack-protector','-O1','-I'+str(inc),'-I'+str(root),'-I'+str(out),str(out/'main.c'),*map(str,sources),'-o',str(out/'heap-test')]
 subprocess.run(cmd,check=True);run=subprocess.run([str(out/'heap-test')],check=True,stdout=subprocess.PIPE)
 if a.shutdown_race:
- (out/'result.json').write_text(json.dumps(dict(passed=True,shutdown_race=a.shutdown_race,actual_rtems_allocator=True,pointer_bits=32,old_shcheck10_reproduced=a.shutdown_race=='before',both_workers_quiescent_before_cancel=a.shutdown_race=='after',zero_live_bytes=True),indent=2)+'\n')
+ (out/'result.json').write_text(json.dumps(dict(passed=True,shutdown_race=a.shutdown_race,actual_rtems_allocator=True,pointer_bits=32,old_shcheck10_reproduced=a.shutdown_race=='before',both_workers_quiescent_before_cancel=a.shutdown_race in ('after','drain','drain-reverse'),preempted_drain=a.shutdown_race in ('drain','drain-reverse'),zero_live_bytes=True),indent=2)+'\n')
  print('Deterministic shared acquire versus STOP:',a.shutdown_race,'passed');raise SystemExit(0)
 if a.shared:
  assert len(run.stdout)==256

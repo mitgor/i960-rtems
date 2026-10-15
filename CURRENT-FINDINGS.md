@@ -1,5 +1,42 @@
 # Current findings and evidence — 2026-10-15
 
+<!-- irq-drain-current -->
+**2026-10-15 IRQ gap diagnosed and peer-yield shutdown fixed:** the original
+59.855 ms spike occurred after STOP, not during rendering. The inherited outer
+priority-31 region covered the remaining shared-buffer byte scan. A targeted
+80 KiB shared-pin workload reproduced **55.997 ms drain with zero ticks** and
+**60.237 ms maximum IRQ gap**. The fixed run retained all checks, took **60.753 ms
+elapsed drain with six timer ticks**, and held maximum IRQ gap to **10.495 ms**.
+The fix enables timer IRQs only after both workers cross the existing STOP
+arrival barrier, then masks before done/suspend. Pins, allocator/reference locks,
+controller ownership checks, IRQ-continuation drain and terminal quiescence remain.
+
+Normal fixed Doom: **5.192 FPS**, **10.731 ms maximum IRQ gap**; instrumented
+normal baseline 4.777 FPS / 10.785 ms. The shutdown-only change is not a claimed
+FPS optimization; prior peer-yield achieved 5.273 FPS. Both normal repeats ended
+with small buffers, so the separate stress pair establishes the long-scan fix.
+Four bounded runs total **400 frames / 249 full paired audits**, with held-slot
+STOP, global heap drain, Linux/Mac replay and capture-mutation checks. First 52
+frames per run retain exact baseline pixels/palettes and only four known native
+pixel differences. The stress workload changes input/restart timing; do not use
+its fixed frame-66–68 interval as a normal loading/FPS comparison.
+
+Frozen diagnostic page 3 (DRN1 schema 2; archived masked schema 1) is matched to
+the raw control journal. New builds require it. Replay gates the fixed build at
+**<20 ms full-session IRQ gap**, and checks drain tick progress against elapsed
+time even when no subsequent IRQ could expose a final masked interval. This is
+bounded acceptance, not a universal hard-real-time guarantee. 146 protected
+pages remain; 16 mutable bytes remain in the existing layout. Current fix is in
+the opt-in `--peer-yield` build; older images retain their original behavior.
+Keep opt-in pending longer interactive qualification. This supersedes the open
+59.9 ms-gap warning below. See `artifacts/irq-drain-20261015/README.md` for exact
+sources, binaries, reproduction and restoration status. Historical ownership IDs
+below are superseded; inspect actual hardware ownership before use.
+Public IPv6 HTTP restored and verified 200 / 2,891 bytes; boot
+`a32b6a8c-aedd-4f62-8537-0509ef285a26`, relay 1434 (supervisor 1416)
+owns `dac960auto`. Bounded Doom port 8087 is closed.
+<!-- /irq-drain-current -->
+
 <!-- peer-yield-current -->
 **2026-10-15 optional worker service yielding tested:** reviewed parallel chat
 “Find i960MC board design guidance” and implemented `--peer-yield`. Worker 0
