@@ -23,6 +23,7 @@ def decode(raw,g,test=False,options=None):
    d['column_mode']=c[10];d['column_cases']=c[11]
   else:assert c[10:]==(0,0)
   detail=int(17<=g<=40) if options.get('detail_test') else int(options.get('low_detail',False))
+  if options.get('runtime_detail'):detail=c[2];assert detail in (0,1)
   assert c[2]==detail and c[4]==sum(c[5:8]) and all(x<6000 for x in c[4:10])
   assert all(samples*10<=wall+10 for samples,wall in zip(c[4:10],(w[4],w[5],w[6],w[7],w[8],w[9])))
   d['cpu_samples']=dict(zip(('render','bsp','planes','sprites','screen_copy','adapter'),c[4:10]));d['detail']=detail
@@ -39,8 +40,11 @@ def decode(raw,g,test=False,options=None):
  return d
 
 def preflight(admission,pipeline,pipeline_test,wad_load_test):
- if any(admission.get(k) for k in ('frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')):
+ if any(admission.get(k) for k in ('runtime_detail','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')):
   assert pipeline and admission.get('double_buffer'), 'presentation features require admitted two-slot ownership'
+ if admission.get('runtime_detail'):
+  assert not any(admission.get(k) for k in ('detail_test','column_test','presentation_test'))
+  if pipeline_test:assert admission.get('cpu_profile') and admission.get('frame_profile'), 'bounded runtime-detail test needs mode telemetry'
  if admission.get('presentation_test'):
   assert admission.get('frame_profile') and pipeline_test and not wad_load_test, 'mixed presentation engine requires bounded no-input comparison'
   assert not admission.get('no_fnv') and not admission.get('direct_frame')

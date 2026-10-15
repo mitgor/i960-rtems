@@ -244,3 +244,23 @@ BSP/plane/drawing compilation. Four matched full-audit runs reach 5.334 FPS vers
 4.831 baseline, with identical images. It remains opt-in for broader interactive
 qualification. See [renderer instructions](../render/README.md) and
 [full evidence](../../../artifacts/render-20261015/README.md).
+
+
+## Runtime quality selection
+
+Add `--runtime-detail` when building to permit high/low detail selection within
+one engine binary. `--low-detail` then sets only the initial preference. Use F5,
+Doom's Options menu, or **Toggle detail** in the browser. With CPU profiling,
+the browser button reflects the actual renderer mode from the latest frame.
+Without `--runtime-detail`, fixed-detail profiling builds keep their prior behavior.
+
+The bounded ping-pong acceptance runner rejects interactive keyboard input and
+hides the quality button. In explicit `--pipeline-test` runtime-detail acceptance,
+it injects two F5 presses itself and checks the actual low/high/low transitions;
+CPU/frame profiling is required for that test. It is not an interactive play session.
+Normal interactive builds must omit the test-only ping-pong/WAD-profile options.
+See [quality validation](../../../artifacts/columns-20261015/QUALITY.md).
+
+Future quality-reducing experiments must have independent switches and preserve
+the normal renderer. Exact `--fast-render` and `--fast-columns` optimizations are
+separate from quality selection; benchmarks must use matched detail settings.

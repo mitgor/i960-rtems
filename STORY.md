@@ -3716,6 +3716,47 @@ adding renderer state or moving the mutable-memory bounds. The new build switch
 stays optional while we try more scenes. The floor is cheaper now; the walls
 still have most of the remaining budget.
 
+## The walls follow
+
+The backlog put columns next. We already had a specialized C loop from an older
+experiment; now it had to earn its place beside the faster spans. The loop chose
+wall wrapping or finite-post clamping once, before drawing the column. It also
+chose single or doubled output once. The original range checks and pixel values
+stayed, and the point-side compiler workaround remained byte-for-byte unchanged.
+
+Four more 520-frame runs put the span baseline at 5.330 frames per second and the
+column candidate at 6.204. Rendering fell from 168.70 to 141.81 milliseconds.
+Walls and BSP work lost about 22.6 milliseconds, sprites another 4.3; the planes
+stayed where we had left them. The image grew by 480 bytes. The heap did not need
+another allocation.
+
+There was one wrinkle in the comparison. Both candidate runs matched every
+reference picture. The last unchanged baseline repeated the main menu at frame
+64, where the reference had already entered episode selection. It matched again
+from frame 65 onward. All pictures in the declared timing window agreed. The
+asynchronous input path could explain the transition, but we had not recorded
+which frame consumed each key, so that remained an inference. The strict image
+checker kept its failure. The report kept the picture.
+
+The system checks were less ambiguous: 2,080 frames, 234 paired audits, the full
+replays and tamper tests, stalled-host handling, held-frame STOP and heap drain
+all passed. The gain belonged to drawing the same scene faster. It did not buy
+permission to remove the checks, and it did not quietly turn down the detail.
+
+Quality became a setting again. The profiling adapter had been forcing low
+detail before every frame. An opt-in mode now chooses the initial preference
+once, then lets Doom's F5/menu control it. One card session went low, high, low
+without replacing the binary. The renderer reported each transition, and another
+100 frames and 45 paired audits completed with STOP and drain intact.
+
+That test also earned its debugging notes. A host hook tried to examine a frame
+number too early; its failed capture stayed in the archive, and a regression
+test now catches that path. Then a tamper test found that the replay check for
+held-frame STOP metadata was skipped for the shorter capture lengths. We fixed
+the parentheses and kept the test. The real capture passed; the edited one no
+longer did. Faster columns and a detail button were useful. So was a check that
+had learned to say no in one more case.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3784,9 +3825,11 @@ So, the ledger, honestly kept:
   improves delivered FPS from 3.815 to 4.517 (+18.39%), with 67 full audit
   pairs and unchanged persistent-screen/DMA ownership. The later release-priority
   work cuts completion-to-HTTP waiting while sustained FPS remains about 4.84.
-  The latest optional renderer build reaches 5.334 against 4.831 FPS in four
-  matched runs, with identical images and 243 full paired audits. Most of that
-  gain comes from planes; broader interactive qualification remains open.
+  The span optimization reaches 5.334 against 4.831 FPS. Specialized C columns
+  then reach 6.204 against a fresh 5.330 baseline in four more 520-frame runs.
+  Full audits pass; all measured-window images agree, with one unchanged-baseline
+  menu transition differing outside that window. One binary can now switch high
+  and low detail. Broader interactive/map qualification remains open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

@@ -1,0 +1,151 @@
+# Backlog experiment: specialized C columns and runtime quality selection
+
+This follows the accepted `--fast-render` span/compiler experiment. The fixed
+C column experiment preserves graphics and gameplay; runtime high/low detail is
+a separate user-controlled quality option. Neither changes flash firmware.
+
+## Reproduction and controls
+
+On the qualified Linux host, add `--fast-columns` to the accepted builder command:
+
+```sh
+python3 game/doom/play/build.py --work /home/mit/doom-columns-new \
+  --pipeline --pingpong --wad-ring --wad-profile --peer-yield \
+  --frame-profile --cpu-profile --low-detail --no-fnv --direct-frame \
+  --fast-render --fast-columns
+```
+
+The existing column C helper dispatches clamping/wrapping and single/double pixel
+stores outside its inner loop. Fixed dispatch avoids the older per-frame
+C/assembly/original test schedule. Fuzz and translated columns remain unchanged.
+`--fast-render` compiles column.c with O2 along with the three renderer units;
+the R_PointOnSide O0 workaround stays byte-identical. `--fast-columns` without
+`--fast-render` remains a separate, unmeasured combination.
+
+Run the bounded comparison with `--pipeline --pipeline-test --wad-dma --wad-ring
+--pingpong --debug-audits --wad-load-test --frames 520 --release-schedule priority`.
+See `PLAN.md`, `build.sh`, `run.sh` and `accept.py` for the exact A/B/B/A procedure.
+Baseline is the previously accepted span build, not the older original renderer.
+Frames100–499 form each complete timing window; no slow intervals are removed.
+
+Add `--runtime-detail` for one binary with selectable high/low quality. With
+`--low-detail` it starts low, otherwise high. F5, the Doom menu and the browser
+button toggle the running renderer. This is separate from the fixed-detail FPS
+comparison. Bounded acceptance rejects manual keys and instead tests F5 itself;
+see `QUALITY.md`. Normal-quality rendering stays available. No other quality
+reductions have been silently enabled.
+
+## Evidence and scope
+
+Each run retains full paired audits every three seconds, all ownership checks,
+held-frame STOP, stalled-host checks, full system/frame/WAD replay, and tamper
+rejection. Every matching pixel/palette and received HTTP payload is compared.
+Native sanitizer tests cover 96 fixed vectors, 10,000 randomized guarded column
+comparisons, interactive input/STOP/drain, and deterministic 52-frame output.
+The four known native/target pixel differences are tracked separately.
+
+The target image grows 480 bytes (464 text, 16 BSS) relative to the span build;
+there is no additional heap allocation. This qualifies a specific low-detail
+scripted Freedoom scene, not all maps, WADs, high-detail performance or input-to-
+browser-paint latency. Options remain explicit for broader qualification.
+
+
+## Matched card result
+
+Four 520-frame A/B/B/A runs, full audits throughout. Each timing window is
+frames 100–499 (798 intervals per build across two runs).
+
+| Measurement | Span baseline | + specialized C columns |
+|---|---:|---:|
+| Delivered host FPS | 5.3299 | 6.2043 |
+| Renderer wall time | 168.70 ms | 141.81 ms |
+| Renderer sampled CPU | 165.75 ms | 139.21 ms |
+| BSP/walls | 106.75 ms | 84.14 ms |
+| Planes | 40.23 ms | 40.24 ms |
+| Sprites | 21.73 ms | 17.44 ms |
+| Screen copy | 10.43 ms | 10.59 ms |
+| Completion observed → HTTP availability | 4.77 ms | 4.91 ms |
+| Release gate wait | 2.60 ms | 2.57 ms |
+
+FPS improves **16.41%**, renderer time falls **15.94%**. There is no demonstrated
+transport-latency gain; DMA-start/HTTP clock bounds overlap substantially. These
+are delivered/available frames, not browser-paint or input-to-display measurements.
+Candidate runs are 6.2095 and6.1992 FPS. Retain existing lower-latency pipeline work.
+
+**2,080 frames /234 full paired audits** pass system/frame/WAD replay. Every run
+passes stalled-host immutability, held-slot STOP, heap/IRQ drain, 24 frame-tamper
+mutations and four drain mutations. See `acceptance-summary.json` for IRQ limits.
+
+### Image qualification limitation — kept visible
+
+Both candidates match all 520 reference pixel/palette images. The final unchanged
+baseline differs at **frame 64 only**, showing the main menu while the reference
+has entered episode selection. It is byte-identical to reference frames 62/63;
+frames 65–520 match again. All100–499 measured-window images match in all runs.
+This is consistent with input scheduling against the two-frame asynchronous
+pipeline; that cause is an inference, not an instrumented proof of consumption.
+There is no persistent gameplay/image divergence and no candidate-specific defect.
+
+The original `check_frames.py` remains strict and **fails** the four-run all-image
+claim. `image_report.py` reports every discrepancy and checks native/HTTP bytes;
+`pixels-http.json` explicitly records `strict_all_run_image_acceptance: false`.
+The completion message in the original acceptance log covered replay/audits,
+not this separate cross-run image oracle. Do not relabel the result as 2,080 exact
+corresponding images. Evidence: `a2-image-discrepancy.json` and both menu PNGs.
+A future deterministic-input test should record the frame/tic that consumes each
+input. This option remains explicit; broader maps/high-detail FPS remain open.
+
+## Runtime-detail test preparation and retained failures
+
+The first quality run stopped before delivering a frame because the host test
+hook referenced `g` before reading the frame channel. This did not occur in the
+fixed-detail comparison (`runtime_detail` was false). The hook now runs after
+capture/profile validation, alongside the existing scripted input. The card
+binary is unchanged for the retry. `quality-failed.tar.gz` preserves the failed
+capture and exact host source; its cleanup reports no errors, but it is not an
+accepted run. `startup-regression.json` demonstrates that the new pre-frame relay
+test fails on that source and passes on the fix.
+
+The runtime build helper initially omitted the packer's required `--cross`
+argument. It was corrected before any card use; the failed pack log is retained.
+The copied A/B launcher initially wrote stale convenience booleans into
+`play-build.json` (baseline `fast_render:false`, missing `fast_columns`). The
+actual admitted manifests, compile reports, object hashes and tested binaries
+are authoritative. The reproduction launcher now derives these booleans from
+admission. The original launcher/source snapshot is in `abba-inputs.tar.gz`;
+no tested binary was changed by that metadata correction.
+
+
+## Quality acceptance and replay fix
+
+The successful runtime-detail run adds 100 frames and 45 full paired audits. F5
+switches low→high→low in the same binary; actual renderer modes are 1/0/1 at
+frames 10/28/40. All 90 observed HTTP frames match captures. STOP, stalled-host,
+heap/IRQ drain and all replay/tamper checks pass. It is not an FPS comparison.
+
+The 100-frame tamper test exposed a pre-existing precedence error in
+`verify_play_pingpong.py`: the held-frame STOP metadata assertion applied only
+to extended runs, bypassing 52/100-frame captures. Parenthesizing the length test
+makes the STOP check mandatory for every length. The unchanged real capture
+passes and deletion of `stopped_held` is now rejected. A 520-frame baseline also
+passes the strengthened verifier. Runtime-detail runs now explicitly mark their
+mixed-quality timing unsuitable for FPS comparison. No live check was relaxed.
+
+Reassemble the exact builds with `python3 extract.py DEST`, or validate all part
+and capture hashes with `python3 extract.py --verify-only`. The candidate archive
+contains the baseline, fixed-column and runtime-detail builds, generated sources,
+Newlib, engine/admission/kernel/module files and build logs. Individual card
+archives retain full captures. `abba-inputs.tar.gz` preserves the comparison-time
+host sources; the failed quality capture preserves the pre-fix host source.
+
+## Final state
+
+All accepted and failed captures are saved locally. `archive-verification.log`
+confirms every split/archive hash and tar metadata. Public IPv6 HTTP was restored
+on boot `132d06a5-5b76-43e6-8585-20a5d02da8c1` and returned HTTP200 from the Mac;
+see `restoration.json` and saved headers/body. No flash write was performed.
+
+The execution queue is `game/doom/TESTING-QUEUE.md`. Broader research files from
+the parallel task remain separate; their contents were preserved. Next is exact
+FixedDiv profiling, with input-consumption timing instrumentation tracked as a
+validation follow-up. Quality reductions remain explicit user choices.

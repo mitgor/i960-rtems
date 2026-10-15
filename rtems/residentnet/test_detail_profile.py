@@ -20,3 +20,20 @@ for pipeline,test,load in [(False,True,False),(True,False,False),(True,True,True
  except AssertionError:pass
  else:raise AssertionError('unsafe detail test launch')
 print('PASS 52 detail modes; CPU sample sums/bounds/reserved fields; bounded launch policy')
+
+# Runtime mode accepts either renderer state, never arbitrary values. Fixed
+# benchmark builds retain their stricter expected-mode assertion above.
+runtime=dict(opt,detail_test=False,runtime_detail=True)
+preflight(runtime,True,False,False)
+for mode in (0,1):
+ struct.pack_into('<I',b,OFFSET+72,mode)
+ assert decode(b,52,False,runtime)['detail']==mode
+for mode in (2,0xffffffff):
+ struct.pack_into('<I',b,OFFSET+72,mode)
+ try:decode(b,52,False,runtime)
+ except AssertionError:pass
+ else:raise AssertionError('invalid runtime detail accepted')
+try:preflight(dict(opt,runtime_detail=True),True,True,False)
+except AssertionError:pass
+else:raise AssertionError('scripted detail mixed with runtime selection')
+print('PASS runtime high/low states; malformed detail rejected; fixed-mode policy preserved')

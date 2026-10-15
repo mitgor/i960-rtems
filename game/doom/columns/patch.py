@@ -1,5 +1,5 @@
 """Exact pinned-source transformation, preserving setup and range checks."""
-def apply(src,patch):
+def apply(src,patch,fixed=False):
  patch('r_draw.c','#include "bounded_column.h"','#include "bounded_column.h"\n#include "column.h"')
  text=(src/'r_draw.c').read_text()
  for name,low in [('R_DrawColumn',False),('R_DrawColumnLow',True)]:
@@ -18,4 +18,6 @@ def apply(src,patch):
         return;
     }
 '''.replace('DEST2','dest2' if low else '0')
+  if fixed:
+   code=code.replace('if (doom_column_mode)', 'if (1)').replace('if(doom_column_mode==1)doom_column_c(&j);else doom_column_asm(&j);','doom_column_c(&j);')
   patch('r_draw.c',body,body.replace(marker,code+marker))

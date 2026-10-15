@@ -16,8 +16,10 @@ pidfd=os.pidfd_open(a.pid);lib=ctypes.CDLL(None,use_errno=True);fd=lib.syscall(4
 if fd<0:raise OSError(ctypes.get_errno(),'pidfd_getfd')
 page=urllib.request.urlopen(a.upstream,timeout=2).read().decode();oldtoken=re.search("const token='([^']+)'",page)[1];token=secrets.token_hex(24)
 page=(Path(__file__).with_name('index.html').read_text().replace('__TOKEN__',token)).encode()
+# This legacy bridge cannot attest the running image's runtime-detail option.
+page=page.replace(b'<button id="detail">Toggle detail (F5)</button>',b'')
 keys=deque();held=set();deadline=0.;lock=threading.Lock();stop=threading.Event();reason=[]
-allowed=(173,175,172,174,163,162,182,13,27,9,121,110,49,50,51,52,53,54,55)
+allowed=(173,175,172,174,163,162,182,191,13,27,9,121,110,49,50,51,52,53,54,55)
 def upstream(path,data=None):
  req=urllib.request.Request(a.upstream+path,data=data,headers={'X-Session-Token':oldtoken,'Content-Type':'application/json'})
  with urllib.request.urlopen(req,timeout=2) as r:return r.read(),r.headers.get('Content-Type','application/json')

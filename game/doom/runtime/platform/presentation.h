@@ -2,7 +2,7 @@
 #include "column.h"
 #endif
 /* CPU fields are timer-sampled task attribution, not cycle counters. */
-#if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST)
+#if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST) || defined(DOOM_RUNTIME_DETAIL)
 extern int screenblocks,detailLevel,detailshift;
 extern void R_SetViewSize(int,int);
 static unsigned detail_mode(unsigned g){
@@ -10,7 +10,12 @@ static unsigned detail_mode(unsigned g){
  static const unsigned char modes[64]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
  return modes[g&63];
 #else
- (void)g;return 1;
+ (void)g;
+#ifdef DOOM_LOW_DETAIL
+ return 1;
+#else
+ return 0;
+#endif
 #endif
 }
 #endif
@@ -45,8 +50,17 @@ static void present_mark(unsigned stage){
 #ifdef DOOM_COLUMN_TEST
  if(stage==80)doom_column_begin(stats.frames+1);
 #endif
-#if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST)
- if(stage==80){unsigned d=detail_mode(stats.frames+1);if((unsigned)detailLevel!=d){detailLevel=d;R_SetViewSize(screenblocks,detailLevel);}}
+#if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST) || defined(DOOM_RUNTIME_DETAIL)
+ if(stage==80){unsigned d;
+#ifdef DOOM_RUNTIME_DETAIL
+ /* Select the initial preference once; thereafter Doom's menu/F5 owns it. */
+ static unsigned initialized;
+ if(initialized)d=(unsigned)detailLevel;
+ else {d=detail_mode(stats.frames+1);initialized=1;}
+#else
+ d=detail_mode(stats.frames+1);
+#endif
+ if((unsigned)detailLevel!=d){detailLevel=d;R_SetViewSize(screenblocks,detailLevel);}}
 #endif
 #ifdef DOOM_FRAME_PROFILE
  unsigned slot;
@@ -72,7 +86,7 @@ static void present_record(unsigned char *frame,unsigned generation,unsigned mod
  #ifdef DOOM_CPU_PROFILE
  {unsigned*q=p+16;unsigned end=present_sample();
  q[0]=0x31555043u;q[1]=1;
-#if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST)
+#if defined(DOOM_LOW_DETAIL) || defined(DOOM_DETAIL_TEST) || defined(DOOM_RUNTIME_DETAIL)
  q[2]=(unsigned)detailshift; /* renderer state, not merely requested mode */
 #else
  q[2]=0;

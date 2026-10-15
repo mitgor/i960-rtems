@@ -61,3 +61,20 @@ Native builds use C in place of assembly; they cannot establish assembly
 correctness. The physical self-test and full card frames supply that evidence.
 See [the acceptance record](../../../artifacts/doom-columns-20261015/README.md)
 for measured performance, exact binaries, captures and remaining limitations.
+
+
+## Fixed C selection on the span baseline (2026-10-15)
+
+`--fast-columns --fast-render` uses the specialized C helper for all ordinary
+columns, without the mixed-test dispatch or assembly. A/B/B/A 520-frame runs
+measure 5.330→6.204 FPS (+16.4%), rendering 168.70→ 141.81 ms. BSP/walls improve
+106.75→ 84.14 ms and sprites 21.73→ 17.44 ms; planes stay 40.24 ms. All full system,
+frame and WAD audits/replays, stalled-host and STOP/drain tests pass.
+
+Both candidate runs match all 520 reference images. The last unchanged baseline
+has one menu-transition mismatch at frame 64, equal to the reference's earlier
+main-menu image. The strict all-run image oracle records failure; every other
+image and all measured-window images match. This timing limitation is retained
+in [the report](../../../artifacts/columns-20261015/README.md), not waived silently.
+The option remains explicit for wider-scene/high-detail qualification. It does
+not reduce quality; runtime quality settings are independent.

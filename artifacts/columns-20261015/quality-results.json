@@ -1,0 +1,10 @@
+{
+  "frames": 100,
+  "detail_checks": {
+    "10": 1,
+    "28": 0,
+    "40": 1
+  },
+  "http_exact_frames": 90,
+  "paired_audits": 45
+}

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/mit/Documents/!Projects/i960/artifacts/columns-20261015/check_frames.py", line 10, in <module>
+    b=(out/f'play-0-{g}.bin').read_bytes();ref=(base/f'play-0-{g}.bin').read_bytes();assert b[:64768]==ref[:64768],(out,g,'render difference')
+                                                                                            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (PosixPath('/tmp/i960-columns-replay/live-a2'), 64, 'render difference')

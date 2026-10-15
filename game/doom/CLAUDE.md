@@ -1,5 +1,30 @@
 # Doom milestone guidance
 
+<!-- columns-current -->
+**2026-10-16 sequential backlog result:** `--fast-columns --fast-render` measures
+5.330 → 6.204 FPS (+16.4%) on matched 520-frame A/B/B/A low-detail runs;
+renderer 168.70 → 141.81 ms, BSP/walls 106.75 → 84.14 ms, sprites 21.73 → 17.44 ms.
+Plane time is unchanged. No heap allocation added; image grows 480 bytes.
+All 2,080 frames/234 full paired system audits, STOP/stall/drain and replay/tamper
+checks pass. Both candidates match every reference image. **The last unchanged
+baseline has one menu-transition mismatch at frame 64** (matches earlier menu
+frames 62/63); every measured-window image agrees. The strict all-run image
+oracle remains a failure, not an exception silently declared a pass. See
+`artifacts/columns-20261015/README.md` for scope and exact evidence.
+
+`--runtime-detail` permits high/low selection in one binary via F5/menu/browser;
+`--low-detail` then selects only the starting preference. Fixed benchmark builds
+remain fixed. Native and a separate 100-frame card run confirm low/high/low,
+with 45 full audits and STOP/drain. Bounded ping-pong tests hide the button and
+inject F5 themselves; interactive builds expose it. Keep future quality-reducing
+modes independently switchable. Do not claim mixed-mode FPS as a matched result.
+
+Retain the new relay pre-frame regression test and unconditional held-STOP
+metadata check for 52/100-frame replays. Next: follow `game/doom/TESTING-QUEUE.md` and profile exact FixedDiv sites;
+separately record input consumption frame/tic to resolve asynchronous menu timing.
+Keep previous per-stage latency gains, all full audits and ownership checks.
+<!-- /columns-current -->
+
 <!-- renderer-current -->
 **2026-10-15 fast renderer accepted in bounded low-detail card tests:** opt-in
 `game/doom/play/build.py --fast-render` selects exact two-sample spans and `-O2`
