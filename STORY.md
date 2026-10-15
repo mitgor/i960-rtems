@@ -3459,6 +3459,60 @@ screen is useful; a benchmark that admits where it got
 slower is useful too. The exact first attempt and its successor are preserved
 in `artifacts/wad-ring-20261015/`, including the regression.
 
+## The bytes were fast. Their itinerary was not.
+
+The next question was reasonable: this was a RAID controller. Why did loading
+one WAD take minutes when moving disk data was the job it had been built for?
+
+We gave it a smaller question. One host buffer stayed pinned and immutable while
+the card read the same 32 KiB sixty-four times. The descriptor checks, ownership
+loans and complete guards stayed in place. Timer 0, already owned by the
+exclusive runtime, measured the pieces separately. Nothing was made faster by
+turning off a check.
+
+The final run observed about **20.6 MB/s** between starting DMA and seeing it
+complete. Including the ordinary transfer's setup, cleanup and guard scans
+brought that to **6.8 MB/s**. The extra byte-for-byte comparisons had their own
+bill, outside both figures. These were short measurements with interrupts still
+running, not a claim about the card's maximum disk bandwidth.
+
+Then the rest of the accounting arrived. Across startup, a hundred frames and
+a level restart, DMA completion intervals added up to **2.84 seconds**. Full
+guard scans took **35.8 seconds**. Copying staging data into the borrowed output
+buffer took **13.6 seconds**. Clearing and initializing staging took another
+**8.8 seconds**. Allocation and freeing themselves cost **5.7 seconds**, with
+ownership-loan work accounted for separately.
+
+The largest entry was further up the stack. The WAD cache still filled its
+windows with byte-copy loops: **78 seconds** copying fetched windows into the
+cache, then another **15.7 seconds** copying cache or bounce-buffer bytes into
+Doom. The engine consumed about 14.8 MB while the read-ahead cache fetched 59.1
+MB. Fast DMA could not cancel that much repeated software work.
+
+The measuring equipment needed debugging too. The first attempt was stopped
+before the game because the frame validator still required zeros where the new
+timing trailer belonged. The first completed run then faithfully reported an
+unused stdio cache. We had instrumented the wrong cache. Its capture stayed in
+the archive, with those zero timings explicitly disqualified. The corrected
+build read the actual WAD backend, and its native tests required nonzero counters
+before another card run was allowed.
+
+Both completed runs passed their full system checks: **200 frames and 178 audit
+pairs**, level restarts, held-buffer STOP and heap drain. The controlled pictures
+still had exactly the four known native/card pixel differences. The final
+capture also survived independent replay and rejected altered frame, WAD and
+timing records. The new numbers were elapsed time, including interruptions;
+the cache's clock still had ten-millisecond steps. They were useful measurements
+without becoming precision claims.
+
+The next target became much more specific: improve the actual cache's copies,
+then remove unnecessary buffer lifetimes and copies while preserving ownership.
+The DMA engine had already demonstrated that it could move the bytes. We had
+finally measured how often the software asked the i960 to carry them again.
+
+The sources, binaries, imperfect first measurements and corrected evidence are
+preserved together in `artifacts/wad-profile-20261015/`.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3518,7 +3572,10 @@ So, the ledger, honestly kept:
   transport pending longer interactive qualification. The later WAD ring cuts
   matched startup from 290.09 to 186.57 seconds with all audits retained, but
   warm restart rises from 2.84 to 4.24 seconds. It remains opt-in while the
-  read-ahead policy is refined.
+  read-ahead policy is refined. Later full-audit profiling observes roughly
+  20.6 MB/s in the DMA completion bracket, while byte-copy loops in the WAD
+  cache consume about 94 seconds across the bounded loading test. Cache copies,
+  not a faster PCI setting, are the next measured optimization target.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

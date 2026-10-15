@@ -1,0 +1,1 @@
+PASS ring target: two-slot read, wrap/reuse, EOF padding, active lease audits, malformed completion, host timeout, hardware quarantine, 256 descriptor mutations, STOP before start and during host wait

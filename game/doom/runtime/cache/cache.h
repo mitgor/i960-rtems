@@ -10,6 +10,7 @@ struct doom_cache {
  unsigned char *data,*bounce;
  unsigned int tags[DCACHE_LINES],valid[DCACHE_LINES];
  unsigned int lines,active,reads,hits,misses,wire_bytes,copied_bytes,errors;
+ unsigned profile_ms[4],profile_counts[4];
  int last_error;
 };
 /* Single owning application task; initially zero. Copies into caller-owned

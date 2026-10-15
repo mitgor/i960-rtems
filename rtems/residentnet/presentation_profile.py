@@ -27,6 +27,12 @@ def decode(raw,g,test=False,options=None):
   assert all(samples*10<=wall+10 for samples,wall in zip(c[4:10],(w[4],w[5],w[6],w[7],w[8],w[9])))
   d['cpu_samples']=dict(zip(('render','bsp','planes','sprites','screen_copy','adapter'),c[4:10]));d['detail']=detail
  if options.get('detail_test') or options.get('column_test'):assert w[3]==2
+ if options.get('wad_profile'):
+  assert end<=64960 and not any(raw[end:64960])
+  q=struct.unpack_from('<16I',raw,64960)
+  assert q[:2]==(0x31435057,1) and q[15]==10 and q[6]==q[7]==q[8]
+  assert all(x%10==0 for x in q[2:6])
+  d['wad_cache']=list(q);end=65024
  assert not any(raw[end:])
  if w[3]&1:assert w[12]==fnv(raw[:64000]) and w[13]==fnv(raw[64000:64768])
  else:assert w[12:14]==(0,0)

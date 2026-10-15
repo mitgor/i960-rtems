@@ -1,0 +1,102 @@
+[
+  {
+    "path": "game/doom/play/build.py",
+    "sha256": "4d94a95d33c01ad6617688d6866511dd16e4e0b479fb730bc56b99e09020ba59",
+    "archive_match": true
+  },
+  {
+    "path": "game/doom/runtime/cache/cache.c",
+    "sha256": "d2452fdfc5c23a57ece1a1b626216e385809c9e4f49e582c116d471ccb40196b",
+    "archive_match": true
+  },
+  {
+    "path": "game/doom/runtime/cache/cache.h",
+    "sha256": "44c6cb592bc5d0b521f3d8cf73e67ccf0d85c37a912f537e2850491d5784de81",
+    "archive_match": true
+  },
+  {
+    "path": "game/doom/runtime/engine/admit.py",
+    "sha256": "650f8341fab1fea7967c1d3d48b10ad39c69fac295aeb1db255dd057221d8ed0",
+    "archive_match": true
+  },
+  {
+    "path": "game/doom/runtime/platform/build.py",
+    "sha256": "d5ac392fc8ef19f9ddb6a3260b469c70534199871795d4758053fc71dc5ffaa0",
+    "archive_match": true
+  },
+  {
+    "path": "game/doom/runtime/platform/presentation.h",
+    "sha256": "bd3b263cf0b95ebbf273b8693ca5c89e9e5f0a411c24c0c0f700f19dc0bfa750",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/build.py",
+    "sha256": "dad0b48259b4fcc29db5e812cececa671a05b934d00f3369b8e66691a771e333",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/dma/wad_ring/README.md",
+    "sha256": "779549f2a4afea23a27f49915f1525278ecbac46c0984f0f245d16fe0ec29ad4",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/dma/wad_ring/target.h",
+    "sha256": "d7812160bc843430efdec1bd77cb24c2df33fb4bf884760b49496fe5e4dda975",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/dma/wad_ring/test_cache.py",
+    "sha256": "1e9d47ca140cdba99914d813cb9a8726c2fbae3c9253b5fb3b0489628f778fa7",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/dma/wad_ring/test_target.py",
+    "sha256": "31cac7d2414dcdbc1bb753717289b938e910d4613720b75c069bb015d9a85472",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/residentnet/doom_batch_runtime.h",
+    "sha256": "61822bbf36fb2c27ee8d81c217aed5f6a0af9ca1056a578ac626657f1096258e",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/residentnet/live.py",
+    "sha256": "e5099d09e7d5bfb413d7d8b16a7121a91de614d7348356629e41913a9dc9ee13",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/residentnet/play_client.py",
+    "sha256": "87e8bc640a0c848fdc5787211fe5e7e2105370c92ba7e64cde3af3222ff54213",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/residentnet/presentation_profile.py",
+    "sha256": "4d4136bf2ef2f9a52ea9ebccceda8a65391f36a18fa0af11541a46f4aafde3cc",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/residentnet/wad_ring_client.py",
+    "sha256": "d3d6207dd4904e6f75828dd16252caaf6467838473414335f8b04981dba3eac5",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/dma/wad_ring/profile.h",
+    "sha256": "16b2e02b53653d56b645428d40f7bf190bca470f06d4a768976489d5549293c5",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/dma/wad_ring/verify_profile.py",
+    "sha256": "d16c3164eb087b54633128d399faf171a9710f2e93a8c45e050ae48c554d8703",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/dma/wad_ring/test_profile.py",
+    "sha256": "be0a98f61266f0da7769bcf7e3c84af7e3985fb1ca4b73644e3ae8375cbdda7e",
+    "archive_match": true
+  },
+  {
+    "path": "rtems/dma/wad_ring/test_profile_replay.py",
+    "sha256": "9933fdeef9e4d64e87cbd69d3167d26366f5057eba197f11e6e636561c3f558a",
+    "archive_match": true
+  }
+]

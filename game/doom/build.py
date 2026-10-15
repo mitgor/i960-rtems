@@ -2,7 +2,7 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--visible',action='store_true');p.add_argument('--play',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');p.add_argument('--column-test',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--visible',action='store_true');p.add_argument('--play',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');p.add_argument('--column-test',action='store_true');a=p.parse_args()
 assert not a.platform_runtime or (a.target in ('i960','host32') and a.wad_cache), 'private platform requires i960 WAD-cache build'
 assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
 assert hashlib.sha256(a.archive.read_bytes()).hexdigest()=='26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7', 'source hash mismatch'
@@ -11,6 +11,9 @@ with tarfile.open(a.archive) as tf:tf.extractall(work,filter='data')
 src=work/'doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric'
 # C99 loop declarations are supported by GNU99 even on GCC 3.3.
 flags=['-std=gnu99','-Os','-fno-strict-aliasing','-fcommon','-DCMAP256','-DDOOMGENERIC_RESX=320','-DDOOMGENERIC_RESY=200','-I'+str(src)]
+if a.wad_profile:
+ assert a.wad_cache and a.platform_runtime
+ flags+=['-DDOOM_WAD_PROFILE']
 patches=[]
 def patch(name,old,new,count=1):
  f=src/name;s=f.read_text();assert s.count(old)==count,(name,old);f.write_text(s.replace(old,new));patches.append(dict(file=name,before=old,after=new))
@@ -97,7 +100,7 @@ with (out/'compile.log').open('w') as log:
   r=subprocess.run(cmd,stdout=log,stderr=log)
   if r.returncode:failures.append(f.name)
   else:objs.append(str(obj))
-(out/'build.json').write_text(json.dumps(dict(column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
+(out/'build.json').write_text(json.dumps(dict(wad_profile=a.wad_profile,column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
 if failures:raise SystemExit('Compile failed: '+str(failures))
 if a.platform_runtime and a.target=='host32':
  subprocess.run(['ld','-m','elf_i386','-r','-d','-o',str(out/'doom-engine.o'),*objs],check=True)

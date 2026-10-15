@@ -1,0 +1,14 @@
+{
+  "boot_id": "94855ff1-240c-45ce-a28f-bfd47d4195f1",
+  "supervisor_pid": 3570,
+  "relay_pid": 3572,
+  "driver": "dac960auto",
+  "pci": "0000:37:09.1",
+  "public_url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "http_bytes": 2891,
+  "contains_rtems": true,
+  "verified_from": "Mac",
+  "body_sha256": "f7fc4686881a04e3b42dd0f6ee01f91e55bdc519be78646fb69443299751384f",
+  "doom_bounded_server_closed": true
+}

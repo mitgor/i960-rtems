@@ -121,6 +121,8 @@ def main():
   assert '_wad_dma_isolation_snapshot' in (a.payload.parent/'kernel.map').read_text(), 'rebuild the resident kernel for bulk WAD support'
   assert 'wad_dma_ioctl' in (a.module.parent/'dac960auto.c').read_text(), 'rebuild the matching bulk WAD driver'
  flags=json.loads((a.payload.parent/'build.json').read_text())['flags']
+ if '-DI960_WAD_PROFILE' in flags:
+  assert a.wad_ring and a.wad_load_test and a.audit_interval==3 and admission.get('wad_profile'), 'WAD profiling requires matching bounded engine and full audits'
  if a.pingpong:
   sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'dma/stress'))
   sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'dma/pingpong'))

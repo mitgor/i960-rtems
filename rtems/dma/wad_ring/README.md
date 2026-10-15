@@ -107,3 +107,17 @@ output, preserving the four known pixel differences rather than ignoring them.
 
 Exact binaries, sources, measurements, full captures and restoration status:
 [dated evidence](../../../artifacts/wad-ring-20261015/README.md).
+
+## Opt-in cost profiling
+
+Build with `--wad-profile` (both play builder and kernel builder) to include the
+bounded 64 × 32 KiB resident-source DMA benchmark and read-only timer-0 cost
+counters. Launch only with `--wad-ring --wad-load-test --debug-audits` and the
+existing bounded ping-pong options. The profile never disables a guard or audit.
+It adds a validated cache-timing trailer and exports final counters only after
+the engine has stopped and returned every loan. See
+[measurement contract and evidence](../../../artifacts/wad-profile-20261015/README.md).
+Run `test_profile.py` and `verify_profile.py CAPTURE` in addition to the ordinary
+target/cache/client and complete system/frame/WAD verifiers. The extra verifier
+does not replace any existing audit. Timing categories overlap; timer-0 counts
+are elapsed time, while cache attribution uses the coarser existing 10 ms clock.

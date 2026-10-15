@@ -1,5 +1,44 @@
 # Current findings and evidence — 2026-10-15
 
+<!-- wad-profile-current -->
+**2026-10-15 bounded WAD/DMA profiling accepted:** opt-in `--wad-profile` builds
+retain every ownership/guard check and all full paired audits. A pinned-source
+64 × 32 KiB host-to-card benchmark observes **20.605 MB/s** from DMA start to
+completion and **6.793 MB/s** through the ordinary guarded transfer routine;
+extra full-payload comparisons are timed separately. These are short elapsed
+measurements including interrupts, not maximum PCI/RAID throughput or CPU cycles.
+Across startup, 100 frames and warm restart, actual WAD-cache filling costs
+**77.960 s**, cache/bounce → Doom copies **15.680 s**, target guard scans
+**35.802 s**, staging copies **13.597 s**, initialization **8.767 s**,
+allocation alone **3.138 s**, freeing alone **2.581 s**. Ordinary DMA completion
+intervals total **2.843 s**. Categories have explicit nesting; do not add them
+blindly. Cache timings use the existing 10 ms clock; kernel timings use read-only
+timer 0 at nominal 4,166,700 Hz. Full-audit gate waits and host Python/ioctl time
+are separately recorded and overlap card execution.
+Final run: first frame **192.075 s** after preparation (80.113 s upload separate),
+warm restart **4.506 s**, fixed-scene sample **3.803 FPS**. No speedup is claimed
+for this instrumented build. Two completed runs pass **200 frames / 178 full
+audit pairs**, held-buffer STOP, heap drain and local replay; final evidence
+rejects 24 frame, three WAD and six timing mutations. First 52 controlled frames
+retain exactly the four known native differences and exact palettes.
+The initial completed candidate exposed the wrong, unused stdio cache; its zero
+cache telemetry is explicitly invalid and preserved. The final build profiles
+the actual backend, requires matching engine flags and cross-checks all cache
+calls/bytes against runtime counters and WAD requests. Both actual native
+52-frame runs prove nonzero backend telemetry before final hardware acceptance.
+Next: optimize **actual WAD-cache byte copies**, then retained staging/direct
+owned-cache DMA and adaptive read-ahead. Do not reduce guards or full audits.
+146 protected pages; final mutable reserve **64 bytes**; no flash/map change.
+Evidence/manual: `artifacts/wad-profile-20261015/README.md`. Exact sources,
+binaries, captures, failed instrumentation evidence and replay tools are saved.
+All captures were copied/hash-checked/replayed locally before normal reboot.
+Public IPv6 HTTP is restored and verified 200 / 2,891 bytes. Current boot
+`94855ff1-240c-45ce-a28f-bfd47d4195f1`, supervisor **3570**, relay **3572** owns
+`dac960auto`. Doom test server is closed. Inspect current ownership before new
+card work; stop the relay normally and never force-unload retained mappings.
+<!-- /wad-profile-current -->
+
+
 <!-- wad-ring-current -->
 **2026-10-15 WAD ring bounded acceptance passed:** two guarded 32 KiB host slots,
 shared request/response/completion records and 64 KiB read-ahead are opt-in via

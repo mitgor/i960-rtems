@@ -26548,6 +26548,236 @@
       "sha256": "254385988e679a6439db56e01314595f9aa13f8a6b7a774d0f38f162082b3f64"
     },
     {
+      "path": "artifacts/wad-profile-20261015/README.md",
+      "size": 15690,
+      "sha256": "29662cd04d4697e76c762d5dc8f3bf84cb1c031ff42df0d3d2f99f537f6a5ae0"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/aborted-before-engine.tar.gz",
+      "size": 1068877,
+      "sha256": "9193bd703ac46b3f6e9dd8bc3d38c14889d193d6a3065689b8b678d44a3b832e"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/accepted-source-check-v2.json",
+      "size": 3453,
+      "sha256": "d5984a4836a0187eaebe22b314991ddd419978d8a2c863aadf4d6061c472a4b6"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/accepted-source-check.json",
+      "size": 3302,
+      "sha256": "c45fbb3a6dcb6356f5721dc1193329e8505b265ba6d79f636c78df7bce478dc5"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/build-kernel.sh",
+      "size": 1511,
+      "sha256": "0a22237b9dde773a7258f6693453b1dce033b5a249bac5c2d92968c835efd4fd"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/build-kernel2.sh",
+      "size": 1513,
+      "sha256": "efef5a413d7855e64c044fa83127ae7ab0a5ba9a478bd59d590c41c5796c1053"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/build.sh",
+      "size": 2935,
+      "sha256": "89d06a5c653bda135a3b8bf9da552d0798ca2bf367237469e806926fed2e136d"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/build2.sh",
+      "size": 2951,
+      "sha256": "e8e43e0385ef6b9f25d1e5f2c80b62da7d77a8ef1627bbd19033780d5605a39d"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/candidate-v2.sha256",
+      "size": 86,
+      "sha256": "772f90a330c3e649d3e700bffb08523fc13da638ca51f44393a75677b6067439"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/candidate-v2.tar.gz",
+      "size": 14649953,
+      "sha256": "5f7279732ecb010c4b92c4985d5fa791b7f4cfe1797ca299612e7472596dcdbb"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/candidate.sha256",
+      "size": 83,
+      "sha256": "c74c75958c061b5486f5e875652060cead8ef984e18803800eb0c57a3f15ac35"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/candidate.tar.gz",
+      "size": 14642275,
+      "sha256": "69b4aea4743c633b634357e8c89468c0fe705e9dc69aee9679ca9e5cef59591c"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/card-v1.sha256",
+      "size": 81,
+      "sha256": "5471420f247f5a7df29f8023e23e3fdf3431d9f07f1db526a8c646938fa0937d"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/card-v1.tar.gz",
+      "size": 42292717,
+      "sha256": "dcf17163ea44d435c21009b6781287071fa359670ccc46f821ce4bf43160e1d8"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/card-v2.sha256",
+      "size": 81,
+      "sha256": "b2b3a73151162d3d6d1fbbbd23286d5b0611e9bd667029d713fa2a47c1459fa4"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/card-v2.tar.gz",
+      "size": 42324324,
+      "sha256": "54b840d8a29f903d6177ccb66f1418fc98e4872445929b706c901ca69a41a1ac"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/comparison.json",
+      "size": 1044,
+      "sha256": "59d051aa401629d0bb41bc649d683685c821a04ce78051b824ac1b977015d511"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/frame-tamper-v2.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/http-v1.jsonl",
+      "size": 25984,
+      "sha256": "bee241b91af64cc55bc39f782a6363a3a0ec0f50d877df7e1290378e2480003a"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/http-v2.jsonl",
+      "size": 25981,
+      "sha256": "a8675f0117394cf46ac483c4258c419aaf962db4e22501d9805ed913dd492052"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/http-verification.json",
+      "size": 296,
+      "sha256": "e600a157dc52e2077aa6f73eb694b44136398fb10c5331c60aa0024ca6604d7e"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/local-v1-comparison.json",
+      "size": 524,
+      "sha256": "c6db34fddfde5507868cdd4149d9870bc32f7bdc6bac036709f80a336408fb02"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/local-v1-frames.json",
+      "size": 1207,
+      "sha256": "63325d2c522f9cba361fce339fdb9c3a7e3170c1fa265a66676c9ebbe8c42c9c"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/local-v1-profile.json",
+      "size": 2850,
+      "sha256": "1e9d0a3cc5f169b3f7b2679b947e67d003269f823134963dfb69df11a93c27cc"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/local-v1-system.json",
+      "size": 6363,
+      "sha256": "674485aa42f5970180e6d42e27a5d423a22a498700eccd2ec53a694e6b018d34"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/local-v1-wad.json",
+      "size": 269,
+      "sha256": "f8389fb63c58868dd3a73fc3900d804d329f18a8fc4b6f36c8436a5175f478b3"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/local-v2-frames.json",
+      "size": 1203,
+      "sha256": "0710a36886d87d65bbd941d6b3e29caba0e2448c3635a6cddde04f6a2405a31a"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/local-v2-profile.json",
+      "size": 3109,
+      "sha256": "602d833aa6cd0c13c7b11b5d6174f8c8dde35fbf70219a3a92fe3976da11a7ba"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/local-v2-system.json",
+      "size": 6363,
+      "sha256": "693fda68d6546cef5b47d8863a029ef65f6996d50dcdb1975192cbfde817812f"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/local-v2-wad.json",
+      "size": 269,
+      "sha256": "918570cfb64be58bbaa9614ff227621d854a3ef9e899fffd741576adecc73bff"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/native-frames.py",
+      "size": 2168,
+      "sha256": "5ff61a2bc365ea953215a935ad2226c2a4e04e0f1db1b252c03629f78deb1dc6"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/native-frames2.py",
+      "size": 2433,
+      "sha256": "7cd7a139708b984aaf5711d1614668d8c25b0c6667af7e841729a7154387fa6e"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/profile-tamper-v2.json",
+      "size": 54,
+      "sha256": "6a4cfaef7b70d6b57c48d8489fb370ff601e55da665173fad7fd4cbe8dddd073"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/rebuild.sh",
+      "size": 2591,
+      "sha256": "c9b5cc3daf1995901a7bb5d83f0eb99112e7cb7b6f68892fed9bdc15f5722d62"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/replay.sh",
+      "size": 996,
+      "sha256": "c0ccd72fc8ac339b65b3391034c7bd76c7a543ea9fe8494cf3282100edfff9ac"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/restoration.json",
+      "size": 445,
+      "sha256": "46f9176093acaa968d13e3cb5e8ced565cf68495ae712fe4d277e1b8b26a7a52"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/restore-relay.log",
+      "size": 1426,
+      "sha256": "04cc8906f6b2339b1cf82621a7f1f5860e55be4e404119886903e748a13cb6bc"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/restore.sh",
+      "size": 860,
+      "sha256": "749699549c748b0a4f9c70e2c3e7968096b124c0e4f635f8858697bc770a63bc"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/run.sh",
+      "size": 853,
+      "sha256": "632ab73dc8937448a2b3b99a0e61f6caa8f3df1d9d80d1e930628381d9ea1a7a"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/run2.sh",
+      "size": 857,
+      "sha256": "67c47c179cf85d97300f79052e2c3448501c435d70c2fc33005bb55d5d875099"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/test-cache.log",
+      "size": 133,
+      "sha256": "4a1e18057b98d93ffaf3d933e7e355bca1424e61828f3f33f8b42d5354ab913b"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/test-client.log",
+      "size": 97,
+      "sha256": "c8e9f0250ffedcd7b0bf1d6f0d2a7a5db9fb04e83f9a6e6aee982b8486231c01"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/test-profile.log",
+      "size": 111,
+      "sha256": "d2abfd1d9a707ce0564897a22bed85d6cf0b5e419c9f4bd615a9bd1a8128c856"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/test-target.log",
+      "size": 201,
+      "sha256": "5e3ae59b469262a73720012ec1079cf17987aca4f5d4977e4b5a7b1c267cf55c"
+    },
+    {
+      "path": "artifacts/wad-profile-20261015/wad-tamper-v2.json",
+      "size": 101,
+      "sha256": "3c1461c46ff9ccca70dfe1d96373c1802e95a71a53a28cf29e1e26da4f66c782"
+    },
+    {
       "path": "artifacts/wad-ring-20261015/README.md",
       "size": 11172,
       "sha256": "3d39c454a5229e94e38a2b5714df07c449f41bfefb12f9db3e6a57949dcb9832"

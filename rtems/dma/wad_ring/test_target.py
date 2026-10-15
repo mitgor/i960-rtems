@@ -33,6 +33,8 @@ static unsigned upload_time(void){return clock_tick;}
 static void doom_shared_service(void){}
 static void doom_shared_yield(void){clock_tick++;if(mode==4&&clock_tick==2)stopping=1;}
 static unsigned wd_idle(void){return !regs[0x1440/4]&&!regs[0x1444/4]&&cmd[0]==2;}
+static unsigned test_counter=~0u;
+#define WR_COUNTER() (test_counter-=17)
 #include "rtems/dma/wad_ring/target.h"
 static unsigned address(const void*p){return 0xc0800000u+(unsigned)((const char*)p-(const char*)allocation);}
 static unsigned*reg(unsigned a){
@@ -53,6 +55,10 @@ static unsigned*reg(unsigned a){
     *r=*q;r->w[0]=WR_RSP_MAGIC;if(mode==1)r->w[3]^=WR_BLOCK;
    }
    memcpy(local,host[slot]+off,len);
+#ifdef I960_WAD_PROFILE
+   if(wp_bench&&mode==9)((unsigned char*)local)[123]^=1;
+   if(wp_bench&&mode==10)stopping=1;
+#endif
    if(off==WR_RESPONSE&&mode==6&&response_reads++==0)((struct wr_record*)local)->w[3]^=32768;
    if(off==WR_DATA&&mode==7)((unsigned char*)local)[32767]=1;
   }
@@ -68,6 +74,12 @@ int main(void){unsigned char out[65536];unsigned i;
  reset();assert(offsetof(struct wr_target,desc)%32==0);
  assert(wr_read(1,1,out,65536)==-1&&!transfers);
  assert(wr_read(1,0,out,65536)==65536&&!memcmp(out,filebytes,65536)&&batch.sequence==2&&!leases&&!allocation);
+#ifdef I960_WAD_PROFILE
+ assert(wp_done==64&&wp_stats[11][0]==64&&wp_stats[12][0]==64&&wp_stats[13][0]==128&&wp_stats[15][0]==64);
+ assert(wp_report(0)==0x31525057&&wp_report(3)==64&&wp_report(65)==~0u);
+ owned_running=1;assert(wp_report(0)==~0u);owned_running=0;
+ wp_stats[14][1]=~0u;wp_stats[14][2]=0;{unsigned t=wp_now();wp_add(14,t);assert(wp_stats[14][2]==1);}
+#endif
  assert(wr_read(1,65536,out,sizeof filebytes-65536)==sizeof filebytes-65536&&!memcmp(out,filebytes+65536,sizeof filebytes-65536)&&batch.sequence==4);
  reset();allocation=malloc(sizeof(*wr)+31);wr=(void*)(((unsigned long)allocation+31)&~31UL);memset(wr,0,sizeof(*wr));memset(wr->guard,0xa5,4096);memset(wr->upper,0xa5,4096);
  for(i=0;i<8192;i++){unsigned char*p=i<4096?wr->guard+i:wr->upper+i-4096;*p^=1;assert(!wr_guard());*p^=1;}assert(wr_guard());free(allocation);allocation=0;wr=0;
@@ -78,12 +90,17 @@ int main(void){unsigned char out[65536];unsigned i;
  reset();mode=6;assert(wr_read(1,0,out,65536)==65536&&!memcmp(out,filebytes,65536));
  reset();mode=7;if(!setjmp(failed)){wr_read(1,65536,out,sizeof filebytes-65536);assert(0);}assert(allocation&&wr&&leases);free(allocation);allocation=0;
  reset();mode=8;if(!setjmp(failed)){wr_read(1,0,out,65536);assert(0);}assert(allocation&&wr&&leases);free(allocation);allocation=0;
+#ifdef I960_WAD_PROFILE
+ reset();wp_done=0;mode=9;if(!setjmp(failed)){wr_read(1,0,out,65536);assert(0);}assert(allocation&&wr&&leases);free(allocation);allocation=0;wp_bench=0;
+ reset();wp_done=0;mode=10;assert(wr_read(1,0,out,65536)==-4&&!leases&&!allocation&&wp_done==1&&!wp_bench);
+#endif
  reset();stopping=1;assert(wr_read(1,0,out,65536)==-1&&!transfers);
  return 0;
 }
 '''
 with tempfile.TemporaryDirectory() as d:
  p=Path(d);(p/'test.c').write_text(code)
- subprocess.run(['cc','-std=c99','-fsanitize=address,undefined','-fno-sanitize-recover=all','-I'+str(root),str(p/'test.c'),'-o',str(p/'test')],check=True)
- subprocess.run([str(p/'test')],check=True)
+ for flags in ([],['-DI960_WAD_PROFILE']):
+  subprocess.run(['cc',*flags,'-std=c99','-fsanitize=address,undefined','-fno-sanitize-recover=all','-I'+str(root),str(p/'test.c'),'-o',str(p/'test')],check=True)
+  subprocess.run([str(p/'test')],check=True)
 print('PASS ring target: two-slot read, wrap/reuse, EOF padding, active lease audits, malformed completion, host timeout, hardware quarantine, 256 descriptor mutations, STOP before start and during host wait')

@@ -85,6 +85,12 @@ static void present_record(unsigned char *frame,unsigned generation,unsigned mod
 #endif
  }
 #endif
+#ifdef DOOM_WAD_PROFILE
+ {extern const struct doom_cache*doom_wad_backend_stats(void);
+  const struct doom_cache*c=doom_wad_backend_stats();unsigned k,*q=(unsigned*)(frame+64960);q[0]=0x31435057u;q[1]=1;
+  for(k=0;k<4;k++){q[2+k]=c->profile_ms[k];q[6+k]=c->profile_counts[k];}
+  q[10]=c->wire_bytes;q[11]=c->copied_bytes;q[12]=c->reads;q[13]=c->hits;q[14]=c->misses;q[15]=10;}
+#endif
  p[12]=stats.frame_hash;p[13]=stats.palette_hash;p[14]=10;p[15]=0;
 #else
  (void)frame;(void)generation;(void)mode;(void)begin;

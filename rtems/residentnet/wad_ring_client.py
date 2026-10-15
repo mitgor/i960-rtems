@@ -3,7 +3,13 @@ import errno,fcntl,json,struct,time
 from batch_client import BatchServer
 class RingServer(BatchServer):
  def __init__(self,u,wad):
-  super().__init__(u,wad);self.next=[1,2];self.pending_polls=0;self.pending_ns=0;self.successful_ns=0
+  super().__init__(u,wad);self.next=[1,2];self.pending_polls=0;self.pending_ns=0;self.successful_ns=0;self.gate_ns=0;self.work_ns=0;self.calls=0
+ def serve(self):
+  start=time.monotonic_ns()
+  with self.u.gate:
+   entered=time.monotonic_ns();self.gate_ns+=entered-start
+   result=self.serve_locked();self.work_ns+=time.monotonic_ns()-entered;self.calls+=1
+   return result
  def call(self,op,slot=0,g=0,offset=0,n=0,data=b''):
   raw=bytearray(struct.pack('<8I',op,self.u.epoch,slot,g,offset,n,len(self.data),0)+data+bytes(32768-len(data)))
   before=raw.hex();start=time.monotonic_ns()
@@ -22,7 +28,7 @@ class RingServer(BatchServer):
   with self.u.gate:
    for slot,g in enumerate(self.next):
     if g>slot+1:assert self.call(4,slot,g-2) is not None
-  (self.u.out/'wad-ring-service.json').write_text(json.dumps(dict(pending_polls=self.pending_polls,pending_ns=self.pending_ns,successful_ns=self.successful_ns))+'\n')
+  (self.u.out/'wad-ring-service.json').write_text(json.dumps(dict(pending_polls=self.pending_polls,pending_ns=self.pending_ns,successful_ns=self.successful_ns,gate_ns=self.gate_ns,work_ns=self.work_ns,serve_calls=self.calls))+'\n')
  def serve_locked(self):
   found=False
   for slot in range(2):

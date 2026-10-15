@@ -21,7 +21,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
  if presentation_test:assert pipeline_test and not wad_load_test
  if profile:
   assert pipeline
-  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')})+'\n')
+  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('wad_profile','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')})+'\n')
  token=secrets.token_hex(24);lock=threading.Lock();keys=deque();stop=threading.Event();held_keys=set();input_deadline=[0.]
  pp=None;pp_active=False;last_completion=0.;clocks=[]
  dma=None
@@ -240,7 +240,13 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     held=[pp.capture(g,synthetic=False)[0] for g in (limit-1,limit)]
     assert all(b[4096:69632]==(out/f'play-0-{g}.bin').read_bytes() for g,b in zip((limit-1,limit),held))
     (out/'doom-pingpong-result.json').write_text(json.dumps(dict(stats=stats,frames=seen,manifest=m,clocks=clocks,stopped_held=[limit-1,limit]))+'\n')
-   if wad_ring:server.finish()
+   if wad_ring:
+    server.finish()
+    magic=u.command(21,8)[5]
+    if magic==0x31525057:
+     words=[magic]+[u.command(21,i)[5] for i in range(9,73)]
+     (out/'wad-profile.json').write_text(json.dumps(dict(words=words))+'\n')
+    else:assert magic==0xffffffff
    message('Doom stopped cleanly.' if session or not accept_frames else ('Input/STOP test passed; starting your play session…' if seen>=accept_frames else 'Startup STOP completed; loading a fresh session…'))
  finally:
   # Save immutable file identity and service counts, excluding visitor data.

@@ -1,5 +1,13 @@
 # Playing Doom on the Mylex card
 
+For the opt-in bounded **WAD/DMA cost profiler**, including the resident-source
+DMA benchmark and exact reproduction commands, see
+[the measured profiling report](../../../artifacts/wad-profile-20261015/README.md).
+It keeps full audits, disables keyboard input, stops after 100 frames and does
+not change ordinary play defaults. Cache copies are the largest measured cost;
+the profiler itself is not a performance optimization.
+
+
 ## Optional WAD ring experiment (2026-10-15)
 
 The shared request/completion ring is implemented and has passed bounded card

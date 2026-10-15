@@ -9,6 +9,7 @@ struct wr_target {
 };
 static struct wr_target *wr;
 static unsigned wr_bus[2],wr_retired;
+#include "profile.h"
 #ifndef WR_ADDR
 #define WR_ADDR(p) ((unsigned)(p))
 #define WR_R(a) (*(volatile unsigned *)(a))
@@ -22,8 +23,8 @@ static unsigned wr_control(unsigned index,unsigned value){unsigned slot=index-6;
  wr_bus[slot]=value;return 0;
 }
 typedef unsigned wr_word __attribute__((__may_alias__));
-static unsigned wr_guard(void){unsigned i;const wr_word*a=(const wr_word*)wr->guard,*b=(const wr_word*)wr->upper;
- for(i=0;i<1024;i++)if(a[i]!=0xa5a5a5a5u||b[i]!=0xa5a5a5a5u)return 0;return 1;}
+static unsigned wr_guard(void){WP_START(t);unsigned i;const wr_word*a=(const wr_word*)wr->guard,*b=(const wr_word*)wr->upper;
+ for(i=0;i<1024;i++)if(a[i]!=0xa5a5a5a5u||b[i]!=0xa5a5a5a5u)return 0;WP_ADD(wp_bench?13:5,t);return 1;}
 static void wr_copy(unsigned char*d,const unsigned char*s,unsigned n){unsigned i;
  if(!(((unsigned long)d|(unsigned long)s)&3)){
   for(i=0;i<n/4;i++)((wr_word*)d)[i]=((const wr_word*)s)[i];i*=4;
@@ -60,21 +61,30 @@ static unsigned wr_isolation_snapshot(unsigned*w){
 }
 #define WR_STAGE(n) do{__asm__ volatile("":::"memory");wr->stage=n;__asm__ volatile("":::"memory");}while(0)
 static void wr_transfer(unsigned slot,unsigned remote,void*local,unsigned n,unsigned command){
- unsigned i,csr,rc=0;
+ WP_START(total);unsigned hw=0;unsigned i,csr,rc=0;
  if(!owned_owner()||!wr||wr->active||!wd_idle()||!wr_guard())wr_fail();
  wr->slot=slot;wr->remote=remote;wr->local=WR_ADDR(local);wr->length=n;wr->command=command;wr->active=1;
  if(!wr_geometry())wr_fail();
  wr->desc[0]=0;wr->desc[1]=remote;wr->desc[2]=0;wr->desc[3]=WR_ADDR(local);wr->desc[4]=n;wr->desc[5]=command;wr->desc[6]=wr->desc[7]=0xfacefeed;
  WR_STAGE(4);WR_S(0x1204)=6;if(WR_S(0x1204)!=6)wr_fail();
- WR_STAGE(5);WR_R(0x1450)=WR_ADDR(wr->desc);(void)WR_R(0x1450);WR_STAGE(6);WR_R(0x1440)=1;(void)WR_R(0x1440);WR_STAGE(7);
+ WR_STAGE(5);WR_R(0x1450)=WR_ADDR(wr->desc);(void)WR_R(0x1450);WR_STAGE(6);
+#ifdef I960_WAD_PROFILE
+ hw=wp_now();
+#endif
+ WR_R(0x1440)=1;(void)WR_R(0x1440);WR_STAGE(7);
  for(i=0;i<200000;i++){
   csr=WR_R(0x1444);if(csr&~0x400u){rc=1;break;}
   if(!csr&&!WR_R(0x1450)&&WR_R(0x144c)==WR_ADDR(wr->desc)&&!WR_R(0x1460))break;
  }
+ WP_ADD(wp_bench?12:6,hw);
  WR_STAGE(8);if(i==200000)rc=1;
  WR_STAGE(9);WR_R(0x1440)=0;(void)WR_R(0x1440);WR_STAGE(10);WR_S(0x1204)=2;(void)WR_S(0x1204);WR_STAGE(11);
  if(rc||!wd_idle()||WR_R(0x1450)||WR_R(0x1464)!=command||!wr_guard()||!wr_descriptor_valid())wr_fail();
  wr->active=0;WR_STAGE(0);
+#ifdef I960_WAD_PROFILE
+ if(!wp_bench&&command==6&&remote==wr->bus[slot]+WR_RESPONSE)WP_ADD(16,total);
+#endif
+ WP_ADD(wp_bench?11:7,total);
 }
 static void wr_publish(unsigned slot,unsigned where,unsigned magic,unsigned gen,unsigned off,unsigned n,unsigned total){
  wr_record_make(&wr->record,magic,gen,off,n,total);wr->record.w[7]=0;
@@ -82,22 +92,34 @@ static void wr_publish(unsigned slot,unsigned where,unsigned magic,unsigned gen,
  wr->record.w[7]=gen;wr_transfer(slot,wr->bus[slot]+where+28,&wr->record.w[7],4,7);
 }
 static int wr_read(unsigned f,unsigned off,void*p,unsigned n){
- struct doom_heap*h=doom_arena_context();unsigned loan=0,stage_loan=0,saved,i,j,count,total,gen,start;
+ WP_START(read_time);unsigned stamp=0;struct doom_heap*h=doom_arena_context();unsigned loan=0,stage_loan=0,saved,i,j,count,total,gen,start;
  void*allocation=0;int result=-1;
  if(!owned_owner()||owned_stopping()||!h||f!=1||!wr_bus[0]||!wr_bus[1]||wr||wr_retired||
     (off&(WR_BATCH-1))||!n||n>WR_BATCH||off>=api.file_bytes)return -1;
  total=api.file_bytes-off;if(total>WR_BATCH)total=WR_BATCH;if(n!=total)return -1;
+#ifdef I960_WAD_PROFILE
+ stamp=wp_now();
+#endif
 #ifdef I960_PINGPONG
  {extern void frame_dma_wad_barrier(void);frame_dma_wad_barrier();}
 #endif
+ WP_ADD(1,stamp);
+#ifdef I960_WAD_PROFILE
+ stamp=wp_now();
+#endif
  loan=doom_heap_borrow(h,p,n);if(!loan)return -1;leases++;
- allocation=owned_allocate(sizeof(*wr)+31);if(!allocation)goto done;
+ {WP_START(alloc);allocation=owned_allocate(sizeof(*wr)+31);WP_ADD(17,alloc);}if(!allocation)goto done;
  stage_loan=doom_heap_borrow(h,allocation,sizeof(*wr)+31);if(!stage_loan)goto done;
+ WP_ADD(2,stamp);
+#ifdef I960_WAD_PROFILE
+ stamp=wp_now();
+#endif
  wr=(struct wr_target*)(((unsigned long)allocation+31)&~31UL);
  /* Struct descriptor must itself be 32-byte aligned. */
  for(i=0;i<sizeof(*wr)/4;i++)((wr_word*)wr)[i]=0;
  for(i=0;i<1024;i++)((wr_word*)wr->guard)[i]=((wr_word*)wr->upper)[i]=0xa5a5a5a5u;
  for(i=0;i<2;i++)wr->bus[i]=wr_bus[i];
+ WP_ADD(3,stamp);
  count=(n+WR_BLOCK-1)/WR_BLOCK;
  if(batch.sequence>0xfffffffcu)wr_fail();gen=batch.sequence+1;
  for(i=0;i<count;i++){
@@ -106,6 +128,7 @@ static int wr_read(unsigned f,unsigned off,void*p,unsigned n){
  }
  for(i=0;i<count;i++){
   unsigned slot=(gen+i-1)&1,length=total-i*WR_BLOCK;if(length>WR_BLOCK)length=WR_BLOCK;start=upload_time();
+  {WP_START(wait);
   for(;;){
    wr_transfer(slot,wr->bus[slot]+WR_RESPONSE,&wr->reply,64,6);
    if(wr->reply.w[7]==gen+i){
@@ -115,17 +138,38 @@ static int wr_read(unsigned f,unsigned off,void*p,unsigned n){
    }
    if(wr->reply.w[7]&&wr->reply.w[7]!=gen+i-2)wr_fail();
    if(owned_stopping()||upload_time()-start>=500){wr_retired=1;result=-4;goto done;}
-   doom_shared_service();doom_shared_yield();
+   {WP_START(service);doom_shared_service();doom_shared_yield();WP_ADD(9,service);}
   }
+  WP_ADD(8,wait);}
   if(!wr_record_valid(&wr->reply,WR_RSP_MAGIC,gen+i,api.file_bytes)||wr->reply.w[3]!=off+i*WR_BLOCK||wr->reply.w[4]!=length)wr_fail();
   wr_transfer(slot,wr->bus[slot]+WR_DATA,wr->payload,WR_BLOCK,6);
   for(j=length;j<WR_BLOCK;j++)if(wr->payload[j])wr_fail();
-  if(!owned_stopping())wr_copy((unsigned char*)p+i*WR_BLOCK,wr->payload,length);
+  if(!owned_stopping()){WP_START(copy);wr_copy((unsigned char*)p+i*WR_BLOCK,wr->payload,length);WP_ADD(10,copy);}
+#ifdef I960_WAD_PROFILE
+  /* Host cannot recycle this slot until completion. Repeat only a valid full
+   * payload, into the same borrowed destination, with every normal check. */
+  if(!wp_done&&length==WR_BLOCK&&!owned_stopping()){
+   unsigned k,j;wp_bench=1;
+   for(k=0;k<64;k++){
+    {WP_START(empty);WP_ADD(14,empty);}
+    if(owned_stopping())break;
+    wr_transfer(slot,wr->bus[slot]+WR_DATA,wr->payload,WR_BLOCK,6);
+    {WP_START(check);const wr_word*a=(const wr_word*)wr->payload;
+     const wr_word*b=(const wr_word*)((unsigned char*)p+i*WR_BLOCK);
+     for(j=0;j<WR_BLOCK/4;j++)if(a[j]!=b[j])wr_fail();WP_ADD(15,check);}
+    doom_shared_service();
+   }
+   wp_done=k;wp_bench=0;
+  }
+#endif
   wr_publish(slot,WR_COMPLETE,WR_END_MAGIC,gen+i,off+i*WR_BLOCK,length,api.file_bytes);
  }
  batch.sequence+=count;batch.accepted+=count;result=owned_stopping()?-4:n;
  done:
+#ifdef I960_WAD_PROFILE
+ stamp=wp_now();
+#endif
  saved=runtime_lock();if(wr&&wr->active)wr_fail();wr=0;runtime_unlock(saved);
- if(stage_loan&&!doom_heap_return(h,allocation,stage_loan))wr_fail();if(allocation)owned_release(allocation);
- if(!doom_heap_return(h,p,loan))wr_fail();leases--;return result;
+ if(stage_loan&&!doom_heap_return(h,allocation,stage_loan))wr_fail();if(allocation){WP_START(free_time);owned_release(allocation);WP_ADD(18,free_time);}
+ if(!doom_heap_return(h,p,loan))wr_fail();leases--;WP_ADD(4,stamp);WP_ADD(0,read_time);return result;
 }

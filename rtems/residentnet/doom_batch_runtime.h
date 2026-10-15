@@ -77,7 +77,11 @@ static unsigned batch_route(unsigned op,unsigned index,unsigned value,unsigned r
  return doom_batch_control(&batch,op,index,value,running&&!runtime_stopping());}
 static unsigned batch_idle(void){return batch.state==WAD_IDLE;}
 static void batch_legacy(void){batch_selected=0;}
-unsigned doom_runtime_batch_report(unsigned i){unsigned w[8];w[0]=DOOM_BATCH_MAGIC;w[1]=batch.sequence;w[2]=batch.accepted;w[3]=batch.rejected;w[4]=batch.cancelled;w[5]=leases;w[6]=batch.state;w[7]=api.file_bytes;return i<8?w[i]:~0u;}
+unsigned doom_runtime_batch_report(unsigned i){unsigned w[8];
+#ifdef I960_WAD_PROFILE
+ if(i>=8)return wp_report(i-8);
+#endif
+w[0]=DOOM_BATCH_MAGIC;w[1]=batch.sequence;w[2]=batch.accepted;w[3]=batch.rejected;w[4]=batch.cancelled;w[5]=leases;w[6]=batch.state;w[7]=api.file_bytes;return i<8?w[i]:~0u;}
 #endif
 
 #ifdef I960_WAD_BATCH
