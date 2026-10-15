@@ -1,5 +1,11 @@
 # Bulk host-to-card WAD delivery
 
+The newer [shared WAD ring](wad_ring/README.md) is a separate opt-in path.
+Its matched bounded run reduces first-frame loading from 290.09 to 186.57 seconds,
+but warm restart regresses from 2.84 to 4.24 seconds. This 4 KiB path remains the
+default/fallback; [exact evidence](../../artifacts/wad-ring-20261015/README.md)
+includes both profiles with the same binaries and full audits.
+
 This opt-in path is selected by `game/doom/play/run.py --pipeline --wad-dma`.
 The DMA-capable resident kernel and matching driver must be rebuilt together.
 `--wad-dma` removes WAD payload CRC, as requested. Framebuffer CRC is a separate

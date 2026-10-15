@@ -1,6 +1,6 @@
 # i960 / Mylex DAC960PG — consolidated technical findings
 
-**Current index (2026-10-14): [findings, evidence and unresolved questions](CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
+**Current index (2026-10-15): [findings, evidence and unresolved questions](CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
 
 **Current result:** [In-system recovery succeeded](docs/firmware/SNAPSHOT-RECOVERY.md). A paired
 512 KiB capture contains the exact 4.07-0-29 firmware and FWTCBBLK boot block,

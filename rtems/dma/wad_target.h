@@ -12,6 +12,9 @@ static volatile unsigned wd_storage[16] __attribute__((aligned(16)));
 #define wd_desc ((volatile unsigned*)(((unsigned long)wd_storage+31)&~31UL))
 static unsigned wd_idle(void){return !WD_R(0x1400)&&!WD_R(0x1404)&&!WD_R(0x1440)&&!WD_R(0x1444)&&!WD_R(0x1480)&&!WD_R(0x1484)&&WD_S(0x1204)==2&&WD_S(0x1298)==0&&WD_R(0x104c)==0x13ffc;}
 unsigned wad_dma_isolation_snapshot(unsigned*w){unsigned i;
+#ifdef I960_WAD_RING
+ if(wr_isolation_snapshot(w))return 1;
+#endif
  if(wd_phase!=1||wd_stage<4||wd_stage>10||!wd_buffer||batch.state!=WAD_REQUEST||wd_sequence!=batch.sequence||wd_report[0]!=wd_sequence||wd_report[1]!=wd_host||wd_report[2]!=WD_ADDR(wd_buffer+4096))return 0;
  for(i=0;i<8;i++){unsigned e=i==1?wd_host:i==3?WD_ADDR(wd_buffer+4096):i==4?4096:i==5?6:i>=6?0xfacefeed:0;if(wd_desc[i]!=e)return 0;}
  if(w[0]||w[1]||w[4]||w[5]||w[2]>1||(w[3]&~0x400u)||(w[6]!=2&&w[6]!=6))return 0;

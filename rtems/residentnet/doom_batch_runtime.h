@@ -6,6 +6,9 @@ static struct doom_batch batch;
 #include "../dma/wad_target.h"
 #endif
 #ifdef I960_DOOM_DMA
+#ifdef I960_WAD_RING
+#include "../dma/wad_ring/target.h"
+#endif
 #define WAD_STAGE_BYTES 12288u
 #else
 #define WAD_STAGE_BYTES (8u*136u*4u)
@@ -60,7 +63,11 @@ static int batch_read(unsigned f,unsigned o,void*p,unsigned n){
 }
 const struct doom_runtime_v1*doom_runtime_batch_api(unsigned limit){
  if(!bound||(limit!=512&&limit!=4096))return 0;batch_api=owned_api.io;batch_api.version=DOOM_API_BATCH_VERSION;
- batch_api.features=DOOM_API_BATCH_FEATURES;batch_api.max_read=limit;batch_api.read=batch_read;return &batch_api;
+ batch_api.features=DOOM_API_BATCH_FEATURES;batch_api.max_read=limit;batch_api.read=batch_read;
+#ifdef I960_WAD_RING
+ if(wr_bus[0]&&wr_bus[1]){batch_api.max_read=65536;batch_api.read=wr_read;}
+#endif
+ return &batch_api;
 }
 static unsigned batch_route(unsigned op,unsigned index,unsigned value,unsigned running){
 #ifdef I960_DOOM_DMA

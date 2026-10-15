@@ -24,7 +24,7 @@ protected_pages=0
 if upload:
  protected_pages=32+(byname['_upload_code_end']-byname['_upload_code_start']+4095)//4096+(0xc1000000-0xc0f9bff0+4095)//4096
  if engine:protected_pages+=(byname['_engine_code_end']-byname['_engine_code_start']+4095)//4096
- assert protected_pages<=(145 if '-DI960_PINGPONG' in flags else 144), 'protected-page table capacity exceeded'
+ assert protected_pages<=(146 if '-DI960_WAD_RING' in flags else 145 if '-DI960_PINGPONG' in flags else 144), 'protected-page table capacity exceeded'
 assert byname['_start']==0xc0f2c000
 assert lo<=byname['__bss_start']<=byname['__bss_end']<hi
 for address,kind,name in symbols:

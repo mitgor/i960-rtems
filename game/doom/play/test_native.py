@@ -2,7 +2,7 @@
 """Exercise the actual interactive engine, input, STOP and heap drain on host32."""
 import argparse,hashlib,json,struct,subprocess
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--build',type=Path,required=True);p.add_argument('--newlib',type=Path,required=True);p.add_argument('--wad',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--build',type=Path,required=True);p.add_argument('--newlib',type=Path,required=True);p.add_argument('--wad',type=Path,required=True);p.add_argument('--wad-ring',action='store_true');a=p.parse_args()
 r=Path(__file__).resolve().parents[1];s=(r/'runtime/startup/native.c').read_text();begin=s.index('static int mark(');end=s.index('\n#endif',begin)
 s=s[:begin]+'''static unsigned frames,event_sent;
 static int mark(unsigned stage,unsigned x,unsigned y,unsigned z){
@@ -12,6 +12,10 @@ static int mark(unsigned stage,unsigned x,unsigned y,unsigned z){
  if(stage==101){if(mode==6)return 1;if(frames==3&&event_sent==0){event_sent++;return 2+256+0xad;}if(frames==20&&event_sent==1){event_sent++;return 2+0xad;}return 1;}
  return 1;
 }'''+s[end:];s=s.replace('"checkpoint_log.h"','"../runtime/startup/checkpoint_log.h"').replace('"../platform/platform.h"','"../runtime/platform/platform.h"').replace('"../heap.h"','"../runtime/heap.h"')
+if a.wad_ring:
+ s=s.replace('n>4096','n>65536').replace('a.io.max_read=4096','a.io.max_read=65536')
+ s=s.replace('token=doom_heap_borrow(&heap,dst,n);', 'void*stage=allocate(41216);if(!stage)return -1;token=doom_heap_borrow(&heap,dst,n);')
+ s=s.replace('wire_bytes+=n;', 'wire_bytes+=n;release(stage);')
 source=a.build/'play-native.c';source.write_text(s)
 flags=['-m32','-Os','-fno-builtin','-funsigned-char','-D__SINGLE_THREAD__','-DDOOM_CHECKPOINTS','-DDOOM_VISIBLE','-I'+str(r/'play'),'-I'+str(a.newlib/'newlib/libc/include'),'-fsanitize=address,undefined','-g']
 obj=a.build/'play-native.o';subprocess.run(['gcc',*flags,'-c',str(source),'-o',str(obj)],check=True)

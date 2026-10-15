@@ -1,0 +1,17 @@
+{
+  "byte": {
+    "observed_frames": 98,
+    "all_observed_payloads_exact": true,
+    "mean_fetch_ms": 28.16432653641214
+  },
+  "word": {
+    "observed_frames": 98,
+    "all_observed_payloads_exact": true,
+    "mean_fetch_ms": 27.498354945255787
+  },
+  "baseline": {
+    "observed_frames": 99,
+    "all_observed_payloads_exact": true,
+    "mean_fetch_ms": 46.44700631762695
+  }
+}

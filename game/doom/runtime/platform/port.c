@@ -49,7 +49,7 @@ static void fatal(int n){
 #endif
  stats.exited=1;stats.exit_code=(unsigned)n;if(armed&&(!owned||owned->owner()))longjmp(escape,1);for(;;){/* fatal outside an admitted call: never pretend to return */}}
 int doom_platform_bind(const struct doom_runtime_v1*a,const char*path){
- if(io||!path||!*path||!a||a->magic!=DOOM_API_MAGIC||!((a->version==DOOM_API_VERSION&&a->features==DOOM_API_FEATURES&&a->max_read==512)||(a->version==DOOM_API_BATCH_VERSION&&a->features==DOOM_API_BATCH_FEATURES&&a->max_read==4096))||a->bytes!=sizeof(*a)||a->pointer_bytes!=sizeof(void*)||a->little_endian!=1||a->file_id!=1||a->file_bytes<512||a->file_bytes>268435456u||a->reserved[0]||a->reserved[1]||!a->allocate||!a->release||!a->read||!a->ticks_ms)return 0;
+ if(io||!path||!*path||!a||a->magic!=DOOM_API_MAGIC||!((a->version==DOOM_API_VERSION&&a->features==DOOM_API_FEATURES&&a->max_read==512)||(a->version==DOOM_API_BATCH_VERSION&&a->features==DOOM_API_BATCH_FEATURES&&(a->max_read==4096||a->max_read==65536)))||a->bytes!=sizeof(*a)||a->pointer_bytes!=sizeof(void*)||a->little_endian!=1||a->file_id!=1||a->file_bytes<512||a->file_bytes>268435456u||a->reserved[0]||a->reserved[1]||!a->allocate||!a->release||!a->read||!a->ticks_ms)return 0;
  io=a;iwad=path;return 1;
 }
 int doom_platform_bind_owned(const struct doom_runtime_owned*a,const char*path){

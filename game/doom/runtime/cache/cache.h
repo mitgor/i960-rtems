@@ -2,14 +2,14 @@
 #define DOOM_WAD_CACHE_H
 #include "../entry/api.h"
 #ifndef DCACHE_LINES
-#define DCACHE_LINES 32u
+#define DCACHE_LINES 128u
 #endif
 #define DCACHE_LINE 512u
 struct doom_cache {
  const struct doom_runtime_v1 *api;
  unsigned char *data,*bounce;
  unsigned int tags[DCACHE_LINES],valid[DCACHE_LINES];
- unsigned int active,reads,hits,misses,wire_bytes,copied_bytes,errors;
+ unsigned int lines,active,reads,hits,misses,wire_bytes,copied_bytes,errors;
  int last_error;
 };
 /* Single owning application task; initially zero. Copies into caller-owned

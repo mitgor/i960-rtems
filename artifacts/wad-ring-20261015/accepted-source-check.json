@@ -1,0 +1,74 @@
+[
+  {
+    "path": "rtems/dma/wad_ring/target.h",
+    "sha256": "5578371ce9ba5abeaae788c28bea77ae84d2dd3864e7537f8bc26762eaf3e079"
+  },
+  {
+    "path": "rtems/dma/wad_ring/host.h",
+    "sha256": "1bca034ba13453c313e321bfda59421ec38f9dbdcde110b0db02bbb84d2e2268"
+  },
+  {
+    "path": "rtems/dma/wad_ring/wire.h",
+    "sha256": "76f368ae93b2b07e74bb4a23709137d5659d31f7f0365df1f54464109f1eb178"
+  },
+  {
+    "path": "rtems/residentnet/wad_ring_client.py",
+    "sha256": "439bc7a46770d42ef42eff2880eb54621c9bcb80c966d24178a42be76604f3bf"
+  },
+  {
+    "path": "rtems/residentnet/doom_batch_runtime.h",
+    "sha256": "ab9f4172d4a4125aa939e3ad3c397cc0ef9a6470ab71b7821f3ea177ed5c167f"
+  },
+  {
+    "path": "rtems/residentnet/doom_runtime.c",
+    "sha256": "75e08b6dcf281c17e65c2e6b1e6bbbb5281adf3e458605cff22540a7e334a23f"
+  },
+  {
+    "path": "rtems/dma/wad_target.h",
+    "sha256": "8ece5461105d8bfd42cb65b4d47527b82539829e0dff31fe42af35c067b684fc"
+  },
+  {
+    "path": "rtems/residentnet/build_transport.py",
+    "sha256": "802fdf5ed4e50e1fbebb76e5918ee577f3dabc1c05d9cf1fadda44c5b4e15463"
+  },
+  {
+    "path": "rtems/residentnet/upload_protect.c",
+    "sha256": "275b9e3850dc421fe253734c2c41a02fc8d8f0a5a3df6b3abf06cea93dbd1192"
+  },
+  {
+    "path": "rtems/residentnet/large_contract.py",
+    "sha256": "7fc3f32cef4fc0be0ebcda453719da5d769faaef5a8f13b7ebafd27f83a8db82"
+  },
+  {
+    "path": "rtems/residentnet/live.py",
+    "sha256": "7943d504dec0ccfd7efa717a7872f7f93a4fc63034dae788b1ac889dc95c2cb2"
+  },
+  {
+    "path": "rtems/residentnet/play_client.py",
+    "sha256": "e0b0b5c5648e862955edcf75d2d0026b7ea311d29d934ac5a4c0cb56499c6417"
+  },
+  {
+    "path": "rtems/build.py",
+    "sha256": "c4656e4ae90be34ca81d356f0d22b34bcd31cb84733111c6eb848504a2cd6b17"
+  },
+  {
+    "path": "game/doom/runtime/cache/cache.c",
+    "sha256": "760aa233d0a435de24efaf9b93fe0ce2cecffc8345d86a6ff6b83b0af6446ddb"
+  },
+  {
+    "path": "game/doom/runtime/cache/cache.h",
+    "sha256": "4928007d0bd4a988623afc1f0170c7e1ff6c7e1cc75ee0c9caf8635c548ab3b1"
+  },
+  {
+    "path": "game/doom/runtime/platform/port.c",
+    "sha256": "bb2a64ea3b243952f04eba15cf63adbf32a8c1c577740dea17aea44d9dabc5ff"
+  },
+  {
+    "path": "game/doom/play/run.py",
+    "sha256": "c149f74db1d455f1281f90b79d546b035acc82552b42afa65e271818618a2aaf"
+  },
+  {
+    "path": "game/doom/play/build.py",
+    "sha256": "2ef0f20363bb02dfc84d51d5db31069994bc82a902bf335b643ae7dc99f9c88e"
+  }
+]

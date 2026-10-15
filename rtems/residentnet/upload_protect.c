@@ -3,7 +3,9 @@
 extern unsigned char upload_code_start[],upload_code_end[];
 extern void exclusive_drain_poll(void);
 #define R(a) (*(volatile unsigned int*)(a))
-#ifdef I960_PINGPONG
+#ifdef I960_WAD_RING
+#define PAGES 146u
+#elif defined(I960_PINGPONG)
 #define PAGES 145u
 #else
 #define PAGES 144u

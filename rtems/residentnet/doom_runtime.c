@@ -19,6 +19,9 @@ static unsigned batch_idle(void),batch_route(unsigned,unsigned,unsigned,unsigned
 static void batch_legacy(void);
 #endif
 static struct doom_runtime_v1 api;
+#ifdef I960_WAD_RING
+static unsigned wr_control(unsigned,unsigned),wr_isolation_snapshot(unsigned*);
+#endif
 #ifdef I960_DOOM_OWNED
 static void owned_bind(void);
 static volatile unsigned owned_generation,owned_running,owned_stop_requested;
@@ -82,6 +85,9 @@ unsigned int doom_runtime_bind(const unsigned int*w,unsigned int n){unsigned int
 }
 const struct doom_runtime_v1*doom_runtime_api(void){return bound?&api:0;}
 unsigned int doom_runtime_control(unsigned int op,unsigned int index,unsigned int value,unsigned int running){
+#ifdef I960_WAD_RING
+if(op==0x77&&(index==6||index==7))return wr_control(index,value);
+#endif
 #ifdef I960_WAD_BATCH
 if(batch_selected)return batch_route(op,index,value,running);
 #endif

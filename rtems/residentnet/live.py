@@ -67,7 +67,7 @@ def main():
  p.add_argument('--play-dma-test',action='store_true')
  p.add_argument('--play-pipeline',action='store_true')
  p.add_argument('--play-pipeline-test',action='store_true')
- p.add_argument('--play-no-crc',action='store_true');p.add_argument('--wad-dma',action='store_true');p.add_argument('--wad-load-test',action='store_true')
+ p.add_argument('--play-no-crc',action='store_true');p.add_argument('--wad-dma',action='store_true');p.add_argument('--wad-ring',action='store_true');p.add_argument('--wad-load-test',action='store_true')
  p.add_argument('--frame-dma-stress',type=int,default=0);p.add_argument('--pingpong',action='store_true')
  p.add_argument('--play-bulk',action='store_true')
  p.add_argument('--play-bulk-test',action='store_true')
@@ -94,6 +94,7 @@ def main():
  assert not a.pingpong or (64<=a.frame_dma_stress<=512 and a.frame_dma_stress%2==0) or (a.play_pipeline and a.play_pipeline_test and a.wad_dma)
  assert not a.frame_dma_stress or (1<=a.frame_dma_stress<=2048 and a.doom_runtime and a.owned_mib==12 and a.upload_concurrent and not a.play_port and not a.play_dma_test)
  assert not a.wad_load_test or a.play_pipeline_test
+ assert not a.wad_ring or (a.wad_dma and a.pingpong and a.play_pipeline_test)
  assert not a.wad_dma or a.play_pipeline
  assert not a.play_pipeline_test or a.play_pipeline
  assert not a.play_no_crc or (a.play_pipeline and not a.play_pipeline_test)
@@ -113,6 +114,9 @@ def main():
   preflight(admission,a.play_pipeline,a.play_pipeline_test,a.wad_load_test)
   assert bool(admission.get('pingpong'))==a.pingpong, 'pingpong admission mismatch'
   assert bool(admission.get('dma_stress'))==bool(a.frame_dma_stress), 'producer/runner mismatch'
+ if a.wad_ring:
+  assert '-DI960_WAD_RING' in json.loads((a.payload.parent/'build.json').read_text())['flags'], 'rebuild for WAD ring'
+  assert 'wad_ring_ioctl' in (a.module.parent/'dac960auto.c').read_text(), 'rebuild matching WAD ring driver'
  if a.wad_dma:
   assert '_wad_dma_isolation_snapshot' in (a.payload.parent/'kernel.map').read_text(), 'rebuild the resident kernel for bulk WAD support'
   assert 'wad_dma_ioctl' in (a.module.parent/'dac960auto.c').read_text(), 'rebuild the matching bulk WAD driver'
@@ -141,7 +145,7 @@ def main():
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(pingpong=a.pingpong,wad_load_test=a.wad_load_test,wad_dma=a.wad_dma,play_pipeline=a.play_pipeline,play_pipeline_test=a.play_pipeline_test,play_no_crc=a.play_no_crc,frame_dma_stress=a.frame_dma_stress,play_dma_test=a.play_dma_test,dma_deadline_job=a.dma_deadline_job,dma_stop=a.dma_stop,dma_proof=a.dma_proof,play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(wad_ring=a.wad_ring,pingpong=a.pingpong,wad_load_test=a.wad_load_test,wad_dma=a.wad_dma,play_pipeline=a.play_pipeline,play_pipeline_test=a.play_pipeline_test,play_no_crc=a.play_no_crc,frame_dma_stress=a.frame_dma_stress,play_dma_test=a.play_dma_test,dma_deadline_job=a.dma_deadline_job,dma_stop=a.dma_stop,dma_proof=a.dma_proof,play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
  io_gate=threading.RLock();abort_upload=threading.Event()
  def save(final=False):
   if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')
@@ -237,7 +241,7 @@ def main():
      return pool.submit(stress,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',abort_upload,a.frame_dma_stress)
     elif a.play_port:
      from play_client import exercise as play
-     return pool.submit(play,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',a.play_port,abort_upload,a.play_accept_frames,a.play_bulk,a.play_bulk_test,a.play_dma_test,a.play_pipeline,a.play_pipeline_test,a.play_no_crc,a.wad_dma,a.wad_load_test,a.pingpong)
+     return pool.submit(play,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',a.play_port,abort_upload,a.play_accept_frames,a.play_bulk,a.play_bulk_test,a.play_dma_test,a.play_pipeline,a.play_pipeline_test,a.play_no_crc,a.wad_dma,a.wad_load_test,a.pingpong,a.wad_ring)
     else:return pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared,runtime,abort_upload)
    # Complete the network proof before a large game upload can monopolize
    # the packet gate. The main loop still pumps packets and performs audits.

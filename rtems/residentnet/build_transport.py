@@ -50,6 +50,12 @@ def build(out,payload):
   s=m.replace(s,'static const struct file_operations session_fops=',(HERE.parent/'dma/pingpong/host.h').read_text()+'\nstatic const struct file_operations session_fops=')
   s=m.replace(s,'.unlocked_ioctl=wad_dma_ioctl,','.unlocked_ioctl=pingpong_ioctl,')
   s=m.replace(s,'    dma_free_coherent(&pdev->dev,DMA_SIZE,d->dma_buf,d->dma);','    if(d->pp_buf[0])dma_free_coherent(&pdev->dev,73728,d->pp_buf[0],d->pp_bus[0]);\n    if(d->pp_buf[1])dma_free_coherent(&pdev->dev,73728,d->pp_buf[1],d->pp_bus[1]);\n    dma_free_coherent(&pdev->dev,DMA_SIZE,d->dma_buf,d->dma);')
+ if '-DI960_WAD_RING' in flags:
+  assert '-DI960_PINGPONG' in flags
+  s=m.replace(s,'void *dma_buf;', 'void *dma_buf;void *wr_buf[2];dma_addr_t wr_bus[2];unsigned wr_next[2],wr_total;')
+  s=m.replace(s,'static const struct file_operations session_fops=',(HERE.parent/'dma/wad_ring/wire.h').read_text()+'\n'+(HERE.parent/'dma/wad_ring/host.h').read_text()+'\nstatic const struct file_operations session_fops=')
+  s=m.replace(s,'.unlocked_ioctl=pingpong_ioctl,','.unlocked_ioctl=wad_ring_ioctl,')
+  s=m.replace(s,'    dma_free_coherent(&pdev->dev,DMA_SIZE,d->dma_buf,d->dma);','    if(d->wr_buf[0])dma_free_coherent(&pdev->dev,40960,d->wr_buf[0],d->wr_bus[0]);\n    if(d->wr_buf[1])dma_free_coherent(&pdev->dev,40960,d->wr_buf[1],d->wr_bus[1]);\n    dma_free_coherent(&pdev->dev,DMA_SIZE,d->dma_buf,d->dma);')
  if '-DI960_DMA_PROOF' in flags:
   s=m.replace(s,'void *dma_buf;', 'void *dma_buf; void *proof_buf; struct debugfs_blob_wrapper proof_blob; dma_addr_t proof_dma; unsigned proof_seq; bool proof_valid,proof_pending,proof_cancelled;unsigned proof_n,proof_offset,proof_seed;')
   s=m.replace(s,'static const struct file_operations session_fops=',(HERE.parent/'dma/host.h').read_text()+'\nstatic const struct file_operations session_fops=')

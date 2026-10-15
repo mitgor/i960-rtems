@@ -1,0 +1,65 @@
+{
+  "live-ring": {
+    "first_frame_seconds": 456.10907067200014,
+    "engine_upload_seconds": 79.5710936659998,
+    "first_frame_requests": 1755,
+    "total_requests": 1805,
+    "warm_restart_seconds": 10.203193948999797,
+    "warm_restart_requests": 38,
+    "restart_interval_frames": [
+      66,
+      68
+    ],
+    "full_audit_pairs": 162,
+    "pingpong_fps": 3.823334516977651,
+    "known_native_pixel_differences": [
+      29260,
+      29261,
+      29580,
+      29581
+    ],
+    "all_52_palettes_exact": true
+  },
+  "live-word": {
+    "first_frame_seconds": 186.56596582300006,
+    "engine_upload_seconds": 80.58190618599991,
+    "first_frame_requests": 1755,
+    "total_requests": 1805,
+    "warm_restart_seconds": 4.241532081000059,
+    "warm_restart_requests": 38,
+    "restart_interval_frames": [
+      66,
+      68
+    ],
+    "full_audit_pairs": 88,
+    "pingpong_fps": 3.9483635337065524,
+    "known_native_pixel_differences": [
+      29260,
+      29261,
+      29580,
+      29581
+    ],
+    "all_52_palettes_exact": true
+  },
+  "live-baseline": {
+    "first_frame_seconds": 290.086870823,
+    "engine_upload_seconds": 80.4956877919999,
+    "first_frame_requests": 5043,
+    "total_requests": 5100,
+    "warm_restart_seconds": 2.84189703200002,
+    "warm_restart_requests": 32,
+    "restart_interval_frames": [
+      66,
+      68
+    ],
+    "full_audit_pairs": 108,
+    "pingpong_fps": 3.8374987814303863,
+    "known_native_pixel_differences": [
+      29260,
+      29261,
+      29580,
+      29581
+    ],
+    "all_52_palettes_exact": true
+  }
+}

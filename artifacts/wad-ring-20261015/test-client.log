@@ -1,0 +1,1 @@
+PASS actual ring client/replay: two slots, EOF, RAM-only polling; 97 evidence mutations rejected

@@ -1,0 +1,1 @@
+PASS ring host: RAM-only service, exact prior completion before reuse, stale/geometry refusal, guard fault, registration quarantine, uncertain copyout retention

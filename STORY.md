@@ -3422,6 +3422,43 @@ The exact builds, both runs, timing limits and replay results are in
 `artifacts/doom-pingpong-20261015/`. This remained a bounded, opt-in transport,
 not a declaration that every future game session was now qualified.
 
+## The WAD stops asking permission for every handful of bytes
+
+There was still something absurd about the loading screen. This was a RAID
+controller, a machine built to move data, and Doom could spend nearly five
+minutes asking the host for the pieces of its WAD. The DMA engine was already
+there. The conversation around it was the problem: discover a request, prepare
+one small transfer, wait, check, acknowledge, begin again.
+
+We gave the two machines a shared notebook. Two guarded host buffers held
+requests, replies and completions; the card could ask for two 32 KiB pieces
+before collecting either one. The host answered from its immutable WAD copy.
+The same RTEMS task still owned DMA1, so a framebuffer transfer had to finish
+before a WAD transfer could begin. A generation belonged to its slot until both
+sides had finished with it. Each slot kept a single writer and an explicit generation.
+
+The first result was a useful embarrassment: **456 seconds to the first
+frame**. The ring worked, the game ran, all 162 full audit pairs passed, and
+shutdown drained the heap. It was also slower. We had removed mailbox waits
+and replaced some of them with repeated byte-by-byte scans of the new guards.
+Read-ahead had another bill: about 59 MB crossed the bus during the test,
+because asking for the neighboring bytes does not guarantee they will be useful.
+
+The next build checked the same guard bytes at the same points using word
+loads, and used word operations for the staging fill and copy. Nothing was
+sampled and no audit was skipped. First-frame time fell to **186.6 seconds**.
+Another hundred frames, another level restart, another held-buffer STOP, and
+88 full audit pairs passed. The first 52 pictures still differed from native
+Doom at exactly the same four recorded pixels, with identical palettes.
+
+That did not make read-ahead an unconditional win. Warm restart took **4.24
+seconds**, and the smaller old transfers had previously done better. The matched old path took **290.1 seconds** to start and **2.84 seconds** to
+restart the level: about 36 percent saved at startup, about 49 percent lost on
+the warm restart. The new ring stayed an explicit experiment. A faster loading
+screen is useful; a benchmark that admits where it got
+slower is useful too. The exact first attempt and its successor are preserved
+in `artifacts/wad-ring-20261015/`, including the regression.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3478,7 +3515,10 @@ So, the ledger, honestly kept:
   coordinates frame and WAD traffic on DMA1 and delivers 100 browser frames with
   108 full audit pairs, level restart and held-buffer STOP. Its controlled
   comparison improves 3.503 to 3.887 FPS; ordinary play remains on the earlier
-  transport pending longer interactive qualification.
+  transport pending longer interactive qualification. The later WAD ring cuts
+  matched startup from 290.09 to 186.57 seconds with all audits retained, but
+  warm restart rises from 2.84 to 4.24 seconds. It remains opt-in while the
+  read-ahead policy is refined.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

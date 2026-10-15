@@ -1,5 +1,37 @@
 # Doom milestone guidance
 
+<!-- wad-ring-current -->
+**2026-10-15 WAD ring bounded acceptance passed:** two guarded 32 KiB host slots,
+shared request/response/completion records and 64 KiB read-ahead are opt-in via
+`--wad-ring --pingpong --pipeline-test --wad-dma`. Same-build first frame:
+**290.087 → 186.566 s (35.69% less, 1.555×)**, excluding ~80 s engine upload.
+Warm restart **2.842 → 4.242 s (49.25% slower)**: do not promote the default.
+Read-ahead raises total test payload from 20.89 to 59.15 MB. Baseline metadata
+queries cost 180.606 s; new RAM-only ioctls plus pending polls cost 3.873 s,
+excluding Python/card execution. The first byte-oriented ring passed safety but
+regressed startup to 456.109 s; it is archived, not hidden.
+All three runs pass: **300 frames, 358 full audit pairs**, exact source/completion
+replay, four full frame comparisons per run, frame stall/resume, owned STOP and
+heap drain. First 52 controlled frames are identical across card runs and retain
+exactly four known native pixel differences; palettes match. Steady FPS is about
+3.8–3.9; no sustained renderer speedup is claimed. Guards are fully scanned at
+unchanged points using word operations; descriptor/ownership/quiescence checks
+and all full audits remain. 146 protected pages, 288-byte mutable reserve;
+no flash or memory-map change. Native tests cover publication reread, descriptor
+bits, all guard bytes, host timeout and STOP while waiting. Physical mid-WAD
+STOP/stall/timeout injection and longer interactive play remain unqualified.
+Exact sources/binaries/captures and Linux/Mac replay are preserved in
+`artifacts/wad-ring-20261015/`; protocol: `rtems/dma/wad_ring/README.md`.
+Next optimize adaptive smaller read-ahead for warm/small reads; arbitrary
+unaligned ring reads are not supported by the private cache-fill API.
+All test ownership is released after local archive verification and normal
+reboot. Public IPv6 HTTP is restored and verified 200 / 2,891 bytes from the Mac.
+Boot `cf670f3e-d97f-4bf3-8649-04e1fc937e49`, supervisor **2721** / relay **2723**
+owns `dac960auto`; see `restoration.json`. Inspect actual owner before further
+card work; stop the relay normally and never force-unload retained mappings.
+<!-- /wad-ring-current -->
+
+
 <!-- doom-columns-current -->
 **Column kernels accepted in bounded low-detail testing, 2026-10-15:** baseline
 **3.478 FPS**, specialized C **3.857 (+10.89%)**, i960 assembly **3.821 (+9.86%)**.

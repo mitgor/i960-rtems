@@ -9,7 +9,7 @@ from batch_client import BatchServer
 from owned_client import Control
 from frame_client import png
 
-def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False,dma_test=False,pipeline=False,pipeline_test=False,no_crc=False,wad_dma=False,wad_load_test=False,pingpong=False):
+def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False,dma_test=False,pipeline=False,pipeline_test=False,no_crc=False,wad_dma=False,wad_load_test=False,pingpong=False,wad_ring=False):
  from upload_client import Upload
  u=Upload(fd,epoch,out,gate,abort);root=Path(root);out=Path(out)
  limit=100 if pingpong and wad_load_test else 52
@@ -76,7 +76,11 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
  def message(s):
   with lock:state['message']=s
   print(s,flush=True)
- if wad_dma:
+ if wad_ring:
+  assert wad_dma and pingpong and pipeline_test
+  from wad_ring_client import RingServer
+  server=RingServer(u,wad)
+ elif wad_dma:
   from wad_dma_client import BulkServer
   server=BulkServer(u,wad)
  else:server=BatchServer(u,wad)
@@ -92,6 +96,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
   u.begin([(0,4,4,1,0),(16,0,1048576-16,2,0)]);assert u.command(8)[5]==0x444c4942;u.command(5)
   u.command(10,data=struct.pack('<3I',0x31444157,1,len(server.data))+bytes.fromhex(server.sha))
   if pp:pp.call(1)
+  if wad_ring:server.enable()
   for session in range(2 if accept_frames and not (bulk_test or dma_test) else 1):
    stop.clear();seen=0;control=Control(u,False);started=time.monotonic();last_poll=0;stop_sent=False;request_base=len(server.records);last_loading_message=0
    parts=[blob[s['offset']:s['offset']+s['file_bytes']] for s in m['sections']]+[meta]
@@ -235,6 +240,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     held=[pp.capture(g,synthetic=False)[0] for g in (limit-1,limit)]
     assert all(b[4096:69632]==(out/f'play-0-{g}.bin').read_bytes() for g,b in zip((limit-1,limit),held))
     (out/'doom-pingpong-result.json').write_text(json.dumps(dict(stats=stats,frames=seen,manifest=m,clocks=clocks,stopped_held=[limit-1,limit]))+'\n')
+   if wad_ring:server.finish()
    message('Doom stopped cleanly.' if session or not accept_frames else ('Input/STOP test passed; starting your play session…' if seen>=accept_frames else 'Startup STOP completed; loading a fresh session…'))
  finally:
   # Save immutable file identity and service counts, excluding visitor data.

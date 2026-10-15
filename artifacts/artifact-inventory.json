@@ -26548,6 +26548,236 @@
       "sha256": "254385988e679a6439db56e01314595f9aa13f8a6b7a774d0f38f162082b3f64"
     },
     {
+      "path": "artifacts/wad-ring-20261015/README.md",
+      "size": 11172,
+      "sha256": "3d39c454a5229e94e38a2b5714df07c449f41bfefb12f9db3e6a57949dcb9832"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/accepted-source-check.json",
+      "size": 2431,
+      "sha256": "5ca2d0232d79e0ad04893b556f7ea7f301420298046210063ef5cbc898d39223"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/analyze.py",
+      "size": 1738,
+      "sha256": "909b66c6a69a955c0e595fac247d688eb8debe627b21cac954386c90baa682bf"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/baseline-archive.sha256",
+      "size": 90,
+      "sha256": "87f6a7dd75feb6766e6772c0d5e91705ea50d28d2b5cbd339074d7a8bed1e125"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/browser-byte.png",
+      "size": 88937,
+      "sha256": "e3608ae29bf74a8415e905b58179e6e253c5d6511db72d2615dcb9a3009abf6a"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/browser-word.png",
+      "size": 93941,
+      "sha256": "97bdf5f374f8455f0f7a3f9d98f88f4171ba21882ae864cc9a6efa8d5d320eb1"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/byte-archives.sha256",
+      "size": 177,
+      "sha256": "7209c6f0686ebf07772007f5c6512e76825a70d7958e2b2178fb93e020e71070"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/cache-trace-estimate.json",
+      "size": 571,
+      "sha256": "d150c3af18abea69f5251c2a6c98e7c1e73e75af13674d710f700527926a8775"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/cache_trace.py",
+      "size": 1036,
+      "sha256": "296eac2ddf1e17020976ef45c10ab301a6fafbf5bbbb5e1781715cbe2ad47d72"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/candidate-byte-v1.tar.gz",
+      "size": 21394980,
+      "sha256": "f59d47eb4d1190fb37d50a5f67167586a202fc94e346dbad35d70eebd3f79457"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/candidate-word-v2.tar.gz",
+      "size": 21397170,
+      "sha256": "ffe06352b336a56bf68d9ccfdb0c9b3571acd67500dcdd404d2d5772e0c79b45"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/card-baseline-v2.tar.gz",
+      "size": 21996363,
+      "sha256": "3d64b2b3c62a2c011d261ec0e73fc5bbdbab9b35cbcd26c16c742b3304aba044"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/card-byte-v1.tar.gz",
+      "size": 43001827,
+      "sha256": "8fabeab9ddf620adec09ffd85c1df6e7bbffe26e3b47ba161db24d37dee123cf"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/card-word-v2.tar.gz",
+      "size": 40092801,
+      "sha256": "5eef932e6f667368968f9c071e8b8d7d135816321bdbcf26ea122a05e8868d31"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/comparison-summary.json",
+      "size": 400,
+      "sha256": "4c4156ac8927faac9551171c9c7d60beddc6dcf4889d87a42a22c6a35da550dc"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/http-baseline.jsonl",
+      "size": 26227,
+      "sha256": "d6e5a1fb545427158fd970e204c5948dcb98f091f947ee979b8fbcea5f87eed2"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/http-byte.jsonl",
+      "size": 25977,
+      "sha256": "cf30dcfc30e15c50ebb92e102298b32a6d3a99b04bfa690ed6fb13b65a847c48"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/http-verification.json",
+      "size": 380,
+      "sha256": "4390a21fe621f4c9f1a997e9d290525ff42c90ed494d2d7e12b5c30f0469e9b1"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/http-word.jsonl",
+      "size": 25980,
+      "sha256": "2b6f1337703f6a5435ac03b1ba6a4295a40c1d789d464ca52e8a8d28c810e6f5"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-baseline-frame-tamper.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-baseline-frames.json",
+      "size": 1208,
+      "sha256": "1d0467045f96779c0218cce013a8c3c4b15b73125afa2bd8621c2475803d3815"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-baseline-system.json",
+      "size": 6359,
+      "sha256": "2bfbcd2f7d7ea4ab5d7b77728905a2fd19f499b827c8de378b2e0d8b11e08168"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-baseline-wad.json",
+      "size": 258,
+      "sha256": "710e07f6cbf69c6be4d5075355ac4b07eaa246f5069a0b083e5d3b4371e9d3c6"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-byte-frame-tamper.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-byte-frames.json",
+      "size": 1206,
+      "sha256": "0377e02d1695e3a38a1945c8141581d6bcabd4461c8d064ca403249662b2de19"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-byte-measurements.json",
+      "size": 1952,
+      "sha256": "c9ed0f950df98631477370ff2a354c6b8d9b7d9bccaff93370a75644305bc45f"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-byte-system.json",
+      "size": 6360,
+      "sha256": "cd2f259eb93253b33ed07cc0daf80d8b3c1cf710898ac8bea854b2f8500dbec5"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-byte-wad.json",
+      "size": 269,
+      "sha256": "245c7f7324f0d45433a710b61bdb6cfa2814225d791243760bac64ce9bf6f4b0"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-final-comparison.json",
+      "size": 1555,
+      "sha256": "127c9d29075b0313b1474ea449d4ddb6d0cde8596aa1fd7a4ce0b7c92c7e3dd3"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-ring-comparison.json",
+      "size": 1039,
+      "sha256": "daa069a122e657e277175c61dcc16d03217f6deb16dab000266ed18812887294"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-word-frame-tamper.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-word-frames.json",
+      "size": 1208,
+      "sha256": "21aca7592cb6590ef9a94c3be7f3fba1d089d233f09c0ddf0b5a636eb77c46b0"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-word-ring-tamper.json",
+      "size": 101,
+      "sha256": "3c1461c46ff9ccca70dfe1d96373c1802e95a71a53a28cf29e1e26da4f66c782"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-word-system.json",
+      "size": 6362,
+      "sha256": "4b7f0729fd711d03f7c6d9b9812ee0e94ce5afd757aeb328ee70be9ca981ea61"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/local-word-wad.json",
+      "size": 269,
+      "sha256": "4c6e6f218f1cd870a39f8731b9bec90473422b9fae5599e1fa98f2283d622413"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/replay.sh",
+      "size": 954,
+      "sha256": "e294be42c8c654f8e05f204b9776e6582a737b3db48c90f385fca5f9e6085d68"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/restoration.json",
+      "size": 469,
+      "sha256": "c9aa31775423d72a84755da53edc6c40f9d1dad80d80514cf5d6238ecf5093ec"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/restore-relay.log",
+      "size": 1683,
+      "sha256": "73e9eb284cbe1ab3ccf4c5a4820b26499341698ab7846c37a975d72b2667cf7d"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/restore.sh",
+      "size": 854,
+      "sha256": "9d633164b6825a54e5ce2acbcb11fbc4f6b235e5263f60e7fed1e1ce3ff8c6ba"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/test-cache.log",
+      "size": 133,
+      "sha256": "4a1e18057b98d93ffaf3d933e7e355bca1424e61828f3f33f8b42d5354ab913b"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/test-client.log",
+      "size": 97,
+      "sha256": "c8e9f0250ffedcd7b0bf1d6f0d2a7a5db9fb04e83f9a6e6aee982b8486231c01"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/test-host.log",
+      "size": 161,
+      "sha256": "f0fd838a775a5a6b2b83ad7e48f3c005e6f8f09950b38d26f9d9f60a7ea3034c"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/test-legacy.log",
+      "size": 127,
+      "sha256": "c14b06cf7346ce4e4ea082327d8fb79345a3fe624d9f53b8fad96a88d8489dda"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/test-target.log",
+      "size": 201,
+      "sha256": "5e3ae59b469262a73720012ec1079cf17987aca4f5d4977e4b5a7b1c267cf55c"
+    },
+    {
+      "path": "artifacts/wad-ring-20261015/word-archives.sha256",
+      "size": 177,
+      "sha256": "240ac8616402e50da9c9306905c2fd7024d66cba0309b2f99e8c830349aa0740"
+    },
+    {
       "path": "artifacts/word-memory-20261011/README.md",
       "size": 10016,
       "sha256": "76d7cc0f8c0ca37ca2d4c92c12ed7356aa9412fbb1c903d4162ecc6deaf3afec"

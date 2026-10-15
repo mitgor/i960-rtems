@@ -1,0 +1,14 @@
+{
+  "startup_speedup": 1.55487561487079,
+  "startup_reduction_percent": 35.68617383692779,
+  "warm_restart_slowdown_percent": 49.250026768740085,
+  "baseline_wad_queries": 12361,
+  "baseline_wad_query_seconds": 180.605649432,
+  "word_host_service": {
+    "pending_polls": 96289,
+    "pending_ns": 3714595925,
+    "successful_ns": 158732475
+  },
+  "full_audit_pairs": 358,
+  "delivered_frames": 300
+}
