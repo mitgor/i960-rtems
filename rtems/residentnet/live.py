@@ -91,7 +91,7 @@ def main():
  p.add_argument('--ticks',type=int,default=6000);p.add_argument('--rounds',type=int,default=1)
  p.add_argument('--round-interval',type=float,default=0)
  p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args()
- assert not a.pingpong or (64<=a.frame_dma_stress<=512 and a.frame_dma_stress%2==0)
+ assert not a.pingpong or (64<=a.frame_dma_stress<=512 and a.frame_dma_stress%2==0) or (a.play_pipeline and a.play_pipeline_test and a.wad_dma)
  assert not a.frame_dma_stress or (1<=a.frame_dma_stress<=2048 and a.doom_runtime and a.owned_mib==12 and a.upload_concurrent and not a.play_port and not a.play_dma_test)
  assert not a.wad_load_test or a.play_pipeline_test
  assert not a.wad_dma or a.play_pipeline
@@ -237,7 +237,7 @@ def main():
      return pool.submit(stress,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',abort_upload,a.frame_dma_stress)
     elif a.play_port:
      from play_client import exercise as play
-     return pool.submit(play,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',a.play_port,abort_upload,a.play_accept_frames,a.play_bulk,a.play_bulk_test,a.play_dma_test,a.play_pipeline,a.play_pipeline_test,a.play_no_crc,a.wad_dma,a.wad_load_test)
+     return pool.submit(play,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',a.play_port,abort_upload,a.play_accept_frames,a.play_bulk,a.play_bulk_test,a.play_dma_test,a.play_pipeline,a.play_pipeline_test,a.play_no_crc,a.wad_dma,a.wad_load_test,a.pingpong)
     else:return pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared,runtime,abort_upload)
    # Complete the network proof before a large game upload can monopolize
    # the packet gate. The main loop still pumps packets and performs audits.

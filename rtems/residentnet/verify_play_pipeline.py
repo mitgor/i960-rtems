@@ -6,12 +6,15 @@ from frame_client import png
 
 def verify(out):
  out=Path(out);frames=[json.loads(l) for l in (out/'play-frames.jsonl').read_text().splitlines()]
+ pingpong=(out/'doom-pingpong-result.json').exists()
+ limit=json.loads((out/'doom-pingpong-result.json').read_text())['frames'] if pingpong else 52
+ assert limit in (52,100)
  profile=json.loads((out/'presentation-options.json').read_text()) if (out/'presentation-options.json').exists() else {}
  presentation_test=profile.get('presentation_test',False) or profile.get('detail_test',False) or profile.get('column_test',False)
  dma=[json.loads(l) for l in (out/'frame-dma-journal.jsonl').read_text().splitlines()]
  mailbox=[json.loads(l) for l in (out/'frame-journal.jsonl').read_text().splitlines()]
  reports=[json.loads(l) for l in (out/'frame-dma-results.jsonl').read_text().splitlines()]
- assert len(frames)==52 and len(mailbox)==260 and len(reports)==52
+ assert len(frames)==limit and len(mailbox)==260 and len(reports)==(16 if pingpong else 52)
  cursor=mc=ri=0;epoch=None;source=desc=base=None;pending=0;times={11:[],12:[]};compared=[]
  def dcall(op,g,off=0,error=None):
   nonlocal cursor,epoch
@@ -33,10 +36,12 @@ def verify(out):
  dcall(1,2,error=116);dcall(3,1,73728,error=22);dcall(3,1,4,error=22)
  for g,f in enumerate(frames,1):
   method=12
-  crc=False if presentation_test else g<=2 or 5<=g<=16 or g>=41
+  crc=False if pingpong or presentation_test else g<=2 or 5<=g<=16 or g>=41
   assert f['crc']==crc and f['binary']
   assert f['frame']==g and f['session']==0 and f['method']==method
-  if method==12:
+  if pingpong and g>16:
+   data=(out/f'pingpong-{g:03}.bin').read_bytes()[4096:69632]
+  elif method==12:
    assert dcall(1,g,0 if crc else 1)==bytes(1024)
    while 'errno' in dma[cursor]:dcall(2,g,error=11);pending+=1
    b=dcall(2,g);r=list(struct.unpack_from('<16I',b));assert b[64:]==bytes(960)
@@ -76,12 +81,16 @@ def verify(out):
   else:assert result==0;controls.append((i,v))
  load_test=json.loads((out/'test-options.json').read_text()).get('wad_load_test',False) if (out/'test-options.json').exists() else False
  expected=[]
- for g in range(1,53):
-  if load_test and g in (10,12,14,16):
-   k=27 if g==10 else 13;expected.extend([(2,256+k),(2,k)])
-  expected.append((1,g))
- assert controls==expected
- if profile:
+ for g in range(1,limit+1):
+  if load_test and g in ((60,62,64,66) if pingpong else (10,12,14,16)):
+   k=27 if g==(60 if pingpong else 10) else 13;expected.extend([(2,256+k),(2,k)])
+  if not pingpong or g<=16:expected.append((1,g))
+ if pingpong:
+  assert [x for x in controls if x[0]==1]==[x for x in expected if x[0]==1]
+  assert all((v&255) in (173,175,172,174,163,162,182,13,27,9,121,110,49,50,51,52,53,54,55) and 0<=v<=511 for i,v in controls if i==2)
+  if load_test:assert [x for x in controls if x[0]==2]==[x for x in expected if x[0]==2]
+ else:assert controls==expected
+ if profile and not pingpong:
   assert len(timing_words)==260
   for n,f in enumerate(frames):
    w=timing_words[n*5:n*5+5];assert [x for x,y in w]==list(range(5))
@@ -92,7 +101,10 @@ def verify(out):
  for a,b in ((5,16),(17,28),(29,40),(41,52)):
   f=frames[a-1:b];elapsed=f[-1]['seconds']-f[0]['seconds'];assert elapsed>0
   blocks.append(dict(crc=f[0]['crc'],first=a,last=b,fps=11/elapsed,mean_transfer_seconds=sum(x['transfer_seconds'] for x in f)/12))
- fps={str(crc):22/sum(11/b['fps'] for b in blocks if b['crc']==crc) for crc in (True,False)} if not presentation_test else {}
+ fps={str(crc):22/sum(11/b['fps'] for b in blocks if b['crc']==crc) for crc in (True,False)} if not (presentation_test or pingpong) else {}
+ if pingpong:
+  from verify_play_pingpong import verify_transport
+  return verify_transport(out,frames,epoch,source,compared,controls)
  return dict(full_frames=52,paired_comparisons=4,refusals=3,dma_frames=52,full_guarded_bytes=52*73728,pending_polls=pending,mailbox_reads=260,blocks=blocks,paired_seconds=compared,fps=fps,fps_comparison_valid=not (load_test or presentation_test),fps_speedup=None if (load_test or presentation_test) else fps['False']/fps['True'],epoch=epoch,source=hex(source),descriptor=hex(desc),dma_base=hex(base))
 
 if __name__=='__main__':

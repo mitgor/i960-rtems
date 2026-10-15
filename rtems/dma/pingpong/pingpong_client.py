@@ -18,11 +18,11 @@ class PingPong:
  def log(self,row):
   with (self.out/'pingpong-journal.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
  def ready(self,g):return list(struct.unpack_from('<8I',self.call(2,g)))
- def capture(self,g):
+ def capture(self,g,synthetic=True):
   b=b''.join(self.call(3,g,i) for i in range(0,73728,1024))
   assert b[:4096]==b'\xa5'*4096 and b[69632:73696]==b'\xa5'*4064
   m=list(struct.unpack_from('<8I',b,73696));assert m[:4]==[0x31505044,g,(g-1)&1,65536] and m[6:]==[(~g)&0xffffffff,g]
-  assert b[4096:69632]==pattern(g)
+  if synthetic:assert b[4096:69632]==pattern(g)
   (self.out/f'pingpong-{g:03}.bin').write_bytes(b)
   return b,m
 

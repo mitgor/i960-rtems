@@ -111,8 +111,8 @@ unsigned int bounded_main(unsigned int a){unsigned char*b=(unsigned char*)a,*p;u
 }
 
 #ifdef I960_PINGPONG
-#include "../dma/pingpong/audit_report.h"
-void exclusive_engine_report(unsigned*w){pp_engine_report(w);}
+extern void pp_engine_report(unsigned*,void(*)(unsigned*),unsigned*);
+void exclusive_engine_report(unsigned*w){pp_engine_report(w,engine_snapshot,&runtime_error);}
 #else
 void exclusive_engine_report(unsigned int*w){unsigned int i;engine_snapshot(w);for(i=0;i<6;i++)if(w[i])runtime_error|=0x100;w[16]=runtime_error;}
 #endif

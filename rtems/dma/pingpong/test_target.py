@@ -47,6 +47,7 @@ static unsigned*reg(unsigned a){
   }
  }return regs+a/4;
 }
+unsigned wad_dma_isolation_snapshot(unsigned*w){(void)w;return 0;}
 static unsigned runtime_error;
 #define PP_AUDIT_LOCK() (locked=1,0)
 #define PP_AUDIT_UNLOCK(pc) (locked=0)
@@ -78,13 +79,13 @@ int main(void){struct doom_runtime_owned api;unsigned i,w[17],old;
  assert(engine_play_control(10,1)==~0u);play_api=&api;play_allowed=frames[0];
  publish(1);assert(fd_phase==1&&fd_stage==7&&!play_ack);
  /* Full system report recognizes only the exact owned lease. */
- pp_engine_report(w);assert(!locked&&!w[16]&&!w[2]&&w[6]==2&&pp_system_audits==1);
- old=PP_NEXT[1];PP_NEXT[1]^=1;pp_engine_report(w);assert(w[16]==256&&w[2]==1);PP_NEXT[1]=old;runtime_error=0;
- regs[0x1400/4]=1;pp_engine_report(w);assert(w[16]==256&&w[0]==1);regs[0x1400/4]=0;runtime_error=0;
+ pp_engine_report(w,engine_snapshot,&runtime_error);assert(!locked&&!w[16]&&!w[2]&&w[6]==2&&pp_system_audits==1);
+ old=PP_NEXT[1];PP_NEXT[1]^=1;pp_engine_report(w,engine_snapshot,&runtime_error);assert(w[16]==256&&w[2]==1);PP_NEXT[1]=old;runtime_error=0;
+ regs[0x1400/4]=1;pp_engine_report(w,engine_snapshot,&runtime_error);assert(w[16]==256&&w[0]==1);regs[0x1400/4]=0;runtime_error=0;
  /* ISR peer checks the exact two-descriptor lease without mutating global state. */
  memset(w,0,sizeof w);w[2]=1;w[6]=6;assert(frame_dma_isolation_snapshot(w));
  for(i=0;i<8;i++){old=PP_NEXT[i];PP_NEXT[i]^=1;w[2]=1;w[6]=6;assert(!frame_dma_isolation_snapshot(w));PP_NEXT[i]=old;}
- pp_service();check(1);assert(play_ack&&fd_phase==2);publish(2);pp_service();check(2);
+ pp_service();check(1);assert(play_ack&&fd_phase==2);publish(2);frame_dma_wad_barrier();check(2);assert(fd_phase==2&&play_ack&&cmd[0]==2&&!regs[0x1440/4]);
  publish(3);assert(fd_phase==2&&!play_ack);for(i=0;i<100;i++)pp_service();check(1);check(2);assert(pp_stalls>=100);
  assert(engine_play_control(11,3)==~0u);assert(!engine_play_control(11,1));assert(engine_play_control(11,1)==~0u);
  pp_service();assert(fd_phase==1);pp_service();check(3);check(2);

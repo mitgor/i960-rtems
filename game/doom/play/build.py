@@ -2,7 +2,7 @@
 """Fresh-checkout interactive Doom build. Never opens the card or programs flash."""
 import argparse,hashlib,json,shutil,subprocess,tarfile,zipfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--dma',action='store_true');p.add_argument('--pipeline',action='store_true');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--frame-profile',action='store_true');p.add_argument('--no-fnv',action='store_true');p.add_argument('--direct-frame',action='store_true');p.add_argument('--presentation-test',action='store_true');p.add_argument('--low-detail',action='store_true');p.add_argument('--detail-test',action='store_true');p.add_argument('--cpu-profile',action='store_true');p.add_argument('--column-test',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--dma',action='store_true');p.add_argument('--pipeline',action='store_true');p.add_argument('--pingpong',action='store_true');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--frame-profile',action='store_true');p.add_argument('--no-fnv',action='store_true');p.add_argument('--direct-frame',action='store_true');p.add_argument('--presentation-test',action='store_true');p.add_argument('--low-detail',action='store_true');p.add_argument('--detail-test',action='store_true');p.add_argument('--cpu-profile',action='store_true');p.add_argument('--column-test',action='store_true');a=p.parse_args()
 assert not (a.column_test and (a.detail_test or a.presentation_test))
 if a.column_test:a.cpu_profile=True;a.no_fnv=True;a.direct_frame=True;a.low_detail=True
 if a.detail_test:a.cpu_profile=True;a.no_fnv=True;a.direct_frame=True
@@ -10,6 +10,7 @@ if a.cpu_profile:a.frame_profile=True
 if a.presentation_test:a.frame_profile=True
 assert not (a.detail_test and (a.presentation_test or a.low_detail))
 if a.frame_profile or a.no_fnv or a.direct_frame or a.low_detail:assert a.pipeline
+if a.pingpong:assert a.pipeline
 if a.pipeline:a.dma=True
 r=Path(__file__).resolve().parents[3];w=a.work.resolve()
 if w.exists():p.error('choose a new work directory; existing experiments are not overwritten')
@@ -37,7 +38,7 @@ run(['python3',r/'game/doom/play/test_keys.py'],'keys.log')
 run(['python3',r/'game/doom/play/test_native.py','--build',w/'platform-host','--newlib',newlib,'--wad',w/'freedoom1.wad'],'native.log')
 run(['python3',r/'game/doom/runtime/startup/test_abi.py','--doom',w/'engine-cross'/doomdir,'--newlib',newlib,'--out',w/'abi-proof','--cross',a.cross],'abi.log')
 run(['python3',r/'game/doom/runtime/platform/pack_engine.py','--build',w/'platform-cross','--out',w/'packed','--cross',a.cross],'packed.log')
-run(['python3',r/'game/doom/runtime/engine/admit.py',w/'packed','--build',w/'platform-cross','--out',w/'admission','--play','--cross',a.cross],'admission.log')
+run(['python3',r/'game/doom/runtime/engine/admit.py',w/'packed','--build',w/'platform-cross','--out',w/'admission','--play','--cross',a.cross,*(['--pingpong'] if a.pingpong else [])],'admission.log')
 for test in ('test_play_channel.py','test_frame_protocol.py','test_bulk_protocol.py','test_bulk_poll.py','test_play_bulk_replay.py','test_checkpoint_barriers.py','test_play_stop.py'):run(['python3',r/'rtems/residentnet'/test],test+'.log')
 if a.frame_profile:run(['python3',r/'game/doom/play/test_presentation.py'],'presentation-test.log')
 if a.column_test:
@@ -47,6 +48,8 @@ if a.cpu_profile:
  for test in ('test_cpu_samples.py','test_detail_profile.py'):run(['python3',r/'rtems/residentnet'/test],test+'.log')
 if a.pipeline:
  for test in ('rtems/residentnet/test_double_buffer.py','rtems/dma/test_pipeline_replay.py','rtems/residentnet/test_play_abort.py'):run(['python3',r/test],Path(test).name+'.log')
+if a.pingpong:
+ for test in ('test_target.py','test_host.py','test_client.py','test_protection.py','test_wad_handoff.py'):run(['python3',r/'rtems/dma/pingpong'/test],'pingpong-'+test+'.log')
 if a.dma:
  for test in ('test_frame_target.py','test_frame_host.py','test_frame_replay.py','test_wad_target.py','test_wad_host.py','test_wad_client.py'):run(['python3',r/'rtems/dma'/test],test+'.log')
 run(['python3',r/'rtems/build.py','--work',w,'--cross',a.cross,'--profile','residentnet','--secondary-reset','--fault-owner','--extra-ram','--general-heap','--heap-shared','--queue-reclaim','--owned-mib','12','--resident-upload','--doom-heap','--doom-shared','--doom-runtime','--doom-engine',w/'admission','--wad-batch','--wad-poll','--dispatch-atomic',*(['--doom-dma'] if a.dma else [])],'kernel.log')

@@ -2,7 +2,7 @@
 """Generate a small trusted identity, not an embedded engine or relocation list."""
 import argparse,hashlib,json,struct,subprocess
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('packed',type=Path);p.add_argument('--build',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--startup-requests',type=Path);p.add_argument('--startup-checkpoints',type=Path);p.add_argument('--checkpoint-barriers',action='store_true');p.add_argument('--startup-oracle',type=Path);p.add_argument('--play',action='store_true');p.add_argument('--dma-stress',action='store_true');p.add_argument('--cross',required=True);a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
+p=argparse.ArgumentParser();p.add_argument('packed',type=Path);p.add_argument('--build',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--startup-requests',type=Path);p.add_argument('--startup-checkpoints',type=Path);p.add_argument('--checkpoint-barriers',action='store_true');p.add_argument('--startup-oracle',type=Path);p.add_argument('--play',action='store_true');p.add_argument('--dma-stress',action='store_true');p.add_argument('--pingpong',action='store_true');p.add_argument('--cross',required=True);a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
 assert not a.checkpoint_barriers or (a.startup_oracle and a.startup_checkpoints)
 m=json.loads((a.packed/'manifest.json').read_text());b=(a.packed/'template.bin').read_bytes();assert m['linker_match'] and not m['admitted'] and hashlib.sha256(b).hexdigest()==m['template_sha256']
 assert len(m['sections'])==3 and [s['name'] for s in m['sections']]==['.text','.data','.bss']
@@ -24,6 +24,9 @@ if a.play:
  if a.dma_stress:
   m['dma_stress']=1
   m['pingpong']=bool(json.loads((a.build/'build.json').read_text()).get('pingpong'))
+if a.pingpong:
+ assert a.play and m['double_buffer']
+ m['pingpong']=True
 if a.startup_oracle:
  oracle=json.loads(a.startup_oracle.read_text());assert oracle['exact_bytes_match'] and ((oracle.get('visible') and oracle['frame_count']==2 and oracle['frame']==1) or (not oracle.get('visible') and oracle['frame']==0 and oracle['gametic']==2))
  assert a.startup_requests
@@ -47,14 +50,16 @@ for k,v in names.items():h+=f'#define ENGINE_{k} {v}u\n'
 for k,v in [('image',m['template_sha256']),('metadata',m['metadata_sha256']),('text',m['text_sha256'])]:h+='static const unsigned char engine_'+k+'_sha[32]={'+','.join(str(x) for x in bytes.fromhex(v))+'};\n'
 h+='static const unsigned engine_geometry[4][4]={'+','.join('{'+','.join(str(s[k]) for k in ('offset','file_bytes','memory_bytes','flags'))+'}' for s in m['sections'])+',{'+f'{off},{len(meta)},{len(meta)},2'+'}};\n'
 if a.play:h+='#define ENGINE_STARTUP 1\n#define ENGINE_PLAYABLE 1\n#define ENGINE_PLAY_OFFSET '+str(m['play_offset'])+'u\n'
-if m.get('frame_profile'):h+='#define ENGINE_FRAME_PROFILE 1\n'
+# Renderer trailers remain in the engine; ping-pong uses completion-marker timing
+# instead of the legacy per-frame DMA timing query ABI.
+if m.get('frame_profile') and not m.get('pingpong'):h+='#define ENGINE_FRAME_PROFILE 1\n'
 if m.get('cpu_profile'):h+='#define ENGINE_CPU_PROFILE 1\n'
 if m.get('double_buffer'):h+='#define ENGINE_PLAY_DOUBLE 1\n'
 if a.startup_oracle:h+='#define ENGINE_STARTUP 1\n#define ENGINE_FRAME '+str(oracle['frame_fnv'])+'u\n#define ENGINE_PALETTE '+str(oracle['palette_fnv'])+'u\n'
 if m.get('startup',{}).get('visible'):
  h+='#define ENGINE_FRAME_COUNT 2u\n#define ENGINE_VISIBLE_OFFSET '+str(m['visible_offset'])+'u\n'
  h+='static const unsigned char engine_visible_sha[32]={'+','.join(str(x) for x in bytes.fromhex(oracle['frames_sha256']))+'};\n'
-if m.get('pingpong'):assert a.dma_stress and m['double_buffer'] and not m['frame_profile']
+if m.get('pingpong'):assert a.play and m['double_buffer']
 if m.get('pingpong'):h+='#define ENGINE_PINGPONG 1\n'
 if a.dma_stress:h+='#define ENGINE_DMA_STRESS 1\n'
 (a.out/'engine_identity.h').write_text(h);print(json.dumps({k:v for k,v in m.items() if k not in ('relocations','sections')},indent=2))

@@ -1,0 +1,17 @@
+{
+  "frames": 50,
+  "all_http_payloads_match": true,
+  "oracle_checked_frames": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "later_frames_received_browser_input": true
+}

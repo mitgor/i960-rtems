@@ -2,7 +2,7 @@ ENTRY(_start)
 SECTIONS {
  . = 0xc0f8c000;
  _engine_code_start = .;
- .engine_text : { */doom_runtime.o(.text* .rodata*) *engine_gate.o(.text* .rodata*) *engine_sha.o(.text* .rodata*) */doom_batch_core.o(.text* .rodata*) . = ALIGN(16); }
+ .engine_text : { *engine_audit.o(.text* .rodata*) */doom_runtime.o(.text* .rodata*) *engine_gate.o(.text* .rodata*) *engine_sha.o(.text* .rodata*) */doom_batch_core.o(.text* .rodata*) . = ALIGN(16); }
  _engine_code_end = .;
  ASSERT(. <= 0xc0f94000, "engine gate exceeds protected window")
  /* Loaded with the initial bounded upload, outside the BSS clear interval. */

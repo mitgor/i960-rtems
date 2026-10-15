@@ -1,0 +1,14 @@
+{
+  "restored": true,
+  "boot_id": "a7e3490e-127d-4a0c-9f62-bb9466b03d05",
+  "supervisor_pid": 4012,
+  "relay_pid": 4014,
+  "driver": "dac960auto",
+  "pci": "0000:37:09.1",
+  "http_status": 200,
+  "http_bytes": 2891,
+  "http_sha256": "4daa67de70132c200fe1cb297039cf35c6732f52a7a86109726f634390a71306",
+  "verified_from": "Mac over public IPv6",
+  "output": "/home/mit/i960-rtems-web-20261011/http-after-doom-pingpong-20261015",
+  "test_module_released_by": "normal reboot after local archive verification and replay"
+}

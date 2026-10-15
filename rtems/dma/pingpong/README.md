@@ -78,13 +78,15 @@ HTTP delivery or browser painting FPS. Doom integration requires separate
 acceptance including WAD service progress, browser backpressure/disconnect,
 input and STOP, and unchanged pixel/palette comparisons.
 
-Doom integration has a concrete additional constraint: `wad_target.h` and the
+The original producer proof deliberately excluded Doom. Doom has a concrete additional constraint: `wad_target.h` and the
 frame path both program **DMA1** and PCI Command bus-master enable. A renderer
 WAD miss during an outstanding frame DMA must first drain that frame transaction
 or use an explicitly validated shared-channel scheduler. Calling the current WAD
-DMA routine concurrently would correctly fail its idle check. This is why the
-new admission is restricted to a zero-WAD-read producer. Do not simply enable its
-manifest flag for Doom. The finite runner also retains ordinary Upload command
+DMA routine concurrently would correctly fail its idle check. The initial admission was therefore restricted to a zero-WAD-read producer.
+The opt-in Doom integration now drains DMA1 in task context before publishing a
+WAD request; see `../../../artifacts/doom-pingpong-20261015/README.md`.
+The Doom runner has passed separate 52-/100-frame acceptance and remains
+explicitly bounded pending longer interactive qualification. The finite runner also retains ordinary Upload command
 completion queries; these are separate from the eliminated frame-DMA start and
 completion protocol and remain a possible host-overhead optimization.
 

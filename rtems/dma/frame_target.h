@@ -14,7 +14,7 @@ static unsigned fd_report[16],fd_destination,fd_no_crc;
 static volatile unsigned fd_phase,fd_stage,fd_loops;
 static unsigned fd_isolation_checks;
 #ifdef ENGINE_FRAME_PROFILE
-static unsigned fd_timing[5];
+static unsigned fd_timing[5],fd_t0,fd_t1;
 #endif
 #define FD_STAGE(n) do{__asm__ volatile("":::"memory");fd_stage=(n);__asm__ volatile("":::"memory");}while(0)
 unsigned frame_dma_diagnostic(unsigned i){
@@ -91,14 +91,14 @@ static unsigned fd_control(unsigned index,unsigned value){
 }
 static void fd_step(void){unsigned i,csr=0,rc=0;const unsigned char*source=play_frame;
 #ifdef ENGINE_FRAME_PROFILE
- unsigned t0,t1,t2;
+ unsigned t2;
 #endif
  if(fd_phase!=1)return;
 #ifdef ENGINE_PINGPONG
  if(pp_active&&fd_stage==7)goto polling;
 #endif
 #ifdef ENGINE_FRAME_PROFILE
- t0=play_api->io.ticks_ms();fd_timing[0]=0;
+ fd_t0=play_api->io.ticks_ms();fd_timing[0]=0;
 #endif
  if(!source||play_ack||play_sequence!=fd_report[2]||!fd_idle()){rc=1;goto failed;}
  FD_STAGE(1);fd_loops=0;fd_report[5]=fd_no_crc?0:fd_crc(source);FD_STAGE(2);
@@ -111,7 +111,7 @@ static void fd_step(void){unsigned i,csr=0,rc=0;const unsigned char*source=play_
  fd_report[15]=FD_ADDR(fd_desc);FD_STAGE(3);
  if(play_api->stopping()){rc=2;goto failed;}
 #ifdef ENGINE_FRAME_PROFILE
- t1=play_api->io.ticks_ms();
+ fd_t1=play_api->io.ticks_ms();
 #endif
  FD_STAGE(4);FD_S(0x1204)=6;if(FD_S(0x1204)!=6){rc=3;goto cleanup;}
  FD_STAGE(5);FD_R(0x1450)=FD_ADDR(fd_desc);(void)FD_R(0x1450);FD_STAGE(6);FD_R(0x1440)=1;(void)FD_R(0x1440);FD_STAGE(7);
@@ -140,7 +140,7 @@ cleanup:
  fd_report[6]=fd_no_crc?0:fd_crc(source);FD_STAGE(12);
  if(!fd_idle()||FD_R(0x1450)||fd_report[5]!=fd_report[6]||fd_desc[6]!=0xfacefeed||fd_desc[7]!=0xfacefeed){rc=6;goto failed;}
 #ifdef ENGINE_FRAME_PROFILE
- fd_timing[1]=t1-t0;fd_timing[2]=t2-t1;fd_timing[3]=play_api->io.ticks_ms()-t2;fd_timing[4]=fd_timing[1]+fd_timing[2]+fd_timing[3];fd_timing[0]=play_sequence;
+ fd_timing[1]=fd_t1-fd_t0;fd_timing[2]=t2-fd_t1;fd_timing[3]=play_api->io.ticks_ms()-t2;fd_timing[4]=fd_timing[1]+fd_timing[2]+fd_timing[3];fd_timing[0]=play_sequence;
 #endif
 #ifdef ENGINE_PINGPONG
  if(pp_active&&(PP_NEXT[6]!=0xfacefeed||PP_NEXT[7]!=0xfacefeed)){rc=7;goto failed;}

@@ -3362,6 +3362,66 @@ and the frame transfers both program DMA1. They need an explicit turn-taking
 rule. The two landing pads work; we still have to keep the game from sending
 another aircraft down the same runway.
 
+## The game takes both landing pads
+
+The little producer had proved that the card could send pictures without asking
+permission for every one. Doom introduced the other passenger on the bus: the
+WAD reader. Both wanted DMA1. Giving the game two destinations did not give the
+chip two channel ones.
+
+The rule stayed deliberately unexciting. Before the engine published a WAD
+request, its own task finished any outstanding framebuffer transfer. Only then
+could the WAD reader start. No preparation or checking moved into the interrupt
+handler. The full system audit learned to recognize either exact owned lease,
+without forgiving an unknown channel or a damaged descriptor.
+
+Even this small addition ran into the walls of the house. The main code window
+was 64 bytes too small. The audit helper moved into the existing protected engine
+window, with the same guards and the same 145 protected pages. An attempted
+section attribute reminded us that this compiler came from another century;
+the linker got an ordinary object file instead. The mutable reserve remained
+304 bytes. Nothing went into flash.
+
+The first browser run delivered fifty-two frames, survived a three-second pause
+with both landing pads occupied, and stopped with the last two still held. It
+also received real keyboard input. That made it a useful interactive test and a
+bad controlled benchmark. We kept the evidence and did it again, this time with
+the browser keyboard disabled for the bounded run.
+
+The repeat delivered a hundred frames and passed 108 full paired audits.
+Host-triggered DMA managed 3.50 frames per second; card-triggered ping-pong
+managed 3.89. Eleven percent was a good deal less than the synthetic producer's
+eighty percent, and a good deal more believable for a game that still had to
+draw the room. Host transfer and capture fell from 213 milliseconds to 41.
+Waiting for the previous publication fell from 81 milliseconds to zero.
+Rendering still took about 208 milliseconds, followed by another 44 for the
+screen copy that remained inside the engine.
+
+After the timing window, automatic menu input restarted the level. Fifty-five
+more WAD blocks crossed the same DMA channel, then the pictures resumed. Both
+host buffers stayed unchanged during the deliberate stall, and frames 99 and
+100 stayed unchanged across STOP. The first fifty-two controlled pictures kept
+the same four known differences from the native oracle; the palettes matched.
+The browser received all hundred complete payloads.
+
+The replay had its own small correction. Removing the last piece of a second
+capture initially escaped detection because an earlier complete copy existed.
+The verifier now accounts for every complete capture cycle, including the one
+after STOP. All twenty-four damaged-evidence cases were rejected. A successful
+picture was still not allowed to stand in for the rest of the proof.
+
+A third landing pad was tempting. But the game was no longer waiting for the
+second one. Drawing and copying already used almost the whole 257-millisecond
+frame interval. Another host buffer might smooth a scheduling pause; it could
+also keep an old picture waiting for another quarter of a second. The estimate
+was little or no steady gain, roughly zero to two percent in this scene. The
+next large improvement would have to come from the work that made the picture,
+not another place to park it.
+
+The exact builds, both runs, timing limits and replay results are in
+`artifacts/doom-pingpong-20261015/`. This remained a bounded, opt-in transport,
+not a declaration that every future game session was now qualified.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3414,7 +3474,11 @@ So, the ledger, honestly kept:
   passed 28 frames and 29 full audit pairs, delivering 1.377 FPS with DMA versus
   0.973 with mailbox. The later two-buffer binary build passes 52 frames and
   29 audit pairs at 1.396 FPS with CRC and 2.070 without CRC. DMA stays opt-in
-  pending longer interactive acceptance.
+  pending longer interactive acceptance. The later bounded ping-pong integration
+  coordinates frame and WAD traffic on DMA1 and delivers 100 browser frames with
+  108 full audit pairs, level restart and held-buffer STOP. Its controlled
+  comparison improves 3.503 to 3.887 FPS; ordinary play remains on the earlier
+  transport pending longer interactive qualification.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

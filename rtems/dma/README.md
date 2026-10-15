@@ -3,6 +3,9 @@
 For the newer card-initiated two-host-buffer producer, see
 [ping-pong DMA](pingpong/README.md) and its
 [acceptance record](../../artifacts/dma-pingpong-20261015/README.md).
+Doom integration and DMA1 WAD coordination are accepted in a bounded browser
+run: [Doom ping-pong results](../../artifacts/doom-pingpong-20261015/README.md)
+(**3.503 → 3.887 FPS**, full audits retained).
 The historical proof below uses individually submitted transfers.
 
 Task-owned asynchronous physical acceptance passed in two runs: 48 exact

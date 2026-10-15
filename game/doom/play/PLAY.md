@@ -78,3 +78,26 @@ after 52 frames; it is not an interactive session.
 The card is shared with the public RTEMS web server. Only one of these exclusive
 profiles can own it at a time. After STOP, retain the capture directory and use a
 normal reboot before another exclusive launch.
+
+
+## Bounded ping-pong DMA acceptance
+
+Build with `--pipeline --pingpong --frame-profile --cpu-profile --no-fnv
+--direct-frame --low-detail` using `game/doom/play/build.py`. Choose a new work
+directory. Launch on the qualified, unbound card with `game/doom/play/run.py
+--work WORK --output CAPTURE --pipeline --pipeline-test --pingpong --wad-dma
+--wad-load-test --debug-audits --port 8087` (sudo required).
+
+Open `http://192.168.2.75:8087/`. This is a bounded acceptance run: keyboard input
+is disabled to preserve the FPS comparison. It measures host-triggered delivery
+before switching to card-initiated ping-pong, holds both host destinations for
+three seconds, resumes, automatically restarts the level after frame 60, then
+stops with frames 99/100 held. The Stop Doom button remains available. Early STOP
+safely ends the invocation but does not count as completion of the acceptance
+protocol. For the original 52-frame experiment, omit `--wad-load-test`.
+
+All full paired audits, capture guards and ownership checks remain mandatory.
+Do not apply the synthetic producer FPS to Doom. Current results and exact
+sources/binaries are in `artifacts/doom-pingpong-20261015/README.md`. This batch qualifies the bounded path; keep using the earlier pipeline for
+ordinary play until a longer interactive ping-pong run is qualified. Retained
+exclusive mappings are released by normal reboot, never forced unload.

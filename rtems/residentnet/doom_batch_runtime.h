@@ -14,6 +14,9 @@ static int batch_read(unsigned f,unsigned o,void*p,unsigned n){
  struct doom_heap*h=doom_arena_context();unsigned token,stage_token=0,start,saved,polls=0;void*stage=0;int result=-1,claimed=0;
  if(!owned_owner()||owned_stopping()||!h||f!=1||o>api.file_bytes||n>4096)return -1;
  if(!n||o==api.file_bytes)return 0;
+#ifdef I960_PINGPONG
+ {extern void frame_dma_wad_barrier(void);frame_dma_wad_barrier();}
+#endif
  token=doom_heap_borrow(h,p,n);if(!token)return -1;leases++;
  stage=owned_allocate(WAD_STAGE_BYTES);if(!stage)goto done;
  stage_token=doom_heap_borrow(h,stage,WAD_STAGE_BYTES);if(!stage_token)goto done;

@@ -1,0 +1,73 @@
+{
+  "blocks": [
+    {
+      "name": "host-dma",
+      "first": 5,
+      "last": 15,
+      "fps": 3.503079787768988,
+      "wall_ms": {
+        "render_ms": 211,
+        "bsp_ms": 120,
+        "planes_ms": 67,
+        "sprites_ms": 24,
+        "screen_copy_ms": 44,
+        "adapter_ms": 0,
+        "previous_publish_wait_ms": 81,
+        "display_ms": 211,
+        "clock_resolution_ms": 10
+      },
+      "sampled_cpu_ms": {
+        "render": 107,
+        "bsp": 60,
+        "planes": 36,
+        "sprites": 11,
+        "screen_copy": 22,
+        "adapter": 0
+      },
+      "mean_transfer_ms": 212.52413669998873,
+      "mean_readback_ms": 216.41136040001356,
+      "interval_min_ms": 203.9709020000373,
+      "interval_max_ms": 405.28425799993784
+    },
+    {
+      "name": "pingpong",
+      "first": 21,
+      "last": 50,
+      "fps": 3.887065422118326,
+      "wall_ms": {
+        "render_ms": 207.58620689655172,
+        "bsp_ms": 120.6896551724138,
+        "planes_ms": 63.44827586206897,
+        "sprites_ms": 23.448275862068964,
+        "screen_copy_ms": 44.13793103448276,
+        "adapter_ms": 0.6896551724137931,
+        "previous_publish_wait_ms": 0,
+        "display_ms": 213.79310344827587,
+        "clock_resolution_ms": 10
+      },
+      "sampled_cpu_ms": {
+        "render": 103.79310344827586,
+        "bsp": 60.689655172413794,
+        "planes": 31.379310344827587,
+        "sprites": 11.724137931034482,
+        "screen_copy": 22.06896551724138,
+        "adapter": 0.3448275862068966
+      },
+      "mean_transfer_ms": 41.27019906895682,
+      "mean_readback_ms": 45.16655944827766,
+      "interval_min_ms": 44.524828000021444,
+      "interval_max_ms": 441.0744770000292
+    }
+  ],
+  "known_native_pixel_differences": [
+    29260,
+    29261,
+    29580,
+    29581
+  ],
+  "all_palettes_exact": true,
+  "full_audit_pairs": 108,
+  "first_frame_seconds": 290.746843056,
+  "wad_reads_before_activation": 5044,
+  "wad_reads_after_activation": 56
+}

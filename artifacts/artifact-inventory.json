@@ -6278,6 +6278,226 @@
       "sha256": "bcde01b7d3455596bf3a9792d48b8301af45fa9feeb9dab6b19426dba037e409"
     },
     {
+      "path": "artifacts/doom-pingpong-20261015/README.md",
+      "size": 11605,
+      "sha256": "27ffe990c0f41593e9230f8579741fc33cef2425f57ef7720b332b778668df4c"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/analyze.py",
+      "size": 1785,
+      "sha256": "efeb32eeef3a5a3cf54ca33caa05c3a33cc9af03e6f4e8011da38df73660cb44"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/archives-level.sha256",
+      "size": 179,
+      "sha256": "2bafcdd65cab779d888b1e7d5573857675f4be0288223577e22bcc68ce04ed07"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/archives-v1.sha256",
+      "size": 181,
+      "sha256": "c282b63a04fdc12658d49dcbc25f8a122b46425118355732e5e03476e7378c2c"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/browser-binary-level.log",
+      "size": 26483,
+      "sha256": "a7aff4bf0bacd1bb3750ac3c6cdc448ac2ba8feb1baa8ef81a70acfa73167201"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/browser-binary.log",
+      "size": 13237,
+      "sha256": "597277bdeffd3aa193ffa39efe763bd17dab5ea2a848ba70819ff63ba5e76632"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/browser-controlled.png",
+      "size": 100425,
+      "sha256": "58fe44a5ce82f7c98c7cea06eb9fef23bbda261c372de574d3e2a7816b711886"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/browser-frame52.png",
+      "size": 79550,
+      "sha256": "ae5e81808e7b4889e6681ff080eb6e8df0813fd83ed1b02cb6988a3e40f9a510"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/build-evidence-v1.tar.gz",
+      "size": 43514547,
+      "sha256": "3e47178822b57a6b6c6a89b28d2003e7c3537c20720dbf4857c03af730121503"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/build.sh",
+      "size": 2892,
+      "sha256": "e6e95db0982b148a119727cbc836235f1140228316d1405c55baeb2f27d45f6c"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/card-after-reload.png",
+      "size": 24558,
+      "sha256": "c1e2d806259fa93bcef996117e63545a3a66b753724069fbe58e13d4dd2da5fa"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/card-baseline.png",
+      "size": 24483,
+      "sha256": "f3c71ca4dc53645d9a60bf41c0042f6ee751d3ba6d640c7b2e14a7570ca56c68"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/card-evidence-level.tar.gz",
+      "size": 21959616,
+      "sha256": "815f252caf97bbc204aaa827ce64c6f85bddd7923b4f829b7d2a4cabf84e3ec0"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/card-evidence-v1.tar.gz",
+      "size": 17531719,
+      "sha256": "bd992f5d4146815592d6d993e8a0d2b105135a067d50cbd9d26b9b65296bf956"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/card-pingpong.png",
+      "size": 24578,
+      "sha256": "4aadc19de15475e2d830acb5f87ede694e1c3a3ee2434e3788b97805a3f668de"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/frames-level.json",
+      "size": 1203,
+      "sha256": "48e769ba79c7d0db50a22c7f3d7f1c724f10ec51900810f04224c46556242cd3"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/http-observations-v1.jsonl",
+      "size": 13237,
+      "sha256": "597277bdeffd3aa193ffa39efe763bd17dab5ea2a848ba70819ff63ba5e76632"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/http-observations.jsonl",
+      "size": 26483,
+      "sha256": "a7aff4bf0bacd1bb3750ac3c6cdc448ac2ba8feb1baa8ef81a70acfa73167201"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/http-verification-level.json",
+      "size": 94,
+      "sha256": "f440eb5d1c33c2956da6b7ecded845a24c2d275c7b5efd0f9844b1108d1ff04d"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/http-verification-v1.json",
+      "size": 205,
+      "sha256": "5291926532412ce3e46bf5ac150b7631a72499eb95830944987b85f72f474d77"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-frames-level.json",
+      "size": 1203,
+      "sha256": "48e769ba79c7d0db50a22c7f3d7f1c724f10ec51900810f04224c46556242cd3"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-frames-v1.json",
+      "size": 1203,
+      "sha256": "d22135a3f4e0315719b2f0e8de6c811040ec356b41bbe9ed8711efae1de4bd1e"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-legacy-pipeline.log",
+      "size": 190,
+      "sha256": "9e79dca47414bef10affcd30a52d5e56357ca4035fb20502c5436cd679d0e674"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-measurements-level.json",
+      "size": 1961,
+      "sha256": "feacf620fde9ff1cad94d8aacd9e6d46a462649bd2dc71a1c998598f8b84eda5"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-system-level.json",
+      "size": 6359,
+      "sha256": "6f59a4c15882a66b2bcc1d12e4b8bd1867248a6c56e126395426a5e63b6531b7"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-system-v1.json",
+      "size": 6350,
+      "sha256": "bf18d554e79d469c1dc02ab7693408c9ed482c2ab9699ea348229173d2616046"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-tamper-level.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-tamper-v1.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-wad-level.json",
+      "size": 259,
+      "sha256": "aefe7589262deaf001f374e49bec6a6a81467a5f8843bf1443e3a6ab0afa63e8"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/local-wad-v1.json",
+      "size": 259,
+      "sha256": "8ef67ac935274507a18396cc6c171251f98f70ddf6a636cbab39244906954eec"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/measurements-level.json",
+      "size": 1961,
+      "sha256": "feacf620fde9ff1cad94d8aacd9e6d46a462649bd2dc71a1c998598f8b84eda5"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/native_frames.py",
+      "size": 2170,
+      "sha256": "570e3056e2ec12a459c4a069b79f1ddcff2b161c9bd2ea5e21a7dea187f4e65c"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/rebuild.sh",
+      "size": 1650,
+      "sha256": "8c016d66607fcd9c2b2c680e33d26590dfd16233d1b4c2b381098f24854c018f"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/replay.sh",
+      "size": 724,
+      "sha256": "a20faba391da337b52a6ffcb2fafcc89281c34496dcadd7ad90c932842706df5"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/restoration.json",
+      "size": 519,
+      "sha256": "02adb9484564496819e0a0982a0da44ff163a864a9d5e91dfd31a7b41b29a503"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/restore-relay.log",
+      "size": 1300,
+      "sha256": "d737058d3229acf65402226c6a0ef75ffaa45ccab038bc21760ebb1d99992bc7"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/restore.sh",
+      "size": 864,
+      "sha256": "a9627208b91452deb5a8dde0b4944b17e493b83451ff5d2f37aa27aee3ff2b67"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/run-level.sh",
+      "size": 838,
+      "sha256": "1ae07a7831a207c8188d2b5c97cc623d0cb6c47a3cc8a91f8ba190e1493b3f4e"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/run.sh",
+      "size": 810,
+      "sha256": "f8f82fd875359e299adbef876eafcb0827f5ccd8801ecc4fb3780a28002b88dc"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/source-level.tar.gz",
+      "size": 18030284,
+      "sha256": "ebcd2cbcdec88d487c7973277baa5c11aec2da6f17fde8e2f0e2e0417157f310"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/system-level.json",
+      "size": 6359,
+      "sha256": "5bfd801fe83005bb886c729470281763d25f46473df424aff52581622344830b"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/tamper-level.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/doom-pingpong-20261015/wad-level.json",
+      "size": 259,
+      "sha256": "aefe7589262deaf001f374e49bec6a6a81467a5f8843bf1443e3a6ab0afa63e8"
+    },
+    {
       "path": "artifacts/doom-pipeline-20261014/README.md",
       "size": 11295,
       "sha256": "43c1b58772bdb52a590012b0d653ee1c5dceaf9362372c4c7cf6fd771aaed0cd"

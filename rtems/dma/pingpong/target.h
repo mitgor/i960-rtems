@@ -29,7 +29,14 @@ static void pp_service(void){unsigned i;
  fd_step(); /* prepare/kick only; return to render the other card buffer */
 }
 
+/* Called by the same owned engine task before publishing a WAD request.
+ * Drain the source pin before WAD DMA1 may start; never kick another frame. */
+void frame_dma_wad_barrier(void){
+ if(fd_phase==1)fd_step();
+ if(pp_active&&fd_phase==2&&play_frame&&play_sequence==fd_report[2]&&!play_ack){play_ack=1;pp_count++;}
+}
 unsigned frame_dma_report_snapshot(unsigned*w){
- if(!frame_dma_isolation_snapshot(w))return 0;
+ extern unsigned wad_dma_isolation_snapshot(unsigned*);
+ if(!frame_dma_isolation_snapshot(w))return wad_dma_isolation_snapshot(w);
  pp_system_audits++;return 1;
 }

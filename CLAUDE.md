@@ -1,5 +1,38 @@
 # Repository guidance for Claude Code
 
+<!-- doom-pingpong-current -->
+**2026-10-15 Doom ping-pong DMA bounded acceptance passed:** task-owned DMA1
+handoff drains outstanding framebuffer DMA before publishing a WAD request.
+Controlled low-detail Doom **3.503 → 3.887 FPS (+10.96%)**; host transfer/capture
+**212.5 → 41.3 ms**, previous-publication wait **81 → 0 ms**. Renderer ~207.6 ms
+plus retained screen copy ~44.1 ms now dominate. Estimated card start→host
+observation **17–44 ms**, start→validated capture/release **64–92 ms**; these are
+not pure DMA or input-to-display latency. Third host buffer estimated ~0–2%
+steady benefit in this scene, possible jitter smoothing and +one frame of latency;
+not implemented or benchmarked. Keep two buffers.
+Controlled 100-frame run: **108 full audit pairs**, four exact DMA/mailbox pairs,
+all 100 HTTP payloads exact, both-slot 3-second stall/resume, automatic level
+restart with 55 additional WAD DMA reads, held frames 99/100 across STOP, global
+drain. First 52 frames retain exactly four known native pixel differences and
+matching palettes. Linux/Mac replay and 24 evidence mutations pass. Earlier
+52-frame run has 104 audit pairs and browser input; its FPS is not a controlled
+comparison. Both have zero active-frame full-snapshot counter: no new physical
+overlap claim beyond the earlier v10 synthetic acceptance/native tests.
+Kernel helper moved into existing protected engine code; 145 protected pages,
+304-byte mutable reserve; no guard/RAM boundary or flash change. Doom is now
+admitted only through explicit `--pingpong`; runner currently requires bounded
+`--pipeline --pipeline-test --wad-dma`, optional `--wad-load-test` for 100 frames.
+Keyboard input is disabled for bounded measurement; ordinary play defaults stay
+unchanged. See `artifacts/doom-pingpong-20261015/README.md`, exact archives and
+`game/doom/play/PLAY.md`. Tests ended, exact archives saved and replayed locally;
+normal reboot released retained mappings. Public IPv6 HTTP is restored and
+verified 200 from the Mac. Boot `a7e3490e-127d-4a0c-9f62-bb9466b03d05`, supervisor
+4012 / relay 4014 owns `dac960auto`; see `restoration.json`. Inspect actual owner
+before new hardware work; stop this relay normally. Never force-unload.
+Older service/PID and Doom-excluded notes below are historical.
+<!-- /doom-pingpong-current -->
+
+
 <!-- dma-pingpong-current -->
 **2026-10-15 card-initiated ping-pong DMA accepted (v10):** two persistent host
 buffers, task-owned payload/completion chains, explicit generation release.
