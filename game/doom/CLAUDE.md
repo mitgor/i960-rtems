@@ -1,5 +1,32 @@
 # Doom milestone guidance
 
+<!-- release-priority-current -->
+**2026-10-15 release priority accepted:** release telemetry now separates shared
+host-gate wait from ioctl execution (the latter still includes kernel scheduling).
+Pending releases overtake ordinary waiters after the current holder finishes;
+priority audits yield the gate between words while still reading every frozen
+word and retaining all full paired audits. A validated immutable host frame is
+published before its synchronous exact-generation release; ownership is unchanged.
+Priority is now the default within opt-in Doom ping-pong; `--release-schedule
+baseline` retains the comparison path. Other transports retain their defaults.
+
+Two 520-frame, identical-binary ABBA/BAAB runs reduce mean release gate wait
+**13.402 → 2.659 ms** and completion-observation-to-HTTP availability
+**25.178 → 4.771 ms**. Sustained matched FPS is **4.837 → 4.835**, effectively
+unchanged. HTTP availability is not browser paint latency. A third 520-frame run
+with opt-in `--fast-memory` (private Newlib memcpy/memset word paths) reaches
+**4.855 FPS**, only +0.40%; this does not establish a meaningful speedup.
+Renderer wall time remains about 187 ms. Sustained 5.19 FPS is not achieved;
+profile BSP/planes and exact arithmetic next, rather than assume more copy gains.
+
+Across all three runs: **1,560 frames, 186 full paired audits**, stalled-host,
+held-slot STOP and heap/IRQ drain pass. All 520 images agree across builds;
+the same four known native pixel differences remain. 1,524 received HTTP payloads
+match captured images. Maximum IRQ gap is 10.828 ms. Source, binaries, full replay,
+mutation checks, timings and restoration evidence:
+`artifacts/release-priority-20261015/README.md`.
+<!-- /release-priority-current -->
+
 <!-- bulk-capture-current -->
 **2026-10-15 bulk guarded framebuffer capture accepted:** steady ping-pong now
 uses one 73,728-byte capture read instead of 72 small reads. Exact epoch/generation,

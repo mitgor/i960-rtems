@@ -7,14 +7,17 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from frame_dma_client import FrameDMA
 from stress_client import pattern
 class PingPong:
- def __init__(self,fd,epoch,out,gate):self.fd=fd;self.epoch=epoch;self.out=Path(out);self.gate=gate
+ def __init__(self,fd,epoch,out,gate):self.fd=fd;self.epoch=epoch;self.out=Path(out);self.gate=gate;self.release_priority=False
  def call(self,op,g=0,off=0):
   b=bytearray(struct.pack('<8I',op,self.epoch,g,off,0,0,0,0)+bytes(73728 if op==8 else 1024));request=b.hex();t=time.monotonic_ns()
-  with self.gate:
+  context=self.gate.release_priority(self.release_priority) if op==4 and hasattr(self.gate,'release_priority') else self.gate
+  with context:
+   acquired=time.monotonic_ns()
    try:fcntl.ioctl(self.fd,0xc4204d0a,b,True)
    except OSError as e:
-    self.log(dict(op=op,g=g,off=off,errno=e.errno,ns=time.monotonic_ns()-t));raise
-  self.log(dict(request=request,response=b.hex(),ns=time.monotonic_ns()-t));return b[32:]
+    end=time.monotonic_ns();self.log(dict(op=op,g=g,off=off,errno=e.errno,ns=end-t,gate_wait_ns=acquired-t,ioctl_ns=end-acquired,start_ns=t,acquired_ns=acquired,end_ns=end,release_priority=self.release_priority if op==4 else False));raise
+   end=time.monotonic_ns()
+  self.log(dict(request=request,response=b.hex(),ns=end-t,gate_wait_ns=acquired-t,ioctl_ns=end-acquired,start_ns=t,acquired_ns=acquired,end_ns=end,release_priority=self.release_priority if op==4 else False));return b[32:]
  def log(self,row):
   with (self.out/'pingpong-journal.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
  def ready(self,g):return list(struct.unpack_from('<8I',self.call(2,g)))

@@ -8,7 +8,10 @@ def verify(out):
  out=Path(out);frames=[json.loads(l) for l in (out/'play-frames.jsonl').read_text().splitlines()]
  pingpong=(out/'doom-pingpong-result.json').exists()
  limit=json.loads((out/'doom-pingpong-result.json').read_text())['frames'] if pingpong else 52
- assert limit in (52,100)
+ options=json.loads((out/'test-options.json').read_text())
+ expected_limit=options.get('play_frame_limit',0)
+ assert limit==(expected_limit or (100 if pingpong and options.get('wad_load_test') else 52))
+ assert limit in (52,100) or (pingpong and options.get('wad_load_test') and 100<=limit<=1000 and limit%2==0)
  profile=json.loads((out/'presentation-options.json').read_text()) if (out/'presentation-options.json').exists() else {}
  presentation_test=profile.get('presentation_test',False) or profile.get('detail_test',False) or profile.get('column_test',False)
  dma=[json.loads(l) for l in (out/'frame-dma-journal.jsonl').read_text().splitlines()]

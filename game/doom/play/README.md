@@ -220,3 +220,19 @@ See the [dated results and reproduction](../../../artifacts/doom-bulk-20261014/R
 for the full evidence: mean transfer **5.447 → 0.509 s**, delivered FPS
 **0.167 → 0.999**, with all 30 full audit pairs and STOP/drain passing.
 The earlier native/card pixel discrepancy remains documented.
+
+## Release-priority and private-memory options
+
+For the bounded ping-pong runner, `--release-schedule priority` gives pending
+frame releases precedence between complete audit reads and makes validated host
+frames available to HTTP before release finishes. `--frames 520` extends the
+acceptance run; it requires the existing ping-pong/WAD loading-test options.
+`abba` and `baab` are comparison schedules, not normal play policies.
+
+Build with `--fast-memory` to enable the pinned private Newlib's word-copy/fill
+paths for memcpy/memset. This is separate from RTEMS's libc and from Doom's
+explicit calloc/realloc loops. Priority is now the default for Doom ping-pong; `--release-schedule baseline`
+retains the comparison policy. The memory build remains opt-in. Exact binaries,
+long-run comparisons and reproduction commands are in
+[`release-priority-20261015`](../../../artifacts/release-priority-20261015/README.md).
+All ownership, full-audit, guard and STOP checks remain enabled.

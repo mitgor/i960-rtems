@@ -1,0 +1,70 @@
+
+build-fast/platform-cross/7-memcpy.o:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+00000000 <_memcpy>:
+   0:	00 30 f0 8c 	lda	b4 <Li960R1>,g14
+   4:	b4 00 00 00
+			4: R_960_32	.text
+
+00000008 <memcpy.lf>:
+   8:	1e 16 98 5c 	mov	g14,g3
+   c:	00 1e f0 5c 	mov	0,g14
+  10:	10 16 a8 5c 	mov	g0,g5
+  14:	74 a0 7c 33 	cmpobge	15,g2,88 <L2>
+  18:	91 03 a4 58 	or	g1,g0,g4
+  1c:	83 08 a5 58 	and	3,g4,g4
+  20:	68 20 05 35 	cmpobne	0,g4,88 <L2>
+
+00000024 <L6>:
+  24:	00 50 a4 90 	ld	(g1),g4
+  28:	10 89 94 59 	subo	16,g2,g2
+  2c:	00 50 a5 92 	st	g4,(g5)
+  30:	11 10 89 59 	addo	g1,4,g1
+  34:	00 50 a4 90 	ld	(g1),g4
+  38:	15 10 a9 59 	addo	g5,4,g5
+  3c:	00 50 a5 92 	st	g4,(g5)
+  40:	11 10 89 59 	addo	g1,4,g1
+  44:	00 50 a4 90 	ld	(g1),g4
+  48:	15 10 a9 59 	addo	g5,4,g5
+  4c:	00 50 a5 92 	st	g4,(g5)
+  50:	11 10 89 59 	addo	g1,4,g1
+  54:	00 50 a4 90 	ld	(g1),g4
+  58:	15 10 a9 59 	addo	g5,4,g5
+  5c:	00 50 a5 92 	st	g4,(g5)
+  60:	11 10 89 59 	addo	g1,4,g1
+  64:	15 10 a9 59 	addo	g5,4,g5
+  68:	bc bf 7c 34 	cmpobl	15,g2,24 <L6>
+  6c:	1c a0 1c 33 	cmpobge	3,g2,88 <L2>
+
+00000070 <L10>:
+  70:	00 50 a4 90 	ld	(g1),g4
+  74:	04 89 94 59 	subo	4,g2,g2
+  78:	00 50 a5 92 	st	g4,(g5)
+  7c:	11 10 89 59 	addo	g1,4,g1
+  80:	15 10 a9 59 	addo	g5,4,g5
+  84:	ec bf 1c 34 	cmpobl	3,g2,70 <L10>
+
+00000088 <L2>:
+  88:	01 89 94 59 	subo	1,g2,g2
+  8c:	01 19 a0 59 	subo	1,0,g4
+  90:	20 80 a4 32 	cmpobe	g4,g2,b0 <L20>
+  94:	14 16 b0 5c 	mov	g4,g6
+
+00000098 <L14>:
+  98:	00 50 a4 80 	ldob	(g1),g4
+  9c:	01 89 94 59 	subo	1,g2,g2
+  a0:	00 50 a5 82 	stob	g4,(g5)
+  a4:	11 50 88 59 	addo	g1,1,g1
+  a8:	15 50 a8 59 	addo	g5,1,g5
+  ac:	ec 9f b4 35 	cmpobne	g6,g2,98 <L14>
+
+000000b0 <L20>:
+  b0:	Address 0x00000000000000b0 is out of bounds.
+
+
+000000b4 <Li960R1>:
+  b4:	00 00 00 0a 	ret
+	...

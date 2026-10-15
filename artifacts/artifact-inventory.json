@@ -13943,6 +13943,271 @@
       "sha256": "38d20c44e0bec9b1f6cbc59847062dc0b2946d415e6c630d0a8afb0dd079a8d1"
     },
     {
+      "path": "artifacts/release-priority-20261015/PLAN.md",
+      "size": 1934,
+      "sha256": "12a16487ed3ab3122c8fddd4a457d8573dbd635f3c346b788272dfc4aa392d6f"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/README.md",
+      "size": 9454,
+      "sha256": "1325198519f4e50b5cb0239a3a35c405249421b00abdbcd59dc2fc8938b52adb"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/abba/abba-card.tar.gz",
+      "size": 76078427,
+      "sha256": "ea87836845423cdca188197e9342f81e7709ff9e723342ab69fd82763d82bf0d"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/abba/abba-card.tar.gz.sha256",
+      "size": 83,
+      "sha256": "df42045a0edfbb13c4e06a3cf839f9ab38da3b76609d15542bb716d1119536fe"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/abba/frames-local.json",
+      "size": 1347,
+      "sha256": "9fff2c3cbb68266fad146d69fa5c56859a1ebe90c1466b920f06dbe41ab588b2"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/abba/http-observations.jsonl",
+      "size": 135415,
+      "sha256": "368b2e5d567e8fc04f8b872a9009da5cfd7bc7a879ebc591ee7b74c694c5238f"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/abba/http-observer.log",
+      "size": 135415,
+      "sha256": "368b2e5d567e8fc04f8b872a9009da5cfd7bc7a879ebc591ee7b74c694c5238f"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/abba/measurements.json",
+      "size": 5859,
+      "sha256": "80ba9722b3dd7f0c4049c33bfbcaf67cc9a97f7531ff632d16af3927b8307b3c"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/abba/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/abba/pixels-http.json",
+      "size": 193,
+      "sha256": "7e4303b81f9f0daeeef9374676080f00a70f4090f0524dcc99389e5c8a65f4af"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/abba/system-local.json",
+      "size": 6714,
+      "sha256": "1400ed261b1901bcdd6a5b5fb5bc9ba2eb581fe9427d26bcf92ab0e384d10f43"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/all-pixels-http.json",
+      "size": 573,
+      "sha256": "f03201aed6717bc8dd6fc6b276d5dde603ecca8576b1369bd2b347e023098fdb"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/archive.sh",
+      "size": 386,
+      "sha256": "7b6b277d286c6526f0db9db479c727d385fa7eba0b72fd4429fd6dd9e71e2281"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/baab/baab-card.tar.gz",
+      "size": 76058539,
+      "sha256": "0463435e080deaec0b25cd6aebc0670b8c7d1e09c3ed85f48fe5130e71cd11f1"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/baab/baab-card.tar.gz.sha256",
+      "size": 83,
+      "sha256": "c1629986c8c53d4c447800774a7755d889474f1898c30c92e3707a5b5845976e"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/baab/frames-local.json",
+      "size": 1345,
+      "sha256": "6fef24f33330e628440dd698ce8b74f0c71b2c3404a84121500881eb667e74a3"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/baab/http-observations.jsonl",
+      "size": 134919,
+      "sha256": "59245b39d832ac49b8104868049bf88d8b662daa9519dd4ee96334834fe1cd53"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/baab/http-observer.log",
+      "size": 134919,
+      "sha256": "59245b39d832ac49b8104868049bf88d8b662daa9519dd4ee96334834fe1cd53"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/baab/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/baab/system-local.json",
+      "size": 6715,
+      "sha256": "0f3a7b2bc233ff5d79b17393e233f8cc79a460cd9d6cdae5084494c93dde8820"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/build-fast.sh",
+      "size": 2121,
+      "sha256": "404c12130741e7ef99ba7e8b286252376e4dd7f6b1520c930f12588d7e2f78a1"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/bulk-client-test.log",
+      "size": 77,
+      "sha256": "7779768db91646c57d149e722d3c3d2d3c4090ac2289d48269392de661b95e03"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/candidate.tar.gz",
+      "size": 48443372,
+      "sha256": "ddcdf3b8934098315bd6cf9f9b631f061102abb2032ad13f9c531533ba534207"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/candidate.tar.gz.sha256",
+      "size": 83,
+      "sha256": "a70fb93517b925b1c890d1ba4190a9f9e9bd229c200b8fb98b7fc5bf69b588c0"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/check_frames.py",
+      "size": 1336,
+      "sha256": "0502f1805b89bd4b574e91389e3fbae6e8c9f4c7e06dfdd65598c295c3f4a2f9"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/compare_memory.py",
+      "size": 1569,
+      "sha256": "a95278ba6e6e076ac231feae4719a40a2eabdd87f8f568a204beb5c2d0c03800"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/extract.py",
+      "size": 705,
+      "sha256": "23641560c8361a949ac0f42c30e524d821be9d8054937e50575c7e416f229ac5"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast/fast-card.tar.gz",
+      "size": 76166807,
+      "sha256": "16d58ac2939cb2ddd91c006b7934da1d7cbad99cf4daab0d3bebeeeaca11a7ab"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast/fast-card.tar.gz.sha256",
+      "size": 83,
+      "sha256": "3758cbe1c266ac829efcb43cd6e19bf8f24a614b009307c3301db3723bc4c9c8"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast/frames-local.json",
+      "size": 1351,
+      "sha256": "9dee8201e46153827e8fe7f2dd8efbe57bbcf87b66522163bac976f8b08b9c67"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast/http-observations.jsonl",
+      "size": 135136,
+      "sha256": "e44da8df0520b6beb22b37c337148f697519d7c75201262f7e07067fadb040f3"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast/http-observer.log",
+      "size": 135136,
+      "sha256": "e44da8df0520b6beb22b37c337148f697519d7c75201262f7e07067fadb040f3"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast/measurements.json",
+      "size": 6648,
+      "sha256": "6a7d35756bf560e29d9cecef9318cbe30baf780555aecfc721809ab6f5fb8517"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast/system-local.json",
+      "size": 6718,
+      "sha256": "2a69887f8aaaf70c2c5b33d924a11bb440dc9dcab6fe19e160d26c850d90bea4"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast-memcpy.dis",
+      "size": 1776,
+      "sha256": "01e13a615b15883552388260cd27287a4eb3cd1cf73d8c8c64264c3f222cc6bd"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast-memset.dis",
+      "size": 1669,
+      "sha256": "844f2059510a82cff28ea6a8130a466553a4cfaec986d5a7f1b0e343c3803530"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/fast-source-native-check.json",
+      "size": 307,
+      "sha256": "e076b07602d0dbb67d3c327cb15db33efce4305a22bc51aaacd20c4a3d22891a"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/gate-test.log",
+      "size": 114,
+      "sha256": "6c426b4d0e7f7171784d3f37bf6a8a7cb255b74fec9c36036bb98311d812533a"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/measure.py",
+      "size": 3476,
+      "sha256": "0645f91e0241bbc931ca208e7cc912bbca9555b4d00d227ad8eda3edd977509b"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/memory-comparison.json",
+      "size": 1469,
+      "sha256": "e6a39e6f3fd1f1df307cd39bd62a83d08c0dce3164e74038bf5c342e7b10faa3"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/native-fast.py",
+      "size": 2353,
+      "sha256": "a2cade77bbbf7f922521b121d8b22b8670c09b72f905719c986c065f94a03446"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/release-replay-test.log",
+      "size": 101,
+      "sha256": "8fdda63ca533ebebb534f214af4f4f8b1f0d2d16253191274d31890b5e29a0e7"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/restoration.json",
+      "size": 327,
+      "sha256": "b9e0c3151450517895a08c0bd4796737d3eb8a5cf27ed5ea1dcf0cf5a323eb57"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/restore.sh",
+      "size": 870,
+      "sha256": "502612980e3a620f61970fde0c02598bbcaafea9acda3f91b19bc8c8431849fd"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/restored-http-headers.txt",
+      "size": 97,
+      "sha256": "b9e6a08eb2139e70139786adea5538fe2217688db7bc3a957f374a7cd8b61b24"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/restored-http.html",
+      "size": 2890,
+      "sha256": "f2d86185e04de88ef9fb8cc2d4426404c29c8a7552f6fa5d1f97093f98cd64c4"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/run-fast.sh",
+      "size": 903,
+      "sha256": "b5c0f16a74a92ea1d4203e430de07045b6f77283be2a17d511c1a703f349af54"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/run-options-test.log",
+      "size": 118,
+      "sha256": "cd5b611d386d1a97524c8d47dfbd97163a8f229aadaf5befe508ae559f946eb9"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/run.sh",
+      "size": 1054,
+      "sha256": "c5aebdc83c5b28851aa3f53741090f730f457fb5cd3c79b7b5eb31b4c0e7f074"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/scheduling-measurements.json",
+      "size": 13222,
+      "sha256": "6314653819c2a69676d3817837cad4ec8b8657288ea2dbe5fc2e9471aa5ba137"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/scheduling-pixels-http.json",
+      "size": 383,
+      "sha256": "c0adf37983be4ebfcaa3fa3dcd9c21c93d65f8752e302822b7e0c8fd13182130"
+    },
+    {
+      "path": "artifacts/release-priority-20261015/verify.sh",
+      "size": 771,
+      "sha256": "6ad09a9df9e2fe70c0df3d0328d3b498fbcaec412d57084ba2409cb8f3874e73"
+    },
+    {
       "path": "artifacts/remote-audit-20261010/README.md",
       "size": 3316,
       "sha256": "6b9f98390be5353b3fb04397bb50e4356bbfadf130faa670bbd5e664ffc7b1c2"

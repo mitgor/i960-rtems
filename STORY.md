@@ -3654,6 +3654,39 @@ The full captures, exact module and replay instructions are in
 `artifacts/bulk-capture-20261015/`. The next question is what release is waiting
 for—not whether we can make the audits look away.
 
+## Making the picture wait less
+
+The next experiment separated two things that had been sharing one stopwatch:
+waiting for the host audit lock, and actually executing the frame release. The
+card was often innocent. A release could spend thirteen milliseconds queued
+behind the host's own careful reading of frozen audit pages.
+
+We kept the careful reading. Every word still had to be checked. But the audit
+now let go of the lock between words, and a pending release got the next turn.
+Once a complete frame had passed its ownership and guard checks, its immutable
+host copy could also become available to the browser before the synchronous
+release finished. The card buffer remained owned until that exact generation
+was released. Nothing was recycled on faith.
+
+Two longer, interleaved runs brought the release lock wait from 13.40 to 2.66
+milliseconds, and completion-to-HTTP availability from 25.18 to 4.77. That is a
+real reduction in delivery latency. It is not a browser paint measurement, and
+it did not make the renderer faster: the matched frame rate stayed at about
+4.84 FPS. The earlier 5.19 had partly been a short-window backlog effect.
+
+We also gave the private C library its existing aligned word-copy and clear
+paths. They passed the memory boundary tests, deterministic native runs and a
+third full card run. They bought only 0.40 percent in the measured frame rate,
+far too little to call a repeatable win. That switch stays optional. The renderer
+still spends roughly 107 milliseconds in BSP work and 58 in planes; those are
+better places to ask the next question.
+
+The three runs delivered 1,560 frames and completed 186 full paired audits.
+Every corresponding card picture agreed, the same four native pixel differences
+remained, and stalled-host handling, held-frame STOP and heap drain all passed.
+The useful result was a picture that waited less, plus a clearer account of why
+it still took about a fifth of a second to draw the next one.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

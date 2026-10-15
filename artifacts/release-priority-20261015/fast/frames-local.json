@@ -1,0 +1,69 @@
+{
+  "release_timing": {
+    "schedule": "priority",
+    "full_frozen_pages": 216,
+    "audit_groups": 7800,
+    "timed_browser_frames": 504
+  },
+  "input_events": [
+    283,
+    27,
+    269,
+    13,
+    269,
+    13,
+    269,
+    13
+  ],
+  "fps_comparison_valid": true,
+  "frames": 520,
+  "full_guarded_bytes": 38338560,
+  "mailbox_pairs": [
+    {
+      "mailbox_seconds": 0.4898914620000028,
+      "dma_seconds": 0.11034992899999452,
+      "bytes": 65536
+    },
+    {
+      "mailbox_seconds": 0.5540822770000204,
+      "dma_seconds": 0.1721935400000234,
+      "bytes": 65536
+    },
+    {
+      "mailbox_seconds": 0.512369227000022,
+      "dma_seconds": 0.017818325000007462,
+      "bytes": 65536
+    },
+    {
+      "mailbox_seconds": 0.48700981799999,
+      "dma_seconds": 0.21949987300001794,
+      "bytes": 65536
+    }
+  ],
+  "host_dma_fps": 4.464923578450627,
+  "pingpong_fps": 4.991129491016941,
+  "improvement_percent": 11.785328535206707,
+  "baseline_interval": [
+    5,
+    15
+  ],
+  "pingpong_interval": [
+    21,
+    50
+  ],
+  "start_to_host_observed_mean_bounds_ms": [
+    14.802449433340334,
+    43.591702400001964
+  ],
+  "ready_to_release_mean_ms": 14.771970266663933,
+  "stall": {
+    "seconds": 3.012821402000043,
+    "frames": [
+      17,
+      18
+    ],
+    "unchanged": true
+  },
+  "held_stop": true,
+  "system_dma_lease_checks": 0
+}

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Reboot-only resident IPv4/IPv6 test; never sends a second firmware callback."""
 import threading
+from io_gate import IOGate
 import argparse,concurrent.futures,errno,fcntl,gzip,json,os,secrets,select,socket,struct,sys,time,traceback,hashlib
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'transport'))
@@ -67,6 +68,8 @@ def main():
  p.add_argument('--play-dma-test',action='store_true')
  p.add_argument('--play-pipeline',action='store_true')
  p.add_argument('--play-pipeline-test',action='store_true')
+ p.add_argument('--play-frame-limit',type=int,default=0)
+ p.add_argument('--release-schedule',choices=('baseline','priority','abba','baab'),default=None)
  p.add_argument('--play-no-crc',action='store_true');p.add_argument('--wad-dma',action='store_true');p.add_argument('--wad-ring',action='store_true');p.add_argument('--wad-load-test',action='store_true')
  p.add_argument('--frame-dma-stress',type=int,default=0);p.add_argument('--pingpong',action='store_true')
  p.add_argument('--play-bulk',action='store_true')
@@ -91,8 +94,12 @@ def main():
  p.add_argument('--ticks',type=int,default=6000);p.add_argument('--rounds',type=int,default=1)
  p.add_argument('--round-interval',type=float,default=0)
  p.add_argument('--deadline',action='store_true');p.add_argument('--drop-data',action='store_true');a=p.parse_args()
+ a.release_schedule=a.release_schedule or ("priority" if a.pingpong and a.play_pipeline_test else "baseline")
  assert not a.pingpong or (64<=a.frame_dma_stress<=512 and a.frame_dma_stress%2==0) or (a.play_pipeline and a.play_pipeline_test and a.wad_dma)
  assert not a.frame_dma_stress or (1<=a.frame_dma_stress<=2048 and a.doom_runtime and a.owned_mib==12 and a.upload_concurrent and not a.play_port and not a.play_dma_test)
+ assert not a.play_frame_limit or (a.pingpong and a.wad_load_test and 100<=a.play_frame_limit<=1000 and a.play_frame_limit%2==0)
+ assert a.release_schedule=="baseline" or (a.pingpong and a.play_pipeline_test)
+ assert a.release_schedule not in ("abba","baab") or a.play_frame_limit>=520
  assert not a.wad_load_test or a.play_pipeline_test
  assert not a.wad_ring or (a.wad_dma and a.pingpong and a.play_pipeline_test)
  assert not a.wad_dma or a.play_pipeline
@@ -148,8 +155,8 @@ def main():
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(wad_ring=a.wad_ring,pingpong=a.pingpong,wad_load_test=a.wad_load_test,wad_dma=a.wad_dma,play_pipeline=a.play_pipeline,play_pipeline_test=a.play_pipeline_test,play_no_crc=a.play_no_crc,frame_dma_stress=a.frame_dma_stress,play_dma_test=a.play_dma_test,dma_deadline_job=a.dma_deadline_job,dma_stop=a.dma_stop,dma_proof=a.dma_proof,play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
- io_gate=threading.RLock();abort_upload=threading.Event()
+ b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(play_frame_limit=a.play_frame_limit,release_schedule=a.release_schedule,wad_ring=a.wad_ring,pingpong=a.pingpong,wad_load_test=a.wad_load_test,wad_dma=a.wad_dma,play_pipeline=a.play_pipeline,play_pipeline_test=a.play_pipeline_test,play_no_crc=a.play_no_crc,frame_dma_stress=a.frame_dma_stress,play_dma_test=a.play_dma_test,dma_deadline_job=a.dma_deadline_job,dma_stop=a.dma_stop,dma_proof=a.dma_proof,play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
+ io_gate=IOGate();abort_upload=threading.Event()
  def save(final=False):
   if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')
   (b.out/'snapshots.json').write_text(json.dumps(snaps,indent=2)+'\n')
@@ -166,7 +173,14 @@ def main():
   with io_gate:control(7,page)
   words=[]
   for begin in range(0,64,4):
-   with io_gate:words.extend(control(5,i)[2] for i in range(begin,begin+4))
+   # Keep packet pumping and sleep once per four words in both policies.
+   # Only lock granularity changes; all 64 frozen words remain mandatory.
+   step=1 if io_gate.priority_mode else 4
+   for first in range(begin,begin+4,step):
+    requested=time.monotonic_ns()
+    with io_gate:
+     acquired=time.monotonic_ns();words.extend(control(5,i)[2] for i in range(first,first+step));completed=time.monotonic_ns()
+    with (b.out/'audit-gate.jsonl').open('a') as journal:journal.write(json.dumps(dict(page=page,begin=first,words=step,start_ns=requested,acquired_ns=acquired,end_ns=completed))+'\n')
    pump_packets() # keep TUN forwarding live while preserving the entire frozen page
    time.sleep(.001)
   return words
@@ -247,7 +261,7 @@ def main():
      return pool.submit(stress,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',abort_upload,a.frame_dma_stress)
     elif a.play_port:
      from play_client import exercise as play
-     return pool.submit(play,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',a.play_port,abort_upload,a.play_accept_frames,a.play_bulk,a.play_bulk_test,a.play_dma_test,a.play_pipeline,a.play_pipeline_test,a.play_no_crc,a.wad_dma,a.wad_load_test,a.pingpong,a.wad_ring)
+     return pool.submit(play,b.fd,epoch,b.out,io_gate,a.wad,a.payload.parent/'entry/engine',a.play_port,abort_upload,a.play_accept_frames,a.play_bulk,a.play_bulk_test,a.play_dma_test,a.play_pipeline,a.play_pipeline_test,a.play_no_crc,a.wad_dma,a.wad_load_test,a.pingpong,a.wad_ring,a.play_frame_limit,a.release_schedule)
     else:return pool.submit(exercise,b.fd,epoch,b.out,io_gate,a.doom_heap,a.doom_shared,runtime,abort_upload)
    # Complete the network proof before a large game upload can monopolize
    # the packet gate. The main loop still pumps packets and performs audits.

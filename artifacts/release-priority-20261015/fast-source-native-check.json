@@ -1,0 +1,12 @@
+{
+  "unchanged_private_source_hashes": true,
+  "speed_compiled_sources": [
+    "memcpy.c",
+    "memset.c"
+  ],
+  "all_52_native_pixels_and_palettes_exact": true,
+  "symbol_namespacing_unchanged": true,
+  "no_unresolved_runtime_functions": true,
+  "engine_code_growth_bytes": 224,
+  "protected_pages": 146
+}

@@ -113,3 +113,21 @@ tic safe points and complete engine allocation cleanup, and recompute the image,
 zone/cache/allocator/stack peaks. Compare the first real Doom frame with the
 established host oracle before browser input and endurance. The known-pattern
 preflight framebuffer is not a Doom frame or a startup performance result.
+
+### Selective private memory speed build
+
+`build.py --fast-memory` compiles only pinned Newlib `memcpy.c` and `memset.c`
+with `-O2 -fno-strict-aliasing` after the normal `-Os` flags. This enables their
+existing aligned-word implementations; unaligned copies retain the byte path.
+All other private-library units and the engine keep their existing flags. Symbol
+namespacing and allocation ownership are unchanged. The top-level
+`game/doom/play/build.py` forwards the same option; admission records
+`fast_memory` in its manifest. This does not optimize the explicit byte loops
+in the platform's `calloc`/`realloc` implementations.
+
+Run `test_fast_memory.py --newlib PATH` on Linux with the 32-bit sanitizer runtime.
+It tests the actual pinned source, all pointer alignments 0–7, copy lengths
+0–4096, every fill byte and lengths 0–1024, and exact guard-page ends. Native
+engine replay and target assembly inspection remain required; native timings
+are not evidence of i960 speed. Hardware results are recorded in
+`artifacts/release-priority-20261015/README.md`.

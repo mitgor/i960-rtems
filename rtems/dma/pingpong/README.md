@@ -134,3 +134,31 @@ corrupted metadata/guards; `test_bulk_client.py` asserts a single ioctl and the
 exact ABI; `test_bulk_replay.py CAPTURE` checks backward compatibility and rejects
 truncated, wrong-length, corrupted and missing bulk journal records. Hardware
 acceptance and measured costs: `artifacts/bulk-capture-20261015/README.md`.
+
+## Release priority and timing
+
+The Doom runner defaults to `--release-schedule priority` for the opt-in ping-pong
+profile. A pending release gets the next host I/O gate after its current holder
+finishes. Audit reads then hold the gate for one word instead of four; all 64
+words are still read from the same frozen page, and packet pumping plus the
+1 ms pacing sleep still occur once per four words. This changes lock granularity,
+not audit coverage or snapshot cadence. The kernel session lock and all original
+slot/generation/guard/release checks remain.
+
+After validating and copying a frame, priority mode publishes the immutable host
+copy to HTTP before the synchronous release. It does not release the card buffer
+early or queue unbounded work. STOP still drains the existing synchronous path.
+
+Every ping-pong journal call now records `start_ns`, `acquired_ns`, `end_ns`,
+`gate_wait_ns` and `ioctl_ns`; `ns` equals their sum. The ioctl component includes
+any kernel-mutex/scheduler wait and must not be labeled pure card execution.
+`audit-gate.jsonl` records each audit lock hold and exact word range;
+`browser-publish.jsonl` records when a validated frame becomes available to HTTP,
+not browser paint. Replay validates timing arithmetic, every frozen-page word,
+policy and publication-before/after-release order.
+
+For bounded comparison, use `--frames 520 --release-schedule abba` and then
+`baab`. Blocks 100–199/200–299/300–399/400–499 run opposite policies in the two
+captures. Initial stall, scripted level restart and final held-frame STOP remain
+outside those blocks. Full measurements and reproduction:
+`artifacts/release-priority-20261015/README.md`.

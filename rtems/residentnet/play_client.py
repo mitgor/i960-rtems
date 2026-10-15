@@ -9,10 +9,12 @@ from batch_client import BatchServer
 from owned_client import Control
 from frame_client import png
 
-def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False,dma_test=False,pipeline=False,pipeline_test=False,no_crc=False,wad_dma=False,wad_load_test=False,pingpong=False,wad_ring=False):
+def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bulk_test=False,dma_test=False,pipeline=False,pipeline_test=False,no_crc=False,wad_dma=False,wad_load_test=False,pingpong=False,wad_ring=False,frame_limit=0,release_schedule="baseline"):
  from upload_client import Upload
  u=Upload(fd,epoch,out,gate,abort);root=Path(root);out=Path(out)
- limit=100 if pingpong and wad_load_test else 52
+ limit=frame_limit or (100 if pingpong and wad_load_test else 52)
+ from io_gate import release_policy
+ assert not frame_limit or (pingpong and wad_load_test and 100<=frame_limit<=1000 and frame_limit%2==0)
  m=json.loads((root/'manifest.json').read_text());assert m['startup']['play']
  assert bool(m.get('double_buffer'))==pipeline, 'pipeline requires the admitted two-buffer engine'
  blob=(root/'template.bin').read_bytes();meta=(root/'relocations.bin').read_bytes()
@@ -144,6 +146,10 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      for generation,offset,expected in ((g+1,0,errno.ESTALE),(g,65536,errno.EINVAL),(g,4,errno.EINVAL)):
       try:u.io(11,struct.pack('<2I',generation,offset));raise AssertionError('invalid bulk request accepted')
       except OSError as e:assert e.errno==expected
+    priority=release_policy(release_schedule,g) if pp_active else False
+    if pp_active:
+     pp.release_priority=priority
+     if hasattr(gate,"priority_mode"):gate.priority_mode=priority
     begin=time.monotonic();method=11 if bulk else 9;comparison=None
     # Four same-frame comparisons followed by scalar/bulk/bulk/scalar blocks.
     # Full snapshot/RAM audits continue independently at the unchanged interval.
@@ -203,6 +209,11 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
       again,_=pp.capture(17,synthetic=False);again2,_=pp.capture(18,synthetic=False)
       assert again==capture and again2==other
       (out/'doom-pingpong-stall.json').write_text(json.dumps(dict(seconds=time.monotonic()-start,frames=[17,18],unchanged=True))+'\n')
+     # The immutable host copy has passed all checks. It can be displayed
+     # while RELEASE waits; the card slot remains owned until that ACK succeeds.
+     if priority:
+      with lock:image=picture;binary=packet;state.update(frame=f'{session}-{g}',message='Live i960 Doom · validated frame')
+     browser_published=time.monotonic() if priority else None
      if g<limit-1:pp.call(4,g)
     else:assert ctl(1,g)==0
     seen=g
@@ -211,7 +222,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     row=dict(wad_requests=len(server.records)-request_base,engine_seconds=time.monotonic()-engine_ready,crc=crc,binary=pipeline,method=method,comparison=comparison,transfer_seconds=transfer_seconds,png_seconds=png_seconds,session=session,frame=g,seconds=time.monotonic()-started,readback_seconds=time.monotonic()-begin,sha256=hashlib.sha256(raw).hexdigest())
     if pingpong:
      row['transport']='pingpong' if g>16 else 'host-dma'
-     if g>16:row.update(marker=marker,observed=observed,released=g<limit-1,ready_to_release_seconds=time.monotonic()-observed)
+     if g>16:row.update(release_priority=priority,release_schedule=release_schedule,browser_published_monotonic=browser_published,marker=marker,observed=observed,released=g<limit-1,ready_to_release_seconds=time.monotonic()-observed)
     if profile:row['profile']=profile_row;row['profile_read_seconds']=convert-profile_begin
     with (out/'play-frames.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')
     if g<=8 or bulk_test or dma_test or pipeline_test:
@@ -219,6 +230,9 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      if not pipeline:(out/f'play-{session}-{g}.png').write_bytes(picture)
      else:(out/f'play-{session}-{g}.dfb').write_bytes(packet)
     with lock:image=picture;binary=packet;state.update(frame=f'{session}-{g}',message=f'Live i960 Doom · frame {g} · readback {row["readback_seconds"]:.2f}s · click game for keyboard')
+    if pp_active and g>16:
+     published=browser_published if priority else time.monotonic()
+     with (out/'browser-publish.jsonl').open('a') as f:f.write(json.dumps(dict(frame=g,priority=priority,observed=observed,published=published))+'\n')
     print(json.dumps(row),flush=True)
     if (pipeline_test and g>=limit) or ((bulk_test or dma_test) and g>=28) or (accept_frames and session==0 and g>=accept_frames):stop.set()
     return False

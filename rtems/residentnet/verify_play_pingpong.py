@@ -2,8 +2,10 @@
 import hashlib,json,statistics,struct
 
 def verify_transport(out,frames,epoch,source,compared,controls):
+ from verify_release import verify as verify_release
+ release_timing=verify_release(out)
  final=json.loads((out/'doom-pingpong-result.json').read_text())
- n=final['frames'];assert n in (52,100) and final['stopped_held']==[n-1,n]
+ n=final['frames'];assert n in (52,100) or (100<=n<=1000 and n%2==0) and final['stopped_held']==[n-1,n]
  assert final['manifest']['pingpong'] and final['manifest']['double_buffer']
  stats=final['stats'];assert len(stats)==6 and stats[0]==n-16 and stats[1]>0 and stats[2:5]==[n-1,n,2]
  # Full snapshots may run between active DMA intervals; positive overlap is
@@ -65,4 +67,4 @@ def verify_transport(out,frames,epoch,source,compared,controls):
  def fps(a,b):return (b-a)/(frames[b-1]['seconds']-frames[a-1]['seconds'])
  baseline=fps(5,15);steady=fps(21,50)
  latency=[(max(0,f['observed']-hi-(f['marker'][5]+10)/1000),f['observed']-lo-f['marker'][5]/1000) for f in frames[20:50]]
- return dict(input_events=[v for i,v in controls if i==2],fps_comparison_valid=n==100 or not any(i==2 for i,v in controls),frames=n,full_guarded_bytes=n*73728,mailbox_pairs=compared,host_dma_fps=baseline,pingpong_fps=steady,improvement_percent=(steady/baseline-1)*100,baseline_interval=[5,15],pingpong_interval=[21,50],start_to_host_observed_mean_bounds_ms=[statistics.mean(v[i] for v in latency)*1000 for i in (0,1)],ready_to_release_mean_ms=1000*statistics.mean(f['ready_to_release_seconds'] for f in frames[20:50]),stall=stall,held_stop=True,system_dma_lease_checks=stats[5])
+ return dict(release_timing=release_timing,input_events=[v for i,v in controls if i==2],fps_comparison_valid=n>=100 or not any(i==2 for i,v in controls),frames=n,full_guarded_bytes=n*73728,mailbox_pairs=compared,host_dma_fps=baseline,pingpong_fps=steady,improvement_percent=(steady/baseline-1)*100,baseline_interval=[5,15],pingpong_interval=[21,50],start_to_host_observed_mean_bounds_ms=[statistics.mean(v[i] for v in latency)*1000 for i in (0,1)],ready_to_release_mean_ms=1000*statistics.mean(f['ready_to_release_seconds'] for f in frames[20:50]),stall=stall,held_stop=True,system_dma_lease_checks=stats[5])
