@@ -2,7 +2,7 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--visible',action='store_true');p.add_argument('--play',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');p.add_argument('--column-test',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--visible',action='store_true');p.add_argument('--play',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');p.add_argument('--column-test',action='store_true');p.add_argument('--fast-render',action='store_true');a=p.parse_args()
 assert not a.platform_runtime or (a.target in ('i960','host32') and a.wad_cache), 'private platform requires i960 WAD-cache build'
 assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
 assert hashlib.sha256(a.archive.read_bytes()).hexdigest()=='26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7', 'source hash mismatch'
@@ -64,6 +64,13 @@ if a.column_test:
  for name in ('column.h','column.c','column.S','selftest.c','vectors.h'):
   shutil.copyfile(here/'columns'/name,src/name)
  apply_columns(src,patch)
+if a.fast_render:
+ assert a.platform_runtime and a.play and not a.column_test
+ import sys
+ sys.path.insert(0,str(here/'render'))
+ from patch import apply as apply_render
+ shutil.copyfile(here/'render/span.h',src/'span.h')
+ apply_render(src,patch)
 # The exact same instrument-free engine is used for target sizing.
 objects=re.search(r'^SRC_DOOM = (.*)$',(src/'Makefile').read_text(),re.M)[1].split()
 sources=[src/(s[:-2]+'.c') for s in objects if s!='doomgeneric_xlib.o']
@@ -102,11 +109,11 @@ if a.sanitize:
 commands=[];failures=[];objs=[]
 with (out/'compile.log').open('w') as log:
  for f in sources:
-  obj=out/('column-asm.o' if f.name=='column.S' else f.stem+'.o');renames=(['-D'+n+'=doom_'+n for n in ('malloc','calloc','realloc','free','strdup')] if a.arena_runtime and not a.platform_runtime and a.target=='i960' and f not in runtime_sources else []);cmd=[cc,*flags,*(['-O0'] if a.point_side_o0 and f.name=='r_point_side.c' else []),*renames,*(['-finstrument-functions'] if a.target!='i960' and not a.platform_runtime and f.name!='profile.c' and not (a.arena_runtime and f in runtime_sources) else []),'-c',str(f),'-o',str(obj)];commands.append(cmd)
+  obj=out/('column-asm.o' if f.name=='column.S' else f.stem+'.o');renames=(['-D'+n+'=doom_'+n for n in ('malloc','calloc','realloc','free','strdup')] if a.arena_runtime and not a.platform_runtime and a.target=='i960' and f not in runtime_sources else []);cmd=[cc,*flags,*(['-O2'] if a.fast_render and f.name in ('r_bsp.c','r_plane.c','r_draw.c') else []),*(['-O0'] if a.point_side_o0 and f.name=='r_point_side.c' else []),*renames,*(['-finstrument-functions'] if a.target!='i960' and not a.platform_runtime and f.name!='profile.c' and not (a.arena_runtime and f in runtime_sources) else []),'-c',str(f),'-o',str(obj)];commands.append(cmd)
   r=subprocess.run(cmd,stdout=log,stderr=log)
   if r.returncode:failures.append(f.name)
   else:objs.append(str(obj))
-(out/'build.json').write_text(json.dumps(dict(screen_copy_sha256=hashlib.sha256((here/'screen_copy/copy.h').read_bytes()).hexdigest() if a.platform_runtime else None,wad_profile=a.wad_profile,column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
+(out/'build.json').write_text(json.dumps(dict(fast_render=a.fast_render,screen_copy_sha256=hashlib.sha256((here/'screen_copy/copy.h').read_bytes()).hexdigest() if a.platform_runtime else None,wad_profile=a.wad_profile,column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
 if failures:raise SystemExit('Compile failed: '+str(failures))
 if a.platform_runtime and a.target=='host32':
  subprocess.run(['ld','-m','elf_i386','-r','-d','-o',str(out/'doom-engine.o'),*objs],check=True)

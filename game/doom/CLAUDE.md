@@ -1,5 +1,32 @@
 # Doom milestone guidance
 
+<!-- renderer-current -->
+**2026-10-15 fast renderer accepted in bounded low-detail card tests:** opt-in
+`game/doom/play/build.py --fast-render` selects exact two-sample spans and `-O2`
+only for r_bsp/r_plane/r_draw. The R_PointOnSide -O0 object is byte-identical;
+no new renderer state/allocation. Release priority, full audits and all DMA
+ownership checks remain. Keep baseline available by omitting the flag.
+
+Four 520-frame A/B/B/A runs: matched **4.831 → 5.334 FPS (+10.40%)**,
+renderer **187.64 → 168.18 ms**, planes **57.91 → 40.03 ms**, BSP/walls
+**108.31 → 106.50 ms**. Most gain is in planes; this grouped experiment cannot
+isolate span code from compiler flags or traversal from wall drawing.
+Completion-to-HTTP availability remains low (**5.00 → 4.51 ms**); this is not
+input-to-browser-paint latency. Retain validated per-stage latency improvements
+even when overall FPS is unchanged.
+
+**2,080 frames / 243 full paired audits** pass, with exact corresponding images,
+2,032 exact HTTP payloads, all stall/held-STOP/heap-drain checks and maximum IRQ
+gap 10.839 ms. Same four known native pixels differ. Image grows 272 bytes,
+protected pages remain 146; mutable bounds unchanged. The flag remains opt-in
+for broader scene/high-detail qualification. Next: profile exact arithmetic and
+geometry inside the remaining 106.5 ms BSP/wall stage; preserve the point-side
+workaround until independent target proof.
+Evidence and reproduction: `artifacts/render-20261015/README.md` and
+`game/doom/render/README.md`. Prior release-priority-only FPS limits below are
+historical; this combined candidate exceeds 5.19 FPS in the tested workload.
+<!-- /renderer-current -->
+
 <!-- release-priority-current -->
 **2026-10-15 release priority accepted:** release telemetry now separates shared
 host-gate wait from ioctl execution (the latter still includes kernel scheduling).

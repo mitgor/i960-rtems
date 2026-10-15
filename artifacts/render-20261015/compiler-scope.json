@@ -1,0 +1,14 @@
+{
+  "optimized_units": [
+    "r_bsp.c",
+    "r_draw.c",
+    "r_plane.c"
+  ],
+  "point_side_workaround_preserved": true,
+  "source_count": 82,
+  "compile_failures": [],
+  "point_side_object_sha256_baseline_and_candidate": "beb7a66306aef9fa8a0cb4c0e18e81524b337c05f640897282c3f8bedcc6dd1b",
+  "engine_file_growth_bytes": 272,
+  "new_renderer_persistent_state_bytes": 0,
+  "protected_pages": 146
+}

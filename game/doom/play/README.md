@@ -236,3 +236,11 @@ retains the comparison policy. The memory build remains opt-in. Exact binaries,
 long-run comparisons and reproduction commands are in
 [`release-priority-20261015`](../../../artifacts/release-priority-20261015/README.md).
 All ownership, full-audit, guard and STOP checks remain enabled.
+
+### Qualified renderer candidate
+
+Add `--fast-render` to the build command for exact span improvements and selective
+BSP/plane/drawing compilation. Four matched full-audit runs reach 5.334 FPS versus
+4.831 baseline, with identical images. It remains opt-in for broader interactive
+qualification. See [renderer instructions](../render/README.md) and
+[full evidence](../../../artifacts/render-20261015/README.md).

@@ -1,0 +1,26 @@
+usage: build.py [-h] [--cross CROSS] --work WORK --archive ARCHIVE
+                --target {i960,host32,host64} [--newlib NEWLIB]
+                [--arena-runtime] [--wad-cache] [--wad-profile] [--sanitize]
+                [--startup] [--visible] [--play] [--checkpoints]
+                [--point-side-o0] [--platform-runtime] [--column-test]
+                [--fast-render]
+
+options:
+  -h, --help            show this help message and exit
+  --cross CROSS
+  --work WORK
+  --archive ARCHIVE
+  --target {i960,host32,host64}
+  --newlib NEWLIB
+  --arena-runtime
+  --wad-cache
+  --wad-profile
+  --sanitize
+  --startup
+  --visible
+  --play
+  --checkpoints
+  --point-side-o0
+  --platform-runtime
+  --column-test
+  --fast-render

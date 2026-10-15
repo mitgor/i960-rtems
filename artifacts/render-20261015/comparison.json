@@ -1,0 +1,62 @@
+{
+  "baseline": {
+    "runs": 2,
+    "frames": 800,
+    "intervals": 798,
+    "host_fps": 4.831481702162692,
+    "publication_fps": 4.831093352706138,
+    "renderer_ms": 187.6375,
+    "renderer_cpu_ms": 184.275,
+    "components_ms": {
+      "bsp_ms": 108.3125,
+      "planes_ms": 57.9125,
+      "sprites_ms": 21.4125,
+      "screen_copy_ms": 10.575,
+      "adapter_ms": 0.4,
+      "previous_publish_wait_ms": 0.30000000000000004
+    },
+    "cpu_components_ms": {
+      "bsp": 106.425,
+      "planes": 56.85,
+      "sprites": 21.0
+    },
+    "observed_to_http_ms": 4.996371281248386,
+    "gate_wait_ms": 2.6870216475,
+    "ioctl_ms": 7.212032355,
+    "card_start_to_http_bounds_ms": [
+      12.341449281246984,
+      53.26355953249131
+    ]
+  },
+  "candidate": {
+    "runs": 2,
+    "frames": 800,
+    "intervals": 798,
+    "host_fps": 5.333716584102981,
+    "publication_fps": 5.334224598930481,
+    "renderer_ms": 168.175,
+    "renderer_cpu_ms": 165.25,
+    "components_ms": {
+      "bsp_ms": 106.5,
+      "planes_ms": 40.025,
+      "sprites_ms": 21.65,
+      "screen_copy_ms": 10.5,
+      "adapter_ms": 0.7125,
+      "previous_publish_wait_ms": 0.25
+    },
+    "cpu_components_ms": {
+      "bsp": 104.61250000000001,
+      "planes": 39.3,
+      "sprites": 21.3375
+    },
+    "observed_to_http_ms": 4.5147825762494165,
+    "gate_wait_ms": 2.6864825212500003,
+    "ioctl_ms": 7.576309065,
+    "card_start_to_http_bounds_ms": [
+      12.906636893737826,
+      49.23511615748911
+    ]
+  },
+  "fps_gain_percent": 10.39504882561133,
+  "renderer_reduction_percent": 10.372393578042761
+}

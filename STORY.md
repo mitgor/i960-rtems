@@ -3687,6 +3687,35 @@ remained, and stalled-host handling, held-frame STOP and heap drain all passed.
 The useful result was a picture that waited less, plus a clearer account of why
 it still took about a fifth of a second to draw the next one.
 
+## The floor gets its turn
+
+The next saving came from drawing the picture. The profile put about 108
+milliseconds in BSP and wall work, and another 58 in the planes. We left the
+old point-side compiler workaround alone. Its object file did not change by a
+single byte. Instead, three renderer files got selective speed optimization,
+and the span loop learned to calculate two samples together. In low detail it
+looked up each color once, duplicated it, and used an aligned word store when
+the destination allowed one. Odd ends and unaligned spans kept their byte stores.
+
+Then we ran the original, the candidate, the candidate again, and the original
+again: 520 frames each, with the same input and full audits. Every corresponding
+picture agreed. The plane stage fell from 57.91 to 40.03 milliseconds. The whole
+renderer fell from 187.64 to 168.18, and the sustained rate rose from 4.831 to
+5.334 frames per second. This time, five frames per second survived the longer
+window and the reversed run order.
+
+The BSP/wall stage improved only slightly, from 108.31 to 106.50 milliseconds.
+The experiment grouped compiler flags and span code, so it cannot award every
+saved instruction to one cause. It can say where most of the measured time went.
+It can also say what stayed: the ownership checks, release priority, the full
+audits, and the same four known pixel differences from native rendering.
+
+Four runs, 2,080 frames, 243 paired audits. Stalled-host handling, held-frame STOP
+and heap drain passed every time. The linked image grew by 272 bytes, without
+adding renderer state or moving the mutable-memory bounds. The new build switch
+stays optional while we try more scenes. The floor is cheaper now; the walls
+still have most of the remaining budget.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3753,7 +3782,11 @@ So, the ledger, honestly kept:
   68 full audit pairs and unchanged ownership checks. Staging and read-ahead
   remain the next loading targets. The subsequent fixed-screen word copy
   improves delivered FPS from 3.815 to 4.517 (+18.39%), with 67 full audit
-  pairs and unchanged persistent-screen/DMA ownership.
+  pairs and unchanged persistent-screen/DMA ownership. The later release-priority
+  work cuts completion-to-HTTP waiting while sustained FPS remains about 4.84.
+  The latest optional renderer build reaches 5.334 against 4.831 FPS in four
+  matched runs, with identical images and 243 full paired audits. Most of that
+  gain comes from planes; broader interactive qualification remains open.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

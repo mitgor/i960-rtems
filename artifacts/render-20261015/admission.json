@@ -1,0 +1,41 @@
+{
+  "link_base": 0,
+  "base": 0,
+  "entry": 358304,
+  "memory_bytes": 818544,
+  "file_bytes": 434392,
+  "template_sha256": "7913b2a95fab36ed6a4086d2a92d0b93bc5d9c22452bda7c80578d808d6eaac6",
+  "object_sha256": "0a38c262d56239788811ec8c4b96c7ba21635b01b3542d22fe3284bd2eff4bec",
+  "linker_addresses": [
+    65536,
+    2097152,
+    3224174672
+  ],
+  "linker_match": true,
+  "executed_on_card": false,
+  "admitted": false,
+  "result": 818496,
+  "metadata_offset": 818544,
+  "metadata_bytes": 53996,
+  "metadata_sha256": "dc9739e6366b05daa40decd5066820f1c584f23f71b4ce7a499fbcc0e14e8203",
+  "text_sha256": "f1494b53b7880055b8c185bc72db82abea93b5f758b877ed3f6584f833b1f04d",
+  "admission_bytes": 872540,
+  "startup": {
+    "play": true,
+    "checkpoint_api": true
+  },
+  "play_offset": 687424,
+  "fast_render": true,
+  "fast_memory": false,
+  "wad_profile": true,
+  "frame_profile": true,
+  "no_fnv": true,
+  "direct_frame": true,
+  "presentation_test": false,
+  "low_detail": true,
+  "detail_test": false,
+  "cpu_profile": true,
+  "column_test": false,
+  "double_buffer": true,
+  "pingpong": true
+}
