@@ -1,5 +1,27 @@
 # Repository guidance for Claude Code
 
+<!-- screen-copy-current -->
+**2026-10-15 remaining screen copy optimized and card-accepted:** fixed 320×200
+indexed scale-one presentation uses one exact unrolled aligned word copy rather
+than 200 bytewise Newlib row copies. **3.815 → 4.517 FPS (+18.39%)** in the matched
+frames 21–50 window; screen copy **44 → 12 ms wall / 22 → 6 ms sampled task CPU**.
+Renderer remains ~209 ms wall / ~105 ms sampled CPU. Persistent `I_VideoBuffer`
+is retained: cached row pointers, incremental updates and zone ownership cannot
+safely alias rotating/pinned DMA slots. Other geometry and unaligned-pointer
+fallbacks remain. No libc-wide, DMA, scheduler, ownership or guard changes.
+100 frames, **67 full paired audits** at unchanged cadence, held-buffer STOP,
+heap drain, exact baseline pixels/palettes and full Linux/Mac replay pass;
+33 mutated captures rejected. Four known native pixel differences remain.
+Private platform builds use this automatically; WAD ring/ping-pong stay opt-in.
+Evidence: `artifacts/screen-copy-20261015/README.md`. One matched run, not a
+long soak; 10 ms telemetry is elapsed/sample-based, not cycle-accurate. Larger
+remaining FPS headroom is renderer work/scheduling, not the remaining 12 ms copy.
+Historical owner IDs below are superseded; inspect actual ownership before use.
+Public IPv6 HTTP restored and verified 200 / 2,891 bytes; boot
+`a9a9032f-68fa-4a83-8a6b-27032556f98b`, relay 2619 (supervisor 2617)
+owns `dac960auto`. Bounded Doom server 8087 is closed.
+<!-- /screen-copy-current -->
+
 <!-- wad-copy-current -->
 **2026-10-15 actual WAD-cache word copies accepted:** first-frame loading
 **192.075 → 117.566 s (38.79% shorter)**; same-level warm restart

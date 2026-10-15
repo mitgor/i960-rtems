@@ -1,0 +1,6 @@
+{
+  "observed_frames": 98,
+  "all_observed_payloads_exact": true,
+  "mean_fetch_seconds": 0.028864215170888573,
+  "note": "HTTP receipt, not browser paint latency"
+}

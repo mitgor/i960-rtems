@@ -19,6 +19,12 @@ def patch(name,old,new,count=1):
  f=src/name;s=f.read_text();assert s.count(old)==count,(name,old);f.write_text(s.replace(old,new));patches.append(dict(file=name,before=old,after=new))
 patch('doomgeneric.c','DOOMGENERIC_RESX * DOOMGENERIC_RESY * 4','DOOMGENERIC_RESX * DOOMGENERIC_RESY * sizeof(pixel_t)')
 patch('i_video.c','I_VideoBuffer = (byte*)Z_Malloc (SCREENWIDTH * SCREENHEIGHT, PU_STATIC, NULL);','I_VideoBuffer = (byte*)Z_Malloc (SCREENWIDTH * SCREENHEIGHT, PU_STATIC, NULL);\n    memset(I_VideoBuffer, 0, SCREENWIDTH * SCREENHEIGHT); /* deterministic initial wipe */')
+# Only the private platform uses the fixed indexed presentation fast path.
+# Keep I_VideoBuffer persistent: renderer/HUD state must not follow a DMA slot.
+if a.platform_runtime:
+ shutil.copyfile(here/'screen_copy/copy.h',src/'screen_copy.h')
+ patch('i_video.c','#include "doomgeneric.h"','#include "doomgeneric.h"\n#include "screen_copy.h"')
+ patch('i_video.c','    while (y--)','    if (fb_scaling == 1 && s_Fb.xres == SCREENWIDTH && s_Fb.yres == SCREENHEIGHT && s_Fb.bits_per_pixel == 8) {\n        doom_screen_copy(line_out, line_in);\n    } else while (y--)')
 # Bounds belong to masked posts, not the wrapping wall-texture path.
 shutil.copyfile(here/'bounded_column.h', src/'bounded_column.h')
 patch('r_draw.c', '#include "r_local.h"', '#include "r_local.h"\n#include "bounded_column.h"\nint dc_postlength; /* zero outside masked post dispatch */')
@@ -100,7 +106,7 @@ with (out/'compile.log').open('w') as log:
   r=subprocess.run(cmd,stdout=log,stderr=log)
   if r.returncode:failures.append(f.name)
   else:objs.append(str(obj))
-(out/'build.json').write_text(json.dumps(dict(wad_profile=a.wad_profile,column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
+(out/'build.json').write_text(json.dumps(dict(screen_copy_sha256=hashlib.sha256((here/'screen_copy/copy.h').read_bytes()).hexdigest() if a.platform_runtime else None,wad_profile=a.wad_profile,column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
 if failures:raise SystemExit('Compile failed: '+str(failures))
 if a.platform_runtime and a.target=='host32':
  subprocess.run(['ld','-m','elf_i386','-r','-d','-o',str(out/'doom-engine.o'),*objs],check=True)

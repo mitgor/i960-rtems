@@ -3539,6 +3539,33 @@ were rejected. The next costs are now easier to see: staging, guards, allocation
 and repeated read-ahead. Those are the next experiments, not permission to stop
 checking who owns the memory.
 
+## The other byte loop
+
+The WAD-cache fix shortened loading, but Doom still ran at about 3.8 frames per
+second. The next copy was sitting in plain sight: two hundred calls to Newlib's
+`memcpy`, one for each row of the screen. On this build, that routine was another
+byte loop. Every frame paid for all sixty-four thousand pixels again.
+
+There was a tempting shortcut: point Doom straight at the delivery buffers.
+But Doom remembers its screen. Its renderer caches row pointers, the HUD updates
+parts of the image, and the zone allocator owns the backing storage. Our two
+DMA slots rotate under a different contract. A pointer swap would not erase
+those obligations; it would just hide them until a frame was being transmitted.
+
+So the persistent screen stayed. The fixed indexed mode got one bounded pass,
+four aligned words at a time. Other layouts kept the original path. In the
+matched card run the copy fell from 44 to 12 milliseconds, and the delivered rate
+rose from 3.815 to 4.517 frames per second. Rendering itself barely moved. This
+was an eighteen-percent gain from carrying the same pixels more efficiently.
+
+The hundred frames passed sixty-seven full audit pairs, held-buffer STOP and
+heap drain. The first fifty-two controlled pictures matched the previous card
+run exactly, with the same four old native-reference differences. Linux and Mac
+replay passed; thirty-three deliberate capture mutations failed as intended.
+The copy is no longer the large easy target. Doom still spends roughly two
+hundred milliseconds of wall time rendering a frame, and that is where the
+next serious question lives.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3603,7 +3630,9 @@ So, the ledger, honestly kept:
   cache consume about 94 seconds across the bounded loading test. The subsequent aligned word-copy change reduces those copies to about 18
   seconds, startup to 117.57 seconds and warm restart to 2.89 seconds, with
   68 full audit pairs and unchanged ownership checks. Staging and read-ahead
-  remain the next loading targets.
+  remain the next loading targets. The subsequent fixed-screen word copy
+  improves delivered FPS from 3.815 to 4.517 (+18.39%), with 67 full audit
+  pairs and unchanged persistent-screen/DMA ownership.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

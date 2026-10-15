@@ -1,0 +1,125 @@
+{
+  "runs": {
+    "live-copy": {
+      "first_frame_seconds": 117.56600095900001,
+      "engine_upload_seconds": 80.24954188000004,
+      "first_frame_requests": 1755,
+      "total_requests": 1805,
+      "warm_restart_seconds": 2.89014854200002,
+      "warm_restart_requests": 38,
+      "restart_interval_frames": [
+        66,
+        68
+      ],
+      "full_audit_pairs": 68,
+      "pingpong_fps": 3.8154063943315286,
+      "known_native_pixel_differences": [
+        29260,
+        29261,
+        29580,
+        29581
+      ],
+      "all_52_palettes_exact": true
+    },
+    "live-screen": {
+      "first_frame_seconds": 116.92318352699999,
+      "engine_upload_seconds": 79.61459341500006,
+      "first_frame_requests": 1755,
+      "total_requests": 1805,
+      "warm_restart_seconds": 2.780108534999954,
+      "warm_restart_requests": 38,
+      "restart_interval_frames": [
+        66,
+        68
+      ],
+      "full_audit_pairs": 67,
+      "pingpong_fps": 4.517023727639269,
+      "known_native_pixel_differences": [
+        29260,
+        29261,
+        29580,
+        29581
+      ],
+      "all_52_palettes_exact": true
+    }
+  },
+  "improvement": {
+    "first_frame_seconds": {
+      "before": 117.56600095900001,
+      "after": 116.92318352699999,
+      "reduction_percent": 0.546771538332913,
+      "speedup": 1.0054977756558567
+    },
+    "warm_restart_seconds": {
+      "before": 2.89014854200002,
+      "after": 2.780108534999954,
+      "reduction_percent": 3.8074170030000243,
+      "speedup": 1.0395811910271582
+    }
+  },
+  "cache_seconds": {
+    "live-copy": {
+      "runtime_read": 78.1,
+      "fill_cache": 14.48,
+      "miss_copy_to_doom": 1.94,
+      "hit_copy_to_doom": 1.56
+    },
+    "live-screen": {
+      "runtime_read": 77.79,
+      "fill_cache": 14.9,
+      "miss_copy_to_doom": 1.8,
+      "hit_copy_to_doom": 1.38
+    }
+  },
+  "warm_restart_cache_ms": {
+    "live-copy": [
+      1630,
+      300,
+      20,
+      0
+    ],
+    "live-screen": [
+      1530,
+      340,
+      40,
+      0
+    ]
+  },
+  "fps_percent_change": 18.389059009549257,
+  "steady_profile": {
+    "live-copy": {
+      "render_ms": 208.66666666666666,
+      "bsp_ms": 120,
+      "planes_ms": 64.66666666666667,
+      "sprites_ms": 24,
+      "screen_copy_ms": 44,
+      "adapter_ms": 0.6666666666666666,
+      "previous_publish_wait_ms": 86,
+      "display_ms": 214.66666666666666,
+      "first_frame_previous_wait_ms": 2580,
+      "previous_wait_ms_frames_22_50": 0,
+      "cpu_sample_ms": {
+        "render": 104.33333333333334,
+        "screen_copy": 22.0,
+        "adapter": 0.3333333333333333
+      }
+    },
+    "live-screen": {
+      "render_ms": 209.33333333333334,
+      "bsp_ms": 120.66666666666667,
+      "planes_ms": 64.66666666666667,
+      "sprites_ms": 24,
+      "screen_copy_ms": 12,
+      "adapter_ms": 0,
+      "previous_publish_wait_ms": 92,
+      "display_ms": 214,
+      "first_frame_previous_wait_ms": 2740,
+      "previous_wait_ms_frames_22_50": 0.6896551724137931,
+      "cpu_sample_ms": {
+        "render": 104.66666666666667,
+        "screen_copy": 6.0,
+        "adapter": 0
+      }
+    }
+  }
+}
