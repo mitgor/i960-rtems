@@ -1,0 +1,89 @@
+{
+  "runs": {
+    "live-profile3": {
+      "first_frame_seconds": 192.07493409200003,
+      "engine_upload_seconds": 80.11341797299997,
+      "first_frame_requests": 1755,
+      "total_requests": 1805,
+      "warm_restart_seconds": 4.50586825900001,
+      "warm_restart_requests": 38,
+      "restart_interval_frames": [
+        66,
+        68
+      ],
+      "full_audit_pairs": 89,
+      "pingpong_fps": 3.803431881283358,
+      "known_native_pixel_differences": [
+        29260,
+        29261,
+        29580,
+        29581
+      ],
+      "all_52_palettes_exact": true
+    },
+    "live-copy": {
+      "first_frame_seconds": 117.56600095900001,
+      "engine_upload_seconds": 80.24954188000004,
+      "first_frame_requests": 1755,
+      "total_requests": 1805,
+      "warm_restart_seconds": 2.89014854200002,
+      "warm_restart_requests": 38,
+      "restart_interval_frames": [
+        66,
+        68
+      ],
+      "full_audit_pairs": 68,
+      "pingpong_fps": 3.8154063943315286,
+      "known_native_pixel_differences": [
+        29260,
+        29261,
+        29580,
+        29581
+      ],
+      "all_52_palettes_exact": true
+    }
+  },
+  "improvement": {
+    "first_frame_seconds": {
+      "before": 192.07493409200003,
+      "after": 117.56600095900001,
+      "reduction_percent": 38.791596355468094,
+      "speedup": 1.6337625888881284
+    },
+    "warm_restart_seconds": {
+      "before": 4.50586825900001,
+      "after": 2.89014854200002,
+      "reduction_percent": 35.85812154567004,
+      "speedup": 1.559043832356759
+    }
+  },
+  "cache_seconds": {
+    "live-profile3": {
+      "runtime_read": 78.54,
+      "fill_cache": 77.96,
+      "miss_copy_to_doom": 6.92,
+      "hit_copy_to_doom": 8.76
+    },
+    "live-copy": {
+      "runtime_read": 78.1,
+      "fill_cache": 14.48,
+      "miss_copy_to_doom": 1.94,
+      "hit_copy_to_doom": 1.56
+    }
+  },
+  "warm_restart_cache_ms": {
+    "live-profile3": [
+      1550,
+      1660,
+      80,
+      20
+    ],
+    "live-copy": [
+      1630,
+      300,
+      20,
+      0
+    ]
+  },
+  "fps_percent_change": 0.31483442906121706
+}

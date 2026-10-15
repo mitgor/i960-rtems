@@ -1,4 +1,17 @@
 #include "cache.h"
+/* Copy only bytes in the requested range. The cache and caller buffers are
+ * distinct. Equal alignment permits a byte prefix followed by aligned words;
+ * unequal alignment stays bytewise, avoiding unaligned i960 accesses and any
+ * speculative reads beyond an EOF tail. may_alias preserves C aliasing rules. */
+typedef unsigned cache_word __attribute__((__may_alias__));
+typedef char cache_word_must_be_four_bytes[sizeof(cache_word)==4?1:-1];
+static void cache_copy(unsigned char *d,const unsigned char *s,unsigned n){
+ if(!(((unsigned long)d^(unsigned long)s)&3u)){
+  while(n&&((unsigned long)d&3u)){*d++=*s++;n--;}
+  while(n>=4){*(cache_word*)d=*(const cache_word*)s;d+=4;s+=4;n-=4;}
+ }
+ while(n--)*d++=*s++;
+}
 #ifdef DOOM_WAD_PROFILE
 #define CP_START() stamp=c->api->ticks_ms()
 #define CP_END(k) do{c->profile_ms[k]+=c->api->ticks_ms()-stamp;c->profile_counts[k]++;}while(0)
@@ -16,7 +29,7 @@ int doom_cache_open(struct doom_cache*c,const struct doom_runtime_v1*a){unsigned
  c->api=a;c->reads=c->hits=c->misses=c->wire_bytes=c->copied_bytes=c->errors=0;c->last_error=0;
  for(i=0;i<DCACHE_LINES;i++)c->valid[i]=0;c->active=0;return 1;
 }
-int doom_cache_read(struct doom_cache*c,unsigned offset,void*dst,unsigned n){unsigned done=0,block,slot,within,count,want,i,lines,next,take,k,stamp=0;int got;unsigned char*d=dst;
+int doom_cache_read(struct doom_cache*c,unsigned offset,void*dst,unsigned n){unsigned done=0,block,slot,within,count,want,lines,next,take,k,stamp=0;int got;unsigned char*d=dst;
  if(!c||!c->api||c->active||offset>c->api->file_bytes||(!dst&&n))return -1;
  c->active=1;c->last_error=0;c->reads++;
  if(n>c->api->file_bytes-offset)n=c->api->file_bytes-offset;
@@ -39,17 +52,17 @@ int doom_cache_read(struct doom_cache*c,unsigned offset,void*dst,unsigned n){uns
    if(got!=(int)want){c->last_error=got<0?got:-2;c->errors++;break;}
    CP_START();for(k=0;k<lines;k++){
     next=(block+k)%c->lines;take=want-k*DCACHE_LINE;if(take>DCACHE_LINE)take=DCACHE_LINE;
-    for(i=0;i<take;i++)c->data[next*DCACHE_LINE+i]=c->bounce[k*DCACHE_LINE+i];
+    cache_copy(c->data+next*DCACHE_LINE,c->bounce+k*DCACHE_LINE,take);
     c->tags[next]=block+k;c->valid[next]=take;
    }
    CP_END(1);c->wire_bytes+=want;
    /* Copy all new lines now, so their later consumption is not a cache hit. */
    count=want-within;if(count>n-done)count=n-done;
-   CP_START();for(i=0;i<count;i++)d[done+i]=c->bounce[within+i];
+   CP_START();cache_copy(d+done,c->bounce+within,count);
    CP_END(2);done+=count;c->copied_bytes+=count;continue;
   }else c->hits++;
   count=c->valid[slot]-within;if(count>n-done)count=n-done;
-  CP_START();for(i=0;i<count;i++)d[done+i]=c->data[slot*DCACHE_LINE+within+i];CP_END(3);done+=count;c->copied_bytes+=count;
+  CP_START();cache_copy(d+done,c->data+slot*DCACHE_LINE+within,count);CP_END(3);done+=count;c->copied_bytes+=count;
  }
  c->active=0;return done?(int)done:c->last_error;
 }

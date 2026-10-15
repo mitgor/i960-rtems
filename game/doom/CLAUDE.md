@@ -1,5 +1,26 @@
 # Doom milestone guidance
 
+<!-- wad-copy-current -->
+**2026-10-15 actual WAD-cache word copies accepted:** first-frame loading
+**192.075 → 117.566 s (38.79% shorter)**; same-level warm restart
+**4.506 → 2.890 s (35.86% shorter)**. All three cache copies total
+**93.640 → 17.980 s**. Upload remains separate (~80 s); gameplay stays
+**3.803 → 3.815 FPS**, not a demonstrated rendering gain. Equal alignment uses
+exact byte prefix/tail plus aligned 32-bit copies; unequal alignment stays
+bytewise. No DMA/cache-policy/guard/ownership changes. 100 frames, **68 full paired
+audits** at unchanged 3 s cadence, held-buffer STOP and heap drain pass. First 52
+frames match baseline and retain only four known native pixel differences.
+ASan/UBSan edges, deterministic native runs, full Linux/Mac replay and 33 mutation
+rejections pass. See `artifacts/wad-copy-20261015/README.md` for exact binaries,
+sources, timings, reproducibility and service restoration. WAD ring/ping-pong
+remain opt-in; next optimize retained staging/direct owned-cache DMA/read-ahead,
+not remove audits. Historical profiling baseline and its owner IDs below are
+superseded by this acceptance; inspect actual owner before hardware work.
+Public IPv6 HTTP restored and verified 200 / 2,891 bytes after normal reboot;
+boot `9bef2976-8b43-4c8d-bd4e-1e0b719249b7`, relay 2653 (supervisor 2651)
+owns `dac960auto`. Bounded Doom server 8087 is closed.
+<!-- /wad-copy-current -->
+
 <!-- wad-profile-current -->
 **2026-10-15 bounded WAD/DMA profiling accepted:** opt-in `--wad-profile` builds
 retain every ownership/guard check and all full paired audits. A pinned-source

@@ -26258,6 +26258,171 @@
       "sha256": "6d35598e082f72c83fcc6030e3b4788dfb6f7c334ada569f7e2a140a9195a3fe"
     },
     {
+      "path": "artifacts/wad-copy-20261015/README.md",
+      "size": 6802,
+      "sha256": "a6a3b7185b9dc629edae53544424f7f737f8833943a88e8351f8542f6a6eae25"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/build.log",
+      "size": 397,
+      "sha256": "2e11465389f2ba4a49412fd9c70eefb59f64e7f8663f98d558c974bef7492342"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/build.sh",
+      "size": 2948,
+      "sha256": "929c23a0693396cfad2be6056c2133abc8f192b2fdb376aa37b1a193b9dc1ea9"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/cache-disassembly.txt",
+      "size": 14541,
+      "sha256": "06ec2097fb35cdd89022ebd7e9c10c5588c51b9e4463bda7139c763b7e3745db"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/cache-test.log",
+      "size": 183,
+      "sha256": "5c091a3216f02968a05ce799b5cbb623076971dcde27d300cdd1b2e770986065"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/candidate.tar.gz",
+      "size": 14707924,
+      "sha256": "f3dfc107310d8f5d4e3a9760aadc83aac4e497c3b9e4d93ac11248059db6d862"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/candidate.tar.gz.sha256",
+      "size": 83,
+      "sha256": "cccc11c13fef2abd8821385581798922b21bbed7fd2ebad54d2ff143ae88bd88"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/card.tar.gz",
+      "size": 42116649,
+      "sha256": "621227883741dd186c67e545c141fff764b353dd121fa423a6f85c5683d72cc0"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/card.tar.gz.sha256",
+      "size": 78,
+      "sha256": "55371f9a7bd1fb085047abc9dd7cf01af1e230ca1469b0d8c26ee1d0b3ea9499"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/compare.py",
+      "size": 1516,
+      "sha256": "76af964a31dc59025a3dedaa86fe73dd59eaba73a2e90166297f0c0991e3e99b"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/comparison.json",
+      "size": 2076,
+      "sha256": "d6eda8b7700064abfe06b977b8808bb533752b97539f20627ee8ebb8efd21993"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/final-ram-audit.json",
+      "size": 1721,
+      "sha256": "020227ba4f1311ff1e681b11548e0fdfcb9362f758b00cbed3444fed6f6ea6c5"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/frame-tamper.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/frames.json",
+      "size": 1207,
+      "sha256": "d3134d9ea79267201d5689ddec8dc2f361bb6cdc44d32aa190b4633cc39874f5"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/http-observations.jsonl",
+      "size": 25713,
+      "sha256": "cede88c2e2b5a63661e1d7087504bb973efb54c7e2a24db3dde4006f7700ca97"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/http-observer.log",
+      "size": 25713,
+      "sha256": "cede88c2e2b5a63661e1d7087504bb973efb54c7e2a24db3dde4006f7700ca97"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/http-verification.json",
+      "size": 166,
+      "sha256": "d2a5fa68bb8ba092f0226ffa2f8ed35bf687f2c22f8f2b1873376f5de49ac86b"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/local-replay.log",
+      "size": 11136,
+      "sha256": "841d57e3e57d1798f5b965c7c99dfc149aaa67a5dcb038f50ed46a771b740917"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/native-frames.py",
+      "size": 2430,
+      "sha256": "acff437fa504de92c62ae0ea3953fe2c693b6d289912210ee431510db4d7cfb8"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/native.log",
+      "size": 149,
+      "sha256": "db50e0107d7d0679d42aa4d2023342a530c6fbc7dbe870931a41cb4397554be9"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/profile-tamper.json",
+      "size": 54,
+      "sha256": "6a4cfaef7b70d6b57c48d8489fb370ff601e55da665173fad7fd4cbe8dddd073"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/profile.json",
+      "size": 3100,
+      "sha256": "14f4d1090bfbad7aa202f07e17565fe22137fcb52a8a19b817c0dd1e619e7983"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/replay.sh",
+      "size": 579,
+      "sha256": "9e3c126f36a73344f884f8aa6d8ab54c8c9f74197629f57e5a13760665ba425d"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/restoration.json",
+      "size": 269,
+      "sha256": "a533e6e17ded4af83d3ed8e658419552f231865334d2e188b2a73820b46728de"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/restore-relay.log",
+      "size": 1301,
+      "sha256": "f4bb86182ce082df4f554719577554d036decc2d49f2fa24fdfd3f8251a77a47"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/restore.sh",
+      "size": 854,
+      "sha256": "c765bb31815850d68949a2f1d733dadfe5c7385aac34dc5c7751fc52b5a533ae"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/run.sh",
+      "size": 846,
+      "sha256": "f85a95634708fe5a80610683b03013a18c58979bb00ea47e44079bfd648e1105"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/source-check.json",
+      "size": 107259,
+      "sha256": "f0fcd69a6cc640267d5f722a11354f008f68f7b355a9a40900bbbf6dda707e5d"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/system.json",
+      "size": 6360,
+      "sha256": "f6f96b9e33abe9224b6ee3937c1e1373180dfe7f70eb920f89f3b2454d483d2a"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/verify-remote.sh",
+      "size": 651,
+      "sha256": "eaf622c4673beafd0d0c1877a6c35edf9feddef0d2e4d2e987aad2ee5fa2d7f6"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/wad-tamper.json",
+      "size": 101,
+      "sha256": "3c1461c46ff9ccca70dfe1d96373c1802e95a71a53a28cf29e1e26da4f66c782"
+    },
+    {
+      "path": "artifacts/wad-copy-20261015/wad.json",
+      "size": 269,
+      "sha256": "19290ec570d5cda6b51399e70fda1bf58b5de369124be2459066ffdff15b69cf"
+    },
+    {
       "path": "artifacts/wad-dma-20261014/README.md",
       "size": 11968,
       "sha256": "8691f3dfb383e607acb196f7a5499f66c351ca4add915b6f4ca0f9bcc12e6b5f"

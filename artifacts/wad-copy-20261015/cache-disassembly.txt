@@ -1,0 +1,494 @@
+
+build2/engine-cross/i960/cache.o:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+00000000 <_cache_copy>:
+   0:	00 30 f0 8c 	lda	90 <Li960R1>,g14
+   4:	90 00 00 00
+			4: R_960_32	.text
+
+00000008 <cache_copy.lf>:
+   8:	1e 16 98 5c 	mov	g14,g3
+   c:	00 1e f0 5c 	mov	0,g14
+  10:	10 43 a4 58 	xor	g0,g1,g4
+  14:	83 08 a5 58 	and	3,g4,g4
+  18:	4c 20 05 35 	cmpobne	0,g4,64 <L2>
+  1c:	2c a0 04 32 	cmpobe	0,g2,48 <L4>
+  20:	90 d0 a0 58 	and	g0,3,g4
+  24:	24 20 05 32 	cmpobe	0,g4,48 <L4>
+
+00000028 <L7>:
+  28:	00 50 a4 80 	ldob	(g1),g4
+  2c:	01 89 94 59 	subo	1,g2,g2
+  30:	00 10 a4 82 	stob	g4,(g0)
+  34:	10 50 80 59 	addo	g0,1,g0
+  38:	83 08 a4 58 	and	3,g0,g4
+  3c:	11 50 88 59 	addo	g1,1,g1
+  40:	08 a0 04 32 	cmpobe	0,g2,48 <L4>
+  44:	e4 3f 05 35 	cmpobne	0,g4,28 <L7>
+
+00000048 <L4>:
+  48:	1c a0 1c 33 	cmpobge	3,g2,64 <L2>
+
+0000004c <L11>:
+  4c:	00 50 a4 90 	ld	(g1),g4
+  50:	04 89 94 59 	subo	4,g2,g2
+  54:	00 10 a4 92 	st	g4,(g0)
+  58:	10 10 81 59 	addo	g0,4,g0
+  5c:	11 10 89 59 	addo	g1,4,g1
+  60:	ec bf 1c 34 	cmpobl	3,g2,4c <L11>
+
+00000064 <L2>:
+  64:	01 89 94 59 	subo	1,g2,g2
+  68:	01 19 a0 59 	subo	1,0,g4
+  6c:	20 80 a4 32 	cmpobe	g4,g2,8c <L19>
+
+00000070 <L15>:
+  70:	00 50 a4 80 	ldob	(g1),g4
+  74:	01 89 94 59 	subo	1,g2,g2
+  78:	00 10 a4 82 	stob	g4,(g0)
+  7c:	11 50 88 59 	addo	g1,1,g1
+  80:	10 50 80 59 	addo	g0,1,g0
+  84:	01 19 a0 59 	subo	1,0,g4
+  88:	e8 9f a4 35 	cmpobne	g4,g2,70 <L15>
+
+0000008c <L19>:
+  8c:	Address 0x000000000000008c is out of bounds.
+
+
+00000090 <Li960R1>:
+  90:	00 00 00 0a 	ret
+	...
+
+000000a0 <_doom_cache_open>:
+  a0:	10 16 28 5c 	mov	g0,r5
+  a4:	11 16 20 5c 	mov	g1,r4
+  a8:	1c 21 04 32 	cmpobe	0,g0,1c4 <L43>
+  ac:	00 10 a4 90 	ld	(g0),g4
+  b0:	14 21 05 35 	cmpobne	0,g4,1c4 <L43>
+  b4:	10 24 a4 90 	ld	0x410(g0),g4
+  b8:	0c 21 05 35 	cmpobne	0,g4,1c4 <L43>
+  bc:	08 61 04 32 	cmpobe	0,g1,1c4 <L43>
+  c0:	00 50 ac 90 	ld	(g1),g5
+  c4:	00 30 a0 8c 	lda	31545244 <L85+0x31544c14>,g4
+  c8:	44 52 54 31
+  cc:	f8 40 a5 35 	cmpobne	g4,g5,1c4 <L43>
+  d0:	04 60 b4 90 	ld	0x4(g1),g6
+  d4:	90 19 a0 58 	setbit	16,0,g4
+  d8:	18 80 a5 35 	cmpobne	g4,g6,f0 <L24>
+  dc:	0c 60 a4 90 	ld	0xc(g1),g4
+  e0:	10 20 3d 35 	cmpobne	7,g4,f0 <L24>
+  e4:	1c 60 ac 90 	ld	0x1c(g1),g5
+  e8:	89 19 a0 58 	setbit	9,0,g4
+  ec:	34 40 a5 32 	cmpobe	g4,g5,120 <L23>
+
+000000f0 <L24>:
+  f0:	00 30 a0 8c 	lda	10001 <L85+0xf9d1>,g4
+  f4:	01 00 01 00
+  f8:	cc 80 a5 35 	cmpobne	g4,g6,1c4 <L43>
+  fc:	0c 20 a1 90 	ld	0xc(r4),g4
+ 100:	c4 20 7d 35 	cmpobne	15,g4,1c4 <L43>
+ 104:	1c 20 a9 90 	ld	0x1c(r4),g5
+ 108:	89 19 a0 58 	setbit	9,0,g4
+ 10c:	14 40 a5 32 	cmpobe	g4,g5,120 <L23>
+ 110:	8c 19 a0 58 	setbit	12,0,g4
+ 114:	0c 40 a5 32 	cmpobe	g4,g5,120 <L23>
+ 118:	90 19 a0 58 	setbit	16,0,g4
+ 11c:	a8 40 a5 35 	cmpobne	g4,g5,1c4 <L43>
+
+00000120 <L23>:
+ 120:	08 20 a9 90 	ld	0x8(r4),g5
+ 124:	05 de a0 59 	shlo	5,3,g4
+ 128:	9c 40 a5 35 	cmpobne	g4,g5,1c4 <L43>
+ 12c:	10 20 a1 90 	ld	0x10(r4),g4
+ 130:	94 20 25 35 	cmpobne	4,g4,1c4 <L43>
+ 134:	14 20 a1 90 	ld	0x14(r4),g4
+ 138:	8c 20 0d 35 	cmpobne	1,g4,1c4 <L43>
+ 13c:	20 20 a1 90 	ld	0x20(r4),g4
+ 140:	84 20 0d 35 	cmpobne	1,g4,1c4 <L43>
+ 144:	24 20 a9 90 	ld	0x24(r4),g5
+ 148:	7c 60 05 32 	cmpobe	0,g5,1c4 <L43>
+ 14c:	9c 19 a0 58 	setbit	28,0,g4
+ 150:	74 40 a5 34 	cmpobl	g4,g5,1c4 <L43>
+ 154:	48 20 a1 90 	ld	0x48(r4),g4
+ 158:	6c 20 05 32 	cmpobe	0,g4,1c4 <L43>
+ 15c:	4c 20 a1 90 	ld	0x4c(r4),g4
+ 160:	64 20 05 32 	cmpobe	0,g4,1c4 <L43>
+ 164:	54 20 a1 90 	ld	0x54(r4),g4
+ 168:	5c 20 05 32 	cmpobe	0,g4,1c4 <L43>
+ 16c:	1c 20 a9 90 	ld	0x1c(r4),g5
+ 170:	87 19 b0 58 	setbit	7,0,g6
+ 174:	90 19 a0 58 	setbit	16,0,g4
+ 178:	08 40 a5 32 	cmpobe	g4,g5,180 <L26>
+ 17c:	1f 58 b0 59 	addo	31,1,g6
+
+00000180 <L26>:
+ 180:	2c 64 a1 8c 	lda	0x42c(r5),g4
+ 184:	0c 64 b1 92 	st	g6,0x40c(r5)
+ 188:	00 1e a8 5c 	mov	0,g5
+
+0000018c <L31>:
+ 18c:	10 20 f5 92 	st	g14,0x10(g4)
+ 190:	00 10 f5 92 	st	g14,(g4)
+ 194:	15 50 a8 59 	addo	g5,1,g5
+ 198:	14 10 a1 59 	addo	g4,4,g4
+ 19c:	f0 7f 1d 33 	cmpobge	3,g5,18c <L31>
+ 1a0:	0c 64 81 90 	ld	0x40c(r5),g0
+ 1a4:	01 1e a0 5c 	mov	1,g4
+ 1a8:	10 64 a1 92 	st	g4,0x410(r5)
+ 1ac:	09 0e 84 59 	shlo	9,g0,g0
+ 1b0:	48 20 a1 90 	ld	0x48(r4),g4
+ 1b4:	00 10 05 86 	callx	(g4)
+ 1b8:	04 60 81 92 	st	g0,0x4(r5)
+ 1bc:	10 20 04 35 	cmpobne	0,g0,1cc <L32>
+ 1c0:	Address 0x00000000000001c0 is out of bounds.
+
+
+000001c4 <L43>:
+ 1c4:	00 1e 80 5c 	mov	0,g0
+ 1c8:	00 00 00 0a 	ret
+
+000001cc <L32>:
+ 1cc:	1c 20 81 90 	ld	0x1c(r4),g0
+ 1d0:	48 20 a1 90 	ld	0x48(r4),g4
+ 1d4:	00 10 05 86 	callx	(g4)
+ 1d8:	08 60 81 92 	st	g0,0x8(r5)
+ 1dc:	1c 20 04 35 	cmpobne	0,g0,1f8 <L33>
+ 1e0:	04 60 81 90 	ld	0x4(r5),g0
+ 1e4:	4c 20 a1 90 	ld	0x4c(r4),g4
+ 1e8:	00 10 05 86 	callx	(g4)
+ 1ec:	10 64 f1 92 	st	g14,0x410(r5)
+ 1f0:	04 60 f1 92 	st	g14,0x4(r5)
+ 1f4:	d0 ff ff 08 	b	1c4 <L43>
+
+000001f8 <L33>:
+ 1f8:	0c 62 a1 8c 	lda	0x20c(r5),g4
+ 1fc:	00 50 21 92 	st	r4,(r5)
+ 200:	28 64 f1 92 	st	g14,0x428(r5)
+ 204:	24 64 f1 92 	st	g14,0x424(r5)
+ 208:	20 64 f1 92 	st	g14,0x420(r5)
+ 20c:	1c 64 f1 92 	st	g14,0x41c(r5)
+ 210:	18 64 f1 92 	st	g14,0x418(r5)
+ 214:	14 64 f1 92 	st	g14,0x414(r5)
+ 218:	4c 64 f1 92 	st	g14,0x44c(r5)
+ 21c:	00 1e a8 5c 	mov	0,g5
+ 220:	Address 0x0000000000000220 is out of bounds.
+
+
+00000224 <L38>:
+ 224:	00 10 f5 92 	st	g14,(g4)
+ 228:	15 50 a8 59 	addo	g5,1,g5
+ 22c:	14 10 a1 59 	addo	g4,4,g4
+ 230:	f4 5f b5 33 	cmpobge	g6,g5,224 <L38>
+ 234:	10 64 f1 92 	st	g14,0x410(r5)
+ 238:	01 1e 80 5c 	mov	1,g0
+ 23c:	00 00 00 0a 	ret
+
+00000240 <_doom_cache_read>:
+ 240:	08 48 08 59 	addo	8,sp,sp
+ 244:	40 e0 c7 9a 	stl	g8,0x40(fp)
+ 248:	10 16 20 5c 	mov	g0,r4
+ 24c:	11 16 c0 5c 	mov	g1,g8
+ 250:	12 16 c8 5c 	mov	g2,g9
+ 254:	13 16 68 5c 	mov	g3,r13
+ 258:	00 1e 70 5c 	mov	0,r14
+ 25c:	24 20 04 32 	cmpobe	0,g0,280 <L46>
+ 260:	00 10 b4 90 	ld	(g0),g6
+ 264:	1c a0 05 32 	cmpobe	0,g6,280 <L46>
+ 268:	10 24 a4 90 	ld	0x410(g0),g4
+ 26c:	14 20 05 35 	cmpobne	0,g4,280 <L46>
+ 270:	24 a0 a5 90 	ld	0x24(g6),g4
+ 274:	0c 40 a4 34 	cmpobl	g4,g1,280 <L46>
+ 278:	10 a0 04 35 	cmpobne	0,g2,288 <L45>
+ 27c:	0c e0 04 32 	cmpobe	0,g3,288 <L45>
+
+00000280 <L46>:
+ 280:	01 19 80 59 	subo	1,0,g0
+ 284:	54 03 00 08 	b	5d8 <L44>
+
+00000288 <L45>:
+ 288:	14 24 a1 90 	ld	0x414(r4),g4
+ 28c:	01 1e a8 5c 	mov	1,g5
+ 290:	14 50 a0 59 	addo	g4,1,g4
+ 294:	10 24 a9 92 	st	g5,0x410(r4)
+ 298:	14 24 a1 92 	st	g4,0x414(r4)
+ 29c:	4c 24 f1 92 	st	g14,0x44c(r4)
+ 2a0:	24 a0 a5 90 	ld	0x24(g6),g4
+ 2a4:	18 01 a5 59 	subo	g8,g4,g4
+ 2a8:	08 40 a3 33 	cmpobge	g4,r13,2b0 <L47>
+ 2ac:	14 16 68 5c 	mov	g4,r13
+
+000002b0 <L47>:
+ 2b0:	18 83 6b 36 	cmpoble	r13,r14,5c8 <L49>
+
+000002b4 <L77>:
+ 2b4:	18 80 b3 59 	addo	g8,r14,g6
+ 2b8:	09 8c 55 59 	shro	9,g6,r10
+ 2bc:	0c 24 99 90 	ld	0x40c(r4),g3
+ 2c0:	ff 01 a0 8c 	lda	0x1ff,g4
+ 2c4:	13 84 32 70 	remo	g3,r10,r6
+ 2c8:	96 00 7d 58 	and	g6,g4,r15
+ 2cc:	06 3d 91 90 	ld	20c <L33+0x14>(r4)[r6*4],g2
+ 2d0:	0c 02 00 00
+ 2d4:	10 a0 04 32 	cmpobe	0,g2,2e4 <L52>
+ 2d8:	06 3d a1 90 	ld	c <cache_copy.lf+0x4>(r4)[r6*4],g4
+ 2dc:	0c 00 00 00
+ 2e0:	60 02 55 32 	cmpobe	r10,g4,540 <L51>
+
+000002e4 <L52>:
+ 2e4:	00 10 89 90 	ld	(r4),g1
+ 2e8:	01 1e 58 5c 	mov	1,r11
+ 2ec:	1c 60 ac 90 	ld	0x1c(g1),g5
+ 2f0:	90 19 a0 58 	setbit	16,0,g4
+ 2f4:	34 40 a5 35 	cmpobne	g4,g5,328 <L53>
+ 2f8:	00 30 a0 8c 	lda	ffffff80 <L85+0xfffff950>,g4
+ 2fc:	80 ff ff ff
+ 300:	8a 00 55 58 	and	r10,g4,r10
+ 304:	09 8e aa 59 	shlo	9,r10,g5
+ 308:	24 60 a4 90 	ld	0x24(g1),g4
+ 30c:	15 81 7d 59 	subo	g5,g6,r15
+ 310:	15 01 a5 59 	subo	g5,g4,g4
+ 314:	ff 21 a5 8c 	lda	0x1ff(g4),g4
+ 318:	09 0c 5d 59 	shro	9,g4,r11
+ 31c:	87 19 a0 58 	setbit	7,0,g4
+ 320:	08 c0 a2 33 	cmpobge	g4,r11,328 <L53>
+ 324:	87 19 58 58 	setbit	7,0,r11
+
+00000328 <L53>:
+ 328:	1c 60 ac 90 	ld	0x1c(g1),g5
+ 32c:	90 19 a0 58 	setbit	16,0,g4
+ 330:	5c 40 a5 32 	cmpobe	g4,g5,38c <L56>
+ 334:	09 4c a5 59 	shro	9,g5,g4
+ 338:	54 c0 a2 36 	cmpoble	g4,r11,38c <L56>
+ 33c:	0a c0 b2 59 	addo	r10,r11,g6
+ 340:	09 8e a5 59 	shlo	9,g6,g4
+ 344:	18 40 93 59 	addo	g8,r13,g2
+ 348:	44 00 95 36 	cmpoble	g2,g4,38c <L56>
+
+0000034c <L60>:
+ 34c:	13 84 2d 70 	remo	g3,g6,r5
+ 350:	05 3d a1 90 	ld	20c <L33+0x14>(r4)[r5*4],g4
+ 354:	0c 02 00 00
+ 358:	10 20 05 32 	cmpobe	0,g4,368 <L59>
+ 35c:	05 3d a1 90 	ld	c <cache_copy.lf+0x4>(r4)[r5*4],g4
+ 360:	0c 00 00 00
+ 364:	28 00 b5 32 	cmpobe	g6,g4,38c <L56>
+
+00000368 <L59>:
+ 368:	1c 60 ac 90 	ld	0x1c(g1),g5
+ 36c:	0b 50 58 59 	addo	r11,1,r11
+ 370:	0a c0 b2 59 	addo	r10,r11,g6
+ 374:	09 8e 85 59 	shlo	9,g6,g0
+ 378:	09 4c bd 59 	shro	9,g5,g7
+ 37c:	90 19 a0 58 	setbit	16,0,g4
+ 380:	0c 40 a5 32 	cmpobe	g4,g5,38c <L56>
+ 384:	08 c0 ba 36 	cmpoble	g7,r11,38c <L56>
+ 388:	c4 1f 94 31 	cmpobg	g2,g0,34c <L60>
+
+0000038c <L56>:
+ 38c:	00 10 b1 90 	ld	(r4),g6
+ 390:	09 8e 2a 59 	shlo	9,r10,r5
+ 394:	24 a0 a5 90 	ld	0x24(g6),g4
+ 398:	09 ce aa 59 	shlo	9,r11,g5
+ 39c:	05 01 45 59 	subo	r5,g4,r8
+ 3a0:	08 00 aa 33 	cmpobge	g5,r8,3a8 <L61>
+ 3a4:	15 16 40 5c 	mov	g5,r8
+
+000003a8 <L61>:
+ 3a8:	1c 24 a1 90 	ld	0x41c(r4),g4
+ 3ac:	0b 00 a5 59 	addo	r11,g4,g4
+ 3b0:	1c 24 a1 92 	st	g4,0x41c(r4)
+ 3b4:	50 a0 a5 90 	ld	0x50(g6),g4
+ 3b8:	00 10 05 86 	callx	(g4)
+ 3bc:	00 10 a1 90 	ld	(r4),g4
+ 3c0:	10 16 48 5c 	mov	g0,r9
+ 3c4:	08 20 91 90 	ld	0x8(r4),g2
+ 3c8:	54 20 a5 90 	ld	0x54(g4),g4
+ 3cc:	05 16 88 5c 	mov	r5,g1
+ 3d0:	08 16 98 5c 	mov	r8,g3
+ 3d4:	01 1e 80 5c 	mov	1,g0
+ 3d8:	00 10 05 86 	callx	(g4)
+ 3dc:	00 10 a1 90 	ld	(r4),g4
+ 3e0:	10 16 28 5c 	mov	g0,r5
+ 3e4:	50 20 a5 90 	ld	0x50(g4),g4
+ 3e8:	00 10 05 86 	callx	(g4)
+ 3ec:	2c 24 a1 90 	ld	0x42c(r4),g4
+ 3f0:	3c 24 a9 90 	ld	0x43c(r4),g5
+ 3f4:	09 01 84 59 	subo	r9,g0,g0
+ 3f8:	14 00 a4 59 	addo	g4,g0,g4
+ 3fc:	15 50 a8 59 	addo	g5,1,g5
+ 400:	2c 24 a1 92 	st	g4,0x42c(r4)
+ 404:	3c 24 a9 92 	st	g5,0x43c(r4)
+ 408:	24 40 41 32 	cmpobe	r8,r5,42c <L63>
+ 40c:	05 16 80 5c 	mov	r5,g0
+ 410:	08 60 01 39 	cmpibg	0,r5,418 <L64>
+ 414:	02 19 80 59 	subo	2,0,g0
+
+00000418 <L64>:
+ 418:	28 24 a1 90 	ld	0x428(r4),g4
+ 41c:	4c 24 81 92 	st	g0,0x44c(r4)
+ 420:	14 50 a0 59 	addo	g4,1,g4
+ 424:	28 24 a1 92 	st	g4,0x428(r4)
+ 428:	a0 01 00 08 	b	5c8 <L49>
+
+0000042c <L63>:
+ 42c:	00 10 a1 90 	ld	(r4),g4
+ 430:	00 1e 28 5c 	mov	0,r5
+ 434:	50 20 a5 90 	ld	0x50(g4),g4
+ 438:	00 10 05 86 	callx	(g4)
+ 43c:	10 16 48 5c 	mov	g0,r9
+ 440:	5c 40 59 36 	cmpoble	r11,r5,49c <L83>
+
+00000444 <L70>:
+ 444:	0c 24 a1 90 	ld	0x40c(r4),g4
+ 448:	0a 40 61 59 	addo	r10,r5,r12
+ 44c:	14 04 3b 70 	remo	g4,r12,r7
+ 450:	09 4e a9 59 	shlo	9,r5,g5
+ 454:	05 50 28 59 	addo	r5,1,r5
+ 458:	15 01 32 59 	subo	g5,r8,r6
+ 45c:	09 ce b1 59 	shlo	9,r7,g6
+ 460:	89 19 a0 58 	setbit	9,0,g4
+ 464:	08 80 a1 33 	cmpobge	g4,r6,46c <L69>
+ 468:	89 19 30 58 	setbit	9,0,r6
+
+0000046c <L69>:
+ 46c:	04 20 81 90 	ld	0x4(r4),g0
+ 470:	08 20 89 90 	ld	0x8(r4),g1
+ 474:	06 16 90 5c 	mov	r6,g2
+ 478:	11 40 8d 59 	addo	g1,g5,g1
+ 47c:	10 80 85 59 	addo	g0,g6,g0
+ 480:	00 30 00 86 	callx	0 <_cache_copy>
+ 484:	00 00 00 00
+			484: R_960_32	_cache_copy
+ 488:	07 3d 31 92 	st	r6,20c <L33+0x14>(r4)[r7*4]
+ 48c:	0c 02 00 00
+ 490:	07 3d 61 92 	st	r12,c <cache_copy.lf+0x4>(r4)[r7*4]
+ 494:	0c 00 00 00
+ 498:	ac 5f 59 31 	cmpobg	r11,r5,444 <L70>
+
+0000049c <L83>:
+ 49c:	00 10 a1 90 	ld	(r4),g4
+ 4a0:	0f 01 2a 59 	subo	r15,r8,r5
+ 4a4:	50 20 a5 90 	ld	0x50(g4),g4
+ 4a8:	00 10 05 86 	callx	(g4)
+ 4ac:	30 24 a1 90 	ld	0x430(r4),g4
+ 4b0:	40 24 a9 90 	ld	0x440(r4),g5
+ 4b4:	20 24 b1 90 	ld	0x420(r4),g6
+ 4b8:	09 01 84 59 	subo	r9,g0,g0
+ 4bc:	14 00 a4 59 	addo	g4,g0,g4
+ 4c0:	15 50 a8 59 	addo	g5,1,g5
+ 4c4:	16 00 b2 59 	addo	g6,r8,g6
+ 4c8:	30 24 a1 92 	st	g4,0x430(r4)
+ 4cc:	40 24 a9 92 	st	g5,0x440(r4)
+ 4d0:	20 24 b1 92 	st	g6,0x420(r4)
+ 4d4:	0e 41 a3 59 	subo	r14,r13,g4
+ 4d8:	08 40 a1 33 	cmpobge	g4,r5,4e0 <L72>
+ 4dc:	14 16 28 5c 	mov	g4,r5
+
+000004e0 <L72>:
+ 4e0:	00 10 a1 90 	ld	(r4),g4
+ 4e4:	50 20 a5 90 	ld	0x50(g4),g4
+ 4e8:	00 10 05 86 	callx	(g4)
+ 4ec:	08 20 89 90 	ld	0x8(r4),g1
+ 4f0:	10 16 48 5c 	mov	g0,r9
+ 4f4:	19 80 83 59 	addo	g9,r14,g0
+ 4f8:	11 c0 8b 59 	addo	g1,r15,g1
+ 4fc:	05 16 90 5c 	mov	r5,g2
+ 500:	00 30 00 86 	callx	0 <_cache_copy>
+ 504:	00 00 00 00
+			504: R_960_32	_cache_copy
+ 508:	00 10 a1 90 	ld	(r4),g4
+ 50c:	0e 40 71 59 	addo	r14,r5,r14
+ 510:	50 20 a5 90 	ld	0x50(g4),g4
+ 514:	00 10 05 86 	callx	(g4)
+ 518:	34 24 a1 90 	ld	0x434(r4),g4
+ 51c:	44 24 a9 90 	ld	0x444(r4),g5
+ 520:	24 24 b1 90 	ld	0x424(r4),g6
+ 524:	09 01 84 59 	subo	r9,g0,g0
+ 528:	14 00 a4 59 	addo	g4,g0,g4
+ 52c:	15 50 a8 59 	addo	g5,1,g5
+ 530:	16 40 b1 59 	addo	g6,r5,g6
+ 534:	34 24 a1 92 	st	g4,0x434(r4)
+ 538:	44 24 a9 92 	st	g5,0x444(r4)
+ 53c:	84 00 00 08 	b	5c0 <L84>
+
+00000540 <L51>:
+ 540:	18 24 a1 90 	ld	0x418(r4),g4
+ 544:	0f 81 2c 59 	subo	r15,g2,r5
+ 548:	14 50 a0 59 	addo	g4,1,g4
+ 54c:	18 24 a1 92 	st	g4,0x418(r4)
+ 550:	0e 41 a3 59 	subo	r14,r13,g4
+ 554:	08 40 a1 33 	cmpobge	g4,r5,55c <L75>
+ 558:	14 16 28 5c 	mov	g4,r5
+
+0000055c <L75>:
+ 55c:	00 10 a1 90 	ld	(r4),g4
+ 560:	50 20 a5 90 	ld	0x50(g4),g4
+ 564:	00 10 05 86 	callx	(g4)
+ 568:	09 8e a1 59 	shlo	9,r6,g4
+ 56c:	04 20 89 90 	ld	0x4(r4),g1
+ 570:	10 16 48 5c 	mov	g0,r9
+ 574:	11 00 8d 59 	addo	g1,g4,g1
+ 578:	19 80 83 59 	addo	g9,r14,g0
+ 57c:	11 c0 8b 59 	addo	g1,r15,g1
+ 580:	05 16 90 5c 	mov	r5,g2
+ 584:	00 30 00 86 	callx	0 <_cache_copy>
+ 588:	00 00 00 00
+			588: R_960_32	_cache_copy
+ 58c:	00 10 a1 90 	ld	(r4),g4
+ 590:	0e 40 71 59 	addo	r14,r5,r14
+ 594:	50 20 a5 90 	ld	0x50(g4),g4
+ 598:	00 10 05 86 	callx	(g4)
+ 59c:	38 24 a1 90 	ld	0x438(r4),g4
+ 5a0:	48 24 a9 90 	ld	0x448(r4),g5
+ 5a4:	24 24 b1 90 	ld	0x424(r4),g6
+ 5a8:	09 01 84 59 	subo	r9,g0,g0
+ 5ac:	14 00 a4 59 	addo	g4,g0,g4
+ 5b0:	15 50 a8 59 	addo	g5,1,g5
+ 5b4:	16 40 b1 59 	addo	g6,r5,g6
+ 5b8:	38 24 a1 92 	st	g4,0x438(r4)
+ 5bc:	Address 0x00000000000005bc is out of bounds.
+
+
+000005c0 <L84>:
+ 5c0:	24 24 b1 92 	st	g6,0x424(r4)
+ 5c4:	f0 9c 6b 31 	cmpobg	r13,r14,2b4 <L77>
+
+000005c8 <L49>:
+ 5c8:	10 24 f1 92 	st	g14,0x410(r4)
+ 5cc:	0e 16 80 5c 	mov	r14,g0
+ 5d0:	08 a0 03 35 	cmpobne	0,r14,5d8 <L44>
+ 5d4:	Address 0x00000000000005d4 is out of bounds.
+
+
+000005d8 <L44>:
+ 5d8:	40 e0 c7 98 	ldl	0x40(fp),g8
+ 5dc:	00 00 00 0a 	ret
+
+000005e0 <_doom_cache_close>:
+ 5e0:	10 16 20 5c 	mov	g0,r4
+ 5e4:	00 1e 80 5c 	mov	0,g0
+ 5e8:	48 20 01 32 	cmpobe	0,r4,630 <L85>
+ 5ec:	00 10 29 90 	ld	(r4),r5
+ 5f0:	40 60 01 32 	cmpobe	0,r5,630 <L85>
+ 5f4:	10 24 a1 90 	ld	0x410(r4),g4
+ 5f8:	38 20 05 35 	cmpobne	0,g4,630 <L85>
+ 5fc:	01 1e a0 5c 	mov	1,g4
+ 600:	10 24 a1 92 	st	g4,0x410(r4)
+ 604:	08 20 81 90 	ld	0x8(r4),g0
+ 608:	4c 60 a1 90 	ld	0x4c(r5),g4
+ 60c:	00 10 05 86 	callx	(g4)
+ 610:	04 20 81 90 	ld	0x4(r4),g0
+ 614:	4c 60 a1 90 	ld	0x4c(r5),g4
+ 618:	00 10 05 86 	callx	(g4)
+ 61c:	10 24 f1 92 	st	g14,0x410(r4)
+ 620:	04 20 f1 92 	st	g14,0x4(r4)
+ 624:	08 20 f1 92 	st	g14,0x8(r4)
+ 628:	00 10 f1 92 	st	g14,(r4)
+ 62c:	01 1e 80 5c 	mov	1,g0
+
+00000630 <L85>:
+ 630:	00 00 00 0a 	ret
+	...

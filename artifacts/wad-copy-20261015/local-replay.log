@@ -1,0 +1,412 @@
+{
+  "resident_application_arena_bytes": 8388608,
+  "heap_diagnostics": {
+    "network_irq_spanning_calls": [
+      1,
+      61
+    ],
+    "large_workload_allocation_refusals": 0,
+    "unlocked_copy_preemptions": [
+      26,
+      26
+    ],
+    "counter_hz_nominal": 4166700,
+    "irq_samples": 26145,
+    "irq_max_gap_us": 10849.593203254375,
+    "irq_max_entry_phase_us": 4739.962080303358,
+    "irq_mean_period_us": 10000.059265131755,
+    "operations": {
+      "check": {
+        "samples": 61133,
+        "max_counter_ticks": 2679,
+        "max_us": 642.9548563611492,
+        "mean_us": 472.3291178386848
+      },
+      "malloc": {
+        "samples": 18354,
+        "max_counter_ticks": 9783,
+        "max_us": 2347.901216790266,
+        "mean_us": 455.23880333311706
+      },
+      "calloc": {
+        "samples": 57,
+        "max_counter_ticks": 2006,
+        "max_us": 481.43614851081196,
+        "mean_us": 458.14370327142655
+      },
+      "realloc": {
+        "samples": 731,
+        "max_counter_ticks": 9676,
+        "max_us": 2322.2214222286225,
+        "mean_us": 441.26486933384973
+      },
+      "free": {
+        "samples": 19053,
+        "max_counter_ticks": 9836,
+        "max_us": 2360.62111503108,
+        "mean_us": 490.0123041182259
+      },
+      "share": {
+        "samples": 5381,
+        "max_counter_ticks": 1933,
+        "max_us": 463.9162886696907,
+        "mean_us": 434.98838034198167
+      },
+      "cancel": {
+        "samples": 6774,
+        "max_counter_ticks": 2038,
+        "max_us": 489.11608707130347,
+        "mean_us": 436.8415008392954
+      },
+      "empty": {
+        "samples": 32,
+        "max_counter_ticks": 6,
+        "max_us": 1.4399884800921594,
+        "mean_us": 1.3799889600883195
+      }
+    },
+    "shared_created": 673,
+    "shared_retired": 673,
+    "completed_cycles": 671,
+    "deferred_acknowledgements": 2734,
+    "rejected_operations": 1347,
+    "retained_content_checks": 2733
+  },
+  "run": "live-copy",
+  "boot": "94855ff1-240c-45ce-a28f-bfd47d4195f1",
+  "ticks": 26145,
+  "stop_reason": 1,
+  "ioctls": [
+    45,
+    31
+  ],
+  "cache_observations": null,
+  "queue_telemetry": [
+    0,
+    10
+  ],
+  "cache_completion_proven": false,
+  "secondary_reset_held": true,
+  "exception_ownership": true,
+  "broader_ram_owned": true,
+  "large_ram_mib": 12,
+  "external_queue_bytes": 192000,
+  "application_heap_bytes": 171824,
+  "heap_allocations_freed": 19079,
+  "rounds": 1,
+  "burst": null,
+  "snapshot_corruptions_rejected": 24,
+  "bulk_latency_ms": {
+    "min": 1.147524,
+    "max": 248.899563,
+    "mean": 48.693631749999994
+  },
+  "packets": {
+    "valid": true,
+    "packets": 76,
+    "protocols": {
+      "17": 10,
+      "ipv6_17": 10,
+      "6": 26,
+      "ipv6_6": 30
+    },
+    "streams": [
+      {
+        "src": "10.196.0.1",
+        "sport": 36836,
+        "dst": "10.196.0.2",
+        "dport": 9600,
+        "connection": 1,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 9600,
+        "dst": "10.196.0.1",
+        "dport": 36836,
+        "connection": 1,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 35332,
+        "dst": "fd96:196:960::2",
+        "dport": 9600,
+        "connection": 1,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 9600,
+        "dst": "fd96:196:960::1",
+        "dport": 35332,
+        "connection": 1,
+        "bytes": 4096,
+        "sha256": "d67c656e01756650d77717b0839985a056ec28ffe174601d690fc407a2ceffca",
+        "prefix": "\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"
+      },
+      {
+        "src": "10.196.0.1",
+        "sport": 49108,
+        "dst": "10.196.0.2",
+        "dport": 80,
+        "connection": 1,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "10.196.0.2",
+        "sport": 80,
+        "dst": "10.196.0.1",
+        "dport": 49108,
+        "connection": 1,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      },
+      {
+        "src": "fd96:196:960::1",
+        "sport": 56456,
+        "dst": "fd96:196:960::2",
+        "dport": 80,
+        "connection": 1,
+        "bytes": 30,
+        "sha256": "866186f7de33dacee9474d6ac770f83cecb8f35992fd6a5c3bd005137e6ab3db",
+        "prefix": "GET / HTTP/1.0\r\nHost: i960\r\n\r\n"
+      },
+      {
+        "src": "fd96:196:960::2",
+        "sport": 80,
+        "dst": "fd96:196:960::1",
+        "dport": 56456,
+        "connection": 1,
+        "bytes": 160,
+        "sha256": "2fa4659c66cca887032da3d322ca4d157c5e519453305f33014025caa773882e",
+        "prefix": "HTTP/1.0 200 OK\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nRTEMS resident IPv4/IPv6 on i960\nNo "
+      }
+    ],
+    "dns": [],
+    "retransmitted_segments": 4,
+    "preexisting_echo_streams_reset": []
+  }
+}
+{
+  "input_events": [
+    283,
+    27,
+    269,
+    13,
+    269,
+    13,
+    269,
+    13
+  ],
+  "fps_comparison_valid": true,
+  "frames": 100,
+  "full_guarded_bytes": 7372800,
+  "mailbox_pairs": [
+    {
+      "mailbox_seconds": 0.6249254199999541,
+      "dma_seconds": 0.2504358989999673,
+      "bytes": 65536
+    },
+    {
+      "mailbox_seconds": 0.5261626340000021,
+      "dma_seconds": 0.18297461000008752,
+      "bytes": 65536
+    },
+    {
+      "mailbox_seconds": 0.511792074999903,
+      "dma_seconds": 0.2658339119999482,
+      "bytes": 65536
+    },
+    {
+      "mailbox_seconds": 0.5141936239999723,
+      "dma_seconds": 0.11302895599999374,
+      "bytes": 65536
+    }
+  ],
+  "host_dma_fps": 3.569823163305014,
+  "pingpong_fps": 3.8154063943315286,
+  "improvement_percent": 6.8794228675223446,
+  "baseline_interval": [
+    5,
+    15
+  ],
+  "pingpong_interval": [
+    21,
+    50
+  ],
+  "start_to_host_observed_mean_bounds_ms": [
+    0.904513033340019,
+    31.570058066705542
+  ],
+  "ready_to_release_mean_ms": 36.802982266669915,
+  "stall": {
+    "seconds": 3.089430245000017,
+    "frames": [
+      17,
+      18
+    ],
+    "unchanged": true
+  },
+  "held_stop": true,
+  "system_dma_lease_checks": 0
+}
+{
+  "blocks": 1805,
+  "logical_bytes": 59138244,
+  "dma_payload_bytes": 59146240,
+  "successful_ioctl_seconds": 0.157835472,
+  "source_sha256": "7323bcc168c5a45ff10749b339960e98314740a734c30d4b9f3337001f9e703d",
+  "complete_generations": 1805,
+  "payload_crc": false
+}
+{
+  "timer_hz_nominal": 4166700,
+  "timer_is_elapsed_not_cpu": true,
+  "metrics": {
+    "read_total": {
+      "count": 903,
+      "seconds": 78.88993112055104
+    },
+    "frame_barrier": {
+      "count": 903,
+      "seconds": 0.003370533035735714
+    },
+    "allocation_and_loans": {
+      "count": 903,
+      "seconds": 6.2623174214606285
+    },
+    "staging_init": {
+      "count": 903,
+      "seconds": 8.296244750042
+    },
+    "release_and_returns": {
+      "count": 903,
+      "seconds": 5.737063623491012
+    },
+    "guards": {
+      "count": 26508,
+      "seconds": 35.57162430700554
+    },
+    "dma_start_to_completion": {
+      "count": 13254,
+      "seconds": 3.065719154246766
+    },
+    "transfer_total": {
+      "count": 13254,
+      "seconds": 39.646250749994
+    },
+    "response_wait": {
+      "count": 1805,
+      "seconds": 13.941798305613554
+    },
+    "service_yield": {
+      "count": 619,
+      "seconds": 3.961313989488084
+    },
+    "staging_copy": {
+      "count": 1805,
+      "seconds": 13.738066575467396
+    },
+    "benchmark_transfer": {
+      "count": 64,
+      "seconds": 0.30899416804665564
+    },
+    "benchmark_hardware": {
+      "count": 64,
+      "seconds": 0.11223774209806321
+    },
+    "benchmark_guards": {
+      "count": 128,
+      "seconds": 0.1935483716130271
+    },
+    "empty_bracket": {
+      "count": 64,
+      "seconds": 8.1359349125207e-05
+    },
+    "benchmark_verify": {
+      "count": 64,
+      "seconds": 0.609861041111671
+    },
+    "response_transfer": {
+      "count": 4229,
+      "seconds": 9.914966520267837
+    },
+    "allocation_only": {
+      "count": 903,
+      "seconds": 3.0139604483164133
+    },
+    "free_only": {
+      "count": 903,
+      "seconds": 2.7500753593971248
+    }
+  },
+  "benchmark_bytes": 2097152,
+  "benchmark_hardware_MBps": 18.684909022561214,
+  "benchmark_checked_MBps": 6.787027772263154,
+  "response_wait_excluding_response_dma_seconds": 4.026831785345717,
+  "first_frame_cache": {
+    "seconds": {
+      "runtime_read": 75.99,
+      "fill_cache": 14.08,
+      "miss_copy_to_doom": 1.92,
+      "hit_copy_to_doom": 1.54
+    },
+    "calls": {
+      "runtime_read": 878,
+      "fill_cache": 878,
+      "miss_copy_to_doom": 878,
+      "hit_copy_to_doom": 16544
+    },
+    "wire_bytes": 57499844,
+    "copied_bytes": 14617528,
+    "logical_reads": 2328,
+    "cache_hits": 16544,
+    "cache_line_misses": 112305
+  },
+  "final_cache": {
+    "seconds": {
+      "runtime_read": 78.1,
+      "fill_cache": 14.48,
+      "miss_copy_to_doom": 1.94,
+      "hit_copy_to_doom": 1.56
+    },
+    "calls": {
+      "runtime_read": 903,
+      "fill_cache": 903,
+      "miss_copy_to_doom": 903,
+      "hit_copy_to_doom": 16673
+    },
+    "wire_bytes": 59138244,
+    "copied_bytes": 14753444,
+    "logical_reads": 2371,
+    "cache_hits": 16673,
+    "cache_line_misses": 115505
+  },
+  "warm_restart_cache_ms": [
+    1630,
+    300,
+    20,
+    0
+  ],
+  "host": {
+    "pending_polls": 66505,
+    "pending_ns": 2529027585,
+    "successful_ns": 157835472,
+    "gate_ns": 13921599880,
+    "work_ns": 16281249942,
+    "serve_calls": 34155
+  }
+}
+{"rejected_mutations": 6, "original_unchanged": true}
+{"accepted_original": true, "rejected": 3, "cases": ["payload", "missing-final", "duplicate-final"]}
+{"rejected": 24, "accepted_original": true}

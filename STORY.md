@@ -3513,6 +3513,32 @@ finally measured how often the software asked the i960 to carry them again.
 The sources, binaries, imperfect first measurements and corrected evidence are
 preserved together in `artifacts/wad-profile-20261015/`.
 
+## Teaching the cache to carry four bytes
+
+The DMA profile had given us an awkward answer: the PCI engine could move data
+quickly, but our WAD cache was still carrying it one byte at a time. Across the
+bounded loading run those three loops spent almost ninety-four seconds copying
+bytes that had already arrived.
+
+The fix was small enough to inspect in the disassembly. Equally aligned pointers
+now move through `ld` and `st`, four bytes at a time, with byte prefixes and tails.
+Unequal alignments keep the old byte path. No extra byte is read past an EOF,
+and no ownership check or guard scan has been negotiated away.
+
+On the card, the same first level arrived in 117.57 seconds instead of 192.07,
+with the eighty-second engine upload counted separately. The warm restart fell
+from 4.51 to 2.89 seconds. The cache copies themselves dropped from 93.64 to
+17.98 seconds. Gameplay stayed at about 3.8 frames per second: making the loading
+screen shorter does not make the renderer faster.
+
+The hundred frames passed sixty-eight full audit pairs at the same cadence as
+before, held-buffer STOP and final heap drain. The controlled pictures matched
+the earlier card run, including the same four pixels that still differ from the
+native oracle. Captures survived replay and thirty-three deliberate mutations
+were rejected. The next costs are now easier to see: staging, guards, allocation
+and repeated read-ahead. Those are the next experiments, not permission to stop
+checking who owns the memory.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
@@ -3574,8 +3600,10 @@ So, the ledger, honestly kept:
   warm restart rises from 2.84 to 4.24 seconds. It remains opt-in while the
   read-ahead policy is refined. Later full-audit profiling observes roughly
   20.6 MB/s in the DMA completion bracket, while byte-copy loops in the WAD
-  cache consume about 94 seconds across the bounded loading test. Cache copies,
-  not a faster PCI setting, are the next measured optimization target.
+  cache consume about 94 seconds across the bounded loading test. The subsequent aligned word-copy change reduces those copies to about 18
+  seconds, startup to 117.57 seconds and warm restart to 2.89 seconds, with
+  68 full audit pairs and unchanged ownership checks. Staging and read-ahead
+  remain the next loading targets.
 - **Recovery remains untested.** Firmware health replies are also not a disk-I/O
   test or a long-duration stability claim. Those gaps stay in the ledger.
 

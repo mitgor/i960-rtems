@@ -1,5 +1,22 @@
 # Single-IWAD cache and engine backend
 
+## Current cache-copy implementation (2026-10-15)
+
+The engine backend supports 512-, 4096- and 65536-byte negotiated reads; ring
+mode uses 128 cache lines and one aligned 64 KiB read-ahead window. The older
+milestones below describe how this evolved, not the current maximum geometry.
+
+All three data-copy sites use the same exact-bounds helper. Equally aligned
+source/destination pointers use a byte prefix, aligned 32-bit words and a byte
+tail. Unequal alignments use bytes. This never reads beyond a short EOF line,
+requires no unaligned i960 accesses, and preserves metadata publication after
+the successful copy. Source and destination are distinct owned allocations;
+the helper is not `memmove`. DMA pinning, cache policy and all full audits are
+unchanged. `rtems/dma/wad_ring/test_cache.py` tests exact allocation edges,
+all alignments and multi-window reads under ASan/UBSan with profiling off/on.
+
+Physical results and matched baseline: [cache-copy evidence](../../../../artifacts/wad-copy-20261015/README.md).
+
 **Original host/cross-build milestone; the cache bridge now also passes a
 closed card probe.** The complete
 DoomGeneric engine uses this backend in six 2,100-frame host runs. All 12,600

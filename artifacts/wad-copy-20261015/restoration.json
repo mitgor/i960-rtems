@@ -1,0 +1,11 @@
+{
+  "url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "status": 200,
+  "bytes": 2891,
+  "rtems": true,
+  "boot_id": "9bef2976-8b43-4c8d-bd4e-1e0b719249b7",
+  "supervisor": 2651,
+  "relay": 2653,
+  "driver": "dac960auto",
+  "doom_test_server": "closed"
+}
