@@ -1,0 +1,12 @@
+{
+  "pointer": "0xc0710000",
+  "bytes": 524288,
+  "blocks": 16,
+  "metadata_sha256": "8b49e75e0e6882d2c397fa3c1c723b86d7018c6030a95587ab68bf5d398c8b5f",
+  "reserve_and_release_passed": true,
+  "staging_page": "0xc078f000",
+  "target_page": "0xc0710000",
+  "copied_bytes": 4096,
+  "destination_fnv": "0x6121fdc5",
+  "host_staging_restored": true
+}

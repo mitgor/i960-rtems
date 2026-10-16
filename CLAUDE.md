@@ -1,5 +1,20 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID card-side even-page copy accepted — 2026-10-17
+
+Read `artifacts/current/accele160-pagecopy-20261016/README.md` first. Exact
+firmware SHA-256 `183eed37…d197f4a` persisted on new card `37:09.1`; two
+guarded full-flash reads matched before testing. Under a fixed 512 KiB stock
+owner at `c0710000`, operation 6 copied 4 KiB from odd staging page
+`c078f000` into even page `c0710000` and reported destination FNV
+`0x6121fdc5`, matching the staged data. Staging, controls, loader page and all
+allocator count/owner words restored; reserve/copy/release status and residual
+were zero; three modules unloaded; post-call flash and independent snapshots
+passed. Old `37:04.1` stayed unbound. This is one bounded page, not a general
+RTEMS loader. Varied indexes, bad-checksum rejection, whole-image digest,
+cache-safe execution and RTEMS BSP remain unproved. See
+`docs/hardware/accele160-upload-plan.md` for the next gates.
+
 ## AcceleRAID retained 512 KiB grant accepted — 2026-10-16
 
 Read `artifacts/current/accele160-retained-20261016/README.md` first. The exact
