@@ -1,0 +1,19 @@
+{
+  "stock_sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "in_memory_candidate_sha256": "6d18c80c46eb9cd8d2c96470da19c82e0d1e6ca8999a598cfb10675c25ea3650",
+  "handler_sha256": "0ea35c1381dd17938cfc42b112a353aad6cb5299036e17c75b9e586d463f0e44",
+  "handler_bytes": 148,
+  "handler_entry": "0xc000e1f0",
+  "reject_target": "0xc0023790",
+  "success_target": "0xc004e940",
+  "ioctl_8e_unchanged": "0xc00234f8",
+  "ioctl_8f_loader_write": "0xc00234fc -> 0xc000e1f0",
+  "changed_flash_bytes": 157,
+  "loader_checksum": "0x22d768a8",
+  "trailer_checksum": "0x22e47daf",
+  "runtime_sha256_unchanged": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
+  "known_checksums_pass": true,
+  "image_written": false,
+  "card_executed": false,
+  "boot_or_recovery_qualified": false
+}

@@ -1,5 +1,18 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID bounded PING candidate — 2026-10-16
+
+Stock Linux GEM writes all 64 mailbox bytes; the stock firmware copies four
+16-byte quads into the command object before IOCTL dispatch. Static completion
+tracing supports a status-0, residual-0 zero-DMA response. A strict 148-byte
+i960 PING handler is assembled in the copied-loader cave: accepted envelopes
+reach stock completion; every mismatch reaches stock unsupported. An in-memory
+candidate changes 157 flash bytes, preserves the compressed/runtime image and
+passes both known additive checksums. Six helper and eleven startup tests pass.
+**No candidate image was exported, programmed or run on the card**; nonce
+echo/authentication, hook timing, boot and recovery are unproved. The old card
+was untouched. [Exact source, ABI trace and receipt](artifacts/current/accele160-ping-handler-20261016/README.md).
+
 ## AcceleRAID offline `0x8f` routing rehearsal — 2026-10-16
 
 A 28-byte loader-cave hook and four-byte loader callsite change can be

@@ -4194,6 +4194,22 @@ the changed bytes fit on a short whitelist. It is deliberately a doorbell
 that still answers "no": we have a map for routing a command, not yet the
 handler, response, boot proof or recovery confidence needed to program it.
 
+The next offline pass put an actual answer behind that door. The Linux GEM
+driver publishes all sixty-four command bytes, and the card's firmware copies
+all four sixteen-byte chunks into the object its IOCTL dispatcher reads. The
+same stock firmware has a normal completion route for zero status, while the
+unsupported route we already measured yields host status two. That gave us a
+small, testable contract: a versioned, zero-DMA PING with an `I960` signature
+and nonzero nonce may return status zero; every other shape still goes to the
+old unsupported handler. The i960 implementation fits in 148 bytes of the
+copied loader's erased tail. We checked its exact machine code, assembled an
+image only in memory, and found that the compressed program stayed identical
+while both known checksums passed. Nothing was programmed or run. In
+particular, we have not yet proved the boot-time table write survives startup
+or that we can recover this particular card if a flash experiment fails. The
+nonce is checked, not echoed; a future live success status would still need
+careful attribution.
+
 *For the reproducible version of these last acts, see
 [ROM-FETCH-LIVE.md](docs/loader/ROM-FETCH-LIVE.md),
 [FIRMWARE-PROGRAMMED.md](docs/firmware/FIRMWARE-PROGRAMMED.md), and

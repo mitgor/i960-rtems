@@ -118,6 +118,13 @@ See `artifacts/current/flat-planes-20261016/README.md` and `game/doom/flat_plane
 <!-- /flat-planes-current -->
 
 Read `CURRENT-FINDINGS.md` first. It supersedes historical status blocks below.
+The latest AcceleRAID candidate is
+`artifacts/current/accele160-ping-handler-20261016/`: a bounded 148-byte i960
+PING handler with a structurally audited **in-memory only** image. The traced
+mailbox-to-object copy preserves all 64 bytes, and the completion route predicts
+status 0/residual 0, but no patched image has booted or run. Its nonce is an
+admission marker, not an authenticated response. Do not flash it on the basis
+of the receipt; first prove hook timing/table persistence and rollback/recovery.
 For AcceleRAID 160, the stock `0x8f` zero-DMA command completed with status 2
 and zero residual on the new card only; this is an unsupported result, not code
 execution. The native PING validator and exact live capture are in
@@ -126,12 +133,13 @@ execution. The native PING validator and exact live capture are in
 unbound. Keep BDF `0000:37:09.1` explicit, leave old `0000:37:04.1` untouched,
 and do not treat a same-boot driver reload as reliable. No new-card firmware
 patch has been programmed or recovery tested.
-The subsequent `artifacts/current/accele160-dispatch-rehearsal-20261016/`
+The earlier `artifacts/current/accele160-dispatch-rehearsal-20261016/`
 assembles an offline loader hook and validates an in-memory image with known
 checksums. Its `0x8f` target branches to stock unsupported for **every**
 request; it is a route rehearsal, not a working PING or flash candidate. Do
-not program it or infer boot from its structural receipt. Resolve command-byte
-mapping, response semantics and recovery before active firmware work.
+not program it or infer boot from its structural receipt. The later bounded
+PING candidate resolves the static command-byte and completion trace, while
+live behavior and recovery remain open.
 `artifacts/README.md` defines retention: keep recovery/build inputs, test fixtures
 and concise current results; avoid repeated full build archives and obsolete
 binaries. Full audits and ownership checks remain mandatory during hardware tests.

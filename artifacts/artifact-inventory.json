@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 3731,
-      "sha256": "c71be2b868db345623744eb2979ed153d82549381a09e669724824684782d3bc"
+      "size": 3816,
+      "sha256": "14215782ce13a876eaab3a67f66fe01162a77f540c9e612cf515c63cc01b91b1"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2466,6 +2466,36 @@
       "path": "artifacts/current/accele160-ping-contract-20261016/stock-8f.json",
       "size": 575,
       "sha256": "9bd332ec18646179c3d43e293a501b7ef1c28eb1184964ca2e5289d4d26eb813"
+    },
+    {
+      "path": "artifacts/current/accele160-ping-handler-20261016/README.md",
+      "size": 5727,
+      "sha256": "24e364914cf8112e9dc7fdba19f99739de6d1e49d2436df753653e74e8888ed1"
+    },
+    {
+      "path": "artifacts/current/accele160-ping-handler-20261016/disassembly.txt",
+      "size": 1511,
+      "sha256": "48ee9945a81c914244c8f0b382bff7f9682ce0072b3f3c31e966a70fd9393b3e"
+    },
+    {
+      "path": "artifacts/current/accele160-ping-handler-20261016/myrs.c",
+      "size": 91155,
+      "sha256": "22df649eaea262c4baa149aa803ea395b89b629395445d4e09014e823a8a0aa2"
+    },
+    {
+      "path": "artifacts/current/accele160-ping-handler-20261016/myrs.h",
+      "size": 37780,
+      "sha256": "4e6b8d12cee6a289c2deab6d2e57d44b7fbe902dc5cee59c2a44385d729b8924"
+    },
+    {
+      "path": "artifacts/current/accele160-ping-handler-20261016/ping_handler.bin",
+      "size": 148,
+      "sha256": "0ea35c1381dd17938cfc42b112a353aad6cb5299036e17c75b9e586d463f0e44"
+    },
+    {
+      "path": "artifacts/current/accele160-ping-handler-20261016/receipt.json",
+      "size": 816,
+      "sha256": "5082d2af8df96f826637074f3f89c46d350e4f00cd41b65bc6f196a548f49f79"
     },
     {
       "path": "artifacts/current/accele160-ram-route-20261016/README.md",
