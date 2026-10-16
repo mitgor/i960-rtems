@@ -1,0 +1,3 @@
+PASS exact quotient/saturation/sign oracle: 1120252 pairs; legacy INT_MIN/0 excluded
+PASS telemetry: explicit opt-in, schema/mode/check count and reserved padding; ten refusals
+PASS independent fast mode retains strict reserved-tail validation

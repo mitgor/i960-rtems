@@ -2,7 +2,8 @@
 
 `--fixed-div-profile` instruments each pinned-source call site and runs 32
 bounded differential comparisons per display. `--fast-fixed-div` selects the
-candidate; it currently requires the profiling flag. Both are opt-in. Keep
+exact candidate independently. Omit `--fixed-div-profile` to compile out its
+per-call timers and per-frame differential self-tests. Both are opt-in. Keep
 fixed quality, full audits and ownership checks for comparisons.
 
 The original signed 64-bit helper is preserved as `doom_div_legacy`. The new
@@ -32,6 +33,12 @@ and differential-test overhead must be stated when reporting FPS.
 
 Run `python3 game/doom/fixed_div/test.py` for randomized and saturation-boundary
 comparisons plus strict schema/mode/padding refusals. Native tests do not execute
-i960 instructions; on-card differential checks are required before acceptance.
+i960 instructions. The exact arithmetic was qualified with on-card differential
+checks in the profiled experiment; unprofiled builds need separate matched card
+acceptance. `test_patch.py` checks both transforms against the pinned source.
 See [experiment](../../../artifacts/fixeddiv-20261016/PLAN.md) for the matched-run
 plan. The evidence report records the physical acceptance scope and measured costs.
+
+The [unprofiled-divide acceptance](../../../artifacts/divplay-20261016/README.md)
+measures 6.224 → 6.412 FPS with identical images and full audits. Only divide
+instrumentation is absent; renderer CPU, frame and WAD counters remain enabled.

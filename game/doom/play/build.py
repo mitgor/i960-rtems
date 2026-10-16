@@ -3,7 +3,6 @@
 import argparse,hashlib,json,shutil,subprocess,tarfile,zipfile
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--dma',action='store_true');p.add_argument('--pipeline',action='store_true');p.add_argument('--pingpong',action='store_true');p.add_argument('--wad-ring',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--peer-yield',action='store_true');p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--frame-profile',action='store_true');p.add_argument('--no-fnv',action='store_true');p.add_argument('--direct-frame',action='store_true');p.add_argument('--presentation-test',action='store_true');p.add_argument('--low-detail',action='store_true');p.add_argument('--runtime-detail',action='store_true');p.add_argument('--detail-test',action='store_true');p.add_argument('--cpu-profile',action='store_true');p.add_argument('--column-test',action='store_true');p.add_argument('--fast-memory',action='store_true');p.add_argument('--fast-render',action='store_true');p.add_argument('--fast-columns',action='store_true');p.add_argument('--fixed-div-profile',action='store_true');p.add_argument('--fast-fixed-div',action='store_true');a=p.parse_args()
-if a.fast_fixed_div:assert a.fixed_div_profile
 if a.fixed_div_profile:a.frame_profile=True
 assert not (a.fast_columns and a.column_test)
 if a.runtime_detail:assert a.pipeline and not (a.column_test or a.detail_test or a.presentation_test)

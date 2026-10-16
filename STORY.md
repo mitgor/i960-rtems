@@ -3791,6 +3791,36 @@ about every map. The earlier menu-timing discrepancy still needs input-consumpti
 tracing, and the profiler still needs to come out before we quote a new ordinary
 play rate. A smaller job for division was enough progress for this experiment.
 
+## Taking the divide profiler out
+
+The arithmetic had earned its place, but it was still carrying its measuring
+instruments. Every divide read a timer, and every display compared another 32
+answers against the original routine. Useful evidence, but not work the game
+needed to do forever.
+
+We separated the switches. The exact divide could now stand on its own, with
+Doom calling its usual entry point. The original signed fallback stayed. The
+actual C and assembly objects were identical to the ones we had already tested
+on the card. The divide counters and self-tests disappeared from the linked
+image; the frame, CPU and WAD counters stayed for the comparison.
+
+Another four 520-frame runs put the original at 6.224 frames per second and the
+exact divide at 6.412. The two candidate runs were almost indistinguishable:
+6.413 and 6.410. Rendering fell from 141.25 to 136.93 milliseconds, mostly in
+the walls. Delivery did not improve. It was a three-percent gain, not a shortcut
+to ten frames per second, and worth keeping on its own terms.
+
+All the pictures agreed again. We kept 230 full paired audits, stalled the host
+with both slots held, stopped the engine with frames outstanding, and checked
+that the heap drained. The largest interrupt gap was 10.79 milliseconds. The
+same four pixels still separated the native oracle from the card. Removing the
+divide profiler had not removed the surrounding ownership or audit checks.
+
+The option stays explicit. One scene at low detail is a useful qualification,
+not every map. The earlier menu discrepancy still deserves a record of which
+frame actually consumed each key. For now, the processor spends a little less
+time dividing, and the evidence for that claim fits beside the code.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

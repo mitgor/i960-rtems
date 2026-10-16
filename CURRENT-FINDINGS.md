@@ -1,5 +1,29 @@
 # Current findings and evidence — 2026-10-16
 
+<!-- divplay-current -->
+**2026-10-16 exact divide qualified without divide profiling:** `--fast-fixed-div`
+now works independently of `--fixed-div-profile`; both remain opt-in. Fresh
+520-frame A/B/B/A runs measure **6.224 → 6.412 FPS (+3.01%)**, renderer
+**141.25 → 136.93 ms** (4.325 ms sooner), sampled CPU 138.66 → 134.35 ms.
+Frame/CPU/WAD counters remain; only divide timers and per-frame arithmetic
+self-tests are compiled out. Do not compare this directly with profiled FPS.
+
+All **2,080 corresponding images agree**, **230 full paired audits** pass,
+plus full replay/tamper, stalled-slot, held STOP and heap-drain tests. All 1,952
+observed HTTP payloads match. Maximum IRQ gap 10.792 ms. No demonstrated HTTP
+latency improvement (4.884 → 5.001 ms completion-observed to availability).
+Ownership and full audits are unchanged; protected point-side object and exact
+arithmetic objects retain their accepted hashes. No flash writes. Exact builds,
+sources and captures: `artifacts/divplay-20261016/README.md`.
+
+Next: trace frame/tic input consumption to explain the historical menu discrepancy,
+then broader scenes/high detail and the next measured BSP/memory optimization.
+Keep quality-reducing options explicit. This batch does not resolve the historical
+menu discrepancy or establish performance for every map.
+Public IPv6 HTTP is restored (HTTP 200, 2,890 bytes), boot
+`fa881b83-8ca6-47fc-8914-1e3f1d34cad3`; public relay owns the card.
+<!-- /divplay-current -->
+
 <!-- fixeddiv-current -->
 **2026-10-16 exact divide measured, opt-in:** add `--fixed-div-profile` and
 `--fast-fixed-div` to the fixed-column/span build. Four matched 520-frame runs

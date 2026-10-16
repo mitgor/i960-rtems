@@ -17,15 +17,17 @@ of that parallel research work.
    benchmark builds remain fixed. See [controls and proof](../../artifacts/columns-20261015/QUALITY.md).
 4. **Measured, opt-in:** exact bounded FixedDiv via unsigned i960 `ediv`.
    `--fixed-div-profile` measures 47 source call sites; `--fast-fixed-div`
-   selects the candidate and currently requires that profiling flag. Matched
+   selects the candidate (the original batch required profiling). Matched
    instrumented A/B/B/A: **6.047 → 6.309 FPS (+4.34%)**, renderer 144.94 →
    138.08 ms, inclusive divide brackets 9.588 → 3.669 ms/frame. All 2,080 images
    and call-count traces agree; 231 full paired audits and 66,560 on-card
    arithmetic comparisons pass. See [evidence](../../artifacts/fixeddiv-20261016/README.md).
    Preserve saturation, signs, rounding and the original INT_MIN fallback.
-5. **Next:** qualify the exact divide without per-call profiling/self-test
-   overhead. Do not equate this instrumented benchmark with ordinary-play FPS.
-6. **Validation follow-up:** record the frame/tic consuming scripted input;
+5. **Done, opt-in:** exact divide without its profiling/self-tests. Fresh matched
+   A/B/B/A measures **6.224 → 6.412 FPS (+3.01%)**, renderer 141.25 → 136.93 ms.
+   All 2,080 images, 230 full paired audits and lifecycle/replay/tamper checks pass.
+   Frame/CPU/WAD counters remain. See [evidence](../../artifacts/divplay-20261016/README.md).
+6. **Next — validation follow-up:** record the frame/tic consuming scripted input;
    the latest batch agrees, but it does not explain the earlier transient menu
    difference in the asynchronous pipeline.
 7. Then test bounded BSP changes, further selective compiler settings, measured

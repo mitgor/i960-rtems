@@ -80,20 +80,20 @@ if a.fast_render:
  apply_render=module.apply
  shutil.copyfile(here/'render/span.h',src/'span.h')
  apply_render(src,patch)
-if a.fast_fixed_div:assert a.fixed_div_profile
-if a.fixed_div_profile:
+if a.fixed_div_profile or a.fast_fixed_div:
  assert a.platform_runtime and a.play
  import importlib.util
  spec=importlib.util.spec_from_file_location('fixed_div_patch',here/'fixed_div/patch.py')
  module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
- module.apply(src,patch,a.fast_fixed_div)
- flags+=['-DDOOM_FIXED_DIV_PROFILE']
+ module.apply(src,patch,a.fast_fixed_div,a.fixed_div_profile)
+ if a.fixed_div_profile:flags+=['-DDOOM_FIXED_DIV_PROFILE']
  if a.fast_fixed_div:flags+=['-DDOOM_FAST_FIXED_DIV']
 # The exact same instrument-free engine is used for target sizing.
 objects=re.search(r'^SRC_DOOM = (.*)$',(src/'Makefile').read_text(),re.M)[1].split()
 sources=[src/(s[:-2]+'.c') for s in objects if s!='doomgeneric_xlib.o']
 if a.column_test:sources += [src/'column.c',src/'selftest.c'] + ([src/'column.S'] if a.target=='i960' else [])
-if a.fixed_div_profile:sources += [src/'fixed_divide.c',src/'fixed_profile.c'] + ([src/'fixed_divide.S'] if a.target=='i960' else [])
+if a.fixed_div_profile or a.fast_fixed_div:sources += [src/'fixed_divide.c'] + ([src/'fixed_divide.S'] if a.target=='i960' else [])
+if a.fixed_div_profile:sources.append(src/'fixed_profile.c')
 if a.fast_columns:sources.append(src/'column.c')
 if a.point_side_o0:sources.append(src/'r_point_side.c')
 out=work/a.target;out.mkdir(exist_ok=True)

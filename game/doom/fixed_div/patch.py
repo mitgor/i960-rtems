@@ -1,9 +1,16 @@
 """Stable per-source-call-site profiling; no approximate division."""
 import re,json,shutil
 from pathlib import Path
-def apply(src,patch,fast):
+def apply(src,patch,fast,profile=True):
  here=Path(__file__).resolve().parent
  patch('m_fixed.c','fixed_t FixedDiv(fixed_t a, fixed_t b)','fixed_t doom_div_legacy(fixed_t a, fixed_t b)')
+ if not profile:
+  assert fast
+  # Preserve every call site and the original ABI; omit timers and self-tests.
+  with (src/'m_fixed.c').open('a') as out:
+   out.write('\nextern int doom_div_fast(int,int);\nfixed_t FixedDiv(fixed_t a,fixed_t b){return doom_div_fast(a,b); }\n')
+  for name in ('divide.c','divide.S'):shutil.copyfile(here/name,src/('fixed_'+name))
+  return
  sites=[]
  for f in sorted(src.glob('*.c')):
   if f.name=='m_fixed.c':continue

@@ -1,0 +1,16 @@
+{
+  "build": {
+    "memory_bytes": 818992,
+    "file_bytes": 434824,
+    "admission_bytes": 434824
+  },
+  "build-fast": {
+    "memory_bytes": 819184,
+    "file_bytes": 435016,
+    "admission_bytes": 435016
+  }
+}
+c4e7e522441d9847d9c01b8ee9d33a6b39b5062a41833bc3bdc3c407ae5d30d4  build-fast/engine-cross/i960/fixed_divide.o
+c4e7e522441d9847d9c01b8ee9d33a6b39b5062a41833bc3bdc3c407ae5d30d4  /home/mit/i960-fixeddiv-20261016/build-fast/engine-cross/i960/fixed_divide.o
+695b2ad5cd8803ad1cb20d9fdfd3477ee21241260ee36ebb20191e0c75ed4d74  build-fast/engine-cross/i960/fixed-divide-asm.o
+695b2ad5cd8803ad1cb20d9fdfd3477ee21241260ee36ebb20191e0c75ed4d74  /home/mit/i960-fixeddiv-20261016/build-fast/engine-cross/i960/fixed-divide-asm.o

@@ -8,7 +8,6 @@ def fnv(data):
  return h
 def decode(raw,g,test=False,options=None):
  options=options or {}
- assert not options.get("fast_fixed_div") or options.get("fixed_div_profile")
  assert len(raw)==65536
  w=struct.unpack_from('<16I',raw,OFFSET);d=dict(zip(NAMES,w))
  assert w[:3]==(0x31524650,1,g) and w[3] in (0,1,2,3) and w[14:]==(10,0)
@@ -51,7 +50,6 @@ def decode(raw,g,test=False,options=None):
 
 def preflight(admission,pipeline,pipeline_test,wad_load_test):
  if admission.get("fixed_div_profile"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer")
- if admission.get("fast_fixed_div"):assert admission.get("fixed_div_profile")
  if any(admission.get(k) for k in ('runtime_detail','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')):
   assert pipeline and admission.get('double_buffer'), 'presentation features require admitted two-slot ownership'
  if admission.get('runtime_detail'):

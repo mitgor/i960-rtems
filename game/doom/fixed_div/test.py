@@ -36,3 +36,12 @@ try:decode(raw,1)
 except AssertionError:pass
 else:raise AssertionError('profile requires explicit opt-in')
 print('PASS telemetry: explicit opt-in, schema/mode/check count and reserved padding; ten refusals')
+
+# Fast arithmetic does not authorize telemetry in a non-profiled frame.
+raw[65024:]=bytes(512)
+decode(raw,1,options=dict(fast_fixed_div=True))
+raw[65024]=1
+try:decode(raw,1,options=dict(fast_fixed_div=True))
+except AssertionError:pass
+else:raise AssertionError('unprofiled fast mode must reject nonzero reserved tail')
+print('PASS independent fast mode retains strict reserved-tail validation')
