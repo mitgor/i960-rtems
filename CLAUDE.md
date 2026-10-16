@@ -17,8 +17,14 @@ The exact live receipts are under `artifacts/current/accele160-ramprobe-20261016
 **Do not mistake this for a general loader or RAM grant.** Operation 2 only
 accepts its embedded 80-byte payload. The read-only high-DRAM survey in
 `docs/hardware/accele160-memory-map.md` found zeros but proved no allocator or
-exclusive ownership. RTEMS, web and Doom remain old-card-only until chunked
-upload, owned arena, timer/IRQ and STOP are ported. A temporary
+exclusive ownership. A later read-only capture found the stock allocator's
+256-entry count/owner arrays: lower blocks 154–191 (1,245,184 bytes) and
+upper blocks 195–241 (1,540,096 bytes) are currently free, but no allocation
+has been granted. `c0066b90`/`c0066430` are the decoded allocation path;
+`c0066fc0` is the stock release path. See the memory-map document and pinned
+table parser before designing the next helper. RTEMS, web and Doom remain
+old-card-only until an owned reservation, chunked upload, timer/IRQ and STOP
+are ported. A temporary
 `/etc/modprobe.d/i960-accele160-temporary.conf` still blacklists `myrs` so
 `myrsread` can bind first after a cold boot; record/remove it when ending this
 new-card development session. Never unload a retained pending command.

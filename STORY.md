@@ -4333,3 +4333,13 @@ kilobytes just for its image, and Doom needs an 8 MiB arena. We have the
 execution foothold and a reliable aperture; the next act is to establish
 ownership, carry a larger validated image across in chunks, and give the new
 board its own timer, interrupt, STOP, network and frame-delivery contracts.
+
+We could narrow the memory question without claiming an allocation. Following
+the stock image-read command through the firmware led to its own memory
+allocator. It counts 32 KiB blocks, records the caller beside each count, and
+hands back an address only after finding a contiguous run. We read that table
+twice through the same guarded aperture. Both copies agreed: one pool had 38
+free blocks in a row, the other 47. That is enough space for a small RTEMS
+image if a future helper can request and hold it through the stock allocator.
+It is far short of Doom's 8 MiB arena. We still have not asked the allocator
+for a block; reading its book is not the same as having our name written in it.

@@ -1,0 +1,117 @@
+
+/home/mit/i960-accele160-ramprobe-20261016/runtime-stock-expanded.bin:     file format binary
+
+
+Disassembly of section .data:
+
+c0066b80 <.data+0x56b80>:
+c0066b80:	65 72 3d 25 	testne	7
+c0066b84:	58 00 00 00 	.word	0x00000058
+	...
+c0066b90:	10 48 08 59 	addo	16,sp,sp
+c0066b94:	11 16 20 5c 	mov	g1,r4
+c0066b98:	84 30 00 5a 	cmpi	r4,0
+c0066b9c:	10 16 28 5c 	mov	g0,r5
+c0066ba0:	2c 00 00 15 	bne	0xc0066bcc
+c0066ba4:	04 1e 80 5c 	mov	4,g0
+c0066ba8:	00 30 88 8c 	lda	0xc0066ac0,g1
+c0066bac:	c0 6a 06 c0
+c0066bb0:	00 1e 90 5c 	mov	0,g2
+c0066bb4:	00 1e 98 5c 	mov	0,g3
+c0066bb8:	00 1e a0 5c 	mov	0,g4
+c0066bbc:	00 1e a8 5c 	mov	0,g5
+c0066bc0:	80 f7 00 09 	call	0xc0076340
+c0066bc4:	00 1e 80 5c 	mov	0,g0
+c0066bc8:	00 00 00 0a 	ret
+c0066bcc:	01 1e 88 5c 	mov	1,g1
+c0066bd0:	04 16 98 5c 	mov	r4,g3
+c0066bd4:	40 e0 97 8c 	lda	0x40(fp),g2
+c0066bd8:	58 f8 ff 09 	call	0xc0066430
+c0066bdc:	28 20 04 3d 	cmpibne	0,g0,0xc0066c04
+c0066be0:	04 1e 80 5c 	mov	4,g0
+c0066be4:	00 30 88 8c 	lda	0xc0066b00,g1
+c0066be8:	00 6b 06 c0
+c0066bec:	05 16 90 5c 	mov	r5,g2
+c0066bf0:	04 16 98 5c 	mov	r4,g3
+c0066bf4:	00 1e a0 5c 	mov	0,g4
+c0066bf8:	00 1e a8 5c 	mov	0,g5
+c0066bfc:	40 e0 f7 92 	st	g14,0x40(fp)
+c0066c00:	20 00 00 08 	b	0xc0066c20
+c0066c04:	40 e0 97 90 	ld	0x40(fp),g2
+c0066c08:	04 1e 80 5c 	mov	4,g0
+c0066c0c:	00 30 88 8c 	lda	0xc0066b40,g1
+c0066c10:	40 6b 06 c0
+c0066c14:	05 16 98 5c 	mov	r5,g3
+c0066c18:	04 16 a0 5c 	mov	r4,g4
+c0066c1c:	00 1e a8 5c 	mov	0,g5
+c0066c20:	20 f7 00 09 	call	0xc0076340
+c0066c24:	40 e0 87 90 	ld	0x40(fp),g0
+c0066c28:	00 00 00 0a 	ret
+c0066c2c:	00 00 00 00 	.word	0x00000000
+c0066c30:	0a 47 65 74 	.word	0x7465470a
+c0066c34:	43 61 63 68 	logr	r3,r13,?
+c0066c38:	65 61 62 6c 	cvtzri	r5,?
+c0066c3c:	65 20 6d 65 	modify	sf5,sf20,sf13
+c0066c40:	6d 6f 72 79 	.word	0x79726f6d
+c0066c44:	20 66 61 69 	sinrl	pfp,?
+c0066c48:	6c 65 64 2c 	.word	0x2c64656c
+c0066c4c:	20 6e 65 65 	dcctl	0,g5,sf12
+c0066c50:	64 20 74 6f 	.word	0x6f742064
+c0066c54:	20 70 72 6f 	.word	0x6f727020
+c0066c58:	76 69 64 65 	.word	0x65646976
+c0066c5c:	20 63 61 6c 	.word	0x6c616320
+c0066c60:	6c 65 72 20 	testno	14
+c0066c64:	49 44 00 00 	.word	0x00004449
+	...
+c0066c70:	0a 47 65 74 	.word	0x7465470a
+c0066c74:	43 61 63 68 	logr	r3,r13,?
+c0066c78:	65 61 62 6c 	cvtzri	r5,?
+c0066c7c:	65 20 6d 65 	modify	sf5,sf20,sf13
+c0066c80:	6d 6f 72 79 	.word	0x79726f6d
+c0066c84:	20 66 61 69 	sinrl	pfp,?
+c0066c88:	6c 65 64 2c 	.word	0x2c64656c
+c0066c8c:	20 42 79 74 	.word	0x74794220
+c0066c90:	65 43 6f 75 	.word	0x756f4365
+c0066c94:	6e 74 3d 25 	testne.f	7
+c0066c98:	58 2c 20 43 	.word	0x43202c58
+c0066c9c:	61 6c 6c 65 	intctl	1,sf13
+c0066ca0:	72 3d 25 58 	not	18,sf4
+	...
+c0066cb0:	0a 47 65 74 	.word	0x7465470a
+c0066cb4:	43 61 63 68 	logr	r3,r13,?
+c0066cb8:	65 61 62 6c 	cvtzri	r5,?
+c0066cbc:	65 20 6d 65 	modify	sf5,sf20,sf13
+c0066cc0:	6d 6f 72 79 	.word	0x79726f6d
+c0066cc4:	20 73 75 63 	.word	0x63757320
+c0066cc8:	63 65 73 73 	.word	0x73736563
+c0066ccc:	66 75 6c 2c 	.word	0x2c6c7566
+c0066cd0:	20 61 64 64 	daddc	sf0,g1,sf12
+c0066cd4:	72 3d 20 25 	testne.f	4
+c0066cd8:	58 2c 20 42 	.word	0x42202c58
+c0066cdc:	79 74 65 43 	.word	0x43657479
+c0066ce0:	6f 75 6e 74 	.word	0x746e756f
+c0066ce4:	3d 25 58 2c 	.word	0x2c58253d
+c0066ce8:	20 43 61 6c 	.word	0x6c614320
+c0066cec:	6c 65 72 3d 	cmpibne	14,r9,0xc0067258
+c0066cf0:	25 58 00 00 	.word	0x00005825
+	...
+c0066d00:	10 48 08 59 	addo	16,sp,sp
+c0066d04:	11 16 20 5c 	mov	g1,r4
+c0066d08:	84 30 00 5a 	cmpi	r4,0
+c0066d0c:	10 16 28 5c 	mov	g0,r5
+c0066d10:	2c 00 00 15 	bne	0xc0066d3c
+c0066d14:	04 1e 80 5c 	mov	4,g0
+c0066d18:	00 30 88 8c 	lda	0xc0066c30,g1
+c0066d1c:	30 6c 06 c0
+c0066d20:	00 1e 90 5c 	mov	0,g2
+c0066d24:	00 1e 98 5c 	mov	0,g3
+c0066d28:	00 1e a0 5c 	mov	0,g4
+c0066d2c:	00 1e a8 5c 	mov	0,g5
+c0066d30:	10 f6 00 09 	call	0xc0076340
+c0066d34:	00 1e 80 5c 	mov	0,g0
+c0066d38:	00 00 00 0a 	ret
+c0066d3c:	00 1e 88 5c 	mov	0,g1
+c0066d40:	04 16 98 5c 	mov	r4,g3
+c0066d44:	40 e0 97 8c 	lda	0x40(fp),g2
+c0066d48:	e8 f6 ff 09 	call	0xc0066430
+c0066d4c:	28 20 04 3d 	cmpibne	0,g0,0xc0066d74

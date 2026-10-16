@@ -9,12 +9,56 @@
 | `c000a000..c000ffff` | Verified 24 KiB loader copied from flash | Firmware-owned; `c000f800` result and `c000f900` code are an exact self-restoring 80-byte test exception only |
 | `c0010000..c00b77ab` | Verified expanded runtime; sampled `c0011000` is stable nonzero | Firmware-owned |
 | `c00c027c`, `c00c3690`, `c04016a0`, `c043bfc4`, `c048e6f0`, `c04ad650` | Runtime absolute references and stores | Firmware state extends beyond expanded image and 4 MiB |
+| `c03852a0..c03856a0`, `c03856a0..c0385aa0` | Stock allocator's 256 block-count and caller-owner words, captured twice | Describes stock's own 32 KiB block claims, not an RTEMS reservation |
+| `c04d0000..c05fffff` | 38 contiguous zero-count/zero-owner blocks in stock lower allocation pool | 1,245,184 bytes currently available to stock allocator; may change later |
+| `c0618000..c078ffff` | 47 contiguous zero-count/zero-owner blocks in stock upper allocation pool | 1,540,096 bytes currently available to stock allocator; may change later |
 | `c0501000`, `c0801000`, `c0c01000`, `c0f01000` | Two read-only 4 KiB snapshots each, two seconds apart, all zero and stable | **Unknown**; zero is not a reservation |
 | `fef00000..feffffff` | 1 MiB flash mapping, including recovery/boot block | Never application RAM |
 
 Controller information reports 16 MiB RAM and 8 MiB cache. The observed DRAM addresses lie within the hypothetical `c0000000..c0ffffff` extent, but no contiguous extent, firmware allocator grant or exclusive takeover has been proven. The 80303 BAR0 is only 8 KiB: its first 4 KiB is the Messaging Unit, and its second 4 KiB is translated local memory. PIATVR at PCI config `0x44` is 8 KiB aligned, so BAR offset `0x1000` selects local `PIATVR + 0x1000`. The default PIATVR is `c0000000`. External PCI writes do not snoop the i960 caches; the proven fixed handler invalidates D-cache before reading its payload and I-cache before calling it.
 
-The [survey script](../../host/accele160/startup/survey_dram.sh) requires exact new-card PCI identity, `myrsread` binding, old card unbound and the global card lock. It reads only five 4 KiB pages in two rounds, checks every PIATVR remap, and restores the default after each sample and at exit. Boot ID and per-page SHA-256 hashes are in [live evidence](../../artifacts/current/accele160-ramprobe-20261016/live/dram-survey-0/). Four zero-page SHA-256 values are `ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7`; the runtime sample is `8744a95d48eb4deafc76573c28ebb742eecee33a66ff6711cfae6a0309ab85cf`. PIATVR read back `c0000000` after the survey, and the new driver and old-card states were unchanged.
+The [survey script](../../host/accele160/startup/survey_dram.sh) requires exact new-card PCI identity, `myrsread` binding, old card unbound and the global card lock. Its successive runs read five, six and seven selected 4 KiB pages respectively in two rounds, check every PIATVR remap, and restore the default after each sample and at exit. Boot ID and per-page SHA-256 hashes are in [live evidence](../../artifacts/current/accele160-ramprobe-20261016/live/dram-survey-0/). Four zero-page SHA-256 values are `ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7`; the runtime sample is `8744a95d48eb4deafc76573c28ebb742eecee33a66ff6711cfae6a0309ab85cf`. PIATVR read back `c0000000` after the survey, and the new driver and old-card states were unchanged.
+
+## Stock allocator trace and live block table
+
+The expanded stock runtime SHA-256 `09e84895…07e3db` contains a concrete
+allocation route. The live word at `c04ad650` is `c048b520`; the callback at
+`+0xec` is `c0050850`. The image-read callback reaches `c0050ac0`, which
+calls `c0066b90` with the requested size and caller ID. That routine calls
+`c0066430` with mode 1, an output pointer and the caller ID. The stock release
+path `c0051040` calls `c0066fc0`, which checks the allocation through
+`c00665b0`. These are disassembly and pointer-table facts; a new call from our
+handler has **not** been tested.
+
+The core allocator rounds requests up to 32 KiB, scans its 256 block-count
+words at `c03852a0`, writes a caller ID to parallel words at `c03856a0`, and
+returns a local address calculated as `c0000000 + block_index × 0x8000`.
+Mode 0 searches blocks 152–191; mode 1 searches 192–255. The exact
+[live table capture](../../artifacts/current/accele160-ramprobe-20261016/live/dram-survey-2/c0384000-0.bin)
+and [pinned decoder](../../host/accele160/startup/analyze_allocator_table.py)
+show this stable state across two reads:
+
+| Blocks | Local range | Count / owner | Interpretation |
+| --- | --- | --- | --- |
+| 0–151 | `c0000000..c04bffff` | 1 / `aa55aa55` | Stock reserved |
+| 152–153 | `c04c0000..c04cffff` | 2 / `aacc0001` | Stock allocation |
+| 154–191 | `c04d0000..c05fffff` | 0 / 0 | 38 free lower-pool blocks |
+| 192–194 | `c0600000..c0617fff` | 1 / `aa55aa55` | Stock reserved |
+| 195–241 | `c0618000..c078ffff` | 0 / 0 | 47 free upper-pool blocks |
+| 242–255 | `c0790000..c07fffff` | 14 / `e006e6c0` | Stock allocation |
+
+The total stock free count at this instant is 85 blocks, 2,785,280 bytes,
+split into two noncontiguous pools. This is enough in principle for a minimal
+or IPv6 RTEMS image, but no block has been allocated to our task. The
+allocator's 8 MiB request bound does not mean it can satisfy an 8 MiB request;
+its largest currently free contiguous run is 47 blocks (1,540,096 bytes).
+The reported 16 MiB physical RAM extends beyond this 8 MiB block table; the
+upper half's ownership remains unknown. [Disassembly snapshots](../../artifacts/current/accele160-ramprobe-20261016/allocator-core-6430.dis)
+and [pointer-page capture](../../artifacts/current/accele160-ramprobe-20261016/live/dram-survey-1/c04ac000-0.bin)
+preserve the trace. The next bounded firmware experiment should reserve and
+release a small stock allocation, verify its pointer lies in the expected pool,
+and compare the entire block table before, during and after. Only then build a
+retained, owner-tagged reservation for RTEMS.
 
 The bounded RAM-call experiment is accepted: two exact 80-byte payloads executed and returned normally with full-page restoration, plus paired pre-call and one post-call full-flash audits. It does **not** provide arbitrary upload or long-lived allocation. Existing DAC960PG RTEMS images range from about 40 KiB for a minimal bounded build to 315,108 bytes for the archived IPv6 build; the Doom arena is 8 MiB. A new-board RTEMS port needs these gates in order:
 

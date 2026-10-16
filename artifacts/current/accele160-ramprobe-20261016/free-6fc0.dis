@@ -1,0 +1,55 @@
+
+/home/mit/i960-accele160-ramprobe-20261016/runtime-stock-expanded.bin:     file format binary
+
+
+Disassembly of section .data:
+
+c0066fb0 <.data+0x56fb0>:
+c0066fb0:	25 58 00 00 	.word	0x00005825
+	...
+c0066fc0:	92 30 00 5a 	cmpi	g2,0
+c0066fc4:	10 16 20 5c 	mov	g0,r4
+c0066fc8:	11 16 28 5c 	mov	g1,r5
+c0066fcc:	12 16 30 5c 	mov	g2,r6
+c0066fd0:	20 00 00 15 	bne	0xc0066ff0
+c0066fd4:	04 1e 80 5c 	mov	4,g0
+c0066fd8:	00 30 88 8c 	lda	0xc0066ef0,g1
+c0066fdc:	f0 6e 06 c0
+c0066fe0:	00 1e 90 5c 	mov	0,g2
+c0066fe4:	00 1e 98 5c 	mov	0,g3
+c0066fe8:	00 1e a0 5c 	mov	0,g4
+c0066fec:	3c 00 00 08 	b	0xc0067028
+c0066ff0:	11 16 80 5c 	mov	g1,g0
+c0066ff4:	04 16 88 5c 	mov	r4,g1
+c0066ff8:	b8 f5 ff 09 	call	0xc00665b0
+c0066ffc:	14 20 04 3d 	cmpibne	0,g0,0xc0067010
+c0067000:	04 1e 80 5c 	mov	4,g0
+c0067004:	00 30 88 8c 	lda	0xc0066f30,g1
+c0067008:	30 6f 06 c0
+c006700c:	10 00 00 08 	b	0xc006701c
+c0067010:	04 1e 80 5c 	mov	4,g0
+c0067014:	00 30 88 8c 	lda	0xc0066f70,g1
+c0067018:	70 6f 06 c0
+c006701c:	04 16 90 5c 	mov	r4,g2
+c0067020:	05 16 98 5c 	mov	r5,g3
+c0067024:	06 16 a0 5c 	mov	r6,g4
+c0067028:	00 1e a8 5c 	mov	0,g5
+c006702c:	14 f3 00 08 	b	0xc0076340
+c0067030:	4d 59 4c 45 	.word	0x454c594d
+c0067034:	58 20 20 20 	testno	4
+	...
+c0067040:	65 58 74 72 	.word	0x72745865
+c0067044:	65 6d 65 52 	.word	0x52656d65
+c0067048:	41 49 44 20 	testno	r8
+c006704c:	32 30 30 30 	bbc.f	6,pfp,0xc006607c
+	...
+c0067060:	65 58 74 72 	.word	0x72745865
+c0067064:	65 6d 65 52 	.word	0x52656d65
+c0067068:	41 49 44 20 	testno	r8
+c006706c:	33 30 30 30 	bbc.f	6,sf0,0xc006609c
+	...
+c0067080:	41 63 63 65 	receive	sp,sf12
+c0067084:	6c 65 52 41 	.word	0x4152656c
+c0067088:	49 44 20 33 	cmpobge	r4,sf1,0xc00674d0
+c006708c:	35 32 20 20 	testno	4
+	...

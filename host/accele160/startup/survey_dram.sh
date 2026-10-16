@@ -21,7 +21,7 @@ trap restore EXIT
 trap 'exit 130' INT TERM
 cat /proc/sys/kernel/random/boot_id >"$out/boot-id.txt"
 for round in 0 1; do
-  for base in c0010000 c0500000 c0800000 c0c00000 c0f00000; do
+  for base in c0010000 c0384000 c04ac000 c0500000 c0800000 c0c00000 c0f00000; do
     setpci -s 37:09.1 44.L="$base"
     [[ $(setpci -s 37:09.1 44.L) == "$base" ]] || exit 1
     timeout 5s "$reader" "$dev/resource0" 0x1000 4096 "$out/$base-$round.bin"

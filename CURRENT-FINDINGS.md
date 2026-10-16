@@ -19,6 +19,15 @@ first call still matched the candidate. Command modules released/unloaded;
 A separate read-only DRAM survey found stable zero 4 KiB samples at local
 `c0501000`, `c0801000`, `c0c01000` and `c0f01000`; the runtime sample at
 `c0011000` was stable nonzero. **These samples do not grant RAM ownership.**
+Subsequent static tracing and paired live table reads identified the stock
+32 KiB block allocator at `c0066430`: its count/owner arrays are at
+`c03852a0`/`c03856a0`. The two snapshots were identical. They show 38 free
+contiguous lower-pool blocks (1,245,184 bytes) and 47 free contiguous
+upper-pool blocks (1,540,096 bytes), while other blocks are stock-reserved or
+allocated. This is a concrete stock allocator route for a minimal RTEMS
+reservation, but **no block has yet been granted to our code**. The largest
+free run is far short of Doom's 8 MiB arena; reclaiming or using the upper
+physical 8 MiB needs a separate ownership proof.
 The flashed helper accepts only the exact 80-byte probe, so it is not yet an
 RTEMS loader. General chunked upload, an owned code/data/stack arena, timer and
 interrupt adaptation, web transport and Doom remain new-board work.

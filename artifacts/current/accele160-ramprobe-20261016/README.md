@@ -22,9 +22,19 @@ Both calls returned command status/residual zero and exact result words `444f4e4
 
 A [bounded read-only DRAM survey](../../../docs/hardware/accele160-memory-map.md) sampled five pages twice and restored PIATVR. Four high pages were stable zeros. This observation does not prove that those pages belong to a new runtime.
 
+Further static tracing identified the stock 32 KiB block allocator. Two more
+read-only surveys captured its caller table and block-count/owner arrays; both
+rounds matched byte for byte. The exact [decoded table](allocator-table.json)
+shows 38 free contiguous lower-pool blocks and 47 free contiguous upper-pool
+blocks, with stock reservations elsewhere. [Disassembly](allocator-core-6430.dis)
+and the [memory-map analysis](../../../docs/hardware/accele160-memory-map.md)
+record the call chain and limits. No dedicated allocator probe or RTEMS memory
+reservation was issued; the stock image-read path used its usual transient
+allocations.
+
 ## Next implementation gates
 
-1. Decode stock RAM/cache ownership or build an explicit exclusive handoff that drains stock workers and DMA before reserving an arena. A zero page is not a reservation.
+1. Use the decoded stock allocator to reserve and release a small block in a bounded test, checking the entire count/owner table before and after. Then retain an owner-tagged allocation for minimal RTEMS, or build an explicit exclusive handoff for a larger arena. A zero page is not a reservation.
 2. Implement bounded chunked upload with per-chunk and whole-image validation, an owned code/data/stack destination, cache handoff, timeout and STOP. Preserve exact-card selection, PING and stock fallback.
 3. Port a minimal RTEMS task/clock/STOP image to the new board. Then adapt the host IPv4/IPv6 relay and web service, followed by WAD loading, browser framebuffer delivery and Doom.
 

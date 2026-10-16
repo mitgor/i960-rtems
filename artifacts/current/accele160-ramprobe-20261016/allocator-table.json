@@ -1,0 +1,95 @@
+{
+  "sha256": "f78d008373c0f0b9103f417377db279a0bcccbe5f47cd79b469b22b6a6f55096",
+  "block_bytes": 32768,
+  "entries": 256,
+  "runs": [
+    {
+      "first_block": 0,
+      "end_block_exclusive": 152,
+      "start": "0xc0000000",
+      "end_exclusive": "0xc04c0000",
+      "bytes": 4980736,
+      "count": 1,
+      "owner": "0xaa55aa55"
+    },
+    {
+      "first_block": 152,
+      "end_block_exclusive": 154,
+      "start": "0xc04c0000",
+      "end_exclusive": "0xc04d0000",
+      "bytes": 65536,
+      "count": 2,
+      "owner": "0xaacc0001"
+    },
+    {
+      "first_block": 154,
+      "end_block_exclusive": 192,
+      "start": "0xc04d0000",
+      "end_exclusive": "0xc0600000",
+      "bytes": 1245184,
+      "count": 0,
+      "owner": "0x00000000"
+    },
+    {
+      "first_block": 192,
+      "end_block_exclusive": 195,
+      "start": "0xc0600000",
+      "end_exclusive": "0xc0618000",
+      "bytes": 98304,
+      "count": 1,
+      "owner": "0xaa55aa55"
+    },
+    {
+      "first_block": 195,
+      "end_block_exclusive": 242,
+      "start": "0xc0618000",
+      "end_exclusive": "0xc0790000",
+      "bytes": 1540096,
+      "count": 0,
+      "owner": "0x00000000"
+    },
+    {
+      "first_block": 242,
+      "end_block_exclusive": 256,
+      "start": "0xc0790000",
+      "end_exclusive": "0xc0800000",
+      "bytes": 458752,
+      "count": 14,
+      "owner": "0xe006e6c0"
+    }
+  ],
+  "lower_pool": {
+    "blocks": [
+      152,
+      192
+    ],
+    "free_runs": [
+      {
+        "first_block": 154,
+        "end_block_exclusive": 192,
+        "start": "0xc04d0000",
+        "end_exclusive": "0xc0600000",
+        "bytes": 1245184,
+        "count": 0,
+        "owner": "0x00000000"
+      }
+    ]
+  },
+  "upper_pool": {
+    "blocks": [
+      192,
+      256
+    ],
+    "free_runs": [
+      {
+        "first_block": 195,
+        "end_block_exclusive": 242,
+        "start": "0xc0618000",
+        "end_exclusive": "0xc0790000",
+        "bytes": 1540096,
+        "count": 0,
+        "owner": "0x00000000"
+      }
+    ]
+  }
+}
