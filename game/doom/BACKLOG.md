@@ -1,5 +1,14 @@
 # Doom backlog
 
+## User direction: half-height on hold — 2026-10-16
+
+Pause further half-height optimization and testing until requested. Keep the
+existing option off by default and retain its evidence. The user is replacing
+the card with a similar board described as having a 100 MHz i960. Identify the
+replacement hardware and firmware before reusing board-specific assumptions;
+compatibility and performance have not yet been tested.
+
+
 ## Latest: half-height option tested, not a speed default — 2026-10-16
 
 F7 (`--runtime-half-height`) independently switches alternate-row shading; F6

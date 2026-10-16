@@ -7,10 +7,11 @@ This is the current state, not a chronological experiment log. Follow
 
 ## Current hardware handoff
 
-The half-height test passed and evidence is saved in Git. Cleanup reboot completed;
-the public RTEMS IPv6 web relay is restored and verified from the Mac (HTTP 200).
-It currently owns `0000:37:09.1` through `dac960auto`; no Doom session is running.
-[Exact handoff](artifacts/current/half-height-20261016/README.md#service-handoff).
+User requested shutdown of `192.168.2.75` for replacement with a similar card
+reported to have a 100 MHz i960. The public web relay exited cleanly and released the driver; shutdown was issued.
+Half-height work is **on hold**, with the option off by default; resume only when
+requested. The replacement card's identity, firmware and compatibility remain
+unverified. Previous live-service and hardware-address notes describe the old card.
 
 ## Working
 
@@ -78,7 +79,7 @@ See [programmed firmware](docs/firmware/FIRMWARE-PROGRAMMED.md) before any firmw
 ## Next useful hypotheses
 
 1. Broaden flat-plane quality testing across maps and high detail; keep it optional.
-2. Specialize half-height column loops and time/unroll row expansion. The tested
+2. **On hold by user request:** specialize half-height column loops and time/unroll row expansion. The tested
    switch works, but adding it to flat planes currently reduces FPS by 7.92%.
 3. Use longer matched runs and resolve baseline variance before promoting further
    exact renderer optimizations. See [Doom backlog](game/doom/BACKLOG.md).
