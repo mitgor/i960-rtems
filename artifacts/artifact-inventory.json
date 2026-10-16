@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 3816,
-      "sha256": "14215782ce13a876eaab3a67f66fe01162a77f540c9e612cf515c63cc01b91b1"
+      "size": 3910,
+      "sha256": "8e31d7fc34608c1f62a526cec525e882ac2742b6aa3f09ac078f57a4cc0e80e3"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2458,6 +2458,36 @@
       "sha256": "78480bc067cee2489851f12244a42bd0d97910af09543c12a3abdcfa062c6ccf"
     },
     {
+      "path": "artifacts/current/accele160-late-ping-20261016/README.md",
+      "size": 5177,
+      "sha256": "4a36a5292fc9082475b72e4b29199e7b20ebcf388a81d4e2473776265ca61912"
+    },
+    {
+      "path": "artifacts/current/accele160-late-ping-20261016/late_ping_callsite.bin",
+      "size": 4,
+      "sha256": "1f9bb3e2d2a856e9681057a7c335dbc7fda15f581a6b2e34efd47c02a1dd825c"
+    },
+    {
+      "path": "artifacts/current/accele160-late-ping-20261016/late_ping_callsite.dis",
+      "size": 135,
+      "sha256": "68f567efe0e15be723ef4f88157edffc2340577e4d7dd44bca5f73f047b60dc5"
+    },
+    {
+      "path": "artifacts/current/accele160-late-ping-20261016/late_ping_handler.bin",
+      "size": 144,
+      "sha256": "dbbfa3c99bdc30895a811b4e8828d2edc38203eb2762170cb2304a549bd1bf45"
+    },
+    {
+      "path": "artifacts/current/accele160-late-ping-20261016/late_ping_handler.dis",
+      "size": 1437,
+      "sha256": "e7402067d9a9f13748a03a096f00f7223b3ce7d72a8f0c66ed55a27c4e2150b7"
+    },
+    {
+      "path": "artifacts/current/accele160-late-ping-20261016/receipt.json",
+      "size": 683,
+      "sha256": "d6b0be028ac860432cdc0c90d2426640f71741b285379e64f84d16977a9e7eaf"
+    },
+    {
       "path": "artifacts/current/accele160-ping-contract-20261016/README.md",
       "size": 5158,
       "sha256": "ae8247fe671d5cab589b688e27698aa9d249a2968781da684396e89b217a07b2"
@@ -2469,8 +2499,8 @@
     },
     {
       "path": "artifacts/current/accele160-ping-handler-20261016/README.md",
-      "size": 5727,
-      "sha256": "24e364914cf8112e9dc7fdba19f99739de6d1e49d2436df753653e74e8888ed1"
+      "size": 5980,
+      "sha256": "adf07acb0cde2beff833ea3e85416370d159934636e74103e46aca074f447991"
     },
     {
       "path": "artifacts/current/accele160-ping-handler-20261016/disassembly.txt",

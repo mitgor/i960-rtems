@@ -1,5 +1,10 @@
 # AcceleRAID 160 bounded PING: offline image audit
 
+The [late-loader variant](../accele160-late-ping-20261016/README.md)
+supersedes this placement for future offline work: it installs the table entry
+after the loader's descriptor pass. This record remains reproducible evidence
+of the earlier candidate.
+
 2026-10-16. This is an **unflashed, unexecuted** successor to the
 [fallback-only routing rehearsal](../accele160-dispatch-rehearsal-20261016/README.md).
 It uses the exact accepted 6.00-05 stock image. No command was sent to either

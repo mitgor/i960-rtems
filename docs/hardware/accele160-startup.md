@@ -34,7 +34,8 @@ All pass on the accepted stock dump.
    g1 = destination `0xc0010000`. ZIP1 expands to 685996 bytes, ending at
    `0xc00b77ac` exclusive; CRC32 `d93addd1` passes.
 6. Boot obtains the main entry `0xc004cf70` from the trailer, executes `dcctl
-   1,0,g1`, then branches through g0 at `0xfeffc124`. This is a startup handoff,
+   1,0,g1` (enable D-cache on the integrated 80960JT), then branches through
+   g0 at `0xfeffc124`. This is a startup handoff,
    **not a callable application entry with a return contract**.
 
 The startup program uses both an uncompressed loader below `0xc0010000` and

@@ -1,5 +1,21 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID late-loader PING placement — 2026-10-16
+
+The normal copied-loader path expands the runtime, calls stock setup, then
+finishes a descriptor pass at common return `c000c9cc`. A revised 4-byte
+branch at that return installs the strict PING handler **after** the loader's
+initialization. Its 144-byte handler and an in-memory image pass exact-code,
+runtime-identity, changed-byte and known checksum audits: 155 changed flash
+bytes, nine helper and eleven startup tests. Intel's i960 Jx manual says the
+boot handoff's `dcctl 1` enables D-cache; it does not invalidate the table
+write. Main-entry computed writes and live persistence are still unproved.
+The untouched boot block has a recovery dispatcher, but no practical recovery
+entry or stock restore has been tested on this board. **No image was exported,
+flashed or run**; both cards remain unbound. The prior early-hook candidate is
+superseded for future offline work.
+[Exact route, binaries, receipt and recovery boundary](artifacts/current/accele160-late-ping-20261016/README.md).
+
 ## AcceleRAID bounded PING candidate — 2026-10-16
 
 Stock Linux GEM writes all 64 mailbox bytes; the stock firmware copies four

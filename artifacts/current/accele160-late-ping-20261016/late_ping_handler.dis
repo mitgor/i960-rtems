@@ -1,0 +1,43 @@
+
+late_ping_handler.bin:     file format binary
+
+
+Disassembly of section .data:
+
+c000e1d8 <.data>:
+c000e1d8:	00 30 88 8c 	lda	0xc000e1ec,g1
+c000e1dc:	ec e1 00 c0
+c000e1e0:	00 30 88 92 	st	g1,0xc00234fc
+c000e1e4:	fc 34 02 c0
+c000e1e8:	00 00 00 0a 	ret
+c000e1ec:	02 20 29 88 	ldos	0x2(r4),r5
+c000e1f0:	00 30 30 8c 	lda	0x4020,r6
+c000e1f4:	20 40 00 00
+c000e1f8:	6c 80 29 35 	cmpobne	r5,r6,0xc000e264
+c000e1fc:	04 20 29 8c 	lda	0x4(r4),r5
+c000e200:	14 20 31 8c 	lda	0x14(r4),r6
+c000e204:	00 50 39 90 	ld	(r5),r7
+c000e208:	5c e0 01 3d 	cmpibne	0,r7,0xc000e264
+c000e20c:	04 48 29 59 	addo	4,r5,r5
+c000e210:	f4 9f 29 34 	cmpobl	r5,r6,0xc000e204
+c000e214:	14 20 29 90 	ld	0x14(r4),r5
+c000e218:	00 30 30 8c 	lda	0x1018f00,r6
+c000e21c:	00 8f 01 01
+c000e220:	44 80 29 35 	cmpobne	r5,r6,0xc000e264
+c000e224:	18 20 29 90 	ld	0x18(r4),r5
+c000e228:	00 30 30 8c 	lda	0x30363949,r6
+c000e22c:	49 39 36 30
+c000e230:	34 80 29 35 	cmpobne	r5,r6,0xc000e264
+c000e234:	1c 20 29 90 	ld	0x1c(r4),r5
+c000e238:	2c 60 01 3a 	cmpibe	0,r5,0xc000e264
+c000e23c:	20 20 29 8c 	lda	0x20(r4),r5
+c000e240:	40 20 31 8c 	lda	0x40(r4),r6
+c000e244:	00 50 39 90 	ld	(r5),r7
+c000e248:	1c e0 01 3d 	cmpibne	0,r7,0xc000e264
+c000e24c:	04 48 29 59 	addo	4,r5,r5
+c000e250:	f4 9f 29 34 	cmpobl	r5,r6,0xc000e244
+c000e254:	00 1e 88 5c 	mov	0,g1
+c000e258:	56 20 89 8a 	stos	g1,0x56(r4)
+c000e25c:	04 16 80 5c 	mov	r4,g0
+c000e260:	e0 06 04 08 	b	0xc004e940
+c000e264:	2c 55 01 08 	b	0xc0023790

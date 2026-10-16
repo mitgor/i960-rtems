@@ -4210,6 +4210,20 @@ or that we can recover this particular card if a flash experiment fails. The
 nonce is checked, not echoed; a future live success status would still need
 careful attribution.
 
+Then we moved the doorbell. The first PING hook wrote the dispatch word soon
+after decompression, leaving the loader's own descriptor pass ahead of it. We
+found a common return after that pass and replaced its single return
+instruction with a branch into the same copied, erased tail. The new hook
+writes the table entry and performs the displaced return. The boot block next
+enables the data cache—the `dcctl 1` instruction does not invalidate it—and
+hands off to the main program. A second in-memory audit passed with fewer
+changed bytes. It narrows the interval in which the stock loader could undo
+our write. It does not tell us whether the running program later changes the
+table, or whether the board can be recovered if valid-checksum code hangs.
+The boot block contains a recovery command loop, but having code on paper is
+not the same as reaching it from a PC beside a silent card. We left the flash
+and both cards alone.
+
 *For the reproducible version of these last acts, see
 [ROM-FETCH-LIVE.md](docs/loader/ROM-FETCH-LIVE.md),
 [FIRMWARE-PROGRAMMED.md](docs/firmware/FIRMWARE-PROGRAMMED.md), and

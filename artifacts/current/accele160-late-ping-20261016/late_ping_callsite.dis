@@ -1,0 +1,8 @@
+
+late_ping_callsite.bin:     file format binary
+
+
+Disassembly of section .data:
+
+c000c9cc <.data>:
+c000c9cc:	0c 18 00 08 	b	0xc000e1d8

@@ -118,8 +118,15 @@ See `artifacts/current/flat-planes-20261016/README.md` and `game/doom/flat_plane
 <!-- /flat-planes-current -->
 
 Read `CURRENT-FINDINGS.md` first. It supersedes historical status blocks below.
-The latest AcceleRAID candidate is
-`artifacts/current/accele160-ping-handler-20261016/`: a bounded 148-byte i960
+The preferred **offline** AcceleRAID candidate is now
+`artifacts/current/accele160-late-ping-20261016/`: the dispatch write occurs
+at the copied loader's common return, after its descriptor pass. The exact
+in-memory image has 155 changed bytes and passes known checksums. No modified
+image has run; computed main-entry writes, live table persistence and recovery
+remain unproved. `dcctl 1` at boot handoff enables D-cache, not invalidates it.
+Do not flash this candidate on the strength of the structural receipt.
+The earlier AcceleRAID candidate is
+`artifacts/current/accele160-ping-handler-20261016/`: an earlier bounded 148-byte i960
 PING handler with a structurally audited **in-memory only** image. The traced
 mailbox-to-object copy preserves all 64 bytes, and the completion route predicts
 status 0/residual 0, but no patched image has booted or run. Its nonce is an
