@@ -61,6 +61,27 @@ class PageCopyReplayTest(unittest.TestCase):
                     verify(self.path)
                 path.write_bytes(original)
 
+    def test_indexed_odd_target_readback(self):
+        index = 1
+        pattern = bytes(((i * 53 + 0x96 + index) ^ (i >> 3)) & 0xff
+                        for i in range(4096))
+        digest = fnv(pattern)
+        (self.path / "staging-pattern.bin").write_bytes(pattern)
+        (self.path / "staging-readback.bin").write_bytes(pattern)
+        p = self.path / "page-copied.bin"
+        copied = bytearray(p.read_bytes())
+        for offset in (0x820, 0x860):
+            struct.pack_into("<4I", copied, offset, 0x59504f43,
+                             0x16161061, index, digest)
+        p.write_bytes(copied)
+        (self.path / "target-before.bin").write_bytes(b"\x00" * 4096)
+        (self.path / "target-after.bin").write_bytes(pattern)
+        self.assertTrue(verify(self.path)["independent_odd_target_readback"])
+        altered = bytearray(pattern); altered[500] ^= 1
+        (self.path / "target-after.bin").write_bytes(altered)
+        with self.assertRaises(ValueError):
+            verify(self.path)
+
 
 if __name__ == "__main__":
     unittest.main()

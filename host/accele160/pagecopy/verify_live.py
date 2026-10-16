@@ -30,7 +30,10 @@ def verify(path: Path) -> dict:
     page_before = (path / "page-before.bin").read_bytes()
     page_reserved = (path / "page-reserved.bin").read_bytes()
     page_copied = (path / "page-copied.bin").read_bytes()
-    expected = bytes(((i * 53 + 0x96) ^ (i >> 3)) & 0xff for i in range(4096))
+    index = struct.unpack_from("<I", page_copied, 0x828)[0]
+    if index > 126:
+        raise ValueError("target index outside grant payload")
+    expected = bytes(((i * 53 + 0x96 + index) ^ (i >> 3)) & 0xff for i in range(4096))
     if any(len(blob) != 4096 for blob in
            (before, pattern, readback, restored, page_before, page_reserved, page_copied)):
         raise ValueError("capture size")
@@ -38,10 +41,10 @@ def verify(path: Path) -> dict:
     if pattern != expected or readback != pattern or restored != before:
         raise ValueError("staging pattern, readback or restoration")
     if struct.unpack_from("<4I", page_copied, 0x820) != \
-            (0x59504f43, 0x16161061, 0, digest):
+            (0x59504f43, 0x16161061, index, digest):
         raise ValueError("card-side copy result")
     if struct.unpack_from("<4I", page_copied, 0x860) != \
-            (0x59504f43, 0x16161061, 0, digest):
+            (0x59504f43, 0x16161061, index, digest):
         raise ValueError("copy control record")
     expected_page = bytearray(page_reserved)
     expected_page[0x820:0x830] = page_copied[0x820:0x830]
@@ -52,9 +55,16 @@ def verify(path: Path) -> dict:
     if any(status.get(k) != v for k, v in
            (("started", "1"), ("done", "1"), ("status", "0"), ("residual", "0"))):
         raise ValueError("copy command status")
+    if index & 1:
+        target_before = (path / "target-before.bin").read_bytes()
+        target_after = (path / "target-after.bin").read_bytes()
+        if len(target_before) != 4096 or target_after != pattern:
+            raise ValueError("independent odd-target readback")
     result.update(staging_page=f"0x{int(result['pointer'], 16) + 0x7f000:08x}",
-                  target_page=result["pointer"], copied_bytes=4096,
+                  target_page=f"0x{int(result['pointer'], 16) + index * 4096:08x}",
+                  target_index=index, copied_bytes=4096,
                   destination_fnv=f"0x{digest:08x}",
+                  independent_odd_target_readback=bool(index & 1),
                   host_staging_restored=True)
     return result
 

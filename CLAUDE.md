@@ -10,8 +10,11 @@ owner at `c0710000`, operation 6 copied 4 KiB from odd staging page
 `0x6121fdc5`, matching the staged data. Staging, controls, loader page and all
 allocator count/owner words restored; reserve/copy/release status and residual
 were zero; three modules unloaded; post-call flash and independent snapshots
-passed. Old `37:04.1` stayed unbound. This is one bounded page, not a general
-RTEMS loader. Varied indexes, bad-checksum rejection, whole-image digest,
+passed. Old `37:04.1` stayed unbound. Additional same-boot runs copied indexes 1 and 126 and rejected a bad staged hash
+and index 127 with stock status 2; full page/owner/staging audits and a final
+guarded 1 MiB flash read passed. One host checker error on the first index-127
+run retained resources and was fully cleaned up under exact readback checks.
+This is sampled page coverage, not a general RTEMS loader. Whole-image digest,
 cache-safe execution and RTEMS BSP remain unproved. See
 `docs/hardware/accele160-upload-plan.md` for the next gates.
 
