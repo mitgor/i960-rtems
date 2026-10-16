@@ -4240,3 +4240,24 @@ pointer with the stock one.
 [SOFTWARE-LOADER.md](docs/loader/SOFTWARE-LOADER.md), and
 [rtems/README.md](rtems/README.md). The story ends here for now; the
 captures don't.*
+
+We followed the boot block's other door. Its UART test writes a scratch
+register and only trusts the port if the byte comes back. After that it
+looks at one incoming character during reset. `S` leads to a small recovery
+program copied from the boot ROM into RAM; `!` leads to a different,
+manufacturing path. There is also a status bit in the flash-control register
+that forces recovery. That bit was tempting as an SSH shortcut until we traced
+the same register through the erase-and-program routine. Changing it to see
+what happens would not be a recovery test we could call safe.
+
+The copied recovery program includes a full-flash staging and programming
+route. We pinned the branch and copy instructions to the exact 1 MiB stock
+dump, and a changed byte made the audit fail. On the board, though, the
+similar UART test had previously chosen inert console callbacks. We still
+do not know whether a header exists or why that test failed. The new card and
+the old one stayed unbound; we sent no command and wrote no flash. A recovery
+routine visible in disassembly is an opportunity, not yet a rescue plan. The
+next physical experiment is to identify a level-correct serial connection,
+catch `S` at power-on, make a harmless recovery read, and return to a stock
+image whose full-flash hash matches the saved dump. Only then should the
+late PING candidate move from an offline image to a programming trial.

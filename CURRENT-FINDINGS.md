@@ -1,5 +1,17 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID stock recovery route — 2026-10-16
+
+An exact-flash offline audit found the boot block's one-byte serial `S`
+recovery trigger, its distinct `!` manufacturing route, and the 20 KiB
+ROM-to-RAM recovery handler copy. The flash-control bit-1 alternative is not
+a safe SSH switch: the same register is written by the erase/program routine.
+The similar live UART probe previously selected disabled callbacks, so this
+board's physical serial recovery remains unproved. Both cards remain unbound;
+no card command or flash write was made. The late PING patch remains offline
+until a physical recovery entry and bounded stock restore are demonstrated.
+[Exact anchors and acceptance procedure](artifacts/current/accele160-recovery-audit-20261016/README.md).
+
 ## AcceleRAID live stock table — 2026-10-16
 
 A guarded new-card-only PIATVR read mapped local `c0023000` and captured the

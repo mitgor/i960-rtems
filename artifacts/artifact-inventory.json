@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 3992,
-      "sha256": "6169cf8930b8ac5fb27716a88f0a7239f2cf79d7071bc2a62e795f88a2ee7e35"
+      "size": 4068,
+      "sha256": "87e95ce5130446f3e504428aca6d63955adeb6aebee8704d3b8c67cc8460a8d2"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2821,6 +2821,16 @@
       "path": "artifacts/current/accele160-readimage-20261016/upstream-sources.tar.gz",
       "size": 26291,
       "sha256": "3e7cdde7e01983e8aea03e63c305f32494e1a1b26b20b9f552fc312c26837834"
+    },
+    {
+      "path": "artifacts/current/accele160-recovery-audit-20261016/README.md",
+      "size": 3788,
+      "sha256": "1151b5f4bf1e213ac1b3c14ed68f2a0c823a5cbb5411425d00b0df83e077095a"
+    },
+    {
+      "path": "artifacts/current/accele160-recovery-audit-20261016/audit.json",
+      "size": 708,
+      "sha256": "11394365df75e5f987e032a40672c971d17904f9bd22f987f01b8bb5784cd27f"
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/README.md",

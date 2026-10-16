@@ -1,5 +1,16 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID boot recovery gate — 2026-10-16
+
+The accepted stock boot block samples a UART once: `S` enters a copied
+recovery handler, while `!` selects manufacturing mode. A flash-control bit
+can also select recovery, but is not a safe host-controlled trigger. The live
+UART-like probe previously failed. Recovery and stock restoration are **not
+physically proven**; do not flash the offline late PING candidate based only
+on static recovery code. See
+`artifacts/current/accele160-recovery-audit-20261016/README.md` and run
+`host/accele160/startup/audit_recovery_route.py` on the accepted stock dump.
+
 ## AcceleRAID helper-site audit — 2026-10-16
 
 Offline stock analysis found unused diagnostic subcommand `0x8f` (currently

@@ -1,0 +1,26 @@
+{
+  "accepted_stock": true,
+  "all_anchors_match": true,
+  "anchors": {
+    "copy_20k_count": true,
+    "copy_20k_source": true,
+    "copy_20k_target": true,
+    "flash_control_bit1": true,
+    "flash_control_read": true,
+    "program_flash_control": true,
+    "recovery_dispatch": true,
+    "recovery_entry": true,
+    "recovery_init": true,
+    "recovery_mode2": true,
+    "serial_bang_mode": true,
+    "serial_rx_ready": true,
+    "serial_s": true,
+    "serial_s_branch": true,
+    "uart_present_flag": true,
+    "uart_probe_call": true,
+    "uart_scratch_read": true,
+    "uart_scratch_write": true
+  },
+  "sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "size": 1048576
+}

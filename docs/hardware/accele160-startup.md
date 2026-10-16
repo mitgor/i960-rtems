@@ -1,5 +1,10 @@
 # AcceleRAID 160 startup and bounded execution design
 
+The later [stock recovery audit](../../artifacts/current/accele160-recovery-audit-20261016/README.md)
+traces the serial `S` boot path and the separate destructive restore command.
+It does not establish a usable UART or a successful restoration on this board;
+the offline PING firmware remains unflashed.
+
 2026-10-16. This analysis uses the paired stock 6.00-05 flash, not the vendor
 7.x reference image. It establishes a boot contract and supplies a compiled
 probe; **custom code has not executed on the new card**. A later guarded test
