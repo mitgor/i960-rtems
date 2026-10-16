@@ -7,11 +7,13 @@ This is the current state, not a chronological experiment log. Follow
 
 ## Current hardware handoff
 
-User requested shutdown of `192.168.2.75` for replacement with a similar card
-reported to have a 100 MHz i960. The public web relay exited cleanly and released the driver; shutdown was issued.
-Half-height work is **on hold**, with the option off by default; resume only when
-requested. The replacement card's identity, firmware and compatibility remain
-unverified. Previous live-service and hardware-address notes describe the old card.
+Both cards are installed. The existing DAC960PG (`1069:0010`) is now unbound at
+`0000:37:04.1`; the new AcceleRAID 160 (`1069:0050`, subsystem `1069:0054`) is at
+`0000:37:09.1`, bound to `myrs`, firmware 6.00-05, reported memory 16 MB/cache 8 MB.
+The 100 MHz clock has not been independently verified. **Old BDF defaults now
+point at the new board.** No RTEMS web relay or Doom session is running.
+See [dual-card inventory and next steps](docs/hardware/dual-card-20261016.md).
+Half-height work remains **on hold** and off by default.
 
 ## Working
 

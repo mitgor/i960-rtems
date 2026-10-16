@@ -1,5 +1,14 @@
 # Current status and artifact policy (2026-10-16)
 
+## Current two-card mapping — 2026-10-16
+
+Old DAC960PG is now `37:04.1` (`1069:0010`, unbound). New AcceleRAID 160 is
+`37:09.1` (`1069:0050`, subsystem `0054`, bound to `myrs`, firmware 6.00-05).
+Do not reuse old hard-coded `37:09.1` launch/cleanup assumptions. New-card CPU
+clock, firmware compatibility and execution support are not yet verified.
+No custom runtime is active. [Inventory](docs/hardware/dual-card-20261016.md). Half-height stays on hold.
+
+
 ## User direction: half-height on hold — 2026-10-16
 
 Pause further half-height optimization and testing until requested. Keep the
