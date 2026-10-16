@@ -1,0 +1,40 @@
+{
+  "stock_sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "runtime_sha256_unchanged": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
+  "loader_cave": {
+    "loader_offset": "0x41d8",
+    "flash_offset": "0x451d8",
+    "ram_address": "0xc000e1d8",
+    "erased_bytes": 7720,
+    "aligned_absolute_references": 0
+  },
+  "ioctl_dispatch": {
+    "subcommand_field": "+0x15",
+    "index_subtract": 1,
+    "stock_0x8e_target": "0xc002371c (normal SET_MEM_MBOX slot)",
+    "stock_0x8f_target": "0xc0023790 (unsupported, status 0x104)",
+    "table_runtime_address": "0xc00232c4",
+    "normal_callback_initializer_offsets": [
+      "0x2a38",
+      "0x2b90",
+      "0x2eb4",
+      "0x2f9c",
+      "0x307c",
+      "0x315c",
+      "0x323c",
+      "0x336c"
+    ]
+  },
+  "offline_packaging_rehearsal": {
+    "embedded_probe_bytes": 80,
+    "candidate_sha256": "4a321697ab25fd1bec6ed8222858edcd78670ba5f82ea7e52f40275285bbd468",
+    "changed_byte_count": 88,
+    "loader_checksum": "0xcffd8048",
+    "trailer_checksum": "0xd00a954f",
+    "known_checksums_pass": true,
+    "runtime_unchanged": true,
+    "entry_wired": false,
+    "image_written": false,
+    "boot_or_recovery_qualified": false
+  }
+}

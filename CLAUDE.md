@@ -1,5 +1,15 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID helper-site audit — 2026-10-16
+
+Offline stock analysis found unused diagnostic subcommand `0x8f` (currently
+returns unsupported status `0x104`) and 7,720 erased loader bytes copied to
+RAM. A dormant 80-byte probe insertion with recomputed loader/trailer checksums
+passes the known analyzer, but no entry is wired, no image is exported, and no
+flash write was attempted. The command ABI, compressed-runtime table patch,
+owned RAM and recovery remain open. Do not treat this as a flashable image.
+See `artifacts/current/accele160-helper-site-20261016/README.md`.
+
 ## AcceleRAID debug interface — 2026-10-16
 
 The stock loader's UART presence probe selected disabled callbacks on the live

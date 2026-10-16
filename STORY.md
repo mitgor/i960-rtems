@@ -4170,6 +4170,15 @@ pointed to the right table word with the wrong label. The corrected trace
 names `e`. The new card has not executed our code yet. Its next milestone is
 a small, recoverable firmware helper with a clear RAM and cache contract.
 
+The first offline cut found a possible doorway: diagnostic subcommand `0x8f`
+currently just says "unsupported," while `0x8e` belongs to the stock memory
+mailbox. The loader also carries about seven and a half kilobytes of erased
+space into RAM. We placed the already-built eighty-byte probe there in a
+throwaway in-memory image and repaired the two known boot checksums; the image
+analyzer accepted that structure. Nothing points at the probe. The runtime
+dispatch table is compressed, and we have not yet proved the command ABI or a
+recovery path. So this is a map of a plausible route, not a programmed card.
+
 *For the reproducible version of these last acts, see
 [ROM-FETCH-LIVE.md](docs/loader/ROM-FETCH-LIVE.md),
 [FIRMWARE-PROGRAMMED.md](docs/firmware/FIRMWARE-PROGRAMMED.md), and

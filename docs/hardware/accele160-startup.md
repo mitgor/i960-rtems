@@ -137,6 +137,14 @@ Serial wiring alone will not activate the current running firmware console.
    validate it on the spare new card. That is a separate firmware patch
    milestone; this RAM-only test did not justify programming a guessed hook.
 
+The [subsequent helper-site audit](../../artifacts/current/accele160-helper-site-20261016/README.md)
+identifies unused diagnostic subcommand `0x8f` and 7,720 erased bytes in the
+loader copy. An in-memory, dormant probe insertion passes the known loader and
+trailer checksums without changing the compressed runtime. Neither site is
+proven safe for active execution, and the `0x8f` table is inside the compressed
+runtime. The command ABI, ownership, table patch timing and full vendor-image
+checks remain open before any flash write.
+
 ## Concrete bounded probe
 
 Source: `host/accele160/startup/probe.S`; linked at zero, position-independent,

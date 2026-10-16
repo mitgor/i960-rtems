@@ -1,5 +1,18 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID helper-site audit — 2026-10-16
+
+The stock IOCTL dispatcher maps unused diagnostic subcommand `0x8f` to its
+unsupported completion (`0x104`), while normal `0x8e` reaches `SET_MEM_MBOX`.
+The loader has 7,720 erased bytes copied to local RAM, with no aligned absolute
+references in the verified loader/runtime. An in-memory, **dormant** 80-byte
+probe insertion plus known additive checksum updates passes structural checks;
+the compressed runtime and old card are unchanged. This neither wires a new
+command nor proves boot, code-site ownership, or recovery. Next: decode the
+`0x8f` command/completion ABI and implement a native admission model before
+considering a live patch.
+[Exact anchors and limits](artifacts/current/accele160-helper-site-20261016/README.md).
+
 ## AcceleRAID debug interface — 2026-10-16
 
 The stock loader tests a UART register and selects real callbacks only when
