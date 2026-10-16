@@ -1,0 +1,622 @@
+
+handler.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c000e1d8 <dispatch_hook>:
+c000e1d8:	00 30 88 8c 	lda	c000e1ec <ping_handler>,g1
+c000e1dc:	ec e1 00 c0
+c000e1e0:	00 30 88 92 	st	g1,c00234fc <expected_probe+0x14a8c>
+c000e1e4:	fc 34 02 c0
+c000e1e8:	00 00 00 0a 	ret
+
+c000e1ec <ping_handler>:
+c000e1ec:	02 20 29 88 	ldos	0x2(r4),r5
+c000e1f0:	00 30 30 8c 	lda	4020 <dispatch_hook-0xc000a1b8>,r6
+c000e1f4:	20 40 00 00
+c000e1f8:	74 88 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e1fc:	04 20 29 8c 	lda	0x4(r4),r5
+c000e200:	Address 0x00000000c000e200 is out of bounds.
+
+
+c000e204 <zero_prefix>:
+c000e204:	00 50 39 90 	ld	(r5),r7
+c000e208:	64 e8 01 3d 	cmpibne	0,r7,c000ea6c <ping_reject>
+c000e20c:	04 48 29 59 	addo	4,r5,r5
+c000e210:	f4 9f 29 34 	cmpobl	r5,r6,c000e204 <zero_prefix>
+c000e214:	14 20 29 90 	ld	0x14(r4),r5
+c000e218:	00 30 30 8c 	lda	1018f00 <dispatch_hook-0xbeff52d8>,r6
+c000e21c:	00 8f 01 01
+c000e220:	58 80 29 32 	cmpobe	r5,r6,c000e278 <check_common>
+c000e224:	00 30 30 8c 	lda	2018f00 <dispatch_hook-0xbdff52d8>,r6
+c000e228:	00 8f 01 02
+c000e22c:	4c 80 29 32 	cmpobe	r5,r6,c000e278 <check_common>
+c000e230:	00 30 30 8c 	lda	3018f00 <dispatch_hook-0xbcff52d8>,r6
+c000e234:	00 8f 01 03
+c000e238:	40 80 29 32 	cmpobe	r5,r6,c000e278 <check_common>
+c000e23c:	00 30 30 8c 	lda	4018f00 <dispatch_hook-0xbbff52d8>,r6
+c000e240:	00 8f 01 04
+c000e244:	34 80 29 32 	cmpobe	r5,r6,c000e278 <check_common>
+c000e248:	00 30 30 8c 	lda	5018f00 <dispatch_hook-0xbaff52d8>,r6
+c000e24c:	00 8f 01 05
+c000e250:	28 80 29 32 	cmpobe	r5,r6,c000e278 <check_common>
+c000e254:	00 30 30 8c 	lda	6018f00 <dispatch_hook-0xb9ff52d8>,r6
+c000e258:	00 8f 01 06
+c000e25c:	1c 80 29 32 	cmpobe	r5,r6,c000e278 <check_common>
+c000e260:	00 30 30 8c 	lda	7018f00 <dispatch_hook-0xb8ff52d8>,r6
+c000e264:	00 8f 01 07
+c000e268:	10 80 29 32 	cmpobe	r5,r6,c000e278 <check_common>
+c000e26c:	00 30 30 8c 	lda	8018f00 <dispatch_hook-0xb7ff52d8>,r6
+c000e270:	00 8f 01 08
+c000e274:	f8 87 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+
+c000e278 <check_common>:
+c000e278:	18 20 29 90 	ld	0x18(r4),r5
+c000e27c:	00 30 30 8c 	lda	30363949 <dispatch_hook-0x8fcaa88f>,r6
+c000e280:	49 39 36 30
+c000e284:	e8 87 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e288:	1c 20 29 90 	ld	0x1c(r4),r5
+c000e28c:	e0 67 01 3a 	cmpibe	0,r5,c000ea6c <ping_reject>
+c000e290:	20 20 29 8c 	lda	0x20(r4),r5
+c000e294:	Address 0x00000000c000e294 is out of bounds.
+
+
+c000e298 <zero_sge>:
+c000e298:	00 50 39 90 	ld	(r5),r7
+c000e29c:	d0 e7 01 3d 	cmpibne	0,r7,c000ea6c <ping_reject>
+c000e2a0:	04 48 29 59 	addo	4,r5,r5
+c000e2a4:	f4 9f 29 34 	cmpobl	r5,r6,c000e298 <zero_sge>
+c000e2a8:	14 20 29 90 	ld	0x14(r4),r5
+c000e2ac:	00 30 30 8c 	lda	1018f00 <dispatch_hook-0xbeff52d8>,r6
+c000e2b0:	00 8f 01 01
+c000e2b4:	a8 87 29 32 	cmpobe	r5,r6,c000ea5c <complete_ok>
+c000e2b8:	00 30 30 8c 	lda	3018f00 <dispatch_hook-0xbcff52d8>,r6
+c000e2bc:	00 8f 01 03
+c000e2c0:	e4 80 29 32 	cmpobe	r5,r6,c000e3a4 <allocator_probe>
+c000e2c4:	00 30 30 8c 	lda	4018f00 <dispatch_hook-0xbbff52d8>,r6
+c000e2c8:	00 8f 01 04
+c000e2cc:	74 81 29 32 	cmpobe	r5,r6,c000e440 <reserve_pool>
+c000e2d0:	00 30 30 8c 	lda	5018f00 <dispatch_hook-0xbaff52d8>,r6
+c000e2d4:	00 8f 01 05
+c000e2d8:	54 82 29 32 	cmpobe	r5,r6,c000e52c <release_pool>
+c000e2dc:	00 30 30 8c 	lda	6018f00 <dispatch_hook-0xb9ff52d8>,r6
+c000e2e0:	00 8f 01 06
+c000e2e4:	34 83 29 32 	cmpobe	r5,r6,c000e618 <copy_page>
+c000e2e8:	00 30 30 8c 	lda	7018f00 <dispatch_hook-0xb8ff52d8>,r6
+c000e2ec:	00 8f 01 07
+c000e2f0:	60 84 29 32 	cmpobe	r5,r6,c000e750 <hash_owned_image>
+c000e2f4:	00 30 30 8c 	lda	8018f00 <dispatch_hook-0xb7ff52d8>,r6
+c000e2f8:	00 8f 01 08
+c000e2fc:	64 85 29 32 	cmpobe	r5,r6,c000e860 <call_owned_probe>
+c000e300:	02 1e 58 65 	dcctl	2,0,r11
+c000e304:	00 30 40 8c 	lda	c000f900 <expected_probe+0xe90>,r8
+c000e308:	00 f9 00 c0
+c000e30c:	00 30 48 8c 	lda	c000ea70 <expected_probe>,r9
+c000e310:	70 ea 00 c0
+c000e314:	00 30 50 8c 	lda	c000f950 <expected_probe+0xee0>,r10
+c000e318:	50 f9 00 c0
+
+c000e31c <compare_probe>:
+c000e31c:	00 10 2a 90 	ld	(r8),r5
+c000e320:	00 50 32 90 	ld	(r9),r6
+c000e324:	48 87 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e328:	04 08 42 59 	addo	4,r8,r8
+c000e32c:	04 48 4a 59 	addo	4,r9,r9
+c000e330:	ec 9f 42 34 	cmpobl	r8,r10,c000e31c <compare_probe>
+c000e334:	82 1d 58 65 	icctl	2,0,r11
+c000e338:	00 30 80 8c 	lda	c000f800 <expected_probe+0xd90>,g0
+c000e33c:	00 f8 00 c0
+c000e340:	1c 20 89 90 	ld	0x1c(r4),g1
+c000e344:	00 30 00 86 	callx	c000f900 <expected_probe+0xe90>
+c000e348:	00 f9 00 c0
+c000e34c:	20 27 04 3d 	cmpibne	0,g0,c000ea6c <ping_reject>
+c000e350:	00 30 28 90 	ld	c000f800 <expected_probe+0xd90>,r5
+c000e354:	00 f8 00 c0
+c000e358:	00 30 30 8c 	lda	444f4e45 <dispatch_hook-0x7bb19393>,r6
+c000e35c:	45 4e 4f 44
+c000e360:	0c 87 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e364:	00 30 28 90 	ld	c000f804 <expected_probe+0xd94>,r5
+c000e368:	04 f8 00 c0
+c000e36c:	1c 20 31 90 	ld	0x1c(r4),r6
+c000e370:	fc 86 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e374:	00 30 28 90 	ld	c000f808 <expected_probe+0xd98>,r5
+c000e378:	08 f8 00 c0
+c000e37c:	f0 01 30 8c 	lda	0x1f0,r6
+c000e380:	ec 86 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e384:	00 30 28 90 	ld	c000f80c <expected_probe+0xd9c>,r5
+c000e388:	0c f8 00 c0
+c000e38c:	1c 20 31 90 	ld	0x1c(r4),r6
+c000e390:	00 30 38 8c 	lda	96016001 <dispatch_hook-0x29ff81d7>,r7
+c000e394:	01 60 01 96
+c000e398:	06 c3 39 58 	xor	r6,r7,r7
+c000e39c:	d0 c6 29 35 	cmpobne	r5,r7,c000ea6c <ping_reject>
+c000e3a0:	bc 06 00 08 	b	c000ea5c <complete_ok>
+
+c000e3a4 <allocator_probe>:
+c000e3a4:	00 30 80 8c 	lda	40000 <dispatch_hook-0xbffce1d8>,g0
+c000e3a8:	00 00 04 00
+c000e3ac:	00 30 88 8c 	lda	96016003 <dispatch_hook-0x29ff81d5>,g1
+c000e3b0:	03 60 01 96
+c000e3b4:	00 30 00 86 	callx	c0066b90 <stock_completion+0x18250>
+c000e3b8:	90 6b 06 c0
+c000e3bc:	b0 26 04 3a 	cmpibe	0,g0,c000ea6c <ping_reject>
+c000e3c0:	10 16 40 5c 	mov	g0,r8
+c000e3c4:	08 16 80 5c 	mov	r8,g0
+c000e3c8:	00 30 88 8c 	lda	40000 <dispatch_hook-0xbffce1d8>,g1
+c000e3cc:	00 00 04 00
+c000e3d0:	00 30 90 8c 	lda	96016003 <dispatch_hook-0x29ff81d5>,g2
+c000e3d4:	03 60 01 96
+c000e3d8:	00 30 00 86 	callx	c0066fc0 <stock_completion+0x18680>
+c000e3dc:	c0 6f 06 c0
+c000e3e0:	00 30 48 8c 	lda	c0618000 <stock_completion+0x5c96c0>,r9
+c000e3e4:	00 80 61 c0
+c000e3e8:	84 46 42 34 	cmpobl	r8,r9,c000ea6c <ping_reject>
+c000e3ec:	00 30 48 8c 	lda	c0790000 <stock_completion+0x7416c0>,r9
+c000e3f0:	00 00 79 c0
+c000e3f4:	78 46 42 33 	cmpobge	r8,r9,c000ea6c <ping_reject>
+c000e3f8:	00 30 48 8c 	lda	7fff <dispatch_hook-0xc00061d9>,r9
+c000e3fc:	ff 7f 00 00
+c000e400:	88 40 4a 58 	and	r8,r9,r9
+c000e404:	68 66 02 3d 	cmpibne	0,r9,c000ea6c <ping_reject>
+c000e408:	1c 20 29 90 	ld	0x1c(r4),r5
+c000e40c:	00 30 28 92 	st	r5,c000f824 <expected_probe+0xdb4>
+c000e410:	24 f8 00 c0
+c000e414:	00 30 40 92 	st	r8,c000f828 <expected_probe+0xdb8>
+c000e418:	28 f8 00 c0
+c000e41c:	00 30 28 8c 	lda	40000 <dispatch_hook-0xbffce1d8>,r5
+c000e420:	00 00 04 00
+c000e424:	00 30 28 92 	st	r5,c000f82c <expected_probe+0xdbc>
+c000e428:	2c f8 00 c0
+c000e42c:	00 30 28 8c 	lda	4f4c4c41 <dispatch_hook-0x70b49597>,r5
+c000e430:	41 4c 4c 4f
+c000e434:	00 30 28 92 	st	r5,c000f820 <expected_probe+0xdb0>
+c000e438:	20 f8 00 c0
+c000e43c:	20 06 00 08 	b	c000ea5c <complete_ok>
+
+c000e440 <reserve_pool>:
+c000e440:	00 30 28 90 	ld	c000f840 <expected_probe+0xdd0>,r5
+c000e444:	40 f8 00 c0
+c000e448:	00 30 30 8c 	lda	ffffffff <stock_completion+0x3ffb16bf>,r6
+c000e44c:	ff ff ff ff
+c000e450:	1c 86 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e454:	00 30 80 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,g0
+c000e458:	00 00 08 00
+c000e45c:	00 30 88 8c 	lda	96016004 <dispatch_hook-0x29ff81d4>,g1
+c000e460:	04 60 01 96
+c000e464:	00 30 00 86 	callx	c0066b90 <stock_completion+0x18250>
+c000e468:	90 6b 06 c0
+c000e46c:	00 26 04 3a 	cmpibe	0,g0,c000ea6c <ping_reject>
+c000e470:	10 16 40 5c 	mov	g0,r8
+c000e474:	00 30 48 8c 	lda	c0618000 <stock_completion+0x5c96c0>,r9
+c000e478:	00 80 61 c0
+c000e47c:	90 40 42 34 	cmpobl	r8,r9,c000e50c <reserve_invalid>
+c000e480:	00 30 48 8c 	lda	c0710000 <stock_completion+0x6c16c0>,r9
+c000e484:	00 00 71 c0
+c000e488:	84 40 42 31 	cmpobg	r8,r9,c000e50c <reserve_invalid>
+c000e48c:	00 30 48 8c 	lda	7fff <dispatch_hook-0xc00061d9>,r9
+c000e490:	ff 7f 00 00
+c000e494:	88 40 4a 58 	and	r8,r9,r9
+c000e498:	74 60 02 3d 	cmpibne	0,r9,c000e50c <reserve_invalid>
+c000e49c:	00 30 40 92 	st	r8,c000f844 <expected_probe+0xdd4>
+c000e4a0:	44 f8 00 c0
+c000e4a4:	00 30 28 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,r5
+c000e4a8:	00 00 08 00
+c000e4ac:	00 30 28 92 	st	r5,c000f848 <expected_probe+0xdd8>
+c000e4b0:	48 f8 00 c0
+c000e4b4:	00 30 28 8c 	lda	96016004 <dispatch_hook-0x29ff81d4>,r5
+c000e4b8:	04 60 01 96
+c000e4bc:	00 30 28 92 	st	r5,c000f84c <expected_probe+0xddc>
+c000e4c0:	4c f8 00 c0
+c000e4c4:	00 30 28 8c 	lda	56525352 <dispatch_hook-0x69ae8e86>,r5
+c000e4c8:	52 53 52 56
+c000e4cc:	00 30 28 92 	st	r5,c000f840 <expected_probe+0xdd0>
+c000e4d0:	40 f8 00 c0
+c000e4d4:	1c 20 29 90 	ld	0x1c(r4),r5
+c000e4d8:	00 30 28 92 	st	r5,c000f824 <expected_probe+0xdb4>
+c000e4dc:	24 f8 00 c0
+c000e4e0:	00 30 40 92 	st	r8,c000f828 <expected_probe+0xdb8>
+c000e4e4:	28 f8 00 c0
+c000e4e8:	00 30 28 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,r5
+c000e4ec:	00 00 08 00
+c000e4f0:	00 30 28 92 	st	r5,c000f82c <expected_probe+0xdbc>
+c000e4f4:	2c f8 00 c0
+c000e4f8:	00 30 28 8c 	lda	4f4c4c41 <dispatch_hook-0x70b49597>,r5
+c000e4fc:	41 4c 4c 4f
+c000e500:	00 30 28 92 	st	r5,c000f820 <expected_probe+0xdb0>
+c000e504:	20 f8 00 c0
+c000e508:	54 05 00 08 	b	c000ea5c <complete_ok>
+
+c000e50c <reserve_invalid>:
+c000e50c:	08 16 80 5c 	mov	r8,g0
+c000e510:	00 30 88 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,g1
+c000e514:	00 00 08 00
+c000e518:	00 30 90 8c 	lda	96016004 <dispatch_hook-0x29ff81d4>,g2
+c000e51c:	04 60 01 96
+c000e520:	00 30 00 86 	callx	c0066fc0 <stock_completion+0x18680>
+c000e524:	c0 6f 06 c0
+c000e528:	44 05 00 08 	b	c000ea6c <ping_reject>
+
+c000e52c <release_pool>:
+c000e52c:	02 1e 58 65 	dcctl	2,0,r11
+c000e530:	00 30 28 90 	ld	c000f840 <expected_probe+0xdd0>,r5
+c000e534:	40 f8 00 c0
+c000e538:	00 30 30 8c 	lda	56525352 <dispatch_hook-0x69ae8e86>,r6
+c000e53c:	52 53 52 56
+c000e540:	2c 85 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e544:	00 30 40 90 	ld	c000f844 <expected_probe+0xdd4>,r8
+c000e548:	44 f8 00 c0
+c000e54c:	00 30 28 90 	ld	c000f848 <expected_probe+0xdd8>,r5
+c000e550:	48 f8 00 c0
+c000e554:	00 30 30 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,r6
+c000e558:	00 00 08 00
+c000e55c:	10 85 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e560:	00 30 28 90 	ld	c000f84c <expected_probe+0xddc>,r5
+c000e564:	4c f8 00 c0
+c000e568:	00 30 30 8c 	lda	96016004 <dispatch_hook-0x29ff81d4>,r6
+c000e56c:	04 60 01 96
+c000e570:	fc 84 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e574:	00 30 48 8c 	lda	c0618000 <stock_completion+0x5c96c0>,r9
+c000e578:	00 80 61 c0
+c000e57c:	f0 44 42 34 	cmpobl	r8,r9,c000ea6c <ping_reject>
+c000e580:	00 30 48 8c 	lda	c0710000 <stock_completion+0x6c16c0>,r9
+c000e584:	00 00 71 c0
+c000e588:	e4 44 42 31 	cmpobg	r8,r9,c000ea6c <ping_reject>
+c000e58c:	00 30 48 8c 	lda	7fff <dispatch_hook-0xc00061d9>,r9
+c000e590:	ff 7f 00 00
+c000e594:	88 40 4a 58 	and	r8,r9,r9
+c000e598:	d4 64 02 3d 	cmpibne	0,r9,c000ea6c <ping_reject>
+c000e59c:	08 16 80 5c 	mov	r8,g0
+c000e5a0:	00 30 88 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,g1
+c000e5a4:	00 00 08 00
+c000e5a8:	00 30 90 8c 	lda	96016004 <dispatch_hook-0x29ff81d4>,g2
+c000e5ac:	04 60 01 96
+c000e5b0:	00 30 00 86 	callx	c0066fc0 <stock_completion+0x18680>
+c000e5b4:	c0 6f 06 c0
+c000e5b8:	00 30 28 8c 	lda	ffffffff <stock_completion+0x3ffb16bf>,r5
+c000e5bc:	ff ff ff ff
+c000e5c0:	00 30 28 92 	st	r5,c000f844 <expected_probe+0xdd4>
+c000e5c4:	44 f8 00 c0
+c000e5c8:	00 30 28 92 	st	r5,c000f848 <expected_probe+0xdd8>
+c000e5cc:	48 f8 00 c0
+c000e5d0:	00 30 28 92 	st	r5,c000f84c <expected_probe+0xddc>
+c000e5d4:	4c f8 00 c0
+c000e5d8:	00 30 28 92 	st	r5,c000f840 <expected_probe+0xdd0>
+c000e5dc:	40 f8 00 c0
+c000e5e0:	1c 20 29 90 	ld	0x1c(r4),r5
+c000e5e4:	00 30 28 92 	st	r5,c000f824 <expected_probe+0xdb4>
+c000e5e8:	24 f8 00 c0
+c000e5ec:	00 30 40 92 	st	r8,c000f828 <expected_probe+0xdb8>
+c000e5f0:	28 f8 00 c0
+c000e5f4:	00 30 28 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,r5
+c000e5f8:	00 00 08 00
+c000e5fc:	00 30 28 92 	st	r5,c000f82c <expected_probe+0xdbc>
+c000e600:	2c f8 00 c0
+c000e604:	00 30 28 8c 	lda	45455246 <dispatch_hook-0x7abb8f92>,r5
+c000e608:	46 52 45 45
+c000e60c:	00 30 28 92 	st	r5,c000f820 <expected_probe+0xdb0>
+c000e610:	20 f8 00 c0
+c000e614:	48 04 00 08 	b	c000ea5c <complete_ok>
+
+c000e618 <copy_page>:
+c000e618:	02 1e 58 65 	dcctl	2,0,r11
+c000e61c:	00 30 28 90 	ld	c000f840 <expected_probe+0xdd0>,r5
+c000e620:	40 f8 00 c0
+c000e624:	00 30 30 8c 	lda	56525352 <dispatch_hook-0x69ae8e86>,r6
+c000e628:	52 53 52 56
+c000e62c:	40 84 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e630:	00 30 40 90 	ld	c000f844 <expected_probe+0xdd4>,r8
+c000e634:	44 f8 00 c0
+c000e638:	00 30 28 90 	ld	c000f848 <expected_probe+0xdd8>,r5
+c000e63c:	48 f8 00 c0
+c000e640:	00 30 30 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,r6
+c000e644:	00 00 08 00
+c000e648:	24 84 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e64c:	00 30 28 90 	ld	c000f84c <expected_probe+0xddc>,r5
+c000e650:	4c f8 00 c0
+c000e654:	00 30 30 8c 	lda	96016004 <dispatch_hook-0x29ff81d4>,r6
+c000e658:	04 60 01 96
+c000e65c:	10 84 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e660:	00 30 48 8c 	lda	c0618000 <stock_completion+0x5c96c0>,r9
+c000e664:	00 80 61 c0
+c000e668:	04 44 42 34 	cmpobl	r8,r9,c000ea6c <ping_reject>
+c000e66c:	00 30 48 8c 	lda	c0710000 <stock_completion+0x6c16c0>,r9
+c000e670:	00 00 71 c0
+c000e674:	f8 43 42 31 	cmpobg	r8,r9,c000ea6c <ping_reject>
+c000e678:	00 30 48 8c 	lda	7fff <dispatch_hook-0xc00061d9>,r9
+c000e67c:	ff 7f 00 00
+c000e680:	88 40 4a 58 	and	r8,r9,r9
+c000e684:	e8 63 02 3d 	cmpibne	0,r9,c000ea6c <ping_reject>
+c000e688:	00 30 28 90 	ld	c000f860 <expected_probe+0xdf0>,r5
+c000e68c:	60 f8 00 c0
+c000e690:	00 30 30 8c 	lda	59504f43 <dispatch_hook-0x66b09295>,r6
+c000e694:	43 4f 50 59
+c000e698:	d4 83 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e69c:	00 30 28 90 	ld	c000f864 <expected_probe+0xdf4>,r5
+c000e6a0:	64 f8 00 c0
+c000e6a4:	1c 20 31 90 	ld	0x1c(r4),r6
+c000e6a8:	c4 83 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e6ac:	00 30 48 90 	ld	c000f868 <expected_probe+0xdf8>,r9
+c000e6b0:	68 f8 00 c0
+c000e6b4:	7e 00 50 8c 	lda	0x7e,r10
+c000e6b8:	b4 83 4a 31 	cmpobg	r9,r10,c000ea6c <ping_reject>
+c000e6bc:	09 16 58 5c 	mov	r9,r11
+c000e6c0:	0c 4e 4a 59 	shlo	12,r9,r9
+c000e6c4:	08 40 4a 59 	addo	r8,r9,r9
+c000e6c8:	00 30 50 8c 	lda	7f000 <dispatch_hook-0xbff8f1d8>,r10
+c000e6cc:	00 f0 07 00
+c000e6d0:	08 80 52 59 	addo	r8,r10,r10
+c000e6d4:	0a 16 80 5c 	mov	r10,g0
+c000e6d8:	48 03 00 09 	call	c000ea20 <fnv_page>
+c000e6dc:	00 30 28 90 	ld	c000f86c <expected_probe+0xdfc>,r5
+c000e6e0:	6c f8 00 c0
+c000e6e4:	88 43 81 35 	cmpobne	g0,r5,c000ea6c <ping_reject>
+c000e6e8:	0a 16 40 5c 	mov	r10,r8
+c000e6ec:	09 16 50 5c 	mov	r9,r10
+c000e6f0:	Address 0x00000000c000e6f0 is out of bounds.
+
+
+c000e6f4 <copy_loop>:
+c000e6f4:	00 10 2a 90 	ld	(r8),r5
+c000e6f8:	00 90 2a 92 	st	r5,(r10)
+c000e6fc:	04 08 42 59 	addo	4,r8,r8
+c000e700:	04 88 52 59 	addo	4,r10,r10
+c000e704:	01 09 63 59 	subo	1,r12,r12
+c000e708:	ec 3f 03 3d 	cmpibne	0,r12,c000e6f4 <copy_loop>
+c000e70c:	09 16 80 5c 	mov	r9,g0
+c000e710:	10 03 00 09 	call	c000ea20 <fnv_page>
+c000e714:	00 30 28 90 	ld	c000f86c <expected_probe+0xdfc>,r5
+c000e718:	6c f8 00 c0
+c000e71c:	50 43 81 35 	cmpobne	g0,r5,c000ea6c <ping_reject>
+c000e720:	00 30 58 92 	st	r11,c000f828 <expected_probe+0xdb8>
+c000e724:	28 f8 00 c0
+c000e728:	00 30 80 92 	st	g0,c000f82c <expected_probe+0xdbc>
+c000e72c:	2c f8 00 c0
+c000e730:	1c 20 29 90 	ld	0x1c(r4),r5
+c000e734:	00 30 28 92 	st	r5,c000f824 <expected_probe+0xdb4>
+c000e738:	24 f8 00 c0
+c000e73c:	00 30 28 8c 	lda	59504f43 <dispatch_hook-0x66b09295>,r5
+c000e740:	43 4f 50 59
+c000e744:	00 30 28 92 	st	r5,c000f820 <expected_probe+0xdb0>
+c000e748:	20 f8 00 c0
+c000e74c:	10 03 00 08 	b	c000ea5c <complete_ok>
+
+c000e750 <hash_owned_image>:
+c000e750:	02 1e 58 65 	dcctl	2,0,r11
+c000e754:	00 30 28 90 	ld	c000f840 <expected_probe+0xdd0>,r5
+c000e758:	40 f8 00 c0
+c000e75c:	00 30 30 8c 	lda	56525352 <dispatch_hook-0x69ae8e86>,r6
+c000e760:	52 53 52 56
+c000e764:	08 83 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e768:	00 30 40 90 	ld	c000f844 <expected_probe+0xdd4>,r8
+c000e76c:	44 f8 00 c0
+c000e770:	00 30 28 90 	ld	c000f848 <expected_probe+0xdd8>,r5
+c000e774:	48 f8 00 c0
+c000e778:	00 30 30 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,r6
+c000e77c:	00 00 08 00
+c000e780:	ec 82 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e784:	00 30 28 90 	ld	c000f84c <expected_probe+0xddc>,r5
+c000e788:	4c f8 00 c0
+c000e78c:	00 30 30 8c 	lda	96016004 <dispatch_hook-0x29ff81d4>,r6
+c000e790:	04 60 01 96
+c000e794:	d8 82 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e798:	00 30 48 8c 	lda	c0618000 <stock_completion+0x5c96c0>,r9
+c000e79c:	00 80 61 c0
+c000e7a0:	cc 42 42 34 	cmpobl	r8,r9,c000ea6c <ping_reject>
+c000e7a4:	00 30 48 8c 	lda	c0710000 <stock_completion+0x6c16c0>,r9
+c000e7a8:	00 00 71 c0
+c000e7ac:	c0 42 42 31 	cmpobg	r8,r9,c000ea6c <ping_reject>
+c000e7b0:	00 30 48 8c 	lda	7fff <dispatch_hook-0xc00061d9>,r9
+c000e7b4:	ff 7f 00 00
+c000e7b8:	88 40 4a 58 	and	r8,r9,r9
+c000e7bc:	b0 62 02 3d 	cmpibne	0,r9,c000ea6c <ping_reject>
+c000e7c0:	00 30 28 90 	ld	c000f870 <expected_probe+0xe00>,r5
+c000e7c4:	70 f8 00 c0
+c000e7c8:	00 30 30 8c 	lda	48534148 <dispatch_hook-0x77ada090>,r6
+c000e7cc:	48 41 53 48
+c000e7d0:	9c 82 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e7d4:	00 30 28 90 	ld	c000f874 <expected_probe+0xe04>,r5
+c000e7d8:	74 f8 00 c0
+c000e7dc:	1c 20 31 90 	ld	0x1c(r4),r6
+c000e7e0:	8c 82 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e7e4:	00 30 68 90 	ld	c000f878 <expected_probe+0xe08>,r13
+c000e7e8:	78 f8 00 c0
+c000e7ec:	80 62 03 3a 	cmpibe	0,r13,c000ea6c <ping_reject>
+c000e7f0:	7f 00 50 8c 	lda	0x7f,r10
+c000e7f4:	78 82 6a 31 	cmpobg	r13,r10,c000ea6c <ping_reject>
+c000e7f8:	0c 4e 5b 59 	shlo	12,r13,r11
+c000e7fc:	00 30 48 8c 	lda	811c9dc5 <dispatch_hook-0x3ee44413>,r9
+c000e800:	c5 9d 1c 81
+c000e804:	00 30 50 8c 	lda	1000193 <dispatch_hook-0xbf00e045>,r10
+c000e808:	93 01 00 01
+
+c000e80c <hash_image_loop>:
+c000e80c:	00 10 62 80 	ldob	(r8),r12
+c000e810:	0c 43 4a 58 	xor	r12,r9,r9
+c000e814:	8a 40 4a 70 	mulo	r10,r9,r9
+c000e818:	01 08 42 59 	addo	1,r8,r8
+c000e81c:	01 c9 5a 59 	subo	1,r11,r11
+c000e820:	ec ff 02 3d 	cmpibne	0,r11,c000e80c <hash_image_loop>
+c000e824:	00 30 28 90 	ld	c000f87c <expected_probe+0xe0c>,r5
+c000e828:	7c f8 00 c0
+c000e82c:	40 42 49 35 	cmpobne	r9,r5,c000ea6c <ping_reject>
+c000e830:	00 30 28 8c 	lda	48534148 <dispatch_hook-0x77ada090>,r5
+c000e834:	48 41 53 48
+c000e838:	00 30 28 92 	st	r5,c000f830 <expected_probe+0xdc0>
+c000e83c:	30 f8 00 c0
+c000e840:	1c 20 29 90 	ld	0x1c(r4),r5
+c000e844:	00 30 28 92 	st	r5,c000f834 <expected_probe+0xdc4>
+c000e848:	34 f8 00 c0
+c000e84c:	00 30 68 92 	st	r13,c000f838 <expected_probe+0xdc8>
+c000e850:	38 f8 00 c0
+c000e854:	00 30 48 92 	st	r9,c000f83c <expected_probe+0xdcc>
+c000e858:	3c f8 00 c0
+c000e85c:	00 02 00 08 	b	c000ea5c <complete_ok>
+
+c000e860 <call_owned_probe>:
+c000e860:	02 1e 58 65 	dcctl	2,0,r11
+c000e864:	00 30 28 90 	ld	c000f840 <expected_probe+0xdd0>,r5
+c000e868:	40 f8 00 c0
+c000e86c:	00 30 30 8c 	lda	56525352 <dispatch_hook-0x69ae8e86>,r6
+c000e870:	52 53 52 56
+c000e874:	f8 81 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e878:	00 30 40 90 	ld	c000f844 <expected_probe+0xdd4>,r8
+c000e87c:	44 f8 00 c0
+c000e880:	00 30 28 90 	ld	c000f848 <expected_probe+0xdd8>,r5
+c000e884:	48 f8 00 c0
+c000e888:	00 30 30 8c 	lda	80000 <dispatch_hook-0xbff8e1d8>,r6
+c000e88c:	00 00 08 00
+c000e890:	dc 81 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e894:	00 30 28 90 	ld	c000f84c <expected_probe+0xddc>,r5
+c000e898:	4c f8 00 c0
+c000e89c:	00 30 30 8c 	lda	96016004 <dispatch_hook-0x29ff81d4>,r6
+c000e8a0:	04 60 01 96
+c000e8a4:	c8 81 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e8a8:	00 30 48 8c 	lda	c0618000 <stock_completion+0x5c96c0>,r9
+c000e8ac:	00 80 61 c0
+c000e8b0:	bc 41 42 34 	cmpobl	r8,r9,c000ea6c <ping_reject>
+c000e8b4:	00 30 48 8c 	lda	c0710000 <stock_completion+0x6c16c0>,r9
+c000e8b8:	00 00 71 c0
+c000e8bc:	b0 41 42 31 	cmpobg	r8,r9,c000ea6c <ping_reject>
+c000e8c0:	00 30 48 8c 	lda	7fff <dispatch_hook-0xc00061d9>,r9
+c000e8c4:	ff 7f 00 00
+c000e8c8:	88 40 4a 58 	and	r8,r9,r9
+c000e8cc:	a0 61 02 3d 	cmpibne	0,r9,c000ea6c <ping_reject>
+c000e8d0:	00 30 28 90 	ld	c000f880 <expected_probe+0xe10>,r5
+c000e8d4:	80 f8 00 c0
+c000e8d8:	00 30 30 8c 	lda	43455845 <dispatch_hook-0x7cbb8993>,r6
+c000e8dc:	45 58 45 43
+c000e8e0:	8c 81 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e8e4:	00 30 28 90 	ld	c000f884 <expected_probe+0xe14>,r5
+c000e8e8:	84 f8 00 c0
+c000e8ec:	1c 20 31 90 	ld	0x1c(r4),r6
+c000e8f0:	7c 81 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e8f4:	00 30 28 90 	ld	c000f888 <expected_probe+0xe18>,r5
+c000e8f8:	88 f8 00 c0
+c000e8fc:	02 00 30 8c 	lda	0x2,r6
+c000e900:	6c 81 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e904:	00 30 48 8c 	lda	811c9dc5 <dispatch_hook-0x3ee44413>,r9
+c000e908:	c5 9d 1c 81
+c000e90c:	00 30 50 8c 	lda	1000193 <dispatch_hook-0xbf00e045>,r10
+c000e910:	93 01 00 01
+c000e914:	00 30 58 8c 	lda	2000 <dispatch_hook-0xc000c1d8>,r11
+c000e918:	00 20 00 00
+
+c000e91c <owned_exec_hash_loop>:
+c000e91c:	00 10 62 80 	ldob	(r8),r12
+c000e920:	0c 43 4a 58 	xor	r12,r9,r9
+c000e924:	8a 40 4a 70 	mulo	r10,r9,r9
+c000e928:	01 08 42 59 	addo	1,r8,r8
+c000e92c:	01 c9 5a 59 	subo	1,r11,r11
+c000e930:	ec ff 02 3d 	cmpibne	0,r11,c000e91c <owned_exec_hash_loop>
+c000e934:	00 30 28 90 	ld	c000f88c <expected_probe+0xe1c>,r5
+c000e938:	8c f8 00 c0
+c000e93c:	30 41 49 35 	cmpobne	r9,r5,c000ea6c <ping_reject>
+c000e940:	00 30 40 90 	ld	c000f844 <expected_probe+0xdd4>,r8
+c000e944:	44 f8 00 c0
+c000e948:	00 30 48 8c 	lda	c000ea70 <expected_probe>,r9
+c000e94c:	70 ea 00 c0
+c000e950:	Address 0x00000000c000e950 is out of bounds.
+
+
+c000e954 <owned_exec_compare>:
+c000e954:	00 10 2a 90 	ld	(r8),r5
+c000e958:	00 50 32 90 	ld	(r9),r6
+c000e95c:	10 81 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e960:	04 08 42 59 	addo	4,r8,r8
+c000e964:	04 48 4a 59 	addo	4,r9,r9
+c000e968:	04 89 52 59 	subo	4,r10,r10
+c000e96c:	e8 bf 02 3d 	cmpibne	0,r10,c000e954 <owned_exec_compare>
+c000e970:	82 1d 58 65 	icctl	2,0,r11
+c000e974:	00 30 80 8c 	lda	c000f800 <expected_probe+0xd90>,g0
+c000e978:	00 f8 00 c0
+c000e97c:	1c 20 89 90 	ld	0x1c(r4),g1
+c000e980:	00 30 40 90 	ld	c000f844 <expected_probe+0xdd4>,r8
+c000e984:	44 f8 00 c0
+c000e988:	00 10 02 86 	callx	(r8)
+c000e98c:	e0 20 04 3d 	cmpibne	0,g0,c000ea6c <ping_reject>
+c000e990:	00 30 28 90 	ld	c000f800 <expected_probe+0xd90>,r5
+c000e994:	00 f8 00 c0
+c000e998:	00 30 30 8c 	lda	444f4e45 <dispatch_hook-0x7bb19393>,r6
+c000e99c:	45 4e 4f 44
+c000e9a0:	cc 80 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e9a4:	00 30 28 90 	ld	c000f804 <expected_probe+0xd94>,r5
+c000e9a8:	04 f8 00 c0
+c000e9ac:	1c 20 31 90 	ld	0x1c(r4),r6
+c000e9b0:	bc 80 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e9b4:	00 30 28 90 	ld	c000f808 <expected_probe+0xd98>,r5
+c000e9b8:	08 f8 00 c0
+c000e9bc:	f0 01 30 8c 	lda	0x1f0,r6
+c000e9c0:	ac 80 29 35 	cmpobne	r5,r6,c000ea6c <ping_reject>
+c000e9c4:	00 30 28 90 	ld	c000f80c <expected_probe+0xd9c>,r5
+c000e9c8:	0c f8 00 c0
+c000e9cc:	1c 20 31 90 	ld	0x1c(r4),r6
+c000e9d0:	00 30 38 8c 	lda	96016001 <dispatch_hook-0x29ff81d7>,r7
+c000e9d4:	01 60 01 96
+c000e9d8:	06 c3 39 58 	xor	r6,r7,r7
+c000e9dc:	90 c0 29 35 	cmpobne	r5,r7,c000ea6c <ping_reject>
+c000e9e0:	00 30 28 8c 	lda	214e5552 <dispatch_hook-0x9eb28c86>,r5
+c000e9e4:	52 55 4e 21
+c000e9e8:	00 30 28 92 	st	r5,c000f830 <expected_probe+0xdc0>
+c000e9ec:	30 f8 00 c0
+c000e9f0:	1c 20 29 90 	ld	0x1c(r4),r5
+c000e9f4:	00 30 28 92 	st	r5,c000f834 <expected_probe+0xdc4>
+c000e9f8:	34 f8 00 c0
+c000e9fc:	00 30 28 90 	ld	c000f844 <expected_probe+0xdd4>,r5
+c000ea00:	44 f8 00 c0
+c000ea04:	00 30 28 92 	st	r5,c000f838 <expected_probe+0xdc8>
+c000ea08:	38 f8 00 c0
+c000ea0c:	00 30 28 90 	ld	c000f88c <expected_probe+0xe1c>,r5
+c000ea10:	8c f8 00 c0
+c000ea14:	00 30 28 92 	st	r5,c000f83c <expected_probe+0xdcc>
+c000ea18:	3c f8 00 c0
+c000ea1c:	40 00 00 08 	b	c000ea5c <complete_ok>
+
+c000ea20 <fnv_page>:
+c000ea20:	10 16 40 5c 	mov	g0,r8
+c000ea24:	00 30 48 8c 	lda	811c9dc5 <dispatch_hook-0x3ee44413>,r9
+c000ea28:	c5 9d 1c 81
+c000ea2c:	00 30 50 8c 	lda	1000193 <dispatch_hook-0xbf00e045>,r10
+c000ea30:	93 01 00 01
+c000ea34:	00 30 58 8c 	lda	1000 <dispatch_hook-0xc000d1d8>,r11
+c000ea38:	00 10 00 00
+
+c000ea3c <fnv_loop>:
+c000ea3c:	00 10 62 80 	ldob	(r8),r12
+c000ea40:	0c 43 4a 58 	xor	r12,r9,r9
+c000ea44:	8a 40 4a 70 	mulo	r10,r9,r9
+c000ea48:	01 08 42 59 	addo	1,r8,r8
+c000ea4c:	01 c9 5a 59 	subo	1,r11,r11
+c000ea50:	ec ff 02 3d 	cmpibne	0,r11,c000ea3c <fnv_loop>
+c000ea54:	09 16 80 5c 	mov	r9,g0
+c000ea58:	00 00 00 0a 	ret
+
+c000ea5c <complete_ok>:
+c000ea5c:	00 1e 88 5c 	mov	0,g1
+c000ea60:	56 20 89 8a 	stos	g1,0x56(r4)
+c000ea64:	04 16 80 5c 	mov	r4,g0
+c000ea68:	d8 fe 03 08 	b	c004e940 <stock_completion>
+
+c000ea6c <ping_reject>:
+c000ea6c:	24 4d 01 08 	b	c0023790 <stock_unsupported>
+
+c000ea70 <expected_probe>:
+c000ea70:	10 16 20 5c 	mov	g0,r4
+c000ea74:	04 20 89 92 	st	g1,0x4(r4)
+c000ea78:	00 1e 28 5c 	mov	0,r5
+c000ea7c:	00 1e 30 5c 	mov	0,r6
+c000ea80:	20 00 38 8c 	lda	0x20,r7
+c000ea84:	06 40 29 59 	addo	r6,r5,r5
+c000ea88:	01 88 31 59 	addo	1,r6,r6
+c000ea8c:	f8 df 31 34 	cmpobl	r6,r7,c000ea84 <expected_probe+0x14>
+c000ea90:	08 20 29 92 	st	r5,0x8(r4)
+c000ea94:	00 30 28 8c 	lda	96016001 <dispatch_hook-0x29ff81d7>,r5
+c000ea98:	01 60 01 96
+c000ea9c:	11 43 29 58 	xor	g1,r5,r5
+c000eaa0:	0c 20 29 92 	st	r5,0xc(r4)
+c000eaa4:	00 30 28 8c 	lda	444f4e45 <dispatch_hook-0x7bb19393>,r5
+c000eaa8:	45 4e 4f 44
+c000eaac:	00 20 29 92 	st	r5,0x0(r4)
+c000eab0:	00 1e 80 5c 	mov	0,g0
+c000eab4:	00 00 00 0a 	ret
+	...

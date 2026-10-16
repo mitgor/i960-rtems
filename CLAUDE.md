@@ -1,5 +1,16 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID owned-RAM leaf candidate programmed, post-boot pending — 2026-10-17
+
+The exact op-8 candidate SHA `6f056a98…480aa7` was audited, staged and
+read back as a full guarded 1 MiB image. FLASHIMAGE completed status/residual
+zero. The PC has not returned after reboot; persistent flash and a live
+owned-RAM call are **not yet accepted**. Read
+`artifacts/current/accele160-ownedexec-20261017/README.md` and the exact
+`host/accele160/ownedexec/` sources. On return, bind only new `37:09.1`,
+leave old `37:04.1` unbound, take two guarded full-image reads, then run the
+fixed 80-byte leaf proof with all owner/page/staging audits.
+
 ## AcceleRAID owned-image digest accepted — 2026-10-17
 
 The exact op-7 candidate SHA `665cb121…5c708a0` persisted across reboot on
