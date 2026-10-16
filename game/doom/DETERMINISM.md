@@ -94,7 +94,7 @@ python3 tools/run_determinism.py --root runs --binary after/host32/doom-profile 
 ```
 
 The isolated test directory was `/home/mit/i960-doom-determinism-20261012`.
-[Exact captures, sources and binaries](../../artifacts/doom-determinism-20261012/README.md)
+[Exact captures, sources and binaries](../../artifacts/notes/doom-determinism-20261012.md)
 include an independent replay command and corruption rejection tests. The old
 milestone archive and its verifier remain unchanged: they still describe the
 historical failed repeatability test.

@@ -1,2 +1,0 @@
-control wait: prompt reply, completion refusal, stale token and bounded timeout passed
-control wait: prompt reply, completion refusal, stale token and bounded timeout passed

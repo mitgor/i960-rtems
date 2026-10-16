@@ -1,1 +1,0 @@
-PASS: actual private Newlib owned preflight, 6 MiB zone, frame/palette, WAD backend, local STOP, retired-state refusal, retained-buffer fragmentation/OOM and corrected layout, heap drain (32-bit native, not i960 execution)

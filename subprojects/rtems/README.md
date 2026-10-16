@@ -9,7 +9,7 @@ use a payload and generated Linux module from the same build.
 | Initial returning RTEMS and networking | [RTEMS guide](../../rtems/README.md), [first acceptance](../../artifacts/rtems-20261011/README.md) |
 | Hardware timer and firmware coexistence | [autonomous profile](../../rtems/autonomous/README.md), [web acceptance](../../artifacts/rtems-web-autonomous-20261011/README.md) |
 | Owned interrupts and task control | [interrupt contexts](../../rtems/interrupt/README.md), [resident runtime](../../rtems/residentnet/README.md) |
-| Larger owned RAM and Doom arena | [12 MiB evidence](../../artifacts/rtems-large-ram-20261012/README.md), [Doom RAM contract](../../game/doom/RAM-CONTRACT.md) |
+| Larger owned RAM and Doom arena | [12 MiB evidence](../../artifacts/notes/rtems-large-ram-20261012.md), [Doom RAM contract](../../game/doom/RAM-CONTRACT.md) |
 | Application/runtime integration | [Doom runtime](../../game/doom/runtime/README.md), [OS plan](../../game/doom/OS-PLAN.md) |
 
 Build dependencies are pinned in [sources.json](../../rtems/sources.json),

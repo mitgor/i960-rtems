@@ -124,6 +124,6 @@ python3 rtems/switch/test_concurrent.py
 python3 rtems/switch/verify_concurrent_capture.py artifacts/irq-concurrent-control-20261011/live.tar.xz
 ```
 
-[Artifacts and exact results](../../artifacts/irq-concurrent-control-20261011/README.md).
+[Artifacts and exact results](../../artifacts/notes/irq-concurrent-control-20261011.md).
 The next gate is broader lifecycle/failure testing of this API and an explicit
 containment policy for non-cooperative tasks before resident ownership or DMA.

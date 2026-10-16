@@ -20,14 +20,14 @@ Every full audit remains. Native remains the default backend; queue sessions
 are bounded to 512 updates/30 s idle by default. Public IPv6 HTTP was restored
 and returned 200. No flash write or reboot in this batch. Read
 [the bridge contract](../../game/raycaster/browserqueue/README.md) and
-[the captures and remaining work](../../artifacts/browserqueue-20261011/README.md).
+[the captures and remaining work](../../artifacts/notes/browserqueue-20261011.md).
 
 Journal physical acceptance now passes: 1,635 full audits and nine restorations.
 RAF browser delivery improves 13.20 to 15.19 FPS, with every audit retained.
 Use explicit `--queue-metadata journal`; rewrite remains the reference default.
 Next: user play testing via [instructions](../../game/raycaster/journal/USER-TESTING.md),
 then profile remaining lossless archive/command costs if useful.
-See [journal evidence](../../artifacts/journal-20261011/README.md).
+See [journal evidence](../../artifacts/notes/journal-20261011.md).
 Keep all paired reads, native-frame comparisons and audit snapshots. The larger
 Doom framebuffer/heap contract and asynchronous ownership remain separate work.
 
@@ -45,7 +45,7 @@ within host variation; both remain opt-in. Use `--queue-slots words` with the
 accepted combined/fast-render flags; diagnostic opcode 5 is excluded from release
 images. Public IPv6 HTTP restored. No flash/reboot in this card batch. The queue
 retains its original RAM grant and does not inherit the parallel ownership work.
-[Contract](../../game/raycaster/slotopt/README.md), [complete measurements/artifacts](../../artifacts/slotopt-20261011/README.md).
+[Contract](../../game/raycaster/slotopt/README.md), [complete measurements/artifacts](../../artifacts/notes/slotopt-20261011.md).
 The browser integration follow-up is accepted above.
 
 ## Combined ACK-and-PUBLISH: fewer fully audited transactions
@@ -62,7 +62,7 @@ request. Input rejection preserves queue and renderer state; uncertain execution
 is never retried. HTTP is restored; no flash/reboot in this batch. Keep this
 opt-in with `--frame-queue --queue-combined`; single-frame defaults remain.
 Next: profile slot validation/publication hashing while retaining all checks.
-[Contract](../../game/raycaster/combined/README.md), [measurements and captures](../../artifacts/ackpublish-20261011/README.md).
+[Contract](../../game/raycaster/combined/README.md), [measurements and captures](../../artifacts/notes/ackpublish-20261011.md).
 
 ## Frame queue prototype: measured, still fully audited
 
@@ -77,7 +77,7 @@ preserved, the bounds/storage checks and generated-driver lifecycle tests are
 fixed, and the accepted batch ran after reboot. Public IPv6 HTTP is restored.
 Next: validate combined ACK-and-PUBLISH while keeping full audits per request;
 no asynchronous producer, broader RAM ownership or relaxed audit policy is proven.
-[Contract](../../game/raycaster/queue/README.md), [measurements and failure evidence](../../artifacts/framequeue-20261011/README.md).
+[Contract](../../game/raycaster/queue/README.md), [measurements and failure evidence](../../artifacts/notes/framequeue-20261011.md).
 
 The [Doom allocation runtime](../../game/doom/runtime/README.md) now passes host
 reference frames and a resident on-card proof. Five allocation imports are
@@ -226,7 +226,7 @@ CHIP-8 reply does not shrink the driver's fixed buffers or paired staging reads.
 Word-copy/clear is now implemented and card-validated in the isolated raycaster
 build: 3.30× copy, 4.63× clear, and a 3.91% full-frame kernel-time reduction across
 repeated byte/word sessions. All 2,105 replies matched native output, with full
-restoration. [Evidence](../../artifacts/word-memory-20261011/README.md).
+restoration. [Evidence](../../artifacts/notes/word-memory-20261011.md).
 
 Upload/arming profiling and exact validation acceleration are also accepted:
 43,904 measured commands, unchanged paired read volume, and 3.61% lower full-frame
@@ -244,7 +244,7 @@ renderer loops reduce callback 11.925 → 7.360 ms and kernel time 24.169 → 19
 (19.44%). Eight sessions pass 3,368 identical replies and full restoration.
 The 20 us polling experiment saves 0.269 ms audit time but costs 17.19% more host
 CPU; the recommended 50 us coarse release measures 19.352 ms kernel time.
-[Evidence](../../artifacts/callback-20261011/README.md).
+[Evidence](../../artifacts/notes/callback-20261011.md).
 
 The originally proposed next action, now completed above, was a generation-checked frame queue with
 explicit ownership, stale-frame rejection, cancellation and an equivalent

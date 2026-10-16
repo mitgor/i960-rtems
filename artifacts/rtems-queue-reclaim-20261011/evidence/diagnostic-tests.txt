@@ -1,3 +1,0 @@
-Shared diagnostics: 64-bit carry, both schemas, 28 corruptions rejected
-Version 3: nonfatal large-allocation refusal telemetry checked
-Version 4: network/packet-copy interrupt-span counters checked

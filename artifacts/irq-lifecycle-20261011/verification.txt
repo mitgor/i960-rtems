@@ -1,2 +1,0 @@
-Six lifecycle runs verified: actual final user-fd close / driver unbind during active calls; ordered join/restore/unmap/free; paired target reports; exact images; full RAM/MU restoration
-Initial rejected unbind capture: original truncated log confirmed; paired restoration independently passes with separately saved kernel close line (temporary copy only)

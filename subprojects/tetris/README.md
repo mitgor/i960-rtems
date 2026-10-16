@@ -8,7 +8,7 @@ does **not** require RTEMS.
 - Core: [tetris.c](../../game/tetris/tetris.c), [interface](../../game/tetris/tetris.h), [build](../../game/tetris/Makefile).
 - Payload and I/O: [runtime loader](../../loader/runtime/README.md), [bounded step](../../docs/games/TETRIS-STEP.md).
 - Frontend: [host/session](../../host/session/README.md), [terminal instructions](../../docs/games/TETRIS-TERMINAL.md).
-- Exact accepted source/binaries/results: [T4](../../artifacts/tetris-t4-20261010/README.md), [T5 transport](../../artifacts/tetris-t5-20261010/README.md).
+- Exact accepted source/binaries/results: [T4](../../artifacts/notes/tetris-t4-20261010.md), [T5 transport](../../artifacts/notes/tetris-t5-20261010.md).
 
 On the existing deployment, after the card's current owner has stopped safely:
 

@@ -1,3 +1,0 @@
-PASS 52 detail modes; CPU sample sums/bounds/reserved fields; bounded launch policy
-PASS runtime high/low states; malformed detail rejected; fixed-mode policy preserved
-PASS WAD profile trailer: exact schema, counters, time scale, gap/tail padding and explicit opt-in; 9 refusals

@@ -1,2 +1,0 @@
-PASS two deterministic native 52-frame no-input runs with STOP and heap drain
-PASS actual backend cache counters are nonzero in all 52 native frames

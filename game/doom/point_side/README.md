@@ -32,7 +32,7 @@ Validation:
 - `verify_probe.py PROBE`: independent replay of all paired staging captures,
   command sequence, identities, returns and clean restoration/unload.
 
-See [physical acceptance](../../../artifacts/point-side-20261016/README.md).
+See [physical acceptance](../../../artifacts/notes/point-side-20261016.md).
 The tested corpus is strong bounded evidence, not a proof of the entire compiler
 or exhaustive coverage of every possible six-word input. Existing renderer CPU
 sampling measures BSP plus walls; it does not isolate helper CPU time.

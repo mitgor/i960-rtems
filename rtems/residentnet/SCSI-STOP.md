@@ -51,7 +51,7 @@ SACR `13ffc`, and zero DMA words. RTEMS timers, task interrupts, message-registe
 control and IPv4/IPv6 networking worked during held reset. Snapshot word 63 bit
 1 revalidates this hardware state; bit 0 remains the existing memory check.
 The host driver still disallows a second firmware callback and retains its
-allocation/module at close. See the [capture ledger](../../artifacts/rtems-scsi-stop-20261011/README.md).
+allocation/module at close. See the [capture ledger](../../artifacts/notes/rtems-scsi-stop-20261011.md).
 
 ## Why broader RAM is still gated
 
@@ -95,4 +95,4 @@ Final physical acceptance: 36,000 ticks, ten concurrent IPv4/IPv6 rounds
 30 seconds apart, 73 unique burst echoes / 23 counted drops, high-water 72,
 TCP loss recovery and both IRQ continuations drained at the deadline. Independent
 replay validates the pinned image/module, control journal, packets and guarded
-held-reset snapshots. See [batch evidence](../../artifacts/rtems-scsi-stop-20261011/README.md).
+held-reset snapshots. See [batch evidence](../../artifacts/notes/rtems-scsi-stop-20261011.md).

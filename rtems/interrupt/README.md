@@ -6,7 +6,7 @@ The next-work section below records this owned-stack milestone’s earlier scope
 2026-10-11: implemented and tested on the card. The isolated `irqctx` profile
 passed 126 hardware interrupts across three runs. `muctx` then passed 546
 interrupts with bounded RTEMS, CTL1 control and independent STOP/HALT.
-[Exact artifacts and verification](../../artifacts/owned-interrupt-stack-20261011/README.md).
+[Exact artifacts and verification](../../artifacts/notes/owned-interrupt-stack-20261011.md).
 
 ## What is owned
 

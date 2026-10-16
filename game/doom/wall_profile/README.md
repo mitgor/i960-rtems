@@ -25,4 +25,4 @@ Run `python3 game/doom/wall_profile/test.py` for malformed-evidence checks.
 Physical acceptance plan/evidence: `artifacts/walls-20261016/PLAN.md`.
 
 Acceptance: 2,600 matching images, 285 full paired audits, STOP/stall/drain and
-full replay/tamper checks pass. See `artifacts/walls-20261016/README.md`.
+full replay/tamper checks pass. See `artifacts/notes/walls-20261016.md`.

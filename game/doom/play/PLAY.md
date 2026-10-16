@@ -2,7 +2,7 @@
 
 For the opt-in bounded **WAD/DMA cost profiler**, including the resident-source
 DMA benchmark and exact reproduction commands, see
-[the measured profiling report](../../../artifacts/wad-profile-20261015/README.md).
+[the measured profiling report](../../../artifacts/notes/wad-profile-20261015.md).
 It keeps full audits, disables keyboard input, stops after 100 frames and does
 not change ordinary play defaults. Cache copies are the largest measured cost;
 the profiler itself is not a performance optimization.
@@ -14,7 +14,7 @@ The shared request/completion ring is implemented and has passed bounded card
 runs with full audits. It improves first-frame loading after word optimization,
 but the current fixed 64 KiB read-ahead policy regresses warm level restart.
 Keep the older transport as the default. Results and exact archived builds:
-[WAD ring evidence](../../../artifacts/wad-ring-20261015/README.md).
+[WAD ring evidence](../../../artifacts/notes/wad-ring-20261015.md).
 
 On the qualified Linux host, build in a **new** directory:
 

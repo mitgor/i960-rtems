@@ -23,7 +23,7 @@ at frame start. The next optimization should follow the measured bottleneck.
 
 Word-memory builds: `build_target.py --memory word` is now the raycaster default;
 `--memory byte` preserves the exact original binary. Read `rtems/memory/README.md`
-and `artifacts/word-memory-20261011/README.md` for scope and measured acceptance.
+and `artifacts/notes/word-memory-20261011.md` for scope and measured acceptance.
 Do not silently propagate these helpers into production/autonet or IRQ profiles.
 The `--memory-check` image injects 264 correctness batches; exclude it from
 performance results. A/B comparison must preserve output and all audits.
@@ -45,7 +45,7 @@ prechecked exact restoration. `python3 game/raycaster/upload/test.py` covers the
 cache-order regression and failure paths. Other profiles remain unchanged.
 
 Callback/readback candidates live in `callback/`. Read its README and
-`artifacts/callback-20261011/README.md` for current acceptance status. The flags
+`artifacts/notes/callback-20261011.md` for current acceptance status. The flags
 `build_target.py --request-words --render-fast` are explicit opt-ins; retain
 `ray.c` as the independent oracle. `callback/build_transport.py --poll20` changes
 only the completion observation interval, never validation or read coverage.
@@ -57,7 +57,7 @@ time. Keep it optional. Preserve full paired coverage and coordinate hardware
 through the existing lock; production remains autonet.
 
 Bounded frame queue: `queue/` is an opt-in cooperative profile. Read its README
-and `artifacts/framequeue-20261011/README.md`. Four accepted sessions verify 518
+and `artifacts/notes/framequeue-20261011.md`. Four accepted sessions verify 518
 replies and 518 paired full allocation audits. Separate PUBLISH+ACK costs 39.947 ms
 versus 20.596 ms baseline; it is not the default performance path. Full audits
 remain mandatory every STEP. READY is not an asynchronous DMA/cache barrier.
@@ -68,7 +68,7 @@ as the protocol and failure paths. Always update all lifecycle bounds together.
 That combined-operation follow-up is now accepted below, with no audit reduction.
 
 Combined ACK+PUBLISH is now card accepted: read `combined/README.md` and
-`artifacts/ackpublish-20261011/README.md`. Select `--queue-combined` alongside
+`artifacts/notes/ackpublish-20261011.md`. Select `--queue-combined` alongside
 `--frame-queue`; it transforms an isolated target while preserving queue.c and the
 exact accepted kernel module. Op 4 uses word 5 for the acknowledged generation
 and replaces that same slot only after all checks pass. Four sessions: 586 replies,
@@ -79,7 +79,7 @@ uncertain replacement. Next: measure slot hash/validation costs, without removin
 any guards, paired comparisons, hashes or full audits.
 
 Slot helper follow-up: all fifteen `slotopt/BATCH.md` steps are complete. Read
-`slotopt/README.md` and `artifacts/slotopt-20261011/README.md`. Select
+`slotopt/README.md` and `artifacts/notes/slotopt-20261011.md`. Select
 `--queue-slots words` alongside the accepted combined/fast-render flags; keep all
 existing defaults and the old byte/hash-only paths. Do not copy target-only helper
 changes into the kernel or other RTEMS profiles without separate validation.
@@ -93,7 +93,7 @@ ACK/generation and uncertain-execution rules; measure actual displayed delivery.
 
 Browser integration is now accepted: `server.py --backend card-queue` uses one
 occupied slot and combined replacement only after full host validation. Read
-`browserqueue/README.md` and `artifacts/browserqueue-20261011/README.md`. Seven
+`browserqueue/README.md` and `artifacts/notes/browserqueue-20261011.md`. Seven
 sessions pass 663 full paired audits and restoration; 640 Chromium draws pass.
 Keep Python assertions enabled. Default gzip level 1 is lossless and retains every
 snapshot; never trade audit coverage for delivery speed. SIGTERM waits for the
@@ -105,7 +105,7 @@ build. Next: measure metadata serialization/history rewriting before replacing
 it with a bounded append-only journal. Keep truncated/uncertain captures rejected.
 
 Journal follow-up is now physically accepted. Read `journal/README.md` and
-`artifacts/journal-20261011/README.md`. Nine sessions pass 1,635 full audits and
+`artifacts/notes/journal-20261011.md`. Nine sessions pass 1,635 full audits and
 restoration; clean browser RAF delivery improves 13.20 to 15.19 FPS. Use explicit
 `--queue-metadata journal`; rewrite stays the reference default. Preserve strict
 intent/result order, exports matching, full audits and the seal after verified

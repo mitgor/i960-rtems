@@ -1,8 +1,0 @@
-/home/mit/i960-doom-shared-final-20261012/doom-cross/i960/doom-engine.o  :
-section     size   addr
-.text   311024      0
-.data    69888      0
-.bss    250264      0
-Total   631176
-
-

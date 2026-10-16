@@ -1,2 +1,0 @@
-PASS two deterministic native 52-frame no-input runs with STOP and heap drain
-PASS all 52 pixel/palette payloads exactly match unoptimized native baseline

@@ -1,8 +1,0 @@
-...buffer transaction: 230 command-boundary faults passed
-runtime transaction: 194 command-boundary faults plus maximum upload passed
-.
-----------------------------------------------------------------------
-Ran 4 tests in 1.372s
-
-OK
-Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075

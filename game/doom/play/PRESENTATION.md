@@ -61,7 +61,7 @@ execute within other task intervals. Do not sum overlapping fields or call host
 completion wait pure PCI transfer time. Host timing separately records submit,
 completion wait, guarded readback, and profile decode/query overhead.
 
-[Physical evidence and results](../../../artifacts/doom-present-20261014/README.md)
+[Physical evidence and results](../../../artifacts/notes/doom-present-20261014.md)
 track acceptance, hashes, native tests and failed/preliminary attempts.
 [Browser controls](PLAY.md) are unchanged.
 
@@ -83,7 +83,7 @@ setup costs are excluded from each block's FPS intervals and phase averages.
 The extra `CPU1` trailer follows PFR1; replay checks its mode, sums, sample bounds
 and reserved padding. A mixed benchmark engine cannot be launched interactively.
 
-[Low-detail evidence and acceptance status](../../../artifacts/doom-detail-20261014/README.md).
+[Low-detail evidence and acceptance status](../../../artifacts/notes/doom-detail-20261014.md).
 
 ## Bounded column-kernel comparison
 
@@ -92,4 +92,4 @@ experiment with all audits retained. It requires `--pipeline-test` at launch.
 It is not an interactive play option. CPU1 words 10 and 11 hold the actual
 column implementation and the 96-case target self-test result; legacy profiles
 still require zero. See [column kernels](../columns/README.md) and
-[physical evidence](../../../artifacts/doom-columns-20261015/README.md).
+[physical evidence](../../../artifacts/notes/doom-columns-20261015.md).

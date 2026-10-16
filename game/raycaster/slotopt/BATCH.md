@@ -32,6 +32,6 @@ Words has lower callback time and validation slope than hash-only, but its extra
 increment is not advertised as an established end-to-end win. Both candidates
 remain opt-in, and the original paths remain reproducible.
 
-[Measurements, counts, limits and artifacts](../../../artifacts/slotopt-20261011/README.md).
+[Measurements, counts, limits and artifacts](../../../artifacts/notes/slotopt-20261011.md).
 Next: connect the verified combined queue to the browser bridge with full audits,
 input/disconnect tests, and measured displayed-frame delivery.

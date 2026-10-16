@@ -1,7 +1,0 @@
-{
-  "steps": 1000,
-  "boot_id": "a9429ca4-0144-452d-8a80-7189608ce99b",
-  "payload_sha256": "a889d8081c702ff1dcf9bb51a95d00b0fbcf12c11fbb4ff4d7d51f368cd096af",
-  "module_sha256": "e738bd6c3f023a4f4a7b67dd23e899869496e73df399b95d9a13a6f103b28745",
-  "oracle_sha256": "0ce879a04685c8d889ef990ee6b7b419bf9b1cb90ece9eb2c9099d9817ec9e24"
-}

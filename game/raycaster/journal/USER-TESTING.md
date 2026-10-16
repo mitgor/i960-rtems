@@ -1,7 +1,7 @@
 # Playing the audited raycaster
 
 The journal acceptance report is in
-[artifacts/journal-20261011](../../../artifacts/journal-20261011/README.md).
+[artifacts/journal-20261011](../../../artifacts/notes/journal-20261011.md).
 This is the fixed-point raycaster, not Doom. The card computes each rendered frame;
 the host validates it and sends it to the browser. Arrow keys or WASD move/turn;
 Reset restarts the scene. Click the page before using keys. Blur clears controls.

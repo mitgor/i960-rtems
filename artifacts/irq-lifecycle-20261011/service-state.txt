@@ -1,3 +1,0 @@
-active
-ExecStart={ path=/home/mit/i960-rtems-web-20261011/serve-autonomous.sh ; argv[]=/home/mit/i960-rtems-web-20261011/serve-autonomous.sh --internet6 --publish-http6 2a02:8106:40:9000:f662:19ee:dbad:1f1e --http-port 8080 --output /home/mit/i960-rtems-web-20261011/http-after-lifecycle ; ignore_errors=no ; start_time=[Sun 2026-10-11 13:32:48 CEST] ; stop_time=[n/a] ; pid=366489 ; code=(null) ; status=0/0 }
-experimental-module-unloaded

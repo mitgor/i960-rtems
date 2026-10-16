@@ -42,6 +42,6 @@ acceptance. `test_patch.py` checks both transforms against the pinned source.
 See [experiment](../../../artifacts/fixeddiv-20261016/PLAN.md) for the matched-run
 plan. The evidence report records the physical acceptance scope and measured costs.
 
-The [unprofiled-divide acceptance](../../../artifacts/divplay-20261016/README.md)
+The [unprofiled-divide acceptance](../../../artifacts/notes/divplay-20261016.md)
 measures 6.224 → 6.412 FPS with identical images and full audits. Only divide
 instrumentation is absent; renderer CPU, frame and WAD counters remain enabled.

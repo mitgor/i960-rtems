@@ -51,7 +51,7 @@ to wait for and validate callback completion; this is not a host-process crash.
 All twelve runs restored paired 512 KiB staging data, execution RAM, dispatch
 words, timer state and MU words/masks/pending bits; the modules unloaded. No reboot
 or flash writes occurred. The original IPv6 Vader service was restarted after
-successful cleanup. [Exact evidence](../../artifacts/irq-stop-cases-20261011/README.md).
+successful cleanup. [Exact evidence](../../artifacts/notes/irq-stop-cases-20261011.md).
 
 ## Implementation and bounds
 

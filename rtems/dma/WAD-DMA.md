@@ -3,7 +3,7 @@
 The newer [shared WAD ring](wad_ring/README.md) is a separate opt-in path.
 Its matched bounded run reduces first-frame loading from 290.09 to 186.57 seconds,
 but warm restart regresses from 2.84 to 4.24 seconds. This 4 KiB path remains the
-default/fallback; [exact evidence](../../artifacts/wad-ring-20261015/README.md)
+default/fallback; [exact evidence](../../artifacts/notes/wad-ring-20261015.md)
 includes both profiles with the same binaries and full audits.
 
 This opt-in path is selected by `game/doom/play/run.py --pipeline --wad-dma`.
@@ -101,5 +101,5 @@ Report startup-to-first-frame separately from engine upload, and menu-confirm to
 new-level frame separately from steady-state FPS. The browser receives immutable
 binary bytes; HTTP receipt is not a browser paint-rate measurement.
 
-Physical results and exact provenance: [dated evidence](../../artifacts/wad-dma-20261014/README.md).
+Physical results and exact provenance: [dated evidence](../../artifacts/notes/wad-dma-20261014.md).
 Player instructions: [PLAY.md](../../game/doom/play/PLAY.md).

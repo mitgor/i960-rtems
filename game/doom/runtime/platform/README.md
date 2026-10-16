@@ -106,7 +106,7 @@ preflight and the corrected retained-buffer layout pass 32-bit native sanitizers
 The physical larger batch refused modified code/metadata but stopped at timer
 ISR slot rejection before clean entry. Keep it opt-in and investigate that
 registered-owner/active-continuation path before claiming physical acceptance.
-See [captures and reproduction](../../../../artifacts/doom-engine-20261012/README.md).
+See [captures and reproduction](../../../../artifacts/notes/doom-engine-20261012.md).
 
 Then measure and batch WAD initialization reads, add reviewed engine startup,
 tic safe points and complete engine allocation cleanup, and recompute the image,
@@ -130,4 +130,4 @@ It tests the actual pinned source, all pointer alignments 0–7, copy lengths
 0–4096, every fill byte and lengths 0–1024, and exact guard-page ends. Native
 engine replay and target assembly inspection remain required; native timings
 are not evidence of i960 speed. Hardware results are recorded in
-`artifacts/release-priority-20261015/README.md`.
+`artifacts/notes/release-priority-20261015.md`.

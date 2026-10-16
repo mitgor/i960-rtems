@@ -1,5 +1,0 @@
-RNT6: active/parked ownership, heap bounds, retained count and final drain checked
-RNT7: temporary copy allocations and acknowledged STOP transition checked
-RNT7: deadline-authorized drain transition and 100-tick acceptance bound checked
-RNT8: two discontiguous arena sizes bound to protocol version
-RNT8: shared live-burst/replay capacity registry admits 128 slots

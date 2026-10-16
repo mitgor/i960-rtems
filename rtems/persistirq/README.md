@@ -90,7 +90,7 @@ identity and quarantine invariants, restoration or retained-close evidence, and
 combinations against independent reachability and use ASan/UBSan.
 
 See [the completed batch](BATCH.md) and
-[the archived evidence](../../artifacts/rtems-persistirq-20261011/README.md).
+[the archived evidence](../../artifacts/notes/rtems-persistirq-20261011.md).
 
 ## Remaining work
 

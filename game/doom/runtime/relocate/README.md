@@ -25,7 +25,7 @@ and a runtime-table argument. Six relocation sites were applied. Output at
 ten malformed-input cases are rejected. The incomplete Doom object is refused.
 Those original checks were host-only. The closed proof has now also executed
 twice on the card at `0xc02d0050`; it is still not a production ELF loader.
-See [physical evidence](../../../../artifacts/doom-relocate-20261012/README.md).
+See [physical evidence](../../../../artifacts/notes/doom-relocate-20261012.md).
 
 The segmented integration below is now accepted for this proof only. Next:
 resolve the remaining engine imports and connect the WAD cache through the

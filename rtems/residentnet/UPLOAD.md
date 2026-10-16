@@ -11,7 +11,7 @@ The single-worker description below remains the baseline without these flags.
 
 **Doom allocation follow-up:** opt-in `--doom-heap` now tests a scoped libc
 adapter on this same arena. [Contract](../../game/doom/runtime/README.md) and
-[physical evidence](../../artifacts/doom-runtime-20261012/README.md). It adds UPL1
+[physical evidence](../../artifacts/notes/doom-runtime-20261012.md). It adds UPL1
 command 8; system malloc remains unchanged. The original accepted layout below
 is historical; use the new image-specific map for this variant.
 
@@ -22,7 +22,7 @@ queue reclaim. Stock/cooperative profiles remain available. Exit is reboot-only;
 there is no flash change, firmware callback after takeover, or resumed RAID/SCSI.
 
 The accepted on-card tests and exact images are recorded in
-[the artifact ledger](../../artifacts/rtems-resident-upload-20261012/README.md).
+[the artifact ledger](../../artifacts/notes/rtems-resident-upload-20261012.md).
 This is an application arena and resident loader, **not yet a replacement for
 libc malloc or an arbitrary application task-launch ABI**. The existing libc
 heap remains 171,824 bytes. The new arena supports pinned allocations and one
@@ -175,7 +175,7 @@ Commands 10–12 and separate WAD ioctl operations 3/4 are described in the
 [ABI contract](../../game/doom/runtime/entry/README.md). All original upload,
 full paired-audit and STOP/drain checks remain. The accepted timeout/error/
 recovery run and the first refused tail reply are both preserved in
-[the evidence archive](../../artifacts/doom-entry-20261012/README.md).
+[the evidence archive](../../artifacts/notes/doom-entry-20261012.md).
 This does not yet load Doom or admit arbitrary application entry points.
 
 ## Accepted runtime proof extensions (2026-10-12)
@@ -189,7 +189,7 @@ recipe. All ordinary segmented geometry/CRC/zero-fill/pin/cache checks remain.
 Exact-byte whitelists and compiled trusted patch sites gate relocated execution;
 post-entry code/data checks and template restoration precede completion.
 
-[Physical cache and private-runtime evidence](../../artifacts/doom-platform-20261012/README.md)
+[Physical cache and private-runtime evidence](../../artifacts/notes/doom-platform-20261012.md)
 records the six normal/error/timeout/recovery entries, full paired audits, actual
 C replay and final task/IRQ drain. The host completion deadline is at most 60 s
 for the seven-read cache probe; each kernel read still has its 500-tick deadline.

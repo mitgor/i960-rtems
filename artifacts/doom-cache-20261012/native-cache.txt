@@ -1,2 +1,0 @@
-PASS cache: exact bounce pointer, line/EOF bounds, hits/conflicts, partial/error/timeout, reentry/active-close refusal, allocation rollback, 10000 random reads
-PASS backend: single immutable file, path/double-open refusal, offset reads, EOF, close, stale descriptor cannot reopen

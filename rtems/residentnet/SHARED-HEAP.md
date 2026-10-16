@@ -134,7 +134,7 @@ uncertain acknowledgements, stale/foreign actor rejection, generation exhaustion
 shared-registry corruption, busy buffer refusal, counter carry, and the existing
 heap exhaustion and corruption cases. Its synthetic counter is not hardware
 latency evidence. Physical captures, exact per-image measurements, and the
-thirty-step ledger are in [the batch artifacts](../../artifacts/rtems-shared-heap-20261011/README.md).
+thirty-step ledger are in [the batch artifacts](../../artifacts/notes/rtems-shared-heap-20261011.md).
 
 ## Endurance capture cost
 

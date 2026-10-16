@@ -1,1 +1,0 @@
-PASS 32 alternating immutable slots, one-frame backpressure, stale ACK/bounds, STOP and timeout

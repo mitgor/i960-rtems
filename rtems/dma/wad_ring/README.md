@@ -106,7 +106,7 @@ frame/STOP validation. Compare the first 52 controlled frames against native
 output, preserving the four known pixel differences rather than ignoring them.
 
 Exact binaries, sources, measurements, full captures and restoration status:
-[dated evidence](../../../artifacts/wad-ring-20261015/README.md).
+[dated evidence](../../../artifacts/notes/wad-ring-20261015.md).
 
 ## Opt-in cost profiling
 
@@ -116,7 +116,7 @@ counters. Launch only with `--wad-ring --wad-load-test --debug-audits` and the
 existing bounded ping-pong options. The profile never disables a guard or audit.
 It adds a validated cache-timing trailer and exports final counters only after
 the engine has stopped and returned every loan. See
-[measurement contract and evidence](../../../artifacts/wad-profile-20261015/README.md).
+[measurement contract and evidence](../../../artifacts/notes/wad-profile-20261015.md).
 Run `test_profile.py` and `verify_profile.py CAPTURE` in addition to the ordinary
 target/cache/client and complete system/frame/WAD verifiers. The extra verifier
 does not replace any existing audit. Timing categories overlap; timer-0 counts

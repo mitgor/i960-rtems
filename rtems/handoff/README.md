@@ -8,7 +8,7 @@ scheduler runs in this profile. Production remains `autonet`.
 Five final hardware sessions passed 20 entries, including five omitted-RELEASE
 expiries, ten denied full-transfer requests, five stale-epoch rejections and
 five HALTs. All restored RAM, timer/vector/MU state and unloaded normally.
-[Batch and limitations](BATCH.md), [preserved evidence](../../artifacts/rtems-handoff-20261011/README.md).
+[Batch and limitations](BATCH.md), [preserved evidence](../../artifacts/notes/rtems-handoff-20261011.md).
 
 ## Contract
 

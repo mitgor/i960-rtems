@@ -77,4 +77,4 @@ Use the queue v2 module with full audits; `--pipeline separate` is the measured
 comparison against the original queue target. Restore production after testing.
 
 Hardware results and exact binaries are recorded in
-[the evidence ledger](../../../artifacts/ackpublish-20261011/README.md).
+[the evidence ledger](../../../artifacts/notes/ackpublish-20261011.md).

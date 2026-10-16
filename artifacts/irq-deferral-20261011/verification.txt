@@ -1,2 +1,0 @@
-Verified three raw two-task switch reports, register sentinels, drained lifetimes, exact binaries and full borrowed-RAM restoration
-Nested dispatch deferral verified; 45 corrupted-report acceptance checks rejected

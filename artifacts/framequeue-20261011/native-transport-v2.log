@@ -1,5 +1,0 @@
-PASS: six read boundaries with completed failure/timeout; 10304 targeted-vs-full byte mismatches; strict descriptor mutations
-Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
-Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
-PASS: generated allocation/publication/copy/free for all 60 captures, every allocation failure, read_pair rejects invalid storage before DMA
-PASS: full audit every STEP; no additional submission after uncertain completion; fixed capture allocation sizes

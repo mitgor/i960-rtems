@@ -1,1 +1,0 @@
-PASS private Newlib: formatting including %lln/float/64-bit/scanning, arena allocation, immutable stdio cache, errors, frame/palette, input/log bounds, clock wait, exit and final drain

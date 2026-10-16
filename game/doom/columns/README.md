@@ -59,7 +59,7 @@ python3 rtems/residentnet/test_column_profile.py
 
 Native builds use C in place of assembly; they cannot establish assembly
 correctness. The physical self-test and full card frames supply that evidence.
-See [the acceptance record](../../../artifacts/doom-columns-20261015/README.md)
+See [the acceptance record](../../../artifacts/notes/doom-columns-20261015.md)
 for measured performance, exact binaries, captures and remaining limitations.
 
 
@@ -75,6 +75,6 @@ Both candidate runs match all 520 reference images. The last unchanged baseline
 has one menu-transition mismatch at frame 64, equal to the reference's earlier
 main-menu image. The strict all-run image oracle records failure; every other
 image and all measured-window images match. This timing limitation is retained
-in [the report](../../../artifacts/columns-20261015/README.md), not waived silently.
+in [the report](../../../artifacts/notes/columns-20261015.md), not waived silently.
 The option remains explicit for wider-scene/high-detail qualification. It does
 not reduce quality; runtime quality settings are independent.

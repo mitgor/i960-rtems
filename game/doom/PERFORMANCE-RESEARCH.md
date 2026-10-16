@@ -46,11 +46,11 @@ Several optimizations have already happened and must not be counted again:
 
 These are separate experiments and binary configurations. Their percentages
 cannot be added or multiplied into a new combined result. See latest
-[`CLAUDE.md`](CLAUDE.md), [screen-copy](../../artifacts/screen-copy-20261015/README.md),
-[peer-yield](../../artifacts/peer-yield-20261015/README.md),
-[IRQ-drain](../../artifacts/irq-drain-20261015/README.md),
-[bulk-capture](../../artifacts/bulk-capture-20261015/README.md) and
-[columns](../../artifacts/doom-columns-20261015/README.md).
+[`CLAUDE.md`](CLAUDE.md), [screen-copy](../../artifacts/notes/screen-copy-20261015.md),
+[peer-yield](../../artifacts/notes/peer-yield-20261015.md),
+[IRQ-drain](../../artifacts/notes/irq-drain-20261015.md),
+[bulk-capture](../../artifacts/notes/bulk-capture-20261015.md) and
+[columns](../../artifacts/notes/doom-columns-20261015.md).
 
 ## Ranked by potential steady FPS impact
 

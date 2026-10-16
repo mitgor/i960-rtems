@@ -1,6 +1,0 @@
-PASS: previously rejected generated driver fails the new pre-hardware source check.
-Traceback (most recent call last):
-  File "/Users/mit/Documents/!Projects/i960/rtems/dma/stress/test_counter.py", line 7, in <module>
-    if a.generated:assert '#define I960_DOOM_DMA 1\n' in h, 'generated transport omitted DMA feature macro'
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError: generated transport omitted DMA feature macro

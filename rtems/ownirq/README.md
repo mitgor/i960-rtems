@@ -108,4 +108,4 @@ failure blobs to their recorded populated 471,136-byte span; the allocated tail
 is not presented as a measurement. Raw captures are preserved.
 
 See [the step ledger](BATCH.md) and
-[builds, captures and measured results](../../artifacts/rtems-ownirq-20261011/README.md).
+[builds, captures and measured results](../../artifacts/notes/rtems-ownirq-20261011.md).

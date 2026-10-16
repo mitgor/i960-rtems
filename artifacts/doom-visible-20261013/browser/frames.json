@@ -1,1 +1,0 @@
-{"width": 320, "height": 200, "source": "i960 card readback; exact native comparison passed", "frames": [{"name": "card-2-0.png", "frame": 0, "generation": 2, "sha256": "25d2c27787ddf7f802ca409a035ae1e239b9a779b49e3dadfd76ea8e7fe2ee59"}, {"name": "card-2-1.png", "frame": 1, "generation": 2, "sha256": "25d2c27787ddf7f802ca409a035ae1e239b9a779b49e3dadfd76ea8e7fe2ee59"}]}

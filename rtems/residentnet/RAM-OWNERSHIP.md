@@ -80,5 +80,5 @@ Explicit RX EAGAIN keeps the same pending packet; uncertain failures are not
 retried. Saved raw ioctls are replayed independently for checksums, UDP burst
 contents, TCP stream bytes, queue bounds and final snapshot invariants.
 
-See the [batch evidence](../../artifacts/rtems-ram-ownership-20261011/README.md)
+See the [batch evidence](../../artifacts/notes/rtems-ram-ownership-20261011.md)
 for measured results, pinned binaries, recovery and the 30-step ledger.

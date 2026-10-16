@@ -5,7 +5,7 @@ reviewed uploaded application probe, not a Doom executable or a general ELF
 loader. The application runs on existing worker 1. Worker 0 stays runnable and
 services network/control traffic; this does not admit an idle IRQ context.
 
-Physical acceptance passed; see the [exact captures and measured results](../../../../artifacts/doom-entry-20261012/README.md).
+Physical acceptance passed; see the [exact captures and measured results](../../../../artifacts/notes/doom-entry-20261012.md).
 
 ## ABI v1
 

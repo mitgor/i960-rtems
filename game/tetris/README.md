@@ -27,8 +27,8 @@ with the installed cross tools. For the actual returning card payload, use
 `make -C loader/runtime`; the shared core is the same.
 
 [Play instructions](../../subprojects/tetris/README.md),
-[T4 terminal acceptance](../../artifacts/tetris-t4-20261010/README.md),
-[T5 persistent transport](../../artifacts/tetris-t5-20261010/README.md).
+[T4 terminal acceptance](../../artifacts/notes/tetris-t4-20261010.md),
+[T5 persistent transport](../../artifacts/notes/tetris-t5-20261010.md).
 
 Old `game/tetris.c`, `game/tetris.h`, oracle/test/script paths are relative
 compatibility symlinks, so existing loader includes and `make -C game test`

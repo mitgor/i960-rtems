@@ -1,1 +1,0 @@
-PASS actual WAD ioctl: 25 exchange failures, pending/stale/geometry/padding/bounds, guard/completion faults, copyout retention

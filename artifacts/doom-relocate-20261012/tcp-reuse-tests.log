@@ -1,1 +1,0 @@
-PASS: closed TCP tuple reuse, duplicate segments; gaps, conflicting overlap, unclosed reuse, mismatched echo/SYN-ACK rejected

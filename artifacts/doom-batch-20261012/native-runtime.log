@@ -1,2 +1,0 @@
-PASS batch runtime/cache: 48 full/first-to-last fragment fault/STOP cases, atomic destination, real allocation loans, deadline, owner, EOF, 10000 reads, two requests per 8192 bytes, drain
-PASS batch wire: magic/sequence/file/offset/length/total, missing/reordered/duplicate words/fragments, running gate, bounds, undersized destination, EOF padding, stale sequence and wrap refusal

@@ -1,4 +1,0 @@
-a1 PASS local system/frame/WAD replay; summary fields agree within floating roundoff
-b1 PASS local system/frame/WAD replay; summary fields agree within floating roundoff
-b2 PASS local system/frame/WAD replay; summary fields agree within floating roundoff
-a2 PASS local system/frame/WAD replay; summary fields agree within floating roundoff

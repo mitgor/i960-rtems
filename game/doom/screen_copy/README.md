@@ -20,4 +20,4 @@ full guard scans and paired system audits are unchanged.
 Run `python3 game/doom/screen_copy/test.py` for ASan/UBSan exact-edge tests across
 all pointer alignments. Native engine repeatability and physical controlled
 frames provide integration evidence. See
-[card results and reproduction](../../../artifacts/screen-copy-20261015/README.md).
+[card results and reproduction](../../../artifacts/notes/screen-copy-20261015.md).

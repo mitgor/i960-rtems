@@ -1,3 +1,0 @@
-RAM1: layout, full final scan, stack stress, workspace proof and revision corruption rejected
-External task stack ranges and actual interrupt frames checked
-Authorized cross-page STOP transition accepted; partial and unrequested shutdown rejected

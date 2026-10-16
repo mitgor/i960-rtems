@@ -103,7 +103,7 @@ and normal cleanup together. Local reachability does not establish outside-LAN
 reachability.
 
 [Doom](../subprojects/doom/README.md) uses DoomGeneric, Freedoom and the 8 MiB
-arena. The [visible baseline](../artifacts/doom-visible-20261013/README.md) contains
+arena. The [visible baseline](../artifacts/notes/doom-visible-20261013.md) contains
 exact `build.sh`, `live.sh` and replay scripts. Those scripts contain historical
 workspace paths: recreate their pinned inputs in a fresh workspace or update
 paths in a new script, never edit the archived original. Keep the point-side

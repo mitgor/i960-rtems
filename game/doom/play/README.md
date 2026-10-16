@@ -3,18 +3,18 @@
 The qualified exact divide is now enabled by default. Use
 `--no-fast-fixed-div` to build the original arithmetic for comparison.
 Optional [input-consumption tracing](../input_trace/README.md) records the actual
-frame/tic processing each key. See the [card evidence](../../../artifacts/input-trace-20261016/README.md).
+frame/tic processing each key. See the [card evidence](../../../artifacts/notes/input-trace-20261016.md).
 
 See [presentation profiling and optional FNV/direct delivery](PRESENTATION.md) for the new experimental build modes and acceptance evidence.
 
 For connection instructions, controls and launch commands, see [PLAY.md](PLAY.md).
 Bulk host-to-card WAD transport is documented in [WAD-DMA.md](../../../rtems/dma/WAD-DMA.md);
-its dated acceptance status is [here](../../../artifacts/wad-dma-20261014/README.md).
+its dated acceptance status is [here](../../../artifacts/notes/wad-dma-20261014.md).
 
 This experimental profile keeps the actual DoomGeneric engine running under
 RTEMS while Linux supplies its immutable Freedoom WAD, keyboard events and
 browser framebuffer delivery. It is separate from the fully replayed two-frame
-[acceptance baseline](../../../artifacts/doom-visible-20261013/README.md).
+[acceptance baseline](../../../artifacts/notes/doom-visible-20261013.md).
 
 ## Bounded DMA comparison
 
@@ -24,11 +24,11 @@ four identical pinned frames through DMA and paired mailbox, then measures
 mailbox/DMA/DMA/mailbox blocks while retaining the normal full audits. It uses
 the same renderer, frame format and input sequence. See the
 [ownership contract](../../../rtems/dma/FRAME-DMA.md) and
-[original dated evidence](../../../artifacts/doom-dma-20261014/README.md).
-The [subsequent stress test](../../../artifacts/frame-dma-stress-20261014/README.md)
+[original dated evidence](../../../artifacts/notes/doom-dma-20261014.md).
+The [subsequent stress test](../../../artifacts/notes/frame-dma-stress-20261014.md)
 fixes a reproduced peer-isolation halt during owned DMA; it passed 512 synthetic
 frames with full audits and shutdown. The
-[fixed Doom comparison](../../../artifacts/doom-dma-fixed-20261014/README.md)
+[fixed Doom comparison](../../../artifacts/notes/doom-dma-fixed-20261014.md)
 passed all 28 frames, 29 full monitor/RAM pairs, owned STOP and global drain.
 Mailbox delivered 0.972816 FPS versus DMA 1.376781 FPS (+41.525%); average
 transfer fell from 503.489 to 228.797 ms. All buffers match the earlier physical
@@ -49,7 +49,7 @@ The host logs payload hashes for evidence even in CRC-off mode.
 `--pipeline --pipeline-test` runs the finite 52-frame CRC-on/off/off/on acceptance,
 including four exact mailbox/DMA pairs. It cannot be combined with other test
 modes or `--no-crc`. Run `verify_play_pipeline.py` and the full system verifier;
-neither replaces the other. See the [dated experiment](../../../artifacts/doom-pipeline-20261014/README.md)
+neither replaces the other. See the [dated experiment](../../../artifacts/notes/doom-pipeline-20261014.md)
 for physical acceptance status and performance. Never mix a two-buffer engine
 with the one-buffer runner or reuse a retained exclusive mapping after failure.
 
@@ -221,7 +221,7 @@ checks, then six-frame scalar/bulk/bulk/scalar blocks. It exits at frame 28
 with owned STOP and global shutdown. Use it by itself, without `--self-test`,
 and avoid manual keyboard input during measurement. Replay with
 `rtems/residentnet/verify_play_bulk.py` plus the full system verifier.
-See the [dated results and reproduction](../../../artifacts/doom-bulk-20261014/README.md)
+See the [dated results and reproduction](../../../artifacts/notes/doom-bulk-20261014.md)
 for the full evidence: mean transfer **5.447 → 0.509 s**, delivered FPS
 **0.167 → 0.999**, with all 30 full audit pairs and STOP/drain passing.
 The earlier native/card pixel discrepancy remains documented.
@@ -239,7 +239,7 @@ paths for memcpy/memset. This is separate from RTEMS's libc and from Doom's
 explicit calloc/realloc loops. Priority is now the default for Doom ping-pong; `--release-schedule baseline`
 retains the comparison policy. The memory build remains opt-in. Exact binaries,
 long-run comparisons and reproduction commands are in
-[`release-priority-20261015`](../../../artifacts/release-priority-20261015/README.md).
+[`release-priority-20261015`](../../../artifacts/notes/release-priority-20261015.md).
 All ownership, full-audit, guard and STOP checks remain enabled.
 
 ### Qualified renderer candidate
@@ -248,7 +248,7 @@ Add `--fast-render` to the build command for exact span improvements and selecti
 BSP/plane/drawing compilation. Four matched full-audit runs reach 5.334 FPS versus
 4.831 baseline, with identical images. It remains opt-in for broader interactive
 qualification. See [renderer instructions](../render/README.md) and
-[full evidence](../../../artifacts/render-20261015/README.md).
+[full evidence](../../../artifacts/notes/render-20261015.md).
 
 
 ## Runtime quality selection

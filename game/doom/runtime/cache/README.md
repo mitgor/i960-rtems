@@ -15,13 +15,13 @@ the helper is not `memmove`. DMA pinning, cache policy and all full audits are
 unchanged. `rtems/dma/wad_ring/test_cache.py` tests exact allocation edges,
 all alignments and multi-window reads under ASan/UBSan with profiling off/on.
 
-Physical results and matched baseline: [cache-copy evidence](../../../../artifacts/wad-copy-20261015/README.md).
+Physical results and matched baseline: [cache-copy evidence](../../../../artifacts/notes/wad-copy-20261015.md).
 
 **Original host/cross-build milestone; the cache bridge now also passes a
 closed card probe.** The complete
 DoomGeneric engine uses this backend in six 2,100-frame host runs. All 12,600
 pixel/palette/tic hashes match the accepted corpus. The card remains on the
-original public service. [Evidence](../../../../artifacts/doom-cache-20261012/README.md).
+original public service. [Evidence](../../../../artifacts/notes/doom-cache-20261012.md).
 
 ## Ownership and read behavior
 
@@ -94,7 +94,7 @@ proofs remain enabled. The two normal entries require seven wire reads each and
 take 13.218/11.608 seconds under audits; this is correctness acceptance rather
 than an engine startup-speed result. STOP-in-read and same-cache retry remain
 native coverage; physical STOP followed the completed entries.
-[Exact evidence](../../../../artifacts/doom-platform-20261012/README.md).
+[Exact evidence](../../../../artifacts/notes/doom-platform-20261012.md).
 
 New runtime builds include only the closed reviewed cache image in command 15.
 It receives the ordinary segmented CRC/cache/pin checks, then an exact-byte gate
@@ -111,5 +111,5 @@ coalesced, stopping at hits or eight lines; there is no speculative read-ahead.
 The legacy v1/512 adapter remains supported. Host testing opts in with
 `DOOM_WAD_BATCH_BYTES=4096`; card builds use `--wad-batch` and the separately
 admitted cache probe. See [protocol](../batch/README.md) and
-[evidence](../../../../artifacts/doom-batch-20261012/README.md). A new authenticated
+[evidence](../../../../artifacts/notes/doom-batch-20261012.md). A new authenticated
 engine image must explicitly bind this API before actual Doom benefits on-card.

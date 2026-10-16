@@ -1,3 +1,0 @@
-{"passed": true, "cases": 1002000, "oracle": "32-bit wrapped deltas, arithmetic floor shifts, exact signed products"}
-{"ubsan_passed": true, "cases": 12000}
-PASS point-side and C columns remain independently opt-in in both builders

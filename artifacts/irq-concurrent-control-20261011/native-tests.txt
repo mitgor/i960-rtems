@@ -1,3 +1,0 @@
-Concurrent ioctl: session lock held by writer, wrong epoch refused, STOP/RELEASE once, window joined, late/duplicate control refused
-Built source for runtime loader; runner SHA256 0ee14834d8484957836126e6fbe33aeb9928b3398fab023c9c6479f8cd927075
-Generated concurrent driver: join-before-completion, no inverse lock acquisition, pinned image and retention gates passed

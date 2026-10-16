@@ -8,7 +8,7 @@ the exit path. The user explicitly authorized this mode on 2026-10-11.
 
 This does not establish complete ownership of every board engine or arbitrary
 DRAM. See [research and limits](RESEARCH.md), [30-iteration ledger](BATCH.md) and
-[evidence](../../artifacts/rtems-exclusive-20261011/README.md).
+[evidence](../../artifacts/notes/rtems-exclusive-20261011.md).
 
 ## Results
 

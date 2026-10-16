@@ -101,7 +101,7 @@ dependency and sustained tests; `--cap-only` exercises the full administrative
 limit while renewing. Never load this image with the ordinary session module.
 
 See [the batch ledger](BATCH.md) and
-[archived binaries and captures](../../artifacts/rtems-leaseirq-20261011/README.md).
+[archived binaries and captures](../../artifacts/notes/rtems-leaseirq-20261011.md).
 
 ## Next ownership gates
 

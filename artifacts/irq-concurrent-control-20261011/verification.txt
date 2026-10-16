@@ -1,1 +1,0 @@
-Three concurrent-control runs verified: live ioctl with pending callback, duplicates/stale/late requests refused, exact image identities, drained contexts and full RAM/MU restoration; 42 damaged reports rejected

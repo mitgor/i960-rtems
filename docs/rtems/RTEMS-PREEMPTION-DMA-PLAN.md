@@ -8,7 +8,7 @@ changes if needed. The [bounded DMA1 proof](../../rtems/dma/README.md) now passe
 checks and normal system drain. No ATU remap or flash change was necessary.
 This advances H0 and the card-to-host portion of H1, not the full bidirectional
 or active-abort/lifetime gates. The first wrong-DAR timeout is preserved alongside
-the corrected accepted run in [the evidence](../../artifacts/dma-owned-20261014/README.md).
+the corrected accepted run in [the evidence](../../artifacts/notes/dma-owned-20261014.md).
 
 Before Doom or H2 queues, move preparation/checking out of interrupt context
 (the proof measured a 111.481 ms maximum IRQ gap), add task-owned asynchronous
@@ -195,7 +195,7 @@ add interrupts only after the notification ownership and ISR paths are proven.
 ## D — Direct Mylex ↔ NIC research
 
 Research status: started, not a supported transfer path. See
-[hardware/source findings](../../artifacts/dma-research-20261011/README.md).
+[hardware/source findings](../../artifacts/notes/dma-research-20261011.md).
 
 Two separate mechanisms must be evaluated:
 
@@ -255,7 +255,7 @@ in 11.02 ms while firmware sequence stayed 1 → 1. Full timer/RAM/MU restoratio
 and module unload passed. The first trial retained resources after an incorrect
 local OISR acknowledgement; a host reboot and host-side acknowledgement fix
 preceded the successful retry. [Implementation](../../rtems/control/MU-ECHO.md),
-[evidence](../../artifacts/mu-echo-20261011/README.md). Independent STOP and unrestricted
+[evidence](../../artifacts/notes/mu-echo-20261011.md). Independent STOP and unrestricted
 preemption remain unproven; next is framed control plus independent STOP.
 
 ## Framed control checkpoint (2026-10-11)
@@ -265,7 +265,7 @@ rejection passed over IMR1/OMR1. Independent STOP froze bounded RTEMS at tick 36
 subsequent STATUS confirmed it, then independent timer HALT took 9.48 ms. Firmware
 sequence stayed 1 → 1 throughout. Full cleanup passed, without reboot/flash;
 Vader service restored. [Implementation](../../rtems/control/MU-FRAMED.md),
-[evidence](../../artifacts/mu-framed-20261011/README.md). This does not establish
+[evidence](../../artifacts/notes/mu-framed-20261011.md). This does not establish
 runaway-task STOP or unrestricted preemption. Next: owned IRQ stack and complete
 asynchronous context preservation before lowering task interrupt priorities.
 
@@ -278,7 +278,7 @@ frame/guard checks and independent STOP/HALT passed; full cleanup and web restar
 passed without reboot/flash. The hardware entry frame stays in place: movable
 per-task interrupt contexts and unrestricted preemption remain future work.
 [Implementation](../../rtems/interrupt/README.md),
-[evidence](../../artifacts/owned-interrupt-stack-20261011/README.md).
+[evidence](../../artifacts/notes/owned-interrupt-stack-20261011.md).
 
 ## Two-task switch checkpoint (2026-10-11)
 
@@ -288,7 +288,7 @@ passed timer-driven switching between CPU-bound RTEMS tasks. Each run recorded
 entries/returns per task. Separate task/ISR stacks, register sentinels, frame
 ownership, draining and full restoration passed; web service restored without
 reboot/flash. [Implementation](../../rtems/switch/README.md),
-[evidence](../../artifacts/irq-switch-20261011/README.md). This is bounded preemption,
+[evidence](../../artifacts/notes/irq-switch-20261011.md). This is bounded preemption,
 not a resident monitor; next are deferred-dispatch stress and MU STOP integration
 while the CPU-bound task contexts are active.
 
@@ -300,7 +300,7 @@ depth 1. All eight IRQs observed a pending switch to a different heir; task B
 started only after the outer enable. A resumed at tick 9, depth 0. Each run
 finished at tick 32 with zero faults, 20/20 and 12/12 ISR entries/returns,
 verified RAM restoration and module unload. IPv6 Vader HTTP returned 200 after
-restart. [Evidence](../../artifacts/irq-deferral-20261011/README.md).
+restart. [Evidence](../../artifacts/notes/irq-deferral-20261011.md).
 Next: integrate independent MU STOP with the two CPU-bound task contexts and
 prove safe draining during an active callback. Resident operation and general
 interrupt nesting remain unproven; production stays on `autonet`.
@@ -321,7 +321,7 @@ accepted a one-shot host STOP at ticks 34/41/52 while both owned ISR contexts
 were live and firmware sequence 1 was still pending. Workers observed the stop
 flag, both contexts drained, and the card acknowledged before host RELEASE
 allowed the callback to return. Zero faults; full RAM/MU restoration and module
-unload passed. IPv6 Vader HTTP restored. [Evidence](../../artifacts/irq-mu-stop-20261011/README.md).
+unload passed. IPv6 Vader HTTP restored. [Evidence](../../artifacts/notes/irq-mu-stop-20261011.md).
 This is a serialized host-driver experiment, not a concurrent control ioctl,
 CTL1 framing, or forced termination of code that ignores the stop flag. Next:
 exercise STOP during nested dispatch deferral and the missing-host deadline;
@@ -358,7 +358,7 @@ reached the 128-tick event deadline; missing RELEASE exhausted its finite loop
 and returned with only the expected `0x4000` flag. All contexts, guards, paired
 RAM/MU restoration and unload checks passed; no reboot/flash. IPv6 HTTP restored.
 [Implementation](../../rtems/switch/STOP-CASES.md),
-[evidence](../../artifacts/irq-stop-cases-20261011/README.md).
+[evidence](../../artifacts/notes/irq-stop-cases-20261011.md).
 Next: concurrent user-control/lifetime design and non-cooperative task containment.
 These workers remain stop-aware; deliberate message omission is not a full host
 crash or proof of recovery from permanently masked interrupts.
@@ -379,7 +379,7 @@ pending. A separate control mutex/window is joined before completion/cleanup;
 wrong epochs, duplicate STOP and late requests were refused. Both ISR contexts
 drained; full RAM/MU restoration and unload passed. IPv6 HTTP restored.
 [API and lifetime contract](../../rtems/switch/CONCURRENT.md),
-[evidence](../../artifacts/irq-concurrent-control-20261011/README.md).
+[evidence](../../artifacts/notes/irq-concurrent-control-20261011.md).
 Workers remain stop-aware. Live alias-close coverage is not final-close or
 physical-removal fault injection; next are broader lifecycle failure tests and
 non-cooperative task containment.
@@ -393,14 +393,14 @@ operations; restoration preceded BAR unmapping, and late calls were refused.
 All target contexts and full RAM/MU cleanup passed; HTTP restored, no reboot/flash.
 An initial truncated removal log was preserved and its publication fixed before
 rerunning. [Contract and findings](../../rtems/switch/LIFECYCLE.md),
-[evidence](../../artifacts/irq-lifecycle-20261011/README.md).
+[evidence](../../artifacts/notes/irq-lifecycle-20261011.md).
 Logical unbind is tested; physical hot-unplug and failing control during teardown
 remain unproven. Task shutdown still cooperates with a stop flag.
 
 
 ## Task-owned DMA acceptance — 2026-10-14
 
-The [asynchronous DMA batch](../../artifacts/dma-async-20261014/README.md)
+The [asynchronous DMA batch](../../artifacts/notes/dma-async-20261014.md)
 passes 48 transfers, 124 full audit pairs, explicit STOP and session-deadline
 prelaunch cancellation. Worker 1 owns preparation/polling/checking; no third
 interrupt-stack owner was introduced. Maximum IRQ gap falls from 111.481 ms to

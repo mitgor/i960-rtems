@@ -1,7 +1,7 @@
 # Resident networking and RAM ownership
 
 For the optional Doom engine in the existing 8 MiB application arena, see the
-[bounded visible-frame milestone](../../artifacts/doom-visible-20261013/README.md).
+[bounded visible-frame milestone](../../artifacts/notes/doom-visible-20261013.md).
 Its new UPL1 operation 9 uses mailbox selectors `0x6c..0x6e` to read a published,
 immutable post-return frame archive. Epoch, session, pending-command and
 uncertainty checks remain mandatory; it exposes no arbitrary address reads.
@@ -135,7 +135,7 @@ Do not run while another experiment or production service owns the card. Every
 output directory must be new. Preserve captures before reboot. Offline replay:
 `verify.py --root EXTRACTED EXTRACTED/residentnet-live1`; `ram_audit.py EXTRACTED/residentnet`.
 
-See [batch ledger](BATCH.md) and [artifacts](../../artifacts/rtems-residentnet-20261011/README.md)
+See [batch ledger](BATCH.md) and [artifacts](../../artifacts/notes/rtems-residentnet-20261011.md)
 for exact completed and pending tests.
 
 Final build: three uncached-probe phases restored/unloaded, and a third resident

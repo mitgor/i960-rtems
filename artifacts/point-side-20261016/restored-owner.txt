@@ -1,5 +1,0 @@
-  1614                     USER        PID ACCESS COMMAND
-/dev/i960-auto:      root      F.... python3
-../../../../bus/pci/drivers/dac960auto
-1607 sudo nohup python3 /home/mit/i960-rtems-web-20261011/project/rtems/transport/relay.py --payload /home/mit/i960-rtems-web-20261011/autonet/kernel.bin --module /home/mit/i960-rtems-web-20261011/autonet-module-system-info/dac960auto.ko --autonomous --visitor-log /home/mit/i960-rtems-web-20261011/visitor-statistics --output /home/mit/i960-rtems-web-20261011/http-after-point-side-20261016 --serve --internet6 --publish-http6 2a02:8106:40:9000:f662:19ee:dbad:1f1e --http-port 8080
-1614 python3 /home/mit/i960-rtems-web-20261011/project/rtems/transport/relay.py --payload /home/mit/i960-rtems-web-20261011/autonet/kernel.bin --module /home/mit/i960-rtems-web-20261011/autonet-module-system-info/dac960auto.ko --autonomous --visitor-log /home/mit/i960-rtems-web-20261011/visitor-statistics --output /home/mit/i960-rtems-web-20261011/http-after-point-side-20261016 --serve --internet6 --publish-http6 2a02:8106:40:9000:f662:19ee:dbad:1f1e --http-port 8080

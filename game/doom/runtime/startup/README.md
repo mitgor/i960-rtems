@@ -12,7 +12,7 @@ resident gate copies an immutable archive only after normal owned cleanup and
 all existing image checks. UPL1 operation 9 reads fixed 1 KiB windows by archive
 generation. Every byte and derived PNG is independently checked before browser
 publication; the next engine attempt and final drain retire that archive.
-[Visible-frame source, exact builds, card evidence and limits](../../../../artifacts/doom-visible-20261013/README.md).
+[Visible-frame source, exact builds, card evidence and limits](../../../../artifacts/notes/doom-visible-20261013.md).
 
 This candidate replaces the diagnostic engine entry only when built explicitly
 with `--startup`, then packed and admitted with `--startup-oracle` and
@@ -136,7 +136,7 @@ Browser rendering and persistent gameplay remain later milestones.
 Current physical status: both attempts failed before returning a frame. The
 second transferred 27,725 correct fragments and completed 36 network rounds,
 but there is no startup STOP/restart, final drain or successful-capture mutation
-acceptance. See `artifacts/doom-startup-20261013/README.md` for the exact evidence.
+acceptance. See `artifacts/notes/doom-startup-20261013.md` for the exact evidence.
 The failure inspector accepts an explicitly identified final partial RAM page
 without treating it as a completed audit; it always returns `accepted:false`.
 
@@ -179,7 +179,7 @@ sequences. The original N3 failure evidence remains separate and unmodified.
 ## Height and delivery diagnosis — 2026-10-13
 
 The extended opt-in markers and 99-constant ABI proof are recorded in
-[the height experiment](../../../../artifacts/doom-height-20261013/README.md).
+[the height experiment](../../../../artifacts/notes/doom-height-20261013.md).
 They trace the wrong viewing height to spawn subsector/sector selection. A small
 scalar probe confirms the exact optimized `R_PointOnSide` body returns wrong
 answers outside RTEMS; disabling scheduling alone does not fix it. No full-engine
@@ -234,6 +234,6 @@ without the admission flag retain their original read-only behaviour.
 
 The first comparison-workaround batch completed the first wipe frame and STOP,
 but refused the repeat ACK described above. See
-[the preserved failure](../../../../artifacts/doom-sidefix-20261013/README.md) and
-[the corrected batch](../../../../artifacts/doom-sidefix-ack-20261013/README.md)
+[the preserved failure](../../../../artifacts/notes/doom-sidefix-20261013.md) and
+[the corrected batch](../../../../artifacts/notes/doom-sidefix-ack-20261013.md)
 for current physical status; neither native tests nor one frame accept a batch.

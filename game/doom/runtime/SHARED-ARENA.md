@@ -89,7 +89,7 @@ validated separately against their captured report; ordinary replies remain
 byte-for-byte checked (apart from the expected native base address). Network,
 reserve, guard, task and IRQ audits are unchanged.
 
-[Physical acceptance and exact artifacts](../../../artifacts/doom-shared-20261012/README.md)
+[Physical acceptance and exact artifacts](../../../artifacts/notes/doom-shared-20261012.md)
 record the tested build and results. This establishes a task ownership gate,
 not a playable Doom port: a real application entry ABI, remaining libc/compiler
 helpers, bounded WAD service and framebuffer/input integration are still needed.

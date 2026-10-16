@@ -1,0 +1,459 @@
+{
+  "history_commit": "a8af272362e3a535683f8a793802d26a483d06f8",
+  "removed_files": 3859,
+  "removed_bytes": 8068031091,
+  "retained_dependency_roots": [
+    "analysis",
+    "buffer-io-20261010",
+    "chip8-20261011",
+    "doom-m1-20261011",
+    "doom-pingpong-20261015",
+    "doom-progress-20261012",
+    "dram-hook-audit-20261010",
+    "dump-attempt-20261010",
+    "dump-load20-20261010",
+    "one-shot-harness-20261010",
+    "postinit-preflight-20261010",
+    "postinit-update-20261010",
+    "private-dumps",
+    "programmed-rom-20261010",
+    "programming-preflight-20261010",
+    "ram-scratch-20261010",
+    "raycaster-20261011",
+    "romfetch-live-20261010",
+    "romhook-20261010",
+    "rtems-20261011",
+    "rtems-ipv6-20261011",
+    "rtems-residentnet-decode-20261011",
+    "rtems-web-autonomous-20261011",
+    "runtime-read-20261010",
+    "software-loader-20261010",
+    "staging-allocation-20261010",
+    "staging-rehearsal-20261010",
+    "stockhook-20261010",
+    "tetris-t2-20261010",
+    "toolchain-20261011",
+    "transfer-20261011",
+    "upload-20261011",
+    "vendor-fujitsu"
+  ],
+  "removed_by_milestone": {
+    "ackpublish-20261011": {
+      "files": 23,
+      "bytes": 26763650
+    },
+    "boot-recovery-20261010": {
+      "files": 4,
+      "bytes": 135837
+    },
+    "browserqueue-20261011": {
+      "files": 71,
+      "bytes": 38221092
+    },
+    "bulk-capture-20261015": {
+      "files": 31,
+      "bytes": 72407321
+    },
+    "callback-20261011": {
+      "files": 57,
+      "bytes": 30707321
+    },
+    "columns-20261015": {
+      "files": 129,
+      "bytes": 680699242
+    },
+    "control-ownership-20261011": {
+      "files": 15,
+      "bytes": 23301
+    },
+    "control-prototype-20261011": {
+      "files": 6,
+      "bytes": 11387
+    },
+    "divplay-20261016": {
+      "files": 101,
+      "bytes": 526755342
+    },
+    "dma-async-20261014": {
+      "files": 19,
+      "bytes": 11996615
+    },
+    "dma-owned-20261014": {
+      "files": 16,
+      "bytes": 9836608
+    },
+    "dma-pingpong-20261015": {
+      "files": 54,
+      "bytes": 65692395
+    },
+    "dma-research-20261011": {
+      "files": 3,
+      "bytes": 8261
+    },
+    "doom-batch-20261012": {
+      "files": 36,
+      "bytes": 14273557
+    },
+    "doom-bulk-20261014": {
+      "files": 22,
+      "bytes": 58745660
+    },
+    "doom-cache-20261012": {
+      "files": 15,
+      "bytes": 14007508
+    },
+    "doom-checkpoints-20261013": {
+      "files": 15,
+      "bytes": 38804893
+    },
+    "doom-columns-20261015": {
+      "files": 63,
+      "bytes": 72438961
+    },
+    "doom-detail-20261014": {
+      "files": 33,
+      "bytes": 62378004
+    },
+    "doom-determinism-20261012": {
+      "files": 162,
+      "bytes": 291889708
+    },
+    "doom-dma-20261014": {
+      "files": 41,
+      "bytes": 43839815
+    },
+    "doom-dma-cleanup-20261014": {
+      "files": 39,
+      "bytes": 47004860
+    },
+    "doom-dma-fixed-20261014": {
+      "files": 30,
+      "bytes": 38360113
+    },
+    "doom-engine-20261012": {
+      "files": 21,
+      "bytes": 11052282
+    },
+    "doom-entry-20261012": {
+      "files": 22,
+      "bytes": 9066498
+    },
+    "doom-height-20261013": {
+      "files": 23,
+      "bytes": 39431302
+    },
+    "doom-owned-20261012": {
+      "files": 16,
+      "bytes": 9580360
+    },
+    "doom-pipeline-20261014": {
+      "files": 52,
+      "bytes": 140471093
+    },
+    "doom-platform-20261012": {
+      "files": 24,
+      "bytes": 25080356
+    },
+    "doom-play-20261013": {
+      "files": 38,
+      "bytes": 101587066
+    },
+    "doom-present-20261014": {
+      "files": 38,
+      "bytes": 146188002
+    },
+    "doom-relocate-20261012": {
+      "files": 17,
+      "bytes": 4664745
+    },
+    "doom-research-20261015": {
+      "files": 2,
+      "bytes": 13458
+    },
+    "doom-runtime-20261012": {
+      "files": 18,
+      "bytes": 13986974
+    },
+    "doom-shared-20261012": {
+      "files": 24,
+      "bytes": 9598195
+    },
+    "doom-shutdown-20261013": {
+      "files": 17,
+      "bytes": 42390011
+    },
+    "doom-sidefix-20261013": {
+      "files": 14,
+      "bytes": 53094734
+    },
+    "doom-sidefix-ack-20261013": {
+      "files": 20,
+      "bytes": 30773472
+    },
+    "doom-startup-20261013": {
+      "files": 18,
+      "bytes": 70251896
+    },
+    "doom-visible-20261013": {
+      "files": 40,
+      "bytes": 56156826
+    },
+    "firmware-handler-20261010": {
+      "files": 12,
+      "bytes": 9091
+    },
+    "fixeddiv-20261016": {
+      "files": 116,
+      "bytes": 523911418
+    },
+    "frame-dma-stress-20261014": {
+      "files": 36,
+      "bytes": 113472935
+    },
+    "framequeue-20261011": {
+      "files": 29,
+      "bytes": 30256962
+    },
+    "input-trace-20261016": {
+      "files": 114,
+      "bytes": 564697899
+    },
+    "irq-concurrent-control-20261011": {
+      "files": 9,
+      "bytes": 827097
+    },
+    "irq-containment-20261011": {
+      "files": 8,
+      "bytes": 978391
+    },
+    "irq-containment-batch-20261011": {
+      "files": 21,
+      "bytes": 3739105
+    },
+    "irq-deferral-20261011": {
+      "files": 7,
+      "bytes": 791276
+    },
+    "irq-drain-20261015": {
+      "files": 115,
+      "bytes": 286923555
+    },
+    "irq-failed-teardown-20261011": {
+      "files": 14,
+      "bytes": 1912724
+    },
+    "irq-lifecycle-20261011": {
+      "files": 9,
+      "bytes": 1360555
+    },
+    "irq-mu-stop-20261011": {
+      "files": 7,
+      "bytes": 812888
+    },
+    "irq-stop-cases-20261011": {
+      "files": 7,
+      "bytes": 1076412
+    },
+    "irq-switch-20261011": {
+      "files": 6,
+      "bytes": 772318
+    },
+    "journal-20261011": {
+      "files": 91,
+      "bytes": 2884649
+    },
+    "live-handoff-20261010": {
+      "files": 9,
+      "bytes": 5357
+    },
+    "mu-echo-20261011": {
+      "files": 11,
+      "bytes": 1424246
+    },
+    "mu-framed-20261011": {
+      "files": 6,
+      "bytes": 728582
+    },
+    "owned-interrupt-stack-20261011": {
+      "files": 8,
+      "bytes": 1133770
+    },
+    "peer-yield-20261015": {
+      "files": 62,
+      "bytes": 113789167
+    },
+    "point-side-20261016": {
+      "files": 119,
+      "bytes": 588208133
+    },
+    "postinit-prototype-20261010": {
+      "files": 13,
+      "bytes": 568556
+    },
+    "preservation-audit-20261011": {
+      "files": 55,
+      "bytes": 4729663
+    },
+    "release-priority-20261015": {
+      "files": 53,
+      "bytes": 277648929
+    },
+    "remote-audit-20261010": {
+      "files": 24,
+      "bytes": 1250299
+    },
+    "render-20261015": {
+      "files": 101,
+      "bytes": 521221426
+    },
+    "romhook-step4-20261010": {
+      "files": 22,
+      "bytes": 492472
+    },
+    "rtems-exclusive-20261011": {
+      "files": 21,
+      "bytes": 3446038
+    },
+    "rtems-fault-ownership-20261011": {
+      "files": 28,
+      "bytes": 6353730
+    },
+    "rtems-general-heap-20261011": {
+      "files": 29,
+      "bytes": 8967215
+    },
+    "rtems-handoff-20261011": {
+      "files": 31,
+      "bytes": 3314756
+    },
+    "rtems-large-ram-20261012": {
+      "files": 28,
+      "bytes": 9981874
+    },
+    "rtems-leaseirq-20261011": {
+      "files": 15,
+      "bytes": 1274901
+    },
+    "rtems-ownership-20261011": {
+      "files": 11,
+      "bytes": 2133097
+    },
+    "rtems-ownirq-20261011": {
+      "files": 14,
+      "bytes": 2861222
+    },
+    "rtems-persistirq-20261011": {
+      "files": 14,
+      "bytes": 1061480
+    },
+    "rtems-queue-reclaim-20261011": {
+      "files": 29,
+      "bytes": 7182648
+    },
+    "rtems-ram-ownership-20261011": {
+      "files": 30,
+      "bytes": 4514844
+    },
+    "rtems-resident-upload-20261012": {
+      "files": 27,
+      "bytes": 6132158
+    },
+    "rtems-residentnet-20261011": {
+      "files": 35,
+      "bytes": 4730180
+    },
+    "rtems-scsi-stop-20261011": {
+      "files": 36,
+      "bytes": 6088522
+    },
+    "rtems-shared-heap-20261011": {
+      "files": 31,
+      "bytes": 8700950
+    },
+    "rtems-system-info-20261011": {
+      "files": 11,
+      "bytes": 944508
+    },
+    "rtems-vader-20261011": {
+      "files": 4,
+      "bytes": 211518
+    },
+    "screen-copy-20261015": {
+      "files": 35,
+      "bytes": 57059631
+    },
+    "segmented-loader-20261012": {
+      "files": 9,
+      "bytes": 564548
+    },
+    "slotopt-20261011": {
+      "files": 41,
+      "bytes": 67400710
+    },
+    "span-four-20261016": {
+      "files": 122,
+      "bytes": 528169211
+    },
+    "ssh-recovery-investigation-20261010": {
+      "files": 3,
+      "bytes": 11801
+    },
+    "staging-pointer-20261010": {
+      "files": 11,
+      "bytes": 430950
+    },
+    "tetris-t3-20261010": {
+      "files": 57,
+      "bytes": 21580807
+    },
+    "tetris-t4-20261010": {
+      "files": 85,
+      "bytes": 4228711
+    },
+    "tetris-t5-20261010": {
+      "files": 122,
+      "bytes": 3620373
+    },
+    "tmp-cleanup-20261016": {
+      "files": 25,
+      "bytes": 154594983
+    },
+    "wad-copy-20261015": {
+      "files": 33,
+      "bytes": 57044308
+    },
+    "wad-dma-20261014": {
+      "files": 58,
+      "bytes": 147116843
+    },
+    "wad-profile-20261015": {
+      "files": 46,
+      "bytes": 115099853
+    },
+    "wad-ring-20261015": {
+      "files": 46,
+      "bytes": 148196521
+    },
+    "walls-20261016": {
+      "files": 159,
+      "bytes": 712116118
+    },
+    "word-memory-20261011": {
+      "files": 140,
+      "bytes": 18879486
+    }
+  },
+  "verification": {
+    "retained_payload_sha256_matches_before_cleanup": 2975,
+    "offline_tests": {
+      "postinit": "13 passed",
+      "dump": "19 passed",
+      "loadrun": "8 passed",
+      "doom_keys": "passed",
+      "inventory_index": "passed",
+      "programming": "4 passed; 1 pre-existing strict archived-source comparison failure (documentation path comments differ). All relevant source and archived files unchanged from a8af272."
+    },
+    "pinned_rtems_sources": "all SHA256 match rtems/sources.json",
+    "hardware_access": "none"
+  }
+}

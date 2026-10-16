@@ -157,7 +157,7 @@ The separate `defer` profile passed three bounded card runs using the real
 RTEMS dispatch disable/enable functions at nested depths 2 and 1. Timer IRQs
 continued, accumulated pending dispatch, and retained the same task owner.
 Only outer enable permitted the other task to run. Both per-task ISR lifetimes
-then drained; see [evidence](../../artifacts/irq-deferral-20261011/README.md).
+then drained; see [evidence](../../artifacts/notes/irq-deferral-20261011.md).
 This tests scheduler critical sections with timer IRQs, not arbitrary interrupt
 nesting or MU STOP during a CPU-bound callback. Those control/lifetime paths
 must be combined before claiming a resident preemptive monitor.
@@ -171,7 +171,7 @@ then sent RELEASE. Three runs passed full timer/RAM/MU restoration. This closes
 the bounded pending-callback signalling test, not arbitrary-task cancellation.
 The host hook retains the session mutex; workers still poll a stop flag.
 See [STOP1 contract](../switch/STOP.md) and
-[evidence](../../artifacts/irq-mu-stop-20261011/README.md).
+[evidence](../../artifacts/notes/irq-mu-stop-20261011.md).
 
 ## Critical-section STOP and omission deadlines (2026-10-11)
 

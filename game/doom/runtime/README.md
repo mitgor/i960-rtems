@@ -107,7 +107,7 @@ python3 game/doom/runtime/run_host.py --binary /path/to/native/host32/doom-profi
 ```
 
 Pinned inputs and the reference corpus are in the previous Doom artifact folders.
-[This step's exact builds, captures and physical findings](../../../artifacts/doom-runtime-20261012/README.md)
+[This step's exact builds, captures and physical findings](../../../artifacts/notes/doom-runtime-20261012.md)
 record what actually passed. Read that evidence before hardware use; exclusive
 resident tests retain resources until reboot and must not overlap another owner.
 

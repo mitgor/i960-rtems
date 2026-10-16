@@ -3,7 +3,7 @@
 2026-10-12: native sanitizer tests and three bounded tests on the actual i960 card
 passed. The second test executed copied position-independent code which read a
 separately loaded data segment. All runs restored staging RAM and unloaded the
-probe. [Evidence](../../artifacts/segmented-loader-20261012/README.md).
+probe. [Evidence](../../artifacts/notes/segmented-loader-20261012.md).
 
 The original core rehearsal used **3,728 bytes in the BIO output grant**.
 The subsequent [resident integration](../../rtems/residentnet/UPLOAD.md) now uses

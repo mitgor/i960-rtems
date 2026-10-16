@@ -1,2 +1,0 @@
-PASS: 8 MiB arena, 6 MiB calloc plus image/buffers, resize/OOM preservation, overflow, zero-size, 128 slots, 5000 fragmented allocations, STOP during bulk, pins, guard/metadata retention
-PASS WAD mailbox: bounds, order, immutable staging, header mutations, CRC, padding, stale generation, sequence exhaustion, cancellation

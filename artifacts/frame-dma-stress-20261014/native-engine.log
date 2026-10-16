@@ -1,2 +1,0 @@
-ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
-PASS actual stress producer: 256 exact complete frames, cancellation while pinned, STOP and invalid API

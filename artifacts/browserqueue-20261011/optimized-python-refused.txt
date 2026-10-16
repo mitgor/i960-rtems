@@ -1,4 +1,0 @@
-usage: server.py [-h] [--backend {native,card,card-queue}] [--port PORT]
-                 [--payload PAYLOAD] [--module MODULE] [--output OUTPUT]
-                 [--max-frames MAX_FRAMES] [--idle-timeout IDLE_TIMEOUT]
-server.py: error: validation requires Python without -O

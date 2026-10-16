@@ -1,6 +1,0 @@
-usage: build.py [-h] --work WORK
-                [--profile {bounded,session,net,irq,auto,autonet,mu,muctl,irqctx,muctx,switch,defer,mustop,stopcases,contain,containcases,ownership,ownirq,persistirq,leaseirq,handoff,exclusive,residentnet}]
-                [--cross CROSS] [--secondary-reset] [--fault-owner]
-                [--fault-test {0,1,2,3}] [--extra-ram] [--general-heap]
-                [--heap-test {0,1,2,3}]
-build.py: error: general heap requires validated extra RAM

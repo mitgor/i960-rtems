@@ -1,7 +1,7 @@
 # Card-initiated two-buffer DMA proof
 
 This is an opt-in, finite deterministic producer experiment, not the Doom browser
-transport. Hardware results and exact binaries: [acceptance record](../../../artifacts/dma-pingpong-20261015/README.md).
+transport. Hardware results and exact binaries: [acceptance record](../../../artifacts/notes/dma-pingpong-20261015.md).
 
 The owning Linux driver allocates two persistent, coherent 73,728-byte buffers.
 Each has a 4,096-byte leading guard, 65,536 payload bytes, 4,064 trailing guard
@@ -133,7 +133,7 @@ Tests: `test_host.py` executes the actual ioctl with partial-copy failures and
 corrupted metadata/guards; `test_bulk_client.py` asserts a single ioctl and the
 exact ABI; `test_bulk_replay.py CAPTURE` checks backward compatibility and rejects
 truncated, wrong-length, corrupted and missing bulk journal records. Hardware
-acceptance and measured costs: `artifacts/bulk-capture-20261015/README.md`.
+acceptance and measured costs: `artifacts/notes/bulk-capture-20261015.md`.
 
 ## Release priority and timing
 
@@ -161,4 +161,4 @@ For bounded comparison, use `--frames 520 --release-schedule abba` and then
 `baab`. Blocks 100–199/200–299/300–399/400–499 run opposite policies in the two
 captures. Initial stall, scripted level restart and final held-frame STOP remain
 outside those blocks. Full measurements and reproduction:
-`artifacts/release-priority-20261015/README.md`.
+`artifacts/notes/release-priority-20261015.md`.

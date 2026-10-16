@@ -9,7 +9,7 @@ task containment. Earlier next-step statements below are historical.
 2026-10-11: the final test module passed six hardware runs, three final-user-fd
 closes and three sysfs driver unbinds during active callback/control syscalls.
 The target is the unchanged, previously pinned `mustop` image. No reboot or
-flash programming was required. [Evidence](../../artifacts/irq-lifecycle-20261011/README.md).
+flash programming was required. [Evidence](../../artifacts/notes/irq-lifecycle-20261011.md).
 
 ## What was injected
 

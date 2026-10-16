@@ -31,7 +31,7 @@ alignments, zero/odd/even counts, wrap and surrounding sentinels. Integration
 requires deterministic native images plus matched card captures; a primitive
 host test alone does not qualify the old i960 compiler.
 
-Evidence and measured acceptance: `artifacts/render-20261015/README.md`.
+Evidence and measured acceptance: `artifacts/notes/render-20261015.md`.
 
 Reproduce the tested profile from a fresh build directory on the Linux host:
 
@@ -69,7 +69,7 @@ existing `-fno-strict-aliasing` builds; never use it on MMIO.
 Without `--span-four`, the accepted two-sample kernel is unchanged. The option
 is recorded in engine, platform, admission and playable-build manifests. It does
 not change render quality, buffer ownership, DMA, audits or task scheduling.
-Physical acceptance and measurements: [four-sample experiment](../../../artifacts/span-four-20261016/README.md).
+Physical acceptance and measurements: [four-sample experiment](../../../artifacts/notes/span-four-20261016.md).
 
 Run the existing primitive oracle both normally and with `-DDOOM_SPAN_FOUR`;
 each covers 123,264 high/low spans, destination alignments, tails, wrap and sentinel

@@ -1,1 +1,0 @@
-PASS shared arena: concurrent owners, ISR/wrong task/recursive refusal, separate namespaces, retained buffers, post-join drain, stale task refusal

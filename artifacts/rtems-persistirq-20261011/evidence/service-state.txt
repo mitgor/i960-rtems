@@ -1,7 +1,0 @@
-{"run": 0, "seq": 17, "generation": 4, "op": 3, "status": 0, "phase": 2, "refs": 0, "starts": [4, 4, 4, 10], "ticks": 213}
-{"run": 0, "seq": 18, "generation": 4, "op": 5, "status": 0, "phase": 3, "refs": 0, "starts": [4, 4, 4, 10], "ticks": 213}
-{"steps": 18, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 83.984024, "max": 354.870932, "mean": 151.47923644444444}}
-active
-82403cf7-9150-4581-b032-e029c2dd6484
-../../../../bus/pci/drivers/dac960auto
-test-module-absent

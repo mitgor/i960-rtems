@@ -61,4 +61,4 @@ hardware lock and complete parallel card work before starting. Keep full audits
 for all suites and restore production afterward.
 
 See [the fifteen-step ledger](BATCH.md) and
-[the evidence and performance report](../../../artifacts/slotopt-20261011/README.md).
+[the evidence and performance report](../../../artifacts/notes/slotopt-20261011.md).

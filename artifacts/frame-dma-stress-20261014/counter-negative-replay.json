@@ -1,9 +1,0 @@
-{
-  "accepted": false,
-  "exact_payload_and_guard_captures": 512,
-  "monitor_snapshots": 25,
-  "ram_pages": 25,
-  "counter_errno": 22,
-  "owned_stop": false,
-  "global_drain": false
-}

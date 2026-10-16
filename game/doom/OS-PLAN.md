@@ -24,7 +24,7 @@ The fresh session is live: 130 frames and 57 full audit pairs are preserved;
 browser turn/fire passed, with muzzle flash and ammo 50→48. The play budget
 expires around 23:58 Europe/Berlin October 13. Global shutdown/final file release
 is not claimed; both original and duplicated descriptors must close normally. Prior ownership and “next”
-statements below are historical. See [current evidence and guide](../../artifacts/doom-play-20261013/README.md).
+statements below are historical. See [current evidence and guide](../../artifacts/notes/doom-play-20261013.md).
 <!-- /doom-play-current -->
 
 <!-- doom-visible-current -->
@@ -52,7 +52,7 @@ IPv6 HTTP and outbound IPv6 are restored in boot
 owns the card. Static gallery PID **1746** serves http://192.168.2.75:8086/ and
 never opens the card. Test reservation released; stop the relay cleanly before
 future exclusive work, and never force-unload a retained module.
-[Exact sources, binaries, captures, browser instructions and limits](../../artifacts/doom-visible-20261013/README.md).
+[Exact sources, binaries, captures, browser instructions and limits](../../artifacts/notes/doom-visible-20261013.md).
 <!-- /doom-visible-current -->
 
 **Doom N3 first-frame and shutdown baseline accepted (2026-10-13):**
@@ -84,7 +84,7 @@ After local archive verification and reboot, public IPv6 HTTP returns 200 from
 the Mac; outbound IPv6 fetch also passes. Production relay supervisor **4358** /
 Python **4359** owns the card in boot `c76b2f32-a14d-4c03-952f-cbfa6b254cb9`.
 Test reservation released; coordinate and stop the relay cleanly before reuse.
-[Exact sources, binaries, captures, failure reproductions and results](../../artifacts/doom-shutdown-20261013/README.md).
+[Exact sources, binaries, captures, failure reproductions and results](../../artifacts/notes/doom-shutdown-20261013.md).
 
 **Height/branch diagnosis (2026-10-13; full Doom still unaccepted):**
 The first 49 checkpoints match, including all decoded sector-height and side
@@ -117,7 +117,7 @@ selected hang markers; current nonblocking logging can outrun host retrieval.
 Exact binaries, sources, captures and replays are archived. Public HTTP returned
 200 after reboot and the clean probes; reservation released. Production relay
 PID **19965**, boot `e7e1bcd3-0421-4d31-8fa9-9d6748d7110e`, owns the card; stop it
-cleanly and coordinate before future exclusive work. [Evidence](../../artifacts/doom-height-20261013/README.md).
+cleanly and coordinate before future exclusive work. [Evidence](../../artifacts/notes/doom-height-20261013.md).
 
 
 **Startup checkpoints (2026-10-13; divergence localized, N3 still unaccepted):**
@@ -147,7 +147,7 @@ Next: checkpoint player spawn and height calculation (`mo->z`, floor/ceiling,
 viewheight, bob, sector/subsector selection), compare relevant field offsets and
 signed fixed-point operations. Independently bracket the path from completed
 masked rendering to `DG_DrawFrame`; the wrong height does not yet explain the hang.
-[Evidence and reproduction](../../artifacts/doom-checkpoints-20261013/README.md).
+[Evidence and reproduction](../../artifacts/notes/doom-checkpoints-20261013.md).
 
 
 **N3 actual startup (2026-10-13; implemented, not physically accepted):**
@@ -181,7 +181,7 @@ normal / partial-read STOP / normal with complete replay and drain. Neither this
 first-wipe milestone nor visible/browser Doom is accepted yet. Both captures are
 saved; reboot cleared retained resources and public IPv6 HTTP returned 200. The
 Doom test reservation is released; coordinate with the public relay before reuse.
-[Evidence and current status](../../artifacts/doom-startup-20261013/README.md).
+[Evidence and current status](../../artifacts/notes/doom-startup-20261013.md).
 
 
 **N2 WAD batching checkpoint (2026-10-12):** opt-in `--wad-batch`
@@ -201,7 +201,7 @@ monitor log, separates and validates exception diagnostics, and passes unchanged
 network audits plus full upload/native replay (7,949 commands). Keep this
 qualification when citing acceptance; do not call the original live harness a
 clean pass. The harness is corrected for future runs. Keep the feature opt-in.
-[Evidence, reproduction and limits](../../artifacts/doom-batch-20261012/README.md). Next is N3: bind batching
+[Evidence, reproduction and limits](../../artifacts/notes/doom-batch-20261012.md). Next is N3: bind batching
 into a newly authenticated engine image, perform bounded actual Doom
 initialization, then verify the first frame. The accepted old diagnostic engine
 still uses the 512-byte ABI; do not silently reuse its admission hashes for a
@@ -219,7 +219,7 @@ first-frame verification and browser controls. [Evidence](../../artifacts/doom-p
 entry and 1 MiB reservation/6 MiB contiguous-zone layout passed physically with
 full audits. The dispatcher identity/stack failure was diagnosed and fixed in
 an opt-in profile. Native replay now matches the complete physical journal.
-Keep the original [failure evidence](../../artifacts/doom-engine-20261012/README.md)
+Keep the original [failure evidence](../../artifacts/notes/doom-engine-20261012.md)
 and the [accepted follow-up](../../artifacts/doom-progress-20261012/README.md)
 separate. No actual Doom initialization or first-frame result exists on-card.
 
@@ -387,7 +387,7 @@ payload changed at this checkpoint.
 
 The small three-segment proof above has passed physical execution twice,
 including data/BSS/pointer postconditions, full paired audits and STOP drain.
-[Acceptance record](../../artifacts/doom-relocate-20261012/README.md).
+[Acceptance record](../../artifacts/notes/doom-relocate-20261012.md).
 The next work is the remaining 44 libc/platform imports and the target WAD
 cache/runtime integration, followed by a fresh RAM/stack budget and bounded
 engine initialization. Keep the existing closed admission gate until that
@@ -404,7 +404,7 @@ The private Newlib/platform candidate resolves the previous 44 imports. Its
 at three addresses. The entire private 32-bit runtime passes sanitizers; its
 actual engine execution, i960 setjmp/longjmp and stack peaks remain untested.
 The cache bridge now runs on the card with full audits and an independent wire
-oracle. [Evidence](../../artifacts/doom-platform-20261012/README.md).
+oracle. [Evidence](../../artifacts/notes/doom-platform-20261012.md).
 
 The earlier entry gates below are now accepted as diagnostic proofs (items 1–2).
 Items 3–4 remain the next implementation gates:

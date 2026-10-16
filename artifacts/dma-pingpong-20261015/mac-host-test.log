@@ -1,1 +1,0 @@
-PASS actual host ioctl: no PCI command for poll/read, full-read release gate, two slots, guard/metadata corruption, stale release, exchange failures and copyout retention

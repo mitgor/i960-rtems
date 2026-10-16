@@ -2,7 +2,7 @@
 
 For the newer card-initiated two-host-buffer producer, see
 [ping-pong DMA](pingpong/README.md) and its
-[acceptance record](../../artifacts/dma-pingpong-20261015/README.md).
+[acceptance record](../../artifacts/notes/dma-pingpong-20261015.md).
 Doom integration and DMA1 WAD coordination are accepted in a bounded browser
 run: [Doom ping-pong results](../../artifacts/doom-pingpong-20261015/README.md)
 (**3.503 → 3.887 FPS**, full audits retained).
@@ -13,7 +13,7 @@ transfers, 124 full audit pairs, explicit STOP and session-deadline cancellation
 Maximum IRQ gap is 10.710–10.990 ms, down from 111.481 ms. Opt-in `--dma-proof`;
 not used by normal Doom play or public HTTP. The separate
 [pinned-frame comparison](FRAME-DMA.md) is opt-in; four frame comparisons passed but the full batch failed on a
-completion timeout. No Doom DMA FPS acceptance. See the [asynchronous batch](../../artifacts/dma-async-20261014/README.md).
+completion timeout. No Doom DMA FPS acceptance. See the [asynchronous batch](../../artifacts/notes/dma-async-20261014.md).
 
 Worker 1 prepares, launches, polls and validates with interrupts enabled, using
 its existing audited IRQ stack. Control handlers only stage/publish jobs and
@@ -77,4 +77,4 @@ direct PCI addresses; no host physical-address guess or borrowed NIC mapping.
 Tests: `python3 rtems/dma/test_target.py`, `python3 rtems/dma/test_host.py`,
 `python3 rtems/dma/test_replay.py`. Replay error numbers are the Linux ioctl ABI,
 independent of the machine running the offline verifier.
-Physical evidence and exact commands: [October 14 batch](../../artifacts/dma-owned-20261014/README.md).
+Physical evidence and exact commands: [October 14 batch](../../artifacts/notes/dma-owned-20261014.md).

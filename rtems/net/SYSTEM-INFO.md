@@ -42,4 +42,4 @@ be overridden with `I960_AUTONOMOUS_PAYLOAD` and `I960_AUTONOMOUS_MODULE`; they
 must match. The previous image remains at `autonet-vader-before-system-info/`
 on the established host, with its old `autonet-module-vader/` module, for rollback.
 
-[Preserved binaries, checks and response samples](../../artifacts/rtems-system-info-20261011/README.md).
+[Preserved binaries, checks and response samples](../../artifacts/notes/rtems-system-info-20261011.md).

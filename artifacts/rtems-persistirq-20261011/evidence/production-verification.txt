@@ -1,4 +1,0 @@
-Distinct boots matched to actual requests: 3f649848-173b-40f5-a56f-c83e72b87105 82403cf7-9150-4581-b032-e029c2dd6484
-Pre-test production close verified; fresh autonomous preflight and original paired OPEN verified; active production and IPv6 HTTP 200 from Mac. No visitor logs exported.
-Production payload: a8cdfe8ba49093182f596c849d25f98befef933b8e7ed951bdeae6194110752d
-Production module: 444278bc480c35224f4b556803e487acd731594ac8fa5698b8b6b93f838f15ff

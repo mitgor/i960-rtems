@@ -55,5 +55,5 @@ policy. All five normal closes restored the full 512 KiB snapshot and unloaded.
 
 Step 16 records the contracts, source audit, scope limits, next integration gate,
 STORY narrative, Claude guidance, binaries and raw captures in Git with the
-artifact manifest. See the [bundle](../../artifacts/rtems-ownership-20261011/README.md).
+artifact manifest. See the [bundle](../../artifacts/notes/rtems-ownership-20261011.md).
 No flash writes or forced unloads were used.

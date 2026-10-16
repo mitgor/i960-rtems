@@ -8,7 +8,7 @@ contract when this flag is absent; libc malloc is unchanged.
 
 Accepted on the known card on 2026-10-12: 12 MiB startup patterns, 35 minutes,
 48 dual-stack rounds, two timer wraps, complete allocation drain and full final
-reserve scan. See [captures and failures](../../artifacts/rtems-large-ram-20261012/README.md).
+reserve scan. See [captures and failures](../../artifacts/notes/rtems-large-ram-20261012.md).
 Compilation alone grants no RAM.
 
 `--owned-mib {1,4,10,12}` requires the release residentnet profile with

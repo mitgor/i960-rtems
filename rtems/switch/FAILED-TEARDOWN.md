@@ -15,7 +15,7 @@ Earlier next-step statements below describe their historical checkpoints.
 2026-10-11: two hardware tests passed, one final-user-fd close with STOP omitted,
 and one driver unbind with RELEASE omitted. Both deliberately leave the module
 pinned and require reboot. No flash was programmed. See the
-[evidence bundle](../../artifacts/irq-failed-teardown-20261011/README.md).
+[evidence bundle](../../artifacts/notes/irq-failed-teardown-20261011.md).
 
 ## Injection and scope
 

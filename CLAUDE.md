@@ -1,3 +1,13 @@
+# Current status and artifact policy (2026-10-16)
+
+Read `CURRENT-FINDINGS.md` first. It supersedes historical status blocks below.
+`artifacts/README.md` defines retention: keep recovery/build inputs, test fixtures
+and concise current results; avoid repeated full build archives and obsolete
+binaries. Full audits and ownership checks remain mandatory during hardware tests.
+Historical payloads removed from the checkout are recoverable at Git `a8af272`;
+restore into a separate directory before replaying them. Do not treat a missing
+historical capture as evidence that its experiment failed or repeat flash work.
+
 # Repository guidance for Claude Code
 
 <!-- renderer-current -->
@@ -22,7 +32,7 @@ protected pages remain 146; mutable bounds unchanged. The flag remains opt-in
 for broader scene/high-detail qualification. Next: profile exact arithmetic and
 geometry inside the remaining 106.5 ms BSP/wall stage; preserve the point-side
 workaround until independent target proof.
-Evidence and reproduction: `artifacts/render-20261015/README.md` and
+Evidence and reproduction: `artifacts/notes/render-20261015.md` and
 `game/doom/render/README.md`. Prior release-priority-only FPS limits below are
 historical; this combined candidate exceeds 5.19 FPS in the tested workload.
 <!-- /renderer-current -->
@@ -51,7 +61,7 @@ held-slot STOP and heap/IRQ drain pass. All 520 images agree across builds;
 the same four known native pixel differences remain. 1,524 received HTTP payloads
 match captured images. Maximum IRQ gap is 10.828 ms. Source, binaries, full replay,
 mutation checks, timings and restoration evidence:
-`artifacts/release-priority-20261015/README.md`.
+`artifacts/notes/release-priority-20261015.md`.
 <!-- /release-priority-current -->
 
 <!-- bulk-capture-current -->
@@ -75,7 +85,7 @@ baseline; the same four known native pixel differences remain.
 
 Initial 16 host-started comparison frames retain their old capture path. Bulk
 capture is used by the existing opt-in ping-pong profile, not a new card protocol.
-Evidence, exact binaries, ABI and replay: `artifacts/bulk-capture-20261015/README.md`.
+Evidence, exact binaries, ABI and replay: `artifacts/notes/bulk-capture-20261015.md`.
 Public IPv6 HTTP restored: 200 / 2890 bytes; boot
 `27cc6b32-2d2f-4701-ba88-1c6d34484a42`, relay 1555 / supervisor 1552 owns
 `dac960auto`. Doom 8087 closed. Historical PIDs below are stale; inspect actual
@@ -112,7 +122,7 @@ bounded acceptance, not a universal hard-real-time guarantee. 146 protected
 pages remain; 16 mutable bytes remain in the existing layout. Current fix is in
 the opt-in `--peer-yield` build; older images retain their original behavior.
 Keep opt-in pending longer interactive qualification. This supersedes the open
-59.9 ms-gap warning below. See `artifacts/irq-drain-20261015/README.md` for exact
+59.9 ms-gap warning below. See `artifacts/notes/irq-drain-20261015.md` for exact
 sources, binaries, reproduction and restoration status. Historical ownership IDs
 below are superseded; inspect actual hardware ownership before use.
 Public IPv6 HTTP restored and verified 200 / 2,891 bytes; boot
@@ -140,7 +150,7 @@ Next instrument long IRQ gaps with task/PC/phase attribution before default
 promotion. Timer CPU attribution is phase-biased by yielding; use measured
 wall/FPS, not a claimed CPU-share gain. First all-session-yield candidate remains
 archived: 5.321 FPS but upload regressed to 106.514 s, so preparation now retains
-original scheduling. See `artifacts/peer-yield-20261015/README.md` and
+original scheduling. See `artifacts/notes/peer-yield-20261015.md` and
 `rtems/exclusive/PEER-YIELD.md`. Historical ownership IDs below are superseded;
 check actual remote ownership before hardware work.
 Public IPv6 HTTP restored and independently verified: 200 / 2,891 bytes; boot
@@ -161,7 +171,7 @@ fallbacks remain. No libc-wide, DMA, scheduler, ownership or guard changes.
 heap drain, exact baseline pixels/palettes and full Linux/Mac replay pass;
 33 mutated captures rejected. Four known native pixel differences remain.
 Private platform builds use this automatically; WAD ring/ping-pong stay opt-in.
-Evidence: `artifacts/screen-copy-20261015/README.md`. One matched run, not a
+Evidence: `artifacts/notes/screen-copy-20261015.md`. One matched run, not a
 long soak; 10 ms telemetry is elapsed/sample-based, not cycle-accurate. Larger
 remaining FPS headroom is renderer work/scheduling, not the remaining 12 ms copy.
 Historical owner IDs below are superseded; inspect actual ownership before use.
@@ -181,7 +191,7 @@ bytewise. No DMA/cache-policy/guard/ownership changes. 100 frames, **68 full pai
 audits** at unchanged 3 s cadence, held-buffer STOP and heap drain pass. First 52
 frames match baseline and retain only four known native pixel differences.
 ASan/UBSan edges, deterministic native runs, full Linux/Mac replay and 33 mutation
-rejections pass. See `artifacts/wad-copy-20261015/README.md` for exact binaries,
+rejections pass. See `artifacts/notes/wad-copy-20261015.md` for exact binaries,
 sources, timings, reproducibility and service restoration. WAD ring/ping-pong
 remain opt-in; next optimize retained staging/direct owned-cache DMA/read-ahead,
 not remove audits. Historical profiling baseline and its owner IDs below are
@@ -220,7 +230,7 @@ calls/bytes against runtime counters and WAD requests. Both actual native
 Next: optimize **actual WAD-cache byte copies**, then retained staging/direct
 owned-cache DMA and adaptive read-ahead. Do not reduce guards or full audits.
 146 protected pages; final mutable reserve **64 bytes**; no flash/map change.
-Evidence/manual: `artifacts/wad-profile-20261015/README.md`. Exact sources,
+Evidence/manual: `artifacts/notes/wad-profile-20261015.md`. Exact sources,
 binaries, captures, failed instrumentation evidence and replay tools are saved.
 All captures were copied/hash-checked/replayed locally before normal reboot.
 Public IPv6 HTTP is restored and verified 200 / 2,891 bytes. Current boot
@@ -312,7 +322,7 @@ tests pass; kernel tail 304 bytes. The faster v9 attempt exposed a snapshot path
 that did not recognize owned DMA. V10 validates the exact lease before changing
 only its local report; foreign DMA and descriptor corruption remain errors.
 All earlier failures are preserved, including v9 whose frame/STOP pass is not full
-system acceptance. See `artifacts/dma-pingpong-20261015/README.md` and
+system acceptance. See `artifacts/notes/dma-pingpong-20261015.md` and
 `rtems/dma/pingpong/README.md`. Doom remains excluded from admission: WAD and
 frame traffic share DMA1 and need explicit coordination, followed by browser,
 input/disconnect and pixel/palette acceptance. No flash change or RAM remap.
@@ -337,7 +347,7 @@ remain unchanged. 96 target oracle cases (real assembly), 52 guarded frames,
 system/frame/WAD replay and 35 tamper cases pass. All optimized images match
 prior card frames exactly; the four existing native/card pixels remain unresolved.
 All 52 HTTP payloads match. No new timer policy, firmware or arena expansion.
-Evidence: `artifacts/doom-columns-20261015/README.md`; code/manual:
+Evidence: `artifacts/notes/doom-columns-20261015.md`; code/manual:
 `game/doom/columns/README.md`. Admission 872,376 bytes; kernel tail still 400.
 The exclusive test has ended; archives are saved locally and replayed. Normal
 reboot released the test module. Public IPv6 HTTP is restored and verified 200
@@ -358,7 +368,7 @@ has four unresolved native pixel differences in the existing small region.
 Build `--pipeline --detail-test` for bounded high/low/low/high; fixed optional
 `--low-detail --no-fnv --direct-frame` for a separate interactive candidate.
 Do not claim 10 FPS or long interactive acceptance. Evidence and exact binaries:
-`artifacts/doom-detail-20261014/README.md`. Test closed and local replay passed;
+`artifacts/notes/doom-detail-20261014.md`. Test closed and local replay passed;
 Public IPv6 HTTP restored (200), boot `1917f487-902d-4579-bbea-5b5b859db300`;
 relay supervisor 1497 / Python 1521 owns `dac960auto`. Stop it normally before
 new card work. Consult `restoration.json` there for service state.
@@ -374,7 +384,7 @@ remain. Renderer ~317 ms, retained screen copy ~47 ms, DMA hardware quantized
 mean ~3 ms. Profile query/host FNV validation affects measured FPS; do not claim
 an uninstrumented or 10 FPS result. Default remains conservative; features opt-in.
 The first selector attempt failed and is archived separately; table selection
-passes. See `artifacts/doom-present-20261014/README.md` and
+passes. See `artifacts/notes/doom-present-20261014.md` and
 `game/doom/play/PRESENTATION.md`. Test owner closed and evidence verified before normal reboot. SSH has not
 returned; user power-cycle requested. Public HTTP restoration pending; see
 `artifacts/doom-present-20261014/restoration.json` and `restore.sh`. Never
@@ -389,7 +399,7 @@ guards, hardware completion and all full audits. First level: **1642.751 →
 52 frames match mailbox exactly; 14 full audit pairs, owned STOP and heap drain
 pass. Full system/frame/WAD replay passes on Linux and Mac. Known native pixel
 differences remain. Legacy CRC mailbox stays default; image admission is unchanged.
-Evidence: `artifacts/wad-dma-20261014/README.md`; manual: `game/doom/play/PLAY.md`.
+Evidence: `artifacts/notes/wad-dma-20261014.md`; manual: `game/doom/play/PLAY.md`.
 The failed pre-WAD startup TCP attempt is preserved. Host now finishes network
 proof before large game upload, retaining checks/deadlines/audits. Metadata queries
 still cost 181.255 s. No arbitrary in-bounds corruption detection without CRC.
@@ -413,7 +423,7 @@ The initial run exposed WAD starvation during pending DMA; the host now services
 WAD requests during polling. A separate TCP startup failure exposed executor
 shutdown suspending audits; failures now request owned STOP while keeping the
 control loop active. Both incomplete attempts are preserved, not accepted.
-Evidence: `artifacts/doom-pipeline-20261014/README.md`. Longer interactive and
+Evidence: `artifacts/notes/doom-pipeline-20261014.md`. Longer interactive and
 disconnect acceptance remains future work. No firmware or RAM remap change.
 All test ownership is released after archive verification/replay and reboot.
 Public IPv6 HTTP returned 200. Current owner: relay supervisor **2796**, Python
@@ -434,7 +444,7 @@ passes and rejects 30 frame/journal plus 24 snapshot corruptions. All 28 HTTP
 PNGs match; these are delivery measurements, not browser paint rates.
 No new runtime change, firmware reflash or relaxed check was needed. Keep DMA
 opt-in; next is longer interactive input/STOP/disconnect and mapping lifecycle
-acceptance. Evidence: `artifacts/doom-dma-fixed-20261014/README.md`.
+acceptance. Evidence: `artifacts/notes/doom-dma-fixed-20261014.md`.
 Closed archives were hash-verified and replayed locally before reboot. Test
 ownership is released. Public IPv6 HTTP returned 200 from the Mac. Current owner:
 public relay supervisor **2120**, Python **2122**, boot
@@ -456,7 +466,7 @@ are not accepted runs. No timeout bounds, interrupts or full audits were relaxed
 Synthetic delivery is 2.9759 FPS, mean DMA capture 225.58 ms; this is not Doom FPS.
 Keep DMA opt-in. The pinned Doom repeat is now accepted above; longer
 interactive acceptance remains next. No firmware reflash was needed.
-Evidence: `artifacts/frame-dma-stress-20261014/README.md`; harness:
+Evidence: `artifacts/notes/frame-dma-stress-20261014.md`; harness:
 `rtems/dma/stress/README.md`. Closed archives were hash-verified and replayed
 locally before reboot. Public IPv6 HTTP is restored and returned 200 from the
 Mac. Stress ownership is released. Historical owner at stress closure: supervisor 2430,
@@ -485,7 +495,7 @@ locally hash-verified. Reboot completed; public IPv6 HTTP returned 200 from the
 Mac. Relay Python 1675 (supervisor 1604), boot
 `91493f0a-3c46-4afa-a40c-6b62ad8304be`, owns the card. Test reservation released;
 stop that relay normally before further exclusive tests.
-[Evidence and limits](artifacts/doom-dma-20261014/README.md).
+[Evidence and limits](artifacts/notes/doom-dma-20261014.md).
 <!-- /doom-dma-current -->
 
 <!-- exclusive-dma-current -->
@@ -513,7 +523,7 @@ returned HTTP 200 after reboot. Relay Python 2721 (supervisor 2717), boot
 `33cafc40-6142-46dd-9c79-0156c77f2e4e`, owns the card. Test reservation released;
 stop the relay normally before new hardware work. The archived physical modules
 precede a native-tested logging-only diagnostic follow-up in the current host.
-[Evidence, exact binaries and limits](artifacts/dma-async-20261014/README.md).
+[Evidence, exact binaries and limits](artifacts/notes/dma-async-20261014.md).
 <!-- /exclusive-dma-current -->
 
 <!-- doom-bulk-current -->
@@ -536,7 +546,7 @@ the card in boot `cbeb9d86-ab62-4ac1-a830-1b30433e2e46`; the test reservation
 is released. Stop the relay normally and coordinate before future card work.
 Older ownership and next-step notes below are historical. Next: profile the remaining
 render/service/ACK costs before any larger DMA transport.
-[Exact results, sources, binaries and reproduction](artifacts/doom-bulk-20261014/README.md).
+[Exact results, sources, binaries and reproduction](artifacts/notes/doom-bulk-20261014.md).
 <!-- /doom-bulk-current -->
 
 <!-- doom-play-current -->
@@ -563,7 +573,7 @@ The fresh session is live: 130 frames and 57 full audit pairs are preserved;
 browser turn/fire passed, with muzzle flash and ammo 50→48. The play budget
 expires around 23:58 Europe/Berlin October 13. Global shutdown/final file release
 is not claimed; both original and duplicated descriptors must close normally. Prior ownership and “next”
-statements below are historical. See [current evidence and guide](artifacts/doom-play-20261013/README.md).
+statements below are historical. See [current evidence and guide](artifacts/notes/doom-play-20261013.md).
 <!-- /doom-play-current -->
 
 ## Repository navigation (2026-10-13)
@@ -605,7 +615,7 @@ IPv6 HTTP and outbound IPv6 are restored in boot
 owns the card. Static gallery PID **1746** serves http://192.168.2.75:8086/ and
 never opens the card. Test reservation released; stop the relay cleanly before
 future exclusive work, and never force-unload a retained module.
-[Exact sources, binaries, captures, browser instructions and limits](artifacts/doom-visible-20261013/README.md).
+[Exact sources, binaries, captures, browser instructions and limits](artifacts/notes/doom-visible-20261013.md).
 <!-- /doom-visible-current -->
 
 **Doom N3 first-frame and shutdown baseline accepted (2026-10-13):**
@@ -637,7 +647,7 @@ After local archive verification and reboot, public IPv6 HTTP returns 200 from
 the Mac; outbound IPv6 fetch also passes. Production relay supervisor **4358** /
 Python **4359** owns the card in boot `c76b2f32-a14d-4c03-952f-cbfa6b254cb9`.
 Test reservation released; coordinate and stop the relay cleanly before reuse.
-[Exact sources, binaries, captures, failure reproductions and results](artifacts/doom-shutdown-20261013/README.md).
+[Exact sources, binaries, captures, failure reproductions and results](artifacts/notes/doom-shutdown-20261013.md).
 
 **Height/branch diagnosis (2026-10-13; full Doom still unaccepted):**
 The first 49 checkpoints match, including all decoded sector-height and side
@@ -670,7 +680,7 @@ selected hang markers; current nonblocking logging can outrun host retrieval.
 Exact binaries, sources, captures and replays are archived. Public HTTP returned
 200 after reboot and the clean probes; reservation released. Production relay
 PID **19965**, boot `e7e1bcd3-0421-4d31-8fa9-9d6748d7110e`, owns the card; stop it
-cleanly and coordinate before future exclusive work. [Evidence](artifacts/doom-height-20261013/README.md).
+cleanly and coordinate before future exclusive work. [Evidence](artifacts/notes/doom-height-20261013.md).
 
 
 **Startup checkpoints (2026-10-13; divergence localized, N3 still unaccepted):**
@@ -700,7 +710,7 @@ Next: checkpoint player spawn and height calculation (`mo->z`, floor/ceiling,
 viewheight, bob, sector/subsector selection), compare relevant field offsets and
 signed fixed-point operations. Independently bracket the path from completed
 masked rendering to `DG_DrawFrame`; the wrong height does not yet explain the hang.
-[Evidence and reproduction](artifacts/doom-checkpoints-20261013/README.md).
+[Evidence and reproduction](artifacts/notes/doom-checkpoints-20261013.md).
 
 
 **N3 actual startup (2026-10-13; implemented, not physically accepted):**
@@ -734,7 +744,7 @@ normal / partial-read STOP / normal with complete replay and drain. Neither this
 first-wipe milestone nor visible/browser Doom is accepted yet. Both captures are
 saved; reboot cleared retained resources and public IPv6 HTTP returned 200. The
 Doom test reservation is released; coordinate with the public relay before reuse.
-[Evidence and current status](artifacts/doom-startup-20261013/README.md).
+[Evidence and current status](artifacts/notes/doom-startup-20261013.md).
 
 
 **N2 WAD batching checkpoint (2026-10-12):** opt-in `--wad-batch`
@@ -754,7 +764,7 @@ monitor log, separates and validates exception diagnostics, and passes unchanged
 network audits plus full upload/native replay (7,949 commands). Keep this
 qualification when citing acceptance; do not call the original live harness a
 clean pass. The harness is corrected for future runs. Keep the feature opt-in.
-[Evidence, reproduction and limits](artifacts/doom-batch-20261012/README.md). Next is N3: bind batching
+[Evidence, reproduction and limits](artifacts/notes/doom-batch-20261012.md). Next is N3: bind batching
 into a newly authenticated engine image, perform bounded actual Doom
 initialization, then verify the first frame. The accepted old diagnostic engine
 still uses the 512-byte ABI; do not silently reuse its admission hashes for a
@@ -795,7 +805,7 @@ Next: owned engine entry/yield/STOP and i960 exit boundary, larger manifest
 admission, WAD batching/initialization budget, then first frame. Keep the current
 closed whitelist; **Doom itself has not run on card**.
 [Runtime contract](game/doom/runtime/platform/README.md) ·
-[Physical evidence](artifacts/doom-platform-20261012/README.md).
+[Physical evidence](artifacts/notes/doom-platform-20261012.md).
 
 **Relocated code/data/BSS proof accepted (2026-10-12):** the reviewed 184-byte
 image executed twice at `0xc02d0050` inside the shared arena, returning
@@ -812,7 +822,7 @@ integration, then bounded initialization. Preserve both worker owners, pins,
 full audits, and exclusive reboot-only release. The reboot completed and the
 original public IPv6 HTTP service is restored (independent HTTP 200).
 [Contract](game/doom/runtime/relocate/README.md) ·
-[Evidence](artifacts/doom-relocate-20261012/README.md).
+[Evidence](artifacts/notes/doom-relocate-20261012.md).
 
 **Doom cache/link milestone (2026-10-12; host-only):** the single-WAD backend
 now bridges interior zone destinations through a private 512-byte runtime read
@@ -825,7 +835,7 @@ engine. This old linker drops final relocation records despite `--emit-relocs`.
 No new card payload was run; public HTTP remained available. Next physical gate:
 small relocated code/data/BSS proof, then remaining libc/platform services and
 bounded Doom startup. [Contracts](game/doom/runtime/cache/README.md) ·
-[Evidence](artifacts/doom-cache-20261012/README.md).
+[Evidence](artifacts/notes/doom-cache-20261012.md).
 
 **Doom runtime entry/WAD bridge accepted (2026-10-12):** opt-in
 `--doom-runtime` executed a reviewed 736-byte uploaded application using a
@@ -840,7 +850,7 @@ binary and five-second deadline were unchanged. Keep worker 0 runnable; retain
 loans until copy/cancellation completes. **Doom itself is not running yet.**
 The final reboot returned and public IPv6 HTTP was restored and verified (200).
 Next: engine image linking/imports, WAD file adapter/cache, then bounded startup.
-[Contract](game/doom/runtime/entry/README.md) · [Evidence](artifacts/doom-entry-20261012/README.md).
+[Contract](game/doom/runtime/entry/README.md) · [Evidence](artifacts/notes/doom-entry-20261012.md).
 
 **Shared Doom arena accepted (2026-10-12):** opt-in `--doom-shared` adds one
 priority-inheriting task mutex and separate allocation namespaces over the same
@@ -853,7 +863,7 @@ and test idle IRQ ownership before allowing all tasks to block. No new task,
 flash change or relaxed validation. Doom is still not running; the refreshed
 relocatable object is 631,176 bytes with 53 imports left. After reboot, the
 cooperative public IPv6 HTTP service was restored and verified (200).
-[Contract](game/doom/runtime/SHARED-ARENA.md) · [Evidence](artifacts/doom-shared-20261012/README.md).
+[Contract](game/doom/runtime/SHARED-ARENA.md) · [Evidence](artifacts/notes/doom-shared-20261012.md).
 
 
 **Doom allocation runtime accepted (2026-10-12):** namespaced malloc/calloc/
@@ -865,7 +875,7 @@ six network rounds. Full replay and native sanitizers passed; reboot returned
 and public IPv6 HTTP is restored (200). The combined i960 object is 631,112 bytes
 with 53 unresolved imports. Single-worker ownership remains; arbitrary task
 launch, shared allocator serialization and other runtime/WAD services are next.
-[Contract](game/doom/runtime/README.md) · [Evidence](artifacts/doom-runtime-20261012/README.md).
+[Contract](game/doom/runtime/README.md) · [Evidence](artifacts/notes/doom-runtime-20261012.md).
 
 
 **Doom host determinism fixed (2026-10-12):** all three variable frames were
@@ -875,7 +885,7 @@ Freedoom IWADs and four heap fills, with complete pixel/palette/tic comparisons.
 Focused renderer sanitizers pass. The i960 object is 627,096 bytes (+240), with
 58 unresolved symbols unchanged. No Doom ran on-card. The parallel 8 MiB arena
 is now proven; libc/task/WAD integration is next. [Findings](game/doom/DETERMINISM.md)
-and [exact evidence](artifacts/doom-determinism-20261012/README.md).
+and [exact evidence](artifacts/notes/doom-determinism-20261012.md).
 
 
 **Resident RTEMS upload accepted (2026-10-12):**
@@ -888,7 +898,7 @@ returning probe. A simultaneous 6 MiB allocation passed on-card. Ten concurrent
 dual-stack rounds (140 cases, 1,115 packets) and STOP cleanup passed; a partial
 image remained pinned until worker/IRQ drain, then the arena was proved empty.
 The C-struct wire-padding failure and a host snapshot/relay scheduling failure
-are preserved with their fixes. [Exact artifacts](artifacts/rtems-resident-upload-20261012/README.md).
+are preserved with their fixes. [Exact artifacts](artifacts/notes/rtems-resident-upload-20261012.md).
 Libc remains on its 171,824-byte heap. Arbitrary application task launch,
 imports/relocations and Doom remain next work; there is no second firmware
 callback or flash change. The stock/cooperative alternative remains available.
@@ -902,7 +912,7 @@ copy/CRC/BSS/cache-sync state machine. Native sanitizers passed a contiguous
 second executed copied code reading a separate data segment. The live arena
 was 3,728 bytes; this does **not** grant the 12 MiB reserve to applications or
 extend production RTEMS malloc. Full RAM restoration/module unload passed;
-IPv6 HTTP was restored. [Exact captures](artifacts/segmented-loader-20261012/README.md).
+IPv6 HTTP was restored. [Exact captures](artifacts/notes/segmented-loader-20261012.md).
 Next: high-tail protection, bootstrap placement, RTEMS ownership/libc adapters,
 and bounded resident PIO upload without another firmware callback.
 
@@ -924,7 +934,7 @@ improvement over the previous smaller profile. The application heap stays
 The high protected-tail inventory and segmented loader remain gates before Doom.
 Two incomplete 10 MiB sessions and their fixes are preserved. Cooperative profiles
 remain available; no flash write. The post-run reboot returned; cooperative public IPv6 HTTP is restored and verified.
-See [RAM contract](rtems/residentnet/LARGE-RAM.md), [captures](artifacts/rtems-large-ram-20261012/README.md), and [Doom OS plan](game/doom/OS-PLAN.md).
+See [RAM contract](rtems/residentnet/LARGE-RAM.md), [captures](artifacts/notes/rtems-large-ram-20261012.md), and [Doom OS plan](game/doom/OS-PLAN.md).
 
 **Fallback queue reclaimed; network work preemptible (2026-10-11):**
 Opt-in `--queue-reclaim` requires the shared/general heap, validated extra RAM,
@@ -980,7 +990,7 @@ The clean browser ABBA comparison improves RAF delivery **13.20 → 15.19 FPS
 run overlapping offline replay is preserved but excluded from timing. All full
 audits remain, and rewrite stays the reference default. Public IPv6 HTTP restored
 and checked; no flash write/reboot. The bounded raycaster is ready for user testing.
-[Evidence](artifacts/journal-20261011/README.md) · [Play instructions](game/raycaster/journal/USER-TESTING.md).
+[Evidence](artifacts/notes/journal-20261011.md) · [Play instructions](game/raycaster/journal/USER-TESTING.md).
 
 
 **Browser queue accepted (2026-10-11):** `game/raycaster/server.py --backend
@@ -997,7 +1007,7 @@ Every full audit remains. Native remains the default backend; queue sessions
 are bounded to 512 updates/30 s idle by default. Public IPv6 HTTP was restored
 and returned 200. No flash write or reboot in this batch. Read
 [the bridge contract](game/raycaster/browserqueue/README.md) and
-[the captures and remaining work](artifacts/browserqueue-20261011/README.md).
+[the captures and remaining work](artifacts/notes/browserqueue-20261011.md).
 
 
 **General application heap (2026-10-11):** `--general-heap` adds 69,952 bytes
@@ -1027,7 +1037,7 @@ within host variation; both remain opt-in. Use `--queue-slots words` with the
 accepted combined/fast-render flags; diagnostic opcode 5 is excluded from release
 images. Public IPv6 HTTP restored. No flash/reboot in this card batch. The queue
 retains its original RAM grant and does not inherit the parallel ownership work.
-[Contract](game/raycaster/slotopt/README.md), [complete measurements/artifacts](artifacts/slotopt-20261011/README.md).
+[Contract](game/raycaster/slotopt/README.md), [complete measurements/artifacts](artifacts/notes/slotopt-20261011.md).
 Next: browser integration of the verified combined queue with full audits and
 measured displayed-frame delivery.
 
@@ -1058,7 +1068,7 @@ request. Input rejection preserves queue and renderer state; uncertain execution
 is never retried. HTTP is restored; no flash/reboot in this batch. Keep this
 opt-in with `--frame-queue --queue-combined`; single-frame defaults remain.
 Next: profile slot validation/publication hashing while retaining all checks.
-[Contract](game/raycaster/combined/README.md), [measurements and captures](artifacts/ackpublish-20261011/README.md).
+[Contract](game/raycaster/combined/README.md), [measurements and captures](artifacts/notes/ackpublish-20261011.md).
 
 
 **SCSI stop boundary (2026-10-11):** the identified secondary Symbios 53C895
@@ -1085,7 +1095,7 @@ preserved, the bounds/storage checks and generated-driver lifecycle tests are
 fixed, and the accepted batch ran after reboot. Public IPv6 HTTP is restored.
 Next: validate combined ACK-and-PUBLISH while keeping full audits per request;
 no asynchronous producer, broader RAM ownership or relaxed audit policy is proven.
-[Contract](game/raycaster/queue/README.md), [measurements and failure evidence](artifacts/framequeue-20261011/README.md).
+[Contract](game/raycaster/queue/README.md), [measurements and failure evidence](artifacts/notes/framequeue-20261011.md).
 
 
 
@@ -1100,7 +1110,7 @@ more host CPU; retain 50 us as the recommendation. Coarse release: 19.352 ms.
 Use `build_target.py --request-words --render-fast` and
 `game/raycaster/callback/build_transport.py --out DIR --coarse`; existing target
 builder defaults and production remain unchanged. [Contract](game/raycaster/callback/README.md),
-[profiles, artifacts and next bottleneck](artifacts/callback-20261011/README.md).
+[profiles, artifacts and next bottleneck](artifacts/notes/callback-20261011.md).
 
 
 **Resident decode follow-up:** live board selector 6 and dispatch `c000d540`
@@ -1136,7 +1146,7 @@ The exact firmware's cache completion wait/ack sequence is located, but live
 address-like register reads do not establish cache-engine completion or drain.
 Keep `autonet` for production and preserve all cooperative profiles. See the
 [contract](rtems/residentnet/README.md), [30-step ledger](rtems/residentnet/BATCH.md)
-and [captures/recovery status](artifacts/rtems-residentnet-20261011/README.md).
+and [captures/recovery status](artifacts/notes/rtems-residentnet-20261011.md).
 
 
 **Framebuffer transport profiling (2026-10-11):** 43,904 profiled commands
@@ -1172,7 +1182,7 @@ Copy is 3.30× faster; clear 4.63×. Repeated byte/word comparisons reduce full-
 kernel time from 60.31 to 57.95 ms (3.91%), with unchanged output and audit cadence.
 The raycaster builder defaults to word helpers; other OS profiles and production
 autonet are unchanged. IPv6 HTTP verified after testing. [Contract](rtems/memory/README.md),
-[measurements and artifacts](artifacts/word-memory-20261011/README.md).
+[measurements and artifacts](artifacts/notes/word-memory-20261011.md).
 Next: profile constituent upload/arming commands; do not weaken ownership or checks.
 
 
@@ -1311,7 +1321,7 @@ operations; restoration preceded BAR unmapping, and late calls were refused.
 All target contexts and full RAM/MU cleanup passed; HTTP restored, no reboot/flash.
 An initial truncated removal log was preserved and its publication fixed before
 rerunning. [Contract and findings](rtems/switch/LIFECYCLE.md),
-[evidence](artifacts/irq-lifecycle-20261011/README.md).
+[evidence](artifacts/notes/irq-lifecycle-20261011.md).
 Logical unbind is tested; the later failed-control checkpoint above covers
 synthetic omissions during teardown. Physical hot-unplug remains unproven. Task shutdown still cooperates with a stop flag.
 
@@ -1322,7 +1332,7 @@ pending. A separate control mutex/window is joined before completion/cleanup;
 wrong epochs, duplicate STOP and late requests were refused. Both ISR contexts
 drained; full RAM/MU restoration and unload passed. IPv6 HTTP restored.
 [API and lifetime contract](rtems/switch/CONCURRENT.md),
-[evidence](artifacts/irq-concurrent-control-20261011/README.md).
+[evidence](artifacts/notes/irq-concurrent-control-20261011.md).
 Workers remain stop-aware. Live alias-close coverage is not final-close or
 physical-removal fault injection; next are broader lifecycle failure tests and
 non-cooperative task containment.
@@ -1334,7 +1344,7 @@ and RX/TX/drop counters. CPU utilization and temperature are explicitly
 unavailable; measured timer-bus frequency is not labelled as CPU frequency.
 24 live HTTP checks and full cleanup/restart passed. Production module is now
 `autonet-module-system-info`, paired with the updated `autonet` image.
-[Details](rtems/net/SYSTEM-INFO.md), [artifacts](artifacts/rtems-system-info-20261011/README.md).
+[Details](rtems/net/SYSTEM-INFO.md), [artifacts](artifacts/notes/rtems-system-info-20261011.md).
 
 
 **Nested STOP and timeout checkpoint (2026-10-11):** all twelve `stopcases`
@@ -1344,7 +1354,7 @@ reached the 128-tick event deadline; missing RELEASE exhausted its finite loop
 and returned with only the expected `0x4000` flag. All contexts, guards, paired
 RAM/MU restoration and unload checks passed; no reboot/flash. IPv6 HTTP restored.
 [Implementation](rtems/switch/STOP-CASES.md),
-[evidence](artifacts/irq-stop-cases-20261011/README.md).
+[evidence](artifacts/notes/irq-stop-cases-20261011.md).
 Next: concurrent user-control/lifetime design and non-cooperative task containment.
 These workers remain stop-aware; deliberate message omission is not a full host
 crash or proof of recovery from permanently masked interrupts.
@@ -1355,7 +1365,7 @@ accepted a one-shot host STOP at ticks 34/41/52 while both owned ISR contexts
 were live and firmware sequence 1 was still pending. Workers observed the stop
 flag, both contexts drained, and the card acknowledged before host RELEASE
 allowed the callback to return. Zero faults; full RAM/MU restoration and module
-unload passed. IPv6 Vader HTTP restored. [Evidence](artifacts/irq-mu-stop-20261011/README.md).
+unload passed. IPv6 Vader HTTP restored. [Evidence](artifacts/notes/irq-mu-stop-20261011.md).
 This is a serialized host-driver experiment, not a concurrent control ioctl,
 CTL1 framing, or forced termination of code that ignores the stop flag. Next:
 exercise STOP during nested dispatch deferral and the missing-host deadline;
@@ -1368,7 +1378,7 @@ depth 1. All eight IRQs observed a pending switch to a different heir; task B
 started only after the outer enable. A resumed at tick 9, depth 0. Each run
 finished at tick 32 with zero faults, 20/20 and 12/12 ISR entries/returns,
 verified RAM restoration and module unload. IPv6 Vader HTTP returned 200 after
-restart. [Evidence](artifacts/irq-deferral-20261011/README.md).
+restart. [Evidence](artifacts/notes/irq-deferral-20261011.md).
 Next: integrate independent MU STOP with the two CPU-bound task contexts and
 prove safe draining during an active callback. Resident operation and general
 interrupt nesting remain unproven; production stays on `autonet`.
@@ -1380,7 +1390,7 @@ passed timer-driven switching between CPU-bound RTEMS tasks. Each run recorded
 entries/returns per task. Separate task/ISR stacks, register sentinels, frame
 ownership, draining and full restoration passed; web service restored without
 reboot/flash. [Implementation](rtems/switch/README.md),
-[evidence](artifacts/irq-switch-20261011/README.md). This is bounded preemption,
+[evidence](artifacts/notes/irq-switch-20261011.md). This is bounded preemption,
 not a resident monitor; next are deferred-dispatch stress and MU STOP integration
 while the CPU-bound task contexts are active.
 
@@ -1391,14 +1401,14 @@ frame/guard checks and independent STOP/HALT passed; full cleanup and web restar
 passed without reboot/flash. The hardware entry frame stays in place: movable
 per-task interrupt contexts and unrestricted preemption remain future work.
 [Implementation](rtems/interrupt/README.md),
-[evidence](artifacts/owned-interrupt-stack-20261011/README.md).
+[evidence](artifacts/notes/owned-interrupt-stack-20261011.md).
 
 **Framed control milestone (2026-10-11):** CTL1 messages, retries and invalid-frame
 rejection passed over IMR1/OMR1. Independent STOP froze bounded RTEMS at tick 362;
 subsequent STATUS confirmed it, then independent timer HALT took 9.48 ms. Firmware
 sequence stayed 1 → 1 throughout. Full cleanup passed, without reboot/flash;
 Vader service restored. [Implementation](rtems/control/MU-FRAMED.md),
-[evidence](artifacts/mu-framed-20261011/README.md). This does not establish
+[evidence](artifacts/notes/mu-framed-20261011.md). This does not establish
 runaway-task STOP or unrestricted preemption. Next: owned IRQ stack and complete
 asynchronous context preservation before lowering task interrupt priorities.
 
@@ -1407,7 +1417,7 @@ in 11.02 ms while firmware sequence stayed 1 → 1. Full timer/RAM/MU restoratio
 and module unload passed. The first trial retained resources after an incorrect
 local OISR acknowledgement; a host reboot and host-side acknowledgement fix
 preceded the successful retry. [Implementation](rtems/control/MU-ECHO.md),
-[evidence](artifacts/mu-echo-20261011/README.md). Independent STOP and unrestricted
+[evidence](artifacts/notes/mu-echo-20261011.md). Independent STOP and unrestricted
 preemption remain unproven; next is framed control plus independent STOP.
 
 

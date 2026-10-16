@@ -1,9 +1,0 @@
-Pre-test production close, fresh boot, original paired RAM, production OPEN, active service and IPv6 HTTP 200 from Mac verified.
-{
-  "payload_sha256": "a8cdfe8ba49093182f596c849d25f98befef933b8e7ed951bdeae6194110752d",
-  "image_sha256": "c889bd9bf0bc40d25dd27a04f3e124de85d998b934963bdade453c092fe027bd",
-  "module_sha256": "444278bc480c35224f4b556803e487acd731594ac8fa5698b8b6b93f838f15ff",
-  "autonomous": true,
-  "module_options": [],
-  "boot_id": "926ae76c-6a22-45fb-bd0c-e2cf93556afc"
-}

@@ -1,4 +1,0 @@
-Pre-test production full close verified. Recovery boot changed: 580ce0b9-ef5f-415d-8cde-ad8b30539db7 -> c9286a38-14ec-4ac1-9e1e-ad54e6e8ce5a
-Fresh autonomous preflight passed. Production OPEN: paired 512 KiB original snapshots verified; test module absent; production active; HTTP 200 from Mac.
-Production payload SHA256: a8cdfe8ba49093182f596c849d25f98befef933b8e7ed951bdeae6194110752d
-Production module SHA256: 444278bc480c35224f4b556803e487acd731594ac8fa5698b8b6b93f838f15ff

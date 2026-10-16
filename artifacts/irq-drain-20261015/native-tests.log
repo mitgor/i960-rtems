@@ -1,6 +1,0 @@
-Deterministic shared acquire versus STOP: before passed
-Deterministic shared acquire versus STOP: after passed
-Deterministic shared acquire versus STOP: drain passed
-Deterministic shared acquire versus STOP: drain-reverse passed
-PASS peer service telemetry: first sample, wrap, same tick, maximum; yield after complete service pass
-PASS drain schema, immutable completed reports, corruption and 20 ms IRQ acceptance gate

@@ -110,7 +110,7 @@ README for reproducible archive verification commands.
 ## Results and remaining work
 
 See [the 16-step ledger](BATCH.md) and
-[original builds and captures](../../artifacts/rtems-ownership-20261011/README.md).
+[original builds and captures](../../artifacts/notes/rtems-ownership-20261011.md).
 The initial smoke run and three 20-cycle sessions passed, followed by a
 premature-close retention test. A post-reboot run preserves the finalization
 log separately because the transport resets that log during close; the earlier

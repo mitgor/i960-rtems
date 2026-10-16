@@ -1,2 +1,0 @@
-actual host exchange: success, absent reply, stale unconsumed reply, deadline, completion and both mask drifts passed
-One transaction deadline and uncertainty retention guards present.

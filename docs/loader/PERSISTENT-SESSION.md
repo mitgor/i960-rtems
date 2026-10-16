@@ -150,6 +150,6 @@ python3 host/session/validate.py /extracted/replay \
   --oracle /tmp/tetris-oracle
 ```
 
-Evidence: [artifacts/tetris-t5-20261010](../../artifacts/tetris-t5-20261010/README.md).
+Evidence: [artifacts/tetris-t5-20261010](../../artifacts/notes/tetris-t5-20261010.md).
 T4's keyboard/terminal client and longer interactive/disconnect testing are now complete; see TETRIS-TERMINAL.md.
 RTEMS, firmware recovery and hardware boot mode changes are separate work.

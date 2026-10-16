@@ -24,7 +24,7 @@ The fresh session is live: 130 frames and 57 full audit pairs are preserved;
 browser turn/fire passed, with muzzle flash and ammo 50→48. The play budget
 expires around 23:58 Europe/Berlin October 13. Global shutdown/final file release
 is not claimed; both original and duplicated descriptors must close normally. Prior ownership and “next”
-statements below are historical. See [current evidence and guide](../../artifacts/doom-play-20261013/README.md).
+statements below are historical. See [current evidence and guide](../../artifacts/notes/doom-play-20261013.md).
 <!-- /doom-play-current -->
 
 <!-- doom-visible-current -->
@@ -52,7 +52,7 @@ IPv6 HTTP and outbound IPv6 are restored in boot
 owns the card. Static gallery PID **1746** serves http://192.168.2.75:8086/ and
 never opens the card. Test reservation released; stop the relay cleanly before
 future exclusive work, and never force-unload a retained module.
-[Exact sources, binaries, captures, browser instructions and limits](../../artifacts/doom-visible-20261013/README.md).
+[Exact sources, binaries, captures, browser instructions and limits](../../artifacts/notes/doom-visible-20261013.md).
 <!-- /doom-visible-current -->
 
 **Doom N3 first-frame and shutdown baseline accepted (2026-10-13):**
@@ -84,7 +84,7 @@ After local archive verification and reboot, public IPv6 HTTP returns 200 from
 the Mac; outbound IPv6 fetch also passes. Production relay supervisor **4358** /
 Python **4359** owns the card in boot `c76b2f32-a14d-4c03-952f-cbfa6b254cb9`.
 Test reservation released; coordinate and stop the relay cleanly before reuse.
-[Exact sources, binaries, captures, failure reproductions and results](../../artifacts/doom-shutdown-20261013/README.md).
+[Exact sources, binaries, captures, failure reproductions and results](../../artifacts/notes/doom-shutdown-20261013.md).
 
 **Height diagnostic (2026-10-13):** unchanged 16,400-byte checkpoint log and
 8 MiB arena; admission storage 801,624 bytes, modeled total 7,550,607. Native
@@ -92,7 +92,7 @@ Test reservation released; coordinate and stop the relay cleanly before reuse.
 completed 279 full RAM/snapshot pairs but no final Doom frame/drain. The traced
 wrong height comes from a wrong sector selection; a separate scalar probe confirms
 an optimized comparison defect outside RTEMS. No RAM extension or allocator fix
-is inferred from it. [Evidence](../../artifacts/doom-height-20261013/README.md).
+is inferred from it. [Evidence](../../artifacts/notes/doom-height-20261013.md).
 
 
 **Checkpoint diagnostic addition (2026-10-13; physical diagnostic run completed; N3 not accepted):**
@@ -107,7 +107,7 @@ audit pairs, but hung before first-frame return; no physical final peak/drain
 is claimed. Link assertions
 rejected static log storage; runtime text was placed in the existing protected
 engine window. The successful placement audit is in
-[checkpoint evidence](../../artifacts/doom-checkpoints-20261013/README.md).
+[checkpoint evidence](../../artifacts/notes/doom-checkpoints-20261013.md).
 
 
 **N3 host startup measurement (2026-10-13; both physical startups failed before frame return):**
@@ -134,7 +134,7 @@ expansion. The six batched host demos peak at 6,477,129 arena bytes plus the
 1,048,576-byte image reservation; allow a further 4,352 staging bytes on-card.
 That host profile is not a measured private-Newlib Doom startup peak. The small
 cache probe has on-card evidence and final drain; actual engine initialization
-is N3. See [N2 evidence](../../artifacts/doom-batch-20261012/README.md).
+is N3. See [N2 evidence](../../artifacts/notes/doom-batch-20261012.md).
 
 **Accepted later baseline (2026-10-12):** 754,448-byte engine span with 13,175
 relocations; 807,148-byte admission storage within a conservative 1 MiB initial
@@ -242,4 +242,4 @@ reproduces OOM there and succeeds when 1 MiB is reserved during proof setup.
 The engine host harness now uses that layout, without releasing another owner's
 retained buffers or changing the 8 MiB grant. Physical acceptance remains pending
 the interrupt/drain bit-64 investigation; no engine entry ran in the failed
-batch. See [exact evidence](../../artifacts/doom-engine-20261012/README.md).
+batch. See [exact evidence](../../artifacts/notes/doom-engine-20261012.md).

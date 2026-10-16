@@ -30,7 +30,7 @@ below describe the original STOP1 milestone.
 2026-10-11: the `switch` profile passed three bounded hardware runs. Two equal
 priority RTEMS tasks execute CPU-bound assembly loops without voluntarily yielding.
 Timer interrupts time-slice them; each task owns its suspended ISR continuation.
-[Exact evidence](../../artifacts/irq-switch-20261011/README.md).
+[Exact evidence](../../artifacts/notes/irq-switch-20261011.md).
 
 ## Composite asynchronous context
 
@@ -177,14 +177,14 @@ python3 rtems/switch/verify_capture.py --defer artifacts/irq-deferral-20261011/l
 This checks exact uploaded/module hashes, raw reports, sentinels and full close
 restoration, and rejects 45 deliberately corrupted deferral reports. The next
 experiment adds MU STOP during active CPU-bound execution. No independent host
-STOP was attempted in this profile. [Evidence](../../artifacts/irq-deferral-20261011/README.md).
+STOP was attempted in this profile. [Evidence](../../artifacts/notes/irq-deferral-20261011.md).
 
 ## Host STOP while the callback is pending
 
 The separate `mustop` profile now combines two owned task continuations with a
 one-shot MU STOP/DRAINED/RELEASE handshake. Three live runs passed with both
 continuations live at STOP. See [protocol, implementation and limits](STOP.md)
-and [preserved evidence](../../artifacts/irq-mu-stop-20261011/README.md).
+and [preserved evidence](../../artifacts/notes/irq-mu-stop-20261011.md).
 The `switch` and `defer` profiles retain their previous contracts.
 
 ## Concurrent host control

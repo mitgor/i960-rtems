@@ -142,7 +142,7 @@ reports and 18 unsafe retention snapshots. Each six-run critical archive rejects
 under ASan/UBSan. The original three-run containment archive still passes the
 updated verifier. All failure archives match their target/prepared-image/module
 hashes and preserve unmodified evidence. Final sources and exact binaries are in
-[the artifact bundle](../../artifacts/irq-containment-batch-20261011/README.md).
+[the artifact bundle](../../artifacts/notes/irq-containment-batch-20261011.md).
 
 The next design gate is resource ownership for resident execution: which tasks
 may hold shared locks or own I/O, what the supervisor can revoke, and how hardware

@@ -1,6 +1,0 @@
-{"run": 0, "seq": 1, "generation": 1, "op": 1, "status": 0, "phase": 1, "refs": 0, "starts": [1, 1, 1, 1], "ticks": 47}
-{"run": 0, "seq": 2, "generation": 2, "op": 2, "status": 0, "phase": 2, "refs": 1, "starts": [2, 2, 2, 2], "ticks": 96}
-{"run": 0, "seq": 3, "generation": 2, "op": 0, "status": 0, "phase": 2, "refs": 1, "starts": [2, 2, 2, 2], "ticks": 96}
-{"run": 0, "seq": 4, "generation": 2, "op": 6, "status": 3, "phase": 2, "refs": 1, "starts": [2, 2, 2, 2], "ticks": 96}
-{"run": 0, "seq": 5, "generation": 2, "op": 3, "status": 0, "phase": 2, "refs": 1, "starts": [2, 2, 2, 3], "ticks": 105}
-{"run": 0, "seq": 6, "generation": 2, "op": 3, "status": 0, "phase": 2, "refs": 1, "starts": [2, 2, 2, 4], "ticks": 114}

@@ -1,6 +1,6 @@
 # Pinned Doom frame DMA/mailbox comparison
 
-**Latest:** the [finite frame stress test](../../artifacts/frame-dma-stress-20261014/README.md)
+**Latest:** the [finite frame stress test](../../artifacts/notes/frame-dma-stress-20261014.md)
 reproduced the timeout at frame 41: a scheduled peer's heap check rejected an
 intentionally active, owned DMA transaction. The ownership-aware isolation check
 passed 512 frames, 89 observed active-transaction checks, 20 full mailbox pairs,
@@ -9,8 +9,8 @@ completion checks were relaxed. DMA stays opt-in pending a fresh Doom comparison
 
 Earlier complete Doom comparisons measured 42.45–43.26% higher delivery FPS
 (about 0.97→1.38); those predate this fix. The stress producer's 2.9759 FPS is
-**not Doom FPS**. See the [previous diagnosis](../../artifacts/doom-dma-cleanup-20261014/README.md)
-and [original failure](../../artifacts/doom-dma-20261014/README.md).
+**not Doom FPS**. See the [previous diagnosis](../../artifacts/notes/doom-dma-cleanup-20261014.md)
+and [original failure](../../artifacts/notes/doom-dma-20261014.md).
 
 Opt-in bounded acceptance: build `game/doom/play/build.py --dma`, then run
 `game/doom/play/run.py --dma-test` in a fresh isolated workspace on the qualified
@@ -113,7 +113,7 @@ Use `python3 rtems/dma/decode_frame_fault.py PATH` for diagnosis. This is negati
 evidence only, including when all 96 words arrive. A card that never reaches the
 terminal monitor may produce no verified terminal identity. Destination arrival
 and diagnostic visibility do not prove DMA retirement. See the
-[diagnostic experiment](../../artifacts/doom-dma-cleanup-20261014/README.md).
+[diagnostic experiment](../../artifacts/notes/doom-dma-cleanup-20261014.md).
 
 ## Isolation during scheduled DMA
 
@@ -131,7 +131,7 @@ feature macro. The stress runner checks initial zero and final positive values.
 
 ## Doom acceptance with the isolation fix
 
-The [fixed repeat](../../artifacts/doom-dma-fixed-20261014/README.md) passed all
+The [fixed repeat](../../artifacts/notes/doom-dma-fixed-20261014.md) passed all
 28 scripted frames, four exact paired reads, sixteen guarded DMA captures,
 29 full monitor/RAM pairs, owned STOP and global drain. Independent Linux/macOS
 replays and 30 frame/journal plus 24 snapshot mutations passed. All 28 frame
@@ -147,7 +147,7 @@ DMA stays opt-in until longer interactive input and lifecycle tests pass.
 
 ## Optional CRC and two-buffer delivery
 
-The [pipeline experiment](../../artifacts/doom-pipeline-20261014/README.md)
+The [pipeline experiment](../../artifacts/notes/doom-pipeline-20261014.md)
 adds explicit per-submit CRC selection: operation 1 offset word 0 means checked,
 1 means unchecked, and other values are refused. Operations 2/3 retain their
 existing offset contracts. Kernel-only control index 6 configures the target;

@@ -11,7 +11,7 @@ Both workers ignored STOP and kept executing for four more timer ticks. The
 controller suspended them externally, restored the timer, and returned through
 the existing firmware callback. All three sessions then restored full borrowed
 RAM/MU state and unloaded. No reboot or flash programming occurred. Production
-IPv6 HTTP returned 200 after restart. [Evidence](../../artifacts/irq-containment-20261011/README.md).
+IPv6 HTTP returned 200 after restart. [Evidence](../../artifacts/notes/irq-containment-20261011.md).
 
 ## The containment contract
 

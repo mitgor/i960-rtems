@@ -1,4 +1,0 @@
-PASS input trace schema, overflow, sequence, frame, key, phase, menu, opt-in and padding: 14 refusals
-PASS playable default, explicit original-divide switch and non-play build defaults
-PASS actual recorder bounds, sticky overflow, trailer clearing and per-frame reset
-PASS actual host input logger frame scope and all key call sites

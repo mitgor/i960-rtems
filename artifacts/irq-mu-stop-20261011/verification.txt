@@ -1,1 +1,0 @@
-Three STOP1 runs verified: pending callback, both ISR contexts live at STOP, drained before RELEASE, exact images, full RAM/MU restoration; 42 corrupted reports rejected

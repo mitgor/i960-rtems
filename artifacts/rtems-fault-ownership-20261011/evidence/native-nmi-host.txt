@@ -1,1 +1,0 @@
-Actual one-shot NMI ioctl: identity/state/mask/latch refusals, duplicate rejection and copy-out uncertainty retain the one-shot latch

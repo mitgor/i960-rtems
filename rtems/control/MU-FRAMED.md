@@ -1,7 +1,7 @@
 # Framed MU control and independent bounded STOP
 
 The `muctl` profile implements CTL1 over IMR1/OMR1 and passed on the real card.
-[Live evidence](../../artifacts/mu-framed-20261011/README.md).
+[Live evidence](../../artifacts/notes/mu-framed-20261011.md).
 Production `autonet` and the earlier one-word `mu` experiment remain separate.
 
 ## Wire and ownership

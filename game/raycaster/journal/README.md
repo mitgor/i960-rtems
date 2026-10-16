@@ -26,7 +26,7 @@ journal / journal / rewrite against an existing capture without touching hardwar
 `replay_test.py` converts a temporary copy of an accepted capture and exercises
 full replay plus corruption rejection; that conversion is explicitly offline.
 Live validation status and measurements are in
-[the evidence directory](../../../artifacts/journal-20261011/README.md).
+[the evidence directory](../../../artifacts/notes/journal-20261011.md).
 
 Physical acceptance is complete: nine sessions and 1,635 full audits/restorations
 pass. Clean browser RAF delivery improves 13.20 to 15.19 FPS; live metadata writes

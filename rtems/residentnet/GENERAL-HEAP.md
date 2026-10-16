@@ -107,7 +107,7 @@ An earlier image independently passed the same duration before offset hardening.
 Four terminal card tests cover the outer guard, allocation suffix, physical
 extent and saved offset; their exact per-build evidence is retained.
 
-See [the batch artifacts](../../artifacts/rtems-general-heap-20261011/README.md)
+See [the batch artifacts](../../artifacts/notes/rtems-general-heap-20261011.md)
 for exact images, physical results and the thirty-step ledger. Default and
 cooperative profiles remain available; exclusive images retain resources until
 reboot and do not promise RAID/SCSI service or graceful disk flush.

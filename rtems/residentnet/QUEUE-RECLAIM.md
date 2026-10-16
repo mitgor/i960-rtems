@@ -93,7 +93,7 @@ archive the exact image/module/capture, and reboot after each terminal test.
 Do not use fault-injection builds for service.
 
 Physical results, measured latency, failures and the thirty-step ledger are in
-[the batch artifacts](../../artifacts/rtems-queue-reclaim-20261011/README.md).
+[the batch artifacts](../../artifacts/notes/rtems-queue-reclaim-20261011.md).
 
 ## Diagnostic version 4
 

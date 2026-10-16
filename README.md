@@ -33,14 +33,14 @@ produced fully verified bounded frames and now has an opt-in persistent browser
 profile. The opt-in mailbox bulk reader improves same-run delivery from
 0.167 to 0.999 frames/s, with all 30 full audit pairs and STOP/drain passing.
 See the [play guide](game/doom/play/README.md) and
-[measured results](artifacts/doom-bulk-20261014/README.md) for reproduction,
+[measured results](artifacts/notes/doom-bulk-20261014.md) for reproduction,
 controls and remaining limitations. Startup still takes roughly 23 minutes;
 a small native/card pixel discrepancy remains. The test session has ended
 and the public IPv6 web service is restored.
 
 [Latest findings](CURRENT-FINDINGS.md) and the relevant dated evidence report
 establish acceptance; an old milestone's “next step” is historical context.
-The [visible Doom report](artifacts/doom-visible-20261013/README.md) records
+The [visible Doom report](artifacts/notes/doom-visible-20261013.md) records
 604 full audit pairs, native replay, STOP/repeat/shutdown and browser delivery.
 
 ## Navigation and reproduction

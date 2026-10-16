@@ -84,7 +84,7 @@ Snapshot `RNT5`, words 48–51, and status bit 3 describe this limited grant.
 The old `ram_reclaim()` and offline `ram_transfer.h` remain closed; this does
 not extend the general RTEMS heap or authorize any other firmware memory.
 
-See [batch artifacts](../../artifacts/rtems-fault-ownership-20261011/README.md).
+See [batch artifacts](../../artifacts/notes/rtems-fault-ownership-20261011.md).
 Manual source: https://datasheets.chipdb.org/Intel/80960/manuals/27273602.PDF
 
 ## Reproduce and replay

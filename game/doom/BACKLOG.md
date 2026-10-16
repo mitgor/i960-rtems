@@ -9,28 +9,28 @@ system audits, ownership checks, STOP/drain, exact artifact hashes and matched r
 
 - **Accepted:** selective renderer O2 + exact two-sample spans; 4.831 → 5.334 FPS
   (+10.4%), all corresponding pixels/palettes identical. See
-  [renderer acceptance](../../artifacts/render-20261015/README.md).
+  [renderer acceptance](../../artifacts/notes/render-20261015.md).
 - **Measured, opt-in:** fixed specialized C columns on the span baseline:
   5.330 → 6.204 FPS (+16.4%), renderer 168.70 → 141.81 ms. Both candidates match
   all 520 reference images; final baseline repeats a menu image at frame 64 only.
   All measured-window images match. Full audits/replays pass; the strict all-run
-  image oracle retains that failure. See [evidence](../../artifacts/columns-20261015/README.md).
+  image oracle retains that failure. See [evidence](../../artifacts/notes/columns-20261015.md).
 - **Done, default for playable builds:** exact bounded FixedDiv. Instrumented
   testing measured 6.047 → 6.309 FPS; independent unprofiled testing measured
   **6.224 → 6.412 FPS (+3.01%)**, renderer 141.25 → 136.93 ms, with 2,080
   matching images and 230 full paired audits. Keep `--no-fast-fixed-div` for
-  the legacy reference. See [unprofiled acceptance](../../artifacts/divplay-20261016/README.md)
-  and [47-site profiling](../../artifacts/fixeddiv-20261016/README.md).
+  the legacy reference. See [unprofiled acceptance](../../artifacts/notes/divplay-20261016.md)
+  and [47-site profiling](../../artifacts/notes/fixeddiv-20261016.md).
 - **Done, diagnostic opt-in:** `--input-trace` records frame/tic consumption and
   menu responder state. All 2,080 images and 228 full audits passed; trace-off
   6.432 versus trace-on 6.412 FPS. The historical menu mismatch is still
   unexplained; use the trace if it recurs, rather than retroactively declaring
-  it fixed. See [acceptance](../../artifacts/input-trace-20261016/README.md).
+  it fixed. See [acceptance](../../artifacts/notes/input-trace-20261016.md).
 - **Qualified, opt-in, no meaningful speedup:** `--fast-point-side` replaces the
   protected O0 helper with defined exact arithmetic. 1,024 card vectors,
   2,080 matching images and 229 paired audits passed. **6.428 → 6.431 FPS
   (+0.034%)**, renderer 136.46 → 136.14 ms, is within repeat variation.
-  Keep O0 as the default. See [acceptance](../../artifacts/point-side-20261016/README.md).
+  Keep O0 as the default. See [acceptance](../../artifacts/notes/point-side-20261016.md).
 - **Defaults:** C columns (`--fast-columns`) and spans/selective O2
   (`--fast-render`) remain opt-in; these benchmark builds explicitly enable both.
   Do not confuse the measured combined baseline with launcher defaults.
@@ -40,7 +40,7 @@ system audits, ownership checks, STOP/drain, exact artifact hashes and matched r
   Pooled 6.617 → 6.449 FPS (−2.54%), but unchanged baselines differ 6.431 vs
   6.814 FPS. All 2,080 images and 228 full audits pass. Preserve the complete
   batch; investigate repeatability before interpreting the small kernel effect.
-  [Evidence](../../artifacts/span-four-20261016/README.md).
+  [Evidence](../../artifacts/notes/span-four-20261016.md).
 - **Quality settings:** normal rendering must remain available. Prefer runtime
   selection in one build, with explicit UI controls; separate binaries are a fallback.
   `--runtime-detail` adds high/low selection via F5 or the browser button; combine
@@ -56,7 +56,7 @@ system audits, ownership checks, STOP/drain, exact artifact hashes and matched r
 (+0.555%)**, renderer **139.188 → 138.200 ms**. Five runs including one plain
 control pass: **2,600 matching images, 285 full paired audits**, ownership,
 stall/STOP/drain and full replay/tamper checks. See
-[wall acceptance](../../artifacts/walls-20261016/README.md).
+[wall acceptance](../../artifacts/notes/walls-20261016.md).
 
 The plain control is **6.427 FPS / 136.475 ms renderer**. Profiling adds about
 2.71 ms versus pooled A; that overhead comparison has only one plain run. Both
@@ -77,7 +77,7 @@ Planes still cost about **40.2 ms** independently of this combined BSP bucket.
    and retain all four runs. Full options, framebuffer addresses, images and IRQ
    period match; cache/scheduling causes remain hypotheses. Reproduce unchanged
    plain baselines across sessions before another performance claim. See
-   [all evidence](../../artifacts/span-four-20261016/README.md).
+   [all evidence](../../artifacts/notes/span-four-20261016.md).
    After repeatability is understood, consider separate high/low span paths and
    hoisting invariant alignment decisions; generated code still tests these
    inside the loop. Do not assume this unmeasured idea will improve FPS.
@@ -139,7 +139,7 @@ They are implementation handoffs, not authorization to discard existing checks.
    Newlib, clipping arrays, plane fills and explicit calloc/realloc loops.
    Level-loading gains and automap/UI improvements are separate from steady FPS.
    The opt-in `--fast-memory` path has since passed a full 520-frame comparison
-   in [release-priority acceptance](../../artifacts/release-priority-20261015/README.md):
+   in [release-priority acceptance](../../artifacts/notes/release-priority-20261015.md):
    4.835 → 4.855 FPS (+0.40%), insufficient to establish a meaningful gain.
    Do not repeat implementation of that switch; per-site profiling remains open.
 6. [ ] **Cache/layout and plane lookup/order (F7): low–medium, scene-dependent.**

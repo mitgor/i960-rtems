@@ -1,1 +1,0 @@
-PASS actual ioctl allowlist: five read-only timing words; addresses/submissions/CRC control/invalid indices/reserved words refused

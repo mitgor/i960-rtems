@@ -3,17 +3,17 @@
 The [slot-validation follow-up](slotopt/README.md) completed its fifteen-step batch:
 1,691 fully audited card requests, ten restorations, 10.14% less callback time and
 4.00% less kernel time. The selected combined-queue target uses `--queue-slots words`;
-existing defaults remain. [Evidence and limits](../../artifacts/slotopt-20261011/README.md).
+existing defaults remain. [Evidence and limits](../../artifacts/notes/slotopt-20261011.md).
 
 The [combined queue operation](combined/README.md) is card accepted: 37.24% lower
 kernel time than separate ACK+PUBLISH, with full audits on every request. It remains
-opt-in; [measurements and exact evidence](../../artifacts/ackpublish-20261011/README.md).
+opt-in; [measurements and exact evidence](../../artifacts/notes/ackpublish-20261011.md).
 
 The opt-in [bounded frame queue](queue/README.md) now has card acceptance with
 full audits on every request. It proves two-slot ownership and backpressure, but
 separate PUBLISH+ACK costs 39.947 ms versus 20.596 ms for the audited baseline.
 Keep the previous single-frame path as the default. See the
-[evidence, failed first attempt and next step](../../artifacts/framequeue-20261011/README.md).
+[evidence, failed first attempt and next step](../../artifacts/notes/framequeue-20261011.md).
 
 **Hardware-validated (2026-10-11):** 548 replies match native replay; both
 sessions restored/unloaded and production HTTP is restored. Browser movement,
@@ -81,7 +81,7 @@ RTEMS scheduler, memory layout, host checks and audit cadence.
 See [memory contract and tests](../../rtems/memory/README.md). The production
 network service and parallel interrupt/ownership profiles are unchanged. Original
 byte-build measurements below remain historical; current A/B evidence is in
-[the word-memory report](../../artifacts/word-memory-20261011/README.md).
+[the word-memory report](../../artifacts/notes/word-memory-20261011.md).
 
 ## Bounds and protocol
 

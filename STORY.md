@@ -2779,7 +2779,7 @@ Linux returned, the public RTEMS page answered over IPv6 again, and the saved
 Doom gallery came back beside it. Looking at the picture no longer needed to
 borrow the card from its next experiment.
 
-[The exact builds, complete captures and browser instructions](artifacts/doom-visible-20261013/README.md)
+[The exact builds, complete captures and browser instructions](artifacts/notes/doom-visible-20261013.md)
 keep the receipts for this part of the story.
 
 ## A game needs a keyboard
@@ -2849,7 +2849,7 @@ the earlier card run. We had improved their journey home without hiding that
 remaining rendering question.
 
 The complete captures, exact binaries and replay checks now live in
-[the bulk-transfer batch](artifacts/doom-bulk-20261014/README.md). About half a
+[the bulk-transfer batch](artifacts/notes/doom-bulk-20261014.md). About half a
 second per frame remains outside the new transfer. That is the next place to
 measure. The twenty-three-minute level load also remains its own problem. After the
 captures were safely home, we rebooted the retained test module and restored
@@ -2887,7 +2887,7 @@ gap of about 111 milliseconds. The proof had established a way home for the
 bytes, but it was not yet the right way to schedule a game. The next version
 needs task-owned preparation and a short completion path. Only after that do we
 compare DMA and mailbox copies of the same Doom frame and count frames again.
-The [DMA batch](artifacts/dma-owned-20261014/README.md) keeps both attempts.
+The [DMA batch](artifacts/notes/dma-owned-20261014.md) keeps both attempts.
 Replaying it on the Mac found one last boundary: Linux and macOS assign different
 numbers to ESTALE. The reader now checks the Linux ABI that produced the capture.
 The bytes stayed unchanged. After both archives were safely home and the retained
@@ -2922,7 +2922,7 @@ clearing an enable bit had repaired it. The native tests exercise polling
 exhaustion and retention; a genuinely stuck physical engine remains another
 experiment. The mappings stayed pinned until reboot in both successful runs.
 
-The [asynchronous DMA batch](artifacts/dma-async-20261014/README.md) keeps the
+The [asynchronous DMA batch](artifacts/notes/dma-async-20261014.md) keeps the
 exact builds, both captures and the independent replays. Forty-eight transfers
 and 124 full audit pairs later, the next experiment is finally about pixels:
 copy the same pinned Doom frame through DMA and the mailbox, compare every byte,
@@ -2979,7 +2979,7 @@ gets its validated terminal state. The next job is to mark those phases and reta
 fault/context evidence through a transport failure, then reproduce the stall.
 Longer timeouts and fewer checks would only make the receipt less honest.
 
-The [complete failed batch](artifacts/doom-dma-20261014/README.md) preserves all
+The [complete failed batch](artifacts/notes/doom-dma-20261014.md) preserves all
 three builds and runs, the retained twelfth picture, and the exact limits of what
 we learned. The archive was copied and checked locally before reboot; the public Vader
 page answered over IPv6 again afterward. Ordinary
@@ -3010,7 +3010,7 @@ batch, rebooted, and prepared another run with the exact previously failing
 processor binary. Only the host gained the ability to ask for a frozen fault
 record. If the failure returned, we wanted its address, not another guess.
 
-The [diagnosis batch](artifacts/doom-dma-cleanup-20261014/README.md) keeps the
+The [diagnosis batch](artifacts/notes/doom-dma-cleanup-20261014.md) keeps the
 instrumented build and its successful comparison. The exact earlier binary passed too: another twenty-eight pictures, twenty-eight
 full audits and complete shutdown, at 1.380 versus 0.969 frames per second.
 That made the performance result repeatable and the failure intermittent. It
@@ -3062,7 +3062,7 @@ The little producer sustained just under three frames per second with those
 checks included. The important number was eighty-nine: this time we knew the
 awkward timing window had actually happened.
 
-The [stress-test evidence](artifacts/frame-dma-stress-20261014/README.md) keeps
+The [stress-test evidence](artifacts/notes/frame-dma-stress-20261014.md) keeps
 both incomplete runs as well as the final acceptance results. Ordinary browser
 play remains on its existing transport until the fixed worker has its next
 Doom comparison. A pattern producer is excellent at finding this fault; it is
@@ -3098,7 +3098,7 @@ build and captures were safely copied and replayed locally did the host reboot
 to release the retained mapping. DMA remains an explicit option; the next test
 is a longer session with a person at the controls and its lifecycle exercised.
 The fix has now survived both the small stress producer and the actual game.
-[The fixed comparison](artifacts/doom-dma-fixed-20261014/README.md) keeps the
+[The fixed comparison](artifacts/notes/doom-dma-fixed-20261014.md) keeps the
 numbers and the captures together.
 
 ## Two pictures and a missing waiter
@@ -3138,7 +3138,7 @@ not the hoped-for three to five times. Every binary packet reached the Mac
 with its expected hash, and the browser displayed the final frame. The seven
 native/card pixel differences remained, with identical palettes and padding.
 Both machines replayed the evidence and rejected all deliberate corruptions
-before the host rebooted to release the mapping. [The pipeline ledger](artifacts/doom-pipeline-20261014/README.md)
+before the host rebooted to release the mapping. [The pipeline ledger](artifacts/notes/doom-pipeline-20261014.md)
 records the acceptance status, the failures and the exact builds together.
 
 ## Bringing the level through the other door
@@ -3178,7 +3178,7 @@ heap drain passed. The Mac received every binary frame with the expected hash.
 Request queries still consumed 181 seconds. There was another bottleneck to
 investigate, but now the experiment could end with someone actually playing.
 
-The [WAD transfer ledger](artifacts/wad-dma-20261014/README.md) records the final
+The [WAD transfer ledger](artifacts/notes/wad-dma-20261014.md) records the final
 comparison, exact images and failed attempts. The [play instructions](game/doom/play/PLAY.md)
 cover getting into the game without having to reconstruct the experiment.
 
@@ -3875,7 +3875,7 @@ C columns also remain an explicit build choice, even though the benchmark builds
 use them. The exact divide is the optimization now enabled by default. Small
 switches, but worth recording: a reproducible result includes knowing which
 machine code was actually running. The public IPv6 page was restored afterward;
-the [captures](artifacts/point-side-20261016/README.md) keep the full account.
+the [captures](artifacts/notes/point-side-20261016.md) keep the full account.
 
 ## The tree was not the forest
 
@@ -3904,7 +3904,7 @@ becomes a default.
 
 All 2,600 pictures agreed. The 285 full audit pairs, held buffers, STOP, heap
 drain and independent replays agreed too. We restored the public web page and
-kept the [complete evidence](artifacts/walls-20261016/README.md). The next useful
+kept the [complete evidence](artifacts/notes/walls-20261016.md). The next useful
 experiment is in the floor and ceiling spans: another forty-millisecond stage,
 with an exact two-sample loop to compare against a carefully bounded wider one.
 
@@ -3937,7 +3937,7 @@ best reference run.
 So the four-sample version stays available behind a switch, and two samples
 remain the default. The next job is to understand how the unchanged reference
 became faster before trusting another small improvement. The
-[complete captures](artifacts/span-four-20261016/README.md) keep the surprising
+[complete captures](artifacts/notes/span-four-20261016.md) keep the surprising
 run alongside the others. The public IPv6 page was restored after the captures
 were safe. A useful experiment can end with a better question.
 

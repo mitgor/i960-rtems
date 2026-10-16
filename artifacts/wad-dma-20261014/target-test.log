@@ -1,1 +1,0 @@
-PASS actual WAD target: exact read, ACK pin, stale/misaligned/overflow/owner refusal, 256 descriptor mutations, active isolation, timeout/error/guard quarantine

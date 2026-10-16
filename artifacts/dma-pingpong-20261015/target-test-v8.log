@@ -1,1 +1,0 @@
-PASS actual target: chained DMA, independent slots, stalls, stale/duplicate release, STOP quiescence, stalled-consumer bound, timeout quarantine, exact lease tampering

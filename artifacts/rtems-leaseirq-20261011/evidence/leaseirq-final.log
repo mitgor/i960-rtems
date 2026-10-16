@@ -1,3 +1,0 @@
-{"run": "smoke", "seq": 1, "op": 1, "ticks": 226, "lease_ticks": 211, "renewals": 5, "reason": 1, "hw_checks": 226}
-{"run": "smoke", "seq": 2, "op": 5, "ticks": 226, "lease_ticks": 211, "renewals": 5, "reason": 1, "hw_checks": 226}
-{"steps": 2, "restored": true, "unloaded": true, "driver_bound": false, "latency_ms": {"min": 53.474861, "max": 1189.008709, "mean": 621.241785}}

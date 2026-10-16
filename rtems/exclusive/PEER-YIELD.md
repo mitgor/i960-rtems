@@ -32,7 +32,7 @@ WAD-ring/ping-pong options plus `--peer-yield`. It is experimental and opt-in.
 Run `rtems/exclusive/test_peer_yield.py` for wrap/maximum counter behavior and
 `rtems/dma/wad_ring/test_target.py` for both report schemas and guarded DMA paths.
 
-[Physical acceptance and exact reproduction](../../artifacts/peer-yield-20261015/README.md)
+[Physical acceptance and exact reproduction](../../artifacts/notes/peer-yield-20261015.md)
 
 The initial card run reached 5.273 FPS but recorded a 59.855 ms final IRQ gap.
 Subsequent investigation isolated an inherited priority-31 shutdown scan and
@@ -48,6 +48,6 @@ full-session IRQ gap below 20 ms and tick progress consistent with drain elapsed
 time, including when there is no later IRQ to expose a final masked gap.
 The normal fixed run delivered 5.192 FPS with 10.731 ms maximum IRQ gap. This is
 a shutdown latency fix, not a demonstrated FPS optimization. Stress qualification
-and full evidence are recorded in `artifacts/irq-drain-20261015/README.md`.
+and full evidence are recorded in `artifacts/notes/irq-drain-20261015.md`.
 Keep opt-in pending longer interactive qualification. Yielding biases tick CPU
 samples; compare wall time and delivered FPS instead of inferring CPU share.

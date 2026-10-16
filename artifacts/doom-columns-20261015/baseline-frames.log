@@ -1,5 +1,0 @@
-PASS two deterministic native 52-frame no-input runs with STOP and heap drain
-Traceback (most recent call last):
-  File "/home/mit/i960-column-20261015/native_frames.py", line 24, in <module>
-    if not a.baseline:
-AttributeError: 'int' object has no attribute 'baseline'

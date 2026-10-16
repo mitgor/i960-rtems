@@ -7,7 +7,7 @@ every request. The original protocol/source below remains available and replayab
 This is an opt-in cooperative RTEMS raycaster profile. It is **not** autonomous
 rendering or an accepted replacement for immutable-memory auditing. Every request
 retains two complete 512 KiB reads and all existing transport validation.
-Read [the evidence ledger](../../../artifacts/framequeue-20261011/README.md) for
+Read [the evidence ledger](../../../artifacts/notes/framequeue-20261011.md) for
 card acceptance and measurements.
 
 ## Memory and ownership

@@ -2,20 +2,20 @@
 
 Low-detail benchmark: **2.481 → 3.178 FPS (+28.09%)**, 52 frames and all 14
 full audit pairs/STOP/drain pass. Renderer ~210 ms wall / ~105 ms timer-sampled
-Doom CPU. [Results, images, limitations and reproduction](../artifacts/doom-detail-20261014/README.md).
+Doom CPU. [Results, images, limitations and reproduction](../artifacts/notes/doom-detail-20261014.md).
 
 Presentation profiling: optional FNV and removal of the second framebuffer copy
 passed 52 card frames, 14 full audit pairs and STOP/drain: **1.965 → 2.474 FPS**
 (+25.94%, instrumented same-run comparison). Renderer remains ~317 ms/frame.
-[Measurements, limits and exact artifacts](../artifacts/doom-present-20261014/README.md). Features remain opt-in.
+[Measurements, limits and exact artifacts](../artifacts/notes/doom-present-20261014.md). Features remain opt-in.
 
 Bulk host-to-card WAD DMA now passes full physical acceptance: **27m 23s → 5m 18s**
 for initial level loading (**5.16×**), and **10.29s → 3.07s** for a warm restart.
 All 52 frames match mailbox exactly; full audits and STOP/drain pass.
-Use `--pipeline --no-crc --wad-dma`; see [measurements and artifacts](../artifacts/wad-dma-20261014/README.md).
+Use `--pipeline --no-crc --wad-dma`; see [measurements and artifacts](../artifacts/notes/wad-dma-20261014.md).
 
 
-The opt-in [two-buffer binary pipeline](../artifacts/doom-pipeline-20261014/README.md) now passes 52 frames,
+The opt-in [two-buffer binary pipeline](../artifacts/notes/doom-pipeline-20261014.md) now passes 52 frames,
 29 full audit pairs and STOP/drain. CRC-on delivers **1.396095 FPS**; explicit
 CRC-off **2.070201 FPS (+48.285%)**. Ownership and full system audits remain;
 CRC defaults on. WAD service during DMA waits and network-failure STOP handling
@@ -26,10 +26,10 @@ transfers with full audits. Task-owned preparation/checking now reduces the
 maximum IRQ gap from 111.481 ms to 10.710–10.990 ms; explicit STOP and session
 deadline cancellation pass on the card. The later [Doom frame comparison](dma/FRAME-DMA.md) proves four byte-exact
 mailbox/DMA pairs and 2.21× faster transfer, but frame-12 completion timed out.
-The subsequent [stress test](../artifacts/frame-dma-stress-20261014/README.md)
+The subsequent [stress test](../artifacts/notes/frame-dma-stress-20261014.md)
 reproduced a peer isolation check rejecting owned DMA. Its fix passed 512 frames,
 89 active-transaction checks and full STOP/drain audits. The fixed
-[Doom repeat](../artifacts/doom-dma-fixed-20261014/README.md) now passes 28 frames,
+[Doom repeat](../artifacts/notes/doom-dma-fixed-20261014.md) now passes 28 frames,
 29 full audit pairs and shutdown: **0.972816 → 1.376781 FPS (+41.525%)**.
 DMA remains opt-in pending longer interactive lifecycle acceptance.
 
@@ -185,7 +185,7 @@ operations; restoration preceded BAR unmapping, and late calls were refused.
 All target contexts and full RAM/MU cleanup passed; HTTP restored, no reboot/flash.
 An initial truncated removal log was preserved and its publication fixed before
 rerunning. [Contract and findings](switch/LIFECYCLE.md),
-[evidence](../artifacts/irq-lifecycle-20261011/README.md).
+[evidence](../artifacts/notes/irq-lifecycle-20261011.md).
 Logical unbind is tested; the later failed-control checkpoint above covers
 synthetic omissions during teardown. Physical hot-unplug remains unproven. Task shutdown still cooperates with a stop flag.
 
@@ -196,7 +196,7 @@ pending. A separate control mutex/window is joined before completion/cleanup;
 wrong epochs, duplicate STOP and late requests were refused. Both ISR contexts
 drained; full RAM/MU restoration and unload passed. IPv6 HTTP restored.
 [API and lifetime contract](switch/CONCURRENT.md),
-[evidence](../artifacts/irq-concurrent-control-20261011/README.md).
+[evidence](../artifacts/notes/irq-concurrent-control-20261011.md).
 Workers remain stop-aware. Live alias-close coverage is not final-close or
 physical-removal fault injection; next are broader lifecycle failure tests and
 non-cooperative task containment.
@@ -208,7 +208,7 @@ and RX/TX/drop counters. CPU utilization and temperature are explicitly
 unavailable; measured timer-bus frequency is not labelled as CPU frequency.
 24 live HTTP checks and full cleanup/restart passed. Production module is now
 `autonet-module-system-info`, paired with the updated `autonet` image.
-[Details](net/SYSTEM-INFO.md), [artifacts](../artifacts/rtems-system-info-20261011/README.md).
+[Details](net/SYSTEM-INFO.md), [artifacts](../artifacts/notes/rtems-system-info-20261011.md).
 
 
 **Nested STOP and timeout checkpoint (2026-10-11):** all twelve `stopcases`
@@ -218,7 +218,7 @@ reached the 128-tick event deadline; missing RELEASE exhausted its finite loop
 and returned with only the expected `0x4000` flag. All contexts, guards, paired
 RAM/MU restoration and unload checks passed; no reboot/flash. IPv6 HTTP restored.
 [Implementation](switch/STOP-CASES.md),
-[evidence](../artifacts/irq-stop-cases-20261011/README.md).
+[evidence](../artifacts/notes/irq-stop-cases-20261011.md).
 Next: concurrent user-control/lifetime design and non-cooperative task containment.
 These workers remain stop-aware; deliberate message omission is not a full host
 crash or proof of recovery from permanently masked interrupts.
@@ -229,7 +229,7 @@ accepted a one-shot host STOP at ticks 34/41/52 while both owned ISR contexts
 were live and firmware sequence 1 was still pending. Workers observed the stop
 flag, both contexts drained, and the card acknowledged before host RELEASE
 allowed the callback to return. Zero faults; full RAM/MU restoration and module
-unload passed. IPv6 Vader HTTP restored. [Evidence](../artifacts/irq-mu-stop-20261011/README.md).
+unload passed. IPv6 Vader HTTP restored. [Evidence](../artifacts/notes/irq-mu-stop-20261011.md).
 This is a serialized host-driver experiment, not a concurrent control ioctl,
 CTL1 framing, or forced termination of code that ignores the stop flag. Next:
 exercise STOP during nested dispatch deferral and the missing-host deadline;
@@ -242,7 +242,7 @@ depth 1. All eight IRQs observed a pending switch to a different heir; task B
 started only after the outer enable. A resumed at tick 9, depth 0. Each run
 finished at tick 32 with zero faults, 20/20 and 12/12 ISR entries/returns,
 verified RAM restoration and module unload. IPv6 Vader HTTP returned 200 after
-restart. [Evidence](../artifacts/irq-deferral-20261011/README.md).
+restart. [Evidence](../artifacts/notes/irq-deferral-20261011.md).
 Next: integrate independent MU STOP with the two CPU-bound task contexts and
 prove safe draining during an active callback. Resident operation and general
 interrupt nesting remain unproven; production stays on `autonet`.

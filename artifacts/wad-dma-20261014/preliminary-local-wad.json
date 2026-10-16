@@ -1,9 +1,0 @@
-{
-  "blocks": 5100,
-  "logical_bytes": 15163588,
-  "dma_bytes": 20889600,
-  "pending_polls": 11699,
-  "payload_crc": false,
-  "source_sha256": "7323bcc168c5a45ff10749b339960e98314740a734c30d4b9f3337001f9e703d",
-  "total_service_seconds": 83.8163671340019
-}

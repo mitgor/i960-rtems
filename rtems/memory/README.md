@@ -2,7 +2,7 @@
 
 **Card-validated:** 2,105 native-matching replies across five restored sessions.
 Copy is 3.30× faster and clear 4.63×; full-frame kernel time fell 3.91%.
-[Measurements and preserved evidence](../../artifacts/word-memory-20261011/README.md).
+[Measurements and preserved evidence](../../artifacts/notes/word-memory-20261011.md).
 
 `word.c` implements RAM-only `memcpy` and `memset` using aligned 32-bit loads
 and stores. The raycaster's isolated target builder selects these by default;

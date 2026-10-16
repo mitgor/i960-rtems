@@ -1,4 +1,0 @@
-Original 100-frame capture passed replay; tamper case16 (stopped_held=[]) was accepted.
-Cause: n in (52,100) or valid_extended_length and held_check.
-Fix: (n in (52,100) or valid_extended_length) and held_check.
-No live checks or audit coverage relaxed.

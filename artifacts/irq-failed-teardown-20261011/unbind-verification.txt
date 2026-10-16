@@ -1,1 +1,0 @@
-unbind: exact images verified; both syscalls ETIMEDOUT; no post-failure firmware submissions or restore; pending/dirty state, DMA/BAR/module retained; ordinary unload refused; completion bit observed but not consumed

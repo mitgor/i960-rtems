@@ -9,8 +9,8 @@ HTTP handling remains on the card; visitor statistics are recorded on Linux.
 | Build/profile and packet relay | [RTEMS autonomous](../../rtems/autonomous/README.md), [network usage](../../rtems/README.md#ipv6-usage-and-scope) |
 | Deployment wrapper | [serve-autonomous.sh](../../rtems/serve-autonomous.sh) |
 | Initial HTTP acceptance | [web evidence](../../artifacts/rtems-web-autonomous-20261011/README.md) |
-| Vader page | [Vader evidence](../../artifacts/rtems-vader-20261011/README.md) |
-| System information | [system-info evidence](../../artifacts/rtems-system-info-20261011/README.md) |
+| Vader page | [Vader evidence](../../artifacts/notes/rtems-vader-20261011.md) |
+| System information | [system-info evidence](../../artifacts/notes/rtems-system-info-20261011.md) |
 
 The existing deployment uses `/home/mit/i960-rtems-web-20261011`, its matching
 `autonet/kernel.bin` and `autonet-module-system-info/dac960auto.ko`, and host

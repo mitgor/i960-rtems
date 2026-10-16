@@ -43,7 +43,7 @@ and exact uniform-range endpoints. The transport test requires the complete
 generated sources to differ in only the ODB polling literal and experiment
 metadata; existing fault tests cover the unchanged transaction logic.
 
-See [the evidence ledger](../../../artifacts/callback-20261011/README.md) for
+See [the evidence ledger](../../../artifacts/notes/callback-20261011.md) for
 current card acceptance status; compiling a candidate does not establish a speedup.
 
 `batch.py` is a fail-stop, seven-session baseline/validator/renderer/polling

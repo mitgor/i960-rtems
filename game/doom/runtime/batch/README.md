@@ -74,7 +74,7 @@ For the first-frame trace, 2183 logical reads and 13,804,084 delivered bytes mat
 exactly: **27,648 → 4,747 requests**, still 27,648 payload fragments and 14,155,460
 wire data bytes. This removes request-snapshot overhead; it does not eliminate
 PIO per-word data transfer. The six host demos also retain all 12,600 frame hashes.
-Physical timing and acceptance status belong in the [evidence record](../../../../artifacts/doom-batch-20261012/README.md).
+Physical timing and acceptance status belong in the [evidence record](../../../../artifacts/notes/doom-batch-20261012.md).
 
 The closed cache probe has command 20 for 4096-byte batching, command 22 for the
 same WAB1 workload at 512 bytes, and command 21 for its eight-word counters.
