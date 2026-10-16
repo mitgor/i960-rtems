@@ -1,0 +1,4 @@
+{"archive": "git:5cb9df7580edbaac83090677da7d27f0b8d307e9:artifacts/private-dumps/remote-analysis/firmware-embedded.zip", "member": "ZIP1", "compression": 6}
+{"archive": "git:5cb9df7580edbaac83090677da7d27f0b8d307e9:artifacts/private-dumps/snapshot-fresh-20261010T125336Z/ezassist.zip", "member": "EZASSIST.ROM", "compression": 6}
+{"archive": "git:5cb9df7580edbaac83090677da7d27f0b8d307e9:artifacts/private-dumps/snapshot-fresh-20261010T125336Z/firmware.zip", "member": "ZIP1", "compression": 6}
+{"archive": "git:5cb9df7580edbaac83090677da7d27f0b8d307e9:artifacts/vendor-fujitsu/4.07-0-29/embedded.zip", "member": "ZIP1", "compression": 6}

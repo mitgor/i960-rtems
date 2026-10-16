@@ -1,0 +1,1267 @@
+{
+  "time": "2026-10-16T14:54:01.828221+00:00",
+  "disk_free_bytes": 205823963136,
+  "roots": [
+    {
+      "path": "/private/tmp/i960-render-replay",
+      "allocated_bytes": 3228086272
+    },
+    {
+      "path": "/private/tmp/i960-rtems-src",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-dma-async-deadline-replay",
+      "allocated_bytes": 43220992
+    },
+    {
+      "path": "/private/tmp/edit-doom-client.py",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-span-four-native",
+      "allocated_bytes": 6770688
+    },
+    {
+      "path": "/private/tmp/i960-session-final-check",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-batch-metrics.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-large-public-headers",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-buffer-t1-build-v2",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-residentnet-replay",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-http-observer-final.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-ownership-recovery",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-update.tar.gz",
+      "allocated_bytes": 45056
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-live.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-wad-profile-public.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-span-four-restored-owner.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-program-build",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-height-branch-probe-original.tar.gz",
+      "allocated_bytes": 51486720
+    },
+    {
+      "path": "/private/tmp/edit-doom-next.py",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-wall-commit.log",
+      "allocated_bytes": 12288
+    },
+    {
+      "path": "/private/tmp/i960-doom-quality-ui.js",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-protocol-sanitize.dSYM",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-relocate-offline.log",
+      "allocated_bytes": 16384
+    },
+    {
+      "path": "/private/tmp/doom-dma-fixed-replay-path",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-pingpong-replay-20261015",
+      "allocated_bytes": 298053632
+    },
+    {
+      "path": "/private/tmp/i960-render-doc-block.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-existing-broken-links.json",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/doom-native-six.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-n3-abi.c",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-restored.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/doom-visible-native.bin",
+      "allocated_bytes": 135168
+    },
+    {
+      "path": "/private/tmp/i960-doc-link-baseline.json",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-engine-failed",
+      "allocated_bytes": 75796480
+    },
+    {
+      "path": "/private/tmp/i960-t5-replay",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-primary-native.c",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-ownirq-live",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-http-baseline.log",
+      "allocated_bytes": 28672
+    },
+    {
+      "path": "/private/tmp/i960-height-r-main-disassembly.txt",
+      "allocated_bytes": 40960
+    },
+    {
+      "path": "/private/tmp/i960-fair-failed",
+      "allocated_bytes": 64700416
+    },
+    {
+      "path": "/private/tmp/i960-command-profile-fast",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/doom-present-accepted-path",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-update.tar.gz",
+      "allocated_bytes": 36864
+    },
+    {
+      "path": "/private/tmp/i960-fixeddiv-replay",
+      "allocated_bytes": 3225346048
+    },
+    {
+      "path": "/private/tmp/i960-shutdown-status.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-run-word.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-large-offline.log",
+      "allocated_bytes": 12288
+    },
+    {
+      "path": "/private/tmp/i960-relocate-entry",
+      "allocated_bytes": 110592
+    },
+    {
+      "path": "/private/tmp/i960-owned-failed",
+      "allocated_bytes": 43991040
+    },
+    {
+      "path": "/private/tmp/i960-expand-edit.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-release-priority-replay",
+      "allocated_bytes": 2559332352
+    },
+    {
+      "path": "/private/tmp/i960-host-edit.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-postrun.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-ownirq-initial",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-word.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-point-side-candidate.tar.gz",
+      "allocated_bytes": 221392896
+    },
+    {
+      "path": "/private/tmp/i960-n3-hostproof",
+      "allocated_bytes": 72937472
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-ack-update.tar.gz",
+      "allocated_bytes": 106496
+    },
+    {
+      "path": "/private/tmp/i960-tetris-tests.dSYM",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-t4-reconnect",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-entry-freedoom1.wad",
+      "allocated_bytes": 28798976
+    },
+    {
+      "path": "/private/tmp/i960-realdoom-review",
+      "allocated_bytes": 11264000
+    },
+    {
+      "path": "/private/tmp/i960-general-heap",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-columns-inventory-check.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-rx-audit.txt",
+      "allocated_bytes": 2060288
+    },
+    {
+      "path": "/private/tmp/i960-buffer-t1-build",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-branch-run.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-scsi-stop",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-t4-resize-card",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/doom-watch.gdb",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-t4-smoke",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-n3-failed-first",
+      "allocated_bytes": 280522752
+    },
+    {
+      "path": "/private/tmp/i960-span-four-guidance-block.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-rtems-images",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-batch-profile",
+      "allocated_bytes": 143360
+    },
+    {
+      "path": "/private/tmp/i960-owned-final-source.tar.gz",
+      "allocated_bytes": 745472
+    },
+    {
+      "path": "/private/tmp/i960-cache-public.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-doom-platform-source.tar.gz",
+      "allocated_bytes": 630784
+    },
+    {
+      "path": "/private/tmp/i960-span-four-repeatability.json",
+      "allocated_bytes": 12288
+    },
+    {
+      "path": "/private/tmp/i960-native-fire-review.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/doom-before-profile.c",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/doom-runtime-review",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/doom-runtime-rtems-tests.log",
+      "allocated_bytes": 16384
+    },
+    {
+      "path": "/private/tmp/doom-pipeline-restored-headers",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/doom-dma-fixed-http-body",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-entry-public.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-height-branch-run.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-input-trace-replay",
+      "allocated_bytes": 3224326144
+    },
+    {
+      "path": "/private/tmp/doom-present-local-replay.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-callback-replay",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-residentnet-decode",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-owned-http.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-n3-first.bin",
+      "allocated_bytes": 65536
+    },
+    {
+      "path": "/private/tmp/i960-original-threaddispatch.c",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-dma-cleanup-http.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-runtime-entry-source.tar.gz",
+      "allocated_bytes": 708608
+    },
+    {
+      "path": "/private/tmp/i960-doom-pingpong-restored-http.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-doom-pingpong-replay-20261015",
+      "allocated_bytes": 979099648
+    },
+    {
+      "path": "/private/tmp/i960-large-final-offline.log",
+      "allocated_bytes": 12288
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-http.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-baseline.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-height-update.tar.gz",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-t3-replay-evidence",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-vendor-analysis",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-tetris-canonical-replay.json",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-organize-docs.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-divplay-replay",
+      "allocated_bytes": 3224666112
+    },
+    {
+      "path": "/private/tmp/i960-ipv6-captures",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-cleanup-repro",
+      "allocated_bytes": 290672640
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-kernel.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-entry-prior-replay.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-doom-m1",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-n3-source",
+      "allocated_bytes": 8069120
+    },
+    {
+      "path": "/private/tmp/i960-platform-final",
+      "allocated_bytes": 26554368
+    },
+    {
+      "path": "/private/tmp/doom-detail-source.tar.gz",
+      "allocated_bytes": 18145280
+    },
+    {
+      "path": "/private/tmp/i960-final-http.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-ack-failure.log",
+      "allocated_bytes": 266240
+    },
+    {
+      "path": "/private/tmp/i960-http-return-check.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-dma-cleanup-http.headers",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-t4-disconnect-card",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-n3-v2-project.tar.gz",
+      "allocated_bytes": 888832
+    },
+    {
+      "path": "/private/tmp/i960-large-final-suite.log",
+      "allocated_bytes": 12288
+    },
+    {
+      "path": "/private/tmp/doom-diagnose.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-relocate-source.tar.gz",
+      "allocated_bytes": 708608
+    },
+    {
+      "path": "/private/tmp/i960-t4-endurance-card",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-preserve-session",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-point-side-replay",
+      "allocated_bytes": 3225026560
+    },
+    {
+      "path": "/private/tmp/i960-owned-source.tar.gz",
+      "allocated_bytes": 741376
+    },
+    {
+      "path": "/private/tmp/i960-doom-play-status.z",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-run.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-engine-http.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-walls-replay",
+      "allocated_bytes": 4031242240
+    },
+    {
+      "path": "/private/tmp/i960-n3-v3-project.tar.gz",
+      "allocated_bytes": 892928
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-ack-build.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-platform-engine",
+      "allocated_bytes": 18808832
+    },
+    {
+      "path": "/private/tmp/i960-point-side-finalize.py",
+      "allocated_bytes": 12288
+    },
+    {
+      "path": "/private/tmp/i960-render-accept.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-ownership-verify",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-entry-failed",
+      "allocated_bytes": 40345600
+    },
+    {
+      "path": "/private/tmp/i960-rx-audit.pdf",
+      "allocated_bytes": 7024640
+    },
+    {
+      "path": "/private/tmp/i960-doom-read-profile",
+      "allocated_bytes": 45056
+    },
+    {
+      "path": "/private/tmp/doom-pipeline-final-http.log",
+      "allocated_bytes": 16384
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-source.tar.gz",
+      "allocated_bytes": 1220608
+    },
+    {
+      "path": "/private/tmp/doom-pipeline-http.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-shutdown-final",
+      "allocated_bytes": 584495104
+    },
+    {
+      "path": "/private/tmp/i960-t4-disconnect",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-height-build.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-browser-limit-20261011",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/doom-detail-http.log",
+      "allocated_bytes": 16384
+    },
+    {
+      "path": "/private/tmp/i960-rtems-module1",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-dma-async-stop-replay",
+      "allocated_bytes": 43044864
+    },
+    {
+      "path": "/private/tmp/i960-checkpoints-final",
+      "allocated_bytes": 358236160
+    },
+    {
+      "path": "/private/tmp/i960-platform-prior-upload.json",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-http-body.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/doom-pipeline-accepted-path",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-entry-accepted",
+      "allocated_bytes": 41205760
+    },
+    {
+      "path": "/private/tmp/i960-session-build-1",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-height-build-final.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-shared-heap",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-repro-http.log",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-doom-shared-source.tar.gz",
+      "allocated_bytes": 696320
+    },
+    {
+      "path": "/private/tmp/i960-height-final",
+      "allocated_bytes": 478744576
+    },
+    {
+      "path": "/private/tmp/i960-doom-research-20261015",
+      "allocated_bytes": 126431232
+    },
+    {
+      "path": "/private/tmp/i960-dma-accepted-20261014",
+      "allocated_bytes": 37474304
+    },
+    {
+      "path": "/private/tmp/i960-owned-entry",
+      "allocated_bytes": 258048
+    },
+    {
+      "path": "/private/tmp/doom-visible-restored.headers",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-token-sessions.json",
+      "allocated_bytes": 163840
+    },
+    {
+      "path": "/private/tmp/i960-columns-inventory-update.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-columns-replay",
+      "allocated_bytes": 3811852288
+    },
+    {
+      "path": "/private/tmp/i960-loadrun-build-v2",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-irq-drain-replay",
+      "allocated_bytes": 2702573568
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-http-headers.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-divplay-stage",
+      "allocated_bytes": 45056
+    },
+    {
+      "path": "/private/tmp/i960-doom-platform-host-source.tar.gz",
+      "allocated_bytes": 98304
+    },
+    {
+      "path": "/private/tmp/i960-point-side-inventory.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-native.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-n3-packets.jsonl",
+      "allocated_bytes": 4636672
+    },
+    {
+      "path": "/private/tmp/i960-atomic-accepted",
+      "allocated_bytes": 128335872
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-build.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-cache-wads",
+      "allocated_bytes": 57589760
+    },
+    {
+      "path": "/private/tmp/i960-shutdown-source-hashes.json",
+      "allocated_bytes": 73728
+    },
+    {
+      "path": "/private/tmp/i960-divplay-candidate.tar.gz",
+      "allocated_bytes": 221351936
+    },
+    {
+      "path": "/private/tmp/i960-rtems-captures",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-screen-copy-replay",
+      "allocated_bytes": 657756160
+    },
+    {
+      "path": "/private/tmp/doom-pipeline-restored-body",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-fix-doc-links.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/doom-wall-play-help.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-doom-cache-source.tar.gz",
+      "allocated_bytes": 3153920
+    },
+    {
+      "path": "/private/tmp/i960-shutdown-native-macos",
+      "allocated_bytes": 4792320
+    },
+    {
+      "path": "/private/tmp/i960-metadata-changes.json",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-render-inspect",
+      "allocated_bytes": 4976640
+    },
+    {
+      "path": "/private/tmp/i960-height-resume.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/doom-pipeline-first-http-observations.jsonl",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-queue-reclaim",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-columns-candidate.tar.gz",
+      "allocated_bytes": 331075584
+    },
+    {
+      "path": "/private/tmp/i960-walls-native",
+      "allocated_bytes": 6770688
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-failed",
+      "allocated_bytes": 615084032
+    },
+    {
+      "path": "/private/tmp/i960-wad-batch-src.tar.gz",
+      "allocated_bytes": 868352
+    },
+    {
+      "path": "/private/tmp/i960-relocate-accepted",
+      "allocated_bytes": 42000384
+    },
+    {
+      "path": "/private/tmp/i960-point-side-inventory-check.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-http-word.log",
+      "allocated_bytes": 28672
+    },
+    {
+      "path": "/private/tmp/i960-wall-diff-check.txt",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-doom-runtime-replay",
+      "allocated_bytes": 41267200
+    },
+    {
+      "path": "/private/tmp/doom-detail-public.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-fixeddiv-candidate.tar.gz",
+      "allocated_bytes": 217669632
+    },
+    {
+      "path": "/private/tmp/i960-doom-shared-accepted",
+      "allocated_bytes": 42401792
+    },
+    {
+      "path": "/private/tmp/doom-pipeline-repeat-http.log",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/doom-pipeline-failed-path",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-checkpoints-staged-paths.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-t4-resize",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/doom-prior-play-path",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-browser-idle-20261011",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-loadrun-build",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-entry-offline-tests.log",
+      "allocated_bytes": 16384
+    },
+    {
+      "path": "/private/tmp/collect-i960-large.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-doom-cache-accepted",
+      "allocated_bytes": 27594752
+    },
+    {
+      "path": "/private/tmp/i960-engine-admission",
+      "allocated_bytes": 647168
+    },
+    {
+      "path": "/private/tmp/doom-fixeddiv-disassembly.txt",
+      "allocated_bytes": 3842048
+    },
+    {
+      "path": "/private/tmp/i960-bulk-capture-replay",
+      "allocated_bytes": 674844672
+    },
+    {
+      "path": "/private/tmp/i960-checkpoint-live",
+      "allocated_bytes": 2973696
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-build.sh",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-dma-research",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-n3-project-full.tar.gz",
+      "allocated_bytes": 1626112
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-final",
+      "allocated_bytes": 281124864
+    },
+    {
+      "path": "/private/tmp/i960-ownirq-recovery",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-lwip",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-upload-quiet-first",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-wad-profile-replay",
+      "allocated_bytes": 1367834624
+    },
+    {
+      "path": "/private/tmp/i960-t4-reconnect-card",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-tetris-alias-replay.json",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-http.log",
+      "allocated_bytes": 28672
+    },
+    {
+      "path": "/private/tmp/i960-t5-evidence",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-exclusive-replay",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-ack-final",
+      "allocated_bytes": 616624128
+    },
+    {
+      "path": "/private/tmp/i960-guides-read.txt",
+      "allocated_bytes": 90112
+    },
+    {
+      "path": "/private/tmp/i960-span-four-candidate.tar.gz",
+      "allocated_bytes": 221429760
+    },
+    {
+      "path": "/private/tmp/i960-command-profile-base",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-wad-copy-replay",
+      "allocated_bytes": 658661376
+    },
+    {
+      "path": "/private/tmp/i960-wall-guidance.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-cleanup-diag",
+      "allocated_bytes": 292372480
+    },
+    {
+      "path": "/private/tmp/i960-native-short-fire-review.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-doom-shared-final-source.tar.gz",
+      "allocated_bytes": 700416
+    },
+    {
+      "path": "/private/tmp/i960-platform-prior-upload.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-inventory.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-n3-failed-compat",
+      "allocated_bytes": 305217536
+    },
+    {
+      "path": "/private/tmp/i960-replay-trace.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-ram-ownership",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/doom-play-live.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-http-headers.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-fault-owner",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/doom-present-http.log",
+      "allocated_bytes": 16384
+    },
+    {
+      "path": "/private/tmp/doom-wall-engine-help.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-t4-smoke-card",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/doom-dma-fixed-http.log",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-status.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-preflight-stop",
+      "allocated_bytes": 91348992
+    },
+    {
+      "path": "/private/tmp/i960-walls-builds",
+      "allocated_bytes": 364212224
+    },
+    {
+      "path": "/private/tmp/i960-DAC960-reference.c",
+      "allocated_bytes": 266240
+    },
+    {
+      "path": "/private/tmp/i960-batch-host",
+      "allocated_bytes": 13185024
+    },
+    {
+      "path": "/private/tmp/i960-large-public.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-handoff-replay",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-replay-sample.txt",
+      "allocated_bytes": 12288
+    },
+    {
+      "path": "/private/tmp/i960-relocate-prior-replay.json",
+      "allocated_bytes": 28672
+    },
+    {
+      "path": "/private/tmp/i960-owned-accepted",
+      "allocated_bytes": 44875776
+    },
+    {
+      "path": "/private/tmp/patch_doom_pp.py",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-ack-status.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-pre-atomic",
+      "allocated_bytes": 119984128
+    },
+    {
+      "path": "/private/tmp/doom-visible-preview",
+      "allocated_bytes": 81920
+    },
+    {
+      "path": "/private/tmp/i960-batch-card",
+      "allocated_bytes": 249503744
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-primary-test.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-ack-replay.log",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-exclusive-research",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-height-status.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-n3-project.tar.gz",
+      "allocated_bytes": 655360
+    },
+    {
+      "path": "/private/tmp/i960-transfer-release",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/doom-native-first.png",
+      "allocated_bytes": 32768
+    },
+    {
+      "path": "/private/tmp/i960-t3-module",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-point-side-probe",
+      "allocated_bytes": 145674240
+    },
+    {
+      "path": "/private/tmp/i960-batch-restored.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/doom-dma-fixed-http-headers",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/edit-doom-pipeline.py",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-sidefix-first",
+      "allocated_bytes": 10571776
+    },
+    {
+      "path": "/private/tmp/i960-point-side-guide-block.md",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/doom-level20.png",
+      "allocated_bytes": 32768
+    },
+    {
+      "path": "/private/tmp/i960-session-build-3",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-wad-ring-byte-replay",
+      "allocated_bytes": 1921277952
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-http-observer.log",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-input-trace-candidate.tar.gz",
+      "allocated_bytes": 223891456
+    },
+    {
+      "path": "/private/tmp/i960-doom-platform-current.tar.gz",
+      "allocated_bytes": 638976
+    },
+    {
+      "path": "/private/tmp/i960-session-build-4",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-large-acceptance-offline.log",
+      "allocated_bytes": 12288
+    },
+    {
+      "path": "/private/tmp/i960-engine-offline.log",
+      "allocated_bytes": 16384
+    },
+    {
+      "path": "/private/tmp/i960-batch-profile.dSYM",
+      "allocated_bytes": 45056
+    },
+    {
+      "path": "/private/tmp/i960-peer-yield-replay",
+      "allocated_bytes": 642945024
+    },
+    {
+      "path": "/private/tmp/doom-play-edits.py",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-cleanup-http.log",
+      "allocated_bytes": 8192
+    },
+    {
+      "path": "/private/tmp/i960-doc-moves.json",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-web-captures",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-doom-next-offline.log",
+      "allocated_bytes": 16384
+    },
+    {
+      "path": "/private/tmp/i960-t4-endurance",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-remove-doc-aliases.py",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-session-build-2",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-program-build-v2",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-n3-partial.pcap",
+      "allocated_bytes": 315392
+    },
+    {
+      "path": "/private/tmp/i960-fq-module-source",
+      "allocated_bytes": 0
+    },
+    {
+      "path": "/private/tmp/i960-peer-owned-replay",
+      "allocated_bytes": 646242304
+    },
+    {
+      "path": "/private/tmp/i960-span-four-replay",
+      "allocated_bytes": 3224363008
+    },
+    {
+      "path": "/private/tmp/i960-doom-dma-measurements-recheck.json",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-release-doc-block.txt",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-owned-current.tar.gz",
+      "allocated_bytes": 741376
+    },
+    {
+      "path": "/private/tmp/i960-service-check.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-pingpong-restored-http.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-atomic-http.html",
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "/private/tmp/i960-platform-card",
+      "allocated_bytes": 43884544
+    },
+    {
+      "path": "/private/tmp/doom-runtime-project.tar.gz",
+      "allocated_bytes": 745472
+    },
+    {
+      "path": "/private/tmp/i960-render-candidate.tar.gz",
+      "allocated_bytes": 215252992
+    }
+  ],
+  "allocated_bytes": 48297607168
+}

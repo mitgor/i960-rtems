@@ -1,0 +1,32 @@
+Indexed committed blobs 7966
+Archive 0 / 440 artifacts/ackpublish-20261011/builds.tar.gz
+Archive 20 / 440 artifacts/divplay-20261016/a1/a1-card.tar.gz
+Archive 40 / 440 artifacts/dma-pingpong-20261015/card-v8.tar.gz
+Archive 60 / 440 artifacts/doom-detail-20261014/build-evidence.tar.gz
+Archive 80 / 440 artifacts/doom-dma-20261014/pre-atomic-stop-evidence.tar.gz
+Archive 100 / 440 artifacts/doom-height-20261013/card-evidence.tar.gz
+Archive 120 / 440 artifacts/doom-platform-20261012/link-path-acceptance.tar.gz
+Archive 140 / 440 artifacts/doom-relocate-20261012/accepted-evidence.tar.gz
+Archive 160 / 440 artifacts/fixeddiv-20261016/a1/a1-card.tar.gz
+Archive 180 / 440 artifacts/framequeue-20261011/failed-v1.tar.gz
+Archive 200 / 440 artifacts/irq-containment-batch-20261011/source.tar.xz
+Archive 220 / 440 artifacts/irq-mu-stop-20261011/source.tar.xz
+Archive 240 / 440 artifacts/point-side-20261016/restored-owner.raw.gz
+Archive 260 / 440 artifacts/romfetch-live-20261010/attempt4/i960-romexec4-capture.tar
+Archive 280 / 440 artifacts/rtems-exclusive-20261011/exclusive-v3-cap.tar.xz
+Archive 300 / 440 artifacts/rtems-handoff-20261011/initial.tar.xz
+Archive 320 / 440 artifacts/rtems-ownirq-20261011/recovery.tar.xz
+Archive 340 / 440 artifacts/rtems-residentnet-20261011/residentnet-v2.tar.xz
+Archive 360 / 440 artifacts/rtems-system-info-20261011/source.tar.xz
+Archive 380 / 440 artifacts/span-four-20261016/b1/b1-card.tar.gz
+Archive 400 / 440 artifacts/transfer-20261011/module-base/source.tar.gz
+Archive 420 / 440 artifacts/wad-profile-20261015/candidate-v2.tar.gz
+Split archive indexed artifacts/columns-20261015/candidate-parts.json
+Split archive indexed artifacts/divplay-20261016/candidate-parts.json
+Split archive indexed artifacts/fixeddiv-20261016/candidate-parts.json
+Split archive indexed artifacts/input-trace-20261016/candidate-parts.json
+Split archive indexed artifacts/point-side-20261016/candidate-parts.json
+Split archive indexed artifacts/render-20261015/candidate-parts.json
+Split archive indexed artifacts/span-four-20261016/candidate-parts.json
+Split archive indexed artifacts/walls-20261016/candidate-parts.json
+Index complete 113152
