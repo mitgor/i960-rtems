@@ -60,7 +60,7 @@ def client_round(families=None):
  return results
 
 def main():
- p=argparse.ArgumentParser()
+ p=argparse.ArgumentParser();p.add_argument('--bdf',required=True)
  for n in ['payload','module','output']:p.add_argument('--'+n,type=Path,required=True)
  p.add_argument('--dma-proof',action='store_true')
  p.add_argument('--dma-stop',action='store_true')
@@ -155,7 +155,7 @@ def main():
  if a.heap_shared:assert a.general_heap
  if a.general_heap:assert a.extra_ram and a.fault_owner and a.secondary_reset
  if a.round_interval:assert (a.rounds-1)*a.round_interval+20<a.ticks/100
- b=Board(a.payload,a.module,a.output,autonomous=True);(b.out/'test-options.json').write_text(json.dumps(dict(play_frame_limit=a.play_frame_limit,release_schedule=a.release_schedule,wad_ring=a.wad_ring,pingpong=a.pingpong,wad_load_test=a.wad_load_test,wad_dma=a.wad_dma,play_pipeline=a.play_pipeline,play_pipeline_test=a.play_pipeline_test,play_no_crc=a.play_no_crc,frame_dma_stress=a.frame_dma_stress,play_dma_test=a.play_dma_test,dma_deadline_job=a.dma_deadline_job,dma_stop=a.dma_stop,dma_proof=a.dma_proof,play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
+ b=Board(a.payload,a.module,a.output,autonomous=True,bdf=a.bdf);(b.out/'test-options.json').write_text(json.dumps(dict(play_frame_limit=a.play_frame_limit,release_schedule=a.release_schedule,wad_ring=a.wad_ring,pingpong=a.pingpong,wad_load_test=a.wad_load_test,wad_dma=a.wad_dma,play_pipeline=a.play_pipeline,play_pipeline_test=a.play_pipeline_test,play_no_crc=a.play_no_crc,frame_dma_stress=a.frame_dma_stress,play_dma_test=a.play_dma_test,dma_deadline_job=a.dma_deadline_job,dma_stop=a.dma_stop,dma_proof=a.dma_proof,play_bulk=a.play_bulk,play_bulk_test=a.play_bulk_test,play_port=a.play_port,play_accept_frames=a.play_accept_frames,audit_interval=a.audit_interval,doom_runtime=a.doom_runtime,doom_shared=a.doom_shared,doom_heap=a.doom_heap,upload_concurrent=a.upload_concurrent,resident_upload=a.resident_upload,control_journal_version=2,owned_mib=a.owned_mib,queue_reclaim=a.queue_reclaim,heap_shared=a.heap_shared,general_heap=a.general_heap,extra_ram=a.extra_ram,fault_owner=a.fault_owner,secondary_reset=a.secondary_reset,ticks=a.ticks,rounds=a.rounds,round_interval=a.round_interval,parallel=a.parallel,burst=a.burst,deadline=a.deadline,drop_data=a.drop_data),indent=2)+'\n');epoch=secrets.randbelow(65535)+1;events=[];snaps=[];diagnostics=[];packets=[];g=None;start=time.monotonic();pending_rx=None;traffic_active=False;drop={4,6} if a.drop_data else set();dropped=[]
  io_gate=IOGate();abort_upload=threading.Event()
  def save(final=False):
   if final:(b.out/'controls.json').write_text(json.dumps(events,indent=2)+'\n')

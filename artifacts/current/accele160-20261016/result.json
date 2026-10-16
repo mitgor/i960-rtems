@@ -1,0 +1,39 @@
+{
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrs"
+  },
+  "boot": "164a6af9-4bc8-43f2-9eb0-805a0ce43f68",
+  "attempts": [
+    {
+      "read": 0,
+      "bytes": 28672,
+      "sha256": "96d5d8996099ad587533f50caebe18c0211eb4a555f17027a75763f4e633b47a",
+      "signature": "55aa"
+    },
+    {
+      "read": 1,
+      "bytes": 28672,
+      "sha256": "96d5d8996099ad587533f50caebe18c0211eb4a555f17027a75763f4e633b47a",
+      "signature": "55aa"
+    }
+  ],
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrs"
+  }
+}

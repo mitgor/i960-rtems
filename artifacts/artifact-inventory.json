@@ -2173,6 +2173,41 @@
       "sha256": "f0e1cdeead8f03ca4f2ffb94b318e27f02c4f5f1c44999f4970eaf50cf195356"
     },
     {
+      "path": "artifacts/current/accele160-20261016/README.md",
+      "size": 4724,
+      "sha256": "00b01fc985a31cd65c293294d3b3542ab8ee2efd7fdbb25811ca0ddbdc6cac48"
+    },
+    {
+      "path": "artifacts/current/accele160-20261016/config-after.bin",
+      "size": 256,
+      "sha256": "feed37065f193169319d6c610215487431c4680219dd5a8ca079faffed0f1855"
+    },
+    {
+      "path": "artifacts/current/accele160-20261016/config-before.bin",
+      "size": 256,
+      "sha256": "feed37065f193169319d6c610215487431c4680219dd5a8ca079faffed0f1855"
+    },
+    {
+      "path": "artifacts/current/accele160-20261016/option-rom-0.bin",
+      "size": 28672,
+      "sha256": "96d5d8996099ad587533f50caebe18c0211eb4a555f17027a75763f4e633b47a"
+    },
+    {
+      "path": "artifacts/current/accele160-20261016/option-rom-1.bin",
+      "size": 28672,
+      "sha256": "96d5d8996099ad587533f50caebe18c0211eb4a555f17027a75763f4e633b47a"
+    },
+    {
+      "path": "artifacts/current/accele160-20261016/resource.txt",
+      "size": 741,
+      "sha256": "ca84f1e77ba0a9b0314922e4443b93df6aa0f2059b993d6c85575087219c73ed"
+    },
+    {
+      "path": "artifacts/current/accele160-20261016/result.json",
+      "size": 715,
+      "sha256": "269a5fc18dfb9ab7e64d4926454475a9f05e08f010dfbadecc640cf84b13892a"
+    },
+    {
       "path": "artifacts/current/curation.json",
       "size": 9872,
       "sha256": "cdcd36a766f03fbe3611c2d653a022424f80153c926f4d1f2347de1526716056"

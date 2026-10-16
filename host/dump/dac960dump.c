@@ -33,7 +33,7 @@
 #define IMAGE_WINDOW 0x80000u
 #define WAIT_US 2000000u
 
-static char *bdf = "0000:37:09.1";
+static char *bdf = ""; /* Explicit selection required; derived transports inherit this. */
 static bool attempt;
 static bool pointer_check;
 static bool runtime_check;

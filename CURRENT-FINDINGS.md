@@ -1,5 +1,17 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID read-only inspection — 2026-10-16
+
+Paired **28 KiB stock PCI BIOS** capture passed header/checksum and byte comparison;
+PCI config unchanged, new card still bound to `myrs`, old card untouched/unbound.
+This is **not full controller flash**. READIMAGE (V2 IOCTL 0x2d) is a research
+lead only: its parameters are not established; no mailbox command was issued.
+Primary RTEMS/Doom launch and cleanup now require explicit `--bdf` and exact PG
+identity. Historical callers without BDF fail closed; do not run old prebuilt
+scripts assuming `37:09.1` is the PG. Clock remains unverified, half-height on hold.
+[Evidence and next steps](artifacts/current/accele160-20261016/README.md).
+
+
 This is the current state, not a chronological experiment log. Follow
 [reproduction](docs/reproduce.md), [subprojects](subprojects/README.md), and
 [artifact retention/restoration](artifacts/README.md). The narrative remains in

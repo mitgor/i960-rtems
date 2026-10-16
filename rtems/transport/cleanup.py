@@ -6,12 +6,19 @@ Never force-unloads an uncertain card. Run as root with the prior output folder.
 import argparse,fcntl,json,subprocess
 from pathlib import Path
 from run import DBG,capture,verify_close
+from card_select import select
 from relay import IFACE
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('output',type=Path);p.add_argument('--autonomous',action='store_true');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--bdf',required=True);p.add_argument('output',type=Path);p.add_argument('--autonomous',action='store_true');a=p.parse_args()
  dbg=Path('/sys/kernel/debug/dac960auto') if a.autonomous else DBG
  lock=open('/run/lock/i960-loadrun.lock','w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+ identity=select(a.bdf,'dac960pg')
+ request=json.loads((a.output/'request.json').read_text())
+ if request.get('card',{}).get('bdf')!=a.bdf:raise SystemExit('Journal does not identify selected card; no cleanup performed')
+ module='dac960auto' if a.autonomous else 'dac960rtems'
+ if identity['driver'] not in (None,module):raise SystemExit('Selected card has another driver')
+ if Path('/sys/module',module).exists() and Path('/sys/module',module,'parameters/bdf').read_text().strip()!=a.bdf:raise SystemExit('Loaded module belongs to another card')
  if Path('/sys/class/net',IFACE).exists():raise SystemExit('TUN is still owned; stop the client normally before cleanup')
  from ipv6_gateway import cleanup as cleanup6
  cleanup6(a.output)
@@ -40,6 +47,6 @@ def main():
   if a.autonomous and 'AUTONOMOUS STOP verified before any RAM restoration' not in log:raise SystemExit('No verified autonomous stop; module retained')
   out=a.output/'after-kill-close';capture(out,dbg);verify_close(out)
   subprocess.run(['rmmod','dac960auto' if a.autonomous else 'dac960rtems'],check=True)
- (a.output/'manual-cleanup.json').write_text(json.dumps(dict(clean=True,driver_bound=Path('/sys/bus/pci/devices/0000:37:09.1/driver').exists(),ip_forward=Path('/proc/sys/net/ipv4/ip_forward').read_text().strip()),indent=2)+'\n')
+ (a.output/'manual-cleanup.json').write_text(json.dumps(dict(clean=True,driver_bound=Path('/sys/bus/pci/devices',a.bdf,'driver').exists(),ip_forward=Path('/proc/sys/net/ipv4/ip_forward').read_text().strip()),indent=2)+'\n')
  print('Project firewall rules removed; verified RAM restoration; module unloaded if present.')
 if __name__=='__main__':main()
