@@ -1,15 +1,18 @@
 # Current status and artifact policy (2026-10-16)
 
-## AcceleRAID owned-RAM leaf candidate programmed, post-boot pending — 2026-10-17
+## AcceleRAID owned-RAM exact leaf accepted — 2026-10-17
 
-The exact op-8 candidate SHA `6f056a98…480aa7` was audited, staged and
-read back as a full guarded 1 MiB image. FLASHIMAGE completed status/residual
-zero. The PC has not returned after reboot; persistent flash and a live
-owned-RAM call are **not yet accepted**. Read
-`artifacts/current/accele160-ownedexec-20261017/README.md` and the exact
-`host/accele160/ownedexec/` sources. On return, bind only new `37:09.1`,
-leave old `37:04.1` unbound, take two guarded full-image reads, then run the
-fixed 80-byte leaf proof with all owner/page/staging audits.
+The exact op-8 candidate SHA `6f056a98…480aa7` persisted after reboot on
+new card `37:09.1`; two guarded 1 MiB reads matched. An 80-byte leaf
+was uploaded at owned `c0710000`, admitted by an 8 KiB card-computed FNV
+`0x699d962b` and exact byte comparison, then called after I-cache invalidate.
+It returned normally with nonce `0x16161081` and sum 496. Bad digest and
+modified code both returned status 2 before a result write. A second normal
+call, full owner/page/staging restoration, post-call full-flash reads, replay
+and tamper checks passed. Old `37:04.1` stayed unbound. Read
+`artifacts/current/accele160-ownedexec-20261017/README.md` and sources in
+`host/accele160/ownedexec/`. This proves an exact leaf, not arbitrary task
+execution or an RTEMS board port.
 
 ## AcceleRAID owned-image digest accepted — 2026-10-17
 

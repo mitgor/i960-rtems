@@ -83,3 +83,9 @@ A second same-boot experiment wrote and read back 4 KiB at the first owned odd p
 ## Card-side even-page copy (2026-10-17)
 
 The [page-copy artifact](../../artifacts/current/accele160-pagecopy-20261016/README.md) records persistent firmware and a fixed 4 KiB copy from host-addressable odd staging page `c078f000` to otherwise inaccessible even page `c0710000` inside the owner-tagged 512 KiB grant. The card computed the expected destination FNV; staging, loader controls and allocator metadata restored, with paired flash and post-call audits. This removes the basic even-page aperture obstacle for a bounded uploader, and indexes 0, 1 and 126 and both bad-hash and out-of-range rejection have passed with full restoration. Do not yet classify the entire grant as an admitted executable image.
+
+## Contiguous digest and owned-code gate (2026-10-17)
+
+The [digest artifact](../../artifacts/current/accele160-digest-20261017/README.md) records two copied contiguous 4 KiB pages under one stock owner and a matching card-computed FNV over the entire 8 KiB image. Wrong expected hash and count 128 returned stock status 2 without modifying the directly readable target. Staging, controls, loader page, allocator metadata and PIATVR restored; guarded full flash matched after all tests. This establishes bounded transfer admission, not yet an executable owned task.
+
+An [exact 80-byte owned-leaf candidate](../../artifacts/current/accele160-ownedexec-20261017/README.md) completed programming but awaits post-reboot flash and live call tests. Do not infer an RTEMS-sized executable arena until that gate passes.

@@ -26,29 +26,31 @@ RAM ownership/cache maintenance, timer/interrupt implementation and application
 ABI. Extract it from two measured implementations rather than assuming the first
 board's fixed addresses are a universal i960 API.
 
-## AcceleRAID 160 status (2026-10-16)
+## AcceleRAID 160 status (2026-10-17)
 
-The AcceleRAID 160 (`1069:0050`, subsystem `1069:0054`) boots an audited
-firmware patch and answers bounded zero-DMA PING and RAM-call operations. The
-current image passed paired post-power-cycle full-flash reads. Its **fixed
-80-byte payload ran and returned twice**, with full-page restoration and a
-post-call flash audit. See the [exact acceptance](../artifacts/current/accele160-ramprobe-20261016/README.md)
-and [memory map](hardware/accele160-memory-map.md).
+The AcceleRAID 160 (`1069:0050`, subsystem `1069:0054`) is now a measured
+second target, with its old DAC960PG neighbor kept unbound. The [stock 1 MiB
+flash](../artifacts/current/accele160-guarded-20261016/README.md) is archived.
+The persistent helper uses stock allocation to retain a fixed 512 KiB grant
+at `c0710000`, copies validated pages from the host-addressable final odd
+page into any sampled owned payload page, and computes a bounded contiguous
+image digest. It has passed card tests for indexes 0, 1 and 126, two pages
+under one grant, bad-hash and out-of-range rejection, an 8 KiB whole-image
+FNV, and negative digest controls. Each accepted run restored the staging
+page, loader controls and all allocator owner/count words; full guarded flash
+reads stayed identical. See [page copy](../artifacts/current/accele160-pagecopy-20261016/README.md),
+[digest](../artifacts/current/accele160-digest-20261017/README.md) and the
+[live memory map](hardware/accele160-memory-map.md).
 
-Therefore the existing RTEMS and Doom images cannot yet be run on this board.
-They are coupled to the DAC960PG (`1069:0010`) firmware loader, PCI transport,
-owned DRAM arena and interrupt/timer implementation. Their i960 application code
-is reusable, but the board support and host module are not interchangeable.
+An exact-leaf [owned-RAM execution proof](../artifacts/current/accele160-ownedexec-20261017/README.md)
+now passes: the already accepted 80-byte leaf ran normally from `c0710000`
+after whole-image digest, exact-code check and I-cache invalidate, then
+repeated in a fresh grant. Bad hash and altered code rejected before call.
 
-The RAM-call handler validates the exact payload, performs card-side cache
-maintenance, calls normally, and checks the nonce/result report. Its erased
-loader-cave page is a self-restoring test site. It does not provide a chunked
-upload protocol or an RTEMS-sized owned arena. Four high-DRAM samples were
-stable zeros; that observation does not establish ownership.
-Keep the exact-card selection, DMA guards, ownership checks, timeouts and full
-before/after audits. Next, reserve an arena through a decoded stock allocator
-or an explicit exclusive firmware handoff, implement chunked upload with
-whole-image validation, and qualify a minimal RTEMS task/clock/STOP test.
-Then adapt the host network transport and web service before Doom startup,
-WAD loading and framebuffer delivery. Do not feed a DAC960PG RTEMS/Doom image
-to the AcceleRAID transport as a substitute for these gates.
+The DAC960PG RTEMS and Doom binaries still cannot be run directly on this
+board. Their host transport, timer and interrupt wiring, memory map, lifecycle
+and Doom's 8 MiB arena are board-specific. After owned-RAM execution passes,
+port a minimal RTEMS task/clock/STOP image, then the host-backed network/web
+profile. Doom needs a separate, measured 8 MiB ownership design. FNV is a
+transfer-error check, not a cryptographic authenticity proof. Keep exact-card
+selection, full flash audits, owner checks, bounded timeouts and restoration.

@@ -1,0 +1,37 @@
+{
+  "boot_id": "c2ff6769-876d-4aaa-974f-d47497e8f84d",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_card": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  },
+  "image_sha256": "6f056a984d8e8d6fde6eb2001bddfd5ecc3b03918051c4d13e3cc4ab31480aa7",
+  "module_sha256": {
+    "reserve": "d5dc1cf2dddba559ea4ff5ebf7bac1ae32f462f27dd968b8964f0cd20b47c945",
+    "release": "bbfbe079b86ba1503efcfcce4c0c7ee5e1ad2fc662ded669766bdb7d38a3ecfa",
+    "copy": "6dd7dc40be4c51e65dce65978b3fdda3256e54928034d7acfe451a946caf1ec6",
+    "digest": "db97abc60007d96017c4aaed6f86f5f155988b2948993f2f5b3f81cc964ad6b1",
+    "ownedexec": "bb87c07c7e73140781f723aadc1d4f2de968470c07bb6fac608dc69c5e326fd7"
+  },
+  "readbacks": [
+    "/home/mit/i960-accele160-ownedexec-20261017/persistent-0",
+    "/home/mit/i960-accele160-ownedexec-20261017/persistent-1"
+  ]
+}
