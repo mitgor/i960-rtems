@@ -1,5 +1,16 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID owned-image digest programmed, post-boot pending — 2026-10-17
+
+The exact op-7 candidate SHA `665cb121…5c708a0` was audited offline, staged
+with guarded full readback, and FLASHIMAGE completed status/residual zero.
+The PC has not returned over SSH after reboot, so persistence and the live
+8 KiB two-page digest are **not accepted yet**. Read
+`artifacts/current/accele160-digest-20261017/README.md` and the exact
+`host/accele160/digest/` sources before any new card command. Do not unload
+uncertain resources or touch old card `37:04.1`. On return, load exact
+`myrsread`, run two guarded full 1 MiB reads, then the bounded digest harness.
+
 ## AcceleRAID card-side even-page copy accepted — 2026-10-17
 
 Read `artifacts/current/accele160-pagecopy-20261016/README.md` first. Exact
