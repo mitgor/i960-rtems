@@ -1,0 +1,100 @@
+{
+  "blocks": [
+    {
+      "name": "A1",
+      "mode": 0,
+      "first": 141,
+      "last": 218,
+      "frames": 78,
+      "intervals": 77,
+      "elapsed_seconds": 11.890494716997637,
+      "fps": 6.4757608352432445,
+      "http_fps": 6.475791321389141,
+      "renderer_ms": 134.87179487179486,
+      "planes_ms": 40.64102564102564,
+      "bsp_ms": 77.05128205128206,
+      "sprites_ms": 17.17948717948718,
+      "renderer_cpu_ms": 132.43589743589743,
+      "planes_cpu_ms": 39.871794871794876,
+      "observed_to_http_ms": 5.348855551346787
+    },
+    {
+      "name": "B1",
+      "mode": 1,
+      "first": 241,
+      "last": 318,
+      "frames": 78,
+      "intervals": 77,
+      "elapsed_seconds": 9.750255521001236,
+      "fps": 7.897228932528838,
+      "http_fps": 7.903754319956596,
+      "renderer_ms": 106.53846153846153,
+      "planes_ms": 14.23076923076923,
+      "bsp_ms": 75.8974358974359,
+      "sprites_ms": 16.41025641025641,
+      "renderer_cpu_ms": 104.61538461538461,
+      "planes_cpu_ms": 13.589743589743591,
+      "observed_to_http_ms": 5.928951359144263
+    },
+    {
+      "name": "B2",
+      "mode": 1,
+      "first": 341,
+      "last": 418,
+      "frames": 78,
+      "intervals": 77,
+      "elapsed_seconds": 9.800441089002561,
+      "fps": 7.856789230272968,
+      "http_fps": 7.859404416000695,
+      "renderer_ms": 108.07692307692308,
+      "planes_ms": 12.692307692307692,
+      "bsp_ms": 77.43589743589743,
+      "sprites_ms": 17.94871794871795,
+      "renderer_cpu_ms": 105.76923076923077,
+      "planes_cpu_ms": 12.564102564102564,
+      "observed_to_http_ms": 5.408268679345314
+    },
+    {
+      "name": "A2",
+      "mode": 0,
+      "first": 441,
+      "last": 518,
+      "frames": 78,
+      "intervals": 77,
+      "elapsed_seconds": 11.970307005001814,
+      "fps": 6.432583555946009,
+      "http_fps": 6.432103088556261,
+      "renderer_ms": 136.15384615384616,
+      "planes_ms": 41.282051282051285,
+      "bsp_ms": 77.3076923076923,
+      "sprites_ms": 17.564102564102566,
+      "renderer_cpu_ms": 133.97435897435898,
+      "planes_cpu_ms": 40.76923076923077,
+      "observed_to_http_ms": 4.540917884766644
+    }
+  ],
+  "groups": {
+    "textured": {
+      "renderer_ms": 135.5128205128205,
+      "planes_ms": 40.96153846153847,
+      "bsp_ms": 77.17948717948718,
+      "sprites_ms": 17.371794871794872,
+      "renderer_cpu_ms": 133.2051282051282,
+      "planes_cpu_ms": 40.32051282051282,
+      "observed_to_http_ms": 4.944886718056716,
+      "fps": 6.454099983489379
+    },
+    "flat": {
+      "renderer_ms": 107.3076923076923,
+      "planes_ms": 13.46153846153846,
+      "bsp_ms": 76.66666666666666,
+      "sprites_ms": 17.17948717948718,
+      "renderer_cpu_ms": 105.1923076923077,
+      "planes_cpu_ms": 13.076923076923077,
+      "observed_to_http_ms": 5.668610019244788,
+      "fps": 7.876957178149883
+    }
+  },
+  "fps_gain_percent": 22.045787922412117,
+  "caveat": "One session and one stationary workload; full audits remain active. Cross-session/general-level performance not established."
+}

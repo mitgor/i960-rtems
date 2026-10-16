@@ -1,0 +1,33 @@
+{
+  "frames": 520,
+  "paired_full_audits": 56,
+  "maximum_irq_gap_us": 10734.154126766987,
+  "held_slot_stop": true,
+  "stalled_host": {
+    "seconds": 3.0106516679989,
+    "frames": [
+      17,
+      18
+    ],
+    "unchanged": true
+  },
+  "heap_allocations_freed": 26591,
+  "frame_mutation_tests": {
+    "rejected": 24,
+    "accepted_original": true
+  },
+  "drain_mutation_tests": {
+    "rejected": 4,
+    "original_unchanged": true
+  },
+  "http": {
+    "exact_http_payloads": 479,
+    "first": "0-1",
+    "last": "0-520",
+    "note": "Binary HTTP receipt verified; not browser paint latency."
+  },
+  "textured_fps": 6.454099983489379,
+  "flat_fps": 7.876957178149883,
+  "fps_gain_percent": 22.045787922412117,
+  "native_comparison": "52 frames, deterministic repeat, same four known positions in both modes"
+}

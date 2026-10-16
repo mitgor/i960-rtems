@@ -1,3 +1,6 @@
+#ifdef DOOM_RUNTIME_FLAT
+extern unsigned doom_flat_planes,doom_flat_switches;
+#endif
 #ifdef DOOM_WALL_PROFILE
 #include "wall_profile.h"
 #endif
@@ -129,6 +132,10 @@ static void present_record(unsigned char *frame,unsigned generation,unsigned mod
  q[10]=doom_column_mode;q[11]=doom_column_cases;
 #endif
  }
+#endif
+#ifdef DOOM_RUNTIME_FLAT
+ {unsigned*q=(unsigned*)(frame+64880);q[0]=0x31544c46u;q[1]=1;
+  q[2]=doom_flat_planes;q[3]=doom_flat_switches;}
 #endif
 #ifdef DOOM_WAD_PROFILE
  {extern const struct doom_cache*doom_wad_backend_stats(void);

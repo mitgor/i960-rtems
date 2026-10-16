@@ -28,6 +28,11 @@ def decode(raw,g,test=False,options=None):
   assert all(samples*10<=wall+10 for samples,wall in zip(c[4:10],(w[4],w[5],w[6],w[7],w[8],w[9])))
   d['cpu_samples']=dict(zip(('render','bsp','planes','sprites','screen_copy','adapter'),c[4:10]));d['detail']=detail
  if options.get('detail_test') or options.get('column_test'):assert w[3]==2
+ if options.get('runtime_flat'):
+  assert options.get('cpu_profile') and end==64880
+  q=struct.unpack_from('<4I',raw,end);end+=16
+  assert q[:2]==(0x31544c46,1) and q[2] in (0,1) and q[2]==(q[3]&1)
+  d['flat_planes']=q[2];d['flat_switches']=q[3]
  if options.get('wad_profile'):
   assert end<=64960 and not any(raw[end:64960])
   q=struct.unpack_from('<16I',raw,64960)
@@ -77,6 +82,7 @@ def decode(raw,g,test=False,options=None):
  return d
 
 def preflight(admission,pipeline,pipeline_test,wad_load_test):
+ if admission.get('runtime_flat'):assert pipeline and admission.get('double_buffer') and admission.get('frame_profile') and admission.get('cpu_profile')
  if admission.get("wall_profile"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer") and not (admission.get("input_trace") or admission.get("fixed_div_profile"))
  if admission.get("input_trace"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer") and not admission.get("fixed_div_profile")
  if admission.get("fixed_div_profile"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer")

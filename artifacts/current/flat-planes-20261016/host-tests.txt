@@ -1,0 +1,6 @@
+PASS 41088 bounded flat spans, unaligned heads, word bodies, tails and guards
+PASS flat patch, textured/sky paths, debounced key, telemetry and admission checks
+PASS pinned DoomGeneric fire/use and browser/menu/weapon key mappings
+PASS 52 detail modes; CPU sample sums/bounds/reserved fields; bounded launch policy
+PASS runtime high/low states; malformed detail rejected; fixed-mode policy preserved
+PASS runtime-detail relay before first frame, duplicate, ready and refused frame

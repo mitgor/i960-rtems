@@ -23,7 +23,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
  if presentation_test:assert pipeline_test and not wad_load_test
  if profile:
   assert pipeline
-  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('wall_profile','input_trace','fixed_div_profile','fast_fixed_div','runtime_detail','wad_profile','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')})+'\n')
+  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('runtime_flat','wall_profile','input_trace','fixed_div_profile','fast_fixed_div','runtime_detail','wad_profile','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')})+'\n')
  token=secrets.token_hex(24);lock=threading.Lock();keys=deque();stop=threading.Event();held_keys=set();input_deadline=[0.]
  pp=None;pp_active=False;last_completion=0.;clocks=[]
  dma=None
@@ -40,6 +40,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
   pp=PingPong(fd,epoch,out,gate)
  state=dict(frame='',binary=pipeline, message='Starting the RTEMS Doom runtime…');image=b'';binary=b''
  page=(Path(__file__).resolve().parents[2]/'game/doom/play/index.html').read_text().replace('__TOKEN__',token).encode()
+ if pingpong or not m.get('runtime_flat'):page=page.replace(b'<button id="flat">Toggle flat planes (F6)</button>',b'').replace(b'F6:192,',b'')
  if pingpong or not m.get('runtime_detail'):page=page.replace(b'<button id="detail">Toggle detail (F5)</button>',b'')
  if pingpong:page=page.replace(b'Click the game to focus. This experimental session may run slowly.',b'Bounded DMA benchmark: keyboard disabled; automatic level reload follows the FPS measurement.')
  class Handler(BaseHTTPRequestHandler):
@@ -66,7 +67,8 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      with lock:input_deadline[0]=time.monotonic()+3
     elif self.path=='/key':
      if pingpong:self.reply(409,b'Keyboard disabled during bounded DMA acceptance');return
-     assert type(b['key']) is int and b['key'] in (173,175,172,174,163,162,182,191,13,27,9,121,110,49,50,51,52,53,54,55) and type(b['down']) is int and b['down'] in (0,1)
+     assert type(b['key']) is int and b['key'] in (173,175,172,174,163,162,182,191,192,13,27,9,121,110,49,50,51,52,53,54,55) and type(b['down']) is int and b['down'] in (0,1)
+     assert b['key']!=192 or m.get('runtime_flat'), 'flat planes unavailable'
      with lock:
       if len(keys)>=128:stop.set();self.reply(429,b'key queue full; stopping to release all keys');return
       keys.append(b['key']+(b['down']<<8));input_deadline[0]=time.monotonic()+3
@@ -201,6 +203,10 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
     if wad_load_test and g in ((60,62,64,66) if pingpong else (10,12,14,16)):
      key=27 if g==(60 if pingpong else 10) else 13
      assert ctl(2,256+key,g)==0 and ctl(2,key,g)==0
+    if pipeline_test and m.get('runtime_flat') and g in (20,32,220,420):
+     assert ctl(2,256+192,g)==0 and ctl(2,192,g)==0
+    if pipeline_test and m.get('runtime_flat') and g in (10,28,40,200,300,400,500):
+     assert profile and profile_row['flat_planes']==int(g in (28,300,400))
     if pipeline_test and m.get('runtime_detail') and g in (20,32):
      # Explicit bounded acceptance exercises the same F5 input as the browser.
      assert ctl(2,256+191,g)==0 and ctl(2,191,g)==0
@@ -235,6 +241,8 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      row['transport']='pingpong' if g>16 else 'host-dma'
      if g>16:row.update(release_priority=priority,release_schedule=release_schedule,browser_published_monotonic=browser_published,marker=marker,observed=observed,released=g<limit-1,ready_to_release_seconds=time.monotonic()-observed)
     if profile:row['profile']=profile_row;row['profile_read_seconds']=convert-profile_begin
+    if m.get('runtime_flat') and profile_row:
+     with lock:state['flat_planes']=profile_row['flat_planes']
     if m.get('runtime_detail') and profile_row and 'detail' in profile_row:
      with lock:state['detail']=profile_row['detail']
     with (out/'play-frames.jsonl').open('a') as f:f.write(json.dumps(row)+'\n')

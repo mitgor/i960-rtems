@@ -278,3 +278,32 @@ keeps the original `-O0` comparison workaround. Specialized C columns also remai
 opt-in (`--fast-columns`); recent measured builds explicitly enable them with
 `--fast-render`. These switches do not reduce render quality. Exact FixedDiv is
 already the playable default, with `--no-fast-fixed-div` retaining the original.
+
+## Flat-color floors and ceilings (F6)
+
+Add `--runtime-flat` when building a normal `--pipeline` play image. It starts
+textured. Press **F6** or click **Toggle flat planes** to switch while playing;
+press again to restore textures. The button reflects card-reported state, with
+a few frames of input/pipeline delay. The option enables frame/CPU telemetry.
+Sky, walls, sprites, HUD, full audits and DMA ownership checks are preserved.
+F6 is reserved for this control rather than quick-save in this build.
+
+Example on the Linux card host, from the current project directory:
+
+```sh
+python3 game/doom/play/build.py --work /home/mit/i960-flat-interactive \
+  --pipeline --runtime-flat --runtime-detail --low-detail \
+  --fast-render --fast-columns --no-fnv --direct-frame
+# After the current card owner releases it:
+sudo python3 game/doom/play/run.py --work /home/mit/i960-flat-interactive \
+  --output /home/mit/i960-flat-interactive-session --pipeline --no-crc --debug-audits
+```
+
+Use fresh build/output directories. Open `http://192.168.2.75:8087/`, click the
+canvas to focus, use W/A/S/D or arrows, Ctrl/Space to fire, E to use, F5 for detail,
+and F6 for flat planes. The combined detail/flat controls are independent; the
+new physical performance test used fixed low detail. This manual uses the
+interactive pipeline. Do not reuse the bounded ping-pong/WAD-profile image as an
+interactive session: it disables keyboard input to protect its measurement.
+Its measured **6.45 → 7.88 FPS** gain does not establish that absolute FPS for the
+older interactive transport. [Full qualification](../flat_planes/README.md).

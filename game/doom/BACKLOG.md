@@ -1,5 +1,22 @@
 # Doom backlog
 
+## Latest: optional flat floors/ceilings accepted — 2026-10-16
+
+`--runtime-flat` adds F6/browser switching in one engine, textured initially.
+Same-session textured/flat/flat/textured low-detail windows measured **6.454 →
+7.877 FPS (+22.05%)**; renderer **135.51 → 107.31 ms**, planes **40.96 → 13.46 ms**.
+520 frames, 56 full paired audits, STOP/stall/drain, native oracle and mutation
+checks pass. One scene/session: broader maps and interactive transport remain
+separate qualification. Sky, walls, sprites and HUD retain normal rendering.
+[Evidence](../../artifacts/current/flat-planes-20261016/README.md).
+
+Next quality experiment: independently switchable half-height rendering with
+browser scaling; keep normal and flat-plane controls independent. Do not claim
+linear pixel/FPS scaling or extrapolate this test to 10 FPS. Baseline repeat
+variance from earlier exact-span runs remains unresolved, although the two
+textured windows here agree within about 0.7%. The priorities below preserve
+the earlier experiments' context; flat planes are no longer just a proposal.
+
 ## Sequential execution and quality policy
 
 Test one change at a time against the latest accepted build. Keep image-preserving

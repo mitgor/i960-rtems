@@ -3941,6 +3941,40 @@ became faster before trusting another small improvement. The
 run alongside the others. The public IPv6 page was restored after the captures
 were safe. A useful experiment can end with a better question.
 
+## A cheaper floor, at the press of a key
+
+The next gain was visible before it was measurable. Press F6, and the patterned
+floor became a solid grey plane. The ceiling lost its texture too. The walls,
+window frames, sky, pistol and status bar kept doing exactly what they had done
+before. Press F6 again, and the texture came back. No new firmware, no level
+restart, no second binary pretending to be the same experiment.
+
+This was an honest quality trade. Each plane kept its boundaries and sector
+lighting, but used one palette colour from its texture instead of mapping the
+texture and shading it by distance. The same clipped spans still determined
+where the floor belonged. We had made the floor cheaper to draw, not given the
+renderer permission to write outside it.
+
+One 520-frame run switched textured, flat, flat, textured through four measured
+windows after loading the level. The textured windows delivered 6.476 and
+6.433 frames per second; the flat windows delivered 7.897 and 7.857. Together,
+that was **6.454 to 7.877 FPS**, a 22 percent gain. Plane rendering fell from
+about 41 milliseconds to 13.5. The walls and sprites had scarcely moved in the
+profile. This time the explanation and the measurement pointed to the same
+piece of work.
+
+The safety machinery stayed on. Fifty-six complete audit pairs, the stalled
+host, both held DMA slots, STOP and heap drain all passed. The native comparison
+still had its four familiar differing pixels, in both modes; those did not
+become acceptable to forget just because the floor was now grey. A single
+scene and a short session did not prove eight frames per second everywhere,
+and the older interactive transport did not inherit the benchmark's absolute
+speed by association. But the quality switch itself worked on the card and
+returned to the original picture. That was a useful bargain, and now it had a
+button.
+
+[Measurements and before/after pictures](artifacts/current/flat-planes-20261016/README.md).
+
 ## Where it stands
 
 So, the ledger, honestly kept:

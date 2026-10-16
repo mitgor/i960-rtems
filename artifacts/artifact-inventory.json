@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 2924,
-      "sha256": "200f66391e5eb00944143774cfac1dea250fff756a6a5fc659a4a7c4ee43957e"
+      "size": 3004,
+      "sha256": "df79dcf56a36b09c6faf33c6aeed50643787b65e96f29e0cec9f6bc5f275cce3"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2211,6 +2211,196 @@
       "path": "artifacts/current/doom/restoration.json",
       "size": 250,
       "sha256": "c3f7a321ff65c3a7f58638bf850ac8fc129286fa985602841015434a9743f9af"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/README.md",
+      "size": 5389,
+      "sha256": "3e7ea628897b67897ed4cdc4df1b9651f15b2b0904c148ef456d9f441499bc11"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/acceptance-card.tar.gz",
+      "size": 72201929,
+      "sha256": "8fc63a2061be9bbb4518cd26ae52d0a43d57ab2511df0e29b04416727d11c693"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/acceptance-card.tar.gz.sha256",
+      "size": 89,
+      "sha256": "732200fdc744e6103f99dbb159fc9108ee661bb8583eb23af9393c7aee5b0ba4"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/acceptance-drain-tamper.json",
+      "size": 44,
+      "sha256": "5e587a186a20505b5f24d5d1019111e792c669b3c0812571bcab19b1f417d133"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/acceptance-frame-tamper.json",
+      "size": 44,
+      "sha256": "b3f55ed02740f7e7655fbf51a8ee9e5202fcff9f7b1d11deb3b9a7d8b9b0d1c4"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/acceptance-frames.json",
+      "size": 1425,
+      "sha256": "ffff0845b0ee3bed8a5bb351cd0849017640252521178a13e8fbac2fea40b252"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/acceptance-profile.json",
+      "size": 3229,
+      "sha256": "fcb13cea3149db1fad2a459b63d190cd674360fa56246679e2c8b6263df64768"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/acceptance-summary.json",
+      "size": 812,
+      "sha256": "7c377a8457615775d6ed19eab85b5ba4625df190c86a5d3d94a221c59e46dc65"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/acceptance-system.json",
+      "size": 6723,
+      "sha256": "8802906b06bb6158dd997bbd267f675ab5471114ae836d68bd3566168ad8ba1d"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/acceptance-wad.json",
+      "size": 267,
+      "sha256": "890afdb3ef3916b78e8546978816586789c961e596ba6b7b5cbf27407acf760a"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/accepted-inputs.tar.gz",
+      "size": 700467,
+      "sha256": "b9732dfe377ac077b89f8f6c3431206b34f2710fecb3993452cf792bbd623edd"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/accepted-inputs.tar.gz.sha256",
+      "size": 89,
+      "sha256": "2f2441083ebe68c89e30fafdf553dde11fb971d9e20518fefaa6d03791164a29"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/build.sh",
+      "size": 2596,
+      "sha256": "1a5657102a6e3bf871e42860afb4cdf9bcc97f429dbccd3da05ac5560bed414f"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/comparison.json",
+      "size": 3038,
+      "sha256": "aa71c83e862437197e20babb8eb872d7e79fff56d7c9b8d35c98a37aa79fa81c"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/fast-binaries.sha256",
+      "size": 295,
+      "sha256": "1c568c3f235041964d003548ec7a1ad537a7f420e97f895bf09da3a1312c98f1"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/fast-native.log",
+      "size": 77,
+      "sha256": "4031de7309d78188040b030009bec638611e6bde9ab4b91aefe084cb647bf981"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/fast-ram-audit.json",
+      "size": 1721,
+      "sha256": "6d6b0e1cafbe2ca0fd7d9481340332c1898fec5bb0075a725d56921cea960d73"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/flat.png",
+      "size": 19159,
+      "sha256": "c30c21ce2f988b985bfe615302f945ebc69634057c94fe93092bb653bd3da168"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/host-tests.txt",
+      "size": 481,
+      "sha256": "4da157113f50b84037f0f1db65a57b8fe3ac7ed5805e8e0e879bdc7ef88d3aef"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/http-observations.jsonl",
+      "size": 127404,
+      "sha256": "003f40e610e0bd289eb6f0ae008c66afeafad86b36ec8f0f285e840c95c2a2b4"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/http-verification.json",
+      "size": 140,
+      "sha256": "a4c04a4966fe217baeda4023bb8585312b97a0c54f210289d1c19cf722cc6706"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/local-frames.json",
+      "size": 1425,
+      "sha256": "ffff0845b0ee3bed8a5bb351cd0849017640252521178a13e8fbac2fea40b252"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/local-replay.json",
+      "size": 202,
+      "sha256": "84e88be8cab61c28e8ed6079ba2f52cf40032bcc40732f1aa26e52a0404cfd4e"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/local-system.json",
+      "size": 6724,
+      "sha256": "ce7c369afb9a7ca531d26896aac4cd73949608910d51a7728082fe7d33f79bee"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/local-wad.json",
+      "size": 267,
+      "sha256": "890afdb3ef3916b78e8546978816586789c961e596ba6b7b5cbf27407acf760a"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/measure.py",
+      "size": 2079,
+      "sha256": "0c0c74daf9fda92315c5b71b88a658e1b300a2a9bee028c132c5b667c20f8803"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/native-card.log",
+      "size": 97,
+      "sha256": "9500e63a8a86210fb7ebcfbfcd16fb48b62d11273685a9864d26d08fe3360708"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/native-normal.log",
+      "size": 64,
+      "sha256": "55cf2c1d7eceb22359888393c9f0c029266848cdf4f234d70c1a3aa003b41240"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/native-verification.json",
+      "size": 8006,
+      "sha256": "ee2ecbb4cd0093bf2d1fb6ccb91ba3f6c0cfa1320cea8f1be0fbd4a552ba3978"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/observe_http.py",
+      "size": 1189,
+      "sha256": "f2b001324fd4d303b311ee479b5204b3b22aee8ef64480bfa8d1410a6306d83e"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/restoration.json",
+      "size": 524,
+      "sha256": "8a9d55e47a990b2bb13346d2d75e476f2e1a93ec940ac99304a4ecb24c1cde7f"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/restore.sh",
+      "size": 846,
+      "sha256": "39f8a85ab3abde7f51bb6f6a73f60b8a3d596ace35ad95c775e960f71726c21f"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/restored-http-body.html",
+      "size": 2891,
+      "sha256": "cd96df753c8367ef25887e7795d25ff37e421d470392c6a48d7f861d9ad0f352"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/restored-http-headers.txt",
+      "size": 97,
+      "sha256": "b9e6a08eb2139e70139786adea5538fe2217688db7bc3a957f374a7cd8b61b24"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/run.sh",
+      "size": 1267,
+      "sha256": "c1fd341688623de49441d901a826137b850a3b54d2ed7b53479765560c786b01"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/source-sha256.json",
+      "size": 1909,
+      "sha256": "612fcf5692b0a17a33a006dec669d678b42d33d94ba847ec85e270ab434aa89e"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/textured.png",
+      "size": 24277,
+      "sha256": "981456c5af0c044f681a0c531e7bf3ce620cb1f817f9bd742599a681e84e32ea"
+    },
+    {
+      "path": "artifacts/current/flat-planes-20261016/verify.sh",
+      "size": 759,
+      "sha256": "7ad461bdab9a12fe81f8d4643e6de46ce16ffec35daef764a4e7b51c6927d0a0"
     },
     {
       "path": "artifacts/dac960pg-x86-bios.asm",

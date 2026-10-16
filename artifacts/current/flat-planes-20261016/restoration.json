@@ -1,0 +1,12 @@
+{
+  "boot_id": "822f72d7-8b2f-4a81-b041-b3cfbd384717",
+  "relay_pid": 2096,
+  "owner": "autonomous RTEMS web relay; /dev/i960-auto; dac960auto at 0000:37:09.1",
+  "http_url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
+  "http_status": 200,
+  "http_bytes": 2891,
+  "body_sha256": "cd96df753c8367ef25887e7795d25ff37e421d470392c6a48d7f861d9ad0f352",
+  "checked_from": "Mac over IPv6; public route is PREROUTING DNAT, host-local curl is not the ingress test",
+  "no_forced_unload": true,
+  "no_flash_write": true
+}

@@ -22,6 +22,14 @@ See [programmed firmware](docs/firmware/FIRMWARE-PROGRAMMED.md) before any firmw
 
 ## Doom defaults and performance
 
+- **New optional quality control:** `--runtime-flat` enables F6/browser switching
+  between textured and solid-color floors/ceilings in one build, textured initially.
+  Same-session low-detail ABBA windows measured **6.454 → 7.877 FPS (+22.05%)**;
+  plane rendering **40.96 → 13.46 ms**. 520 frames, 56 full paired audits,
+  STOP/stall/drain and replays passed. This is a bounded ping-pong scene benchmark,
+  not a general interactive FPS guarantee. [Results](artifacts/current/flat-planes-20261016/README.md).
+
+
 - Exact fast FixedDiv is enabled by default in playable builds; `--no-fast-fixed-div`
   retains the old path. Specialized C columns (`--fast-columns`) and fast renderer
   (`--fast-render`) remain opt-in. Benchmark flags are not all deployment defaults.
@@ -31,7 +39,7 @@ See [programmed firmware](docs/firmware/FIRMWARE-PROGRAMMED.md) before any firmw
   options. Four-span has no established performance benefit. Wall profiling is
   diagnostic, disabled by default; its overhead affects comparisons.
 - Recent fixed-low-detail measurements are approximately **6.4–6.8 FPS** in the
-  tested scene/configuration, not a guarantee across levels. The latest comparison
+  tested scene/configuration, not a guarantee across levels. The earlier exact four-span comparison
   averages **6.6172 baseline vs 6.4493 four-span FPS**, with unexplained baseline
   repeat variance. [Final measurements](artifacts/current/doom/README.md).
 - Keep validated latency improvements even when total FPS is unchanged. Delivery
@@ -54,8 +62,7 @@ See [programmed firmware](docs/firmware/FIRMWARE-PROGRAMMED.md) before any firmw
 
 ## Next useful hypotheses
 
-1. Optional flat-color floors/ceilings: planes cost about 39–40 ms in recent runs.
-   Saving 15–25 ms could yield roughly 11–20% FPS, but this is an estimate, not a result.
+1. Broaden flat-plane quality testing across maps and high detail; keep it optional.
 2. Optional half-height rendering with browser scaling; evaluate HUD readability
    and independent normal-mode switching. Pixel reduction need not scale linearly.
 3. Use longer matched runs and resolve baseline variance before promoting further

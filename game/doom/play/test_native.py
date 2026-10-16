@@ -2,7 +2,7 @@
 """Exercise the actual interactive engine, input, STOP and heap drain on host32."""
 import argparse,hashlib,json,struct,subprocess
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--build',type=Path,required=True);p.add_argument('--newlib',type=Path,required=True);p.add_argument('--wad',type=Path,required=True);p.add_argument('--wad-ring',action='store_true');p.add_argument('--runtime-detail-test',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--build',type=Path,required=True);p.add_argument('--newlib',type=Path,required=True);p.add_argument('--wad',type=Path,required=True);p.add_argument('--wad-ring',action='store_true');p.add_argument('--runtime-flat-test',action='store_true');p.add_argument('--runtime-detail-test',action='store_true');a=p.parse_args()
 r=Path(__file__).resolve().parents[1];s=(r/'runtime/startup/native.c').read_text();begin=s.index('static int mark(');end=s.index('\n#endif',begin)
 s=s[:begin]+'''static unsigned frames,event_sent;
 static int mark(unsigned stage,unsigned x,unsigned y,unsigned z){
@@ -19,6 +19,12 @@ if a.runtime_detail_test:
  s=s.replace('static unsigned frames,event_sent;', 'static unsigned frames,event_sent,detail_event;')
  s=s.replace('if(stage==101){', 'if(stage==101){if(frames==12 && detail_event<2){return 2+191+((detail_event++==0)?256:0);}if(frames==24 && detail_event<4){return 2+191+((detail_event++==2)?256:0);}')
  s=s.replace('frames=z;row[0]', 'if(z==10 && ((unsigned*)(p+64832))[2]!=1)abort();if(z==20 && ((unsigned*)(p+64832))[2]!=0)abort();if(z==32 && ((unsigned*)(p+64832))[2]!=1)abort();frames=z;row[0]')
+if a.runtime_flat_test:
+ s='#include <stdlib.h>\n'+s
+ assert json.loads((a.build/'build.json').read_text()).get('runtime_flat')
+ s=s.replace('static unsigned frames,event_sent;', 'static unsigned frames,event_sent,flat_event;')
+ s=s.replace('if(stage==101){', 'if(stage==101){if(frames==12 && flat_event<2){return 2+192+((flat_event++==0)?256:0);}if(frames==24 && flat_event<4){return 2+192+((flat_event++==2)?256:0);}')
+ s=s.replace('frames=z;row[0]', 'if(z==10 && ((unsigned*)(p+64880))[2]!=0)abort();if(z==20 && ((unsigned*)(p+64880))[2]!=1)abort();if(z==32 && ((unsigned*)(p+64880))[2]!=0)abort();frames=z;row[0]')
 if a.wad_ring:
  s=s.replace('n>4096','n>65536').replace('a.io.max_read=4096','a.io.max_read=65536')
  s=s.replace('token=doom_heap_borrow(&heap,dst,n);', 'void*stage=allocate(41216);if(!stage)return -1;token=doom_heap_borrow(&heap,dst,n);')

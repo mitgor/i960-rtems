@@ -1,3 +1,14 @@
+<!-- flat-planes-current -->
+**2026-10-16 optional flat planes accepted:** playable `--runtime-flat` starts
+textured and adds F6/browser toggling. Same-build low-detail ABBA: **6.454 →
+7.877 FPS (+22.05%)**, renderer 135.51 → 107.31 ms, planes 40.96 → 13.46 ms.
+520 frames / 56 full paired audits, STOP/stall/drain, remote/local replay and
+mutation checks pass; native oracle retains exactly the four known differences.
+Keep quality optional. The measured ping-pong session is bounded, not a newly
+qualified interactive transport; normal pipeline builds expose the live button.
+See `artifacts/current/flat-planes-20261016/README.md` and `game/doom/flat_planes/README.md`.
+<!-- /flat-planes-current -->
+
 # Doom milestone guidance
 
 <!-- span-four-current -->

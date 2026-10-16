@@ -17,6 +17,7 @@ if fd<0:raise OSError(ctypes.get_errno(),'pidfd_getfd')
 page=urllib.request.urlopen(a.upstream,timeout=2).read().decode();oldtoken=re.search("const token='([^']+)'",page)[1];token=secrets.token_hex(24)
 page=(Path(__file__).with_name('index.html').read_text().replace('__TOKEN__',token)).encode()
 # This legacy bridge cannot attest the running image's runtime-detail option.
+page=page.replace(b'<button id="flat">Toggle flat planes (F6)</button>',b'').replace(b'F6:192,',b'')
 page=page.replace(b'<button id="detail">Toggle detail (F5)</button>',b'')
 keys=deque();held=set();deadline=0.;lock=threading.Lock();stop=threading.Event();reason=[]
 allowed=(173,175,172,174,163,162,182,191,13,27,9,121,110,49,50,51,52,53,54,55)

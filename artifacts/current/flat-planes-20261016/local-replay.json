@@ -1,0 +1,12 @@
+{
+  "system": true,
+  "frames": true,
+  "wad": true,
+  "roundoff": [
+    {
+      "field": "system.bulk_latency_ms.mean",
+      "remote": 47.41902776829269,
+      "local": 47.419027768292686
+    }
+  ]
+}
