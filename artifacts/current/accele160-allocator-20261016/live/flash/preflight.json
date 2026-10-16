@@ -1,0 +1,30 @@
+{
+  "boot_id": "bee73454-ba41-417b-9c32-ac1f436ee5e6",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_card": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  },
+  "image_sha256": "0124657ded5618f1a00737d4917a500bccbbeea951e3f1e33cee6d84799dd5d0",
+  "module_sha256": "bf7352f069a3dec363743a4c92b1e093e849c5a6525ec607c04338c308deca90",
+  "stage_dir": "/home/mit/i960-accele160-allocator-20261016/stage",
+  "readback_dir": "/home/mit/i960-accele160-allocator-20261016/staged-readback",
+  "command": "FLASHIMAGE 0x2e selector 9 zero DMA"
+}

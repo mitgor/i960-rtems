@@ -1,0 +1,10 @@
+{
+  "pointer": "0xc0750000",
+  "size": 262144,
+  "changed_bytes": 16,
+  "allocator_metadata_sha256": "8b49e75e0e6882d2c397fa3c1c723b86d7018c6030a95587ab68bf5d398c8b5f",
+  "adjacent_table_page_changed_bytes": 2,
+  "page_preimage_sha256": "f47a8ec3e9aff2318d896942282ad4fe37d6391c82914f54a5da8a37de1300c6",
+  "image_sha256": "0124657ded5618f1a00737d4917a500bccbbeea951e3f1e33cee6d84799dd5d0",
+  "allocator_table_restored": true
+}

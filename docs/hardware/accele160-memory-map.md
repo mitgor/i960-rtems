@@ -69,3 +69,7 @@ The bounded RAM-call experiment is accepted: two exact 80-byte payloads executed
 5. Only then port Doom's WAD service and framebuffer path, with an independently proven 8 MiB arena and browser frame audits.
 
 Do not infer that an address is free from its contents or reuse old DAC960PG IRQ, DMA, firmware-loader or fixed RAM addresses.
+
+## Stock allocator operation accepted (2026-10-16)
+
+The [allocator-probe artifact](../../artifacts/current/accele160-allocator-20261016/README.md) records a persistently programmed exact image, two same-boot guarded full-flash reads, two bounded stock allocator calls and post-call readback. The fixed 256 KiB mode-1 request returned `c0750000`; the matching stock free call left all 256 count and 256 owner words byte-identical to their preimage. The first harness's whole-page comparison caught two bytes of unrelated firmware state at offset `0xaa0`, beyond the arrays; a guarded cleanup restored its result slot. A corrected second call passed full loader-page restoration, command release and independent replay. This proves transient stock allocation and release, **not** a retained RTEMS grant. The free-run observations above remain the bound for a future owner-tagged allocation. Doom's 8 MiB requirement still exceeds the largest contiguous stock run.

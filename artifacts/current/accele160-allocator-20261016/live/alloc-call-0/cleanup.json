@@ -1,0 +1,15 @@
+{
+  "initial_session_sha256": "dcbfb1fa355dcba4aba43a642ff3f8ab2f11d342a2bb69149be75123053b1d67",
+  "initial_session_exit": 1,
+  "initial_reason": "Compared whole c0385000 page; two changing bytes at offset 0xaa0 lie immediately after the allocator arrays.",
+  "allocator_metadata_restored": true,
+  "metadata_sha256": "8b49e75e0e6882d2c397fa3c1c723b86d7018c6030a95587ab68bf5d398c8b5f",
+  "adjacent_changed_offsets": [
+    "0xaa0",
+    "0xaa1"
+  ],
+  "result_slot_only_changed": true,
+  "finish_binary_sha256": "93bda1b006128e3ee298305d649e4f044df41b618b58963daafee2ef07832001",
+  "finish_result": "result_slot_restored=1 metadata_restored=1 PIATVR=c0000000 released=1",
+  "module_unloaded": true
+}

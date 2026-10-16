@@ -1,5 +1,22 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID stock allocator operation accepted — 2026-10-16
+
+Read `artifacts/current/accele160-allocator-20261016/README.md` first. Exact
+1 MiB candidate SHA-256 `0124657d…799dd5d0` was programmed on **new card
+`37:09.1` only**. After reboot, two guarded full-flash reads matched it;
+returned fixed 256 KiB stock allocation `c0750000` was freed with identical
+caller ID. All 256 count and 256 owner words returned to their preimage. The
+first command's session overcompared an adjacent firmware word and needed a
+separate verified cleanup; the corrected second call passed normally. Both
+result slots were restored, modules unloaded, PIATVR returned to `c0000000`,
+independent final table/page snapshots matched and post-call flash matched.
+The old `37:04.1` stayed unbound and untouched. The temporary `myrs` blacklist
+remains, and custom `myrsread` needs `raid_class` plus exact
+`read_bdf=0000:37:09.1` on a fresh boot. This is only a transient allocator
+proof; RTEMS still lacks a retained owner-tagged grant, chunk upload and safe
+execution. Doom still lacks an 8 MiB owned arena.
+
 ## AcceleRAID RAM execution accepted — 2026-10-16
 
 Read `artifacts/current/accele160-ramprobe-20261016/README.md` first. The exact
