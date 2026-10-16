@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "transactions": 32,
+  "vectors": 1024,
+  "firmware_commands": 3520,
+  "paired_staging_phases": 96,
+  "clean_unload": true,
+  "boot_id": "df928288-d6ce-4cbd-aaa5-67fea627e0f3",
+  "candidate_object_sha256": "6c5e16fcd090c0c3ee00f0a90aa24d85844821b1366226141d340201c1795180"
+}

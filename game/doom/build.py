@@ -2,7 +2,7 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--visible',action='store_true');p.add_argument('--play',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');p.add_argument('--column-test',action='store_true');p.add_argument('--fast-render',action='store_true');p.add_argument('--fast-columns',action='store_true');p.add_argument('--fixed-div-profile',action='store_true');div=p.add_mutually_exclusive_group();div.add_argument('--fast-fixed-div',dest='fast_fixed_div',action='store_true');div.add_argument('--no-fast-fixed-div',dest='fast_fixed_div',action='store_false');p.set_defaults(fast_fixed_div=None);p.add_argument('--input-trace',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--visible',action='store_true');p.add_argument('--play',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--fast-point-side',action='store_true');p.add_argument('--platform-runtime',action='store_true');p.add_argument('--column-test',action='store_true');p.add_argument('--fast-render',action='store_true');p.add_argument('--fast-columns',action='store_true');p.add_argument('--fixed-div-profile',action='store_true');div=p.add_mutually_exclusive_group();div.add_argument('--fast-fixed-div',dest='fast_fixed_div',action='store_true');div.add_argument('--no-fast-fixed-div',dest='fast_fixed_div',action='store_false');p.set_defaults(fast_fixed_div=None);p.add_argument('--input-trace',action='store_true');a=p.parse_args()
 if a.fast_fixed_div is None:a.fast_fixed_div=bool(a.platform_runtime and a.play)
 assert not a.platform_runtime or (a.target in ('i960','host32') and a.wad_cache), 'private platform requires i960 WAD-cache build'
 assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
@@ -46,16 +46,18 @@ if a.checkpoints:
  apply(patch)
 if a.play:assert a.visible
 if a.visible:
- assert a.startup and a.checkpoints and a.point_side_o0
+ assert a.startup and a.checkpoints and (a.point_side_o0 or a.fast_point_side)
  # Keep game rendering; omit only the opening cosmetic wipe in this bounded proof.
  patch('d_main.c','if (gamestate != wipegamestate)', 'if (0) /* omit cosmetic transition for bounded visible-frame proof */')
  flags+=['-DDOOM_VISIBLE']
-if a.point_side_o0:
+assert not (a.point_side_o0 and a.fast_point_side), "select one point-side implementation"
+if a.point_side_o0 or a.fast_point_side:
  assert a.startup, 'comparison workaround is restricted to startup experiments'
  text=(src/'r_main.c').read_text();begin=text.index('int\nR_PointOnSide\n');end=text.index('\n\nint\nR_PointOnSegSide\n',begin)
  body=text[begin:end]
  # Preserve the original GPL header and actual Doom types in the split unit.
  (src/'r_point_side.c').write_text(text[:text.index('#include')]+'\n#include \"r_local.h\"\n'+body+'\n')
+ if a.fast_point_side:shutil.copyfile(here/'point_side/point.c',src/'r_point_side.c')
  patch('r_main.c',body,'/* R_PointOnSide is compiled separately; see build.json. */')
 if a.column_test:
  assert a.play and a.platform_runtime
@@ -101,7 +103,7 @@ if a.column_test:sources += [src/'column.c',src/'selftest.c'] + ([src/'column.S'
 if a.fixed_div_profile or a.fast_fixed_div:sources += [src/'fixed_divide.c'] + ([src/'fixed_divide.S'] if a.target=='i960' else [])
 if a.fixed_div_profile:sources.append(src/'fixed_profile.c')
 if a.fast_columns:sources.append(src/'column.c')
-if a.point_side_o0:sources.append(src/'r_point_side.c')
+if a.point_side_o0 or a.fast_point_side:sources.append(src/'r_point_side.c')
 out=work/a.target;out.mkdir(exist_ok=True)
 if a.target=='i960':
  cc=a.cross+'gcc';prefix=a.cross
@@ -139,7 +141,7 @@ with (out/'compile.log').open('w') as log:
   r=subprocess.run(cmd,stdout=log,stderr=log)
   if r.returncode:failures.append(f.name)
   else:objs.append(str(obj))
-(out/'build.json').write_text(json.dumps(dict(input_trace=a.input_trace,fixed_div_profile=a.fixed_div_profile,fast_fixed_div=a.fast_fixed_div,fast_columns=a.fast_columns,fast_render=a.fast_render,screen_copy_sha256=hashlib.sha256((here/'screen_copy/copy.h').read_bytes()).hexdigest() if a.platform_runtime else None,wad_profile=a.wad_profile,column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
+(out/'build.json').write_text(json.dumps(dict(fast_point_side=a.fast_point_side,input_trace=a.input_trace,fixed_div_profile=a.fixed_div_profile,fast_fixed_div=a.fast_fixed_div,fast_columns=a.fast_columns,fast_render=a.fast_render,screen_copy_sha256=hashlib.sha256((here/'screen_copy/copy.h').read_bytes()).hexdigest() if a.platform_runtime else None,wad_profile=a.wad_profile,column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
 if failures:raise SystemExit('Compile failed: '+str(failures))
 if a.platform_runtime and a.target=='host32':
  subprocess.run(['ld','-m','elf_i386','-r','-d','-o',str(out/'doom-engine.o'),*objs],check=True)

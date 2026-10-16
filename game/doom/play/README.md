@@ -269,3 +269,12 @@ See [quality validation](../../../artifacts/columns-20261015/QUALITY.md).
 Future quality-reducing experiments must have independent switches and preserve
 the normal renderer. Exact `--fast-render` and `--fast-columns` optimizations are
 separate from quality selection; benchmarks must use matched detail settings.
+
+### Exact BSP point-side candidate
+
+`--fast-point-side` selects the defined exact helper described in
+[point-side validation](../point_side/README.md). It remains opt-in; omitting it
+keeps the original `-O0` comparison workaround. Specialized C columns also remain
+opt-in (`--fast-columns`); recent measured builds explicitly enable them with
+`--fast-render`. These switches do not reduce render quality. Exact FixedDiv is
+already the playable default, with `--no-fast-fixed-div` retaining the original.

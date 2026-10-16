@@ -1,0 +1,7 @@
+{"passed": true, "cases": 1002000, "oracle": "32-bit wrapped deltas, arithmetic floor shifts, exact signed products"}
+{"ubsan_passed": true, "cases": 12000}
+PASS input trace schema, overflow, sequence, frame, key, phase, menu, opt-in and padding: 14 refusals
+PASS playable default, explicit original-divide switch and non-play build defaults
+PASS actual recorder bounds, sticky overflow, trailer clearing and per-frame reset
+PASS actual host input logger frame scope and all key call sites
+PASS profiled original/exact and unprofiled exact transforms; call sites unchanged in play mode

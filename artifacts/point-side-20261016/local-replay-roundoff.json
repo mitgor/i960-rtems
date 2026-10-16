@@ -1,0 +1,12 @@
+[
+  {
+    "path": "a1.system.bulk_latency_ms.mean",
+    "local": 46.230077,
+    "remote": 46.230077000000016
+  },
+  {
+    "path": "a2.system.bulk_latency_ms.mean",
+    "local": 47.32341505,
+    "remote": 47.32341505000001
+  }
+]

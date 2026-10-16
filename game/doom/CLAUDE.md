@@ -1,5 +1,25 @@
 # Doom milestone guidance
 
+<!-- point-side-current -->
+**2026-10-16 exact point-side candidate qualified, opt-in.** `--fast-point-side`
+selects a defined 32-bit helper with adjacent i960 compare/test pairs; omitting it
+retains the protected O0 function. C columns are still opt-in (`--fast-columns`),
+explicitly enabled in these benchmarks with `--fast-render`. Exact FixedDiv stays
+playable-default. No traversal/quality, audit or ownership policy changed.
+
+Host oracle: 1,002,000 cases; UBSan: 12,000; physical scalar proof: 1,024 vectors,
+32 transactions and 96 paired staging phases. Full A/B/B/A: **6.428 →
+6.431 FPS (+0.034%)**, renderer 136.463 →
+136.137 ms. This is within repeat variation, not a demonstrated FPS/
+latency gain. All 2,080 images, 229 paired audits, stall/STOP/drain,
+replay/tamper checks and 1953 HTTP observations pass; max IRQ 10.832ms.
+Helper text shrinks 416→336 bytes and is call-free. Current counters measure BSP
+plus walls, not isolated helper cost; direct traversal profiling is still next.
+Evidence: `artifacts/point-side-20261016/README.md`; implementation/tests:
+`game/doom/point_side/README.md`. No flash writes. Public IPv6 HTTP restored (200,
+2,890 bytes), boot `2b670864-d474-4926-9424-371f8b7f20b9`; public relay owns card.
+<!-- /point-side-current -->
+
 <!-- input-trace-current -->
 **2026-10-16 playable exact divide is now default.** `game/doom/play/build.py`
 and private playable engine builds select the accepted exact FixedDiv unless

@@ -33,10 +33,16 @@ of that parallel research work.
    6.412 trace-on, all 2,080 images and 228 full audits pass. See
    [evidence](../../artifacts/input-trace-20261016/README.md). The historical menu
    discrepancy remains unproven; use the new trace on a recurrence.
-7. **Next:** profile/qualify a defined exact point-side helper and bounded BSP
-   changes. Keep the protected O0 workaround until a replacement passes exact
-   host and card checks. Then test further selective compiler settings, measured
-   memory hot spots and cache/layout changes one at a time on this baseline.
+7. **Qualified, opt-in:** defined exact point-side helper (`--fast-point-side`).
+   1,024 on-card vectors match the protected O0 implementation and independent
+   oracle. Full A/B/B/A: 6.428 → 6.431 FPS (+0.034%),
+   within repeat variation; no meaningful speedup established. All 2,080 images,
+   229 paired audits and lifecycle/replay/tamper checks pass. O0 remains
+   default. See [evidence](../../artifacts/point-side-20261016/README.md).
+8. **Next:** isolate traversal path counts/cost from BSP wall drawing, then test
+   a bounded iterative front-to-back traversal while preserving culling order.
+   The current stage counters do not isolate helper cost. Continue selective
+   compiler settings, measured memory hot spots and cache/layout one at a time.
 
 
 Quality reductions must have explicit independent controls, preferably at runtime

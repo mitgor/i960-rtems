@@ -3851,6 +3851,32 @@ back to the original. Tracing stayed optional. Four accepted runs measured
 largest interrupt gap was 10.83 milliseconds. We had gained a useful way to
 ask when a key took effect without giving up the checks around the game.
 
+## Keeping the comparison together
+
+The old wrong-floor bug had left a small monument in the build: one BSP function
+compiled without optimization, because this compiler could let a branch replace
+the condition codes before a later instruction read them. That workaround had
+earned its place. Removing it required more than a promising disassembly.
+
+The replacement made the wrapping arithmetic explicit and kept each comparison
+and its boolean result in one inseparable instruction pair. A million host
+cases, a thousand and twenty-four physical vectors, and then four more complete
+Doom runs agreed. Every one of the 2,080 pictures matched. The held buffers,
+STOP, heap drain and 229 full audit pairs agreed too.
+
+The stopwatch was less dramatic: 6.428 against 6.431 frames per second.
+The repeats varied by more than that apparent improvement. The function became
+smaller and its arithmetic better defined, but this experiment did not discover
+a hidden frame-rate reserve. It stays optional; the old workaround stays
+available. The next useful question is how much time belongs to traversing the
+tree, and how much to drawing the walls reached through it.
+
+C columns also remain an explicit build choice, even though the benchmark builds
+use them. The exact divide is the optimization now enabled by default. Small
+switches, but worth recording: a reproducible result includes knowing which
+machine code was actually running. The public IPv6 page was restored afterward;
+the [captures](artifacts/point-side-20261016/README.md) keep the full account.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
