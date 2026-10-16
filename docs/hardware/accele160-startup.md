@@ -116,17 +116,20 @@ That fails the bounded-call precondition and was not attempted.
 
 Priority for the next investigation:
 
-1. Add a stock-code cache synchronization gate: a host command which causes the
-   i960 itself to invalidate D-cache after a callback-pointer update and I-cache
-   after payload upload, without invoking a write/programming IOCTL.
-2. Otherwise build a RAM-only bootstrap entered through a fully decoded unused
-   software interrupt vector, including exact interrupt-return ABI, vector-cache
-   state, mask/priority restoration and a host-observable timeout. Do not infer
-   this contract from a zero vector entry alone.
-3. A temporary firmware-resident helper is the fallback: preserve the stock
-   image, add an authenticated upload/call/cache-maintenance IOCTL, and validate
-   it on the spare new card before any flash programming. Flash remains outside
-   this RAM-only milestone.
+1. Continue tracing stock host-command callbacks for a **proven** D-cache and
+   I-cache maintenance sequence with normal return. The [cache-gate audit](../../artifacts/current/accele160-cache-gate-20261016/README.md)
+   found a debug-menu D-cache invalidation and transfer/memory-test sites, but
+   no accepted host-command path. Its only verified runtime `sysctl` uses
+   `0x300`, Intel's reinitialize message.
+2. Do not post a synthetic software interrupt by writing pending bits through
+   PCI. The 80303's internal software-priority state needs a core-side `sysctl`
+   check, and vector caching can hide a host-written handler. A doorbell uses
+   existing firmware-owned hardware-interrupt routing. A software-interrupt
+   route needs a verified core-side trigger and complete return/restoration ABI.
+3. If stock firmware offers neither path, build a recoverable firmware-resident
+   helper with an authenticated upload/call/cache-maintenance IOCTL, then
+   validate it on the spare new card. That is a separate firmware patch
+   milestone; this RAM-only test did not justify programming a guessed hook.
 
 ## Concrete bounded probe
 

@@ -1,0 +1,10 @@
+Read-only live check, 2026-10-16T19:17:03Z
+boot_id=0e92f975-c3eb-4d54-b388-61f2b3e3ad5f
+new_bdf=0000:37:09.1
+new_driver=myrsread
+old_bdf=0000:37:04.1
+old_driver=unbound
+piatvr=c0000000
+uptime_seconds=2950.84
+
+No command, MMIO write, driver change, reset or reboot in this audit.

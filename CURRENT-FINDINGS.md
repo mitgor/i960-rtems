@@ -1,5 +1,15 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID cache gate audit — 2026-10-16
+
+The accepted stock runtime has D-cache invalidation in its interactive debug
+menu and several transfer/memory-test paths, but no verified host-command route
+that also invalidates I-cache before a normal-return call. Its identified
+`sysctl 0x300` is a processor reinitialize operation. Host-written software
+interrupt pending bits would not reliably update the 80303's internal pending
+priority, and vectors may be cached. No new controller command or code execution
+was attempted. [Static audit and next gate](artifacts/current/accele160-cache-gate-20261016/README.md).
+
 ## AcceleRAID RAM upload route — 2026-10-16
 
 Intel 80303 ATU decoding proves BAR0's upper 4 KiB is a movable local-RAM

@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 3316,
-      "sha256": "0a0edbdbbe431dc09f0aa6e8f562fbc902bb99dd9f2efc9ff1e1754ba4fe2925"
+      "size": 3385,
+      "sha256": "e5319f64350e43836128a0dd8adeb9e3c9ffe2626b98db538f5c6533e1e437e0"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2208,6 +2208,21 @@
       "sha256": "269a5fc18dfb9ab7e64d4926454475a9f05e08f010dfbadecc640cf84b13892a"
     },
     {
+      "path": "artifacts/current/accele160-cache-gate-20261016/README.md",
+      "size": 3482,
+      "sha256": "12739b21f4cd4532285558a114c57f7ed5abf9f623df1fc1d59772ee2fc23209"
+    },
+    {
+      "path": "artifacts/current/accele160-cache-gate-20261016/audit.json",
+      "size": 602,
+      "sha256": "d889d8da3bd7e9e84a179c59025c6788149eaa5692e93bf494c89e603dc41b1d"
+    },
+    {
+      "path": "artifacts/current/accele160-cache-gate-20261016/live-state.txt",
+      "size": 279,
+      "sha256": "27e237a5c8c083f09426192b9b763c194d14bdeefce6e3b0ed8a073b01f67669"
+    },
+    {
       "path": "artifacts/current/accele160-guarded-20261016/README.md",
       "size": 4805,
       "sha256": "1111f6050b8696b9773469d3238bb63766bf36234c07e75cd63d98b927b3b295"
@@ -2384,8 +2399,8 @@
     },
     {
       "path": "artifacts/current/accele160-ram-route-20261016/README.md",
-      "size": 4059,
-      "sha256": "f5394f4a8669e23923d47c0917c2a3114c5bbabeb42cdcc4d8c4084cd050c0e3"
+      "size": 4195,
+      "sha256": "4c0a32888255f01d542125cb07d72f795bca135a9538d390793b22825d4b5bdb"
     },
     {
       "path": "artifacts/current/accele160-ram-route-20261016/live-evidence.txt",

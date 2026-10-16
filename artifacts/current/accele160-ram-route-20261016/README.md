@@ -68,6 +68,8 @@ The bounded probe therefore remains **uploaded/read back only, never called**.
 The next execution gate is either a stock command that performs D-cache and
 I-cache maintenance on the i960 after host writes, or a fully decoded unused
 software-interrupt route with saved/restored vector state and normal return.
+The [subsequent cache-gate audit](../accele160-cache-gate-20261016/README.md)
+found no accepted route of either kind in stock firmware.
 
 ## Reproduction tools
 

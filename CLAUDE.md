@@ -1,5 +1,15 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID cache gate audit — 2026-10-16
+
+The stock runtime has an interactive debug-menu `dcctl 2,0` and several other
+D-cache invalidations, but none is a proven host-command cache gate. Its
+verified `sysctl 0x300` reinitializes the processor. Do not post a synthetic
+software interrupt by writing pending bits: the 80303 keeps pending priority
+internally and can cache vectors. The previous RAM upload succeeded; custom
+code still has not run on this card. See
+`artifacts/current/accele160-cache-gate-20261016/README.md`.
+
 ## AcceleRAID RAM upload route — 2026-10-16
 
 Intel 80303 ATU decoding proves BAR0's upper 4 KiB is a movable local-RAM

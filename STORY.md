@@ -4042,6 +4042,21 @@ enough to prove the first fact without pretending they proved the second.
 
 [The exact receipt and next gate](artifacts/current/accele160-ram-route-20261016/README.md).
 
+The next evening we traced the cache barrier we had hoped the stock firmware
+already knew how to perform. The raw image did contain data-cache invalidation
+instructions. One belonged to an interactive debug menu; others sat among
+transfer code and memory tests. None gave the host a demonstrated, bounded way
+to refresh both caches and return to a command. A `sysctl` instruction looked
+promising until its operand, `0x300`, decoded as processor reinitialization.
+
+An empty interrupt vector was no shortcut. The 80303 remembers software
+interrupt priority inside the processor and can keep vectors internally too;
+writing pending bits over PCI does not make it rescan at a known time. We left
+the probe uncalled. The audit narrowed the work to a genuine firmware call
+route or a small recoverable helper, and the old card was still untouched.
+
+[The cache and interrupt audit](artifacts/current/accele160-cache-gate-20261016/README.md).
+
 ## Where it stands
 
 So, the ledger, honestly kept:
