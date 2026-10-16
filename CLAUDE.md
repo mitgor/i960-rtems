@@ -14,7 +14,7 @@ passed. Old `37:04.1` stayed unbound. Additional same-boot runs copied indexes 1
 and index 127 with stock status 2; full page/owner/staging audits and a final
 guarded 1 MiB flash read passed. One host checker error on the first index-127
 run retained resources and was fully cleaned up under exact readback checks.
-This is sampled page coverage, not a general RTEMS loader. Whole-image digest,
+A separate same-grant two-page session copied indexes 0 and 126, passed independent replay and tamper checks, and left flash unchanged. This is sampled page coverage, not a general RTEMS loader. Whole-image digest,
 cache-safe execution and RTEMS BSP remain unproved. See
 `docs/hardware/accele160-upload-plan.md` for the next gates.
 
