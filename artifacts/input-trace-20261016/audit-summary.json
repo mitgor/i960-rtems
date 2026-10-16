@@ -1,0 +1,70 @@
+{
+  "runs": [
+    {
+      "run": "a1",
+      "frames": 520,
+      "paired_audits": 57,
+      "irq_max_gap_us": 10831.593347253223,
+      "held_stop": true,
+      "stall": {
+        "seconds": 3.010294656000042,
+        "frames": [
+          17,
+          18
+        ],
+        "unchanged": true
+      },
+      "heap_allocations_freed": 27163
+    },
+    {
+      "run": "b1",
+      "frames": 520,
+      "paired_audits": 57,
+      "irq_max_gap_us": 10799.433604531165,
+      "held_stop": true,
+      "stall": {
+        "seconds": 3.0075442289999614,
+        "frames": [
+          17,
+          18
+        ],
+        "unchanged": true
+      },
+      "heap_allocations_freed": 27158
+    },
+    {
+      "run": "b2",
+      "frames": 520,
+      "paired_audits": 57,
+      "irq_max_gap_us": 10491.99606403149,
+      "held_stop": true,
+      "stall": {
+        "seconds": 3.03265284400004,
+        "frames": [
+          17,
+          18
+        ],
+        "unchanged": true
+      },
+      "heap_allocations_freed": 27365
+    },
+    {
+      "run": "a2",
+      "frames": 520,
+      "paired_audits": 57,
+      "irq_max_gap_us": 10488.876088991288,
+      "held_stop": true,
+      "stall": {
+        "seconds": 3.012518739000029,
+        "frames": [
+          17,
+          18
+        ],
+        "unchanged": true
+      },
+      "heap_allocations_freed": 27214
+    }
+  ],
+  "total_frames": 2080,
+  "total_audits": 228
+}

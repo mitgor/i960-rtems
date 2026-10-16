@@ -2,7 +2,8 @@
 """Pinned-source compile inventory; i960 output is relocatable, NOT loadable firmware."""
 import argparse,hashlib,json,re,shutil,subprocess,tarfile
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--visible',action='store_true');p.add_argument('--play',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');p.add_argument('--column-test',action='store_true');p.add_argument('--fast-render',action='store_true');p.add_argument('--fast-columns',action='store_true');p.add_argument('--fixed-div-profile',action='store_true');p.add_argument('--fast-fixed-div',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-');p.add_argument('--work',type=Path,required=True);p.add_argument('--archive',type=Path,required=True);p.add_argument('--target',choices=['i960','host32','host64'],required=True);p.add_argument('--newlib',type=Path,default=Path('/home/mit/i960-rtems-web-20261011/scsi-drain/newlib-1.11.0'));p.add_argument('--arena-runtime',action='store_true');p.add_argument('--wad-cache',action='store_true');p.add_argument('--wad-profile',action='store_true');p.add_argument('--sanitize',action='store_true');p.add_argument('--startup',action='store_true');p.add_argument('--visible',action='store_true');p.add_argument('--play',action='store_true');p.add_argument('--checkpoints',action='store_true');p.add_argument('--point-side-o0',action='store_true');p.add_argument('--platform-runtime',action='store_true');p.add_argument('--column-test',action='store_true');p.add_argument('--fast-render',action='store_true');p.add_argument('--fast-columns',action='store_true');p.add_argument('--fixed-div-profile',action='store_true');div=p.add_mutually_exclusive_group();div.add_argument('--fast-fixed-div',dest='fast_fixed_div',action='store_true');div.add_argument('--no-fast-fixed-div',dest='fast_fixed_div',action='store_false');p.set_defaults(fast_fixed_div=None);p.add_argument('--input-trace',action='store_true');a=p.parse_args()
+if a.fast_fixed_div is None:a.fast_fixed_div=bool(a.platform_runtime and a.play)
 assert not a.platform_runtime or (a.target in ('i960','host32') and a.wad_cache), 'private platform requires i960 WAD-cache build'
 assert not a.wad_cache or a.arena_runtime, 'WAD cache requires the arena profile'
 assert hashlib.sha256(a.archive.read_bytes()).hexdigest()=='26f8f60daa6c6e4d3c01e5eac9fb700d592dede803d13ac848154ff356b2a2e7', 'source hash mismatch'
@@ -80,6 +81,11 @@ if a.fast_render:
  apply_render=module.apply
  shutil.copyfile(here/'render/span.h',src/'span.h')
  apply_render(src,patch)
+if a.input_trace:
+ patch('d_loop.c','static int maketic;','static int maketic;\nint doom_input_maketic(void){return maketic;}')
+ assert a.platform_runtime and a.play and not a.fixed_div_profile
+ patch('d_main.c','#include "doomstat.h"','#include "doomstat.h"\nextern void doom_input_event(unsigned,unsigned,unsigned);')
+ patch('d_main.c','\tif (M_Responder (ev))\n\t    continue;', '\tint eaten;\n\tif(ev->type==ev_keydown||ev->type==ev_keyup)doom_input_event(2,ev->type==ev_keydown,ev->data1);\n\teaten=M_Responder(ev);\n\tif(ev->type==ev_keydown||ev->type==ev_keyup)doom_input_event(3,ev->type==ev_keydown,ev->data1);\n\tif(eaten)\n\t    continue;')
 if a.fixed_div_profile or a.fast_fixed_div:
  assert a.platform_runtime and a.play
  import importlib.util
@@ -133,7 +139,7 @@ with (out/'compile.log').open('w') as log:
   r=subprocess.run(cmd,stdout=log,stderr=log)
   if r.returncode:failures.append(f.name)
   else:objs.append(str(obj))
-(out/'build.json').write_text(json.dumps(dict(fixed_div_profile=a.fixed_div_profile,fast_fixed_div=a.fast_fixed_div,fast_columns=a.fast_columns,fast_render=a.fast_render,screen_copy_sha256=hashlib.sha256((here/'screen_copy/copy.h').read_bytes()).hexdigest() if a.platform_runtime else None,wad_profile=a.wad_profile,column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
+(out/'build.json').write_text(json.dumps(dict(input_trace=a.input_trace,fixed_div_profile=a.fixed_div_profile,fast_fixed_div=a.fast_fixed_div,fast_columns=a.fast_columns,fast_render=a.fast_render,screen_copy_sha256=hashlib.sha256((here/'screen_copy/copy.h').read_bytes()).hexdigest() if a.platform_runtime else None,wad_profile=a.wad_profile,column_test=a.column_test,point_side_o0=a.point_side_o0,target=a.target,compiler=subprocess.check_output([cc,'--version'],text=True).splitlines()[0],flags=flags,source_count=len(sources),failures=failures,commands=commands,patches=patches),indent=2)+'\n')
 if failures:raise SystemExit('Compile failed: '+str(failures))
 if a.platform_runtime and a.target=='host32':
  subprocess.run(['ld','-m','elf_i386','-r','-d','-o',str(out/'doom-engine.o'),*objs],check=True)

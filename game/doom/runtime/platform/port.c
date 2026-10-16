@@ -136,7 +136,11 @@ int DG_GetKey(int*p,unsigned char*k){
 #ifdef DOOM_PLAY
  const struct doom_runtime_checkpoint*t=(const void*)owned;int event;
  doom_platform_safe();event=t->mark(101,0,0,0);if(event<0)fatal(210);
- if(event>1){unsigned v=(unsigned)event-2;if(!p||!k)fatal(205);*p=(v>>8)&1;*k=v&255;return 1;}
+ if(event>1){unsigned v=(unsigned)event-2;if(!p||!k)fatal(205);*p=(v>>8)&1;*k=v&255;
+#ifdef DOOM_INPUT_TRACE
+ doom_input_event(1,*p,*k);
+#endif
+ return 1;}
 #endif
 if(!p||!k)fatal(205);if(!key_count)return 0;*p=pressed[key_read];*k=keys[key_read];key_read=(key_read+1)%DPL_KEYS;key_count--;return 1;}
 extern unsigned char *DG_ScreenBuffer;

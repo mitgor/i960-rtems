@@ -23,7 +23,7 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
  if presentation_test:assert pipeline_test and not wad_load_test
  if profile:
   assert pipeline
-  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('fixed_div_profile','fast_fixed_div','runtime_detail','wad_profile','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')})+'\n')
+  (out/'presentation-options.json').write_text(json.dumps({k:m.get(k,False) for k in ('input_trace','fixed_div_profile','fast_fixed_div','runtime_detail','wad_profile','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')})+'\n')
  token=secrets.token_hex(24);lock=threading.Lock();keys=deque();stop=threading.Event();held_keys=set();input_deadline=[0.]
  pp=None;pp_active=False;last_completion=0.;clocks=[]
  dma=None
@@ -93,7 +93,12 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
    a=time.monotonic();ms=struct.unpack_from('<I',pp.call(7))[0];b=time.monotonic()
    samples.append(dict(before=a,after=b,card_ms=ms))
   clocks.append(samples)
- def ctl(i=0,v=0):return struct.unpack('<I',u.io(10,struct.pack('<2I',i,v)))[0]
+ def ctl(i=0,v=0,observed_frame=None):
+  before=time.monotonic();result=struct.unpack('<I',u.io(10,struct.pack('<2I',i,v)))[0]
+  if i==2 and m.get('input_trace'):
+   assert observed_frame is not None
+   with (out/'input-submit.jsonl').open('a') as f:f.write(json.dumps(dict(key=v,result=result,before=before,after=time.monotonic(),observed_frame=observed_frame))+'\n')
+  return result
  try:
   # Preserve the proven 1 MiB placement gap while establishing both heap owners.
   u.begin([(0,4,4,1,0),(16,0,1048576-16,2,0)]);assert u.command(8)[5]==0x444c4942;u.command(5)
@@ -188,17 +193,17 @@ def exercise(fd,epoch,out,gate,wad,root,port,abort,accept_frames=0,bulk=False,bu
      if held_keys and time.monotonic()>input_deadline[0]:
       keys.extend(sorted(held_keys));held_keys.clear()
      while keys:
-      if ctl(2,keys[0])!=0:break
+      if ctl(2,keys[0],g)!=0:break
       keys.popleft()
     if (accept_frames or bulk_test or dma_test) and session==0:
-     if g==2:assert ctl(2,256+173)==0
-     if g==4:assert ctl(2,173)==0
+     if g==2:assert ctl(2,256+173,g)==0
+     if g==4:assert ctl(2,173,g)==0
     if wad_load_test and g in ((60,62,64,66) if pingpong else (10,12,14,16)):
      key=27 if g==(60 if pingpong else 10) else 13
-     assert ctl(2,256+key)==0 and ctl(2,key)==0
+     assert ctl(2,256+key,g)==0 and ctl(2,key,g)==0
     if pipeline_test and m.get('runtime_detail') and g in (20,32):
      # Explicit bounded acceptance exercises the same F5 input as the browser.
-     assert ctl(2,256+191)==0 and ctl(2,191)==0
+     assert ctl(2,256+191,g)==0 and ctl(2,191,g)==0
     if pipeline_test and m.get('runtime_detail') and g in (10,28,40):
      assert profile and profile_row['detail']==(int(bool(m.get('low_detail'))) ^ int(g==28))
     if pp_active:

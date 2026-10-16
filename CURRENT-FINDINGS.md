@@ -1,5 +1,31 @@
 # Current findings and evidence — 2026-10-16
 
+<!-- input-trace-current -->
+**2026-10-16 playable exact divide is now default.** `game/doom/play/build.py`
+and private playable engine builds select the accepted exact FixedDiv unless
+`--no-fast-fixed-div` is given. Non-play inventory builds keep their old default.
+Divide profiling and the new `--input-trace` remain opt-in and cannot share the
+same frame trailer. Earlier dated opt-in statements below are historical.
+
+The queued input-consumption diagnostic is implemented and card-qualified:
+8 scripted submissions reconcile with 24 dequeue/pre-menu/post-menu records in
+each traced run. Both runs consume keys for display frames 62/64/66/68 at game
+tics 61/63/65/68, two generations after host submission frames 60/62/64/66.
+This is not an input-to-paint latency measurement or retrospective proof of the
+historical menu mismatch; the old capture lacked these records.
+
+Four accepted 520-frame runs: trace off **6.432 FPS**, on **6.412 FPS** (−0.31%).
+All 2,080 images match, 228 full paired audits and all stall/STOP/drain/replay/
+tamper checks pass; 1,932 observed HTTP payloads match. Maximum IRQ gap 10.832 ms.
+One initial host logging scope failure is separately archived, fixed and tested;
+it is excluded from accepted results. Ownership and full audits remain intact.
+Evidence: `artifacts/input-trace-20261016/README.md`; format/tests:
+`game/doom/input_trace/README.md`. Next: profile and qualify a defined exact
+point-side helper/BSP change, preserving the current workaround until proven.
+Public IPv6 HTTP restored (200 / 2,890 bytes), boot
+`df928288-d6ce-4cbd-aaa5-67fea627e0f3`; the public relay owns the device.
+<!-- /input-trace-current -->
+
 <!-- divplay-current -->
 **2026-10-16 exact divide qualified without divide profiling:** `--fast-fixed-div`
 now works independently of `--fixed-div-profile`; both remain opt-in. Fresh

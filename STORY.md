@@ -3821,6 +3821,36 @@ not every map. The earlier menu discrepancy still deserves a record of which
 frame actually consumed each key. For now, the processor spends a little less
 time dividing, and the evidence for that claim fits beside the code.
 
+## Following the key
+
+The next question was about a menu picture, not a faster pixel loop. Once, an
+unchanged build had repeated a menu frame. The host knew when it sent the key,
+but that was not the same as knowing when Doom used it.
+
+We put a small optional recorder beside the input path. It marked a key leaving
+the card queue, entering the menu responder and leaving it, with the display
+generation and both game-loop tic counters. The records travelled in the
+existing owned frame. A full recorder reported overflow instead of hiding loss.
+
+The first card attempt found a mistake in the host logger: it tried to read a
+frame variable outside its scope. We saved the failed run, passed the frame
+explicitly, added a regression test and repeated the run with the same card
+binary. That failure belongs in the evidence too.
+
+The successful traces were precise. Escape sent after host frame 60 was used
+for display frame 62 at game tic 61. The Enter pairs followed at frames 64, 66
+and 68. Both traced runs agreed, including the menu opening and closing. The
+host was observing a pipeline already in flight. Two display generations were
+not a direct measurement of input-to-screen latency, and the old untraced
+capture still could not tell us exactly what had happened that time.
+
+The exact divide became the normal playable build, with an explicit switch
+back to the original. Tracing stayed optional. Four accepted runs measured
+6.432 frames per second without it and 6.412 with it. All 2,080 pictures agreed;
+228 full paired audits and the stall, STOP and heap-drain checks passed. The
+largest interrupt gap was 10.83 milliseconds. We had gained a useful way to
+ask when a key took effect without giving up the checks around the game.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

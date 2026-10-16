@@ -1,0 +1,3 @@
+PASS two deterministic native 52-frame input runs with STOP and heap drain
+PASS actual backend cache counters are nonzero in all 52 native frames
+PASS actual native key dequeue and menu responder trace; Escape opens menu

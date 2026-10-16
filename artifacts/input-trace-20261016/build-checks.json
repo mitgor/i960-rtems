@@ -1,0 +1,18 @@
+{
+  "build": {
+    "input_trace": false,
+    "fast_fixed_div": true,
+    "point_side_sha256": "beb7a66306aef9fa8a0cb4c0e18e81524b337c05f640897282c3f8bedcc6dd1b",
+    "divide_sha256": "c4e7e522441d9847d9c01b8ee9d33a6b39b5062a41833bc3bdc3c407ae5d30d4",
+    "memory_bytes": 819168,
+    "file_bytes": 435000
+  },
+  "build-fast": {
+    "input_trace": true,
+    "fast_fixed_div": true,
+    "point_side_sha256": "beb7a66306aef9fa8a0cb4c0e18e81524b337c05f640897282c3f8bedcc6dd1b",
+    "divide_sha256": "c4e7e522441d9847d9c01b8ee9d33a6b39b5062a41833bc3bdc3c407ae5d30d4",
+    "memory_bytes": 820208,
+    "file_bytes": 435576
+  }
+}

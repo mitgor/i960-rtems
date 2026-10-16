@@ -23,15 +23,21 @@ of that parallel research work.
    and call-count traces agree; 231 full paired audits and 66,560 on-card
    arithmetic comparisons pass. See [evidence](../../artifacts/fixeddiv-20261016/README.md).
    Preserve saturation, signs, rounding and the original INT_MIN fallback.
-5. **Done, opt-in:** exact divide without its profiling/self-tests. Fresh matched
+5. **Done, now default for play:** exact divide without its profiling/self-tests. Fresh matched
    A/B/B/A measures **6.224 → 6.412 FPS (+3.01%)**, renderer 141.25 → 136.93 ms.
    All 2,080 images, 230 full paired audits and lifecycle/replay/tamper checks pass.
    Frame/CPU/WAD counters remain. See [evidence](../../artifacts/divplay-20261016/README.md).
-6. **Next — validation follow-up:** record the frame/tic consuming scripted input;
-   the latest batch agrees, but it does not explain the earlier transient menu
-   difference in the asynchronous pipeline.
-7. Then test bounded BSP changes, further selective compiler settings, measured
-   memory hot spots and cache/layout changes one at a time on the latest baseline.
+6. **Done:** optional input-consumption trace, including frame/tic and menu
+   responder state. Two card runs reconcile every scripted key and agree on
+   consumption at frames 62/64/66/68. Full A/B/B/A: 6.432 FPS trace-off versus
+   6.412 trace-on, all 2,080 images and 228 full audits pass. See
+   [evidence](../../artifacts/input-trace-20261016/README.md). The historical menu
+   discrepancy remains unproven; use the new trace on a recurrence.
+7. **Next:** profile/qualify a defined exact point-side helper and bounded BSP
+   changes. Keep the protected O0 workaround until a replacement passes exact
+   host and card checks. Then test further selective compiler settings, measured
+   memory hot spots and cache/layout changes one at a time on this baseline.
+
 
 Quality reductions must have explicit independent controls, preferably at runtime
 in one build, with normal rendering available. Flat floors, smaller viewports and

@@ -1,5 +1,10 @@
 # Browser Doom on the i960
 
+The qualified exact divide is now enabled by default. Use
+`--no-fast-fixed-div` to build the original arithmetic for comparison.
+Optional [input-consumption tracing](../input_trace/README.md) records the actual
+frame/tic processing each key. See the [card evidence](../../../artifacts/input-trace-20261016/README.md).
+
 See [presentation profiling and optional FNV/direct delivery](PRESENTATION.md) for the new experimental build modes and acceptance evidence.
 
 For connection instructions, controls and launch commands, see [PLAY.md](PLAY.md).

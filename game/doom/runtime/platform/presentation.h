@@ -1,3 +1,25 @@
+#ifdef DOOM_INPUT_TRACE
+/* Bounded diagnostics, no heap allocation or new host/card ownership. */
+extern int gametic,menuactive;
+extern int doom_input_maketic(void);
+static unsigned input_rows[16][7],input_count,input_sequence,input_overflow;
+void doom_input_event(unsigned phase,unsigned down,unsigned key){
+ unsigned *p;
+ input_sequence++;
+ if(input_count==16){input_overflow++;return;}
+ p=input_rows[input_count++];p[0]=input_sequence;p[1]=phase;
+ p[2]=stats.frames+1;p[3]=(unsigned)gametic;p[4]=(unsigned)doom_input_maketic();
+ p[5]=(key&255u)|((down&1u)<<8);p[6]=(unsigned)menuactive;
+}
+static void input_record(unsigned *q,unsigned generation){
+ unsigned i,j;
+ for(i=0;i<128;i++)q[i]=0;
+ q[0]=0x31525449u;q[1]=1;q[2]=generation;q[3]=input_count;
+ q[4]=input_sequence;q[5]=input_overflow;q[6]=(unsigned)gametic;q[7]=(unsigned)doom_input_maketic();
+ for(i=0;i<input_count;i++)for(j=0;j<7;j++)q[8+i*7+j]=input_rows[i][j];
+ input_count=0;
+}
+#endif
 #ifdef DOOM_FIXED_DIV_PROFILE
 #include "fixed_profile.h"
 #endif
@@ -113,6 +135,9 @@ static void present_record(unsigned char *frame,unsigned generation,unsigned mod
 #endif
 #ifdef DOOM_FIXED_DIV_PROFILE
  doom_div_record((unsigned*)(frame+65024));
+#endif
+#ifdef DOOM_INPUT_TRACE
+ input_record((unsigned*)(frame+65024),generation);
 #endif
  p[12]=stats.frame_hash;p[13]=stats.palette_hash;p[14]=10;p[15]=0;
 #else

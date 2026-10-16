@@ -34,6 +34,18 @@ def decode(raw,g,test=False,options=None):
   assert q[:2]==(0x31435057,1) and q[15]==10 and q[6]==q[7]==q[8]
   assert all(x%10==0 for x in q[2:6])
   d['wad_cache']=list(q);end=65024
+ if options.get('input_trace'):
+  assert not options.get('fixed_div_profile') and end<=65024 and not any(raw[end:65024])
+  q=struct.unpack_from('<128I',raw,65024)
+  assert q[:3]==(0x31525449,1,g) and q[3]<=16 and q[5]==0
+  assert q[4]>=q[3] and not any(q[8+7*q[3]:])
+  events=[list(q[8+7*i:15+7*i]) for i in range(q[3])]
+  for i,row in enumerate(events):
+   seq,phase,frame,tic,make,key,menu=row
+   assert seq==q[4]-q[3]+i+1 and phase in (1,2,3) and frame==g
+   assert key<=511 and menu in (0,1)
+  d['input_trace']=dict(total=q[4],gametic=q[6],maketic=q[7],events=events)
+  end=65536
  if options.get('fixed_div_profile'):
   assert end<=65024 and not any(raw[end:65024])
   q=struct.unpack_from('<128I',raw,65024)
@@ -49,6 +61,7 @@ def decode(raw,g,test=False,options=None):
  return d
 
 def preflight(admission,pipeline,pipeline_test,wad_load_test):
+ if admission.get("input_trace"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer") and not admission.get("fixed_div_profile")
  if admission.get("fixed_div_profile"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer")
  if any(admission.get(k) for k in ('runtime_detail','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')):
   assert pipeline and admission.get('double_buffer'), 'presentation features require admitted two-slot ownership'

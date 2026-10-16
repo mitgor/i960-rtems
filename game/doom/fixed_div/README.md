@@ -2,8 +2,11 @@
 
 `--fixed-div-profile` instruments each pinned-source call site and runs 32
 bounded differential comparisons per display. `--fast-fixed-div` selects the
-exact candidate independently. Omit `--fixed-div-profile` to compile out its
-per-call timers and per-frame differential self-tests. Both are opt-in. Keep
+exact implementation explicitly. It is now the default for private playable
+engines and the interactive builder. Use `--no-fast-fixed-div` to retain the
+original divide. Non-play builds keep their original default. Omit
+`--fixed-div-profile` to compile out per-call timers and per-frame differential
+self-tests; profiling remains opt-in. Keep
 fixed quality, full audits and ownership checks for comparisons.
 
 The original signed 64-bit helper is preserved as `doom_div_legacy`. The new
