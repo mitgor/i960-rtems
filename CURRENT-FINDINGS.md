@@ -1,59 +1,33 @@
 # Current findings — 2026-10-16
 
-## Fresh AcceleRAID dump — latest result (2026-10-16)
+## AcceleRAID complete stock dump — 2026-10-16
 
-Fresh initialization and paired descriptor reads passed. Recovered matching pairs
-of main firmware (512 KiB), boot block (64 KiB) and BIOS (28 KiB); embedded main
-firmware CRC passes and BIOS equals independent PCI capture. Raw controller info
-reports 100 MHz, 16 MB RAM, 8 MB cache, 1 MiB flash. Whole physical flash remains
-incomplete. EZAssist returned data with full residual; subsequent testing froze
-the host (user confirmed). Power cycle requested. Old PG remained unbound and
-received no targeted operations. Do not forcibly unload uncertain DMA resources.
-The new guarded/aligned companion revision is prepared but not card-validated.
-Temporary myrs blacklist remains; do not remove the existing myrb rules.
-[Current evidence and next steps](artifacts/current/accele160-readimage-20261016/fresh/README.md).
+Accepted two identical **1 MiB full-flash reads** via READIMAGE selector 9:
+zero residual, unchanged 64 KiB prefix/1 MiB suffix DMA guards. Boot, main
+firmware, BIOS, diagnostics and descriptor match independent region captures;
+embedded firmware and EZAssist decompression CRCs pass.
 
+Selector 4 is unsafe with the descriptor's compressed length: it decompresses
+551,078 bytes directly into host memory, ignoring the requested 164,576-byte
+extent. The guarded experiment contained this overrun; selector 4 is now disabled.
+Use selector 9 and extract EZAssist offline. No flash writes were issued.
 
-## READIMAGE follow-up — latest hardware state
+Old DAC960PG `0000:37:04.1` stayed unbound and untouched. New AcceleRAID
+`0000:37:09.1` is bound to `myrsread`, firmware 6.00-05; firmware reports
+100 MHz, 16 MiB RAM, 8 MiB cache and 1 MiB flash. SSH is healthy. The failed
+EZAssist allocation and its pinned companion remain deliberately retained until
+reboot; do not force unload/unbind them. Successful raw readers were released.
+Temporary myrs blacklist was removed and initramfs updated; existing myrb rules
+were preserved. No RTEMS/Doom session is active. New-card code execution and
+firmware compatibility are not yet established; explicit BDF selection remains
+mandatory. Half-height work stays on hold.
 
-Recovered the vendor descriptor READIMAGE call (0x20/0x2d, selector 0x0e,
-1024 bytes), but driver handoff failed before submitting it. New-card mailbox
-setup returned status 2; upstream reset path ran on the new card only. Subsequent
-new-card initialization, including stock myrs, returned 0xFB. Old PG stayed
-unbound and untouched. User authorized whole-PC restart; temporary myrs blacklist
-is installed in `/etc/modprobe.d/i960-readimage-temporary.conf` and initramfs.
-SSH return is pending. No experiment autoload was installed. Restore that one
-blacklist after testing; retain the existing myrb rules. Full flash remains
-undumped; only the earlier 28 KiB BIOS capture is accepted.
-[Protocol, exact evidence, continuation and restoration](artifacts/current/accele160-readimage-20261016/README.md).
-
-
-## AcceleRAID read-only inspection — 2026-10-16
-
-Paired **28 KiB stock PCI BIOS** capture passed header/checksum and byte comparison;
-PCI config unchanged, new card still bound to `myrs`, old card untouched/unbound.
-This is **not full controller flash**. READIMAGE (V2 IOCTL 0x2d) is a research
-lead only: its parameters are not established; no mailbox command was issued.
-Primary RTEMS/Doom launch and cleanup now require explicit `--bdf` and exact PG
-identity. Historical callers without BDF fail closed; do not run old prebuilt
-scripts assuming `37:09.1` is the PG. Clock remains unverified, half-height on hold.
-[Evidence and next steps](artifacts/current/accele160-20261016/README.md).
-
+[Evidence, reproduction and next steps](artifacts/current/accele160-guarded-20261016/README.md).
 
 This is the current state, not a chronological experiment log. Follow
 [reproduction](docs/reproduce.md), [subprojects](subprojects/README.md), and
 [artifact retention/restoration](artifacts/README.md). The narrative remains in
 [STORY.md](STORY.md); dated conclusions remain in [milestone notes](artifacts/notes/).
-
-## Current hardware handoff
-
-Both cards are installed. The existing DAC960PG (`1069:0010`) is now unbound at
-`0000:37:04.1`; the new AcceleRAID 160 (`1069:0050`, subsystem `1069:0054`) is at
-`0000:37:09.1`, bound to `myrs`, firmware 6.00-05, reported memory 16 MB/cache 8 MB.
-The 100 MHz clock has not been independently verified. **Old BDF defaults now
-point at the new board.** No RTEMS web relay or Doom session is running.
-See [dual-card inventory and next steps](docs/hardware/dual-card-20261016.md).
-Half-height work remains **on hold** and off by default.
 
 ## Working
 

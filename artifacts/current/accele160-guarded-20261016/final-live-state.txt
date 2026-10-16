@@ -1,0 +1,25 @@
+[   43.409026] ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading firmware file 'rt2870.bin'
+[   43.552376] ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware detected - version: 0.36
+[   46.538348] tg3 0000:01:00.0 enp1s0: Link is up at 1000 Mbps, full duplex
+[   46.538363] tg3 0000:01:00.0 enp1s0: Flow control is on for TX and on for RX
+[   47.204701] kauditd_printk_skb: 65 callbacks suppressed
+[   47.204707] audit: type=1400 audit(1792175320.102:77): apparmor="DENIED" operation="capable" class="cap" profile="/usr/sbin/cupsd" pid=952 comm="cupsd" capability=12  capname="net_admin"
+[   48.321812] set_capacity_and_notify: 25 callbacks suppressed
+[   48.321817] loop35: detected capacity change from 0 to 8
+[   52.616810] systemd-journald[359]: File /var/log/journal/e06893f8d50242859657a35d783b761b/user-1000.journal corrupted or uncleanly shut down, renaming and replacing.
+[   76.287952] rfkill: input handler disabled
+[  129.589558] scsi host7: Configuring AcceleRAID 160 PCI RAID Controller
+[  129.589565] scsi host7:   Firmware Version: 6.00-05, Channels: 1, Memory Size: 16MB
+[  129.589567] scsi host7:   Controller Queue Depth: 509, Maximum Blocks per Command: 2048
+[  129.589569] scsi host7:   Driver Queue Depth: 509, Scatter/Gather Limit: 128 of 128 Segments
+[  129.589570] scsi host7:   Device Channel 0: max 16 devices
+[  129.589572] scsi host7:   Device Channel 1: max 16 devices
+[  129.589573] scsi host7:   Physical: 1/2 channels, 0 disks, 1 devices
+[  129.589575] scsi host7:   Logical: 2/2 channels, 0 disks
+[  129.589654] scsi host7: DAC960
+[  131.345370] scsi 7:0:7:0: RAID              MYLEX    AcceleRAID 160   0600 PQ: 6 ANSI: 3
+0000:37:04.1 0000:37:09.1 ../../../../bus/pci/drivers/myrsread
+done=1 status=0 residual=164576 selector=4 length=164576 released=0 guard_changes=386314
+companion              12288  1
+myrsread               65536  1
+raid_class             12288  1 myrsread

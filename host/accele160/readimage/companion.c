@@ -9,8 +9,11 @@
 #include <linux/workqueue.h>
 #include <scsi/scsi_host.h>
 #include "myrs.h"
+#ifndef CAPTURE_DIR
+#define CAPTURE_DIR "accele-readimage"
+#endif
 static char *bdf="";
-static unsigned int selector=3, length=1024;
+static unsigned int selector=0, length=0;
 module_param(bdf,charp,0444);
 module_param(selector,uint,0444);
 module_param(length,uint,0444);
@@ -20,6 +23,7 @@ static struct module *parent;
 static struct dentry *dir;
 /* Extra mapped guard space is diagnostic, not an IOMMU isolation guarantee. */
 #define GUARD 65536u
+#define TAIL_GUARD 1048576u
 static void *allocation,*data;
 static dma_addr_t allocation_dma;
 static unsigned int guard_changes;
@@ -67,7 +71,7 @@ static void worker(struct work_struct *w)
   unsigned int i;
   for(i=0;i<GUARD;i++)
    guard_changes+=((u8 *)allocation)[i]!=0xa5;
-  for(i=GUARD+length;i<length+2*GUARD;i++)
+  for(i=GUARD+length;i<length+GUARD+TAIL_GUARD;i++)
    guard_changes+=((u8 *)allocation)[i]!=0xa5;
  }
  mutex_lock(&lock);done=true;mutex_unlock(&lock);
@@ -89,7 +93,7 @@ static ssize_t read_data(struct file *f,char __user *out,size_t n,loff_t *pos)
 static ssize_t release_job(struct file *f,const char __user *in,size_t n,loff_t *pos)
 {
  mutex_lock(&lock);
- if(!done){mutex_unlock(&lock);return -EBUSY;}
+ if(!done || status || residual || guard_changes){mutex_unlock(&lock);return -EBUSY;}
  flush_work(&work);
  if(!released){released=true;module_put(THIS_MODULE);}
  mutex_unlock(&lock);return n;
@@ -101,7 +105,7 @@ static int __init start(void)
 {
  unsigned int domain,bus,slot,fn;char tail;
  if(sscanf(bdf,"%x:%x:%x.%x%c",&domain,&bus,&slot,&fn,&tail)!=4 || domain>65535 || bus>255 || slot>31 || fn>7) return -EINVAL;
- if(!length || (length & 3) || length>1048576 || !((selector>=1 && selector<=5)||selector==14)) return -EINVAL;
+ if(!length || (length & 3) || length>1048576 || !((selector>=1 && selector<=3)||selector==5||selector==9||selector==14)) return -EINVAL;
  pdev=pci_get_domain_bus_and_slot(domain,bus,PCI_DEVFN(slot,fn));
  if(!pdev)return -ENODEV;
  if(pdev->vendor!=0x1069 || pdev->device!=0x0050 || pdev->subsystem_vendor!=0x1069 || pdev->subsystem_device!=0x0054)goto wrong;
@@ -112,12 +116,12 @@ static int __init start(void)
  cs=pci_get_drvdata(pdev);
  device_unlock(&pdev->dev);
  if(!cs || cs->pdev!=pdev || !cs->ctlr_info || !cs->next_cmd_mbox){module_put(parent);goto wrong;}
- allocation=dma_alloc_coherent(&pdev->dev,length+2*GUARD,&allocation_dma,GFP_KERNEL);
+ allocation=dma_alloc_coherent(&pdev->dev,length+GUARD+TAIL_GUARD,&allocation_dma,GFP_KERNEL);
  if(!allocation){module_put(parent);pci_dev_put(pdev);return -ENOMEM;}
- memset(allocation,0xa5,length+2*GUARD);
+ memset(allocation,0xa5,length+GUARD+TAIL_GUARD);
  data=(u8 *)allocation+GUARD;dma=allocation_dma+GUARD;
- dir=debugfs_create_dir("accele-readimage",NULL);
- if(IS_ERR(dir)){dma_free_coherent(&pdev->dev,length+2*GUARD,allocation,allocation_dma);module_put(parent);pci_dev_put(pdev);return PTR_ERR(dir);}
+ dir=debugfs_create_dir(CAPTURE_DIR,NULL);
+ if(IS_ERR(dir)){dma_free_coherent(&pdev->dev,length+GUARD+TAIL_GUARD,allocation,allocation_dma);module_put(parent);pci_dev_put(pdev);return PTR_ERR(dir);}
  debugfs_create_file("status",0400,dir,NULL,&status_ops);
  debugfs_create_file("data.bin",0400,dir,NULL,&data_ops);
  debugfs_create_file("release",0200,dir,NULL,&release_ops);
@@ -128,7 +132,7 @@ static int __init start(void)
 static void __exit stop(void)
 {
  flush_work(&work);debugfs_remove_recursive(dir);
- dma_free_coherent(&pdev->dev,length+2*GUARD,allocation,allocation_dma);
+ dma_free_coherent(&pdev->dev,length+GUARD+TAIL_GUARD,allocation,allocation_dma);
  module_put(parent);pci_dev_put(pdev);
 }
 module_init(start);module_exit(stop);MODULE_LICENSE("GPL");

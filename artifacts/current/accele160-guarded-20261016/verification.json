@@ -1,0 +1,60 @@
+{
+  "bytes": 1048576,
+  "sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "paired_equal": true,
+  "zero_residual": true,
+  "guards_unchanged": true,
+  "complete_flash_address_range": true,
+  "independent_external_programmer_verification": false,
+  "region_matches": {
+    "boot": {
+      "offset": "0xf0000",
+      "bytes": 65536,
+      "sha256": "de8e40ed7384a04c7753123f009fd6f4e6f1d5496e95fdb38316f0be903ffe34"
+    },
+    "firmware": {
+      "offset": "0x40000",
+      "bytes": 524288,
+      "sha256": "068bc4b39399d158bb0ae49dfa6f1158f6ba03b25f9ca30cb677607525eb471c"
+    },
+    "bios": {
+      "offset": "0x30000",
+      "bytes": 28672,
+      "sha256": "96d5d8996099ad587533f50caebe18c0211eb4a555f17027a75763f4e633b47a"
+    },
+    "descriptor": {
+      "offset": "0xe0000",
+      "bytes": 1024,
+      "sha256": "c66f264385d38024cbf1558d4cf56daae5eeca8cff2c7140bc304bd0b69986e4"
+    },
+    "diagnostics": {
+      "offset": "0xc0000",
+      "bytes": 64512,
+      "sha256": "2a34b3db34d92455953b1bd93cfb12986d11807124841e439c1b25207b099afc"
+    }
+  },
+  "firmware_zip": {
+    "name": "ZIP1",
+    "compressed_bytes": 365113,
+    "expanded_bytes": 685996,
+    "crc32": "d93addd1",
+    "crc_passed": true,
+    "sha256": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db"
+  },
+  "ezassist_zip": {
+    "name": "EZASSIST.ROM",
+    "compressed_bytes": 164453,
+    "expanded_bytes": 551078,
+    "crc32": "99e802f5",
+    "crc_passed": true,
+    "sha256": "2a5cad6a4124e72b44bfde7583742dc45e1f4c54a5e7e6dac22e832980032204"
+  },
+  "overrun": {
+    "requested": 164576,
+    "actual_expanded": 551078,
+    "bytes_beyond_request": 386502,
+    "changed_guard_bytes": 386314,
+    "exact_match_to_decompressed_flash": true,
+    "prefix_and_remaining_tail_unchanged": true
+  }
+}

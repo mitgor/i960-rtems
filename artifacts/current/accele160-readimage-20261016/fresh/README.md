@@ -1,5 +1,7 @@
 # Fresh-boot READIMAGE results — 2026-10-16
 
+**Superseded hardware status:** [complete paired 1 MiB dump and guarded protocol findings](../../accele160-guarded-20261016/README.md) are now accepted. The entries below describe the earlier experiment.
+
 **Main stock firmware, boot block and BIOS recovered as matching pairs.**
 This is not yet a complete 1 MiB physical flash backup.
 

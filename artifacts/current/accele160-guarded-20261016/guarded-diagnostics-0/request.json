@@ -1,0 +1,17 @@
+{
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "selector": 5,
+  "length": 64512,
+  "module_sha256": "c07a60e0a9f052e399124396d4439f9aa1c4092ac058626e348eaeb5527c2ea8",
+  "boot_id": "0e92f975-c3eb-4d54-b388-61f2b3e3ad5f"
+}

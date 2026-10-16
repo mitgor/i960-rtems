@@ -1,0 +1,70 @@
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 000000007854f6a8: 0000000000000000 ...
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 0000000010fe8bee: ffffffffffffffda (0xffffffffffffffda)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 00000000b9d91d1d: 00007ad69f7150b7 (0x7ad69f7150b7)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 00000000b41ef7b8: 0000000000000000 ...
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 00000000321f6d3d: 0000000000000004 (0x4)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 000000002cb3ab73: 0000000000000004 (0x4)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 000000004f301062: 0000000000000003 (0x3)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 0000000010855475: 00007ad69f7150b7 (0x7ad69f7150b7)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 0000000069eb3db3: 0000000000000033 (0x33)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 000000001cd101db: 0000000000000246 (0x246)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 000000004f4a3191: 00007fff7a876708 (0x7fff7a876708)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: 00000000e0d08aed: 000000000000002b (0x2b)
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? nv_shutdown_adapter+0x1c/0xb0 [nvidia]
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? nv_close_device+0x138/0x230 [nvidia]
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? nvidia_close+0xd1/0x410 [nvidia]
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? nvidia_frontend_close+0x47/0x80 [nvidia]
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? __fput+0xa3/0x2e0
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? __fput_sync+0x1c/0x30
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? __x64_sys_close+0x3e/0x90
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? x64_sys_call+0x19ad/0x2480
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x89/0x180
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? nvidia_frontend_unlocked_ioctl+0x5b/0xa0 [nvidia]
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? syscall_exit_to_user_mode+0x43/0x1e0
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x95/0x180
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? irqentry_exit+0x43/0x50
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? exc_page_fault+0x94/0x1b0
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  ? entry_SYSCALL_64_after_hwframe+0x78/0x80
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.038:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="libreoffice-senddoc" pid=762 comm="apparmor_parser"
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.038:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=751 comm="apparmor_parser"
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.038:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=751 comm="apparmor_parser"
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.039:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/bin/man" pid=757 comm="apparmor_parser"
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.039:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="man_filter" pid=757 comm="apparmor_parser"
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.039:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="man_groff" pid=757 comm="apparmor_parser"
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.042:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="libreoffice-xpdfimport" pid=765 comm="apparmor_parser"
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.062:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=750 comm="apparmor_parser"
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.075:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="tcpdump" pid=758 comm="apparmor_parser"
+Oct 16 20:17:04 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174620.075:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ioq3ded" pid=759 comm="apparmor_parser"
+Oct 16 20:17:13 mit-HP-Z400-Workstation kernel: ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading firmware file 'rt2870.bin'
+Oct 16 20:17:13 mit-HP-Z400-Workstation kernel: ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware detected - version: 0.36
+Oct 16 20:17:14 mit-HP-Z400-Workstation kernel: kauditd_printk_skb: 65 callbacks suppressed
+Oct 16 20:17:14 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792174634.754:77): apparmor="DENIED" operation="capable" class="cap" profile="/usr/sbin/cupsd" pid=941 comm="cupsd" capability=12  capname="net_admin"
+Oct 16 20:17:15 mit-HP-Z400-Workstation kernel: set_capacity_and_notify: 25 callbacks suppressed
+Oct 16 20:17:15 mit-HP-Z400-Workstation kernel: loop35: detected capacity change from 0 to 8
+Oct 16 20:17:16 mit-HP-Z400-Workstation kernel: tg3 0000:01:00.0 enp1s0: Link is up at 1000 Mbps, full duplex
+Oct 16 20:17:16 mit-HP-Z400-Workstation kernel: tg3 0000:01:00.0 enp1s0: Flow control is on for TX and on for RX
+Oct 16 20:17:38 mit-HP-Z400-Workstation kernel: rfkill: input handler disabled
+Oct 16 20:18:35 mit-HP-Z400-Workstation kernel: myrsread: Unknown symbol raid_class_attach (err -2)
+Oct 16 20:18:35 mit-HP-Z400-Workstation kernel: myrsread: Unknown symbol raid_class_release (err -2)
+Oct 16 20:18:54 mit-HP-Z400-Workstation kernel: scsi host7: Configuring AcceleRAID 160 PCI RAID Controller
+Oct 16 20:18:54 mit-HP-Z400-Workstation kernel: scsi host7:   Firmware Version: 6.00-05, Channels: 1, Memory Size: 16MB
+Oct 16 20:18:54 mit-HP-Z400-Workstation kernel: scsi host7:   Controller Queue Depth: 509, Maximum Blocks per Command: 2048
+Oct 16 20:18:54 mit-HP-Z400-Workstation kernel: scsi host7:   Driver Queue Depth: 509, Scatter/Gather Limit: 128 of 128 Segments
+Oct 16 20:18:54 mit-HP-Z400-Workstation kernel: scsi host7:   Device Channel 0: max 16 devices
+Oct 16 20:18:54 mit-HP-Z400-Workstation kernel: scsi host7:   Device Channel 1: max 16 devices
+Oct 16 20:18:54 mit-HP-Z400-Workstation kernel: scsi host7:   Physical: 1/2 channels, 0 disks, 1 devices
+Oct 16 20:18:54 mit-HP-Z400-Workstation kernel: scsi host7:   Logical: 2/2 channels, 0 disks
+Oct 16 20:18:54 mit-HP-Z400-Workstation kernel: scsi host7: DAC960
+Oct 16 20:18:55 mit-HP-Z400-Workstation kernel: scsi 7:0:7:0: RAID              MYLEX    AcceleRAID 160   0600 PQ: 6 ANSI: 3
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: DRHD: handling fault status reg 2
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: [DMA Write NO_PASID] Request device [00:1e.0] fault addr 0xfff29000 [fault reason 0x05] PTE Write access is not set
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: [DMA Write NO_PASID] Request device [00:1e.0] fault addr 0xfff29000 [fault reason 0x05] PTE Write access is not set
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: [DMA Write NO_PASID] Request device [00:1e.0] fault addr 0xfff29000 [fault reason 0x05] PTE Write access is not set
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: [DMA Write NO_PASID] Request device [00:1e.0] fault addr 0xfff29000 [fault reason 0x05] PTE Write access is not set
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: [DMA Write NO_PASID] Request device [00:1e.0] fault addr 0xfff29000 [fault reason 0x05] PTE Write access is not set
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: [DMA Write NO_PASID] Request device [00:1e.0] fault addr 0xfff29000 [fault reason 0x05] PTE Write access is not set
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: [DMA Write NO_PASID] Request device [00:1e.0] fault addr 0xfff29000 [fault reason 0x05] PTE Write access is not set
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: [DMA Write NO_PASID] Request device [00:1e.0] fault addr 0xfff29000 [fault reason 0x05] PTE Write access is not set
+Oct 16 20:22:45 mit-HP-Z400-Workstation kernel: DMAR: [DMA Write NO_PASID] Request device [00:1e.0] fault addr 0xfff29000 [fault reason 0x05] PTE Write access is not set
