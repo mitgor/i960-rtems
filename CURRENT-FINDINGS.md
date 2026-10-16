@@ -1,5 +1,19 @@
 # Current findings — 2026-10-16
 
+## READIMAGE follow-up — latest hardware state
+
+Recovered the vendor descriptor READIMAGE call (0x20/0x2d, selector 0x0e,
+1024 bytes), but driver handoff failed before submitting it. New-card mailbox
+setup returned status 2; upstream reset path ran on the new card only. Subsequent
+new-card initialization, including stock myrs, returned 0xFB. Old PG stayed
+unbound and untouched. User authorized whole-PC restart; temporary myrs blacklist
+is installed in `/etc/modprobe.d/i960-readimage-temporary.conf` and initramfs.
+SSH return is pending. No experiment autoload was installed. Restore that one
+blacklist after testing; retain the existing myrb rules. Full flash remains
+undumped; only the earlier 28 KiB BIOS capture is accepted.
+[Protocol, exact evidence, continuation and restoration](artifacts/current/accele160-readimage-20261016/README.md).
+
+
 ## AcceleRAID read-only inspection — 2026-10-16
 
 Paired **28 KiB stock PCI BIOS** capture passed header/checksum and byte comparison;

@@ -1,0 +1,33 @@
+{
+  "hash": "dcb44fd876e41a1b844a5213757d0235f9fce4c62205661c81cdb88a0d0c21ba",
+  "verified_anchors": 12,
+  "readimage_routine_file_offset": "0x939c",
+  "direct_far_calls": [
+    "0xaa24"
+  ],
+  "descriptor": {
+    "command": 32,
+    "ioctl": 45,
+    "selector_byte22": 14,
+    "word16": 0,
+    "size": 1024,
+    "expected_prefix_hex": "584c594d"
+  },
+  "command_layout": {
+    "2": "0x20",
+    "4..7": "transfer length",
+    "8..15": "sense address",
+    "16..17": "argument word (descriptor caller supplies zero)",
+    "20": "sense length",
+    "21": "0x2d",
+    "22..23": "selector (zero-extended byte)",
+    "32..39": "DMA address",
+    "40..47": "DMA length"
+  },
+  "limitations": [
+    "only descriptor call verified",
+    "no arbitrary-flash offset semantics established",
+    "vendor utility targets a newer package",
+    "not a card dump"
+  ]
+}

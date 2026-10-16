@@ -2208,6 +2208,61 @@
       "sha256": "269a5fc18dfb9ab7e64d4926454475a9f05e08f010dfbadecc640cf84b13892a"
     },
     {
+      "path": "artifacts/current/accele160-readimage-20261016/DACFL6-decoded.exe",
+      "size": 115419,
+      "sha256": "dcb44fd876e41a1b844a5213757d0235f9fce4c62205661c81cdb88a0d0c21ba"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/README.md",
+      "size": 6933,
+      "sha256": "ea90676c64822171f3c714ca49d5081dfe9b031d43154d48cce80932b7c29ccd"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/build-receipt.json",
+      "size": 495,
+      "sha256": "dcb5d85702a841b12d5f01740b01f0f9f03e4fc203582a1ed0424f47f454b5a2"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fujitsu-ar160-package.exe",
+      "size": 1279936,
+      "sha256": "4149708a27dc113fafa9fb895cf0486b1be76dc9a23565abeb863d8fbef2709b"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/live-attempt.txt",
+      "size": 1935,
+      "sha256": "77ca8af52b6c888ca384ffdff6a1237dd6cc8b3e7bdd0be26999eb4d4744c0de"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/myrsread.ko",
+      "size": 820656,
+      "sha256": "7bf5ae04045de781c2233e14a947adcdc8d7ff81059f9913fa90226cb2020edf"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/probe-attempt.py",
+      "size": 1555,
+      "sha256": "753e7bdb41840a813910a48a62af0e5e8f453cf98cfd568dea780e88afa341de"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/protocol.json",
+      "size": 854,
+      "sha256": "05e41ab373248761494e7fc51ae2188de1b6e8b24ef6231e17267a158505822e"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/provenance.json",
+      "size": 641,
+      "sha256": "12b815f8f944118a9f5c2c5e0df9cab59a43cb8164a001722ad89ea3c8193af3"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/readimage-disassembly.txt",
+      "size": 8597,
+      "sha256": "f5316b9f057ecbdc3aadccad4842a77af2aef372aacb88d7da8779facef26419"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/upstream-sources.tar.gz",
+      "size": 26291,
+      "sha256": "3e7cdde7e01983e8aea03e63c305f32494e1a1b26b20b9f552fc312c26837834"
+    },
+    {
       "path": "artifacts/current/curation.json",
       "size": 9872,
       "sha256": "cdcd36a766f03fbe3611c2d653a022424f80153c926f4d1f2347de1526716056"

@@ -1,0 +1,12 @@
+{
+  "module_sha256": "7bf5ae04045de781c2233e14a947adcdc8d7ff81059f9913fa90226cb2020edf",
+  "kernel": "6.8.0-138-generic",
+  "compiler": "gcc-12 12.3.0",
+  "source_hashes": {
+    "myrs.c": "22df649eaea262c4baa149aa803ea395b89b629395445d4e09014e823a8a0aa2",
+    "myrs.h": "4e6b8d12cee6a289c2deab6d2e57d44b7fbe902dc5cee59c2a44385d729b8924"
+  },
+  "initialization_passed": false,
+  "readimage_submitted": false,
+  "note": "Kernel build succeeded. Initialization failed before extension commands."
+}

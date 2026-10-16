@@ -1,0 +1,25 @@
+[   32.734921] audit: type=1400 audit(1792173439.629:53): apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.snapd-desktop-integration" pid=799 comm="apparmor_parser"
+[   32.800345] audit: type=1400 audit(1792173439.694:54): apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.firefox.hook.install" pid=806 comm="apparmor_parser"
+[   53.666427] kauditd_printk_skb: 22 callbacks suppressed
+[   53.666433] audit: type=1400 audit(1792173460.560:77): apparmor="DENIED" operation="capable" class="cap" profile="/usr/sbin/cupsd" pid=944 comm="cupsd" capability=12  capname="net_admin"
+[   53.740742] ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading firmware file 'rt2870.bin'
+[   53.879513] ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware detected - version: 0.36
+[   56.022597] set_capacity_and_notify: 25 callbacks suppressed
+[   56.022602] loop35: detected capacity change from 0 to 8
+[   56.898542] tg3 0000:01:00.0 enp1s0: Link is up at 1000 Mbps, full duplex
+[   56.898557] tg3 0000:01:00.0 enp1s0: Flow control is on for TX and on for RX
+[   81.727404] rfkill: input handler disabled
+[  936.100752] scsi host0: Flushing Cache...
+[  936.108835] myrsread 0000:37:09.1: Failed to enable mailbox, status 2
+[  936.108843] myrsread 0000:37:09.1: Unable to Enable Memory Mailbox Interface
+[  936.108845] myrsread 0000:37:09.1: Failed to initialize Controller
+[  960.744694] myrsread 0000:37:09.1: enabling device (0000 -> 0002)
+[  960.745823] myrsread 0000:37:09.1: Unknown Initialization Error FB
+[  960.745829] myrsread 0000:37:09.1: Failed to initialize Controller
+[  966.689453] myrs 0000:37:09.1: Unknown Initialization Error FB
+[  966.689464] myrs 0000:37:09.1: Failed to initialize Controller
+164a6af9-4bc8-43f2-9eb0-805a0ce43f68
+0000:37:04.1 driver=unbound
+0000:37:09.1 driver=unbound
+myrs                   65536  0
+raid_class             12288  1 myrs

@@ -1,0 +1,12 @@
+{
+  "url": "https://support.ts.fujitsu.com/globalflash/ScsiController/AR160/V7.02-0-00_6.21-40/zip_ar160_v7.02-0-00_6.21-40.exe",
+  "package_sha256": "4149708a27dc113fafa9fb895cf0486b1be76dc9a23565abeb863d8fbef2709b",
+  "decoded_dacfl6_sha256": "dcb44fd876e41a1b844a5213757d0235f9fce4c62205661c81cdb88a0d0c21ba",
+  "decoder": "host/globalflash_decode.py",
+  "readimage_file_offset": "0x939c",
+  "descriptor_caller_file_offset": "0xa98e",
+  "upstream": {
+    "myrs.c": "https://raw.githubusercontent.com/torvalds/linux/v6.8/drivers/scsi/myrs.c",
+    "myrs.h": "https://raw.githubusercontent.com/torvalds/linux/v6.8/drivers/scsi/myrs.h"
+  }
+}
