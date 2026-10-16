@@ -1,7 +1,15 @@
 {
-  "status": "pending_host_return",
+  "status": "restored",
   "previous_boot": "822f72d7-8b2f-4a81-b041-b3cfbd384717",
-  "reason": "SSH did not return after authorized retained-module cleanup reboot; physical power cycle requested",
+  "restored_boot": "88cb22d4-b5ef-4a2a-b54c-46d9be7a3ce9",
+  "relay_pid": 2662,
+  "driver": "dac960auto",
+  "pci": "0000:37:09.1",
+  "http_status": 200,
+  "http_bytes": 2891,
+  "http_sha256": "c5e95dfc98ea2c903b2562da842486953201e31d7c45e3110d67f0ea9241e15e",
+  "verified_from": "Mac via global IPv6 ingress",
+  "public_url": "http://[2a02:8106:40:9000:f662:19ee:dbad:1f1e]:8080/",
   "script": "restore.sh",
   "evidence_saved_and_hash_verified": true
 }

@@ -7,11 +7,10 @@ This is the current state, not a chronological experiment log. Follow
 
 ## Current hardware handoff
 
-The half-height test passed and evidence is saved locally. The cleanup reboot
-has not yet returned over SSH; physical power cycling was requested. The public
-web service still needs restoration using
-[the saved handoff](artifacts/current/half-height-20261016/README.md#service-handoff).
-This operational state takes precedence over older service-restored notes.
+The half-height test passed and evidence is saved in Git. Cleanup reboot completed;
+the public RTEMS IPv6 web relay is restored and verified from the Mac (HTTP 200).
+It currently owns `0000:37:09.1` through `dac960auto`; no Doom session is running.
+[Exact handoff](artifacts/current/half-height-20261016/README.md#service-handoff).
 
 ## Working
 

@@ -2404,8 +2404,8 @@
     },
     {
       "path": "artifacts/current/half-height-20261016/README.md",
-      "size": 6192,
-      "sha256": "f514f4b8f19766812ebb52f0f8fb522beb800e44b10442af0e391436b76c7f92"
+      "size": 6453,
+      "sha256": "d7acd9b7499098d97e78862d6662e0e76f464572e6e021651d978f30ada1f23e"
     },
     {
       "path": "artifacts/current/half-height-20261016/acceptance-card.tar.gz",
@@ -2461,6 +2461,11 @@
       "path": "artifacts/current/half-height-20261016/accepted-inputs.tar.gz.sha256",
       "size": 89,
       "sha256": "d91bb23cd85e7ba7e067b615cf960091198cc3c1f5637316878aab1edb379922"
+    },
+    {
+      "path": "artifacts/current/half-height-20261016/all-switches-native.json",
+      "size": 1131,
+      "sha256": "959b42d1ad2473fc4dc3025cbd377867131bb4f4f4f6133683df607b434976d4"
     },
     {
       "path": "artifacts/current/half-height-20261016/all-switches-native.log",
@@ -2584,13 +2589,23 @@
     },
     {
       "path": "artifacts/current/half-height-20261016/restoration.json",
-      "size": 281,
-      "sha256": "e6900bdfebc85acc667610d567e4e4f585ed222b7248795c2c1881f3aef97a04"
+      "size": 538,
+      "sha256": "3e5671b89ff2380929c478c520017e4077096c48d16e943a2c728d73f9d3417f"
     },
     {
       "path": "artifacts/current/half-height-20261016/restore.sh",
       "size": 846,
       "sha256": "af0d9c8e56bb9085fc51897645a6c2b9afab2ba2cf4cd66225d550a0d4fa981b"
+    },
+    {
+      "path": "artifacts/current/half-height-20261016/restored-http-body.html",
+      "size": 2891,
+      "sha256": "c5e95dfc98ea2c903b2562da842486953201e31d7c45e3110d67f0ea9241e15e"
+    },
+    {
+      "path": "artifacts/current/half-height-20261016/restored-http-headers.txt",
+      "size": 98,
+      "sha256": "a15d6b88b4e6bb0c8e6608f6d7a387db6df28a051e6a3d9cde70f2055914f357"
     },
     {
       "path": "artifacts/current/half-height-20261016/run.sh",

@@ -100,10 +100,14 @@ admission limit; no arena, firmware or DMA ownership change was needed.
 
 ## Service handoff
 
-After the clean card STOP/drain and local archive hash checks, the host was
-rebooted to release the retained exclusive module. SSH had not returned at the
-end of this work; a physical power cycle was requested. Public IPv6 HTTP has
-**not yet been restored**. Once Linux returns, verify no other owner/bound module,
-run the archived `restore.sh`, and test the global IPv6 HTTP URL from the Mac
-(the host's own global-address request does not traverse ingress DNAT).
-See `restoration.json`. Do not report a live playable session on port 8087.
+After clean STOP/drain and locally verified evidence archives, the host rebooted
+to release the retained exclusive module. SSH initially stayed unavailable and a
+power-cycle request was sent; it subsequently returned with boot ID
+`88cb22d4-b5ef-4a2a-b54c-46d9be7a3ce9`. No power-cycle confirmation was received.
+The public RTEMS web relay is restored (PID 2662, `dac960auto`, `0000:37:09.1`).
+The Mac received **HTTP 200, 2891 bytes** over the global IPv6 URL; headers/body
+and `restoration.json` are retained. Port 8087's bounded game session has ended.
+
+The extraction used for local replay was removed only after comparing every file
+with the committed capture/input archives and the pinned WAD. The isolated Linux
+workspace remains available; no unrelated temporary or parallel files were deleted.
