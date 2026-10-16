@@ -48,10 +48,14 @@ of that parallel research work.
    elapsed brackets include profiler/interrupt/preemption overhead. The wall
    loop did not improve. Plain control: 6.427 FPS / 136.475 ms; keep profiling
    off for play. See [acceptance](../../artifacts/walls-20261016/README.md).
-9. **Next promising kernel trial:** exact four-sample plane spans versus the
-   accepted two-sample spans. Planes cost about 40.2 ms, not all in the inner loop.
-   Keep output/tails/wrap/alignment exact; measure code growth and cache effects.
-   Use the accepted plain baseline, changing one option at a time.
+9. **Correctness qualified, performance unresolved:** exact four-sample spans
+   (`--span-four --fast-render`). All 2,080 images, 228 full audits and complete
+   lifecycle/replay/tamper checks pass. Pooled FPS 6.617 → 6.449 (−2.54%);
+   baseline repeats vary 6.431 → 6.814 despite identical binaries/options/images.
+   Do not discard the faster baseline or promote the candidate. Two-sample
+   remains default. **Next investigate unchanged-baseline repeatability**, then
+   consider specializing invariant detail/alignment paths. See
+   [evidence](../../artifacts/span-four-20261016/README.md).
 10. **Before promoting fast-walls:** fresh unprofiled matched card comparison.
     The small profiled gain does not establish its normal-play FPS benefit.
 11. **Lower priority/conditional:** iterative BSP for scenes where profiling

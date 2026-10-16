@@ -1,5 +1,28 @@
 # Current findings and evidence — 2026-10-16
 
+<!-- span-four-current -->
+**2026-10-16 exact four-sample spans: correctness qualified, speedup not established.**
+Opt-in `--span-four --fast-render` retains exact tails/wrap/alignment/duplication;
+normal two-sample spans remain the default. Four 520-frame card runs passed:
+**2,080 matching images, 228 full paired audits**, native oracle, STOP/stall/drain,
+remote/local replay and tamper checks; 1,942 exact HTTP payload observations.
+Host32 sanitizer primitives pass 123,264 cases per variant. Max IRQ gap 10.863 ms.
+
+Predeclared A/B/B/A measured **6.617 → 6.449 FPS (−2.54%)** pooled, renderer
+132.513 → 135.700 ms. Do not claim a causal regression or a speedup: unchanged
+baseline A2 reached **6.814 FPS**, versus A1 **6.431**, exceeding the candidate's
+small apparent initial gain. All images, baseline hashes/options/addresses and
+nominal 10 ms IRQ period match. The repeat variation is unresolved; A2 must not
+be discarded. HTTP availability improved observationally (5.074 → 4.393 ms),
+but transport was unchanged and causation is unproven. No default promotion.
+
+**Next:** investigate unchanged-baseline repeatability before further performance
+claims. Then consider specializing span detail/alignment paths; unprofiled
+fast-walls acceptance is still pending. Exact divide remains playable-default;
+C columns/fast-render, fast-walls and the new span switch remain opt-in.
+Public IPv6 HTTP service restored after saved evidence and reboot.
+Evidence: [complete experiment](artifacts/span-four-20261016/README.md).
+
 <!-- wall-profile-current -->
 **2026-10-16 wall profiling and selective r_segs O2 qualified, opt-in.**
 `--wall-profile` partitions root/subsector/wall-setup/wall-loop elapsed time;

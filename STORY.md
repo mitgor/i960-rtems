@@ -3908,6 +3908,39 @@ kept the [complete evidence](artifacts/walls-20261016/README.md). The next usefu
 experiment is in the floor and ceiling spans: another forty-millisecond stage,
 with an exact two-sample loop to compare against a carefully bounded wider one.
 
+## Four samples, four runs
+
+The next experiment looked small enough to understand by inspection: take four
+floor or ceiling samples through the span loop instead of two. The coordinate
+arithmetic stayed unsigned, the duplicated low-detail pixels stayed exact, and
+the old tails handled whatever remained. The larger loop added 304 bytes of
+machine code. Its registers held the working values without spilling to a stack.
+
+The pictures agreed. More than a hundred thousand primitive cases per version,
+repeated native runs, and all 2,080 card images passed their comparisons. The
+228 full audit pairs, held buffers, STOP and heap drain passed too. Nothing in
+this experiment required giving up a check around the game.
+
+For three runs, the stopwatch seemed to offer another small improvement. The
+first reference managed 6.431 frames per second; the candidates managed 6.456
+and 6.443. Then the final reference, using the very same two-sample binary as
+the first, ran at 6.814. It was faster throughout the measured window, not just
+in one lucky frame. The images were still identical.
+
+That last run belonged in the result. Pooling the complete comparison put the
+references at 6.617 and the candidates at 6.449. The hashes, options, framebuffer
+addresses and ten-millisecond interrupt period did not explain the difference.
+Cache and scheduling state were questions to investigate, not answers we had
+proved. Calling the wider loop a speedup would have meant looking away from the
+best reference run.
+
+So the four-sample version stays available behind a switch, and two samples
+remain the default. The next job is to understand how the unchanged reference
+became faster before trusting another small improvement. The
+[complete captures](artifacts/span-four-20261016/README.md) keep the surprising
+run alongside the others. The public IPv6 page was restored after the captures
+were safe. A useful experiment can end with a better question.
+
 ## Where it stands
 
 So, the ledger, honestly kept:

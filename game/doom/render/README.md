@@ -26,7 +26,7 @@ gcc -m32 -O2 -fno-strict-aliasing -fsanitize=address,undefined \
 /tmp/doom-span-test
 ```
 
-It checks 82,176 spans against the scalar equation, including all destination
+It checks 123,264 spans against the scalar equation, including all destination
 alignments, zero/odd/even counts, wrap and surrounding sentinels. Integration
 requires deterministic native images plus matched card captures; a primitive
 host test alone does not qualify the old i960 compiler.
@@ -55,3 +55,23 @@ This uses the existing scripted acceptance input and stops after 520 frames;
 it is not an unlimited interactive play session. The renderer flag remains
 opt-in. Card results qualify the tested low-detail scene/input sequence, not
 all WADs, levels or high-detail rendering.
+
+## Optional four-sample kernel
+
+`--span-four --fast-render` selects a four-sample prefix in the same packed
+coordinate kernel. The existing two-sample and single-sample tails remain.
+Aligned low-detail output uses two 32-bit stores for eight duplicated pixels;
+aligned high-detail output uses one 32-bit store for four pixels. Unaligned
+output uses byte stores. Unsigned coordinate additions wrap exactly as before.
+This is for little-endian i960/host32, ordinary owned framebuffer RAM and the
+existing `-fno-strict-aliasing` builds; never use it on MMIO.
+
+Without `--span-four`, the accepted two-sample kernel is unchanged. The option
+is recorded in engine, platform, admission and playable-build manifests. It does
+not change render quality, buffer ownership, DMA, audits or task scheduling.
+Physical acceptance and measurements: [four-sample experiment](../../../artifacts/span-four-20261016/README.md).
+
+Run the existing primitive oracle both normally and with `-DDOOM_SPAN_FOUR`;
+each covers 123,264 high/low spans, destination alignments, tails, wrap and sentinel
+bytes under ASan/UBSan. The on-card matched experiment uses fixed low detail;
+these primitive tests alone do not qualify high-detail gameplay.

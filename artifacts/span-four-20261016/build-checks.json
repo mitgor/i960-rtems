@@ -1,0 +1,19 @@
+{
+  "build": {
+    "memory_bytes": 819152,
+    "file_bytes": 434984,
+    "span_four": false
+  },
+  "build-fast": {
+    "memory_bytes": 819488,
+    "file_bytes": 435320,
+    "span_four": true
+  },
+  "baseline_r_draw_matches_accepted_plain": true,
+  "changed_objects": [
+    "doom-engine.o",
+    "r_data.o",
+    "r_draw.o",
+    "w_wad.o"
+  ]
+}

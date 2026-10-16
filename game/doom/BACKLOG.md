@@ -36,8 +36,11 @@ system audits, ownership checks, STOP/drain, exact artifact hashes and matched r
   Do not confuse the measured combined baseline with launcher defaults.
 - **Done, opt-in:** wall profiling and r_segs O2; small profiled gain, full
   acceptance, defaults unchanged. See the updated execution priorities below.
-- **Next:** exact plane-span kernel experiment; unprofiled fast-walls acceptance
-  remains required before promoting that switch.
+- **Correctness qualified, opt-in, no established speedup:** four-sample spans.
+  Pooled 6.617 → 6.449 FPS (−2.54%), but unchanged baselines differ 6.431 vs
+  6.814 FPS. All 2,080 images and 228 full audits pass. Preserve the complete
+  batch; investigate repeatability before interpreting the small kernel effect.
+  [Evidence](../../artifacts/span-four-20261016/README.md).
 - **Quality settings:** normal rendering must remain available. Prefer runtime
   selection in one build, with explicit UI controls; separate binaries are a fallback.
   `--runtime-detail` adds high/low selection via F5 or the browser button; combine
@@ -46,7 +49,7 @@ system audits, ownership checks, STOP/drain, exact artifact hashes and matched r
   viewport, alternative fuzz or missing decorations. Each needs its own switch and
   separate image-quality/FPS acceptance.
 
-## Current execution priorities — reconciled after wall acceptance, 2026-10-16
+## Current execution priorities — reconciled after span acceptance, 2026-10-16
 
 **Completed:** optional wall-region profiling and selective r_segs O2
 (`--wall-profile`, `--fast-walls`). Profiled A/B/B/A measured **6.323 → 6.358 FPS
@@ -67,11 +70,17 @@ loop**. These include preemption/interrupts/profiler overhead. The wall loop did
 not improve with O2; the mechanism behind improvements elsewhere is not isolated.
 Planes still cost about **40.2 ms** independently of this combined BSP bucket.
 
-1. **Next promising experiment: exact four-sample plane spans** versus accepted
-   two-sample spans, including wrap, short tails, alignment and low-detail
-   duplication. Measure actual span contribution, stage time, total FPS, code
-   growth and cache effects. Preserve the current kernel if the candidate loses.
-   Use the accepted plain baseline and change only this option.
+1. **Next: baseline repeatability.** The four-sample span experiment completed
+   exact-output/lifecycle acceptance, but A1/A2 with identical baseline binaries
+   measured 6.431/6.814 FPS. Pooled A/B/B/A is 6.617/6.449 FPS, renderer
+   132.513/135.700 ms. Keep the candidate `--span-four` opt-in, two-sample default,
+   and retain all four runs. Full options, framebuffer addresses, images and IRQ
+   period match; cache/scheduling causes remain hypotheses. Reproduce unchanged
+   plain baselines across sessions before another performance claim. See
+   [all evidence](../../artifacts/span-four-20261016/README.md).
+   After repeatability is understood, consider separate high/low span paths and
+   hoisting invariant alignment decisions; generated code still tests these
+   inside the loop. Do not assume this unmeasured idea will improve FPS.
 2. **Before promoting fast-walls:** fresh unprofiled matched A/B/B/A, full image
    and lifecycle acceptance. No default change based only on the profiled batch.
 3. **Lower-priority BSP rewrite:** bounded iterative front-to-back traversal only

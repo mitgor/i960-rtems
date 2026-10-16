@@ -1,0 +1,17 @@
+[
+  {
+    "name": "candidate.tar.gz.part00",
+    "bytes": 83886080,
+    "sha256": "b696439a885f8605b4271f354b5ed975093641a8795929df13b07d03f070db6a"
+  },
+  {
+    "name": "candidate.tar.gz.part01",
+    "bytes": 83886080,
+    "sha256": "a907031a4a09776bf94c7636c5945278d82703dc6e3a46e72de075d0f54a2374"
+  },
+  {
+    "name": "candidate.tar.gz.part02",
+    "bytes": 53653522,
+    "sha256": "7ecf61a0ff5ac935c5581825cd43b2522c1f3c85412dbff40243e7f64cc1f748"
+  }
+]

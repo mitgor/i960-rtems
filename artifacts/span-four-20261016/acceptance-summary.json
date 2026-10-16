@@ -1,0 +1,70 @@
+{
+  "runs": [
+    {
+      "run": "a1",
+      "frames": 520,
+      "paired_audits": 57,
+      "irq_max_gap_us": 10487.436100511197,
+      "held_stop": true,
+      "stall": {
+        "seconds": 3.006892495000102,
+        "frames": [
+          17,
+          18
+        ],
+        "unchanged": true
+      },
+      "heap_allocations_freed": 27309
+    },
+    {
+      "run": "b1",
+      "frames": 520,
+      "paired_audits": 57,
+      "irq_max_gap_us": 10785.513715890274,
+      "held_stop": true,
+      "stall": {
+        "seconds": 3.0169320509999693,
+        "frames": [
+          17,
+          18
+        ],
+        "unchanged": true
+      },
+      "heap_allocations_freed": 27160
+    },
+    {
+      "run": "b2",
+      "frames": 520,
+      "paired_audits": 58,
+      "irq_max_gap_us": 10655.91475268198,
+      "held_stop": true,
+      "stall": {
+        "seconds": 3.010683313999948,
+        "frames": [
+          17,
+          18
+        ],
+        "unchanged": true
+      },
+      "heap_allocations_freed": 27161
+    },
+    {
+      "run": "a2",
+      "frames": 520,
+      "paired_audits": 56,
+      "irq_max_gap_us": 10862.79309765522,
+      "held_stop": true,
+      "stall": {
+        "seconds": 3.010092580999981,
+        "frames": [
+          17,
+          18
+        ],
+        "unchanged": true
+      },
+      "heap_allocations_freed": 26291
+    }
+  ],
+  "total_frames": 2080,
+  "total_audits": 228
+}
