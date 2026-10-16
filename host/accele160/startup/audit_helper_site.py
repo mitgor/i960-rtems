@@ -48,6 +48,11 @@ def inspect(flash, probe):
         raise ValueError("IOCTL subcommand input changed")
     if runtime[0x132B0:0x132B4] != bytes.fromhex("0149a459"):
         raise ValueError("IOCTL table index changed")
+    if runtime[0x132A4:0x132A8] != bytes.fromhex("9c5f0409"):
+        raise ValueError("IOCTL DMA preparation call changed")
+    if runtime[0x59240:0x59254] != bytes.fromhex(
+            "0420a4909430005a1016305c080000150000000a"):
+        raise ValueError("zero-DMA early return changed")
     table = 0x132C4
     if word(runtime, table + (0x8E - 1) * 4) != 0xC002371C:
         raise ValueError("stock 0x8e route changed")
@@ -56,6 +61,8 @@ def inspect(flash, probe):
     if runtime[0x1379C:0x137B0] != bytes.fromhex(
             "0401988c5620998acc6bfe090416805c94b10208"):
         raise ValueError("unsupported status/completion path changed")
+    if runtime[0x3E978:0x3E97C] != bytes.fromhex("5620b488"):
+        raise ValueError("completion status read changed")
     sites = [offset for offset in range(0, size - 3, 4)
              if word(loader, offset) == NORMAL_CALLBACK]
     if sites != list(NORMAL_CALLBACK_SITES):
@@ -99,6 +106,8 @@ def inspect(flash, probe):
                         "aligned_absolute_references": 0},
         "ioctl_dispatch": {
             "subcommand_field": "+0x15", "index_subtract": 1,
+            "zero_dma_preparation_returns_without_copy": True,
+            "completion_status_field": "+0x56",
             "stock_0x8e_target": "0xc002371c (normal SET_MEM_MBOX slot)",
             "stock_0x8f_target": "0xc0023790 (unsupported, status 0x104)",
             "table_runtime_address": f"0x{RUNTIME_BASE + table:08x}",

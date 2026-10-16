@@ -2419,13 +2419,13 @@
     },
     {
       "path": "artifacts/current/accele160-helper-site-20261016/README.md",
-      "size": 4873,
-      "sha256": "765c127fe9dbbc3cce0528e16953084c4676b39c843f3626c78d42802d4ef6fe"
+      "size": 5331,
+      "sha256": "375e3c9daa7994f09568c5e65d1a95c1a7d410b893e91f487d4b285e75962798"
     },
     {
       "path": "artifacts/current/accele160-helper-site-20261016/audit.json",
-      "size": 1236,
-      "sha256": "c0e716231ac089a0064a6cb15cc6e5a9bb16d5d7ed5fb487fc0c54dbcc0cc98f"
+      "size": 1331,
+      "sha256": "bc994887b16cd29821c15b296ccdc76eff702cb0ec279ecb2e198ff007635f0f"
     },
     {
       "path": "artifacts/current/accele160-helper-site-20261016/live-state.txt",

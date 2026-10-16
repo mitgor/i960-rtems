@@ -11,6 +11,8 @@
   "ioctl_dispatch": {
     "subcommand_field": "+0x15",
     "index_subtract": 1,
+    "zero_dma_preparation_returns_without_copy": true,
+    "completion_status_field": "+0x56",
     "stock_0x8e_target": "0xc002371c (normal SET_MEM_MBOX slot)",
     "stock_0x8f_target": "0xc0023790 (unsupported, status 0x104)",
     "table_runtime_address": "0xc00232c4",

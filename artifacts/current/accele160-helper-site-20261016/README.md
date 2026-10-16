@@ -25,6 +25,12 @@ firmware dispatcher reads byte 21 from its command object. We have not yet
 proved that the other host mailbox bytes arrive unchanged at this point, or
 that an `0x8f` request with no DMA can be issued and completed through the
 currently loaded `myrsread` extension without disturbing its retained state.
+The stock IOCTL path calls DMA preparation at `c0069240` before dispatch; its
+zero-size branch returns without copying an SGL. The unsupported path stores
+`0x104` at internal command offset `+0x56` and branches to completion
+`c004e940`, which reads that status. Those exact instructions are checked by
+the audit, but a live `0x8f` submission remains untested. The current module
+has a retained reference and was not unloaded or replaced for this experiment.
 
 The 24 KiB uncompressed loader copy contains 7,720 erased (`0xff`) bytes from
 loader offset `0x41d8` to its end. The copy maps that range to local RAM
