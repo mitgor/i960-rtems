@@ -85,4 +85,23 @@ removed without following symlinks. `deletion.json` records successes, retained
 roots, any incomplete quarantine and the recovery commit. Unrelated `/tmp`
 entries and newly appearing project roots are never swept by a wildcard.
 
-Final deletion results are recorded below after execution.
+## Completed result
+
+All **315 roots were removed** after re-hashing, with **zero retained/changed/in-use
+roots** and no incomplete quarantine. No matching project temporary entries
+remain. Their initial allocated footprint was **44.98 GiB**.
+The deletion pass observed **45.09 GiB** more free space;
+filesystem free-space changes can include background activity and APFS accounting.
+The verified recovery bundle is **138.90 MiB compressed**, plus manifests/docs.
+All 3,100 unmatched files were recovered and independently hash-checked before
+the originals were deleted. Recovery was committed first as `97a1427c3dc258ba42ec6f78103e26d466ad2bdc`.
+
+The audit's own temporary database, reconstructed recovery archive, trial-restore
+tree and raw open-file listing were also removed after successful completion.
+See [deletion record](deletion.json), [outcome](outcome.json) and
+[preserved-file groups](preserved-summary.json). Unrelated local work and remote
+services were not modified.
+
+These are historical one-time audit scripts: do not rerun inventory/deletion in
+this evidence directory, as their reports would replace this record. Use the
+non-destructive `restore_missing.py` command above for recovery.

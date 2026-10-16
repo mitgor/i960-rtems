@@ -1,0 +1,582 @@
+[
+  {
+    "root": "/private/tmp/i960-doom-research-20261015",
+    "files": 2605,
+    "logical_bytes": 120175121
+  },
+  {
+    "root": "/private/tmp/i960-height-branch-probe-original.tar.gz",
+    "files": 1,
+    "logical_bytes": 51485706
+  },
+  {
+    "root": "/private/tmp/doom-detail-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 18141833
+  },
+  {
+    "root": "/private/tmp/i960-realdoom-review",
+    "files": 329,
+    "logical_bytes": 10500915
+  },
+  {
+    "root": "/private/tmp/i960-sidefix-first",
+    "files": 3,
+    "logical_bytes": 10395969
+  },
+  {
+    "root": "/private/tmp/i960-batch-card",
+    "files": 4,
+    "logical_bytes": 9812285
+  },
+  {
+    "root": "/private/tmp/i960-rx-audit.pdf",
+    "files": 1,
+    "logical_bytes": 7024503
+  },
+  {
+    "root": "/private/tmp/doom-fixeddiv-disassembly.txt",
+    "files": 1,
+    "logical_bytes": 3840881
+  },
+  {
+    "root": "/private/tmp/i960-doom-cache-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 3153594
+  },
+  {
+    "root": "/private/tmp/i960-checkpoint-live",
+    "files": 3,
+    "logical_bytes": 2797071
+  },
+  {
+    "root": "/private/tmp/i960-rx-audit.txt",
+    "files": 1,
+    "logical_bytes": 2058917
+  },
+  {
+    "root": "/private/tmp/i960-n3-project-full.tar.gz",
+    "files": 1,
+    "logical_bytes": 1624797
+  },
+  {
+    "root": "/private/tmp/i960-wad-ring-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 1220213
+  },
+  {
+    "root": "/private/tmp/i960-n3-v3-project.tar.gz",
+    "files": 1,
+    "logical_bytes": 888975
+  },
+  {
+    "root": "/private/tmp/i960-n3-v2-project.tar.gz",
+    "files": 1,
+    "logical_bytes": 886225
+  },
+  {
+    "root": "/private/tmp/i960-wad-batch-src.tar.gz",
+    "files": 1,
+    "logical_bytes": 867405
+  },
+  {
+    "root": "/private/tmp/i960-owned-final-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 743263
+  },
+  {
+    "root": "/private/tmp/doom-runtime-project.tar.gz",
+    "files": 1,
+    "logical_bytes": 741492
+  },
+  {
+    "root": "/private/tmp/i960-owned-current.tar.gz",
+    "files": 1,
+    "logical_bytes": 741262
+  },
+  {
+    "root": "/private/tmp/i960-owned-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 738771
+  },
+  {
+    "root": "/private/tmp/i960-runtime-entry-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 708557
+  },
+  {
+    "root": "/private/tmp/i960-relocate-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 707939
+  },
+  {
+    "root": "/private/tmp/i960-doom-shared-final-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 697049
+  },
+  {
+    "root": "/private/tmp/i960-doom-shared-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 696155
+  },
+  {
+    "root": "/private/tmp/i960-n3-project.tar.gz",
+    "files": 1,
+    "logical_bytes": 653538
+  },
+  {
+    "root": "/private/tmp/i960-doom-platform-current.tar.gz",
+    "files": 1,
+    "logical_bytes": 636986
+  },
+  {
+    "root": "/private/tmp/i960-doom-platform-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 629450
+  },
+  {
+    "root": "/private/tmp/i960-n3-partial.pcap",
+    "files": 1,
+    "logical_bytes": 311766
+  },
+  {
+    "root": "/private/tmp/i960-DAC960-reference.c",
+    "files": 1,
+    "logical_bytes": 265811
+  },
+  {
+    "root": "/private/tmp/i960-doom-pingpong-replay-20261015",
+    "files": 17,
+    "logical_bytes": 196636
+  },
+  {
+    "root": "/private/tmp/i960-token-sessions.json",
+    "files": 1,
+    "logical_bytes": 161833
+  },
+  {
+    "root": "/private/tmp/i960-dma-accepted-20261014",
+    "files": 17,
+    "logical_bytes": 158764
+  },
+  {
+    "root": "/private/tmp/i960-batch-profile",
+    "files": 1,
+    "logical_bytes": 142160
+  },
+  {
+    "root": "/private/tmp/i960-sidefix-ack-update.tar.gz",
+    "files": 1,
+    "logical_bytes": 105786
+  },
+  {
+    "root": "/private/tmp/i960-doom-platform-host-source.tar.gz",
+    "files": 1,
+    "logical_bytes": 96475
+  },
+  {
+    "root": "/private/tmp/i960-guides-read.txt",
+    "files": 1,
+    "logical_bytes": 86253
+  },
+  {
+    "root": "/private/tmp/i960-shutdown-source-hashes.json",
+    "files": 1,
+    "logical_bytes": 71090
+  },
+  {
+    "root": "/private/tmp/i960-wad-ring-update.tar.gz",
+    "files": 1,
+    "logical_bytes": 44977
+  },
+  {
+    "root": "/private/tmp/i960-dma-async-deadline-replay",
+    "files": 1,
+    "logical_bytes": 42158
+  },
+  {
+    "root": "/private/tmp/i960-dma-async-stop-replay",
+    "files": 1,
+    "logical_bytes": 40742
+  },
+  {
+    "root": "/private/tmp/i960-batch-profile.dSYM",
+    "files": 3,
+    "logical_bytes": 36284
+  },
+  {
+    "root": "/private/tmp/i960-sidefix-update.tar.gz",
+    "files": 1,
+    "logical_bytes": 33849
+  },
+  {
+    "root": "/private/tmp/i960-release-priority-replay",
+    "files": 6,
+    "logical_bytes": 31974
+  },
+  {
+    "root": "/private/tmp/i960-owned-entry",
+    "files": 6,
+    "logical_bytes": 31490
+  },
+  {
+    "root": "/private/tmp/i960-engine-offline.log",
+    "files": 1,
+    "logical_bytes": 14212
+  },
+  {
+    "root": "/private/tmp/i960-relocate-offline.log",
+    "files": 1,
+    "logical_bytes": 13964
+  },
+  {
+    "root": "/private/tmp/i960-entry-offline-tests.log",
+    "files": 1,
+    "logical_bytes": 13315
+  },
+  {
+    "root": "/private/tmp/i960-replay-sample.txt",
+    "files": 1,
+    "logical_bytes": 11917
+  },
+  {
+    "root": "/private/tmp/i960-large-acceptance-offline.log",
+    "files": 1,
+    "logical_bytes": 11425
+  },
+  {
+    "root": "/private/tmp/i960-wall-commit.log",
+    "files": 1,
+    "logical_bytes": 10972
+  },
+  {
+    "root": "/private/tmp/i960-large-final-offline.log",
+    "files": 1,
+    "logical_bytes": 10921
+  },
+  {
+    "root": "/private/tmp/i960-large-offline.log",
+    "files": 1,
+    "logical_bytes": 10475
+  },
+  {
+    "root": "/private/tmp/i960-point-side-finalize.py",
+    "files": 1,
+    "logical_bytes": 9352
+  },
+  {
+    "root": "/private/tmp/i960-height-update.tar.gz",
+    "files": 1,
+    "logical_bytes": 7575
+  },
+  {
+    "root": "/private/tmp/patch_doom_pp.py",
+    "files": 1,
+    "logical_bytes": 7492
+  },
+  {
+    "root": "/private/tmp/edit-doom-client.py",
+    "files": 1,
+    "logical_bytes": 5965
+  },
+  {
+    "root": "/private/tmp/edit-doom-pipeline.py",
+    "files": 1,
+    "logical_bytes": 5570
+  },
+  {
+    "root": "/private/tmp/edit-doom-next.py",
+    "files": 1,
+    "logical_bytes": 5091
+  },
+  {
+    "root": "/private/tmp/i960-existing-broken-links.json",
+    "files": 1,
+    "logical_bytes": 4379
+  },
+  {
+    "root": "/private/tmp/doom-play-edits.py",
+    "files": 1,
+    "logical_bytes": 4224
+  },
+  {
+    "root": "/private/tmp/i960-host-edit.py",
+    "files": 1,
+    "logical_bytes": 3292
+  },
+  {
+    "root": "/private/tmp/i960-organize-docs.py",
+    "files": 1,
+    "logical_bytes": 3209
+  },
+  {
+    "root": "/private/tmp/i960-doom-play-status.z",
+    "files": 1,
+    "logical_bytes": 2995
+  },
+  {
+    "root": "/private/tmp/i960-final-http.html",
+    "files": 1,
+    "logical_bytes": 2892
+  },
+  {
+    "root": "/private/tmp/i960-http-return-check.html",
+    "files": 1,
+    "logical_bytes": 2892
+  },
+  {
+    "root": "/private/tmp/doom-detail-public.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-atomic-http.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-batch-restored.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-cache-public.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-doom-pingpong-restored-http.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-engine-http.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-entry-public.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-large-public.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-owned-http.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-service-check.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-wad-profile-public.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-wad-ring-restored.html",
+    "files": 1,
+    "logical_bytes": 2891
+  },
+  {
+    "root": "/private/tmp/i960-sidefix-http-body.html",
+    "files": 1,
+    "logical_bytes": 2890
+  },
+  {
+    "root": "/private/tmp/i960-native-short-fire-review.py",
+    "files": 1,
+    "logical_bytes": 2841
+  },
+  {
+    "root": "/private/tmp/i960-doom-quality-ui.js",
+    "files": 1,
+    "logical_bytes": 2785
+  },
+  {
+    "root": "/private/tmp/i960-doc-moves.json",
+    "files": 1,
+    "logical_bytes": 2783
+  },
+  {
+    "root": "/private/tmp/i960-height-build.sh",
+    "files": 1,
+    "logical_bytes": 2669
+  },
+  {
+    "root": "/private/tmp/i960-expand-edit.py",
+    "files": 1,
+    "logical_bytes": 2646
+  },
+  {
+    "root": "/private/tmp/i960-remove-doc-aliases.py",
+    "files": 1,
+    "logical_bytes": 2223
+  },
+  {
+    "root": "/private/tmp/i960-checkpoints-staged-paths.txt",
+    "files": 1,
+    "logical_bytes": 2200
+  },
+  {
+    "root": "/private/tmp/i960-wad-ring-native.py",
+    "files": 1,
+    "logical_bytes": 2170
+  },
+  {
+    "root": "/private/tmp/doom-present-local-replay.py",
+    "files": 1,
+    "logical_bytes": 2038
+  },
+  {
+    "root": "/private/tmp/doom-visible-preview",
+    "files": 2,
+    "logical_bytes": 1953
+  },
+  {
+    "root": "/private/tmp/i960-batch-metrics.py",
+    "files": 1,
+    "logical_bytes": 1854
+  },
+  {
+    "root": "/private/tmp/i960-wall-guidance.txt",
+    "files": 1,
+    "logical_bytes": 1779
+  },
+  {
+    "root": "/private/tmp/i960-release-doc-block.txt",
+    "files": 1,
+    "logical_bytes": 1756
+  },
+  {
+    "root": "/private/tmp/i960-height-resume.sh",
+    "files": 1,
+    "logical_bytes": 1718
+  },
+  {
+    "root": "/private/tmp/i960-render-doc-block.txt",
+    "files": 1,
+    "logical_bytes": 1680
+  },
+  {
+    "root": "/private/tmp/i960-span-four-guidance-block.txt",
+    "files": 1,
+    "logical_bytes": 1537
+  },
+  {
+    "root": "/private/tmp/doom-play-live.py",
+    "files": 1,
+    "logical_bytes": 1325
+  },
+  {
+    "root": "/private/tmp/i960-point-side-guide-block.md",
+    "files": 1,
+    "logical_bytes": 1275
+  },
+  {
+    "root": "/private/tmp/i960-fix-doc-links.py",
+    "files": 1,
+    "logical_bytes": 1192
+  },
+  {
+    "root": "/private/tmp/doom-wall-play-help.txt",
+    "files": 1,
+    "logical_bytes": 1088
+  },
+  {
+    "root": "/private/tmp/doom-wall-engine-help.txt",
+    "files": 1,
+    "logical_bytes": 1051
+  },
+  {
+    "root": "/private/tmp/collect-i960-large.py",
+    "files": 1,
+    "logical_bytes": 873
+  },
+  {
+    "root": "/private/tmp/i960-render-accept.log",
+    "files": 1,
+    "logical_bytes": 627
+  },
+  {
+    "root": "/private/tmp/i960-metadata-changes.json",
+    "files": 1,
+    "logical_bytes": 500
+  },
+  {
+    "root": "/private/tmp/i960-n3-abi.c",
+    "files": 1,
+    "logical_bytes": 414
+  },
+  {
+    "root": "/private/tmp/i960-n3-hostproof",
+    "files": 1,
+    "logical_bytes": 163
+  },
+  {
+    "root": "/private/tmp/doom-pipeline-accepted-path",
+    "files": 1,
+    "logical_bytes": 80
+  },
+  {
+    "root": "/private/tmp/doom-dma-fixed-replay-path",
+    "files": 1,
+    "logical_bytes": 79
+  },
+  {
+    "root": "/private/tmp/doom-present-accepted-path",
+    "files": 1,
+    "logical_bytes": 79
+  },
+  {
+    "root": "/private/tmp/doom-pipeline-failed-path",
+    "files": 1,
+    "logical_bytes": 78
+  },
+  {
+    "root": "/private/tmp/doom-runtime-review",
+    "files": 1,
+    "logical_bytes": 77
+  },
+  {
+    "root": "/private/tmp/doom-prior-play-path",
+    "files": 1,
+    "logical_bytes": 73
+  },
+  {
+    "root": "/private/tmp/i960-columns-inventory-check.log",
+    "files": 1,
+    "logical_bytes": 59
+  },
+  {
+    "root": "/private/tmp/i960-point-side-inventory-check.log",
+    "files": 1,
+    "logical_bytes": 59
+  },
+  {
+    "root": "/private/tmp/i960-columns-inventory-update.log",
+    "files": 1,
+    "logical_bytes": 30
+  },
+  {
+    "root": "/private/tmp/i960-point-side-inventory.log",
+    "files": 1,
+    "logical_bytes": 30
+  },
+  {
+    "root": "/private/tmp/i960-wad-ring-inventory.log",
+    "files": 1,
+    "logical_bytes": 30
+  },
+  {
+    "root": "/private/tmp/i960-doc-link-baseline.json",
+    "files": 1,
+    "logical_bytes": 2
+  }
+]

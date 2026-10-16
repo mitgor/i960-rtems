@@ -1,0 +1,12 @@
+{
+  "completed_utc": "2026-10-16T15:12:22.818591+00:00",
+  "deleted_roots": 315,
+  "retained_roots": {},
+  "remaining_matching_tmp_entries": [],
+  "removed_initial_allocated_bytes": 48297607168,
+  "deletion_pass_free_increase_bytes": 48412282880,
+  "net_free_increase_since_preflight_bytes": 49796419584,
+  "disk_free_after_scratch_cleanup_bytes": 255620382720,
+  "cleanup_scratch_removed": true,
+  "recovery_commit": "97a1427c3dc258ba42ec6f78103e26d466ad2bdc"
+}

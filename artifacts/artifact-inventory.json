@@ -30984,8 +30984,8 @@
     },
     {
       "path": "artifacts/tmp-cleanup-20261016/README.md",
-      "size": 4791,
-      "sha256": "5fcfeb8b7743c6b69deddb93bded613b3731e55bedeaa80cbeae45fdc0fccdf2"
+      "size": 5938,
+      "sha256": "bf4996097f860a7eac0e3261aaca67c2dd8fd73bbab0d24d67c9a4761228e7fc"
     },
     {
       "path": "artifacts/tmp-cleanup-20261016/audit.py",
@@ -30998,6 +30998,11 @@
       "sha256": "f846fd12d0ab687c59b3c646eee13665158b01c6482e0c60f0cf8045dc81be86"
     },
     {
+      "path": "artifacts/tmp-cleanup-20261016/cleanup.log",
+      "size": 122,
+      "sha256": "8d28ba95963770892a199b7e815e42ef1812cfafb4bf456f0bd8a4871d106a36"
+    },
+    {
       "path": "artifacts/tmp-cleanup-20261016/cleanup.py",
       "size": 5509,
       "sha256": "b44b940118d5550cfab23a112f39306f68c19fa1020bbe558b379488d10e3044"
@@ -31006,6 +31011,11 @@
       "path": "artifacts/tmp-cleanup-20261016/credential-pattern-check.json",
       "size": 132,
       "sha256": "70e4a7e4f0d7589473b8ec584227f4e53f96aa99362016140cac2eca8d7fc07c"
+    },
+    {
+      "path": "artifacts/tmp-cleanup-20261016/deletion.json",
+      "size": 14259,
+      "sha256": "57c73adb8cfbf32160a0f801de8229fe0cee69dc6631c0e4ad0e4d61e40dca65"
     },
     {
       "path": "artifacts/tmp-cleanup-20261016/files.jsonl.gz",
@@ -31048,9 +31058,19 @@
       "sha256": "457c7256845717c89cdeaf86f38c5c6a6fe12d5806c915f9c43ce99e9905cde2"
     },
     {
+      "path": "artifacts/tmp-cleanup-20261016/outcome.json",
+      "size": 463,
+      "sha256": "47563170df7dec04431ebd9660cd614b2edad378dbb255e6467eef6c21479553"
+    },
+    {
       "path": "artifacts/tmp-cleanup-20261016/preflight.json",
       "size": 31057,
       "sha256": "e67c3f81688081635fae3e0a7b9dfd84915c109ef2c0634b7f26115604e65e43"
+    },
+    {
+      "path": "artifacts/tmp-cleanup-20261016/preserved-summary.json",
+      "size": 12241,
+      "sha256": "b4a443dfa899110178807dbfa2f61ce88110b59abfd6eefd399bf36a6eb9ee86"
     },
     {
       "path": "artifacts/tmp-cleanup-20261016/recovery-pack.log",
