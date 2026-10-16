@@ -2604,8 +2604,8 @@
     },
     {
       "path": "artifacts/current/half-height-20261016/restored-http-headers.txt",
-      "size": 98,
-      "sha256": "a15d6b88b4e6bb0c8e6608f6d7a387db6df28a051e6a3d9cde70f2055914f357"
+      "size": 97,
+      "sha256": "b9e6a08eb2139e70139786adea5538fe2217688db7bc3a957f374a7cd8b61b24"
     },
     {
       "path": "artifacts/current/half-height-20261016/run.sh",
