@@ -1,0 +1,1941 @@
+
+/home/mit/i960-walls-20261016/build-fast/engine-cross/i960/r_segs.o:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+00000000 <_R_RenderMaskedSegRange>:
+       0:	00 10 a4 90 	ld	(g0),g4
+       4:	10 16 98 5c 	mov	g0,g3
+       8:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+       c:	00 00 00 00
+			c: R_960_32	_curline
+      10:	18 20 bd 90 	ld	0x18(g4),g7
+      14:	12 16 28 5c 	mov	g2,r5
+      18:	00 30 b8 92 	st	g7,0 <_R_RenderMaskedSegRange>
+      1c:	00 00 00 00
+			1c: R_960_32	_frontsector
+      20:	1c 20 ad 90 	ld	0x1c(g4),g5
+      24:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+      28:	00 00 00 00
+			28: R_960_32	_backsector
+      2c:	10 20 ad 90 	ld	0x10(g4),g5
+      30:	0c e0 b5 88 	ldos	0xc(g7),g6
+      34:	04 20 1d 90 	ld	0x4(g4),r3
+      38:	00 10 ed 90 	ld	(g4),g13
+      3c:	0c 60 bd c8 	ldis	0xc(g5),g7
+      40:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+      44:	00 00 00 00
+			44: R_960_32	_texturetranslation
+      48:	10 8e b5 59 	shlo	16,g6,g6
+      4c:	17 1d 35 90 	ld	(g4)[g7*4],r6
+      50:	94 8d b5 59 	shri	20,g6,g6
+      54:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+      58:	00 00 00 00
+			58: R_960_32	_extralight
+      5c:	04 60 87 90 	ld	0x4(g13),g0
+      60:	04 e0 a8 90 	ld	0x4(r3),g5
+      64:	16 00 b5 59 	addo	g6,g4,g6
+      68:	7c 02 ac 32 	cmpobe	g5,g0,2e4 <L25>
+      6c:	00 50 af 90 	ld	(g13),g5
+      70:	00 d0 a0 90 	ld	(r3),g4
+      74:	68 42 a5 32 	cmpobe	g4,g5,2dc <L26>
+
+00000078 <L3>:
+      78:	00 30 a0 8c 	lda	0 <_R_RenderMaskedSegRange>,g4
+      7c:	00 00 00 00
+			7c: R_960_32	_scalelight
+      80:	20 a0 05 39 	cmpibg	0,g6,a0 <L24>
+      84:	00 30 a0 8c 	lda	b40 <L106+0x80>,g4
+      88:	40 0b 00 00
+			88: R_960_32	_scalelight
+      8c:	14 a0 7d 3c 	cmpibl	15,g6,a0 <L24>
+      90:	96 9c a5 8c 	lda	(g6)[g6*2],g4
+      94:	06 0e a5 59 	shlo	6,g4,g4
+      98:	00 34 a5 8c 	lda	0 <_R_RenderMaskedSegRange>(g4),g4
+      9c:	00 00 00 00
+			9c: R_960_32	_scalelight
+
+000000a0 <L24>:
+      a0:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+      a4:	00 00 00 00
+			a4: R_960_32	_walllights
+      a8:	2c e0 a4 90 	ld	0x2c(g3),g4
+      ac:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+      b0:	00 00 00 00
+			b0: R_960_32	_curline
+      b4:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+      b8:	00 00 00 00
+			b8: R_960_32	_maskedtexturecol
+      bc:	14 e0 b4 90 	ld	0x14(g3),g6
+      c0:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+      c4:	00 00 00 00
+			c4: R_960_32	_rw_scalestep
+      c8:	04 e0 a4 90 	ld	0x4(g3),g4
+      cc:	0c e0 ac 90 	ld	0xc(g3),g5
+      d0:	14 41 a4 59 	subo	g4,g1,g4
+      d4:	96 00 a5 70 	mulo	g6,g4,g4
+      d8:	15 00 b5 59 	addo	g5,g4,g6
+      dc:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+      e0:	00 00 00 00
+			e0: R_960_32	_spryscale
+      e4:	28 e0 a4 90 	ld	0x28(g3),g4
+      e8:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+      ec:	00 00 00 00
+			ec: R_960_32	_mfloorclip
+      f0:	24 e0 ac 90 	ld	0x24(g3),g5
+      f4:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+      f8:	00 00 00 00
+			f8: R_960_32	_mceilingclip
+      fc:	14 e0 a5 90 	ld	0x14(g7),g4
+     100:	10 20 ad 88 	ldos	0x10(g4),g5
+     104:	a0 61 25 30 	bbc	4,g5,2a4 <L9>
+     108:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     10c:	00 00 00 00
+			10c: R_960_32	_frontsector
+     110:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     114:	00 00 00 00
+			114: R_960_32	_backsector
+     118:	00 10 a5 90 	ld	(g4),g4
+     11c:	00 50 b5 90 	ld	(g5),g6
+     120:	08 80 a5 3e 	cmpible	g4,g6,128 <L10>
+     124:	14 16 b0 5c 	mov	g4,g6
+
+00000128 <L10>:
+     128:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     12c:	00 00 00 00
+			12c: R_960_32	_textureheight
+     130:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+     134:	00 00 00 00
+			134: R_960_32	_dc_texturemid
+     138:	06 1d ad 90 	ld	(g4)[r6*4],g5
+     13c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     140:	00 00 00 00
+			140: R_960_32	_viewz
+     144:	16 40 ad 59 	addo	g6,g5,g5
+     148:	14 41 ad 59 	subo	g4,g5,g5
+     14c:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     150:	00 00 00 00
+			150: R_960_32	_dc_texturemid
+
+00000154 <L11>:
+     154:	10 e0 a5 90 	ld	0x10(g7),g4
+     158:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+     15c:	00 00 00 00
+			15c: R_960_32	_fixedcolormap
+     160:	04 20 ad 90 	ld	0x4(g4),g5
+     164:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     168:	00 00 00 00
+			168: R_960_32	_dc_texturemid
+     16c:	15 00 a5 59 	addo	g5,g4,g4
+     170:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     174:	00 00 00 00
+			174: R_960_32	_dc_texturemid
+     178:	0c a0 05 32 	cmpobe	0,g6,184 <L13>
+     17c:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+     180:	00 00 00 00
+			180: R_960_32	_dc_colormap
+
+00000184 <L13>:
+     184:	11 16 b8 5c 	mov	g1,g7
+     188:	00 30 88 92 	st	g1,0 <_R_RenderMaskedSegRange>
+     18c:	00 00 00 00
+			18c: R_960_32	_dc_x
+     190:	10 41 2c 3c 	cmpibl	r5,g1,2a0 <L23>
+     194:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+     198:	00 00 00 00
+			198: R_960_32	_spryscale
+     19c:	00 30 20 8c 	lda	7fff <Li960R5+0x6b7b>,r4
+     1a0:	ff 7f 00 00
+
+000001a4 <L21>:
+     1a4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     1a8:	00 00 00 00
+			1a8: R_960_32	_maskedtexturecol
+     1ac:	16 16 88 5c 	mov	g6,g1
+     1b0:	97 1c ad c8 	ldis	(g4)[g7*2],g5
+     1b4:	c0 40 25 32 	cmpobe	r4,g5,274 <L18>
+     1b8:	8c 8d ad 59 	shri	12,g6,g5
+     1bc:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     1c0:	00 00 00 00
+			1c0: R_960_32	_dc_texturemid
+     1c4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     1c8:	00 00 00 00
+			1c8: R_960_32	_fixedcolormap
+     1cc:	1f 18 b4 59 	addo	31,16,g6
+     1d0:	20 20 05 35 	cmpobne	0,g4,1f0 <L19>
+     1d4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     1d8:	00 00 00 00
+			1d8: R_960_32	_walllights
+     1dc:	08 40 b5 33 	cmpobge	g6,g5,1e4 <L20>
+     1e0:	16 16 a8 5c 	mov	g6,g5
+
+000001e4 <L20>:
+     1e4:	15 1d a5 90 	ld	(g4)[g5*4],g4
+     1e8:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     1ec:	00 00 00 00
+			1ec: R_960_32	_dc_colormap
+
+000001f0 <L19>:
+     1f0:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     1f4:	00 00 00 00
+			1f4: R_960_32	_FixedMul
+     1f8:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     1fc:	00 00 00 00
+			1fc: R_960_32	_spryscale
+     200:	01 19 b0 59 	subo	1,0,g6
+     204:	95 85 b5 70 	divo	g5,g6,g6
+     208:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     20c:	00 00 00 00
+			20c: R_960_32	_centeryfrac
+     210:	10 01 a5 59 	subo	g0,g4,g4
+     214:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     218:	00 00 00 00
+			218: R_960_32	_sprtopscreen
+     21c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     220:	00 00 00 00
+			220: R_960_32	_maskedtexturecol
+     224:	06 16 80 5c 	mov	r6,g0
+     228:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     22c:	00 00 00 00
+			22c: R_960_32	_dc_x
+     230:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+     234:	00 00 00 00
+			234: R_960_32	_dc_iscale
+     238:	95 1c 8d c8 	ldis	(g4)[g5*2],g1
+     23c:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     240:	00 00 00 00
+			240: R_960_32	_R_GetColumn
+     244:	03 09 84 59 	subo	3,g0,g0
+     248:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     24c:	00 00 00 00
+			24c: R_960_32	_R_DrawMaskedColumn
+     250:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     254:	00 00 00 00
+			254: R_960_32	_dc_x
+     258:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     25c:	00 00 00 00
+			25c: R_960_32	_maskedtexturecol
+     260:	95 1c 25 8a 	stos	r4,(g4)[g5*2]
+     264:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     268:	00 00 00 00
+			268: R_960_32	_dc_x
+     26c:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+     270:	00 00 00 00
+			270: R_960_32	_spryscale
+
+00000274 <L18>:
+     274:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     278:	00 00 00 00
+			278: R_960_32	_rw_scalestep
+     27c:	17 50 a8 59 	addo	g7,1,g5
+     280:	16 00 a5 59 	addo	g6,g4,g4
+     284:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     288:	00 00 00 00
+			288: R_960_32	_dc_x
+     28c:	14 16 b0 5c 	mov	g4,g6
+     290:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     294:	00 00 00 00
+			294: R_960_32	_spryscale
+     298:	15 16 b8 5c 	mov	g5,g7
+     29c:	08 5f 2d 3b 	cmpibge	r5,g5,1a4 <L21>
+
+000002a0 <L23>:
+     2a0:	00 00 00 0a 	ret
+
+000002a4 <L9>:
+     2a4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     2a8:	00 00 00 00
+			2a8: R_960_32	_frontsector
+     2ac:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     2b0:	00 00 00 00
+			2b0: R_960_32	_backsector
+     2b4:	04 20 a5 90 	ld	0x4(g4),g4
+     2b8:	04 60 ad 90 	ld	0x4(g5),g5
+     2bc:	08 40 a5 3b 	cmpibge	g4,g5,2c4 <L12>
+     2c0:	14 16 a8 5c 	mov	g4,g5
+
+000002c4 <L12>:
+     2c4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     2c8:	00 00 00 00
+			2c8: R_960_32	_viewz
+     2cc:	14 41 a5 59 	subo	g4,g5,g4
+     2d0:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     2d4:	00 00 00 00
+			2d4: R_960_32	_dc_texturemid
+     2d8:	7c fe ff 08 	b	154 <L11>
+
+000002dc <L26>:
+     2dc:	16 50 b0 59 	addo	g6,1,g6
+     2e0:	98 fd ff 08 	b	78 <L3>
+
+000002e4 <L25>:
+     2e4:	01 89 b5 59 	subo	1,g6,g6
+     2e8:	90 fd ff 08 	b	78 <L3>
+     2ec:	00 00 00 00 	.word	0x00000000
+
+000002f0 <_R_RenderSegLoop_profile_body>:
+     2f0:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     2f4:	00 00 00 00
+			2f4: R_960_32	_rw_x
+     2f8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     2fc:	00 00 00 00
+			2fc: R_960_32	_rw_stopx
+     300:	17 16 90 5c 	mov	g7,g2
+     304:	40 c2 a5 3e 	cmpible	g4,g7,544 <L60>
+     308:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     30c:	00 00 00 00
+			30c: R_960_32	_topfrac
+
+00000310 <L58>:
+     310:	ff 6f a4 8c 	lda	0xfff(g1),g4
+     314:	97 38 a8 c8 	ldis	0 <_R_RenderMaskedSegRange>[g7*2],g5
+     318:	00 00 00 00
+			318: R_960_32	_ceilingclip
+     31c:	8c 0d 2d 59 	shri	12,g4,r5
+     320:	15 50 a8 59 	addo	g5,1,g5
+     324:	08 40 a9 3e 	cmpible	g5,r5,32c <L32>
+     328:	15 16 28 5c 	mov	g5,r5
+
+0000032c <L32>:
+     32c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     330:	00 00 00 00
+			330: R_960_32	_markceiling
+     334:	4c 20 05 32 	cmpobe	0,g4,380 <L33>
+     338:	97 38 a0 c8 	ldis	0 <_R_RenderMaskedSegRange>[g7*2],g4
+     33c:	00 00 00 00
+			33c: R_960_32	_floorclip
+     340:	01 49 b1 59 	subo	1,r5,g6
+     344:	08 80 a5 39 	cmpibg	g4,g6,34c <L34>
+     348:	01 09 b5 59 	subo	1,g4,g6
+
+0000034c <L34>:
+     34c:	34 40 b5 3c 	cmpibl	g6,g5,380 <L33>
+     350:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     354:	00 00 00 00
+			354: R_960_32	_ceilingplane
+     358:	14 fc ad 82 	stob	g5,15 <_R_RenderMaskedSegRange+0x15>(g7)[g4]
+     35c:	15 00 00 00
+     360:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     364:	00 00 00 00
+			364: R_960_32	_rw_x
+     368:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     36c:	00 00 00 00
+			36c: R_960_32	_ceilingplane
+     370:	14 7c b5 82 	stob	g6,157 <L11+0x3>(g5)[g4]
+     374:	57 01 00 00
+     378:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     37c:	00 00 00 00
+			37c: R_960_32	_rw_x
+
+00000380 <L33>:
+     380:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     384:	00 00 00 00
+			384: R_960_32	_bottomfrac
+     388:	92 38 a8 c8 	ldis	0 <_R_RenderMaskedSegRange>[g2*2],g5
+     38c:	00 00 00 00
+			38c: R_960_32	_floorclip
+     390:	8c 0d 35 59 	shri	12,g4,r6
+     394:	08 80 a9 39 	cmpibg	g5,r6,39c <L36>
+     398:	01 49 35 59 	subo	1,g5,r6
+
+0000039c <L36>:
+     39c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     3a0:	00 00 00 00
+			3a0: R_960_32	_markfloor
+     3a4:	48 20 05 32 	cmpobe	0,g4,3ec <L37>
+     3a8:	01 49 b5 59 	subo	1,g5,g6
+     3ac:	92 38 a0 c8 	ldis	0 <_R_RenderMaskedSegRange>[g2*2],g4
+     3b0:	00 00 00 00
+			3b0: R_960_32	_ceilingclip
+     3b4:	06 50 a8 59 	addo	r6,1,g5
+     3b8:	08 40 a5 3c 	cmpibl	g4,g5,3c0 <L38>
+     3bc:	14 50 a8 59 	addo	g4,1,g5
+
+000003c0 <L38>:
+     3c0:	2c 40 b5 3c 	cmpibl	g6,g5,3ec <L37>
+     3c4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     3c8:	00 00 00 00
+			3c8: R_960_32	_floorplane
+     3cc:	14 bc ac 82 	stob	g5,15 <_R_RenderMaskedSegRange+0x15>(g2)[g4]
+     3d0:	15 00 00 00
+     3d4:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     3d8:	00 00 00 00
+			3d8: R_960_32	_rw_x
+     3dc:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     3e0:	00 00 00 00
+			3e0: R_960_32	_floorplane
+     3e4:	14 7c b5 82 	stob	g6,157 <L11+0x3>(g5)[g4]
+     3e8:	57 01 00 00
+
+000003ec <L37>:
+     3ec:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     3f0:	00 00 00 00
+			3f0: R_960_32	_segtextured
+     3f4:	00 1e 38 5c 	mov	0,r7
+     3f8:	94 22 05 35 	cmpobne	0,g4,68c <L64>
+
+000003fc <L42>:
+     3fc:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     400:	00 00 00 00
+			400: R_960_32	_midtexture
+     404:	20 22 04 35 	cmpobne	0,g0,624 <L65>
+     408:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     40c:	00 00 00 00
+			40c: R_960_32	_toptexture
+     410:	f0 21 04 32 	cmpobe	0,g0,600 <L45>
+     414:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     418:	00 00 00 00
+			418: R_960_32	_pixhigh
+     41c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     420:	00 00 00 00
+			420: R_960_32	_pixhighstep
+     424:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     428:	00 00 00 00
+			428: R_960_32	_rw_x
+     42c:	8c 4d 25 59 	shri	12,g5,r4
+     430:	15 00 a5 59 	addo	g5,g4,g4
+     434:	92 38 a8 c8 	ldis	0 <_R_RenderMaskedSegRange>[g2*2],g5
+     438:	00 00 00 00
+			438: R_960_32	_floorclip
+     43c:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     440:	00 00 00 00
+			440: R_960_32	_pixhigh
+     444:	08 00 a9 39 	cmpibg	g5,r4,44c <L46>
+     448:	01 49 25 59 	subo	1,g5,r4
+
+0000044c <L46>:
+     44c:	60 01 29 3e 	cmpible	r5,r4,5ac <L66>
+
+00000450 <L62>:
+     450:	01 49 a1 59 	subo	1,r5,g4
+     454:	92 38 a0 8a 	stos	g4,0 <_R_RenderMaskedSegRange>[g2*2]
+     458:	00 00 00 00
+			458: R_960_32	_ceilingclip
+
+0000045c <L49>:
+     45c:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     460:	00 00 00 00
+			460: R_960_32	_bottomtexture
+     464:	38 21 04 32 	cmpobe	0,g0,59c <L51>
+     468:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     46c:	00 00 00 00
+			46c: R_960_32	_pixlow
+     470:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     474:	00 00 00 00
+			474: R_960_32	_pixlowstep
+     478:	ff 2f b5 8c 	lda	0xfff(g4),g6
+     47c:	14 40 a5 59 	addo	g4,g5,g4
+     480:	8c 8d 25 59 	shri	12,g6,r4
+     484:	92 38 a8 c8 	ldis	0 <_R_RenderMaskedSegRange>[g2*2],g5
+     488:	00 00 00 00
+			488: R_960_32	_ceilingclip
+     48c:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     490:	00 00 00 00
+			490: R_960_32	_pixlow
+     494:	08 00 a9 3c 	cmpibl	g5,r4,49c <L52>
+     498:	15 50 20 59 	addo	g5,1,r4
+
+0000049c <L52>:
+     49c:	ac 00 31 3b 	cmpibge	r6,r4,548 <L67>
+
+000004a0 <L63>:
+     4a0:	06 50 a0 59 	addo	r6,1,g4
+     4a4:	92 38 a0 8a 	stos	g4,0 <_R_RenderMaskedSegRange>[g2*2]
+     4a8:	00 00 00 00
+			4a8: R_960_32	_floorclip
+
+000004ac <L55>:
+     4ac:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     4b0:	00 00 00 00
+			4b0: R_960_32	_maskedtexture
+     4b4:	18 20 05 32 	cmpobe	0,g4,4cc <L44>
+     4b8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     4bc:	00 00 00 00
+			4bc: R_960_32	_maskedtexturecol
+     4c0:	92 1c 3d 8a 	stos	r7,(g4)[g2*2]
+     4c4:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     4c8:	00 00 00 00
+			4c8: R_960_32	_rw_x
+
+000004cc <L44>:
+     4cc:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     4d0:	00 00 00 00
+			4d0: R_960_32	_rw_scale
+     4d4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     4d8:	00 00 00 00
+			4d8: R_960_32	_rw_scalestep
+     4dc:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     4e0:	00 00 00 00
+			4e0: R_960_32	_topfrac
+     4e4:	10 00 85 59 	addo	g0,g4,g0
+     4e8:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     4ec:	00 00 00 00
+			4ec: R_960_32	_bottomfrac
+     4f0:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     4f4:	00 00 00 00
+			4f4: R_960_32	_bottomstep
+     4f8:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     4fc:	00 00 00 00
+			4fc: R_960_32	_topstep
+     500:	15 00 ad 59 	addo	g5,g4,g5
+     504:	11 c0 bd 59 	addo	g1,g7,g7
+     508:	12 50 b0 59 	addo	g2,1,g6
+     50c:	17 16 88 5c 	mov	g7,g1
+     510:	00 30 b8 92 	st	g7,0 <_R_RenderMaskedSegRange>
+     514:	00 00 00 00
+			514: R_960_32	_topfrac
+     518:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     51c:	00 00 00 00
+			51c: R_960_32	_rw_stopx
+     520:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     524:	00 00 00 00
+			524: R_960_32	_rw_scale
+     528:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     52c:	00 00 00 00
+			52c: R_960_32	_bottomfrac
+     530:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+     534:	00 00 00 00
+			534: R_960_32	_rw_x
+     538:	16 16 90 5c 	mov	g6,g2
+     53c:	16 16 b8 5c 	mov	g6,g7
+     540:	d0 9d a5 39 	cmpibg	g4,g6,310 <L58>
+
+00000544 <L60>:
+     544:	00 00 00 0a 	ret
+
+00000548 <L67>:
+     548:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     54c:	00 00 00 00
+			54c: R_960_32	_rw_bottomtexturemid
+     550:	07 16 88 5c 	mov	r7,g1
+     554:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     558:	00 00 00 00
+			558: R_960_32	_dc_texturemid
+     55c:	00 30 30 92 	st	r6,0 <_R_RenderMaskedSegRange>
+     560:	00 00 00 00
+			560: R_960_32	_dc_yh
+     564:	00 30 20 92 	st	r4,0 <_R_RenderMaskedSegRange>
+     568:	00 00 00 00
+			568: R_960_32	_dc_yl
+     56c:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     570:	00 00 00 00
+			570: R_960_32	_R_GetColumn
+     574:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     578:	00 00 00 00
+			578: R_960_32	_colfunc
+     57c:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     580:	00 00 00 00
+			580: R_960_32	_dc_source
+     584:	00 10 05 86 	callx	(g4)
+     588:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     58c:	00 00 00 00
+			58c: R_960_32	_rw_x
+     590:	92 38 20 8a 	stos	r4,0 <_R_RenderMaskedSegRange>[g2*2]
+     594:	00 00 00 00
+			594: R_960_32	_floorclip
+     598:	14 ff ff 08 	b	4ac <L55>
+
+0000059c <L51>:
+     59c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     5a0:	00 00 00 00
+			5a0: R_960_32	_markfloor
+     5a4:	08 3f 05 32 	cmpobe	0,g4,4ac <L55>
+     5a8:	f8 fe ff 08 	b	4a0 <L63>
+
+000005ac <L66>:
+     5ac:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     5b0:	00 00 00 00
+			5b0: R_960_32	_rw_toptexturemid
+     5b4:	07 16 88 5c 	mov	r7,g1
+     5b8:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     5bc:	00 00 00 00
+			5bc: R_960_32	_dc_texturemid
+     5c0:	00 30 28 92 	st	r5,0 <_R_RenderMaskedSegRange>
+     5c4:	00 00 00 00
+			5c4: R_960_32	_dc_yl
+     5c8:	00 30 20 92 	st	r4,0 <_R_RenderMaskedSegRange>
+     5cc:	00 00 00 00
+			5cc: R_960_32	_dc_yh
+     5d0:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     5d4:	00 00 00 00
+			5d4: R_960_32	_R_GetColumn
+     5d8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     5dc:	00 00 00 00
+			5dc: R_960_32	_colfunc
+     5e0:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     5e4:	00 00 00 00
+			5e4: R_960_32	_dc_source
+     5e8:	00 10 05 86 	callx	(g4)
+     5ec:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     5f0:	00 00 00 00
+			5f0: R_960_32	_rw_x
+     5f4:	92 38 20 8a 	stos	r4,0 <_R_RenderMaskedSegRange>[g2*2]
+     5f8:	00 00 00 00
+			5f8: R_960_32	_ceilingclip
+     5fc:	60 fe ff 08 	b	45c <L49>
+
+00000600 <L45>:
+     600:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     604:	00 00 00 00
+			604: R_960_32	_markceiling
+     608:	10 20 05 32 	cmpobe	0,g4,618 <L61>
+     60c:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     610:	00 00 00 00
+			610: R_960_32	_rw_x
+     614:	3c fe ff 08 	b	450 <L62>
+
+00000618 <L61>:
+     618:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     61c:	00 00 00 00
+			61c: R_960_32	_rw_x
+     620:	3c fe ff 08 	b	45c <L49>
+
+00000624 <L65>:
+     624:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     628:	00 00 00 00
+			628: R_960_32	_rw_midtexturemid
+     62c:	07 16 88 5c 	mov	r7,g1
+     630:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     634:	00 00 00 00
+			634: R_960_32	_dc_texturemid
+     638:	00 30 28 92 	st	r5,0 <_R_RenderMaskedSegRange>
+     63c:	00 00 00 00
+			63c: R_960_32	_dc_yl
+     640:	00 30 30 92 	st	r6,0 <_R_RenderMaskedSegRange>
+     644:	00 00 00 00
+			644: R_960_32	_dc_yh
+     648:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     64c:	00 00 00 00
+			64c: R_960_32	_R_GetColumn
+     650:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     654:	00 00 00 00
+			654: R_960_32	_colfunc
+     658:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     65c:	00 00 00 00
+			65c: R_960_32	_dc_source
+     660:	00 10 05 86 	callx	(g4)
+     664:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     668:	00 00 00 00
+			668: R_960_32	_rw_x
+     66c:	00 30 a0 88 	ldos	0 <_R_RenderMaskedSegRange>,g4
+     670:	00 00 00 00
+			670: R_960_32	_viewheight
+     674:	01 19 a8 59 	subo	1,0,g5
+     678:	92 38 a0 8a 	stos	g4,0 <_R_RenderMaskedSegRange>[g2*2]
+     67c:	00 00 00 00
+			67c: R_960_32	_ceilingclip
+     680:	92 38 a8 8a 	stos	g5,0 <_R_RenderMaskedSegRange>[g2*2]
+     684:	00 00 00 00
+			684: R_960_32	_floorclip
+     688:	44 fe ff 08 	b	4cc <L44>
+
+0000068c <L64>:
+     68c:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     690:	00 00 00 00
+			690: R_960_32	_rw_x
+     694:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     698:	00 00 00 00
+			698: R_960_32	_rw_centerangle
+     69c:	15 39 b0 90 	ld	0 <_R_RenderMaskedSegRange>[g5*4],g6
+     6a0:	00 00 00 00
+			6a0: R_960_32	_xtoviewangle
+     6a4:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     6a8:	00 00 00 00
+			6a8: R_960_32	_rw_distance
+     6ac:	14 80 a5 59 	addo	g4,g6,g4
+     6b0:	13 0c a5 59 	shro	19,g4,g4
+     6b4:	14 39 80 90 	ld	0 <_R_RenderMaskedSegRange>[g4*4],g0
+     6b8:	00 00 00 00
+			6b8: R_960_32	_finetangent
+     6bc:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     6c0:	00 00 00 00
+			6c0: R_960_32	_FixedMul
+     6c4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     6c8:	00 00 00 00
+			6c8: R_960_32	_rw_offset
+     6cc:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     6d0:	00 00 00 00
+			6d0: R_960_32	_rw_scale
+     6d4:	10 01 3d 59 	subo	g0,g4,r7
+     6d8:	90 cd 39 59 	shri	16,r7,r7
+     6dc:	8c 4d b5 59 	shri	12,g5,g6
+     6e0:	1f 18 a4 59 	addo	31,16,g4
+     6e4:	08 80 a5 33 	cmpobge	g4,g6,6ec <L41>
+     6e8:	14 16 b0 5c 	mov	g4,g6
+
+000006ec <L41>:
+     6ec:	01 19 a0 59 	subo	1,0,g4
+     6f0:	95 05 a5 70 	divo	g5,g4,g4
+     6f4:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     6f8:	00 00 00 00
+			6f8: R_960_32	_rw_x
+     6fc:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     700:	00 00 00 00
+			700: R_960_32	_walllights
+     704:	16 5d b5 90 	ld	(g5)[g6*4],g6
+     708:	00 30 90 92 	st	g2,0 <_R_RenderMaskedSegRange>
+     70c:	00 00 00 00
+			70c: R_960_32	_dc_x
+     710:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+     714:	00 00 00 00
+			714: R_960_32	_dc_colormap
+     718:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     71c:	00 00 00 00
+			71c: R_960_32	_dc_iscale
+     720:	dc fc ff 08 	b	3fc <L42>
+	...
+
+00000730 <LC0>:
+     730:	42 61 64 20 	testno.f	12
+     734:	52 5f 52 65 	.word	0x65525f52
+     738:	6e 64 65 72 	.word	0x7265646e
+     73c:	57 61 6c 6c 	cvtzri	g7,?
+     740:	52 61 6e 67 	.word	0x676e6152
+     744:	65 3a 20 25 	testne	4
+     748:	69 20 74 6f 	.word	0x6f742069
+     74c:	20 25 69 00 	.word	0x00692520
+
+00000750 <_R_StoreWallRange_profile_body>:
+     750:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     754:	00 00 00 00
+			754: R_960_32	_ds_p
+     758:	10 16 30 5c 	mov	g0,r6
+     75c:	11 16 28 5c 	mov	g1,r5
+     760:	00 30 a0 8c 	lda	3000 <Li960R5+0x1b7c>,g4
+     764:	00 30 00 00
+			764: R_960_32	_drawsegs
+     768:	48 46 a5 32 	cmpobe	g4,g5,db0 <L68>
+     76c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     770:	00 00 00 00
+			770: R_960_32	_viewwidth
+     774:	08 00 a4 3e 	cmpible	g4,g0,77c <L71>
+     778:	1c 00 8c 3b 	cmpibge	g1,g0,794 <L70>
+
+0000077c <L71>:
+     77c:	00 30 80 8c 	lda	730 <LC0>,g0
+     780:	30 07 00 00
+			780: R_960_32	.text
+     784:	06 16 88 5c 	mov	r6,g1
+     788:	05 16 90 5c 	mov	r5,g2
+     78c:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     790:	00 00 00 00
+			790: R_960_32	_I_Error
+
+00000794 <L70>:
+     794:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     798:	00 00 00 00
+			798: R_960_32	_curline
+     79c:	9e 19 20 58 	setbit	30,0,r4
+     7a0:	10 20 85 90 	ld	0x10(g4),g0
+     7a4:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     7a8:	00 00 00 00
+			7a8: R_960_32	_sidedef
+     7ac:	14 20 ad 90 	ld	0x14(g4),g5
+     7b0:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     7b4:	00 00 00 00
+			7b4: R_960_32	_linedef
+     7b8:	10 60 a5 88 	ldos	0x10(g5),g4
+     7bc:	88 09 a5 58 	setbit	8,g4,g4
+     7c0:	10 60 a5 8a 	stos	g4,0x10(g5)
+     7c4:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+     7c8:	00 00 00 00
+			7c8: R_960_32	_curline
+     7cc:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     7d0:	00 00 00 00
+			7d0: R_960_32	_rw_angle1
+     7d4:	0c a0 a5 90 	ld	0xc(g6),g4
+     7d8:	00 34 a5 8c 	lda	40000000 <Li960R5+0x3fffeb7c>(g4),g4
+     7dc:	00 00 00 40
+     7e0:	10 01 85 59 	subo	g0,g4,g0
+     7e4:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     7e8:	00 00 00 00
+			7e8: R_960_32	_rw_normalangle
+     7ec:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     7f0:	00 00 00 00
+			7f0: R_960_32	_abs
+     7f4:	08 00 24 33 	cmpobge	r4,g0,7fc <L72>
+     7f8:	9e 19 80 58 	setbit	30,0,g0
+
+000007fc <L72>:
+     7fc:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     800:	00 00 00 00
+			800: R_960_32	_curline
+     804:	10 01 21 59 	subo	g0,r4,r4
+     808:	00 10 ad 90 	ld	(g4),g5
+     80c:	13 0c 21 59 	shro	19,r4,r4
+     810:	04 60 8d 90 	ld	0x4(g5),g1
+     814:	00 50 85 90 	ld	(g5),g0
+     818:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     81c:	00 00 00 00
+			81c: R_960_32	_R_PointToDist
+     820:	04 39 88 90 	ld	0 <_R_RenderMaskedSegRange>[r4*4],g1
+     824:	00 00 00 00
+			824: R_960_32	_finesine
+     828:	10 16 38 5c 	mov	g0,r7
+     82c:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     830:	00 00 00 00
+			830: R_960_32	_FixedMul
+     834:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     838:	00 00 00 00
+			838: R_960_32	_ds_p
+     83c:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     840:	00 00 00 00
+			840: R_960_32	_rw_distance
+     844:	00 30 30 92 	st	r6,0 <_R_RenderMaskedSegRange>
+     848:	00 00 00 00
+			848: R_960_32	_rw_x
+     84c:	04 20 35 92 	st	r6,0x4(g4)
+     850:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     854:	00 00 00 00
+			854: R_960_32	_ds_p
+     858:	05 50 b8 59 	addo	r5,1,g7
+     85c:	08 20 2d 92 	st	r5,0x8(g4)
+     860:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     864:	00 00 00 00
+			864: R_960_32	_curline
+     868:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     86c:	00 00 00 00
+			86c: R_960_32	_ds_p
+     870:	00 10 ad 92 	st	g5,(g4)
+     874:	06 39 b0 90 	ld	0 <_R_RenderMaskedSegRange>[r6*4],g6
+     878:	00 00 00 00
+			878: R_960_32	_xtoviewangle
+     87c:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     880:	00 00 00 00
+			880: R_960_32	_viewangle
+     884:	00 30 20 90 	ld	0 <_R_RenderMaskedSegRange>,r4
+     888:	00 00 00 00
+			888: R_960_32	_ds_p
+     88c:	10 80 85 59 	addo	g0,g6,g0
+     890:	00 30 b8 92 	st	g7,0 <_R_RenderMaskedSegRange>
+     894:	00 00 00 00
+			894: R_960_32	_rw_stopx
+     898:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     89c:	00 00 00 00
+			89c: R_960_32	_R_ScaleFromGlobalAngle
+     8a0:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     8a4:	00 00 00 00
+			8a4: R_960_32	_rw_scale
+     8a8:	0c 20 81 92 	st	g0,0xc(r4)
+     8ac:	28 4b 31 3c 	cmpibl	r6,r5,13d4 <L136>
+     8b0:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     8b4:	00 00 00 00
+			8b4: R_960_32	_ds_p
+     8b8:	0c 60 a5 90 	ld	0xc(g5),g4
+     8bc:	Address 0x00000000000008bc is out of bounds.
+
+
+000008c0 <L74>:
+     8c0:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+     8c4:	00 00 00 00
+			8c4: R_960_32	_frontsector
+     8c8:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     8cc:	00 00 00 00
+			8cc: R_960_32	_viewz
+     8d0:	04 a0 a5 90 	ld	0x4(g6),g4
+     8d4:	17 01 a5 59 	subo	g7,g4,g4
+     8d8:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     8dc:	00 00 00 00
+			8dc: R_960_32	_worldtop
+     8e0:	00 90 ad 90 	ld	(g6),g5
+     8e4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     8e8:	00 00 00 00
+			8e8: R_960_32	_ds_p
+     8ec:	17 41 ad 59 	subo	g7,g5,g5
+     8f0:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     8f4:	00 00 00 00
+			8f4: R_960_32	_worldbottom
+     8f8:	00 30 f0 92 	st	g14,0 <_R_RenderMaskedSegRange>
+     8fc:	00 00 00 00
+			8fc: R_960_32	_maskedtexture
+     900:	00 30 f0 92 	st	g14,0 <_R_RenderMaskedSegRange>
+     904:	00 00 00 00
+			904: R_960_32	_bottomtexture
+     908:	00 30 f0 92 	st	g14,0 <_R_RenderMaskedSegRange>
+     90c:	00 00 00 00
+			90c: R_960_32	_toptexture
+     910:	00 30 f0 92 	st	g14,0 <_R_RenderMaskedSegRange>
+     914:	00 00 00 00
+			914: R_960_32	_midtexture
+     918:	2c 20 f5 92 	st	g14,0x2c(g4)
+     91c:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     920:	00 00 00 00
+			920: R_960_32	_backsector
+     924:	ac 66 05 35 	cmpobne	0,g5,fd0 <L75>
+     928:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     92c:	00 00 00 00
+			92c: R_960_32	_sidedef
+     930:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     934:	00 00 00 00
+			934: R_960_32	_texturetranslation
+     938:	0c 20 b4 c8 	ldis	0xc(g0),g6
+     93c:	01 1e b8 5c 	mov	1,g7
+     940:	16 1d ad 90 	ld	(g4)[g6*4],g5
+     944:	10 16 88 5c 	mov	g0,g1
+     948:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     94c:	00 00 00 00
+			94c: R_960_32	_linedef
+     950:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     954:	00 00 00 00
+			954: R_960_32	_midtexture
+     958:	00 30 b8 92 	st	g7,0 <_R_RenderMaskedSegRange>
+     95c:	00 00 00 00
+			95c: R_960_32	_markfloor
+     960:	00 30 b8 92 	st	g7,0 <_R_RenderMaskedSegRange>
+     964:	00 00 00 00
+			964: R_960_32	_markceiling
+     968:	10 20 ad 88 	ldos	0x10(g4),g5
+     96c:	58 66 25 30 	bbc	4,g5,fc4 <L76>
+     970:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     974:	00 00 00 00
+			974: R_960_32	_frontsector
+     978:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     97c:	00 00 00 00
+			97c: R_960_32	_textureheight
+     980:	0c 20 84 c8 	ldis	0xc(g0),g0
+     984:	00 10 bd 90 	ld	(g4),g7
+     988:	10 5d b5 90 	ld	(g5)[g0*4],g6
+     98c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     990:	00 00 00 00
+			990: R_960_32	_viewz
+     994:	17 80 ad 59 	addo	g7,g6,g5
+     998:	14 41 a5 59 	subo	g4,g5,g4
+
+0000099c <L132>:
+     99c:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     9a0:	00 00 00 00
+			9a0: R_960_32	_rw_midtexturemid
+     9a4:	04 60 ac 90 	ld	0x4(g1),g5
+     9a8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     9ac:	00 00 00 00
+			9ac: R_960_32	_rw_midtexturemid
+     9b0:	00 30 b0 8c 	lda	0 <_R_RenderMaskedSegRange>,g6
+     9b4:	00 00 00 00
+			9b4: R_960_32	_screenheightarray
+     9b8:	14 40 a5 59 	addo	g4,g5,g4
+     9bc:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     9c0:	00 00 00 00
+			9c0: R_960_32	_rw_midtexturemid
+     9c4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     9c8:	00 00 00 00
+			9c8: R_960_32	_ds_p
+     9cc:	03 1e a8 5c 	mov	3,g5
+     9d0:	18 20 ad 92 	st	g5,0x18(g4)
+     9d4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     9d8:	00 00 00 00
+			9d8: R_960_32	_ds_p
+     9dc:	00 30 a8 8c 	lda	0 <_R_RenderMaskedSegRange>,g5
+     9e0:	00 00 00 00
+			9e0: R_960_32	_negonearray
+     9e4:	24 20 b5 92 	st	g6,0x24(g4)
+     9e8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     9ec:	00 00 00 00
+			9ec: R_960_32	_ds_p
+     9f0:	00 30 b0 8c 	lda	7fffffff <Li960R5+0x7fffeb7b>,g6
+     9f4:	ff ff ff 7f
+     9f8:	28 20 ad 92 	st	g5,0x28(g4)
+     9fc:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     a00:	00 00 00 00
+			a00: R_960_32	_ds_p
+     a04:	9f 19 a8 58 	setbit	31,0,g5
+     a08:	1c 20 b5 92 	st	g6,0x1c(g4)
+     a0c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     a10:	00 00 00 00
+			a10: R_960_32	_ds_p
+     a14:	Address 0x0000000000000a14 is out of bounds.
+
+
+00000a18 <L78>:
+     a18:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     a1c:	00 00 00 00
+			a1c: R_960_32	_toptexture
+     a20:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     a24:	00 00 00 00
+			a24: R_960_32	_midtexture
+     a28:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+     a2c:	00 00 00 00
+			a2c: R_960_32	_bottomtexture
+     a30:	94 43 a5 58 	or	g4,g5,g4
+     a34:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     a38:	00 00 00 00
+			a38: R_960_32	_maskedtexture
+     a3c:	94 83 a5 58 	or	g4,g6,g4
+     a40:	95 03 a5 58 	or	g5,g4,g4
+     a44:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     a48:	00 00 00 00
+			a48: R_960_32	_segtextured
+     a4c:	6c 25 05 32 	cmpobe	0,g4,fb8 <L130>
+     a50:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     a54:	00 00 00 00
+			a54: R_960_32	_rw_normalangle
+     a58:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     a5c:	00 00 00 00
+			a5c: R_960_32	_rw_angle1
+     a60:	9f 19 b0 58 	setbit	31,0,g6
+     a64:	15 01 85 59 	subo	g5,g4,g0
+     a68:	08 00 b4 33 	cmpobge	g6,g0,a70 <L104>
+     a6c:	10 11 80 59 	subo	g0,0,g0
+
+00000a70 <L104>:
+     a70:	9e 19 a0 58 	setbit	30,0,g4
+     a74:	08 00 a4 33 	cmpobge	g4,g0,a7c <L105>
+     a78:	9e 19 80 58 	setbit	30,0,g0
+
+00000a7c <L105>:
+     a7c:	13 0c a4 59 	shro	19,g0,g4
+     a80:	14 39 88 90 	ld	0 <_R_RenderMaskedSegRange>[g4*4],g1
+     a84:	00 00 00 00
+			a84: R_960_32	_finesine
+     a88:	07 16 80 5c 	mov	r7,g0
+     a8c:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     a90:	00 00 00 00
+			a90: R_960_32	_FixedMul
+     a94:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     a98:	00 00 00 00
+			a98: R_960_32	_rw_normalangle
+     a9c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     aa0:	00 00 00 00
+			aa0: R_960_32	_rw_angle1
+     aa4:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     aa8:	00 00 00 00
+			aa8: R_960_32	_rw_offset
+     aac:	14 41 a4 59 	subo	g4,g1,g4
+     ab0:	10 20 05 39 	cmpibg	0,g4,ac0 <L106>
+     ab4:	10 11 a0 59 	subo	g0,0,g4
+     ab8:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     abc:	00 00 00 00
+			abc: R_960_32	_rw_offset
+
+00000ac0 <L106>:
+     ac0:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     ac4:	00 00 00 00
+			ac4: R_960_32	_sidedef
+     ac8:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     acc:	00 00 00 00
+			acc: R_960_32	_curline
+     ad0:	00 10 b5 90 	ld	(g4),g6
+     ad4:	08 20 bc 90 	ld	0x8(g0),g7
+     ad8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     adc:	00 00 00 00
+			adc: R_960_32	_rw_offset
+     ae0:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     ae4:	00 00 00 00
+			ae4: R_960_32	_viewangle
+     ae8:	16 c0 b5 59 	addo	g6,g7,g6
+     aec:	14 80 a5 59 	addo	g4,g6,g4
+     af0:	11 41 ad 59 	subo	g1,g5,g5
+     af4:	00 74 ad 8c 	lda	40000000 <Li960R5+0x3fffeb7c>(g5),g5
+     af8:	00 00 00 40
+     afc:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     b00:	00 00 00 00
+			b00: R_960_32	_rw_offset
+     b04:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     b08:	00 00 00 00
+			b08: R_960_32	_fixedcolormap
+     b0c:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     b10:	00 00 00 00
+			b10: R_960_32	_rw_centerangle
+     b14:	a4 24 05 35 	cmpobne	0,g4,fb8 <L130>
+     b18:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     b1c:	00 00 00 00
+			b1c: R_960_32	_frontsector
+     b20:	04 20 9c 90 	ld	0x4(g0),g3
+     b24:	0c 60 ac 88 	ldos	0xc(g1),g5
+     b28:	00 10 94 90 	ld	(g0),g2
+     b2c:	10 4e ad 59 	shlo	16,g5,g5
+     b30:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     b34:	00 00 00 00
+			b34: R_960_32	_extralight
+     b38:	94 4d ad 59 	shri	20,g5,g5
+     b3c:	04 a0 bc 90 	ld	0x4(g2),g7
+     b40:	04 e0 b4 90 	ld	0x4(g3),g6
+     b44:	15 00 85 59 	addo	g5,g4,g0
+     b48:	68 c4 b5 32 	cmpobe	g6,g7,fb0 <L137>
+     b4c:	00 90 ac 90 	ld	(g2),g5
+     b50:	00 d0 a4 90 	ld	(g3),g4
+     b54:	54 44 a5 32 	cmpobe	g4,g5,fa8 <L138>
+
+00000b58 <L109>:
+     b58:	00 30 a0 8c 	lda	0 <_R_RenderMaskedSegRange>,g4
+     b5c:	00 00 00 00
+			b5c: R_960_32	_scalelight
+     b60:	20 20 04 39 	cmpibg	0,g0,b80 <L135>
+     b64:	00 30 a0 8c 	lda	b40 <L106+0x80>,g4
+     b68:	40 0b 00 00
+			b68: R_960_32	_scalelight
+     b6c:	14 20 7c 3c 	cmpibl	15,g0,b80 <L135>
+     b70:	90 1c a4 8c 	lda	(g0)[g0*2],g4
+     b74:	06 0e a5 59 	shlo	6,g4,g4
+     b78:	00 34 a5 8c 	lda	0 <_R_RenderMaskedSegRange>(g4),g4
+     b7c:	00 00 00 00
+			b7c: R_960_32	_scalelight
+
+00000b80 <L135>:
+     b80:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     b84:	00 00 00 00
+			b84: R_960_32	_walllights
+
+00000b88 <L103>:
+     b88:	00 50 a4 90 	ld	(g1),g4
+     b8c:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     b90:	00 00 00 00
+			b90: R_960_32	_viewz
+     b94:	0c 00 ad 39 	cmpibg	g5,g4,ba0 <L115>
+     b98:	00 30 f0 92 	st	g14,0 <_R_RenderMaskedSegRange>
+     b9c:	00 00 00 00
+			b9c: R_960_32	_markfloor
+
+00000ba0 <L115>:
+     ba0:	04 60 a4 90 	ld	0x4(g1),g4
+     ba4:	1c 00 ad 3c 	cmpibl	g5,g4,bc0 <L116>
+     ba8:	0a 60 ac c8 	ldis	0xa(g1),g5
+     bac:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     bb0:	00 00 00 00
+			bb0: R_960_32	_skyflatnum
+     bb4:	0c 40 a5 32 	cmpobe	g4,g5,bc0 <L116>
+     bb8:	00 30 f0 92 	st	g14,0 <_R_RenderMaskedSegRange>
+     bbc:	00 00 00 00
+			bbc: R_960_32	_markceiling
+
+00000bc0 <L116>:
+     bc0:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     bc4:	00 00 00 00
+			bc4: R_960_32	_worldtop
+     bc8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     bcc:	00 00 00 00
+			bcc: R_960_32	_worldbottom
+     bd0:	84 4d ad 59 	shri	4,g5,g5
+     bd4:	84 0d a5 59 	shri	4,g4,g4
+     bd8:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     bdc:	00 00 00 00
+			bdc: R_960_32	_rw_scalestep
+     be0:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     be4:	00 00 00 00
+			be4: R_960_32	_worldbottom
+     be8:	15 16 88 5c 	mov	g5,g1
+     bec:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     bf0:	00 00 00 00
+			bf0: R_960_32	_worldtop
+     bf4:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     bf8:	00 00 00 00
+			bf8: R_960_32	_FixedMul
+     bfc:	10 11 80 59 	subo	g0,0,g0
+     c00:	00 30 20 90 	ld	0 <_R_RenderMaskedSegRange>,r4
+     c04:	00 00 00 00
+			c04: R_960_32	_centeryfrac
+     c08:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     c0c:	00 00 00 00
+			c0c: R_960_32	_topstep
+     c10:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     c14:	00 00 00 00
+			c14: R_960_32	_rw_scale
+     c18:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     c1c:	00 00 00 00
+			c1c: R_960_32	_worldtop
+     c20:	84 0d 21 59 	shri	4,r4,r4
+     c24:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     c28:	00 00 00 00
+			c28: R_960_32	_FixedMul
+     c2c:	10 01 21 59 	subo	g0,r4,r4
+     c30:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     c34:	00 00 00 00
+			c34: R_960_32	_worldbottom
+     c38:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     c3c:	00 00 00 00
+			c3c: R_960_32	_rw_scalestep
+     c40:	00 30 20 92 	st	r4,0 <_R_RenderMaskedSegRange>
+     c44:	00 00 00 00
+			c44: R_960_32	_topfrac
+     c48:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     c4c:	00 00 00 00
+			c4c: R_960_32	_FixedMul
+     c50:	10 11 80 59 	subo	g0,0,g0
+     c54:	00 30 20 90 	ld	0 <_R_RenderMaskedSegRange>,r4
+     c58:	00 00 00 00
+			c58: R_960_32	_centeryfrac
+     c5c:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     c60:	00 00 00 00
+			c60: R_960_32	_bottomstep
+     c64:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     c68:	00 00 00 00
+			c68: R_960_32	_worldbottom
+     c6c:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     c70:	00 00 00 00
+			c70: R_960_32	_rw_scale
+     c74:	84 0d 21 59 	shri	4,r4,r4
+     c78:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     c7c:	00 00 00 00
+			c7c: R_960_32	_FixedMul
+     c80:	10 01 21 59 	subo	g0,r4,r4
+     c84:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     c88:	00 00 00 00
+			c88: R_960_32	_backsector
+     c8c:	00 30 20 92 	st	r4,0 <_R_RenderMaskedSegRange>
+     c90:	00 00 00 00
+			c90: R_960_32	_bottomfrac
+     c94:	44 20 05 32 	cmpobe	0,g4,cd8 <L117>
+     c98:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     c9c:	00 00 00 00
+			c9c: R_960_32	_worldhigh
+     ca0:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     ca4:	00 00 00 00
+			ca4: R_960_32	_worldlow
+     ca8:	84 0d 85 59 	shri	4,g4,g0
+     cac:	84 4d ad 59 	shri	4,g5,g5
+     cb0:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     cb4:	00 00 00 00
+			cb4: R_960_32	_worldtop
+     cb8:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     cbc:	00 00 00 00
+			cbc: R_960_32	_worldhigh
+     cc0:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     cc4:	00 00 00 00
+			cc4: R_960_32	_worldlow
+     cc8:	88 02 a4 39 	cmpibg	g4,g0,f50 <L139>
+
+00000ccc <L118>:
+     ccc:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     cd0:	00 00 00 00
+			cd0: R_960_32	_worldbottom
+     cd4:	28 42 a5 3c 	cmpibl	g4,g5,efc <L140>
+
+00000cd8 <L117>:
+     cd8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     cdc:	00 00 00 00
+			cdc: R_960_32	_markceiling
+     ce0:	ec 21 05 35 	cmpobne	0,g4,ecc <L141>
+
+00000ce4 <L120>:
+     ce4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     ce8:	00 00 00 00
+			ce8: R_960_32	_markfloor
+     cec:	b0 21 05 35 	cmpobne	0,g4,e9c <L142>
+
+00000cf0 <L121>:
+     cf0:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     cf4:	00 00 00 00
+			cf4: R_960_32	_R_RenderSegLoop
+     cf8:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     cfc:	00 00 00 00
+			cfc: R_960_32	_ds_p
+     d00:	18 e0 a5 90 	ld	0x18(g7),g4
+     d04:	10 20 0d 37 	bbs	1,g4,d14 <L123>
+     d08:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     d0c:	00 00 00 00
+			d0c: R_960_32	_maskedtexture
+     d10:	0c a0 04 32 	cmpobe	0,g2,d1c <L122>
+
+00000d14 <L123>:
+     d14:	24 e0 a5 90 	ld	0x24(g7),g4
+     d18:	14 21 05 32 	cmpobe	0,g4,e2c <L143>
+
+00000d1c <L122>:
+     d1c:	18 e0 a5 90 	ld	0x18(g7),g4
+     d20:	10 20 05 37 	bbs	0,g4,d30 <L125>
+     d24:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     d28:	00 00 00 00
+			d28: R_960_32	_maskedtexture
+     d2c:	78 a0 04 32 	cmpobe	0,g2,da4 <L127>
+
+00000d30 <L125>:
+     d30:	28 e0 a5 90 	ld	0x28(g7),g4
+     d34:	80 20 05 32 	cmpobe	0,g4,db4 <L144>
+     d38:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     d3c:	00 00 00 00
+			d3c: R_960_32	_maskedtexture
+
+00000d40 <L124>:
+     d40:	64 a0 04 32 	cmpobe	0,g2,da4 <L127>
+     d44:	18 e0 a5 90 	ld	0x18(g7),g4
+     d48:	2c 20 0d 37 	bbs	1,g4,d74 <L126>
+     d4c:	94 93 a0 58 	or	g4,2,g4
+     d50:	18 e0 a5 92 	st	g4,0x18(g7)
+     d54:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     d58:	00 00 00 00
+			d58: R_960_32	_ds_p
+     d5c:	9f 19 a8 58 	setbit	31,0,g5
+     d60:	20 20 ad 92 	st	g5,0x20(g4)
+     d64:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     d68:	00 00 00 00
+			d68: R_960_32	_ds_p
+     d6c:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     d70:	00 00 00 00
+			d70: R_960_32	_maskedtexture
+
+00000d74 <L126>:
+     d74:	30 a0 04 32 	cmpobe	0,g2,da4 <L127>
+     d78:	18 e0 a5 90 	ld	0x18(g7),g4
+     d7c:	28 20 05 37 	bbs	0,g4,da4 <L127>
+     d80:	94 53 a0 58 	or	g4,1,g4
+     d84:	18 e0 a5 92 	st	g4,0x18(g7)
+     d88:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     d8c:	00 00 00 00
+			d8c: R_960_32	_ds_p
+     d90:	00 30 a8 8c 	lda	7fffffff <Li960R5+0x7fffeb7b>,g5
+     d94:	ff ff ff 7f
+     d98:	1c 20 ad 92 	st	g5,0x1c(g4)
+     d9c:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     da0:	00 00 00 00
+			da0: R_960_32	_ds_p
+
+00000da4 <L127>:
+     da4:	30 e0 a5 8c 	lda	0x30(g7),g4
+     da8:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+     dac:	00 00 00 00
+			dac: R_960_32	_ds_p
+
+00000db0 <L68>:
+     db0:	00 00 00 0a 	ret
+
+00000db4 <L144>:
+     db4:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     db8:	00 00 00 00
+			db8: R_960_32	_rw_stopx
+     dbc:	01 8e 21 59 	shlo	1,r6,r4
+     dc0:	06 81 94 59 	subo	r6,g2,g2
+     dc4:	01 8e 94 59 	shlo	1,g2,g2
+     dc8:	00 34 89 8c 	lda	0 <_R_RenderMaskedSegRange>(r4),g1
+     dcc:	00 00 00 00
+			dcc: R_960_32	_floorclip
+     dd0:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     dd4:	00 00 00 00
+			dd4: R_960_32	_lastopening
+     dd8:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     ddc:	00 00 00 00
+			ddc: R_960_32	_memcpy
+     de0:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     de4:	00 00 00 00
+			de4: R_960_32	_lastopening
+     de8:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     dec:	00 00 00 00
+			dec: R_960_32	_ds_p
+     df0:	04 01 a5 59 	subo	r4,g4,g4
+     df4:	28 60 a5 92 	st	g4,0x28(g5)
+     df8:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+     dfc:	00 00 00 00
+			dfc: R_960_32	_rw_stopx
+     e00:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     e04:	00 00 00 00
+			e04: R_960_32	_lastopening
+     e08:	06 81 b5 59 	subo	r6,g6,g6
+     e0c:	96 1c b5 8c 	lda	(g4)[g6*2],g6
+     e10:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     e14:	00 00 00 00
+			e14: R_960_32	_ds_p
+     e18:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     e1c:	00 00 00 00
+			e1c: R_960_32	_maskedtexture
+     e20:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+     e24:	00 00 00 00
+			e24: R_960_32	_lastopening
+     e28:	18 ff ff 08 	b	d40 <L124>
+
+00000e2c <L143>:
+     e2c:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     e30:	00 00 00 00
+			e30: R_960_32	_rw_stopx
+     e34:	01 8e 21 59 	shlo	1,r6,r4
+     e38:	06 81 94 59 	subo	r6,g2,g2
+     e3c:	01 8e 94 59 	shlo	1,g2,g2
+     e40:	00 34 89 8c 	lda	0 <_R_RenderMaskedSegRange>(r4),g1
+     e44:	00 00 00 00
+			e44: R_960_32	_ceilingclip
+     e48:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     e4c:	00 00 00 00
+			e4c: R_960_32	_lastopening
+     e50:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     e54:	00 00 00 00
+			e54: R_960_32	_memcpy
+     e58:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     e5c:	00 00 00 00
+			e5c: R_960_32	_lastopening
+     e60:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+     e64:	00 00 00 00
+			e64: R_960_32	_ds_p
+     e68:	04 01 a5 59 	subo	r4,g4,g4
+     e6c:	24 a0 a5 92 	st	g4,0x24(g6)
+     e70:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     e74:	00 00 00 00
+			e74: R_960_32	_rw_stopx
+     e78:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     e7c:	00 00 00 00
+			e7c: R_960_32	_lastopening
+     e80:	06 41 ad 59 	subo	r6,g5,g5
+     e84:	95 1c ad 8c 	lda	(g4)[g5*2],g5
+     e88:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     e8c:	00 00 00 00
+			e8c: R_960_32	_ds_p
+     e90:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+     e94:	00 00 00 00
+			e94: R_960_32	_lastopening
+     e98:	84 fe ff 08 	b	d1c <L122>
+
+00000e9c <L142>:
+     e9c:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     ea0:	00 00 00 00
+			ea0: R_960_32	_rw_stopx
+     ea4:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     ea8:	00 00 00 00
+			ea8: R_960_32	_floorplane
+     eac:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     eb0:	00 00 00 00
+			eb0: R_960_32	_rw_x
+     eb4:	01 89 94 59 	subo	1,g2,g2
+     eb8:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     ebc:	00 00 00 00
+			ebc: R_960_32	_R_CheckPlane
+     ec0:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     ec4:	00 00 00 00
+			ec4: R_960_32	_floorplane
+     ec8:	28 fe ff 08 	b	cf0 <L121>
+
+00000ecc <L141>:
+     ecc:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+     ed0:	00 00 00 00
+			ed0: R_960_32	_rw_stopx
+     ed4:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     ed8:	00 00 00 00
+			ed8: R_960_32	_ceilingplane
+     edc:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     ee0:	00 00 00 00
+			ee0: R_960_32	_rw_x
+     ee4:	01 89 94 59 	subo	1,g2,g2
+     ee8:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     eec:	00 00 00 00
+			eec: R_960_32	_R_CheckPlane
+     ef0:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     ef4:	00 00 00 00
+			ef4: R_960_32	_ceilingplane
+     ef8:	ec fd ff 08 	b	ce4 <L120>
+
+00000efc <L140>:
+     efc:	00 30 20 90 	ld	0 <_R_RenderMaskedSegRange>,r4
+     f00:	00 00 00 00
+			f00: R_960_32	_centeryfrac
+     f04:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     f08:	00 00 00 00
+			f08: R_960_32	_rw_scale
+     f0c:	15 16 80 5c 	mov	g5,g0
+     f10:	84 0d 21 59 	shri	4,r4,r4
+     f14:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     f18:	00 00 00 00
+			f18: R_960_32	_FixedMul
+     f1c:	10 01 21 59 	subo	g0,r4,r4
+     f20:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     f24:	00 00 00 00
+			f24: R_960_32	_rw_scalestep
+     f28:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     f2c:	00 00 00 00
+			f2c: R_960_32	_worldlow
+     f30:	00 30 20 92 	st	r4,0 <_R_RenderMaskedSegRange>
+     f34:	00 00 00 00
+			f34: R_960_32	_pixlow
+     f38:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     f3c:	00 00 00 00
+			f3c: R_960_32	_FixedMul
+     f40:	10 11 80 59 	subo	g0,0,g0
+     f44:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     f48:	00 00 00 00
+			f48: R_960_32	_pixlowstep
+     f4c:	8c fd ff 08 	b	cd8 <L117>
+
+00000f50 <L139>:
+     f50:	00 30 20 90 	ld	0 <_R_RenderMaskedSegRange>,r4
+     f54:	00 00 00 00
+			f54: R_960_32	_centeryfrac
+     f58:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     f5c:	00 00 00 00
+			f5c: R_960_32	_rw_scale
+     f60:	84 0d 21 59 	shri	4,r4,r4
+     f64:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     f68:	00 00 00 00
+			f68: R_960_32	_FixedMul
+     f6c:	10 01 21 59 	subo	g0,r4,r4
+     f70:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+     f74:	00 00 00 00
+			f74: R_960_32	_rw_scalestep
+     f78:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     f7c:	00 00 00 00
+			f7c: R_960_32	_worldhigh
+     f80:	00 30 20 92 	st	r4,0 <_R_RenderMaskedSegRange>
+     f84:	00 00 00 00
+			f84: R_960_32	_pixhigh
+     f88:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+     f8c:	00 00 00 00
+			f8c: R_960_32	_FixedMul
+     f90:	10 11 80 59 	subo	g0,0,g0
+     f94:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     f98:	00 00 00 00
+			f98: R_960_32	_worldlow
+     f9c:	00 30 80 92 	st	g0,0 <_R_RenderMaskedSegRange>
+     fa0:	00 00 00 00
+			fa0: R_960_32	_pixhighstep
+     fa4:	28 fd ff 08 	b	ccc <L118>
+
+00000fa8 <L138>:
+     fa8:	10 50 80 59 	addo	g0,1,g0
+     fac:	ac fb ff 08 	b	b58 <L109>
+
+00000fb0 <L137>:
+     fb0:	01 09 84 59 	subo	1,g0,g0
+     fb4:	a4 fb ff 08 	b	b58 <L109>
+
+00000fb8 <L130>:
+     fb8:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     fbc:	00 00 00 00
+			fbc: R_960_32	_frontsector
+     fc0:	c8 fb ff 08 	b	b88 <L103>
+
+00000fc4 <L76>:
+     fc4:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     fc8:	00 00 00 00
+			fc8: R_960_32	_worldtop
+     fcc:	d0 f9 ff 08 	b	99c <L132>
+
+00000fd0 <L75>:
+     fd0:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+     fd4:	00 00 00 00
+			fd4: R_960_32	_ds_p
+     fd8:	24 20 f5 92 	st	g14,0x24(g4)
+     fdc:	28 20 f5 92 	st	g14,0x28(g4)
+     fe0:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+     fe4:	00 00 00 00
+			fe4: R_960_32	_ds_p
+     fe8:	18 60 f5 92 	st	g14,0x18(g5)
+     fec:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+     ff0:	00 00 00 00
+			ff0: R_960_32	_frontsector
+     ff4:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+     ff8:	00 00 00 00
+			ff8: R_960_32	_backsector
+     ffc:	00 50 a4 90 	ld	(g1),g4
+    1000:	00 d0 ad 90 	ld	(g7),g5
+    1004:	a8 03 ad 3b 	cmpibge	g5,g4,13ac <L79>
+    1008:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    100c:	00 00 00 00
+			100c: R_960_32	_ds_p
+    1010:	01 1e b0 5c 	mov	1,g6
+    1014:	18 20 b5 92 	st	g6,0x18(g4)
+    1018:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+    101c:	00 00 00 00
+			101c: R_960_32	_frontsector
+    1020:	Address 0x0000000000001020 is out of bounds.
+
+
+00001024 <L133>:
+    1024:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1028:	00 00 00 00
+			1028: R_960_32	_ds_p
+    102c:	1c 20 b5 92 	st	g6,0x1c(g4)
+    1030:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+    1034:	00 00 00 00
+			1034: R_960_32	_frontsector
+    1038:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+    103c:	00 00 00 00
+			103c: R_960_32	_backsector
+
+00001040 <L80>:
+    1040:	04 60 a4 90 	ld	0x4(g1),g4
+    1044:	04 e0 ad 90 	ld	0x4(g7),g5
+    1048:	3c 03 ad 3e 	cmpible	g5,g4,1384 <L82>
+    104c:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+    1050:	00 00 00 00
+			1050: R_960_32	_ds_p
+    1054:	18 a0 a5 90 	ld	0x18(g6),g4
+    1058:	82 0b a5 58 	or	2,g4,g4
+    105c:	18 a0 a5 92 	st	g4,0x18(g6)
+    1060:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+    1064:	00 00 00 00
+			1064: R_960_32	_frontsector
+    1068:	Address 0x0000000000001068 is out of bounds.
+
+
+0000106c <L134>:
+    106c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1070:	00 00 00 00
+			1070: R_960_32	_ds_p
+    1074:	20 20 b5 92 	st	g6,0x20(g4)
+    1078:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+    107c:	00 00 00 00
+			107c: R_960_32	_frontsector
+    1080:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+    1084:	00 00 00 00
+			1084: R_960_32	_backsector
+
+00001088 <L83>:
+    1088:	04 e0 ad 90 	ld	0x4(g7),g5
+    108c:	00 50 a4 90 	ld	(g1),g4
+    1090:	50 40 a5 3c 	cmpibl	g4,g5,10e0 <L85>
+    1094:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1098:	00 00 00 00
+			1098: R_960_32	_ds_p
+    109c:	00 30 a8 8c 	lda	0 <_R_RenderMaskedSegRange>,g5
+    10a0:	00 00 00 00
+			10a0: R_960_32	_negonearray
+    10a4:	28 20 ad 92 	st	g5,0x28(g4)
+    10a8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    10ac:	00 00 00 00
+			10ac: R_960_32	_ds_p
+    10b0:	00 30 b0 8c 	lda	7fffffff <Li960R5+0x7fffeb7b>,g6
+    10b4:	ff ff ff 7f
+    10b8:	1c 20 b5 92 	st	g6,0x1c(g4)
+    10bc:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+    10c0:	00 00 00 00
+			10c0: R_960_32	_ds_p
+    10c4:	18 60 a5 90 	ld	0x18(g5),g4
+    10c8:	81 0b a5 58 	or	1,g4,g4
+    10cc:	18 60 a5 92 	st	g4,0x18(g5)
+    10d0:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+    10d4:	00 00 00 00
+			10d4: R_960_32	_frontsector
+    10d8:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+    10dc:	00 00 00 00
+			10dc: R_960_32	_backsector
+
+000010e0 <L85>:
+    10e0:	00 d0 ad 90 	ld	(g7),g5
+    10e4:	04 60 a4 90 	ld	0x4(g1),g4
+    10e8:	4c 40 a5 39 	cmpibg	g4,g5,1134 <L86>
+    10ec:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    10f0:	00 00 00 00
+			10f0: R_960_32	_ds_p
+    10f4:	00 30 a8 8c 	lda	0 <_R_RenderMaskedSegRange>,g5
+    10f8:	00 00 00 00
+			10f8: R_960_32	_screenheightarray
+    10fc:	24 20 ad 92 	st	g5,0x24(g4)
+    1100:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1104:	00 00 00 00
+			1104: R_960_32	_ds_p
+    1108:	9f 19 b0 58 	setbit	31,0,g6
+    110c:	20 20 b5 92 	st	g6,0x20(g4)
+    1110:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+    1114:	00 00 00 00
+			1114: R_960_32	_ds_p
+    1118:	18 60 a5 90 	ld	0x18(g5),g4
+    111c:	82 0b a5 58 	or	2,g4,g4
+    1120:	18 60 a5 92 	st	g4,0x18(g5)
+    1124:	00 30 88 90 	ld	0 <_R_RenderMaskedSegRange>,g1
+    1128:	00 00 00 00
+			1128: R_960_32	_frontsector
+    112c:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+    1130:	00 00 00 00
+			1130: R_960_32	_backsector
+
+00001134 <L86>:
+    1134:	04 e0 a5 90 	ld	0x4(g7),g4
+    1138:	00 30 98 90 	ld	0 <_R_RenderMaskedSegRange>,g3
+    113c:	00 00 00 00
+			113c: R_960_32	_viewz
+    1140:	13 01 b5 59 	subo	g3,g4,g6
+    1144:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+    1148:	00 00 00 00
+			1148: R_960_32	_worldhigh
+    114c:	00 d0 a5 90 	ld	(g7),g4
+    1150:	13 01 ad 59 	subo	g3,g4,g5
+    1154:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+    1158:	00 00 00 00
+			1158: R_960_32	_worldlow
+    115c:	0a 60 ac c8 	ldis	0xa(g1),g5
+    1160:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1164:	00 00 00 00
+			1164: R_960_32	_skyflatnum
+    1168:	08 42 a5 32 	cmpobe	g4,g5,1370 <L145>
+
+0000116c <L87>:
+    116c:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+    1170:	00 00 00 00
+			1170: R_960_32	_worldlow
+    1174:	00 30 e8 90 	ld	0 <_R_RenderMaskedSegRange>,g13
+    1178:	00 00 00 00
+			1178: R_960_32	_worldbottom
+    117c:	15 16 20 5c 	mov	g5,r4
+    1180:	cc 41 ed 32 	cmpobe	g13,g5,134c <L146>
+
+00001184 <L89>:
+    1184:	01 1e a0 5c 	mov	1,g4
+    1188:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+    118c:	00 00 00 00
+			118c: R_960_32	_markfloor
+
+00001190 <L90>:
+    1190:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+    1194:	00 00 00 00
+			1194: R_960_32	_worldhigh
+    1198:	00 30 90 90 	ld	0 <_R_RenderMaskedSegRange>,g2
+    119c:	00 00 00 00
+			119c: R_960_32	_worldtop
+    11a0:	88 81 95 32 	cmpobe	g2,g6,1328 <L147>
+
+000011a4 <L92>:
+    11a4:	01 1e a0 5c 	mov	1,g4
+    11a8:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+    11ac:	00 00 00 00
+			11ac: R_960_32	_markceiling
+
+000011b0 <L93>:
+    11b0:	04 e0 ad 90 	ld	0x4(g7),g5
+    11b4:	00 50 a4 90 	ld	(g1),g4
+    11b8:	10 40 a5 3b 	cmpibge	g4,g5,11c8 <L95>
+    11bc:	04 60 ac 90 	ld	0x4(g1),g5
+    11c0:	00 d0 a5 90 	ld	(g7),g4
+    11c4:	18 00 ad 39 	cmpibg	g5,g4,11dc <L94>
+
+000011c8 <L95>:
+    11c8:	01 1e a0 5c 	mov	1,g4
+    11cc:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+    11d0:	00 00 00 00
+			11d0: R_960_32	_markceiling
+    11d4:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+    11d8:	00 00 00 00
+			11d8: R_960_32	_markfloor
+
+000011dc <L94>:
+    11dc:	40 81 95 3e 	cmpible	g2,g6,131c <L128>
+    11e0:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+    11e4:	00 00 00 00
+			11e4: R_960_32	_sidedef
+    11e8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    11ec:	00 00 00 00
+			11ec: R_960_32	_texturetranslation
+    11f0:	08 20 b4 c8 	ldis	0x8(g0),g6
+    11f4:	16 1d ad 90 	ld	(g4)[g6*4],g5
+    11f8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    11fc:	00 00 00 00
+			11fc: R_960_32	_linedef
+    1200:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+    1204:	00 00 00 00
+			1204: R_960_32	_toptexture
+    1208:	10 20 ad 88 	ldos	0x10(g4),g5
+    120c:	e8 60 1d 30 	bbc	3,g5,12f4 <L97>
+    1210:	00 30 90 92 	st	g2,0 <_R_RenderMaskedSegRange>
+    1214:	00 00 00 00
+			1214: R_960_32	_rw_toptexturemid
+
+00001218 <L96>:
+    1218:	34 00 e9 3b 	cmpibge	g13,r4,124c <L99>
+    121c:	0a 20 b4 c8 	ldis	0xa(g0),g6
+    1220:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1224:	00 00 00 00
+			1224: R_960_32	_texturetranslation
+    1228:	16 1d ad 90 	ld	(g4)[g6*4],g5
+    122c:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1230:	00 00 00 00
+			1230: R_960_32	_linedef
+    1234:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+    1238:	00 00 00 00
+			1238: R_960_32	_bottomtexture
+    123c:	10 20 ad 88 	ldos	0x10(g4),g5
+    1240:	a8 60 25 30 	bbc	4,g5,12e8 <L100>
+    1244:	00 30 90 92 	st	g2,0 <_R_RenderMaskedSegRange>
+    1248:	00 00 00 00
+			1248: R_960_32	_rw_bottomtexturemid
+
+0000124c <L99>:
+    124c:	04 20 ac 90 	ld	0x4(g0),g5
+    1250:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1254:	00 00 00 00
+			1254: R_960_32	_rw_toptexturemid
+    1258:	15 00 a5 59 	addo	g5,g4,g4
+    125c:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+    1260:	00 00 00 00
+			1260: R_960_32	_rw_toptexturemid
+    1264:	04 20 ac 90 	ld	0x4(g0),g5
+    1268:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    126c:	00 00 00 00
+			126c: R_960_32	_rw_bottomtexturemid
+    1270:	15 00 a5 59 	addo	g5,g4,g4
+    1274:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+    1278:	00 00 00 00
+			1278: R_960_32	_rw_bottomtexturemid
+    127c:	0c 20 ac c8 	ldis	0xc(g0),g5
+    1280:	98 77 05 32 	cmpobe	0,g5,a18 <L78>
+    1284:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1288:	00 00 00 00
+			1288: R_960_32	_rw_x
+    128c:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+    1290:	00 00 00 00
+			1290: R_960_32	_lastopening
+    1294:	01 0e a5 59 	shlo	1,g4,g4
+    1298:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+    129c:	00 00 00 00
+			129c: R_960_32	_ds_p
+    12a0:	14 41 ad 59 	subo	g4,g5,g5
+    12a4:	01 1e 90 5c 	mov	1,g2
+    12a8:	00 30 a8 92 	st	g5,0 <_R_RenderMaskedSegRange>
+    12ac:	00 00 00 00
+			12ac: R_960_32	_maskedtexturecol
+    12b0:	00 30 90 92 	st	g2,0 <_R_RenderMaskedSegRange>
+    12b4:	00 00 00 00
+			12b4: R_960_32	_maskedtexture
+    12b8:	2c a0 ad 92 	st	g5,0x2c(g6)
+    12bc:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    12c0:	00 00 00 00
+			12c0: R_960_32	_rw_stopx
+    12c4:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+    12c8:	00 00 00 00
+			12c8: R_960_32	_rw_x
+    12cc:	00 30 b0 90 	ld	0 <_R_RenderMaskedSegRange>,g6
+    12d0:	00 00 00 00
+			12d0: R_960_32	_lastopening
+    12d4:	15 01 a5 59 	subo	g5,g4,g4
+    12d8:	94 9c a5 8c 	lda	(g6)[g4*2],g4
+    12dc:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+    12e0:	00 00 00 00
+			12e0: R_960_32	_lastopening
+    12e4:	34 f7 ff 08 	b	a18 <L78>
+
+000012e8 <L100>:
+    12e8:	00 30 20 92 	st	r4,0 <_R_RenderMaskedSegRange>
+    12ec:	00 00 00 00
+			12ec: R_960_32	_rw_bottomtexturemid
+    12f0:	5c ff ff 08 	b	124c <L99>
+
+000012f4 <L97>:
+    12f4:	08 20 b4 c8 	ldis	0x8(g0),g6
+    12f8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    12fc:	00 00 00 00
+			12fc: R_960_32	_textureheight
+    1300:	04 e0 bd 90 	ld	0x4(g7),g7
+    1304:	16 1d ad 90 	ld	(g4)[g6*4],g5
+    1308:	17 40 ad 59 	addo	g7,g5,g5
+    130c:	13 41 a5 59 	subo	g3,g5,g4
+    1310:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+    1314:	00 00 00 00
+			1314: R_960_32	_rw_toptexturemid
+    1318:	00 ff ff 08 	b	1218 <L96>
+
+0000131c <L128>:
+    131c:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+    1320:	00 00 00 00
+			1320: R_960_32	_sidedef
+    1324:	f4 fe ff 08 	b	1218 <L96>
+
+00001328 <L147>:
+    1328:	0a e0 ad c8 	ldis	0xa(g7),g5
+    132c:	0a 60 a4 c8 	ldis	0xa(g1),g4
+    1330:	74 5e a5 35 	cmpobne	g4,g5,11a4 <L92>
+    1334:	0c e0 ad c8 	ldis	0xc(g7),g5
+    1338:	0c 60 a4 c8 	ldis	0xc(g1),g4
+    133c:	68 5e a5 35 	cmpobne	g4,g5,11a4 <L92>
+    1340:	00 30 f0 92 	st	g14,0 <_R_RenderMaskedSegRange>
+    1344:	00 00 00 00
+			1344: R_960_32	_markceiling
+    1348:	68 fe ff 08 	b	11b0 <L93>
+
+0000134c <L146>:
+    134c:	08 e0 ad c8 	ldis	0x8(g7),g5
+    1350:	08 60 a4 c8 	ldis	0x8(g1),g4
+    1354:	30 5e a5 35 	cmpobne	g4,g5,1184 <L89>
+    1358:	0c e0 ad c8 	ldis	0xc(g7),g5
+    135c:	0c 60 a4 c8 	ldis	0xc(g1),g4
+    1360:	24 5e a5 35 	cmpobne	g4,g5,1184 <L89>
+    1364:	00 30 f0 92 	st	g14,0 <_R_RenderMaskedSegRange>
+    1368:	00 00 00 00
+			1368: R_960_32	_markfloor
+    136c:	24 fe ff 08 	b	1190 <L90>
+
+00001370 <L145>:
+    1370:	0a e0 a5 c8 	ldis	0xa(g7),g4
+    1374:	f8 1d ad 35 	cmpobne	g5,g4,116c <L87>
+    1378:	00 30 b0 92 	st	g6,0 <_R_RenderMaskedSegRange>
+    137c:	00 00 00 00
+			137c: R_960_32	_worldtop
+    1380:	ec fd ff 08 	b	116c <L87>
+
+00001384 <L82>:
+    1384:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    1388:	00 00 00 00
+			1388: R_960_32	_viewz
+    138c:	fc 5c a5 3e 	cmpible	g4,g5,1088 <L83>
+    1390:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+    1394:	00 00 00 00
+			1394: R_960_32	_ds_p
+    1398:	9f 19 b0 58 	setbit	31,0,g6
+    139c:	18 60 a5 90 	ld	0x18(g5),g4
+    13a0:	82 0b a5 58 	or	2,g4,g4
+    13a4:	18 60 a5 92 	st	g4,0x18(g5)
+    13a8:	c4 fc ff 08 	b	106c <L134>
+
+000013ac <L79>:
+    13ac:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    13b0:	00 00 00 00
+			13b0: R_960_32	_viewz
+    13b4:	8c 5c a5 3b 	cmpibge	g4,g5,1040 <L80>
+    13b8:	00 30 a0 90 	ld	0 <_R_RenderMaskedSegRange>,g4
+    13bc:	00 00 00 00
+			13bc: R_960_32	_ds_p
+    13c0:	01 1e a8 5c 	mov	1,g5
+    13c4:	18 20 ad 92 	st	g5,0x18(g4)
+    13c8:	00 30 b0 8c 	lda	7fffffff <Li960R5+0x7fffeb7b>,g6
+    13cc:	ff ff ff 7f
+    13d0:	54 fc ff 08 	b	1024 <L133>
+
+000013d4 <L136>:
+    13d4:	05 39 a0 90 	ld	0 <_R_RenderMaskedSegRange>[r5*4],g4
+    13d8:	00 00 00 00
+			13d8: R_960_32	_xtoviewangle
+    13dc:	00 30 80 90 	ld	0 <_R_RenderMaskedSegRange>,g0
+    13e0:	00 00 00 00
+			13e0: R_960_32	_viewangle
+    13e4:	00 30 20 90 	ld	0 <_R_RenderMaskedSegRange>,r4
+    13e8:	00 00 00 00
+			13e8: R_960_32	_ds_p
+    13ec:	10 00 85 59 	addo	g0,g4,g0
+    13f0:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+    13f4:	00 00 00 00
+			13f4: R_960_32	_R_ScaleFromGlobalAngle
+    13f8:	10 20 81 92 	st	g0,0x10(r4)
+    13fc:	00 30 b8 90 	ld	0 <_R_RenderMaskedSegRange>,g7
+    1400:	00 00 00 00
+			1400: R_960_32	_ds_p
+    1404:	00 30 a8 90 	ld	0 <_R_RenderMaskedSegRange>,g5
+    1408:	00 00 00 00
+			1408: R_960_32	_rw_scale
+    140c:	10 e0 a5 90 	ld	0x10(g7),g4
+    1410:	06 41 b1 59 	subo	r6,r5,g6
+    1414:	15 01 a5 59 	subo	g5,g4,g4
+    1418:	96 05 a5 74 	divi	g6,g4,g4
+    141c:	00 30 a0 92 	st	g4,0 <_R_RenderMaskedSegRange>
+    1420:	00 00 00 00
+			1420: R_960_32	_rw_scalestep
+    1424:	14 e0 a5 92 	st	g4,0x14(g7)
+    1428:	98 f4 ff 08 	b	8c0 <L74>
+    142c:	00 00 00 00 	.word	0x00000000
+
+00001430 <_R_StoreWallRange>:
+    1430:	10 16 20 5d 	movl	g0,r4
+    1434:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+    1438:	00 00 00 00
+			1438: R_960_32	_doom_wall_begin
+    143c:	10 16 30 5c 	mov	g0,r6
+    1440:	04 16 80 5d 	movl	r4,g0
+    1444:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+    1448:	00 00 00 00
+			1448: R_960_32	_R_StoreWallRange_profile_body
+    144c:	06 16 88 5c 	mov	r6,g1
+    1450:	02 1e 80 5c 	mov	2,g0
+    1454:	00 30 00 84 	bx	0 <_R_RenderMaskedSegRange>
+    1458:	00 00 00 00
+			1458: R_960_32	_doom_wall_end
+
+0000145c <Li960R4>:
+    145c:	00 00 00 0a 	ret
+
+00001460 <_R_RenderSegLoop>:
+    1460:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+    1464:	00 00 00 00
+			1464: R_960_32	_doom_wall_begin
+    1468:	10 16 20 5c 	mov	g0,r4
+    146c:	00 30 00 86 	callx	0 <_R_RenderMaskedSegRange>
+    1470:	00 00 00 00
+			1470: R_960_32	_R_RenderSegLoop_profile_body
+    1474:	04 16 88 5c 	mov	r4,g1
+    1478:	03 1e 80 5c 	mov	3,g0
+    147c:	00 30 00 84 	bx	0 <_R_RenderMaskedSegRange>
+    1480:	00 00 00 00
+			1480: R_960_32	_doom_wall_end
+
+00001484 <Li960R5>:
+    1484:	00 00 00 0a 	ret
+	...

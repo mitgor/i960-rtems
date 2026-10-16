@@ -1,0 +1,200 @@
+{
+  "research_date": "2026-10-15",
+  "sources": {
+    "RealDOOM": {
+      "repo": "https://github.com/sqpat/RealDOOM",
+      "commit": "d5f6ce27a17d465691acef724d4b4d35207bcc74",
+      "files": {
+        "README.md": {
+          "sha256": "fed8032726459bf1dec030c4db05249fe3df5b3332ca5c49eca1571708244615",
+          "url": "https://github.com/sqpat/RealDOOM/blob/d5f6ce27a17d465691acef724d4b4d35207bcc74/README.md"
+        },
+        "math.asm": {
+          "sha256": "a881100f66dd22e3e48771e8eb4395cdf739c6f309a8c03ae24e9c184cacdd10",
+          "url": "https://github.com/sqpat/RealDOOM/blob/d5f6ce27a17d465691acef724d4b4d35207bcc74/math.asm"
+        },
+        "r_col24.asm": {
+          "sha256": "1c9e0ba1b328296a3d38ebac35006aef575e4c4bceffd07bb4f354af0b619d2f",
+          "url": "https://github.com/sqpat/RealDOOM/blob/d5f6ce27a17d465691acef724d4b4d35207bcc74/r_col24.asm"
+        },
+        "r_span24.asm": {
+          "sha256": "b56b743f31d9d0b18eb4099ed6f9688ddbbd8dacd766a0fbc810320f8a9f4d6f",
+          "url": "https://github.com/sqpat/RealDOOM/blob/d5f6ce27a17d465691acef724d4b4d35207bcc74/r_span24.asm"
+        },
+        "r_bsp24.asm": {
+          "sha256": "615a44b3e32f2090fb60c6678968a1dc3989e7259b2590de60577ae76aaf95d2",
+          "url": "https://github.com/sqpat/RealDOOM/blob/d5f6ce27a17d465691acef724d4b4d35207bcc74/r_bsp24.asm"
+        }
+      }
+    },
+    "FastDoom": {
+      "repo": "https://github.com/viti95/FastDoom",
+      "commit": "9a7b435a9b95db1ba38f89f1139050d748d32fde",
+      "files": {
+        "README.txt": {
+          "sha256": "7936a340132055a81250a62d1a5d744e93279a343c613427e6edeea864766724",
+          "url": "https://github.com/viti95/FastDoom/blob/9a7b435a9b95db1ba38f89f1139050d748d32fde/README.txt"
+        },
+        "FASTDOOM/r_bsp.c": {
+          "sha256": "7be43da5d5b6d9cab7402daf1e71818fa2ac98fe847cd95ca72bcfbcf869c38e",
+          "url": "https://github.com/viti95/FastDoom/blob/9a7b435a9b95db1ba38f89f1139050d748d32fde/FASTDOOM/r_bsp.c"
+        },
+        "FASTDOOM/lineahKN.asm": {
+          "sha256": "9f97df309e24d8f72988cc6e4c8c1ef59420eaee3e9e939f8ea68ffc79e737bd",
+          "url": "https://github.com/viti95/FastDoom/blob/9a7b435a9b95db1ba38f89f1139050d748d32fde/FASTDOOM/lineahKN.asm"
+        }
+      }
+    },
+    "rp2040-doom": {
+      "repo": "https://github.com/kilograham/rp2040-doom",
+      "commit": "29a453c980918a03e40fc8b69b024e7a3bdb5dc2",
+      "files": {
+        "README.md": {
+          "sha256": "110c1faa804cef3731edf6fd72ad435233daa4cbfc683749e144beaa77f25c4b",
+          "url": "https://github.com/kilograham/rp2040-doom/blob/29a453c980918a03e40fc8b69b024e7a3bdb5dc2/README.md"
+        },
+        "src/pd_render.cpp": {
+          "sha256": "dd76d91822d3169b74373265aac1f56d812ff1895f1aa851e397b434482a7b84",
+          "url": "https://github.com/kilograham/rp2040-doom/blob/29a453c980918a03e40fc8b69b024e7a3bdb5dc2/src/pd_render.cpp"
+        },
+        "src/m_fixed.c": {
+          "sha256": "3c35acc4692a483f7fbf2aaa331353794fd891413b9e967a085a88ceb45ca4be",
+          "url": "https://github.com/kilograham/rp2040-doom/blob/29a453c980918a03e40fc8b69b024e7a3bdb5dc2/src/m_fixed.c"
+        }
+      }
+    },
+    "GBADoom": {
+      "repo": "https://github.com/doomhack/GBADoom",
+      "commit": "89097b3ff31ac1e1b2cdce9854e49726cfa462bf",
+      "files": {
+        "README.md": {
+          "sha256": "52925ce3273c977fd44f38b86cd9a221ed7f9e34a9041bc0b2754939e71bd4b3",
+          "url": "https://github.com/doomhack/GBADoom/blob/89097b3ff31ac1e1b2cdce9854e49726cfa462bf/README.md"
+        },
+        "include/m_fixed.h": {
+          "sha256": "ef5e97ba50e0dbb4a1c85c372f3e76daedb2084025954f87a41e8ecd8688de48",
+          "url": "https://github.com/doomhack/GBADoom/blob/89097b3ff31ac1e1b2cdce9854e49726cfa462bf/include/m_fixed.h"
+        },
+        "source/m_recip.c": {
+          "sha256": "033a7f4569229d6bafc6ca2e81cbd9d64f23c8c9fcb0b3dc5f5a66193c124a2f",
+          "url": "https://github.com/doomhack/GBADoom/blob/89097b3ff31ac1e1b2cdce9854e49726cfa462bf/source/m_recip.c"
+        },
+        "source/st_stuff.c": {
+          "sha256": "e4b710bfeddec240c8bdba68da3a25044c050ccd3dd6f225c17f03fae7562a78",
+          "url": "https://github.com/doomhack/GBADoom/blob/89097b3ff31ac1e1b2cdce9854e49726cfa462bf/source/st_stuff.c"
+        }
+      }
+    },
+    "nRF52840Doom": {
+      "repo": "https://github.com/next-hack/nRF52840Doom",
+      "commit": "779cad0ba1fae35523139e9af1f64bb3b14a9aa1",
+      "files": {
+        "NRF52840Doom/Doom/include/m_fixed.h": {
+          "sha256": "6817541ec2970d0a1d2041f604533aaad446781ada9be2e5d6ca90c9a1d1ce19",
+          "url": "https://github.com/next-hack/nRF52840Doom/blob/779cad0ba1fae35523139e9af1f64bb3b14a9aa1/NRF52840Doom/Doom/include/m_fixed.h"
+        }
+      }
+    },
+    "d32xr": {
+      "repo": "https://github.com/viciious/d32xr",
+      "commit": "55bf94b43a039ae0a0d2f09ad9bc23bea5963714",
+      "files": {
+        "README.md": {
+          "sha256": "78148deac2676d89e0f55068f0c8f120b7d4145c4eba67300337b795358ce150",
+          "url": "https://github.com/viciious/d32xr/blob/55bf94b43a039ae0a0d2f09ad9bc23bea5963714/README.md"
+        },
+        "r_cache.c": {
+          "sha256": "ee7f237d092d648b0331ec6c88eee1a41ba04aa2e913348d15d7277241838cb5",
+          "url": "https://github.com/viciious/d32xr/blob/55bf94b43a039ae0a0d2f09ad9bc23bea5963714/r_cache.c"
+        },
+        "r_phase2.c": {
+          "sha256": "685f98829c8e0718ba743412010aa20332ec45db637419dbd4b5f5971f0dd48e",
+          "url": "https://github.com/viciious/d32xr/blob/55bf94b43a039ae0a0d2f09ad9bc23bea5963714/r_phase2.c"
+        },
+        "r_phase7.c": {
+          "sha256": "c12742f2f07986f866770579515350380bf94217829cfd3152c8e4b2a45bbb21",
+          "url": "https://github.com/viciious/d32xr/blob/55bf94b43a039ae0a0d2f09ad9bc23bea5963714/r_phase7.c"
+        },
+        "sh2_fixed.s": {
+          "sha256": "592ec28d4d763afb19481fdfc480d328d858e0c553b5ddd5bdab35673f22a8eb",
+          "url": "https://github.com/viciious/d32xr/blob/55bf94b43a039ae0a0d2f09ad9bc23bea5963714/sh2_fixed.s"
+        }
+      }
+    }
+  },
+  "math_object": {
+    "archive_sha256": "3e47178822b57a6b6c6a89b28d2003e7c3537c20720dbf4857c03af730121503",
+    "member": "build/engine-cross/i960/m_fixed.o",
+    "object_sha256": "1a897719708a2a0f3fb0ae70276d8243466edbea6ce211192fbe884858e93ab6",
+    "text_bytes": 192,
+    "fixedmul_emul_offset": "0x18",
+    "fixedmul_emul_word": "0x67844010",
+    "undefined": [
+      "_abs",
+      "___divdi3"
+    ],
+    "relocations": [
+      {
+        "offset": 4,
+        "symbol": "",
+        "type": 2
+      },
+      {
+        "offset": 96,
+        "symbol": "_abs",
+        "type": 2
+      },
+      {
+        "offset": 112,
+        "symbol": "_abs",
+        "type": 2
+      },
+      {
+        "offset": 168,
+        "symbol": "___divdi3",
+        "type": 2
+      }
+    ],
+    "interpretation": "Accepted archived object: FixedMul already uses emul; FixedDiv references general 64-bit division. Not a current live timing measurement."
+  },
+  "illustrative_amdahl_scenarios_not_predictions": [
+    {
+      "assumed_frame_fraction": 0.1,
+      "assumed_local_speedup": 2,
+      "whole_frame_speedup": 1.0526315789473684,
+      "fps_gain_percent": 5.263157894736836
+    },
+    {
+      "assumed_frame_fraction": 0.2,
+      "assumed_local_speedup": 2,
+      "whole_frame_speedup": 1.1111111111111112,
+      "fps_gain_percent": 11.111111111111116
+    },
+    {
+      "assumed_frame_fraction": 0.3,
+      "assumed_local_speedup": 2,
+      "whole_frame_speedup": 1.1764705882352942,
+      "fps_gain_percent": 17.647058823529417
+    },
+    {
+      "assumed_frame_fraction": 0.4,
+      "assumed_local_speedup": 2,
+      "whole_frame_speedup": 1.25,
+      "fps_gain_percent": 25.0
+    },
+    {
+      "assumed_frame_fraction": 0.2,
+      "assumed_local_speedup": 3,
+      "whole_frame_speedup": 1.1538461538461537,
+      "fps_gain_percent": 15.384615384615374
+    },
+    {
+      "assumed_frame_fraction": 0.8,
+      "assumed_local_speedup": 2,
+      "whole_frame_speedup": 1.6666666666666667,
+      "fps_gain_percent": 66.66666666666667
+    }
+  ],
+  "hardware_accessed": false,
+  "new_target_speedups_measured": false
+}

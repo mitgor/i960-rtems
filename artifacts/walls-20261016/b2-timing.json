@@ -1,0 +1,327 @@
+{
+  "runs": {
+    "live-b2": [
+      {
+        "first": 100,
+        "last": 499,
+        "priority": true,
+        "host_fps": 6.354977790116819,
+        "publication_fps": 6.345419847328245,
+        "card_start_to_browser_mean_bounds_ms": [
+          18.215620260019286,
+          52.08195030501663
+        ],
+        "browser_publish_fps": 6.356241611797278,
+        "audit_overlap_ms": {
+          "mean": 2.6066648725,
+          "p50": 0.0,
+          "p95": 6.770184,
+          "max": 8.158949
+        },
+        "gate_wait_ms": {
+          "mean": 2.7155513,
+          "p50": 0.020354999999999998,
+          "p95": 6.961023,
+          "max": 8.21553
+        },
+        "ioctl_ms": {
+          "mean": 7.78851704,
+          "p50": 8.788738500000001,
+          "p95": 9.964391,
+          "max": 10.981036
+        },
+        "observed_to_browser_ms": {
+          "mean": 5.078341880000039,
+          "p50": 3.326048500014167,
+          "p95": 13.080528999978469,
+          "max": 32.58910499999956
+        },
+        "observed_to_release_ms": {
+          "mean": 16.400569399998943,
+          "p50": 13.114661500026159,
+          "p95": 30.21482899998773,
+          "max": 50.41514299995242
+        },
+        "renderer_components_ms": {
+          "bsp_ms": 80.775,
+          "planes_ms": 40.2,
+          "sprites_ms": 17.5,
+          "screen_copy_ms": 10.1,
+          "adapter_ms": 0.55,
+          "previous_publish_wait_ms": 0.35
+        },
+        "cpu_components_sample_ms": {
+          "bsp": 79.15,
+          "planes": 39.4,
+          "sprites": 17.25
+        },
+        "render_cpu_sample_ms": 135.8,
+        "render_ms": {
+          "mean": 138.475,
+          "p50": 140.0,
+          "p95": 150,
+          "max": 160
+        }
+      },
+      {
+        "first": 100,
+        "last": 199,
+        "priority": true,
+        "host_fps": 6.406742318317379,
+        "publication_fps": 6.370656370656371,
+        "card_start_to_browser_mean_bounds_ms": [
+          15.45027236001398,
+          48.70339340001266
+        ],
+        "browser_publish_fps": 6.4123660770349415,
+        "audit_overlap_ms": {
+          "mean": 2.47515446,
+          "p50": 0.0,
+          "p95": 6.742864,
+          "max": 7.896311
+        },
+        "gate_wait_ms": {
+          "mean": 2.54179997,
+          "p50": 0.019655,
+          "p95": 6.98121,
+          "max": 7.990554
+        },
+        "ioctl_ms": {
+          "mean": 7.89951982,
+          "p50": 8.6455145,
+          "p95": 9.999169,
+          "max": 10.930815
+        },
+        "observed_to_browser_ms": {
+          "mean": 5.026092559995732,
+          "p50": 3.3225950000144167,
+          "p95": 22.346345000016754,
+          "max": 22.494924000000083
+        },
+        "observed_to_release_ms": {
+          "mean": 16.272213240002316,
+          "p50": 12.90570349999598,
+          "p95": 30.246379999994133,
+          "max": 40.01338199998372
+        },
+        "renderer_components_ms": {
+          "bsp_ms": 80.3,
+          "planes_ms": 40.2,
+          "sprites_ms": 17.4,
+          "screen_copy_ms": 10.3,
+          "adapter_ms": 0.3,
+          "previous_publish_wait_ms": 0.3
+        },
+        "cpu_components_sample_ms": {
+          "bsp": 78.5,
+          "planes": 39.4,
+          "sprites": 17.2
+        },
+        "render_cpu_sample_ms": 135.1,
+        "render_ms": {
+          "mean": 137.9,
+          "p50": 140.0,
+          "p95": 150,
+          "max": 160
+        }
+      },
+      {
+        "first": 200,
+        "last": 299,
+        "priority": true,
+        "host_fps": 6.2971424898367845,
+        "publication_fps": 6.358381502890174,
+        "card_start_to_browser_mean_bounds_ms": [
+          18.39425193001741,
+          51.926671850015396
+        ],
+        "browser_publish_fps": 6.297003038206092,
+        "audit_overlap_ms": {
+          "mean": 2.42607362,
+          "p50": 0.0,
+          "p95": 6.805978,
+          "max": 8.158949
+        },
+        "gate_wait_ms": {
+          "mean": 2.50066406,
+          "p50": 0.019688999999999998,
+          "p95": 6.959871,
+          "max": 8.21553
+        },
+        "ioctl_ms": {
+          "mean": 7.46225123,
+          "p50": 8.478171,
+          "p95": 9.936099,
+          "max": 10.981036
+        },
+        "observed_to_browser_ms": {
+          "mean": 5.403145439996138,
+          "p50": 3.3110414999839577,
+          "p95": 22.291709000000992,
+          "max": 32.58910499999956
+        },
+        "observed_to_release_ms": {
+          "mean": 16.157637039997326,
+          "p50": 12.645936000012625,
+          "p95": 34.09748899997567,
+          "max": 50.02866699999231
+        },
+        "renderer_components_ms": {
+          "bsp_ms": 81.4,
+          "planes_ms": 39.9,
+          "sprites_ms": 17.4,
+          "screen_copy_ms": 10.2,
+          "adapter_ms": 0.7,
+          "previous_publish_wait_ms": 0.5
+        },
+        "cpu_components_sample_ms": {
+          "bsp": 79.7,
+          "planes": 39.1,
+          "sprites": 17.1
+        },
+        "render_cpu_sample_ms": 135.9,
+        "render_ms": {
+          "mean": 138.7,
+          "p50": 140.0,
+          "p95": 150,
+          "max": 150
+        }
+      },
+      {
+        "first": 300,
+        "last": 399,
+        "priority": true,
+        "host_fps": 6.345656817702324,
+        "publication_fps": 6.333973128598848,
+        "card_start_to_browser_mean_bounds_ms": [
+          18.938183300023184,
+          53.21495066001887
+        ],
+        "browser_publish_fps": 6.342753537047899,
+        "audit_overlap_ms": {
+          "mean": 2.89270607,
+          "p50": 0.0,
+          "p95": 6.759354,
+          "max": 8.107205
+        },
+        "gate_wait_ms": {
+          "mean": 3.1095513,
+          "p50": 2.5690005,
+          "p95": 6.953276,
+          "max": 8.192598
+        },
+        "ioctl_ms": {
+          "mean": 8.07319558,
+          "p50": 9.4674715,
+          "p95": 9.960762,
+          "max": 10.517564
+        },
+        "observed_to_browser_ms": {
+          "mean": 5.336903280003185,
+          "p50": 3.3439999999984593,
+          "p95": 12.779485000010027,
+          "max": 32.38949199999297
+        },
+        "observed_to_release_ms": {
+          "mean": 17.36824971999738,
+          "p50": 19.806768000023567,
+          "p95": 30.21482899998773,
+          "max": 50.41514299995242
+        },
+        "renderer_components_ms": {
+          "bsp_ms": 81.3,
+          "planes_ms": 40,
+          "sprites_ms": 17.8,
+          "screen_copy_ms": 9.9,
+          "adapter_ms": 0.5,
+          "previous_publish_wait_ms": 0.5
+        },
+        "cpu_components_sample_ms": {
+          "bsp": 79.9,
+          "planes": 39.3,
+          "sprites": 17.6
+        },
+        "render_cpu_sample_ms": 136.8,
+        "render_ms": {
+          "mean": 139.1,
+          "p50": 140.0,
+          "p95": 150,
+          "max": 150
+        }
+      },
+      {
+        "first": 400,
+        "last": 499,
+        "priority": true,
+        "host_fps": 6.317266091006589,
+        "publication_fps": 6.32183908045977,
+        "card_start_to_browser_mean_bounds_ms": [
+          20.07977345002257,
+          54.48278531001961
+        ],
+        "browser_publish_fps": 6.319892737524142,
+        "audit_overlap_ms": {
+          "mean": 2.63272534,
+          "p50": 0.0,
+          "p95": 6.731514,
+          "max": 7.468042
+        },
+        "gate_wait_ms": {
+          "mean": 2.71018987,
+          "p50": 0.0214585,
+          "p95": 6.935385,
+          "max": 7.538235
+        },
+        "ioctl_ms": {
+          "mean": 7.71910153,
+          "p50": 8.9491965,
+          "p95": 9.920029,
+          "max": 10.025959
+        },
+        "observed_to_browser_ms": {
+          "mean": 4.547226240005102,
+          "p50": 3.327187499991169,
+          "p95": 12.350588999993306,
+          "max": 32.42521500004614
+        },
+        "observed_to_release_ms": {
+          "mean": 15.804177599998752,
+          "p50": 13.182916999994632,
+          "p95": 29.886134999969727,
+          "max": 49.89281699999992
+        },
+        "renderer_components_ms": {
+          "bsp_ms": 80.1,
+          "planes_ms": 40.7,
+          "sprites_ms": 17.4,
+          "screen_copy_ms": 10,
+          "adapter_ms": 0.7,
+          "previous_publish_wait_ms": 0.1
+        },
+        "cpu_components_sample_ms": {
+          "bsp": 78.5,
+          "planes": 39.8,
+          "sprites": 17.1
+        },
+        "render_cpu_sample_ms": 135.4,
+        "render_ms": {
+          "mean": 138.2,
+          "p50": 140.0,
+          "p95": 150,
+          "max": 160
+        }
+      }
+    ]
+  },
+  "pooled": {
+    "True": {
+      "blocks": 1,
+      "host_fps": 6.354977790116819,
+      "publication_fps": 6.345419847328245,
+      "gate_wait_mean_ms": 2.7155513,
+      "ioctl_mean_ms": 7.78851704,
+      "observed_to_browser_mean_ms": 5.078341880000039,
+      "render_mean_ms": 138.475
+    }
+  }
+}

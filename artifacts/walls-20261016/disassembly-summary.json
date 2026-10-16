@@ -1,0 +1,12 @@
+{
+  "os": {
+    "instructions": 1291,
+    "calls": 34,
+    "stack_adjustments": []
+  },
+  "o2": {
+    "instructions": 1307,
+    "calls": 34,
+    "stack_adjustments": []
+  }
+}

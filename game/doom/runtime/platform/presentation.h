@@ -1,3 +1,6 @@
+#ifdef DOOM_WALL_PROFILE
+#include "wall_profile.h"
+#endif
 #ifdef DOOM_INPUT_TRACE
 /* Bounded diagnostics, no heap allocation or new host/card ownership. */
 extern int gametic,menuactive;
@@ -132,6 +135,9 @@ static void present_record(unsigned char *frame,unsigned generation,unsigned mod
   const struct doom_cache*c=doom_wad_backend_stats();unsigned k,*q=(unsigned*)(frame+64960);q[0]=0x31435057u;q[1]=1;
   for(k=0;k<4;k++){q[2+k]=c->profile_ms[k];q[6+k]=c->profile_counts[k];}
   q[10]=c->wire_bytes;q[11]=c->copied_bytes;q[12]=c->reads;q[13]=c->hits;q[14]=c->misses;q[15]=10;}
+#endif
+#ifdef DOOM_WALL_PROFILE
+ doom_wall_record((unsigned*)(frame+65024),generation);
 #endif
 #ifdef DOOM_FIXED_DIV_PROFILE
  doom_div_record((unsigned*)(frame+65024));

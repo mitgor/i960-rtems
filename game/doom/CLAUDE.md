@@ -1,5 +1,33 @@
 # Doom milestone guidance
 
+<!-- wall-profile-current -->
+**2026-10-16 wall profiling and selective r_segs O2 qualified, opt-in.**
+`--wall-profile` partitions root/subsector/wall-setup/wall-loop elapsed time;
+`--fast-walls` independently selects O2 for r_segs.c, including masked drawing.
+Both remain OFF by default. Exact divide stays playable-default; C columns and
+spans/selective O2 remain explicitly enabled in benchmark builds.
+
+Profiled A/B/B/A: **6.323 → 6.358 FPS (+0.555%)**, renderer **139.188 →
+138.200 ms**. Small measured gain; no HTTP-delivery latency improvement. The
+single plain control is 6.427 FPS / 136.475 ms; profiling adds about 2.71 ms versus
+pooled A. Unprofiled fast-walls card FPS is unmeasured: qualify it before promotion.
+
+Baseline partition: traversal/culling **4.97 ms**, other subsector **14.58 ms**,
+wall setup **21.31 ms**, wall loop **40.02 ms**. These include profiler/interrupt/
+preemption costs, not pure CPU cycles. The wall loop did not get faster. Do not
+attribute the aggregate gain to pixel-loop speed or treat the old BSP bucket as
+all traversal. Next promising trial: exact four-sample versus two-sample plane
+spans, against the plain accepted baseline, keeping quality and all checks.
+
+All **2,600 images**, **285 full paired audits**, ownership, stall/held-STOP/
+heap drain and full system/frame/WAD replay/tamper tests pass; 2,444 exact HTTP
+payload observations match. Region call counts agree on all 2,080 profiled frames.
+Max IRQ gap 10.812 ms. Source/binary/capture evidence and reproduction:
+`artifacts/walls-20261016/README.md`; flags/schema: `game/doom/wall_profile/README.md`.
+No flash writes. Public IPv6 HTTP restored (200, 2,889 bytes), boot
+`22b8d687-42db-477e-804b-8bb26eeac7da`; public relay owns the card.
+<!-- /wall-profile-current -->
+
 <!-- point-side-current -->
 **2026-10-16 exact point-side candidate qualified, opt-in.** `--fast-point-side`
 selects a defined 32-bit helper with adjacent i960 compare/test pairs; omitting it

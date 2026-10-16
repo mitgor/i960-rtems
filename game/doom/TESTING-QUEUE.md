@@ -39,10 +39,26 @@ of that parallel research work.
    within repeat variation; no meaningful speedup established. All 2,080 images,
    229 paired audits and lifecycle/replay/tamper checks pass. O0 remains
    default. See [evidence](../../artifacts/point-side-20261016/README.md).
-8. **Next:** isolate traversal path counts/cost from BSP wall drawing, then test
-   a bounded iterative front-to-back traversal while preserving culling order.
-   The current stage counters do not isolate helper cost. Continue selective
-   compiler settings, measured memory hot spots and cache/layout one at a time.
+8. **Done, diagnostic/candidate opt-in:** `--wall-profile` separates the root,
+   subsector, wall setup and wall loop; `--fast-walls` selects r_segs O2.
+   Profiled A/B/B/A: **6.323 → 6.358 FPS (+0.555%)**, renderer 139.188 →
+   138.200 ms. Five runs including one plain control: 2,600 matching images,
+   285 full paired audits, STOP/stall/drain and full replay/tamper checks pass.
+   Traversal/culling is about 4.97 ms, wall setup 21.31 ms, wall loop 40.02 ms;
+   elapsed brackets include profiler/interrupt/preemption overhead. The wall
+   loop did not improve. Plain control: 6.427 FPS / 136.475 ms; keep profiling
+   off for play. See [acceptance](../../artifacts/walls-20261016/README.md).
+9. **Next promising kernel trial:** exact four-sample plane spans versus the
+   accepted two-sample spans. Planes cost about 40.2 ms, not all in the inner loop.
+   Keep output/tails/wrap/alignment exact; measure code growth and cache effects.
+   Use the accepted plain baseline, changing one option at a time.
+10. **Before promoting fast-walls:** fresh unprofiled matched card comparison.
+    The small profiled gain does not establish its normal-play FPS benefit.
+11. **Lower priority/conditional:** iterative BSP for scenes where profiling
+    shows meaningful traversal overhead; then measured memory hot spots and
+    cache/layout. Private Newlib fast-memory is already implemented and tested
+    without a meaningful gain; do not duplicate it. See [backlog](BACKLOG.md).
+
 
 
 Quality reductions must have explicit independent controls, preferably at runtime

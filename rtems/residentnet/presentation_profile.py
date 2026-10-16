@@ -34,6 +34,22 @@ def decode(raw,g,test=False,options=None):
   assert q[:2]==(0x31435057,1) and q[15]==10 and q[6]==q[7]==q[8]
   assert all(x%10==0 for x in q[2:6])
   d['wad_cache']=list(q);end=65024
+ if options.get('wall_profile'):
+  assert not (options.get('input_trace') or options.get('fixed_div_profile'))
+  assert end<=65024 and not any(raw[end:65024])
+  q=struct.unpack_from('<128I',raw,65024)
+  assert q[:5]==(0x314c4157,1,g,4,4166700) and q[6:8]==(0,0)
+  assert not any(q[16:]) and q[5]<250000000
+  counts=list(q[8:16:2]);ticks=list(q[9:16:2])
+  assert counts[0] in (0,1) and all(x<1000000 for x in counts)
+  assert all(x<250000000 for x in ticks) and ticks==sorted(ticks,reverse=True)
+  assert all(n or not t for n,t in zip(counts,ticks))
+  assert counts[3]<=counts[2]
+  assert counts[0] or not any(counts)
+  assert counts[1] or not any(counts[2:])
+  assert ticks[0]*1000/q[4]<=w[5]+10
+  d['wall_regions']=dict(hz=q[4],clock_read_ticks=q[5],counts=counts,ticks=ticks)
+  end=65536
  if options.get('input_trace'):
   assert not options.get('fixed_div_profile') and end<=65024 and not any(raw[end:65024])
   q=struct.unpack_from('<128I',raw,65024)
@@ -61,6 +77,7 @@ def decode(raw,g,test=False,options=None):
  return d
 
 def preflight(admission,pipeline,pipeline_test,wad_load_test):
+ if admission.get("wall_profile"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer") and not (admission.get("input_trace") or admission.get("fixed_div_profile"))
  if admission.get("input_trace"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer") and not admission.get("fixed_div_profile")
  if admission.get("fixed_div_profile"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer")
  if any(admission.get(k) for k in ('runtime_detail','frame_profile','no_fnv','direct_frame','presentation_test','low_detail','detail_test','cpu_profile','column_test')):

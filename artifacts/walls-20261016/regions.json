@@ -1,0 +1,114 @@
+{
+  "live-a1": {
+    "frames": 400,
+    "regions": [
+      "traversal_culling",
+      "subsector_other",
+      "wall_setup",
+      "wall_loop"
+    ],
+    "partition_mean_ms": [
+      4.807000743994048,
+      14.645111239110086,
+      21.26968524251806,
+      40.38017435860513
+    ],
+    "inclusive_mean_ms": [
+      81.10197158422733,
+      76.29497084023328,
+      61.64985960112319,
+      40.38017435860513
+    ],
+    "mean_calls": [
+      1,
+      87,
+      110.4575,
+      110.4575
+    ],
+    "empty_bracket_mean_us": 0.7943936448508412
+  },
+  "live-b1": {
+    "frames": 400,
+    "regions": [
+      "traversal_culling",
+      "subsector_other",
+      "wall_setup",
+      "wall_loop"
+    ],
+    "partition_mean_ms": [
+      4.724302805577555,
+      13.938555091559268,
+      20.81078191374469,
+      40.49886120911033
+    ],
+    "inclusive_mean_ms": [
+      79.97250101999184,
+      75.24819821441429,
+      61.309643122855014,
+      40.49886120911033
+    ],
+    "mean_calls": [
+      1,
+      87,
+      110.4575,
+      110.4575
+    ],
+    "empty_bracket_mean_us": 0.8069935440516476
+  },
+  "live-b2": {
+    "frames": 400,
+    "regions": [
+      "traversal_culling",
+      "subsector_other",
+      "wall_setup",
+      "wall_loop"
+    ],
+    "partition_mean_ms": [
+      5.074068807449541,
+      13.754091367269062,
+      21.067911656706748,
+      40.23675810593515
+    ],
+    "inclusive_mean_ms": [
+      80.1328299373605,
+      75.05876112991096,
+      61.3046697626419,
+      40.23675810593515
+    ],
+    "mean_calls": [
+      1,
+      87,
+      110.4575,
+      110.4575
+    ],
+    "empty_bracket_mean_us": 0.8129934960520315
+  },
+  "live-a2": {
+    "frames": 400,
+    "regions": [
+      "traversal_culling",
+      "subsector_other",
+      "wall_setup",
+      "wall_loop"
+    ],
+    "partition_mean_ms": [
+      5.137231502147982,
+      14.522565819473446,
+      21.35183958528332,
+      39.66234730122159
+    ],
+    "inclusive_mean_ms": [
+      80.67398420812634,
+      75.53675270597836,
+      61.01418688650491,
+      39.66234730122159
+    ],
+    "mean_calls": [
+      1,
+      87,
+      110.4575,
+      110.4575
+    ],
+    "empty_bracket_mean_us": 0.7913936688506492
+  }
+}

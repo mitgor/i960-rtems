@@ -1,0 +1,4 @@
+PASS actual adapter/ownership: 320 frames, all FNV/direct modes and transitions, immutable prior slot, exact ACK, pointer rotation
+PASS wall trailer validation: 22 malformed/conflicting cases refused
+PASS timing schema, mode/sequence, sums, reserved bytes, FNV recomputation; disabled mode makes no pixel-integrity claim
+PASS profile preflight rejects incompatible launch before opening card

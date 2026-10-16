@@ -3877,6 +3877,37 @@ switches, but worth recording: a reproducible result includes knowing which
 machine code was actually running. The public IPv6 page was restored afterward;
 the [captures](artifacts/point-side-20261016/README.md) keep the full account.
 
+## The tree was not the forest
+
+The profiler had called one large number “BSP.” That sounded like eighty
+milliseconds spent walking a tree. It was really the whole journey through the
+tree and the work done at its leaves, including drawing the walls.
+
+Four nested stopwatches made the distinction visible. In the measured view,
+traversal and culling took about five milliseconds. Other subsector work took
+fifteen, wall setup twenty-one, and the wall loop forty. The stopwatches included
+interrupts and their own cost, so these were elapsed brackets, not a census of
+CPU instructions. But they were enough to move an iterative tree rewrite down
+the list. Most of that old number had belonged to other work.
+
+We also tried compiling the wall module for speed instead of size. The two
+candidate runs came in just ahead of both references: 6.323 against 6.358 frames
+per second when pooled, and about one millisecond less rendering time. A small
+result, honestly kept. The wall loop itself had not become faster, and the
+experiment did not explain every shift between the other buckets.
+
+There was a price for knowing more. With the stopwatches out, the plain control
+ran at 6.427 frames per second. Instrumentation had cost about 2.7 milliseconds
+of renderer time. Both new switches stay optional; normal play keeps the clocks
+out, and the compiler choice still needs an uninstrumented comparison before it
+becomes a default.
+
+All 2,600 pictures agreed. The 285 full audit pairs, held buffers, STOP, heap
+drain and independent replays agreed too. We restored the public web page and
+kept the [complete evidence](artifacts/walls-20261016/README.md). The next useful
+experiment is in the floor and ceiling spans: another forty-millisecond stage,
+with an exact two-sample loop to compare against a carefully bounded wider one.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
