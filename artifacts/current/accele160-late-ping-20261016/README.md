@@ -78,9 +78,11 @@ induced and no programming command was sent.
 
 Before any live flash test, establish a board-specific means to enter and
 leave recovery without deliberately corrupting the only bootable image, plus
-a verified way to restore the accepted stock 1 MiB dump. The next useful
-read-only target check is a guarded snapshot of the stock table after boot and
-a disassembly audit of the main-entry initialization for computed writes to
-`c00234fc`. Even those will not prove a modified image boots; a live test
+a verified way to restore the accepted stock 1 MiB dump. A subsequent
+[guarded live snapshot](../accele160-table-snapshot-20261016/README.md)
+found the stock dispatch page identical to the accepted image after boot.
+The main-entry disassembly has no direct absolute reference to `c00234fc`,
+but computed writes and broad copies remain possible. Neither result proves a
+modified image boots or retains the changed table word; a live test
 would need explicit new-card BDF, readback, bounded PING, health checks and a
 physical rollback plan.

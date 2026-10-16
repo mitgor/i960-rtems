@@ -4224,6 +4224,16 @@ The boot block contains a recovery command loop, but having code on paper is
 not the same as reaching it from a PC beside a silent card. We left the flash
 and both cards alone.
 
+There was one more fact we could get without teaching the card a new command.
+The 80303's PCI aperture can look at a selected 4 KiB of its local memory.
+We pointed it briefly at the stock dispatch table, read the page, and put the
+aperture back. All 4,096 bytes matched the original decompressed firmware,
+including the `0x8f` word that still points to "unsupported." The old card
+stayed untouched and both PCI devices remained unbound. This gives us a good
+baseline for a future changed-image test. It is not that test: a stock page
+after boot cannot reveal whether later startup code would overwrite our new
+pointer with the stock one.
+
 *For the reproducible version of these last acts, see
 [ROM-FETCH-LIVE.md](docs/loader/ROM-FETCH-LIVE.md),
 [FIRMWARE-PROGRAMMED.md](docs/firmware/FIRMWARE-PROGRAMMED.md), and

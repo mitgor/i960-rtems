@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 3910,
-      "sha256": "8e31d7fc34608c1f62a526cec525e882ac2742b6aa3f09ac078f57a4cc0e80e3"
+      "size": 3992,
+      "sha256": "6169cf8930b8ac5fb27716a88f0a7239f2cf79d7071bc2a62e795f88a2ee7e35"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2459,8 +2459,8 @@
     },
     {
       "path": "artifacts/current/accele160-late-ping-20261016/README.md",
-      "size": 5177,
-      "sha256": "4a36a5292fc9082475b72e4b29199e7b20ebcf388a81d4e2473776265ca61912"
+      "size": 5312,
+      "sha256": "3f64a2dd62ee35f7443d828be8583e68c0fc3ece3b708e584d44695266ced93b"
     },
     {
       "path": "artifacts/current/accele160-late-ping-20261016/late_ping_callsite.bin",
@@ -2871,6 +2871,21 @@
       "path": "artifacts/current/accele160-startup-20261016/tests.txt",
       "size": 107,
       "sha256": "092f3ef0c082b5e2a61888b77b1f68ffbd0afb7284e19601ea6250cb7141c478"
+    },
+    {
+      "path": "artifacts/current/accele160-table-snapshot-20261016/README.md",
+      "size": 3078,
+      "sha256": "ae3550fafbb15644ae3a42b3596b5a039127e03f27a2f6e889a86ca846d4316c"
+    },
+    {
+      "path": "artifacts/current/accele160-table-snapshot-20261016/receipt.json",
+      "size": 399,
+      "sha256": "d402766afc6b580d725767d4316062264a9f8fac876dff4ccf28c0b409baafff"
+    },
+    {
+      "path": "artifacts/current/accele160-table-snapshot-20261016/table-page.bin",
+      "size": 4096,
+      "sha256": "6e5964cbbb5d3f38c861e3d651b52143697dfe29902eb84ae766ed84023db110"
     },
     {
       "path": "artifacts/current/curation.json",

@@ -1,5 +1,17 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID live stock table — 2026-10-16
+
+A guarded new-card-only PIATVR read mapped local `c0023000` and captured the
+stock dispatch page. **All 4096 bytes match** the accepted stock runtime;
+`0x8e` points to `c002371c` and `0x8f` to `c0023790`. PIATVR was restored to
+`c0000000`, default BAR pages before/after were identical, both cards stayed
+unbound and SSH stayed healthy. Main-entry direct-store inspection found no
+absolute reference to the `0x8f` word, but computed writes or broad copies
+remain possible. This stock observation does **not** prove the unflashed late
+hook survives main initialization. No firmware was programmed or executed.
+[Snapshot, guard script and offline replay](artifacts/current/accele160-table-snapshot-20261016/README.md).
+
 ## AcceleRAID late-loader PING placement — 2026-10-16
 
 The normal copied-loader path expands the runtime, calls stock setup, then

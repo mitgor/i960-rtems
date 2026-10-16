@@ -118,6 +118,13 @@ See `artifacts/current/flat-planes-20261016/README.md` and `game/doom/flat_plane
 <!-- /flat-planes-current -->
 
 Read `CURRENT-FINDINGS.md` first. It supersedes historical status blocks below.
+The stock new-card `c0023000` dispatch page was captured live after boot:
+`artifacts/current/accele160-table-snapshot-20261016/` matches all 4096 bytes
+of the accepted expanded runtime. Its `0x8f` entry is stock unsupported.
+PIATVR was restored; both cards remain unbound. This does **not** prove a
+modified loader's write persists after main entry. Use the guarded snapshot
+script only for read-only table inspection; never infer cache coherence for
+host-written code or pointers.
 The preferred **offline** AcceleRAID candidate is now
 `artifacts/current/accele160-late-ping-20261016/`: the dispatch write occurs
 at the copied loader's common return, after its descriptor pass. The exact

@@ -1,0 +1,10 @@
+{
+  "stock_flash_sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "live_page_start": "0xc0023000",
+  "live_page_sha256": "6e5964cbbb5d3f38c861e3d651b52143697dfe29902eb84ae766ed84023db110",
+  "matched_stock_runtime_bytes": 4096,
+  "stock_8e": "0xc002371c",
+  "stock_8f": "0xc0023790",
+  "modified_firmware_executed": false,
+  "patched_table_persistence_proven": false
+}
