@@ -1,0 +1,22 @@
+Stock expanded main firmware; add 0xc0010000 to file offsets.
+   3cf70:	06 1e 80 5c 	mov	6,g0
+   3cf74:	2c 34 00 09 	call	0x403a0
+   3cf78:	00 30 28 8c 	lda	0xc00c3690,r5
+   3cf7c:	90 36 0c c0 
+   3cf80:	00 50 f1 92 	st	g14,(r5)
+   3cf84:	00 30 f0 92 	st	g14,0xc048e6f0
+   3cf88:	f0 e6 48 c0 
+   3cf8c:	00 30 f0 92 	st	g14,0xc04016a0
+   3cf90:	a0 16 40 c0 
+   3cf94:	00 30 a8 90 	ld	0xc04ad650,g5
+   3cf98:	50 d6 4a c0 
+   3cf9c:	04 1e a0 5c 	mov	4,g4
+   3cfa0:	00 30 f0 92 	st	g14,0xc00c027c
+   3cfa4:	7c 02 0c c0 
+   3cfa8:	01 1e 20 5c 	mov	1,r4
+   3cfac:	40 60 a5 92 	st	g4,0x40(g5)
+   3cfb0:	4c 60 25 92 	st	r4,0x4c(g5)
+   3cfb4:	8c 06 00 09 	call	0x3d640
+   3cfb8:	00 30 20 92 	st	r4,0xc043bfc4
+   3cfbc:	c4 bf 43 c0 
+   3cfc0:	28 6c 04 0b 	bal	0x83be8

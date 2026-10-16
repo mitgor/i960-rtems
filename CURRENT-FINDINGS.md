@@ -1,5 +1,17 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID startup analysis — 2026-10-16
+
+Stock boot/trailer/loader checksums and runtime CRC pass. Reset entry
+`0xfeffc000`; 24 KiB loader copied to `0xc000a000`, entry `0xc000c590`;
+main image expands at `0xc0010000`, entry `0xc004cf70`. Firmware state extends
+past 4 MiB: do not infer free RAM from the expanded image's end. New BAR0 is
+only 8 KiB, not a RAM aperture. A bounded returning probe is assembled and nine
+offline tests pass; **no custom code has executed on the new card**. Upload,
+owned scratch memory and a callable entry remain unproven. No reset, flash/RAM
+write or driver change this stage; old PG remains untouched/unbound.
+[Memory map, entry-route priorities and exact test contract](docs/hardware/accele160-startup.md).
+
 ## AcceleRAID complete stock dump — 2026-10-16
 
 Accepted two identical **1 MiB full-flash reads** via READIMAGE selector 9:

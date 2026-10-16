@@ -1,0 +1,29 @@
+
+probe.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+00000000 <bounded_probe>:
+   0:	10 16 20 5c 	mov	g0,r4
+   4:	04 20 89 92 	st	g1,0x4(r4)
+   8:	00 1e 28 5c 	mov	0,r5
+   c:	00 1e 30 5c 	mov	0,r6
+  10:	Address 0x0000000000000010 is out of bounds.
+
+
+00000014 <probe_loop>:
+  14:	06 40 29 59 	addo	r6,r5,r5
+  18:	01 88 31 59 	addo	1,r6,r6
+  1c:	f8 df 31 34 	cmpobl	r6,r7,14 <probe_loop>
+  20:	08 20 29 92 	st	r5,0x8(r4)
+  24:	00 30 28 8c 	lda	96016001 <probe_loop+0x96015fed>,r5
+  28:	01 60 01 96 
+  2c:	11 43 29 58 	xor	g1,r5,r5
+  30:	0c 20 29 92 	st	r5,0xc(r4)
+  34:	00 30 28 8c 	lda	444f4e45 <probe_loop+0x444f4e31>,r5
+  38:	45 4e 4f 44 
+  3c:	00 20 29 92 	st	r5,0x0(r4)
+  40:	00 1e 80 5c 	mov	0,g0
+  44:	00 00 00 0a 	ret
+	...

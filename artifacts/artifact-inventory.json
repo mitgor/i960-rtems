@@ -2668,6 +2668,56 @@
       "sha256": "3e7cdde7e01983e8aea03e63c305f32494e1a1b26b20b9f552fc312c26837834"
     },
     {
+      "path": "artifacts/current/accele160-startup-20261016/README.md",
+      "size": 1948,
+      "sha256": "d20dfbdf86ffcccd45e91cb419ce827613a9460b2e95c146b439e2e707e47dd7"
+    },
+    {
+      "path": "artifacts/current/accele160-startup-20261016/analysis.json",
+      "size": 1213,
+      "sha256": "3bdc4442e2b48910a8aa5af4f30dc2e19591e826c882bd064e5235f8f4423d54"
+    },
+    {
+      "path": "artifacts/current/accele160-startup-20261016/boot-evidence.txt",
+      "size": 23861,
+      "sha256": "379718dda3cfe08397fdfde7d3f7d86ddc7c15aa8f5a305d88b97eb543754074"
+    },
+    {
+      "path": "artifacts/current/accele160-startup-20261016/live-readonly-state.txt",
+      "size": 1848,
+      "sha256": "02575fb8202b7a27302cd719e0cd987d46fe7f9d8e54e0bf99a0f3d53b211483"
+    },
+    {
+      "path": "artifacts/current/accele160-startup-20261016/probe-raw.dis",
+      "size": 636,
+      "sha256": "454c5b29d6c0c7520f161b47f13de652b2bc6a0b6e98a296e10b884d8aae0444"
+    },
+    {
+      "path": "artifacts/current/accele160-startup-20261016/probe.bin",
+      "size": 80,
+      "sha256": "5d86878199ddcdd7f7ea950699a8e047f4189eb264c1dcff860ee6f83e0e740c"
+    },
+    {
+      "path": "artifacts/current/accele160-startup-20261016/probe.dis",
+      "size": 748,
+      "sha256": "f6d1cca88d022304723cbfeefd3498a8303f42554584d2d293b025639be9f001"
+    },
+    {
+      "path": "artifacts/current/accele160-startup-20261016/relocations.txt",
+      "size": 40,
+      "sha256": "15864317fea2c9ccafcbdd8216912d3497e933fce1ffe4a0dbf37d14cbb033d3"
+    },
+    {
+      "path": "artifacts/current/accele160-startup-20261016/runtime-entry.txt",
+      "size": 758,
+      "sha256": "b97ed905b4e6731fc3f1e3fb2295d578d4f8d3b1fd8bc6d126def1fd1d036a16"
+    },
+    {
+      "path": "artifacts/current/accele160-startup-20261016/tests.txt",
+      "size": 107,
+      "sha256": "092f3ef0c082b5e2a61888b77b1f68ffbd0afb7284e19601ea6250cb7141c478"
+    },
+    {
       "path": "artifacts/current/curation.json",
       "size": 9872,
       "sha256": "cdcd36a766f03fbe3611c2d653a022424f80153c926f4d1f2347de1526716056"
