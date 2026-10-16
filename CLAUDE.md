@@ -1,5 +1,20 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID retained 512 KiB grant accepted — 2026-10-16
+
+Read `artifacts/current/accele160-retained-20261016/README.md` first. The exact
+1 MiB retained candidate SHA-256 `e7a3a7c5…d6ffc0` persisted across reboot on
+new card `37:09.1`; two guarded full-flash reads matched. Fixed operation 4
+reserved `c0710000..c078ffff` with owner `0x96016004` across 16 stock blocks.
+Separate operation 5 released it; all 256 count and 256 owner words, the loader
+page and PIATVR restored. Both modules unloaded, post-call flash matched, and
+the old `37:04.1` remained unbound. No RTEMS upload or execution has happened.
+BAR0 exposes only odd 4 KiB pages of each 8 KiB pair. A separate
+reversible 4 KiB write/read/restore passed at owned page `c0711000`, followed
+by full flash, loader-page and allocator snapshots. A general image still
+requires a bounded card-side copy or proven DMA to fill even pages. See
+`docs/hardware/accele160-upload-plan.md` before extending the firmware.
+
 ## AcceleRAID stock allocator operation accepted — 2026-10-16
 
 Read `artifacts/current/accele160-allocator-20261016/README.md` first. Exact
