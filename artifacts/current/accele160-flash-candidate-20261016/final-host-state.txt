@@ -1,0 +1,8 @@
+boot_id=bdc099fb-36ee-4a5b-a9d0-a5983f8590f4
+new_driver=../../../../bus/pci/drivers/myrsread
+old_driver=unbound
+temporary_blacklist=absent
+test_modules=none
+parent_driver=myrsread               65536  0
+raid_class             12288  1 myrsread
+ssh_ok=1

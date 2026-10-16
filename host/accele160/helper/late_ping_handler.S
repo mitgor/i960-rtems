@@ -2,7 +2,8 @@
  * Stock 6.00-05 only. c000c9cc is the common loader return, after the
  * compressed image, stock setup and descriptor initialization. Replace its
  * 4-byte ret with a branch here; this hook restores the return.
- * No flash image is produced by the audit. r4 is the IOCTL command object
+ * The original audit emits no image; the later exporter produces the exact
+ * reviewed candidate. r4 is the IOCTL command object
  * at dispatch. Nonzero nonce is admission only, not a response echo.
  */
  .text

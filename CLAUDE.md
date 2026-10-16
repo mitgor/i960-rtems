@@ -1,5 +1,21 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID programmed late-PING helper — 2026-10-16
+
+The user accepted recovery risk with an external programmer available. The
+exact late-PING candidate was staged on the **new** `37:09.1`, read back as
+1 MiB, and programmed via one `FLASHIMAGE` command with status 0. After the
+user power-cycled the PC, the card booted; two guarded 1 MiB reads matched the
+candidate exactly. Valid PING returned status 0, one-byte-bad signature
+returned stock unsupported status 2. The old `37:04.1` remained unbound.
+The temporary `myrs` blacklist was removed; `myrsread` remains bound to new
+card in the current boot. No further flash command is needed. The accepted
+stock image is the external-programmer backup; boot-block recovery remains
+untested. See `artifacts/current/accele160-flash-candidate-20261016/README.md`.
+
+Sections below preserve earlier dated findings and may say the candidate was
+offline at the time; this accepted flash result supersedes that state.
+
 ## AcceleRAID boot recovery gate — 2026-10-16
 
 The accepted stock boot block samples a UART once: `S` enters a copied

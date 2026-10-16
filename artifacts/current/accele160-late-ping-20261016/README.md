@@ -1,5 +1,10 @@
 # AcceleRAID 160 late-loader PING route, offline only
 
+**Later result:** this exact candidate was exported, programmed on the new
+card, read back twice after power cycle, and its bounded PING tested. See the
+[accepted flash result](../accele160-flash-candidate-20261016/README.md).
+The text below records the earlier offline design state.
+
 2026-10-16. The prior [early PING candidate](../accele160-ping-handler-20261016/README.md)
 wrote the `0x8f` dispatch entry immediately after stock setup. This revision
 places the write at the loader's **common return**, after the loader's stock

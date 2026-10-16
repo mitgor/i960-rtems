@@ -4261,3 +4261,33 @@ next physical experiment is to identify a level-correct serial connection,
 catch `S` at power-on, make a harmless recovery read, and return to a stock
 image whose full-flash hash matches the saved dump. Only then should the
 late PING candidate move from an offline image to a programming trial.
+
+The user had another way back: a team with a flash programmer in the office.
+That changed the decision about the new card. We still did not send an
+unexamined image. We exported the exact 1 MiB candidate whose 155 changed
+bytes and checksums had already been audited, and built two separate host
+commands. The first could only stage an image in controller RAM. The second
+could ask the stock firmware to program flash, but stayed inert until given
+an exact start token after same-boot evidence was checked.
+
+The first bind in an already-used boot met the familiar mailbox status 2. We
+started fresh with the stock driver temporarily blacklisted. The stage command
+then completed with clean DMA guards. A full read through the firmware's
+image path returned every byte of the candidate. We deliberately changed one
+byte of a copied readback record; the flash preflight refused it before loading
+the programming module. With the real record, the card spent 37 seconds on
+its flash command and reported success. The old PG had no driver and received
+no command.
+
+The PC did not return after the first reboot, as it had failed to do after
+older controller tests. A physical power cycle brought Linux back. The new
+card initialized and still called itself firmware 6.00-05. We read its full
+flash twice, through two separate guarded transfers after that power cycle.
+Both files matched the candidate, and each other, byte for byte. Finally we
+sent the small PING envelope to the new `0x8f` handler. It completed with
+status zero. Changing just the `I` of its signature to `H` produced the stock
+unsupported status 2. That pair is our first live proof that the new card ran
+our patched i960 code after boot and retained the strict fallback. It is not
+an arbitrary program loader yet. We removed the temporary blacklist after
+saving the evidence; the external programmer and the stock dump remain the
+fallback if a later patch goes wrong.

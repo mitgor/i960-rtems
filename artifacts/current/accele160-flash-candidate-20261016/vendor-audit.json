@@ -1,0 +1,17 @@
+{
+  "all_anchors_match": true,
+  "anchors": {
+    "flash_entry": true,
+    "flash_subcommand_2e": true,
+    "flash_zero_dma_size": true,
+    "store_dma_addr": true,
+    "store_dma_count": true,
+    "store_dma_size": true,
+    "store_entry": true,
+    "store_offset_word": true,
+    "store_selector": true,
+    "store_subcommand_2c": true
+  },
+  "known_vendor_binary": true,
+  "sha256": "dcb44fd876e41a1b844a5213757d0235f9fce4c62205661c81cdb88a0d0c21ba"
+}

@@ -1,5 +1,21 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID programmed late-PING helper — 2026-10-16
+
+The user accepted skipping proven recovery because an external programmer is
+available. The exact audited 1 MiB late-PING candidate was staged with zero
+residual and unchanged DMA guards, then independently read back in full. A
+one-byte-mutated readback was rejected by preflight. One `FLASHIMAGE` command
+completed in 37.2 s with status 0. After a physical power cycle, the new card
+initialized, and **two independent guarded full-flash reads** matched the
+candidate byte for byte (SHA-256 `e708c1da…e2b23d3d0`). The valid zero-DMA
+PING returned status 0; one changed signature byte returned stock unsupported
+status 2. The old PG remained unbound and untouched. This proves a bounded
+patched handler running after boot, not a general code upload/call route or
+boot-block recovery. The temporary `myrs` blacklist was removed; `myrsread`
+remains bound to the new card in this boot.
+[Exact image, command evidence and replay](artifacts/current/accele160-flash-candidate-20261016/README.md).
+
 ## AcceleRAID stock recovery route — 2026-10-16
 
 An exact-flash offline audit found the boot block's one-byte serial `S`

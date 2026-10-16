@@ -1,0 +1,16 @@
+{
+  "stock_sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "in_memory_candidate_sha256": "e708c1dadbc4813dd378e8ca8c6f0e929cc29064614b9f8a27210e5e2b23d3d0",
+  "handler_sha256": "dbbfa3c99bdc30895a811b4e8828d2edc38203eb2762170cb2304a549bd1bf45",
+  "late_branch": "0xc000c9cc -> 0xc000e1d8",
+  "ping_entry": "0xc000e1ec",
+  "changed_flash_bytes": 155,
+  "loader_checksum": "0x16d780b7",
+  "trailer_checksum": "0x16e495be",
+  "runtime_sha256_unchanged": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
+  "known_checksums_pass": true,
+  "image_written": true,
+  "card_executed": false,
+  "hook_persistence_or_recovery_proven": false,
+  "exported_path": "artifacts/current/accele160-flash-candidate-20261016/candidate.bin"
+}

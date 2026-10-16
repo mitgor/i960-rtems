@@ -1,0 +1,11 @@
+{
+  "image_sha256": "e708c1dadbc4813dd378e8ca8c6f0e929cc29064614b9f8a27210e5e2b23d3d0",
+  "changed_flash_bytes": 155,
+  "stage_boot_id": "58966376-9ae9-4ccc-a696-948320977939",
+  "persistent_boot_id": "bdc099fb-36ee-4a5b-a9d0-a5983f8590f4",
+  "paired_full_flash_equal": true,
+  "paired_guard_changes": 0,
+  "valid_ping_status": 0,
+  "bad_signature_status": 2,
+  "old_card_unbound": true
+}

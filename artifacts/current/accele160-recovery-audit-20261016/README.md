@@ -1,5 +1,10 @@
 # AcceleRAID 160 boot recovery route, stock 6.00-05
 
+**Later result:** the user accepted the untested recovery risk with an external
+programmer available. The [late-PING image](../accele160-flash-candidate-20261016/README.md)
+was programmed and boot-tested. The boot-block recovery route itself remains
+untested; the analysis below retains that distinction.
+
 2026-10-16. This is an **offline route audit**, not a recovery test. It uses the
 accepted 1 MiB stock flash SHA-256
 `0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a`.
