@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 3631,
-      "sha256": "de5e1710e9092d249acf305fa1b5ff1cd6471f8dd20e0ceb21a7edd37877551d"
+      "size": 3731,
+      "sha256": "c71be2b868db345623744eb2979ed153d82549381a09e669724824684782d3bc"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2241,6 +2241,31 @@
       "path": "artifacts/current/accele160-debug-interface-20261016/live-table-c048b000.bin",
       "size": 4096,
       "sha256": "0b246eb8d516f0dd060c4e3382d7c03ad44ec06c4dc409f1ecc11c4a3e34bded"
+    },
+    {
+      "path": "artifacts/current/accele160-dispatch-rehearsal-20261016/README.md",
+      "size": 4273,
+      "sha256": "f90e7e1b513647ff5264b123dcaef062d4ac6cc4d46bffb7e8f45c58f4465ad8"
+    },
+    {
+      "path": "artifacts/current/accele160-dispatch-rehearsal-20261016/disassembly.txt",
+      "size": 697,
+      "sha256": "7599e1fb51f8e3e60737f9f41104b317a6b7db36f6e726e50ef53d8239500e1a"
+    },
+    {
+      "path": "artifacts/current/accele160-dispatch-rehearsal-20261016/dispatch_callsite.bin",
+      "size": 4,
+      "sha256": "d60c3eb24e669fc9abc24b3fffe1bfa868f95ac0c33fca6df3e6e674b7396fa0"
+    },
+    {
+      "path": "artifacts/current/accele160-dispatch-rehearsal-20261016/dispatch_stub.bin",
+      "size": 28,
+      "sha256": "71d03e325f82a1b4de2230d84a23c5dc51ff14819c348b10385465402df5f5ab"
+    },
+    {
+      "path": "artifacts/current/accele160-dispatch-rehearsal-20261016/receipt.json",
+      "size": 861,
+      "sha256": "55063b6682e1d18a49c23a722352642d96c3256a89680875609b93b979bb77fd"
     },
     {
       "path": "artifacts/current/accele160-guarded-20261016/README.md",

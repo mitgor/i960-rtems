@@ -126,6 +126,12 @@ execution. The native PING validator and exact live capture are in
 unbound. Keep BDF `0000:37:09.1` explicit, leave old `0000:37:04.1` untouched,
 and do not treat a same-boot driver reload as reliable. No new-card firmware
 patch has been programmed or recovery tested.
+The subsequent `artifacts/current/accele160-dispatch-rehearsal-20261016/`
+assembles an offline loader hook and validates an in-memory image with known
+checksums. Its `0x8f` target branches to stock unsupported for **every**
+request; it is a route rehearsal, not a working PING or flash candidate. Do
+not program it or infer boot from its structural receipt. Resolve command-byte
+mapping, response semantics and recovery before active firmware work.
 `artifacts/README.md` defines retention: keep recovery/build inputs, test fixtures
 and concise current results; avoid repeated full build archives and obsolete
 binaries. Full audits and ownership checks remain mandatory during hardware tests.

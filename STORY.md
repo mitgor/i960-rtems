@@ -4185,6 +4185,15 @@ against it. That proves a clean doorway and a proposed admission rule, not a
 room behind the door: no helper is installed, no new code has run, and boot or
 recovery of a patched image remains untested.
 
+We then rehearsed the first wiring change entirely offline. Twenty-eight bytes
+in the loader's copied but erased tail could call the original setup routine,
+point only the `0x8f` dispatch slot at a new address, and return. For this
+rehearsal that new address leads straight back to stock "unsupported." The
+known checksums pass, the compressed program stays byte-for-byte the same, and
+the changed bytes fit on a short whitelist. It is deliberately a doorbell
+that still answers "no": we have a map for routing a command, not yet the
+handler, response, boot proof or recovery confidence needed to program it.
+
 *For the reproducible version of these last acts, see
 [ROM-FETCH-LIVE.md](docs/loader/ROM-FETCH-LIVE.md),
 [FIRMWARE-PROGRAMMED.md](docs/firmware/FIRMWARE-PROGRAMMED.md), and

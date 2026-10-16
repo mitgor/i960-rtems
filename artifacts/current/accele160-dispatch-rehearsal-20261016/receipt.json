@@ -1,0 +1,21 @@
+{
+  "stock_sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "candidate_sha256_in_memory_only": "3f99d0cd1966d86498b11a680065366f9087c39ac5ce741ba1c60fa8f833fc18",
+  "callsite": "0xc000c638",
+  "original_call_target": "0xc000c6c0",
+  "hook": "0xc000e1d8",
+  "fallback": "0xc000e1f0",
+  "runtime_table_8e_unchanged": "0xc00234f8",
+  "runtime_table_8f_stock": "0xc00234fc -> 0xc0023790",
+  "runtime_table_8f_loader_write": "0xc00234fc -> 0xc000e1f0",
+  "fallback_target": "0xc0023790",
+  "stub_bytes": 28,
+  "changed_flash_bytes": 37,
+  "loader_checksum": "0x09866329",
+  "trailer_checksum": "0x09937830",
+  "runtime_sha256_unchanged": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
+  "known_checksums_pass": true,
+  "entry_executed_or_boot_proven": false,
+  "image_written": false,
+  "ping_implemented": false
+}

@@ -1,0 +1,28 @@
+
+dispatch_stub.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c000e1d8 <dispatch_hook>:
+c000e1d8:	e8 e4 ff 09 	call	c000c6c0 <original_setup>
+c000e1dc:	00 30 88 8c 	lda	c000e1f0 <unsupported_fallback>,g1
+c000e1e0:	f0 e1 00 c0
+c000e1e4:	00 30 88 92 	st	g1,c00234fc <unsupported_fallback+0x1530c>
+c000e1e8:	fc 34 02 c0
+c000e1ec:	00 00 00 0a 	ret
+
+c000e1f0 <unsupported_fallback>:
+c000e1f0:	a0 55 01 08 	b	c0023790 <stock_unsupported>
+
+dispatch_callsite.elf:     file format elf32-i960
+
+
+Disassembly of section .text:
+
+c000c638 <dispatch_callsite>:
+c000c638:	a0 1b 00 09 	call	c000e1d8 <dispatch_hook>
+
+There are no relocations in this file.
+
+There are no relocations in this file.

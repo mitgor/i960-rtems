@@ -1,5 +1,19 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID offline `0x8f` routing rehearsal — 2026-10-16
+
+A 28-byte loader-cave hook and four-byte loader callsite change can be
+assembled without unresolved relocations. Offline validation against the exact
+stock flash shows 37 changed bytes, unchanged compressed/decompressed runtime,
+and passing known loader/trailer checksums. The hook would call stock setup,
+change only the expanded `0x8f` table word, and route all requests straight to
+stock unsupported. It is deliberately **fallback-only**, not an active PING or
+flash-qualified firmware. No card command or firmware write was made in this
+batch; both cards remain unbound. Next: prove the internal request-byte mapping
+and completion response, implement a strict bounded handler, then decide a
+recovery/rollback path before live flashing.
+[Exact source, disassembly, receipt and limits](artifacts/current/accele160-dispatch-rehearsal-20261016/README.md).
+
 ## AcceleRAID stock helper transport — 2026-10-16
 
 A first-boot, new-card-only `myrs8f` derivative submitted one zero-DMA stock
