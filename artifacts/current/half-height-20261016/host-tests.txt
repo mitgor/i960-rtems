@@ -1,0 +1,5 @@
+PASS 14600 guarded alternate-row column and expansion cases
+PASS independent half-height toggle, flat span skip, strict metadata and preflight
+PASS 41088 bounded flat spans, unaligned heads, word bodies, tails and guards
+PASS flat patch, textured/sky paths, debounced key, telemetry and admission checks
+PASS pinned DoomGeneric fire/use and browser/menu/weapon key mappings

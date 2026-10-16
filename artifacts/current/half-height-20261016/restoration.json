@@ -1,0 +1,7 @@
+{
+  "status": "pending_host_return",
+  "previous_boot": "822f72d7-8b2f-4a81-b041-b3cfbd384717",
+  "reason": "SSH did not return after authorized retained-module cleanup reboot; physical power cycle requested",
+  "script": "restore.sh",
+  "evidence_saved_and_hash_verified": true
+}

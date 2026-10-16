@@ -8,7 +8,7 @@ Source code lives in those subprojects; this directory holds inputs and evidence
 | --- | --- |
 | Firmware and recovery inputs | [ROM inventory](ROM-INVENTORY.md), `vendor-fujitsu/`, `private-dumps/`, `romhook-20261010/`, `programmed-rom-20261010/` |
 | Reproducible build inputs | `toolchain-20261011/`, `rtems-20261011/sources/`, `doom-m1-20261011/`, `software-loader-20261010/target/runner.bin` |
-| Current Doom measurements | [Flat-plane quality switch](current/flat-planes-20261016/README.md); [earlier exact-span results](current/doom/README.md) |
+| Current Doom measurements | [Half-height four-mode comparison](current/half-height-20261016/README.md); [Flat-plane quality switch](current/flat-planes-20261016/README.md); [earlier exact-span results](current/doom/README.md) |
 | Historical conclusions | [Milestone notes](notes/); these are dated evidence, not current deployment instructions |
 | Integrity and retention | `SHA256SUMS`, `artifact-inventory.json`, [curation receipt](current/curation.json) |
 

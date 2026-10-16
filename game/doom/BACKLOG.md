@@ -1,5 +1,23 @@
 # Doom backlog
 
+## Latest: half-height option tested, not a speed default — 2026-10-16
+
+F7 (`--runtime-half-height`) independently switches alternate-row shading; F6
+flat planes remain independent. Normal geometry, full-resolution HUD, ownership
+and full audits are preserved. 920-frame balanced comparison: normal 6.3616,
+half 6.4042, flat 7.7235, both 7.1115 FPS. Half alone +0.67% is not a useful
+established improvement; both is 7.92% slower than flat alone. Keep it opt-in/off.
+[Evidence](../../artifacts/current/half-height-20261016/README.md).
+
+Next promising work is to specialize the half-column pixel loops (remove
+per-pixel mode decisions) and separately time/unroll row expansion. Textured
+planes save 17.76 ms, but BSP/walls add 7.67 ms and sprites/expansion add 8.02 ms.
+These are measured stage changes, not proof of which individual instructions
+cost them. Retain normal rendering and independently selectable flat planes.
+A compact-height viewport is a larger alternative requiring new projection,
+clipping, sky and sprite validation. Do not promise 10 FPS from pixel counts.
+
+
 ## Latest: optional flat floors/ceilings accepted — 2026-10-16
 
 `--runtime-flat` adds F6/browser switching in one engine, textured initially.
@@ -10,8 +28,8 @@ checks pass. One scene/session: broader maps and interactive transport remain
 separate qualification. Sky, walls, sprites and HUD retain normal rendering.
 [Evidence](../../artifacts/current/flat-planes-20261016/README.md).
 
-Next quality experiment: independently switchable half-height rendering with
-browser scaling; keep normal and flat-plane controls independent. Do not claim
+That next experiment has now been tested above: alternate-row shading with
+card-side row expansion, independently switchable from flat planes. Do not claim
 linear pixel/FPS scaling or extrapolate this test to 10 FPS. Baseline repeat
 variance from earlier exact-span runs remains unresolved, although the two
 textured windows here agree within about 0.7%. The priorities below preserve

@@ -1,5 +1,19 @@
 # Current status and artifact policy (2026-10-16)
 
+
+## Current half-height result (2026-10-16)
+
+`--runtime-half-height` enables F7/browser control, independent of F6 flat planes,
+full height initially. Keep off by default: same-session 920-frame card comparison
+normal/half/flat/both = 6.3616/6.4042/7.7235/7.1115 FPS. Half alone +0.67% is not
+an established practical gain; half + flat is 7.92% slower than flat alone.
+Full audits, DMA ownership, held-slot STOP and stalled-host checks remain intact.
+Record both wins and regressions; next investigate half-column/expansion costs.
+[Exact results and reproduction](artifacts/current/half-height-20261016/README.md). The bounded ping-pong benchmark blocks
+external keys; normal pipeline builds expose F7. Do not advertise the measured
+bounded FPS as an interactive guarantee.
+
+
 <!-- flat-planes-current -->
 **2026-10-16 optional flat planes accepted:** playable `--runtime-flat` starts
 textured and adds F6/browser toggling. Same-build low-detail ABBA: **6.454 →

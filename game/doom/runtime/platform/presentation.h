@@ -1,3 +1,6 @@
+#ifdef DOOM_RUNTIME_HALF_HEIGHT
+extern unsigned doom_half_height,doom_half_switches;
+#endif
 #ifdef DOOM_RUNTIME_FLAT
 extern unsigned doom_flat_planes,doom_flat_switches;
 #endif
@@ -132,6 +135,10 @@ static void present_record(unsigned char *frame,unsigned generation,unsigned mod
  q[10]=doom_column_mode;q[11]=doom_column_cases;
 #endif
  }
+#endif
+#ifdef DOOM_RUNTIME_HALF_HEIGHT
+ {unsigned*q=(unsigned*)(frame+64896);q[0]=0x31464c48u;q[1]=1;
+  q[2]=doom_half_height;q[3]=doom_half_switches;}
 #endif
 #ifdef DOOM_RUNTIME_FLAT
  {unsigned*q=(unsigned*)(frame+64880);q[0]=0x31544c46u;q[1]=1;

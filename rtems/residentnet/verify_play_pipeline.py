@@ -87,15 +87,21 @@ def verify(out):
  for g in range(1,limit+1):
   if load_test and g in ((60,62,64,66) if pingpong else (10,12,14,16)):
    k=27 if g==(60 if pingpong else 10) else 13;expected.extend([(2,256+k),(2,k)])
-  if profile.get('runtime_flat') and g in (20,32,220,420):expected.extend([(2,256+192),(2,192)])
+  if profile.get('runtime_flat') and g in ((20,32,320,720) if profile.get('runtime_half_height') else (20,32,220,420)):expected.extend([(2,256+192),(2,192)])
+  if profile.get('runtime_half_height') and g in (12,24,220,420,620,820):expected.extend([(2,256+193),(2,193)])
   if profile.get('runtime_detail') and g in (20,32):expected.extend([(2,256+191),(2,191)])
   if not pingpong or g<=16:expected.append((1,g))
  if pingpong:
   assert [x for x in controls if x[0]==1]==[x for x in expected if x[0]==1]
-  assert all((v&255) in (173,175,172,174,163,162,182,191,192,13,27,9,121,110,49,50,51,52,53,54,55) and 0<=v<=511 for i,v in controls if i==2)
-  if load_test or profile.get('runtime_detail') or profile.get('runtime_flat'):assert [x for x in controls if x[0]==2]==[x for x in expected if x[0]==2]
+  assert all((v&255) in (173,175,172,174,163,162,182,191,192,193,13,27,9,121,110,49,50,51,52,53,54,55) and 0<=v<=511 for i,v in controls if i==2)
+  if load_test or profile.get('runtime_detail') or profile.get('runtime_flat') or profile.get('runtime_half_height'):assert [x for x in controls if x[0]==2]==[x for x in expected if x[0]==2]
  else:assert controls==expected
- if profile.get('runtime_flat'):
+ if profile.get('runtime_half_height'):
+  for g,h,f in ((10,0,0),(40,0,0),(200,0,0),(300,1,0),(400,1,1),(500,0,1),(600,0,1),(700,1,1),(800,1,0),(900,0,0)):
+   if g<=limit:
+    assert frames[g-1]['profile']['half_height']==h
+    if profile.get('runtime_flat'):assert frames[g-1]['profile']['flat_planes']==f
+ if profile.get('runtime_flat') and not profile.get('runtime_half_height'):
   for g in (10,28,40,200,300,400,500):
    if g<=limit:assert frames[g-1]['profile']['flat_planes']==int(g in (28,300,400))
  if profile.get('runtime_detail'):

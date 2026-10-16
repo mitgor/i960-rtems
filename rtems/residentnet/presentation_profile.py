@@ -33,6 +33,11 @@ def decode(raw,g,test=False,options=None):
   q=struct.unpack_from('<4I',raw,end);end+=16
   assert q[:2]==(0x31544c46,1) and q[2] in (0,1) and q[2]==(q[3]&1)
   d['flat_planes']=q[2];d['flat_switches']=q[3]
+ if options.get('runtime_half_height'):
+  assert options.get('cpu_profile') and end<=64896 and not any(raw[end:64896])
+  q=struct.unpack_from('<4I',raw,64896);end=64912
+  assert q[:2]==(0x31464c48,1) and q[2] in (0,1) and q[2]==(q[3]&1)
+  d['half_height']=q[2];d['half_switches']=q[3]
  if options.get('wad_profile'):
   assert end<=64960 and not any(raw[end:64960])
   q=struct.unpack_from('<16I',raw,64960)
@@ -82,6 +87,7 @@ def decode(raw,g,test=False,options=None):
  return d
 
 def preflight(admission,pipeline,pipeline_test,wad_load_test):
+ if admission.get('runtime_half_height'):assert pipeline and admission.get('double_buffer') and admission.get('frame_profile') and admission.get('cpu_profile')
  if admission.get('runtime_flat'):assert pipeline and admission.get('double_buffer') and admission.get('frame_profile') and admission.get('cpu_profile')
  if admission.get("wall_profile"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer") and not (admission.get("input_trace") or admission.get("fixed_div_profile"))
  if admission.get("input_trace"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer") and not admission.get("fixed_div_profile")

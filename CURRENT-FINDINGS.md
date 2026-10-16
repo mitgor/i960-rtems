@@ -5,6 +5,14 @@ This is the current state, not a chronological experiment log. Follow
 [artifact retention/restoration](artifacts/README.md). The narrative remains in
 [STORY.md](STORY.md); dated conclusions remain in [milestone notes](artifacts/notes/).
 
+## Current hardware handoff
+
+The half-height test passed and evidence is saved locally. The cleanup reboot
+has not yet returned over SSH; physical power cycling was requested. The public
+web service still needs restoration using
+[the saved handoff](artifacts/current/half-height-20261016/README.md#service-handoff).
+This operational state takes precedence over older service-restored notes.
+
 ## Working
 
 | Component | Accepted result |
@@ -21,6 +29,14 @@ The accepted programmed image SHA256 is
 See [programmed firmware](docs/firmware/FIRMWARE-PROGRAMMED.md) before any firmware work.
 
 ## Doom defaults and performance
+
+- **Half-height option tested:** `--runtime-half-height` adds F7/browser switching,
+  independent of F6 flat planes, full height initially. 920-frame matched card run:
+  normal **6.362 FPS**, half **6.404 (+0.67%)**, flat **7.723**, both **7.111**.
+  Half + flat is **7.92% slower than flat alone**. Keep half height off by default;
+  no useful FPS gain established. Plane work falls, but columns/expansion absorb
+  the savings. Full audits and STOP/stall/drain pass.
+  [Evidence](artifacts/current/half-height-20261016/README.md).
 
 - **New optional quality control:** `--runtime-flat` enables F6/browser switching
   between textured and solid-color floors/ceilings in one build, textured initially.
@@ -63,8 +79,8 @@ See [programmed firmware](docs/firmware/FIRMWARE-PROGRAMMED.md) before any firmw
 ## Next useful hypotheses
 
 1. Broaden flat-plane quality testing across maps and high detail; keep it optional.
-2. Optional half-height rendering with browser scaling; evaluate HUD readability
-   and independent normal-mode switching. Pixel reduction need not scale linearly.
+2. Specialize half-height column loops and time/unroll row expansion. The tested
+   switch works, but adding it to flat planes currently reduces FPS by 7.92%.
 3. Use longer matched runs and resolve baseline variance before promoting further
    exact renderer optimizations. See [Doom backlog](game/doom/BACKLOG.md).
 

@@ -307,3 +307,29 @@ interactive pipeline. Do not reuse the bounded ping-pong/WAD-profile image as an
 interactive session: it disables keyboard input to protect its measurement.
 Its measured **6.45 → 7.88 FPS** gain does not establish that absolute FPS for the
 older interactive transport. [Full qualification](../flat_planes/README.md).
+
+## Optional half-height rendering (F7)
+
+Add `--runtime-half-height` to a fresh pipeline build. Full height starts enabled;
+F7 or the browser height button switches to alternate-row shading and back.
+Combine with `--runtime-flat` for independent F6 textured/flat planes and
+`--runtime-detail` for independent F5 horizontal detail. The HUD remains full
+resolution. DMA ownership and full system audits remain mandatory.
+
+```sh
+python3 game/doom/play/build.py --work /home/mit/i960-half-interactive \
+  --pipeline --runtime-half-height --runtime-flat --runtime-detail \
+  --low-detail --fast-render --fast-columns --no-fnv --direct-frame
+sudo python3 game/doom/play/run.py --work /home/mit/i960-half-interactive \
+  --output NEW_CAPTURE_DIRECTORY --pipeline --no-crc --debug-audits
+```
+
+Use the printed browser URL. W/S move, A/D turn, Ctrl/Space fire, E opens doors,
+Escape opens the menu. F5/F6/F7 alter quality without restarting. STOP ends the
+session safely. Build in a new directory, ensure the card is released first,
+and use the existing retained-module reboot procedure after acceptance.
+The bounded ping-pong image used for measurements disables external keys;
+its FPS is not a guarantee for this ordinary interactive transport.
+
+[Implementation](../half_height/README.md) ·
+[Card results](../../../artifacts/current/half-height-20261016/README.md).

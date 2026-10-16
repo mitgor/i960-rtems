@@ -1,0 +1,20 @@
+{
+  "game/doom/build.py": "d633cafb0b3d607a2e43ee08936815f7d04828cf60cf4fb27f888ab29a96954b",
+  "game/doom/half_height/half_height.h": "aded458be77727d7f9ed20bc5045f2a822b458983e5230f157b0c897bc2f69e3",
+  "game/doom/half_height/native_oracle.py": "1eac80a40f4c18efc5707491c7ceefd69237923e0b70d311d3cc3c8c90f290fc",
+  "game/doom/half_height/patch.py": "ca7f6e7f8469ed16c1e05cdf076d7407a01547054cc1cd850cabaa019e10a9e5",
+  "game/doom/half_height/test.c": "443713b4e327042e9b44d70c914e6804cf55553854feed55d5e355901df76a47",
+  "game/doom/half_height/test.py": "b80dd374b4ede0449624ec85f9af163bed418f241924e42d792900b91da00f90",
+  "game/doom/play/build.py": "2ca269626e7842b4c7779920fbedc0e780a8fe26f365a433c1eed10de8072794",
+  "game/doom/play/index.html": "a6e3149bda28fac2e710d61d1f05aab0422b61eccef4a668ebfd19e87be7e56e",
+  "game/doom/play/input_bridge.py": "68ed6f5c2e47f842ffc48f33bc17516d796ccbd4154ff72cf5d80254396a501d",
+  "game/doom/play/test_keys.py": "7165a83c7af7fbfd46928eef86f25ce7be8f2f61e4be83ffbaa413eed54421cc",
+  "game/doom/play/test_native.py": "6c7d0437203a2dff0290dea0217e4306b44334914d7502ddba9f723b168d4c2d",
+  "game/doom/runtime/engine/admit.py": "bbb9f992daa5c77985d7b3db43bca7a9bd0bf0fca4bb9e1b6ece021d4c3964a8",
+  "game/doom/runtime/platform/build.py": "6a0110d82c4092643517567edba5c69bf40179e07765e5f08e94bfadddb8728a",
+  "game/doom/runtime/platform/presentation.h": "b9d61db82e6cae33f7f04d24b199231a8908e4ff81e91fe2db694969bd2daeb0",
+  "rtems/residentnet/play_client.py": "43e530f977bff8427944827eba3d90ca9d6be47747a478f00229bf7221ae03c1",
+  "rtems/residentnet/presentation_profile.py": "23ada1ca8b405892a9effe40193b73b9fb3fbd4045f1f0127f015d815b17b16a",
+  "rtems/residentnet/verify_play_pingpong.py": "60dc8f98d21b84ca2ff3255765f341da99e420524f42ba172067577dc5e2f061",
+  "rtems/residentnet/verify_play_pipeline.py": "f317f6b3b1ea0b4c3806792b718a223e7281c9b789a48cea91456d4712d9cf4a"
+}

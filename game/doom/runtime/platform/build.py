@@ -15,6 +15,9 @@ if engine_options.get('input_trace'):
 if engine_options.get('fixed_div_profile'):
  assert a.frame_profile and a.play and a.double_buffer
  flags+=['-DDOOM_FIXED_DIV_PROFILE']
+if engine_options.get('runtime_half_height'):
+ assert a.play and a.double_buffer and a.frame_profile and a.cpu_profile
+ flags+=['-DDOOM_RUNTIME_HALF_HEIGHT']
 if engine_options.get('runtime_flat'):
  assert a.play and a.double_buffer and a.frame_profile and a.cpu_profile
  flags+=['-DDOOM_RUNTIME_FLAT']
@@ -80,7 +83,7 @@ preserve=lambda s:s.lstrip('_').startswith(('doom_platform_','doom_cache_','doom
 mapping={s:('_doom_nl'+s if cross else 'doom_nl_'+s) for s in defined if not preserve(s)}
 (a.out/'rename.txt').write_text(''.join(k+' '+v+'\n' for k,v in sorted(mapping.items())))
 private=a.out/'private-newlib.a';subprocess.run([objcopy,'--redefine-syms='+str(a.out/'rename.txt'),str(archive),str(private)],check=True)
-report=dict(runtime_flat=bool(engine_options.get('runtime_flat')),span_four=bool(engine_options.get('span_four')),wall_profile=bool(engine_options.get('wall_profile')),fast_walls=bool(engine_options.get('fast_walls')),fast_point_side=bool(engine_options.get('fast_point_side')),input_trace=bool(engine_options.get('input_trace')),fixed_div_profile=bool(engine_options.get('fixed_div_profile')),fast_fixed_div=bool(engine_options.get('fast_fixed_div')),runtime_detail=a.runtime_detail,fast_columns=json.loads((a.engine.parent/'build.json').read_text()).get('fast_columns',False) if a.engine else False,fast_render=json.loads((a.engine.parent/'build.json').read_text()).get('fast_render',False) if a.engine else False,fast_memory=a.fast_memory,wad_profile=a.wad_profile,column_test=a.column_test,low_detail=a.low_detail,detail_test=a.detail_test,cpu_profile=a.cpu_profile,frame_profile=a.frame_profile,no_fnv=a.no_fnv,direct_frame=a.direct_frame,presentation_test=a.presentation_test,double_buffer=a.double_buffer,play=a.play,visible=a.visible,checkpoints=a.checkpoints,target=a.target,sanitized=a.sanitize,patches=patches,sources=source_hashes,commands=commands,renamed_symbols=mapping,archive_sha256=hashlib.sha256(private.read_bytes()).hexdigest())
+report=dict(runtime_half_height=bool(engine_options.get('runtime_half_height')),runtime_flat=bool(engine_options.get('runtime_flat')),span_four=bool(engine_options.get('span_four')),wall_profile=bool(engine_options.get('wall_profile')),fast_walls=bool(engine_options.get('fast_walls')),fast_point_side=bool(engine_options.get('fast_point_side')),input_trace=bool(engine_options.get('input_trace')),fixed_div_profile=bool(engine_options.get('fixed_div_profile')),fast_fixed_div=bool(engine_options.get('fast_fixed_div')),runtime_detail=a.runtime_detail,fast_columns=json.loads((a.engine.parent/'build.json').read_text()).get('fast_columns',False) if a.engine else False,fast_render=json.loads((a.engine.parent/'build.json').read_text()).get('fast_render',False) if a.engine else False,fast_memory=a.fast_memory,wad_profile=a.wad_profile,column_test=a.column_test,low_detail=a.low_detail,detail_test=a.detail_test,cpu_profile=a.cpu_profile,frame_profile=a.frame_profile,no_fnv=a.no_fnv,direct_frame=a.direct_frame,presentation_test=a.presentation_test,double_buffer=a.double_buffer,play=a.play,visible=a.visible,checkpoints=a.checkpoints,target=a.target,sanitized=a.sanitize,patches=patches,sources=source_hashes,commands=commands,renamed_symbols=mapping,archive_sha256=hashlib.sha256(private.read_bytes()).hexdigest())
 if a.engine:
  engine=a.out/'engine-private.o';subprocess.run([objcopy,'--redefine-syms='+str(a.out/'rename.txt'),str(a.engine),str(engine)],check=True)
  libgcc=Path(subprocess.check_output([cc,*(['-mrp','-msoft-float'] if cross else ['-m32']),'-print-libgcc-file-name'],text=True).strip())

@@ -9,8 +9,9 @@ for name,value in [('KEY_FIRE',163),('KEY_USE',162),('KEY_UPARROW',173),('KEY_RI
  assert int(re.search(r'#define\s+'+name+r'\s+(0x[0-9a-f]+|[0-9]+)',text)[1],0)==value
 assert re.search(r'#define\s+KEY_F5\s+\(0x80\+0x3f\)',text)
 assert re.search(r'#define\s+KEY_F6\s+\(0x80\+0x40\)',text)
+assert re.search(r'#define\s+KEY_F7\s+\(0x80\+0x41\)',text)
 page=(r/'game/doom/play/index.html').read_text()
-for pair in ('F6:192','F5:191','ControlLeft:163','ControlRight:163','Space:163','KeyE:162','KeyY:121','KeyN:110','Digit1:49','Digit7:55'):assert pair in page,pair
+for pair in ('F7:193','F6:192','F5:191','ControlLeft:163','ControlRight:163','Space:163','KeyE:162','KeyY:121','KeyN:110','Digit1:49','Digit7:55'):assert pair in page,pair
 for src in ('rtems/residentnet/play_client.py','game/doom/play/input_bridge.py'):
- s=(r/src).read_text();s=s.replace('191,192,13','191,13');assert '173,175,172,174,163,162,182,191,13,27,9,121,110,49,50,51,52,53,54,55' in s
+ s=(r/src).read_text();s=s.replace('191,192,193,13','191,13').replace('191,192,13','191,13');assert '173,175,172,174,163,162,182,191,13,27,9,121,110,49,50,51,52,53,54,55' in s
 print('PASS pinned DoomGeneric fire/use and browser/menu/weapon key mappings')

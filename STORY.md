@@ -3975,6 +3975,38 @@ button.
 
 [Measurements and before/after pictures](artifacts/current/flat-planes-20261016/README.md).
 
+## Half the rows did not mean twice the speed
+
+The next switch was F7. It could leave the floors textured or flat, independently
+of F6, and could return to full height without rebuilding the engine. Instead of
+changing Doom's projection, we shaded alternate rows and copied each into the
+row below. The world kept its shape. The HUD stayed sharp. The card still owned
+the same buffers, and every full audit stayed in place.
+
+Then we measured it. A 920-frame run visited all four combinations twice, in a
+balanced order. Full-height textures gave 6.362 FPS; half-height textures gave
+6.404. Flat planes alone gave 7.723, while half-height plus flat planes gave
+7.111. The new option worked, but the attractive arithmetic of “half the pixels”
+did not survive the whole pipeline.
+
+There was a real saving inside it: textured plane rendering fell from 43.88 to
+26.12 milliseconds. But wall-column work and the sprite stage, which now also
+included row expansion, took most of that budget back. Geometry and the 64 KiB
+frame transfer had not become smaller. Flat planes already made floor shading
+cheap enough that adding half-height actually slowed the frame down.
+
+We kept the switch, with full height as the default, and kept the result honest.
+The native engine reproduced the card's quality sequence, including the same
+four known pixel differences moving exactly as alternate-row sampling predicted.
+STOP, stalled buffers and heap cleanup passed. An extra three-switch native test
+also caught a mistake in the test itself: Doom stops polling after key-up, so a
+second event must remain pending rather than disappear when its scheduled frame
+passes. Fixing that made F5, F6 and F7 coexist in the test as they should.
+
+The next question is narrower now: can a specialized half-column loop and cheaper
+row expansion preserve the plane saving? That is a measured place to look, rather
+than another promise of ten frames per second.
+
 ## Where it stands
 
 So, the ledger, honestly kept:
