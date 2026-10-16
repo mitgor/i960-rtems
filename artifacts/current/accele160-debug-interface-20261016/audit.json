@@ -1,0 +1,44 @@
+{
+  "flash_sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "runtime_sha256": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
+  "loader_sha256": "5f212d1bffcb74541802cac19d23dfebc917b6dd2bad1011bf7ad6cb43fd8e22",
+  "uart_probe": "write 1 to e0600007, 0 to e0600006, read e0600007; real callbacks only if readback is 1",
+  "real_callbacks": [
+    "0xc000a0c0",
+    "0xc000a0f0",
+    "0xc000a150",
+    "0xc000a190"
+  ],
+  "stub_callbacks": [
+    "0xc000a210",
+    "0xc000a220",
+    "0xc000a230",
+    "0xc000a240"
+  ],
+  "stub_input_returns": "0x71 ('q')",
+  "stub_output": "ret (no output)",
+  "menu_cases": {
+    "cache_invalidate_e": {
+      "character": "e",
+      "index": 52,
+      "target": "0xc001386c"
+    },
+    "code_manager_u": {
+      "character": "u",
+      "index": 68,
+      "target": "0xc0013930"
+    }
+  },
+  "safe_ssh_execution_route_proven": false,
+  "live_snapshot": {
+    "local_page": "0xc048b000",
+    "sha256": "0b246eb8d516f0dd060c4e3382d7c03ad44ec06c4dc409f1ecc11c4a3e34bded",
+    "callbacks": [
+      "0xc000a210",
+      "0xc000a220",
+      "0xc000a230",
+      "0xc000a240"
+    ],
+    "matches_stub_branch": true
+  }
+}

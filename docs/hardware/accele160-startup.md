@@ -116,6 +116,12 @@ That fails the bounded-call precondition and was not attempted.
 
 Priority for the next investigation:
 
+The subsequent [stock debug-interface trace](../../artifacts/current/accele160-debug-interface-20261016/README.md)
+found that the live console table selects fixed-input/no-output stubs after
+the loader's UART presence probe failed. Its `e` command is a D-cache
+invalidate, while `u` opens memory diagnostics, not a safe upload/call route.
+Serial wiring alone will not activate the current running firmware console.
+
 1. Continue tracing stock host-command callbacks for a **proven** D-cache and
    I-cache maintenance sequence with normal return. The [cache-gate audit](../../artifacts/current/accele160-cache-gate-20261016/README.md)
    found a debug-menu D-cache invalidation and transfer/memory-test sites, but

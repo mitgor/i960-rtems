@@ -1,5 +1,15 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID debug interface — 2026-10-16
+
+The stock loader's UART presence probe selected disabled callbacks on the live
+new card: input always returns `q`, output is a no-op. The debug-menu D-cache
+key is `e` (the prior audit mislabeled it `d` due an offset error). Code Manager
+offers memory diagnostics, not a safe arbitrary call or I-cache handoff. Do not
+try to enter it by patching the cacheable callback table or by using the memory
+fill option. The bounded probe still has **not** executed. See
+`artifacts/current/accele160-debug-interface-20261016/README.md`.
+
 ## AcceleRAID cache gate audit — 2026-10-16
 
 The stock runtime has an interactive debug-menu `dcctl 2,0` and several other

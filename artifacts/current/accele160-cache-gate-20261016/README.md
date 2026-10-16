@@ -11,10 +11,14 @@ but none has a proven bounded host-command route that can be used after a PCI
 write to a callback pointer. The clearest direct case is at expanded-runtime
 offset `0x386c`: a jump-table entry at `0x377c` points to `0xc001386c`.
 The dispatch begins at `0x3678`, gets an input code from a firmware function
-pointer at `+0x25c`, subtracts `0x30`, and uses the result to index this table.
-Surrounding text is the interactive debug menu. The exact input source and
-normal availability of this menu over the current SSH setup are unproven, so
-this is not an accepted host command.
+pointer at `+0x25c`, subtracts `0x31`, and uses the result to index this table.
+The matching input is ASCII `e` (`0x65`), **not `d`**. The first version of this
+audit used `0x64 - 0x30`, which accidentally yields the same index 52 but
+mislabels the command. The corrected audit checks the subtraction instruction.
+Surrounding text is the interactive debug menu. A later
+[console audit](../accele160-debug-interface-20261016/README.md) established
+that the live input/output pointers are disabled stubs, so this is not an
+accepted host command.
 
 The other verified `dcctl 2,0` sites are at runtime file offsets `0x1185c`,
 `0x2a42c`, `0x402f8`, `0x404b4`, and `0x40b74`. Their surrounding code handles

@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 3385,
-      "sha256": "e5319f64350e43836128a0dd8adeb9e3c9ffe2626b98db538f5c6533e1e437e0"
+      "size": 3464,
+      "sha256": "6f0f4f594f54f2c2f05c6e9d0babbefadb915dd16d3b652db8d69168f0fbed22"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2209,18 +2209,38 @@
     },
     {
       "path": "artifacts/current/accele160-cache-gate-20261016/README.md",
-      "size": 3482,
-      "sha256": "12739b21f4cd4532285558a114c57f7ed5abf9f623df1fc1d59772ee2fc23209"
+      "size": 3756,
+      "sha256": "3cd9dfa67c833c66e38889709c276eb95139632dd5f8469c2fba9dd663529f04"
     },
     {
       "path": "artifacts/current/accele160-cache-gate-20261016/audit.json",
-      "size": 602,
-      "sha256": "d889d8da3bd7e9e84a179c59025c6788149eaa5692e93bf494c89e603dc41b1d"
+      "size": 660,
+      "sha256": "50e37e900e272cba47fec63dad1192e73156ca11354bd4cf4174697db31d37db"
     },
     {
       "path": "artifacts/current/accele160-cache-gate-20261016/live-state.txt",
       "size": 279,
       "sha256": "27e237a5c8c083f09426192b9b763c194d14bdeefce6e3b0ed8a073b01f67669"
+    },
+    {
+      "path": "artifacts/current/accele160-debug-interface-20261016/README.md",
+      "size": 3433,
+      "sha256": "187981aed83255f44337096903b5e0825d529d0915acb58cf55e8d360b50e5f4"
+    },
+    {
+      "path": "artifacts/current/accele160-debug-interface-20261016/audit.json",
+      "size": 1194,
+      "sha256": "fcaf361064bd73774f92e5dcdb6de2d6916de1257b96da7ab97416511bf7a30f"
+    },
+    {
+      "path": "artifacts/current/accele160-debug-interface-20261016/live-state.txt",
+      "size": 105,
+      "sha256": "e5451856b8dc6d79f6f19f518a97f85ce5925331a9e17360fb1ac5c9ed4bf21c"
+    },
+    {
+      "path": "artifacts/current/accele160-debug-interface-20261016/live-table-c048b000.bin",
+      "size": 4096,
+      "sha256": "0b246eb8d516f0dd060c4e3382d7c03ad44ec06c4dc409f1ecc11c4a3e34bded"
     },
     {
       "path": "artifacts/current/accele160-guarded-20261016/README.md",

@@ -36,14 +36,19 @@ def audit(flash: bytes) -> dict:
         raise ValueError("startup sysctl instruction changed")
     if runtime[0x403F0:0x403F4] != bytes.fromhex("0003808c"):
         raise ValueError("startup sysctl input changed")
-    menu_index = 0x64 - 0x30
+    # The dispatcher subtracts ASCII '1' (0x31), not ASCII '0'.
+    # The cache case is 'e' (0x65); the old audit mislabeled it 'd'.
+    if runtime[0x3694:0x369C] != bytes.fromhex("0034a58ccfffffff"):
+        raise ValueError("debug-menu index instruction changed")
+    menu_index = 0x65 - 0x31
     menu_entry = struct.unpack_from("<I", runtime, 0x36AC + menu_index * 4)[0]
     if menu_entry != 0xC001386C:
         raise ValueError("debug-menu cache case changed")
     return {
         "flash_sha256": boot["flash_sha256"],
         "runtime_sha256": runtime_info["sha256"],
-        "debug_menu_case": {"input_code": "0x64", "table_index": menu_index,
+        "debug_menu_case": {"input_code": "0x65", "input_character": "e",
+                            "index_subtract": "0x31", "table_index": menu_index,
                             "table_entry": f"0x{menu_entry:08x}",
                             "instruction": "dcctl 2,0,g12"},
         "other_data_invalidate_offsets": [f"0x{x:x}" for x in EXPECTED_SITES[1:]]

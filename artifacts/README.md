@@ -9,7 +9,7 @@ Source code lives in those subprojects; this directory holds inputs and evidence
 | Firmware and recovery inputs | [ROM inventory](ROM-INVENTORY.md), `vendor-fujitsu/`, `private-dumps/`, `romhook-20261010/`, `programmed-rom-20261010/` |
 | Reproducible build inputs | `toolchain-20261011/`, `rtems-20261011/sources/`, `doom-m1-20261011/`, `software-loader-20261010/target/runner.bin` |
 | Current Doom measurements | [Half-height four-mode comparison](current/half-height-20261016/README.md); [Flat-plane quality switch](current/flat-planes-20261016/README.md); [earlier exact-span results](current/doom/README.md) |
-| AcceleRAID 160 research | [Full stock dump](current/accele160-guarded-20261016/README.md); [startup contract](current/accele160-startup-20261016/README.md); [guarded RAM upload route](current/accele160-ram-route-20261016/README.md); [cache-gate audit](current/accele160-cache-gate-20261016/README.md) |
+| AcceleRAID 160 research | [Full stock dump](current/accele160-guarded-20261016/README.md); [startup contract](current/accele160-startup-20261016/README.md); [guarded RAM upload route](current/accele160-ram-route-20261016/README.md); [cache-gate audit](current/accele160-cache-gate-20261016/README.md); [debug-interface trace](current/accele160-debug-interface-20261016/README.md) |
 | Historical conclusions | [Milestone notes](notes/); these are dated evidence, not current deployment instructions |
 | Integrity and retention | `SHA256SUMS`, `artifact-inventory.json`, [curation receipt](current/curation.json) |
 

@@ -1,5 +1,18 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID debug interface — 2026-10-16
+
+The stock loader tests a UART register and selects real callbacks only when
+its readback is `1`. A read-only live table snapshot shows the disabled branch:
+input is a fixed `q`, output is a no-op. The debug menu's `e` key invalidates
+D-cache, but no host-controlled input path to it is active; its Code Manager
+`u` option offers memory diagnostics rather than a cache-safe returning call.
+The earlier audit mislabeled `e` as `d`; its jump-table index was right only
+because two offset errors cancelled. No live probe was attempted and custom
+code has not run on the new card. The next useful milestone is a bounded,
+recoverable firmware helper design with explicit RAM and cache ownership.
+[Exact anchors and evidence](artifacts/current/accele160-debug-interface-20261016/README.md).
+
 ## AcceleRAID cache gate audit — 2026-10-16
 
 The accepted stock runtime has D-cache invalidation in its interactive debug

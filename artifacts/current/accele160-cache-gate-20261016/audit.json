@@ -2,7 +2,9 @@
   "flash_sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
   "runtime_sha256": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
   "debug_menu_case": {
-    "input_code": "0x64",
+    "input_code": "0x65",
+    "input_character": "e",
+    "index_subtract": "0x31",
     "table_index": 52,
     "table_entry": "0xc001386c",
     "instruction": "dcctl 2,0,g12"

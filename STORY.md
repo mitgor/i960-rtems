@@ -4151,6 +4151,25 @@ whole life certain it already has a job.
 
 It still has that job. It has also learned to answer fifty-five.
 
+The second card, an AcceleRAID 160 with a 100 MHz controller, began a new
+investigation. We read its entire stock flash twice through the card's own
+READIMAGE command and found a narrow PCI window into local RAM. A guarded
+upload and exact restoration worked, but running the uploaded program is a
+different promise: the host cannot make this processor forget stale cached
+instructions simply by writing new bytes. We looked for a stock cache and
+call gate before trying the program.
+
+The stock debug menu seemed promising until its input path came into focus.
+The loader tests a UART register at startup, then chooses either real console
+callbacks or stubs. The live card chose the stubs: every input is `q`, and
+output vanishes. The menu's `e` command really does invalidate data cache,
+but there is no host-controlled way to send it in this boot, and its Code
+Manager offers memory diagnostics rather than a safe returning call. An
+earlier notebook called the key `d`; two indexing mistakes had cancelled and
+pointed to the right table word with the wrong label. The corrected trace
+names `e`. The new card has not executed our code yet. Its next milestone is
+a small, recoverable firmware helper with a clear RAM and cache contract.
+
 *For the reproducible version of these last acts, see
 [ROM-FETCH-LIVE.md](docs/loader/ROM-FETCH-LIVE.md),
 [FIRMWARE-PROGRAMMED.md](docs/firmware/FIRMWARE-PROGRAMMED.md), and
