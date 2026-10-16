@@ -1,0 +1,17 @@
+{
+  "original_sha256": "e708c1dadbc4813dd378e8ca8c6f0e929cc29064614b9f8a27210e5e2b23d3d0",
+  "candidate_sha256": "1f13799b880d7e3de2c2037c44fff7e78c0a8f3f391cd05df4a67c41f36c4aaf",
+  "handler_sha256": "f4b9c126739878cf725ffe9ca0f58b5610c852efcc35c4adfa3cd8c87c4f5202",
+  "probe_sha256": "5d86878199ddcdd7f7ea950699a8e047f4189eb264c1dcff860ee6f83e0e740c",
+  "changed_bytes": 346,
+  "changed_offsets": [
+    "0x451f8",
+    "0xbffdf"
+  ],
+  "loader_checksum": "0x01030378",
+  "trailer_checksum": "0x0110187f",
+  "runtime_sha256": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
+  "boot_block_unchanged": true,
+  "flash_written": false,
+  "card_executed": false
+}

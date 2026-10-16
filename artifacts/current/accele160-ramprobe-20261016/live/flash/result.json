@@ -1,0 +1,35 @@
+{
+  "command_completed": true,
+  "elapsed_s": 37.14647838099995,
+  "status": {
+    "started": "1",
+    "done": "1",
+    "status": "0",
+    "residual": "0",
+    "elapsed_ms": "37069",
+    "released": "0"
+  },
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  },
+  "post_reboot_full_flash_readback_required": true
+}

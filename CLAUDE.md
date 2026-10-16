@@ -1,5 +1,34 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID RAM execution accepted — 2026-10-16
+
+Read `artifacts/current/accele160-ramprobe-20261016/README.md` first. The exact
+1 MiB candidate, SHA-256 `1f13799b…6c4aaf`, is **persistently programmed** on
+new card `37:09.1`; two same-boot guarded full-flash reads matched it after a
+physical power cycle. Valid and bad-signature PING controls passed. Two
+independent bounded operation-2 calls executed the pinned 80-byte RAM payload
+and returned exact result words with status/residual zero. Full-page captures
+proved only the 16-byte result and 80-byte code slots changed; both runs
+restored the entire page and PIATVR. An independent final page matched the
+preimage; a guarded post-call flash read matched.
+Both command modules unloaded; the old `37:04.1` remained unbound and untouched.
+The exact live receipts are under `artifacts/current/accele160-ramprobe-20261016/live/`.
+
+**Do not mistake this for a general loader or RAM grant.** Operation 2 only
+accepts its embedded 80-byte payload. The read-only high-DRAM survey in
+`docs/hardware/accele160-memory-map.md` found zeros but proved no allocator or
+exclusive ownership. RTEMS, web and Doom remain old-card-only until chunked
+upload, owned arena, timer/IRQ and STOP are ported. A temporary
+`/etc/modprobe.d/i960-accele160-temporary.conf` still blacklists `myrs` so
+`myrsread` can bind first after a cold boot; record/remove it when ending this
+new-card development session. Never unload a retained pending command.
+
+The 80303 BAR upper half maps **PIATVR + `0x1000`**, and PIATVR is 8 KiB aligned.
+Host-accessible loader scratch is therefore in odd 4 KiB pages; the fixed
+probe lives at `c000f900`, not `c000e900`. The dedicated run script requires
+two same-boot full-flash reads matching the candidate before loading its
+companion. Keep the accepted stock ROM for external-programmer recovery.
+
 ## AcceleRAID programmed late-PING helper — 2026-10-16
 
 The user accepted recovery risk with an external programmer available. The

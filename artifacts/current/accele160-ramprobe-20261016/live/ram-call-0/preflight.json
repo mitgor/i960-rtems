@@ -1,0 +1,33 @@
+{
+  "boot_id": "bee73454-ba41-417b-9c32-ac1f436ee5e6",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_card": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  },
+  "candidate_sha256": "1f13799b880d7e3de2c2037c44fff7e78c0a8f3f391cd05df4a67c41f36c4aaf",
+  "probe_sha256": "5d86878199ddcdd7f7ea950699a8e047f4189eb264c1dcff860ee6f83e0e740c",
+  "module_sha256": "1b98c11cf4a1b667aebefdfdffa354208a0031cb5477b7b354b238cc6f4d0899",
+  "session_sha256": "4331140c7058061b1eed4b59611e6799b3f2e5ab71a225d6058417b351c161a9",
+  "readbacks": [
+    "/home/mit/i960-accele160-ramprobe-20261016/persistent-0",
+    "/home/mit/i960-accele160-ramprobe-20261016/persistent-1"
+  ]
+}

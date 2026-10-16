@@ -1,5 +1,30 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID bounded RAM execution — 2026-10-16
+
+The exact 1 MiB firmware image, SHA-256 `1f13799b…6c4aaf`, adds a strict
+zero-DMA operation 2 for one pinned 80-byte payload. The flash command finished
+with status 0 and zero residual. After physical power cycle, two independent
+guarded full-flash reads matched the exact candidate; valid PING returned 0 and
+one-byte-bad PING returned stock unsupported status 2. **Two bounded RAM calls
+then executed and returned normally on the new card**, each reporting the exact
+four result words `444f4e45,16102671,000001f0,80114670`. Both full 4 KiB
+loader-page preimages matched the saved image, the only changed bytes in the
+post-call capture were the 16-byte result and 80-byte code slots, and each run
+restored the whole page and PIATVR. An independent read-only final 4 KiB page
+capture after the repeat also matched the original. A further guarded full-flash read after the
+first call still matched the candidate. Command modules released/unloaded;
+`myrsread` remains bound to new card `37:09.1`, old PG `37:04.1` stayed unbound.
+
+A separate read-only DRAM survey found stable zero 4 KiB samples at local
+`c0501000`, `c0801000`, `c0c01000` and `c0f01000`; the runtime sample at
+`c0011000` was stable nonzero. **These samples do not grant RAM ownership.**
+The flashed helper accepts only the exact 80-byte probe, so it is not yet an
+RTEMS loader. General chunked upload, an owned code/data/stack arena, timer and
+interrupt adaptation, web transport and Doom remain new-board work.
+[Exact candidate and live evidence](artifacts/current/accele160-ramprobe-20261016/README.md);
+[memory-map limits](docs/hardware/accele160-memory-map.md).
+
 ## AcceleRAID programmed late-PING helper — 2026-10-16
 
 The user accepted skipping proven recovery because an external programmer is

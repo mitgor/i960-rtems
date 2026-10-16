@@ -4291,3 +4291,45 @@ our patched i960 code after boot and retained the strict fallback. It is not
 an arbitrary program loader yet. We removed the temporary blacklist after
 saving the evidence; the external programmer and the stock dump remain the
 fallback if a later patch goes wrong.
+
+The little PING was a doorbell, not a program. It showed that the new card
+could enter our copied-loader handler after a cold start, but the host still
+could not place instructions in RAM and have the i960 run them. We made the
+next image deliberately narrow. It preserved PING and the stock fallback, then
+added one more `0x8f` operation. That operation knows an 80-byte program by its
+exact bytes, knows where its result belongs, invalidates the card's data and
+instruction caches, calls the program, checks four result words, and returns
+to the firmware's ordinary completion path. There is no host-provided jump
+address hiding in the command.
+
+We first looked at the proposed page through the 80303 aperture. The upper
+half of the 8 KiB BAR does not map to the translation base itself; it maps a
+page above it. Once that offset was accounted for, the loader's `c000f000`
+page matched the flash image and the two planned slots were erased. We staged
+the exact 1 MiB candidate, read all of it back through the firmware, and sent
+one flash command. It took about 37 seconds and returned status zero. A
+software reboot again let the stock Linux driver bind first; swapping drivers
+in that warm boot reached mailbox status 2. A temporary blacklist and a
+physical power cycle gave our guarded read driver the first bind.
+
+On the fresh boot, two complete flash reads matched the new candidate. The
+original PING still succeeded, and a one-byte-bad signature still reached the
+stock unsupported result. Then the host saved the entire 4 KiB loader page,
+wrote just the fixed result and code slots, read them back, restored the
+aperture to its default mapping, and submitted operation 2. The card returned
+status zero and the four expected words: `444f4e45`, the nonce `16102671`,
+the sum `000001f0`, and its XOR `80114670`. The host captured the page,
+restored the slots, compared all 4,096 bytes with the saved page, and released
+the command module. It repeated the whole call once, with the same result and
+an identical page preimage. Another full flash read after the first call
+still matched. The old card remained unbound throughout.
+
+This is the first ordinary, returning execution of host-staged RAM code on the
+new card. It is also intentionally a small result. The flashed handler accepts
+only those exact 80 bytes. A read-only survey found zero-filled pages farther
+up the reported 16 MiB DRAM, but a zero page is not an allocation: stock RAID
+firmware may use or repurpose it later. RTEMS needs tens or hundreds of
+kilobytes just for its image, and Doom needs an 8 MiB arena. We have the
+execution foothold and a reliable aperture; the next act is to establish
+ownership, carry a larger validated image across in chunks, and give the new
+board its own timer, interrupt, STOP, network and frame-delivery contracts.

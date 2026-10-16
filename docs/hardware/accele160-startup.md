@@ -1,15 +1,17 @@
 # AcceleRAID 160 startup and bounded execution design
 
-**Later result:** the [late-PING helper](../../artifacts/current/accele160-flash-candidate-20261016/README.md)
-was programmed on the new card, verified by paired persistent flash reads and
-run as a bounded zero-DMA PING after power cycle. The analysis below describes
-the original stock startup and earlier unexecuted RAM probe, not the current
-patched-card status.
+**Later result:** the [bounded RAM-call helper](../../artifacts/current/accele160-ramprobe-20261016/README.md)
+is programmed on the new card, verified by paired persistent full-flash reads,
+and has executed the exact 80-byte RAM payload twice with normal return and
+full-page restoration. The [current memory map](accele160-memory-map.md)
+separates those observations from unproved RAM ownership. The analysis below
+describes the original stock startup and earlier unexecuted probe.
 
 The later [stock recovery audit](../../artifacts/current/accele160-recovery-audit-20261016/README.md)
 traces the serial `S` boot path and the separate destructive restore command.
 It does not establish a usable UART or a successful restoration on this board;
-the offline PING firmware remains unflashed.
+the later programmed PING/RAM-call image therefore still relies on the saved
+stock ROM and external-programmer recovery path.
 
 2026-10-16. This analysis uses the paired stock 6.00-05 flash, not the vendor
 7.x reference image. It establishes a boot contract and supplies a compiled
