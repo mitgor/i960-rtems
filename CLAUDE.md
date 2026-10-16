@@ -1,15 +1,17 @@
 # Current status and artifact policy (2026-10-16)
 
-## AcceleRAID owned-image digest programmed, post-boot pending — 2026-10-17
+## AcceleRAID owned-image digest accepted — 2026-10-17
 
-The exact op-7 candidate SHA `665cb121…5c708a0` was audited offline, staged
-with guarded full readback, and FLASHIMAGE completed status/residual zero.
-The PC has not returned over SSH after reboot, so persistence and the live
-8 KiB two-page digest are **not accepted yet**. Read
-`artifacts/current/accele160-digest-20261017/README.md` and the exact
-`host/accele160/digest/` sources before any new card command. Do not unload
-uncertain resources or touch old card `37:04.1`. On return, load exact
-`myrsread`, run two guarded full 1 MiB reads, then the bounded digest harness.
+The exact op-7 candidate SHA `665cb121…5c708a0` persisted across reboot on
+new card `37:09.1`; two guarded 1 MiB reads matched before testing. A single
+owned grant received two contiguous 4 KiB pages, and the card returned the
+expected whole 8 KiB FNV `0x3201b5c5`. Bad hash and page count 128 returned
+stock status 2 without modifying the independently readable target. Full
+owner/page/staging restoration, post-call and post-negative flash reads, live
+replay and tamper tests passed. Old `37:04.1` stayed unbound. Read
+`artifacts/current/accele160-digest-20261017/README.md` and exact sources
+in `host/accele160/digest/`. This is transfer admission, not executable code
+from the grant; cache-safe entry and RTEMS BSP remain next.
 
 ## AcceleRAID card-side even-page copy accepted — 2026-10-17
 

@@ -1,0 +1,37 @@
+{
+  "pointer": "0xc0710000",
+  "indexes": [
+    0,
+    1
+  ],
+  "checksums": [
+    "0x6121fdc5",
+    "0x39fc55c5"
+  ],
+  "whole_digest": "0x3201b5c5",
+  "metadata_restored": true,
+  "loader_page_restored": true,
+  "staging_restored": true,
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  }
+}
