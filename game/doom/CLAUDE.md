@@ -230,6 +230,13 @@ mutation checks, timings and restoration evidence:
 `artifacts/release-priority-20261015/README.md`.
 <!-- /release-priority-current -->
 
+Research handoff: [PERFORMANCE-RESEARCH.md](PERFORMANCE-RESEARCH.md) and the ranked
+section of [BACKLOG.md](BACKLOG.md) cover Intel/RealDOOM/FastDoom/embedded-port
+techniques. The accepted archived math object already uses `emul` for FixedMul
+but references `___divdi3` for FixedDiv. These are source/object findings, not
+new FPS results; do not replace exact arithmetic with approximate/FPU helpers
+or count already accepted screen-copy/peer-yield work as a new improvement.
+
 <!-- bulk-capture-current -->
 **2026-10-15 bulk guarded framebuffer capture accepted:** steady ping-pong now
 uses one 73,728-byte capture read instead of 72 small reads. Exact epoch/generation,
@@ -258,6 +265,11 @@ Public IPv6 HTTP restored: 200 / 2890 bytes; boot
 ownership before use.
 <!-- /bulk-capture-current -->
 
+
+Open performance handoff: [BACKLOG.md](BACKLOG.md) records the 2026-10-15
+private memcpy/memset, renderer copy/fill and calloc/realloc candidates. These
+are profiling/optimization tasks, not measured gains; use the latest accepted
+baseline below before implementing them.
 
 <!-- irq-drain-current -->
 **2026-10-15 IRQ gap diagnosed and peer-yield shutdown fixed:** the original

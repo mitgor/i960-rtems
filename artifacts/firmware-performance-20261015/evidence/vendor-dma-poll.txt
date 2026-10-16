@@ -1,0 +1,60 @@
+c004c8b8:	0c 60 01 3d 	cmpibne	0,r5,0xc004c8c4
+c004c8bc:	01 1e 80 5c 	mov	1,g0
+c004c8c0:	00 00 00 0a 	ret
+c004c8c4:	05 f0 00 5a 	cmpo	r5,3
+c004c8c8:	05 16 30 5c 	mov	r5,r6
+c004c8cc:	14 00 00 16 	ble	0xc004c8e0
+c004c8d0:	85 d0 a0 58 	and	r5,3,g4
+c004c8d4:	94 30 00 5a 	cmpi	g4,0
+c004c8d8:	05 d2 a0 58 	notand	r5,3,g4
+c004c8dc:	14 42 31 7a 	sele	g4,r5,r6
+c004c8e0:	00 30 a0 90 	ld	0xc01127b4,g4
+c004c8e4:	b4 27 11 c0 
+c004c8e8:	8a b0 00 5a 	cmpi	r10,2
+c004c8ec:	00 30 20 8c 	lda	0x1404,r4
+c004c8f0:	04 14 00 00 
+c004c8f4:	0e da ab 7d 	selne	14,15,g5
+c004c8f8:	04 20 4d 92 	st	r9,0x4(g4)
+c004c8fc:	08 20 f5 92 	st	g14,0x8(g4)
+c004c900:	0c 20 45 92 	st	r8,0xc(g4)
+c004c904:	10 20 35 92 	st	r6,0x10(g4)
+c004c908:	14 20 ad 92 	st	g5,0x14(g4)
+c004c90c:	00 10 f5 92 	st	g14,(g4)
+c004c910:	08 00 00 08 	b	0xc004c918
+c004c914:	fc 39 fc 09 	call	0xc0010310
+c004c918:	00 10 a1 90 	ld	(r4),g4
+c004c91c:	f8 3f 55 37 	bbs	10,g4,0xc004c914
+c004c920:	00 30 b0 90 	ld	0xc01127b4,g6
+c004c924:	b4 27 11 c0 
+c004c928:	00 30 a0 8c 	lda	0x1450,g4
+c004c92c:	50 14 00 00 
+c004c930:	01 1e b8 5c 	mov	1,g7
+c004c934:	01 1e 80 5c 	mov	1,g0
+c004c938:	00 30 a8 90 	ld	0xc00a5da4,g5
+c004c93c:	a4 5d 0a c0 
+c004c940:	0c 09 25 59 	subo	12,g4,r4
+c004c944:	00 10 b5 92 	st	g6,(g4)
+c004c948:	15 50 39 59 	addo	g5,5,r7
+c004c94c:	00 34 bd 92 	st	g7,0xfffffff0(g4)
+c004c950:	f0 ff ff ff 
+c004c954:	ec 24 00 09 	call	0xc004ee40
+c004c958:	24 00 00 08 	b	0xc004c97c
+c004c95c:	01 1e 80 5c 	mov	1,g0
+c004c960:	e0 24 00 09 	call	0xc004ee40
+c004c964:	00 30 a0 90 	ld	0xc00a5da4,g4
+c004c968:	a4 5d 0a c0 
+c004c96c:	10 00 3d 31 	cmpobg	r7,g4,0xc004c97c
+c004c970:	00 30 80 8c 	lda	0xc004c890,g0
+c004c974:	90 c8 04 c0 
+c004c978:	28 d9 fb 09 	call	0xc000a2a0
+c004c97c:	00 10 a1 90 	ld	(r4),g4
+c004c980:	dc 3f 55 37 	bbs	10,g4,0xc004c95c
+c004c984:	8a b0 00 5a 	cmpi	r10,2
+c004c988:	09 80 49 59 	addo	r9,r6,r9
+c004c98c:	08 80 41 59 	addo	r8,r6,r8
+c004c990:	06 41 29 59 	subo	r6,r5,r5
+c004c994:	00 30 f0 92 	st	g14,0x1440
+c004c998:	40 14 00 00 
+c004c99c:	1c ff ff 15 	bne	0xc004c8b8
+c004c9a0:	02 1e e0 65 	dcctl	2,0,g12
+c004c9a4:	14 ff ff 08 	b	0xc004c8b8

@@ -1,0 +1,36 @@
+c004ca68:	00 10 85 b2 	stq	g0,(g4)
+c004ca6c:	10 08 a5 59 	addo	16,g4,g4
+c004ca70:	01 4b ad 5a 	cmpdeco	1,g5,g5
+c004ca74:	f4 ff ff 15 	bne	0xc004ca68
+c004ca78:	00 00 00 0a 	ret
+c004ca7c:	00 10 24 b0 	ldq	(g0),r4
+c004ca80:	00 10 24 b2 	stq	r4,(g0)
+c004ca84:	10 08 84 59 	addo	16,g0,g0
+c004ca88:	f4 5f 84 36 	cmpoble	g0,g1,0xc004ca7c
+c004ca8c:	00 00 00 0a 	ret
+c004ca90:	00 03 80 8c 	lda	0x300,g0
+c004ca94:	00 30 88 8c 	lda	0xfefc8000,g1
+c004ca98:	00 80 fc fe 
+c004ca9c:	00 30 90 8c 	lda	0xfefc8b10,g2
+c004caa0:	10 8b fc fe 
+c004caa4:	90 44 94 65 	sysctl	g0,g1,g2
+c004caa8:	10 16 80 5c 	mov	g0,g0
+c004caac:	10 16 80 5c 	mov	g0,g0
+c004cab0:	00 00 00 0a 	ret
+c004cac0:	00 50 24 80 	ldob	(g1),r4
+c004cac4:	00 10 24 82 	stob	r4,(g0)
+c004cac8:	01 08 84 59 	addo	1,g0,g0
+c004cacc:	01 48 8c 59 	addo	1,g1,g1
+c004cad0:	01 8b 94 5a 	cmpdeco	1,g2,g2
+c004cad4:	ec ff ff 15 	bne	0xc004cac0
+c004cad8:	00 00 00 0a 	ret
+c004cadc:	00 30 80 90 	ld	0xff008500,g0
+c004cae0:	00 85 00 ff 
+c004cae4:	00 30 88 90 	ld	0xff008504,g1
+c004cae8:	04 85 00 ff 
+c004caec:	90 40 84 58 	and	g0,g1,g0
+c004caf0:	00 00 00 0a 	ret
+c004caf4:	02 1e 80 65 	dcctl	2,0,g0
+c004caf8:	00 30 80 90 	ld	0xe0100000,g0
+c004cafc:	00 00 10 e0 
+c004cb00:	00 00 00 0a 	ret

@@ -1,0 +1,31 @@
+c0f32ae0:	00 30 f0 8c 	lda	c0f32b18 <Li960R1>,g14
+c0f32ae4:	18 2b f3 c0 
+c0f32ae8:	1e 16 98 5c 	mov	g14,g3
+c0f32aec:	00 1e f0 5c 	mov	0,g14
+c0f32af0:	10 16 a8 5c 	mov	g0,g5
+c0f32af4:	01 89 94 59 	subo	1,g2,g2
+c0f32af8:	01 19 a0 59 	subo	1,0,g4
+c0f32afc:	18 80 a4 32 	cmpobe	g4,g2,c0f32b14 <L7>
+c0f32b00:	00 50 8d 82 	stob	g1,(g5)
+c0f32b04:	15 50 a8 59 	addo	g5,1,g5
+c0f32b08:	01 89 94 59 	subo	1,g2,g2
+c0f32b0c:	01 19 a0 59 	subo	1,0,g4
+c0f32b10:	f0 9f a4 35 	cmpobne	g4,g2,c0f32b00 <L5>
+c0f32b18:	00 00 00 0a 	ret
+c0f32b1c:	00 00 00 00 	.word	0x00000000
+c0f32b20:	00 30 f0 8c 	lda	c0f32b60 <Li960R2>,g14
+c0f32b24:	60 2b f3 c0 
+c0f32b28:	1e 16 98 5c 	mov	g14,g3
+c0f32b2c:	00 1e f0 5c 	mov	0,g14
+c0f32b30:	10 16 a8 5c 	mov	g0,g5
+c0f32b34:	01 89 94 59 	subo	1,g2,g2
+c0f32b38:	01 19 a0 59 	subo	1,0,g4
+c0f32b3c:	20 80 a4 32 	cmpobe	g4,g2,c0f32b5c <L14>
+c0f32b40:	00 50 a4 80 	ldob	(g1),g4
+c0f32b44:	01 89 94 59 	subo	1,g2,g2
+c0f32b48:	00 50 a5 82 	stob	g4,(g5)
+c0f32b4c:	11 50 88 59 	addo	g1,1,g1
+c0f32b50:	15 50 a8 59 	addo	g5,1,g5
+c0f32b54:	01 19 a0 59 	subo	1,0,g4
+c0f32b58:	e8 9f a4 35 	cmpobne	g4,g2,c0f32b40 <L12>
+c0f32b60:	00 00 00 0a 	ret

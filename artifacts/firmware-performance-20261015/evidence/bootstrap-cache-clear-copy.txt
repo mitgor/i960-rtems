@@ -1,0 +1,48 @@
+fefc80fc:	02 1e 80 5c 	mov	2,g0
+fefc8100:	00 1e 88 5c 	mov	0,g1
+fefc8104:	00 30 90 8c 	lda	0xf8000001,g2
+fefc8108:	01 00 00 f8 
+fefc810c:	00 30 88 92 	st	g1,0xff008100
+fefc8110:	00 81 00 ff 
+fefc8114:	00 30 98 8c 	lda	0xc0000002,g3
+fefc8118:	02 00 00 c0 
+fefc811c:	00 30 98 92 	st	g3,0xff008108
+fefc8120:	08 81 00 ff 
+fefc8124:	00 30 90 92 	st	g2,0xff00810c
+fefc8128:	0c 81 00 ff 
+fefc812c:	01 1e 80 65 	dcctl	1,0,g0
+fefc8130:	00 0e 84 65 	dcctl	0,g0,g0
+fefc8134:	fc 00 00 09 	call	0xfefc8230
+fefc8138:	01 0e 84 65 	dcctl	1,g0,g0
+fefc813c:	00 30 20 8c 	lda	0xc0000000,r4
+fefc8140:	00 00 00 c0 
+fefc8144:	00 30 30 8c 	lda	0xc0140000,r6
+fefc8148:	00 00 14 c0 
+fefc814c:	04 81 29 59 	subo	r4,r6,r5
+fefc8150:	00 1e 40 5c 	mov	0,r8
+fefc8154:	00 1e 48 5c 	mov	0,r9
+fefc8158:	00 1e 50 5c 	mov	0,r10
+fefc815c:	00 1e 58 5c 	mov	0,r11
+fefc8160:	00 10 41 b2 	stq	r8,(r4)
+fefc8164:	10 08 21 59 	addo	16,r4,r4
+fefc8168:	10 49 29 59 	subo	16,r5,r5
+fefc816c:	f4 7f 01 35 	cmpobne	0,r5,0xfefc8160
+fefc8170:	00 30 80 8c 	lda	0xfefc9000,g0
+fefc8174:	00 90 fc fe 
+fefc8178:	00 30 88 8c 	lda	0xc000a000,g1
+fefc817c:	00 a0 00 c0 
+fefc8180:	00 30 90 8c 	lda	0x6000,g2
+fefc8184:	00 60 00 00 
+fefc8188:	00 10 9c 80 	ldob	(g0),g3
+fefc818c:	00 50 9c 82 	stob	g3,(g1)
+fefc8190:	01 08 84 59 	addo	1,g0,g0
+fefc8194:	01 48 8c 59 	addo	1,g1,g1
+fefc8198:	01 8b 94 5a 	cmpdeco	1,g2,g2
+fefc819c:	ec ff ff 15 	bne	0xfefc8188
+fefc81a0:	00 30 80 8c 	lda	0xfefcf000,g0
+fefc81a4:	00 f0 fc fe 
+fefc81a8:	00 30 88 8c 	lda	0xc0010000,g1
+fefc81ac:	00 00 01 c0 
+fefc81b0:	00 30 00 86 	callx	0xc000c4e0
+fefc81b4:	e0 c4 00 c0 
+fefc81b8:	00 30 00 84 	bx	0xc004a2e0

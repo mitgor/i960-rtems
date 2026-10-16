@@ -1,5 +1,10 @@
 # DoomGeneric milestone 1: i960 compile and host memory profile
 
+Open follow-up work: [Doom backlog](BACKLOG.md), including private memcpy/memset
+and renderer copy/fill profiling candidates.
+See the [ranked i960/Doom performance research](PERFORMANCE-RESEARCH.md) for
+upstream techniques, architecture guidance and potential FPS impact.
+
 Low-detail benchmark: **2.481 → 3.178 FPS (+28.09%)**, 52 frames and all 14
 full audit pairs/STOP/drain pass. Renderer ~210 ms wall / ~105 ms timer-sampled
 Doom CPU. [Results, images, limitations and reproduction](../../artifacts/doom-detail-20261014/README.md).

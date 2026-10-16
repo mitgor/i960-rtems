@@ -1,0 +1,124 @@
+{
+  "scope": "DAC960PG i960RP, installed 4.07-0-29; not photographed PRO/100 board",
+  "identities": {
+    "runtime": {
+      "sha256": "21f6c1d898a533d7023a53893f03547ed61631016d1b247d3ecbb97b9403c195",
+      "disassembly_sha256": "240ed674b680a558bbddfdd88929e1c6e3da8213b271d9b71b5f37442c7a4bad",
+      "bytes": 304120,
+      "checked_rows": 73608
+    },
+    "bootstrap": {
+      "sha256": "8afaebf954bbbf31bba42f1156c76237c3e632b071f6b400d3f17fbcd9d8baa5",
+      "disassembly_sha256": "1ae4c9ee58f587bf624839e40b38cd5dc4356a21fc360fb933165d45d22d6d5f",
+      "bytes": 229376,
+      "checked_rows": 48750
+    },
+    "bootblock": {
+      "sha256": "d10cca35861b66ef38c74de9b7409438b5a46ed3c3b238d5abfcc879d32bd85c",
+      "disassembly_sha256": "e50ec0ae3f89749e4cb44bf6a47e1cadc0031c4bcc2d341af2714523d57893a5",
+      "bytes": 16384,
+      "checked_rows": 3701
+    }
+  },
+  "boot_dram": {
+    "registers_hex": [
+      "00000b43",
+      "c0000000",
+      "00000000",
+      "00000000",
+      "000000cc",
+      "00000001"
+    ],
+    "enabled": true,
+    "arrangement_field": 8,
+    "edo_two_banks": false,
+    "bank_leaf_mib_encoding": 4,
+    "base_hex": "c0000000",
+    "read_fields": {
+      "ras_to_cas": 0,
+      "cas_width": 0,
+      "extra_recovery": 0
+    },
+    "write_fields": {
+      "ras_to_cas": 0,
+      "cas_width": 0,
+      "extra_recovery": 0
+    },
+    "refresh_enabled": true,
+    "refresh_sclk_cycles": 204,
+    "parity_enabled": true,
+    "parity_odd": false,
+    "installed_capacity_from_encoding": false
+  },
+  "archived_20261011_live_dram": {
+    "registers_hex": [
+      "00000b4f",
+      "c0000000",
+      "00000000",
+      "00000000",
+      "000000cc",
+      "00000001"
+    ],
+    "enabled": true,
+    "arrangement_field": 9,
+    "edo_two_banks": true,
+    "bank_leaf_mib_encoding": 64,
+    "base_hex": "c0000000",
+    "read_fields": {
+      "ras_to_cas": 0,
+      "cas_width": 0,
+      "extra_recovery": 0
+    },
+    "write_fields": {
+      "ras_to_cas": 0,
+      "cas_width": 0,
+      "extra_recovery": 0
+    },
+    "refresh_enabled": true,
+    "refresh_sclk_cycles": 204,
+    "parity_enabled": true,
+    "parity_odd": false,
+    "installed_capacity_from_encoding": false
+  },
+  "archived_dcache_status_hex": "00007221",
+  "archived_dcache_enabled": true,
+  "current_live_cache_templates_measured": false,
+  "archived_pages_sha256": "cf04aeaca2bfffff72a54191b7ce6dc1c104f0d1bcac163de3bc9867e731965b",
+  "archived_container_sha256": "5fa24676f84d6cd69b22c025014b47c0338477b29c09204cc8b3286b666bbe4f",
+  "accepted_kernel_sha256": "13dc18948520e463f7312f77eacc1a51b52e23e7b46eb1f2b9b668f5f4d68261",
+  "accepted_kernel_checked_rows": 42444,
+  "accepted_build_archive_sha256": "3e47178822b57a6b6c6a89b28d2003e7c3537c20720dbf4857c03af730121503",
+  "linear_direct_call_candidates_not_exhaustive": {
+    "c004cac0": [
+      "c0026e48",
+      "c003616c",
+      "c0037ddc",
+      "c003c468",
+      "c003c5f0",
+      "c003c6a0",
+      "c003c6b8",
+      "c003cebc",
+      "c003cecc",
+      "c003e7fc",
+      "c0046760"
+    ],
+    "c004ca68": [],
+    "c004ca7c": []
+  },
+  "current_source_hashes": {
+    "rtems/exclusive/runtime.c": "ae9c801e853f127d12dc09b2c56cecd848ba80be270113c5e257c529102b049d",
+    "rtems/irq/libc.c": "93d3cc582a322b45cd8f3b2cbf3f210a0680b1231deb217394610a2ee60c4acc",
+    "rtems/residentnet/cache_probe.h": "2cc004c1c5a1005ce32613656d0a8c7ddb96820da7c8793553973281e2911c1c",
+    "rtems/residentnet/upload.c": "11988da2795c8af1aac3011e96dd068acb35e1d03ef92b88e128bd776e4c5387",
+    "rtems/dma/README.md": "23efd14a82ea14bba19eb099851364f6cb72f7855c2973eb271b59c2cc894c1a"
+  },
+  "hardware_accessed": false,
+  "speedup_measured_by_this_audit": false,
+  "limitations": [
+    "linear decode is not reachability",
+    "old register captures are not current Doom state",
+    "zero added waits are not zero bus latency",
+    "no SRAM/DRAM timing or cache-policy writes",
+    "no exact IRQ cost attribution"
+  ]
+}

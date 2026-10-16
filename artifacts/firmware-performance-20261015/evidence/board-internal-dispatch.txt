@@ -1,0 +1,72 @@
+fefcc1f0:	00 30 a8 8c 	lda	0xc1000000,g5
+fefcc1f4:	00 00 00 c1 
+fefcc1f8:	00 30 a0 90 	ld	0xc011e22c,g4
+fefcc1fc:	2c e2 11 c0 
+fefcc200:	00 30 b0 8c 	lda	0xe0600000,g6
+fefcc204:	00 00 60 e0 
+fefcc208:	00 30 a8 92 	st	g5,0xc011e230
+fefcc20c:	30 e2 11 c0 
+fefcc210:	00 30 b8 8c 	lda	0xe0600005,g7
+fefcc214:	05 00 60 e0 
+fefcc218:	01 1e 70 5c 	mov	1,r14
+fefcc21c:	1f 58 80 59 	addo	31,1,g0
+fefcc220:	00 30 88 8c 	lda	0xc000d540,g1
+fefcc224:	40 d5 00 c0 
+fefcc228:	00 30 90 8c 	lda	0xc0050430,g2
+fefcc22c:	30 04 05 c0 
+fefcc230:	00 30 98 8c 	lda	0xc004fc40,g3
+fefcc234:	40 fc 04 c0 
+fefcc238:	00 30 e8 8c 	lda	0xc004fdf0,g13
+fefcc23c:	f0 fd 04 c0 
+fefcc240:	00 30 20 8c 	lda	0xc004fe20,r4
+fefcc244:	20 fe 04 c0 
+fefcc248:	00 30 a8 8c 	lda	0xc004c3b0,g5
+fefcc24c:	b0 c3 04 c0 
+fefcc250:	00 30 28 8c 	lda	0xc004fe50,r5
+fefcc254:	50 fe 04 c0 
+fefcc258:	00 30 30 8c 	lda	0xc004fe80,r6
+fefcc25c:	80 fe 04 c0 
+fefcc260:	00 30 38 8c 	lda	0xc004feb0,r7
+fefcc264:	b0 fe 04 c0 
+fefcc268:	00 30 40 8c 	lda	0xc004fee0,r8
+fefcc26c:	e0 fe 04 c0 
+fefcc270:	00 30 48 8c 	lda	0xc004ff10,r9
+fefcc274:	10 ff 04 c0 
+fefcc278:	00 30 50 8c 	lda	0xc004ff40,r10
+fefcc27c:	40 ff 04 c0 
+fefcc280:	00 30 58 8c 	lda	0xc0050240,r11
+fefcc284:	40 02 05 c0 
+fefcc288:	00 30 60 8c 	lda	0xc0050290,r12
+fefcc28c:	90 02 05 c0 
+fefcc290:	00 30 68 8c 	lda	0xc004cc70,r13
+fefcc294:	70 cc 04 c0 
+fefcc298:	4c 21 b5 92 	st	g6,0x14c(g4)
+fefcc29c:	54 21 bd 92 	st	g7,0x154(g4)
+fefcc2a0:	50 21 b5 92 	st	g6,0x150(g4)
+fefcc2a4:	58 21 bd 92 	st	g7,0x158(g4)
+fefcc2a8:	5c 21 75 92 	st	r14,0x15c(g4)
+fefcc2ac:	60 21 85 92 	st	g0,0x160(g4)
+fefcc2b0:	c0 20 8d 92 	st	g1,0xc0(g4)
+fefcc2b4:	64 21 95 92 	st	g2,0x164(g4)
+fefcc2b8:	68 21 9d 92 	st	g3,0x168(g4)
+fefcc2bc:	6c 21 ed 92 	st	g13,0x16c(g4)
+fefcc2c0:	70 21 25 92 	st	r4,0x170(g4)
+fefcc2c4:	74 21 ad 92 	st	g5,0x174(g4)
+fefcc2c8:	78 21 ad 92 	st	g5,0x178(g4)
+fefcc2cc:	7c 21 2d 92 	st	r5,0x17c(g4)
+fefcc2d0:	80 21 35 92 	st	r6,0x180(g4)
+fefcc2d4:	84 21 ad 92 	st	g5,0x184(g4)
+fefcc2d8:	88 21 ad 92 	st	g5,0x188(g4)
+fefcc2dc:	8c 21 3d 92 	st	r7,0x18c(g4)
+fefcc2e0:	90 21 45 92 	st	r8,0x190(g4)
+fefcc2e4:	94 21 ad 92 	st	g5,0x194(g4)
+fefcc2e8:	98 21 ad 92 	st	g5,0x198(g4)
+fefcc2ec:	9c 21 4d 92 	st	r9,0x19c(g4)
+fefcc2f0:	a0 21 55 92 	st	r10,0x1a0(g4)
+fefcc2f4:	a4 21 5d 92 	st	r11,0x1a4(g4)
+fefcc2f8:	ac 21 ad 92 	st	g5,0x1ac(g4)
+fefcc2fc:	a8 21 65 92 	st	r12,0x1a8(g4)
+fefcc300:	f8 20 ad 92 	st	g5,0xf8(g4)
+fefcc304:	b0 21 6d 92 	st	r13,0x1b0(g4)
+fefcc308:	b4 21 75 92 	st	r14,0x1b4(g4)
+fefcc30c:	00 00 00 0a 	ret
