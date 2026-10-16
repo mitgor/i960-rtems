@@ -2679,8 +2679,8 @@
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/boot-evidence.txt",
-      "size": 23861,
-      "sha256": "379718dda3cfe08397fdfde7d3f7d86ddc7c15aa8f5a305d88b97eb543754074"
+      "size": 23791,
+      "sha256": "d185a3f648f19f5dfe86accc21c834ff6ec2d7729d73c064c20c6885aa201a69"
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/live-readonly-state.txt",
@@ -2689,8 +2689,8 @@
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/probe-raw.dis",
-      "size": 636,
-      "sha256": "454c5b29d6c0c7520f161b47f13de652b2bc6a0b6e98a296e10b884d8aae0444"
+      "size": 634,
+      "sha256": "98ec3d8ddd83926baebade49954cf9ea970ef4c33297cdf3a0bbef080b504547"
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/probe.bin",
@@ -2699,8 +2699,8 @@
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/probe.dis",
-      "size": 748,
-      "sha256": "f6d1cca88d022304723cbfeefd3498a8303f42554584d2d293b025639be9f001"
+      "size": 746,
+      "sha256": "2c4d7f1c33d6d3bcfabb9403592ffc85b8a50a385e56b7841f7d99aa51af05f0"
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/relocations.txt",
@@ -2709,8 +2709,8 @@
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/runtime-entry.txt",
-      "size": 758,
-      "sha256": "b97ed905b4e6731fc3f1e3fb2295d578d4f8d3b1fd8bc6d126def1fd1d036a16"
+      "size": 752,
+      "sha256": "9bdeb019acc947c7836ded05bb0b0f4b5fe3ba88fe5721dd8817e46e4e12346f"
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/tests.txt",

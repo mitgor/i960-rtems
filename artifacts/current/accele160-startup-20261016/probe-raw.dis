@@ -15,11 +15,11 @@ Disassembly of section .data:
   1c:	f8 df 31 34 	cmpobl	r6,r7,0x14
   20:	08 20 29 92 	st	r5,0x8(r4)
   24:	00 30 28 8c 	lda	0x96016001,r5
-  28:	01 60 01 96 
+  28:	01 60 01 96
   2c:	11 43 29 58 	xor	g1,r5,r5
   30:	0c 20 29 92 	st	r5,0xc(r4)
   34:	00 30 28 8c 	lda	0x444f4e45,r5
-  38:	45 4e 4f 44 
+  38:	45 4e 4f 44
   3c:	00 20 29 92 	st	r5,0x0(r4)
   40:	00 1e 80 5c 	mov	0,g0
   44:	00 00 00 0a 	ret
