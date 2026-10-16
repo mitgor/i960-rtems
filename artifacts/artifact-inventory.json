@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 3535,
-      "sha256": "2077646a0fcaf47285d7ef5e908a108442f8c3251d557675dd626500bce61838"
+      "size": 3631,
+      "sha256": "de5e1710e9092d249acf305fa1b5ff1cd6471f8dd20e0ceb21a7edd37877551d"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2431,6 +2431,16 @@
       "path": "artifacts/current/accele160-helper-site-20261016/live-state.txt",
       "size": 104,
       "sha256": "78480bc067cee2489851f12244a42bd0d97910af09543c12a3abdcfa062c6ccf"
+    },
+    {
+      "path": "artifacts/current/accele160-ping-contract-20261016/README.md",
+      "size": 5158,
+      "sha256": "ae8247fe671d5cab589b688e27698aa9d249a2968781da684396e89b217a07b2"
+    },
+    {
+      "path": "artifacts/current/accele160-ping-contract-20261016/stock-8f.json",
+      "size": 575,
+      "sha256": "9bd332ec18646179c3d43e293a501b7ef1c28eb1184964ca2e5289d4d26eb813"
     },
     {
       "path": "artifacts/current/accele160-ram-route-20261016/README.md",

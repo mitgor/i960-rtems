@@ -1,5 +1,18 @@
 # Current findings — 2026-10-16
 
+## AcceleRAID stock helper transport — 2026-10-16
+
+A first-boot, new-card-only `myrs8f` derivative submitted one zero-DMA stock
+IOCTL `0x8f` request. It completed in 50.3 ms of host observation with
+host-visible status `2`, zero residual and the exact 64-byte mailbox; the old
+card remained unbound. This establishes an unsupported completion and safe
+command cleanup, **not** helper execution. A native strict version-1 PING
+admission model passes sanitizer and mutation tests. It has not been installed
+on firmware, and reserved-byte transport, cache-safe execution, boot and
+recovery remain unproven. The temporary module and `myrs` boot override were
+removed after the test; both cards are currently unbound, and SSH is healthy.
+[Protocol, capture and replay](artifacts/current/accele160-ping-contract-20261016/README.md).
+
 ## AcceleRAID helper-site audit — 2026-10-16
 
 The stock IOCTL dispatcher maps unused diagnostic subcommand `0x8f` to its
@@ -8,9 +21,9 @@ The loader has 7,720 erased bytes copied to local RAM, with no aligned absolute
 references in the verified loader/runtime. An in-memory, **dormant** 80-byte
 probe insertion plus known additive checksum updates passes structural checks;
 the compressed runtime and old card are unchanged. This neither wires a new
-command nor proves boot, code-site ownership, or recovery. Next: decode the
-`0x8f` command/completion ABI and implement a native admission model before
-considering a live patch.
+command nor proves boot, code-site ownership, or recovery. The subsequent
+stock `0x8f` transport test and native admission model are recorded above;
+the next gate is an offline helper/dispatcher patch and structural verification.
 [Exact anchors and limits](artifacts/current/accele160-helper-site-20261016/README.md).
 
 ## AcceleRAID debug interface — 2026-10-16
@@ -78,12 +91,12 @@ extent. The guarded experiment contained this overrun; selector 4 is now disable
 Use selector 9 and extract EZAssist offline. No flash writes were issued.
 
 Old DAC960PG `0000:37:04.1` stayed unbound and untouched. New AcceleRAID
-`0000:37:09.1` is bound to `myrsread`, firmware 6.00-05; firmware reports
-100 MHz, 16 MiB RAM, 8 MiB cache and 1 MiB flash. SSH is healthy. The failed
-EZAssist allocation and its pinned companion remain deliberately retained until
-reboot; do not force unload/unbind them. Successful raw readers were released.
-Temporary myrs blacklist was removed and initramfs updated; existing myrb rules
-were preserved. No RTEMS/Doom session is active. New-card code execution and
+`0000:37:09.1` reports firmware 6.00-05, 100 MHz, 16 MiB RAM, 8 MiB cache
+and 1 MiB flash. The failed EZAssist allocation's pinned companion was cleared
+by the intervening reboot; successful raw readers were released. As of the
+stock `0x8f` test above, both cards are unbound, SSH is healthy, the temporary
+`myrs` override is removed and initramfs updated; existing `myrb` rules are
+preserved. No RTEMS/Doom session is active. New-card code execution and
 firmware compatibility are not yet established; explicit BDF selection remains
 mandatory. Half-height work stays on hold.
 

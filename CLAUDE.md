@@ -118,6 +118,14 @@ See `artifacts/current/flat-planes-20261016/README.md` and `game/doom/flat_plane
 <!-- /flat-planes-current -->
 
 Read `CURRENT-FINDINGS.md` first. It supersedes historical status blocks below.
+For AcceleRAID 160, the stock `0x8f` zero-DMA command completed with status 2
+and zero residual on the new card only; this is an unsupported result, not code
+execution. The native PING validator and exact live capture are in
+`host/accele160/helper/` and
+`artifacts/current/accele160-ping-contract-20261016/`. Both cards are currently
+unbound. Keep BDF `0000:37:09.1` explicit, leave old `0000:37:04.1` untouched,
+and do not treat a same-boot driver reload as reliable. No new-card firmware
+patch has been programmed or recovery tested.
 `artifacts/README.md` defines retention: keep recovery/build inputs, test fixtures
 and concise current results; avoid repeated full build archives and obsolete
 binaries. Full audits and ownership checks remain mandatory during hardware tests.

@@ -1,0 +1,20 @@
+{
+  "boot_id": "cf1ad15a-0e2f-4e19-ae9b-3041ced1877f",
+  "new_bdf": "0000:37:09.1",
+  "old_bdf": "0000:37:04.1",
+  "identity": {
+    "vendor": "0x1069",
+    "device": "0x0050",
+    "subsystem_vendor": "0x1069",
+    "subsystem_device": "0x0054"
+  },
+  "elapsed_seconds": 0.05033392400000025,
+  "status": {
+    "state": "2",
+    "status": "2",
+    "residual": "0",
+    "mailbox": "0100204000000000000000000000000000000000008f000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "new_driver_after": "myrs8f",
+  "old_driver_after": null
+}

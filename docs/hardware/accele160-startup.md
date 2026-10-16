@@ -8,6 +8,11 @@ but deliberately stopped before execution because no cache-safe call handoff is
 yet proven. No flash write, controller reset, driver change or reboot was used.
 Old DAC960PG `0000:37:04.1` remained unbound and untouched.
 
+The subsequent [stock `0x8f` test](../../artifacts/current/accele160-ping-contract-20261016/README.md)
+submitted a zero-DMA diagnostic request on `37:09.1` and observed status `2`
+with zero residual and exact mailbox capture. It does not change this
+execution conclusion; the native PING validator is an offline model only.
+
 ## Verified startup chain
 
 The offline decoder checks descriptor bounds, both loader/trailer additive

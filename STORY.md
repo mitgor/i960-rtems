@@ -4176,8 +4176,14 @@ mailbox. The loader also carries about seven and a half kilobytes of erased
 space into RAM. We placed the already-built eighty-byte probe there in a
 throwaway in-memory image and repaired the two known boot checksums; the image
 analyzer accepted that structure. Nothing points at the probe. The runtime
-dispatch table is compressed, and we have not yet proved the command ABI or a
-recovery path. So this is a map of a plausible route, not a programmed card.
+dispatch table is compressed. The next test sent one zero-DMA `0x8f` command
+through a driver bound only to the new card after a fresh boot. Stock firmware
+completed it as unsupported, with zero residual; the captured command was the
+exact sixty-four bytes we intended. The old card did nothing. We also wrote a
+strict native model of the proposed PING packet and tried malformed variants
+against it. That proves a clean doorway and a proposed admission rule, not a
+room behind the door: no helper is installed, no new code has run, and boot or
+recovery of a patched image remains untested.
 
 *For the reproducible version of these last acts, see
 [ROM-FETCH-LIVE.md](docs/loader/ROM-FETCH-LIVE.md),
