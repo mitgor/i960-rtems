@@ -4343,3 +4343,58 @@ free blocks in a row, the other 47. That is enough space for a small RTEMS
 image if a future helper can request and hold it through the stock allocator.
 It is far short of Doom's 8 MiB arena. We still have not asked the allocator
 for a block; reading its book is not the same as having our name written in it.
+
+Then we asked the allocator to write our name in its book. A fixed 256 KiB
+request succeeded and freed cleanly. The first host checker complained about
+two changing bytes just past the allocator's count and owner arrays; it was
+watching firmware state outside the grant. We retained the command, restored
+its result slot under readback, corrected the comparison to the actual 512
+metadata words, and ran the call again. Those words returned to their
+preimage. That was permission to try a longer lease, not permission to borrow
+arbitrary zero-looking DRAM.
+
+The next helper reserved exactly 512 KiB at `c0710000` with a fixed owner ID.
+The reservation survived a completed host command, and a separate command
+freed it. We saw all sixteen 32 KiB blocks carry our owner while the lease was
+active and watched all sixteen return to free afterward. The host could write
+one odd 4 KiB page through the PCI aperture, but the even pages were still
+invisible from that window. We gave the card a bounded copying job: the host
+staged one page in the last odd page of its own grant, read it back, and asked
+the i960 to check its hash before copying it to an indexed payload page. The
+first even page worked. So did an independently readable odd page and the
+last allowed payload page. A bad staged hash and an attempt to target the
+staging page returned the stock rejection status without a copy. The grant,
+control words and loader page still came back exactly as they started.
+
+One lease could then hold more than one page. We copied pages 0 and 126 under
+the same owner, reloading only the one-shot command companion between copies.
+After that we added a command that hashes a contiguous run of owned pages.
+Two adjacent pages produced the same 8 KiB digest on the card and host. A
+wrong digest and a count beyond the 127-page payload limit were rejected.
+The card's digest is FNV: it catches a bad transfer in this bounded experiment,
+but it is not a signature against a malicious image. Our host still pins exact
+firmware and module identities before a command runs.
+
+The first call from this rented memory was deliberately familiar. We placed
+the same 80-byte leaf that had already returned from the loader page at the
+start of the grant, with one more page behind it. The new handler checked the
+whole two-page digest and every byte of the leaf, invalidated the instruction
+cache, and called `c0710000`. The leaf returned the nonce, the sum 496 and its
+XOR result. We released the grant, checked all allocator owners and the loader
+page, and did it again in a fresh grant. A wrong digest and a one-byte change
+to the leaf were rejected before the result slot moved. Full flash reads
+before and after still matched the programmed image, and the old PG stayed
+unbound. At this point the AcceleRAID can run a known program from memory it
+actually owns; it cannot yet run a new RTEMS board build.
+
+Finally we tried a load the size of that future job. Seventy-seven 4 KiB
+pages—315,392 bytes—went through the same staging and card-copy path under one
+lease, with a host readback and a card result for every page. The card hashed
+the whole region before we returned the grant. It took about 6.1 seconds to
+upload and 0.1 seconds for the digest in this one run. This is 284 bytes more
+than the archived IPv6 RTEMS flat image from the PG, and it leaves 204,800
+bytes of payload space for other extent. That arithmetic does not pay for
+RTEMS's BSS, stacks, heap, network buffers or the new board support. We have
+proved the crossing and the lease; the next act is to link a small AcceleRAID
+RTEMS task for this map, measure its real writable footprint, and give it a
+bounded clock and STOP before trying the web server or Doom.

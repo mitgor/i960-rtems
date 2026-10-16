@@ -116,3 +116,33 @@ Retain exact input identities, source revision, target image, Linux module,
 commands, host boot/profile, results and cleanup state in a new artifact batch.
 Add its README and checksum inventory. Distinguish “built,” “native-tested,”
 “ran on card,” “restored,” and “playable”; none implies all the others.
+
+## AcceleRAID 160: current second-card route
+
+This board is PCI `1069:0050`/subsystem `1069:0054`, not the DAC960PG profile
+above. Discover and explicitly select its BDF; in the accepted dual-card PC it
+is `0000:37:09.1` and the old PG is `0000:37:04.1`. Keep the old card unbound.
+The [AcceleRAID stock image](../artifacts/current/accele160-guarded-20261016/README.md)
+and [memory map](hardware/accele160-memory-map.md) are the starting evidence.
+Preserve both before applying an exact reviewed helper. The temporary Linux
+`myrs` blacklist, exact `myrsread` binding and guarded `READIMAGE` procedure
+are recorded in those artifacts; a warm driver rebind was not a substitute
+for the fresh boot used in acceptance.
+
+The accepted path after the stock dump is sequential:
+
+1. [Bounded PING and exact 80-byte loader-page call](../artifacts/current/accele160-ramprobe-20261016/README.md) established a persistent dispatch hook and cache-safe normal return.
+2. [Stock allocator and retained grant](../artifacts/current/accele160-retained-20261016/README.md) established fixed 512 KiB ownership at `c0710000` and separate release.
+3. [Indexed card-side page copy](../artifacts/current/accele160-pagecopy-20261016/README.md) crossed the BAR's odd-page-only aperture and rejected bad controls.
+4. [Contiguous owned-image digest](../artifacts/current/accele160-digest-20261017/README.md) checked a two-page transfer and its rejection paths.
+5. [Exact leaf from owned RAM](../artifacts/current/accele160-ownedexec-20261017/README.md) returned normally from the grant after whole-image and code-byte checks.
+6. [77-page scale run](../artifacts/current/accele160-bulkupload-20261017/README.md) transferred 315,392 bytes under one grant with per-page and whole-region checks.
+
+Each artifact links the exact candidate, source, host harness, module and
+compact acceptance captures. A prepared candidate is not accepted until two
+post-reboot full 1 MiB reads and a live bounded call pass. The full 1 MiB
+scratch readbacks remain in their named isolated workspaces on the test PC;
+the original stock image and exact programmed binaries are retained in git.
+The next board-port step is a newly linked minimal RTEMS image with an
+AcceleRAID memory manifest and bounded task/clock/STOP lifecycle. The PG
+binary and Doom's 8 MiB ownership assumptions are not portable as-is.
