@@ -1,15 +1,32 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID RAM upload route — 2026-10-16
+
+Intel 80303 ATU decoding proves BAR0's upper 4 KiB is a movable local-RAM
+aperture. A guarded 256-byte live round trip at local `0xc0001e00` uploaded the
+80-byte bounded probe, passed exact readback, restored every original byte, and
+left identical full-page SHA-256 snapshots. PIATVR returned to `0xc0000000`, SSH
+remained healthy, and old DAC960PG `37:04.1` remained unbound and untouched.
+
+Do not execute through the tempting IOCTL `0x8e` pointer patch. Its callback
+table and dispatcher are cacheable, the 80303 does not snoop host writes, and a
+stale pointer would run stock `SET_MEM_MBOX`. MEMCOPY is a SCSI/device transfer;
+StoreImage/ReadImage do not expose persistent local scratch. The next accepted
+gate is a stock cache-maintenance command or a fully decoded unused software
+interrupt with exact return/restoration semantics. See
+`artifacts/current/accele160-ram-route-20261016/README.md`.
+
 ## AcceleRAID startup analysis — 2026-10-16
 
 Stock boot/trailer/loader checksums and runtime CRC pass. Reset entry
 `0xfeffc000`; 24 KiB loader copied to `0xc000a000`, entry `0xc000c590`;
 main image expands at `0xc0010000`, entry `0xc004cf70`. Firmware state extends
 past 4 MiB: do not infer free RAM from the expanded image's end. New BAR0 is
-only 8 KiB, not a RAM aperture. A bounded returning probe is assembled and nine
-offline tests pass; **no custom code has executed on the new card**. Upload,
-owned scratch memory and a callable entry remain unproven. No reset, flash/RAM
-write or driver change this stage; old PG remains untouched/unbound.
+an 8 KiB Messaging Unit plus 4 KiB translated local aperture, not a broad RAM
+BAR. A bounded returning probe is assembled and nine offline tests pass;
+**no custom code has executed on the new card**. Transport is now proven, while
+owned scratch memory and a cache-safe callable entry remain unproven. No reset,
+flash write or driver change was used; old PG remains untouched/unbound.
 [Memory map, entry-route priorities and exact test contract](docs/hardware/accele160-startup.md).
 
 ## AcceleRAID complete stock dump — 2026-10-16

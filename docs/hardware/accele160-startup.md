@@ -2,8 +2,10 @@
 
 2026-10-16. This analysis uses the paired stock 6.00-05 flash, not the vendor
 7.x reference image. It establishes a boot contract and supplies a compiled
-probe; **custom code has not executed on the new card**. No flash or controller
-RAM writes, resets, driver changes or reboot were performed in this stage.
+probe; **custom code has not executed on the new card**. A later guarded test
+proved host-to-local-RAM upload, exact readback and byte-for-byte restoration,
+but deliberately stopped before execution because no cache-safe call handoff is
+yet proven. No flash write, controller reset, driver change or reboot was used.
 Old DAC960PG `0000:37:04.1` remained unbound and untouched.
 
 ## Verified startup chain
@@ -41,7 +43,7 @@ are not proof of corrupt code. Add `0xc0010000` to runtime disassembly offsets.
 | --- | --- | --- |
 | `0xc0000000` | RAM base used by boot tests/initialization | Occupied firmware memory; not available scratch |
 | `0xc0000800` | Boot recovery fault table initialization | Do not overwrite |
-| `0xc0001000` | Boot recovery structures | Do not overwrite |
+| `0xc0001000..0xc0001fff` | Upper half of the live inbound BAR; reset/recovery references the page, while it is all zero in the running image and has no absolute main-runtime reference | Suitable only for a self-restoring bounded experiment; still not firmware-owned application RAM |
 | `0xc0002000` / `0xc0002040` | Boot frame / stack | A boot address is not a safe live stack |
 | `0xc000a000..0xc0010000` | Verified 24 KiB loader destination | Includes callable support used by runtime |
 | `0xc0010000..0xc00b77ac` | Verified expanded main image | Code/data; do not overwrite |
@@ -52,12 +54,38 @@ are not proof of corrupt code. Add `0xc0010000` to runtime disassembly offsets.
 | `0xe0600000`, `+5` | Boot serial data/status access | Do not poll/write as part of this proof |
 | `0x1310`, `0x1320`, `0x1324` | Recovery mailbox/doorbell accesses | Local register addresses, not Linux physical addresses |
 | `0xff008100` and nearby | Reset configuration stores | Register names/semantics need primary-manual confirmation |
-| host BAR0 `0xee002000..0xee003fff` | Read-only Linux resource snapshot | Only 8 KiB; not an exposed 16 MiB RAM BAR |
+| host BAR0 `0xee002000..0xee003fff` | 80303 primary inbound ATU: first 4 KiB Messaging Unit, second 4 KiB translated local memory | A real movable 4 KiB aperture, not a 16 MiB RAM BAR |
 
 Controller information reports 16 MiB RAM and 8 MiB cache. A contiguous
 `0xc0000000..0xc1000000` RAM extent is a hypothesis, not a tested ownership map.
 The bridge identifies as `8086:2962`; do not silently substitute the old i960RP
 register definitions or assert an exact core variant from clock alone.
+
+## Proven inbound RAM aperture
+
+The Intel 80303 Developer's Manual sections 15.2.1.1 and 15.7 define the live
+configuration exactly. PCI function `37:09.1` reports:
+
+| Register | PCI offset | Live value | Meaning |
+| --- | --- | --- | --- |
+| PIABAR | `0x10` | `0xee002008` | 8 KiB prefetchable host BAR |
+| PIALR | `0x40` | `0xffffe000` | 8 KiB inbound mask |
+| PIATVR | `0x44` | `0xc0000000` | local translation base |
+
+The first 4 KiB is reserved for the Messaging Unit. BAR offsets
+`0x1000..0x1fff` therefore translate to local `0xc0001000..0xc0001fff`.
+Read-only remapping of PIATVR also captured arbitrary 8 KiB-aligned local pages;
+every test restored PIATVR to `0xc0000000` under an exit trap. This resolved the
+previous ambiguity around BAR0 without changing its size or the Messaging Unit.
+
+A live guarded upload used BAR offset `0x1e00` / local `0xc0001e00`. The target
+256 bytes were checked as zero before the first store. The replacement contained
+64-byte guards, the accepted 80-byte probe and a distinct marker. Replacement
+readback passed, all original bytes were restored, and complete before/after
+4 KiB snapshots both have SHA-256
+`ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7`.
+This proves a bounded **upload/readback route**, not ownership for a resident
+payload.
 
 ## Entry-route investigation
 
@@ -69,23 +97,36 @@ potential programming operation, not an execute request. No generic execute
 primitive was found in this dispatcher. Recovery entry itself remains unproven
 over SSH on this new board. Do not induce recovery by corrupting flash.
 
-Linux v6.8 `myrs.h` names command 0x01 MEMCOPY but supplies no demonstrated
-controller-RAM execution contract. A command name is insufficient evidence for
-using arbitrary source/destination addresses. The running firmware's READIMAGE
-path only establishes flash-to-host transfer, not arbitrary local RAM access.
+Linux v6.8 `myrs.h` names command 0x01 MEMCOPY, but the stock dispatcher sends
+it to runtime `0xc0023030`, which resolves a controller/channel/target and starts
+the ordinary SCSI transfer state machine. It is not arbitrary local-memory copy.
+IOCTL `0x2c` and `0x2d` dispatch through callbacks `0xc0050690` and
+`0xc0050630`; these are StoreImage and ReadImage paths using allocator-owned
+temporary state. IOCTL `0x2e` reaches a separate programming path and remains
+prohibited. None supplies a persistent RAM upload/call contract.
+
+IOCTL `0x8e` eventually dispatches through function-table slot `+0xfc` (live
+value `0xc0023910`) and appears attractive as a temporary call hook, but its
+unmodified operation is `SET_MEM_MBOX`. The slot lives in cacheable RAM. The
+80303 manual sections 4.3.5 and 4.4.6 explicitly state that external writes do
+not snoop the instruction or data caches. The stock reset code enables caching
+for `0xc0000000..0xc05fffff`, covering the dispatcher and callback table. A
+host-side patch could therefore execute the stale, destructive original path.
+That fails the bounded-call precondition and was not attempted.
 
 Priority for the next investigation:
 
-1. Trace running-firmware opcode 0x01 and image-upload handlers end to end,
-   including translation, length checks, allocation ownership and completion.
-   Prefer a RAM-only, firmware-owned staging allocation and a verified callback.
-2. If that yields no bounded route, decode the new bridge/ATU registers and
-   ownership from a primary manual plus read-only current configuration. Design
-   a new-card-only window mapping; do not probe by blind register writes or
-   interpret the existing BAR as RAM.
-3. Only after upload/readback and callback return are proven, execute the probe.
-   A firmware patch is a later option if neither route exists; this analysis
-   does not justify programming a guessed hook.
+1. Add a stock-code cache synchronization gate: a host command which causes the
+   i960 itself to invalidate D-cache after a callback-pointer update and I-cache
+   after payload upload, without invoking a write/programming IOCTL.
+2. Otherwise build a RAM-only bootstrap entered through a fully decoded unused
+   software interrupt vector, including exact interrupt-return ABI, vector-cache
+   state, mask/priority restoration and a host-observable timeout. Do not infer
+   this contract from a zero vector entry alone.
+3. A temporary firmware-resident helper is the fallback: preserve the stock
+   image, add an authenticated upload/call/cache-maintenance IOCTL, and validate
+   it on the spare new card before any flash programming. Flash remains outside
+   this RAM-only milestone.
 
 ## Concrete bounded probe
 
@@ -118,8 +159,9 @@ The future harness must enforce all of these acceptance steps:
    no pending command. The completed retained selector-4 allocation must stay
    pinned or be cleared by an orderly reboot before ownership changes.
 2. Obtain a proven-owned 256-byte code slot and separate 16-byte result with
-   64-byte guards on both sides. No hard-coded scratch address until allocation
-   ownership is proven. Keep code, result and stack away from firmware state.
+   64-byte guards on both sides. The successful self-restoring `0xc0001e00`
+   round trip proves transport only and is not sufficient ownership for this
+   step. Keep code, result and stack away from firmware state.
 3. Upload once; read back the entire code slot and guard regions, compare bytes.
    Establish instruction visibility using the verified new-core cache protocol.
 4. Invoke once with a fresh nonce. No background workload, runtime installation,
@@ -138,11 +180,13 @@ use synthetic records and do not imply a live success.
 
 ## Reproduction and outcome
 
-See [evidence](../../artifacts/current/accele160-startup-20261016/README.md) for
-commands, exact compiled bytes, selected stock disassembly and test receipts.
+See [startup evidence](../../artifacts/current/accele160-startup-20261016/README.md)
+and [RAM-route evidence](../../artifacts/current/accele160-ram-route-20261016/README.md)
+for commands, exact compiled bytes, selected stock disassembly and receipts.
 Nine offline tests pass, including trailer/loader/reset corruption, descriptor
-bounds, stale nonce and guard failures. Live activity was limited to identity,
-PCI configuration/resource and retained-command status reads, plus compilation
-on the host. SSH remained healthy and the old card stayed unbound. No reboot was
-needed. The immediate missing piece is a verified upload/call route, not a larger
-payload or an assumed free RAM address.
+bounds, stale nonce and guard failures. The live upload/readback/restoration test
+passed without reboot; PIATVR and the full aperture were restored, SSH remained
+healthy, and the old card stayed unbound. The remaining blocker is specifically
+a cache-safe, normally returning invocation route. Treating transport as
+execution would risk running the stale `SET_MEM_MBOX` handler, so the probe was
+not called.

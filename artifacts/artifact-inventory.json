@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "artifacts/README.md",
-      "size": 3080,
-      "sha256": "6522702ecf9f3a9b14b2dfebb06bb890f819c57dea900e5a5e0269957e6ae9ff"
+      "size": 3316,
+      "sha256": "0a0edbdbbe431dc09f0aa6e8f562fbc902bb99dd9f2efc9ff1e1754ba4fe2925"
     },
     {
       "path": "artifacts/ROM-DUMP-WORKLOG.md",
@@ -2383,6 +2383,16 @@
       "sha256": "a75fe7ddc036b6fc13ef7e8bfbe6c95fb0be91112508a05953b2d3eda45b2366"
     },
     {
+      "path": "artifacts/current/accele160-ram-route-20261016/README.md",
+      "size": 4059,
+      "sha256": "f5394f4a8669e23923d47c0917c2a3114c5bbabeb42cdcc4d8c4084cd050c0e3"
+    },
+    {
+      "path": "artifacts/current/accele160-ram-route-20261016/live-evidence.txt",
+      "size": 1268,
+      "sha256": "f9899d28349d0a117340aea646e73cb49593dbac6b60d6ba2107563dd6384c5c"
+    },
+    {
       "path": "artifacts/current/accele160-readimage-20261016/DACFL6-decoded.exe",
       "size": 115419,
       "sha256": "dcb44fd876e41a1b844a5213757d0235f9fce4c62205661c81cdb88a0d0c21ba"
@@ -2669,8 +2679,8 @@
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/README.md",
-      "size": 1948,
-      "sha256": "d20dfbdf86ffcccd45e91cb419ce827613a9460b2e95c146b439e2e707e47dd7"
+      "size": 2145,
+      "sha256": "0f28676f2d13c2122030404b53b703c7c58c0ff39ac1444e4d6a2e0abb65a297"
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/analysis.json",

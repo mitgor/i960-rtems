@@ -1,0 +1,41 @@
+AcceleRAID 160 RAM-route live receipt, 2026-10-16
+
+boot_id=0e92f975-c3eb-4d54-b388-61f2b3e3ad5f
+new_bdf=0000:37:09.1
+new_identity=1069:0050 subsystem 1069:0054 revision 02
+new_driver=myrsread
+old_bdf=0000:37:04.1
+old_driver=unbound
+
+Live ATU configuration before and after test:
+PIALR[0x40]=ffffe000
+PIATVR[0x44]=c0000000
+SIABAR[0x48]=fe000008
+SIALR[0x4c]=ff000000
+SIATVR[0x50]=c0000000
+
+Translated page:
+BAR offset 0x1000 -> local 0xc0001000
+length=4096
+pretest_sha256=ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7
+posttest_sha256=ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7
+pretest_nonzero_bytes=0
+posttest_cmp=identical
+
+Bounded write/readback/restore:
+BAR offset=0x1e00
+local address=0xc0001e00
+length=256
+probe length=80
+replacement_sha256=f277f2378b62daf8bd9f57e5fc81b840f28633b5b2a9aebe890913b5f75f703f
+result=replacement-readback=pass restoration-readback=pass
+
+Final live checks:
+PIATVR=c0000000
+old_driver=unbound
+new_driver=myrsread
+companion=done=1 status=0 residual=164576 selector=4 length=164576 released=0 guard_changes=386314
+SSH responsive; uptime continued on the same boot.
+
+No probe invocation, flash write, controller reset, reboot, driver unload,
+disk command or access to the old DAC960PG was performed.

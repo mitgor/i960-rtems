@@ -1,6 +1,7 @@
 # AcceleRAID startup evidence and candidate execution probe
 
-Status: offline startup verified, probe assembled, **not uploaded or executed**.
+Status: offline startup verified and probe assembled. The later guarded transport
+test uploaded these exact bytes and restored them, but **did not execute them**.
 [Analysis and bounded live-test design](../../../docs/hardware/accele160-startup.md).
 The existing full flash is reused; no duplicate full firmware binary is stored.
 
@@ -36,3 +37,5 @@ Assemble in an isolated directory on the Linux build host, with `probe.S` and
 Build workspace: `/home/mit/i960-accele160-startup-20261016`. No board operations
 are part of this build. The repo already retains the matching binutils toolchain.
 No reboot, driver unload, firmware write or old-card access was required.
+The subsequent live receipt is in
+[`../accele160-ram-route-20261016/`](../accele160-ram-route-20261016/README.md).

@@ -4007,6 +4007,41 @@ The next question is narrower now: can a specialized half-column loop and cheape
 row expansion preserve the plane saving? That is a measured place to look, rather
 than another promise of ten frames per second.
 
+## A second card, and four honest kilobytes
+
+The 100 MHz AcceleRAID arrived beside the old card, not in its place. That made
+the first rule simple: every command named a PCI function, and the old DAC960PG
+stayed unbound. The new card gave us its complete one-megabyte flash image, then
+its boot chain: reset code, a small unpacker below the main image, and 6.00-05
+expanding into RAM. It also offered an eight-kilobyte PCI BAR that looked too
+small to be useful.
+
+The Intel manual changed the meaning of those eight kilobytes. The lower half
+was the 80303 messaging unit. The upper half was a real translated window into
+local RAM. Its mask said eight kilobytes; its translation value said
+`c0000000`. Moving that value for a read and restoring it under an exit trap let
+us inspect the live card without inventing a memory map.
+
+At `c0001e00`, 256 bytes were zero before the first store. We wrapped the
+80-byte probe in guards, wrote the record through the window, read every byte
+back, and put every zero back. The complete four-kilobyte page had the same
+SHA-256 before and after. The translation register returned to its stock value,
+SSH stayed up, and the old card never acquired a driver. The new card now had a
+proven RAM upload route.
+
+It did not yet have a proven call route. The tempting diagnostic hook ended in
+the firmware's memory-mailbox setup routine. Worse, both its pointer and its
+dispatcher lived in cacheable RAM, and the 80303 does not snoop host writes.
+The host could see a new pointer while the processor still saw the old one. On
+this command, stale meant performing a real configuration operation, not merely
+missing our marker. So we stopped with the probe restored and uncalled.
+
+That distinction is the useful result: transport works; execution still needs
+an i960-side cache barrier and a normal-return handoff. Four kilobytes were
+enough to prove the first fact without pretending they proved the second.
+
+[The exact receipt and next gate](artifacts/current/accele160-ram-route-20261016/README.md).
+
 ## Where it stands
 
 So, the ledger, honestly kept:
