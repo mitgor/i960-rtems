@@ -1,0 +1,33 @@
+{
+  "boot": {
+    "size": 65536,
+    "paired_equal": true,
+    "sha256": "de8e40ed7384a04c7753123f009fd6f4e6f1d5496e95fdb38316f0be903ffe34",
+    "ibr_words": [
+      "0x0",
+      "0x0",
+      "0x80",
+      "0x0",
+      "0xfeffc000",
+      "0xfeffdd20",
+      "0x20062e0",
+      "0x0"
+    ],
+    "ibr_sum": 128
+  },
+  "firmware": {
+    "size": 524288,
+    "paired_equal": true,
+    "sha256": "068bc4b39399d158bb0ae49dfa6f1158f6ba03b25f9ca30cb677607525eb471c",
+    "zip_offsets": [
+      "0x7000"
+    ]
+  },
+  "bios": {
+    "size": 28672,
+    "paired_equal": true,
+    "sha256": "96d5d8996099ad587533f50caebe18c0211eb4a555f17027a75763f4e633b47a",
+    "checksum": 0,
+    "pci_rom_equal": true
+  }
+}

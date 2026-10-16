@@ -1,0 +1,73 @@
+{
+  "regions": [
+    {
+      "selector": 1,
+      "flash_offset": 983040,
+      "bytes": 65536
+    },
+    {
+      "selector": 2,
+      "flash_offset": 262144,
+      "bytes": 524288
+    },
+    {
+      "selector": 3,
+      "flash_offset": 196608,
+      "bytes": 28672
+    },
+    {
+      "selector": 4,
+      "flash_offset": 0,
+      "bytes": 164575
+    },
+    {
+      "selector": 5,
+      "flash_offset": 786432,
+      "bytes": 64512
+    }
+  ],
+  "cpu_mhz": 100,
+  "cpu_type": 7,
+  "cpu_count": 1,
+  "memory_mb": 16,
+  "cache_mb": 8,
+  "memory_mhz": 66,
+  "flash_mib": 1,
+  "images": {
+    "boot": {
+      "bytes": 65536,
+      "sha256": "de8e40ed7384a04c7753123f009fd6f4e6f1d5496e95fdb38316f0be903ffe34",
+      "paired_equal": true,
+      "ibr_words": [
+        "0x0",
+        "0x0",
+        "0x80",
+        "0x0",
+        "0xfeffc000",
+        "0xfeffdd20",
+        "0x20062e0",
+        "0x0"
+      ],
+      "entry_prcb_check_sum": 0
+    },
+    "firmware": {
+      "bytes": 524288,
+      "sha256": "068bc4b39399d158bb0ae49dfa6f1158f6ba03b25f9ca30cb677607525eb471c",
+      "paired_equal": true,
+      "embedded": {
+        "compressed_bytes": 365113,
+        "uncompressed_bytes": 685996,
+        "crc32": "d93addd1",
+        "crc_passed": true,
+        "uncompressed_sha256": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db"
+      }
+    },
+    "bios": {
+      "bytes": 28672,
+      "sha256": "96d5d8996099ad587533f50caebe18c0211eb4a555f17027a75763f4e633b47a",
+      "paired_equal": true,
+      "rom_checksum_passed": true
+    }
+  },
+  "complete_physical_flash_dump": false
+}

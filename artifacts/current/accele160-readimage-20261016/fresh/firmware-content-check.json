@@ -1,0 +1,10 @@
+{
+  "zip_offset": "0x7000",
+  "name": "ZIP1",
+  "method": 6,
+  "compressed_bytes": 365113,
+  "uncompressed_bytes": 685996,
+  "crc32": "d93addd1",
+  "crc_passed": true,
+  "uncompressed_sha256": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db"
+}

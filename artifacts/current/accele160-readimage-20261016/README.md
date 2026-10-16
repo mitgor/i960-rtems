@@ -1,5 +1,14 @@
 # AcceleRAID READIMAGE investigation — 2026-10-16
 
+## Latest result
+
+The subsequent fresh-boot test recovered matching pairs of the **512 KiB main
+firmware, 64 KiB boot block and 28 KiB BIOS**. Main firmware decompression/CRC
+passes. The whole 1 MiB flash is still incomplete; an additional image read was
+followed by a confirmed host freeze. See [fresh-boot results and current handoff](fresh/README.md).
+The sections below record the earlier investigation and failed live handoff.
+
+
 ## Result so far
 
 **No complete stock flash dump. No READIMAGE command reached the card yet.**

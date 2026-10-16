@@ -2214,13 +2214,243 @@
     },
     {
       "path": "artifacts/current/accele160-readimage-20261016/README.md",
-      "size": 6933,
-      "sha256": "ea90676c64822171f3c714ca49d5081dfe9b031d43154d48cce80932b7c29ccd"
+      "size": 7367,
+      "sha256": "b9f3f9750fdd06ca6819dc7e1437b34f09a46948c486f049b0b6bf03fa215dd2"
     },
     {
       "path": "artifacts/current/accele160-readimage-20261016/build-receipt.json",
       "size": 495,
       "sha256": "dcb5d85702a841b12d5f01740b01f0f9f03e4fc203582a1ed0424f47f454b5a2"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/README.md",
+      "size": 5836,
+      "sha256": "872c952f3563d69f60aaa4c14804a3624ff611f92472063c6ae180a7fc6c77c5"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/accepted.json",
+      "size": 119,
+      "sha256": "ac49a945264f2bba1b8da572d0062cb3a35dfba5cfe405e64c5c1780e5520f92"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/after.json",
+      "size": 98,
+      "sha256": "8d221dbd33b6adb2b5d416c49ba93f8594f1148481eb79f7368281bfa0666d85"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/before.json",
+      "size": 238,
+      "sha256": "b28800e8f56bf7c46d34b0e5a88663c391000da577f9c3c8485405ce895d5a28"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-full-0/data.bin",
+      "size": 28672,
+      "sha256": "96d5d8996099ad587533f50caebe18c0211eb4a555f17027a75763f4e633b47a"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-full-0/request.json",
+      "size": 339,
+      "sha256": "8fc71bbcd73718f28f2b189bb19f136da34dc931bfd8a2a7be0640831713ab21"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-full-0/result.json",
+      "size": 458,
+      "sha256": "6ccb9ec2743965ad6b30f3472515dbbbe2092f21080f5a60917946a4da403dad"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-full-0/status.txt",
+      "size": 62,
+      "sha256": "20b0d9a6caf07407d010f4a3ed9453885c6b25128011a800ace6b8399629f873"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-full-1/data.bin",
+      "size": 28672,
+      "sha256": "96d5d8996099ad587533f50caebe18c0211eb4a555f17027a75763f4e633b47a"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-full-1/request.json",
+      "size": 339,
+      "sha256": "8fc71bbcd73718f28f2b189bb19f136da34dc931bfd8a2a7be0640831713ab21"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-full-1/result.json",
+      "size": 458,
+      "sha256": "f64f4b61365a93d1504045901031f78ba895f823209d0399c44512f3e02f2cd2"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-full-1/status.txt",
+      "size": 62,
+      "sha256": "20b0d9a6caf07407d010f4a3ed9453885c6b25128011a800ace6b8399629f873"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-probe-1024/data.bin",
+      "size": 1024,
+      "sha256": "d2d8bce21fc38cbcd29dcd1f63035e726283f656ce7e31d48adfd20b7f59c466"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-probe-1024/request.json",
+      "size": 338,
+      "sha256": "7b221a48cd1e52ed4daf4b0053956465ce697d914abad48773b3cc5eb8850de2"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-probe-1024/result.json",
+      "size": 457,
+      "sha256": "141acc0e18e5d88f1e25195b62b962890ac4ba1c85f7ce6f92b4244ac63d1b23"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/bios-probe-1024/status.txt",
+      "size": 61,
+      "sha256": "8d5c5d539d967da20a06b0793fed7ebc3da12fa52c96ff09323b0a30815845a9"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/boot-full-0/data.bin",
+      "size": 65536,
+      "sha256": "de8e40ed7384a04c7753123f009fd6f4e6f1d5496e95fdb38316f0be903ffe34"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/boot-full-0/request.json",
+      "size": 339,
+      "sha256": "44ed4d5c4d9533c3d250b8cc830de6da06095e3fe6e0f51d1901b63e3e942995"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/boot-full-0/result.json",
+      "size": 458,
+      "sha256": "74e09b6f6c86bd4b1ab751b0e73a1292a796925faa72951c68bbc91aa716cd59"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/boot-full-0/status.txt",
+      "size": 62,
+      "sha256": "2de5428219daaee9c143fd6424409e6c4c6de31e8c9dba6837238f89106a5de5"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/boot-full-1/data.bin",
+      "size": 65536,
+      "sha256": "de8e40ed7384a04c7753123f009fd6f4e6f1d5496e95fdb38316f0be903ffe34"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/boot-full-1/request.json",
+      "size": 339,
+      "sha256": "44ed4d5c4d9533c3d250b8cc830de6da06095e3fe6e0f51d1901b63e3e942995"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/boot-full-1/result.json",
+      "size": 458,
+      "sha256": "0ebff652636c8abdb2291aaffce1d3211f7b18941e996eb92bf3f84f82fe68b2"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/boot-full-1/status.txt",
+      "size": 62,
+      "sha256": "2de5428219daaee9c143fd6424409e6c4c6de31e8c9dba6837238f89106a5de5"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/companion-attempt.c",
+      "size": 5214,
+      "sha256": "4d6c899e122bef3411391ee21f9e8270dd0537bafc383fcfc6365e7e345f6a68"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/controller.bin",
+      "size": 1004,
+      "sha256": "117b01c8211fb00aba07096070a40f7b568c63ada1aee797ec626661cd1493ba"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/descriptor-0.bin",
+      "size": 1024,
+      "sha256": "c66f264385d38024cbf1558d4cf56daae5eeca8cff2c7140bc304bd0b69986e4"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/descriptor-1.bin",
+      "size": 1024,
+      "sha256": "c66f264385d38024cbf1558d4cf56daae5eeca8cff2c7140bc304bd0b69986e4"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/ezassist-full-0/data.bin",
+      "size": 164575,
+      "sha256": "82111827887405f787028cf2d32fc66a8788383a731fe814309b8620d883d40e"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/ezassist-full-0/request.json",
+      "size": 340,
+      "sha256": "79e1e5c2b9f748494ac3215e61a45f2c381c2b6c56bfcb8a72eb2b0a1a80672a"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/ezassist-full-0/result.json",
+      "size": 459,
+      "sha256": "24f85572adc14616b7ae8a4032ad707214610e26ea07b1857fee67936523439e"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/ezassist-full-0/status.txt",
+      "size": 68,
+      "sha256": "596a56eeecee47e9f54381a3caacd66d9c8774394d06a9b8888cc1e04da63193"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/firmware-content-check.json",
+      "size": 262,
+      "sha256": "ef9b2dc746296d19e32be5e10d6ff53322d0868f9177d898444fd7faef3cf3f5"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/firmware-full-0/data.bin",
+      "size": 524288,
+      "sha256": "068bc4b39399d158bb0ae49dfa6f1158f6ba03b25f9ca30cb677607525eb471c"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/firmware-full-0/request.json",
+      "size": 340,
+      "sha256": "2353e61270ef0a178a5b0a53b1ed35e6977e25efd6a418e943c4b4b68f059a25"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/firmware-full-0/result.json",
+      "size": 459,
+      "sha256": "fc42e46b142df17bf85104cca66ed14e552e223f0cf6d709fbe457d9a3b4b267"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/firmware-full-0/status.txt",
+      "size": 63,
+      "sha256": "6f17d3111429c13f6b18c4112f338f9e73087885dd0a774d1d07a8b6ea5f8ebb"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/firmware-full-1/data.bin",
+      "size": 524288,
+      "sha256": "068bc4b39399d158bb0ae49dfa6f1158f6ba03b25f9ca30cb677607525eb471c"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/firmware-full-1/request.json",
+      "size": 340,
+      "sha256": "2353e61270ef0a178a5b0a53b1ed35e6977e25efd6a418e943c4b4b68f059a25"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/firmware-full-1/result.json",
+      "size": 459,
+      "sha256": "cd73a56c7714bd435a2f68d07232bdc9bc4e9a4f4de1b5c17b63924b92f22fde"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/firmware-full-1/status.txt",
+      "size": 63,
+      "sha256": "6f17d3111429c13f6b18c4112f338f9e73087885dd0a774d1d07a8b6ea5f8ebb"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/inspection.json",
+      "size": 1593,
+      "sha256": "6bb59f926787be2196aac8bd5dadaa23548198f4fb461cd3e76d35cecf627d46"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/read-0.txt",
+      "size": 2077,
+      "sha256": "2ef47aaf651d9fdef739faf4e35a881372f1fef039fa859070329878ea2261d9"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/read-1.txt",
+      "size": 2077,
+      "sha256": "2ef47aaf651d9fdef739faf4e35a881372f1fef039fa859070329878ea2261d9"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/read-image-attempt.py",
+      "size": 2736,
+      "sha256": "6394ec870cfa87031b470262daa11fd6f5af2949ef5ceab6cc061ee96988c5c3"
+    },
+    {
+      "path": "artifacts/current/accele160-readimage-20261016/fresh/verified-images.json",
+      "size": 696,
+      "sha256": "2aaeafa7de0b9fe6782ce63111de5f1213673a770cee9693101ad556021d326d"
     },
     {
       "path": "artifacts/current/accele160-readimage-20261016/fujitsu-ar160-package.exe",

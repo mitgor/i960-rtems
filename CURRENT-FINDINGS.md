@@ -1,5 +1,19 @@
 # Current findings — 2026-10-16
 
+## Fresh AcceleRAID dump — latest result (2026-10-16)
+
+Fresh initialization and paired descriptor reads passed. Recovered matching pairs
+of main firmware (512 KiB), boot block (64 KiB) and BIOS (28 KiB); embedded main
+firmware CRC passes and BIOS equals independent PCI capture. Raw controller info
+reports 100 MHz, 16 MB RAM, 8 MB cache, 1 MiB flash. Whole physical flash remains
+incomplete. EZAssist returned data with full residual; subsequent testing froze
+the host (user confirmed). Power cycle requested. Old PG remained unbound and
+received no targeted operations. Do not forcibly unload uncertain DMA resources.
+The new guarded/aligned companion revision is prepared but not card-validated.
+Temporary myrs blacklist remains; do not remove the existing myrb rules.
+[Current evidence and next steps](artifacts/current/accele160-readimage-20261016/fresh/README.md).
+
+
 ## READIMAGE follow-up — latest hardware state
 
 Recovered the vendor descriptor READIMAGE call (0x20/0x2d, selector 0x0e,

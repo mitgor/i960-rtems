@@ -11,6 +11,7 @@ assert select(old,'dac960pg')['driver'] is None
 identity=select(new,'accele160');assert identity['driver'] is None;dev=Path('/sys/bus/pci/devices')/new
 assert not list(dev.glob('host*/target*/*/block/*'))
 (out/'before.json').write_text(json.dumps(dict(card=identity,boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip(),module_sha256=hashlib.sha256(a.module.read_bytes()).hexdigest())))
+subprocess.run(['modprobe','raid_class'],check=True)
 subprocess.run(['insmod',str(a.module),'read_bdf='+new],check=True)
 select(new,'accele160',driver='myrsread')
 hosts=list(dev.glob('host*/scsi_host/host*'));assert len(hosts)==1
