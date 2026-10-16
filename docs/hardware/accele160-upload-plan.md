@@ -17,3 +17,7 @@ The [op-7 artifact](../../artifacts/current/accele160-digest-20261017/README.md)
 ## Accepted exact leaf from owned RAM (2026-10-17)
 
 The [op-8 artifact](../../artifacts/current/accele160-ownedexec-20261017/README.md) records persistent flash, paired complete reads, an 8 KiB owned upload and whole-image digest, exact 80-byte code admission, I-cache invalidate, normal `callx` at `c0710000`, verified nonce/sum result and complete restoration. Bad digest and modified leaf bytes rejected before call; a second normal session succeeded. The next scale gate is a 77-page upload comparable to the archived 315 KiB RTEMS IPv6 image, then a board-specific relocated task/clock/STOP payload. Do not use the DAC960PG RTEMS binary directly; its addresses, transport and timer assumptions remain board-specific.
+
+## RTEMS-sized transfer scale (2026-10-17)
+
+A [77-page owned upload](../../artifacts/current/accele160-bulkupload-20261017/README.md) copied 315,392 contiguous bytes in 6.118 s under one grant, validating each page and digesting the entire region on the card in 0.101 s. All 77 commands and full restoration/audits passed; this exceeds the archived DAC960PG IPv6 RTEMS flat image by 284 bytes. Fifty payload pages, 204,800 bytes, remain for new-board BSS/stack/heap extent. This is only a transfer proof. Next build a newly linked AcceleRAID minimal task/clock/STOP image with an explicit manifest and measured memory extent, then qualify its lifecycle before networking.

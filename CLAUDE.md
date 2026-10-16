@@ -1,5 +1,18 @@
 # Current status and artifact policy (2026-10-16)
 
+## AcceleRAID RTEMS-sized bulk transfer accepted — 2026-10-17
+
+On new card `37:09.1`, a single stock-owned 512 KiB grant received 77
+validated 4 KiB pages (315,392 bytes) under exact persistent op-8 firmware.
+All per-page host readbacks/card FNVs, 77 command statuses, full-region card
+FNV `0x11a9edc5`, owner/page/staging restoration, post-test guarded 1 MiB
+flash read, replay and tamper checks passed. Upload took 6.118 s and digest
+0.101 s in one run. Read
+`artifacts/current/accele160-bulkupload-20261017/README.md`. This is a
+deterministic transfer scale proof, not an AcceleRAID RTEMS build or task.
+A 77-page image leaves 204,800 bytes in the 127-page payload area; actual
+BSS/heap/stack needs remain to be measured for a new-board port.
+
 ## AcceleRAID owned-RAM exact leaf accepted — 2026-10-17
 
 The exact op-8 candidate SHA `6f056a98…480aa7` persisted after reboot on
