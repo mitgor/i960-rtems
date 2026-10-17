@@ -1,0 +1,27 @@
+{
+  "bytes": 1048576,
+  "sha256": "93faf91f553822665cd4125d90b1066370c4bca0da76af8336daf98bc2dae094",
+  "elapsed": 0.6881555910000046,
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  }
+}

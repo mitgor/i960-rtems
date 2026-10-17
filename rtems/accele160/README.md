@@ -33,8 +33,17 @@ full flash reads, complete loader-page restoration and all 512 owner words
 passed. It proves a separately writable control word and bounded callback,
 not STOP of an arbitrary RTEMS task or an interrupt/DMA drain.
 
-Next: qualify the live cached vector and timer-1 mode/read-clear state,
-then test borrowed timer/interrupt ownership with an owned interrupt stack
-and this sideband STOP under complete restoration audits. Host-backed
-IPv4/IPv6 and web service follow. Doom requires a separately owned
-multi-megabyte arena and frame transport.
+The [operation-12 vector/mode result](../../artifacts/current/accele160-vector-20261017/README.md)
+observed cached vector 18 `0xaaaaaaaa` and cached vector 130
+`0xc0000418`. The guarded timer-1 mode read returned `0`, with count,
+reload, pending, mask and mapping unchanged. Operation-11 STOP still passed
+on the new image, and six full flash audits matched. The cached sentinel
+means a blank ROM entry cannot be treated as a free vector.
+
+The old-card loader/RTEMS comparison and the reason for repeated new-card
+flash cycles are in [bring-up differences](OLD-NEW-DIFFERENCES.md). Next:
+build one reusable manifest-checked RAM admission, then test borrowed
+timer/interrupt ownership with an owned stack and sideband STOP under
+complete restoration audits. Host-backed IPv4/IPv6 and web service follow.
+Doom also requires a separately owned multi-megabyte arena and frame
+transport.

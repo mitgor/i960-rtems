@@ -4482,3 +4482,38 @@ remained. We now have a real independent STOP *channel* on the 100 MHz card,
 not yet a STOP supervisor for arbitrary RTEMS tasks. The live cached vector,
 timer mode, owned interrupt stack, timer drain and restoration remain the next
 hardware gates before autonomous RTEMS can borrow the clock.
+
+The newer board was accumulating firmware flashes, so we compared the two
+paths honestly. The old PG had already paid for a general loader and can now
+receive new programs, RTEMS variants and Doom images in RAM. On the 100 MHz
+AcceleRAID we were still teaching a small stock-firmware hook one exact
+operation at a time. The RTEMS task was uploaded to RAM there too, but its
+admission was pinned to one image; each new kind of hardware experiment had
+changed the hook and therefore needed another complete flash audit. That is
+a bring-up choice, not a limitation of the i960 or RTEMS. The long-term
+repair is one reusable manifest-checked RAM admission and lease protocol.
+
+Before borrowing a clock, we needed to know what the live interrupt cache
+actually held. The stock ROM's vector-18 word was zero, but the processor
+manual warned that enabled vector caching reads internal RAM instead. We
+made one final fixed observational command. It read the internal vector
+locations twice and read timer-1 mode only after repeated checks found its
+count and reload zero, interrupt not pending and masked, and mapping field
+zero. The mode register has a read-clear terminal-count bit, so the command
+saved the value of that first read rather than pretending it was harmless.
+
+The firmware image passed its staged full read, flash, reboot and two
+persistent full reads. Our first host preflight caught a boundary change:
+the enlarged handler crossed into the first 244 bytes of the page previously
+all erased. No card command had run. We changed the preflight to require
+those exact linked code bytes and an erased remainder. The real call then
+returned cached vector 18 as `0xaaaaaaaa`, while vector 130 was the stock
+timer-0 handler at `c0000418`. Timer-1 mode was zero, including a clear
+terminal-count flag; pending, mask, mapping, count and reload did not change.
+The page and all 512 allocator owner records restored, and complete flash
+reads afterward still matched. We also reran the independent STOP and its
+no-host deadline on this enlarged image; both behaved as before. The blank
+ROM vector is now plainly insufficient evidence of an available interrupt
+slot. The next work is to stop spending a flash write on every probe, then
+reserve a vector and interrupt stack explicitly before asking RTEMS to run
+from this board's hardware timer.

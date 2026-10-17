@@ -1,0 +1,48 @@
+{
+  "boot_id": "d88a2742-e903-4513-94a1-13e534b5e2cd",
+  "elapsed_s": 0.032545,
+  "report": {
+    "flags": 3,
+    "cached_vector18": "0xaaaaaaaa",
+    "cached_vector130": "0xc0000418",
+    "pre": {
+      "ipnd": "0x00000000",
+      "imsk": "0x000010c7",
+      "imap2": "0x00080000",
+      "trr1": "0x00000000",
+      "tcr1": "0x00000000"
+    },
+    "mode": "0x00000000",
+    "post": {
+      "ipnd": "0x00000000",
+      "imsk": "0x000010c7",
+      "imap2": "0x00080000",
+      "trr1": "0x00000000",
+      "tcr1": "0x00000000"
+    }
+  },
+  "owner_records_unchanged": true,
+  "page_restored": true,
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  }
+}

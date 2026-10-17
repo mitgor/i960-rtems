@@ -1,0 +1,12 @@
+d88a2742-e903-4513-94a1-13e534b5e2cd
+c0000000
+37:09.1 RAID bus controller [0104]: Mylex Corporation AcceleRAID 352/170/160 support Device [1069:0050] (rev 02)
+	Subsystem: Mylex Corporation AcceleRAID 160 support Device [1069:0054]
+	Kernel driver in use: myrsread
+	Kernel modules: myrs
+37:04.1 RAID bus controller [0104]: Mylex Corporation DAC960PG [1069:0010] (rev 05)
+	Subsystem: Mylex Corporation DAC960PG [1069:0010]
+	Kernel modules: myrb
+myrsread               65536  0
+raid_class             12288  1 myrsread
+state=0 status=0 residual=0
