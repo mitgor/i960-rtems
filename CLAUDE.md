@@ -1966,3 +1966,23 @@ switch with an independent finite STOP/quiescence path. For physical runs,
 confirm exact new-card BDF, old card unbound, no retained modules, stock
 timer/vector state and two same-boot full flash reads. Never force-unload a
 pending operation-13 command.
+
+## AcceleRAID 160 bounded RTEMS preemption (2026-10-17)
+
+The new-card [two-worker preemption gate](rtems/accele160/preempt/README.md)
+passed two card batches, each with STOP and finite 120-tick no-host exit. The
+owned timer-1 ISR calls `_Thread_Dispatch()` after RTEMS clock accounting;
+three separate 8 KiB ISR continuations prevent a suspended task's ISR stack
+from being reused. Two CPU-bound equal-priority workers made 8 and 120
+hardware-tick handoffs; all per-task entries/returns matched, and the stock
+timer/vector, firmware SP, loader page, stage and all owner records restored.
+Six paired full flash reads and independent inventories matched the unchanged
+firmware. The [exact accepted binary/evidence](artifacts/current/accele160-preempt-20261017/README.md)
+has offline replay and four tamper tests. The first diagnostic host check
+failed only because it read even grant page 20; accepted traces are written
+to odd page 21. Use exact source and image SHA pins in the physical runner,
+keep old card `0000:37:04.1` unbound, and never force-unload pending op13.
+This is a bounded proof with interrupt-enabled tasks, not a resident runtime
+or recovery of a task that disables interrupts indefinitely. Next: finite
+resident lease and independently enforceable quiescence, then network/Doom
+memory and DMA admission.

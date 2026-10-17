@@ -91,3 +91,14 @@ STOP, finite exit, exact state restoration, six full flash reads and
 independent vector/timer inventories passed. The initial false guard and
 interrupt-priority experiments are preserved in its artifact. This is not yet
 unrestricted task preemption or a resident service on the new board.
+
+The following [bounded preemption gate](preempt/README.md) has now passed twice
+on the new card without another firmware write. It uses three separate owned
+8 KiB ISR continuations, time-slices two CPU-bound RTEMS workers from timer 1,
+and drains both on valid STOP or a 120-tick deadline. The observed STOP and
+no-host paths made 8 and 120 handoffs respectively, with exact timer/vector,
+firmware-context, loader-page, stage and owner restoration. Six full flash
+reads and independent post-run inventories passed. The [exact evidence](../../artifacts/current/accele160-preempt-20261017/README.md)
+replays and rejects four tamper cases. It proves bounded preemption while
+interrupts stay enabled; an independently enforceable resident lease and
+memory/DMA ownership remain to be built before networking or Doom.

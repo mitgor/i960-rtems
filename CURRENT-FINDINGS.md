@@ -1,5 +1,15 @@
 # Current findings — 2026-10-17
 
+The [new-card bounded RTEMS preemption gate](rtems/accele160/preempt/README.md)
+now passes twice. Two CPU-bound workers are time-sliced from the owned timer-1
+ISR with separate task-owned ISR continuations: STOP completed after 8 ticks
+and 8 handoffs in about 145 ms; the no-host deadline completed at 120 ticks
+and 120 handoffs in about 1.258 s. Both continuations drained before stock
+state restoration. Six complete matching flash reads and independent post-run
+inventories passed. This proves bounded preemption while interrupts remain
+enabled; a finite resident service and containment of interrupt-masking code
+remain separate gates. The earlier hardware-clock result below is its baseline.
+
 The [AcceleRAID 160 combined RTEMS/timer gate](rtems/accele160/autoclock/README.md)
 now passes twice: hardware tick 5 wakes the worker, 52 ticks continue through
 a bounded CPU loop, and STOP/no-host cleanup restores the borrowed timer,

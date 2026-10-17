@@ -1,5 +1,16 @@
 # i960 / Mylex DAC960PG — consolidated technical findings
 
+**Second-board bounded RTEMS preemption accepted (2026-10-17):** The
+[AcceleRAID 160 two-worker gate](rtems/accele160/preempt/README.md) used the
+existing RAM operation 13 and stock-owned grant, with per-task 8 KiB ISR
+continuations. Two CPU-bound equal-priority workers switched at every timer
+tick: 8 handoffs before STOP and 120 by the finite no-host deadline, repeated
+twice. All continuations drained; the cached vector, timer, firmware SP,
+loader page, staging source and allocator records restored. Six complete 1 MiB
+flash reads matched the unchanged image; independent inventories matched
+stock. No flash write or old-card change occurred. This is bounded preemption,
+not resident-service or arbitrary-fault containment.
+
 **Second-board RTEMS timer integration accepted (2026-10-17):** The
 [AcceleRAID 160 bounded hardware-clock gate](rtems/accele160/autoclock/README.md)
 woke an RTEMS worker at timer-1 tick 5, sustained 52 ticks during a CPU-bound

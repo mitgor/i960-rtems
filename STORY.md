@@ -4723,3 +4723,41 @@ still defers task switching until a normal task boundary, and the worker is
 deliberately cooperative. A service that stays resident, preempts arbitrary
 tasks, or hosts the web server and Doom needs another ownership and finite
 quiescence gate before we give it the card for longer periods.
+
+We took the next step from a working RTEMS clock to actual time slicing on the
+new AcceleRAID. The old card had taught us an easily missed rule: when a timer
+interrupt dispatches another task, its C call can remain suspended. Reusing
+one interrupt stack would let the next task overwrite that unfinished call.
+We gave the controller and each of two workers a separate guarded 8 KiB ISR
+continuation inside the new card's stock-owned RAM grant, plus a separate
+entry stack. The workers ran CPU-bound loops without yielding; the timer ISR
+advanced RTEMS time and performed the dispatch.
+
+The first card run showed eight hardware ticks and eight task handoffs, and
+STOP returned with the firmware stack and timer state restored. Our host
+checker nevertheless rejected the capture: its report lived on an even grant
+page, which this card's PCI aperture cannot read back reliably. We kept the
+finished command and grant in place, compared the saved page, stage and owner
+records, released it through the guarded recovery path and made two full flash
+reads. Then we moved the report to an odd page and rebuilt the RAM image. No
+firmware flash write was needed.
+
+The corrected image passed twice. A stale STOP token remained pending; the
+exact token ended each run after eight ticks and eight handoffs, about 145 ms
+from host admission. Without host STOP, the controller's finite 120-tick
+limit ended after about 1.258 seconds, with 120 handoffs. Both workers' ISR
+continuations had as many returns as entries: four each on STOP and sixty
+each at the deadline. Their hardware frames identified vector `12`, their
+stack guards held, and the controller waited for both before restoring the
+cached vector, timer 1, interrupt map/mask and firmware stack. Six complete
+firmware reads across this work matched the pinned 1 MiB image, and
+independent post-run commands saw stock timer/vector state. The loader page,
+staging source and every allocator owner record restored. The old DAC960PG
+was never bound or commanded.
+
+This is the first bounded RTEMS timer-preemption result on the new board. It
+shows that interrupt-enabled CPU work can be stopped at a scheduler boundary,
+not that arbitrary stuck code can be contained: a task that masks interrupts
+indefinitely can still defeat this controller. Before a long-lived network or
+Doom service, we need a finite resident lease whose quiescence boundary is
+independent of a cooperating RTEMS task, along with its RAM and DMA ownership.
