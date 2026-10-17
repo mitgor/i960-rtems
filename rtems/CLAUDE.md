@@ -1414,3 +1414,14 @@ press/release. Full pre/post flash, bank, owner and STOP audits passed;
 independent. Card-side rates were 2.329 and 2.320 FPS, not browser paint
 rates. This is not yet a long interactive or DMA frame path; keep the old
 card unbound and retain the exclusive callback until reboot.
+
+The [old/new delay comparison](../artifacts/current/card-delay-comparison-20261017/README.md)
+adds a fully audited new-card profiler and an explicitly selected old-card
+120-frame/47-audit run. Their sessions ran sequentially, both drained and
+were reset, and paired new-card post-reset flash reads matched stock. The
+new card spends 154.52 ms per frame in its extra copy/staging/FNV adapter;
+combined engine work is another 274.52 ms. Host Python FNV adds 19.58 ms
+before HTTP, although the host loop overlaps rendering. Prioritize exact
+native host validation, word copies and owned DMA; no free-slot wait was
+sampled, so another buffer has no measured justification. Quality/core flags
+differ between cards; these are software-path measurements, not a CPU ratio.

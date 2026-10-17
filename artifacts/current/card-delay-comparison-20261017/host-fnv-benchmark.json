@@ -1,0 +1,22 @@
+{
+  "bytes": 65536,
+  "payload_sha256": "d03d7e20907aea69b38b32b0a8666482de9939ffaf80671021ea14c44a93f092",
+  "fnv": "0x20aa3c9c",
+  "verified_vectors": 7,
+  "compiler": "cc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "python": {
+    "iterations": 30,
+    "mean_ms": 10.787453266666667,
+    "p50_ms": 10.803196,
+    "min_ms": 10.502325,
+    "max_ms": 11.202769
+  },
+  "native": {
+    "iterations": 2000,
+    "mean_ms": 0.0873898945,
+    "p50_ms": 0.086803,
+    "min_ms": 0.086636,
+    "max_ms": 0.112037
+  },
+  "limitation": "Host-only microbenchmark; not integrated into the card runner"
+}

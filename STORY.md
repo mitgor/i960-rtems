@@ -5452,3 +5452,35 @@ with input, close to the no-input transport gate. We saved the final browser
 frame as an image. After a power cycle, two more complete guarded reads
 matched the stock firmware, closing the browser run. Its short bounded life still leaves
 the longer playable session and a clean user STOP path ahead.
+
+We then measured where the slower new-card frames were spending their time.
+The profiler kept the same Doom image and checked every delivered byte. Its
+thirty-two frames matched the accepted pixels and palette, and the card
+averaged 2.331 FPS. Each 429 ms interval contained about 52 ms copying into
+a delivery slot, 78 ms arranging that slot into PCI-readable odd pages, and
+24 ms hashing it. The engine's work between callbacks occupied another
+275 ms. The host then spent 9 ms reading the pages and nearly 20 ms in a
+Python checksum before making the frame available to HTTP. None of the
+sampled slot waits reached one 10 ms tick. A third buffer would not remove
+those loops.
+
+We ran the old card again with its preserved DMA build, explicitly selecting
+its new PCI address. It passed 120 frames and 47 full paired audits, including
+a three-second stalled host and STOP with both final slots held. Its steady
+windows delivered 6.35 and 6.40 FPS; including the scripted level reload gave
+5.46 FPS. The old build uses low detail, optimized columns and arithmetic,
+and direct DMA presentation, while the new build still uses high detail and
+the earlier engine routines. Those numbers describe the two software paths;
+they do not tell us how much faster one processor is than the other. The
+old path made a frame available to HTTP about 5 ms after observing it; the
+new one took 29 ms.
+
+One useful first change would preserve the checksum rather than discard it.
+An exact C version on the host checked the same 64 KiB frame in 0.087 ms,
+against 10.8 ms for Python in a separate benchmark. That helper has not yet
+been integrated. On the card, the two byte-copy loops alone cost 130 ms;
+word copies and owned DMA are the next larger opportunities. Even removing
+all the extra adapter work would leave about 275 ms of engine work, so the
+renderer optimizations still have to follow. We saved the complete evidence
+in compressed archives, replayed both runs locally, reset their retained
+sessions, and checked two more full new-card firmware reads against stock.

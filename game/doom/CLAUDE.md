@@ -1020,3 +1020,19 @@ with stock SHA and zero residual/guard changes; `verify_browser.py` accepts
 the bounded physical input/HTTP gate. Its 2.320 FPS is card-side presentation,
 not delivered browser paint. DMA delivery, clean user STOP and a long
 interactive owner are not yet accepted.
+
+**Measured old/new delays (2026-10-17):** See
+`artifacts/current/card-delay-comparison-20261017/README.md` and its replay
+scripts before optimizing the new path. Its 429.03 ms frame interval contains
+51.94 ms extra copy, 78.39 ms odd-page staging, 24.19 ms card FNV, and 274.52
+ms combined engine work; that last field is not isolated renderer CPU.
+Host PCI reads/FNV take 9.28/19.58 ms and observation-to-HTTP 29.38 ms.
+Exact native host FNV microbenchmarked at 0.0874 ms, but is not integrated.
+Fresh old low-detail/optimized/DMA windows give 6.35–6.40 FPS and 5.18 ms
+HTTP latency; the inclusive scripted-reload interval gives 5.462 FPS.
+Do not report the old/new FPS ratio as hardware speed: new is high detail
+with older core routines. Both runs passed full replay/audits, all accepted
+pixels/palettes, and final paired new-card stock-flash reads. No defaults or
+firmware changed. Next preserve validation while making host FNV native,
+then word copies and owned DMA/direct presentation. Full-quality matched
+engine comparison remains open; half-height stays on hold.

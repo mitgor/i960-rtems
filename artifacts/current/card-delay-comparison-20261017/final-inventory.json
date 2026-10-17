@@ -1,0 +1,25 @@
+{
+  "boot_id": "0a0ca4da-0da6-4448-b54c-58dd4bf51332",
+  "old": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  },
+  "new": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": null
+  }
+}

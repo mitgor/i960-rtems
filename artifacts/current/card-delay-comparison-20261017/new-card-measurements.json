@@ -1,0 +1,111 @@
+{
+  "slot_wait_ms": {
+    "count": 31,
+    "mean": 0,
+    "p50": 0,
+    "p95": 0,
+    "min": 0,
+    "max": 0
+  },
+  "contiguous_copy_ms": {
+    "count": 31,
+    "mean": 51.935483870967744,
+    "p50": 50,
+    "p95": 60,
+    "min": 50,
+    "max": 60
+  },
+  "odd_page_staging_ms": {
+    "count": 31,
+    "mean": 78.38709677419355,
+    "p50": 80,
+    "p95": 80,
+    "min": 70,
+    "max": 80
+  },
+  "card_fnv_ms": {
+    "count": 31,
+    "mean": 24.193548387096776,
+    "p50": 20,
+    "p95": 30,
+    "min": 20,
+    "max": 30
+  },
+  "engine_between_callbacks_ms": {
+    "count": 31,
+    "mean": 274.51612903225805,
+    "p50": 270,
+    "p95": 280,
+    "min": 270,
+    "max": 310
+  },
+  "card_frame_interval_ms": {
+    "count": 31,
+    "mean": 429.03225806451616,
+    "p50": 430,
+    "p95": 430,
+    "min": 420,
+    "max": 460
+  },
+  "pci_read_ms": {
+    "count": 32,
+    "mean": 9.280940875,
+    "p50": 9.277946,
+    "p95": 9.367528,
+    "min": 9.159541,
+    "max": 9.392978
+  },
+  "host_fnv_ms": {
+    "count": 32,
+    "mean": 19.5768073125,
+    "p50": 20.150956,
+    "p95": 21.482179,
+    "min": 12.046118,
+    "max": 22.008451
+  },
+  "save_and_http_ms": {
+    "count": 32,
+    "mean": 0.520546375,
+    "p50": 0.438859,
+    "p95": 1.147322,
+    "min": 0.230721,
+    "max": 1.360161
+  },
+  "observed_to_http_ms": {
+    "count": 32,
+    "mean": 29.3782945625,
+    "p50": 29.9630785,
+    "p95": 31.509456,
+    "min": 22.190615,
+    "max": 31.828843
+  },
+  "ack_write_ms": {
+    "count": 32,
+    "mean": 0.6572235625,
+    "p50": 0.583582,
+    "p95": 0.955242,
+    "min": 0.471315,
+    "max": 1.462247
+  },
+  "observer_poll_and_fetch_ms": {
+    "count": 32,
+    "mean": 76.53917762500001,
+    "p50": 59.273829,
+    "p95": 135.64669,
+    "min": 23.760433,
+    "max": 136.165553
+  },
+  "http_observer_fps": 2.3152561325079435,
+  "card_fps": 2.330827067669173,
+  "engine_entry_to_first_http_s": 122.92554149299997,
+  "evidence": {
+    "frames": 32,
+    "phase_samples": 31,
+    "native_requests": 5043,
+    "total_requests": 5045,
+    "identical_baseline_pixels_and_palette": true,
+    "full_runtime_audits": true,
+    "boot_id": "8455d432-692b-47b7-aa76-8ebba64e08f5",
+    "paired_pre_post_flash_audits": true
+  }
+}

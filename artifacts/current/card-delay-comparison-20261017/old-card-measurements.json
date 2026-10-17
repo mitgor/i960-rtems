@@ -1,0 +1,106 @@
+{
+  "including_scripted_level_reload_fps": 5.461795100871714,
+  "pre_reload_window": [
+    24,
+    59
+  ],
+  "pre_reload_fps": 6.352128221022757,
+  "boot_id": "8455d432-692b-47b7-aa76-8ebba64e08f5",
+  "profile": "optimized low detail, textured planes, full height, no FNV/CRC",
+  "total_frames": 120,
+  "window": [
+    80,
+    118
+  ],
+  "samples": 39,
+  "endpoint_fps": 6.397320288322706,
+  "publication_fps": 6.429780033840948,
+  "endpoint_intervals_ms": {
+    "count": 38,
+    "mean": 156.31545005263243,
+    "p50": 154.9863435000134,
+    "p95": 209.99796299997797,
+    "min": 59.99367799995525,
+    "max": 249.90451400003622
+  },
+  "observed_to_http_ms": {
+    "count": 39,
+    "mean": 5.18436682054576,
+    "p50": 3.3151180000459135,
+    "p95": 12.478082000143331,
+    "min": 1.9333360000928224,
+    "max": 32.242415999917284
+  },
+  "render_ms": {
+    "count": 39,
+    "mean": 135.89743589743588,
+    "p50": 140,
+    "p95": 140,
+    "min": 120,
+    "max": 160
+  },
+  "render_sampled_cpu_ms": {
+    "count": 39,
+    "mean": 132.56410256410257,
+    "p50": 130,
+    "p95": 140,
+    "min": 90,
+    "max": 150
+  },
+  "screen_copy_ms": {
+    "count": 39,
+    "mean": 10.256410256410257,
+    "p50": 10,
+    "p95": 20,
+    "min": 0,
+    "max": 20
+  },
+  "adapter_ms": {
+    "count": 39,
+    "mean": 0.7692307692307693,
+    "p50": 0,
+    "p95": 0,
+    "min": 0,
+    "max": 20
+  },
+  "release_gate_wait_ms": {
+    "count": 39,
+    "mean": 2.645244435897436,
+    "p50": 0.019558,
+    "p95": 6.730375,
+    "min": 0.015409,
+    "max": 6.989161
+  },
+  "release_ioctl_ms": {
+    "count": 39,
+    "mean": 7.762026102564103,
+    "p50": 8.62576,
+    "p95": 9.803114,
+    "min": 0.915452,
+    "max": 9.857244
+  },
+  "ready_to_release_ms": {
+    "count": 39,
+    "mean": 16.40155866669911,
+    "p50": 13.397319000205243,
+    "p95": 29.865556999993714,
+    "min": 4.969396999968012,
+    "max": 49.73730100005014
+  },
+  "engine_ready_to_first_frame_s": 103.67726944399988,
+  "first_frame_wad_requests": 1755,
+  "full_paired_audits": 47,
+  "stall": {
+    "seconds": 3.0168017410001084,
+    "frames": [
+      17,
+      18
+    ],
+    "unchanged": true
+  },
+  "stopped_held": [
+    119,
+    120
+  ],
+  "all_pixels_palette_match_prior": true
+}

@@ -1,18 +1,33 @@
 # Current findings — 2026-10-17
 
-**AcceleRAID Doom startup fault localized; first 32-frame run passed:**
+**AcceleRAID Doom startup and bounded browser gates accepted:**
 The variable WAD startup stop was a same-owner timer interrupt reentering
 RTEMS `_Thread_Dispatch` while its earlier ISR continuation was still active.
 An exact trace caught the active flag `1` and the interrupted dispatch address;
 the 1,401 preceding WAD requests matched the native oracle. The bounded ISR
 now counts that reentry and returns without overwriting its owned save area.
-One full-audit run served 5,045 WAD requests, rendered 32 frames, passed
+Two unchanged full-audit runs each served 5,045 WAD requests, rendered 32 frames, passed
 cleanup/STOP/old-card checks, and measured **3.660 card-side FPS** over 31
-frame intervals. It counted 10 nested interrupts over 14,899 ticks, with no
-owner fault. This is not browser FPS. A post-reset flash audit and second
-matched run are pending while the PC returns from reboot. The new card still
-lacks the old card's interactive input and ping-pong browser delivery.
+frame intervals. They counted 10 and 11 nested interrupts, with no
+owner fault. Paired full pre/post flash reads passed for both runs. A separate
+two-slot browser gate delivered 32 byte-identical HTTP frames and acknowledged
+W press/release at 2.320 card-side FPS, also with full pre/post audits. Long
+interactive ownership and Doom DMA delivery remain open.
 [Trace, exact build and replay](artifacts/current/accele160-doom-startup-20261017/README.md).
+
+**Old/new delay comparison measured:** New-card profiling passed 32 frames
+with unchanged baseline pixels/palette and 2.331 card-side / 2.315 HTTP-observer
+FPS. Per frame, the adapter spends 51.94 ms copying, 78.39 ms staging odd
+pages and 24.19 ms hashing; combined engine work between callbacks is 274.52
+ms. Host PCI reads cost 9.28 ms and Python FNV 19.58 ms, giving 29.38 ms
+observed-to-HTTP latency. A fresh old-card optimized **low-detail** DMA run
+passed 120 frames/47 paired audits at 6.35–6.40 steady FPS and 5.18 ms
+observed-to-HTTP latency. Including its scripted level reload gives 5.462
+FPS. New is high detail with older engine routines, so this compares current
+software paths, not CPU performance. Exact native host FNV measured 0.0874
+ms in an isolated microbenchmark; integrate it first for latency, then port
+word copies and owned DMA/direct presentation. Both runs replay and final
+new-card paired stock-flash reads pass. [Full table, limits and estimates](artifacts/current/card-delay-comparison-20261017/README.md).
 
 **First real Doom frame on the AcceleRAID 160:** A third retained RTEMS run
 served all 5,043 engine WAD reads in the exact native request order and

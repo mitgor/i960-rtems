@@ -1,3 +1,17 @@
+**Latest 2026-10-17 status:** AcceleRAID Doom startup, two-slot frame output
+and a bounded browser/key gate are accepted; earlier bring-up notes below
+are historical. The [old/new delay comparison](artifacts/current/card-delay-comparison-20261017/README.md)
+passed a 32-frame new-card profile and a fresh 120-frame old-card run with
+47 full paired audits plus paired new-card pre/post stock-flash reads.
+New adapter copy/staging/FNV totals 154.52 ms/frame; host Python FNV adds
+19.58 ms before HTTP. Native host FNV is benchmarked but not integrated.
+Old optimized low detail delivers 6.35–6.40 FPS; new high detail 2.331
+card-side FPS. This is not a processor-speed ratio. Follow the measured
+backlog: exact native host validation, word copies, owned DMA/direct
+presentation, then matched engine/quality profiling. Long play and clean
+user STOP still need acceptance; half-height remains on hold. Current
+accepted defaults and binaries were not changed by this measurement work.
+
 **2026-10-17 AcceleRAID full-WAD service accepted:** [Exact code and
 capture](artifacts/current/accele160-doom-wad-service-20261017/README.md).
 The new card completed 38 card-requested Freedoom reads across the full

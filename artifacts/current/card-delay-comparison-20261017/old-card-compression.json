@@ -1,0 +1,7 @@
+{
+  "tar_sha256": "681b7f81b381e188c6887ae6acb5a33f2b047404acc8a05f05d63a05835a6331",
+  "tar_bytes": 599347200,
+  "original_gzip_sha256": "4911f51357b93d8169f1e5424e1c0074c81a008f7d420321d698e55060e427cf",
+  "xz_sha256": "46efbff258306eee90daaf41002940d16b99886dc4bde96255a5725967c2faa2",
+  "identical_tar_bytes": true
+}

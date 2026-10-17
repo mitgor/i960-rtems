@@ -1,5 +1,33 @@
 # Doom backlog
 
+## AcceleRAID measured transport priorities — 2026-10-17
+
+[The full delay comparison](../../artifacts/current/card-delay-comparison-20261017/README.md)
+passed a 32-frame new-card profiler and a fresh 120-frame old-card run with
+all audits. New: 429.03 ms/frame, comprising 274.52 ms combined engine work,
+51.94 ms extra contiguous copy, 78.39 ms odd-page staging and 24.19 ms card
+FNV. Host observation-to-HTTP is 29.38 ms, including 19.58 ms Python FNV and
+9.28 ms PCI read. Old optimized low-detail DMA: 6.35–6.40 steady FPS and
+5.18 ms observation-to-HTTP. Including its scripted reload gives 5.462 FPS.
+These are different engine/quality/transport profiles, not a CPU-speed ratio.
+
+- [ ] Integrate an exact native host FNV helper, preserving full validation.
+  Host microbenchmark: Python 10.787 ms versus C 0.0874 ms over 64 KiB,
+  seven equality vectors passed. Measure actual HTTP latency; no FPS gain
+  is promised because no free-slot wait was sampled in the new-card run.
+- [ ] Port/test aligned word copies into the new-card adapter; its two extra
+  byte-copy loops total 130.32 ms. Keep all existing checks and immutable slots.
+- [ ] Integrate qualified new-card DMA with Doom contiguous slots and prove
+  STOP/stalled-host/WAD arbitration. Avoid the 78.39 ms page-staging loop.
+- [ ] Port direct presentation and optional play FNV without changing defaults
+  until accepted. Removing all measured extra adapter work gives a budget
+  ceiling near 3.64 FPS with the present engine, not a measured speedup.
+- [ ] Port exact renderer optimizations and add internal phase timing on the
+  new card. Compare the same high-detail engine/flags/WAD on both boards.
+
+Half-height remains on hold. Lower detail and flat planes remain explicit
+quality options; this comparison does not authorize quality changes as defaults.
+
 ## User direction: half-height on hold — 2026-10-16
 
 Pause further half-height optimization and testing until requested. Keep the
