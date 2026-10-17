@@ -1,5 +1,20 @@
 # Next AcceleRAID clock and STOP gates
 
+**Bounded timer/owned ISR stack accepted, 2026-10-17:** A
+[three-page RAM-only gate](../../artifacts/current/accele160-timer-20261017/README.md)
+borrowed timer 1 and cached vector 18 under exact current-stock guards. It
+received 8 fixed interrupts twice, rejected a stale STOP and acknowledged
+valid STOP after 13 and 201 interrupts. The longer host sample was 1,253.04
+IRQs/s with reload 10,000. Separate owned ISR and entry-stack pages were
+used; firmware SP, vector/mask/map/timer, loader, stage and owner records
+restored. Three independent pre/post inventories and four full guarded flash
+reads matched. Cached F2 is occupied (`e0000ff0`) and was not borrowed.
+**This bare interrupt proof does not yet clock RTEMS.** Next feed a bounded
+RTEMS clock tick from the owned timer ISR, route STOP to task quiescence,
+then mask, drain and restore the timer before returning. Measure task wakeup
+and interrupt gap; do not claim resident/autonomous service until the
+non-cooperating path and firmware-time accounting are addressed.
+
 **RTEMS task STOP status, 2026-10-17:** The
 [16-page RAM-only RTEMS lease](../../artifacts/current/accele160-rtems-lease-20261017/README.md)
 now runs STOP polling in a worker task. A stale token remained pending;

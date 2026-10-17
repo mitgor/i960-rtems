@@ -4625,3 +4625,38 @@ code that stops polling or hangs with interrupts disabled. Before RTEMS can
 stay resident, we still need an independently bounded timer/interrupt path,
 a verified owned interrupt stack, STOP/drain behavior and exact restoration of
 all borrowed stock state. Networking and Doom come after those ownership gates.
+
+Before giving RTEMS a hardware clock, we tested the interrupt path by itself.
+A new read-only pass under the current firmware again found timer 1 idle,
+masked and unmapped. The cached vector 18 still held `aaaaaaaa`, but F2 held
+`e0000ff0`—a live firmware pointer. We left F2 alone. A three-page RAM image
+reserved one page for code, one for its C interrupt stack and one for the
+entry stack and hardware interrupt frame. It would arm timer 1 only if all the
+observed stock registers and vector words still matched exactly.
+
+The first bounded call received eight interrupts and returned in about thirteen
+milliseconds. The next call rejected a stale STOP token, received thirteen
+interrupts, acknowledged the correct token and returned. We repeated with a
+longer wait: eight fixed interrupts again, then a valid STOP after 201
+interrupts. The host observed ticks 5 through 201 over a measured interval,
+about 1,253 interrupts per second with reload 10,000. That is consistent with
+the new card's 100 MHz clock and an eightfold timer divider; it is a host timing
+sample rather than a calibrated clock measurement.
+
+The ISR's C stack pointer was `c0711100` in its owned page, and the entry
+stack pointer was `c0712fc0` in another. The original firmware SP was
+`c0002100` before and after. The image disabled and drained timer 1, restored
+the cached vector, mapping, count, reload and interrupt mask, then checked
+them before returning. Independent read-only commands after each batch saw
+exactly the original vector and timer state. The loader page, staging source
+and stock allocator records restored; four guarded full-megabyte flash reads
+still matched, and no firmware write was needed. The exact binary rebuilt
+byte-for-byte and offline replay rejected altered flash, vector, STOP and
+owner captures.
+
+We now know the new board can deliver and cleanly relinquish a short sequence
+of timer interrupts. RTEMS has not yet received those ticks. The next
+experiment must attach this owned ISR to `rtems_clock_tick()`, prove a task
+wakes and STOP quiesces it, then drain and restore the interrupt source before
+the stock firmware resumes. A resident service will still need a stronger
+lease and recovery story for code that stops cooperating.

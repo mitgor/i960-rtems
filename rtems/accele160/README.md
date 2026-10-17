@@ -72,3 +72,14 @@ the [card evidence](../../artifacts/current/accele160-rtems-lease-20261017/READM
 replays offline. Next is a guarded, short timer/vector/interrupt-stack
 experiment with complete state restoration and a card-side deadline. This
 task STOP remains cooperative and cannot recover an arbitrary hung task.
+
+The next [bounded timer gate](timer/README.md) also passed without another
+firmware write. A three-page RAM image borrowed timer 1 and cached vector
+18, received 8 fixed interrupts twice, then tested stale/valid STOP after
+13 and 201 interrupts. ISR C code ran on an owned second page while the
+hardware frame stayed on an owned entry-stack page. The longer host sample
+was 1,253.04 interrupts/s at reload 10,000. Three pre/post inventories,
+four guarded full flash reads and complete page/owner restoration passed;
+[exact evidence](../../artifacts/current/accele160-timer-20261017/README.md)
+replays offline. This is bare interrupt handling; the next gate is a bounded
+RTEMS tick/worker wakeup using that timer with STOP and exact restoration.

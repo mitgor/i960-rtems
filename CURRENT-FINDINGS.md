@@ -1,5 +1,22 @@
 # Current findings — 2026-10-17
 
+## AcceleRAID 160 timer/STOP gate — 2026-10-17
+
+The latest [RAM-only timer acceptance](artifacts/current/accele160-timer-20261017/README.md)
+temporarily borrowed timer 1 and cached vector 18, leaving stock-owned
+vector F2 untouched. Two fixed eight-interrupt paths and two stale/valid
+STOP paths passed; the longer run acknowledged STOP after 201 interrupts.
+Ticks 5→201 gave a host-observed 1,253.04 interrupts/s with reload 10,000.
+The ISR used an owned C stack (`c0711100` observed), the entry used a separate
+owned stack (`c0712fc0`), and firmware SP returned to `c0002100`. The exact
+stock vector, mask, map, timer registers, loader page, staging source and
+512 allocator records restored. Independent inventories before and after
+each active batch and four guarded full flash reads matched. The image
+rebuilt byte-for-byte; offline replay rejected four mutations. **This is a
+bounded bare ISR proof, not an RTEMS hardware clock.** The next gate is to
+deliver timer ticks into bounded RTEMS and prove worker wakeup, STOP, drain
+and restoration. The earlier software-tick result below is historical.
+
 ## AcceleRAID RTEMS task gate — 2026-10-17
 
 The new AcceleRAID 160 now runs a newly linked RTEMS 4.6.6 task image from a
