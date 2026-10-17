@@ -1,5 +1,15 @@
 # AcceleRAID 160 upper-bank arena and reboot-only ownership
 
+The [2026-10-17 Doom WAD-service test](../../artifacts/current/accele160-doom-wad-service-20261017/README.md)
+extended the arena claim to arbitrary stable residual upper-bank contents.
+It saves each of 2,048 marker preimages and each complete page into the
+owned grant while doing the full reversible marker/alias/pattern/read/restore
+proof, then verifies the original whole-bank hash. A failed restore
+quarantines the callback. Four guarded allocations (engine, zone, frame,
+4 KiB WAD cache), STOP and post-reset flash acceptance passed. This does
+not make the arena safe for concurrent stock firmware use or eliminate the
+reboot-only release rule below.
+
 The new card at `0000:37:09.1` has a physically verified, distinct 8 MiB
 upper-bank extent at `c0800000..c0ffffff`. This is **not** part of the stock
 allocator's grant table. It becomes an application arena only while the

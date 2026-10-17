@@ -1,5 +1,24 @@
 # Current findings — 2026-10-17
 
+**AcceleRAID 160 full-WAD service physically passed; actual Doom entry is next:**
+[Exact source and acceptance capture](artifacts/current/accele160-doom-wad-service-20261017/README.md)
+show 42 card-requested, host-backed reads spanning the pinned 28,795,076-byte
+Freedoom WAD: 38 accepted, bad FNV/stale sequence/five-second timeout/STOP
+refused, and every non-STOP 4 KiB cache image read back and matched. The
+867,792-byte Doom image admission and diagnostic framebuffer also passed.
+Earlier Doom allocations persisted across reset, so the new reversible
+pre-claim saves and restores each of 2,048 page preimages instead of
+requiring a particular pattern; lower-bank, code, DMA and guard audits
+passed. STOP held the firmware callback until reset. On a new boot, the
+stock descriptor and PIATVR were normal, the old card remained unbound,
+and two complete guarded flash reads matched unchanged firmware. **No Doom
+entry was called or real gameplay frame rendered on this new card.** Next:
+wire this WAD service into the admitted Doom runtime ABI and execute a
+bounded first-frame call in an owned RTEMS task.
+Before production use, handle the rare post-copy cache checksum failure by
+restoring or quarantining the cache; the tested pre-copy refusal paths are
+unchanged-cache proofs.
+
 **AcceleRAID 160 Doom bridge physically passed; Doom execution is next:**
 [Exact code, build and capture](artifacts/current/accele160-doom-bridge-20261017/README.md)
 show guarded 900,000-byte image, 6 MiB zone and 64 KiB frame allocations in

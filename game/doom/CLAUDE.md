@@ -1,3 +1,15 @@
+## AcceleRAID 160 full-WAD service — 2026-10-17
+
+[The physical capture](../../artifacts/current/accele160-doom-wad-service-20261017/README.md)
+accepted 38 card-requested reads across the exact 28,795,076-byte Freedoom
+WAD, with full 4 KiB cache readback, four bounded refusal paths, STOP and
+two matching guarded post-reset flash reads. The 867,792-byte Doom image
+remains admitted but **not invoked**. The next gate is binding the service
+to Doom's file/cache ABI, then an owned, bounded engine call and first real
+frame. Do not describe the diagnostic frame as gameplay. Retain reboot-only
+ownership, 2,048-page reversible bank audit, arena guards and old-card
+isolation.
+
 ## AcceleRAID 160 Doom bridge — 2026-10-17
 
 [The new-card physical capture](../../artifacts/current/accele160-doom-bridge-20261017/README.md)

@@ -1,5 +1,15 @@
 # RTEMS working guidance
 
+**AcceleRAID 160 full-WAD service (2026-10-17):** [Accepted physical
+capture](../artifacts/current/accele160-doom-wad-service-20261017/README.md)
+adds a 4 KiB guarded cache and card-requested, sequence-numbered host WAD
+reads over the existing PCI sideband. Thirty-eight valid reads, bad FNV,
+stale sequence, five-second timeout, STOP, full cache readbacks and
+post-reset flash acceptance passed. Its bank probe saves arbitrary residual
+preimages for all 2,048 pages and quarantines a failed restore. It still
+does not call Doom. Preserve reboot-only ownership and complete guard,
+DMA-idle, old-card and flash audits when adding the Doom runtime ABI.
+
 **AcceleRAID 160 Doom bridge (2026-10-17):** [Exact physical
 evidence](../artifacts/current/accele160-doom-bridge-20261017/README.md)
 shows a retained operation-13 RTEMS image allocating a guarded Doom image,

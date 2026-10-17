@@ -1,3 +1,14 @@
+**2026-10-17 AcceleRAID full-WAD service accepted:** [Exact code and
+capture](artifacts/current/accele160-doom-wad-service-20261017/README.md).
+The new card completed 38 card-requested Freedoom reads across the full
+28.8 MB file; bad FNV, stale sequence, timeout and STOP were rejected,
+with full cache readback, bank/owner guards, old-card isolation and two
+matching guarded post-reset full-flash reads. The bank claim now saves
+arbitrary residual page contents, then proves a full reversible 2,048-page
+marker/alias/pattern/restore audit. The exact Doom image is admitted but
+**not executed**. Next connect the service to the Doom runtime ABI and call
+a bounded first-frame entry; keep this WAD protocol and full audits intact.
+
 **2026-10-17 AcceleRAID Doom bridge:** [Physical capture and exact
 limits](artifacts/current/accele160-doom-bridge-20261017/README.md) prove a
 guarded 900,000-byte engine allocation, contiguous 6 MiB zone candidate,

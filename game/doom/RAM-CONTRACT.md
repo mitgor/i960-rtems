@@ -1,5 +1,16 @@
 # DoomGeneric RAM request for RTEMS
 
+**New-card WAD-service update (2026-10-17):** [The physical
+capture](../../artifacts/current/accele160-doom-wad-service-20261017/README.md)
+adds a fourth guarded 4,096-byte cache allocation to the pinned 900,000-byte
+image, 6 MiB zone and 64 KiB frame allocations. The card requested and
+checked 38 arbitrary WAD ranges and refused four malformed/stalled/STOP
+requests without changing its cache. Full 2,048-page bank, owner and
+post-reset flash audits passed. This confirms a transport/cache prototype,
+**not** Doom's runtime ABI, startup peak or playable execution. The next
+manifest must account for the adapter's task/stack and any extra cache
+storage before invoking the engine.
+
 **New-card bridge update (2026-10-17):** The [physical AcceleRAID 160
 capture](../../artifacts/current/accele160-doom-bridge-20261017/README.md)
 pins a 900,000-byte image allocation, a contiguous 6 MiB zone candidate and

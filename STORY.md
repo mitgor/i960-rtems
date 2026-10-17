@@ -5297,3 +5297,34 @@ After reset, the PC returned on a new boot. The old card was still unbound,
 the new card's stock descriptor was idle, and two complete guarded flash
 reads matched the same firmware. The admission and transport experiment was
 therefore contained in RAM; it did not alter the card's persistent image.
+
+The full WAD was the next obstacle. Doom's executable could sit in memory,
+but its maps and textures still lived in a 28.8-megabyte file on the Linux
+host. We gave the new card a small, guarded 4,096-byte cache and a way to ask
+for a specific file offset and length. The card publishes a numbered request;
+the host supplies the bytes; the card checks the reply number, bounds and
+checksum before it lets those bytes into its cache. The host can then read
+the whole cache back. We tried requests near the beginning, directory and
+end of the file, plus scattered unaligned locations. Thirty-eight passed.
+A damaged checksum, an old reply number and a host that never replied were
+all refused without changing the cached bytes. STOP during a pending read
+was refused as well, and the workers went quiet with the firmware callback
+still held.
+
+There was another reminder that a reset is not a memory eraser. The first
+host preflight still expected the upper bank to contain the old test pattern;
+it encountered a page left by the admitted Doom image and stopped before
+loading a test module. We made the reversible bank proof save each page's
+*actual* contents in owned scratch RAM, then restore them after the marker
+and full-page pattern tests. The card checked all 2,048 pages and the lower
+bank, code, DMA channels and allocator guards before taking ownership. The
+host read every visible odd page twice and found a stable preimage. This
+preserved the safety check without depending on a previous test's pattern.
+
+After the WAD run, a new boot released the retained callback. The stock
+descriptor was idle, the PCI aperture mapping was back to its default, and
+the old card was still unbound. Two complete guarded flash reads matched
+the same stock firmware exactly. We now have the file service that Doom will
+need on this board, but we have still deliberately **not called Doom's
+entry**. The next experiment must join this service to the engine's runtime
+functions and ask for a bounded first real game frame.
