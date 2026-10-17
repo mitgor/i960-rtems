@@ -13,7 +13,7 @@
 #include "sha256.h"
 #include "engine_identity.h"
 #include "../../../game/doom/runtime/startup/checkpoint_api.h"
-extern unsigned char _bss_start[],_bss_end[],switch_irq_areas[3][8192];
+extern unsigned char _bss_start[],_bss_end[],switch_irq_areas[4][8192];
 extern void bounded_escape(unsigned int) __attribute__((noreturn));
 extern void lease_invalidate_dcache(void),timer_isr(void);
 void bounded_fatal(unsigned int code) __attribute__((noreturn));
@@ -23,9 +23,11 @@ void bounded_fatal(unsigned int code) __attribute__((noreturn));
 #define RTEMS_WORKSPACE 0xc0730000u
 #define RTEMS_WORKSPACE_BYTES 0x30000u
 static volatile unsigned int done[2],stop_seen,deadline,loops[2],result;
-static volatile unsigned int ticks,irq_sp[3],handoffs,two_live;
-volatile unsigned int switch_threads[3],switch_active[3],switch_fault,switch_stop;
-static struct irq_lifetime life[3];
+static volatile unsigned int ticks,irq_sp[4],handoffs,two_live;
+volatile unsigned int switch_threads[4],switch_active[4],switch_fault,switch_stop;
+volatile unsigned int switch_unknown_thread,switch_unknown_rip;
+volatile unsigned int switch_nested_count;
+static struct irq_lifetime life[4];
 static unsigned int saved_mask,saved_map,saved_vector,saved_reload,saved_count;
 static volatile unsigned int armed,restoration;
 static rtems_id worker_id[2];
@@ -47,6 +49,9 @@ static volatile unsigned int * const bridge=(volatile unsigned int *)0xc000fb80u
 static volatile unsigned int * const wad_wire=(volatile unsigned int *)0xc000fc00u;
 static volatile unsigned int * const engine_report=(volatile unsigned int *)0xc000fc40u;
 static volatile unsigned int * const engine_results=(volatile unsigned int *)0xc000fc80u;
+/* Host-visible RAM sideband in the already borrowed control page. Each word
+ * is a single writer's last checkpoint; no live stack or grant is exposed. */
+static volatile unsigned int * const engine_trace=(volatile unsigned int *)0xc000fcc0u;
 /* Grant-owned diagnostic page. The ISR writes sampled interrupted RIP values
  * here; it never changes the interrupted frame or the engine's ownership. */
 static volatile unsigned int * const engine_pc_ring=(volatile unsigned int *)0xc0772000u;
@@ -365,28 +370,34 @@ static void render_diagnostic(void){unsigned int x,y,i;
  * finite, and STOP is observed while the callback is waiting. */
 static unsigned int wad_fetch(unsigned int offset,unsigned int n,unsigned int *value){
  unsigned int seq,start,reply,i,checksum;
+ engine_trace[1]=0x20u;engine_trace[8]=offset;
  *value=0u;
  if(!wad_ready||!n||n>WAD_BUFFER_BYTES||offset>WAD_FILE_BYTES||
     n>WAD_FILE_BYTES-offset)return 10u;
  seq=++wad_seq;
+ engine_trace[1]=0x21u;engine_trace[9]=seq;
  wad_wire[4]=0u;wad_wire[5]=0u;wad_wire[6]=0u;
  wad_wire[7]=0u;wad_wire[8]=0u;
  wad_wire[1]=offset;wad_wire[2]=n;wad_wire[3]=1u;
  wad_wire[9]=0x444e4550u; /* PEND */
  wad_wire[10]=0u;wad_wire[11]=0u;wad_wire[12]=BRIDGE_EPOCH;
  wad_wire[0]=seq; /* request publish last */
+ engine_trace[1]=0x22u;engine_trace[10]=seq;
  start=ticks;
  while(ticks-start<500u){
+  engine_trace[11]++;
   lease_invalidate_dcache();
   if(control[3]==STOP){wad_wire[9]=15u;wad_bad++;return 15u;}
   reply=wad_wire[4];
   if(reply){
+   engine_trace[1]=0x23u;
    if(reply!=seq){wad_wire[9]=11u;wad_bad++;return 11u;}
    if(wad_wire[5]!=offset||wad_wire[6]!=n||wad_wire[8]!=0u||
       byte_fnv(inbound,n)!=wad_wire[7]){
     wad_wire[9]=12u;wad_bad++;return 12u;
    }
    checksum=wad_wire[7];
+   engine_trace[1]=0x24u;
    for(i=0;i<n;i++)wad_buffer[i]=inbound[i];
    if(byte_fnv(wad_buffer,n)!=checksum){
     wad_wire[9]=13u;wad_bad++;bounded_fatal(0x7600du);
@@ -394,10 +405,12 @@ static unsigned int wad_fetch(unsigned int offset,unsigned int n,unsigned int *v
    wad_wire[10]=checksum;wad_wire[11]=n;wad_wire[9]=0u;
    wad_good++;*value=checksum;return 0u;
   }
+  engine_trace[1]=0x25u;
   if(rtems_task_wake_after(1)!=RTEMS_SUCCESSFUL){
    wad_wire[9]=14u;wad_bad++;return 14u;
   }
   priority0();
+  engine_trace[12]++;
  }
  wad_wire[9]=16u;wad_bad++;return 16u;
 }
@@ -450,15 +463,22 @@ static int engine_wait(unsigned int ms){unsigned int count,i;
 }
 static int engine_read(unsigned int file,unsigned int offset,void *dst,unsigned int n){
  unsigned int value,status,i;
+ engine_trace[1]=0x10u;
  engine_read_count++;engine_report[14]=engine_read_count;
  engine_report[15]=offset;
+ engine_trace[7]=engine_read_count;
+ engine_trace[1]=0x11u;
  if(!engine_owner()||engine_stopping()||file!=1u||!dst||!n||n>4096u||
     !engine_slot(dst,n,0u))return -1;
+ engine_trace[1]=0x12u;
  status=wad_fetch(offset,n,&value);
+ engine_trace[1]=0x13u;
  if(status)return status==15u||status==16u?-4:-2;
+ engine_trace[1]=0x14u;
  for(i=0;i<n;i++)((unsigned char*)dst)[i]=wad_buffer[i];
  if(byte_fnv(dst,n)!=value)bounded_fatal(0x77006u);
  engine_report[6]=++engine_read_done;
+ engine_trace[1]=0x15u;
  return (int)n;
 }
 static int engine_mark(unsigned int stage,unsigned int x,unsigned int y,unsigned int z){
@@ -511,6 +531,8 @@ static unsigned int engine_first_frame(unsigned int *value){
  if(!digest_equal(image_base+ENGINE_META,ENGINE_SITES*4u,engine_metadata_sha))return 21u;
  engine_invoked=1u;first_frame_seen=0u;frame_ready=0u;
  engine_read_count=0u;engine_read_done=0u;engine_mark_count=0u;
+ for(i=0;i<16u;i++)engine_trace[i]=0u;
+ engine_trace[0]=0x31435254u;
  for(i=0;i<1024u;i++)engine_pc_ring[i]=0u;
  engine_report[0]=0x314d5246u;engine_report[1]=1u;
  engine_report[2]=ticks;engine_report[3]=0u;
@@ -608,6 +630,13 @@ static void measure(unsigned int id){unsigned int sp,base=(unsigned int)switch_i
 }
 void switch_irq_enter(unsigned int id,unsigned int frame){
  measure(id);
+ if(engine_running){
+  engine_trace[2]++;
+  engine_trace[3+id]++;
+  engine_trace[15]=switch_nested_count;
+  engine_trace[13]=(unsigned int)_Thread_Executing;
+  engine_trace[14]=switch_fault;
+ }
  if(!lifetime_enter(&life[id],(unsigned int)_Thread_Executing,frame,
                     REG(frame-16),REG(frame-12),REG(frame-8)))switch_fault|=2u;
  if(engine_running&&id==0u){
@@ -666,7 +695,11 @@ static void Worker(rtems_task_argument id){unsigned int i,old;
  life[id+1].high=life[id+1].low+_Thread_Executing->Start.Initial_stack.size;
  CHECK(rtems_task_mode(RTEMS_INTERRUPT_LEVEL(0),RTEMS_INTERRUPT_MASK,&old));
  priority0();
- for(i=0;i<100000000u&&!switch_stop;i++){
+ /* Keep the workers runnable throughout the finite Doom lease. Extending
+  * their earlier fixed iteration limit was a useful diagnostic, but did not
+  * fix the startup stall: the actual fault was same-owner timer ISR reentry
+  * while an earlier interrupt continuation was still active. */
+ for(i=0;ticks<200000u&&!switch_stop;i++){
   loops[id]=i;
   __asm__ volatile("":::"memory");
  }
@@ -683,6 +716,11 @@ static void Init(rtems_task_argument nonce){rtems_task_priority old;
  life[0].owner=switch_threads[0];
  life[0].low=(unsigned int)_Thread_Executing->Start.Initial_stack.area;
  life[0].high=life[0].low+_Thread_Executing->Start.Initial_stack.size;
+ ASSERT(_Thread_Idle!=0);
+ switch_threads[3]=(unsigned int)_Thread_Idle;
+ life[3].owner=switch_threads[3];
+ life[3].low=(unsigned int)_Thread_Idle->Start.Initial_stack.area;
+ life[3].high=life[3].low+_Thread_Idle->Start.Initial_stack.size;
  CHECK(rtems_task_create(0x574b5230u,2,8192,RTEMS_TIMESLICE|RTEMS_INTERRUPT_LEVEL(31),
                          RTEMS_DEFAULT_ATTRIBUTES,&worker_id[0]));
  CHECK(rtems_task_create(0x574b5231u,2,8192,RTEMS_TIMESLICE|RTEMS_INTERRUPT_LEVEL(31),
@@ -714,11 +752,14 @@ static void Init(rtems_task_argument nonce){rtems_task_priority old;
  for(i=0;i<100u&&!done[1]&&!switch_fault;i++){
   CHECK(rtems_task_wake_after(1));priority0();
  }
+ for(i=0;i<100u&&switch_active[3]&&!switch_fault;i++){
+  CHECK(rtems_task_wake_after(1));priority0();
+ }
  mask31();
  if(!done[0]||!done[1]||!lifetime_drained(life)||
-    switch_active[0]||switch_active[1]||switch_active[2]||
+    switch_active[0]||switch_active[1]||switch_active[2]||switch_active[3]||
     _ISR_Nest_level||_Thread_Dispatch_disable_level)switch_fault|=0x400u;
- for(i=0;i<3;i++)for(j=0;j<64;j++)
+ for(i=0;i<4;i++)for(j=0;j<64;j++)
   if(switch_irq_areas[i][j]!=0xa5u||switch_irq_areas[i][8128+j]!=0xa5u)
    switch_fault|=0x800u;
  stop_timer();
@@ -737,6 +778,8 @@ static void Init(rtems_task_argument nonce){rtems_task_priority old;
   trace[21]=REG(0x4u);trace[22]=REG(0xff000310u);trace[23]=REG(0xff000314u);
   trace[24]=REG(0xff000318u);trace[25]=REG(0xff008500u);
   trace[26]=switch_fault;trace[27]=restoration;
+  trace[28]=life[3].entries;trace[29]=life[3].returns;
+  trace[30]=irq_sp[3];trace[31]=life[3].vector;
  }
  if(stop_seen){control[5]=0x214b4341u;control[6]=0x161610d1u;control[7]=1u;}
  result=STOP;

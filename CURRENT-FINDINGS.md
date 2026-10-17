@@ -1,5 +1,19 @@
 # Current findings — 2026-10-17
 
+**AcceleRAID Doom startup fault localized; first 32-frame run passed:**
+The variable WAD startup stop was a same-owner timer interrupt reentering
+RTEMS `_Thread_Dispatch` while its earlier ISR continuation was still active.
+An exact trace caught the active flag `1` and the interrupted dispatch address;
+the 1,401 preceding WAD requests matched the native oracle. The bounded ISR
+now counts that reentry and returns without overwriting its owned save area.
+One full-audit run served 5,045 WAD requests, rendered 32 frames, passed
+cleanup/STOP/old-card checks, and measured **3.660 card-side FPS** over 31
+frame intervals. It counted 10 nested interrupts over 14,899 ticks, with no
+owner fault. This is not browser FPS. A post-reset flash audit and second
+matched run are pending while the PC returns from reboot. The new card still
+lacks the old card's interactive input and ping-pong browser delivery.
+[Trace, exact build and replay](artifacts/current/accele160-doom-startup-20261017/README.md).
+
 **First real Doom frame on the AcceleRAID 160:** A third retained RTEMS run
 served all 5,043 engine WAD reads in the exact native request order and
 captured a real 320×200 Doom frame plus palette through 16 checked readback
@@ -531,16 +545,17 @@ DMA ownership and quiescence for network and Doom services.
 
 ## New-card Doom FPS gate — 2026-10-17
 
-The AcceleRAID 160 has produced one real Doom frame, but no sustained FPS
-measurement yet. A separate 32-frame RTEMS kernel now records 100 Hz card
-ticks at each presentation boundary, excludes WAD startup from the FPS
-formula, and preserves the accepted engine and all ownership/STOP/full-bank
-audits. Three card attempts stalled before a frame after 1,301, 4,809 and 79
-WAD reads; every completed sequence matches the native oracle prefix exactly.
-Each 120-second no-progress timeout saved a capture and published STOP;
-whole-PC reset cleared the retained callback. The preserved `myrsread` driver
-requires an explicit `read_bdf=0000:37:09.1` parameter on each boot. No
-new-card FPS exists yet. The immediate work is reliable live ISR/task tracing
-and startup stabilization, then the same-boot flash audits and bounded retry.
-[Code and status](rtems/accele160/doom_first_frame/README.md) ·
-[Exact failed-run evidence](artifacts/current/accele160-doom-fps-20261017/README.md).
+The AcceleRAID 160 has now passed two unchanged-image 32-frame RTEMS runs.
+Each served 5,045 WAD requests, including the complete 5,043-request native
+startup prefix, rendered all 32 frames, passed ownership/STOP/full-bank
+audits, and measured 847 card ticks over 31 presentation intervals at 100 Hz:
+**3.660 card-side FPS**. Pixels and palette match byte-for-byte across runs.
+The fault behind variable startup stalls was same-owner timer ISR reentry
+while the previous ISR continuation was still active in RTEMS dispatch; the
+bounded nested path counts and returns without replacing that context. It
+counted 10 and 11 reentries in the two runs, with no owner fault. The two
+full guarded flash reads before and after each run matched stock firmware.
+No browser delivery or input has
+yet been tested on this card. The preserved `myrsread` driver requires
+`read_bdf=0000:37:09.1` on each boot. [Code and status](rtems/accele160/doom_first_frame/README.md) ·
+[Exact replayable evidence](artifacts/current/accele160-doom-startup-20261017/README.md).

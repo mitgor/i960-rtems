@@ -1,5 +1,20 @@
 # AcceleRAID 160: first real Doom frame gate
 
+**Latest bounded result (2026-10-17):** the four-owner RTEMS build completed
+two matched 32-frame Doom runs, full bank/arena/owner and STOP checks, and
+measured 3.660 card-side FPS in each. The variable startup stall was same-owner
+timer ISR reentry inside `_Thread_Dispatch`, not a WAD-offset fault. The
+reentry path counts and returns without overwriting the active continuation;
+10 and 11 events were observed, with zero owner faults. Both runs had paired
+pre-run full flash audits, and the first run had paired post-reset reads. The
+final post-second-run pair also passed after reset, matching the unchanged
+stock firmware SHA-256 with clean guard, status and residual fields.
+[Exact forensic trace, binaries, frames
+and replay](../../../artifacts/current/accele160-doom-startup-20261017/README.md).
+Interactive controls and ping-pong host DMA have not been ported to this card.
+The 29-page test image now owns four 8 KiB ISR continuations, including RTEMS
+idle; firmware and the 8 MiB Doom arena are unchanged.
+
 **First-frame gate passed on the third run:** 5,043 engine WAD reads matched
 the native request trace, one real 320×200 Doom frame was read back in 16
 checked pages, and engine-owned exit, all arena loans, executable text,
@@ -88,9 +103,15 @@ The interrupt sample page read back as all `ff` even after correcting the
 PIATVR page selection, so it does not locate the stall. Obtain a reliable
 live task/ISR trace before treating startup as stable.
 
-This gate deliberately uses the same pinned Doom engine as the accepted first
-frame, to isolate the multi-frame change. Its first successful FPS number will
-be a baseline without per-frame host collection; WAD service may still run.
+This gate uses the same pinned Doom engine as the accepted first frame. The
+startup stall was localized to same-owner timer ISR reentry inside RTEMS
+dispatch and fixed with a counted no-dispatch nested path. Two matched
+unchanged-image runs each completed 5,045 WAD reads and 32 frames, with
+identical pixels/palette and 847 ticks over 31 intervals: **3.660 card-side
+FPS**. Both passed full pre/post-reset paired flash, ownership, bank, STOP and
+quiescence audits.
+This number excludes WAD startup and browser delivery. See the
+[exact trace and replay](../../../artifacts/current/accele160-doom-startup-20261017/README.md).
 Building the qualified exact renderer options
 (`--fast-render --fast-columns`, bounded FixedDiv, direct frame, no play-mode
 FNV) and a delivery-FPS test remain separate follow-ups. Quality-reducing
@@ -105,15 +126,13 @@ guarded full-flash reads. `run_fps32.sh` requires their directory paths.
 
 ## Route to interactive play on this card
 
-1. Diagnose the variable startup stalls with a host-readable live timer/task
-   trace and checkpoints before and after the WAD callback and cache copy.
-   A previous one-frame run succeeded; three FPS attempts stopped at different
-   request counts, so a fixed bad WAD offset is not established. Keep the
-   timer/STOP and full bank audits while changing this path.
-2. Complete repeated normal-quality frames and deterministic input replay.
-   First report card render FPS from frame-boundary ticks and compare final
-   images with a host/native oracle. Then run longer matched windows.
-3. Replace the one-shot frame copy with owned, generation-numbered frame slots
+1. The variable startup stall is fixed, two 32-frame normal-quality runs
+   agree, and all paired pre/post-reset flash audits passed. Preserve the
+   exact accepted image as the render baseline.
+2. Add a separate interactive build, with bounded keyboard-event replay and
+   a longer matched render window. Keep the accepted baseline binary pinned
+   while changing the session path.
+3. Replace the one-shot final-frame copy with owned, generation-numbered frame slots
    and an ACK/STOP protocol. Coordinate WAD requests and frame transfer under
    the same DMA ownership; a stalled/disconnected host must not recycle a
    pinned slot or free the grant.

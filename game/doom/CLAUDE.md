@@ -990,3 +990,17 @@ and `artifacts/current/accele160-doom-fps-20261017/README.md` before another
 card test. The first successful measurement is an unchanged-engine baseline;
 `--fast-render --fast-columns`, direct frame and no play-mode FNV still need
 a separate exact new-card build and matched test. Keep quality reductions off.
+
+Later same-day correction: four fresh diagnostic runs localized the variable
+startup stall to same-owner timer ISR reentry inside RTEMS dispatch. The
+counted no-dispatch reentry path passed one 32-frame card run with 5,045 WAD
+reads, exact 5,043-request native startup prefix, full pre-run paired flash
+audits, bank/arena/STOP checks and **3.660 card-side FPS**. The owner fault
+stayed zero; 10 reentries were counted over 14,899 ticks. Post-reset full
+reads after the first run and a second unchanged-image 32-frame run passed:
+both measured the same 847 ticks across 31 intervals, or 3.660 card-side FPS,
+with identical pixel and palette hashes. The final post-second-run pair also
+passed on a fresh boot, matching unchanged stock firmware. The new card has no browser
+stream, keyboard bridge, or ping-pong DMA yet; old-card play binaries and
+6+ FPS results are not directly interchangeable. See
+`artifacts/current/accele160-doom-startup-20261017/README.md` and its replay.

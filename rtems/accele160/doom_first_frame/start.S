@@ -16,7 +16,7 @@ _start:
  lda 0x1f0000,g0
  modpc 0,g0,g0
  mov g0,r5
- lda 0xc072afc0,sp
+ lda 0xc072cfc0,sp
  mov r4,g0
  mov r6,g1
  call _bounded_main

@@ -11,4 +11,7 @@ static int lifetime_leave(struct irq_lifetime*s,unsigned int owner,unsigned int 
  if(!s->live||owner!=s->owner||frame!=s->frame||pc!=s->pc||ac!=s->ac||vector!=s->vector)return 0;
  s->live=0;s->returns++;return 1;
 }
-static int lifetime_drained(struct irq_lifetime*s){return !s[0].live&&!s[1].live&&!s[2].live&&s[0].entries==s[0].returns&&s[1].entries==s[1].returns&&s[2].entries==s[2].returns;}
+static int lifetime_drained(struct irq_lifetime*s){unsigned int i;
+ for(i=0;i<4u;i++)if(s[i].live||s[i].entries!=s[i].returns)return 0;
+ return 1;
+}

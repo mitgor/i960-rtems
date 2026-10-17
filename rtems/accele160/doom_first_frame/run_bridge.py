@@ -13,7 +13,7 @@ from card_select import select
 IMAGE='957e49dc912153ddc0f80f3f22e1276df20e023c3e6ae427efe1b6c96778cdde'
 KERNEL='9b9a848dc099a2d43db1752561caaf7320b925988a2313a502209f54c231d88e'
 EXPECTED_FNV=0x6fa5dc25
-PAGES=27
+PAGES=29
 
 def save(path,obj):path.write_text(json.dumps(obj,indent=2)+'\n')
 def main():
@@ -52,7 +52,7 @@ def main():
     payload=a.image.read_bytes()
     need(len(payload)==PAGES*PAGE and
          payload[:20*PAGE]==a.kernel.read_bytes()[:20*PAGE] and
-         payload[20*PAGE:]==b'\xa5'*(7*PAGE),'RTEMS image/stack layout')
+         payload[20*PAGE:]==b'\xa5'*(9*PAGE),'RTEMS image/stack layout')
     digest=fnv(payload)
     need(digest==image_fnv,'whole-image FNV')
     for n,want in MODULES.items():
@@ -391,14 +391,29 @@ def main():
         began_engine=time.monotonic();last_owner_audit=0
         last_request=began_engine
         last_capture=0
+        trace_samples=[]
         while time.monotonic()-began_engine<1830:
             page=snap(0xc000e000)
             req=struct.unpack_from('<16I',page,0xc00)
             words=struct.unpack_from('<20I',page,0xb80)
             er=struct.unpack_from('<16I',page,0xc40)
+            trace=struct.unpack_from('<16I',page,0xcc0)
             if time.monotonic()-last_capture>=1:
                 (run/'engine-latest-page.bin').write_bytes(page)
+                trace_samples.append(dict(elapsed_s=round(time.monotonic()-began_engine,3),
+                                          words=[f'0x{x:08x}' for x in trace],
+                                          reads=len(engine_reads)))
+                if len(trace_samples)%10==0:
+                    save(run/'engine-trace.json',trace_samples)
                 last_capture=time.monotonic()
+            if trace[0]==0x31435254 and trace[14]:
+                (run/'engine-fault-page.bin').write_bytes(page)
+                (run/'engine-fault-bss-page.bin').write_bytes(snap(0xc0718000))
+                save(run/'engine-trace.json',trace_samples)
+                save(run/'engine-reads.json',engine_reads)
+                write(0xc000e000,0xa4c,struct.pack('<I',0x504f5453))
+                raise RuntimeError(f'Doom owner/ISR fault 0x{trace[14]:x}; '
+                                   'STOP published, grant retained')
             if req[0]==request_seq+1 and req[9]==0x444e4550:
                 off,n=req[1:3]
                 need(req[3]==1 and req[12]==0x161610e1 and
@@ -430,6 +445,7 @@ def main():
             if words[8]==engine_seq:break
             if time.monotonic()-last_request>120:
                 (run/'engine-stall-page.bin').write_bytes(page)
+                save(run/'engine-trace.json',trace_samples)
                 # BAR0's second 4 KiB window exposes the page after PIATVR.
                 (run/'engine-rip-samples.bin').write_bytes(snap(0xc0771000))
                 save(run/'engine-stall.json',dict(
@@ -450,6 +466,7 @@ def main():
             time.sleep(.002)
         else:raise RuntimeError('bounded first-frame host deadline')
         save(run/'engine-reads.json',engine_reads)
+        save(run/'engine-trace.json',trace_samples)
         if startup_oracle is not None:
             need(len(engine_reads)>=len(startup_oracle),
                  'native startup WAD request count')

@@ -5385,3 +5385,43 @@ timeout saved evidence and published STOP, and we reset the retained callback
 rather than unloading it. We have an exact build and a reproducible
 measurement route, but **no new-card FPS figure yet**. Startup reliability
 must be solved before interactive play can be trustworthy.
+
+The next trace finally showed where the silence began. We put small
+checkpoints into the host-visible control page and watched the engine cross
+1,401 more perfectly ordinary WAD requests. Then its owner fault bit became
+`40`. The timer kept ticking, but Doom's next read refused to proceed. We
+first blamed the two demonstration workers' finite loops. A changed loop
+made no difference; their counters showed they were still alive. We gave the
+RTEMS idle thread a fourth owned interrupt stack, and the same fault arrived
+again. The important observation was that both workers had paused inside
+earlier interrupt continuations. We needed to know what the new interrupt had
+actually found.
+
+One more bounded capture saved the failing register and return address. The
+register contained `1`, not a thread pointer. Disassembly gave that value a
+specific meaning: the timer had interrupted RTEMS's dispatch routine after it
+lowered the interrupt level, while the same owner's earlier interrupt stack
+was still active. Our ISR had treated a second arrival on that stack as an
+unknown owner. It was a real race in the control path, made visible at
+different WAD positions by the host's pacing.
+
+We kept the owner checks. For that one reentry case, the ISR now counts the
+event and returns without touching the saved registers or dispatching again.
+The next test crossed the old 1,400-read boundary, then the old 4,809-read
+boundary, and served the entire 5,043-request native startup sequence. Doom
+rendered thirty-two frames. The card's 100 Hz timestamps put 31 frame
+intervals into 847 ticks: 3.660 frames per second. Ten reentries were counted
+in almost 14,900 ticks, and the owner fault stayed clear. The frame, text,
+arena, bank, old-card and STOP checks passed; the callback and grant stayed
+pinned for reset as designed. This is the first sustained new-card Doom
+measurement, but it is still the card's presentation rate, not a browser
+frame rate. A normal reboot and two more guarded full reads matched the same
+stock firmware. Then the byte-identical image ran again: 5,045 WAD requests,
+32 frames, and the same 847 ticks over 31 intervals. Its pixels and palette
+matched the first run exactly; only the timestamp tail differed. Eleven nested
+timer events were counted in this run, and the owner fault stayed clear.
+SSH then returned after the second reset. Two more guarded complete flash
+reads matched the same stock image, with zero status, residual and guard
+changes. The accepted startup fix gives us a stable basis
+for bringing over browser controls and two-buffer delivery, but neither has
+been tested on this card yet.

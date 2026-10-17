@@ -27,7 +27,7 @@ python3 - "$out" <<'PY'
 from pathlib import Path
 import sys
 p=Path(sys.argv[1]); image=(p/'kernel.bin').read_bytes()
-assert len(image)==27*4096,len(image)
-(p/'image.bin').write_bytes(image[:20*4096]+b'\xa5'*(7*4096))
+assert len(image)==29*4096,len(image)
+(p/'image.bin').write_bytes(image[:20*4096]+b'\xa5'*(9*4096))
 PY
 sha256sum "$out/kernel.bin" "$out/image.bin"

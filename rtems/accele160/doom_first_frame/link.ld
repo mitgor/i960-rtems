@@ -9,8 +9,8 @@ SECTIONS {
  ASSERT(. <= 0xc0724000, "RTEMS image crosses owned interrupt stack")
  . = 0xc0724000;
  .irqstack : { *(.irqstack) . = ALIGN(16); }
- ASSERT(. <= 0xc072a000, "interrupt stacks cross entry stack")
- . = 0xc072a000;
+ ASSERT(. <= 0xc072c000, "interrupt stacks cross entry stack")
+ . = 0xc072c000;
  .entry_stack : { BYTE(0); . = . + 4094; BYTE(0); }
  ASSERT(. <= 0xc078f000, "RTEMS image overlaps staging page")
 }
