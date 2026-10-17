@@ -1,5 +1,7 @@
 # RTEMS working guidance
 
+**2026-10-17 AcceleRAID pre-STOP DMA owner death:** [Source](accele160/dma_pre_stop_death/README.md) and [captures](../artifacts/current/accele160-dma-pre-stop-death-20261017/README.md) pass two independent recoveries after the original host process died at a durable `DMA_BUSY` checkpoint before STOP. The finite 13,000-descriptor chain completed normally; separate recovery waited to tick-300 expiry and audited payload, guards, both DMA channels, all owner records and RTEMS shutdown before unpinning. Early release returned `EBUSY`; six full flash reads match stock. This is not a proof of safe release when the DMA engine never drains. Retain the pin and grant on uncertain paths.
+
 **2026-10-17 AcceleRAID 160 two-task resident lease:**
 [Source](accele160/residentworkers/README.md) and
 [accepted captures](../artifacts/current/accele160-residentworkers-20261017/README.md)

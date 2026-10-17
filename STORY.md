@@ -5123,3 +5123,21 @@ Six full-flash reads matched stock, and the [archived replay](artifacts/current/
 rejects fifteen altered captures. A lost host process is now recoverable
 when the card reaches this saved checkpoint and finishes normally. A bus
 transaction that never drains would still force us to retain its memory.
+
+We moved the failure earlier. A new bounded image ran the same long DMA
+chain, but the host killed its owner as soon as the card published `DMA_BUSY`,
+before it could send STOP. The owner first saved the boot, image, pin and
+card-state identities so another process could take over. That process found
+the first PID gone and the pin still armed; an early release again returned
+`EBUSY`. The card needed no host STOP to finish its finite transfer. It
+reached its own tick-300 expiry, restored the timer and firmware context,
+and only then did the recovery process compare the 26,624,000-byte transfer,
+guards, DMA channels, allocator, loader page and RTEMS stacks and free the
+resources. We repeated with a new buffer. Six full-flash reads still matched
+stock, and the [capture and replay](artifacts/current/accele160-dma-pre-stop-death-20261017/README.md)
+reject sixteen altered captures. The first recovery was conservatively held
+twice by overly narrow expectations about the aperture and stock channel-1
+idle address; read-only evidence let us correct those exact cases before
+release. The published `DMA_BUSY` word does not tell us whether hardware CSR
+was active at the instant the host died, and normal finite completion still
+does not answer how to free memory behind a PCI transaction that never drains.

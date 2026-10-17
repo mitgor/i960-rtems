@@ -1,5 +1,7 @@
 # Current findings — 2026-10-17
 
+**Pre-STOP DMA host-process death/recovery gate accepted:** The [new RAM-only test](rtems/accele160/dma_pre_stop_death/README.md) killed the starter immediately after the card published `DMA_BUSY`, before any STOP. Two separate recovery processes found the original PIDs absent, retained the pinned buffers and stock RAM grants, saw `EBUSY` on early pin release, and waited for normal chain completion and tick-300 lease expiry. Exact 26,624,000-byte payloads, guards, inactive DMA channels, owner/page/stage, RTEMS stacks and timer/vector restoration passed before release. Six full flash reads matched stock; [archived evidence](artifacts/current/accele160-dma-pre-stop-death-20261017/README.md) replays and rejects 16 tampered captures. This covers death after a durable `DMA_BUSY` checkpoint and **normal finite completion**; it does not establish hardware CSR activity at the instant of death, pre-checkpoint recovery, whole-host crash recovery or safe freeing behind a never-draining PCI transaction. Retain resources on uncertainty.
+
 **DMA host-process death/recovery gate accepted:** The [new test](rtems/accele160/dma_process_death/README.md)
 used the unchanged finite-chain image and deliberately killed the host owner
 after `DMA_HELD`. Two independent recovery processes found their original

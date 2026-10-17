@@ -1,0 +1,12 @@
+{
+  "boot_id": "a248da87-1bb3-403e-97fc-837b307e1b0e",
+  "image_sha256": "0477635a365a3ff40ca7b35759860884ec0aef7663ce70c72842c23dbe28427c",
+  "firmware_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+  "full_flash_reads": 6,
+  "pre_stop_death_recoveries": 2,
+  "terminal_ticks": [
+    300,
+    300
+  ],
+  "bytes_per_run": 26624000
+}

@@ -1,3 +1,5 @@
+**2026-10-17 AcceleRAID pre-STOP DMA process-death gate:** [Exact source and limits](rtems/accele160/dma_pre_stop_death/README.md), [accepted captures](artifacts/current/accele160-dma-pre-stop-death-20261017/README.md). Two fresh-buffer runs killed the host owner after `DMA_BUSY` but before STOP; independent recovery retained pin/grant through normal finite DMA completion and tick-300 expiry, then passed full audits and released them. Six full flash reads and 16 replay tamper rejections passed. Do not infer a safe release path for genuinely stalled/erroring PCI DMA or a whole-host crash. Keep resources pinned on uncertainty.
+
 **AcceleRAID 160 two-task post-return lease accepted (2026-10-17):**
 [Source and boundary](rtems/accele160/residentworkers/README.md),
 [exact image and live captures](artifacts/current/accele160-residentworkers-20261017/README.md).

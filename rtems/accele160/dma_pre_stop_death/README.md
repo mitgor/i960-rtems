@@ -1,0 +1,16 @@
+# Recover after the host dies before sending DMA STOP
+
+This RAM-only gate moves the preceding [process-death test](../dma_process_death/README.md) earlier. A finite 13,000-descriptor channel-0 chain writes 26,624,000 bytes to an exactly pinned host buffer. The starter uploads the bounded RTEMS image, arms DMA, waits for the card's `DMA_BUSY` report, durably records the boot, image, pin and report identities, and kills itself with `SIGKILL` **before sending STOP**. A separate process must find the original PID absent, retain the pin and stock RAM grant, wait for the card's own tick-300 lease expiry, and perform every ownership and memory audit before release. Any uncertain state retains resources.
+
+On boot `a248da87-1bb3-403e-97fc-837b307e1b0e`, two independent runs passed with fresh pinned buffers. The killed PIDs were `130051` and `133369`. Both recovery processes rejected premature pin release with `EBUSY`; both card images finished their finite DMA chain without STOP, then reached the tick-300 expiry with STOP and resume ticks zero. Exact host payload and guards, inactive channel 0 and stock channel 1, all 512 allocator records, loader page, staging source, firmware continuation, RTEMS stacks and timer/vector restoration passed before the real release. Six guarded full 1 MiB flash reads in pre/mid/post pairs matched stock SHA-256 `1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd`. No flash write occurred; old `37:04.1` stayed unbound.
+
+The unchanged accepted image for both runs has SHA-256 `0477635a365a3ff40ca7b35759860884ec0aef7663ce70c72842c23dbe28427c`. The remote independent rebuild was byte-identical. [Exact image, host module, sources and captures](../../../artifacts/current/accele160-dma-pre-stop-death-20261017/README.md) are archived. Recheck the accepted evidence from the repository root:
+
+```sh
+python3 rtems/accele160/dma_pre_stop_death/verify_live.py artifacts/current/accele160-dma-pre-stop-death-20261017
+python3 rtems/accele160/dma_pre_stop_death/test_verify_live.py artifacts/current/accele160-dma-pre-stop-death-20261017
+```
+
+Replay validates the prior same-boot channel state and rejects 16 altered captures. The first recovery attempt correctly retained resources when its expected PCI aperture word disagreed with the observed initial state; after narrowing that check, it again retained resources on a stock channel-1 idle LADR difference (`c0790000` rather than `c060c6ec`). Read-only evidence established that the remaining channel-1 fields were idle, so the accepted recovery permits exactly those two LADR values in that bounded context. The second run passed without a recovery retry. These are recovered verifier assumptions, not evidence of a failed transfer.
+
+`DMA_BUSY` is a card-published checkpoint after DMA arming; it does **not** prove the hardware CSR was active at the exact instant of `SIGKILL`. The card completed normally before expiry. This gate proves independent recovery after a saved pre-STOP host-process death and normal finite completion. Death before a durable checkpoint, loss of the whole host, and a PCI transaction that never drains remain open. Do not unpin or reuse the RAM grant on those paths.
