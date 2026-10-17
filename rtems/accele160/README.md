@@ -17,4 +17,14 @@ python3 project/rtems/accele160/manifest.py accele160/kernel.bin accele160/kerne
 
 The exact binary and build metadata are in the acceptance artifact. The physical harness is [run_rtems.py](../../host/accele160/rtems_gate/run_rtems.py); read its pinned preflight and the artifact README before running. It requires two same-boot full guarded flash reads and exact BDF `0000:37:09.1`, and it refuses a bound old card. It uploads one page at a time through the odd-page aperture, checks each card copy, checks a whole-image digest, tests bad hash/count rejection, runs RTEMS, then restores staging, loader and all 512 allocator metadata words. Do not force-unload a retained companion if a command is pending or a result is uncertain.
 
-Next: measure the new board's timer/vector/mask ownership without borrowing stock resources, add a bounded independently controlled STOP path, then host-backed IPv4/IPv6 and web service. Doom requires a separately owned multi-megabyte arena and frame transport.
+The subsequent [read-only hardware inventory](../../artifacts/current/accele160-inventory-20261017/README.md)
+passed three fixed operation-10 calls with full flash, owner and loader-page
+audits. Timer 0 was active; timer 1 had zero count/reload, no pending interrupt
+and a clear mask bit. The mode registers were intentionally not read because
+reading them clears terminal-count status. This observation does not transfer
+timer/vector/stack ownership to RTEMS.
+
+Next: qualify the new board's timer-1 mode/vector and bounded ownership,
+establish an independently controlled STOP path, then host-backed IPv4/IPv6
+and web service. Doom requires a separately owned multi-megabyte arena and
+frame transport.

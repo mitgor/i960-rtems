@@ -4428,3 +4428,26 @@ one. We have not yet claimed the card's hardware timer or interrupts, a
 persistent operating system, a host STOP channel, a network link or Doom's
 multi-megabyte arena. The next chapter is to learn those new-board ownership
 rules before letting RTEMS run independently or serve a page.
+
+So we listened to the new card's clock before touching it. Intel's 80303
+manual gave us a warning: reading either timer mode register clears its
+terminal-count status. We built one more fixed firmware command that skipped
+those registers entirely. It read the counts, reloads, interrupt mask and
+pending state, mappings, the live PRCB pointer, and eight words from the
+stock ROM PRCB. It wrote a small report into the saved loader page and
+returned. No timer, vector, mask or DMA register was written.
+
+The new image passed the same full staging readback and flash checks, then
+two complete reads after a reboot. The first live inventory call returned,
+but our host checker again watched two bytes just beyond the allocator owner
+arrays. We captured the discrepancy, found all 512 actual owner records
+unchanged, restored the loader page, and released the completed command.
+Two fresh calls passed with the right metadata boundary. A final full flash
+read still matched. The old PG was unbound throughout.
+
+Timer 0's count moved while its reload stayed fixed; the stock firmware was
+using it. Timer 1's count and reload were zero, its interrupt was masked,
+and no interrupt was pending in these three snapshots. The live PRCB pointer
+still matched the boot ROM. That narrows the next experiment, but it does not
+give us timer 1: we have not read its mode, checked the stock vector in full,
+installed an owned interrupt stack, or proved an independent STOP channel.

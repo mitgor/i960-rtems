@@ -6,6 +6,25 @@ A [reproducible stock-ROM literal scan](../../artifacts/current/accele160-rtems-
 
 The next read-only image should save a bounded register/PRCB/vector inventory into its owned report, without changing timer, interrupt or cache controls. Verify the manual's read side effects first: the older profile explicitly avoided reading timer mode until count, reload, pending and mask were known idle, because a mode read clears terminal-count state. Pin exact new-card BDF, firmware and payload identities, repeat snapshots, compare all owner and flash audits, and restore the loader page. A zero register is observation, not ownership.
 
+On 2026-10-17 the first observational gate was built as a fixed firmware
+operation 10, preserving accepted operations 1–9. The [Intel 80303 manual](https://bitsavers.trailing-edge.com/components/intel/i960/273353-001_Intel_80303_IO_Processor_Developers_Manual_May2000.pdf)
+confirms the TMRx read-clear side effect (18.1.1.1) and timer count/reload
+addresses (18.1.2–18.1.3); the [i960 Jx manual](https://bitsavers.trailing-edge.com/components/intel/i960/272483-001_Intel_i960_Jx_Microprocessor_Users_Manual_Sep94.pdf)
+identifies the PRCB, ISP and SSP registers. The fixed command reads only the
+documented non-mode registers and stock-ROM PRCB words; it writes a bounded
+report to the saved loader page and does not allocate grant memory. The
+[candidate and current status](../../artifacts/current/accele160-inventory-20261017/README.md)
+are recorded separately. Three live operation-10 calls returned normally;
+two postboot and one post-call complete flash reads matched the candidate,
+and all 512 allocator records plus the loader page restored. Timer-1
+reload/count were `0/0`, pending was zero, and timer-1 was masked. Timer-0
+count moved. The timer mode registers were deliberately not read, so this is
+still an observation, not a timer-1 ownership grant. Two bytes at owner-page
+offsets `0xaa0..0xaa1` changed with stock activity outside the allocator's
+`0x2a0..0xa9f` count/owner arrays; the first host checker stopped there,
+captured and restored the completed command, then two fresh runs passed with
+the exact metadata boundary.
+
 After a stable inventory, qualify a short timer-1 experiment under a fresh exact image: refuse non-idle timer/vector/mask state, save every borrowed word, use an owned interrupt stack and complete context preservation, run a fixed small number of ticks, disable the source, drain the interrupt, restore original registers and verify them before RTEMS returns. Retain the grant and command on any uncertain completion; reboot recovery is required for an unreturned handler. Measure the actual clock against host time before choosing RTEMS tick frequency.
 
 Independent STOP also needs a control path that can operate while the command callback is pending. The current command companion serializes a single `dcmd_mutex` operation, so another normal mailbox command cannot be assumed to interrupt it. A candidate is a fixed nonce/epoch STOP word in the audited loader page, written through the host's 4 KiB translated aperture and polled by the bounded RTEMS supervisor after D-cache invalidation. First prove a sideband write/readback while an owned callback is deliberately waiting, with a finite card deadline, exact ACK, and unchanged page/owner bytes outside the record. Then combine it with timer shutdown and task quiescence. Do not call a software STOP flag a physical DMA drain or an IRQ-context cancellation guarantee.
