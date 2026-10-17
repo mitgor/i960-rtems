@@ -1,5 +1,37 @@
 # Doom backlog
 
+## AcceleRAID parity progress — 2026-10-17
+
+[Bounded DMA/optimized-engine run](../../artifacts/current/accele160-doom-dma-20261017/README.md):
+32 full guarded DMA frames, identical HTTP bytes and old optimized pixels,
+four complete PIO pairs, native startup prefix, full system/owner audits,
+three-second stalled host and STOP passed. **Both complete guarded post-reset firmware reads passed.**
+
+- [x] Integrate native exact host FNV in this isolated candidate (seven vectors).
+- [x] Port aligned adapter word copies, direct engine slots and DMA0 ping-pong.
+- [x] Port exact old fast renderer/columns/FixedDiv core and CPU/frame profiling.
+  Bounded low-detail steady window: 7.819 FPS, 91.5 ms renderer wall / 90.5 ms
+  sampled CPU; HTTP availability 2.03 ms. All 32 pixels/palette match old.
+- [x] Finish paired post-reset firmware reads.
+- [x] Close the hash-off post-reset flash pair.
+- [ ] Extend/repeat the candidate with longer same-kernel matched runs.
+- [x] Qualify optional per-frame card FNV removal for 32 DMA/HTTP frames, full
+  host hashes/guards/system checks and STOP: 9.694 card / 9.643 observer FPS.
+  Hash-on stays default. Both guarded full post-reset flash reads passed.
+- [ ] Longer same-kernel on/off and repeatability runs (current versions also
+  differ by the publication/marker timestamp identity fix).
+- [ ] Add runtime quality selection and high-detail comparison; keep flat planes
+  optional and half-height on hold. Current fixed low detail is benchmark-only.
+- [ ] Port scalar 4 KiB WAD service to larger shared-ring/read-ahead transfers;
+  arbitrate the shared DMA channel with frame source drain.
+- [ ] Port persistent interactive play and qualify user STOP during rendering,
+  host disconnect/death, stale generation and bounded timeout behavior.
+
+The earlier 2.331 FPS path used high detail and older routines; do not describe
+its 3.35× difference as a matched quality or CPU comparison. The inclusive
+32-frame result is 4.480 FPS with the intentional three-second pause. The
+older unchecked items below describe the pre-port baseline, not this candidate.
+
 ## AcceleRAID measured transport priorities — 2026-10-17
 
 [The full delay comparison](../../artifacts/current/card-delay-comparison-20261017/README.md)

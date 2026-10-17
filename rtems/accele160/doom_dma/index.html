@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Doom on AcceleRAID 160</title>
+<style>body{background:#141414;color:#eee;font:16px system-ui;max-width:960px;margin:28px auto;padding:0 16px}canvas{width:100%;height:auto;image-rendering:pixelated;background:black;outline:1px solid #555}button{font:inherit;padding:10px 18px;background:#333;color:white;border:1px solid #777;cursor:pointer}p{line-height:1.5}#status{color:#edc36e}</style>
+<h1>Doom on AcceleRAID 160</h1><p>Rendered by DoomGeneric under RTEMS on the i960 card. Click the picture to focus. Bounded 32-frame DMA qualification; this is not a persistent play session. Startup can take a few minutes.</p>
+<canvas id="screen" width="320" height="200" tabindex="0" aria-label="Interactive Doom framebuffer"></canvas>
+<p id="status">Connecting…</p><p><b>W / ↑</b> forward · <b>S / ↓</b> back · <b>A / D</b> turn · <b>← / →</b> turn · <b>Ctrl / Space</b> fire · <b>E</b> use/open · <b>Shift</b> run · <b>Enter</b> confirm · <b>Escape</b> menu</p>
+<button id="stop">Stop Doom</button><p>Keys release when focus is lost. STOP requests quiescence; DMA buffers remain pinned until reset. No sound yet.</p>
+<script>
+const token='__TOKEN__',screen=document.getElementById('screen'),ctx=screen.getContext('2d'),held=new Set();let chain=Promise.resolve(),last='',busy=false;
+const keys={KeyW:173,ArrowUp:173,KeyS:175,ArrowDown:175,KeyA:172,ArrowLeft:172,KeyD:174,ArrowRight:174,ControlLeft:163,ControlRight:163,Space:163,KeyE:162,ShiftLeft:182,ShiftRight:182,Enter:13,Escape:27,Tab:9,KeyY:121,KeyN:110,Digit1:49,Digit2:50,Digit3:51,Digit4:52,Digit5:53,Digit6:54,Digit7:55};
+function post(path,data){chain=chain.then(async()=>{const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':token},body:JSON.stringify(data)});if(!r.ok)throw Error(await r.text())}).catch(e=>document.getElementById('status').textContent=e.message);return chain}
+screen.onclick=()=>screen.focus();screen.onkeydown=e=>{const k=keys[e.code];if(k===undefined)return;e.preventDefault();if(!held.has(k)){held.add(k);post('/key',{key:k,down:1})}};
+screen.onkeyup=e=>{const k=keys[e.code];if(k===undefined)return;e.preventDefault();if(held.delete(k))post('/key',{key:k,down:0})};
+function release(){for(const k of held)post('/key',{key:k,down:0});held.clear()}
+screen.onblur=release;window.onblur=release;document.getElementById('stop').onclick=()=>{release();post('/stop',{})};
+async function refresh(){if(busy)return;busy=true;try{const s=await(await fetch('/status',{cache:'no-store'})).json();document.getElementById('status').textContent=s.message;if(s.frame&&s.frame!==last){const r=await fetch('/frame.bin?v='+s.frame,{cache:'no-store'});if(!r.ok)throw Error('Frame unavailable');const b=await r.arrayBuffer(),v=new DataView(b);if(b.byteLength!==65568||v.getUint32(0,true)!==0x31424644||v.getUint32(4,true)!==1||v.getUint32(16,true)!==320||v.getUint32(20,true)!==200||v.getUint32(24,true)!==65536||v.getUint32(28,true)!==0)throw Error('Invalid binary frame');const raw=new Uint8Array(b,32),im=ctx.createImageData(320,200);for(let i=0;i<64000;i++){const p=64000+raw[i]*3;im.data[i*4]=raw[p];im.data[i*4+1]=raw[p+1];im.data[i*4+2]=raw[p+2];im.data[i*4+3]=255}ctx.putImageData(im,0,0);last=s.frame}}catch(e){document.getElementById('status').textContent=e.message}finally{busy=false}}
+setInterval(()=>{if(held.size)post('/heartbeat',{})},1000);setInterval(refresh,50);refresh();
+</script></html>

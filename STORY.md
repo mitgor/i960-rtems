@@ -5484,3 +5484,53 @@ all the extra adapter work would leave about 275 ms of engine work, so the
 renderer optimizations still have to follow. We saved the complete evidence
 in compressed archives, replayed both runs locally, reset their retained
 sessions, and checked two more full new-card firmware reads against stock.
+
+
+The next run finally gave the new card the old card's engine and a direct
+route to host memory. Instead of copying every frame into a contiguous
+adapter slot and then spreading it over sixteen odd pages, the card sent
+its owned engine buffer through DMA channel zero. A second descriptor wrote
+a small completion marker. We kept source drain separate from host ACK:
+the first permits Doom to reuse its render buffer, and the second permits
+the card to reuse the host destination. The host buffers stayed pinned until
+reset even if the process died. Neither of the other DMA channels changed.
+
+There was one rejected launch before Doom started. The host was still
+checking the previous engine's entry address. Admission had succeeded, but
+the stale literal refused it. STOP reached quiescence; no frame DMA had
+started. We saved that failure, reset, and used the entry from the exact
+admitted manifest instead.
+
+The corrected run delivered thirty-two frames. Every pixel and palette byte
+matched the old optimized engine's accepted output. The first four frames
+also matched independent full PIO captures. We held the host for three
+seconds at frame eight and checked that its entire buffer and marker stayed
+unchanged. Full hashes, coherent-buffer guards, arena and owner audits,
+engine cleanup and STOP all passed. An independent HTTP client saved the
+same thirty-two payloads. Replay rejected eighteen altered payload, guard,
+marker and receipt cases.
+
+Frames twelve through thirty-one gave 7.82 FPS on the card, with about 2 ms
+from the host observing completion to HTTP availability. The renderer took
+about 92 ms of wall time and 91 ms of sampled CPU time. That compares with
+6.35–6.40 FPS on the old optimized path. The larger jump from the new card's
+previous 2.33 FPS also includes switching that earlier high-detail engine to
+the old low-detail profile, so it cannot be called a processor-speed ratio.
+The full run, including the deliberate three-second pause, gave 4.48 FPS.
+The card's per-frame transport hash was still enabled.
+
+We saved the exact sources, binaries and captures locally before reset. The
+PC returned after a delayed reboot, and both final guarded complete firmware
+reads matched the accepted image. This is a bounded transport result, not the end of the play
+port: WAD loading still uses scalar four-kilobyte requests, quality selection
+needs its runtime switch, and long interactive STOP still needs acceptance.
+A second bounded run removed just the per-frame card transport hash. It
+reached 9.69 card FPS and 9.64 at the independent HTTP observer; the renderer
+still occupied about 92 ms. All thirty-two frames matched, and full host
+hashing, guards, ownership and system audits stayed enabled. The ordinary
+hash-on option remains the default. We also made the completion marker copy
+the announced timestamp rather than independently reading an interruptible
+clock twice. The second run's captures are saved, and both complete guarded firmware
+reads after its reset matched too. The old card stayed unbound through the
+whole port; the final new-card descriptor was idle and the reboot-only frame
+pin module was gone.

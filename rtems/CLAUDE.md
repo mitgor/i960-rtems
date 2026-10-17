@@ -1,3 +1,23 @@
+**AcceleRAID direct Doom DMA physical run — 2026-10-17:**
+The [exact bounded capture](../artifacts/current/accele160-doom-dma-20261017/README.md)
+passed 32 guarded channel-0 DMA frames and identical HTTP packets, four full
+PIO comparisons, exact native WAD startup order, three-second held-host
+buffer immutability, engine cleanup and quiescent STOP with all ownership
+and system audits. Exact old optimized low-detail engine pixels/palette match
+for all frames. Frames 12–31 give **7.819 card FPS / 7.878 HTTP-observer FPS**,
+versus old optimized 6.35–6.40 and previous new high-detail 2.331. The latter
+3.35× change combines renderer/quality/transport changes, not CPU speed.
+Observed-to-HTTP availability is **2.03 ms**; renderer wall/sampled CPU is
+91.5/90.5 ms. Full card transport FNV remains on and native host FNV is now
+integrated. Both extra adapter copies disappear after the first four paired
+qualification frames. Inclusive FPS with deliberate three-second stall is
+4.480. **Two matching guarded full post-reset flash reads now close this run.** No firmware writes, old card unbound, buffers reboot-pinned; never
+force-unload. This is a 32-frame gate, not persistent play. An optional card-hash-off run also passed 32 guarded DMA/HTTP frames and
+STOP at **9.694 card / 9.643 observer FPS**, with identical pixels/palette and
+full system checks and matching paired full post-reset flash reads. Both modes
+retain native host hashing; card hashing defaults on. Scalar 4 KiB WAD
+service, long interactive STOP and switchable quality remain ports. Half-height stays on hold. Older status below is history.
+
 # RTEMS working guidance
 
 **AcceleRAID 160 real Doom first frame (2026-10-17):** The third retained

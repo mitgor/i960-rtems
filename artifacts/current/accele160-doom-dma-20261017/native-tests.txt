@@ -1,0 +1,7 @@
+Executed over SSH on the qualified Linux host before the successful run.
+Compiler flags: gcc -m32 -O1 -g -fsanitize=address,undefined -fno-pie -no-pie
+Sources: rtems/accele160/doom_dma/test_dma.c and test_copy.c
+Actual production headers from accepted.tar.gz case/source.
+
+DMA descriptor chain, reuse, marker, peer isolation, admission and timeout/error retention passed
+copy alignments, full 64 KiB payloads, protected exact tails and zero length passed
