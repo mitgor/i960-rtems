@@ -1,3 +1,16 @@
+## CPU-to-SDRAM application-loop throughput — 2026-10-18
+
+[The matched physical CPU-loop analysis](artifacts/current/cpu-sdram-20261018/README.md)
+replays 120 old-card, 32 new-stock and 32 new-cached diagnostic frames with
+identical admitted engine bytes and full original audits. On the new cached
+map, a repeated 64 KiB read yields **7.08 MiB/s** of useful CPU loads, a
+64 KiB word copy **7.02 MiB/s** useful copied bytes, and write-through clear
+**36.36 MiB/s** stores. The stock map gives 7.02/7.02/38.10 MiB/s: bulk
+working sets exceed the 4 KiB cache and hardly benefit from remapping. These
+are timed RTEMS CPU loops with 10 ms clock resolution, not peak SDRAM bus
+bandwidth or DMA throughput. Small hot reads and Doom rendering benefit from
+the cache map; prioritize renderer locality over DMA bandwidth claims.
+
 ## Exclusive Doom cached baseline — 2026-10-18
 
 The accepted private cache map is now the default in the new-card **exclusive

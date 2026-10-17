@@ -1,3 +1,11 @@
+**CPU-to-SDRAM path (2026-10-18):**
+[Replay and throughput calculation](../../artifacts/current/cpu-sdram-20261018/README.md)
+use the accepted on-card volatile CPU loops: new cached-map 64 KiB reads
+7.08 MiB/s, 64 KiB copy 7.02 MiB/s useful, write-through clear 36.36 MiB/s.
+Bulk 64 KiB rates barely change with the cache map; these are CPU workload
+rates with loop and RTEMS overhead, not DMA or peak SDRAM bandwidth. Re-profile
+renderer locality before claiming a transfer bottleneck.
+
 **Cached-card N1 baseline/default (2026-10-18):**
 [Matched old/new cached evidence](../../artifacts/current/cache-baseline-20261018/README.md)
 verifies identical admitted benchmark code and 120 old/32 new frame records.

@@ -31,6 +31,11 @@ is a bounded matched-engine result, not proof of a clock-frequency ratio.
    52/25/14.5 ms split was measured with the arena uncached). Compare
    exact pixels and inspect generated i960 instructions; nominal 100 MHz alone
    does not establish actual frequency, cacheability or memory bandwidth.
+   [CPU-to-SDRAM loop measurements](../../artifacts/current/cpu-sdram-20261018/README.md)
+   now show 7.08 MiB/s large reads, 7.02 MiB/s useful word copy and 36.36
+   MiB/s clear on the cached new card. The 64 KiB cases barely change versus
+   stock mapping; target hot-set locality and repeated reads, not a conjectured
+   DMA limit. These are application-loop rates, not peak bus bandwidth.
 4. **N4 — Re-measure and eliminate the remaining internal presentation copy.**
    The earlier ~6.5 ms estimate predates cached private RAM. Render into a
    safely owned persistent/leased destination if Doom semantics permit.

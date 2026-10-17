@@ -5613,3 +5613,17 @@ checks, WAD/control cache invalidations, DMA audits and exact restoration of
 the incoming template remain in place. This changes the build choice, not
 the card's flash. Longer interactive play and disconnection handling remain
 to be qualified.
+
+We next separated card CPU memory access from the more conspicuous DMA path.
+The accepted diagnostic engine had already run one million volatile CPU loads
+or stores per case, four times on each card, with every frame and ownership
+audit captured. Replaying those exact records showed the newer card sweeping
+64 KiB from SDRAM at about 7.1 MiB/s of useful loads. Its repeated word copy
+also moved about 7.0 MiB/s of useful data, while sequential clearing reached
+about 36 MiB/s. The older card measured about 2.0, 4.0 and 6.9 MiB/s on
+those same loops. The new card's stock and cacheable maps were nearly
+identical on these large sweeps; both are wider than its four-kilobyte cache.
+The short hot-read loop improved sharply with caching. This was a CPU workload
+measurement with loop instructions and RTEMS interrupts included, not a claim
+about raw SDRAM or DMA bus bandwidth. It shifted our next renderer question
+toward data locality and repeated large reads rather than PCI transfer speed.

@@ -1,3 +1,9 @@
+**CPU-to-SDRAM measurement — 2026-10-18:**
+[Accepted card-capture analysis](../artifacts/current/cpu-sdram-20261018/README.md)
+reports new-card cached 64 KiB CPU-read/copy/clear loop rates of
+7.08/7.02/36.36 MiB/s useful bytes. Retain the distinction between these
+application CPU loops and PCI DMA or raw memory-controller bandwidth.
+
 **N2 private cache template — 2026-10-18:**
 `DOOM_PRIVATE_CACHE_MAP=1` is now the default in the **exclusive Doom**
 `accele160/doom_dma/build.sh`; `=0` selects the stock-map control. The map is

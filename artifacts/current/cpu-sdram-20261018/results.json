@@ -1,0 +1,170 @@
+{
+  "source_archives": {
+    "n1": {
+      "sha256": "974df5742118518e9e3cab288413ef056cba708a4edd570ffd8ddc810bea7b34"
+    },
+    "n2": {
+      "sha256": "237f287c41549062603edbc4261e5f4c64375fcbc90c7a069f5b39fabb58461a"
+    }
+  },
+  "admitted_engine_sha256": {
+    "template.bin": "96647128c8f01397c97b141a5f888217a210e7d3e1a52a1d365cd4e4a4483cef",
+    "relocations.bin": "d3694e0e7b6a30ceb476623750ad59a1bc7c3d37b5cdac974db9e5bcbf8db487",
+    "manifest.json": "ba0104cd4f98fcdceae93bfda751d18ad68d2096aa77b697911ed363e7d75037"
+  },
+  "verified_frames": {
+    "old": 120,
+    "new_stock": 32,
+    "new_cached": 32
+  },
+  "window": [
+    1,
+    32
+  ],
+  "cases": {
+    "sequential_64k_read": {
+      "old": {
+        "samples_ms": [
+          1980,
+          1980,
+          1950,
+          1950
+        ],
+        "median_ms": 1965.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 2.035623409669211
+      },
+      "new_stock": {
+        "samples_ms": [
+          570,
+          560,
+          570,
+          570
+        ],
+        "median_ms": 570.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 7.017543859649122
+      },
+      "new_cached": {
+        "samples_ms": [
+          570,
+          560,
+          560,
+          570
+        ],
+        "median_ms": 565.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 7.079646017699115
+      }
+    },
+    "strided_64k_read": {
+      "old": {
+        "samples_ms": [
+          2040,
+          2060,
+          2040,
+          2060
+        ],
+        "median_ms": 2050.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 1.951219512195122
+      },
+      "new_stock": {
+        "samples_ms": [
+          580,
+          590,
+          590,
+          590
+        ],
+        "median_ms": 590.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 6.779661016949152
+      },
+      "new_cached": {
+        "samples_ms": [
+          590,
+          590,
+          590,
+          580
+        ],
+        "median_ms": 590.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 6.779661016949152
+      }
+    },
+    "sequential_64k_copy": {
+      "old": {
+        "samples_ms": [
+          970,
+          980,
+          1000,
+          1000
+        ],
+        "median_ms": 990.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 4.040404040404041,
+        "aggregate_logical_mib_per_s": 8.080808080808081
+      },
+      "new_stock": {
+        "samples_ms": [
+          570,
+          570,
+          570,
+          570
+        ],
+        "median_ms": 570.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 7.017543859649122,
+        "aggregate_logical_mib_per_s": 14.035087719298245
+      },
+      "new_cached": {
+        "samples_ms": [
+          570,
+          560,
+          570,
+          570
+        ],
+        "median_ms": 570.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 7.017543859649122,
+        "aggregate_logical_mib_per_s": 14.035087719298245
+      }
+    },
+    "sequential_64k_clear": {
+      "old": {
+        "samples_ms": [
+          590,
+          580,
+          580,
+          580
+        ],
+        "median_ms": 580.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 6.896551724137931
+      },
+      "new_stock": {
+        "samples_ms": [
+          110,
+          110,
+          100,
+          100
+        ],
+        "median_ms": 105.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 38.095238095238095
+      },
+      "new_cached": {
+        "samples_ms": [
+          110,
+          110,
+          110,
+          100
+        ],
+        "median_ms": 110.0,
+        "logical_mib": 4.0,
+        "useful_mib_per_s": 36.36363636363637
+      }
+    }
+  },
+  "measurement": "i960 timed volatile CPU loops; 10 ms RTEMS clock; interrupts and loop overhead included; logical bytes, not isolated SDRAM bus transactions or DMA bandwidth"
+}

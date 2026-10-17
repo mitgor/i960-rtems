@@ -1,3 +1,11 @@
+**CPU-to-SDRAM measurement — 2026-10-18:**
+[Full physical-capture replay and method](artifacts/current/cpu-sdram-20261018/README.md)
+give new-card cached-map CPU-loop rates of 7.08 MiB/s for repeated 64 KiB
+reads, 7.02 MiB/s useful copied bytes, and 36.36 MiB/s write-through clear.
+The stock-map 64 KiB rates are effectively the same; that working set exceeds
+the 4 KiB cache. These are timed CPU workload rates, not pure DMA or peak bus
+bandwidth. Keep the distinction when planning renderer optimizations.
+
 **Current exclusive-Doom cache baseline — 2026-10-18:**
 [Matched cached-card baseline](artifacts/current/cache-baseline-20261018/README.md)
 checks all 120 old-card and 32 new-card diagnostic frames. The old PG already
