@@ -1,5 +1,14 @@
 # Next AcceleRAID clock and STOP gates
 
+**RAM-admission status, 2026-10-17:** Reusable operation 13 is now
+[accepted on card](../../artifacts/current/accele160-ram-admit-20261017/README.md).
+Two complete postboot and two post-call flash reads, two different RAM-only
+image calls, six negative admissions, owner/page audits, STOP compatibility
+and the earlier fixed RTEMS image all passed. It keeps operations 1–12 and
+admits a trusted, contiguous, **returning** image through a manifest. It
+does not yet give an unbounded RTEMS task a finite lease, owned stack,
+autonomous clock or STOP quiescence. Those are the next RAM-only gates.
+
 The accepted 2026-10-17 RTEMS image proves scheduling through synchronous `rtems_clock_tick()` calls only. Its fixed operation-9 admission and one-shot callback cannot run an arbitrary replacement image. Subsequent exact operations 10–12 established inventory, sideband STOP and guarded vector/mode observations, but have not given an RTEMS task a hardware clock or an arbitrary-image admission. Keep the earlier accepted images as rollback points.
 
 A [reproducible stock-ROM literal scan](../../artifacts/current/accele160-rtems-20261017/timer-static.json) found no aligned direct `0xff000310` (timer-1 reload), `0xff000318` (timer-1 mode), `0xff008510` (interrupt configuration) or `0xff008528` (interrupt map 2) words in the expanded runtime or copied loader. It found one `0xff000314` (candidate timer-1 count) word and several pending/mask words. This narrow negative result is **not** a free-timer claim: the firmware may calculate register addresses, use a base register, or touch them via another processor or device path. The addresses come from the existing DAC960PG i960Rx timer experiment and need new-board confirmation against the [Intel 80303 developer's manual](https://www.bitsavers.org/components/intel/i960/80303/273353-001_Intel_80303_IO_Processor_Developers_Manual_May2000.pdf). That older profile is an implementation reference, not evidence that the AcceleRAID has the same vector table, clock rate, mask or pending state.

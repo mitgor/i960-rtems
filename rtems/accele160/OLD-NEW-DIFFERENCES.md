@@ -38,6 +38,17 @@ pin exact payloads; operation 11 proves only a bounded callback STOP.
 Changing to a generic admission should be one separately audited firmware
 revision, followed by RAM-only vector/timer probes and RTEMS experiments.
 
+The first reusable revision, [operation 13](../../host/accele160/ram_admit/README.md),
+was [accepted on card](../../artifacts/current/accele160-ram-admit-20261017/README.md)
+on 2026-10-17. It admits one contiguous 1–127-page trusted-host image with
+an aligned entry, whole-image FNV and pinned host SHA-256. It preserves
+operations 1–12 and uses the existing stock-owned grant. Two different RAM
+probes ran through the same firmware, so future reviewed returning programs
+no longer need a flash revision. This first contract does **not** yet
+implement segmented loading, a separate BSS/stack contract, a finite
+execution lease or task-aware STOP. Those are still required before it can
+replace the old board's resident RTEMS loader.
+
 The accepted 2026-10-17 operation-12 experiment is one final fixed observational
 probe before that consolidation. It reads the internal cached vector words
 at `0x04` and `0x20` and reads timer-1 mode only when two sets of count,

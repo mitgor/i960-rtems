@@ -1,0 +1,66 @@
+{
+  "boot_id": "a73c4744-6f78-49a0-b6b3-e281c03c6cd0",
+  "runs": [
+    {
+      "mode": "stop",
+      "elapsed_s": 0.021497,
+      "status": {
+        "started": "1",
+        "done": "1",
+        "status": "0",
+        "residual": "0",
+        "released": "0",
+        "mailbox": "0100204000000000000000000000000000000000008f010b49393630b11016160000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "stale_pending": true,
+      "owner_records_unchanged": true,
+      "other_owner_page_diffs": [
+        2720,
+        2721
+      ]
+    },
+    {
+      "mode": "deadline",
+      "elapsed_s": 10.258828,
+      "status": {
+        "started": "1",
+        "done": "1",
+        "status": "2",
+        "residual": "0",
+        "released": "0",
+        "mailbox": "0100204000000000000000000000000000000000008f010b49393630b11016160000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "stale_pending": null,
+      "owner_records_unchanged": true,
+      "other_owner_page_diffs": [
+        2720,
+        2721,
+        2722
+      ]
+    }
+  ],
+  "page_restored": true,
+  "owner_records_unchanged": true,
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  }
+}

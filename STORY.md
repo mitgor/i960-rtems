@@ -4517,3 +4517,48 @@ ROM vector is now plainly insufficient evidence of an available interrupt
 slot. The next work is to stop spending a flash write on every probe, then
 reserve a vector and interrupt stack explicitly before asking RTEMS to run
 from this board's hardware timer.
+
+We then built that reusable entry, beginning with the smallest safe contract:
+one contiguous image in the already owned half-megabyte grant, a manifest
+giving its page count, aligned entry and whole-image digest, and a normal
+return through the stock command. The previous fixed RTEMS and independent
+STOP operations remain in the handler. The new code reached 4,324 bytes; the
+old 4 KiB linker limit was conservative, and the audited stock loader cave
+continues to the report area at `c000f800`. We kept the new end at
+`c000f2bc`, checked the exact erased extension, and changed only the cave
+and the two loader checksum words. Two different 48-byte probes are ready
+to show that the next program can change in RAM without another flash.
+
+Two complete reads still found the accepted vector image in flash. The host
+staged the new candidate, read the full megabyte back exactly, and issued
+the one-shot program command. It completed in 36.84 seconds with status and
+residual both zero. We rebooted to test persistence, but the PC did not
+return over SSH. That is where the evidence stops for now: the flash command
+passed, while the two postboot reads, the two RAM probes and the full
+allocator/page audit still await a reachable Linux boot. The new manifest
+is deliberately for reviewed programs that return; a separate owned stack,
+finite lease and task-aware STOP remain work before long-running RTEMS code
+can use the same path.
+
+The PC returned with a new boot ID. The first two complete reads of the
+megabyte flash both matched the new candidate, and the old PG was still
+unbound. We then reserved the stock-owned half-megabyte grant and put one
+48-byte probe into its first page. A bad digest, an entry one byte beyond
+the page and a wrong nonce were each rejected without changing the report.
+The correct manifest called the probe, which returned its expected value in
+20.94 milliseconds of host-observed time. We repeated the same sequence
+with a different 48-byte binary. It returned a different value in 20.66
+milliseconds. Nothing in flash changed between those calls. The page,
+staging source and all 512 allocator owner/count records restored, and a
+complete flash read still matched.
+
+The familiar paths survived the larger handler. The independently writable
+STOP word still rejected a stale token, returned an exact ACK in about 21.5
+milliseconds and expired its no-host poll limit after 10.26 seconds. The
+fixed RTEMS image still uploaded all fifteen pages, passed its card-side
+digest and ran its bounded task. One more full flash read matched, and an
+offline replay rejected altered flash, report and owner captures. The new
+board can now change a reviewed, returning program in RAM rather than
+reflash for each small experiment. It cannot yet rescue a program that
+never returns; making this a resident RTEMS loader will require an owned
+stack, a finite lease and task-aware STOP before borrowing a hardware timer.

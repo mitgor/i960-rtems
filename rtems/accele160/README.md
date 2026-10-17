@@ -40,10 +40,18 @@ reload, pending, mask and mapping unchanged. Operation-11 STOP still passed
 on the new image, and six full flash audits matched. The cached sentinel
 means a blank ROM entry cannot be treated as a free vector.
 
+The [operation-13 reusable RAM gate](../../artifacts/current/accele160-ram-admit-20261017/README.md)
+now accepts a reviewed, returning image from the same grant. Two different
+one-page binaries ran without another flash, six bad manifests were rejected,
+four postboot/postcall full reads matched, and the previous STOP and fixed
+RTEMS operations passed again. This makes small RAM-only code experiments
+repeatable. It does not yet enforce a finite lease, own an independent task
+stack or stop a nonreturning task.
+
 The old-card loader/RTEMS comparison and the reason for repeated new-card
 flash cycles are in [bring-up differences](OLD-NEW-DIFFERENCES.md). Next:
-build one reusable manifest-checked RAM admission, then test borrowed
-timer/interrupt ownership with an owned stack and sideband STOP under
+extend the returning-image contract to an owned stack and task-aware STOP,
+then test borrowed timer/interrupt ownership under
 complete restoration audits. Host-backed IPv4/IPv6 and web service follow.
 Doom also requires a separately owned multi-megabyte arena and frame
 transport.

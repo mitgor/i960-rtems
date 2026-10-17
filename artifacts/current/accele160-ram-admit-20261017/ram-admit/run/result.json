@@ -1,0 +1,64 @@
+{
+  "boot_id": "a73c4744-6f78-49a0-b6b3-e281c03c6cd0",
+  "grant": 3228631040,
+  "runs": [
+    {
+      "ordinal": 1,
+      "probe_sha256": "c390d091eeada11a10474b197d6f126bbaef1dc469eda981c9b67e56bc15f488",
+      "page_sha256": "b35e8d4e4cd33207977d6ba23b58b87bd29620a6d741e7fdc4cc2f6e48c7c216",
+      "fnv": "0x4aab37ec",
+      "elapsed_ms": 20.944,
+      "report": [
+        827217234,
+        370544849,
+        826625615,
+        3228631040,
+        1,
+        1252734956,
+        369164289
+      ]
+    },
+    {
+      "ordinal": 2,
+      "probe_sha256": "7519cfca29606c0b2f9e9282a4823ef70a2025d99c1f84213658823cad4f0dc6",
+      "page_sha256": "ace8f5ac7d57ef26080fc1155d9c11f059181418b766bcd6a7e7c53352df8087",
+      "fnv": "0xbbdf7fd7",
+      "elapsed_ms": 20.664,
+      "report": [
+        827217234,
+        370544849,
+        826625615,
+        3228631040,
+        1,
+        3151986647,
+        369164290
+      ]
+    }
+  ],
+  "full_audits": true,
+  "page_restored": true,
+  "owners_restored": true,
+  "staging_restored": true,
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  }
+}
