@@ -1,5 +1,8 @@
 # AcceleRAID 160 live memory map and RTEMS gates
 
+**2026-10-17 full-bank update:** The [complete card census, reversible proof and reboot-only test](../../artifacts/current/accele160-fullbank-20261017/README.md) supersede the limited sample conclusions below. `c0800000..c0ffffff` contains 2,048 distinct, writable 4 KiB pages. Exactly two pages (`c0ffa000`, `c0ffe000`) held 53 nonzero boot-pattern words; they were saved in an owned grant and restored during the returning proof. All 2,048 pages passed simultaneous distinct markers and full-page pattern/read/restore with lower-bank guard hashes unchanged. A separate image overwrote all 8 MiB under a retained operation-13 callback, passed all 1,024 host-readable odd-page comparisons, and quiesced on STOP without returning to stock. The new-board Doom allocator and host transport are not yet integrated, and post-reset flash/cold-boot acceptance passed after a fresh power cycle. [Ownership contract](../../rtems/accele160/ARENA.md).
+
+
 **2026-10-17 reversible write update:** Two [bounded upper-page](../../artifacts/current/accele160-exclusive-probe-20261017/README.md)
 and [stock-occupied-page](../../artifacts/current/accele160-occupied-probe-20261017/README.md)
 tests changed and restored four words on `c0f01000` and then `c0011000` during

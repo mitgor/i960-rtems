@@ -5241,3 +5241,31 @@ earn eight megabytes. The next memory test has to establish that the whole
 upper bank is distinct, can be patterned without aliasing live state, and
 can survive the reboot-only RTEMS lifetime. Only then can Doom move from
 the old card to this faster one.
+
+The first whole-bank attempt did exactly what a cautious test ought to do:
+it refused to write. We had assumed the upper eight megabytes were all zero.
+The card found one nonzero word and returned an error before touching the
+bank. I recovered the completed command and grant, then asked a read-only
+RTEMS image to count every word. Only two of 2,048 pages were populated, with
+53 nonzero words between them. One page held the numbers 1 through 31 at
+regular intervals; the other held powers of two and an eight-megabyte size
+word. They looked like leftover boot diagnostics, but a pattern that looks
+harmless is still data to preserve.
+
+So the next image copied those two entire pages into RAM it already owned.
+It marked all 2,048 upper pages simultaneously and read every distinct mark
+back. It checked a hash across the lower bank to catch aliasing, restored the
+marks, and wrote, read and restored a full pattern over every 4,096-byte
+page. Both an explicit STOP and the no-host deadline passed. The two saved
+pages, firmware context, timer, stacks, loader and allocator all returned
+to their previous bytes; two full reads afterward still matched the exact
+firmware. The physically distinct eight-megabyte extent was real.
+
+The final test crossed the lifetime boundary. A separate RTEMS image repeated
+the full-bank proof, then filled all eight megabytes and **kept the stock
+firmware callback pending**. The Linux host checked all 1,024 upper pages it
+can see through the PCI aperture, watched the RTEMS heartbeat advance from
+tick 6 to 262, and sent STOP. RTEMS drained into a quiet state, but it did
+not return through firmware or give back its RAM grant. Only resetting the
+card can release that ownership. The post-reset flash and fresh-boot check passed after the PC was power cycled: two complete guarded reads matched the same firmware. This is not Doom running on the new card, but the memory and
+ownership experiment it needed has finally been run on real hardware.

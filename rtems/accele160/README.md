@@ -1,5 +1,8 @@
 # Bounded RTEMS gate on the AcceleRAID 160
 
+**Current upper-bank status, 2026-10-17:** [ARENA.md](ARENA.md) and the [card captures](../../artifacts/current/accele160-fullbank-20261017/README.md) prove a distinct 8 MiB extent, a retained reboot-only RTEMS claim, exact STOP quiescence, and post-power-cycle full-flash recovery. The older finite-gate text below is historical. Doom's new-board allocator and WAD/frame transport remain open.
+
+
 **2026-10-17 exclusive-mode progress:** The [zero upper-page](exclusive_probe/README.md)
 and [stock-occupied-page](occupied_probe/README.md) reversible operation-13
 probes passed on the new card with all three DMA channels idle, exact STOP and

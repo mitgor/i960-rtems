@@ -1,5 +1,15 @@
 # AcceleRAID 160 reboot-only RTEMS ownership
 
+**2026-10-17 acceptance update:** The [full-bank evidence](../../artifacts/current/accele160-fullbank-20261017/README.md)
+now proves all 2,048 pages in `c0800000..c0ffffff` distinct and writable under
+an exclusive callback. The two firmware-populated pages were saved/restored in
+the finite proof. A separate image claimed all 8 MiB, kept operation 13
+pending, ran an independent timer heartbeat, and quiesced on STOP without
+returning to stock. Its post-reset guarded flash checks passed after a fresh
+power cycle; software-only reboot did not bring the PC back. Doom's new-board
+allocator and transport remain open. The historical gates
+below explain how this result was reached. [Current implementation](ARENA.md).
+
 The intended deployment no longer needs RAID service while RTEMS runs. The
 stock firmware remains the bootloader and RAM-upload entry point. After a
 validated image enters, RTEMS may keep the i960, timer, interrupt stack and
@@ -80,15 +90,17 @@ never-returning RTEMS image can safely reclaim its own active loader path.
    retained reboot-only image. DMA transfer ownership remains a separate
    gate; the [external-resume test](dma_external_resume/README.md) covered a
    finite transaction, not a never-draining one.
-2. **Open:** prove upper-bank address distinctness and a bounded full-extent pattern
-   test while stock is paused. Preserve all active code/data and host-control
-   guards. Repeat with the physical card after reset and verify complete flash
-   and host-visible state.
-3. **Open:** add a retained, reboot-only RTEMS launch and host supervisor. Validate
-   sideband STOP, owner death, timer/IRQ drain and pinned DMA lifetime before
-   moving the Doom arena or browser transport. Then launch a minimal RTEMS
-   task, followed by web service and Doom, with full paired audits.
+2. **Accepted:** all 2,048 upper-bank pages passed simultaneous address
+   markers and complete page patterns with the two populated pages saved and
+   restored. STOP/timeout and post-test flash audits passed. The reboot-only
+   claim was checked through every BAR-readable odd page.
+3. **Prototype accepted; service work open:** a retained RTEMS image kept the
+   callback and grant while it owned all 8 MiB, then drained on STOP without
+   returning to stock. A fresh power cycle restored stock and passed two full
+   flash reads. A general host supervisor, owner-death handling for this mode,
+   pinned WAD/frame DMA transport and Doom image admission still need work.
 
 **Current decision:** exclusive reboot-only ownership is the target mode;
 RAID service will not run concurrently. The card is presently back in stock
-firmware after the finite tests. Doom on this board remains gated by items 2–3.
+firmware after the power-cycle reset. Doom on this board remains gated by
+new-board allocation, image admission and sideband WAD/frame delivery.

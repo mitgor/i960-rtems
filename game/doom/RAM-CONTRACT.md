@@ -1,5 +1,8 @@
 # DoomGeneric RAM request for RTEMS
 
+**AcceleRAID 160 upper-bank update (2026-10-17):** The [full-bank physical proof](../../artifacts/current/accele160-fullbank-20261017/README.md) supersedes the earlier read-only arena rejection below. The distinct 8 MiB `c0800000..c0ffffff` extent passed simultaneous markers and per-page full-pattern restore while stock was paused. A reboot-only RTEMS prototype then claimed the entire extent, kept the stock callback pending, passed 1,024 host-readable page checks and timer heartbeat, and quiesced on STOP. Post-reset guarded full-flash reads passed after a fresh power cycle. Doom's arena allocator, WAD service and framebuffer transport are not yet integrated on the new board. Reset is the only release after claim. [Safety boundary](../../rtems/accele160/ARENA.md).
+
+
 **AcceleRAID 160 status (2026-10-17):** The [physical arena survey](../../artifacts/current/accele160-doom-arena-20261017/README.md)
 rejects admission of this 8 MiB request on the new board. Its stock allocator
 offers at most 1,540,096 contiguous free bytes and does not own the proposed
