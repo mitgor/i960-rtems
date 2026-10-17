@@ -1269,6 +1269,20 @@ The adjacent 240 KiB belongs to the stock cache data pool; never reclaim it from
 size or zero software counters alone. Fixed page 15 observes SCSI bookkeeping;
 hardware drain remains unproved. Cooperative net/autonet stays available.
 
+## AcceleRAID 160 DMA inventory (2026-10-17)
+
+The later [DMA inventory](accele160/dma_inventory/README.md) is the current
+new-card checkpoint. It reads CCR, DAR, NDAR, PADR, PUADR, LADR, BCR and DCR
+for all three 80303 channels under the accepted two-task post-return lease.
+Four terminal snapshots were all zero; two HALT/expiry batches, six full
+flash reads and owner/page/stage restoration passed. It never reads CSR,
+whose flags are read-clear, and never enables DMA. Do not infer channel
+ownership from this snapshot. The next gate needs a pinned host buffer,
+aligned card descriptor, exact preflight, finite completion/error handling,
+and proven drain before grant release. Clearing CCR enable only suspends a
+running transfer; it is not cancellation. Keep the old card unbound and
+preserve uncertain resources. [Captures and replay](../artifacts/current/accele160-dma-inventory-20261017/README.md).
+
 ## AcceleRAID 160 callback-free handoff (2026-10-17)
 
 The [new-card handoff](accele160/handoff/README.md) passed a RAM-only finite

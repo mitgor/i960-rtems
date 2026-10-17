@@ -4960,3 +4960,29 @@ interrupt continuation has drained. There is still no DMA owner. Our next
 experiment needs to pin one host buffer and one card transfer to a named
 owner, then show that completion, HALT and expiry cannot release either
 resource while a transfer remains in flight.
+
+The next question was whether RTEMS could safely use the new card's DMA
+engines. We did not start by writing a descriptor. Intel's 80303 manual
+warned that reading DMA status clears event flags, and clearing the channel
+enable bit suspends a transfer rather than aborting it. Either shortcut
+could disturb stock firmware or let us free memory while bus traffic was
+still in flight. We added a read-only snapshot to the finite two-task RTEMS
+lease instead. Once its worker had finished and the supervisor had shut down
+RTEMS, the retained interrupt recorded eight non-clearing registers on each
+of the three DMA channels, then restored the borrowed timer and returned to
+stock code.
+
+Two unchanged-image runs each exercised an exact HALT and a no-host expiry.
+All four snapshots showed zero in every sampled channel register. HALT ended
+at tick 22, roughly 305 milliseconds after admission, and expiry at tick
+300, roughly 3.08 seconds. Six full guarded flash reads still matched the
+same firmware. The old DAC960PG stayed unbound; the loader page, staging
+source and all allocator records restored. We saved the exact image and
+captures with [offline replay](artifacts/current/accele160-dma-inventory-20261017/README.md),
+which rejects deliberate changes to the DMA words as well as the RTEMS and
+ownership evidence. These zeroes give us candidates for a first bounded DMA
+experiment. They do not give us a channel lease: stock firmware could use a
+channel later, and we deliberately did not read the status flags or initiate
+any transfer. The next proof needs a pinned host buffer, one card-owned
+aligned descriptor, a finite completion and error path, and a drain that
+finishes before either side releases memory.

@@ -1,0 +1,149 @@
+{
+  "boot_id": "7f7e351e-dc82-4bef-bb1e-ceeb8dae827a",
+  "runs": [
+    {
+      "mode": "halt",
+      "elapsed_ms": 305.121,
+      "callback_ms": 41.298,
+      "stale_pending": true,
+      "firmware_sp": "0xc0002100",
+      "entry_sp": "0xc0722fc0",
+      "restored_sp": "0xc0002100",
+      "irq_sp": "0xc071f140",
+      "ticks": 22,
+      "entries": 1,
+      "restore_ok": 1,
+      "frame": "0xc0002090",
+      "frame_pc": "0x00002002",
+      "frame_vector": "0x00000012",
+      "rtems_clock_tick": 20,
+      "rtems_callback_after_enter": 1,
+      "task_progress": 1,
+      "task_irq_count": 2,
+      "worker_progress": 16897,
+      "worker_irq_count": 2,
+      "worker_sp": "0xc0719b00",
+      "dma_registers": [
+        [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000"
+        ],
+        [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000"
+        ],
+        [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000"
+        ]
+      ],
+      "task_sp": "0xc071ab90",
+      "task_isr_sp": "0xc0721140",
+      "stack_changed_bytes": 468
+    },
+    {
+      "mode": "expiry",
+      "elapsed_ms": 3079.1,
+      "callback_ms": 41.387,
+      "stale_pending": null,
+      "firmware_sp": "0xc0002100",
+      "entry_sp": "0xc0722fc0",
+      "restored_sp": "0xc0002100",
+      "irq_sp": "0xc071f140",
+      "ticks": 300,
+      "entries": 1,
+      "restore_ok": 1,
+      "frame": "0xc0002090",
+      "frame_pc": "0x00002002",
+      "frame_vector": "0x00000012",
+      "rtems_clock_tick": 20,
+      "rtems_callback_after_enter": 1,
+      "task_progress": 1,
+      "task_irq_count": 280,
+      "worker_progress": 1953583,
+      "worker_irq_count": 280,
+      "worker_sp": "0xc0719b00",
+      "dma_registers": [
+        [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000"
+        ],
+        [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000"
+        ],
+        [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000"
+        ]
+      ],
+      "task_sp": "0xc071ab90",
+      "task_isr_sp": "0xc0721140",
+      "stack_changed_bytes": 468
+    }
+  ],
+  "firmware_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+  "image_sha256": "1603b2ea798c7e3e4b625673cff60d253f76ee61af30c0e209a9855c8ce4dc14",
+  "full_audits": true,
+  "owner_restored": true,
+  "page_restored": true,
+  "stage_restored": true,
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  }
+}

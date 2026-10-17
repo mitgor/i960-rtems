@@ -1,5 +1,16 @@
 # Current findings — 2026-10-17
 
+The [new-card DMA register inventory](rtems/accele160/dma_inventory/README.md)
+passed two finite RTEMS HALT/expiry batches after the stock operation-13
+callback returned. All four terminal snapshots had zero CCR, DAR, NDAR,
+PADR, PUADR, LADR, BCR and DCR on all three Intel 80303 DMA channels.
+CSR was deliberately omitted because its event flags are read-clear. Six
+same-boot guarded full 1 MiB flash reads, all owner/page/stage audits and
+13 offline tamper checks passed; the old card stayed unbound. This is an
+idle-at-snapshot observation, **not** DMA ownership or a transfer. The next
+gate is a pinned host buffer and one card-owned, bounded descriptor, with
+completion/error/timeout drain before either side releases memory.
+
 The [AcceleRAID 160 STOP-ignoring worker gate](rtems/accele160/contain/README.md)
 now passes twice. Two CPU-bound workers never read STOP or yield; the
 higher-priority RTEMS controller lets them advance for four more hardware

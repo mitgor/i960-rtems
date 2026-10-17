@@ -161,3 +161,10 @@ remained ACTIVE and required a recovery boot; its compact captures are kept.
 This is finite task-drain ownership, not general resident preemption or DMA.
 The next gate is a single bounded DMA transaction with explicit host-buffer
 and card ownership, then full completion/timeout drain before grant release.
+
+The first part of that gate, a [read-only three-channel DMA inventory](dma_inventory/README.md),
+passed two unchanged-image HALT/expiry batches. All 24 non-clearing DMA
+register words were zero at each terminal snapshot, with six full flash
+reads and all ownership audits passing. CSR was excluded because its event
+flags are read-clear. This identifies candidate channels at that instant;
+it does not yet establish exclusive DMA ownership or a completed transfer.
