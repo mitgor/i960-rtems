@@ -356,3 +356,17 @@ See [programmed firmware](docs/firmware/FIRMWARE-PROGRAMMED.md) before any firmw
 
 Full old runs and intermediate binaries are recoverable at Git `a8af272`.
 Their dated statements of “next” or “not yet working” do not override this status.
+
+## New-card callback-free handoff — 2026-10-17
+
+The AcceleRAID 160 now has an [accepted RAM-only finite timer handoff](rtems/accele160/handoff/README.md).
+Operation 13 returned in about 10.6 ms, then a host ENTER token was serviced
+in a stock-firmware interrupt frame. The no-host path expired at exactly 300
+timer-1 ticks in 3.048 s; valid HALT ended after four ticks in 88.5 ms while
+a wrong token stayed pending. Processor priority, firmware SP, timer/vector/
+map/mask, loader page, stage and all 512 owner records restored. Four same-boot
+full flash reads and independent pre/post inventories passed; [evidence](artifacts/current/accele160-handoff-20261017/README.md)
+replays offline and rejects four tamper cases. This is a bare monitor, not
+resident RTEMS or an interrupt-independent watchdog. The next new-card gate
+is an RTEMS control task under this finite lease, followed by explicit RAM/
+DMA ownership and quiescence for network and Doom services.

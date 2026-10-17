@@ -1229,3 +1229,21 @@ initialization. Snapshot RNT2 words 57–59 are queue telemetry, not cache statu
 The adjacent 240 KiB belongs to the stock cache data pool; never reclaim it from
 size or zero software counters alone. Fixed page 15 observes SCSI bookkeeping;
 hardware drain remains unproved. Cooperative net/autonet stays available.
+
+## AcceleRAID 160 callback-free handoff (2026-10-17)
+
+The [new-card handoff](accele160/handoff/README.md) passed a RAM-only finite
+timer monitor after operation 13 returned. Host ENTER reached a stock-firmware
+interrupt frame; expiry took 300 ticks / 3.048 s, and HALT took four ticks /
+88.5 ms after a stale token remained pending. The image restored the original
+firmware processor controls (`0x62002`), timer/vector/map/mask and SP. Four
+same-boot complete flash reads, independent pre/post inventories, loader,
+stage and every allocator record passed; [evidence and replay](../artifacts/current/accele160-handoff-20261017/README.md)
+reject four tamper cases. Exact image SHA-256:
+`1f448cdf017d3410e03a493f45f7ad37a8e4f4f3268c05270e5bc7fe10952f2a`.
+The i960 `modpc` priority change needs mask `0x1f0000` and an initialized
+replacement-value register; mask zero silently preserves the old priority.
+The saved PC word in an interrupt frame is *process controls*, not an
+instruction address. This bare monitor is not resident RTEMS or an
+interrupt-independent watchdog. Do not run new-card networking/Doom until
+RTEMS task quiescence, RAM/DMA ownership and a finite service exit pass.

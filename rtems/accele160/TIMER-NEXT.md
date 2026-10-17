@@ -1,5 +1,19 @@
 # Next AcceleRAID clock and STOP gates
 
+**Callback-free handoff accepted, 2026-10-17:** The [bare finite monitor](handoff/README.md)
+returned from operation 13 in about 10.6 ms, then accepted host ENTER in a
+stock-firmware interrupt frame. No-host expiry reached exactly 300 timer-1
+ticks in 3.048 seconds; valid HALT stopped after four ticks in 88.5 ms, with
+a wrong token left pending. Both paths restored priority, timer/vector/map/
+mask and firmware stack. Four complete same-boot flash reads, independent
+pre/post inventories, loader/stage/owner checks, offline replay and four
+tamper checks passed. No flash write or old-card command occurred. This
+closes the callback-return handoff gate, **not** the RTEMS resident-service
+gate. Next place a bounded RTEMS controller under the same finite lease,
+prove task/ISR/DMA quiescence and explicit RAM ownership before networking
+or Doom. A permanently masked interrupt still defeats timer expiry; physical
+recovery remains untested. Earlier status notes below are historical.
+
 **Current 2026-10-17 status:** [bounded timer preemption](preempt/README.md)
 and [STOP-ignoring worker containment](contain/README.md) have now passed on
 the new card without another flash write. The controller can suspend two

@@ -4789,3 +4789,42 @@ continued timer interrupts and an intact scheduler; code that masks
 interrupts forever or damages shared RTEMS state could stop it. Before we
 leave a network service or Doom resident on this card, we need an independently
 enforceable lifetime or recovery boundary and explicit RAM/DMA ownership.
+
+We next tried to let the card keep a tiny timer monitor alive after the stock
+firmware callback returned. The first attempt armed the timer and returned,
+but the host's ENTER word sat untouched: no interrupt arrived at the firmware's
+restored processor priority. A second image was too strict about what that
+entry priority should be and rejected itself before arming. A third returned
+successfully but still saw no ticks; its i960 `modpc` instruction used a zero
+mask, so our intended priority change never happened. We kept each uncertain
+grant for inspection, rebooted when needed, and checked the complete firmware
+and stock timer/vector state before trying again. No flash write was involved.
+
+With the correct `0x1f0000` priority mask, the next image finally crossed the
+boundary: operation 13 returned, and the timer ISR later saw ENTER while the
+processor was back in a stock-firmware frame. It ran all the way to its 300th
+tick, disabled the timer, restored the vector and processor controls, and
+published expiry. Our host script had allowed only 2.5 seconds for what took
+just over 3 seconds, then compounded that false alarm by reading the saved
+process-control word as though it were an instruction address. The card had
+already finished safely. We recovered the completed call under exact page,
+stage and owner checks, made two more full flash reads, and fixed the host
+checks without changing the card image.
+
+The repeated batch passed. The callback returned in about 10.6 milliseconds;
+the host sent ENTER afterward and the ISR captured a stock-firmware interrupt
+frame. Without a HALT it expired at exactly 300 ticks in 3.048 seconds. A
+wrong token remained pending, while the valid HALT ended after four ticks in
+88.5 milliseconds. Both paths logged zero ISR faults and restored the firmware
+stack, priority, timer, cached vector, interrupt map and mask. Four complete
+same-boot firmware reads and independent pre/post inventories matched; the
+loader page, staging source and every allocator record returned to baseline.
+The old DAC960PG stayed unbound. The [exact source, binary and captures](artifacts/current/accele160-handoff-20261017/README.md)
+replay offline and reject four altered-evidence cases.
+
+This is our first callback-free, bounded card-side control loop on the new
+board. It does not yet run RTEMS after the callback, and a task that masks
+interrupts forever could still defeat the timer. The next experiment can put
+a small RTEMS controller under this lease; before network or Doom follows, we
+must also give RAM and DMA explicit owners and prove every task and interrupt
+path has stopped before those resources are released.

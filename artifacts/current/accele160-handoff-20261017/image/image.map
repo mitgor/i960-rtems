@@ -1,0 +1,79 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+_irq_fault          0x4               /home/mit/i960-accele160-handoff-20261017/build/revised4/app.o
+_irq_active         0x4               /home/mit/i960-accele160-handoff-20261017/build/revised4/app.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x00000000c0710000                . = 0xc0710000
+
+.text           0x00000000c0710000      0x9e0
+ *(.entry)
+ .entry         0x00000000c0710000       0xb4 /home/mit/i960-accele160-handoff-20261017/build/revised4/start.o
+                0x00000000c0710000                _start
+ *(.text*)
+ .text          0x00000000c07100b4       0x34 /home/mit/i960-accele160-handoff-20261017/build/revised4/start.o
+                0x00000000c07100b4                _bounded_escape
+ *fill*         0x00000000c07100e8        0x8
+ .text          0x00000000c07100f0       0x90 /home/mit/i960-accele160-handoff-20261017/build/revised4/timer_isr.o
+                0x00000000c07100f0                _timer_isr
+ .text          0x00000000c0710180        0x8 /home/mit/i960-accele160-handoff-20261017/build/revised4/cache.o
+                0x00000000c0710180                _timer_invalidate_dcache
+ *fill*         0x00000000c0710188        0x8
+ .text          0x00000000c0710190      0x850 /home/mit/i960-accele160-handoff-20261017/build/revised4/app.o
+                0x00000000c0710430                _timer_interrupt
+                0x00000000c0710820                _bounded_main
+ *(.rodata*)
+                0x00000000c07109e0                . = ALIGN (0x10)
+
+.data           0x00000000c07109e0       0x30
+ *(.data*)
+ .data          0x00000000c07109e0       0x30 /home/mit/i960-accele160-handoff-20261017/build/revised4/start.o
+                0x00000000c07109e0                _escape_context
+ .data          0x00000000c0710a10        0x0 /home/mit/i960-accele160-handoff-20261017/build/revised4/timer_isr.o
+ .data          0x00000000c0710a10        0x0 /home/mit/i960-accele160-handoff-20261017/build/revised4/cache.o
+ .data          0x00000000c0710a10        0x0 /home/mit/i960-accele160-handoff-20261017/build/revised4/app.o
+                0x00000000c0710a10                . = ALIGN (0x10)
+                0x00000000c0710a10                __bss_start = .
+
+.bss            0x00000000c0710a10       0x50
+ *(.bss*)
+ .bss           0x00000000c0710a10        0x0 /home/mit/i960-accele160-handoff-20261017/build/revised4/start.o
+ .bss           0x00000000c0710a10        0x0 /home/mit/i960-accele160-handoff-20261017/build/revised4/timer_isr.o
+ .bss           0x00000000c0710a10        0x0 /home/mit/i960-accele160-handoff-20261017/build/revised4/cache.o
+ .bss           0x00000000c0710a10       0x44 /home/mit/i960-accele160-handoff-20261017/build/revised4/app.o
+ *(COMMON)
+ COMMON         0x00000000c0710a54        0x8 /home/mit/i960-accele160-handoff-20261017/build/revised4/app.o
+                0x00000000c0710a54                _irq_fault
+                0x00000000c0710a58                _irq_active
+                0x00000000c0710a60                . = ALIGN (0x10)
+ *fill*         0x00000000c0710a5c        0x4
+                0x00000000c0710a60                __bss_end = .
+                0x0000000000000001                ASSERT ((. <= 0xc0711000), timer code/data crosses ISR stack)
+                0x00000000c0711000                . = 0xc0711000
+
+.irqstack       0x00000000c0711000     0x1000
+ *(.irqstack)
+ .irqstack      0x00000000c0711000     0x1000 /home/mit/i960-accele160-handoff-20261017/build/revised4/timer_isr.o
+                0x00000000c0711000                _irq_owned_area
+                0x0000000000000001                ASSERT ((. <= 0xc0712000), timer ISR stack crosses entry stack)
+                0x00000000c0712000                . = 0xc0712000
+
+.entry_stack    0x00000000c0712000     0x1000
+                0x00000000c0712000        0x1 BYTE 0x0
+                0x00000000c0712fff                . = (. + 0xffe)
+ *fill*         0x00000000c0712001      0xffe
+                0x00000000c0712fff        0x1 BYTE 0x0
+                0x0000000000000001                ASSERT ((. <= 0xc078f000), timer image overlaps staging page)
+LOAD /home/mit/i960-accele160-handoff-20261017/build/revised4/start.o
+LOAD /home/mit/i960-accele160-handoff-20261017/build/revised4/timer_isr.o
+LOAD /home/mit/i960-accele160-handoff-20261017/build/revised4/cache.o
+LOAD /home/mit/i960-accele160-handoff-20261017/build/revised4/app.o
+OUTPUT(/home/mit/i960-accele160-handoff-20261017/build/revised4/image.elf elf32-i960)

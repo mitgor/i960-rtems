@@ -113,3 +113,16 @@ flash reads and independent stock-state inventories passed. The [exact card
 evidence](../../artifacts/current/accele160-contain-20261017/README.md)
 replays offline. This tests containment of interrupt-enabled workers, not an
 independent hardware watchdog or callback-free resident runtime.
+
+The next [callback-free handoff gate](handoff/README.md) passed a RAM-only
+expiry/HALT batch. Operation 13 returned in about 10.6 ms while an owned
+timer-1 ISR remained active. The host's subsequent ENTER was consumed in a
+stock-firmware frame; no-host expiry ended at 300 ticks in 3.048 seconds,
+while valid HALT ended at four ticks in 88.5 ms after a wrong token remained
+pending. Both paths restored processor priority, timer/vector/map/mask,
+firmware stack, loader page, stage and all allocator records. Four same-boot
+full flash reads and independent pre/post inventories passed. The [exact
+evidence](../../artifacts/current/accele160-handoff-20261017/README.md)
+replays offline and rejects four tamper cases. This is a bare finite monitor,
+not resident RTEMS or a watchdog for permanently masked interrupts; RAM and
+DMA ownership plus task quiescence remain the next gates for services.

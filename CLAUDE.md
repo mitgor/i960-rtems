@@ -2005,3 +2005,22 @@ DMA remain outside this finite controller lease. Preserve both retained ISR
 contexts until the whole instance returns; never reclaim either task stack
 while its continuation is live. The next gate is callback-free bounded
 residency or independently enforced recovery plus explicit RAM/DMA ownership.
+
+## AcceleRAID 160 callback-free handoff (2026-10-17)
+
+The [RAM-only finite handoff](rtems/accele160/handoff/README.md) now passed
+on the new card with no firmware write. Operation 13 returned in about
+10.6 ms; a later host ENTER was consumed in a stock-firmware interrupt
+frame. No-host expiry reached exactly 300 timer-1 ticks in 3.048 s, and
+valid HALT took four ticks / 88.5 ms after a wrong token stayed pending.
+Both paths restored firmware priority, SP, timer/vector/map/mask, loader,
+stage and every allocator record. Four same-boot full flash reads and
+independent pre/post inventories passed; [exact image and captures](artifacts/current/accele160-handoff-20261017/README.md)
+replay offline with four tamper rejections. Image SHA-256 is
+`1f448cdf017d3410e03a493f45f7ad37a8e4f4f3268c05270e5bc7fe10952f2a`.
+For i960 `modpc`, use priority mask `0x1f0000` and an initialized replacement
+value; the interrupt-frame saved PC at `FP-16` is process controls, not an
+instruction address. This is a bare finite monitor, not resident RTEMS or
+an independent watchdog. Keep the old card unbound. Next prove a bounded
+resident RTEMS control task, task/ISR/DMA quiescence and explicit RAM/DMA
+ownership before moving network or Doom services to the new card.
