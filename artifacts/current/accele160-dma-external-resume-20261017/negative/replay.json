@@ -1,0 +1,6 @@
+{
+  "negative_fallback": "audited",
+  "rejected_preflight": "retained",
+  "full_flash_reads": 4,
+  "external_resume_accepted": false
+}

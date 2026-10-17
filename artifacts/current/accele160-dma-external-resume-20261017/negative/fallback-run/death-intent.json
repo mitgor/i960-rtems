@@ -1,0 +1,17 @@
+{
+  "pid": 179378,
+  "boot_id": "a248da87-1bb3-403e-97fc-837b307e1b0e",
+  "image_sha256": "28b679b9de196c0944603f0a66adc763bb7ac37f4a1635da42e6351a7a99008b",
+  "pin_status": {
+    "bdf": "0000:37:09.1",
+    "bus_addr": "0xfff5d000",
+    "length": "256",
+    "armed": "1",
+    "verified": "0",
+    "released": "0",
+    "guard_changes": "0",
+    "payload_match": "1"
+  },
+  "held_page_sha256": "aac3688e60eda36ef503898889c25cc352e236498467280265986d67a2841c32",
+  "state": "SIGKILL immediately after DMA_HELD"
+}

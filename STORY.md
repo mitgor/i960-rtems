@@ -5141,3 +5141,24 @@ idle address; read-only evidence let us correct those exact cases before
 release. The published `DMA_BUSY` word does not tell us whether hardware CSR
 was active at the instant the host died, and normal finite completion still
 does not answer how to free memory behind a PCI transaction that never drains.
+
+The next experiment put the host recovery process in charge of resuming a
+deliberately held transfer. We built a new RAM image with a sideband RESUME
+word and a card-side fallback at tick 200 of the hold. In its first run, the
+starter died at `DMA_HELD`, but recovery began too late to send RESUME. It
+kept both allocations until the card's fallback finished the chain at tick
+248, then checked the payload, guards, channels, owner records and RTEMS
+restoration before releasing them. Four full-flash reads still matched stock.
+This was a useful negative control, not proof of independent resumption.
+
+We corrected the image to consume the earlier HALT word, which otherwise
+stopped the worker immediately after fallback completion. The first run of
+that corrected image caught a different mistake before DMA: its host harness
+expected channel 0's address from an older run, not the just-completed one.
+The card rejected the stale state, and the host retained its pin and RAM
+grant. A warm reboot cleared those allocations, but the new controller would
+not bind `myrsread`. A PCI power-management reset completed while the card
+was unbound and still did not restore binding. The [candidate and negative
+captures](artifacts/current/accele160-dma-external-resume-20261017/README.md)
+are saved. A full power cycle and fresh same-boot channel inventory are next;
+we have not called the external-resume gate accepted.

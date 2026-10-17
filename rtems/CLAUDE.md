@@ -1,5 +1,7 @@
 # RTEMS working guidance
 
+**External-resume DMA gate remains a candidate (2026-10-17):** [Current source and machine state](accele160/dma_external_resume/README.md). A deliberately held transfer survived host-owner SIGKILL and the card's timed fallback completed with full audits. The corrected independent-RESUME image has not passed live acceptance: its first run rejected stale prior channel state before DMA. Warm reboot cleared the retained allocation but left the new card unbound; a PCI PM reset while unbound did not restore driver initialization. Require full power cycle, fresh flash/channel inventory and exact owner/payload/RTEMS audits before promotion. Do not release a pin behind an uncertain or never-draining DMA channel.
+
 **2026-10-17 AcceleRAID pre-STOP DMA owner death:** [Source](accele160/dma_pre_stop_death/README.md) and [captures](../artifacts/current/accele160-dma-pre-stop-death-20261017/README.md) pass two independent recoveries after the original host process died at a durable `DMA_BUSY` checkpoint before STOP. The finite 13,000-descriptor chain completed normally; separate recovery waited to tick-300 expiry and audited payload, guards, both DMA channels, all owner records and RTEMS shutdown before unpinning. Early release returned `EBUSY`; six full flash reads match stock. This is not a proof of safe release when the DMA engine never drains. Retain the pin and grant on uncertain paths.
 
 **2026-10-17 AcceleRAID 160 two-task resident lease:**

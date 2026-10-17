@@ -1,0 +1,47 @@
+{
+  "boot_id": "a248da87-1bb3-403e-97fc-837b307e1b0e",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  },
+  "firmware_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+  "handler_sha256": "8d8c79c3b8c206608ef7221000991c0d75eb101ce06581fedc2a74522648ad34",
+  "image_sha256": "28b679b9de196c0944603f0a66adc763bb7ac37f4a1635da42e6351a7a99008b",
+  "fnv": "0x83ab0c8b",
+  "modules": {
+    "reserve": "d5dc1cf2dddba559ea4ff5ebf7bac1ae32f462f27dd968b8964f0cd20b47c945",
+    "release": "bbfbe079b86ba1503efcfcce4c0c7ee5e1ad2fc662ded669766bdb7d38a3ecfa",
+    "copy": "6dd7dc40be4c51e65dce65978b3fdda3256e54928034d7acfe451a946caf1ec6",
+    "digest": "db97abc60007d96017c4aaed6f86f5f155988b2948993f2f5b3f81cc964ad6b1",
+    "admit": "528767e0f94c5ce36d156a71b73ea8bfd9ae5e99013211b89e46a44096acabe5"
+  },
+  "prior_channel0": [
+    "0x00000000",
+    "0xc07888e0",
+    "0x00000000",
+    "0xfff65800",
+    "0x00000000",
+    "0xc0789800",
+    "0x00000000",
+    "0x00000007"
+  ],
+  "prior_run": "/home/mit/i960-accele160-dma-pre-stop-death-20261017/evidence/attempt-1"
+}
