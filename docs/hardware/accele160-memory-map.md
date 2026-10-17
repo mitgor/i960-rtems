@@ -1,5 +1,17 @@
 # AcceleRAID 160 live memory map and RTEMS gates
 
+**2026-10-17 reversible write update:** Two [bounded upper-page](../../artifacts/current/accele160-exclusive-probe-20261017/README.md)
+and [stock-occupied-page](../../artifacts/current/accele160-occupied-probe-20261017/README.md)
+tests changed and restored four words on `c0f01000` and then `c0011000` during
+a priority-31 operation-13 callback. CCR, NDAR and BCR on all **three** 80303
+DMA channels were idle before/after; full 4 KiB host snapshots and card-side
+hashes matched after exact STOP and no-host timeout. A later [timer-driven
+test](../../artifacts/current/accele160-exclusive-timer-20261017/README.md) held
+both patterns across RTEMS worker preemption and again restored them. These are selected-page
+round trips, not a persistent memory map or an 8 MiB grant. Stock firmware
+resumed at callback completion; follow the [exclusive-mode contract](../../rtems/accele160/EXCLUSIVE-MODE.md)
+before treating any occupied address as RTEMS-owned.
+
 **2026-10-17 Doom arena gate:** The [read-only upper-bank survey](../../artifacts/current/accele160-doom-arena-20261017/README.md)
 sampled thirteen pages twice; all were stable zero. The live stock owner table
 still covers only the lower 8 MiB, with at most 1,540,096 contiguous free
@@ -17,12 +29,12 @@ test or Doom upload.
 | `c0000000..c0000fff` | Boot/reset state and recovery table | Firmware-owned |
 | `c0001000..c0001fff` | Default BAR0 translated window; earlier self-restoring 256-byte round trip | No resident grant |
 | `c000a000..c000ffff` | Verified 24 KiB loader copied from flash | Firmware-owned; `c000f800` result and `c000f900` code are an exact self-restoring 80-byte test exception only |
-| `c0010000..c00b77ab` | Verified expanded runtime; sampled `c0011000` is stable nonzero | Firmware-owned |
+| `c0010000..c00b77ab` | Verified expanded runtime; sampled `c0011000` is stable nonzero, and four words on that page were reversibly changed during a paused callback | Firmware-owned outside that exact bounded callback |
 | `c00c027c`, `c00c3690`, `c04016a0`, `c043bfc4`, `c048e6f0`, `c04ad650` | Runtime absolute references and stores | Firmware state extends beyond expanded image and 4 MiB |
 | `c03852a0..c03856a0`, `c03856a0..c0385aa0` | Stock allocator's 256 block-count and caller-owner words, captured twice | Describes stock's own 32 KiB block claims, not an RTEMS reservation |
 | `c04d0000..c05fffff` | 38 contiguous zero-count/zero-owner blocks in stock lower allocation pool | 1,245,184 bytes currently available to stock allocator; may change later |
 | `c0618000..c078ffff` | 47 contiguous zero-count/zero-owner blocks in stock upper allocation pool | 1,540,096 bytes currently available to stock allocator; may change later |
-| `c0501000`, `c0801000`, `c0c01000`, `c0f01000` | Two read-only 4 KiB snapshots each, two seconds apart, all zero and stable | **Unknown**; zero is not a reservation |
+| `c0501000`, `c0801000`, `c0c01000`, `c0f01000` | Two read-only 4 KiB snapshots each; `c0f01000` later passed a four-word round trip and complete-page restore | **Unknown** outside that bounded callback; zero is not a reservation |
 | `fef00000..feffffff` | 1 MiB flash mapping, including recovery/boot block | Never application RAM |
 
 Controller information reports 16 MiB RAM and 8 MiB cache. The observed DRAM addresses lie within the hypothetical `c0000000..c0ffffff` extent, but no contiguous extent, firmware allocator grant or exclusive takeover has been proven. The 80303 BAR0 is only 8 KiB: its first 4 KiB is the Messaging Unit, and its second 4 KiB is translated local memory. PIATVR at PCI config `0x44` is 8 KiB aligned, so BAR offset `0x1000` selects local `PIATVR + 0x1000`. The default PIATVR is `c0000000`. External PCI writes do not snoop the i960 caches; the proven fixed handler invalidates D-cache before reading its payload and I-cache before calling it.

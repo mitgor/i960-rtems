@@ -1,10 +1,19 @@
 # DoomGeneric RAM request for RTEMS
 
-**AcceleRAID 160 status (2026-10-17):** The [physical read-only arena survey](../../artifacts/current/accele160-doom-arena-20261017/README.md)
+**AcceleRAID 160 status (2026-10-17):** The [physical arena survey](../../artifacts/current/accele160-doom-arena-20261017/README.md)
 rejects admission of this 8 MiB request on the new board. Its stock allocator
 offers at most 1,540,096 contiguous free bytes and does not own the proposed
-upper bank. No upper-bank write or Doom launch has been made. An explicit
-exclusive stock/DMA handoff, alias proof and full-range audit are required.
+upper bank. Later [upper-page](../../artifacts/current/accele160-exclusive-probe-20261017/README.md)
+and [stock-runtime-page](../../artifacts/current/accele160-occupied-probe-20261017/README.md)
+four-word reversible probes passed while an operation-13 callback paused the
+stock CPU path and all three DMA channels were idle. A [combined timer-driven
+run](../../artifacts/current/accele160-exclusive-timer-20261017/README.md) held both
+changed pages through RTEMS preemption and restored them after STOP/expiry.
+These selected-page tests do not establish
+sustained ownership or the upper bank's full extent. No Doom upload or launch
+has been made on this board. The [exclusive-mode contract](../../rtems/accele160/EXCLUSIVE-MODE.md)
+requires a retained CPU/IRQ/DMA handoff, full-range alias/pattern audit and
+host transport before this arena can be admitted.
 
 <!-- doom-play-current -->
 **Interactive Doom work (2026-10-13; six-frame input/STOP passed):**

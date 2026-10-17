@@ -1,10 +1,21 @@
 # Bounded RTEMS gate on the AcceleRAID 160
 
-The [2026-10-17 Doom arena survey](../../artifacts/current/accele160-doom-arena-20261017/README.md)
+**2026-10-17 exclusive-mode progress:** The [zero upper-page](exclusive_probe/README.md)
+and [stock-occupied-page](occupied_probe/README.md) reversible operation-13
+probes passed on the new card with all three DMA channels idle, exact STOP and
+timeout, full-page restoration and paired full-flash audits. A subsequent
+[combined timer/DRAM test](exclusive_timer/README.md) held both changed pages
+through RTEMS hardware-timer preemption and restored them after STOP/expiry,
+with complete audits and four full matching guarded flash reads. The operation-13
+callback still returns to stock firmware. See the [exclusive-mode contract](EXCLUSIVE-MODE.md)
+for the sustained reboot-only takeover and 8 MiB arena gates. Doom has not run
+on this card.
+
+The earlier [2026-10-17 Doom arena survey](../../artifacts/current/accele160-doom-arena-20261017/README.md)
 rejects 8 MiB admission on the current stock-owned profile. Its largest free
 contiguous grant is 1,540,096 bytes; the upper 8 MiB is outside the owner table,
-and zero read-only samples do not confer ownership. An exclusive stock/DMA
-handoff and saved/restored alias test are the next memory gates before Doom.
+and zero read-only samples do not confer ownership. The following selected-page
+round trips do not yet prove a full-bank alias/ownership transfer.
 
 The 2026-10-17 [physical acceptance](../../artifacts/current/accele160-rtems-20261017/README.md) runs a newly linked RTEMS 4.6.6 image from the card's stock-owned 512 KiB grant. This is a **normally returning, one-shot software-clock profile**. RTEMS creates a worker, advances ten synchronous `rtems_clock_tick()` calls, observes that the worker wakes at tick five, writes an eight-word report, and returns to the stock command completion path. The host releases the grant only after the result and owner state pass. Hardware timer/interrupt ownership, asynchronous STOP, networking, persistence and Doom remain separate gates.
 

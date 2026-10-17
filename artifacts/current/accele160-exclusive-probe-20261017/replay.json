@@ -1,0 +1,6 @@
+{
+  "bounded_exclusive_page": "accepted",
+  "full_flash_reads": 4,
+  "old_card": "unbound",
+  "persistent_exclusive_ownership": false
+}

@@ -5193,6 +5193,51 @@ stopped at admission. We restored the PCI aperture after each sample, checked
 the allocator words across rounds, and read the complete flash twice more;
 the stock descriptor stayed idle, the old card unbound, and the firmware hash
 unchanged. We wrote no upper-bank data and launched no Doom image. The next
-experiment must first transfer ownership away from stock firmware and both
+experiment must first transfer ownership away from stock firmware and all three
 DMA channels. Only then can a saved-and-restored alias probe and complete
 eight-megabyte pattern test mean what we need them to mean.
+
+We decided the new card would eventually run RTEMS exclusively. It did not
+have to keep doing RAID work alongside the game. That changed what we could
+ask of the firmware: it could boot and admit a checked image, then remain
+parked until a reset. First we tried the smallest reversible version of that
+idea. A RAM-only RTEMS callback entered on its own stack at interrupt
+priority 31, checked all three DMA engines idle, and changed four words in
+one apparently empty upper-bank page. It read the words back, restored them,
+and compared the hash of the entire page. The host independently compared
+all 4,096 bytes before and after both an exact STOP and a no-host timeout.
+They matched. The worker, stack, loader page, staging page and all 512 stock
+allocation records returned to their earlier state; two complete flash
+reads before and after matched the same firmware image.
+
+The second image crossed a more interesting boundary. It repeated the upper
+page probe, then changed four words on `c0011000`, a nonzero page inside the
+stock firmware's expanded runtime. With the stock CPU path paused and all
+three DMA channels idle, both pages read back and restored exactly on STOP
+and timeout. The old controller remained untouched. This is the first
+physical evidence that we can temporarily borrow memory the stock firmware
+would normally consider occupied. It is deliberately a returning experiment:
+the callback resumes the firmware after cleaning up. We have not yet earned
+the right to overwrite its live code, call stack or host-control data, nor
+proved that eight megabytes of upper RAM is distinct and available. The
+[reboot-only contract](rtems/accele160/EXCLUSIVE-MODE.md) records how to cross
+that boundary without pretending these two tiny round trips already did it.
+
+We then held both patterns across something closer to a real RTEMS session.
+The next RAM-only image entered on the owned stack, checked all three DMA
+engines idle, changed the two pages, and started two CPU-bound RTEMS workers.
+The owned timer preempted them; the host read both complete pages after the
+READY signal and again after more ticks. Neither pattern moved. An exact
+STOP ended at tick ten in 165 milliseconds. With no host request, the
+controller reached its finite 120-tick deadline in about 1.27 seconds.
+Both paths drained the workers' interrupted continuations, restored the
+timer, vector, mask, stack, two pages and allocator, and returned to the
+same stock firmware. Two full flash reads after the run still matched the
+two before it. Offline replay rejected changes to the image, held stock
+page, restore report and owner table.
+
+That earns us a finite CPU, timer and selected-RAM handoff. It does not yet
+earn eight megabytes. The next memory test has to establish that the whole
+upper bank is distinct, can be patterned without aliasing live state, and
+can survive the reboot-only RTEMS lifetime. Only then can Doom move from
+the old card to this faster one.
