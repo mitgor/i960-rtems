@@ -2063,3 +2063,25 @@ instruction address. This is a bare finite monitor, not resident RTEMS or
 an independent watchdog. Keep the old card unbound. Next prove a bounded
 resident RTEMS control task, task/ISR/DMA quiescence and explicit RAM/DMA
 ownership before moving network or Doom services to the new card.
+
+## AcceleRAID 160 channel-0 DMA checkpoint (2026-10-17)
+
+Read the [corrected register inventory](rtems/accele160/dma_inventory_corrected/README.md)
+and [bounded transfer result](rtems/accele160/dma_transfer/README.md) before
+new-card DMA work. The 80303 DMA MMIO block is at i960 **local**
+`0x00001400..0x000014ff`. The earlier `0xff001400` all-zero inventory is
+invalid DMA evidence; its [failure record](artifacts/current/accele160-dma-inventory-20261017/README.md)
+is deliberately retained. Corrected inventory showed channel 1 holding a
+stock descriptor, while channel 0 and 2 were idle in sampled words.
+Three 256-byte channel-0 card-to-host writes then passed to separately
+pinned, guarded, coherent host buffers: initial HALT, reuse HALT and reuse
+no-host expiry. Card descriptor fetch, byte count zero, inactive channel,
+exact host bytes and both 4 KiB guards were checked before buffer/grant
+release. The reuse image SHA-256 is
+`2e2858b30cc89799549eca7aa0626128b36d1529d5bea7a0b1a967ee3e84dcae`;
+[evidence and independent replay](artifacts/current/accele160-dma-transfer-attempt-20261017/README.md)
+include eight full flash reads in four pairs and ten tamper rejections.
+The old card remained unbound; no flash write occurred. This proves a
+completed small transfer under finite RTEMS ownership, **not** abort/drain
+of a genuinely stalled active DMA. On uncertain completion, retain host
+buffer, card grant and modules; clearing CCR enable merely suspends DMA.

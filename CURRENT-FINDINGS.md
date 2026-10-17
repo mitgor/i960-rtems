@@ -1,15 +1,31 @@
 # Current findings — 2026-10-17
 
-The [new-card DMA register inventory](rtems/accele160/dma_inventory/README.md)
-passed two finite RTEMS HALT/expiry batches after the stock operation-13
-callback returned. All four terminal snapshots had zero CCR, DAR, NDAR,
-PADR, PUADR, LADR, BCR and DCR on all three Intel 80303 DMA channels.
-CSR was deliberately omitted because its event flags are read-clear. Six
-same-boot guarded full 1 MiB flash reads, all owner/page/stage audits and
-13 offline tamper checks passed; the old card stayed unbound. This is an
-idle-at-snapshot observation, **not** DMA ownership or a transfer. The next
-gate is a pinned host buffer and one card-owned, bounded descriptor, with
-completion/error/timeout drain before either side releases memory.
+**Correction to the DMA inventory below:** The Intel 80303 DMA registers
+are at i960 local `0x00001400..0x000014ff`, not `0xff001400..0xff0014ff`.
+The first all-zero samples came from the wrong, reserved address range and
+cannot establish DMA channel state. A first transfer using that address
+never fetched its descriptor; the host retained its pinned buffer and card
+grant, then requested a recovery reboot. The exact failed capture is kept.
+
+The [corrected inventory](rtems/accele160/dma_inventory_corrected/README.md)
+then passed two HALT/expiry batches and six full flash reads at the true
+`0x00001400` block. Channel 0 and 2 were idle in the sampled words;
+channel 1 held a stock descriptor and was left untouched. The following
+[bounded channel-0 transfer](rtems/accele160/dma_transfer/README.md) passed
+three times with fresh pinned host buffers: initial HALT, reuse HALT, and
+reuse no-host expiry. Each delivered exactly 256 bytes in two card-side
+polls, left 4 KiB guards and the unused payload unchanged, and reached
+inactive CCR/CSR with BCR/NDAR zero before release. Eight full flash reads
+in four pairs and all owner/page/stage, worker and timer/vector audits passed.
+This is a small completed-transfer proof. Cancellation/drain of a genuinely
+stalled DMA transaction, sustained throughput and persistent service are
+still unproven.
+
+The [first DMA-address experiment](rtems/accele160/dma_inventory/README.md)
+passed two finite RTEMS HALT/expiry batches and six guarded full flash reads.
+Its register values are invalid as DMA evidence because of the address error
+above. The RTEMS lease and ownership evidence still replay, and the old card
+stayed unbound. No DMA channel can be selected from those samples.
 
 The [AcceleRAID 160 STOP-ignoring worker gate](rtems/accele160/contain/README.md)
 now passes twice. Two CPU-bound workers never read STOP or yield; the

@@ -162,9 +162,18 @@ This is finite task-drain ownership, not general resident preemption or DMA.
 The next gate is a single bounded DMA transaction with explicit host-buffer
 and card ownership, then full completion/timeout drain before grant release.
 
-The first part of that gate, a [read-only three-channel DMA inventory](dma_inventory/README.md),
-passed two unchanged-image HALT/expiry batches. All 24 non-clearing DMA
-register words were zero at each terminal snapshot, with six full flash
-reads and all ownership audits passing. CSR was excluded because its event
-flags are read-clear. This identifies candidate channels at that instant;
-it does not yet establish exclusive DMA ownership or a completed transfer.
+The first [DMA inventory attempt](dma_inventory/README.md) used
+`0xff001400` rather than the 80303's correct local `0x00001400` block.
+Its all-zero samples do not identify idle channels. The RTEMS HALT/expiry,
+flash and RAM ownership audits remain valid, but the DMA conclusion is
+withdrawn. A transfer using the same wrong address timed out without a
+descriptor fetch; its buffer and grant were retained pending reboot. Repeat
+the read-only inventory at the correct address before any further transfer.
+
+That [corrected inventory](dma_inventory_corrected/README.md) has now
+passed, identifying channel 0 as an idle candidate while channel 1 retains
+stock descriptor state. A [bounded channel-0 DMA gate](dma_transfer/README.md)
+then completed three 256-byte transfers to fresh pinned host windows,
+including HALT and no-host lease expiry, with full flash and ownership
+audits. It does not yet prove cancellation of a genuinely stalled transfer
+or sustained service ownership.

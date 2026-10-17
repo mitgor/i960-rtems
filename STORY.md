@@ -4986,3 +4986,48 @@ channel later, and we deliberately did not read the status flags or initiate
 any transfer. The next proof needs a pinned host buffer, one card-owned
 aligned descriptor, a finite completion and error path, and a drain that
 finishes before either side releases memory.
+
+The first DMA transfer attempt corrected that optimism. We pinned a guarded
+coherent host buffer and built a one-descriptor, 256-byte card-to-host write.
+The card-side poll expired without the descriptor address ever appearing in
+the channel; the host buffer still held its initial bytes. The task did not
+reach the normal terminal handoff, so the host retained both the pinned
+buffer and the card's RAM grant and captured the live state before requesting
+a reboot. Reading the Intel manual's peripheral address map again exposed
+the mistake: the DMA block is at local `00001400..000014ff`, while our first
+inventory and transfer had addressed `ff001400..ff0014ff`. Those earlier
+zeroes were not an idle-channel finding. We marked the old artifact as
+invalid DMA evidence, kept the successful RTEMS/flash/owner evidence, and
+moved the next test back to a read-only inventory at the correct addresses.
+
+After a fresh boot, the corrected read-only image settled the channel
+question. Channel 0 and channel 2 really did have zero control and
+descriptor words during the finite RTEMS lease. Channel 1 did not: it held a
+stock descriptor at `c0611320` with DCR `3f` and a PCI address that moved
+between batches. We kept that channel out of the experiment. Both HALT and
+no-host paths passed twice, between six full flash reads, and every borrowed
+RTEMS and firmware resource restored.
+
+We rebuilt the transfer image to use local `00001400`. This time channel 0
+fetched its aligned descriptor and copied the exact 256-byte pattern to a
+pinned coherent buffer in host RAM. The front and rear 4 KiB guards stayed
+untouched, as did the rest of the payload page. The card showed BCR and
+NDAR zero and an inactive channel after two status polls. HALT brought the
+worker down at tick 22; the host checked the bytes, the card trace and
+ownership metadata before releasing the buffer and grant. A later inventory
+showed the completed descriptor still in channel 0's read-only registers,
+which is normal even though CCR was disabled. We used that exact captured
+state as the admission condition for the next image. It transferred to a
+new host buffer, then repeated unchanged once more with no HALT; the finite
+RTEMS lease expired at tick 300 after DMA had completed. Eight full flash
+reads in four pairs around these transfers matched the firmware, and the stock
+channel 1, loader page, staging source and all allocator records checked
+out. The [binaries, captures and replay](artifacts/current/accele160-dma-transfer-attempt-20261017/README.md)
+reject altered flash, DMA, host payload, prior state and owner evidence.
+
+That is the first direct card-to-host DMA proof on the new card. It is a
+small completed transfer, not a speed result. We still have to stage a real
+in-flight stall and show that STOP or lease expiry cannot free either side
+until the hardware has drained. The wrong-address failure showed the host
+retains resources on uncertainty, but never activated DMA hardware and so
+cannot stand in for that remaining test.

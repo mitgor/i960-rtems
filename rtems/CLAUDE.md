@@ -1271,17 +1271,30 @@ hardware drain remains unproved. Cooperative net/autonet stays available.
 
 ## AcceleRAID 160 DMA inventory (2026-10-17)
 
-The later [DMA inventory](accele160/dma_inventory/README.md) is the current
-new-card checkpoint. It reads CCR, DAR, NDAR, PADR, PUADR, LADR, BCR and DCR
-for all three 80303 channels under the accepted two-task post-return lease.
-Four terminal snapshots were all zero; two HALT/expiry batches, six full
-flash reads and owner/page/stage restoration passed. It never reads CSR,
-whose flags are read-clear, and never enables DMA. Do not infer channel
-ownership from this snapshot. The next gate needs a pinned host buffer,
-aligned card descriptor, exact preflight, finite completion/error handling,
-and proven drain before grant release. Clearing CCR enable only suspends a
-running transfer; it is not cancellation. Keep the old card unbound and
-preserve uncertain resources. [Captures and replay](../artifacts/current/accele160-dma-inventory-20261017/README.md).
+**Corrected status:** The first [DMA inventory](accele160/dma_inventory/README.md)
+read `0xff001400..14ff`, which is the wrong address range. Intel's 80303
+peripheral map places the DMA registers at i960 local `0x00001400..14ff`.
+The all-zero results cannot show channel idleness. The RTEMS lease, flash
+and RAM audits remain valid, but do not use this image or select a DMA
+channel from it. A transfer using the same wrong address timed out without
+fetching its descriptor; the host kept the buffer and grant pinned pending
+reboot. The next gate is a corrected read-only inventory, then one pinned
+host buffer and aligned card descriptor with finite completion/error handling
+and proven drain. Clearing CCR enable only suspends a running transfer; it
+is not cancellation. Keep the old card unbound and preserve uncertain
+resources. [Original captures](../artifacts/current/accele160-dma-inventory-20261017/README.md).
+
+The [corrected inventory](accele160/dma_inventory_corrected/README.md) and
+[channel-0 DMA transfer gate](accele160/dma_transfer/README.md) are now the
+current checkpoint. Three 256-byte card-to-host transfers passed with fresh
+pinned coherent windows, full payload/guard verification, inactive channel
+and BCR/NDAR zero before release; HALT and no-host lease expiry both passed.
+Channel 1 showed stock-owned descriptor state and was never borrowed. Eight
+full flash reads and all owner/page/stage/worker/ISR audits passed. The
+wrong-address artifact remains only as a failure record. Do not claim an
+active-transfer abort or sustained network/Doom DMA path: a deliberately
+stalled DMA transaction and exact drain remain to be tested. The 80303 CCR
+enable bit suspends an active transfer rather than cancelling it.
 
 ## AcceleRAID 160 callback-free handoff (2026-10-17)
 
