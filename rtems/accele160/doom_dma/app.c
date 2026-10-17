@@ -83,6 +83,12 @@ static struct doom_runtime_checkpoint doom_api;
 #ifndef DOOM_FPS_FRAMES
 #define DOOM_FPS_FRAMES 1u
 #endif
+#ifndef DOOM_PRIVATE_CACHE_MAP
+#define DOOM_PRIVATE_CACHE_MAP 0
+#endif
+#if DOOM_PRIVATE_CACHE_MAP != 0 && DOOM_PRIVATE_CACHE_MAP != 1
+#error DOOM_PRIVATE_CACHE_MAP must be 0 or 1
+#endif
 #if DOOM_FPS_FRAMES < 1 || DOOM_FPS_FRAMES > 32
 #error DOOM_FPS_FRAMES must be in 1..32
 #endif
@@ -561,10 +567,46 @@ static unsigned int engine_first_frame(unsigned int *value){
  engine_report[2]=ticks;engine_report[3]=0u;
  engine_text_live=byte_fnv(image_base,ENGINE_TEXT);
  engine_report[11]=engine_text_live;
+#if DOOM_PRIVATE_CACHE_MAP
+ /* Only the reboot-owned upper bank becomes cacheable. The stock template 0
+  * and uncached default keep host control, inbound WAD and RTEMS grant at
+  * their incoming attributes. LMT stores order with preceding/subsequent
+  * accesses; invalidate across both transitions. Never return to firmware
+  * from this callback, even after restoring the exact original template. */
+ if(REG(0xff008100u)!=0u||REG(0xff008108u)!=0xc0000002u||
+    REG(0xff00810cu)!=0xffc00001u||
+    REG(0xff008110u)!=0xc0400002u||REG(0xff008114u)!=0xffe00001u||
+    dma_busy_mask())bounded_fatal(0x77020u);
+ {unsigned int cache_status;
+  __asm__ volatile("dcctl 4,0,%0":"=r"(cache_status)::"memory");
+  if(cache_status!=0x8221u)bounded_fatal(0x77021u);
+ }
+ REG(0xff008114u)=0xffe00000u;
+ {unsigned int scratch;__asm__ volatile("dcctl 2,0,%0":"=r"(scratch)::"memory");}
+ REG(0xff008110u)=0xc0800002u;
+ REG(0xff008114u)=0xff800001u;
+ {unsigned int scratch;__asm__ volatile("dcctl 2,0,%0":"=r"(scratch)::"memory");}
+ if(REG(0xff008110u)!=0xc0800002u||REG(0xff008114u)!=0xff800001u)
+  bounded_fatal(0x77022u);
+#endif
  dma_init();engine_api_bind();engine_running=1u;
  ret=((unsigned int(*)(const struct doom_runtime_owned *))
       (image_base+ENGINE_ENTRY))(&doom_api.base);
  dma_drain();engine_running=0u;
+#if DOOM_PRIVATE_CACHE_MAP
+ /* The engine and DMA source are quiescent. Preserve all incoming logical
+  * attributes for the subsequent full audits; reset is still the only stock
+  * firmware recovery boundary. */
+ REG(0xff008114u)=0xff800000u;
+ {unsigned int scratch;__asm__ volatile("dcctl 2,0,%0":"=r"(scratch)::"memory");}
+ REG(0xff008110u)=0xc0400002u;
+ REG(0xff008114u)=0xffe00001u;
+ {unsigned int scratch;__asm__ volatile("dcctl 2,0,%0":"=r"(scratch)::"memory");}
+ if(REG(0xff008100u)!=0u||REG(0xff008108u)!=0xc0000002u||
+    REG(0xff00810cu)!=0xffc00001u||
+    REG(0xff008110u)!=0xc0400002u||REG(0xff008114u)!=0xffe00001u)
+  bounded_fatal(0x77023u);
+#endif
  for(i=0;i<12u;i++)engine_results[i]=r[i];
  post_text=byte_fnv(image_base,ENGINE_TEXT);
  engine_report[1]=2u;engine_report[3]=ticks;

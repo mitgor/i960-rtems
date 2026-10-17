@@ -1,0 +1,171 @@
+{
+  "frames": 32,
+  "uncached_map": [
+    "0x0",
+    "0xc0000002",
+    "0xffc00001",
+    "0xc0400002",
+    "0xffe00001"
+  ],
+  "cached_map": [
+    "0x0",
+    "0xc0000002",
+    "0xffc00001",
+    "0xc0800002",
+    "0xff800001"
+  ],
+  "cases": [
+    {
+      "case": 0,
+      "name": "integer xorshift",
+      "uncached_ms": [
+        130,
+        130,
+        130,
+        130
+      ],
+      "cached_ms": [
+        130,
+        120,
+        120,
+        130
+      ],
+      "uncached_median_ms": 130.0,
+      "cached_median_ms": 125.0,
+      "speedup": 1.04
+    },
+    {
+      "case": 1,
+      "name": "1 KiB read",
+      "uncached_ms": [
+        360,
+        360,
+        360,
+        370
+      ],
+      "cached_ms": [
+        130,
+        130,
+        130,
+        120
+      ],
+      "uncached_median_ms": 360.0,
+      "cached_median_ms": 130.0,
+      "speedup": 2.769230769230769
+    },
+    {
+      "case": 2,
+      "name": "4 KiB read",
+      "uncached_ms": [
+        490,
+        500,
+        490,
+        490
+      ],
+      "cached_ms": [
+        260,
+        250,
+        250,
+        260
+      ],
+      "uncached_median_ms": 490.0,
+      "cached_median_ms": 255.0,
+      "speedup": 1.9215686274509804
+    },
+    {
+      "case": 3,
+      "name": "64 KiB read",
+      "uncached_ms": [
+        570,
+        560,
+        570,
+        570
+      ],
+      "cached_ms": [
+        570,
+        560,
+        560,
+        570
+      ],
+      "uncached_median_ms": 570.0,
+      "cached_median_ms": 565.0,
+      "speedup": 1.008849557522124
+    },
+    {
+      "case": 4,
+      "name": "320-byte stride",
+      "uncached_ms": [
+        580,
+        590,
+        590,
+        590
+      ],
+      "cached_ms": [
+        590,
+        590,
+        590,
+        580
+      ],
+      "uncached_median_ms": 590.0,
+      "cached_median_ms": 590.0,
+      "speedup": 1.0
+    },
+    {
+      "case": 5,
+      "name": "64 KiB word copy",
+      "uncached_ms": [
+        570,
+        570,
+        570,
+        570
+      ],
+      "cached_ms": [
+        570,
+        560,
+        570,
+        570
+      ],
+      "uncached_median_ms": 570.0,
+      "cached_median_ms": 570.0,
+      "speedup": 1.0
+    },
+    {
+      "case": 6,
+      "name": "64 KiB word clear",
+      "uncached_ms": [
+        110,
+        110,
+        100,
+        100
+      ],
+      "cached_ms": [
+        110,
+        110,
+        110,
+        100
+      ],
+      "uncached_median_ms": 105.0,
+      "cached_median_ms": 110.0,
+      "speedup": 0.9545454545454546
+    },
+    {
+      "case": 7,
+      "name": "1 KiB read with 4096 invalidations",
+      "uncached_ms": [
+        360,
+        370,
+        370,
+        360
+      ],
+      "cached_ms": [
+        360,
+        370,
+        360,
+        370
+      ],
+      "uncached_median_ms": 365.0,
+      "cached_median_ms": 365.0,
+      "speedup": 1.0
+    }
+  ]
+}

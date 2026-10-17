@@ -1,3 +1,26 @@
+## N2 private-RAM cache mapping — 2026-10-18
+
+The [bounded physical acceptance](artifacts/current/cache-map-20261018/README.md)
+changed only the AcceleRAID 160's LMT1 from stock `c0400002/ffe00001`
+to `c0800002/ff800001` while its reboot-owned upper 8 MiB arena was active.
+The exact stock logical map was restored after Doom and DMA drained; DLMCON,
+LMT0, control and WAD transport rules were unchanged. The opt-in
+`DOOM_PRIVATE_CACHE_MAP=1` build checks incoming/readback registers and the
+frame trailer proves the target mapping was live for all 32 frames.
+
+With identical benchmark engine bytes, warm 1 KiB reads fell **360→130 ms
+(2.77×)**, 4 KiB reads **490→255 ms (1.92×)**, while 64 KiB streaming reads
+and word copies were essentially unchanged. In a second run using the exact
+previously accepted no-benchmark low-detail engine with card FNV off, frames
+12–31 delivered **16.964 card / 17.178 HTTP-observer FPS**, versus the
+accepted stock-map **9.694 / 9.643**: **+75% card FPS** on that short fixed
+window. Mean measured renderer time fell **91.5→48 ms**. This is a 32-frame
+qualification, not long interactive play. Both runs passed full system,
+ownership, frame/HTTP, native WAD, PIO, guard, stalled-host and STOP audits;
+two complete guarded post-reset flash reads after each run matched the stock
+SHA-256. Archived exact binaries and independent replayers pass. Keep the
+cache map opt-in until longer interactive STOP/disconnect acceptance.
+
 ## N1 cache scaling audit — 2026-10-17
 
 The new card has D-cache globally enabled (`0x8221`, 4 KiB), but the stock

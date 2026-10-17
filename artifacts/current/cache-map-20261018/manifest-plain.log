@@ -1,0 +1,13 @@
+{
+  "frames": 32,
+  "source_sha256": "3d1d15611b3c1081a4c48f1ecda7add0d40fcbc1ecc4702a23c1dc184d67508b",
+  "kernel_sha256": "4a03729fb1555af3a2d604715c6458cf01bd7cb13b72bffed92fb4b737cd775e",
+  "image_sha256": "3f9e4bc123c5f691ae73703a821a5b19e207c4c7b5bdfe052ebdf83d7654f984",
+  "image_fnv": "0xb5191e44",
+  "engine_manifest_sha256": "e8c70d7cf0b1c5cfa99c9f865aa8bbbbe15591c20b951562339b7070413b7199",
+  "dma_module_sha256": "df48f83d1f303c69a55ffd9d4bf46e82c3e51bc3ad45b709140f0f04ab9dd1b6",
+  "native_fnv_sha256": "e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6",
+  "dma_source_sha256": "f98242f67568a78bc8cb216e9d7e96ae87a9ab96763bf73adc994fa0d1c5ccdb",
+  "copy_sha256": "136d0fe0670d73848cf5831ecf4cd26077accbcbb45168c45ac34a072106254c",
+  "engine_identity_sha256": "3f9431fd4164e071a1204e3a089121bdc7467b37d23e280196e211a200c6af47"
+}

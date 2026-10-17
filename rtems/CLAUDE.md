@@ -1,3 +1,14 @@
+**N2 private cache template — 2026-10-18:**
+The opt-in `DOOM_PRIVATE_CACHE_MAP=1` in `accele160/doom_dma/build.sh` is
+physically accepted for 32-frame reboot-only Doom runs. After full upper-bank
+claim it replaces only LMT1 with `LMADR1/LMMR1=c0800002/ff800001`, checks
+the live map, drains DMA and restores exact stock registers before STOP.
+Do not apply this to stock-firmware coexistence or globally cache the host
+transport pages. Preserve existing WAD/control invalidations and all full
+owner/system/guard audits. [Exact evidence](../artifacts/current/cache-map-20261018/README.md)
+includes both post-reset stock-flash pairs and 16.964 card FPS with the
+accepted low-detail/hash-off engine; long interactive recovery remains open.
+
 **Cache scaling gate (2026-10-17):** The AcceleRAID's observed stock logical
 templates cache only the first 6 MiB (`LMADR0 c0000002/LMMR0 ffc00001`,
 `LMADR1 c0400002/LMMR1 ffe00001`, DLMCON zero). D-cache `dcctl 4` reports

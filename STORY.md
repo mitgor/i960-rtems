@@ -5559,5 +5559,37 @@ attempt had correctly rejected that unexpected trailer after one frame. The
 corrected run passed the frame, WAD, system and drain replayers and STOP. The
 release reboot returned, and the new card's final two complete guarded firmware reads matched the accepted stock image. The full archived evidence replayed successfully. A bounded
 cacheable map for exclusively owned private RAM is the next experiment, with
-host-written control and DMA input left uncached. The measured loops do not
-yet predict a Doom FPS gain.
+host-written control kept under its stock mapping and DMA input outside the
+new template. The measured loops do not yet predict a Doom FPS gain.
+
+The next two card runs answered that question. We gave the reboot-owned upper
+eight megabytes a cacheable logical template while Doom ran. The code first
+checked the exact five incoming cache registers, disabled just the second
+template, invalidated the data cache and mapped it to `c0800000–c0ffffff`.
+The first template and uncached default were untouched. The card recorded the
+new values in every benchmark frame; after Doom and DMA finished, it restored
+the incoming values and checked them again. This was a RAM-only change. The
+stock firmware still needed a reboot before it could own the card again.
+
+The repeated one-kilobyte reads fell from 360 to 130 ms, and four-kilobyte
+reads from 490 to 255 ms. Streaming through 64 KiB or copying words barely
+changed, which fits a small write-through cache. More encouragingly, the
+same Doom render segment fell from about 92 to 49 ms. The first thirty-two
+frames still contained our deliberately slow benchmark, so their frame rate
+could not tell us how the game would play. They did pass the full DMA, PIO,
+browser, WAD, ownership, held-host and STOP checks. Both guarded firmware
+reads after reboot matched stock.
+
+For the second run we used the previously accepted low-detail Doom engine
+without the diagnostic loops. It delivered all thirty-two frames with the
+same pixels and palette as before. Frames twelve through thirty-one reached
+16.96 FPS on the card and 17.18 at the independent HTTP observer. The same
+accepted engine and hash-off transport with the stock cache map had reached
+9.69 and 9.64 FPS. That is a 75 percent gain in this short steady window;
+renderer time averaged 48 ms instead of 91.5. Including the deliberate
+three-second host stall gives a much lower whole-run number, so it is not a
+continuous-play measurement. Its full audits and STOP passed, and the final
+two post-reset firmware reads again matched stock. The exact builds and
+captured frames are archived and replay cleanly. We left the cache option
+explicit rather than making it the ordinary build default; longer interactive
+play and disconnect recovery are the next acceptance gates.

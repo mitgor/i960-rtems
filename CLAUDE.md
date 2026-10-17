@@ -1,3 +1,14 @@
+**Latest N2 cache-map acceptance — 2026-10-18:**
+[Exact code, captures and replay](artifacts/current/cache-map-20261018/README.md)
+show `DOOM_PRIVATE_CACHE_MAP=1` remapping only LMT1 to reboot-owned
+`c0800000–c0ffffff` during Doom, then restoring stock after DMA drain.
+Warm 1 KiB reads improve 2.77×; the previously accepted no-benchmark,
+low-detail/hash-off Doom engine improves from 9.694 to **16.964 card FPS**
+in the 20-frame steady window (+75%). Two 32-frame runs passed full audits,
+STOP and paired guarded post-reset stock-flash reads. Default builds still
+use the stock map. Retain WAD/control invalidations and all ownership/DMA
+checks; longer interactive play and disconnect acceptance remain open.
+
 **Latest N1 cache-scaling result — 2026-10-18:**
 [Exact matched card evidence and replay](artifacts/current/cache-scaling-20261017/README.md)
 show the AcceleRAID 160's D-cache globally enabled but its reboot-owned

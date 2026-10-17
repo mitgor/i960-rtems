@@ -1,3 +1,14 @@
+**N2 cached private arena accepted (2026-10-18):**
+[Physical benchmark and exact replay](../../artifacts/current/cache-map-20261018/README.md)
+show the new card's owned upper 8 MiB mapped cacheable only during Doom via
+`DOOM_PRIVATE_CACHE_MAP=1`. Same diagnostic engine: 1 KiB read 360→130 ms,
+4 KiB read 490→255 ms; streaming/copy remain flat. Same accepted low-detail
+no-benchmark engine: 9.694→16.964 card FPS (+75%) over frames 12–31;
+renderer mean 91.5→48 ms. Full 32-frame audits, WAD/Pio/HTTP, stalled host,
+STOP and paired post-reset stock-flash reads pass. Mapping remains opt-in;
+ordinary rebuilds preserve stock. Re-profile renderer under cached RAM and
+qualify longer interactive STOP/disconnect before promoting the mode.
+
 **N1 cache diagnostic (2026-10-17):** `runtime/cache_bench/` is an opt-in
 fixed-work, eight-case Doom frame trailer at byte 65024. Build the same admitted
 engine for both cards with `platform/build.py --cache-bench`. The old host decoder
