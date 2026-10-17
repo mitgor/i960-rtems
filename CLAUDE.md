@@ -1,3 +1,15 @@
+**AcceleRAID 160 callback-free RTEMS timer accepted (2026-10-17):**
+[Source and finite boundary](rtems/accele160/residentclock/README.md),
+[exact binary, four full flash reads, stock inventories and replay](artifacts/current/accele160-residentclock-20261017/README.md).
+RTEMS early initialization preceded operation-13 return; its timer callback
+fired at tick 20 after host ENTER in a stock-firmware interrupt frame.
+HALT stopped at tick 21 and no-host expiry at tick 300. All timer/vector,
+priority, firmware stack, page/stage and allocator state restored. Old card
+unbound; no firmware write. **Do not call this a resident RTEMS task:**
+multitasking never started. Next prove task continuation and complete
+task/ISR/DMA quiescence before grant release. Never force-unload an uncertain
+one-shot module; the runner retains the grant for guarded recovery.
+
 **AcceleRAID 160 bounded timer/IRQ gate accepted (2026-10-17):** [RAM-only source and build](rtems/accele160/timer/README.md), [full card evidence](artifacts/current/accele160-timer-20261017/README.md). The unchanged operation-13 firmware admitted a three-page image with separate owned entry and ISR stacks. Exact idle-state guards permitted temporary timer-1/vector-18 borrowing; cached F2 is occupied by firmware and untouched. Two fixed 8-IRQ paths and stale/valid STOP after 13 and 201 IRQs passed. The longer host sample was 1,253.04 IRQs/s at reload 10,000. Three independent pre/post timer/vector inventories, four full guarded 1 MiB flash reads, loader/stage/512-owner restoration, and four offline tamper rejections passed. Firmware SP restored to `c0002100`; no one-shot modules remain. This is a bounded bare ISR proof, **not yet an RTEMS hardware clock or a resident service**. Next integrate the proven ISR with bounded RTEMS clock/task wakeup and STOP/drain/restore.
 
 **AcceleRAID 160 RTEMS task STOP accepted (2026-10-17):** [Exact RAM-only image, build and verifier](rtems/accele160/lease/README.md), [card capture](artifacts/current/accele160-rtems-lease-20261017/README.md). Operation 13 ran a 16-page RTEMS 4.6.6 image without another flash write. A worker task acknowledged nonce/epoch STOP in 48.829 ms after rejecting a stale token; no-host polling exited in 1.503 s. RTEMS shut down, firmware SP returned to `c0002100`, and full same-boot flash, owner, loader-page, stage and stack audits passed. The accepted image rebuild is byte-identical and offline replay rejects four tampered captures. **STOP is cooperative; an uncooperative task still needs a separate enforced deadline/recovery path.** The next gate is guarded short timer/vector/owned interrupt stack with full restore, not networking or Doom yet. Never force-unload a pending one-shot command.

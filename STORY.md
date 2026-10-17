@@ -4828,3 +4828,43 @@ interrupts forever could still defeat the timer. The next experiment can put
 a small RTEMS controller under this lease; before network or Doom follows, we
 must also give RAM and DMA explicit owners and prove every task and interrupt
 path has stopped before those resources are released.
+
+We then tried the smallest RTEMS piece that could live across that firmware
+return without taking over the scheduler. The new 17-page image initialized
+RTEMS 4.6.6 on the owned entry stack, scheduled a one-shot RTEMS timer, and
+returned through operation 13 while the finite timer-1 lease remained armed.
+Its interrupt handler advanced the RTEMS clock but never dispatched an RTEMS
+task. If the host's ENTER reached a stock-firmware interrupt frame first, the
+RTEMS callback would mark the run active at hardware tick 20. HALT and the
+same 300-tick expiry would then stop and restore the borrowed hardware.
+
+The first attempt returned a clean status 2 before arming because we expected
+RTEMS early initialization to leave dispatch-disable level zero; it actually
+left that level at one. Two diagnostic repeats returned status 2 at the timer
+API. Their markers showed `INVALID_ID`, and the configuration table exposed
+the mundane cause: our single timer allowance had been placed in the
+semaphore field, leaving zero timers. We kept each completed call's grant for
+inspection, recovered only under exact page, stage and owner checks, and
+repeated complete firmware reads and stock-state inventories before the next
+admission. None of those calls left timer 1 armed or wrote flash.
+
+The corrected image passed both paths. Operation 13 returned at about 31 ms;
+the host sent ENTER afterward, and the ISR recorded a stock-firmware frame.
+RTEMS's own timer callback fired at tick 20 after ENTER in each run. The
+no-host lease expired at tick 300 in 3.077 seconds, while a wrong token stayed
+pending and exact HALT finished at tick 21 in 286 ms. The callback, ISR and
+dispatch counters, owned stack guards and restoration checks all passed. Four
+complete same-boot reads still matched the unchanged firmware. Independent
+pre/post inventories showed the original timer, cached vector, interrupt
+map and mask; the loader page, staging source and every allocator record also
+returned to baseline. The old card remained unbound. The [source and exact
+captures](artifacts/current/accele160-residentclock-20261017/README.md) replay
+offline and reject five evidence mutations.
+
+This establishes a narrow but useful boundary: RTEMS timer state can survive
+the stock firmware callback and run on subsequent interrupts. It is not yet
+an RTEMS control task running after that return. RTEMS's early setup creates
+the idle thread and timer manager, but this image deliberately never starts
+multitasking. Our next gate must give an owned task a post-return context,
+then prove that HALT and expiry leave no live task, interrupt continuation or
+DMA operation before the host releases its RAM grant.

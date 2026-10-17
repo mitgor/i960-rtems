@@ -1,5 +1,17 @@
 # Next AcceleRAID clock and STOP gates
 
+**Callback-free RTEMS timer accepted, 2026-10-17:** The
+[resident-clock gate](residentclock/README.md) ran an RTEMS 4.6.6 one-shot
+timer callback at tick 20 after operation 13 returned and after host ENTER
+in a stock-firmware frame. HALT ended at tick 21; no-host expiry ended at
+tick 300. Four full same-boot flash reads, pre/post stock inventories, full
+page/stage/owner restoration and replay/tamper checks passed. No firmware
+write or old-card command occurred. This establishes RTEMS timer state after
+the callback, **not RTEMS task dispatch**. Next establish an owned task
+continuation after callback return; stop it on exact HALT or finite expiry,
+drain ISR/task/DMA ownership before RAM release, then consider services.
+An interrupt-disabled hang still defeats the timer deadline.
+
 **Callback-free handoff accepted, 2026-10-17:** The [bare finite monitor](handoff/README.md)
 returned from operation 13 in about 10.6 ms, then accepted host ENTER in a
 stock-firmware interrupt frame. No-host expiry reached exactly 300 timer-1

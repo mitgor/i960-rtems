@@ -1,5 +1,17 @@
 # i960 / Mylex DAC960PG — consolidated technical findings
 
+**Second-board callback-free RTEMS timer accepted (2026-10-17):** The
+[AcceleRAID 160 resident-clock gate](rtems/accele160/residentclock/README.md)
+early-initialized RTEMS 4.6.6 before operation 13 returned, then let an RTEMS
+one-shot timer callback fire at hardware tick 20 after host ENTER in a stock
+firmware frame. Exact HALT ended at tick 21 (286.276 ms); no-host expiry at
+tick 300 (3,076.707 ms). Both restored the timer, cached vector, processor
+priority, loader/stage and all allocator records. Four complete same-boot
+flash reads, independent pre/post inventories, replay and five tamper checks
+passed. Firmware and old card were untouched. This runs an RTEMS **callback**
+after firmware return, not an RTEMS task or DMA service; scheduler handoff,
+task quiescence and explicit RAM/DMA ownership remain.
+
 **Second-board STOP-ignoring worker containment (2026-10-17):** The
 [new-card bounded whole-instance gate](rtems/accele160/contain/README.md)
 proved two CPU-bound workers continue despite STOP and can be externally

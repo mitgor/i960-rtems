@@ -1,5 +1,17 @@
 # RTEMS working guidance
 
+**2026-10-17 AcceleRAID 160 post-return RTEMS timer gate:**
+[Exact source](accele160/residentclock/README.md) and
+[live evidence](../artifacts/current/accele160-residentclock-20261017/README.md)
+prove an RTEMS one-shot callback at hardware tick 20 after operation 13
+returned and after host ENTER in a stock-firmware frame. HALT at tick 21 and
+finite expiry at tick 300 restored timer/vector/priority, page, stage and all
+owner records; four full flash reads and stock inventories matched. This is
+**not a resident RTEMS task**. Do not schedule arbitrary work from the ISR
+or release the grant while any task/ISR/DMA continuation could remain. Next
+establish an owned post-return task context and exact quiescence boundary.
+
+
 <!-- renderer-current -->
 **2026-10-15 fast renderer accepted in bounded low-detail card tests:** opt-in
 `game/doom/play/build.py --fast-render` selects exact two-sample spans and `-O2`

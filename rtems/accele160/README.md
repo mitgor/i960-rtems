@@ -126,3 +126,14 @@ evidence](../../artifacts/current/accele160-handoff-20261017/README.md)
 replays offline and rejects four tamper cases. This is a bare finite monitor,
 not resident RTEMS or a watchdog for permanently masked interrupts; RAM and
 DMA ownership plus task quiescence remain the next gates for services.
+
+The following [callback-free RTEMS timer gate](residentclock/README.md)
+early-initialized RTEMS 4.6.6 under the same finite lease. An RTEMS one-shot
+timer callback fired at tick 20 after the firmware call returned and after
+host ENTER. Valid HALT ended at tick 21 / 286.276 ms and no-host expiry at
+tick 300 / 3,076.707 ms. Four full same-boot flash reads, independent
+pre/post inventories and complete owner/page/stage restoration passed; the
+[exact evidence](../../artifacts/current/accele160-residentclock-20261017/README.md)
+replays with five tamper rejections. This is still **not a resident RTEMS
+task**: task multitasking never began. Task handoff and quiescence, explicit
+RAM/DMA ownership and a recovery boundary remain before network or Doom.
