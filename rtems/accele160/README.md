@@ -20,11 +20,21 @@ The exact binary and build metadata are in the acceptance artifact. The physical
 The subsequent [read-only hardware inventory](../../artifacts/current/accele160-inventory-20261017/README.md)
 passed three fixed operation-10 calls with full flash, owner and loader-page
 audits. Timer 0 was active; timer 1 had zero count/reload, no pending interrupt
-and a clear mask bit. The mode registers were intentionally not read because
+and its interrupt masked. The mode registers were intentionally not read because
 reading them clears terminal-count status. This observation does not transfer
 timer/vector/stack ownership to RTEMS.
 
-Next: qualify the new board's timer-1 mode/vector and bounded ownership,
-establish an independently controlled STOP path, then host-backed IPv4/IPv6
-and web service. Doom requires a separately owned multi-megabyte arena and
-frame transport.
+The following [operation-11 sideband gate](../../artifacts/current/accele160-stop-20261017/README.md)
+passed a real concurrent host STOP while the stock direct-command mutex was
+held. Wrong STOP remained pending; exact nonce/epoch STOP returned ACK and
+status 0 in a 21.9 ms host-observed cycle. An absent STOP returned status 2
+at the card's fixed deadline after 10.26 s. Two postboot and one post-call
+full flash reads, complete loader-page restoration and all 512 owner words
+passed. It proves a separately writable control word and bounded callback,
+not STOP of an arbitrary RTEMS task or an interrupt/DMA drain.
+
+Next: qualify the live cached vector and timer-1 mode/read-clear state,
+then test borrowed timer/interrupt ownership with an owned interrupt stack
+and this sideband STOP under complete restoration audits. Host-backed
+IPv4/IPv6 and web service follow. Doom requires a separately owned
+multi-megabyte arena and frame transport.

@@ -4451,3 +4451,34 @@ and no interrupt was pending in these three snapshots. The live PRCB pointer
 still matched the boot ROM. That narrows the next experiment, but it does not
 give us timer 1: we have not read its mode, checked the live cached vector at `0x04`,
 installed an owned interrupt stack, or proved an independent STOP channel.
+
+The parallel driver review supplied the missing stop lesson. Linux's `myrs`
+companion holds its direct-command mutex until a card callback returns. Another
+ordinary mailbox request could wait behind the very task we wanted to stop.
+The driver's own command ring publishes its first word last and drains a
+completion ring in interrupt context, useful rules for a future resident
+transport, but neither gives our one-shot callback a second command lane. We
+chose a sideband word in the saved loader page instead. The host can change
+that word through the PCI aperture while the direct command is still open;
+the card invalidates its data cache before each read.
+
+We gave the new image one more fixed opcode, preserving all ten earlier ones.
+Its record carries a magic, nonce, epoch, READY, STOP and ACK, and its poll loop
+has a fixed limit. The offline image audit found changes only in the retained
+loader cave and two checksum words. We read all 1 MiB of the existing flash,
+staged the candidate, read all of the staged image back, flashed it, and
+rebooted. Two complete reads in the new boot matched exactly. The old PG was
+unbound throughout.
+
+Then we left the card in a real pending callback. A wrong STOP value did not
+end it. The right value returned an ACK with the expected nonce and epoch, and
+the stock command completed normally; the host saw about 22 milliseconds for
+that cycle, including its own polling. In a second call we sent nothing. The
+card exhausted its 20-million-poll budget after 10.26 seconds and returned
+stock unsupported status instead of waiting forever. Both calls restored the
+saved loader page and PCI aperture; all 512 allocator owner/count records
+matched. A final complete flash read still matched, and no test companion
+remained. We now have a real independent STOP *channel* on the 100 MHz card,
+not yet a STOP supervisor for arbitrary RTEMS tasks. The live cached vector,
+timer mode, owned interrupt stack, timer drain and restoration remain the next
+hardware gates before autonomous RTEMS can borrow the clock.

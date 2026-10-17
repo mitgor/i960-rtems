@@ -1,0 +1,6 @@
+
+handler.elf:     file format elf32-i960
+
+0a9c5f9deaae6f01d943c90a065a31de377ebbcf388a28b3e73b0ba96b6192e8  handler.bin
+cfad41dfd8465f51243467234fd71ae0f658aa778ed318dc674257ff38720a59  stop_command.ko
+3392 handler.bin
