@@ -1,0 +1,7 @@
+{
+  "external_resume": "accepted",
+  "flash_reads": 4,
+  "stop_tick": 21,
+  "resume_tick": 101,
+  "terminal_tick": 300
+}

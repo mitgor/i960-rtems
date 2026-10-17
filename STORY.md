@@ -5156,9 +5156,23 @@ stopped the worker immediately after fallback completion. The first run of
 that corrected image caught a different mistake before DMA: its host harness
 expected channel 0's address from an older run, not the just-completed one.
 The card rejected the stale state, and the host retained its pin and RAM
-grant. A warm reboot cleared those allocations, but the new controller would
-not bind `myrsread`. A PCI power-management reset completed while the card
-was unbound and still did not restore binding. The [candidate and negative
-captures](artifacts/current/accele160-dma-external-resume-20261017/README.md)
-are saved. A full power cycle and fresh same-boot channel inventory are next;
-we have not called the external-resume gate accepted.
+grant. A warm reboot cleared those allocations. I thought the new controller
+would not bind `myrsread` and even tried its advertised PCI power-management
+reset. On review, I had simply omitted the driver's mandatory
+`read_bdf=0000:37:09.1` parameter. Loading it with that address bound the card
+immediately; the reset tells us nothing about a hardware fault.
+
+After a full power cycle, two complete firmware reads and a fresh channel
+inventory established the next boot's baseline. The corrected RAM image held
+its DMA chain at tick 21. The host starter saved the checkpoint and died by
+`SIGKILL`; an independent recovery process confirmed its PID was gone and
+that premature pin release returned `EBUSY`. It wrote RESUME, which the card
+consumed at tick 101, before the fallback deadline. The chain finished and
+the task reached its tick-300 expiry. Only after checking every transferred
+byte and guard, channel registers, saved owner/page/stage, interrupt stacks,
+and RTEMS shutdown did recovery release the pin and grant. Two more complete
+firmware reads matched stock, and the old card stayed unbound. The [exact
+capture and replay](artifacts/current/accele160-dma-external-resume-20261017/README.md)
+establish independent recovery of this deliberately held, finite transfer.
+They still cannot tell us how to free memory behind a PCI transaction that
+never drains.
