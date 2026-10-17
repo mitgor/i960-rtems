@@ -66,6 +66,14 @@ static struct doom_runtime_checkpoint doom_api;
 #define ENGINE_RESERVE 900000u
 #define ZONE_BYTES 6291456u
 #define FRAME_BYTES 65536u
+#ifndef DOOM_FPS_FRAMES
+#define DOOM_FPS_FRAMES 1u
+#endif
+#if DOOM_FPS_FRAMES < 1 || DOOM_FPS_FRAMES > 32
+#error DOOM_FPS_FRAMES must be in 1..32
+#endif
+#define FRAME_TIMES_OFFSET 64768u
+static unsigned int frame_ticks[DOOM_FPS_FRAMES];
 #define WAD_BUFFER_BYTES 4096u
 #define WAD_FILE_BYTES 28795076u
 #define BRIDGE_EPOCH 0x161610e1u
@@ -460,12 +468,21 @@ static int engine_mark(unsigned int stage,unsigned int x,unsigned int y,unsigned
  if(!engine_owner()||engine_stopping())return -1;
  if(stage==101u)return 1; /* no keyboard event during first-frame test */
  if(stage!=100u)return 1;
- if(first_frame_seen||x!=(unsigned int)(image_base+ENGINE_PLAY_OFFSET)||
-    y!=FRAME_BYTES||z!=1u)bounded_fatal(0x77007u);
+ if(z!=first_frame_seen+1u||z>DOOM_FPS_FRAMES||
+    x!=(unsigned int)(image_base+ENGINE_PLAY_OFFSET)||
+    y!=FRAME_BYTES)bounded_fatal(0x77007u);
+ frame_ticks[first_frame_seen]=ticks;
+ first_frame_seen=z;
+ engine_report[5]=z;
+ if(z<DOOM_FPS_FRAMES)return 1;
  for(i=0;i<FRAME_BYTES;i++)frame_base[i]=((unsigned char*)x)[i];
- first_frame_seen=1u;frame_ready=1u;
- engine_report[5]=1u;engine_report[6]=byte_fnv(frame_base,FRAME_BYTES);
- return 0; /* owned boundary exits after exactly the first real frame */
+#if DOOM_FPS_FRAMES > 1
+ for(i=0;i<DOOM_FPS_FRAMES;i++)
+  ((unsigned int*)(frame_base+FRAME_TIMES_OFFSET))[i]=frame_ticks[i];
+#endif
+ frame_ready=1u;
+ engine_report[6]=byte_fnv(frame_base,FRAME_BYTES);
+ return 0; /* owned boundary exits after the bounded final frame */
 }
 static void engine_api_bind(void){unsigned int i;
  static const unsigned int wad_sha[8]={0xc1bc2373u,0x5fa4c568u,0xb34907f1u,
@@ -514,8 +531,8 @@ static unsigned int engine_first_frame(unsigned int *value){
   bounded_fatal(0x77008u);
  for(i=4u;i<ARENA_SLOTS;i++)if(doom_arena.slot[i].span)
   bounded_fatal(0x77009u);
- if(ret!=0x454e4702u||!first_frame_seen||r[0]!=0x454e4750u||
-    r[1]!=2u||r[2]!=ZONE_BYTES||r[5]!=1u||r[9]!=2u||
+ if(ret!=0x454e4702u||first_frame_seen!=DOOM_FPS_FRAMES||r[0]!=0x454e4750u||
+    r[1]!=2u||r[2]!=ZONE_BYTES||r[5]!=DOOM_FPS_FRAMES||r[9]!=2u||
     r[10]!=1u||r[11]!=210u)bounded_fatal(0x7700au);
  return 0u;
 }

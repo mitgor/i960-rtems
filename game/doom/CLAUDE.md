@@ -979,3 +979,14 @@ Finite host repeatability is not i960 correctness or all-WAD compatibility.
 
 Do not touch the parallel RTEMS files, card owner or public service during host
 work. Preserve all existing physical memory/ownership audits for target testing.
+
+**New AcceleRAID 160 FPS work (2026-10-17):** the accepted first-frame engine
+is now exercised by a separate bounded 32-frame RTEMS kernel in
+`rtems/accele160/doom_first_frame`. It measures card presentation intervals,
+not browser FPS. The first attempt stalled during WAD startup after 1,301
+native-oracle-matching requests and yielded no FPS. Do not report the 123.54 s
+first-frame startup as FPS or transfer latency. See that subproject's README
+and `artifacts/current/accele160-doom-fps-20261017/README.md` before another
+card test. The first successful measurement is an unchanged-engine baseline;
+`--fast-render --fast-columns`, direct frame and no play-mode FNV still need
+a separate exact new-card build and matched test. Keep quality reductions off.

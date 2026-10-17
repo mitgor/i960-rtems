@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run retained RTEMS Doom admission and one bounded real first frame."""
+"""Run retained RTEMS Doom admission and a bounded real-frame test."""
 import argparse,fcntl,hashlib,json,mmap,struct,subprocess,sys,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
@@ -22,18 +22,39 @@ def main():
               'admit_module','handler','firmware','kernel','image',
               'readback0','readback1','template','relocations','wad','out'):
         p.add_argument('--'+n.replace('_','-'),type=Path,required=True)
+    p.add_argument('--frames',type=int,choices=(1,32),default=1)
+    p.add_argument('--fps-manifest',type=Path)
+    p.add_argument('--startup-oracle',type=Path)
     a=p.parse_args()
+    if a.frames==32:
+        need(a.fps_manifest is not None and a.startup_oracle is not None,
+             'FPS manifest and native startup oracle required')
+        fps_manifest=json.loads(a.fps_manifest.read_text())
+        need(fps_manifest['frames']==32 and
+             fps_manifest['source_sha256']==sha(Path(__file__).with_name('app.c').read_bytes()),
+             'FPS source/manifest identity')
+        kernel_sha=fps_manifest['kernel_sha256']
+        image_sha=fps_manifest['image_sha256']
+        image_fnv=int(fps_manifest['image_fnv'],16)
+        oracle_data=a.startup_oracle.read_bytes()
+        need(len(oracle_data)==5043*8,'native startup oracle geometry')
+        startup_oracle=list(struct.iter_unpack('<II',oracle_data))
+    else:
+        need(a.fps_manifest is None and a.startup_oracle is None,
+             'first-frame run must omit FPS inputs')
+        kernel_sha=KERNEL;image_sha=IMAGE;image_fnv=EXPECTED_FNV
+        startup_oracle=None
     lock=open('/run/lock/i960-loadrun.lock','w')
     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     for n,want in [('handler',HANDLER),('firmware',FIRMWARE),
-                   ('kernel',KERNEL),('image',IMAGE)]:
+                   ('kernel',kernel_sha),('image',image_sha)]:
         need(sha(getattr(a,n).read_bytes())==want,f'{n} identity')
     payload=a.image.read_bytes()
     need(len(payload)==PAGES*PAGE and
          payload[:20*PAGE]==a.kernel.read_bytes()[:20*PAGE] and
          payload[20*PAGE:]==b'\xa5'*(7*PAGE),'RTEMS image/stack layout')
     digest=fnv(payload)
-    need(digest==EXPECTED_FNV,'whole-image FNV')
+    need(digest==image_fnv,'whole-image FNV')
     for n,want in MODULES.items():
         path=getattr(a,n+'_module')
         debug='ram-admit' if n=='admit' else n
@@ -52,7 +73,7 @@ def main():
     a.out.mkdir(parents=True,exist_ok=False)
     save(a.out/'preflight.json',dict(boot_id=boot,card=card,old=old,
          firmware_sha256=FIRMWARE,handler_sha256=HANDLER,
-         image_sha256=IMAGE,kernel_sha256=KERNEL,
+         image_sha256=image_sha,kernel_sha256=kernel_sha,
          fnv=f'0x{digest:08x}',modules=MODULES))
     cfg=(DEVICE/'config').open('r+b',buffering=0)
     res=(DEVICE/'resource0').open('r+b',buffering=0)
@@ -385,6 +406,9 @@ def main():
                      0<n<=PAGE and off+n<=len(wad),
                      'bounded engine WAD request')
                 part=wad[off:off+n]
+                if startup_oracle is not None and len(engine_reads)<len(startup_oracle):
+                    need((off,n)==startup_oracle[len(engine_reads)],
+                         f'native startup WAD request {len(engine_reads)+1}')
                 write(0xc078a000,0,part)
                 write(0xc000e000,0xc14,struct.pack('<4I',off,n,fnv(part),0))
                 write(0xc000e000,0xc10,struct.pack('<I',req[0]))
@@ -425,16 +449,19 @@ def main():
             time.sleep(.002)
         else:raise RuntimeError('bounded first-frame host deadline')
         save(run/'engine-reads.json',engine_reads)
+        if startup_oracle is not None:
+            need(len(engine_reads)>=len(startup_oracle),
+                 'native startup WAD request count')
         (run/'engine-ack-page.bin').write_bytes(page)
         receipts.append(dict(seq=engine_seq,op=7,offset=0,n=0,
                              status=words[9],value=words[10]))
         result_words=struct.unpack_from('<12I',page,0xc80)
         need(words[9:11]==(0,0x454e4702) and er[0:2]==
-             (0x314d5246,2) and er[4:6]==(0x454e4702,1) and
+             (0x314d5246,2) and er[4:6]==(0x454e4702,a.frames) and
              er[9:11]==(0,1) and er[11]==er[12] and
              result_words[0:3]==(0x454e4750,2,6291456) and
-             result_words[5]==1 and result_words[9:12]==(2,1,210),
-             'bounded real Doom first-frame return/cleanup')
+             result_words[5]==a.frames and result_words[9:12]==(2,1,210),
+             'bounded real Doom frame return/cleanup')
         game_pages=[]
         for index in range(16):
             got=transact(3,index,bytes(PAGE))
@@ -447,6 +474,19 @@ def main():
              (not result_words[3] or fnv(game_frame[:64000])==result_words[3]) and
              (not result_words[4] or fnv(game_frame[64000:64768])==result_words[4]),
              'complete real Doom frame and palette')
+        frame_timing=None
+        if a.frames>1:
+            frame_ticks=struct.unpack_from('<'+str(a.frames)+'I',game_frame,64768)
+            need(all(frame_ticks[i]>=frame_ticks[i-1] for i in range(1,a.frames)) and
+                 frame_ticks[-1]>frame_ticks[0], 'monotonic card frame timer')
+            elapsed_ticks=frame_ticks[-1]-frame_ticks[0]
+            frame_timing=dict(frames=a.frames,timer_hz=100,
+                              first_tick=frame_ticks[0],last_tick=frame_ticks[-1],
+                              elapsed_ticks=elapsed_ticks,
+                              render_fps=(a.frames-1)*100/elapsed_ticks,
+                              interframe_ticks=[frame_ticks[i]-frame_ticks[i-1]
+                                                for i in range(1,a.frames)])
+            save(run/'frame-timing.json',frame_timing)
         (run/'game-frame.bin').write_bytes(game_frame)
         (run/'game-frame.pgm').write_bytes(
             b'P5\n320 200\n255\n'+game_frame[:64000])
@@ -483,8 +523,8 @@ def main():
         final_bridge=struct.unpack_from('<20I',page,0xb80)
         need(final_bridge[18:20]==(38+len(engine_reads),4),
              'WAD success/rejection counters')
-        save(a.out/'result.json',dict(boot_id=boot,image_sha256=IMAGE,
-            kernel_sha256=KERNEL,firmware_sha256=FIRMWARE,
+        save(a.out/'result.json',dict(boot_id=boot,image_sha256=image_sha,
+            kernel_sha256=kernel_sha,firmware_sha256=FIRMWARE,
             full_audits_before=True,bank_report=[f'0x{x:08x}' for x in bank],
             claim_report=[f'0x{x:08x}' for x in state],
             bridge_report=[f'0x{x:08x}' for x in struct.unpack_from('<20I',page,0xb80)],
@@ -496,12 +536,13 @@ def main():
             engine_elapsed_seconds=time.monotonic()-began_engine,
             game_frame_sha256=sha(game_frame),
             game_frame_fnv=f'0x{fnv(game_frame):08x}',
+            frame_timing=frame_timing,
             engine_report=[f'0x{x:08x}' for x in er],
             engine_results=[f'0x{x:08x}' for x in result_words],
             heartbeat_before=first,heartbeat_after=heart[4],
             release='reboot-only',grant_retained=True,
             card=select(BDF,'accele160'),old=select(OLD,'dac960pg')))
-        print('Real Doom first frame captured; WAD, cleanup and STOP passed')
+        print(f'Real Doom {a.frames}-frame run captured; WAD, cleanup and STOP passed')
     finally:
         translate(original);bar.close();res.close();cfg.close()
 

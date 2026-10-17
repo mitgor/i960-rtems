@@ -59,3 +59,34 @@ without updating and reviewing those gates. No firmware write is issued.
 
 Next: add bounded repeated frames, input and host presentation. Keep the same native
 WAD request oracle, ownership/arena/frame audits, and reset-only release.
+
+## Bounded render-FPS gate (2026-10-17, in progress)
+
+`DOOM_FPS_FRAMES=32 build.sh ...` produces a separate RTEMS image that lets the
+same admitted Doom engine present exactly 32 frames. The card records its 100 Hz
+timer at each `stage=100` boundary and exits through the existing owned 210
+cleanup on frame 32. The final 65,536-byte frame contains the 32 timestamp
+words at byte offset 64,768, outside its 320×200 pixels and 768-byte palette.
+The host checks each 4 KiB readback page, the final pixel/palette hashes,
+monotonic timestamps, engine cleanup, arena guards, full bank/ownership audit,
+STOP and old-card isolation. FPS is `(31 * 100) / (tick[31] - tick[0])`;
+the preceding WAD startup is excluded. This is **card-side frame-boundary FPS**,
+not browser delivery FPS. The one-frame default remains available.
+
+The exact 32-frame build hashes are pinned in `fps-32-manifest.json`. On the
+test PC, `run_fps32.sh PROJECT_ROOT BUILD_DIR NEW_OUTPUT_DIR` supplies only the
+accepted module, handler, WAD and engine paths. It requires two guarded 1 MiB
+same-boot flash reads before touching the card. A retained test module and
+grant are released only by whole-PC reset; never unload them after an uncertain
+run. The first 32-frame attempt stalled during startup after 1,301 WAD reads,
+before any frame timing. The 120-second idle timeout saved the page and
+published STOP. The PC did not return over SSH after `reboot -f`; a physical
+power cycle and fresh-boot inventory/readbacks are needed before a retry.
+
+This gate deliberately uses the same pinned Doom engine as the accepted first
+frame, to isolate the multi-frame change. Its first successful FPS number will
+be a baseline without per-frame host collection; WAD service may still run.
+Building the qualified exact renderer options
+(`--fast-render --fast-columns`, bounded FixedDiv, direct frame, no play-mode
+FNV) and a delivery-FPS test remain separate follow-ups. Quality-reducing
+flat planes, half height and low detail stay off for the normal-quality run.

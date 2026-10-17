@@ -5368,3 +5368,15 @@ firmware callback remained pinned. From engine entry to that frame took
 measurement. We saved the exact image, native request sequence, frame,
 control reports and a viewable PNG. After resetting the retained session, the new boot showed an idle stock descriptor and the old card still unbound. Two complete guarded flash reads matched the same firmware, closing this first-frame acceptance. Continuous frames, input and browser play on this 100 MHz card
 are the next boundary.
+
+We next built a finite frame-rate gate around that same engine. It keeps
+running for thirty-two frames and records the card's own timer at every
+presentation, so loading the WAD cannot inflate or depress the eventual FPS
+number. The first physical run never reached the first of those frames. It
+served 1,301 WAD reads, all matching the beginning of the native request
+trace, and then went quiet for the bounded 120-second idle period. The host
+saved the state and published STOP, leaving the callback pinned until reset.
+Linux returned after the reset, but the AcceleRAID would not bind again
+without a cold power cycle. We have an exact build and a reproducible
+measurement route, but **no new-card FPS figure yet**. The earlier startup
+stall remains a reliability problem to understand alongside the benchmark.
