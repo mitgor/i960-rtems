@@ -1,0 +1,34 @@
+{
+  "window": [
+    12,
+    31
+  ],
+  "pixel_palette_exact": true,
+  "phase_ms": {
+    "renderer": {
+      "baseline_mean": 48,
+      "candidate_mean": 48.5
+    },
+    "bsp_walls": {
+      "baseline_mean": 27.5,
+      "candidate_mean": 27.5
+    },
+    "planes": {
+      "baseline_mean": 14.5,
+      "candidate_mean": 15
+    },
+    "masked": {
+      "baseline_mean": 6,
+      "candidate_mean": 6
+    },
+    "presentation_copy": {
+      "baseline_mean": 6.5,
+      "candidate_mean": 7
+    }
+  },
+  "card_fps": {
+    "baseline": 16.964285714285715,
+    "candidate": 16.964285714285715,
+    "percent_change": 0.0
+  }
+}

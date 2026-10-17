@@ -1,3 +1,15 @@
+**Cached Doom wall-copy candidate — 2026-10-18:**
+`build.py --fast-clip-copy` is an opt-in replacement of the two
+`R_StoreWallRange` clip-array `memcpy` calls with the exact-count helper in
+`clip_copy/copy.h`. The native ASan/UBSan count/alignment sweep and 40-frame
+deterministic native play pass. On the new card, 32 pixel/palette blocks match
+the accepted cached build with full audits and STOP. Frames 12–31 stayed
+**16.964 card FPS**, BSP/walls **27.5 ms**. Keep it off by default; the
+[experiment archive and replayers](../../artifacts/current/clip-copy-20261018/README.md)
+document the checks. The next likely wins are texture/column locality or the
+measured 6.5 ms internal presentation copy, with exact pixels and all gates.
+
+
 **CPU-to-SDRAM path (2026-10-18):**
 [Replay and throughput calculation](../../artifacts/current/cpu-sdram-20261018/README.md)
 use the accepted on-card volatile CPU loops: new cached-map 64 KiB reads

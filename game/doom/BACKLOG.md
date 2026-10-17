@@ -27,8 +27,13 @@ is a bounded matched-engine result, not proof of a clock-frequency ratio.
    Preserve host-control/WAD invalidations; do not globally cache all memory
    or change SDRAM timing.
 3. **N3 — New-core-aware renderer kernels and compiler choices.** Re-profile
-   BSP/walls, planes and sprites under the new cache map (the earlier
-   52/25/14.5 ms split was measured with the arena uncached). Compare
+   BSP/walls, planes and sprites under the new cache map. The accepted
+   [cached-map replay](../../artifacts/current/clip-copy-20261018/README.md)
+   measures 27.5/14.5/6.0 ms respectively, versus 52/25/14.5 ms uncached.
+   A narrowly specialized halfword wall clip-copy passed 32 exact-pixel card
+   frames, full audits and STOP, but left BSP/walls at 27.5 ms and card FPS
+   at 16.964; keep `--fast-clip-copy` opt-in. Profile texture/column locality
+   and generated instructions before another kernel change. Compare
    exact pixels and inspect generated i960 instructions; nominal 100 MHz alone
    does not establish actual frequency, cacheability or memory bandwidth.
    [CPU-to-SDRAM loop measurements](../../artifacts/current/cpu-sdram-20261018/README.md)
@@ -37,7 +42,7 @@ is a bounded matched-engine result, not proof of a clock-frequency ratio.
    stock mapping; target hot-set locality and repeated reads, not a conjectured
    DMA limit. These are application-loop rates, not peak bus bandwidth.
 4. **N4 — Re-measure and eliminate the remaining internal presentation copy.**
-   The earlier ~6.5 ms estimate predates cached private RAM. Render into a
+   The cached private-RAM baseline still measures 6.5 ms/frame. Render into a
    safely owned persistent/leased destination if Doom semantics permit.
 5. **N5 — Optional flat-color planes and runtime quality controls.** Keep normal
    rendering available; previous FPS estimates are obsolete under the cached

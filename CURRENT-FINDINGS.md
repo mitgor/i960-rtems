@@ -1,3 +1,18 @@
+## Cached Doom clip-copy experiment — 2026-10-18
+
+[The exact candidate and comparison](artifacts/current/clip-copy-20261018/README.md)
+re-profile the accepted cached build at 48.0 ms renderer wall per frame:
+27.5 ms BSP/walls, 14.5 ms planes and 6.0 ms masked drawing (frames 12–31).
+The optional exact-count halfword replacement for two wall clipping copies
+passed native sanitizers and deterministic play, and all 32 card frames matched
+the cached baseline pixel/palette bytes. Full frame, native WAD, PIO, HTTP,
+ownership, stalled-host and STOP checks passed. BSP/walls remained 27.5 ms
+and card FPS remained **16.964** in the matched steady window. Keep the
+candidate off by default; investigate texture/column locality and the
+separately measured 6.5 ms presentation copy. Post-reset flash audit status
+is recorded in the experiment README.
+
+
 ## CPU-to-SDRAM application-loop throughput — 2026-10-18
 
 [The matched physical CPU-loop analysis](artifacts/current/cpu-sdram-20261018/README.md)

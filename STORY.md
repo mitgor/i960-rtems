@@ -5627,3 +5627,22 @@ The short hot-read loop improved sharply with caching. This was a CPU workload
 measurement with loop instructions and RTEMS interrupts included, not a claim
 about raw SDRAM or DMA bus bandwidth. It shifted our next renderer question
 toward data locality and repeated large reads rather than PCI transfer speed.
+
+We then replayed the cached-map frame captures to separate the remaining
+renderer work. In the steady 20-frame window, BSP traversal and walls took
+27.5 ms, planes 14.5 ms, and masked drawing 6.0 ms on average. The earlier
+uncached run had spent 52, 25, and 14.5 ms in those stages. The internal
+presentation copy still took about 6.5 ms. This made the wall clipping copies
+a small, testable candidate: two calls into the general-purpose `memcpy` were
+replaced in an opt-in build by a bounded halfword loop.
+
+The candidate passed native sanitizer and interactive tests, then ran 32
+direct-DMA frames on the new card. Every captured frame matched the accepted
+cached build's pixels and palette, and the WAD, HTTP, ownership, stalled-host,
+STOP and full pre-reset audits passed. It did not make the game faster:
+BSP/walls remained 27.5 ms and both builds measured 16.964 card FPS in the
+same steady window. We left the helper opt-in. The result points us toward
+texture and column access patterns, or the separately measured presentation
+copy, instead of more work on these two small clip-array copies. The exact
+capture and post-reset status are indexed in
+[the experiment](artifacts/current/clip-copy-20261018/README.md).

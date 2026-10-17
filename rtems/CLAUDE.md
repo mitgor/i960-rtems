@@ -1,3 +1,13 @@
+**Cached Doom renderer experiment — 2026-10-18:**
+[Exact evidence](../artifacts/current/clip-copy-20261018/README.md) shows
+48.0 ms cached renderer wall: 27.5 BSP/walls, 14.5 planes, 6.0 masked.
+An opt-in exact-count wall clip-array copy passed native and 32-frame physical
+audits (including ownership, DMA guards, stalled host and STOP) with identical
+pixels, but did not improve the 16.964 card-FPS steady window. Keep the
+private cache map default only for exclusive Doom and preserve all WAD/control
+invalidations and ownership audits while profiling texture access next.
+
+
 **CPU-to-SDRAM measurement — 2026-10-18:**
 [Accepted card-capture analysis](../artifacts/current/cpu-sdram-20261018/README.md)
 reports new-card cached 64 KiB CPU-read/copy/clear loop rates of

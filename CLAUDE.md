@@ -1,3 +1,13 @@
+**Cached Doom N3 experiment — 2026-10-18:**
+[Clip-copy evidence](artifacts/current/clip-copy-20261018/README.md) shows
+cached BSP/walls 27.5 ms, planes 14.5 ms and masked drawing 6.0 ms in the
+20-frame steady window. Optional `game/doom/build.py --fast-clip-copy` changes
+only the two wall clip-array copies. Native checks and 32 exact-pixel card
+frames with full ownership/system/frame/WAD/STOP audits passed, but FPS stayed
+16.964 and BSP/walls stayed 27.5 ms. Do not make it default or claim a gain.
+Next measure texture/column locality and the 6.5 ms presentation copy.
+
+
 **CPU-to-SDRAM measurement — 2026-10-18:**
 [Full physical-capture replay and method](artifacts/current/cpu-sdram-20261018/README.md)
 give new-card cached-map CPU-loop rates of 7.08 MiB/s for repeated 64 KiB

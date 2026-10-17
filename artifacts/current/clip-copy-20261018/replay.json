@@ -1,0 +1,41 @@
+{
+  "card_fnv_mode": "off",
+  "frames": 32,
+  "paired_pio": 4,
+  "native_wad_requests": 5043,
+  "total_wad_requests": 5045,
+  "tamper_rejections": 18,
+  "identical_old_pixels_palette": true,
+  "post_reset_flash_audits": true,
+  "inclusive_card_fps": 6.418219461697722,
+  "steady_frames": [
+    12,
+    31
+  ],
+  "steady_card_fps": 16.964285714285715,
+  "steady_http_observer_fps": 16.855212339441206,
+  "observed_to_http_ms": {
+    "count": 20,
+    "mean": 2.1371661,
+    "min": 1.915283,
+    "p50": 1.9356740000000001,
+    "p95": 3.051362,
+    "max": 3.173611
+  },
+  "renderer_wall_ms": {
+    "count": 20,
+    "mean": 48.5,
+    "min": 40,
+    "p50": 50.0,
+    "p95": 50,
+    "max": 60
+  },
+  "renderer_sampled_cpu_ms": {
+    "count": 20,
+    "mean": 47.5,
+    "min": 40,
+    "p50": 50.0,
+    "p95": 50,
+    "max": 50
+  }
+}
