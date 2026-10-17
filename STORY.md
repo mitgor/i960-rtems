@@ -5269,3 +5269,31 @@ tick 6 to 262, and sent STOP. RTEMS drained into a quiet state, but it did
 not return through firmware or give back its RAM grant. Only resetting the
 card can release that ownership. The post-reset flash and fresh-boot check passed after the PC was power cycled: two complete guarded reads matched the same firmware. This is not Doom running on the new card, but the memory and
 ownership experiment it needed has finally been run on real hardware.
+
+The next boot gave us a surprise before Doom could move in. The old RTEMS
+pattern was still visible in nearly all the upper RAM: 1,022 of the 1,024
+host-readable odd pages matched it exactly. But the first pages had changed.
+Our zero-only preflight stopped before issuing a card command. We treated
+that refusal as evidence, not as a reason to weaken the guard. The revised
+RTEMS image saved the first sixteen pages and two diagnostic pages inside
+its owned grant, demanded the exact old pattern everywhere else, and repeated
+the full marker, alias, fill, read and restore test over all 2,048 pages.
+Only after that passed did it take reboot-only ownership again. The Doom
+allocator lives away from the stock-touched ends of the bank.
+
+This time we crossed the next boundary. The host sent the exact Doom image
+in 212 checked pieces. The card checked its hashes, zero-filled BSS and
+13,368 relocation sites, then relocated it into its guarded allocation.
+We deliberately asked for admission too early first, and it refused. We
+also sent a changed WAD header and saw it refuse before the exact Freedoom
+header passed. The card then generated a diagnostic 320-by-200 picture from
+those WAD bytes and sent it back in sixteen pages; every byte matched the
+host's independent calculation. STOP drained the RTEMS workers and timer,
+while the stock callback and grant stayed pinned as designed. The old card
+was never bound or touched. We have an image in memory and a working two-way
+transport, but we have not called Doom's entry point or rendered a game frame.
+The next bridge needs Doom's runtime ABI and a service for the full WAD.
+After reset, the PC returned on a new boot. The old card was still unbound,
+the new card's stock descriptor was idle, and two complete guarded flash
+reads matched the same firmware. The admission and transport experiment was
+therefore contained in RAM; it did not alter the card's persistent image.

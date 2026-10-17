@@ -1,5 +1,24 @@
 # Current findings — 2026-10-17
 
+**AcceleRAID 160 Doom bridge physically passed; Doom execution is next:**
+[Exact code, build and capture](artifacts/current/accele160-doom-bridge-20261017/README.md)
+show guarded 900,000-byte image, 6 MiB zone and 64 KiB frame allocations in
+the exclusive upper bank. The card admitted and relocated the exact
+867,792-byte Doom image after 212 sequenced upload chunks, rejected premature
+admission, rejected a changed Freedoom WAD header, accepted the exact header,
+and served a 65,536-byte deterministic diagnostic frame in 16 checked pages.
+All 2,048 bank pages passed the reversible pre-claim audit; guards, retained
+ownership and STOP at tick 7,380 passed. The old card stayed unbound. The
+first pages of upper RAM had changed on fresh boot while 1,022 odd pages
+retained the old pattern; the new preflight preserves those stock-touched
+pages and requires the remaining pages to match exactly. This is **not** a
+Doom frame or Doom entry execution. After reset, new boot
+`994bfdd8-8664-4516-86a8-36d6555d6a78` had an idle descriptor, default
+PIATVR and old card unbound; two guarded complete flash reads matched the
+unchanged firmware. Next build
+the new-card Doom runtime ABI and a full-WAD service, then invoke a bounded
+engine entry and validate its first real frame.
+
 **AcceleRAID 160 8 MiB upper bank and reboot-only prototype (2026-10-17):** [Exact physical evidence](artifacts/current/accele160-fullbank-20261017/README.md) now supersedes the earlier read-only rejection. A card-side full word census found only two populated 4 KiB pages (`c0ffa000`, `c0ffe000`, 53 nonzero words) in `c0800000..c0ffffff`; all 1,024 odd pages were zero. After saving those two pages into an owned grant, two returning STOP/timeout tests simultaneously marked all 2,048 pages, checked lower-bank alias guards, filled/read/restored every word of each page, and restored stock state. Four guarded complete post-test flash reads matched the firmware. A separate image then claimed all 8 MiB and kept operation 13 pending: the host checked every odd page byte for byte, observed timer heartbeat 6→262, and sent STOP. RTEMS entered quiescence while the command remained pending, establishing the intended reboot-only lifetime. **Post-reset acceptance passed after a fresh power cycle:** new boot ID `a11703ca-57d6-4fc9-bc69-ed0581332d78`, no retained module, default PIATVR, idle descriptor, old card unbound, and two guarded complete flash reads matching the exact firmware. Doom itself has not run on this board. [Implementation boundary](rtems/accele160/ARENA.md).
 
 

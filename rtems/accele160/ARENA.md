@@ -37,13 +37,22 @@ record the progression:
    callback did not return. A whole-card reset is required; ordinary module
    unload, allocator release, or stock commands are unsafe in that state.
 
-The persistent prototype establishes the lifetime model and memory extent,
-but it is not Doom yet. RTEMS still needs an allocator and image layout for
-the 8 MiB application arena, plus a pinned WAD/frame transport that does not
-depend on the stock direct-command mailbox while operation 13 is pending.
-The prototype uses an exact one-shot host harness and a single fixed image;
-it does not provide a general image admission service, independent watchdog,
-or safe DMA cancellation for a permanently stalled transaction.
+The [Doom bridge test](../../artifacts/current/accele160-doom-bridge-20261017/README.md)
+adds a guarded allocator in `c0810000..c0feffff`, exact image relocation
+and admission, a sequenced PCI sideband, a checked WAD-header input and a
+64 KiB diagnostic framebuffer output. It still does **not** execute Doom
+or transfer the full WAD. The prior bank pattern remained after the earlier
+reset, while stock firmware changed the first upper pages. The bridge's
+card-side preflight therefore saves the first 16 pages and both diagnostic
+pages, and requires every other page to match the exact known pattern before
+writing. The full-bank reversible/alias checks then pass before permanent
+claim. Do not generalize this preimage rule to a different card or boot.
+
+The bridge remains a fixed one-shot image with no general runtime ABI,
+independent watchdog, or safe DMA cancellation for a permanently stalled
+transaction. Its host transfer is BAR0 page exchange, not card DMA. The
+accepted operation-13 command and grant remain pinned through STOP until
+reset; the old card stays unbound.
 
 Rebuild a source tree on the pinned remote GCC 3.3.6/i960 toolchain with
 `build.sh RTEMS_BUILD_DIR TOOLCHAIN_BIN OUT_DIR`. Each host runner pins image,

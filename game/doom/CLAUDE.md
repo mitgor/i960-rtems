@@ -1,3 +1,15 @@
+## AcceleRAID 160 Doom bridge — 2026-10-17
+
+[The new-card physical capture](../../artifacts/current/accele160-doom-bridge-20261017/README.md)
+accepts guarded image/6 MiB zone/64 KiB frame allocations, exact 867,792-byte
+Doom image admission and relocation, a checked Freedoom header input and a
+complete diagnostic framebuffer round trip. It does **not** execute Doom,
+transfer the full WAD or prove gameplay FPS. RTEMS holds the operation-13
+callback until reset. After reset, two full guarded flash reads match stock;
+the old DAC960PG remains unbound. The next porting gate is the new card's
+runtime ABI, full-WAD service and bounded real engine entry. Preserve the
+exact bank preimage/alias checks and whole-card reset release boundary.
+
 <!-- flat-planes-current -->
 
 ## Current two-card mapping — 2026-10-16

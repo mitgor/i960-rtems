@@ -1,5 +1,16 @@
 # DoomGeneric RAM request for RTEMS
 
+**New-card bridge update (2026-10-17):** The [physical AcceleRAID 160
+capture](../../artifacts/current/accele160-doom-bridge-20261017/README.md)
+pins a 900,000-byte image allocation, a contiguous 6 MiB zone candidate and
+a 65,536-byte frame in a guarded arena of `c0810000..c0feffff`. All handles
+and guards passed while RTEMS retained exclusive operation-13 ownership.
+The exact 867,792-byte Doom image passed SHA-256, BSS and 13,368 relocation
+checks and was relocated, but its entry was **not called**. A checked
+Freedoom WAD header and a diagnostic framebuffer made a full host→card and
+card→host round trip. Full WAD service, Doom ABI and actual rendering on this
+board remain open. The earlier read-only rejection below is historical.
+
 **AcceleRAID 160 upper-bank update (2026-10-17):** The [full-bank physical proof](../../artifacts/current/accele160-fullbank-20261017/README.md) supersedes the earlier read-only arena rejection below. The distinct 8 MiB `c0800000..c0ffffff` extent passed simultaneous markers and per-page full-pattern restore while stock was paused. A reboot-only RTEMS prototype then claimed the entire extent, kept the stock callback pending, passed 1,024 host-readable page checks and timer heartbeat, and quiesced on STOP. Post-reset guarded full-flash reads passed after a fresh power cycle. Doom's arena allocator, WAD service and framebuffer transport are not yet integrated on the new board. Reset is the only release after claim. [Safety boundary](../../rtems/accele160/ARENA.md).
 
 

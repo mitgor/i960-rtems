@@ -1,0 +1,7 @@
+{
+  "boot_id": "a11703ca-57d6-4fc9-bc69-ed0581332d78",
+  "survey": "1024 odd pages read via BAR0 before Doom bridge; 1022 matched exact prior 8 MiB pattern, page 1 was zero, page 3 differed",
+  "all_odd_sha256": "7e9c3452c9d37b5bf1ade6d0ac11eba042228354e337c0ad6b203743d0696d88",
+  "page3_sha256": "35d87aea98f48425cd5feac4ce72761c7ffdac616aeb7e64bd5f13e0e74a078b",
+  "gate": "initial zero-only host preflight rejected before any command or upper-memory write"
+}

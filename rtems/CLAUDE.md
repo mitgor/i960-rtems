@@ -1,5 +1,18 @@
 # RTEMS working guidance
 
+**AcceleRAID 160 Doom bridge (2026-10-17):** [Exact physical
+evidence](../artifacts/current/accele160-doom-bridge-20261017/README.md)
+shows a retained operation-13 RTEMS image allocating a guarded Doom image,
+6 MiB zone and 64 KiB frame in the upper bank. It admitted/relocated the
+867,792-byte image, exchanged an exact Freedoom WAD header and a checked
+diagnostic framebuffer over sequenced PCI sideband, then drained on STOP.
+This is not Doom execution or DMA. The old card stayed unbound. The new
+preflight recognizes the exact retained prior-bank pattern while preserving
+stock-touched first/last pages. Its full 2,048-page reversible audit is a
+required claim gate. Never release a pending module/grant before card reset;
+post-reset flash acceptance passed with two complete guarded reads on a new
+boot and an idle descriptor.
+
 **AcceleRAID upper-bank update (2026-10-17):** [Exact capture](../artifacts/current/accele160-fullbank-20261017/README.md) shows a complete 2,048-page distinctness/pattern/restore proof for `c0800000..c0ffffff` on STOP and timeout. A separate RTEMS image claimed all 8 MiB, advanced an independent timer heartbeat while stock operation 13 stayed pending, and entered quiescence on STOP without returning. Reset-only release and two firmware-populated diagnostic pages are documented in [ARENA.md](accele160/ARENA.md). Post-reset guarded full-flash reads passed after a fresh power cycle; new-board Doom allocator, transport and play are still open. Earlier text below describes superseded finite gates.
 
 

@@ -1,3 +1,17 @@
+**2026-10-17 AcceleRAID Doom bridge:** [Physical capture and exact
+limits](artifacts/current/accele160-doom-bridge-20261017/README.md) prove a
+guarded 900,000-byte engine allocation, contiguous 6 MiB zone candidate,
+65,536-byte frame, exact 867,792-byte image admission and relocation, WAD
+header input, diagnostic-frame output and retained STOP on the new card.
+The bridge is a one-shot, reboot-only operation-13 session; no Doom entry
+was called and no full WAD was moved. Upper DRAM retains prior patterns
+across boot and stock rewrote its first pages. Preserve the exact card-side
+preimage/alias audit and exclude `c0800000..c080ffff` and
+`c0ff0000..c0ffffff` from the arena. Do not unload a retained module or
+free its grant. Post-reset acceptance passed on boot
+`994bfdd8-8664-4516-86a8-36d6555d6a78` with two matching complete guarded
+flash reads and an idle stock descriptor.
+
 **2026-10-17 AcceleRAID full-bank/reboot-only update:** [The physical capture](artifacts/current/accele160-fullbank-20261017/README.md) proves distinct, writable `c0800000..c0ffffff` under a held exclusive operation-13 callback. Two firmware-populated pages were saved/restored during the finite proof. The reboot-only image then patterned the entire 8 MiB, kept the stock callback pending, passed all 1,024 host-readable odd-page checks, timer heartbeat and quiescent STOP. A reset is the only release; post-reset flash/cold-boot acceptance passed after a fresh power cycle. Do not unload its pending module, free its grant, use stock commands while retained, or assume Doom's new-board allocator/transport exists. Read [the arena contract](rtems/accele160/ARENA.md) before new work. Older read-only rejection text below is historical.
 
 **2026-10-17 AcceleRAID finite exclusive timer gate:** [Combined two-page RTEMS test](artifacts/current/accele160-exclusive-timer-20261017/README.md) passed with stock CPU path paused, all three DMA channels idle, two patterned pages held during timer-driven preemption, exact STOP/120-tick timeout, full page/context/owner/loader/stage restoration, four complete guarded flash reads, replay and tamper rejection. [Earlier upper-page](artifacts/current/accele160-exclusive-probe-20261017/README.md) and [occupied stock-page](artifacts/current/accele160-occupied-probe-20261017/README.md) reversible probes also passed. All three images **return to stock firmware**. The [read-only survey](artifacts/current/accele160-doom-arena-20261017/README.md) still rejects an **8 MiB** upper-bank arena: selected-page round trips are not full-bank alias freedom or persistent ownership. Do not upload Doom or treat stock-occupied RAM as permanently reclaimed until the [reboot-only exclusive contract](rtems/accele160/EXCLUSIVE-MODE.md) is implemented and physically accepted. Largest stock free run: 1,540,096 bytes.
