@@ -1,0 +1,35 @@
+{
+  "stock_sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "runtime_sha256": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
+  "loader": {
+    "timer1_reload_candidate": [],
+    "timer1_count_candidate": [],
+    "timer1_mode_candidate": [],
+    "interrupt_pending_candidate": [],
+    "interrupt_mask_candidate": [],
+    "interrupt_config_candidate": [],
+    "interrupt_map2_candidate": []
+  },
+  "runtime": {
+    "timer1_reload_candidate": [],
+    "timer1_count_candidate": [
+      "0xc007df60"
+    ],
+    "timer1_mode_candidate": [],
+    "interrupt_pending_candidate": [
+      "0xc00504a0",
+      "0xc00504c8",
+      "0xc00504d8",
+      "0xc0050510",
+      "0xc007e8d4"
+    ],
+    "interrupt_mask_candidate": [
+      "0xc00504a8",
+      "0xc00504e4",
+      "0xc00504fc"
+    ],
+    "interrupt_config_candidate": [],
+    "interrupt_map2_candidate": []
+  },
+  "scope": "aligned direct 32-bit literal references only; no live register read or owner proof"
+}
