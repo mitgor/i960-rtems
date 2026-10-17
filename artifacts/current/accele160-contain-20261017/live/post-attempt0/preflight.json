@@ -1,0 +1,29 @@
+{
+  "boot_id": "2fef3a5a-8027-4067-9d7e-2a8f8f6c6b84",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  },
+  "firmware_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+  "handler_sha256": "8d8c79c3b8c206608ef7221000991c0d75eb101ce06581fedc2a74522648ad34",
+  "inventory_module_sha256": "e3bf8856c0746f80305b8d9668e70ff85bd14eb431556d8e2b6a54aa83402333",
+  "vector_module_sha256": "a4309b14e1a5cb36558b1bb96c267f251e9974603beffbddc4ee2188f931a280"
+}

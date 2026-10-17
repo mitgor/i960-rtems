@@ -1,5 +1,16 @@
 # Current findings — 2026-10-17
 
+The [AcceleRAID 160 STOP-ignoring worker gate](rtems/accele160/contain/README.md)
+now passes twice. Two CPU-bound workers never read STOP or yield; the
+higher-priority RTEMS controller lets them advance for four more hardware
+ticks after the host request, then suspends both and verifies stable progress,
+original live ISR frames and stack checksums across 10,000 checks. STOP
+finished after 14 ticks in about 259 ms; the no-host lease expired after 124
+ticks in about 1.36 s. Four full flash reads and independent post-run stock
+inventories passed. This is bounded whole-instance containment while timer
+interrupts and scheduling work, **not** a callback-free resident runtime or
+hardware recovery from permanently masked interrupts.
+
 The [new-card bounded RTEMS preemption gate](rtems/accele160/preempt/README.md)
 now passes twice. Two CPU-bound workers are time-sliced from the owned timer-1
 ISR with separate task-owned ISR continuations: STOP completed after 8 ticks

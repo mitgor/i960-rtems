@@ -4761,3 +4761,31 @@ not that arbitrary stuck code can be contained: a task that masks interrupts
 indefinitely can still defeat this controller. Before a long-lived network or
 Doom service, we need a finite resident lease whose quiescence boundary is
 independent of a cooperating RTEMS task, along with its RAM and DMA ownership.
+
+The next question was whether STOP had to be obeyed by each worker. We kept
+the same new-card RAM grant and timer-driven scheduler, but built two workers
+that never read STOP, yield or call RTEMS. A separate controller task watched
+the host's sideband word. When the exact token arrived, it sampled both
+workers, waited another four hardware ticks and saw their counters continue
+to advance. It then suspended them through RTEMS. This left each worker's
+original interrupt frame and one ISR continuation live; we did not pretend
+those calls had returned or try to unwind their stacks.
+
+The first batch passed both paths. With STOP, the whole command returned in
+about 259 milliseconds after 14 ticks. Without STOP, its fixed 120-tick lease
+expired and the command returned after 124 ticks, about 1.36 seconds. The
+controller checked that both suspended workers' counters, task stacks and
+interrupt areas stayed unchanged through 10,000 observations. We repeated
+the batch with the same result. Four complete flash reads and independent
+stock-state inventories after the two batches matched; the timer, cached
+vector, firmware stack, loader page, staging source and every allocator
+record were restored. No firmware was flashed, and the old DAC960PG stayed
+unbound.
+
+The result is stronger than cooperative STOP: an interrupt-enabled worker can
+ignore the message and still be suspended. It is still a bounded, one-shot
+RTEMS instance inside a parked firmware callback. The controller depends on
+continued timer interrupts and an intact scheduler; code that masks
+interrupts forever or damages shared RTEMS state could stop it. Before we
+leave a network service or Doom resident on this card, we need an independently
+enforceable lifetime or recovery boundary and explicit RAM/DMA ownership.

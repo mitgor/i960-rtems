@@ -102,3 +102,14 @@ reads and independent post-run inventories passed. The [exact evidence](../../ar
 replays and rejects four tamper cases. It proves bounded preemption while
 interrupts stay enabled; an independently enforceable resident lease and
 memory/DMA ownership remain to be built before networking or Doom.
+
+The following [STOP-ignoring containment gate](contain/README.md) also passed
+twice without another firmware write. Two CPU-bound RTEMS workers ignored the
+host sideband; a priority-1 controller observed four more ticks of progress
+then suspended them externally. The workers' original ISR continuations
+remained live until the whole one-shot instance returned to firmware. STOP
+completed at 14 ticks and the no-host lease expired at 124 ticks; four full
+flash reads and independent stock-state inventories passed. The [exact card
+evidence](../../artifacts/current/accele160-contain-20261017/README.md)
+replays offline. This tests containment of interrupt-enabled workers, not an
+independent hardware watchdog or callback-free resident runtime.

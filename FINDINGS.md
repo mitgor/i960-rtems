@@ -1,5 +1,15 @@
 # i960 / Mylex DAC960PG — consolidated technical findings
 
+**Second-board STOP-ignoring worker containment (2026-10-17):** The
+[new-card bounded whole-instance gate](rtems/accele160/contain/README.md)
+proved two CPU-bound workers continue despite STOP and can be externally
+suspended by a timer-driven RTEMS controller. Two repeated batches produced
+14-tick STOP and 124-tick no-host expiry. Both workers retained one live,
+original ISR continuation, with unchanged progress and stack checksums through
+10,000 checks. Four complete flash reads and independent timer/vector
+inventories matched stock. This is worker-independent control while interrupts
+work; it is not a hardware watchdog or callback-free resident service.
+
 **Second-board bounded RTEMS preemption accepted (2026-10-17):** The
 [AcceleRAID 160 two-worker gate](rtems/accele160/preempt/README.md) used the
 existing RAM operation 13 and stock-owned grant, with per-task 8 KiB ISR

@@ -1,5 +1,15 @@
 # Next AcceleRAID clock and STOP gates
 
+**Current 2026-10-17 status:** [bounded timer preemption](preempt/README.md)
+and [STOP-ignoring worker containment](contain/README.md) have now passed on
+the new card without another flash write. The controller can suspend two
+workers that never poll STOP, retain their original ISR contexts, and return
+through the stock callback after a 120-tick maximum lease. Four complete
+post-batch flash reads and independent stock inventories passed. The
+remaining gate is callback-free bounded residency or a truly independent
+hardware recovery boundary; permanently masked interrupts and DMA/resource
+cleanup are not solved. Earlier “next” statements below are historical.
+
 **RTEMS hardware clock accepted, 2026-10-17:** See
 [autoclock](autoclock/README.md). Hardware tick 5 woke the worker, and two
 bounded no-host runs each reached 52 ticks while the worker ran at PC

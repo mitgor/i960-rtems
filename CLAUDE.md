@@ -1986,3 +1986,22 @@ This is a bounded proof with interrupt-enabled tasks, not a resident runtime
 or recovery of a task that disables interrupts indefinitely. Next: finite
 resident lease and independently enforceable quiescence, then network/Doom
 memory and DMA admission.
+
+## AcceleRAID 160 STOP-ignoring containment (2026-10-17)
+
+The [new-card containment profile](rtems/accele160/contain/README.md) passed
+two physical STOP/no-host batches on the existing operation-13 RAM gate. Two
+CPU-bound workers do not read STOP or yield. The RTEMS controller observes
+four more timer ticks of progress after STOP, suspends each worker, retains
+one live ISR continuation per worker, and checks scheduler state, progress and
+stack/ISR checksums 10,000 times before returning to stock firmware. STOP
+ended at 14 ticks in about 259 ms; no-host expiry ended at 124 ticks in about
+1.36 s. Four full flash reads and independent post-run timer/vector
+inventories matched stock. [Exact binary and evidence](artifacts/current/accele160-contain-20261017/README.md)
+replay offline and reject four tamper cases. No firmware write or old-card
+change occurred. **Do not call this a callback-free resident service or a
+watchdog:** permanently masked interrupts, scheduler corruption and active
+DMA remain outside this finite controller lease. Preserve both retained ISR
+contexts until the whole instance returns; never reclaim either task stack
+while its continuation is live. The next gate is callback-free bounded
+residency or independently enforced recovery plus explicit RAM/DMA ownership.
