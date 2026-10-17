@@ -5376,7 +5376,12 @@ number. The first physical run never reached the first of those frames. It
 served 1,301 WAD reads, all matching the beginning of the native request
 trace, and then went quiet for the bounded 120-second idle period. The host
 saved the state and published STOP, leaving the callback pinned until reset.
-Linux returned after the reset, but the AcceleRAID would not bind again
-without a cold power cycle. We have an exact build and a reproducible
-measurement route, but **no new-card FPS figure yet**. The earlier startup
-stall remains a reliability problem to understand alongside the benchmark.
+Linux returned after the reset, but the AcceleRAID did not bind because we
+had omitted its required exact-BDF module parameter. The correct load bound
+the new card, and two fresh full-flash reads passed. We tried twice more.
+One run served 4,809 WAD requests, the other 79; both matched the native
+trace until the engine stopped making progress. Each time the bounded host
+timeout saved evidence and published STOP, and we reset the retained callback
+rather than unloading it. We have an exact build and a reproducible
+measurement route, but **no new-card FPS figure yet**. Startup reliability
+must be solved before interactive play can be trustworthy.

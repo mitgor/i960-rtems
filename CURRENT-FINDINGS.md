@@ -535,10 +535,12 @@ The AcceleRAID 160 has produced one real Doom frame, but no sustained FPS
 measurement yet. A separate 32-frame RTEMS kernel now records 100 Hz card
 ticks at each presentation boundary, excludes WAD startup from the FPS
 formula, and preserves the accepted engine and all ownership/STOP/full-bank
-audits. Its first card run stalled before a frame, after 1,301 WAD reads that
-match the native oracle prefix exactly. The 120-second no-progress timeout
-saved the capture and published STOP; reboot cleared the retained callback,
-but the new card did not rebind after the warm restart. A cold power cycle,
-fresh driver inventory and two same-boot complete flash reads are required
-before retry. [Code and status](rtems/accele160/doom_first_frame/README.md) ·
+audits. Three card attempts stalled before a frame after 1,301, 4,809 and 79
+WAD reads; every completed sequence matches the native oracle prefix exactly.
+Each 120-second no-progress timeout saved a capture and published STOP;
+whole-PC reset cleared the retained callback. The preserved `myrsread` driver
+requires an explicit `read_bdf=0000:37:09.1` parameter on each boot. No
+new-card FPS exists yet. The immediate work is reliable live ISR/task tracing
+and startup stabilization, then the same-boot flash audits and bounded retry.
+[Code and status](rtems/accele160/doom_first_frame/README.md) ·
 [Exact failed-run evidence](artifacts/current/accele160-doom-fps-20261017/README.md).

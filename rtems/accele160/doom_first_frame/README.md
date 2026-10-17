@@ -74,14 +74,19 @@ the preceding WAD startup is excluded. This is **card-side frame-boundary FPS**,
 not browser delivery FPS. The one-frame default remains available.
 
 The exact 32-frame build hashes are pinned in `fps-32-manifest.json`. On the
-test PC, `run_fps32.sh PROJECT_ROOT BUILD_DIR NEW_OUTPUT_DIR` supplies only the
+test PC, `run_fps32.sh PROJECT_ROOT BUILD_DIR NEW_OUTPUT_DIR READBACK0 READBACK1` supplies only the
 accepted module, handler, WAD and engine paths. It requires two guarded 1 MiB
 same-boot flash reads before touching the card. A retained test module and
 grant are released only by whole-PC reset; never unload them after an uncertain
-run. The first 32-frame attempt stalled during startup after 1,301 WAD reads,
-before any frame timing. The 120-second idle timeout saved the page and
-published STOP. The PC did not return over SSH after `reboot -f`; a physical
-power cycle and fresh-boot inventory/readbacks are needed before a retry.
+run. Three 32-frame attempts stalled during startup after 1,301, 4,809 and 79
+WAD reads, respectively, before any frame timing. Each completed request
+sequence matches the native oracle prefix. The 120-second idle timeout saved
+the page and published STOP each time. The retained callback/grant were
+released by whole-PC reset, never module unload. On a new boot, load the
+preserved driver with `read_bdf=0000:37:09.1`; the parameter is mandatory.
+The interrupt sample page read back as all `ff` even after correcting the
+PIATVR page selection, so it does not locate the stall. Obtain a reliable
+live task/ISR trace before treating startup as stable.
 
 This gate deliberately uses the same pinned Doom engine as the accepted first
 frame, to isolate the multi-frame change. Its first successful FPS number will
@@ -90,3 +95,36 @@ Building the qualified exact renderer options
 (`--fast-render --fast-columns`, bounded FixedDiv, direct frame, no play-mode
 FNV) and a delivery-FPS test remain separate follow-ups. Quality-reducing
 flat planes, half height and low detail stay off for the normal-quality run.
+
+For a fresh run, copy the pinned `native-requests.bin` oracle from
+`artifacts/current/accele160-doom-first-frame-20261017/` into the isolated
+project's `doom_first_frame/` directory. Rebuild with
+`DOOM_FPS_FRAMES=32`, verify the source and image hashes in the manifest,
+load `myrsread.ko read_bdf=0000:37:09.1`, and obtain two fresh same-boot
+guarded full-flash reads. `run_fps32.sh` requires their directory paths.
+
+## Route to interactive play on this card
+
+1. Diagnose the variable startup stalls with a host-readable live timer/task
+   trace and checkpoints before and after the WAD callback and cache copy.
+   A previous one-frame run succeeded; three FPS attempts stopped at different
+   request counts, so a fixed bad WAD offset is not established. Keep the
+   timer/STOP and full bank audits while changing this path.
+2. Complete repeated normal-quality frames and deterministic input replay.
+   First report card render FPS from frame-boundary ticks and compare final
+   images with a host/native oracle. Then run longer matched windows.
+3. Replace the one-shot frame copy with owned, generation-numbered frame slots
+   and an ACK/STOP protocol. Coordinate WAD requests and frame transfer under
+   the same DMA ownership; a stalled/disconnected host must not recycle a
+   pinned slot or free the grant.
+4. Add bounded keyboard events, focus-loss key release, binary browser frame
+   delivery and a persistent session. Report render FPS, host-delivered FPS
+   and latency separately. Port the old card's exact optimizations in a
+   second matched build; leave optional quality reductions off.
+
+The old DAC960PG already has the persistent RTEMS Doom session, keyboard,
+WAD ring, ping-pong frame DMA and browser play. The AcceleRAID currently has
+the stock firmware's retained operation-13 callback, a verified exclusive
+8 MiB upper-bank arena, a single admitted Doom entry, and checked 4 KiB
+WAD/frame sideband transfers. These are distinct transports and ownership
+contracts; old-card FPS figures do not predict the new card's performance.

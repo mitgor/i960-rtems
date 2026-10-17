@@ -430,7 +430,8 @@ def main():
             if words[8]==engine_seq:break
             if time.monotonic()-last_request>120:
                 (run/'engine-stall-page.bin').write_bytes(page)
-                (run/'engine-rip-samples.bin').write_bytes(snap(0xc0772000))
+                # BAR0's second 4 KiB window exposes the page after PIATVR.
+                (run/'engine-rip-samples.bin').write_bytes(snap(0xc0771000))
                 save(run/'engine-stall.json',dict(
                     elapsed_seconds=time.monotonic()-began_engine,
                     idle_seconds=time.monotonic()-last_request,
