@@ -2118,3 +2118,14 @@ permitted release. Four full flash reads matched stock and
 sixteen altered captures. This tests timeout retention, **not** actual PCI
 fault recovery or killed-host-process cleanup. Do not free a DMA target on
 timeout alone.
+
+The [DMA host-process death gate](rtems/accele160/dma_process_death/README.md)
+passed twice with the exact same finite-chain image. The owner process
+deliberately killed itself after `DMA_HELD`; a new process found its PID
+absent, the pin and grant retained, and early release denied with `EBUSY`.
+After card resume at tick 101 and completion at tick 128, full card,
+host, owner and RTEMS audits allowed release. Six full flash reads matched
+stock; [captures and replay](artifacts/current/accele160-dma-process-death-20261017/README.md)
+reject fifteen mutations. This does **not** establish cancellation of a
+genuinely stuck/erroring PCI transaction, a death before the held checkpoint,
+or whole-host crash recovery. Keep both allocations retained on uncertainty.

@@ -1,0 +1,14 @@
+# Recover after the host owner process dies during DMA
+
+This test uses the **unchanged accepted image** from the [host-timeout gate](../dma_timeout/README.md). The first host process uploads and arms the same 13,000-descriptor finite channel-0 DMA chain, sends STOP while CSR is active, waits for the card's `DMA_HELD` state, saves its baseline, then sends `SIGKILL` to itself. Its cleanup code cannot run. The pinned coherent host allocation and stock-owned 512 KiB card RAM grant must remain live. A separately launched recovery process acquires the loader lock, requires the original PID to be absent on the same boot, rejects premature pin release, waits for the card's terminal state, audits DMA, payload, guards, grant, loader/staging, RTEMS stacks and timer/vector restoration, and only then releases both allocations. On any uncertain check it retains the resources.
+
+On boot `a248da87-1bb3-403e-97fc-837b307e1b0e`, two independent kill-and-recover runs passed with fresh host buffers. The first process died after STOP at tick 21 and `DMA_HELD` at tick 23. The card resumed at tick 101 and completed at tick 128. The recovery process found the original PIDs `42902` and `44224` absent, found the DMA pin and command modules retained, received `EBUSY` on premature pin release, then audited the final inactive channel, exact payload and unchanged guards before cleanup. Owner words, loader page, staging, firmware continuation, worker/ISR stacks, timer and stock channel 1 matched. The old DAC960PG remained unbound and untouched. Six guarded full 1 MiB flash reads in pre/mid/post pairs matched firmware SHA-256 `1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd`. No flash write occurred.
+
+The image SHA-256 is `c2c2234300c5d5cd5caf1fa6f4b05d9df5a1d89cab515085ba1a029b93b9ab5f`; it is the exact binary from the preceding accepted test. [Sources, image, host module and captures](../../../artifacts/current/accele160-dma-process-death-20261017/README.md) are archived. The replay validates the previous accepted same-boot channel state and rejects fifteen tampered captures:
+
+```sh
+python3 rtems/accele160/dma_process_death/verify_live.py artifacts/current/accele160-dma-process-death-20261017
+python3 rtems/accele160/dma_process_death/test_verify_live.py artifacts/current/accele160-dma-process-death-20261017
+```
+
+This proves recovery after the **host owner process dies during a finite, deliberately suspended transfer**. The card's own bounded resume and normal completion made release possible. It does not prove how to cancel or release a target behind a genuinely stuck or erroring PCI transaction. A killed process before the saved `DMA_HELD` checkpoint and a whole-host crash also remain untested. Persistent DMA service must still retain resources on those uncertain paths.

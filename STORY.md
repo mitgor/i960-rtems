@@ -5109,3 +5109,17 @@ full-flash reads matched stock and the archived replay rejects sixteen
 altered captures. The [evidence](artifacts/current/accele160-dma-timeout-20261017/README.md)
 shows that a host wait deadline does not have to become a dangerous DMA
 free. A real bus fault or a vanished host process is still a harder story.
+
+We tried the vanished process next. The host runner watched the card enter
+its held-DMA state, wrote down the pin and grant identities, and killed
+itself with `SIGKILL`. Its `finally` block never ran. The modules and pinned
+host buffer remained in place; another program, started separately, found
+the first PID gone and got `EBUSY` when it tried to free the buffer early.
+The card kept its own finite schedule, resumed at tick 101 and completed at
+tick 128. Only after checking its final registers, payload, guards, stock
+channel, RAM ownership and RTEMS restoration did the new process return the
+grant and unpin the buffer. We ran that sequence twice with fresh buffers.
+Six full-flash reads matched stock, and the [archived replay](artifacts/current/accele160-dma-process-death-20261017/README.md)
+rejects fifteen altered captures. A lost host process is now recoverable
+when the card reaches this saved checkpoint and finishes normally. A bus
+transaction that never drains would still force us to retain its memory.

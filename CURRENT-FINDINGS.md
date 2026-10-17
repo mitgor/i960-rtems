@@ -1,5 +1,19 @@
 # Current findings — 2026-10-17
 
+**DMA host-process death/recovery gate accepted:** The [new test](rtems/accele160/dma_process_death/README.md)
+used the unchanged finite-chain image and deliberately killed the host owner
+after `DMA_HELD`. Two independent recovery processes found their original
+PIDs absent while the DMA pin and stock RAM grant remained owned. Premature
+pin release returned `EBUSY`. The card resumed at tick 101 and completed at
+tick 128; only then did recovery pass the exact payload/guards, inactive
+channel, owner/page/stage, RTEMS stacks, timer/vector and stock-channel
+audits and release resources. Six pre/mid/post full-flash reads matched
+stock. [Exact evidence](artifacts/current/accele160-dma-process-death-20261017/README.md)
+replays and rejects fifteen altered captures. This covers a dead host
+process **after a saved held checkpoint and normal finite completion**.
+A real PCI fault that never drains, death before that checkpoint and a
+whole-host crash remain unproved; do not free on uncertainty.
+
 **Host-timeout retention gate accepted:** The [long-hold DMA test](rtems/accele160/dma_timeout/README.md)
 passed twice with an unchanged image. The card suspended active DMA at tick
 21, held channel 0 until tick 101, then completed the finite chain at tick

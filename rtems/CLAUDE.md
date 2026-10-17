@@ -1341,3 +1341,13 @@ Full card, host, flash and RTEMS audits preceded release; the
 reject sixteen mutations. This is an intentional software hold, not a real
 PCI fault or process-death recovery proof. A timeout alone never grants
 permission to unpin or release the stock RAM allocation.
+
+The [host-process death gate](accele160/dma_process_death/README.md) reused
+the accepted finite DMA image. Two host owners died by `SIGKILL` after
+`DMA_HELD`; separate recovery processes saw their PIDs absent and retained
+pin/grant/module state, refused early release, and only released after the
+card resumed at tick 101 and finished at tick 128 with full audits. Six
+flash reads matched stock and [replay](../artifacts/current/accele160-dma-process-death-20261017/README.md)
+rejects fifteen changed captures. No recovery is proved for real PCI faults,
+pre-checkpoint death or whole-host crash. Retain all DMA allocations until
+the inactive channel, exact payload and all ownership records are proven.
