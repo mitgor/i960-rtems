@@ -4590,3 +4590,38 @@ A full megabyte flash read still matched. This is a cooperative bounded
 worker, not yet a way to force a hung RTEMS task to stop. The next test will
 put the same STOP handshake into an RTEMS task before we borrow a timer or
 interrupt vector.
+
+The next image was RTEMS itself, not a bare worker. We linked the pinned
+RTEMS 4.6.6 core into sixteen pages of the stock-owned grant. The last page
+became a guarded entry stack. Once the firmware passed operation 13's image
+manifest and digest checks, the entry saved its context, changed stacks and
+started RTEMS. An RTEMS worker announced READY, watched the same separately
+writable STOP word, and had a fixed two-million-poll escape if the host never
+responded. No new flash write was needed.
+
+The first two calls reached READY and then returned status 2 when STOP arrived.
+The new failure marker pointed exactly to the worker's nonce assertion. We had
+passed the Init task's default argument into the worker, instead of the lease
+nonce. After fixing that, STOP completed on the card, but our host checker
+read the task telemetry one word out of place and called the good result a
+failure. Each time we left the grant retained, inspected the captured page,
+restored the loader and staging bytes, released the stock owner and checked a
+full megabyte of flash before trying again. The third page already contained
+an exact ACK and normal operation-13 status, which exposed the checker error.
+
+With the decoder corrected, the next run completed both paths under the same
+firmware and grant. A stale STOP token stayed pending; the valid token made the
+RTEMS worker acknowledge and exit in 48.829 milliseconds of host-observed time.
+With no STOP, the worker reached its fixed two-million-poll limit and returned
+in 1.503 seconds. RTEMS deleted the worker and shut down. Its worker stack was
+inside its workspace at `c0717c20`; the entry stack was in the owned last
+page, and firmware SP was `c0002100` before and after. Every loader-page byte,
+the staging source and the allocator owner records restored. Three same-boot
+full flash reads matched the unchanged firmware, the accepted image rebuilt
+byte-for-byte, and offline replay rejected four altered captures.
+
+This gives the new card a cooperative RTEMS task lease, not a way to interrupt
+code that stops polling or hangs with interrupts disabled. Before RTEMS can
+stay resident, we still need an independently bounded timer/interrupt path,
+a verified owned interrupt stack, STOP/drain behavior and exact restoration of
+all borrowed stock state. Networking and Doom come after those ownership gates.

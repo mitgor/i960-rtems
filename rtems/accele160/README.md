@@ -58,9 +58,17 @@ The same firmware passed its post-call full read. This is cooperative code,
 not RTEMS task STOP or an independently enforced deadline.
 
 The old-card loader/RTEMS comparison and the reason for repeated new-card
-flash cycles are in [bring-up differences](OLD-NEW-DIFFERENCES.md). Next:
-put the accepted owned-stack and STOP protocol into a bounded RTEMS task,
-then test borrowed timer/interrupt ownership under
-complete restoration audits. Host-backed IPv4/IPv6 and web service follow.
-Doom also requires a separately owned multi-megabyte arena and frame
-transport.
+flash cycles are in [bring-up differences](OLD-NEW-DIFFERENCES.md).
+Host-backed IPv4/IPv6 and web service follow later; Doom also requires a
+separately owned multi-megabyte arena and frame transport.
+
+The [RTEMS task lease](lease/README.md) now completes that first task-level
+gate without another flash write. A worker task running in the 16-page
+owned image acknowledged valid STOP in 48.829 ms after a stale token stayed
+pending; the no-host path exited after 2,000,000 polls in 1.503 s. RTEMS
+deleted the worker and returned through the restored firmware context.
+Full pre/post flash, owner, loader-page, stage and stack audits passed;
+the [card evidence](../../artifacts/current/accele160-rtems-lease-20261017/README.md)
+replays offline. Next is a guarded, short timer/vector/interrupt-stack
+experiment with complete state restoration and a card-side deadline. This
+task STOP remains cooperative and cannot recover an arbitrary hung task.
