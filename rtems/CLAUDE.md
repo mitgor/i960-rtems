@@ -1313,3 +1313,12 @@ The saved PC word in an interrupt frame is *process controls*, not an
 instruction address. This bare monitor is not resident RTEMS or an
 interrupt-independent watchdog. Do not run new-card networking/Doom until
 RTEMS task quiescence, RAM/DMA ownership and a finite service exit pass.
+The [AcceleRAID 160 finite-chain STOP gate](accele160/dma_chain_stop/README.md)
+now passes twice with an unchanged image: STOP is observed during active
+DMA at tick 21, the 26,624,000-byte chain completes at tick 48, and only
+then do the host payload/guard, channel-inactive, owner and RTEMS audits
+permit release. Six full flash reads and independent replay with ten tamper
+rejections are archived. This proves deferral through **normal finite-chain
+completion**, not cancellation of a genuinely stalled or erroring channel.
+The shorter and cache-stale negative attempts are preserved; never unpin
+after an uncertain completion.

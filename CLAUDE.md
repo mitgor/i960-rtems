@@ -2085,3 +2085,14 @@ The old card remained unbound; no flash write occurred. This proves a
 completed small transfer under finite RTEMS ownership, **not** abort/drain
 of a genuinely stalled active DMA. On uncertain completion, retain host
 buffer, card grant and modules; clearing CCR enable merely suspends DMA.
+
+The subsequent [finite-chain STOP gate](rtems/accele160/dma_chain_stop/README.md)
+passed twice: the card saw STOP while channel 0 was active at tick 21,
+finished 13,000 descriptors / 26,624,000 bytes at tick 48, then permitted
+host pin and stock-grant release after complete audits. Six full flash
+reads, independent replay and ten tamper cases are archived. This proves
+normal completion after an active STOP, **not** abort of a genuinely stuck
+DMA transaction. The initial no-cache-invalidation attempts are negative
+evidence. A fresh inventory verifier now treats stock channel-1's PCI
+address as variable across boots while still checking its fixed descriptor,
+local address and DCR. Keep channel 1 and the old card untouched.

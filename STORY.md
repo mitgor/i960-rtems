@@ -5031,3 +5031,54 @@ in-flight stall and show that STOP or lease expiry cannot free either side
 until the hardware has drained. The wrong-address failure showed the host
 retains resources on uncertainty, but never activated DMA hardware and so
 cannot stand in for that remaining test.
+
+For the next timing test we filled part of the same owner-tagged grant with
+13,000 finite DMA descriptors, all aimed at the same pinned host page. Their
+3.3 MiB of repeated writes completed before the card marked STOP as seen
+while DMA was active. The host sent STOP after seeing DMA-busy, but our
+capture could not establish whether that write preceded hardware completion.
+The card's completion and RTEMS restoration looked clean, and
+the host buffer and guards matched, but the decisive marker was zero: STOP
+had not been observed while CSR was active. The runner rejected the run and
+kept the host pin and grant; we saved the read-only evidence and rebooted to
+recover. No post-run flash or release audit was possible in that retained
+session. We prepared a longer, still finite 26.6 MiB chain using the same
+owned grant and host page. A fresh same-boot inventory and full audit must
+precede its card test. This remains a timing gate, not an abort proof.
+
+The fresh inventory did show channel 0 all zero, with stock channel 1 still
+in use, and its HALT/expiry owner and timer audits passed. The larger image
+then rejected the host's expected prior DCR before starting DMA: the runner
+had incorrectly sent `7`, copied from the earlier completed-descriptor
+case, rather than the inventoried zero. No descriptor was fetched and the
+host payload remained unchanged. We saved the rejection state and rebooted
+the retained session. The runner now forwards the exact inventoried word;
+the real long-chain STOP test still awaits a new boot.
+
+The next boot admitted that exact state and ran all 13,000 longer
+descriptors. By tick 48 the card had reached the last descriptor, advanced
+the PCI and local addresses by the expected 2,048 bytes, and left BCR and
+NDAR zero. The 4 KiB host window held the right bytes with clean guards,
+and the RTEMS worker and timer restored. Yet the card still had not marked
+STOP as seen during active DMA. We found a likely visibility error in the
+experiment itself: the DMA poll loop checked the host-written sideband
+without invalidating the i960 data cache, whereas the later worker loop did
+invalidate before checking it. The runner again kept the pin and grant,
+the trace was saved, and we rebooted. The next candidate invalidates cache
+every 64 polls, but has not yet been built or run. These completed chains
+remain negative timing evidence, not a proof of active-DMA STOP.
+
+After another fresh boot and read-only inventory, the cache-visible image
+finally captured the ordering we needed. The host sent STOP while channel
+0 was active; the card recorded it at tick 21 and continued the finite
+chain. At tick 48 the 13,000th descriptor had finished, NDAR and BCR were
+zero, and CCR and CSR were inactive. Only then did the RTEMS worker hand
+back control and the host compare the 4 KiB payload, both guards, owner
+records, stacks, timer and loader page before unpinning. We repeated the
+same image with a fresh host buffer and the exact prior completed channel
+state; it passed again at the same ticks. Three pairs of full-flash reads
+around the two runs matched the unchanged firmware. We archived both runs,
+the three negative attempts, exact binaries and sources, and a replay that
+rejects ten altered captures. This establishes STOP deferral until normal
+DMA completion on the new card. A truly stuck channel still needs its own
+fault-injection and recovery proof before persistent DMA service.

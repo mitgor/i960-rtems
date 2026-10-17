@@ -1,5 +1,23 @@
 # Current findings — 2026-10-17
 
+**DMA STOP timing gate accepted:** The [finite-chain test](rtems/accele160/dma_chain_stop/README.md)
+now passes twice on the new card with an unchanged image. Each run copied
+26,624,000 bytes through 13,000 descriptors to a fresh pinned host buffer.
+The card observed STOP at tick 21 while CSR indicated active DMA, then let
+the chain finish normally at tick 48 before the host checked exact payload,
+both guards, inactive CCR/CSR, final DAR, zero NDAR/BCR, owner records,
+worker/ISR stacks and timer/vector restoration and released both sides.
+Six guarded full 1 MiB flash reads in three pairs matched unchanged firmware;
+independent replay and ten tamper cases pass. The host runner and card image
+are archived with the [exact evidence](artifacts/current/accele160-dma-chain-stop-20261017/README.md).
+This proves safe STOP deferral for a **normally completing finite chain**.
+Cancellation/drain of hardware that is actually stalled or erroring and
+process-death recovery remain unproved. An initial 3.3 MiB chain completed
+before STOP, a first longer run was rejected by an incorrect prior DCR word,
+and a second longer run missed the PCI-written STOP until D-cache
+invalidation was added to the DMA poll loop. Those negative captures are
+preserved separately and are not counted as accepted runs.
+
 **Correction to the DMA inventory below:** The Intel 80303 DMA registers
 are at i960 local `0x00001400..0x000014ff`, not `0xff001400..0xff0014ff`.
 The first all-zero samples came from the wrong, reserved address range and

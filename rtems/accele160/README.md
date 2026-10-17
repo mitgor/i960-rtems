@@ -177,3 +177,12 @@ then completed three 256-byte transfers to fresh pinned host windows,
 including HALT and no-host lease expiry, with full flash and ownership
 audits. It does not yet prove cancellation of a genuinely stalled transfer
 or sustained service ownership.
+
+The later [finite-chain STOP gate](dma_chain_stop/README.md) passed twice
+with 13,000 descriptors and 26,624,000 bytes per run. STOP reached the
+card while channel 0 was active at tick 21; the channel completed normally
+at tick 48, and full host/card audits preceded pin and grant release. The
+[exact captures](../../artifacts/current/accele160-dma-chain-stop-20261017/README.md)
+include six unchanged full-flash reads and independent tamper-tested replay.
+This proves STOP deferral through normal DMA completion, while a genuinely
+stalled/erroring channel and process-death cleanup remain future work.

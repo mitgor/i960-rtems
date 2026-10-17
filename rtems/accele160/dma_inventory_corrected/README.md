@@ -23,3 +23,10 @@ lease, not as permanently exclusive. The following
 NDAR, BCR and CSR at admission, then used a card-owned descriptor and pinned
 host buffer. Its three successful transfers provide the actual completion
 and drain evidence. The stock card's channel 1 must remain untouched.
+
+A later fresh-boot inventory for the [finite-chain STOP test](../dma_chain_stop/README.md)
+showed the same fixed stock descriptor and DCR but a different channel-1
+PCI address offset (`...33ec`). The offline verifier was corrected to check
+the address is an aligned high PCI address instead of pinning the earlier
+`...0fec` low bits. It still checks all three register blocks, the exact
+captured values against each run's result, and the owner/RTEMS/flash audits.

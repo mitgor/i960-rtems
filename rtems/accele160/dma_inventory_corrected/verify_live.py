@@ -132,7 +132,8 @@ def acceptance(path,image,boot,card,old):
              not any(dma[0]) and not any(dma[2]) and
              dma[1][0:3]==[0,0xc0611320,0] and
              dma[1][4:]==[0,0xc060c6ec,0,0x3f] and
-             (dma[1][3]&0xfff)==0xfec and dma[1][3]>=0xf0000000,
+             0xf0000000<=dma[1][3]<=0xfffffffc and
+             dma[1][3]%4==0,
              f'DMA read-only snapshot {mode}')
         need(words(data(p/'active-page.bin'),0xa50,1)==(0x49544341,),
              f'task ACTIVE {mode}')
