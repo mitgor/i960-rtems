@@ -1,5 +1,28 @@
 # Current findings — 2026-10-17
 
+**First real Doom frame on the AcceleRAID 160:** A third retained RTEMS run
+served all 5,043 engine WAD reads in the exact native request order and
+captured a real 320×200 Doom frame plus palette through 16 checked readback
+pages. The engine returned at its owned first-frame boundary, released all
+loans, preserved its executable text hash, passed arena/owner/old-card and
+STOP quiescence checks. Startup to frame took 123.54 seconds; this is a
+one-frame milestone, not browser play or an FPS measurement. [Exact
+capture](artifacts/current/accele160-doom-first-frame-20261017/README.md).
+Post-reset acceptance passed on new boot `c9773c0f-9b64-414b-8712-4d9e6bf1ae5e`: idle descriptor, old card unbound, and two guarded full 1 MiB reads matched unchanged stock firmware. Next: make successive frames and input/host delivery work on the new card, then benchmark play.
+
+**Earlier AcceleRAID 160 first-entry stalls:** The
+[new-card first-frame attempts](artifacts/current/accele160-doom-first-frame-20261017/README.md)
+connect the owned Doom runtime to the accepted full-WAD service. A corrected
+run served 1,401 requests before startup stopped making progress. A second,
+instrumented run crossed that point and served 3,801 requests in about
+95 seconds; every recorded offset/length matched the native trace. The last
+reply had matching sequence, length, status and FNV, but no next request or
+frame appeared for 120 seconds. The host published STOP; the engine did not
+reach a cooperative checkpoint, so the grant and callback remain reset-only.
+Those were failed first-frame attempts. The first run's post-reset
+paired 1 MiB guarded READIMAGE audits matched unchanged firmware and the old
+card stayed unbound; the second run's post-reset paired audit also passed. The third run crossed both stalls and captured a frame; the first two still document intermittent startup pauses.
+
 **AcceleRAID 160 full-WAD service physically passed; actual Doom entry is next:**
 [Exact source and acceptance capture](artifacts/current/accele160-doom-wad-service-20261017/README.md)
 show 42 card-requested, host-backed reads spanning the pinned 28,795,076-byte

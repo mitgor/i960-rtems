@@ -1,0 +1,98 @@
+[
+  {
+    "ticks": 90815,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88061,
+    "returns": 88061,
+    "live": 0
+  },
+  {
+    "ticks": 90915,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88161,
+    "returns": 88161,
+    "live": 0
+  },
+  {
+    "ticks": 91016,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88262,
+    "returns": 88262,
+    "live": 0
+  },
+  {
+    "ticks": 91116,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88362,
+    "returns": 88362,
+    "live": 0
+  },
+  {
+    "ticks": 91216,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88462,
+    "returns": 88462,
+    "live": 0
+  },
+  {
+    "ticks": 91316,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88562,
+    "returns": 88562,
+    "live": 0
+  },
+  {
+    "ticks": 91416,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88662,
+    "returns": 88662,
+    "live": 0
+  },
+  {
+    "ticks": 91516,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88762,
+    "returns": 88762,
+    "live": 0
+  },
+  {
+    "ticks": 91617,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88863,
+    "returns": 88863,
+    "live": 0
+  },
+  {
+    "ticks": 91717,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 88963,
+    "returns": 88963,
+    "live": 0
+  },
+  {
+    "ticks": 91817,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 89063,
+    "returns": 89063,
+    "live": 0
+  },
+  {
+    "ticks": 91917,
+    "pc": "0x2002",
+    "frame": "0xc074e210",
+    "entries": 89163,
+    "returns": 89163,
+    "live": 0
+  }
+]

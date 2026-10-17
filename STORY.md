@@ -5328,3 +5328,43 @@ the same stock firmware exactly. We now have the file service that Doom will
 need on this board, but we have still deliberately **not called Doom's
 entry**. The next experiment must join this service to the engine's runtime
 functions and ask for a bounded first real game frame.
+
+We finally let Doom cross the entry point on the new card. The RTEMS task
+passed it the same guarded six-megabyte zone and a real file callback backed
+by the host's Freedoom WAD. The first host monitor made a small but decisive
+mistake: it read the engine report while it still held the uninitialized
+`ffffffff` pattern and stopped answering before the first file request. The
+card's bounded WAD wait expired correctly. We fixed the monitor and reset
+the card rather than pretending that timeout said anything about rendering.
+
+The next run served 1,401 file requests. The first 1,400 recorded offsets
+and lengths matched a native Doom trace exactly; the last on-card request
+also had a correctly numbered, hashed reply. Then the engine stopped asking
+for data and did not publish a frame. Its timer still interrupted at 100 Hz,
+but STOP could not be consumed while the engine stayed in that stretch of
+code. We kept the callback and memory grant pinned, rebooted the PC, and got
+two clean full reads of the same stock firmware. The old controller stayed
+unbound.
+
+A progress-counter build made the puzzle more specific, and less like a
+single bad WAD block. It ran straight through that earlier point and served
+3,801 requests in the native order in roughly 95 seconds. After the last
+512-byte read, it made no new request or frame for another 120 seconds. We
+saved the control page, the entire request sequence and an interrupt sample
+page before publishing STOP. The first attempt to sample a frame word gave
+zero rather than an instruction address; the next build samples the i960's
+return-address register at interrupt entry. We still have **no game frame**
+from the new AcceleRAID, and the second run later passed its paired post-reset flash audit. The RAM execution and file path are real; the stalled
+startup operation is now the boundary to locate.
+
+Then the third try ran through both earlier stopping points. This time the
+card asked for all 5,043 WAD ranges in the native order and rendered Doom's
+first view of E1M1. The host received the 65,536-byte frame and palette in
+sixteen checked pages. The engine exited at the deliberately bounded first
+frame, returned its six-megabyte zone and every other allocation, and left
+its executable text and arena guards intact. STOP quieted RTEMS while the
+firmware callback remained pinned. From engine entry to that frame took
+123.54 seconds, mostly loading and startup; it is not a gameplay frame-rate
+measurement. We saved the exact image, native request sequence, frame,
+control reports and a viewable PNG. After resetting the retained session, the new boot showed an idle stock descriptor and the old card still unbound. Two complete guarded flash reads matched the same firmware, closing this first-frame acceptance. Continuous frames, input and browser play on this 100 MHz card
+are the next boundary.

@@ -1,5 +1,26 @@
 # RTEMS working guidance
 
+**AcceleRAID 160 real Doom first frame (2026-10-17):** The third retained
+run served all 5,043 native-matching WAD requests and captured the first
+real Doom frame from the new card. Engine-owned exit 210, zero outstanding
+zone loans, valid arena guards, unchanged text hash, whole-frame readback,
+STOP and old-card isolation passed. It took 123.54 seconds from engine entry
+to first frame. [Exact capture and source](accele160/doom_first_frame/README.md).
+The callback/grant required whole-PC reset; two complete guarded reads after reset matched unchanged stock firmware. This does not establish continuous
+play or frame rate.
+
+**Earlier AcceleRAID 160 first-entry stalls (2026-10-17):**
+[Source and captures](accele160/doom_first_frame/README.md) show the owned
+engine running with the full-WAD callback, but no actual frame yet. The
+first corrected run served 1,401 requests; a second served 3,801 exact
+native-matching requests, then stopped making WAD/frame progress for
+120 seconds. STOP did not reach an engine checkpoint. Keep the command
+module and grant retained until whole-PC reset; never unload them from a
+stalled session. The first run's post-reset paired full-flash audit passed;
+the second also passed. The saved interrupt-frame `pc=0x2002` is process
+controls, not an instruction address. The next source samples `rip` at ISR
+entry, while preserving the original frame and all full audits.
+
 **AcceleRAID 160 full-WAD service (2026-10-17):** [Accepted physical
 capture](../artifacts/current/accele160-doom-wad-service-20261017/README.md)
 adds a 4 KiB guarded cache and card-requested, sequence-numbered host WAD

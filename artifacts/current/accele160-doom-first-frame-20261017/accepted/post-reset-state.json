@@ -1,0 +1,7 @@
+{
+  "boot_id": "c9773c0f-9b64-414b-8712-4d9e6bf1ae5e",
+  "piatvr": "0xc0000000",
+  "stock_descriptor": "state=0 status=0 residual=0",
+  "new_driver": "/sys/bus/pci/drivers/myrsread",
+  "old_bound": false
+}

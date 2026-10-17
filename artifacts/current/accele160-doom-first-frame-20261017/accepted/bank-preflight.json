@@ -1,0 +1,9 @@
+{
+  "odd_pages": 1024,
+  "bytes": 4194304,
+  "first_sha256": "4dd2ab15eb270917510f8ad4ffcf22255f3d222de7b9da55f1c5948b2aa059e3",
+  "second_sha256": "4dd2ab15eb270917510f8ad4ffcf22255f3d222de7b9da55f1c5948b2aa059e3",
+  "first_page_sha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+  "upper_sample_sha256": "fb5df4bc5a0aacf04acbc352420792ebc3a59430430b15742fb2d4a126a2185b",
+  "upper_sample_matches_pattern": true
+}

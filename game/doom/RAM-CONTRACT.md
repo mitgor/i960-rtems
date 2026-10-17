@@ -1,5 +1,23 @@
 # DoomGeneric RAM request for RTEMS
 
+**2026-10-17 first-frame acceptance candidate:** The AcceleRAID 160's
+third owned-entry run used the 867,792-byte admitted engine, guarded
+6 MiB zone, 4 KiB WAD cache and 64 KiB framebuffer, served all 5,043 native
+WAD requests and returned one real frame with zero outstanding zone loans,
+valid guards and unchanged engine text. The full 8 MiB bank proof and
+reboot-only ownership still apply. Post-reset paired guarded flash reads passed; see [exact capture](../../artifacts/current/accele160-doom-first-frame-20261017/README.md).
+Continuous play and peak memory under multiple frames remain open.
+
+**Earlier 2026-10-17 new-card engine gate:** The AcceleRAID 160 had physically
+admitted the 867,792-byte Doom image into the verified 8 MiB bank and run
+its owned entry with a guarded 6 MiB zone, 4 KiB WAD cache and 64 KiB frame
+allocation. It served 3,801 native-matching file reads before startup made
+no further WAD/frame progress for 120 seconds. No real frame was captured;
+the attempted engine call and reset-only cleanup are documented in
+[doom_first_frame](../../rtems/accele160/doom_first_frame/README.md). The
+first attempt's post-reset paired full-flash audit passed; the second's also passed. This is an implementation checkpoint, not a relaxation of the
+arena, ownership, STOP or full-audit contract.
+
 **New-card WAD-service update (2026-10-17):** [The physical
 capture](../../artifacts/current/accele160-doom-wad-service-20261017/README.md)
 adds a fourth guarded 4,096-byte cache allocation to the pinned 900,000-byte

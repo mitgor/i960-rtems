@@ -1,3 +1,24 @@
+## AcceleRAID 160 first real Doom frame — 2026-10-17
+
+[The third new-card run](../../artifacts/current/accele160-doom-first-frame-20261017/README.md)
+served all 5,043 engine WAD reads in native order, rendered one real Doom
+frame, read back its complete 65,536-byte frame/palette slot, and left the
+engine through the owned boundary with all arena loans released. Its
+framebuffer SHA-256 is
+`f4d1c27a4ec8e8db4437d9e28012107370749765aa0e09c99758eeb54163b8ce`.
+This took 123.54 seconds from entry to first frame. The post-reset paired complete flash audit passed. The next milestone is sustained frames with bounded input and host presentation; one frame establishes neither FPS nor browser play.
+
+## Earlier AcceleRAID 160 startup stalls — 2026-10-17
+
+[The new-card gate](../../rtems/accele160/doom_first_frame/README.md) now
+binds the Doom runtime ABI to the accepted 8 MiB arena and full-WAD service.
+At that stage no game frame had been produced. The second run served 3,801
+WAD reads in the exact native order, then made no request or frame progress
+for 120 seconds. It did not take cooperative STOP. The third run crossed
+this point; keep the stall evidence, full ownership and post-reset flash
+audits when building a playable port. The earlier diagnostic framebuffer
+remains only a test pattern.
+
 ## AcceleRAID 160 full-WAD service — 2026-10-17
 
 [The physical capture](../../artifacts/current/accele160-doom-wad-service-20261017/README.md)
