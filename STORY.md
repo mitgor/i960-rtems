@@ -5176,3 +5176,23 @@ capture and replay](artifacts/current/accele160-dma-external-resume-20261017/REA
 establish independent recovery of this deliberately held, finite transfer.
 They still cannot tell us how to free memory behind a PCI transaction that
 never drains.
+
+With that finite DMA recovery behind us, we tried the first concrete Doom
+port gate on the AcceleRAID: finding eight megabytes we could actually own.
+The card's information reports 16 MiB of RAM, and a read-only tour of the
+upper half found thirteen stable zero pages. That looked promising only until
+we compared it with the firmware's allocation contract. The stock owner table
+covers the lower eight megabytes, and its largest free contiguous run is just
+1,540,096 bytes. It grants no claim at all over `c0800000..c0ffffff`.
+The running firmware image also contains several aligned addresses in that
+upper range. A literal cannot tell us whether a path is active, but zero
+bytes cannot tell us the memory is free either.
+
+So the [Doom arena test](artifacts/current/accele160-doom-arena-20261017/README.md)
+stopped at admission. We restored the PCI aperture after each sample, checked
+the allocator words across rounds, and read the complete flash twice more;
+the stock descriptor stayed idle, the old card unbound, and the firmware hash
+unchanged. We wrote no upper-bank data and launched no Doom image. The next
+experiment must first transfer ownership away from stock firmware and both
+DMA channels. Only then can a saved-and-restored alias probe and complete
+eight-megabyte pattern test mean what we need them to mean.

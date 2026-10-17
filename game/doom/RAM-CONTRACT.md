@@ -1,5 +1,11 @@
 # DoomGeneric RAM request for RTEMS
 
+**AcceleRAID 160 status (2026-10-17):** The [physical read-only arena survey](../../artifacts/current/accele160-doom-arena-20261017/README.md)
+rejects admission of this 8 MiB request on the new board. Its stock allocator
+offers at most 1,540,096 contiguous free bytes and does not own the proposed
+upper bank. No upper-bank write or Doom launch has been made. An explicit
+exclusive stock/DMA handoff, alias proof and full-range audit are required.
+
 <!-- doom-play-current -->
 **Interactive Doom work (2026-10-13; six-frame input/STOP passed):**
 The user chose browser play now, with optimization/debugging driven by use.

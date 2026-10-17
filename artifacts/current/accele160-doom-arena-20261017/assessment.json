@@ -1,0 +1,38 @@
+{
+  "boot_id": "ed14ddb9-6cf2-4dbc-8645-1383eda72c2d",
+  "candidate": [
+    "0xc0800000",
+    "0xc1000000"
+  ],
+  "required_bytes": 8388608,
+  "stock_allocator_largest_free_bytes": 1540096,
+  "stock_allocator_total_free_bytes": 2785280,
+  "stock_allocator_covers_candidate": false,
+  "sample_count": 13,
+  "sampled_upper_pages_zero": true,
+  "firmware_upper_page_literals": [
+    {
+      "flash_offset": "0x3039c",
+      "literal": "0xc08e0000"
+    },
+    {
+      "flash_offset": "0x30558",
+      "literal": "0xc08e0000"
+    },
+    {
+      "flash_offset": "0x35b40",
+      "literal": "0xc08b0000"
+    },
+    {
+      "flash_offset": "0x412ec",
+      "literal": "0xc0855000"
+    },
+    {
+      "flash_offset": "0xf407c",
+      "literal": "0xc0811000"
+    }
+  ],
+  "full_flash_reads_after": 2,
+  "admitted": false,
+  "reason": "No owner for upper 8 MiB; zero samples and literals cannot authorize writes."
+}

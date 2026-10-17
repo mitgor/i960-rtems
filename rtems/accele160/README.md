@@ -1,5 +1,11 @@
 # Bounded RTEMS gate on the AcceleRAID 160
 
+The [2026-10-17 Doom arena survey](../../artifacts/current/accele160-doom-arena-20261017/README.md)
+rejects 8 MiB admission on the current stock-owned profile. Its largest free
+contiguous grant is 1,540,096 bytes; the upper 8 MiB is outside the owner table,
+and zero read-only samples do not confer ownership. An exclusive stock/DMA
+handoff and saved/restored alias test are the next memory gates before Doom.
+
 The 2026-10-17 [physical acceptance](../../artifacts/current/accele160-rtems-20261017/README.md) runs a newly linked RTEMS 4.6.6 image from the card's stock-owned 512 KiB grant. This is a **normally returning, one-shot software-clock profile**. RTEMS creates a worker, advances ten synchronous `rtems_clock_tick()` calls, observes that the worker wakes at tick five, writes an eight-word report, and returns to the stock command completion path. The host releases the grant only after the result and owner state pass. Hardware timer/interrupt ownership, asynchronous STOP, networking, persistence and Doom remain separate gates.
 
 `rtems/build.py --profile accele160` compiles the same pinned RTEMS core as the old-board bounded profile, but uses this board's own [entry](start.S), [linker map](link.ld), [application](app.c), and minimal [libc](libc.c)/[context switch](context.S). It does not load a DAC960PG binary. The entry saves/restores the firmware PC, `g8..g15`, PFP and SP on normal return; interrupt level remains 31. The report is at `c000f800`, outside the owned image but inside the fixed loader page. The host saves and restores the entire page.

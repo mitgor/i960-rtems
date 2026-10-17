@@ -1,5 +1,13 @@
 # AcceleRAID 160 live memory map and RTEMS gates
 
+**2026-10-17 Doom arena gate:** The [read-only upper-bank survey](../../artifacts/current/accele160-doom-arena-20261017/README.md)
+sampled thirteen pages twice; all were stable zero. The live stock owner table
+still covers only the lower 8 MiB, with at most 1,540,096 contiguous free
+bytes, while current firmware contains upper-bank address literals. The proposed
+`c0800000..c0ffffff` arena was **not admitted or written**. An exclusive
+firmware/DMA handoff and alias/restore proof must precede an 8 MiB pattern
+test or Doom upload.
+
 **2026-10-17 update:** [New-board RTEMS bounded acceptance](../../artifacts/current/accele160-rtems-20261017/README.md) now proves a 512 KiB stock-owned grant, 15-page RTEMS task image, synchronous software ticks and normal return with full restoration. The chronological 2026-10-16 text below describes earlier observation gates; its statements that no block was allocated or no task ran are superseded. Later [corrected DMA inventory](../../artifacts/current/accele160-dma-inventory-corrected-20261017/README.md) and [bounded transfer evidence](../../artifacts/current/accele160-dma-transfer-attempt-20261017/README.md) establish the Intel 80303 DMA registers at **i960 local `0x00001400..0x000014ff`** and a guarded 256-byte channel-0 card-to-host transfer. The earlier `0xff001400` inventory sampled the wrong address and cannot establish channel state. Stock channel 1 remained in use; actual active-DMA stall cancellation is still unproven.
 
 2026-10-16. This records observations on the new AcceleRAID 160 `0000:37:09.1` after the accepted bounded RAM-call image was programmed. The old DAC960PG `0000:37:04.1` was unbound and untouched. This is an observation map, not a free-memory map.
