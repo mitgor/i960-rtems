@@ -1,3 +1,17 @@
+**AcceleRAID 160 two-task post-return lease accepted (2026-10-17):**
+[Source and boundary](rtems/accele160/residentworkers/README.md),
+[exact image and live captures](artifacts/current/accele160-residentworkers-20261017/README.md).
+Init suspends after starting a separate RTEMS worker. The worker polls exact
+HALT or tick-300 expiry, resumes Init with task preemption disabled, and
+suspends itself before Init shuts down the whole instance. Two HALT/expiry
+batches passed at ticks 22/300 with 2/280 worker IRQs, six full flash reads,
+three stock inventories, owner/page/stage restoration, replay and ten tamper
+rejections. No flash write; old card unbound. A first sleep-based trial stayed
+ACTIVE and needed a recovery boot; diagnostic captures are saved. This does
+not prove DMA ownership, general resident preemption or recovery from
+permanently masked interrupts. Next qualify a bounded DMA owner and prove
+completion/timeout drain before the grant is released.
+
 **AcceleRAID 160 post-return RTEMS task accepted (2026-10-17):**
 [Exact source and boundary](rtems/accele160/residenttask/README.md),
 [two live batches, six full flash reads, inventories and replay](artifacts/current/accele160-residenttask-20261017/README.md).

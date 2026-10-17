@@ -1,5 +1,18 @@
 # Next AcceleRAID clock and STOP gates
 
+**Post-return two-task drain accepted, 2026-10-17:** The
+[resident-workers gate](residentworkers/README.md) created a separate worker
+after operation 13 returned, ran it with hardware timer ticks, and proved it
+suspended itself before Init shut down the RTEMS instance. Two HALT/expiry
+batches finished at ticks 22/300 with 2/280 worker IRQs; six full flash
+reads, three stock inventories, page/stage/owner restoration and offline
+replay passed. A sleep-based trial had previously stayed ACTIVE and needed a
+recovery boot; that path was removed. This closes a **finite two-task drain**
+gate, not general resident preemption or DMA. Next pin a host DMA buffer and
+card descriptor to an explicit owner, run one bounded transfer, and prove
+completion or timeout plus STOP/expiry drain before releasing either owner.
+Keep network and Doom off this board until that boundary is accepted.
+
 **Post-return RTEMS task accepted, 2026-10-17:** The
 [resident-task gate](residenttask/README.md) started one RTEMS task from the
 retained post-return timer ISR, then returned through that ISR to firmware

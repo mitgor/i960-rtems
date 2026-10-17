@@ -1,5 +1,21 @@
 # i960 / Mylex DAC960PG — consolidated technical findings
 
+**Second-board two-task post-return RTEMS lease accepted (2026-10-17):** The
+[AcceleRAID 160 resident-workers gate](rtems/accele160/residentworkers/README.md)
+added a separately owned worker to the already accepted supervisor task.
+After operation 13 returned, the worker ran on its own RTEMS stack under a
+finite timer lease. It suspended itself before the supervisor shut down the
+RTEMS instance. Two unchanged-image HALT/expiry batches finished at ticks
+22/300, with 2/280 worker timer IRQs and measured progress. A wrong HALT
+token stayed pending. Six complete same-boot flash reads, pre/mid/post stock
+inventories, both ISR stack guards, task identities, owner/page/stage
+restoration, offline replay and ten tamper rejections passed. No firmware
+write or old-card command occurred. A prior sleep-based trial stayed ACTIVE
+and required a recovery boot; its compact captures are preserved. This is
+finite two-task drain, **not** DMA ownership, general resident preemption or
+an independent watchdog. The next gate is a bounded, explicitly owned DMA
+transaction and STOP/expiry drain before resource reuse.
+
 **Second-board post-return RTEMS task accepted (2026-10-17):** The
 [AcceleRAID 160 resident-task gate](rtems/accele160/residenttask/README.md)
 started one RTEMS 4.6.6 task from a retained timer interrupt after operation

@@ -150,3 +150,14 @@ the [exact captures](../../artifacts/current/accele160-residenttask-20261017/REA
 replay with seven tamper rejections. This is one bounded task with
 whole-instance disposal. Explicit DMA ownership, multi-task/service drain
 and a deadline independent of working interrupts remain future gates.
+
+The [resident-workers gate](residentworkers/README.md) adds a second RTEMS
+task under the same post-return finite lease. The worker owns the poll loop,
+receives timer interrupts and suspends before the supervisor shuts down the
+whole instance. Two HALT/expiry batches passed with full flash, stock-state
+and owner/page/stage audits; the [exact evidence](../../artifacts/current/accele160-residentworkers-20261017/README.md)
+replays with ten tamper rejections. The earlier sleep-based two-task trial
+remained ACTIVE and required a recovery boot; its compact captures are kept.
+This is finite task-drain ownership, not general resident preemption or DMA.
+The next gate is a single bounded DMA transaction with explicit host-buffer
+and card ownership, then full completion/timeout drain before grant release.

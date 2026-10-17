@@ -4913,3 +4913,50 @@ interrupts and RTEMS state; it is not an independent hardware watchdog. DMA
 has not been admitted, and no network or Doom task ran in this experiment.
 The next boundary is explicit ownership and draining of DMA and any
 additional tasks before a resident service can release or reuse the grant.
+
+We took the smaller half of that boundary first. I gave RTEMS a supervisor
+and a separate worker under the same post-return lease. The supervisor would
+create the worker, then wait for it to finish. The worker would check HALT and
+the hardware tick deadline, and the supervisor would not shut the instance
+down until the worker had made itself non-runnable. No firmware write was
+needed; the new image went through the already accepted RAM admission path.
+
+The first arrangement used one-tick sleeps to share the CPU. The image
+loaded, the firmware callback returned, and the card published ACTIVE. Then
+it stopped making visible progress. Even after the host sent HALT and waited
+six seconds, there was no terminal report. Two later sideband, interrupt-stack
+and allocator snapshots were byte-for-byte identical. We left the grant and
+command modules in place instead of pretending a timeout meant cleanup; a
+new boot cleared that retained state. The likely mistake was relying on an
+idle-thread wakeup and dispatch path we had not qualified. The snapshots
+cannot tell us the exact instruction where it stopped.
+
+The corrected handoff removed those sleeps. Init starts the worker and
+suspends. The worker stays runnable while timer interrupts continue, and at
+HALT or tick 300 it resumes Init with task preemption disabled, then suspends
+itself. Only after that suspension can Init shut down RTEMS and return to the
+retained firmware interrupt. That interrupt still owns the final hardware
+cleanup: stop and drain timer 1, restore the cached vector and processor
+controls, and return to stock firmware. The first corrected trial completed
+both paths; two further unchanged-image batches repeated them between full
+flash reads and independent stock-state inventories.
+
+HALT ended at tick 22, roughly 301–304 milliseconds after admission; no-host
+expiry ended at tick 300, about 3.08 seconds. The worker received two timer
+interrupts before HALT and 280 before expiry, and advanced from about 16,000
+to 1.95 million loop steps. A wrong HALT token stayed pending. Both task
+identities and stacks, both interrupt-stack guards, firmware frame, timer,
+vector, priority, loader page, staging source and all allocator records
+checked out. Six complete same-boot firmware reads matched the unchanged
+image. The old card stayed unbound, and nothing was flashed. The [exact image,
+captures and replay](artifacts/current/accele160-residentworkers-20261017/README.md)
+reject ten deliberate changes to the evidence.
+
+This is not yet a new-board Doom machine or even a persistent RTEMS service.
+The worker is nonpreemptive to make its final resume-then-suspend handoff
+unambiguous; it still receives hardware timer interrupts. Shutdown disposes
+the entire RTEMS instance, and the host releases its RAM only after the last
+interrupt continuation has drained. There is still no DMA owner. Our next
+experiment needs to pin one host buffer and one card transfer to a named
+owner, then show that completion, HALT and expiry cannot release either
+resource while a transfer remains in flight.

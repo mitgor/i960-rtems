@@ -1,5 +1,19 @@
 # RTEMS working guidance
 
+**2026-10-17 AcceleRAID 160 two-task resident lease:**
+[Source](accele160/residentworkers/README.md) and
+[accepted captures](../artifacts/current/accele160-residentworkers-20261017/README.md)
+prove a separate worker runs after firmware operation 13 returns and suspends
+before its supervisor shuts down RTEMS. Two HALT/expiry batches passed at
+ticks 22/300, including wrong-token rejection, 2/280 worker timer IRQs,
+six full flash reads, three stock inventories and full RAM/ISR/owner drain.
+The worker disables RTEMS task preemption while it runs; timer interrupts
+continue. A sleep-based predecessor hung ACTIVE and required a recovery
+boot, so do not reintroduce an unqualified idle-thread handoff. No DMA is
+owned, and masked interrupts or corrupt scheduling can defeat the deadline.
+Next prove an explicit host-buffer/DMA owner, finite completion or timeout,
+and complete STOP/expiry drain before reusing the grant.
+
 **2026-10-17 AcceleRAID 160 post-return RTEMS task gate:**
 [Source](accele160/residenttask/README.md) and [exact captures](../artifacts/current/accele160-residenttask-20261017/README.md)
 prove one RTEMS task can run after operation-13 returns, using two separate
