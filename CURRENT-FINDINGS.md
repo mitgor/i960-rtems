@@ -1,5 +1,17 @@
 # Current findings — 2026-10-17
 
+**Host-timeout retention gate accepted:** The [long-hold DMA test](rtems/accele160/dma_timeout/README.md)
+passed twice with an unchanged image. The card suspended active DMA at tick
+21, held channel 0 until tick 101, then completed the finite chain at tick
+128. While the channel was held, the host crossed a 150 ms wait deadline,
+and an attempted early pin release returned `EBUSY`; the pinned buffer,
+guards and stock RAM grant remained owned. Exact payload, channel state,
+owner/page/stage, RTEMS stacks and timer/vector audits passed before real
+release. Four full flash reads matched stock; independent replay rejects
+sixteen tamper cases. [Exact artifacts](artifacts/current/accele160-dma-timeout-20261017/README.md)
+are archived. This proves timeout **retention followed by normal drain**,
+not recovery of an actual PCI error or a killed host process.
+
 **Active DMA suspend/resume gate accepted:** The [new card test](rtems/accele160/dma_suspend/README.md)
 paused channel 0 after STOP arrived with CSR active at tick 21, held it
 with CCR disabled for four 10 ms ticks, observed stable settled DAR/NDAR/BCR,

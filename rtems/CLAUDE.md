@@ -1331,3 +1331,13 @@ channel, owner and RTEMS audits preceded release, four full flash reads
 matched stock, and [replay](../artifacts/current/accele160-dma-suspend-20261017/README.md)
 rejects twelve tampered captures. This is a controlled pause/resume proof,
 not safe cancellation of a permanently stalled or erroring channel.
+
+The [host-timeout retention gate](accele160/dma_timeout/README.md) then
+passed twice: the card held channel 0 from tick 21 to 101, a 150 ms host
+deadline expired, premature pin release returned `EBUSY`, and the owner
+grant and pin remained live until the finite chain completed at tick 128.
+Full card, host, flash and RTEMS audits preceded release; the
+[captures and replay](../artifacts/current/accele160-dma-timeout-20261017/README.md)
+reject sixteen mutations. This is an intentional software hold, not a real
+PCI fault or process-death recovery proof. A timeout alone never grants
+permission to unpin or release the stock RAM allocation.

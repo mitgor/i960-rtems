@@ -2107,3 +2107,14 @@ were fully checked before release; four full flash reads matched stock.
 reject twelve mutations. CCR=0 **suspends, never cancels**. A genuinely
 stalled/erroring channel and process-death cleanup remain unproved; retain
 the host pin and card grant on any uncertainty.
+
+The [host-timeout retention gate](rtems/accele160/dma_timeout/README.md)
+held active channel-0 DMA from tick 21 through tick 101 in two unchanged-image
+runs. During the hold, a 150 ms host wait deadline elapsed and premature
+pin release returned `EBUSY`; the grant and buffer stayed owned. The finite
+chain then completed at tick 128, after which full card/host/RTEMS audits
+permitted release. Four full flash reads matched stock and
+[replay](artifacts/current/accele160-dma-timeout-20261017/README.md) rejects
+sixteen altered captures. This tests timeout retention, **not** actual PCI
+fault recovery or killed-host-process cleanup. Do not free a DMA target on
+timeout alone.

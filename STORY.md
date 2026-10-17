@@ -5097,3 +5097,15 @@ pause and resume, though the manual is careful: the PCI interface can still
 drain queued data after the bit is cleared. It does not tell us how to free
 a buffer behind a channel that never completes. That recovery question is
 still open, so Doom's persistent DMA path on this card remains gated.
+
+We then stretched that pause from four ticks to eighty. The host saw the
+card publish its held state and let a 150 ms wait deadline expire. It tried
+to release the pinned host buffer anyway, as a test of the guard; Linux
+returned `EBUSY`, and the card's RAM grant was still owned. At tick 101 the
+card resumed by itself, finished its chain at tick 128, and only then did
+the host perform the real release after all the familiar checks. Two runs
+with the same image and new host buffers behaved the same way. Four more
+full-flash reads matched stock and the archived replay rejects sixteen
+altered captures. The [evidence](artifacts/current/accele160-dma-timeout-20261017/README.md)
+shows that a host wait deadline does not have to become a dangerous DMA
+free. A real bus fault or a vanished host process is still a harder story.

@@ -1,0 +1,45 @@
+{
+  "replay": {
+    "boot_id": "a248da87-1bb3-403e-97fc-837b307e1b0e",
+    "firmware_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+    "image_sha256": "c2c2234300c5d5cd5caf1fa6f4b05d9df5a1d89cab515085ba1a029b93b9ab5f",
+    "full_flash_reads": 4,
+    "accepted_timeout_recovery_runs": 2,
+    "chain_descriptors": 13000,
+    "bytes_per_run": 26624000,
+    "stop_ticks": [
+      21,
+      21
+    ],
+    "suspend_ticks": [
+      21,
+      21
+    ],
+    "resume_ticks": [
+      101,
+      101
+    ],
+    "terminal_ticks": [
+      128,
+      128
+    ]
+  },
+  "tamper_rejected": [
+    "flash",
+    "image",
+    "prior-channel",
+    "owner",
+    "dma-active-stop",
+    "suspend-tick",
+    "hold-stability",
+    "held-page",
+    "timeout-page",
+    "release-denied",
+    "held-owner",
+    "resume-ccr",
+    "final-descriptor",
+    "host-payload",
+    "worker-done",
+    "admission-prior"
+  ]
+}

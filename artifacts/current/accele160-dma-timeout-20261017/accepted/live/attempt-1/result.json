@@ -1,0 +1,103 @@
+{
+  "boot_id": "a248da87-1bb3-403e-97fc-837b307e1b0e",
+  "runs": [
+    {
+      "mode": "halt",
+      "elapsed_ms": 1361.785,
+      "callback_ms": 41.385,
+      "stale_pending": true,
+      "firmware_sp": "0xc0002100",
+      "entry_sp": "0xc0722fc0",
+      "restored_sp": "0xc0002100",
+      "irq_sp": "0xc071f140",
+      "ticks": 128,
+      "entries": 1,
+      "restore_ok": 1,
+      "frame": "0xc00020d0",
+      "frame_pc": "0x00002002",
+      "frame_vector": "0x00000012",
+      "rtems_clock_tick": 20,
+      "rtems_callback_after_enter": 1,
+      "task_progress": 1,
+      "task_irq_count": 108,
+      "worker_progress": 1,
+      "worker_irq_count": 108,
+      "dma_bus": "0xfff8d000",
+      "dma_polls": 562808,
+      "stop_seen_active": 1,
+      "stop_seen_tick": 21,
+      "chain_descriptors": 13000,
+      "suspend_tick": 21,
+      "resume_tick": 101,
+      "host_timeout_ms": 150.23,
+      "premature_release_errno": 16,
+      "hold_dar": "0xc0723b40",
+      "hold_bcr": 0,
+      "hold_ndar": "0xc0723b40",
+      "worker_sp": "0xc071a320",
+      "dma_registers": [
+        [
+          "0x00000000",
+          "0xc07888e0",
+          "0x00000000",
+          "0xfff8d800",
+          "0x00000000",
+          "0xc0789800",
+          "0x00000000",
+          "0x00000007"
+        ],
+        [
+          "0x00000000",
+          "0xc0611320",
+          "0x00000000",
+          "0xfff863ec",
+          "0x00000000",
+          "0xc060c6ec",
+          "0x00000000",
+          "0x0000003f"
+        ],
+        [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00000000"
+        ]
+      ],
+      "task_sp": "0xc071b3b0",
+      "task_isr_sp": "0xc0721140",
+      "stack_changed_bytes": 576
+    }
+  ],
+  "firmware_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+  "image_sha256": "c2c2234300c5d5cd5caf1fa6f4b05d9df5a1d89cab515085ba1a029b93b9ab5f",
+  "full_audits": true,
+  "owner_restored": true,
+  "page_restored": true,
+  "stage_restored": true,
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  }
+}
