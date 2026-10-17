@@ -6,6 +6,7 @@ use a payload and generated Linux module from the same build.
 
 | Area | Implementation / evidence |
 | --- | --- |
+| AcceleRAID 160 bounded task gate | [new-board profile](../../rtems/accele160/README.md), [physical acceptance](../../artifacts/current/accele160-rtems-20261017/README.md) |
 | Initial returning RTEMS and networking | [RTEMS guide](../../rtems/README.md), [first acceptance](../../artifacts/rtems-20261011/README.md) |
 | Hardware timer and firmware coexistence | [autonomous profile](../../rtems/autonomous/README.md), [web acceptance](../../artifacts/rtems-web-autonomous-20261011/README.md) |
 | Owned interrupts and task control | [interrupt contexts](../../rtems/interrupt/README.md), [resident runtime](../../rtems/residentnet/README.md) |

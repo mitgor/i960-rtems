@@ -51,7 +51,11 @@ The DAC960PG RTEMS and Doom binaries still cannot be run directly on this
 board. Their host transport, timer and interrupt wiring, memory map, lifecycle
 and Doom's 8 MiB arena are board-specific. An RTEMS-sized [77-page transfer](../artifacts/current/accele160-bulkupload-20261017/README.md)
 now passes with full digest and restoration; this does not run the old image.
-Port a newly linked minimal RTEMS task/clock/STOP image with an explicit
-AcceleRAID memory manifest, then the host-backed network/web profile. Doom needs a separate, measured 8 MiB ownership design. FNV is a
+A newly linked [AcceleRAID RTEMS bounded profile](../rtems/accele160/README.md)
+now runs real RTEMS tasks and synchronous software ticks twice from a 15-page
+image, with full flash and owner audits. The next gate is AcceleRAID-specific
+hardware timer/interrupt ownership and independent bounded STOP; only then port
+the host-backed network/web profile. Doom needs a separate, measured 8 MiB
+ownership design. FNV is a
 transfer-error check, not a cryptographic authenticity proof. Keep exact-card
 selection, full flash audits, owner checks, bounded timeouts and restoration.

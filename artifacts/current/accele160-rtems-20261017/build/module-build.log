@@ -1,0 +1,7 @@
+make: Entering directory '/usr/src/linux-headers-6.8.0-138-generic'
+  CC [M]  /home/mit/i960-accele160-rtems-20261017/rtems_command.o
+  MODPOST /home/mit/i960-accele160-rtems-20261017/Module.symvers
+  CC [M]  /home/mit/i960-accele160-rtems-20261017/rtems_command.mod.o
+  LD [M]  /home/mit/i960-accele160-rtems-20261017/rtems_command.ko
+  BTF [M] /home/mit/i960-accele160-rtems-20261017/rtems_command.ko
+make: Leaving directory '/usr/src/linux-headers-6.8.0-138-generic'

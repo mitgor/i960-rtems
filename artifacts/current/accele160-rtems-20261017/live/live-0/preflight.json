@@ -1,0 +1,37 @@
+{
+  "boot_id": "ccdf3abd-8148-45f7-868b-369c5f26a7e9",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_card": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  },
+  "image_sha256": "68451b38b96609fa3a95eb9497fe85a34ac92fec45b912c53612969b1209a988",
+  "module_sha256": {
+    "reserve": "d5dc1cf2dddba559ea4ff5ebf7bac1ae32f462f27dd968b8964f0cd20b47c945",
+    "release": "bbfbe079b86ba1503efcfcce4c0c7ee5e1ad2fc662ded669766bdb7d38a3ecfa",
+    "copy": "6dd7dc40be4c51e65dce65978b3fdda3256e54928034d7acfe451a946caf1ec6",
+    "digest": "db97abc60007d96017c4aaed6f86f5f155988b2948993f2f5b3f81cc964ad6b1",
+    "rtems": "bac9412aa8a635479a09cf5dbf13b9908ed1dedae74d7de919743c53bc23b9f3"
+  },
+  "readbacks": [
+    "/home/mit/i960-accele160-rtems-20261017/persistent-0",
+    "/home/mit/i960-accele160-rtems-20261017/persistent-1"
+  ]
+}

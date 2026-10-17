@@ -1,4 +1,17 @@
-# Current findings — 2026-10-16
+# Current findings — 2026-10-17
+
+## AcceleRAID RTEMS task gate — 2026-10-17
+
+The new AcceleRAID 160 now runs a newly linked RTEMS 4.6.6 task image from a
+stock-owned 512 KiB grant. Two 15-page uploads passed per-page copy checks,
+whole-image digest, wrong-hash/count rejection, normal RTEMS return, complete
+loader/staging/allocator restoration, and four guarded full post-boot flash
+reads. A worker woke at synchronous software tick five of ten. This is **not**
+a hardware timer, interrupt-driven scheduler, independent STOP, network server
+or Doom port. Firmware SHA-256 `68451b38b96609fa3a95eb9497fe85a34ac92fec45b912c53612969b1209a988`;
+[payload, runner and full evidence](artifacts/current/accele160-rtems-20261017/README.md).
+The 2026-10-16 statement below that no block was granted is historical and
+superseded by the intervening retained-grant and upload gates.
 
 ## AcceleRAID bounded RAM execution — 2026-10-16
 

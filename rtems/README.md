@@ -1,5 +1,7 @@
 # RTEMS on the DAC960PG
 
+**Second-board milestone (2026-10-17):** the [AcceleRAID 160 bounded profile](accele160/README.md) ran RTEMS 4.6.6 tasks twice from a stock-owned 512 KiB grant, woke a worker after five synchronous software ticks, returned normally, and passed full flash/owner audits. Hardware timer, independent STOP, networking and Doom on that board remain pending.
+
 Low-detail benchmark: **2.481 → 3.178 FPS (+28.09%)**, 52 frames and all 14
 full audit pairs/STOP/drain pass. Renderer ~210 ms wall / ~105 ms timer-sampled
 Doom CPU. [Results, images, limitations and reproduction](../artifacts/notes/doom-detail-20261014.md).

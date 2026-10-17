@@ -137,12 +137,11 @@ The accepted path after the stock dump is sequential:
 4. [Contiguous owned-image digest](../artifacts/current/accele160-digest-20261017/README.md) checked a two-page transfer and its rejection paths.
 5. [Exact leaf from owned RAM](../artifacts/current/accele160-ownedexec-20261017/README.md) returned normally from the grant after whole-image and code-byte checks.
 6. [77-page scale run](../artifacts/current/accele160-bulkupload-20261017/README.md) transferred 315,392 bytes under one grant with per-page and whole-region checks.
+7. [New-board bounded RTEMS](../artifacts/current/accele160-rtems-20261017/README.md) linked and ran RTEMS 4.6.6 tasks from a 15-page owned grant, used synchronous software ticks, returned normally twice, and restored all audited state.
 
 Each artifact links the exact candidate, source, host harness, module and
-compact acceptance captures. A prepared candidate is not accepted until two
-post-reboot full 1 MiB reads and a live bounded call pass. The full 1 MiB
-scratch readbacks remain in their named isolated workspaces on the test PC;
-the original stock image and exact programmed binaries are retained in git.
-The next board-port step is a newly linked minimal RTEMS image with an
-AcceleRAID memory manifest and bounded task/clock/STOP lifecycle. The PG
+acceptance captures. A prepared candidate is not accepted until two
+post-reboot full 1 MiB reads and a live bounded call pass. The new-board RTEMS gate archives its complete guarded 1 MiB readbacks in Git; earlier scratch readbacks remain in their named isolated workspaces on the test PC. The original stock image and exact programmed binaries are retained in Git.
+The next board-port step is hardware timer/interrupt ownership and an
+independent bounded STOP channel, followed by host-backed networking. The PG
 binary and Doom's 8 MiB ownership assumptions are not portable as-is.

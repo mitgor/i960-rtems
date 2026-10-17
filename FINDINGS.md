@@ -1,5 +1,7 @@
 # i960 / Mylex DAC960PG — consolidated technical findings
 
+**Second-board current result (2026-10-17):** [AcceleRAID 160 bounded RTEMS](artifacts/current/accele160-rtems-20261017/README.md) passed twice from a stock-owned 512 KiB grant with full flash and allocator audits. Ten synchronous software ticks woke a worker at tick five; hardware timer/STOP/networking remain pending. The historic DAC960PG notes below are not the second board's map.
+
 **Current index (2026-10-16): [findings, evidence and unresolved questions](CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
 
 **Current result:** [In-system recovery succeeded](docs/firmware/SNAPSHOT-RECOVERY.md). A paired

@@ -1,0 +1,23 @@
+{
+  "board": "AcceleRAID 160 1069:0050 1069:0054",
+  "bdf": "0000:37:09.1",
+  "load_address": "0xc0710000",
+  "entry": "0xc0710000",
+  "staging_address": "0xc078f000",
+  "report_address": "0xc000f800",
+  "original_bytes": 57972,
+  "pages": 15,
+  "padded_bytes": 61440,
+  "image_sha256": "4ac2bebe43794577a0a2d9450e6a550e8aed49bf0a4b669d475aa7034a277cdc",
+  "padded_sha256": "318b9f70fe021ce1fb18e3c75465d9231cb55c3ca6893d99511b9b73c383adc0",
+  "padded_fnv32": "0x648486da",
+  "first_80_sha256": "6d6e22c11a26ce404f3ef4ac90c382d40e521aeca745903cd7346eea5a804148",
+  "bss_start": "0xc0715b00",
+  "bss_end": "0xc071e270",
+  "bss_bytes": 34672,
+  "grant_bytes": 524288,
+  "free_payload_pages": 112,
+  "clock": "ten synchronous RTEMS software ticks, worker wake at tick five",
+  "interrupts": "masked; no card timer/DMA/IRQ ownership",
+  "return": "normal return, fixed report and nonce echo; no persistent RTEMS instance"
+}

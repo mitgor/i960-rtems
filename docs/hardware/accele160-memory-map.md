@@ -1,5 +1,7 @@
 # AcceleRAID 160 live memory map and RTEMS gates
 
+**2026-10-17 update:** [New-board RTEMS bounded acceptance](../../artifacts/current/accele160-rtems-20261017/README.md) now proves a 512 KiB stock-owned grant, 15-page RTEMS task image, synchronous software ticks and normal return with full restoration. The chronological 2026-10-16 text below describes earlier observation gates; its statements that no block was allocated or no task ran are superseded. Hardware timer/interrupt ownership and independent STOP remain open.
+
 2026-10-16. This records observations on the new AcceleRAID 160 `0000:37:09.1` after the accepted bounded RAM-call image was programmed. The old DAC960PG `0000:37:04.1` was unbound and untouched. This is an observation map, not a free-memory map.
 
 | Local address | Evidence | Ownership conclusion |

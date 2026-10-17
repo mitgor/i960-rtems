@@ -4398,3 +4398,33 @@ RTEMS's BSS, stacks, heap, network buffers or the new board support. We have
 proved the crossing and the lease; the next act is to link a small AcceleRAID
 RTEMS task for this map, measure its real writable footprint, and give it a
 bounded clock and STOP before trying the web server or Doom.
+
+The next program was no longer a hand-written leaf. We gave the AcceleRAID
+its own RTEMS build, linked for the owned grant instead of transplanting the
+PG's image. Its whole flat image, including zero-initialized BSS, was only
+57,972 bytes. Fifteen pages carried it, with 112 payload pages still free.
+The entry saved the firmware's processor state, ran a real RTEMS worker, and
+restored the state before returning. This first clock was deliberately
+synchronous: ten calls to RTEMS's clock tick service, no borrowed hardware
+interrupt. The worker asked to wake after five ticks. The card's final report
+said it woke on tick five, finished, and returned to the stock command path.
+
+We changed the flash helper only enough to admit that one fixed image: exact
+owner and address, exact fifteen-page count, embedded whole-image digest and
+entry bytes, then instruction-cache handoff. The 1 MiB candidate changed
+only the loader cave and checksum words. We staged it, read every byte back,
+flashed once, and restarted. Two full post-boot reads matched. On the first
+owned upload every page's host readback and card checksum agreed. A wrong
+hash and a wrong page count both returned unsupported status without touching
+the result. The real RTEMS call returned the eight expected words. We put the
+staging page, loader page, aperture and all allocator owner/count words back,
+read the entire flash again, and repeated the task under a fresh grant. The
+second return and final full flash read matched too; the old PG stayed
+unbound. The host saw about 51 milliseconds for each command cycle, dominated
+by its polling interval, not a measured RTEMS CPU time.
+
+This is a real RTEMS task on the 100 MHz card, but only a bounded software-clock
+one. We have not yet claimed the card's hardware timer or interrupts, a
+persistent operating system, a host STOP channel, a network link or Doom's
+multi-megabyte arena. The next chapter is to learn those new-board ownership
+rules before letting RTEMS run independently or serve a page.

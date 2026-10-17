@@ -1,5 +1,7 @@
 # AcceleRAID 160 upload and RTEMS path after the retained-grant proof
 
+**Latest accepted gate (2026-10-17):** [new-board RTEMS task execution](../../artifacts/current/accele160-rtems-20261017/README.md) passed twice from the owned grant. Fifteen pages / 61,440 bytes contained a newly linked RTEMS 4.6.6 image; ten synchronous software ticks woke a worker at tick five and returned normally. Two same-boot full flash reads preceded the calls, two followed, all owner/page restoration passed and the old card stayed unbound. Hardware timer, interrupt ownership, independent STOP and networking remain pending. The chronological paragraphs below describe earlier gates.
+
 Status, 2026-10-17: the new card persistently runs operations 4–6. A fixed 512 KiB stock allocation at `c0710000` was retained between host commands, a reversible 4 KiB host write passed in an odd owned page, and one card-side copy into the first even page passed with destination FNV `0x6121fdc5`. No general image or RTEMS code has run on this board.
 
 BAR0 is an 8 KiB PCI BAR with a 4 KiB Messaging Unit and one translated 4 KiB local-RAM aperture. PIATVR is 8 KiB aligned and the aperture maps `PIATVR + 0x1000`; host MMIO can therefore address only odd 4 KiB pages. A direct copy of an RTEMS image through BAR0 would leave every even page missing. The stock `MEMCOPY` command is a SCSI/device route, not a proven arbitrary local-memory upload. Do not infer a full grant is host-addressable from the successful odd-page test.
