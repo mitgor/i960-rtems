@@ -1322,3 +1322,12 @@ rejections are archived. This proves deferral through **normal finite-chain
 completion**, not cancellation of a genuinely stalled or erroring channel.
 The shorter and cache-stale negative attempts are preserved; never unpin
 after an uncertain completion.
+
+The [active DMA suspend/resume gate](accele160/dma_suspend/README.md) passed
+two unchanged-image card runs. After STOP at tick 21 with channel 0 active,
+CCR=0 held the channel until tick 25, settled DAR/NDAR/BCR snapshots matched,
+CCR=1 resumed it and the finite chain completed at tick 52. Full host,
+channel, owner and RTEMS audits preceded release, four full flash reads
+matched stock, and [replay](../artifacts/current/accele160-dma-suspend-20261017/README.md)
+rejects twelve tampered captures. This is a controlled pause/resume proof,
+not safe cancellation of a permanently stalled or erroring channel.

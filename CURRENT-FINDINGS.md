@@ -1,5 +1,18 @@
 # Current findings — 2026-10-17
 
+**Active DMA suspend/resume gate accepted:** The [new card test](rtems/accele160/dma_suspend/README.md)
+paused channel 0 after STOP arrived with CSR active at tick 21, held it
+with CCR disabled for four 10 ms ticks, observed stable settled DAR/NDAR/BCR,
+then resumed and completed all 13,000 descriptors at tick 52. Two
+unchanged-image runs with fresh pinned host buffers passed exact payload,
+both guards, channel inactivity, stock channel-1, allocator, staging,
+loader-page, RTEMS stack, timer and firmware-continuation checks before
+release. Four guarded full-flash reads matched the stock SHA-256. Offline
+replay and twelve tamper cases pass; [exact evidence](artifacts/current/accele160-dma-suspend-20261017/README.md)
+is archived. This proves a **controlled pause and resume of finite DMA**,
+not cancellation or safe release of a genuinely stalled/erroring channel.
+The host must still retain the pin and grant on uncertainty.
+
 **DMA STOP timing gate accepted:** The [finite-chain test](rtems/accele160/dma_chain_stop/README.md)
 now passes twice on the new card with an unchanged image. Each run copied
 26,624,000 bytes through 13,000 descriptors to a fresh pinned host buffer.

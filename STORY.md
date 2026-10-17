@@ -5082,3 +5082,18 @@ the three negative attempts, exact binaries and sources, and a replay that
 rejects ten altered captures. This establishes STOP deferral until normal
 DMA completion on the new card. A truly stuck channel still needs its own
 fault-injection and recovery proof before persistent DMA service.
+
+The next run put the 80303's Channel Enable bit to work. On seeing STOP
+while the channel was active at tick 21, the card cleared the bit, held the
+transfer for four timer ticks, and took two settled snapshots of its
+descriptor address and remaining byte count. They were identical. It then
+set Channel Enable again and the 13,000-descriptor chain finished at tick
+52. A second run with the same image and a fresh host buffer followed the
+same timing. Both completed only after the host compared the payload, two
+guards, allocator and loader state, interrupt stacks and restored timer;
+four full-flash reads still matched stock. The [capture and replay](artifacts/current/accele160-dma-suspend-20261017/README.md)
+also reject twelve altered pieces of evidence. This is a real software
+pause and resume, though the manual is careful: the PCI interface can still
+drain queued data after the bit is cleared. It does not tell us how to free
+a buffer behind a channel that never completes. That recovery question is
+still open, so Doom's persistent DMA path on this card remains gated.

@@ -2096,3 +2096,14 @@ DMA transaction. The initial no-cache-invalidation attempts are negative
 evidence. A fresh inventory verifier now treats stock channel-1's PCI
 address as variable across boots while still checking its fixed descriptor,
 local address and DCR. Keep channel 1 and the old card untouched.
+
+The [active DMA suspend/resume gate](rtems/accele160/dma_suspend/README.md)
+then passed twice with an unchanged image: STOP at tick 21 while CSR active,
+CCR=0 until tick 25, two stable DAR/NDAR/BCR snapshots during the hold,
+CCR=1 on resume, and final chain completion at tick 52. Host payload,
+guards, channel-inactive state, grant, loader/stage and RTEMS restoration
+were fully checked before release; four full flash reads matched stock.
+[Exact artifacts and replay](artifacts/current/accele160-dma-suspend-20261017/README.md)
+reject twelve mutations. CCR=0 **suspends, never cancels**. A genuinely
+stalled/erroring channel and process-death cleanup remain unproved; retain
+the host pin and card grant on any uncertainty.
