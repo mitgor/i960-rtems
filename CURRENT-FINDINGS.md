@@ -1,5 +1,13 @@
 # Current findings — 2026-10-17
 
+The [AcceleRAID 160 combined RTEMS/timer gate](rtems/accele160/autoclock/README.md)
+now passes twice: hardware tick 5 wakes the worker, 52 ticks continue through
+a bounded CPU loop, and STOP/no-host cleanup restores the borrowed timer,
+vector, mapping, mask and firmware context. Six full flash reads and three
+independent stock-state inventories passed. This accepts bounded hardware
+clocking, while unrestricted preemption and a resident service on the new
+card remain future work. The accepted DAC960PG runtime below is separate.
+
 ## AcceleRAID 160 timer/STOP gate — 2026-10-17
 
 The latest [RAM-only timer acceptance](artifacts/current/accele160-timer-20261017/README.md)

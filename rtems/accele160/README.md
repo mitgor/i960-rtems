@@ -83,3 +83,11 @@ four guarded full flash reads and complete page/owner restoration passed;
 [exact evidence](../../artifacts/current/accele160-timer-20261017/README.md)
 replays offline. This is bare interrupt handling; the next gate is a bounded
 RTEMS tick/worker wakeup using that timer with STOP and exact restoration.
+
+The [combined RTEMS/timer gate](autoclock/README.md) is now accepted in two
+repeated bounded batches without another flash write. Timer 1 woke the worker
+at tick 5 and continued through 52 ticks during each CPU-bound no-host run;
+STOP, finite exit, exact state restoration, six full flash reads and
+independent vector/timer inventories passed. The initial false guard and
+interrupt-priority experiments are preserved in its artifact. This is not yet
+unrestricted task preemption or a resident service on the new board.

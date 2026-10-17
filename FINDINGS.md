@@ -1,5 +1,16 @@
 # i960 / Mylex DAC960PG — consolidated technical findings
 
+**Second-board RTEMS timer integration accepted (2026-10-17):** The
+[AcceleRAID 160 bounded hardware-clock gate](rtems/accele160/autoclock/README.md)
+woke an RTEMS worker at timer-1 tick 5, sustained 52 ticks during a CPU-bound
+no-host loop in two repeated runs, and passed stale/valid STOP, timer drain,
+firmware-context restoration and all owner/page checks. Six full 1 MiB flash
+reads and independent pre/post timer/vector inventories matched stock; no
+firmware write or old-card change occurred. The worker was correctly at PC
+priority 0. This is bounded tick delivery, **not yet unrestricted RTEMS
+preemption or a resident new-board runtime**. Earlier attempts isolated an
+unrelated stock timer-0 pending bit and an i960 `modpc` operand error.
+
 **Second-board timer result (2026-10-17):** The [AcceleRAID 160 RAM-only
 timer gate](artifacts/current/accele160-timer-20261017/README.md) received
 timer-1 interrupts through temporarily owned cached vector 18 and an owned
@@ -7,10 +18,10 @@ ISR stack. Two eight-tick paths and two stale/valid STOP paths passed;
 the 201-tick host sample was 1,253.04 interrupts/s. Cached F2 is occupied
 by stock firmware and was not borrowed. Pre/post timer/vector inventories,
 four complete guarded flash reads, firmware SP, loader/stage and allocator
-restoration passed. This is a bounded bare-metal IRQ gate; RTEMS is not yet
-autonomously clocked on this board.
+restoration passed. This was the bounded bare-metal IRQ gate before the RTEMS
+integration above.
 
-**Earlier second-board RTEMS result (2026-10-17):** [AcceleRAID 160 bounded RTEMS](artifacts/current/accele160-rtems-20261017/README.md) passed twice from a stock-owned 512 KiB grant with full flash and allocator audits. Ten synchronous software ticks woke a worker at tick five. Subsequent [task STOP](artifacts/current/accele160-rtems-lease-20261017/README.md) and bare timer gates passed, but their integration into an autonomous RTEMS clock remains pending. The historic DAC960PG notes below are not the second board's map.
+**Earlier second-board RTEMS result (2026-10-17):** [AcceleRAID 160 bounded RTEMS](artifacts/current/accele160-rtems-20261017/README.md) passed twice from a stock-owned 512 KiB grant with full flash and allocator audits. Ten synchronous software ticks woke a worker at tick five. Subsequent [task STOP](artifacts/current/accele160-rtems-lease-20261017/README.md) and bare timer gates preceded the later hardware-clock integration above. The historic DAC960PG notes below are not the second board's map.
 
 **Current index (2026-10-16): [findings, evidence and unresolved questions](CURRENT-FINDINGS.md).** Earlier milestone notes below retain their historical context.
 

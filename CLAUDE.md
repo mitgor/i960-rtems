@@ -1940,3 +1940,29 @@ initialization. Snapshot RNT2 words 57–59 are queue telemetry, not cache statu
 The adjacent 240 KiB belongs to the stock cache data pool; never reclaim it from
 size or zero software counters alone. Fixed page 15 observes SCSI bookkeeping;
 hardware drain remains unproved. Cooperative net/autonet stays available.
+
+## AcceleRAID 160 combined RTEMS/timer gate (2026-10-17)
+
+Use [rtems/accele160/autoclock/README.md](rtems/accele160/autoclock/README.md)
+and [exact accepted evidence](artifacts/current/accele160-autoclock-20261017/README.md)
+before any next-board clock work. The RAM-only 17-page operation-13 image
+passed two repeated STOP/no-host batches: an RTEMS worker woke at hardware
+timer-1 tick 5 and sustained 52 ticks during each bounded CPU loop. Its PC
+priority was 0; timer-1 mask/map/reload and owned ISR stack were observed.
+Both paths restored stock timer/vector/firmware context, loader page, stage
+and all owner records. Six paired full 1 MiB flash reads and independent
+inventories matched the unchanged firmware. Old card `0000:37:04.1` was
+unbound and untouched. Offline replay and four tamper tests pass.
+
+**Do not reuse the earlier candidate's `modpc` form.** On i960 the output
+operand supplies the replacement PC bits; use an initialized `+r` operand
+with mask `0x1f0000`. The output-only form left the worker at priority 31,
+blocking further timer interrupts. Guard only timer-1 pending bit `0x2000`;
+stock timer 0 can be pending at `0x1000` while RTEMS starts masked. The
+accepted binary SHA-256 is `d7234b9309e5e435456ddd50905787b4ddbab4e7fd9e0ea18d5094ca09a39db5`.
+The accepted test is bounded tick delivery, not unrestricted ISR-driven task
+preemption or a resident network/Doom runtime. Next qualify a bounded task
+switch with an independent finite STOP/quiescence path. For physical runs,
+confirm exact new-card BDF, old card unbound, no retained modules, stock
+timer/vector state and two same-boot full flash reads. Never force-unload a
+pending operation-13 command.

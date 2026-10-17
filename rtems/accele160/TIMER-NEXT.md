@@ -1,5 +1,15 @@
 # Next AcceleRAID clock and STOP gates
 
+**RTEMS hardware clock accepted, 2026-10-17:** See
+[autoclock](autoclock/README.md). Hardware tick 5 woke the worker, and two
+bounded no-host runs each reached 52 ticks while the worker ran at PC
+priority 0. Both STOP and finite exit restored firmware/timer/vector state;
+six full flash reads and independent stock inventories passed. This does not
+yet prove unrestricted task preemption or a resident lease. Next test a
+bounded interrupt-triggered task switch with exact context ownership, then
+add an independent finite STOP/quiescence path before any network or Doom
+service on this board.
+
 **Bounded timer/owned ISR stack accepted, 2026-10-17:** A
 [three-page RAM-only gate](../../artifacts/current/accele160-timer-20261017/README.md)
 borrowed timer 1 and cached vector 18 under exact current-stock guards. It

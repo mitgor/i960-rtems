@@ -4660,3 +4660,66 @@ experiment must attach this owned ISR to `rtems_clock_tick()`, prove a task
 wakes and STOP quiesces it, then drain and restore the interrupt source before
 the stock firmware resumes. A resident service will still need a stronger
 lease and recovery story for code that stops cooperating.
+
+We joined the timer gate to the bounded RTEMS lease in a 17-page RAM image:
+RTEMS kept its task workspace, while the interrupt's C stack and the entry
+stack each got a separate owned page. The first build reached the worker at
+hardware tick five. The host sent an exact STOP, RTEMS deleted its worker,
+and the card returned with timer 1, cached vector 18 and firmware SP restored.
+The no-host run also returned. Our first host checker rejected the already
+finished STOP call because it tried to validate an even grant page through a
+PCI aperture that cannot read those pages reliably. We compared the exact
+saved page, stage and owner records, released the completed grant, checked the
+full flash image, corrected the check and repeated both paths successfully.
+
+There was still a narrow failure behind the success: only six interrupts
+arrived in the long no-host run. The worker's first sleep had genuinely been
+woken by hardware, but the clock did not keep running through later task
+yields. We then matched timer reload to RTEMS's 10 ms tick and reopened the
+interrupt priority after yields. Its STOP case completed with five ticks and
+clean restoration. The no-host case reached READY and later returned command
+status 2 without RTEMS's final report. A later sideband sample held a timer
+preflight failure marker, so we left the retained modules and grant alone and
+rebooted the PC. That reboot has not yet returned over SSH. The next build
+keeps a short worker loop on one task without yielding after its initial wake;
+it can distinguish continuing timer interrupts from the task-switch path.
+No new flash write was needed for either experiment.
+
+The delayed reboot eventually returned Linux with a new boot ID. We rebound
+the new card's exact-BDF read-only driver, left the old DAC960PG unbound, and
+verified two complete firmware reads and the stock timer/vector map before
+another RAM call. The next build refused to arm its timer immediately. This
+time we recorded each guard separately: its only unexpected value was pending
+bit `1000`, the stock timer-0 interrupt that can arrive while RTEMS starts at
+priority 31. Our timer-1 bit `2000` was clear. We recovered that returned
+preflight rejection under exact page and owner checks and narrowed the guard
+to the interrupt source we actually borrow.
+
+With that guard fixed, STOP and the finite no-host path both returned and
+restored everything, but the long path still saw only six ticks. We put a
+small trace on the owned interrupt-stack page and saw the reason. Timer 1 was
+enabled, mapped to our vector and pending, but the worker's processor control
+word was `001f2002`: interrupt priority 31. The i960 `modpc` instruction uses
+its destination register as the new control bits as well as the old-value
+result. Our output-only inline assembly had supplied an uninitialized value;
+it had not lowered the priority. We changed it to an initialized read/write
+operand with the `1f0000` mask, and kept the strict restoration checks.
+
+The corrected 17-page image ran twice under the same firmware. Hardware tick
+five woke the RTEMS worker. A stale STOP remained pending, then the exact STOP
+made the worker leave in about 100 milliseconds of host-observed time. With
+no host input, the worker exhausted exactly 500,000 polls in about 0.56
+seconds; the timer advanced to tick 52 in both runs while its PC priority
+stayed zero. The ISR C stack pointer was `c071f100`; the firmware SP was
+`c0002100` before and after. We again restored cached vector 18, timer 1,
+its map, mask and pending state, the loader page, staging source and every
+allocator record. Six full-megabyte flash reads matched the unchanged image,
+and independent inventories after both runs found the original timer/vector
+state. Offline replay accepted the captures and rejected four deliberate
+changes. No firmware was written, and the old card remained untouched.
+
+This gives the new board a real bounded RTEMS hardware clock. The interrupt
+still defers task switching until a normal task boundary, and the worker is
+deliberately cooperative. A service that stays resident, preempts arbitrary
+tasks, or hosts the web server and Doom needs another ownership and finite
+quiescence gate before we give it the card for longer periods.

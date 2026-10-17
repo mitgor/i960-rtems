@@ -1,0 +1,79 @@
+{
+  "boot_id": "2fef3a5a-8027-4067-9d7e-2a8f8f6c6b84",
+  "observations": {
+    "inventory": {
+      "registers": {
+        "0xff000300": "0x0004c4b4",
+        "0xff000304": "0x000168ce",
+        "0xff000310": "0x00000000",
+        "0xff000314": "0x00000000",
+        "0xff008500": "0x00000000",
+        "0xff008504": "0x000010c7",
+        "0xff008510": "0x00006000",
+        "0xff008520": "0x00004444",
+        "0xff008524": "0x00006754",
+        "0xff008528": "0x00080000",
+        "0xff008700": "0xfeffdd20",
+        "0xff008704": "0xc0001000",
+        "0xff008708": "0x00000000",
+        "0xff008710": "0x00823013",
+        "0x0000003c": "0xe0000ff0"
+      },
+      "live_prcb_matches_stock_ibr": true,
+      "stock_prcb_words": [
+        "0xc0000800",
+        "0xfeffd8a0",
+        "0x00009000",
+        "0x40000000",
+        "0xfeffd910",
+        "0xfefe0000",
+        "0x00000000",
+        "0xc0001000"
+      ]
+    },
+    "vector": {
+      "flags": 3,
+      "cached_vector18": "0xaaaaaaaa",
+      "cached_vector130": "0xc0000418",
+      "pre": {
+        "ipnd": "0x00000000",
+        "imsk": "0x000010c7",
+        "imap2": "0x00080000",
+        "trr1": "0x00000000",
+        "tcr1": "0x00000000"
+      },
+      "mode": "0x00000000",
+      "post": {
+        "ipnd": "0x00000000",
+        "imsk": "0x000010c7",
+        "imap2": "0x00080000",
+        "trr1": "0x00000000",
+        "tcr1": "0x00000000"
+      }
+    }
+  },
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "ids": [
+      4201,
+      16,
+      4201,
+      16
+    ],
+    "driver": null
+  },
+  "owner_restored": true,
+  "page_restored": true
+}
