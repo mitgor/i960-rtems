@@ -4449,5 +4449,5 @@ Timer 0's count moved while its reload stayed fixed; the stock firmware was
 using it. Timer 1's count and reload were zero, its interrupt was masked,
 and no interrupt was pending in these three snapshots. The live PRCB pointer
 still matched the boot ROM. That narrows the next experiment, but it does not
-give us timer 1: we have not read its mode, checked the stock vector in full,
+give us timer 1: we have not read its mode, checked the live cached vector at `0x04`,
 installed an owned interrupt stack, or proved an independent STOP channel.

@@ -76,7 +76,18 @@ its [binary and linked handler](build/) are archived. The isolated remote
 workspace is `/home/mit/i960-accele160-inventory-20261017`; the archived
 `live/` directory is sufficient for replay.
 
-Next: inspect the stock interrupt table/vector and qualify timer-1 mode with
+Next: inspect the live cached vector and qualify timer-1 mode with
 its read-clear semantics, then design an exact bounded timer experiment with
 an owned interrupt stack, state restoration and independent host STOP. Do not
 declare timer or STOP ownership from this observation alone.
+
+The reproducible [stock-ROM vector audit](vector-static.json) now narrows
+that next check. It verifies the stock IBR's PRCB pointer `feffdd20`, its
+interrupt-table pointer `feffd910`, and unchanged table bytes in the current
+candidate. The live maps assign timer 0 to vector 130 and timer 1 to mapping
+field zero, whose vector 2 is undefined by the 80303 manual. ROM vector 18
+(mapping field one) is zero, but ICON `0x6000` enables on-chip vector caching.
+The live cache word at address `0x04` has **not** been read. A mapped external
+source also has a zero ROM vector, demonstrating why the ROM table alone
+cannot prove a usable/free vector. The [audit script](../../../rtems/accele160/vector_static.py)
+pins both full-image hashes and all three live map reports.

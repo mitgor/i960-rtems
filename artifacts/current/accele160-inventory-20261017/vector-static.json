@@ -1,0 +1,72 @@
+{
+  "stock_sha256": "0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a",
+  "current_sha256": "9d5d4da2c283d10e1dee9c71ceb477f36e389cd0d0548764a3cc5f8a41a24c49",
+  "stock_prcb": "0xfeffdd20",
+  "stock_interrupt_table": "0xfeffd910",
+  "live_icon": "0x00006000",
+  "vector_cache_enabled": true,
+  "live_mappings": [
+    {
+      "source": "XINT0",
+      "field": 4,
+      "vector": 66
+    },
+    {
+      "source": "XINT1",
+      "field": 4,
+      "vector": 66
+    },
+    {
+      "source": "XINT2",
+      "field": 4,
+      "vector": 66
+    },
+    {
+      "source": "XINT3",
+      "field": 4,
+      "vector": 66
+    },
+    {
+      "source": "XINT4",
+      "field": 4,
+      "vector": 66
+    },
+    {
+      "source": "XINT5",
+      "field": 5,
+      "vector": 82
+    },
+    {
+      "source": "XINT6",
+      "field": 7,
+      "vector": 114
+    },
+    {
+      "source": "XINT7",
+      "field": 6,
+      "vector": 98
+    },
+    {
+      "source": "TINT0",
+      "field": 8,
+      "vector": 130
+    },
+    {
+      "source": "TINT1",
+      "field": 0,
+      "vector": null
+    }
+  ],
+  "stock_rom_selected_vectors": {
+    "18": "0x00000000",
+    "66": "0xc0000400",
+    "82": "0x00000000",
+    "98": "0xc0000408",
+    "114": "0xc0000410",
+    "130": "0xc0000418",
+    "242": "0x00000000",
+    "248": "0xfeffc620"
+  },
+  "vector_18_cached_word_address": "0x00000004",
+  "limit": "ROM vector 18 is zero but ICON enables internal vector caching; live cached word 0x04 was not read"
+}

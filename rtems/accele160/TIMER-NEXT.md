@@ -25,6 +25,15 @@ offsets `0xaa0..0xaa1` changed with stock activity outside the allocator's
 captured and restored the completed command, then two fresh runs passed with
 the exact metadata boundary.
 
+The [ROM/vector replay](../../artifacts/current/accele160-inventory-20261017/vector-static.json)
+shows the live mapping field for timer 1 is zero (undefined vector 2), while
+timer 0 maps to vector 130. Stock ROM vector 18 is blank, but ICON `0x6000`
+enables vector caching and the live cached word at `0x04` is still unknown.
+An external source is mapped to a zero ROM entry too, so the ROM alone is
+not an ownership map. Before any timer write, capture that cached word and
+the timer-1 mode read-clear state under a deliberately bounded command; do
+not read the mode casually or treat a blank ROM word as a free vector.
+
 After a stable inventory, qualify a short timer-1 experiment under a fresh exact image: refuse non-idle timer/vector/mask state, save every borrowed word, use an owned interrupt stack and complete context preservation, run a fixed small number of ticks, disable the source, drain the interrupt, restore original registers and verify them before RTEMS returns. Retain the grant and command on any uncertain completion; reboot recovery is required for an unreturned handler. Measure the actual clock against host time before choosing RTEMS tick frequency.
 
 Independent STOP also needs a control path that can operate while the command callback is pending. The current command companion serializes a single `dcmd_mutex` operation, so another normal mailbox command cannot be assumed to interrupt it. A candidate is a fixed nonce/epoch STOP word in the audited loader page, written through the host's 4 KiB translated aperture and polled by the bounded RTEMS supervisor after D-cache invalidation. First prove a sideband write/readback while an owned callback is deliberately waiting, with a finite card deadline, exact ACK, and unchanged page/owner bytes outside the record. Then combine it with timer shutdown and task quiescence. Do not call a software STOP flag a physical DMA drain or an IRQ-context cancellation guarantee.
