@@ -1,5 +1,18 @@
 # Next AcceleRAID clock and STOP gates
 
+**Post-return RTEMS task accepted, 2026-10-17:** The
+[resident-task gate](residenttask/README.md) started one RTEMS task from the
+retained post-return timer ISR, then returned through that ISR to firmware
+after HALT or the tick-300 deadline. Two accepted HALT/expiry batches passed
+with independent task identity, progress, stack and ISR checks. Six complete
+same-boot flash reads, three pre/mid/post stock inventories, owner/page/stage
+restoration, replay and seven tamper checks passed. The old card remained
+unbound; firmware was not written. This closes the **single-task callback-free
+handoff** gate. It does not enforce a deadline if interrupts or RTEMS
+scheduling stop. Next give DMA and any additional task explicit ownership,
+then prove STOP/expiry drains all in-flight transfers and ISR continuations
+before grant release. Do not move network or Doom onto this card yet.
+
 **Callback-free RTEMS timer accepted, 2026-10-17:** The
 [resident-clock gate](residentclock/README.md) ran an RTEMS 4.6.6 one-shot
 timer callback at tick 20 after operation 13 returned and after host ENTER

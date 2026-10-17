@@ -137,3 +137,16 @@ pre/post inventories and complete owner/page/stage restoration passed; the
 replays with five tamper rejections. This is still **not a resident RTEMS
 task**: task multitasking never began. Task handoff and quiescence, explicit
 RAM/DMA ownership and a recovery boundary remain before network or Doom.
+
+The subsequent [resident-task gate](residenttask/README.md) crossed the
+task boundary. Its retained stock-firmware ISR started one RTEMS task after
+operation 13 returned. The task made progress on its RTEMS workspace stack,
+received hardware timer interrupts, ignored stale STOP and ended on exact
+HALT at tick 22 or finite expiry at tick 300. Shutdown returned to the
+retained ISR, which restored the borrowed timer/vector/map/mask and original
+firmware priority before returning to stock code. Two unchanged-image
+batches, six complete flash reads and three independent inventories passed;
+the [exact captures](../../artifacts/current/accele160-residenttask-20261017/README.md)
+replay with seven tamper rejections. This is one bounded task with
+whole-instance disposal. Explicit DMA ownership, multi-task/service drain
+and a deadline independent of working interrupts remain future gates.

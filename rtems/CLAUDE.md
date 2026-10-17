@@ -1,5 +1,18 @@
 # RTEMS working guidance
 
+**2026-10-17 AcceleRAID 160 post-return RTEMS task gate:**
+[Source](accele160/residenttask/README.md) and [exact captures](../artifacts/current/accele160-residenttask-20261017/README.md)
+prove one RTEMS task can run after operation-13 returns, using two separate
+owned ISR continuations and a finite timer-1 lease. Two HALT/expiry batches
+passed at ticks 22/300, with task progress and 2/280 task IRQs, stale STOP,
+six full flash reads and three stock inventories. Whole-instance shutdown
+returns to the retained firmware ISR for exact timer/vector/priority restore.
+The RTEMS task context remains in the owned workspace after shutdown but is
+never resumed; release only after the ISR and timer are quiet. This does not
+yet own DMA or provide independent recovery for masked interrupts. Next
+prove all task/ISR/DMA paths drained before network or Doom uses this card.
+
+
 **2026-10-17 AcceleRAID 160 post-return RTEMS timer gate:**
 [Exact source](accele160/residentclock/README.md) and
 [live evidence](../artifacts/current/accele160-residentclock-20261017/README.md)

@@ -1,3 +1,16 @@
+**AcceleRAID 160 post-return RTEMS task accepted (2026-10-17):**
+[Exact source and boundary](rtems/accele160/residenttask/README.md),
+[two live batches, six full flash reads, inventories and replay](artifacts/current/accele160-residenttask-20261017/README.md).
+One RTEMS task started from a retained firmware timer ISR after operation 13
+returned; exact HALT stopped it at tick 22, no-host expiry at tick 300.
+Stale STOP was ignored. Whole-instance RTEMS shutdown returned to the
+retained ISR, which restored timer/vector/map/mask, processor priority and
+firmware stack. Both ISR stack guards, task identity/progress/stack, owner,
+loader page and staging source passed. No firmware write; old card unbound.
+Do not call this DMA ownership, independent watchdog recovery or
+service-grade multi-task quiescence. The next physical gate is explicit DMA
+and task ownership with full STOP/expiry drain before releasing the grant.
+
 **AcceleRAID 160 callback-free RTEMS timer accepted (2026-10-17):**
 [Source and finite boundary](rtems/accele160/residentclock/README.md),
 [exact binary, four full flash reads, stock inventories and replay](artifacts/current/accele160-residentclock-20261017/README.md).

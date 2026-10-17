@@ -1,5 +1,19 @@
 # i960 / Mylex DAC960PG — consolidated technical findings
 
+**Second-board post-return RTEMS task accepted (2026-10-17):** The
+[AcceleRAID 160 resident-task gate](rtems/accele160/residenttask/README.md)
+started one RTEMS 4.6.6 task from a retained timer interrupt after operation
+13 had returned to firmware. Two unchanged-image HALT/expiry batches passed:
+valid HALT at tick 22 (~301 ms), no-host expiry at tick 300 (~3.079 s), with
+2 and 280 task timer IRQs respectively. Stale STOP was ignored. The task
+shut down the whole RTEMS instance, returning to the retained firmware ISR,
+which restored timer/vector/map/mask and processor priority before returning
+to stock firmware. Six complete same-boot flash reads, three independent
+stock inventories, page/stage/512-owner restoration, offline replay and seven
+tamper rejections passed. No firmware write or old-card command occurred.
+This is a finite **single-task** handoff, not DMA ownership, independent
+watchdog recovery or service-grade multi-task quiescence.
+
 **Second-board callback-free RTEMS timer accepted (2026-10-17):** The
 [AcceleRAID 160 resident-clock gate](rtems/accele160/residentclock/README.md)
 early-initialized RTEMS 4.6.6 before operation 13 returned, then let an RTEMS

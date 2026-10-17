@@ -4868,3 +4868,48 @@ the idle thread and timer manager, but this image deliberately never starts
 multitasking. Our next gate must give an owned task a post-return context,
 then prove that HALT and expiry leave no live task, interrupt continuation or
 DMA operation before the host releases its RAM grant.
+
+We used RTEMS's split initialization to cross that next boundary. The first
+timer interrupt after ENTER remained suspended on an owned ISR stack while
+`rtems_initialize_executive_late()` switched into a real Init task. A second
+ISR stack handled timer interrupts while that task ran. The task watched the
+same nonce/epoch sideband, made progress on its RTEMS workspace stack, and
+called whole-instance shutdown on valid HALT or the 300-tick deadline.
+Shutdown switched back to the retained stock-firmware interrupt. Only then
+did it disable timer 1, restore the cached vector and processor controls,
+and return to firmware. This let us test a task after the operation-13
+callback had already returned without another firmware write.
+
+The first HALT ran and stopped cleanly, but our host validator tried to read
+the second ISR stack from an even 4 KiB grant page. BAR0 mirrored the
+adjacent entry page; the two host reads were byte-for-byte identical. We
+kept the completed grant, inspected its task and interrupt trace, and
+released it only after exact page, stage and owner checks. We moved the
+second ISR stack to an odd page, leaving a gap between the two slots. Its
+guards then read correctly. A second diagnostic HALT exposed a simpler host
+mistake: the new diagnostic word held task progress, while the checker still
+called it an ENTER count. The trace had the correct count. That completed
+call was also recovered under exact saved-state checks before another
+admission.
+
+The corrected image passed two unchanged-image batches. Operation 13
+returned in about 41 ms; the timer callback fired at tick 20 after the host
+had sent ENTER. The task ignored a wrong STOP, then valid HALT shut it down
+at tick 22 in about 301 ms. Without HALT it advanced to exactly tick 300 in
+about 3.079 seconds. In each batch the task received two hardware timer
+interrupts before HALT and 280 before expiry. The task identity, progress,
+stack bounds, both ISR guards, firmware frame, nesting and dispatch levels
+all matched. Six complete same-boot firmware reads and three independent
+pre/mid/post stock inventories passed. Timer, vector, processor priority,
+firmware stack, loader page, staging source and all allocator records
+restored; the old DAC960PG stayed unbound. The [exact source and captures](artifacts/current/accele160-residenttask-20261017/README.md)
+replay offline and reject seven altered-evidence cases.
+
+This gives the new board a finite RTEMS task after firmware has resumed.
+It is still a whole-instance handoff, not a service runtime: the task context
+remains in owned RAM after shutdown, although no code can resume it once the
+timer and retained interrupt have drained. The deadline needs working
+interrupts and RTEMS state; it is not an independent hardware watchdog. DMA
+has not been admitted, and no network or Doom task ran in this experiment.
+The next boundary is explicit ownership and draining of DMA and any
+additional tasks before a resident service can release or reuse the grant.
