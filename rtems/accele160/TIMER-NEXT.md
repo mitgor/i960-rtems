@@ -1,5 +1,16 @@
 # Next AcceleRAID clock and STOP gates
 
+**Owned-stack/STOP status, 2026-10-17:** A [RAM-only two-page
+probe](../../artifacts/current/accele160-lease-20261017/README.md) switched
+from the firmware SP to an owned grant page, ran a worker, then restored the
+firmware SP. A stale STOP stayed pending; the exact STOP returned ACK in
+23.4 ms, while the no-host fixed poll budget returned TIME in 1.04 s.
+Full flash, saved-page and owner audits passed without another firmware
+write. This is cooperative payload polling, **not** an independent deadline
+for arbitrary code or RTEMS task quiescence. Next put this nonce/epoch STOP
+poll into a bounded RTEMS task and prove that task's clean return and
+allocator/page restoration. Only then attempt timer/vector ownership.
+
 **RAM-admission status, 2026-10-17:** Reusable operation 13 is now
 [accepted on card](../../artifacts/current/accele160-ram-admit-20261017/README.md).
 Two complete postboot and two post-call flash reads, two different RAM-only
@@ -49,6 +60,6 @@ Independent STOP needs a control path that can operate while the command callbac
 
 The [operation-12 card acceptance](../../artifacts/current/accele160-vector-20261017/README.md) has now read the live cached vectors and qualified the first TMR1 mode read. Cached vector 18 was `0xaaaaaaaa` while the stock ROM entry was zero; cached vector 130 was the active timer-0 handler `c0000418`. Two sets of timer-1 guards passed: count/reload `0/0`, pending bit clear, interrupt masked, mapping field zero. The first mode read returned `0`, so the timer was disabled and terminal-count status was clear in this run. All sampled state stayed unchanged. The prior sideband STOP still passed on the enlarged handler, including stale-token rejection and the no-host deadline. Six guarded full-flash reads matched. The handler tail now occupies the first 244 bytes of `f000..ffff`, so future page preflights must pin that code prefix rather than assuming the entire page is erased.
 
-Next reserve a vector and an owned interrupt stack under explicit stock-state checks. Vector 18 is not free simply because the ROM word is blank: its live cache word contains a sentinel, and timer 1 still maps to an undefined field zero. A short timer experiment must save every borrowed word, install an owned handler/stack with complete context preservation, run only a fixed tick budget, route valid sideband STOP to RTEMS task quiescence, disable and drain the timer, then restore cached vector, mapping, mask, timer and stack state and verify the page/owner records. Keep a card-side deadline and retain resources on uncertain completion. Before more one-off flash revisions, prioritize a reusable manifest-checked RAM admission layer as described in [old/new bring-up differences](OLD-NEW-DIFFERENCES.md).
+Next route the accepted sideband STOP protocol into a bounded RTEMS task through operation 13, then reserve a vector and an owned interrupt stack under explicit stock-state checks. Vector 18 is not free simply because the ROM word is blank: its live cache word contains a sentinel, and timer 1 still maps to an undefined field zero. A short timer experiment must save every borrowed word, install an owned handler/stack with complete context preservation, run only a fixed tick budget, route valid sideband STOP to RTEMS task quiescence, disable and drain the timer, then restore cached vector, mapping, mask, timer and stack state and verify the page/owner records. Keep a card-side deadline and retain resources on uncertain completion. Use the reusable manifest-checked RAM admission layer before considering another one-off firmware revision; see [old/new bring-up differences](OLD-NEW-DIFFERENCES.md).
 
 Only after timer + independent STOP restoration passes should the new-board network relay and web server be ported. Doom additionally needs a separately owned multi-megabyte arena; the 512 KiB grant does not satisfy its memory contract.

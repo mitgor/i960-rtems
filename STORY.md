@@ -4562,3 +4562,31 @@ board can now change a reviewed, returning program in RAM rather than
 reflash for each small experiment. It cannot yet rescue a program that
 never returns; making this a resident RTEMS loader will require an owned
 stack, a finite lease and task-aware STOP before borrowing a hardware timer.
+
+We used the new RAM-only doorway immediately. A two-page program kept its
+code in the first owned page and reserved the second for a stack. Its entry
+saved the firmware stack and preserved registers, switched SP into that
+second page, called a worker, then restored the original SP before the
+stock command completed. The worker exposed a READY word in the saved
+loader page and polled a separately host-writable STOP word. It also had a
+fixed poll count so an absent host would not hold the command forever.
+
+Our first host preflight caught an incorrect assumption: the PCI aperture
+cannot directly read an even grant page. The card had completed the copy
+and reported its correct digest, but the host's new direct-read assertion
+failed. We stopped before execution, verified the copy and all allocator
+records, restored the stage and loader page, and released the grant. The
+corrected harness used the card's digest for the even code page and direct
+readback only for the odd stack page.
+
+On the next run, two calls used the same firmware and grant. With no STOP,
+the worker returned a TIME result after 1.04 seconds. A stale STOP token
+did not end the second call; the correct token produced ACK and returned in
+23.4 milliseconds of host-observed time. The worker reported SP
+`c0711fc0` in the owned page. The page really changed, while its bottom
+guard stayed intact. The firmware SP was `c0002100` before and after, and
+the complete loader page, staging page and 512 allocator records restored.
+A full megabyte flash read still matched. This is a cooperative bounded
+worker, not yet a way to force a hung RTEMS task to stop. The next test will
+put the same STOP handshake into an RTEMS task before we borrow a timer or
+interrupt vector.

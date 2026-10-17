@@ -48,9 +48,18 @@ RTEMS operations passed again. This makes small RAM-only code experiments
 repeatable. It does not yet enforce a finite lease, own an independent task
 stack or stop a nonreturning task.
 
+A following [RAM-only owned-stack/STOP probe](../../artifacts/current/accele160-lease-20261017/README.md)
+ran a worker on the grant's second page. Its firmware SP restored exactly;
+a valid host STOP returned ACK in 23.4 ms, and a missing STOP exited a
+fixed poll budget after 1.04 s. An invalid direct read of the even code
+page was caught and the completed grant was safely released; the accepted
+run uses card digests for that page and PCI readback for the odd stack page.
+The same firmware passed its post-call full read. This is cooperative code,
+not RTEMS task STOP or an independently enforced deadline.
+
 The old-card loader/RTEMS comparison and the reason for repeated new-card
 flash cycles are in [bring-up differences](OLD-NEW-DIFFERENCES.md). Next:
-extend the returning-image contract to an owned stack and task-aware STOP,
+put the accepted owned-stack and STOP protocol into a bounded RTEMS task,
 then test borrowed timer/interrupt ownership under
 complete restoration audits. Host-backed IPv4/IPv6 and web service follow.
 Doom also requires a separately owned multi-megabyte arena and frame
