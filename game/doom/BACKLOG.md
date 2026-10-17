@@ -1,5 +1,47 @@
 # Doom backlog
 
+## New-card scaling priorities — N1 onward (2026-10-17)
+
+Keep full system audits, exact image identity and ownership checks in every
+physical acceptance. The 9.694 FPS new-card result versus about 6.4 FPS old
+is a bounded matched-engine result, not proof of a clock-frequency ratio.
+
+1. **N1 — Cache state, invalidation and matched CPU/memory benchmarks (measured).**
+   [Matched physical evidence](../../artifacts/current/cache-scaling-20261017/README.md)
+   identifies a cache-map mismatch: the new card's exclusive Doom arena is
+   uncached while the old card's arena is cacheable. Identical diagnostic code
+   measured 5.35× arithmetic but only 1.94× warm reads and 1.74× repeated
+   word copies on the new card. The final paired post-reset stock-flash audit and combined offline replay passed. N1 is closed; test N2 under a separate reboot-only owned-RAM gate.
+2. **N2 — Cache the exclusively owned Doom arena (new evidence, highest payoff candidate).**
+   N1 observes globally enabled D-cache but non-cacheable upper-bank allocations:
+   stock templates cover only the first 6 MiB. Design a RAM-only logical-template
+   change for the owned 8 MiB arena, preserving uncached host control/DMA-write
+   boundaries and exact restore/reboot semantics. Test cached/uncached with the
+   same engine, full audits, STOP and stalled host before changing play defaults.
+   Do not globally enable caching for all addresses or alter SDRAM timing.
+3. **N3 — New-core-aware renderer kernels and compiler choices.** Use N1 evidence
+   to target BSP/walls (~52 ms), planes (~25 ms) or sprites (~14.5 ms). Compare
+   exact pixels and inspect generated i960 instructions; nominal 100 MHz alone
+   does not establish actual frequency, cacheability or memory bandwidth.
+4. **N4 — Eliminate the remaining internal presentation copy (~6.5 ms).** Render
+   into a safely owned persistent/leased destination if Doom semantics permit.
+   Its isolated budget suggests roughly 10.3 FPS, not a measured prediction.
+5. **N5 — Optional flat-color planes and runtime quality controls.** Keep normal
+   rendering available. Old-card gains motivate testing roughly 11.5–12 FPS on
+   the new card, but that estimate is unverified. Half-height stays on hold.
+6. **N6 — Driver notification and WAD request/completion rings.** Port larger
+   batches/read-ahead and event-driven completion with DMA arbitration. Target
+   startup, host overhead and latency; current HTTP availability is already
+   about 2 ms, so do not promise a large rendering FPS gain from transport alone.
+7. **N7 — Longer matched acceptance and interactive parity.** Same-kernel CRC/FNV
+   modes, repeated steady windows, runtime quality, STOP, disconnect, stale
+   generations and stalled-host tests before promoting play defaults.
+
+N1 must report hardware results separately from source-audit hypotheses. The
+current 91.5 ms renderer wall measurement includes memory stalls; timer-sampled
+CPU time is not a cycle counter. Preserve improvements to latency even when
+steady FPS does not change.
+
 ## AcceleRAID parity progress — 2026-10-17
 
 [Bounded DMA/optimized-engine run](../../artifacts/current/accele160-doom-dma-20261017/README.md):

@@ -143,6 +143,9 @@ int DG_GetKey(int*p,unsigned char*k){
  return 1;}
 #endif
 if(!p||!k)fatal(205);if(!key_count)return 0;*p=pressed[key_read];*k=keys[key_read];key_read=(key_read+1)%DPL_KEYS;key_count--;return 1;}
+#ifdef DOOM_CACHE_BENCH
+#include "../cache_bench/record.h"
+#endif
 extern unsigned char *DG_ScreenBuffer;
 void DG_DrawFrame(void){unsigned i,h=2166136261u;
 #ifdef DOOM_PLAY
@@ -175,7 +178,11 @@ stats.frame_hash=(mode&1)?h:0;h=2166136261u;for(i=0;i<256;i++){palette[3*i]=colo
 #endif
  doom_platform_mark(51,stats.frame_hash,stats.palette_hash,stats.frames);
 #ifdef DOOM_PLAY
- present_record(frame,stats.frames,mode,begin);wait_begin=io->ticks_ms();
+ present_record(frame,stats.frames,mode,begin);
+#ifdef DOOM_CACHE_BENCH
+ cache_bench_record(frame,stats.frames);
+#endif
+ wait_begin=io->ticks_ms();
  {const struct doom_runtime_checkpoint*t=(const void*)owned;if(t->mark(100,(unsigned long)frame,65536,stats.frames)<=0)fatal(210);}
  present_previous_wait=io->ticks_ms()-wait_begin;
  /* mark(100) waited for the preceding slot's exact ACK before publishing this

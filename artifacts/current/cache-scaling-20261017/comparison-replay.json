@@ -1,0 +1,205 @@
+{
+  "window": [
+    1,
+    32
+  ],
+  "old_cache": {
+    "generation": 1,
+    "case": 0,
+    "ms": 700,
+    "result": 2174976903,
+    "dcache_status": 29217,
+    "address": "0xc0a1db20",
+    "logical_registers": [
+      "0x0",
+      "0xc0000002",
+      "0xff000001",
+      "0xbd7ff002",
+      "0x48484000"
+    ],
+    "cache": {
+      "global_enabled": true,
+      "data_cache_bytes": 2048,
+      "template_matches": 1,
+      "region_cache_enabled": true,
+      "effective_cache_enabled": true
+    }
+  },
+  "new_cache": {
+    "generation": 1,
+    "case": 0,
+    "ms": 130,
+    "result": 2174976903,
+    "dcache_status": 33313,
+    "address": "0xc0f7b850",
+    "logical_registers": [
+      "0x0",
+      "0xc0000002",
+      "0xffc00001",
+      "0xc0400002",
+      "0xffe00001"
+    ],
+    "cache": {
+      "global_enabled": true,
+      "data_cache_bytes": 4096,
+      "template_matches": 0,
+      "region_cache_enabled": false,
+      "effective_cache_enabled": false
+    }
+  },
+  "cases": [
+    {
+      "case": 0,
+      "name": "integer xorshift",
+      "old_ms": [
+        700,
+        700,
+        690,
+        670
+      ],
+      "new_ms": [
+        130,
+        130,
+        130,
+        130
+      ],
+      "old_median_ms": 695.0,
+      "new_median_ms": 130.0,
+      "speedup": 5.346153846153846
+    },
+    {
+      "case": 1,
+      "name": "1 KiB read",
+      "old_ms": [
+        710,
+        690,
+        700,
+        700
+      ],
+      "new_ms": [
+        360,
+        360,
+        360,
+        370
+      ],
+      "old_median_ms": 700.0,
+      "new_median_ms": 360.0,
+      "speedup": 1.9444444444444444
+    },
+    {
+      "case": 2,
+      "name": "4 KiB read",
+      "old_ms": [
+        1710,
+        1680,
+        1680,
+        1670
+      ],
+      "new_ms": [
+        490,
+        500,
+        490,
+        490
+      ],
+      "old_median_ms": 1680.0,
+      "new_median_ms": 490.0,
+      "speedup": 3.4285714285714284
+    },
+    {
+      "case": 3,
+      "name": "64 KiB read",
+      "old_ms": [
+        1980,
+        1980,
+        1950,
+        1950
+      ],
+      "new_ms": [
+        570,
+        560,
+        570,
+        570
+      ],
+      "old_median_ms": 1965.0,
+      "new_median_ms": 570.0,
+      "speedup": 3.4473684210526314
+    },
+    {
+      "case": 4,
+      "name": "320-byte stride",
+      "old_ms": [
+        2040,
+        2060,
+        2040,
+        2060
+      ],
+      "new_ms": [
+        580,
+        590,
+        590,
+        590
+      ],
+      "old_median_ms": 2050.0,
+      "new_median_ms": 590.0,
+      "speedup": 3.4745762711864407
+    },
+    {
+      "case": 5,
+      "name": "64 KiB word copy",
+      "old_ms": [
+        970,
+        980,
+        1000,
+        1000
+      ],
+      "new_ms": [
+        570,
+        570,
+        570,
+        570
+      ],
+      "old_median_ms": 990.0,
+      "new_median_ms": 570.0,
+      "speedup": 1.736842105263158
+    },
+    {
+      "case": 6,
+      "name": "64 KiB word clear",
+      "old_ms": [
+        590,
+        580,
+        580,
+        580
+      ],
+      "new_ms": [
+        110,
+        110,
+        100,
+        100
+      ],
+      "old_median_ms": 580.0,
+      "new_median_ms": 105.0,
+      "speedup": 5.523809523809524
+    },
+    {
+      "case": 7,
+      "name": "1 KiB read with 4096 invalidations",
+      "old_ms": [
+        940,
+        970,
+        930,
+        920
+      ],
+      "new_ms": [
+        360,
+        370,
+        370,
+        360
+      ],
+      "old_median_ms": 935.0,
+      "new_median_ms": 365.0,
+      "speedup": 2.5616438356164384
+    }
+  ],
+  "warning": "Diagnostic workloads; not gameplay FPS or pure bus bandwidth."
+}

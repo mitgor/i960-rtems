@@ -1,3 +1,15 @@
+**Latest N1 cache-scaling result — 2026-10-18:**
+[Exact matched card evidence and replay](artifacts/current/cache-scaling-20261017/README.md)
+show the AcceleRAID 160's D-cache globally enabled but its reboot-owned
+upper-bank Doom arena uncached by both stock logical templates. The DAC960PG
+does cache its Doom allocation. Identical admitted code gave 5.35× arithmetic
+but only 1.94× warm-read and 1.74× repeated word-copy speedup. Both cards
+passed full ownership/system/frame/WAD audits and STOP; final paired new-card
+stock-flash reads and archive replay passed. No cache register or flash was
+written. N2 is a separate bounded, reboot-only **private-RAM** cache-map
+experiment; host-written control/WAD pages must remain coherent and full
+audits must stay on. These diagnostic timings are not Doom FPS.
+
 **AcceleRAID direct Doom DMA physical run — 2026-10-17:**
 The [exact bounded capture](artifacts/current/accele160-doom-dma-20261017/README.md)
 passed 32 guarded channel-0 DMA frames and identical HTTP packets, four full

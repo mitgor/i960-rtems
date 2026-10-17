@@ -1,3 +1,31 @@
+## N1 cache scaling audit — 2026-10-17
+
+The new card has D-cache globally enabled (`0x8221`, 4 KiB), but the stock
+logical templates cache only `c0000000–c05fffff`. DLMCON is zero. The exclusive
+upper 8 MiB Doom arena and RTEMS grant at `c0710000` fall outside those ranges,
+so their data is uncached. This is a measured cache-map mismatch, not evidence
+of a slower CPU clock. All 32 refined new-card records agree; no logical cache
+register was written. Exact register values and source-path audit are in
+[the N1 audit](artifacts/current/cache-scaling-20261017/AUDIT.md).
+
+The opt-in `--cache-bench` engine preserves ownership and all system audits;
+its extra workload makes diagnostic FPS unsuitable for gameplay comparison.
+Identical engine bytes and eight bounded workloads ran four times per card.
+Median new/old speedups were 5.35× for integer arithmetic, 1.94× for warm
+1 KiB reads, 3.45× for 64 KiB reads, 1.74× for repeated 64 KiB word copies,
+and 5.52× for clears. Adding 4,096 invalidations to the same 1 KiB read
+loop cost the old card 235 ms but the new card only 5 ms (10 ms clock
+resolution), consistent with the observed cache maps. These timings include
+RTEMS scheduling and are neither cycle counts nor gameplay FPS. Both runs
+passed exact workload results, guards, owner checks, full system/frame/WAD
+audits and STOP. Native malformed-trailer and deterministic Doom tests pass.
+The final new-card paired post-reset 1 MiB flash audit passed on boot `29dd7853-2614-40e9-8666-2b49b6764324`: both reads matched stock SHA-256 `1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd` with zero residual and guard changes. The combined archive replay passed.
+See [the N1 artifact index](artifacts/current/cache-scaling-20261017/README.md).
+The next priority is a **bounded cache map for exclusively owned private RAM**,
+keeping host-written control and DMA-input pages coherent. Do not globally
+cache all memory, weaken validation or change SDRAM timing. Normal play defaults
+and half-height-on-hold remain unchanged.
+
 # Current findings — 2026-10-17
 
 **AcceleRAID direct Doom DMA physical run — 2026-10-17:**

@@ -1,0 +1,142 @@
+{
+  "peer_policy": "owned-execution-only",
+  "peer_yield": true,
+  "peer_max_gap_ms": 200,
+  "peer_completed_passes": 53842,
+  "timer_hz_nominal": 4166700,
+  "timer_is_elapsed_not_cpu": true,
+  "metrics": {
+    "read_total": {
+      "count": 903,
+      "seconds": 70.31754961960304
+    },
+    "frame_barrier": {
+      "count": 903,
+      "seconds": 0.0033928528571771427
+    },
+    "allocation_and_loans": {
+      "count": 903,
+      "seconds": 6.377152182782538
+    },
+    "staging_init": {
+      "count": 903,
+      "seconds": 6.187895456836345
+    },
+    "release_and_returns": {
+      "count": 903,
+      "seconds": 6.665687714498284
+    },
+    "guards": {
+      "count": 27536,
+      "seconds": 30.212945976432188
+    },
+    "dma_start_to_completion": {
+      "count": 13768,
+      "seconds": 2.4715988672090625
+    },
+    "transfer_total": {
+      "count": 13768,
+      "seconds": 33.61117383060935
+    },
+    "response_wait": {
+      "count": 1805,
+      "seconds": 16.46003311973504
+    },
+    "service_yield": {
+      "count": 1133,
+      "seconds": 6.777480980152159
+    },
+    "staging_copy": {
+      "count": 1805,
+      "seconds": 9.615652914776682
+    },
+    "benchmark_transfer": {
+      "count": 64,
+      "seconds": 0.26763193894448845
+    },
+    "benchmark_hardware": {
+      "count": 64,
+      "seconds": 0.0925828593371253
+    },
+    "benchmark_guards": {
+      "count": 128,
+      "seconds": 0.16739290085679315
+    },
+    "empty_bracket": {
+      "count": 64,
+      "seconds": 8.49593203254374e-05
+    },
+    "benchmark_verify": {
+      "count": 64,
+      "seconds": 0.5427549379604963
+    },
+    "response_transfer": {
+      "count": 4743,
+      "seconds": 9.619555523555812
+    },
+    "allocation_only": {
+      "count": 903,
+      "seconds": 2.9668346653226774
+    },
+    "free_only": {
+      "count": 903,
+      "seconds": 2.9563186694506443
+    }
+  },
+  "benchmark_bytes": 2097152,
+  "benchmark_hardware_MBps": 22.65162271953132,
+  "benchmark_checked_MBps": 7.835955634708404,
+  "response_wait_excluding_response_dma_seconds": 6.840477596179229,
+  "first_frame_cache": {
+    "seconds": {
+      "runtime_read": 67.61,
+      "fill_cache": 10.8,
+      "miss_copy_to_doom": 0.86,
+      "hit_copy_to_doom": 0.99
+    },
+    "calls": {
+      "runtime_read": 878,
+      "fill_cache": 878,
+      "miss_copy_to_doom": 878,
+      "hit_copy_to_doom": 16544
+    },
+    "wire_bytes": 57499844,
+    "copied_bytes": 14617528,
+    "logical_reads": 2328,
+    "cache_hits": 16544,
+    "cache_line_misses": 112305
+  },
+  "final_cache": {
+    "seconds": {
+      "runtime_read": 69.44,
+      "fill_cache": 11.15,
+      "miss_copy_to_doom": 0.87,
+      "hit_copy_to_doom": 1.0
+    },
+    "calls": {
+      "runtime_read": 903,
+      "fill_cache": 903,
+      "miss_copy_to_doom": 903,
+      "hit_copy_to_doom": 16673
+    },
+    "wire_bytes": 59138244,
+    "copied_bytes": 14753444,
+    "logical_reads": 2371,
+    "cache_hits": 16673,
+    "cache_line_misses": 115505
+  },
+  "warm_restart_cache_ms": [
+    1370,
+    290,
+    0,
+    10
+  ],
+  "host": {
+    "pending_polls": 88593,
+    "pending_ns": 3344335419,
+    "successful_ns": 160184360,
+    "gate_ns": 75720013476,
+    "work_ns": 19857450710,
+    "serve_calls": 45199
+  }
+}

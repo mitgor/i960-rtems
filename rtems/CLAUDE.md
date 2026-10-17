@@ -1,3 +1,15 @@
+**Cache scaling gate (2026-10-17):** The AcceleRAID's observed stock logical
+templates cache only the first 6 MiB (`LMADR0 c0000002/LMMR0 ffc00001`,
+`LMADR1 c0400002/LMMR1 ffe00001`, DLMCON zero). D-cache `dcctl 4` reports
+enabled 4 KiB, but the reboot-only owned Doom arena `c0800000–c0ffffff` and
+RTEMS grant `c0710000` are outside those cacheable templates. `doom_dma` keeps
+whole-cache invalidation at WAD reply, key-poll and ACK boundaries; the idle
+outer loop is not active while Doom runs. Do not remove those checks based on
+steady frame FPS. The next candidate is a bounded cache template for **owned
+private RAM only**, with full source/guard/STOP/system audits and restoration or
+reboot-only semantics. Do not globally cache the host control or DMA-input
+pages. See `artifacts/current/cache-scaling-20261017/AUDIT.md`.
+
 **AcceleRAID direct Doom DMA physical run — 2026-10-17:**
 The [exact bounded capture](../artifacts/current/accele160-doom-dma-20261017/README.md)
 passed 32 guarded channel-0 DMA frames and identical HTTP packets, four full

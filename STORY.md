@@ -5534,3 +5534,30 @@ clock twice. The second run's captures are saved, and both complete guarded firm
 reads after its reset matched too. The old card stayed unbound through the
 whole port; the final new-card descriptor was idle and the reboot-only frame
 pin module was gone.
+
+I then asked why a nominally faster processor gave only a modest Doom frame
+rate gain. We put an opt-in diagnostic behind the same admitted engine image
+on both cards and kept the full frame, ownership and system audits. Each card
+ran the same eight CPU and memory loops four times. The new card was 5.35
+times faster on integer arithmetic, but only 1.94 times faster on repeated
+warm reads and 1.74 times faster on repeated word copies. That split pointed
+away from a simple CPU-frequency explanation.
+
+Reading the i960 cache registers solved the puzzle. The new card had its data
+cache enabled, but the stock firmware marked only the first six megabytes of
+RAM cacheable. Our reboot-owned Doom arena lives higher in RAM and misses both
+templates. The old card's logical template covers its Doom allocation. As a
+cross-check, forcing thousands of cache invalidations slowed the old card's
+warm-read loop by 235 ms; on the new card the difference was just 5 ms with a
+10 ms clock. We changed no cache register or firmware in this experiment.
+
+The new card delivered all 32 benchmark frames to the browser, survived a
+deliberate three-second host stall, passed four full PIO comparisons and
+stopped cleanly. The old card delivered 120 frames after I taught the host
+decoder to recognize and validate the opt-in diagnostic trailer; the first
+attempt had correctly rejected that unexpected trailer after one frame. The
+corrected run passed the frame, WAD, system and drain replayers and STOP. The
+release reboot returned, and the new card's final two complete guarded firmware reads matched the accepted stock image. The full archived evidence replayed successfully. A bounded
+cacheable map for exclusively owned private RAM is the next experiment, with
+host-written control and DMA input left uncached. The measured loops do not
+yet predict a Doom FPS gain.

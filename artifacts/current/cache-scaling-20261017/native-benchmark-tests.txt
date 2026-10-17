@@ -1,0 +1,2 @@
+PASS: eight native workloads, sanitizers, 88 malformed trailer rejections
+PASS: logical range/default/global-disable decode

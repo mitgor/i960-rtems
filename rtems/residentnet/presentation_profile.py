@@ -1,5 +1,8 @@
 """Versioned timing trailer; frame guards and whole-buffer audits stay separate."""
 import struct
+import importlib.util
+from pathlib import Path
+_bench_decode=None
 OFFSET=64768
 NAMES=('magic','version','frame','mode','render_ms','bsp_ms','planes_ms','sprites_ms','screen_copy_ms','adapter_ms','previous_publish_wait_ms','display_ms','pixel_fnv','palette_fnv','clock_resolution_ms','reserved')
 def fnv(data):
@@ -81,12 +84,25 @@ def decode(raw,g,test=False,options=None):
   assert all(x<10000000 for x in q[8:8+2*q[2]:2])
   d['fixed_div']=dict(sites=q[2],fast=bool(q[3]),hz=q[4],checks=q[5],clock_read_ticks=q[6],counts=list(q[8:8+2*q[2]:2]),ticks=list(q[9:8+2*q[2]:2]))
   end=65536
+ if options.get('cache_bench'):
+  assert not any(options.get(k) for k in ('wall_profile','input_trace','fixed_div_profile'))
+  assert end<=65024 and not any(raw[end:65024])
+  global _bench_decode
+  if _bench_decode is None:
+   spec=importlib.util.spec_from_file_location('doom_cache_bench_verify',Path(__file__).resolve().parents[2]/'game/doom/runtime/cache_bench/verify.py')
+   module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);_bench_decode=module.verify
+  d['cache_bench']=_bench_decode(raw)
+  assert d['cache_bench']['generation']==g
+  end=65536
  assert not any(raw[end:])
  if w[3]&1:assert w[12]==fnv(raw[:64000]) and w[13]==fnv(raw[64000:64768])
  else:assert w[12:14]==(0,0)
  return d
 
 def preflight(admission,pipeline,pipeline_test,wad_load_test):
+ if admission.get('cache_bench'):
+  assert pipeline and pipeline_test and admission.get('double_buffer') and admission.get('frame_profile')
+  assert not any(admission.get(k) for k in ('wall_profile','input_trace','fixed_div_profile'))
  if admission.get('runtime_half_height'):assert pipeline and admission.get('double_buffer') and admission.get('frame_profile') and admission.get('cpu_profile')
  if admission.get('runtime_flat'):assert pipeline and admission.get('double_buffer') and admission.get('frame_profile') and admission.get('cpu_profile')
  if admission.get("wall_profile"):assert pipeline and admission.get("frame_profile") and admission.get("double_buffer") and not (admission.get("input_trace") or admission.get("fixed_div_profile"))

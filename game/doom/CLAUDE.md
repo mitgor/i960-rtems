@@ -1,3 +1,15 @@
+**N1 cache diagnostic (2026-10-17):** `runtime/cache_bench/` is an opt-in
+fixed-work, eight-case Doom frame trailer at byte 65024. Build the same admitted
+engine for both cards with `platform/build.py --cache-bench`. The old host decoder
+must validate this trailer through `rtems/residentnet/presentation_profile.py`;
+normal frames still require zero padding. Use four repeats per case, full frame
+transport hashes, native checksum oracle, guards, owner/STOP and system audits.
+It changes diagnostic frame time and must not be used as play FPS. The new-card
+upper 8 MiB Doom arena is currently uncached despite global D-cache enabled;
+see `artifacts/current/cache-scaling-20261017/AUDIT.md` before proposing more
+compiler tuning. Keep host-written control and WAD-input pages coherent if a
+private arena cache template is tested later. Half-height remains on hold.
+
 **AcceleRAID direct Doom DMA physical run — 2026-10-17:**
 The [exact bounded capture](../../artifacts/current/accele160-doom-dma-20261017/README.md)
 passed 32 guarded channel-0 DMA frames and identical HTTP packets, four full
