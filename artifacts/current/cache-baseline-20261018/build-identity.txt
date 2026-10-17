@@ -1,0 +1,27 @@
+2026-10-18: exclusive AcceleRAID Doom default-build identity
+
+Only the default shell expansion in rtems/accele160/doom_dma/build.sh changed:
+  DOOM_PRIVATE_CACHE_MAP=${DOOM_PRIVATE_CACHE_MAP:-0}
+became:
+  DOOM_PRIVATE_CACHE_MAP=${DOOM_PRIVATE_CACHE_MAP:-1}
+
+In an isolated copy of the accepted remote project at
+/home/mit/i960-cache-default-20261018/project, the new script was run with
+DOOM_FPS_FRAMES=32 and with DOOM_PRIVATE_CACHE_MAP unset. RTEMS build:
+/home/mit/i960-accele160-rtems-20261017/accele160. Toolchain:
+/home/mit/i960/tools/bin. No card command was issued for this rebuild.
+
+New default kernel.bin SHA-256:
+4a03729fb1555af3a2d604715c6458cf01bd7cb13b72bffed92fb4b737cd775e
+Accepted N2 no-benchmark private-map kernel.bin SHA-256:
+4a03729fb1555af3a2d604715c6458cf01bd7cb13b72bffed92fb4b737cd775e
+
+New default image.bin SHA-256:
+3f9e4bc123c5f691ae73703a821a5b19e207c4c7b5bdfe052ebdf83d7654f984
+Accepted N2 no-benchmark private-map image.bin SHA-256:
+3f9e4bc123c5f691ae73703a821a5b19e207c4c7b5bdfe052ebdf83d7654f984
+
+The exact binaries are already present in the accepted N2 plain.tar.xz
+archive. The new default changes build selection only; it does not require
+another flash write or card run to qualify binary behavior. Long interactive
+play remains a separate acceptance gate.

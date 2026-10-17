@@ -12,14 +12,18 @@ is a bounded matched-engine result, not proof of a clock-frequency ratio.
    uncached while the old card's arena is cacheable. Identical diagnostic code
    measured 5.35× arithmetic but only 1.94× warm reads and 1.74× repeated
    word copies on the new card. The final paired post-reset stock-flash audit and combined offline replay passed. N1 is closed; test N2 under a separate reboot-only owned-RAM gate.
-2. **N2 — Cache the exclusively owned Doom arena (accepted, opt-in).**
+2. **N2 — Cache the exclusively owned Doom arena (accepted, default for exclusive Doom).**
    The [physical cache-map run](../../artifacts/current/cache-map-20261018/README.md)
    remaps only LMT1 to the reboot-owned upper 8 MiB and restores it after Doom
    and DMA drain. All 32 diagnostic and 32 no-benchmark frames, full audits,
    stalled-host/STOP and paired post-reset stock-flash reads passed. Identical
    warm 1 KiB reads improved 2.77×; the same accepted low-detail engine rose
    from 9.694 to **16.964 card FPS** (+75%) in the 20-frame steady window.
-   Keep `DOOM_PRIVATE_CACHE_MAP=1` opt-in until long interactive acceptance.
+   The [cached-to-cached N1 baseline](../../artifacts/current/cache-baseline-20261018/README.md)
+   confirms the old card also caches its allocation: 120 old and 32 new
+   diagnostic frames passed with the same admitted engine. The accepted map
+   is now the exclusive Doom build default; `DOOM_PRIVATE_CACHE_MAP=0` selects
+   stock-map comparison. Long interactive acceptance remains open.
    Preserve host-control/WAD invalidations; do not globally cache all memory
    or change SDRAM timing.
 3. **N3 — New-core-aware renderer kernels and compiler choices.** Re-profile

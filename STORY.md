@@ -5593,3 +5593,23 @@ two post-reset firmware reads again matched stock. The exact builds and
 captured frames are archived and replay cleanly. We left the cache option
 explicit rather than making it the ordinary build default; longer interactive
 play and disconnect recovery are the next acceptance gates.
+
+We then checked whether that made the comparison unfair to the older card.
+It did not: the older DAC960PG had already been caching its Doom allocation
+through a logical template spanning all sixteen megabytes of card RAM. Its
+120 captured diagnostic frames all reported the same enabled two-kilobyte
+cache and cacheable allocation. The AcceleRAID's accepted private template
+gave its Doom allocation a cacheable region too, with a four-kilobyte cache;
+all 32 diagnostic frames reported that state. We replayed both archives with
+the same admitted engine and the same eight workloads. In the first 32
+generations, a warm one-kilobyte read took a median 700 ms on the older card
+and 130 ms on the newer one; repeated 64 KiB word copies took 990 and 570 ms.
+These include RTEMS scheduling and are not gameplay frame rates.
+
+With that matched baseline established, we made the already-tested private
+map the default for **exclusive AcceleRAID Doom builds**. An explicit build
+setting still selects the stock map for comparison. The runtime's ownership
+checks, WAD/control cache invalidations, DMA audits and exact restoration of
+the incoming template remain in place. This changes the build choice, not
+the card's flash. Longer interactive play and disconnection handling remain
+to be qualified.

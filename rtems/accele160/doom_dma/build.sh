@@ -12,7 +12,7 @@ for item in start timer_isr cache; do
 done
 "$tools_bin/i960-coff-gcc" -mrp -Os -fno-builtin -ffreestanding \
   -D__rtems__ -DUSE_INLINES -DDOOM_FPS_FRAMES="${DOOM_FPS_FRAMES:-1}" \
-  -DDOOM_PRIVATE_CACHE_MAP="${DOOM_PRIVATE_CACHE_MAP:-0}" -I"$rtems_build/include" \
+  -DDOOM_PRIVATE_CACHE_MAP="${DOOM_PRIVATE_CACHE_MAP:-1}" -I"$rtems_build/include" \
   -I"$(dirname "$rtems_build")/newlib-1.11.0/newlib/libc/include" \
   -I"$repo/loader/segmented" -I"$repo/loader/digest" \
   -c "$src/app.c" -o "$out/app.o"

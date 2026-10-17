@@ -15,8 +15,10 @@ leaves the callback and DMA resources retained until reboot. No firmware
 flash write occurs. See the [Intel Jx memory-configuration manual](https://datasheets.chipdb.org/Intel/80960/manuals/27248302.pdf),
 sections 13.6.1–13.6.7, for mask, cacheability and ordered LMT stores.
 
-The opt-in map is selected by `DOOM_PRIVATE_CACHE_MAP=1` in
-`rtems/accele160/doom_dma/build.sh`; default builds retain the stock map.
+At the time of physical acceptance the map was selected explicitly by
+`DOOM_PRIVATE_CACHE_MAP=1` in `rtems/accele160/doom_dma/build.sh`. It is now the
+default for this exclusive Doom build; `DOOM_PRIVATE_CACHE_MAP=0` reproduces
+the stock-map control. See the [cached-card baseline](../cache-baseline-20261018/README.md).
 The admitted engine bytes, relocations and benchmark workloads are identical
 to [N1](../cache-scaling-20261017/README.md). Frame trailers independently
 record the live cache status and all five logical registers. The first 32
@@ -87,8 +89,8 @@ and non-overlap. `full-replay.json`, `plain-replay.json`, `compare.json`, and
 the preserved build/run logs contain the measured evidence.
 
 This is a 32-frame, fixed low-detail qualification, not long interactive
-acceptance. Cache mapping remains opt-in for the reboot-owned new-card Doom
-kernel (`DOOM_PRIVATE_CACHE_MAP=1`); ordinary rebuilds keep the stock map.
+acceptance. The accepted map is now the exclusive Doom build default;
+`DOOM_PRIVATE_CACHE_MAP=0` explicitly chooses the stock map.
 Do not apply the template in stock-firmware coexistence mode. Repeated long
 play, disconnect, STOP during rendering and runtime quality changes remain
 follow-up gates before promoting a default.

@@ -1,10 +1,23 @@
+## Exclusive Doom cached baseline — 2026-10-18
+
+The accepted private cache map is now the default in the new-card **exclusive
+Doom** build; `DOOM_PRIVATE_CACHE_MAP=0` reproduces the stock-map control.
+[The matched cached-card audit](artifacts/current/cache-baseline-20261018/README.md)
+verifies 120 old PG and 32 new 160 whole-frame diagnostic records with the
+identical admitted engine. The old card already caches its Doom allocation via
+LMT0 over all 16 MiB (`dcctl4=0x7221`, 2 KiB). The new card caches its owned
+upper 8 MiB via LMT1 (`dcctl4=0x8221`, 4 KiB). New/old medians are 5.38×
+for warm 1 KiB reads and 1.74× for 64 KiB word copy. The accepted new-card
+gameplay baseline is 16.964 card FPS over frames 12–31, low detail and card
+FNV off. These are short bounded runs, not sustained interactive acceptance.
+
 ## N2 private-RAM cache mapping — 2026-10-18
 
 The [bounded physical acceptance](artifacts/current/cache-map-20261018/README.md)
 changed only the AcceleRAID 160's LMT1 from stock `c0400002/ffe00001`
 to `c0800002/ff800001` while its reboot-owned upper 8 MiB arena was active.
 The exact stock logical map was restored after Doom and DMA drained; DLMCON,
-LMT0, control and WAD transport rules were unchanged. The opt-in
+LMT0, control and WAD transport rules were unchanged. The originally opt-in
 `DOOM_PRIVATE_CACHE_MAP=1` build checks incoming/readback registers and the
 frame trailer proves the target mapping was live for all 32 frames.
 
@@ -19,7 +32,7 @@ qualification, not long interactive play. Both runs passed full system,
 ownership, frame/HTTP, native WAD, PIO, guard, stalled-host and STOP audits;
 two complete guarded post-reset flash reads after each run matched the stock
 SHA-256. Archived exact binaries and independent replayers pass. Keep the
-cache map opt-in until longer interactive STOP/disconnect acceptance.
+full runtime checks in place while qualifying longer interactive STOP/disconnect.
 
 ## N1 cache scaling audit — 2026-10-17
 

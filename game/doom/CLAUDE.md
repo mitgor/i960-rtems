@@ -1,3 +1,13 @@
+**Cached-card N1 baseline/default (2026-10-18):**
+[Matched old/new cached evidence](../../artifacts/current/cache-baseline-20261018/README.md)
+verifies identical admitted benchmark code and 120 old/32 new frame records.
+The old PG caches its allocation via LMT0 (2 KiB), while the new 160 caches
+owned upper RAM via LMT1 (4 KiB). The new-card exclusive Doom build now
+defaults to `DOOM_PRIVATE_CACHE_MAP=1`; `=0` is the stock-map control.
+Preserve all ownership, cache-register, WAD/control invalidation and full
+audit gates. The bounded 16.964 card-FPS result is the new low-detail/FNV-off
+baseline, not a long interactive measurement.
+
 **N2 cached private arena accepted (2026-10-18):**
 [Physical benchmark and exact replay](../../artifacts/current/cache-map-20261018/README.md)
 show the new card's owned upper 8 MiB mapped cacheable only during Doom via
@@ -5,9 +15,8 @@ show the new card's owned upper 8 MiB mapped cacheable only during Doom via
 4 KiB read 490→255 ms; streaming/copy remain flat. Same accepted low-detail
 no-benchmark engine: 9.694→16.964 card FPS (+75%) over frames 12–31;
 renderer mean 91.5→48 ms. Full 32-frame audits, WAD/Pio/HTTP, stalled host,
-STOP and paired post-reset stock-flash reads pass. Mapping remains opt-in;
-ordinary rebuilds preserve stock. Re-profile renderer under cached RAM and
-qualify longer interactive STOP/disconnect before promoting the mode.
+STOP and paired post-reset stock-flash reads pass. Re-profile renderer under
+cached RAM and qualify longer interactive STOP/disconnect.
 
 **N1 cache diagnostic (2026-10-17):** `runtime/cache_bench/` is an opt-in
 fixed-work, eight-case Doom frame trailer at byte 65024. Build the same admitted
@@ -16,7 +25,7 @@ must validate this trailer through `rtems/residentnet/presentation_profile.py`;
 normal frames still require zero padding. Use four repeats per case, full frame
 transport hashes, native checksum oracle, guards, owner/STOP and system audits.
 It changes diagnostic frame time and must not be used as play FPS. The new-card
-upper 8 MiB Doom arena is currently uncached despite global D-cache enabled;
+stock-map upper 8 MiB Doom arena was uncached despite global D-cache enabled;
 see `artifacts/current/cache-scaling-20261017/AUDIT.md` before proposing more
 compiler tuning. Keep host-written control and WAD-input pages coherent if a
 private arena cache template is tested later. Half-height remains on hold.

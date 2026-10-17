@@ -1,12 +1,22 @@
-**Latest N2 cache-map acceptance — 2026-10-18:**
+**Current exclusive-Doom cache baseline — 2026-10-18:**
+[Matched cached-card baseline](artifacts/current/cache-baseline-20261018/README.md)
+checks all 120 old-card and 32 new-card diagnostic frames. The old PG already
+caches its 16 MiB RAM with LMT0 (`dcctl4=0x7221`, 2 KiB); the new 160 caches
+the owned upper 8 MiB with accepted LMT1 (`dcctl4=0x8221`, 4 KiB). The same
+admitted engine has 1 KiB read medians 700 versus 130 ms and word-copy medians
+990 versus 570 ms. `rtems/accele160/doom_dma/build.sh` now defaults to the
+accepted private map **for exclusive Doom**; set `DOOM_PRIVATE_CACHE_MAP=0`
+for the stock-map control. Runtime ownership, register restoration, WAD/control
+invalidation and full audits remain required. Long interactive play is unproven.
+
+**N2 cache-map acceptance — 2026-10-18:**
 [Exact code, captures and replay](artifacts/current/cache-map-20261018/README.md)
 show `DOOM_PRIVATE_CACHE_MAP=1` remapping only LMT1 to reboot-owned
 `c0800000–c0ffffff` during Doom, then restoring stock after DMA drain.
 Warm 1 KiB reads improve 2.77×; the previously accepted no-benchmark,
 low-detail/hash-off Doom engine improves from 9.694 to **16.964 card FPS**
 in the 20-frame steady window (+75%). Two 32-frame runs passed full audits,
-STOP and paired guarded post-reset stock-flash reads. Default builds still
-use the stock map. Retain WAD/control invalidations and all ownership/DMA
+STOP and paired guarded post-reset stock-flash reads. Retain WAD/control invalidations and all ownership/DMA
 checks; longer interactive play and disconnect acceptance remain open.
 
 **Latest N1 cache-scaling result — 2026-10-18:**
