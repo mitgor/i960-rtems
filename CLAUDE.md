@@ -2162,3 +2162,18 @@ stock; [captures and replay](artifacts/current/accele160-dma-process-death-20261
 reject fifteen mutations. This does **not** establish cancellation of a
 genuinely stuck/erroring PCI transaction, a death before the held checkpoint,
 or whole-host crash recovery. Keep both allocations retained on uncertainty.
+
+## AcceleRAID Doom browser gate (2026-10-17)
+
+Read [the accepted live transport](rtems/accele160/doom_play/README.md) and
+[replayable evidence](artifacts/current/accele160-doom-live-20261017/README.md)
+before extending new-card play. Two generation-numbered RAM frame slots use
+16 odd 4 KiB pages per 64 KiB frame because PIATVR cannot expose even pages.
+The host checks full-frame FNV before exact-generation ACK; missing ACK is
+bounded. A 32-frame card run passed at 2.329 card-side FPS. A separate
+browser run delivered 32 byte-identical binary HTTP frames, acknowledged a
+W press/release, and passed WAD, owner, bank, STOP and paired pre/post stock
+flash audits at 2.320 card-side FPS. These are finite gates, not sustained
+interactive play or browser-paint FPS. Retain the old card unbound, the full
+audits and reboot-only callback release. Next qualify long-session STOP and
+then DMA frame delivery.

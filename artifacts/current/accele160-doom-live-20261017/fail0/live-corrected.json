@@ -1,0 +1,32 @@
+{
+  "live": [
+    "0x3145564c",
+    "0x161610e1",
+    "0x1",
+    "0x59034b27",
+    "0x3675",
+    "0x0",
+    "0x2",
+    "0x59034b27",
+    "0x3697",
+    "0x0",
+    "0x0",
+    "0x0",
+    "0x0",
+    "0x0",
+    "0xc0eebbf0",
+    "0xc0efcc30"
+  ],
+  "slot0": {
+    "ptr": "0xc0eebbf0",
+    "fnv": "0xf5382138",
+    "sha256": "fe6beb1b7272250705dc66d06e19d5397717472444385ef8a76e619ae9f99c78",
+    "first16": "6c6c9f0e6c6c6c6d0f6d6c090f0f0f0f"
+  },
+  "slot1": {
+    "ptr": "0xc0efcc30",
+    "fnv": "0x66881c88",
+    "sha256": "f91acba57baf44b3ea36ceebf82d498cbe20bbbdb808c928d5416f8d992d306e",
+    "first16": "6c6c9f0e6c6c6c6d0f6d6c090f0f0f0f"
+  }
+}

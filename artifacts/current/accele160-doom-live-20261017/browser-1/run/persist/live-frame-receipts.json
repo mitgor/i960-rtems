@@ -1,0 +1,226 @@
+[
+  {
+    "generation": 1,
+    "slot": 0,
+    "card_tick": 13968,
+    "fnv": "0x59034b27",
+    "sha256": "f4d1c27a4ec8e8db4437d9e28012107370749765aa0e09c99758eeb54163b8ce"
+  },
+  {
+    "generation": 2,
+    "slot": 1,
+    "card_tick": 14011,
+    "fnv": "0x59034b27",
+    "sha256": "f4d1c27a4ec8e8db4437d9e28012107370749765aa0e09c99758eeb54163b8ce"
+  },
+  {
+    "generation": 3,
+    "slot": 0,
+    "card_tick": 14053,
+    "fnv": "0x846f4806",
+    "sha256": "a759470102c8849eac269bd13c684422ae72e6346e81fceabd7608dbbd11372f"
+  },
+  {
+    "generation": 4,
+    "slot": 1,
+    "card_tick": 14096,
+    "fnv": "0xedb92b62",
+    "sha256": "cdd895e16c17cd7fb23f57108ea3c36dab3a2d2fcc676fe154967fe98e7387b7"
+  },
+  {
+    "generation": 5,
+    "slot": 0,
+    "card_tick": 14138,
+    "fnv": "0xf90fc64f",
+    "sha256": "73682cfdb8a68d2433a51f6e39ed04e6119d2f322ddd17040df9a270c732fc54"
+  },
+  {
+    "generation": 6,
+    "slot": 1,
+    "card_tick": 14181,
+    "fnv": "0x68ed7d7c",
+    "sha256": "f4aee764c0b80a58cdcf6c956b3086333030faf44a25e9ed33a7a17ad083ef37"
+  },
+  {
+    "generation": 7,
+    "slot": 0,
+    "card_tick": 14224,
+    "fnv": "0x43cfbc12",
+    "sha256": "e87f648bc4cfa8c99e6201d0a99d2e4e6b44b3e11da11277ff0472b75cc0565c"
+  },
+  {
+    "generation": 8,
+    "slot": 1,
+    "card_tick": 14266,
+    "fnv": "0x68e26b62",
+    "sha256": "e592f9ab776b5e524bbb47e079ba97cee46ed8d3e5cd716b969efda9a77927eb"
+  },
+  {
+    "generation": 9,
+    "slot": 0,
+    "card_tick": 14312,
+    "fnv": "0x781dacd6",
+    "sha256": "59590b1c419e55f471e6ebccb19d1f061793ca5ebf64a972c9a27536d929d5d8"
+  },
+  {
+    "generation": 10,
+    "slot": 1,
+    "card_tick": 14355,
+    "fnv": "0xc755294c",
+    "sha256": "94da76ffce6c83f5c0b959d1b547fe092e990284c154063c29ac31bede8a6b6c"
+  },
+  {
+    "generation": 11,
+    "slot": 0,
+    "card_tick": 14398,
+    "fnv": "0xe9c36b9d",
+    "sha256": "195ddd7308dc7bd778a304a26bfc09979e9f1091c7bcfc1edc7aabbd82c2f9ff"
+  },
+  {
+    "generation": 12,
+    "slot": 1,
+    "card_tick": 14441,
+    "fnv": "0x78377733",
+    "sha256": "8809e39590b96f9d78715624c1323d68376725e4a557a85f0cb8cb8ea50cb486"
+  },
+  {
+    "generation": 13,
+    "slot": 0,
+    "card_tick": 14484,
+    "fnv": "0x5f48a6ff",
+    "sha256": "df0ae5d5da62258f925b0c0516fa9c4864819ea17f11f7bf2aa4394d8839ec63"
+  },
+  {
+    "generation": 14,
+    "slot": 1,
+    "card_tick": 14527,
+    "fnv": "0xfa0144fa",
+    "sha256": "46633fe93c22a8085d3855d22e89e37037d8183507c599e3c89e2449ff64bf07"
+  },
+  {
+    "generation": 15,
+    "slot": 0,
+    "card_tick": 14570,
+    "fnv": "0xcc183818",
+    "sha256": "a62ae358596f86ddae74240afec8ae6a04f3c0d09256ddf7a86cf0dada47cf7d"
+  },
+  {
+    "generation": 16,
+    "slot": 1,
+    "card_tick": 14613,
+    "fnv": "0xc507b673",
+    "sha256": "cbb278778150570609a8bd360167687f251de6709737ecd6caa4918d3cc3a1bd"
+  },
+  {
+    "generation": 17,
+    "slot": 0,
+    "card_tick": 14659,
+    "fnv": "0x4d5ad678",
+    "sha256": "9c6f75fa062e9bc8acff5c7566f9be88a67953106755b3c5c91dbf2dd3de43db"
+  },
+  {
+    "generation": 18,
+    "slot": 1,
+    "card_tick": 14702,
+    "fnv": "0x2788b5f3",
+    "sha256": "5303b738aed8493509dbbba628c76f43ab6ca010868bb646bc539dfcfb2da508"
+  },
+  {
+    "generation": 19,
+    "slot": 0,
+    "card_tick": 14745,
+    "fnv": "0x45fca11e",
+    "sha256": "430ed40a66bf37a99e53e526175c99783eeab24cbb8c08a6501b4ef9b073c1c3"
+  },
+  {
+    "generation": 20,
+    "slot": 1,
+    "card_tick": 14788,
+    "fnv": "0x734eb777",
+    "sha256": "f20033835ffb5903b38cd8057170cb214b341ab3ad496aa792415be6c50a4eeb"
+  },
+  {
+    "generation": 21,
+    "slot": 0,
+    "card_tick": 14831,
+    "fnv": "0xf1abe8e4",
+    "sha256": "2b0457511844ffc8fd6668db8c9a1d40b94ab0b1914b008a75d3da3f1e125c36"
+  },
+  {
+    "generation": 22,
+    "slot": 1,
+    "card_tick": 14874,
+    "fnv": "0x775a27a1",
+    "sha256": "479b36a47a7355ef91fc82b7de8e285f75649980a0ebdd05a343e734aeb4dec4"
+  },
+  {
+    "generation": 23,
+    "slot": 0,
+    "card_tick": 14917,
+    "fnv": "0xc835926f",
+    "sha256": "2b5dfe0888f037a33fab5df408be977c5cc248599799ed49fb0b1a0a7575121e"
+  },
+  {
+    "generation": 24,
+    "slot": 1,
+    "card_tick": 14960,
+    "fnv": "0x6955870a",
+    "sha256": "a286cd2fc08b2508680048080fb894fdbe8610351b90e4c48762bd2dd186e713"
+  },
+  {
+    "generation": 25,
+    "slot": 0,
+    "card_tick": 15003,
+    "fnv": "0x2618bf4c",
+    "sha256": "a003efc1a285b380c36e2517d484baed0e4b0ba70038270dc2057198cce8cdbe"
+  },
+  {
+    "generation": 26,
+    "slot": 1,
+    "card_tick": 15046,
+    "fnv": "0x8d663805",
+    "sha256": "25e09b84c98c98cbd7b778e089d453760eec5956bc2dccf46c679b0cc6c20ab3"
+  },
+  {
+    "generation": 27,
+    "slot": 0,
+    "card_tick": 15089,
+    "fnv": "0xe161ad17",
+    "sha256": "42ca8a72e4cbe6c4edd09ffba5d2de5d5a2204dfdd23a0f84b5e70a4b164f55f"
+  },
+  {
+    "generation": 28,
+    "slot": 1,
+    "card_tick": 15133,
+    "fnv": "0xeb467914",
+    "sha256": "939fc870e780897f2589384852f1e79f483ad704a143445a7d3dc8ea88d3078d"
+  },
+  {
+    "generation": 29,
+    "slot": 0,
+    "card_tick": 15175,
+    "fnv": "0xccdc7888",
+    "sha256": "37d53358192eb792249e5faecf022ebf715c15bc0946d86a97a0451f9ab54797"
+  },
+  {
+    "generation": 30,
+    "slot": 1,
+    "card_tick": 15219,
+    "fnv": "0x7b3ec50f",
+    "sha256": "30e9cde37db956df74714558c355ef546fc3a548f09ac654dbc667a8b1bba736"
+  },
+  {
+    "generation": 31,
+    "slot": 0,
+    "card_tick": 15262,
+    "fnv": "0x277490a2",
+    "sha256": "a4a9ef9fb562db6b3085805f4c842f6eb720f55b9195b01617d98e9ae4567b83"
+  },
+  {
+    "generation": 32,
+    "slot": 1,
+    "card_tick": 15305,
+    "fnv": "0x804ea5ab",
+    "sha256": "e5c03c7d4f5fe8af6f816afe7be458a6eddfcd4be12fbc990aa5e3ed6901aaa1"
+  }
+]

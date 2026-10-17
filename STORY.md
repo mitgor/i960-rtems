@@ -5425,3 +5425,30 @@ reads matched the same stock image, with zero status, residual and guard
 changes. The accepted startup fix gives us a stable basis
 for bringing over browser controls and two-buffer delivery, but neither has
 been tested on this card yet.
+
+We made the first transport attempt with two pinned generations. Doom loaded,
+produced two frames, and then waited because the host refused to acknowledge
+bytes whose full checksum did not match. The bad bytes followed a regular
+4 KiB boundary. The aperture had always shown only the odd page of each
+8 KiB pair; a contiguous framebuffer crossed pages the host could not read.
+After a reset, we kept the render buffers contiguous but copied each finished
+frame into sixteen odd pages. The host reconstructed a 64 KiB image, checked
+the checksum, and acknowledged only that generation. This time all thirty-two
+frames came through, sixteen from each slot. The WAD trace, owner records,
+full memory-bank checks and STOP path passed, and four complete flash reads
+around the test still matched the stock image. The extra staging and host
+handshake cost time: thirty-one card presentation intervals took 1,331 ticks,
+or 2.329 FPS, compared with 3.660 FPS for the earlier render-only gate. These
+are card timestamps, not browser paint times. We also made an HTTP view with
+binary frames and bounded keys; its first physical browser test is next.
+
+That browser test reached all thirty-two generations. An independent HTTP
+client saved each binary packet while the card owner continued its full WAD
+and memory audits. Every packet matched the corresponding card capture byte
+for byte. It pressed W and released it; the final card mailbox showed both
+events acknowledged. Doom then exited at the planned thirty-second-frame
+boundary and passed cleanup and STOP. The card-side interval was 2.320 FPS
+with input, close to the no-input transport gate. We saved the final browser
+frame as an image. After a power cycle, two more complete guarded reads
+matched the stock firmware, closing the browser run. Its short bounded life still leaves
+the longer playable session and a clean user STOP path ahead.

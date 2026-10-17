@@ -1404,3 +1404,13 @@ flash reads matched stock and [replay](../artifacts/current/accele160-dma-proces
 rejects fifteen changed captures. No recovery is proved for real PCI faults,
 pre-checkpoint death or whole-host crash. Retain all DMA allocations until
 the inactive channel, exact payload and all ownership records are proven.
+
+The [AcceleRAID Doom live gate](accele160/doom_play/README.md) now has two
+physically audited 32-frame runs. Card-to-host frame staging uses 16 odd
+4 KiB PIATVR-visible pages per slot and generation-checked ACK; the browser
+run delivered 32 matching HTTP frames and the stage-101 key mailbox ACKed
+press/release. Full pre/post flash, bank, owner and STOP audits passed;
+[replay](../artifacts/current/accele160-doom-live-20261017/README.md) is
+independent. Card-side rates were 2.329 and 2.320 FPS, not browser paint
+rates. This is not yet a long interactive or DMA frame path; keep the old
+card unbound and retain the exclusive callback until reboot.

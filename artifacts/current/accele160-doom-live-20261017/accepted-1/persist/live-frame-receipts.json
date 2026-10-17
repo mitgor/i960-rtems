@@ -1,0 +1,226 @@
+[
+  {
+    "generation": 1,
+    "slot": 0,
+    "card_tick": 13993,
+    "fnv": "0x59034b27",
+    "sha256": "f4d1c27a4ec8e8db4437d9e28012107370749765aa0e09c99758eeb54163b8ce"
+  },
+  {
+    "generation": 2,
+    "slot": 1,
+    "card_tick": 14036,
+    "fnv": "0x59034b27",
+    "sha256": "f4d1c27a4ec8e8db4437d9e28012107370749765aa0e09c99758eeb54163b8ce"
+  },
+  {
+    "generation": 3,
+    "slot": 0,
+    "card_tick": 14078,
+    "fnv": "0xcc3b341f",
+    "sha256": "2bb934a1701e1f63b20fa01f7b940bed3ad2d7a259d9a100388fd45150aec657"
+  },
+  {
+    "generation": 4,
+    "slot": 1,
+    "card_tick": 14121,
+    "fnv": "0xcc3b341f",
+    "sha256": "2bb934a1701e1f63b20fa01f7b940bed3ad2d7a259d9a100388fd45150aec657"
+  },
+  {
+    "generation": 5,
+    "slot": 0,
+    "card_tick": 14163,
+    "fnv": "0xcc3b341f",
+    "sha256": "2bb934a1701e1f63b20fa01f7b940bed3ad2d7a259d9a100388fd45150aec657"
+  },
+  {
+    "generation": 6,
+    "slot": 1,
+    "card_tick": 14206,
+    "fnv": "0xc4bba501",
+    "sha256": "5bba99454a882b50114b7dbe79fb7901e8de518dd397140bb46e96fb55690fc1"
+  },
+  {
+    "generation": 7,
+    "slot": 0,
+    "card_tick": 14248,
+    "fnv": "0x00afbccf",
+    "sha256": "ea46668fa02701cb75543d389a4491ebed8c641a66ef816da57e360d5eda1a9f"
+  },
+  {
+    "generation": 8,
+    "slot": 1,
+    "card_tick": 14291,
+    "fnv": "0x90c6427c",
+    "sha256": "569069dfa18b4b7626836a5ace1581fcca3df5829b220bccd3575d2d166e86fc"
+  },
+  {
+    "generation": 9,
+    "slot": 0,
+    "card_tick": 14336,
+    "fnv": "0x153338ed",
+    "sha256": "e04bef6beed75cac251b456c445e6882baf8a5dfa4be1b08dee95c5f375467ab"
+  },
+  {
+    "generation": 10,
+    "slot": 1,
+    "card_tick": 14379,
+    "fnv": "0x20aa3c9c",
+    "sha256": "d03d7e20907aea69b38b32b0a8666482de9939ffaf80671021ea14c44a93f092"
+  },
+  {
+    "generation": 11,
+    "slot": 0,
+    "card_tick": 14421,
+    "fnv": "0x6c1de5c2",
+    "sha256": "7527a1db66f3f884daedbcbb1895bb617ccc8211aceb777daeff73d3568d11e9"
+  },
+  {
+    "generation": 12,
+    "slot": 1,
+    "card_tick": 14464,
+    "fnv": "0x9891fc94",
+    "sha256": "8e7f7f4d204f81cd64e7f8cf42e2447ada624561150f17c91654e1bc8f8e6cf8"
+  },
+  {
+    "generation": 13,
+    "slot": 0,
+    "card_tick": 14507,
+    "fnv": "0x3b00111b",
+    "sha256": "347537faadde8aa5c293095577c598d0ed8ee38cf62a7a41a7c5dac6223c1a6c"
+  },
+  {
+    "generation": 14,
+    "slot": 1,
+    "card_tick": 14550,
+    "fnv": "0xd0d84ecf",
+    "sha256": "4c8208d44828592b18e763bc45e34aa05e2f960a61c9a53343adb9c02716f86c"
+  },
+  {
+    "generation": 15,
+    "slot": 0,
+    "card_tick": 14592,
+    "fnv": "0xb8484d3f",
+    "sha256": "691f43bc05fc7b67cf17929c0da12c04d344823c67153d0e75398587263bb498"
+  },
+  {
+    "generation": 16,
+    "slot": 1,
+    "card_tick": 14635,
+    "fnv": "0xb8484d3f",
+    "sha256": "691f43bc05fc7b67cf17929c0da12c04d344823c67153d0e75398587263bb498"
+  },
+  {
+    "generation": 17,
+    "slot": 0,
+    "card_tick": 14681,
+    "fnv": "0x6d88849e",
+    "sha256": "7325f67ca1e99df151791a64fbd9eab3b40f254663d280f88d085af8e7de6dd2"
+  },
+  {
+    "generation": 18,
+    "slot": 1,
+    "card_tick": 14724,
+    "fnv": "0x6d88849e",
+    "sha256": "7325f67ca1e99df151791a64fbd9eab3b40f254663d280f88d085af8e7de6dd2"
+  },
+  {
+    "generation": 19,
+    "slot": 0,
+    "card_tick": 14767,
+    "fnv": "0x6d88849e",
+    "sha256": "7325f67ca1e99df151791a64fbd9eab3b40f254663d280f88d085af8e7de6dd2"
+  },
+  {
+    "generation": 20,
+    "slot": 1,
+    "card_tick": 14810,
+    "fnv": "0x6d88849e",
+    "sha256": "7325f67ca1e99df151791a64fbd9eab3b40f254663d280f88d085af8e7de6dd2"
+  },
+  {
+    "generation": 21,
+    "slot": 0,
+    "card_tick": 14853,
+    "fnv": "0x986240bf",
+    "sha256": "2ec4cbf40e81e3c24c4581e2d0416277655df3c43aee9bb9b723791f9c3babc7"
+  },
+  {
+    "generation": 22,
+    "slot": 1,
+    "card_tick": 14896,
+    "fnv": "0x986240bf",
+    "sha256": "2ec4cbf40e81e3c24c4581e2d0416277655df3c43aee9bb9b723791f9c3babc7"
+  },
+  {
+    "generation": 23,
+    "slot": 0,
+    "card_tick": 14938,
+    "fnv": "0x986240bf",
+    "sha256": "2ec4cbf40e81e3c24c4581e2d0416277655df3c43aee9bb9b723791f9c3babc7"
+  },
+  {
+    "generation": 24,
+    "slot": 1,
+    "card_tick": 14982,
+    "fnv": "0x986240bf",
+    "sha256": "2ec4cbf40e81e3c24c4581e2d0416277655df3c43aee9bb9b723791f9c3babc7"
+  },
+  {
+    "generation": 25,
+    "slot": 0,
+    "card_tick": 15024,
+    "fnv": "0xe3978372",
+    "sha256": "bf4be87a67e657ff64d322f13c4cd1375af0ecb5510b42331e1c12bfcd660908"
+  },
+  {
+    "generation": 26,
+    "slot": 1,
+    "card_tick": 15067,
+    "fnv": "0xe3978372",
+    "sha256": "bf4be87a67e657ff64d322f13c4cd1375af0ecb5510b42331e1c12bfcd660908"
+  },
+  {
+    "generation": 27,
+    "slot": 0,
+    "card_tick": 15110,
+    "fnv": "0x6c809cdb",
+    "sha256": "cf1265105e447ec449072fe6fa79b77e710a5ab92a5a365016a75142b8a90fc4"
+  },
+  {
+    "generation": 28,
+    "slot": 1,
+    "card_tick": 15153,
+    "fnv": "0x6c809cdb",
+    "sha256": "cf1265105e447ec449072fe6fa79b77e710a5ab92a5a365016a75142b8a90fc4"
+  },
+  {
+    "generation": 29,
+    "slot": 0,
+    "card_tick": 15196,
+    "fnv": "0x6c809cdb",
+    "sha256": "cf1265105e447ec449072fe6fa79b77e710a5ab92a5a365016a75142b8a90fc4"
+  },
+  {
+    "generation": 30,
+    "slot": 1,
+    "card_tick": 15239,
+    "fnv": "0x6c809cdb",
+    "sha256": "cf1265105e447ec449072fe6fa79b77e710a5ab92a5a365016a75142b8a90fc4"
+  },
+  {
+    "generation": 31,
+    "slot": 0,
+    "card_tick": 15281,
+    "fnv": "0x6c809cdb",
+    "sha256": "cf1265105e447ec449072fe6fa79b77e710a5ab92a5a365016a75142b8a90fc4"
+  },
+  {
+    "generation": 32,
+    "slot": 1,
+    "card_tick": 15324,
+    "fnv": "0xc6c5f7c2",
+    "sha256": "3b865bcc5b1547ddb84d2c9bec486d5efa5ceaf367e70ab06a37044ca9eb3b08"
+  }
+]

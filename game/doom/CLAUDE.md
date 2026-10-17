@@ -1004,3 +1004,19 @@ passed on a fresh boot, matching unchanged stock firmware. The new card has no b
 stream, keyboard bridge, or ping-pong DMA yet; old-card play binaries and
 6+ FPS results are not directly interchangeable. See
 `artifacts/current/accele160-doom-startup-20261017/README.md` and its replay.
+
+The separate `rtems/accele160/doom_play` two-slot transport now has a physical
+32-frame acceptance with paired full pre/post flash reads and offline replay:
+`artifacts/current/accele160-doom-live-20261017/README.md`. PIATVR sees only
+odd 4 KiB pages in 8 KiB pairs, so a direct host read of contiguous frame RAM
+is invalid even if the first pixels appear plausible. Keep 16 odd-page chunks
+per frame, full 64 KiB FNV before exact-generation ACK, bounded host-stall
+timeout, full owner/bank/arena/STOP audits, and reboot-only release. That gate
+measured 2.329 card-side FPS, not delivered or painted FPS. The HTTP/binary
+frame and key endpoint now has a separate 32-frame physical run: all HTTP
+payloads match card captures and W press/release reached stage 101 with
+sequence/ACK two. Full runtime audits and paired pre/post flash reads passed
+with stock SHA and zero residual/guard changes; `verify_browser.py` accepts
+the bounded physical input/HTTP gate. Its 2.320 FPS is card-side presentation,
+not delivered browser paint. DMA delivery, clean user STOP and a long
+interactive owner are not yet accepted.

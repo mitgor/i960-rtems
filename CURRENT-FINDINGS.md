@@ -559,3 +559,25 @@ No browser delivery or input has
 yet been tested on this card. The preserved `myrsread` driver requires
 `read_bdf=0000:37:09.1` on each boot. [Code and status](rtems/accele160/doom_first_frame/README.md) ·
 [Exact replayable evidence](artifacts/current/accele160-doom-startup-20261017/README.md).
+
+## New-card two-slot Doom frame transport — 2026-10-17
+
+The first live-slot build failed full-frame FNV because PIATVR only exposes
+the odd 4 KiB page in each 8 KiB pair. The corrected RAM-only build stages
+each 64 KiB frame in 16 owned odd pages, keeps two generation-numbered slots,
+and requires a verified host read before exact-generation ACK. A 32-frame
+physical run passed 5,045 WAD reads and the native startup oracle, all 32
+payload checks, owner/bank/arena/STOP/quiescence audits, and two full stock
+firmware reads both before and after the run. The old card remained unbound.
+Card presentation averaged **2.329 FPS** across 31 intervals, including
+staging and ACK; the prior render-only gate was **3.660 FPS**. This is not
+browser FPS or DMA. The optional HTTP/binary-frame/key/STOP server passes
+host tests. A separate physical browser gate captured all 32 HTTP generations
+and compared them byte-for-byte with card receipts; a W press/release reached
+the card with sequence and ACK both two. It passed WAD, owner, bank, cleanup
+and STOP checks at **2.320 card-side FPS**. Paired pre-run and post-reset full
+flash reads passed with zero residual/guard changes and matching stock SHA.
+`verify_browser.py` replays the evidence. This accepts the bounded browser
+transport and input gate; it is not a long playable session yet.
+[Code](rtems/accele160/doom_play/README.md) ·
+[Evidence and replay](artifacts/current/accele160-doom-live-20261017/README.md).
