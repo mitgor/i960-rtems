@@ -1,0 +1,18 @@
+{
+  "state": "retained-terminal-session-still-present",
+  "boot_id": "31291627-dcd0-44bd-9c81-50708c818d80",
+  "frozen_heartbeat": 15733,
+  "retained_dma_frames": 1565,
+  "callback": "QUIE",
+  "old_card_unbound": true,
+  "new_card_commands_issued": 0,
+  "reset_required": true,
+  "physical_restart_tests_started": false,
+  "warm_reboot_attempt": {
+    "command": "sudo -n reboot -f",
+    "response": "Rebooting.",
+    "ssh_returned": false,
+    "controller_reinitialization_verified": false,
+    "physical_power_cycle_requested": true
+  }
+}

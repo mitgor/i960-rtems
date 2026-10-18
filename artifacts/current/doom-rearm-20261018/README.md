@@ -106,3 +106,26 @@ unchanged accepted engine and compile the kernel with
 then run `provision.py` into a new bundle directory. Full sources, kernel,
 manifest, bundle inventory and native test logs are in `candidate.tar.xz`;
 WAD, engine and command modules retain their existing accepted identities.
+
+## Follow-up readiness check
+
+On the next test request, SSH still reported the same boot ID and two hours
+of uptime. The locked, read-only
+[`prelaunch-20261018T1013/result.json`](prelaunch-20261018T1013/result.json)
+confirmed terminal QUIE, a heartbeat frozen at 15,733, the previous 1,565 DMA
+frames, intact coherent guards and the old card unbound. Its PCI window
+selector was restored; no card command or RAM write was issued. This explains
+why a fresh admission was not attempted over the retained callback.
+
+The user asked whether a warm reboot could help. A remote `reboot -f` was
+issued to try that less disruptive reset; successful reuse testing still
+requires a changed Linux boot ID, cleared retained modules and a controller
+that passes fresh initialization and both guarded whole-flash reads.
+
+The warm reboot printed `Rebooting.` but repeated SSH connections timed out;
+no changed boot ID or controller reinitialization could be verified. Physical
+power-off was requested again. The archived v6.8 reader source has a cache
+flush in `myrs_remove()`, but **no PCI shutdown callback**, and the generator
+does not add one. A driver shutdown-command stall was considered, but the
+reviewed source does not support that diagnosis. The actual reboot stall
+cause is unproven. No reusable Doom card test has started in this follow-up.

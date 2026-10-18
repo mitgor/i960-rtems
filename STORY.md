@@ -5759,3 +5759,11 @@ accepted launcher has deliberately stayed on its previous bundle while the
 STOP, reload, menu Quit, reload and STOP card test waits.
 [The candidate record](artifacts/current/doom-rearm-20261018/README.md) keeps
 the implemented path separate from the hardware result we have yet to earn.
+
+The first follow-up found the same Linux boot and the same frozen card
+heartbeat, despite the PC being reachable again. The old 1,565-frame session
+was still safely halted. We saved a locked read-only snapshot and tried a
+warm reboot at the user's request. It printed its reboot message but did not
+return over SSH, so it did not get us to the new kernel. The cold power cycle
+is still the practical prerequisite; no repeated card-game result is claimed
+from this attempt.
