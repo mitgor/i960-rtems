@@ -1122,3 +1122,18 @@ pixels/palettes, and final paired new-card stock-flash reads. No defaults or
 firmware changed. Next preserve validation while making host FNV native,
 then word copies and owned DMA/direct presentation. Full-quality matched
 engine comparison remains open; half-height stays on hold.
+**New-card N3 renderer experiment — 2026-10-18:**
+The [bounded evidence](../../artifacts/current/renderer-tune-20261018/README.md)
+found that the DAC960PG wall timer helper is invalid on AcceleRAID 160.
+`--wall-profile-accele160` is an opt-in diagnostic paired with
+`--wall-profile`; it combines the owned timer-1 count with RTEMS's 100 Hz
+tick and marks fallback/nonmonotonic faults for strict trailer replay. The
+corrected zero-fault profile places 16.06 ms in the inner wall loop including
+column calls, 7.33 ms in wall setup, 5.36 ms in other subsector work and
+1.77 ms in traversal (frames 12–31). Selective `r_segs.c -O2` (`--fast-walls`)
+preserves all pixels but gives **no steady FPS gain**: 17.593 versus 17.593
+on the unprofiled cached/wide-copy build. Keep it opt-in; inspect the emitted
+column/texture loop before changing flags or layout. The new-card replay now
+decodes advertised wall trailers, so a framebuffer pass alone is insufficient
+to accept timing evidence. Full card/post-reset audit state is in the linked
+README.

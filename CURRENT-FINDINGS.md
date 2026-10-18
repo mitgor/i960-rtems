@@ -724,3 +724,19 @@ flash reads passed with zero residual/guard changes and matching stock SHA.
 transport and input gate; it is not a long playable session yet.
 [Code](rtems/accele160/doom_play/README.md) ·
 [Evidence and replay](artifacts/current/accele160-doom-live-20261017/README.md).
+## New-card renderer profile and compiler check — 2026-10-18
+
+The accepted cached/wide-copy Doom build remains the faster tested default
+at **17.593 card FPS** in the fixed frames-12–31 window. The old DAC960PG
+wall-region timer helper produced wrapped AcceleRAID values even though the
+first 32-frame DMA/browser/WAD/ownership/STOP and full flash audits passed.
+Strict replay now rejects advertised malformed wall timing. The corrected
+opt-in new-card clock had zero faults in a second full card run and measured
+30.53 ms BSP/walls: 1.77 ms traversal, 5.36 ms other subsector work, 7.33 ms
+wall setup and 16.06 ms inner wall loop including column calls. An
+unprofiled selective `r_segs.c -O2` run matched all 32 reference pixel and
+palette blocks but remained **17.593 FPS**, so `--fast-walls` stays opt-in.
+This narrows the next exact-output experiment to generated column/texture
+access and cache layout; merely switching the pinned compiler target has no
+evidenced benefit. Complete run and remaining post-reset audit status are in
+[the experiment](artifacts/current/renderer-tune-20261018/README.md).

@@ -22,6 +22,21 @@ nested timing, bounded counts and explicit admission. No allocation, MMIO write,
 new DMA access or change to the 65536-byte framebuffer is introduced.
 
 Run `python3 game/doom/wall_profile/test.py` for malformed-evidence checks.
+
+On the AcceleRAID 160, add `--wall-profile-accele160` with `--wall-profile`.
+The old DAC960PG helper reads timer 0 as a continuously decreasing 4.1667 MHz
+counter. That assumption is false in the AcceleRAID Doom lease: timer 0 wraps
+at its reload and timer 1 is owned by RTEMS at 100 Hz. The new helper combines
+the owned timer-1 count with the RTEMS tick, checks both sides of the count
+read, and reports a monotonic timestamp on the WAL1 scale. It records clock
+fallback/nonmonotonic faults in the reserved WAL1 word; the decoder requires
+zero. This path is diagnostic and is not part of the playable default.
+
+The first new-card run on 2026-10-18 accidentally used the old helper. Doom,
+DMA, HTTP, STOP, ownership and stock-flash audits passed, but its WAL1 timing
+contains wrapped values. Independent trailer replay rejects the capture. See
+`artifacts/current/renderer-tune-20261018/` for the rejected evidence and the
+corrected candidate test.
 Physical acceptance plan/evidence: `artifacts/walls-20261016/PLAN.md`.
 
 Acceptance: 2,600 matching images, 285 full paired audits, STOP/stall/drain and

@@ -5668,3 +5668,19 @@ exclusive-Doom build option while longer interactive play remains open. It
 improves the copy; it does not yet remove the persistent screen or redesign
 DMA-slot ownership. [The two replay archives](artifacts/current/wide-screen-copy-20261018/README.md)
 preserve the exact frames and audit proof.
+
+We then looked for a renderer gain that the faster card might hide behind the
+same old compiler choices. The first wall profile was a useful failure: Doom
+itself, its browser frames, STOP and the firmware audits all passed, but the
+timer helper brought an assumption from the old DAC960PG. On the AcceleRAID
+its counter wraps, and the supposed fine wall times underflowed. We made the
+offline replay inspect that optional trailer, so it now rejects the false
+measurement. With the new card's owned timer and RTEMS tick combined, the
+corrected profile reported zero clock faults and placed about 16 ms inside
+the wall loop and its column calls, versus 7 ms in wall setup and under 2 ms
+in traversal. Compiling only `r_segs.c` more aggressively preserved every
+pixel, but the clean, unprofiled comparison stayed at the same 17.59 FPS as
+the accepted build. The next renderer experiment therefore needs to inspect
+the emitted column and texture-access loop, not assume a new target flag or
+more optimization everywhere will help. The captures and replay live in
+[the renderer experiment](artifacts/current/renderer-tune-20261018/README.md).

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Independent, hardware-free replay of bounded Doom ping-pong DMA evidence."""
-import argparse,hashlib,json,statistics,struct,tarfile,tempfile
+import argparse,hashlib,json,statistics,struct,tarfile,tempfile,sys
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parent
+sys.path.insert(0,str(ROOT.parents[2]/'rtems/residentnet'))
+from presentation_profile import decode as decode_presentation
 STOCK='1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd'
 def sha(b):return hashlib.sha256(b).hexdigest()
 def fnv(b):
@@ -58,6 +60,8 @@ def verify(case,post=True):
         assert r['paired_pio']==(gen<=result['paired_frames'])
         assert struct.unpack_from('<4I',b,64768)==(0x31524650,1,gen,2)
         assert struct.unpack_from('<4I',b,64832)==(0x31555043,1,1,10)
+        if engine.get('wall_profile'):
+            decode_presentation(b,gen,options=engine)
     # Independent negative tests reject payload, both guards, source, generation,
     # epoch, slot, marker size and inverted generation mutations.
     c=(p/'dma-frame-0001.bin').read_bytes();r=receipts[0]

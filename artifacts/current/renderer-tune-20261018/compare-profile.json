@@ -1,0 +1,44 @@
+{
+  "frames": 32,
+  "steady_window": [
+    12,
+    31
+  ],
+  "pixels_palette_exact": true,
+  "baseline_fast_walls": false,
+  "candidate_fast_walls": true,
+  "baseline_wall_profile": false,
+  "candidate_wall_profile": true,
+  "baseline_fps": 17.59259259259259,
+  "candidate_fps": 16.964285714285715,
+  "fps_change_percent": -3.5714285714285587,
+  "phase_ms": {
+    "renderer": {
+      "baseline_ms": 49,
+      "candidate_ms": 51
+    },
+    "bsp_and_walls": {
+      "baseline_ms": 27,
+      "candidate_ms": 30.5
+    },
+    "planes": {
+      "baseline_ms": 14.5,
+      "candidate_ms": 14
+    },
+    "masked": {
+      "baseline_ms": 7.5,
+      "candidate_ms": 6.5
+    },
+    "presentation_copy": {
+      "baseline_ms": 3,
+      "candidate_ms": 4
+    }
+  },
+  "wall_region_ms": {
+    "bsp_root": 30.52516379868961,
+    "traversal": 1.770165838673293,
+    "subsector_other": 5.36360909112727,
+    "wall_setup": 7.330177358581132,
+    "inner_wall_loop": 16.061211510307917
+  }
+}

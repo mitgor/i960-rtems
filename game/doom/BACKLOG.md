@@ -41,6 +41,17 @@ is a bounded matched-engine result, not proof of a clock-frequency ratio.
    MiB/s clear on the cached new card. The 64 KiB cases barely change versus
    stock mapping; target hot-set locality and repeated reads, not a conjectured
    DMA limit. These are application-loop rates, not peak bus bandwidth.
+   The [new-card wall-region experiment](../../artifacts/current/renderer-tune-20261018/README.md)
+   repaired an old-card timer assumption before trusting its new-card data.
+   With zero clock faults, BSP/walls partition into 1.77 ms traversal,
+   5.36 ms other subsector work, 7.33 ms wall setup and **16.06 ms inner wall
+   loop including column calls**. Selective `r_segs.c -O2` passed exact
+   framebuffer/ownership audits but measured **17.593 FPS versus 17.593 FPS**
+   in a matched unprofiled 32-frame window. Keep `--fast-walls` opt-in.
+   Next inspect generated column instructions and texture/map access; test a
+   single scheduling or layout change against the accepted C-column kernel.
+   Do not infer i960RM-specific compiler support from the chip name: the
+   pinned compiler accepts `-mrp`, not `-mrm`.
 4. **N4 — Presentation copy narrowed; true zero-copy remains open.**
    The cached private-RAM baseline measures 6.5 ms/frame. An opt-in 8-byte
    copy path reduces that to 3.0 ms in two exact-pixel 32-frame card runs,
