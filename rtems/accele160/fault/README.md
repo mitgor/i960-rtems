@@ -1,8 +1,9 @@
 # P3a — software terminal record and board inventory
 
-Status 2026-10-18: cross-built; **mode-1 software terminal test passed on the
-card**, with stable raw records and retained resources. Mode 2 is built but
-awaits recovery after mode 1's reset. See
+Status 2026-10-18: cross-built; **both software terminal tests passed on the
+card**, including deliberate private guard corruption and retained resources.
+Mode 1 reset recovery is verified. Mode 2 reset recovery and the built mode-0
+normal-runtime profile await the PC returning over SSH. See
 [the evidence ledger](../../../artifacts/current/accele160-fault-20261018/README.md).
 This is the first bounded part of P3, not completion of fault/NMI ownership.
 

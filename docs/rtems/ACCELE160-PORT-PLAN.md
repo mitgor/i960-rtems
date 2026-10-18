@@ -15,14 +15,13 @@ matches. P1/P2 diagnostic service acceptance is complete; the isolated corrected
 owner is left running for `./rtems-console`. Its eventual global shutdown/reset
 is separate. The default installed Doom/CHIP-8 bundle is not promoted.
 
-## P3a checkpoint — first terminal test passed
+## P3a checkpoint — both terminal tests passed
 
-[Software terminal diagnostics](../../rtems/accele160/fault/README.md) are
-implemented, cross-built and native-tested. Mode 1 passed on the card with a
-stable software-fatal record, intact private stack guards, stale-trigger refusal
-and retained resources after STOP. The preceding service's global STOP/reset
-pair is closed. Mode 2 is built but awaits recovery after mode 1's reset;
-post-reset checks, guard test and ordinary mode-0 service qualification remain.
+[Software terminal diagnostics](../../rtems/accele160/fault/README.md) passed
+both physical tests: explicit fatal and deliberately corrupted private guard,
+with stable records, stale-trigger refusal and retained resources after STOP.
+Mode 1's reset pair is closed. Mode 2's reset pair and ordinary mode-0 runtime
+qualification remain pending recovery; the mode-0 kernel is built and archived.
 The prompt is offline. [Evidence](../../artifacts/current/accele160-fault-20261018/README.md).
 Hardware fault/NMI ownership and engine exclusion remain further P3 gates.
 

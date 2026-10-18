@@ -1584,3 +1584,14 @@ Sync the final host runner correction (bank/arena audits before injection),
 regenerate bundle identities, verify fresh boot/flash, run mode 2, collect its
 archive, reset and qualify mode 0 before restoring the prompt. Do not adopt
 retained resources or claim full P3 ownership. Exact mode-1 archive is immutable.
+
+**P3a guard test follow-up:** mode 2 passed on boot
+`03bd813b-ac1c-4925-9270-34e1f0a1fad8`: stale nonce refused, private guard
+changed, stable code 7d002 at tick 18, STOP retained admission and DMA, DMA guards
+unchanged. Mode-1 reset flash pair passed. The final host ordering correction
+(bank/arena/tail gates before injection, no browser endpoint) ran in mode 2.
+Mode-0 kernel and exact bundle are now built remotely and archived locally in
+`accele160-fault-20261018/mode0-prepared.tar.xz`. SSH again refuses connections
+after mode-2 reboot; prompt offline. Next: fresh boot/paired flash closes mode 2,
+then mode-0 Doom/rearm/console/global STOP and reset validation before live
+prompt restoration. No new source overlay is required for the prepared bundle.

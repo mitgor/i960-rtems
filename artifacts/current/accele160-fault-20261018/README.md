@@ -1,6 +1,6 @@
 # AcceleRAID P3a terminal diagnostics — 2026-10-18
 
-Status: **mode-1 software-terminal physical test passed; reset/next tests open**.
+Status: **both software-terminal tests passed; mode-2 reset/normal-runtime tests open**.
 No firmware was written. P3 fault/NMI/hardware engine ownership is not complete.
 [Source, layout and runbook](../../../rtems/accele160/fault/README.md).
 
@@ -38,8 +38,8 @@ The first harness invoked the isolated terminal test immediately after READY.
 Replay independently checks its saved full-bank report and arena claim. The
 final source moves injection after the existing host bank/arena/tail checks,
 and suppresses the unused browser endpoint for test profiles. This host-only
-ordering correction still needs physical use in mode 2; the immutable mode-1
-archive retains the precise earlier runner, not the corrected source.
+ordering correction passed in mode 2; the immutable mode-1 archive retains
+the precise earlier runner, not the corrected source.
 
 ## Files and replay
 
@@ -63,18 +63,48 @@ archive retains the precise earlier runner, not the corrected source.
 python3 artifacts/current/accele160-fault-20261018/verify.py
 ```
 
+## Guard-corruption test — accepted before reset
+
+On fresh boot `03bd813b-ac1c-4925-9270-34e1f0a1fad8`, session
+`20261018T194400Z` ran compiled test mode 2. Its two guarded full-flash reads
+matched the same firmware with zero status/residual/guard changes, closing
+mode 1's post-reset gate. No old daemon or retained module was present.
+
+Kernel SHA-256:
+`6f5bcab84c78d529cfef5a9009007dadd4e32f28ede000e331b10bd349bece71`.
+After the bank/arena/tail checks, the stale nonce was rejected. The valid trigger
+changed the first private stack guard word and entered the software-terminal
+path. The record correctly reports `guards_intact=false`, code `7d002`, ticks
+18, and the same original FP/SP and stock NMI/ISP/fault-table contents as mode 1.
+Repeated capture and post-terminal STOP did not change the record. Admission
+remained `started=1 done=0 released=0`; DMA buffers remained retained with zero
+DMA guard changes. Private stack-guard corruption and DMA guards are separate
+observations. This deliberate test is not a real stack overflow or proof that
+arbitrary corruption will be detected automatically.
+
+`mode2.tar.xz` holds its exact 248 included bundle files, binaries, build and
+manifest, disassembly, service log and complete session. Independent replay
+checks both modes, malformed-record rejection and mode 1's reset proof. The
+existing pinned WAD is referenced rather than duplicated.
+
 ## Exact resume boundary
 
-Mode 2 is built in `/home/mit/i960-fault-20261018/bundle`; its manifest and
-bundle hashes were refreshed before reboot. The PC now refuses SSH after that
-reset. The user was asked to power-cycle if stuck. **The prompt is offline.**
+Mode 0 (`ACCELE_TERMINAL=1 ACCELE_TERMINAL_TEST=0`, service enabled) is built
+in `/home/mit/i960-fault-20261018/bundle`, with regenerated manifest/bundle
+hashes. `mode0-prepared.tar.xz` preserves that complete prepared bundle and
+build logs locally. Its kernel SHA-256 is
+`4a9c0278ff23815ea94d546a7fc43bfc3566c8ff916b70d0c2b0e7e42582ad3e`;
+image SHA-256 `d1423bbbbc7bff195dff7006ca0f26f094aaf44f8aa71d00389475984555038e`.
+All included file hashes replay, but this kernel has not run on the card.
 
-After recovery, overlay the final `doom_dma/run_bridge.py` ordering correction,
-refresh bundle identities, check fresh boot/no old owner, and launch the isolated
-mode-2 bundle with the existing full guarded prechecks. Those reads close mode
-1's reset gate. Save the complete mode-2 capture before another reset. Then
-verify its reset and build mode 0 for ordinary Doom/console/STOP qualification;
-restore the prompt only after passing. Do not adopt or free retained mappings.
+The PC again refuses SSH after rebooting from mode 2. The user was asked to
+power-cycle if stuck. **The prompt is offline.** After recovery, verify fresh
+boot/no old owner and launch the isolated mode-0 bundle with full guarded
+prechecks; those reads close mode 2's reset gate. Run two bounded Doom games,
+console client tests, idle/rearm/global STOP and capture everything, then
+verify reset and restore a live prompt using the accepted service profile.
+Do not adopt or free retained mappings. No new source overlay is currently
+needed; the remote mode-0 bundle already includes the corrected test ordering.
 
 Remaining P3: real owned fault/NMI entry and stack policy; controlled hardware
 fault/NMI tests; all interrupt routes; SCSI/cache/other bus-master exclusion;

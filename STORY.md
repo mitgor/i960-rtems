@@ -6069,3 +6069,17 @@ reset check. We saved the new binary and full capture locally and built the
 second image, which deliberately changes a private stack guard. The reset
 between those isolated tests again left SSH refusing connections. The first
 terminal test stands; its reset proof and the guard test are still open.
+
+The second image reached the same terminal path with a deliberately changed
+private stack guard. This time the record said the guard was bad, while the
+separate DMA guards stayed intact. It parked at tick eighteen again. Stale
+requests were ignored, repeated reads agreed, and STOP still did not release
+the unfinished admission or its buffers. That distinction was the point of
+the test: a useful error report must not disguise uncertain ownership.
+
+The fresh firmware reads closed the first terminal test's reset check. We
+saved the second capture and built the normal-running image with deliberate
+injection disabled. Its next job is ordinary Doom and console work, followed
+by the existing shutdown checks. The reset after the guard test again left
+SSH unavailable, so that normal-runtime qualification and restoration of the
+prompt are still waiting on the PC.

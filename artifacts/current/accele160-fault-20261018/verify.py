@@ -61,4 +61,15 @@ with tarfile.open(HERE/'previous-service-final.tar.xz') as t:
  assert previous['boot_id']!=reports[0]['boot_id'] and previous['grant_retained']
 if len(reports)==2:
  assert reports[0]['boot_id']!=reports[1]['boot_id'];reports[0]['post_reset_verified']=True
-print(json.dumps(dict(previous_service_shutdown_and_reset_verified=True,runs=reports),indent=2))
+prepared=None
+if (HERE/'mode0-prepared.tar.xz').exists():
+ with tarfile.open(HERE/'mode0-prepared.tar.xz') as t:
+  names=set(t.getnames());inventory=json.load(t.extractfile('bundle/bundle.json'));count=0
+  for name,digest in inventory['files'].items():
+   if 'bundle/'+name in names:assert sha(t.extractfile('bundle/'+name).read())==digest;count+=1
+   else:assert name=='inputs/freedoom1.wad'
+  m=json.load(t.extractfile('manifest-mode0.json'))
+  assert m['terminal_schema']==1 and m['terminal_test']==0
+  assert sha(t.extractfile('bundle/kernel/kernel.bin').read())==m['kernel_sha256']
+  prepared=dict(kernel_sha256=m['kernel_sha256'],bundle_files_verified=count,physical_acceptance=False)
+print(json.dumps(dict(previous_service_shutdown_and_reset_verified=True,runs=reports,prepared_mode0=prepared),indent=2))
