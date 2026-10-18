@@ -5,6 +5,7 @@ rtems_build=$(cd "$1" && pwd)
 tools_bin=$(cd "$2" && pwd)
 src=$(cd "$(dirname "$0")" && pwd)
 repo=$(cd "$src/../../.." && pwd)
+python3 "$repo/card_profiles/check.py" --card-profile "${CARD_PROFILE:-accele160}" --workflow rtems_accele160 >/dev/null
 mkdir -p "$3"
 out=$(cd "$3" && pwd)
 for item in start timer_isr cache; do

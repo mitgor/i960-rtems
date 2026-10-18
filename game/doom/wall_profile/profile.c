@@ -4,12 +4,8 @@
 static unsigned calls[4],ticks[4];
 unsigned doom_wall_begin(void){
 #ifdef __i960__
-#ifdef DOOM_WALL_PROFILE_ACCELE160
  extern unsigned doom_platform_wall_clock(void);
  return doom_platform_wall_clock();
-#else
- return *(volatile unsigned*)0xff000304u;
-#endif
 #else
  return 0;
 #endif

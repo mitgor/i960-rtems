@@ -1,9 +1,11 @@
 # Supporting another i960 card
 
 The reusable pieces are the compiler, integer application cores, native oracles,
-RTEMS concepts and host display/network frontends. The current firmware loader,
-PCI transport and RAM map are specific to the accepted DAC960PG profile.
-No second card is qualified by this guide.
+RTEMS concepts and host display/network frontends. The [card profile
+registry](../card_profiles/README.md) now explicitly separates them from
+board-specific firmware, RTEMS and Doom adapters. The DAC960PG and AcceleRAID
+160 are measured targets, but their flash commands, RAM maps and transports
+are different.
 
 | Establish on the new board | Why it matters | Reusable reference |
 | --- | --- | --- |
@@ -21,10 +23,11 @@ or the small loader demo as the first execution test. Qualify RTEMS task/interru
 ownership and the memory arena before loading Doom. Keep board configuration and
 expected preimages explicit; do not weaken validation to make another card pass.
 
-A future board abstraction should separate discovery/profile, mailbox operations,
-RAM ownership/cache maintenance, timer/interrupt implementation and application
-ABI. Extract it from two measured implementations rather than assuming the first
-board's fixed addresses are a universal i960 API.
+The first board abstraction is now the fail-closed profile registry plus a
+shared i960 Doom engine with separately linked card clocks. Mailbox commands,
+flash offsets, RAM ownership/cache maintenance, timer/interrupt wiring and
+transport remain dedicated board implementations. Add an unqualified profile
+first and promote each workflow only after its hardware audit.
 
 ## AcceleRAID 160 status (2026-10-17)
 

@@ -1,8 +1,10 @@
 """Explicit PCI identity gate; selecting a card never binds or changes it."""
 import re
 from pathlib import Path
-PROFILES={'dac960pg':(0x1069,0x0010,0x1069,0x0010),
-          'accele160':(0x1069,0x0050,0x1069,0x0054)}
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from card_profiles import pci_ids
+PROFILES={name:pci_ids(name) for name in ('dac960pg','accele160')}
 def select(bdf,profile,root=Path('/sys/bus/pci/devices'),driver=None):
  if not isinstance(bdf,str) or not re.fullmatch(r'[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\.[0-7]',bdf):
   raise ValueError('explicit canonical --bdf is required; no default/auto-selection')

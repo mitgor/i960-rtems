@@ -1500,3 +1500,9 @@ before HTTP, although the host loop overlaps rendering. Prioritize exact
 native host validation, word copies and owned DMA; no free-slot wait was
 sampled, so another buffer has no measured justification. Quality/core flags
 differ between cards; these are software-path measurements, not a CPU ratio.
+**Physical-card profiles:** The separate `--card-profile` gate in
+`rtems/build.py` selects `dac960pg` or `accele160`; `--profile` remains the
+historical RTEMS runtime experiment name. The AcceleRAID exclusive Doom
+builder checks `CARD_PROFILE=accele160`. See `card_profiles/README.md` before
+porting RTEMS to another board. Keep linker, timer/IRQ, RAM grant, cache and
+DMA ownership board-specific with full STOP and restoration audits.

@@ -12,6 +12,8 @@ import sys
 import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "rtems/transport"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+from card_profiles import require_workflow
 from card_select import select
 
 
@@ -31,7 +33,11 @@ def main() -> int:
     p.add_argument("--stage-dir", type=Path, required=True)
     p.add_argument("--readback-dir", type=Path, required=True)
     p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--card-profile", default="accele160")
     a = p.parse_args()
+    profile = require_workflow(a.card_profile, "firmware_flashimage")
+    if profile["pci_ids"] != ["1069", "0050", "1069", "0054"]:
+        raise ValueError("FLASHIMAGE driver identity differs from card profile")
     lock = open("/run/lock/i960-loadrun.lock", "w")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     boot_id = Path("/proc/sys/kernel/random/boot_id").read_text().strip()

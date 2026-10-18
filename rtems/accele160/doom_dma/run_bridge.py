@@ -47,6 +47,8 @@ def main():
         from fast_fnv import fnv as native_fnv
         fnv=native_fnv
         engine_manifest=json.loads(a.engine_manifest.read_text())
+        need(engine_manifest.get('card_profile','accele160')=='accele160',
+             'Doom image card profile must be AcceleRAID 160')
         need(engine_manifest['double_buffer'] and engine_manifest['direct_frame'] and engine_manifest['no_fnv'],'admitted direct double-buffer engine')
         kernel_sha=fps_manifest['kernel_sha256']
         image_sha=fps_manifest['image_sha256']

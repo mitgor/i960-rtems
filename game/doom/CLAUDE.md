@@ -1137,3 +1137,10 @@ column/texture loop before changing flags or layout. The new-card replay now
 decodes advertised wall trailers, so a framebuffer pass alone is insufficient
 to accept timing evidence. Full card/post-reset audit state is in the linked
 README.
+**i960 Doom port boundary:** `game/doom/build.py --card-profile` records the
+physical target in `build.json`; the private Newlib platform builder carries
+it to engine admission. DoomGeneric renderer, i960 ABI and WAD/cache are
+shared. Wall-clock MMIO is linked from
+`runtime/platform/card_clock_dac960pg.c` or `card_clock_accele160.c`, never
+from shared Doom code. The PG playable builder rejects AcceleRAID; the new
+card needs its own RTEMS image and DMA bridge. See `card_profiles/README.md`.

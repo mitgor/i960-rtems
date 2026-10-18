@@ -1,5 +1,10 @@
 # Firmware: preserve, patch, boot
 
+The [card-profile registry](../../card_profiles/README.md) gates the PG ROM
+hook/one-shot route separately from the AcceleRAID FLASHIMAGE route. Select
+the exact card profile and use its dedicated preimage and readback procedure;
+the commands and offsets below apply to the DAC960PG.
+
 The accepted patch extends the existing firmware with a returning opcode 0x6F
 handler. It does not strap the card into reset mode 0. RAM programs and RTEMS
 then load after Linux starts, without reflashing for each application.

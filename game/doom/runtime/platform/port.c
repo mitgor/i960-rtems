@@ -12,34 +12,8 @@
 #include "i_video.h"
 #include "../cache/cache.h"
 static const struct doom_runtime_v1 *io;
-#ifdef DOOM_WALL_PROFILE_ACCELE160
-static unsigned wall_clock_last,wall_clock_faults;
-unsigned doom_platform_wall_clock_faults(void){return wall_clock_faults;}
-/* The AcceleRAID owns timer 1 at 100 Hz. Combine its safe count read with
- * the RTEMS tick, checking the tick on both sides of the MMIO read. Express
- * the result in the historical WAL1 scale (~4.1667 MHz). Never read mode:
- * that register clears terminal-count state on this processor. */
-unsigned doom_platform_wall_clock(void){
- unsigned before=0,after=0,count,tries,clock;
- for(tries=0;tries<16;tries++){
-  before=io->ticks_ms();
-  count=*(volatile unsigned*)0xff000314u;
-  after=io->ticks_ms();
-  if(before==after && count<=125000u &&
-     !(*(volatile unsigned*)0xff008500u&0x2000u)){
-   clock=(before/10u)*41667u+(125000u-count)/3u;
-   if(clock<wall_clock_last){wall_clock_faults++;clock=wall_clock_last;}
-   wall_clock_last=clock;
-   return clock;
-  }
- }
- wall_clock_faults++;
- clock=(after/10u)*41667u;
- if(clock<wall_clock_last)clock=wall_clock_last;
- wall_clock_last=clock;
- return clock;
-}
-#endif
+/* Board clock implementations live in card_clock_*.c. */
+unsigned doom_platform_ticks_ms(void){return io->ticks_ms();}
 static const char *iwad;
 static const struct doom_runtime_owned *owned;
 static struct doom_platform_stats stats;

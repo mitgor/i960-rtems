@@ -1,5 +1,10 @@
 # RTEMS: runtime and operating system
 
+The [card-profile registry](../../card_profiles/README.md) separates physical
+board selection from RTEMS runtime experiments. `rtems/build.py --profile`
+selects an experiment; `--card-profile` selects the controller and rejects a
+mismatched workflow. Each board keeps its own linker, timer/IRQ and transport.
+
 Canonical source is [rtems/](../../rtems/README.md). This is RTEMS 4.6.6 adapted
 to the i960RP with pinned sources and lwIP 2.1.3. Builds are profile-specific;
 use a payload and generated Linux module from the same build.

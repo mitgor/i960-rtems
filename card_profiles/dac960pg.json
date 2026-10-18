@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "id": "dac960pg",
+  "name": "Mylex DAC960PG",
+  "pci_ids": ["1069", "0010", "1069", "0010"],
+  "workflows": {"firmware_romhook": true, "firmware_one_shot": true, "firmware_flashimage": false, "rtems_legacy": true, "rtems_accele160": false, "doom_i960": true},
+  "firmware": {"stock_sha256": "43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93", "stock_bytes": 524288, "romhook_builder": "loader/romhook/build_image.py", "one_shot_candidate_sha256": "a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0"},
+  "rtems": {"builder": "rtems/build.py", "runtime_profile": "residentnet", "ownership": "reboot-only exclusive"},
+  "doom": {"engine": "game/doom/build.py", "platform": "game/doom/runtime/platform", "transport": "residentnet mailbox and owned DMA", "clock": "dac960pg_timer0"}
+}

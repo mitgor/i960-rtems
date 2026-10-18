@@ -2273,3 +2273,13 @@ flash audits at 2.320 card-side FPS. These are finite gates, not sustained
 interactive play or browser-paint FPS. Retain the old card unbound, the full
 audits and reboot-only callback release. Next qualify long-session STOP and
 then DMA frame delivery.
+**Card-profile boundary — 2026-10-18:** `card_profiles/README.md` is the
+entry point for adding another i960 PCI device. Firmware, RTEMS and Doom
+builders now validate explicit workflow/card pairs. `rtems/build.py --profile`
+names an RTEMS experiment; `--card-profile` names hardware. DoomGeneric and
+the private i960 Newlib/ABI port are shared; board clocks live in
+`game/doom/runtime/platform/card_clock_*.c`. Do not copy PG flash offsets,
+AcceleRAID FLASHIMAGE commands, RAM/cache maps or DMA code across profiles.
+New-card admission requires exact identity, read-only stock archive, bounded
+RAM proof, ownership/STOP, full post-reset audits and a dedicated transport.
+The profile registry is a guard, not proof that a new card is safe to flash.

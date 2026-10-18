@@ -5,6 +5,8 @@ from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('packed',type=Path);p.add_argument('--build',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--startup-requests',type=Path);p.add_argument('--startup-checkpoints',type=Path);p.add_argument('--checkpoint-barriers',action='store_true');p.add_argument('--startup-oracle',type=Path);p.add_argument('--play',action='store_true');p.add_argument('--dma-stress',action='store_true');p.add_argument('--pingpong',action='store_true');p.add_argument('--cross',required=True);a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
 assert not a.checkpoint_barriers or (a.startup_oracle and a.startup_checkpoints)
 m=json.loads((a.packed/'manifest.json').read_text());b=(a.packed/'template.bin').read_bytes();assert m['linker_match'] and not m['admitted'] and hashlib.sha256(b).hexdigest()==m['template_sha256']
+build_options=json.loads((a.build/'build.json').read_text())
+if 'card_profile' in build_options:m['card_profile']=build_options['card_profile']
 assert len(m['sections'])==3 and [s['name'] for s in m['sections']]==['.text','.data','.bss']
 rows=subprocess.check_output([a.cross+'nm',str(a.build/'doom-platform.o')],text=True).splitlines();result=next(int(r.split()[0],16) for r in rows if r.split()[-1]=='_doom_engine_result')+m['sections'][2]['offset'];assert result+48<=m['memory_bytes']
 sites=m['relocations'];assert sites==sorted(set(sites));meta=b''.join(struct.pack('<I',x) for x in sites);off=(m['memory_bytes']+15)&~15

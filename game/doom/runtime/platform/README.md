@@ -1,5 +1,18 @@
 # Private Doom Newlib/platform candidate
 
+## i960-specific Doom port boundary (2026-10-18)
+
+The pinned DoomGeneric renderer remains shared source. This directory is its
+i960 application port: private Newlib 1.11.0, soft-float ABI, owned allocator,
+WAD read bridge, input, framebuffer and RTEMS runtime callbacks. The build
+records a physical `card_profile`, but CPU-independent engine code does not
+contain board register addresses. The old PG and new AcceleRAID wall clocks
+are linked from `card_clock_dac960pg.c` and `card_clock_accele160.c`
+respectively. Frame/WAD transport and RTEMS boot/linker stay in each card's
+own implementation; see [the profile contract](../../../../card_profiles/README.md).
+This is the reusable i960 port for another board once its measured adapters
+pass ownership, timing and full system audits.
+
 **Current checkpoint — 2026-10-12:** the full-engine-linked diagnostic preflight
 is physically accepted, including normal / STOP / normal, exact admission and
 post-return code checks, contiguous 6 MiB allocation and complete drain at tick

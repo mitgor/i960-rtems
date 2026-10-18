@@ -3,6 +3,9 @@
 from pathlib import Path
 import argparse,hashlib,importlib.util,shutil
 ROOT=Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0,str(ROOT))
+from card_profiles import require_workflow
 HERE=Path(__file__).resolve().parent
 SHA='a898b30212e1f935339d91a1adfa84f6589a3136099aeda4ffa250981e4e28b0'
 
@@ -104,4 +107,9 @@ module_exit(program_exit);''')
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out',required=True,type=Path)
-    args=parser.parse_args();build(args.out)
+    parser.add_argument('--card-profile',default='dac960pg')
+    args=parser.parse_args()
+    profile=require_workflow(args.card_profile,'firmware_one_shot')
+    if profile['firmware']['one_shot_candidate_sha256']!=SHA:
+        parser.error('one-shot candidate differs from card profile')
+    build(args.out)

@@ -10,6 +10,9 @@ import hashlib
 import json
 import struct
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from card_profiles import require_workflow
 
 STOCK_SHA = '43d661af9dee28f531dcce525f8997e5fd11fc879d4a4e8bb07c5ac54a872a93'
 UNPACKED_SHA = '21f6c1d898a533d7023a53893f03547ed61631016d1b247d3ecbb97b9403c195'
@@ -115,7 +118,14 @@ def main():
     p.add_argument('--unpacked', required=True, type=Path)
     p.add_argument('--hook', required=True, type=Path)
     p.add_argument('--out', required=True, type=Path)
+    p.add_argument('--card-profile', default='dac960pg')
     a = p.parse_args()
+    try:
+        profile = require_workflow(a.card_profile, 'firmware_romhook')
+        if profile['firmware']['stock_sha256'] != STOCK_SHA or profile['firmware']['stock_bytes'] != 0x80000:
+            raise ValueError('ROM hook constants disagree with card profile')
+    except ValueError as e:
+        p.error(str(e))
     report = a.out.with_suffix(a.out.suffix + '.json')
     if a.out.exists() or report.exists():
         p.error('output or report already exists')

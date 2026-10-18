@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "id": "accele160",
+  "name": "Mylex AcceleRAID 160",
+  "pci_ids": ["1069", "0050", "1069", "0054"],
+  "workflows": {"firmware_romhook": false, "firmware_one_shot": false, "firmware_flashimage": true, "rtems_legacy": false, "rtems_accele160": true, "doom_i960": true},
+  "firmware": {"stock_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd", "stock_bytes": 1048576, "flashimage_builder": "host/accele160/flash/flash_image.py", "note": "Only exact candidate images admitted by the selected flashing script"},
+  "rtems": {"builder": "rtems/accele160/doom_dma/build.sh", "ownership": "reboot-only exclusive", "owned_arena_bytes": 8388608},
+  "doom": {"engine": "game/doom/build.py", "platform": "game/doom/runtime/platform", "transport": "owned channel-0 DMA two-slot bridge", "clock": "accele160_timer1"}
+}
