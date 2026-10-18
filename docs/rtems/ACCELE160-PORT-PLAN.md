@@ -1,5 +1,15 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Latest P3b checkpoint — normal owned runtime passed
+
+[Profile 5](../../rtems/accele160/fault/OWNED-RUNTIME.md) passed two-game normal
+operation, rearm, console traffic, owned table/NMI/ISP/guard checks and final
+QUIE. All 128 frames and 10,090 WAD reads replay. Reset recovery is closed by
+fresh boot `b0732f10-debf-4bb3-8adc-e7e0bdc0fa91` and both guarded firmware
+reads. The same no-injection profile restores the prompt. Active-DMA exception
+containment, SCSI/cache exclusion, stronger latency bounds and long endurance
+remain separate. See the new evidence batch; earlier checkpoints are historical.
+
 ## Latest P3b checkpoint — recovery complete, prompt restored
 
 Both hardware exception tests and both post-reset firmware pairs passed.

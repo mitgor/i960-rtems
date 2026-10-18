@@ -1,0 +1,5 @@
+{
+  "no_calls_to_fault_injection": true,
+  "method": "cross-built disassembly direct call search plus native mode-5 token rejection",
+  "limitation": "not a general proof against arbitrary code corruption"
+}

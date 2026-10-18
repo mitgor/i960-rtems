@@ -1,5 +1,10 @@
 # P3b: Accele160 owned fault and NMI candidate
 
+Follow-up: the [no-injection owned-runtime profile](OWNED-RUNTIME.md) now passed
+two-game normal execution, rearm, live ownership sampling and global STOP on
+Accele160. See that document and its evidence batch for current restoration
+status; the mode-0 service described below is the earlier checkpoint.
+
 2026-10-18: **mode 3 passed on Accele160** on fresh boot
 `b748d05a-16d1-40bf-b96d-973127ab6856`. Kernel
 `08690ea79e991169c713c8dc6cd910da550e13115f02afe98c4b62f11a33acf7`

@@ -1675,3 +1675,42 @@ Restoration acceptance completed: 64 frames, 5,045 WAD reads, one verified idle,
 in `mode0-restored-live.tar.xz`; `verify_restored.py` replays it. Service remains
 active; `apps` reports run=1/running=0/idle=1/frames=64. Both exception reset
 gates are closed. This live session has no global STOP receipt, intentionally.
+
+## 2026-10-18 owned runtime profile 5
+
+Normal owned fault/NMI/ISP operation passed in isolated
+`/home/mit/i960-owned-runtime-20261018/bundle`, kernel
+`55dc845a43b53fe0e84aba8ed180f28e0331999b74857c96d5e8ff2bb2d5d002`.
+The historical `terminal_test=5` field means owned runtime WITHOUT injection;
+1..4 remain terminal tests, 0 remains the old software-only profile. Mode 5
+ignores the old injection token. No flash writes or RAM expansion occurred.
+
+Runtime sampling MUST run only in worker 0, not Init: Init stays in the Doom
+callback for a game. The first candidate timed out at frame 32 and safely
+reached QUIE; exact failure evidence is retained. Only the corrected candidate
+passed two games, rearm, six ownership snapshots and global STOP. Do not adopt
+old retained resources or count that first failed run as accepted.
+
+The bundle retains the separately accepted shutdown-safe admission module
+313af2acae9e740dfb90e10e053beeca47efe9cfd5d0bfa74c1cdd07abd28c15 and exact
+source pin; pass inputs/admit_command.ko to write_manifest.py when rebuilding.
+Do not overwrite that module with the older manifest default. Other task's
+host-module source changes are intentionally not committed by this work.
+
+Acceptance session: sessions/20261018T211830Z, boot a076f35d-c5ef-48b5-90fa-947ab4f53f8d.
+Reset recovery: fresh boot b0732f10-debf-4bb3-8adc-e7e0bdc0fa91, paired firmware
+prechecks in restoration session sessions/20261018T212545Z. Leave its owner live
+for the prompt. Evidence/replay: artifacts/current/accele160-owned-runtime-20261018;
+normal runtime design: accele160/fault/OWNED-RUNTIME.md. This does not qualify
+active-DMA exceptions or broader engine exclusion; console worst-case sample
+4938.153 ms remains close to the existing 5-second timeout.
+
+Restoration COMPLETE: the same owned profile ran another 64 frames and 5,045
+WAD reads, with 525 successful external exchanges and 530 raw validated card
+replies. Three ownership snapshots passed; idle reports running=0/idle=1 and
+zone_loaned=0. Leave `/home/mit/i960-owned-runtime-20261018/bundle`'s service
+live; Linux `~/rtems-console` and Mac `./rtems-console` work. The existing
+stream gateway service on 8088 is restored and connected to this owner.
+Launchers/default bundles were not globally repointed: future explicit launches
+must select this qualified bundle to obtain owned profile 5. Exact restoration
+archive, replay, recovery linkage and prompt/service receipts are in the batch.

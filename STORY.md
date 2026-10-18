@@ -6180,3 +6180,33 @@ have proved their terminal paths; ordinary task switching with those vectors
 and the owned interrupt stack still needs its own qualification. We kept the
 working prompt available instead of ending another session just to tidy the
 last line of the log.
+
+The next image kept the fault and NMI handlers installed while doing ordinary
+work. It also kept the guarded interrupt-entry stack. There was no deliberate
+exception this time; the question was whether the system could keep switching
+tasks, loading Doom, answering the console, and shutting down with those owners
+still intact.
+
+The first attempt found a mistake in the measuring tool. We had put the new
+snapshot poll in Init, but Init stays inside Doom's callback for a game. A
+request at frame thirty-two waited five seconds and timed out. The cleanup
+path reached QUIE and kept its buffers. We saved that failure and moved the
+poll to worker zero, beside the independent console service. That worker became
+the only runtime writer; Init would take the last snapshot after worker drain.
+
+The corrected image answered during rendering. Two games delivered 128 guarded
+frames and 10,090 WAD reads. All six ownership snapshots agreed on the fault
+table, NMI entry and interrupt stack, and their guards survived. Task handoffs
+advanced from eight to 16,595. The final snapshot came after the workers and
+interrupt continuations drained, with QUIE and ACK published and the admission
+still retained. The console completed 965 exchanges without connection errors,
+though its slowest card reply was 4.94 seconds: still close to the existing
+five-second limit, not a new guarantee of responsiveness.
+
+After another reboot, both complete firmware reads matched. We loaded the
+same image again, ran sixty-four more frames and 525 console exchanges, and
+left the owner in verified idle. This time the restored prompt was backed by
+the owned-handler profile itself. The streaming front end was restored too,
+without replacing the card owner. The next limits are different ones: faults
+with active DMA, broader hardware exclusion, and longer endurance. Ordinary
+bounded operation with the owned handlers and stack now has its own evidence.

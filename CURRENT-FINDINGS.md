@@ -1,3 +1,26 @@
+## Accele160 P3b — normal owned-exception runtime qualified
+
+Profile 5 (owned fault/NMI handlers and ISP, no deliberate injection) passed
+normal execution, two-game rearm and global STOP on the card. Six fresh
+ownership captures verified the exact handlers, all 32 fault entries, ISP,
+guards and zero IRQ faults. Timer ticks/task handoffs grew from 8/8 to
+18,922/16,595. All 128 guarded frames, 64 paired PIO comparisons, 10,090 WAD
+reads and 965 external console exchanges passed. Worst reply latency was
+4938.153 ms, near the existing 5 s deadline; no tighter bound is claimed.
+
+The first candidate's controller-task sampling timed out while Init was inside
+Doom. That failure reached QUIE with retained resources and is preserved. The
+accepted correction uses worker 0 as the sole runtime snapshot writer; Init
+takes the final snapshot after worker/ISR drain. No deliberate fault is injected
+by profile 5. The already qualified shutdown-safe admission module is preserved.
+
+Fresh boot `b0732f10-debf-4bb3-8adc-e7e0bdc0fa91` and paired guarded firmware
+reads close acceptance reset recovery. The same kernel is left live for
+the prompt after a separate 64-frame restoration run with 525 successful
+external exchanges. The existing streaming gateway is also restored. [Evidence](artifacts/current/accele160-owned-runtime-20261018/README.md)
+and [implementation](rtems/accele160/fault/OWNED-RUNTIME.md).
+Earlier mode-0 and pending-qualification entries below are historical.
+
 ## Accele160 P3b recovery complete — normal prompt restored
 
 Fresh boot `aea81f51-24ce-493b-a7d2-114195611d5b` passed both guarded full

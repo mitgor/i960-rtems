@@ -1,3 +1,11 @@
+> Latest: the prompt now runs the qualified **owned fault/NMI/ISP profile 5**,
+> with injection disabled. Two-game acceptance and recovery passed; a separate
+> 64-frame/525-exchange restoration run is left live in verified idle. Use
+> `~/rtems-console` on Linux or `./rtems-console` from the Mac repository.
+> Current bundle: `/home/mit/i960-owned-runtime-20261018/bundle`; stream gateway
+> 8088 is restored. [Evidence](../../../artifacts/current/accele160-owned-runtime-20261018/README.md).
+> Earlier mode-0/offline descriptions below are historical.
+
 > Current status: normal RTEMS service restored on boot
 > `aea81f51-24ce-493b-a7d2-114195611d5b`. Both guarded firmware reads passed,
 > closing NMI reset recovery. Use `~/rtems-console` on Linux or `./rtems-console`

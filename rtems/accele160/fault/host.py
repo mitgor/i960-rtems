@@ -93,3 +93,28 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None):
         nmi_owned=mode>=3,scsi_excluded=False)
     (out/'result.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
+
+
+def validate_runtime(page,nonce,seq,phase):
+    w=validate(page,nonce,5,False)
+    assert w[24]==0 and w[160]==0 and w[155]==0
+    assert w[166]==seq and w[167]>=6 and w[168]>=2
+    assert w[169:172]==(0,1,phase)
+    return w
+
+def runtime_sample(snap,write,nonce,seq,out,phase=0):
+    out=Path(out)
+    if not phase:write(ADDRESS,12,struct.pack('<2I',nonce,seq))
+    deadline=time.monotonic()+5
+    while True:
+        page=snap(ADDRESS);w=decode(page)
+        if w[166]==seq and w[171]==phase:break
+        if time.monotonic()>deadline:
+            out.write_bytes(page)
+            raise RuntimeError('owned runtime sample deadline; retain resources')
+        time.sleep(.01)
+    out.write_bytes(page)
+    validate_runtime(page,nonce,seq,phase)
+    # No second sample request, so the card-owned report must stay immutable.
+    assert snap(ADDRESS)[64:]==page[64:]
+    return dict(sequence=seq,phase=phase,ticks=w[167],handoffs=w[168],owned=True)

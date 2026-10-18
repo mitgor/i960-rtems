@@ -1,0 +1,4 @@
+active
+active
+Oct 18 23:28:23 mit-HP-Z400-Workstation systemd[1]: Started /usr/bin/python3 /home/mit/i960-doom-stream-20261018/source/gateway.py --port 8088 --journal /home/mit/i960-doom-stream-20261018/transport.jsonl.
+Oct 18 23:28:24 mit-HP-Z400-Workstation python3[7546]: Doom stream on port 8088; existing audited owner only

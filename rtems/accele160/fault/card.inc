@@ -121,7 +121,22 @@ void accele_terminal_record(void){
  AT_SYNC();at[31]=AT_DONE;
  AT_PARK();
 }
+#if ACCELE_TERMINAL_TEST == 5
+/* Host requests use words 3/4; ack 166 publishes a complete immutable sample.
+ * No injection token is accepted by this profile. */
+static void at_runtime_snapshot(unsigned int phase){
+ at_snapshot();at[26]=at_guard();at[147]=at_irq_guard();
+ at[167]=ticks;at[168]=handoffs;at[169]=switch_fault;
+ at[170]=at_owned_valid();at[171]=phase;
+ if(!at[170]||!at[26]||at[169])accele_terminal_enter(0x7d019u);
+ AT_SYNC();at[166]=at[4];
+}
+#endif
 static void at_poll(void){
+#if ACCELE_TERMINAL_TEST == 5
+ if(at[3]==at_nonce && at_nonce && at[4] && at[4]!=at[166])
+  at_runtime_snapshot(0u);
+#endif
 #if ACCELE_TERMINAL_TEST
  if(at_request(at[0],at[1],at[2],at_nonce,ACCELE_TERMINAL_TEST)){
 #if ACCELE_TERMINAL_TEST >= 3

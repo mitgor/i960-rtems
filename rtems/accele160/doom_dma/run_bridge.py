@@ -68,7 +68,7 @@ def main():
             modules['admit']=fps_manifest['admit_module_sha256']
         terminal_schema=fps_manifest.get('terminal_schema',0)
         terminal_test=fps_manifest.get('terminal_test',0)
-        need(terminal_schema in (0,1) and terminal_test in (0,1,2,3,4) and (terminal_schema or not terminal_test),'terminal profile')
+        need(terminal_schema in (0,1) and terminal_test in (0,1,2,3,4,5) and (terminal_schema or not terminal_test),'terminal profile')
         if terminal_schema:
             need(set(fps_manifest['terminal_sources'])=={'policy.h','card.inc','terminal.S','host.py'},'terminal source set')
             for name,digest in fps_manifest['terminal_sources'].items():
@@ -315,7 +315,7 @@ def main():
         need(ready and status('ram-admit').get('done')=='0',
              'RTEMS READY missing or early completion; retain grant')
         active_owner=True
-        if a.port and not terminal_test:
+        if a.port and terminal_test in (0,5):
             need(1024<=a.port<=65535,'browser port range')
             browser=BrowserSession(a.port,runtime_flat=bool(engine_manifest.get('runtime_flat')),
                 keyboard_mode=a.keyboard_mode,keyboard_fifo=bool(keyboard_fifo_schema),keyboard_test=a.keyboard_selftest)
@@ -346,7 +346,7 @@ def main():
             expected=struct.pack('<1024I',*(pattern(index,w) for w in range(1024)))
             need(snap(0xc0800000+(index-1)*PAGE)==expected,
                  f'untouched upper page {index}')
-        if terminal_test:
+        if terminal_test in (1,2,3,4):
             terminal_result=terminal.exercise(snap,write,terminal_nonce,terminal_test,
                 a.out/'terminal',lambda:status('ram-admit'),lambda:fields(pin_dir/'status'),
                 nmi=lambda:bar.__setitem__(slice(0x20,0x24),struct.pack('<I',0x80000000)),
@@ -356,6 +356,16 @@ def main():
                  card=select(BDF,'accele160'),old=require_unbound_or_absent(OLD,'dac960pg')))
             quiescent=True # terminal park, not QUIE or driver completion
             return
+        runtime_seq=0;runtime_samples=[]
+        def runtime_audit(label,phase=0):
+            nonlocal runtime_seq
+            if terminal_test!=5:return
+            if not phase:runtime_seq+=1
+            row=terminal.runtime_sample(snap,write,terminal_nonce,runtime_seq,
+                a.out/('owned-'+label+'.bin'),phase)
+            row['label']=label;runtime_samples.append(row)
+            save(a.out/'owned-runtime.json',runtime_samples)
+        runtime_audit('ready')
         template=a.template.read_bytes();relocs=a.relocations.read_bytes()
         wad=a.wad.read_bytes()
         need(sha(template)==engine_manifest['template_sha256'] and len(template)==engine_manifest['file_bytes'],'exact Doom template')
@@ -669,6 +679,7 @@ def main():
                         observed_to_http_ns=time.monotonic_ns()-observed_ns,
                         paired_pio=local_frame<=a.paired_frames,source=source)
                     frame_count=local_frame
+                    if local_frame==32:runtime_audit('game-%d-frame32'%game_run)
                     live_receipts.append(receipt)
                     frame_journal.write(json.dumps(receipt)+'\n')
                     if a.persistent and len(live_receipts)>64:del live_receipts[:-64]
@@ -865,6 +876,7 @@ def main():
                     (game_run,(global_frames,request_seq,game_run+1,global_key+1),44)):
                     rejected=transact(8,offset,struct.pack('<4I',*values),expected_status=want)
                     need(rejected[12]==1,'rejection did not retire admission')
+                runtime_audit('game-%d-idle'%game_run)
                 game_result['idle_verified']=True
                 if service:
                     service.record(event='idle_gate',game_run=game_run)
@@ -911,6 +923,7 @@ def main():
         need(dma_state[:3]==(0x31464d44,0x161610e1,0) and dma_state[11]==global_frames and dma_state[14:16]==(0,0),'all DMA sources drained before STOP')
         need(fields(pin_dir/'status')['guard_changes']=='0','final two-buffer guards')
         (run/'dma-pin-final.txt').write_text((pin_dir/'status').read_text())
+        runtime_audit('quiescent',1)
         quiescent=True
         need(struct.unpack_from('<16I',page,0xb00)==bank,
              'full-bank audit retained')

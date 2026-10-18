@@ -1,0 +1,10 @@
+{
+  "acceptance_boot": "a076f35d-c5ef-48b5-90fa-947ab4f53f8d",
+  "fresh_boot": "b0732f10-debf-4bb3-8adc-e7e0bdc0fa91",
+  "proof_archive": "restored-live.tar.xz",
+  "proof_sha256": "9c15f2137fa0f7b902ae09fafdcc47ba65fe546651f54137929097945ab98917",
+  "paired_guarded_full_firmware_reads": true,
+  "same_kernel_after_reset": true,
+  "prompt_restored": true,
+  "stream_gateway_restored": true
+}

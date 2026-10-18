@@ -1,0 +1,7 @@
+{
+  "expected_pass": false,
+  "reason": "snapshot poll blocked inside Init Doom callback",
+  "quie": true,
+  "admission_retained": true,
+  "code_change": "single runtime snapshot writer moved to worker 0"
+}

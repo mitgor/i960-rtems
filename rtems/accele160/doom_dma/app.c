@@ -160,8 +160,8 @@ static unsigned int preflight(void){
 #ifndef ACCELE_TERMINAL_TEST
 #define ACCELE_TERMINAL_TEST 0
 #endif
-#if ACCELE_TERMINAL_TEST < 0 || ACCELE_TERMINAL_TEST > 4
-#error terminal test must be 0, 1, 2, 3 or 4
+#if ACCELE_TERMINAL_TEST < 0 || ACCELE_TERMINAL_TEST > 5
+#error terminal profile must be 0..5 (5 is owned runtime, no injection)
 #endif
 #if ACCELE_TERMINAL_TEST && !ACCELE_TERMINAL
 #error terminal test requires terminal profile
@@ -922,6 +922,10 @@ static void Worker(rtems_task_argument id){unsigned int i,old;
 #if ACCELE_SERVICE
   if(id==0u)service_poll();
 #endif
+#if ACCELE_TERMINAL && ACCELE_TERMINAL_TEST == 5
+  /* One independent writer even while Init runs a Doom callback. */
+  if(id==0u)at_poll();
+#endif
   __asm__ volatile("":::"memory");
  }
  if(!switch_stop)switch_fault|=0x100u;
@@ -957,7 +961,7 @@ static void Init(rtems_task_argument nonce){rtems_task_priority old;
   lease_invalidate_dcache();
   claim_report[4]=ticks;
   if(DOOM_REUSABLE)host_watchdog();
-#if ACCELE_TERMINAL
+#if ACCELE_TERMINAL && ACCELE_TERMINAL_TEST != 5
   at_poll();
 #endif
   bridge_poll();
@@ -1009,6 +1013,9 @@ static void Init(rtems_task_argument nonce){rtems_task_priority old;
   trace[28]=life[3].entries;trace[29]=life[3].returns;
   trace[30]=irq_sp[3];trace[31]=life[3].vector;
  }
+#if ACCELE_TERMINAL && ACCELE_TERMINAL_TEST == 5
+ at_runtime_snapshot(1u);
+#endif
  if(stop_seen){control[5]=0x214b4341u;control[6]=0x161610d1u;control[7]=1u;}
  result=STOP;
  claim_report[5]=0x45495551u; /* QUIE; the callback/grant stay pinned. */

@@ -24,6 +24,9 @@ static unsigned int *reg(unsigned int addr){
 #define ACCELE_TERMINAL_TEST 3
 #endif
 static unsigned int vector0,drop_vector;
+#if ACCELE_TERMINAL_TEST == 5
+static unsigned int handoffs=12;
+#endif
 #define AT_SET_VECTOR0(v) (drop_vector?vector0:(vector0=(v)))
 #define AT_ENTRY_ADDRESS(fn) ((fn)==accele_fault_entry?0xc0711000u:0xc0711100u)
 #define AT_BUFFER record
@@ -66,6 +69,16 @@ int main(void){unsigned int i,b;
  assert(at_owned_valid());
 #if ACCELE_TERMINAL_TEST == 3
  if(!setjmp(parked)){at_poll();assert(!"real fault dispatch missed");}
+#elif ACCELE_TERMINAL_TEST == 5
+ at_poll();assert(!code&&!record[166]); /* injection is never accepted */
+ record[3]=124;record[4]=1;at_poll();assert(!record[166]);
+ record[3]=123;at_poll();assert(record[166]==1&&record[170]==1&&record[167]==42);
+ ticks=43;at_poll();assert(record[167]==42); /* no unsolicited mutation */
+ record[4]=2;at_poll();assert(record[167]==43&&record[166]==2);
+ at_runtime_snapshot(1);assert(record[171]==1&&record[170]==1);
+ regs[0]^=1;record[4]=3;
+ if(!setjmp(parked)){at_poll();assert(!"corrupt ownership accepted");}
+ assert(code==0x7d019u);
 #else
  regs[242]=0x7f;record[154]=0x7f;
  at_poll();assert(record[155]==1&&regs[242]==0x77);

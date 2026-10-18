@@ -1,0 +1,20 @@
+{
+  "prepared": {
+    "kernel_sha256": "a4675131a3d5c19b1619af8e30e56002f2a5136a0c2bbff44857c73aaa619ca5",
+    "image_sha256": "e6753c4793cc1b73e419f6109b894c875bb3812d37d71388cc64d4a0f2414cbb",
+    "admit_module_sha256": "313af2acae9e740dfb90e10e053beeca47efe9cfd5d0bfa74c1cdd07abd28c15",
+    "terminal_test": 5,
+    "hardware_tested": true,
+    "qualification_passed": false
+  },
+  "corrected-prepared": {
+    "kernel_sha256": "55dc845a43b53fe0e84aba8ed180f28e0331999b74857c96d5e8ff2bb2d5d002",
+    "image_sha256": "2a65e9d747fa46aaf5d69a4a34c5f6b4db308f0de086a2694f67dd7fa850bfc3",
+    "admit_module_sha256": "313af2acae9e740dfb90e10e053beeca47efe9cfd5d0bfa74c1cdd07abd28c15",
+    "terminal_test": 5,
+    "hardware_tested": true,
+    "qualification_passed": true,
+    "evidence": "acceptance-replay.json",
+    "reset_recovery": "recovery.json"
+  }
+}

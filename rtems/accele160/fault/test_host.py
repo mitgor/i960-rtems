@@ -69,3 +69,13 @@ for mismatch in (False,True):
         except AssertionError:assert mismatch and not calls
         else:assert not mismatch and calls==[1] and r['nmi_hardware_tested']
 print('NMI owner-only one-write gate and alias mismatch rejection passed (simulated)')
+
+# Runtime profile: no terminal entry, exact acknowledged ownership sample.
+w=list(struct.unpack('<1024I',page(3)));w[25]=5;w[166:172]=[2,42,12,0,1,0]
+b=struct.pack('<1024I',*w);host.validate_runtime(b,123,2,0)
+for index in (24,155,160,166,169,170,171):
+    bad=w[:];bad[index]^=1
+    try:host.validate_runtime(struct.pack('<1024I',*bad),123,2,0)
+    except AssertionError:pass
+    else:raise AssertionError(('runtime tamper accepted',index))
+print('runtime sample epoch/phase/ownership/terminal rejection passed')

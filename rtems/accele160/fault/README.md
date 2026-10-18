@@ -1,5 +1,10 @@
 # P3 — terminal records and owned exception work
 
+Latest: [profile 5 normal owned runtime](OWNED-RUNTIME.md) passed two-game
+acceptance with owned fault/NMI handlers and ISP, live console traffic, rearm,
+guards and final QUIE ownership. Reset recovery passed and the prompt is restored in the same owned profile.
+Its separate live capture is in the new evidence batch. Earlier mode-0 restoration below is historical.
+
 Current P3b status: [owned fault/NMI implementation](OWNED-EXCEPTIONS.md)
 passed both real hardware exception tests and both reset-recovery gates.
 The normal prompt is restored in mode 0 after a 64-frame game with verified

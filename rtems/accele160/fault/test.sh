@@ -9,4 +9,6 @@ for test in policy card owned; do
 done
 cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=4 "$src/test_owned.c" -o "$work/nmi"
 "$work/nmi"
+cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=5 "$src/test_owned.c" -o "$work/runtime"
+"$work/runtime"
 python3 "$src/test_host.py"
