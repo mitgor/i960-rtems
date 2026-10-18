@@ -1,0 +1,16 @@
+{
+  "document": "Intel 80303 Developer Manual 273353-001",
+  "sha256": "8cdbbfad674b5995a5604522564233ee8767162e7983fc036cecb5c370805f9f",
+  "url": "https://bitsavers.computerhistory.org/components/intel/i960/273353-001_Intel_80303_IO_Processor_Developers_Manual_May2000.pdf",
+  "sections": [
+    "8.1.5",
+    "8.2.3",
+    "8.2.5",
+    "8.2.9",
+    "9.3",
+    "16.2",
+    "16.8.3",
+    "16.8.4",
+    "16.8.5"
+  ]
+}

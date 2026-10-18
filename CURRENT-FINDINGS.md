@@ -1,3 +1,22 @@
+## Accele160 P3b — owned exception candidate; hardware tests pending
+
+Implemented opt-in owned fault/NMI entries, all 32 local fault-table entries,
+a guarded architectural interrupt-entry stack, and separate real `faulte` and
+host-doorbell NMI test modes. Native C/host tests pass, including all stock and
+owned table bit corruptions, failed vector write, guards, and NMI alias checks.
+This is not yet a hardware-qualified ownership profile.
+
+The previous normal service shut down cleanly: raw QUIE/ACK, 128 drained frames,
+pending admission and intact DMA guards are archived. The reset afterwards
+left `192.168.2.75` refusing SSH. **Prompt offline; physical recovery required.**
+The first mode-3 binary cross-built and is saved locally, but neither new test
+ran on the card. Current source adds further checks and mode 4; rebuild it
+before testing. No new firmware writes or RAM expansion occurred.
+
+[Implementation and resume steps](rtems/accele160/fault/OWNED-EXCEPTIONS.md),
+[evidence ledger](artifacts/current/accele160-exceptions-20261018/README.md).
+The older P3a runtime status below is historical and superseded by this update.
+
 ## AcceleRAID P3a — recovery verified and prompt restored
 
 [The opt-in terminal profile](rtems/accele160/fault/README.md) passed both

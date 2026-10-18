@@ -1606,3 +1606,21 @@ it is idle at game 2 / 128 frames. Linux `~/rtems-console` and repository
 or subsequent reset has been performed on this live mode-0 session; do not
 claim complete P3 or release retained resources. Hardware fault/NMI handlers
 remain stock. See the P3 ledger for exact archived replay and client counts.
+
+## 2026-10-18 Accele160 P3b handoff
+
+Current normal prompt is OFFLINE: previous owner shut down cleanly, then reboot
+left SSH refusing connections. Await physical recovery; do not force-unload
+retained modules or adopt an old owner. New fault/NMI tests have NOT run.
+
+`accele160/fault/OWNED-EXCEPTIONS.md` is the current design/resume guide.
+Manifest modes 3/4 own cached NMI, ISP and all local fault entries; mode 3 raises
+real `faulte`, mode 4 authenticates one host BAR0+0x20 NMI-doorbell write after
+card/host alias checks. First mode-3 revision cross-built in
+`/home/mit/i960-exceptions-20261018/bundle`; archived under
+`artifacts/current/accele160-exceptions-20261018`. Current source has subsequent
+ownership checks and mode 4 and MUST be overlaid/rebuilt/re-manifested before use.
+Do not promote the prepared binary or claim hardware/NMI/reset success.
+Native `fault/test.sh` passes; legacy mode-1/2 captures still validate.
+Preserve modes 0/1/2 semantics. New ISP needs ordinary runtime qualification.
+No engine-stop or general damaged-stack recovery proof has been added.

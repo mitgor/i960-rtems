@@ -160,8 +160,8 @@ static unsigned int preflight(void){
 #ifndef ACCELE_TERMINAL_TEST
 #define ACCELE_TERMINAL_TEST 0
 #endif
-#if ACCELE_TERMINAL_TEST < 0 || ACCELE_TERMINAL_TEST > 2
-#error terminal test must be 0, 1 or 2
+#if ACCELE_TERMINAL_TEST < 0 || ACCELE_TERMINAL_TEST > 4
+#error terminal test must be 0, 1, 2, 3 or 4
 #endif
 #if ACCELE_TERMINAL_TEST && !ACCELE_TERMINAL
 #error terminal test requires terminal profile

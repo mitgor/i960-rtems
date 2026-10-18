@@ -1,5 +1,17 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Latest P3b checkpoint — awaiting physical recovery
+
+The owned fault/NMI candidate is implemented and passes native tests; on-card
+qualification has not begun. The previous normal prompt was shut down cleanly,
+its raw STOP evidence saved, and the subsequent reset left SSH unavailable.
+Rebuild current source after recovery: the archived first mode-3 build predates
+additional checks and the real-NMI host path. Modes 3 and 4 install ownership;
+mode 0 remains software-only and must not be described as owned-fault coverage.
+See [owned exception design and exact resume sequence](../../rtems/accele160/fault/OWNED-EXCEPTIONS.md)
+and [evidence](../../artifacts/current/accele160-exceptions-20261018/README.md).
+Earlier live-session status below is historical.
+
 Planning baseline: 2026-10-18. The original review used existing evidence;
 the checkpoints below record subsequent implementation and physical tests.
 

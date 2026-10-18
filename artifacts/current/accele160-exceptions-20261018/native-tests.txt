@@ -1,0 +1,6 @@
+actual card C: bounded MMIO inventory, guards, stale trigger and terminal record passed
+owned table baseline: 2048 corruptions rejected; all entries, ISP/NMI and guards passed
+owned table baseline: 2048 corruptions rejected; all entries, ISP/NMI and guards passed
+terminal capture, stale request, STOP retention and tamper tests passed
+owned-vector and real fault-record host validation passed
+NMI owner-only one-write gate and alias mismatch rejection passed (simulated)

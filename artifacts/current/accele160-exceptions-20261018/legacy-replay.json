@@ -1,0 +1,10 @@
+[
+  {
+    "mode": 1,
+    "legacy_capture_validation": true
+  },
+  {
+    "mode": 2,
+    "legacy_capture_validation": true
+  }
+]

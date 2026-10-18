@@ -1,0 +1,10 @@
+{
+  "boot_id": "f999aba6-1276-470b-9130-1c589ed25d55",
+  "frames": 128,
+  "raw_quie": true,
+  "raw_ack": true,
+  "dma_drained": true,
+  "admission_pending": true,
+  "pins_guarded": true,
+  "reset_recovery_verified": false
+}

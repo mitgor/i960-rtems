@@ -1,0 +1,8 @@
+{
+  "hashes": {
+    "bundle/kernel/kernel.bin": "befd4fc800551eb8a20fdd7247bcef1c839c4d47ae4e0cb4d570cc9c9f93b800",
+    "bundle/kernel/image.bin": "a9121e456edae637300abe9a6ae6d4d90d8d3ef121b5ec92f23f888b550b6a3c"
+  },
+  "hardware_executed": false,
+  "superseded_by_current_source": true
+}

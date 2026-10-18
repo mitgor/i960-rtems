@@ -6096,3 +6096,32 @@ shortcut reached the prompt again; `apps` reported game two stopped and 128
 frames delivered. The captures preserve the distinction: both terminal tests
 have reset proof, while this normal session is still alive. Its eventual global
 shutdown is another event, not something we claimed just to close the chapter.
+
+The next step began by closing that live session properly. Its final page had
+QUIE and ACK, all 128 frames accounted for, no outstanding DMA sources, and
+unchanged buffer guards. The admission still belonged to the old owner. We
+saved the whole session before asking the PC to reset.
+
+Meanwhile, the new card's exception path became a concrete piece of code.
+The candidate checks every word of the stock fault table, gives all thirty-two
+entries an owned handler, changes the cached NMI entry, and reserves another
+guarded page inside the existing grant for the processor's interrupt entry.
+The terminal handler saves the hardware record before moving onto its own C
+stack. Its destination is a permanent park, with the buffers still retained.
+
+There are two experiments waiting behind that code. One executes a real
+`faulte`. The other uses the 80303's inbound doorbell to deliver an actual NMI.
+The manual gave us the important distinction: software interrupts cannot
+request vector 248. For the NMI experiment, the host first checks that its
+register view agrees with the card's, then sends one doorbell write through
+the existing owner. Calling the handler ourselves would answer a different
+question.
+
+The first fault image cross-built, and the native tests rejected every single
+bit corruption of the expected stock table. Later tests also checked the
+owned table, guards, a failed vector write, and the doorbell gate. Those are
+useful checks, but they are not captures from the card. The PC's reset again
+left SSH refusing connections before either new experiment ran. The first
+binary and the previous session's final evidence are safe on the Mac; the
+latest source needs a fresh build when the PC returns. The prompt is offline
+for now, and the hardware result remains an open question.

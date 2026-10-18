@@ -11,7 +11,10 @@ def verify(path):
     terminal=(path/'terminal.bin').read_bytes();validate(terminal,nonce,mode,True)
     assert terminal==(path/'stable.bin').read_bytes()==(path/'after-stop.bin').read_bytes()
     assert r['retained'] and r['admission']['done']=='0' and r['pin']['guard_changes']=='0'
-    assert not r['hardware_fault_tested'] and not r['nmi_owned'] and not r['scsi_excluded']
+    if mode==4:
+        armed=(path/'armed.bin').read_bytes();aw=validate(armed,nonce,mode,False)
+        assert aw[155]==1 and r['nmi_hardware_tested']
+    assert r['hardware_fault_tested']==(mode==3) and r['nmi_owned']==(mode>=3) and not r['scsi_excluded']
     return dict(mode=mode,code=hex(r['code']),stable=True,retained=True)
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('capture',type=Path);a=p.parse_args()

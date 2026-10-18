@@ -37,17 +37,85 @@ static void at_snapshot(void){unsigned int i,ch;
  for(i=0;i<8;i++)at[64+i]=REG(0xfeffdd20u+i*4u);
  for(i=0;i<64;i++)at[80+i]=REG(0xc0000800u+i*4u);
 }
+#if ACCELE_TERMINAL_TEST >= 3
+extern void accele_fault_entry(void),accele_nmi_entry(void);
+extern void accele_raise_fault(void) __attribute__((noreturn));
+#ifndef AT_SET_VECTOR0
+static void at_set_vector0(unsigned int v){
+ __asm__ volatile("st %0,0"::"r"(v):"memory");
+}
+#define AT_SET_VECTOR0(v) at_set_vector0(v)
+#endif
+static unsigned int at_irq_guard(void){unsigned int i;
+ for(i=0;i<16;i++)if(REG(AT_IRQ_STACK+i*4)!=AT_GUARD||
+ REG(AT_IRQ_END-64+i*4)!=AT_GUARD)return 0;
+ return 1;
+}
+#ifndef AT_ENTRY_ADDRESS
+#define AT_ENTRY_ADDRESS(fn) ((unsigned int)(fn))
+#endif
+static unsigned int at_owned_valid(void){unsigned int i;
+ if(at[146]!=2u||!at_irq_guard()||AT_VECTOR0()!=at[149]||
+    REG(0xff008704u)!=AT_IRQ_STACK+64u)return 0;
+ for(i=0;i<64;i++)if(REG(0xc0000800u+4*i)!=((i&1u)?0u:at[148]))return 0;
+ return 1;
+}
+static void at_install_owned(void){unsigned int i;
+ at[144]=AT_VECTOR0();at[145]=REG(0xff008704u);
+ at[148]=AT_ENTRY_ADDRESS(accele_fault_entry);
+ at[149]=AT_ENTRY_ADDRESS(accele_nmi_entry);
+ /* Exact captured stock baseline. No writes until every entry is verified. */
+ if(REG(0xff008700u)!=0xfeffdd20u||REG(0xfeffdd20u)!=0xc0000800u||
+    at[144]!=0xc00521b0u||at[145]!=0xc0001000u||
+    (at[148]&15u)||(at[149]&3u))accele_terminal_enter(0x7d010u);
+ for(i=0;i<64;i++)if(REG(0xc0000800u+4*i)!=
+    ((i<32u&&!(i&1u))?0xc0053400u:0u))accele_terminal_enter(0x7d011u);
+ for(i=0;i<1024;i++)REG(AT_IRQ_STACK+4*i)=AT_GUARD;
+ at[146]=1u; /* From the first vector write, reset is required on failure. */
+ AT_SET_VECTOR0(at[149]);AT_SYNC();
+ if(AT_VECTOR0()!=at[149])accele_terminal_enter(0x7d012u);
+ REG(0xff008704u)=AT_IRQ_STACK+64u;AT_SYNC();
+ for(i=0;i<32;i++){
+  REG(0xc0000800u+8*i)=at[148];REG(0xc0000804u+8*i)=0u;
+ }
+ AT_SYNC();
+ if(REG(0xff008704u)!=AT_IRQ_STACK+64u)accele_terminal_enter(0x7d013u);
+ for(i=0;i<64;i++)if(REG(0xc0000800u+4*i)!=((i&1u)?0u:at[148]))
+  accele_terminal_enter(0x7d014u);
+ at[147]=at_irq_guard();at[146]=2u;
+#if ACCELE_TERMINAL_TEST == 4
+ at[151]=REG(0x1700u);at[152]=REG(0x1324u);
+ at[153]=REG(0x1320u);at[154]=REG(0x1328u);
+ if(at[151]||(at[152]&8u)||(at[153]&0x80000000u))
+  accele_terminal_enter(0x7d015u);
+#endif
+}
+#endif
 static void at_init(void){unsigned int i;
  at_nonce=at[0];
  for(i=16;i<AT_WORDS;i++)at[i]=0;
  for(i=0;i<1024;i++)REG(AT_STACK+i*4)=AT_GUARD;
  at[16]=AT_MAGIC;at[17]=at_nonce;at[18]=1u;at[25]=ACCELE_TERMINAL_TEST;
- at_snapshot();at[26]=at_guard();at_initialized=1;
+ at_initialized=1;
+#if ACCELE_TERMINAL_TEST >= 3
+ at_install_owned();
+#endif
+ at_snapshot();at[26]=at_guard();
  AT_SYNC();at[31]=AT_READY;
 }
 void accele_terminal_record(void){
  at[27]=ticks;at[28]=claimed;at[29]=switch_fault;
  at_snapshot();at[26]=at_guard();
+#if ACCELE_TERMINAL_TEST >= 3
+ at[147]=at_irq_guard();at[151]=REG(0x1700u);
+ if(at[160]==2u){
+  /* Save source before masking/acknowledging ONLY the test doorbell. */
+  at[152]=REG(0x1324u);at[153]=REG(0x1320u);at[154]=REG(0x1328u);
+#if ACCELE_TERMINAL_TEST == 4
+  if(at[155]==1u){REG(0x1328u)=at[154]|8u;REG(0x1320u)=0x80000000u;AT_SYNC();}
+#endif
+ }
+#endif
  claim_report[6]=0xf0000000u|at[20];
  /* No driver completion, STOP drain claim, timer restoration or return. */
  AT_SYNC();at[31]=AT_DONE;
@@ -56,6 +124,22 @@ void accele_terminal_record(void){
 static void at_poll(void){
 #if ACCELE_TERMINAL_TEST
  if(at_request(at[0],at[1],at[2],at_nonce,ACCELE_TERMINAL_TEST)){
+#if ACCELE_TERMINAL_TEST >= 3
+  if(!at_owned_valid())accele_terminal_enter(0x7d018u);
+#endif
+#if ACCELE_TERMINAL_TEST == 3
+  accele_raise_fault();
+#endif
+#if ACCELE_TERMINAL_TEST == 4
+  if(!at[155]){
+   if(REG(0x1700u)||(REG(0x1324u)&8u)||(REG(0x1320u)&0x80000000u))
+    accele_terminal_enter(0x7d016u);
+   REG(0x1328u)=at[154]&~8u;AT_SYNC();
+   if(REG(0x1328u)!=(at[154]&~8u))accele_terminal_enter(0x7d017u);
+   at[155]=1u;AT_SYNC();
+  }
+  return;
+#endif
   if(ACCELE_TERMINAL_TEST==2)REG(AT_STACK)=0;
   accele_terminal_enter(ACCELE_TERMINAL_TEST==2?0x7d002u:0x7d001u);
  }

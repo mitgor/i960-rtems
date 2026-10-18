@@ -1,10 +1,15 @@
-# P3a — software terminal record and board inventory
+# P3 — terminal records and owned exception work
 
-Status 2026-10-18: cross-built; **both software terminal tests passed on the
+Current P3b status: [owned fault/NMI candidate](OWNED-EXCEPTIONS.md) is
+implemented and native-tested. Hardware runs await physical recovery after the
+previous normal runtime's reset. The prompt is currently offline. The earlier
+mode-3 revision is cross-built and archived; rebuild current source before use.
+
+Historical P3a status 2026-10-18: cross-built; **both software terminal tests passed on the
 card**, including deliberate private guard corruption and retained resources.
 Both terminal tests have verified reset recovery. The mode-0 normal profile
 ran two 64-frame games with console traffic and audited idle/rearm. Its prompt
-is restored; the owner remains live in idle. Mode 0 global STOP/reset is separate. See
+was restored; that owner has since shut down cleanly. Mode 0 reset recovery is pending. See
 [the evidence ledger](../../../artifacts/current/accele160-fault-20261018/README.md).
 This is the first bounded part of P3, not completion of fault/NMI ownership.
 
