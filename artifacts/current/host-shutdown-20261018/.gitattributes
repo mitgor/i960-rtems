@@ -1,0 +1,2 @@
+# Preserve original kernel/journal output, including its native trailing spaces.
+*.txt -whitespace
