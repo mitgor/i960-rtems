@@ -6,6 +6,16 @@ MAGIC=0x31544641
 READY=0x59444152
 DONE=0x454e4f44
 
+def dma_fnv(data):
+    h=2166136261
+    for b in data:h=((h^b)*16777619)&0xffffffff
+    return h
+
+def dma_descriptors(w):
+    return b''.join(struct.pack('<8I',w[180]+(i+1)*32 if i<1024 else 0,
+        w[182]+(0 if i<1024 else 65536),0,w[181] if i<1024 else w[185],
+        65536 if i<1024 else 32,7,0,0) for i in range(1025))
+
 def initialize(write):
     nonce=secrets.randbelow(0xfffffffe)+1
     write(ADDRESS,0,struct.pack('<16I',nonce,*([0]*15)))
@@ -13,7 +23,7 @@ def initialize(write):
 
 def decode(page):
     assert len(page)==4096
-    return struct.unpack_from('<176I',page)
+    return struct.unpack_from('<208I',page)
 
 def validate(page,nonce,mode,terminal):
     w=decode(page)
@@ -28,7 +38,7 @@ def validate(page,nonce,mode,terminal):
         assert w[33]==0xc0779040 and w[34]==w[149]
         assert w[80:144]==(w[148],0)*32
         if terminal:
-            if mode==3:
+            if mode in (3,6):
                 assert w[160]==1 and w[163]&0xffffff==0x00050001
                 assert 0xc0710000<=w[164]<0xc0724000
             else:
@@ -37,13 +47,22 @@ def validate(page,nonce,mode,terminal):
                 assert not w[154]&8
                 assert w[163]==248 # architectural interrupt procedure number
     if terminal:
-        assert w[20]==0x7d000+mode and w[24]==1 and w[28]==1
+        assert w[20]==0x7d000+(mode-3 if mode>=6 else mode) and w[24]==1 and w[28]==1
         assert w[38]==0 and w[44]==125000 and w[45]<=125000
-        assert w[48:57]==(0,)*9 # injections are before DMA initialization
+        if mode<6:assert w[48:57]==(0,)*9
+        else:
+            assert w[51:57]==(0,)*6
+            assert w[176]&0x400 and not w[176]&0x2d
+            assert w[177]==1 and w[183]==1024 and w[184]&0x400
+            assert not w[184]&0x2d
+            assert w[180]==w[181]+65536 and 0xc0800000<=w[181]<0xc0ff0000-98336
+            assert w[180]%32==0 and w[182]%4096==0
+            assert w[178]==0 or (w[180]<=w[178]<=w[180]+32768 and w[178]%32==0)
+            assert w[179]<=65536
     return w
 
-def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None):
-    assert mode in (1,2,3,4)
+def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,frame_read=None,deny_release=None):
+    assert mode in (1,2,3,4,6,7)
     out=Path(out);out.mkdir(exist_ok=True)
     pin_before=pin_status()
     assert pin_before.get('guard_changes')=='0' and status().get('done')=='0'
@@ -54,13 +73,13 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None):
     time.sleep(.1)
     stale=snap(ADDRESS);assert stale[64:]==before[64:]
     (out/'stale.bin').write_bytes(stale)
-    if mode==4:
+    if mode in (4,7):
         assert nmi is not None and mu_read is not None
         # Manual 273353 section 16.2: BAR0 first page maps MU registers.
         # Verify host/local IDR, IISR and IIMR aliases before the sole write.
         assert mu_read()==(decode(before)[153],decode(before)[152],decode(before)[154])
     write(ADDRESS,0,struct.pack('<3I',nonce,1,0x54455354))
-    if mode==4:
+    if mode in (4,7):
         armed_deadline=time.monotonic()+5
         while time.monotonic()<armed_deadline:
             armed=snap(ADDRESS);aw=decode(armed)
@@ -72,13 +91,13 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None):
         assert mu_read()[2]==(aw[154]&~8)
         (out/'armed.bin').write_bytes(armed)
         nmi() # Exactly one host PCI doorbell write, never sysctl or direct call.
-    end=time.monotonic()+5
+    end=time.monotonic()+(30 if mode>=6 else 5)
     while time.monotonic()<end:
         page=snap(ADDRESS)
         if decode(page)[31]==DONE:break
         time.sleep(.01)
     else:raise RuntimeError('terminal record deadline; retain all resources')
-    w=validate(page,nonce,mode,True);(out/'terminal.bin').write_bytes(page)
+    (out/'terminal.bin').write_bytes(page);w=validate(page,nonce,mode,True)
     time.sleep(.1)
     again=snap(ADDRESS);assert again==page
     (out/'stable.bin').write_bytes(again)
@@ -89,8 +108,38 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None):
     state=status();pin=pin_status()
     assert state.get('done')=='0' and pin.get('guard_changes')=='0' and pin==pin_before
     result=dict(schema=1,nonce=nonce,mode=mode,stable=True,retained=True,
-        admission=state,pin=pin,code=w[20],ticks=w[27],hardware_fault_tested=mode==3,nmi_hardware_tested=mode==4,
+        admission=state,pin=pin,code=w[20],ticks=w[27],hardware_fault_tested=mode in (3,6),nmi_hardware_tested=mode in (4,7),
         nmi_owned=mode>=3,scsi_excluded=False)
+    if mode>=6:
+        assert frame_read and deny_release
+        assert w[175]<10000000 and not w[186]&0x42d
+        assert w[187]==1 and w[188]==w[180]+32768
+        assert w[189:192]==(0,0,7)
+        expected=bytes((i^(i>>8)^0x69)&255 for i in range(65536))
+        for slot in (0,1):
+            data=frame_read(slot);(out/f'frame{slot}.bin').write_bytes(data)
+            assert len(data)==77824 and data[:4096]==bytes([0xa5])*4096
+            assert data[69664:]==bytes([0xa5])*(77824-69664)
+            assert data[4096:69632]==(expected if slot==0 else bytes([0x5a])*65536)
+            assert data[69632:69664]==(struct.pack('<8I',*(0x444d4100+i for i in range(8))) if slot==0 else bytes(32))
+        # Only odd 4 KiB pages are visible in the existing PCI aperture.
+        # Full post-drain FNVs are computed on-card; host independently checks
+        # every visible source/descriptor page and the complete DMA payload.
+        assert w[192]==dma_fnv(expected) and w[194]==1
+        descriptors=dma_descriptors(w);assert w[193]==dma_fnv(descriptors)
+        for off in range(0,65536,8192):
+            data=snap(w[181]-4096+off)
+            (out/f'source-{off:05x}.bin').write_bytes(data)
+            assert data==expected[off:off+4096]
+        for off in range(0,32800,8192):
+            data=snap(w[180]-4096+off)
+            (out/f'descriptors-{off:05x}.bin').write_bytes(data)
+            n=min(4096,32800-off);assert data[:n]==descriptors[off:off+n]
+        denied=deny_release();(out/'release-denied.json').write_text(json.dumps(denied,indent=2)+'\n')
+        assert denied['returncode']!=0 and pin_status()==pin_before and status().get('done')=='0'
+        assert snap(ADDRESS)==page
+        result.update(active_dma_at_entry=True,finite_bytes=1024*65536,drained_after_terminal=True,
+            dma_source_retained=True,dma_destination_retained=True,completion_not_synthesized=True)
     (out/'result.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
 

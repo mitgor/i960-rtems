@@ -24,6 +24,18 @@ terminal_common:
  cmpobne 0,r4,terminal_nested
  mov 1,r4
  st r4,0xc0777060
+#if ACCELE_TERMINAL_TEST >= 6
+ /* Read-clear CSR belongs exclusively to this diagnostic. Capture once at
+  * entry, before the slower C snapshot. Bit 10 proves actual DMA activity. */
+ ld 0x1404,r4
+ st r4,0xc07772c0
+ ld 0x1400,r4
+ st r4,0xc07772c4
+ ld 0x1410,r4
+ st r4,0xc07772c8
+ ld 0x1420,r4
+ st r4,0xc07772cc
+#endif
  st r8,0xc0777280
  st g0,0xc0777050
  st fp,0xc0777054

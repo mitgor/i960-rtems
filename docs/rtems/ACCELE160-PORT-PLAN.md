@@ -321,3 +321,26 @@ the requested RTEMS prompt early and instrumentation for the remaining ports.
 Do not start by reflashing, replacing the working kernel wholesale, or extending
 RAM ownership. Subsequent batches should close one ownership/transport gate at
 a time rather than treating all eleven implementation stages as one card run.
+
+## P3c — active-DMA exception containment
+
+Diagnostic profiles 6/7 now exercise real processor fault / host-doorbell NMI
+with a finite 64 MiB repeated-source DMA chain. Both accepted entries captured
+CSR=0x400 before the C terminal snapshot. Bounded on-card observation then
+confirmed inactive/error-free DMA at the last descriptor; the command remained
+`done=0 released=0`, and ordinary DMA-buffer module removal was refused.
+Both stack guards, both host guards, peer-register and owner-table checks
+passed; the unused target stayed untouched. Full post-drain source/chain
+fingerprints and independent visible-page checks supplement the complete host
+payload comparison. The failed first aperture read is preserved as evidence.
+
+[Design and limits](../../rtems/accele160/fault/ACTIVE-DMA.md) and
+[exact artifacts](../../artifacts/current/accele160-active-dma-exceptions-20261018/README.md).
+Profile 5 remains the normal service. Hardware stalled-DMA/abort qualification,
+reclaim without reboot, SCSI/cache exclusion and faulted-task resumption are
+still open. Native timeout simulation does not close those hardware gates.
+
+Both P3c reset gates are now closed by fresh paired firmware reads. The normal
+profile-5 prompt is restored on boot `b92db15d-de4d-4a57-9997-f6236dafa06a`
+after 64 frames and 541 error-free external console exchanges. It remains live
+at verified idle with gateway 8088 restored; the test profiles are not defaults.

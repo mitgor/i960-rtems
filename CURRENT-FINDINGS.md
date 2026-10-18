@@ -1,3 +1,27 @@
+## Accele160 P3c — active-DMA fault/NMI containment qualified
+
+Both real `faulte` and host-doorbell NMI entered with DMA0 CSR=0x400. The
+finite 64 MiB repeated-source chains completed after CPU containment, while
+STOP left the firmware command `done=0 released=0` and ordinary DMA-buffer
+module removal was refused. Stack/host guards, peer registers, owner table,
+full payload, source/chain fingerprints and visible-page checks passed.
+The initial host source check incorrectly duplicated odd aperture pages; its
+failure and retained resources are archived alongside the correction.
+
+Fresh paired firmware reads close both reset-recovery gates. The original
+qualified profile-5 kernel is restored on boot
+`b92db15d-de4d-4a57-9997-f6236dafa06a`, session `20261018T215108Z` under
+`/home/mit/i960-owned-runtime-20261018`. It passed 64 frames, 5,045 WAD reads,
+541 external console exchanges with zero errors, and three owned-state audits.
+`~/rtems-console` works; the game is at verified idle and gateway 8088 is active.
+
+[Evidence](artifacts/current/accele160-active-dma-exceptions-20261018/README.md)
+and [design](rtems/accele160/fault/ACTIVE-DMA.md). Profiles 6/7 are isolated
+experiments, not the default prompt. Physical stalled-DMA/abort behavior,
+reclaim without reboot, SCSI/cache exclusion and task resumption remain open.
+The bounded timeout/error policy has native simulated evidence only.
+Earlier live-session references below are historical.
+
 ## Accele160 P3b — normal owned-exception runtime qualified
 
 Profile 5 (owned fault/NMI handlers and ISP, no deliberate injection) passed

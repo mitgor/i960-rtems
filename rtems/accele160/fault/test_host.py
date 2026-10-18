@@ -79,3 +79,19 @@ for index in (24,155,160,166,169,170,171):
     except AssertionError:pass
     else:raise AssertionError(('runtime tamper accepted',index))
 print('runtime sample epoch/phase/ownership/terminal rejection passed')
+
+# Active DMA requires the hardware Channel Active flag at terminal entry,
+# not merely CCR enable, a queued descriptor, or a software pending flag.
+for mode in (6,7):
+    w=list(struct.unpack('<1024I',page(3,True)));w[25]=mode
+    w[176:186]=[0x400,1,0xc0820020,65536,0xc0820000,0xc0810000,0x10000000,1024,0x400,0xc0712000]
+    if mode==7:
+        w[20]=0x7d004;w[160]=2;w[163]=248;w[155]=1
+        w[151:155]=[0x100,8,0x80000000,0x77]
+    host.validate(struct.pack('<1024I',*w),123,mode,True)
+    for index,value in ((176,0),(176,0x408),(177,0),(183,0),(184,0),(180,0),(179,65537),(51,1)):
+        bad=w[:];bad[index]=value
+        try:host.validate(struct.pack('<1024I',*bad),123,mode,True)
+        except AssertionError:pass
+        else:raise AssertionError(('active DMA evidence tamper accepted',mode,index))
+print('active DMA entry evidence rejects inactive, errors, invalid chain and peer activity')

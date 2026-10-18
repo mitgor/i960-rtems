@@ -68,7 +68,7 @@ def main():
             modules['admit']=fps_manifest['admit_module_sha256']
         terminal_schema=fps_manifest.get('terminal_schema',0)
         terminal_test=fps_manifest.get('terminal_test',0)
-        need(terminal_schema in (0,1) and terminal_test in (0,1,2,3,4,5) and (terminal_schema or not terminal_test),'terminal profile')
+        need(terminal_schema in (0,1) and terminal_test in (0,1,2,3,4,5,6,7) and (terminal_schema or not terminal_test),'terminal profile')
         if terminal_schema:
             need(set(fps_manifest['terminal_sources'])=={'policy.h','card.inc','terminal.S','host.py'},'terminal source set')
             for name,digest in fps_manifest['terminal_sources'].items():
@@ -346,11 +346,18 @@ def main():
             expected=struct.pack('<1024I',*(pattern(index,w) for w in range(1024)))
             need(snap(0xc0800000+(index-1)*PAGE)==expected,
                  f'untouched upper page {index}')
-        if terminal_test in (1,2,3,4):
+        if terminal_test in (1,2,3,4,6,7):
+            def deny_dma_release():
+                p=subprocess.run(['rmmod','dma_frames'],capture_output=True,text=True)
+                return dict(returncode=p.returncode,stderr=p.stderr)
+
             terminal_result=terminal.exercise(snap,write,terminal_nonce,terminal_test,
                 a.out/'terminal',lambda:status('ram-admit'),lambda:fields(pin_dir/'status'),
                 nmi=lambda:bar.__setitem__(slice(0x20,0x24),struct.pack('<I',0x80000000)),
-                mu_read=lambda:struct.unpack_from('<3I',bar,0x20))
+                mu_read=lambda:struct.unpack_from('<3I',bar,0x20),
+                frame_read=lambda slot:(pin_dir/f'frame{slot}.bin').read_bytes(),
+                deny_release=deny_dma_release)
+            (a.out/'terminal'/'owner-after.bin').write_bytes(ownercheck(owned))
             save(a.out/'result.json',dict(terminal=terminal_result,boot_id=boot,
                  kernel_sha256=kernel_sha,image_sha256=image_sha,release='reboot-only',
                  card=select(BDF,'accele160'),old=require_unbound_or_absent(OLD,'dac960pg')))

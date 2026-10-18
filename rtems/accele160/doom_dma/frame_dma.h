@@ -77,3 +77,63 @@ static void dma_kick(unsigned gen,unsigned slot,const void *source,unsigned hash
  DMA_SYNC();
  REG(0x1410u)=desc;REG(0x1400u)=1u;
 }
+
+#if ACCELE_TERMINAL_TEST >= 6
+/* Diagnostic only, after CPU containment. Observe a bounded number of polls;
+ * NEVER disable the channel or publish firmware completion/release. On timeout
+ * the same terminal park retains source, descriptors and host destinations. */
+static void at_dma_finish(void){unsigned i,ch,csr=0;
+ for(i=0;i<10000000u;i++){
+  csr=REG(0x1404u);
+  if(!(csr&0x400u)||(csr&0x2du))break;
+ }
+ at[175]=i;at[186]=csr;at[187]=REG(0x1400u);at[188]=REG(0x140cu);
+ at[189]=REG(0x1410u);at[190]=REG(0x1420u);at[191]=REG(0x1424u);
+ if(at[183]==1024u && (at[184]&0x400u)){
+  at[192]=byte_fnv((const void*)at[181],65536u);
+  at[193]=byte_fnv((const void*)at[180],32800u);
+  at[194]=1u;
+  for(ch=1;ch<3u;ch++)for(i=0;i<8u;i++)
+   if(REG(0x1400u+ch*64u+dma_offsets[i])!=dma_peers[ch-1u][i])at[194]=0u;
+ }
+}
+/* Isolated diagnostic before engine admission. Finite 1024 x 64 KiB chain
+ * repeats an immutable source into ONE existing guarded/pinned destination.
+ * Descriptors occupy 32800 bytes of the existing 900000-byte image loan.
+ * No circular descriptors, new PCI targets, source reuse, or host ACK. */
+static void at_dma_test(void){
+ unsigned i,j,csr=0;
+ unsigned char *source=(unsigned char*)(((unsigned int)image_base+4095u)&~4095u);
+ unsigned desc=(unsigned int)source+65536u;
+ volatile unsigned int*d=(volatile unsigned int*)desc;
+ if(!claimed||!image_base||!at_owned_valid())
+  accele_terminal_enter(0x7d020u);
+ dma_init();dma_peer_check();
+ for(i=0;i<65536u;i++)source[i]=(unsigned char)(i^(i>>8)^0x69u);
+ for(i=0;i<1025u;i++){
+  for(j=0;j<8u;j++)d[i*8u+j]=0;
+  d[i*8u]=(i==1024u)?0u:desc+(i+1u)*32u;
+  d[i*8u+1u]=dma_bus[0]+(i==1024u?65536u:0u);
+  d[i*8u+3u]=i==1024u?(unsigned int)dma_marker:(unsigned int)source;
+  d[i*8u+4u]=i==1024u?32u:65536u;d[i*8u+5u]=7u;
+ }
+ for(i=0;i<8u;i++)dma_marker[i]=0x444d4100u+i;
+ at[180]=desc;at[181]=(unsigned int)source;at[182]=dma_bus[0];
+ at[183]=1024u;at[185]=(unsigned int)dma_marker;
+#if ACCELE_TERMINAL_TEST == 7
+ if(REG(0x1700u)||(REG(0x1324u)&8u)||(REG(0x1320u)&0x80000000u))
+  accele_terminal_enter(0x7d016u);
+ REG(0x1328u)=at[154]&~8u;DMA_SYNC();
+ if(REG(0x1328u)!=(at[154]&~8u))accele_terminal_enter(0x7d017u);
+#endif
+ DMA_SYNC();REG(0x1410u)=desc;REG(0x1400u)=1u;
+ for(i=0;i<100000u;i++){csr=REG(0x1404u);if(csr&0x42du)break;}
+ at[184]=csr;DMA_SYNC();
+ if(!(csr&0x400u)||(csr&0x2du))accele_terminal_enter(0x7d021u);
+#if ACCELE_TERMINAL_TEST == 6
+ accele_raise_fault();
+#else
+ at[155]=1u;DMA_SYNC(); /* Host may now issue the actual doorbell NMI. */
+#endif
+}
+#endif

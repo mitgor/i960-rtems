@@ -12,3 +12,12 @@ cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=4 "
 cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=5 "$src/test_owned.c" -o "$work/runtime"
 "$work/runtime"
 python3 "$src/test_host.py"
+
+# The actual DMA diagnostic uses 32-bit card addresses. Linux non-PIE gives
+# this native harness low static addresses without mapping hardware memory.
+if [[ $(uname -s) == Linux && $(uname -m) == x86_64 ]]; then
+ cc -O1 -no-pie -fsanitize=undefined -Wall -Wextra -Werror \
+  -Wno-unused-function -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast \
+  -I"$src/../doom_dma" "$src/test_dma.c" -o "$work/dma"
+ "$work/dma"
+fi

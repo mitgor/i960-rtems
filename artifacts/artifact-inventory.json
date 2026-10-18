@@ -17216,6 +17216,116 @@
       "path": "artifacts/current/accele160-owned-runtime-20261018/restored-services.txt",
       "size": 329,
       "sha256": "79e54ba8f172cf25bfcb043cb8b383ca23e4b8ab7f1e2c6e0bddbb5bcb603354"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/README.md",
+      "size": 4740,
+      "sha256": "aa1973f22bb652dec05b32de3ef64245e065b742bc416aae2e203f28dc3e999e"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/SHA256SUMS",
+      "size": 3047,
+      "sha256": "36c072cdfbe6a753d43bebb7074a1d495dc3f95125253ee71b3cbab7be9c05e5"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/accepted-identities.json",
+      "size": 507,
+      "sha256": "e3a304bf97d93e1aa68d65815f042171e128c717c2de20e3b255b440e7c9f25f"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/corrected-prepared-fault.tar.xz",
+      "size": 8621252,
+      "sha256": "febee47bacd8280126a52a97d86dd030ea383f3af1698bee3f5322d2dd23b404"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/entry-audit.json",
+      "size": 373,
+      "sha256": "7804a1c7c6406f2d397bc54e0e8f38c8ea1f4c0090a45ca0d08c1cea98646dd8"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/failed-replay.json",
+      "size": 712,
+      "sha256": "7d59b3bf78240eae8dad45c1dc5d525b2547565a4406c7797251d45ee2e0d65b"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/failed-source-aperture.tar.xz",
+      "size": 8717188,
+      "sha256": "642fc400f33113abfb256ae2329ef7223412e0a1554330c86406930841169ea6"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/fault-replay.json",
+      "size": 643,
+      "sha256": "13d0f685b9348fb881dc833f9bfe1f29e5ea950cde395101e048c3c05cfa8326"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/fault-tested.tar.xz",
+      "size": 8893196,
+      "sha256": "eb2005a37a422f56e082464f987bcd9e891ef3053d2d507e968c90bd500fa262"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/native-dma.txt",
+      "size": 123,
+      "sha256": "9edb73db2e7f3d77f0a3f5306127ed8fb38af3132bd72ac20a3488210e954d58"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/native-tests-linux.txt",
+      "size": 830,
+      "sha256": "5321834933dc9ad01728d6655891335ef1b7270f386239691da839397f0887c0"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/native-tests.txt",
+      "size": 707,
+      "sha256": "eecfe93ed8cfe9417112ffc6aad7615b8205ce52ef3263c67e7f5ee1fe7d3599"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/nmi-replay.json",
+      "size": 633,
+      "sha256": "d6b8664b068ac87630d5ecf04a78665f9c32ad75778ca8edb18824aee1f0746b"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/nmi-tested.tar.xz",
+      "size": 8893708,
+      "sha256": "a6d072a384ea5a3fe0901eeac6a9f90f2e8eae16d4916bb0c87e03a33b478c81"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/prepared-fault.tar.xz",
+      "size": 8620056,
+      "sha256": "808926984a2649acdc6721ff5fb3df302f934a7608ffdc564ee205ed1f84f6eb"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/prepared-nmi.tar.xz",
+      "size": 8621716,
+      "sha256": "2e0834759d0c613dacecf5692afb4d313fac510573cd2b6759b591b1d68f01e9"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/previous-final.tar.xz",
+      "size": 1548016,
+      "sha256": "b32e4350b86ff7f792f436a514dee925ac6fa739c826087a2ce128ae95c5c619"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/recovery.json",
+      "size": 647,
+      "sha256": "32ea616e41ff15d9946872145fac316cd9ba8ec7b72b65dc792e4eb61df99b1b"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/restored-live.tar.xz",
+      "size": 9736248,
+      "sha256": "c2f3c4b4194e07306af0b13fae2c63e8b4af10890e9e4df5052e07b0d7907836"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/restored-prompt.txt",
+      "size": 245,
+      "sha256": "5a38c1fcdb80f3c0b15ab526ebfcede33888031db80108e8b912c50423480788"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/restored-replay.json",
+      "size": 856,
+      "sha256": "bf604fd0f276013bb211870d24b2a18f2e5ae3ab945524bb93f677d519c7f323"
+    },
+    {
+      "path": "artifacts/current/accele160-active-dma-exceptions-20261018/restored-services.txt",
+      "size": 84,
+      "sha256": "24de422e6b400c873b6baa0764b12935d053f8e43c1bb5e1b214b7a38aea2334"
     }
   ],
   "updated_date": "2026-10-18"

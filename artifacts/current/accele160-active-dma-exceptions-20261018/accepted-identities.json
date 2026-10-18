@@ -1,0 +1,18 @@
+[
+  {
+    "mode": 6,
+    "boot_id": "37da0752-0cf1-4c91-a1bb-5c2697e777a4",
+    "kernel_sha256": "d43dfde43574eb53cd5505312dd18716fdff5f99a3d16a0378a6e59100a1dc70",
+    "entry_csr": "0x400",
+    "entry_byte_count": 64304,
+    "drain_polls": 1843221
+  },
+  {
+    "mode": 7,
+    "boot_id": "dffc27c9-dadb-4905-8d5d-1062374361cd",
+    "kernel_sha256": "85d89ad77217a5d01459abd2b9eb1bc1d7eb6e1fd6c97cd3f48d20119ce06a1e",
+    "entry_csr": "0x400",
+    "entry_byte_count": 36864,
+    "drain_polls": 1810029
+  }
+]

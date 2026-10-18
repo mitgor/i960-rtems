@@ -1,3 +1,23 @@
+**Latest Accele160 active-DMA exceptions — 2026-10-18:**
+Profiles 6/7 passed actual fault/NMI containment with entry CSR=0x400,
+finite DMA completion, intact guards/integrity, refused unload and retained
+`done=0 released=0`. Both fresh-boot firmware pairs close recovery.
+See [exact evidence](../artifacts/current/accele160-active-dma-exceptions-20261018/README.md)
+and [implementation](accele160/fault/ACTIVE-DMA.md). Preserve the failed odd-page
+aperture capture; use full card fingerprints plus independent visible-page
+checks, never claim a direct full RAM read through this aperture.
+
+Current live owner: `/home/mit/i960-owned-runtime-20261018/bundle`, session
+`20261018T215108Z`, boot `b92db15d-de4d-4a57-9997-f6236dafa06a`. Original
+qualified profile-5 kernel `55dc845a43b53fe0e84aba8ed180f28e0331999b74857c96d5e8ff2bb2d5d002`;
+64-frame/5,045-WAD/541-exchange restoration passed; prompt and gateway 8088
+are live. Keep it running. Never adopt retained owners or force-unload.
+The separate corrected admission module remains unchanged. Diagnostic builds
+must pass ACCELE_TERMINAL_TEST to terminal.S as well as app.c. Source/chain
+fingerprints and peer checks occupy record words 192–194. No flash writes.
+Hardware stalled-engine/abort qualification and broad SCSI/cache exclusion
+remain future work; native timeout simulation does not close them.
+
 **Exclusive AcceleRAID Doom presentation copy — 2026-10-18:**
 [Two audited 32-frame runs](../artifacts/current/wide-screen-copy-20261018/README.md)
 qualify an opt-in 8-byte CPU screen copy on the cached owned arena. Exact

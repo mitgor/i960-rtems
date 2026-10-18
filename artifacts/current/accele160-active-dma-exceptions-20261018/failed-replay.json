@@ -1,0 +1,36 @@
+{
+  "accepted": false,
+  "reason": "host source capture repeated odd pages; complete direct read claim invalid",
+  "entry_csr": "0x400",
+  "entry_byte_count": 64312,
+  "bounded_dma_completed": true,
+  "full_host_payload_matched": true,
+  "retained": {
+    "started": "1",
+    "done": "0",
+    "status": "-1",
+    "residual": "-1",
+    "released": "0",
+    "monitor_paused": "1",
+    "shutting_down": "0",
+    "submitted": "1"
+  },
+  "source_pages": [
+    "69686b6a",
+    "69686b6a",
+    "49484b4a",
+    "49484b4a",
+    "29282b2a",
+    "29282b2a",
+    "09080b0a",
+    "09080b0a",
+    "e9e8ebea",
+    "e9e8ebea",
+    "c9c8cbca",
+    "c9c8cbca",
+    "a9a8abaa",
+    "a9a8abaa",
+    "89888b8a",
+    "89888b8a"
+  ]
+}

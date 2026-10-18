@@ -6210,3 +6210,49 @@ the owned-handler profile itself. The streaming front end was restored too,
 without replacing the card owner. The next limits are different ones: faults
 with active DMA, broader hardware exclusion, and longer endurance. Ordinary
 bounded operation with the owned handlers and stack now has its own evidence.
+
+The next fault had to arrive while something outside the processor was still
+moving. A pending software flag would not tell us that, and a single frame
+might finish before the host could deliver an NMI. We made a finite chain of
+1,024 transfers from the same immutable sixty-four-kilobyte source into the
+same pinned host buffer, followed by a marker. It gave the exception a real
+transfer to interrupt without adding another destination or a circular list.
+
+The first fault did arrive during DMA. The entry saved Channel Active, and
+the chain reached its marker with the right bytes and intact guards. Then our
+host-side source check failed. The PCI aperture was showing the same odd page
+for two adjacent four-kilobyte requests. We saved that failed run, including
+its still-unfinished command, and corrected the check. The card now fingerprints
+the complete source and descriptor list after the transfer; the host checks
+all the pages it can actually see and every byte of the delivered payload.
+
+On the fresh run, `faulte` arrived with 64,304 bytes left in the current
+descriptor. The exception entry recorded CSR `0x400` before switching into
+the slower diagnostic code. After 1,843,221 bounded observation polls, the
+chain was inactive at its final descriptor. STOP still could not turn the
+parked processor into a completed firmware command. Ordinary removal of the
+buffer module was refused, the owner table stayed unchanged, and the second
+host buffer had never been touched.
+
+The next boot repeated it with a real doorbell NMI. Vector 248 arrived with
+Channel Active still set and 36,864 bytes left in the current descriptor.
+The transfer finished after another 1,810,029 polls. Both owned stack guards,
+the host guards, the source and chain checks, and the retained command all
+survived. The captures were on the Mac before either reset.
+
+This established a narrower and more useful fact than a general recovery
+claim. The CPU can contain these exceptions while its DMA engine finishes a
+known finite workload, and finishing that workload does not give anyone
+permission to recycle its memory. The simulated timeout and error paths also
+retain ownership, but we have not forced a physically stalled engine. Aborting
+such an engine, reclaiming memory without reboot, and excluding the remaining
+stock SCSI and cache machinery are still separate work.
+
+The last reboot returned without a power cycle. Both full firmware reads still
+matched, and we restored the same owned-handler image that had already passed
+normal qualification. Sixty-four frames, 5,045 WAD requests and 541 external
+console exchanges passed. The three ownership snapshots still agreed, the
+workspace loan came back, and `apps` reported verified idle. We left that
+prompt running and brought the streaming gateway back beside it. The deliberate
+exception images stayed in their own archives, with the ordinary service back
+in charge of the card.

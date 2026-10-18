@@ -1,3 +1,8 @@
+> After the active-DMA fault/NMI tests, profile 5 is restored on boot
+> `b92db15d-de4d-4a57-9997-f6236dafa06a`, session `20261018T215108Z`.
+> The prompt passed 541 exchanges during a 64-frame run and is left at verified
+> idle; gateway 8088 is active. [Current evidence](../../../artifacts/current/accele160-active-dma-exceptions-20261018/README.md).
+
 > Latest: the prompt now runs the qualified **owned fault/NMI/ISP profile 5**,
 > with injection disabled. Two-game acceptance and recovery passed; a separate
 > 64-frame/525-exchange restoration run is left live in verified idle. Use
