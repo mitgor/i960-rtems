@@ -5834,3 +5834,26 @@ oracles kept exactly the same four known pixel differences, and none were
 added or hidden. The captures and pictures are saved in
 [the new-card flat-plane record](artifacts/current/accele160-flat-20261018/README.md).
 The final power-cycle flash reads are the remaining closure for this batch.
+
+The first longer game brought a different problem: it was making about twenty
+frames a second, but the keyboard felt much slower. We kept that distinction
+and measured the input path instead of treating another renderer optimization
+as the answer.
+
+The live owner restarted from idle into a fresh second game without rebooting.
+Eight local F6 presses reached a validated card frame in 74 milliseconds at
+the median. Four more from the Mac took 970 milliseconds to send the press,
+release and observe confirmation. Neither number includes browser paint, but
+the network explained much of the gap: the Mac averaged 228 milliseconds just
+pinging the router, while the Linux host averaged less than one millisecond.
+That puts the immediate investigation on the Mac's network path; it does not
+yet tell us which link or setting is responsible.
+
+Our own pipeline still has work to do. Browser key requests share a serial
+chain with heartbeats, the card accepts one transition before waiting for an
+acknowledgement, and the browser fetches status before fetching each picture.
+Those waits can compound even when the renderer is fast. We saved the probes
+and receipts in [the input-latency record](artifacts/current/doom-input-latency-20261018/README.md).
+All twelve toggles were confirmed, all new keys were acknowledged, and the
+second game parked safely after 1,428 frames. RTEMS stayed alive and reusable;
+the game was left stopped again.

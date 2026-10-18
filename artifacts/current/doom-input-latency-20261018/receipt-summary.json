@@ -1,0 +1,50 @@
+[
+  {
+    "game": 1,
+    "frames": 9906,
+    "key_sent": 44,
+    "key_acked": 44,
+    "idle_verified": true,
+    "paired_pio": 4,
+    "reason": "browser STOP",
+    "card_interval_ms": {
+      "median": 50,
+      "p95": 60,
+      "max": 560
+    },
+    "host_observation_interval_ms": {
+      "median": 54.473458,
+      "p95": 57.548219,
+      "max": 560.076104
+    },
+    "host_observation_to_publication_ms": {
+      "median": 1.883296,
+      "p95": 1.953615,
+      "max": 88.16206
+    }
+  },
+  {
+    "game": 2,
+    "frames": 1428,
+    "key_sent": 68,
+    "key_acked": 68,
+    "idle_verified": true,
+    "paired_pio": 4,
+    "reason": "browser STOP",
+    "card_interval_ms": {
+      "median": 60,
+      "p95": 60,
+      "max": 80
+    },
+    "host_observation_interval_ms": {
+      "median": 54.970486,
+      "p95": 57.701339,
+      "max": 75.732218
+    },
+    "host_observation_to_publication_ms": {
+      "median": 1.8481100000000001,
+      "p95": 1.960735,
+      "max": 53.487025
+    }
+  }
+]

@@ -1,0 +1,108 @@
+{
+  "method": "Mac HTTP F6; sequential down/up/status, no canvas paint measurement",
+  "median_ms": 970.312833,
+  "min_ms": 374.618333,
+  "max_ms": 1576.243667,
+  "trials": [
+    {
+      "trial": 1,
+      "before": {
+        "message": "Doom on AcceleRAID 160 \u00b7 frame 10994",
+        "frame": "583444873-10994",
+        "binary": true,
+        "stopped": false,
+        "run_id": 2,
+        "state": "running",
+        "flat_planes": 0,
+        "flat_switches": 8
+      },
+      "confirmed": {
+        "message": "Doom on AcceleRAID 160 \u00b7 frame 11004",
+        "frame": "583444873-11004",
+        "binary": true,
+        "stopped": false,
+        "run_id": 2,
+        "state": "running",
+        "flat_planes": 1,
+        "flat_switches": 9
+      },
+      "http_down_ms": 24.076625,
+      "request_to_observed_confirmation_ms": 573.564208
+    },
+    {
+      "trial": 2,
+      "before": {
+        "message": "Doom on AcceleRAID 160 \u00b7 frame 11019",
+        "frame": "583444873-11019",
+        "binary": true,
+        "stopped": false,
+        "run_id": 2,
+        "state": "running",
+        "flat_planes": 1,
+        "flat_switches": 9
+      },
+      "confirmed": {
+        "message": "Doom on AcceleRAID 160 \u00b7 frame 11044",
+        "frame": "583444873-11044",
+        "binary": true,
+        "stopped": false,
+        "run_id": 2,
+        "state": "running",
+        "flat_planes": 0,
+        "flat_switches": 10
+      },
+      "http_down_ms": 1047.1615,
+      "request_to_observed_confirmation_ms": 1367.061458
+    },
+    {
+      "trial": 3,
+      "before": {
+        "message": "Doom on AcceleRAID 160 \u00b7 frame 11049",
+        "frame": "583444873-11049",
+        "binary": true,
+        "stopped": false,
+        "run_id": 2,
+        "state": "running",
+        "flat_planes": 0,
+        "flat_switches": 10
+      },
+      "confirmed": {
+        "message": "Doom on AcceleRAID 160 \u00b7 frame 11084",
+        "frame": "583444873-11084",
+        "binary": true,
+        "stopped": false,
+        "run_id": 2,
+        "state": "running",
+        "flat_planes": 1,
+        "flat_switches": 11
+      },
+      "http_down_ms": 618.94025,
+      "request_to_observed_confirmation_ms": 1576.243667
+    },
+    {
+      "trial": 4,
+      "before": {
+        "message": "Doom on AcceleRAID 160 \u00b7 frame 11095",
+        "frame": "583444873-11095",
+        "binary": true,
+        "stopped": false,
+        "run_id": 2,
+        "state": "running",
+        "flat_planes": 1,
+        "flat_switches": 11
+      },
+      "confirmed": {
+        "message": "Doom on AcceleRAID 160 \u00b7 frame 11113",
+        "frame": "583444873-11113",
+        "binary": true,
+        "stopped": false,
+        "run_id": 2,
+        "state": "running",
+        "flat_planes": 0,
+        "flat_switches": 12
+      },
+      "http_down_ms": 9.603166,
+      "request_to_observed_confirmation_ms": 374.618333
+    }
+  ]
+}

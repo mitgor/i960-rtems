@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-18",
+  "method": "Sequential diagnostics from Mac and Linux host during reusable Doom investigation; summary transcribed from tool output",
+  "mac_to_pc_ping_ms": {"samples": 12, "min": 4.798, "mean": 208.246, "max": 546.501, "stddev": 153.737, "packet_loss_percent": 0},
+  "mac_to_gateway_ping_ms": {"samples": 8, "min": 21.457, "mean": 228.103, "max": 579.273, "stddev": 171.153, "packet_loss_percent": 0},
+  "pc_to_gateway_ping_ms": {"samples": 8, "min": 0.784, "mean": 0.869, "max": 1.067, "packet_loss_percent": 0},
+  "mac_http_ms": {
+    "status": {"samples": 30, "median": 11.33, "p95": 1027.81, "max": 1167.85},
+    "frame_65568_bytes": {"samples": 30, "median": 1085.81, "p95": 2298.63, "max": 2432.71},
+    "second_status_samples": [122.7886, 355.5529, 13.1859, 469.6685, 13.5808],
+    "second_frame_samples": [263.6795, 210.5873, 358.0475, 178.1989, 392.7660]
+  },
+  "linux_loopback_http_ms": {
+    "status": {"samples": 20, "median": 1.1016, "max": 3.4710},
+    "frame_65568_bytes": {"samples": 20, "median": 1.0489, "max": 2.2501}
+  },
+  "limits": "Short diagnostic samples, not simultaneous matched browser paint measurements. Mac route uses en0; Linux uses Ethernet enp1s0. This isolates substantial delay to the Mac-side path but does not identify Wi-Fi, driver, power saving, congestion or router cause. No network configuration changed."
+}

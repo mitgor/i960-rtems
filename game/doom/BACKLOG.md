@@ -1,5 +1,24 @@
 # Doom backlog
 
+## Current play priority: input latency (2026-10-18)
+
+[Physical investigation](../../artifacts/current/doom-input-latency-20261018/README.md)
+measures Linux-local F6 to validated frame at 74.4 ms median (8 trials), versus
+970.3 ms for Mac down/up/status confirmation (4 trials; not paint latency).
+Mac-to-router ping averages 228 ms while host-to-router averages 0.87 ms.
+
+1. Retest wired/another client and resolve the Mac-side network jitter first.
+2. Bounded persistent input transport: eliminate the shared HTTP promise chain
+   for keys/heartbeat/control while preserving key order and run identity.
+3. Bounded card input FIFO/batching instead of one transition per mailbox ACK.
+4. Push latest fully audited frames instead of 50 ms status-then-frame polling.
+5. Correlate browser event/send/receive/paint with host enqueue/ACK and game tic;
+   only then assess the outer 29 ms sleep. Do not equate card FPS with paint FPS.
+
+The real CLI idle restart passed into a 1,428-frame second game, all 24 new key
+edges ACKed and twelve F6 changes confirmed, then STOP parked safely. Browser
+restart and negative/long idle gates remain open. No binaries or audits changed.
+
 ## Usability priority: reusable exclusive session (repeated card restarts passed)
 
 The [reuse investigation](play/accele160/reuse/README.md) proves actual native
@@ -10,8 +29,8 @@ passes actual-policy ASan/UBSan and browser tests. Physical STOP / reload / menu
 65/43/65 frames in one RTEMS instance, all 96 paired PIO frames, two rearms
 and 15 stale-request rejections. Offline WAD/frame/HTTP replay passes.
 Both final guarded post-reset flash reads now pass, with the old card
-physically removed. Qualify positive browser/CLI restart after idle,
-idle/upload host loss and longer play before promotion. The optional
+physically removed. Positive CLI idle restart now also passes (record above).
+Qualify browser restart after idle, idle/upload host loss and longer play. The
 `i960-doom-reusable` bundle supports explicit absent-peer checks.
 Preserve DMA/WAD/command counters,
 discard old-game input explicitly, reload template/data/BSS through admission,
@@ -30,7 +49,8 @@ already halted callback by clearing a flag. No firmware patch is proposed.
   audits and STOP, 20 stale rearm refusals, immutable WAD/HTTP and mutation
   replays; native pictures retain exactly the four known differences.
 - [ ] Close the final paired post-reset flash reads, then longer/different-scene
-  play. Positive browser/CLI idle-restart qualification remains independent.
+  play. Positive browser idle-restart qualification remains independent; CLI
+  idle restart now passed in the input-latency investigation.
 
 The old 11.5–12 FPS projection predates the accepted cached arena. Use the
 [actual new-card comparison](../../artifacts/current/accele160-flat-20261018/README.md).

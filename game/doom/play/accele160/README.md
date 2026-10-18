@@ -40,7 +40,8 @@ does not silently reboot the PC. The old DAC960PG is physically removed.
 fresh-image restarts with the same arena and pins. Its audited RTEMS idle/rearm
 path now passes [physical STOP / reload / menu Quit / reload / STOP](../../../../artifacts/current/doom-rearm-20261018/README.md),
 with 173 frames, 96 full PIO comparisons and unchanged pinned mappings.
-Both final post-reset flash reads pass; positive browser/CLI idle testing remains.
+Both final post-reset flash reads pass. A later real CLI idle restart also passed;
+positive browser idle testing remains.
 The flat-enabled reusable bundle is now the Mac default by user request; its
 final post-reset flash pair remains pending. Build with `--reusable`.
 The reusable path makes browser Stop/menu Quit park the game, adds Start new
@@ -100,7 +101,7 @@ This bundle records an absent old card explicitly and retains the exact
 AcceleRAID target gate. Stop or menu Quit parks only Doom; Start new game
 in the browser or another `./doom` requests a fresh image. `./doom stop`
 parks the game; `./doom shutdown` is terminal/reset-only. Automatic physical
-rearms are accepted. Positive browser/CLI idle restart, idle host loss and
+rearms and a real CLI idle restart are accepted. Positive browser idle restart, idle host loss and
 longer repeated play remain qualification work. The single-card policy was
 unit-tested and used for final READIMAGE audits; no additional Doom execution
 was performed after removing the old card.

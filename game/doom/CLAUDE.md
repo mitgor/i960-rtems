@@ -1174,7 +1174,7 @@ image / menu Quit / fresh image / STOP passed 65/43/65 frames, both rearms,
 post-reset flash reads pass unchanged. The old card was then removed; explicit
 peer checks now accept confirmed absence, while target selection stays strict. Positive browser/CLI idle restart and idle host-loss gates remain. See `artifacts/current/doom-rearm-20261018`.
 Installed bundle-v2 remains accepted and reset-only. Do not promote the new
-candidate, adopt a dead daemon's resources, or clear terminal QUIE to resume.
+candidate without user direction, adopt a dead daemon's resources, or clear terminal QUIE to resume.
 
 **2026-10-18 AcceleRAID optional flat planes:** `game/doom/play/accele160/build.py
 --runtime-flat` reuses the shared F6 renderer and emits validated FLT1 frame
@@ -1186,3 +1186,22 @@ full ownership/system/STOP audits and WAD/native/HTTP/tamper replay pass.
 See `artifacts/current/accele160-flat-20261018`. Final post-reset read pair is
 pending. The optional `i960-doom-flat` wrapper is prepared; ordinary launcher
 unchanged. Preserve full audits and the four documented native differences.
+
+**2026-10-18 current launcher and input investigation:** The user explicitly
+selected the flat-enabled reusable wrapper as the Mac `./doom` default; every
+game still starts textured. The newer launcher default supersedes the older
+opt-in guidance above, without declaring unfinished lifecycle gates accepted.
+Real CLI idle rearm then passed a fresh 1,428-frame game, twelve confirmed F6
+transitions (all 24 new key edges ACKed), full audits and return to live idle.
+Browser restart, negative host-loss and extended idle remain open. Do not reboot
+or reclaim the current owner just to restart a parked game.
+
+Keyboard investigation: local HTTP F6 to validated card frame median 74.4 ms;
+Mac down/up/status median 970.3 ms. Mac/router ping mean 228 ms versus Linux/router
+0.87 ms isolates a substantial Mac-side network problem; exact cause unknown.
+The browser's serialized POST chain, one-key/ACK card mailbox and 50 ms
+status-then-frame polling add delays independently. Preserve ordered input,
+run IDs, bounded queues and full audits when addressing them. Card FPS and these
+probe timings are not browser paint/input-to-photon measurements. Evidence:
+`artifacts/current/doom-input-latency-20261018`. No runtime binaries changed;
+game 2 was deliberately stopped and RTEMS remains reusable/idle.

@@ -60,8 +60,8 @@ parks a reusable game; **Start new game** requests a fresh image and BSS reload.
 WAD loading repeats, so restarting is not instantaneous. SSH can disconnect
 after `start` returns.
 
-Automatic card rearms passed. Positive browser/CLI idle restart, extended idle
-and host-loss qualification remain open. The flat-enabled reusable wrapper is
+Automatic card rearms and a real CLI idle restart passed. Positive browser
+restart, extended idle and host-loss qualification remain open. The flat-enabled reusable wrapper is
 now the Mac default by user request; those qualification gaps remain unchanged.
 The legacy launcher has no reusable idle path: its `stop` ends the hardware
 session and its installed parser does not support `shutdown` or newer benchmark
