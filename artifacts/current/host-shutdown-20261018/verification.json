@@ -1,0 +1,14 @@
+{
+  "frames": 218,
+  "paired_pio": 32,
+  "native_baseline_matches": 32,
+  "native_wad_oracle_reads": 5043,
+  "module_sha256": "2886bd370752621fd82013f27c435c76cf6b40a10e928c12a68e928b0d6e1825",
+  "gdm_stop_seconds": 0.9467030423693359,
+  "card_command_still_pending": true,
+  "global_shutdown_quiescent": true,
+  "physical_bare_host_poweroff": "user confirmed fans stopped",
+  "final_retained_card_poweroff": "deferred by user",
+  "post_reset_flash_pair": false,
+  "ordinary_launcher_changed": false
+}

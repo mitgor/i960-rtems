@@ -5930,3 +5930,15 @@ guards after reset. We kept one canonical ROM and referenced it from the new
 records. The ordinary command now selects the tested FIFO kernel, with the
 same textured default, F6 toggle and reusable game Stop. Mailbox mode remains
 available for comparisons on a fresh hardware session.
+
+The machine's own shutdown had another dependency hiding outside the card.
+The retained admission command waited on Linux's shared workqueue, while the
+NVIDIA driver tried to flush that queue when closing graphics. Xorg eventually
+hit a ninety-second timeout. We moved the admission wait to its own queue,
+keeping its completion gate and every resource pin. With RTEMS still running,
+graphics then stopped in less than a second. Another 218 audited Doom frames
+and clean global shutdown passed. A bare-host power-off had already stopped
+the fans, but the final test with graphics and the retained card together is
+for later: the user asked us to leave the PC running. The
+[shutdown record](artifacts/current/host-shutdown-20261018/README.md) keeps that
+remaining boundary explicit, and the ordinary launcher has not been switched.

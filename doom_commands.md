@@ -9,6 +9,7 @@ pinned bundle and run the privileged launcher. Launching does not flash firmware
 | Installed launcher | Behavior | Current qualification |
 | --- | --- | --- |
 | `/home/mit/.local/bin/i960-doom-flat` | Reusable session with persistent input/pushed frames on port 8088; starts textured; F6 toggles planes | FIFO/pushed-frame transport, STOP/restarts, matched latency and both batches’ closing flash reads passed |
+| `/home/mit/.local/bin/i960-doom-private-wq` | Experimental core launcher, port8087, private admission queue |218 audited frames/32 PIO and graphics shutdown passed; final power-off/post-reset reads deferred; not default |
 | `/home/mit/.local/bin/i960-doom-reusable` | Reusable session, textured planes | Automatic STOP/Quit/reload passed; final flash audits passed |
 | `/home/mit/.local/bin/i960-doom` | Legacy, one game per hardware session | Requires the old card present and unbound; unsuitable while it is physically removed |
 
@@ -242,3 +243,14 @@ Changing the SSH destination does not change the pinned card profile or PCI
 address. The current bundles target AcceleRAID 160 at `0000:37:09.1`; they do
 not auto-discover arbitrary cards. For building/provisioning rather than
 launching, see [the AcceleRAID play README](game/doom/play/accele160/README.md).
+
+
+## Pending host power-off qualification
+
+The private-queue candidate removes the observed retained-card/NVIDIA global
+workqueue interaction. See the [shutdown findings](artifacts/current/host-shutdown-20261018/README.md).
+The PC is intentionally left on after terminal global RTEMS shutdown; a fresh
+Doom instance requires a PC reset. The next physical test is normal
+`sudo systemctl poweroff` with graphics and the fixed retained module present,
+then power on and finish guarded firmware reads before default promotion.
+Do not force-unload or adopt its pinned resources to start another game.

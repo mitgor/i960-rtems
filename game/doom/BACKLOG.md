@@ -1,5 +1,16 @@
 # Doom backlog
 
+## Host shutdown acceptance — next physical check
+
+[Shared-queue investigation/fix](../../artifacts/current/host-shutdown-20261018/README.md):
+retained admission on Linux events blocks NVIDIA's global flush. Private command
+queue passes218 full-audit frames/32PIO and GDM stop **0.947s** with the command
+still pending (previously Xorg90s timeout). Final normal power-off with graphics
+and retained card both present, post-reset full-ROM pair and default promotion
+are **deferred by user**. Leave current PC running; card is terminal QUIE,
+resources pinned. Do not unload or adopt it. Follow-up: quiesce stock monitoring
+before exclusive entry, without cancelling an already blocked command.
+
 ## Current play priority: input latency (2026-10-18)
 
 **Card FIFO physical comparison passed:**

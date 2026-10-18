@@ -58,3 +58,20 @@ release. Never force-unload its command companion after an uncertain result.
 Use the accepted evidence and exact binaries as the baseline for the next
 RAM-only experiment. A returning code probe is the proven contract; do not
 infer a finite runtime lease or task-aware STOP from it.
+
+
+## Private admission queue (2026-10-18)
+
+The current companion runs its potentially reboot-long completion wait on a
+private `accele_ram_admit` workqueue. Putting it on shared `system_wq` makes
+NVIDIA390's global workqueue flush wait for exclusive RTEMS indefinitely.
+Command lifetime, completion semantics and resource pins are unchanged. The
+[shutdown investigation](../../../artifacts/current/host-shutdown-20261018/README.md)
+records the 218-frame/32-PIO card test and sub-second graphics shutdown while
+admission stays pending. Full physical power-off qualification is deferred.
+
+Historical finite-probe recipes/manifests still pin their original archived
+module hashes. Do not replace a pinned module in place or relax those checks.
+The Doom manifest generator's optional admission-module argument binds the new
+binary and C source explicitly; its private-queue bundle is isolated from the
+ordinary launcher until final shutdown/reset qualification finishes.

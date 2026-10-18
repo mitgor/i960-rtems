@@ -1283,3 +1283,23 @@ without --keyboard-selftest. Ordinary ./doom stop parked game1 safely on boot
 79fef5a0-de03-410c-8cc0-3b4051afdb3b; service/RTEMS/gateway remain live for ./doom
 or the browser's Start new game. Source bundle is still the accepted kernel
 SHA8f3b61c3100f96b9eee24d3487bc53553982e4f22c9fb11a2e9abdeb6ce7f185.
+
+
+**Latest state — host shutdown investigation (2026-10-18):** user power-cycled
+again, then helped confirm a bare-host/GPU-unloaded normal power-off. Original
+black-screen/fans >5min has a concrete shared-workqueue interaction: retained
+admit_command on events waits forever; NVIDIA390 global flush waits for it.
+Xorg timed out after90sec. Private accele_ram_admit queue fixes that observed
+wait: GDM stops in0.9467sec with RTEMS/admit still active, graphics restores,
+218 full-audit frames/32 paired PIO and global QUIE pass. New module/source hashes
+are pinned in the optional manifest fields and full bundle inventory.
+Workspace /home/mit/i960-shutdown-wq-20261018; explicit core i960-doom-private-wq.
+RTEMS/engine/firmware unchanged. See artifacts/current/host-shutdown-20261018.
+User explicitly chose leave PC running, test physical final power-off later.
+Boot408be3ad-0813-40c5-b14e-4d65f5a8f8eb: GDM active, SSH alive, Doom/gateway
+stopped, terminal QUIE and resources retained. NEVER unload/adopt/restart card.
+Normal ./doom target remains the prior FIFO bundle; do not promote until the
+fixed retained-card power-off is observed and guarded post-reset ROM pair passes.
+Next power-off test must keep graphics present (not the GPU-unloaded control).
+Stock myrs_monitor also waits on its separate private queue; stopping it before
+exclusive handoff is a separate future change, never cancel it once blocked.

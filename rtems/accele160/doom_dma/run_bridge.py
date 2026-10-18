@@ -56,10 +56,14 @@ def main():
         for sig in (signal.SIGINT,signal.SIGTERM):
             signal.signal(sig,lambda *_:signal_stop.set())
     keyboard_fifo_schema=0
+    modules=dict(MODULES)
     if a.frames==32:
         need(a.fps_manifest is not None and a.startup_oracle is not None,
              'FPS manifest and native startup oracle required')
         fps_manifest=json.loads(a.fps_manifest.read_text())
+        if 'admit_module_sha256' in fps_manifest:
+            need(fps_manifest['admit_source_sha256']==sha((ROOT/'host/accele160/ram_admit/admit_command.c').read_bytes()),'private admission queue source identity')
+            modules['admit']=fps_manifest['admit_module_sha256']
         keyboard_fifo_schema=fps_manifest.get('keyboard_fifo_schema',0)
         need(keyboard_fifo_schema in (0,1),'keyboard FIFO schema')
         if keyboard_fifo_schema:
@@ -105,7 +109,7 @@ def main():
          payload[20*PAGE:]==b'\xa5'*(9*PAGE),'RTEMS image/stack layout')
     digest=fnv(payload)
     need(digest==image_fnv,'whole-image FNV')
-    for n,want in MODULES.items():
+    for n,want in modules.items():
         path=getattr(a,n+'_module')
         debug='ram-admit' if n=='admit' else n
         need(sha(path.read_bytes())==want and
@@ -124,7 +128,7 @@ def main():
     save(a.out/'preflight.json',dict(boot_id=boot,card=card,old=old,
          firmware_sha256=FIRMWARE,handler_sha256=HANDLER,
          image_sha256=image_sha,kernel_sha256=kernel_sha,
-         fnv=f'0x{digest:08x}',modules=MODULES))
+         fnv=f'0x{digest:08x}',modules=modules))
     cfg=(DEVICE/'config').open('r+b',buffering=0)
     res=(DEVICE/'resource0').open('r+b',buffering=0)
     bar=mmap.mmap(res.fileno(),2*PAGE)
@@ -177,7 +181,7 @@ def main():
         (a.out/'owner-before.bin').write_bytes(owner)
         tail=a.handler.read_bytes()[0xf000-0xe1d8:]
         need(before==tail+b'\xff'*(PAGE-len(tail)),'exact handler tail/page')
-        for n in MODULES:insmod(getattr(a,n+'_module'))
+        for n in modules:insmod(getattr(a,n+'_module'))
         write(0xc000e000,0x820,b'\xa5'*16)
         translate(original);command('reserve',a.out)
         reserved=snap(0xc000e000)

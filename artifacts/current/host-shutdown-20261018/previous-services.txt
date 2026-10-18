@@ -1,0 +1,100 @@
+Oct 18 17:38:33 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 1200, elapsed 18.9s
+Oct 18 17:38:35 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 1300, elapsed 20.4s
+Oct 18 17:38:36 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 1400, elapsed 22.1s
+Oct 18 17:38:38 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 1500, elapsed 23.6s
+Oct 18 17:38:39 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 1600, elapsed 25.2s
+Oct 18 17:38:41 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 1700, elapsed 26.9s
+Oct 18 17:38:43 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 1800, elapsed 28.4s
+Oct 18 17:38:44 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 1900, elapsed 30.1s
+Oct 18 17:38:46 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2000, elapsed 31.5s
+Oct 18 17:38:47 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2100, elapsed 33.0s
+Oct 18 17:38:49 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2200, elapsed 34.5s
+Oct 18 17:38:50 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2300, elapsed 35.9s
+Oct 18 17:38:52 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2400, elapsed 37.5s
+Oct 18 17:38:53 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2500, elapsed 39.1s
+Oct 18 17:38:55 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2600, elapsed 40.7s
+Oct 18 17:38:56 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2700, elapsed 42.1s
+Oct 18 17:38:58 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2800, elapsed 43.6s
+Oct 18 17:38:59 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 2900, elapsed 45.0s
+Oct 18 17:39:01 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3000, elapsed 46.6s
+Oct 18 17:39:02 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3100, elapsed 48.1s
+Oct 18 17:39:04 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3200, elapsed 49.7s
+Oct 18 17:39:05 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3300, elapsed 51.3s
+Oct 18 17:39:07 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3400, elapsed 52.7s
+Oct 18 17:39:08 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3500, elapsed 53.8s
+Oct 18 17:39:09 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3600, elapsed 54.8s
+Oct 18 17:39:10 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3700, elapsed 55.8s
+Oct 18 17:39:11 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3800, elapsed 57.2s
+Oct 18 17:39:13 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 3900, elapsed 58.6s
+Oct 18 17:39:14 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4000, elapsed 60.1s
+Oct 18 17:39:16 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4100, elapsed 61.7s
+Oct 18 17:39:17 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4200, elapsed 62.8s
+Oct 18 17:39:18 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4300, elapsed 63.8s
+Oct 18 17:39:19 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4400, elapsed 65.0s
+Oct 18 17:39:20 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4500, elapsed 66.2s
+Oct 18 17:39:22 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4600, elapsed 67.4s
+Oct 18 17:39:23 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4700, elapsed 69.0s
+Oct 18 17:39:24 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4800, elapsed 70.4s
+Oct 18 17:39:26 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 4900, elapsed 72.0s
+Oct 18 17:39:28 mit-HP-Z400-Workstation python3[4040]: Doom WAD reads: 5000, elapsed 73.4s
+Oct 18 17:39:38 mit-HP-Z400-Workstation python3[4040]: Stopping Doom: browser STOP
+Oct 18 17:39:39 mit-HP-Z400-Workstation python3[4040]: Game 1 parked with 168 frames; RTEMS and DMA ownership retained
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopping Session c1 of User gdm...
+Oct 18 18:49:07 mit-HP-Z400-Workstation gdm3[1006]: Gdm: Tried to look up non-existent conversation gdm-launch-environment
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "40"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) event1  - Power Button: device removed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "43"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) event0  - Power Button: device removed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "44"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) event3  - Logitech USB Receiver: device removed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "45"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) event4  - Logitech USB Receiver Mouse: device removed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "46"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "47"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) event6  - Logitech USB Receiver System Control: device removed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "48"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) event8  - Logitech USB Receiver: device removed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "49"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) event2  - AT Translated Set 2 keyboard: device removed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "50"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) event11 - HP WMI hotkeys: device removed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (**) Option "fd" "46"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) event5  - Logitech USB Receiver Consumer Control: device removed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: not releasing fd for 13:69, still in use
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: releasing fd for 13:75
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopping GNOME Display Manager...
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopping /usr/bin/python3 /home/mit/i960-doom-stream-20261018/source/gateway.py --port 8088 --journal /home/mit/i960-doom-stream-20261018/transport.jsonl...
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopping /usr/bin/python3 /home/mit/i960-key-fifo-20261018/bundle/project/game/doom/play/accele160/launch.py run --bundle /home/mit/i960-key-fifo-20261018/bundle --port 8087 --max-frames 0 --disconnect-seconds 300 --restart-cycles 0 --quit-game 0 --paired-frames 32 --keyboard-mode fifo...
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: i960-doom-stream.service: Deactivated successfully.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopped /usr/bin/python3 /home/mit/i960-doom-stream-20261018/source/gateway.py --port 8088 --journal /home/mit/i960-doom-stream-20261018/transport.jsonl.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: i960-doom-stream.service: Consumed 8min 9.097s CPU time.
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: releasing fd for 13:66
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: releasing fd for 13:72
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: releasing fd for 13:70
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: releasing fd for 13:69
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: releasing fd for 13:68
+Oct 18 18:49:07 mit-HP-Z400-Workstation python3[4040]: Real Doom 168-frame run captured; WAD, cleanup and STOP passed
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: releasing fd for 13:67
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: releasing fd for 13:64
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) UnloadModule: "libinput"
+Oct 18 18:49:07 mit-HP-Z400-Workstation /usr/libexec/gdm-x-session[1110]: (II) systemd-logind: releasing fd for 13:65
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: i960-doom.service: Deactivated successfully.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopped /usr/bin/python3 /home/mit/i960-key-fifo-20261018/bundle/project/game/doom/play/accele160/launch.py run --bundle /home/mit/i960-key-fifo-20261018/bundle --port 8087 --max-frames 0 --disconnect-seconds 300 --restart-cycles 0 --quit-game 0 --paired-frames 32 --keyboard-mode fifo.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: i960-doom.service: Consumed 6min 17.256s CPU time.
+Oct 18 18:49:07 mit-HP-Z400-Workstation gdm3[1006]: Gdm: Freeing conversation 'gdm-launch-environment' with active job
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: gdm.service: Deactivated successfully.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopped GNOME Display Manager.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: session-c1.scope: Stopping timed out. Killing.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: session-c1.scope: Killing process 1110 (Xorg) with signal SIGKILL.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: session-c1.scope: Failed with result 'timeout'.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped Session c1 of User gdm.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: session-c1.scope: Consumed 8.589s CPU time.

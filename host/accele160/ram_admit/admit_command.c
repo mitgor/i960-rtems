@@ -18,6 +18,11 @@ static struct myrs_hba *cs;
 static struct module *parent;
 static struct dentry *dir;
 static struct work_struct work;
+/* Exclusive RTEMS intentionally never completes this command. Keeping its
+ * wait on system_wq would also block unrelated global flushes (e.g. NVIDIA
+ * device close/shutdown). A private queue preserves the pending command and
+ * every module/DMA pin without occupying the shared events queue. */
+static struct workqueue_struct *command_queue;
 static DEFINE_MUTEX(lock);
 static bool started, done, released;
 static int status = -1, residual = -1;
@@ -88,7 +93,7 @@ static ssize_t start_write(struct file *f, const char __user *in,
  started = true;
  __module_get(THIS_MODULE);
  INIT_WORK(&work, worker);
- schedule_work(&work);
+ queue_work(command_queue, &work);
  mutex_unlock(&lock);
  return n;
 }
@@ -133,8 +138,14 @@ static int __init init_ping(void)
  if (!cs || cs->pdev != pdev || !cs->ctlr_info || !cs->next_cmd_mbox) {
   module_put(parent); goto wrong;
  }
+ command_queue = alloc_workqueue("accele_ram_admit", WQ_UNBOUND | WQ_MEM_RECLAIM, 1);
+ if (!command_queue) { module_put(parent); pci_dev_put(pdev); return -ENOMEM; }
  dir = debugfs_create_dir("accele-ram-admit", NULL);
- if (IS_ERR(dir)) { module_put(parent); pci_dev_put(pdev); return PTR_ERR(dir); }
+ if (IS_ERR_OR_NULL(dir)) {
+  int error = dir ? PTR_ERR(dir) : -ENOMEM;
+  destroy_workqueue(command_queue);
+  module_put(parent); pci_dev_put(pdev); return error;
+ }
  debugfs_create_file("status", 0400, dir, NULL, &status_ops);
  debugfs_create_file("start", 0200, dir, NULL, &start_ops);
  debugfs_create_file("release", 0200, dir, NULL, &release_ops);
@@ -145,6 +156,7 @@ wrong:
 static void __exit stop_ping(void)
 {
  if (started) flush_work(&work);
+ destroy_workqueue(command_queue);
  debugfs_remove_recursive(dir);
  module_put(parent); pci_dev_put(pdev);
 }

@@ -1,0 +1,350 @@
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Closed GnuPG cryptographic agent and passphrase cache.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Closed PipeWire Multimedia System Socket.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Closed debconf communication socket.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Closed Sound System.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Closed REST API socket for snapd user session agent.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Closed Speech Dispatcher Socket.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Removed slice User Application Slice.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: app.slice: Consumed 8min 33.720s CPU time.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Reached target Shutdown.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Finished Exit the Session.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1517]: Reached target Exit the Session.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: user@1000.service: Deactivated successfully.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopped User Manager for UID 1000.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: user@1000.service: Consumed 8min 41.778s CPU time.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: run-user-1000.mount: Deactivated successfully.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Unmounted /run/user/1000.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Removed slice User Slice of UID 1000.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: user-1000.slice: Consumed 8min 46.469s CPU time.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: i960-doom.service: Deactivated successfully.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopped /usr/bin/python3 /home/mit/i960-key-fifo-20261018/bundle/project/game/doom/play/accele160/launch.py run --bundle /home/mit/i960-key-fifo-20261018/bundle --port 8087 --max-frames 0 --disconnect-seconds 300 --restart-cycles 0 --quit-game 0 --paired-frames 32 --keyboard-mode fifo.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: i960-doom.service: Consumed 6min 17.256s CPU time.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: systemd-random-seed.service: Deactivated successfully.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopped Load/Save Random Seed.
+Oct 18 18:49:07 mit-HP-Z400-Workstation gdm3[1006]: Gdm: Freeing conversation 'gdm-launch-environment' with active job
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: gdm.service: Deactivated successfully.
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopped GNOME Display Manager.
+Oct 18 18:49:07 mit-HP-Z400-Workstation fwupd[58182]: 16:49:07.977 FuMain               Received SIGTERM
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Stopping Firmware update daemon...
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Starting Show Plymouth Power Off Screen...
+Oct 18 18:49:07 mit-HP-Z400-Workstation systemd[1]: Received SIGRTMIN+20 from PID 478575 (plymouthd).
+Oct 18 18:49:08 mit-HP-Z400-Workstation systemd[1]: Started Show Plymouth Power Off Screen.
+Oct 18 18:49:08 mit-HP-Z400-Workstation systemd[1]: Condition check resulted in Tell Plymouth To Jump To initramfs being skipped.
+Oct 18 18:49:08 mit-HP-Z400-Workstation systemd[1]: fwupd.service: Deactivated successfully.
+Oct 18 18:49:08 mit-HP-Z400-Workstation systemd[1]: Stopped Firmware update daemon.
+Oct 18 18:49:08 mit-HP-Z400-Workstation systemd[1]: fwupd.service: Consumed 1.053s CPU time.
+Oct 18 18:49:08 mit-HP-Z400-Workstation systemd[1]: cups.service: Deactivated successfully.
+Oct 18 18:49:08 mit-HP-Z400-Workstation systemd[1]: Stopped CUPS Scheduler.
+Oct 18 18:49:10 mit-HP-Z400-Workstation snapd[851]: standby.go:121: standby monitoring stop requested
+Oct 18 18:49:10 mit-HP-Z400-Workstation snapd[851]: overlord.go:577: Released state lock file
+Oct 18 18:49:10 mit-HP-Z400-Workstation snapd[851]: seclog.go:122: security logger disabled
+Oct 18 18:49:10 mit-HP-Z400-Workstation systemd[1]: snapd.service: Deactivated successfully.
+Oct 18 18:49:10 mit-HP-Z400-Workstation systemd[1]: Stopped Snap Daemon.
+Oct 18 18:49:10 mit-HP-Z400-Workstation systemd[1]: snapd.service: Consumed 26.543s CPU time.
+Oct 18 18:49:10 mit-HP-Z400-Workstation systemd[1]: Stopped target System Time Set.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: session-c1.scope: Stopping timed out. Killing.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: session-c1.scope: Killing process 1110 (Xorg) with signal SIGKILL.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: session-c1.scope: Failed with result 'timeout'.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped Session c1 of User gdm.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: session-c1.scope: Consumed 8.589s CPU time.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopping User Login Management...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopping User Manager for UID 124...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped target Main User Target.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd-logind[870]: Removed session c1.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopping D-Bus User Message Bus...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopping PipeWire Media Session Manager...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopping flatpak document portal service...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopping sandboxed app permission store...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped D-Bus User Message Bus.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: xdg-permission-store.service: Main process exited, code=exited, status=1/FAILURE
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: xdg-permission-store.service: Failed with result 'exit-code'.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped sandboxed app permission store.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: run-user-124-doc.mount: Deactivated successfully.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Unmounted /run/user/124/doc.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped PipeWire Media Session Manager.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: xdg-document-portal.service: Main process exited, code=exited, status=20/n/a
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: xdg-document-portal.service: Failed with result 'exit-code'.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped flatpak document portal service.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopping PipeWire Multimedia Service...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped PipeWire Multimedia Service.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Removed slice User Core Session Slice.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped target Basic System.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped target Paths.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped Pending report trigger for Ubuntu Report.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped target Sockets.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Stopped target Timers.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed D-Bus User Message Bus Socket.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed GnuPG network certificate management daemon.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed GnuPG cryptographic agent and passphrase cache.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed PipeWire Multimedia System Socket.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed debconf communication socket.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed Sound System.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed REST API socket for snapd user session agent.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Closed Speech Dispatcher Socket.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Removed slice User Application Slice.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: app.slice: Consumed 1.443s CPU time.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Reached target Shutdown.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Finished Exit the Session.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1039]: Reached target Exit the Session.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: user@124.service: Deactivated successfully.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped User Manager for UID 124.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: user@124.service: Consumed 2.336s CPU time.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopping Userspace Out-Of-Memory (OOM) Killer...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopping User Runtime Directory /run/user/124...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: systemd-logind.service: Deactivated successfully.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped User Login Management.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: run-user-124.mount: Deactivated successfully.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Unmounted /run/user/124.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: user-runtime-dir@124.service: Deactivated successfully.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped User Runtime Directory /run/user/124.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Removed slice User Slice of UID 124.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: user-124.slice: Consumed 10.939s CPU time.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopping Permit User Sessions...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: systemd-oomd.service: Deactivated successfully.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped Userspace Out-Of-Memory (OOM) Killer.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: systemd-oomd.service: Consumed 4.626s CPU time.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: systemd-user-sessions.service: Deactivated successfully.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped Permit User Sessions.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped target Network.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped target User and Group Name Lookups.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped target Remote File Systems.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopping Network Manager...
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.3701] caught SIGTERM, shutting down normally.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopping Network Name Resolution...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopping WPA supplicant...
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: systemd-resolved.service: Deactivated successfully.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped Network Name Resolution.
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.3785] dhcp4 (enp1s0): canceled DHCP transaction
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.3786] dhcp4 (enp1s0): activation: beginning transaction (timeout in 45 seconds)
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.3786] dhcp4 (enp1s0): state changed no lease
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.3790] dhcp6 (enp1s0): canceled DHCP transaction
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.3790] dhcp6 (enp1s0): activation: beginning transaction (timeout in 45 seconds)
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.3790] dhcp6 (enp1s0): state changed no lease
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.3799] manager: NetworkManager state is now CONNECTED_SITE
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.3804] device (wlx000f55b19b78): state change: disconnected -> unmanaged (reason 'unmanaged', sys-iface-state: 'managed')
+Oct 18 18:50:37 mit-HP-Z400-Workstation dbus-daemon[825]: [system] Activating via systemd: service name='org.freedesktop.nm_dispatcher' unit='dbus-org.freedesktop.nm-dispatcher.service' requested by ':1.13' (uid=0 pid=826 comm="/usr/sbin/NetworkManager --no-daemon " label="unconfined")
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Requested transaction contradicts existing jobs: Transaction for NetworkManager-dispatcher.service/start is destructive (systemd-sysctl.service has 'stop' job queued, but 'start' is included in transaction).
+Oct 18 18:50:37 mit-HP-Z400-Workstation dbus-daemon[825]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Transaction for NetworkManager-dispatcher.service/start is destructive (systemd-sysctl.service has 'stop' job queued, but 'start' is included in transaction).
+Oct 18 18:50:37 mit-HP-Z400-Workstation wpa_supplicant[873]: wlx000f55b19b78: CTRL-EVENT-DSCP-POLICY clear_all
+Oct 18 18:50:37 mit-HP-Z400-Workstation dbus-daemon[825]: [system] Activating via systemd: service name='org.freedesktop.nm_dispatcher' unit='dbus-org.freedesktop.nm-dispatcher.service' requested by ':1.13' (uid=0 pid=826 comm="/usr/sbin/NetworkManager --no-daemon " label="unconfined")
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Requested transaction contradicts existing jobs: Transaction for NetworkManager-dispatcher.service/start is destructive (poweroff.target has 'start' job queued, but 'stop' is included in transaction).
+Oct 18 18:50:37 mit-HP-Z400-Workstation dbus-daemon[825]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Transaction for NetworkManager-dispatcher.service/start is destructive (poweroff.target has 'start' job queued, but 'stop' is included in transaction).
+Oct 18 18:50:37 mit-HP-Z400-Workstation wpa_supplicant[873]: wlx000f55b19b78: CTRL-EVENT-DSCP-POLICY clear_all
+Oct 18 18:50:37 mit-HP-Z400-Workstation wpa_supplicant[873]: nl80211: deinit ifname=wlx000f55b19b78 disabled_11b_rates=0
+Oct 18 18:50:37 mit-HP-Z400-Workstation wpa_supplicant[873]: wlx000f55b19b78: CTRL-EVENT-TERMINATING
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: wpa_supplicant.service: Deactivated successfully.
+Oct 18 18:50:37 mit-HP-Z400-Workstation systemd[1]: Stopped WPA supplicant.
+Oct 18 18:50:37 mit-HP-Z400-Workstation NetworkManager[826]: <info>  [1792342237.9884] exiting (success)
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: NetworkManager.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Network Manager.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: NetworkManager.service: Consumed 3.649s CPU time.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Basic System.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-ask-password-plymouth.path: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Forward Password Requests to Plymouth Directory Watch.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Preparation for Network.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Path Units.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: acpid.path: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped ACPI Events Check.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: cups.path: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped CUPS Scheduler.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: whoopsie.path: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Start whoopsie on modification of the /var/crash directory.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Slice Units.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Removed slice User and Session Slice.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: user.slice: Consumed 8min 57.409s CPU time.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Socket Units.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: acpid.socket: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Closed ACPID Listen Socket.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: avahi-daemon.socket: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Closed Avahi mDNS/DNS-SD Stack Activation Socket.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: cups.socket: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Closed CUPS Scheduler.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snapd.socket: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Closed Socket activation for snappy daemon.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: syslog.socket: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Closed Syslog Socket.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: uuidd.socket: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Closed UUID daemon activation socket.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target System Initialization.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Local Encrypted Volumes.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-ask-password-wall.path: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Forward Password Requests to Wall Directory Watch.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Local Verity Protected Volumes.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopping Set Up Additional Binary Formats...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-sysctl.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Apply Kernel Variables.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-modules-load.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Load Kernel Modules.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopping Network Time Synchronization...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopping Record System Boot/Shutdown in UTMP...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-timesyncd.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Network Time Synchronization.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-binfmt.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Set Up Additional Binary Formats.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: proc-sys-fs-binfmt_misc.automount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unset automount Arbitrary Executable File Formats File System Automount Point.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: proc-sys-fs-binfmt_misc.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-update-utmp.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Record System Boot/Shutdown in UTMP.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-tmpfiles-setup.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Create Volatile Files and Directories.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Local File Systems.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Mounted snaps.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting /run/credentials/systemd-sysusers.service...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Prepare /run/qemu to allow still running qemu binaries of former builds (after package upgrades) to fallback-load modules from there...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting /run/snapd/ns/snapd-desktop-integration.mnt...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for bare, revision 5...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core, revision 17200...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core, revision 17292...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core18, revision 2855...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core18, revision 3084...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core20, revision 2496...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core20, revision 2922...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core22, revision 1748...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core22, revision 2955...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core24, revision 2124...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for core24, revision 739...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for firefox, revision 5783...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for firefox, revision 9036...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gimp, revision 484...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gimp, revision 561...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gnome-3-28-1804, revision 198...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gnome-3-28-1804, revision 71...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gnome-3-38-2004, revision 143...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gnome-42-2204, revision 202...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gnome-42-2204, revision 263...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gnome-46-2404, revision 77...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gtk2-common-themes, revision 13...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gtk-common-themes, revision 1353...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for gtk-common-themes, revision 1535...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for kf6-core24, revision 64...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for mc-installer, revision 649...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for mc-installer, revision 651...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for mesa-2404, revision 1839...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for mesa-2404, revision 495...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for snapd, revision 23545...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for snapd, revision 28254...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for snapd-desktop-integration, revision 253...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for snapd-desktop-integration, revision 391...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for vlc, revision 3777...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting Mount unit for vlc, revision 4472...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: run-credentials-systemd\x2dsysusers.service.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted /run/credentials/systemd-sysusers.service.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: run-qemu.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Prepare /run/qemu to allow still running qemu binaries of former builds (after package upgrades) to fallback-load modules from there.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: run-snapd-ns-snapd\x2ddesktop\x2dintegration.mnt.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted /run/snapd/ns/snapd-desktop-integration.mnt.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-bare-5.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for bare, revision 5.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core-17200.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core, revision 17200.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core-17292.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core, revision 17292.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core18-2855.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core18, revision 2855.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core18-3084.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core18, revision 3084.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core20-2496.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core20, revision 2496.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core20-2922.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core20, revision 2922.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core22-1748.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core22, revision 1748.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core22-2955.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core22, revision 2955.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core24-2124.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core24, revision 2124.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-core24-739.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for core24, revision 739.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-firefox-5783.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for firefox, revision 5783.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-firefox-9036.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for firefox, revision 9036.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gimp-484.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gimp, revision 484.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gimp-561.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gimp, revision 561.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gnome\x2d3\x2d28\x2d1804-198.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gnome-3-28-1804, revision 198.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gnome\x2d3\x2d28\x2d1804-71.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gnome-3-28-1804, revision 71.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gnome\x2d3\x2d38\x2d2004-143.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gnome-3-38-2004, revision 143.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gnome\x2d42\x2d2204-202.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gnome-42-2204, revision 202.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gnome\x2d42\x2d2204-263.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gnome-42-2204, revision 263.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gnome\x2d46\x2d2404-77.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gnome-46-2404, revision 77.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gtk2\x2dcommon\x2dthemes-13.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gtk2-common-themes, revision 13.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gtk\x2dcommon\x2dthemes-1353.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gtk-common-themes, revision 1353.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-gtk\x2dcommon\x2dthemes-1535.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for gtk-common-themes, revision 1535.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-kf6\x2dcore24-64.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for kf6-core24, revision 64.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-mc\x2dinstaller-649.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for mc-installer, revision 649.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-mc\x2dinstaller-651.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for mc-installer, revision 651.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-mesa\x2d2404-1839.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for mesa-2404, revision 1839.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-mesa\x2d2404-495.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for mesa-2404, revision 495.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-snapd-23545.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for snapd, revision 23545.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-snapd-28254.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for snapd, revision 28254.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-snapd\x2ddesktop\x2dintegration-253.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for snapd-desktop-integration, revision 253.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-snapd\x2ddesktop\x2dintegration-391.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for snapd-desktop-integration, revision 391.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-vlc-3777.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for vlc, revision 3777.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: snap-vlc-4472.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted Mount unit for vlc, revision 4472.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Mounting snaps.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounting /run/snapd/ns...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: run-snapd-ns.mount: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Unmounted /run/snapd/ns.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Preparation for Local File Systems.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped target Swaps.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Deactivating swap /dev/disk/by-id/ata-ST1000DM003-1CH162_Z1D917FN-part5...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-tmpfiles-setup-dev.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Create Static Device Nodes in /dev.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-sysusers.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Create System Users.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-remount-fs.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Stopped Remount Root and Kernel File Systems.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Reached target System Shutdown.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: dev-disk-by\x2dpath-pci\x2d0000:00:1f.2\x2data\x2d2.0\x2dpart5.swap: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Deactivated swap /dev/disk/by-path/pci-0000:00:1f.2-ata-2.0-part5.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: dev-disk-by\x2dpartuuid-caf01007\x2d05.swap: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Deactivated swap /dev/disk/by-partuuid/caf01007-05.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: dev-disk-by\x2did-ata\x2dST1000DM003\x2d1CH162_Z1D917FN\x2dpart5.swap: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Deactivated swap /dev/disk/by-id/ata-ST1000DM003-1CH162_Z1D917FN-part5.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: dev-disk-by\x2did-wwn\x2d0x5000c50065cb148e\x2dpart5.swap: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Deactivated swap /dev/disk/by-id/wwn-0x5000c50065cb148e-part5.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: dev-disk-by\x2dpath-pci\x2d0000:00:1f.2\x2data\x2d2\x2dpart5.swap: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Deactivated swap /dev/disk/by-path/pci-0000:00:1f.2-ata-2-part5.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: dev-sda5.swap: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Deactivated swap /dev/sda5.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: dev-disk-by\x2duuid-4d372ea2\x2d7a21\x2d439d\x2db917\x2d083620adfcaf.swap: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Deactivated swap /dev/disk/by-uuid/4d372ea2-7a21-439d-b917-083620adfcaf.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Reached target Unmount All Filesystems.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Reached target Late Shutdown Services.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: systemd-poweroff.service: Deactivated successfully.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Finished System Power Off.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Reached target System Power Off.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd[1]: Shutting down.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd-shutdown[1]: Syncing filesystems and block devices.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd-shutdown[1]: Sending SIGTERM to remaining processes...
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd-journald[344]: Journal stopped

@@ -1,0 +1,34 @@
+Sun Oct 18 18:56:54 CEST 2026
+    PID STAT WCHAN                               %CPU COMMAND
+No jobs running.
+SESSION  UID USER SEAT TTY
+     19 1000 mit       
+      2 1000 mit       pts/0
+
+2 sessions listed.
+[Sun Oct 18 18:56:48 2026] WARNING: Flushing system-wide workqueues will be prohibited in near future.
+[Sun Oct 18 18:56:48 2026] CPU: 9 PID: 1171 Comm: Xorg Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+[Sun Oct 18 18:56:48 2026] Hardware name: Hewlett-Packard HP Z400 Workstation/0B4Ch, BIOS 786G3 v03.15 10/29/2010
+[Sun Oct 18 18:56:48 2026] Call Trace:
+[Sun Oct 18 18:56:48 2026]  <TASK>
+[Sun Oct 18 18:56:48 2026]  dump_stack_lvl+0x76/0xa0
+[Sun Oct 18 18:56:48 2026]  dump_stack+0x10/0x20
+[Sun Oct 18 18:56:48 2026]  __warn_flushing_systemwide_wq+0x1a/0x30
+[Sun Oct 18 18:56:48 2026]  os_flush_work_queue+0x59/0x80 [nvidia]
+[Sun Oct 18 18:56:48 2026]  rm_disable_adapter+0x52/0xd0 [nvidia]
+[Sun Oct 18 18:56:48 2026]  ? nv_shutdown_adapter+0x1c/0xb0 [nvidia]
+[Sun Oct 18 18:56:48 2026]  ? nv_close_device+0x138/0x230 [nvidia]
+[Sun Oct 18 18:56:48 2026]  ? nvidia_close+0xd1/0x410 [nvidia]
+[Sun Oct 18 18:56:48 2026]  ? nvidia_frontend_close+0x47/0x80 [nvidia]
+[Sun Oct 18 18:56:48 2026]  ? __fput+0xa3/0x2e0
+[Sun Oct 18 18:56:48 2026]  ? __fput_sync+0x1c/0x30
+[Sun Oct 18 18:56:48 2026]  ? __x64_sys_close+0x3e/0x90
+[Sun Oct 18 18:56:48 2026]  ? x64_sys_call+0x19ad/0x2480
+[Sun Oct 18 18:56:48 2026]  ? do_syscall_64+0x89/0x180
+[Sun Oct 18 18:56:48 2026]  ? arch_exit_to_user_mode_prepare.constprop.0+0x8d/0xe0
+[Sun Oct 18 18:56:48 2026]  ? irqentry_exit_to_user_mode+0x38/0x1e0
+[Sun Oct 18 18:56:48 2026]  ? irqentry_exit+0x43/0x50
+[Sun Oct 18 18:56:48 2026]  ? exc_page_fault+0x94/0x1b0
+[Sun Oct 18 18:56:48 2026]  ? entry_SYSCALL_64_after_hwframe+0x78/0x80
+[Sun Oct 18 18:56:48 2026]  </TASK>
+fwupd-pending

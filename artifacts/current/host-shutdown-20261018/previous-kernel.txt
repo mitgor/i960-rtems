@@ -1,0 +1,1562 @@
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Linux version 6.8.0-138-generic (buildd@lcy02-amd64-008) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC  (Ubuntu 6.8.0-138.138~22.04.1-generic 6.8.12)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Command line: BOOT_IMAGE=/boot/vmlinuz-6.8.0-138-generic root=UUID=9160544f-a439-4f43-8cdc-92441821adfb ro quiet splash vt.handoff=7
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: KERNEL supported cpus:
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Intel GenuineIntel
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   AMD AuthenticAMD
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Hygon HygonGenuine
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Centaur CentaurHauls
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   zhaoxin   Shanghai  
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-provided physical RAM map:
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-e820: [mem 0x0000000000000000-0x00000000000957ff] usable
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-e820: [mem 0x0000000000095800-0x000000000009ffff] reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-e820: [mem 0x00000000000e8000-0x00000000000fffff] reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-e820: [mem 0x0000000000100000-0x00000000defa57ff] usable
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-e820: [mem 0x00000000defa5800-0x00000000dfffffff] reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-e820: [mem 0x00000000f0000000-0x00000000f3ffffff] reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-e820: [mem 0x00000000fec00000-0x00000000fed3ffff] reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-e820: [mem 0x00000000fed45000-0x00000000ffffffff] reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: BIOS-e820: [mem 0x0000000100000000-0x000000061fffffff] usable
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NX (Execute Disable) protection: active
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: APIC: Static calls initialized
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: SMBIOS 2.6 present.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMI: Hewlett-Packard HP Z400 Workstation/0B4Ch, BIOS 786G3 v03.15 10/29/2010
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tsc: Fast TSC calibration using PIT
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tsc: Detected 3066.585 MHz processor
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: e820: update [mem 0x00000000-0x00000fff] usable ==> reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: e820: remove [mem 0x000a0000-0x000fffff] usable
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: last_pfn = 0x620000 max_arch_pfn = 0x400000000
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: MTRR map: 7 entries (5 fixed + 2 variable; max 25), built from 10 variable MTRRs
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: last_pfn = 0xdefa5 max_arch_pfn = 0x400000000
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: found SMP MP-table at [mem 0x000f9bf0-0x000f9bff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Using GB pages for direct mapping
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: RAMDISK: [mem 0x2e515000-0x33281fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Early table checksum verification disabled
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: RSDP 0x00000000000E9010 000024 (v02 HPQOEM)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: XSDT 0x00000000DEFB88E8 00006C (v01 HPQOEM SLIC-WKS 20101029      00000000)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: FACP 0x00000000DEFB8A88 0000F4 (v03 HPQOEM TYLSBURG 00000001      00000000)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI BIOS Warning (bug): 32/64X length mismatch in FADT/Pm1aEventBlock: 32/16 (20230628/tbfadt-564)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI BIOS Warning (bug): 32/64X length mismatch in FADT/Gpe0Block: 128/32 (20230628/tbfadt-564)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI BIOS Warning (bug): Invalid length for FADT/Pm1aEventBlock: 16, using default 32 (20230628/tbfadt-669)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: DSDT 0x00000000DEFB90A3 00A2BD (v01 COMPAQ DSDT_PRJ 00000001 MSFT 0100000E)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: FACS 0x00000000DEFB8800 000040
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: FACS 0x00000000DEFB8800 000040
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: APIC 0x00000000DEFB8B7C 000108 (v01 HPQOEM TYLSBURG 00000001      00000000)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: ASF! 0x00000000DEFB8C84 000063 (v32 HPQOEM TYLSBURG 00000001      00000000)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: MCFG 0x00000000DEFB8CE7 00003C (v01 HPQOEM TYLSBURG 00000001      00000000)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: TCPA 0x00000000DEFB8D23 000032 (v01 HPQOEM TYLSBURG 00000001      00000000)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: SLIC 0x00000000DEFB8D55 000176 (v01 HPQOEM SLIC-WKS 00000001      00000000)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: HPET 0x00000000DEFB8ECB 000038 (v01 HPQOEM TYLSBURG 00000001      00000000)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: DMAR 0x00000000DEFB8F03 000170 (v01 HPQOEM TYLSBURG 00000001      00000000)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: SSDT 0x00000000DEFC4A4F 003B10 (v01 INTEL  PPM RCM  80000001 INTL 20061109)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving FACP table memory at [mem 0xdefb8a88-0xdefb8b7b]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving DSDT table memory at [mem 0xdefb90a3-0xdefc335f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving FACS table memory at [mem 0xdefb8800-0xdefb883f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving FACS table memory at [mem 0xdefb8800-0xdefb883f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving APIC table memory at [mem 0xdefb8b7c-0xdefb8c83]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving ASF! table memory at [mem 0xdefb8c84-0xdefb8ce6]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving MCFG table memory at [mem 0xdefb8ce7-0xdefb8d22]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving TCPA table memory at [mem 0xdefb8d23-0xdefb8d54]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving SLIC table memory at [mem 0xdefb8d55-0xdefb8eca]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving HPET table memory at [mem 0xdefb8ecb-0xdefb8f02]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving DMAR table memory at [mem 0xdefb8f03-0xdefb9072]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Reserving SSDT table memory at [mem 0xdefc4a4f-0xdefc855e]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: No NUMA configuration found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Faking a node at [mem 0x0000000000000000-0x000000061fffffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NODE_DATA(0) allocated [mem 0x61ffd3000-0x61fffdfff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Zone ranges:
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   DMA32    [mem 0x0000000001000000-0x00000000ffffffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Normal   [mem 0x0000000100000000-0x000000061fffffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Device   empty
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Movable zone start for each node
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Early memory node ranges
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   node   0: [mem 0x0000000000001000-0x0000000000094fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   node   0: [mem 0x0000000000100000-0x00000000defa4fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   node   0: [mem 0x0000000100000000-0x000000061fffffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Initmem setup node 0 [mem 0x0000000000001000-0x000000061fffffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: On node 0, zone DMA: 1 pages in unavailable ranges
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: On node 0, zone DMA: 107 pages in unavailable ranges
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: On node 0, zone Normal: 4187 pages in unavailable ranges
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PM-Timer IO Port: 0xf808
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: LAPIC_NMI (acpi_id[0x01] high edge lint[0x1])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: LAPIC_NMI (acpi_id[0x02] high edge lint[0x1])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: LAPIC_NMI (acpi_id[0x03] high edge lint[0x1])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: LAPIC_NMI (acpi_id[0x04] high edge lint[0x1])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: LAPIC_NMI (acpi_id[0x05] high edge lint[0x1])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: LAPIC_NMI (acpi_id[0x06] high edge lint[0x1])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: LAPIC_NMI (acpi_id[0x07] high edge lint[0x1])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: LAPIC_NMI (acpi_id[0x08] high edge lint[0x1])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: IOAPIC[0]: apic_id 1, version 32, address 0xfec00000, GSI 0-23
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: IOAPIC[1]: apic_id 2, version 32, address 0xfec10000, GSI 24-47
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Using ACPI (MADT) for SMP configuration information
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: HPET id: 0x8086a301 base: 0xfed00000
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: smpboot: Allowing 12 CPUs, 0 hotplug CPUs
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PM: hibernation: Registered nosave memory: [mem 0x00095000-0x000fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PM: hibernation: Registered nosave memory: [mem 0xdefa5000-0xffffffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: [mem 0xe0000000-0xefffffff] available for PCI devices
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Booting paravirtualized kernel on bare hardware
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1910969940391419 ns
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: setup_percpu: NR_CPUS:8192 nr_cpumask_bits:12 nr_cpu_ids:12 nr_node_ids:1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: percpu: Embedded 86 pages/cpu s229376 r8192 d114688 u524288
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pcpu-alloc: s229376 r8192 d114688 u524288 alloc=1*2097152
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pcpu-alloc: [0] 00 01 02 03 [0] 04 05 06 07 
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pcpu-alloc: [0] 08 09 10 11 
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Kernel command line: BOOT_IMAGE=/boot/vmlinuz-6.8.0-138-generic root=UUID=9160544f-a439-4f43-8cdc-92441821adfb ro quiet splash vt.handoff=7
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Unknown kernel command line parameters "splash", will be passed to user space.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Dentry cache hash table entries: 4194304 (order: 13, 33554432 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Inode-cache hash table entries: 2097152 (order: 12, 16777216 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Fallback order for Node 0: 0 
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Built 1 zonelists, mobility grouping on.  Total pages: 6188774
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Policy zone: Normal
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: mem auto-init: stack:all(zero), heap alloc:on, heap free:off
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: software IO TLB: area num 16.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Memory: 24504100K/25148644K available (22528K kernel code, 4438K rwdata, 14008K rodata, 4928K init, 4784K bss, 644284K reserved, 0K cma-reserved)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=12, Nodes=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Kernel/User page tables isolation: enabled
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ftrace: allocating 58339 entries in 228 pages
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ftrace: allocated 228 pages with 4 groups
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Dynamic Preempt: voluntary
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rcu: Preemptible hierarchical RCU implementation.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rcu:         RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=12.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:         Trampoline variant of Tasks RCU enabled.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:         Rude variant of Tasks RCU enabled.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:         Tracing variant of Tasks RCU enabled.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rcu: RCU calculated value of scheduler-enlistment delay is 100 jiffies.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=12
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: RCU Tasks: Setting shift to 4 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=12.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: RCU Tasks Rude: Setting shift to 4 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=12.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: RCU Tasks Trace: Setting shift to 4 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=12.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NR_IRQS: 524544, nr_irqs: 928, preallocated irqs: 16
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rcu: srcu_init: Setting srcu_struct sizes based on contention.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Console: colour dummy device 80x25
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: printk: legacy console [tty0] enabled
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Core revision 20230628
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 133484882848 ns
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: APIC: Switch to symmetric I/O mode setup
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR-IR: This system BIOS has enabled interrupt remapping
+                                                on a chipset that contains an erratum making that
+                                                feature unstable.  To maintain system stability
+                                                interrupt remapping is being disabled.  Please
+                                                contact your BIOS vendor for an update
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x2c33f9cd868, max_idle_ns: 440795278789 ns
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Calibrating delay loop (skipped), value calculated using timer frequency.. 6133.17 BogoMIPS (lpj=3066585)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: CPU0: Thermal monitoring enabled (TM1)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: process: using mwait in idle threads
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Last level iTLB entries: 4KB 512, 2MB 7, 4MB 7
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Last level dTLB entries: 4KB 512, 2MB 32, 4MB 32, 1GB 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Spectre V2 : Mitigation: Retpolines
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Spectre V2 : Spectre v2 / SpectreRSB: Filling RSB on context switch and VMEXIT
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Spectre V2 : Enabling Restricted Speculation for firmware calls
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Spectre V2 : User space: Mitigation: STIBP via prctl
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: MDS: Vulnerable: Clear CPU buffers attempted, no microcode
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: MMIO Stale Data: Unknown: No mitigations
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: x86/fpu: x87 FPU will use FXSAVE
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Freeing SMP alternatives memory: 48K
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pid_max: default: 32768 minimum: 301
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: LSM: initializing lsm=lockdown,capability,landlock,yama,apparmor,integrity
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: landlock: Up and running.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Yama: becoming mindful.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: AppArmor: AppArmor initialized
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Mount-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Mountpoint-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: smpboot: CPU0: Intel(R) Xeon(R) CPU           X5675  @ 3.07GHz (family: 0x6, model: 0x2c, stepping: 0x2)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Performance Events: PEBS fmt1+, Westmere events, 16-deep LBR, Intel PMU driver.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: core: CPUID marked event: 'bus cycles' unavailable
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ... version:                3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ... bit width:              48
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ... generic registers:      4
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ... value mask:             0000ffffffffffff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ... max period:             000000007fffffff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ... fixed-purpose events:   3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ... event mask:             000000070000000f
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: signal: max sigframe size: 1440
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Estimated ratio of average max frequency by base frequency (times 1024): 1113
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rcu: Hierarchical SRCU implementation.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rcu:         Max phase no-delay instances is 400.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NMI watchdog: Enabled. Permanently consumes one hw-PMU counter.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: smp: Bringing up secondary CPUs ...
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: smpboot: x86: Booting SMP configuration:
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: .... node  #0, CPUs:        #1  #2  #3  #4  #5  #6  #7  #8  #9 #10 #11
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Transient Scheduler Attacks: MDS CPU bug present and SMT on, data leak possible. See https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html for more details.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: smp: Brought up 1 node, 12 CPUs
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: smpboot: Max logical packages: 1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: smpboot: Total of 12 processors activated (73598.04 BogoMIPS)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: devtmpfs: initialized
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: x86/mm: Memory block size: 128MB
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: futex hash table entries: 4096 (order: 6, 262144 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pinctrl core: initialized pinctrl subsystem
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PM: RTC time: 15:35:34, date: 2026-10-18
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NET: Registered PF_NETLINK/PF_ROUTE protocol family
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMA: preallocated 4096 KiB GFP_KERNEL pool for atomic allocations
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMA: preallocated 4096 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMA: preallocated 4096 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: audit: initializing netlink subsys (disabled)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: audit: type=2000 audit(1792337734.163:1): state=initialized audit_enabled=0 res=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: thermal_sys: Registered thermal governor 'fair_share'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: thermal_sys: Registered thermal governor 'bang_bang'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: thermal_sys: Registered thermal governor 'step_wise'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: thermal_sys: Registered thermal governor 'user_space'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: thermal_sys: Registered thermal governor 'power_allocator'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: cpuidle: using governor ladder
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: cpuidle: using governor menu
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI FADT declares the system doesn't support PCIe ASPM, so disable it
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI: ECAM [mem 0xf0000000-0xf3ffffff] (base 0xf0000000) for domain 0000 [bus 00-3f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI: ECAM [mem 0xf0000000-0xf3ffffff] reserved as E820 entry
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI: Using configuration type 1 for base access
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Added _OSI(Module Device)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Added _OSI(Processor Device)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Added _OSI(Processor Aggregator Device)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: 2 ACPI AML tables successfully acquired and loaded
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: _OSC evaluated successfully for all CPUs
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Interpreter enabled
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PM: (supports S0 S3 S4 S5)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Using IOAPIC for interrupt routing
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI: Using E820 reservations for host bridge windows
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: Enabled 10 GPEs in block 00 to 3F
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-3e])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpi PNP0A08:00: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI BIOS Error (bug): Failure creating named object [\_SB.PCI0._OSC.CAPD], AE_ALREADY_EXISTS (20230628/dsfield-184)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI Error: AE_ALREADY_EXISTS, CreateBufferField failure (20230628/dswload2-477)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: 
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: 
+                                                Initialized Local Variables for Method [_OSC]:
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Local0: (____ptrval____) <Obj>           Integer 0000000000000001
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Local1: (____ptrval____) <Obj>           Integer 0000000000000005
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: 
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Initialized Arguments for Method [_OSC]:  (4 arguments defined for method invocation)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Arg0:   (____ptrval____) <Obj>           Buffer(16) 5B 4D DB 33 F7 1F 1C 40
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Arg1:   (____ptrval____) <Obj>           Integer 0000000000000001
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Arg2:   (____ptrval____) <Obj>           Integer 0000000000000003
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   Arg3:   (____ptrval____) <Obj>           Buffer(12) 01 00 00 00 9F 01 00 00
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: 
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI Error: Aborting method \_SB.PCI0._OSC due to previous error (AE_ALREADY_EXISTS) (20230628/psparse-529)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpi PNP0A08:00: _OSC: OS requested [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpi PNP0A08:00: _OSC: platform willing to grant [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpi PNP0A08:00: _OSC: platform retains control of PCIe features (AE_ALREADY_EXISTS)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpi PNP0A08:00: host bridge window expanded to [io  0x0000-0x03af window]; [io  0x0000-0x03af window] ignored
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI host bridge to bus 0000:00
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: root bus resource [mem 0xe0000000-0xefffffff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: root bus resource [mem 0xf4000000-0xf5ffffff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: root bus resource [mem 0xfed00000-0xfed003ff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: root bus resource [mem 0xfed40000-0xfed44fff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: root bus resource [io  0x0d00-0xefff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: root bus resource [bus 00-3e]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:00.0: [8086:3405] type 00 class 0x060000 PCIe Root Port
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:00.0: enabling Extended Tags
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:00.0: PME# supported from D0 D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0: [8086:3408] type 01 class 0x060400 PCIe Root Port
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0: PCI bridge to [bus 03]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0:   bridge window [mem 0xed000000-0xed1fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0:   bridge window [mem 0xec000000-0xecffffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0: enabling Extended Tags
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0: PME# supported from D0 D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0: [8086:340a] type 01 class 0x060400 PCIe Root Port
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0: PCI bridge to [bus 0f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0:   bridge window [io  0xe000-0xefff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0:   bridge window [mem 0xea000000-0xeb0fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0:   bridge window [mem 0xe0000000-0xe9ffffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0: PME# supported from D0 D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:07.0: [8086:340e] type 01 class 0x060400 PCIe Root Port
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:07.0: PCI bridge to [bus 28]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:07.0: enabling Extended Tags
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:07.0: PME# supported from D0 D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:10.0: [8086:3425] type 00 class 0x080000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:10.1: [8086:3426] type 00 class 0x080000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:11.0: [8086:3427] type 00 class 0x080000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:11.1: [8086:3428] type 00 class 0x080000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:14.0: [8086:342e] type 00 class 0x080000 PCIe Root Complex Integrated Endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:14.1: [8086:3422] type 00 class 0x080000 PCIe Root Complex Integrated Endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:14.2: [8086:3423] type 00 class 0x080000 PCIe Root Complex Integrated Endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:15.0: [8086:342f] type 00 class 0x080020 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.0: [8086:3a37] type 00 class 0x0c0300 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.0: BAR 4 [io  0xd000-0xd01f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.1: [8086:3a38] type 00 class 0x0c0300 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.1: BAR 4 [io  0xd020-0xd03f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.2: [8086:3a39] type 00 class 0x0c0300 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.2: BAR 4 [io  0xd040-0xd05f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.7: [8086:3a3c] type 00 class 0x0c0320 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.7: BAR 0 [mem 0xef004800-0xef004bff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.7: PME# supported from D0 D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1b.0: [8086:3a3e] type 00 class 0x040300 PCIe Root Complex Integrated Endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1b.0: BAR 0 [mem 0xef000000-0xef003fff 64bit]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1b.0: PME# supported from D0 D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: [8086:3a40] type 01 class 0x060400 PCIe Root Port
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: PCI bridge to [bus 1c]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: PME# supported from D0 D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: [8086:3a4a] type 01 class 0x060400 PCIe Root Port
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: PCI bridge to [bus 01]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5:   bridge window [mem 0xee000000-0xee0fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: PME# supported from D0 D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.0: [8086:3a34] type 00 class 0x0c0300 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.0: BAR 4 [io  0xd060-0xd07f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.1: [8086:3a35] type 00 class 0x0c0300 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.1: BAR 4 [io  0xd080-0xd09f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.2: [8086:3a36] type 00 class 0x0c0300 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.2: BAR 4 [io  0xd0a0-0xd0bf]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.7: [8086:3a3a] type 00 class 0x0c0320 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.7: BAR 0 [mem 0xef004c00-0xef004fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.7: PME# supported from D0 D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0: [8086:244e] type 01 class 0x060401 conventional PCI bridge
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0: PCI bridge to [bus 37-38] (subtractive decode)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [mem 0xf5000000-0xf50fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [mem 0xf4000000-0xf40fffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.0: [8086:3a16] type 00 class 0x060100 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.0: bridge window [io  0xf800-0xf87f]: can't claim; no compatible bridge window
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.0: bridge window [io  0xfa00-0xfa3f]: can't claim; no compatible bridge window
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.0: ICH7 LPC Generic IO decode 1 PIO at 0400 (mask 007f)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.0: ICH7 LPC Generic IO decode 2 PIO at 0480 (mask 000f)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.0: ICH7 LPC Generic IO decode 3 PIO at 0cb0 (mask 000f)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.2: [8086:2822] type 00 class 0x010400 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.2: BAR 0 [io  0xd100-0xd107]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.2: BAR 1 [io  0xd110-0xd113]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.2: BAR 2 [io  0xd108-0xd10f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.2: BAR 3 [io  0xd114-0xd117]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.2: BAR 4 [io  0xd0c0-0xd0df]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.2: BAR 5 [mem 0xef004000-0xef0047ff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.2: PME# supported from D3hot
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:03:00.0: [1957:00b6] type 00 class 0x0b2000 PCIe Endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:03:00.0: BAR 0 [mem 0xed000000-0xed0fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:03:00.0: BAR 1 [mem 0xed100000-0xed10ffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:03:00.0: BAR 2 [mem 0xec000000-0xecffffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:03:00.0: BAR 4 [mem 0xed110000-0xed113fff 64bit]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:03:00.0: supports D1 D2
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:03:00.0: PME# supported from D0 D1 D2 D3hot
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0: PCI bridge to [bus 03]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: [10de:1048] type 00 class 0x030000 PCIe Endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: BAR 0 [mem 0xea000000-0xeaffffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: BAR 1 [mem 0xe0000000-0xe7ffffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: BAR 3 [mem 0xe8000000-0xe9ffffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: BAR 5 [io  0xe000-0xe07f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: ROM [mem 0x00000000-0x0007ffff pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.1: [10de:0e08] type 00 class 0x040300 PCIe Endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.1: BAR 0 [mem 0xeb000000-0xeb003fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.1: enabling Extended Tags
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0: ASPM: current common clock configuration is inconsistent, reconfiguring
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0: PCI bridge to [bus 0f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:07.0: PCI bridge to [bus 28]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: PCI bridge to [bus 1c]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:01:00.0: [14e4:1684] type 00 class 0x020000 PCIe Endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:01:00.0: BAR 0 [mem 0xee000000-0xee00ffff 64bit]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:01:00.0: enabling Extended Tags
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:01:00.0: PME# supported from D3hot D3cold
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: PCI bridge to [bus 01]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: extended config space not accessible
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:05.0: [11c1:5811] type 00 class 0x0c0010 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:05.0: BAR 0 [mem 0xf5000000-0xf5000fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:05.0: supports D1 D2
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:05.0: PME# supported from D0 D1 D2 D3hot
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.0: [8086:2962] type 01 class 0x060400 conventional PCI bridge
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.0: PCI bridge to [bus 38]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.1: [1069:0050] type 00 class 0x010400 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.1: BAR 0 [mem 0xf4000000-0xf4001fff pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.1: ROM [mem 0x00000000-0x00007fff pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0: PCI bridge to [bus 37-38] (subtractive decode)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [mem 0x000a0000-0x000bffff window] (subtractive decode)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [mem 0xe0000000-0xefffffff window] (subtractive decode)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [mem 0xf4000000-0xf5ffffff window] (subtractive decode)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [mem 0xfed00000-0xfed003ff window] (subtractive decode)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [mem 0xfed40000-0xfed44fff window] (subtractive decode)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [io  0x0000-0x0cf7 window] (subtractive decode)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [io  0x0d00-0xefff window] (subtractive decode)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:38: extended config space not accessible
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.0: PCI bridge to [bus 38]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI: Interrupt link LNKA configured for IRQ 5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI: Interrupt link LNKB configured for IRQ 7
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI: Interrupt link LNKC configured for IRQ 5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI: Interrupt link LNKD configured for IRQ 3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI: Interrupt link LNKE configured for IRQ 3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI: Interrupt link LNKF configured for IRQ 5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI: Interrupt link LNKG configured for IRQ 3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI: Interrupt link LNKH configured for IRQ 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI: Interrupt link LNKH disabled
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: PCI Root Bridge [NHL1] (domain 0000 [bus 3f])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpi PNP0A08:02: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpi PNP0A08:02: _OSC: OS requested [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpi PNP0A08:02: _OSC: platform willing to grant [PCIeHotplug SHPCHotplug PME AER PCIeCapability LTR DPC]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: acpi PNP0A08:02: _OSC: platform retains control of PCIe features (AE_NOT_FOUND)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI host bridge to bus 0000:3f
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:3f: root bus resource [bus 3f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:00.0: [8086:2c70] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:00.1: [8086:2d81] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.0: [8086:2d90] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.1: [8086:2d91] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.2: [8086:2d92] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.3: [8086:2d93] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.4: [8086:2d94] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.5: [8086:2d95] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:03.0: [8086:2d98] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:03.1: [8086:2d99] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:03.2: [8086:2d9a] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:03.4: [8086:2d9c] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:04.0: [8086:2da0] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:04.1: [8086:2da1] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:04.2: [8086:2da2] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:04.3: [8086:2da3] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:05.0: [8086:2da8] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:05.1: [8086:2da9] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:05.2: [8086:2daa] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:05.3: [8086:2dab] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:06.0: [8086:2db0] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:06.1: [8086:2db1] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:06.2: [8086:2db2] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:06.3: [8086:2db3] type 00 class 0x060000 conventional PCI endpoint
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: iommu: Default domain type: Translated
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: iommu: DMA domain TLB invalidation policy: lazy mode
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: SCSI subsystem initialized
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: libata version 3.00 loaded.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: bus type USB registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usbcore: registered new interface driver usbfs
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usbcore: registered new interface driver hub
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usbcore: registered new device driver usb
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pps_core: LinuxPPS API ver. 1 registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PTP clock support registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: EDAC MC: Ver: 3.0.0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NetLabel: Initializing
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NetLabel:  domain hash size = 128
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NetLabel:  unlabeled traffic allowed by default
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: mctp: management component transport protocol core
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NET: Registered PF_MCTP protocol family
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI: Using ACPI for IRQ routing
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI: pci_cache_line_size set to 64 bytes
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: e820: reserve RAM buffer [mem 0x00095800-0x0009ffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: e820: reserve RAM buffer [mem 0xdefa5800-0xdfffffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: vgaarb: setting as boot VGA device
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: vgaarb: bridge control possible
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: vgaarb: loaded
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0, 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hpet0: 4 comparators, 64-bit 14.318180 MHz counter
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: clocksource: Switched to clocksource tsc-early
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: VFS: Disk quotas dquot_6.6.0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: AppArmor: AppArmor Filesystem Enabled
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pnp: PnP ACPI init
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pnp 00:03: [dma 2]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0x0400-0x041f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0x0420-0x043f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0x0440-0x045f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0x0460-0x047f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0x0480-0x048f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0xf800-0xf81f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0xf820-0xf83f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0xf840-0xf85f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0xf860-0xf87f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0xfa00-0xfa3f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0xfc00-0xfc7f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0xfc80-0xfcff] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0xfe00-0xfe7f] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:05: [io  0xfe80-0xfeff] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:06: [io  0x04d0-0x04d1] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:06: [io  0x4700-0x470b] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pnp 00:07: disabling [mem 0x000da000-0x000e7fff] because it overlaps 0000:0f:00.0 BAR 6 [mem 0x000c0000-0x000dffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:07: [mem 0x00000000-0x0009ffff] could not be reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:07: [mem 0x00100000-0xdfffffff] could not be reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:07: [mem 0x000e8000-0x000fffff] could not be reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:07: [mem 0xfec01000-0xfecfffff] could not be reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:07: [mem 0xfed00000-0xfed3ffff] could not be reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:07: [mem 0xfed40000-0xffffffff] could not be reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: system 00:07: [mem 0xf0000000-0xf3ffffff] has been reserved
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pnp: PnP ACPI: found 8 devices
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NET: Registered PF_INET protocol family
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: IP idents hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tcp_listen_portaddr_hash hash table entries: 16384 (order: 6, 262144 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: TCP established hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: TCP bind hash table entries: 65536 (order: 9, 2097152 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: TCP: Hash tables configured (established 262144 bind 65536)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: MPTCP token hash table entries: 32768 (order: 8, 786432 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: UDP hash table entries: 16384 (order: 7, 524288 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: UDP-Lite hash table entries: 16384 (order: 7, 524288 bytes, linear)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NET: Registered PF_UNIX/PF_LOCAL protocol family
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NET: Registered PF_XDP protocol family
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: bridge window [io  0x1000-0x0fff] to [bus 1c] add_size 1000
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 1c] add_size 200000 add_align 100000
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: bridge window [mem 0x00100000-0x000fffff] to [bus 1c] add_size 200000 add_align 100000
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: bridge window [io  0x1000-0x0fff] to [bus 01] add_size 1000
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 01] add_size 200000 add_align 100000
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.0: BAR 13: [io  size 0x0080] has bogus alignment
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.0: BAR 14: [io  size 0x0040] has bogus alignment
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: bridge window [mem 0xeb100000-0xeb2fffff]: assigned
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: bridge window [mem 0xeb300000-0xeb4fffff 64bit pref]: assigned
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: bridge window [mem 0xeb500000-0xeb6fffff 64bit pref]: assigned
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: bridge window [io  0x1000-0x1fff]: assigned
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: bridge window [io  0x2000-0x2fff]: assigned
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0: PCI bridge to [bus 03]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0:   bridge window [mem 0xed000000-0xed1fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0:   bridge window [mem 0xec000000-0xecffffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0: PCI bridge to [bus 0f]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0:   bridge window [io  0xe000-0xefff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0:   bridge window [mem 0xea000000-0xeb0fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0:   bridge window [mem 0xe0000000-0xe9ffffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:07.0: PCI bridge to [bus 28]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: PCI bridge to [bus 1c]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0:   bridge window [io  0x1000-0x1fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0:   bridge window [mem 0xeb100000-0xeb2fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0:   bridge window [mem 0xeb300000-0xeb4fffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: PCI bridge to [bus 01]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5:   bridge window [io  0x2000-0x2fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5:   bridge window [mem 0xee000000-0xee0fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5:   bridge window [mem 0xeb500000-0xeb6fffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.1: ROM [mem 0xf5008000-0xf500ffff pref]: assigned
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.0: PCI bridge to [bus 38]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0: PCI bridge to [bus 37-38]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [mem 0xf5000000-0xf50fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0:   bridge window [mem 0xf4000000-0xf40fffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: resource 4 [mem 0x000a0000-0x000bffff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: resource 5 [mem 0xe0000000-0xefffffff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: resource 6 [mem 0xf4000000-0xf5ffffff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: resource 7 [mem 0xfed00000-0xfed003ff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: resource 8 [mem 0xfed40000-0xfed44fff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: resource 9 [io  0x0000-0x0cf7 window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:00: resource 10 [io  0x0d00-0xefff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:03: resource 1 [mem 0xed000000-0xed1fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:03: resource 2 [mem 0xec000000-0xecffffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:0f: resource 0 [io  0xe000-0xefff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:0f: resource 1 [mem 0xea000000-0xeb0fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:0f: resource 2 [mem 0xe0000000-0xe9ffffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:1c: resource 0 [io  0x1000-0x1fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:1c: resource 1 [mem 0xeb100000-0xeb2fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:1c: resource 2 [mem 0xeb300000-0xeb4fffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:01: resource 0 [io  0x2000-0x2fff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:01: resource 1 [mem 0xee000000-0xee0fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:01: resource 2 [mem 0xeb500000-0xeb6fffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: resource 1 [mem 0xf5000000-0xf50fffff]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: resource 2 [mem 0xf4000000-0xf40fffff 64bit pref]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: resource 4 [mem 0x000a0000-0x000bffff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: resource 5 [mem 0xe0000000-0xefffffff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: resource 6 [mem 0xf4000000-0xf5ffffff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: resource 7 [mem 0xfed00000-0xfed003ff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: resource 8 [mem 0xfed40000-0xfed44fff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: resource 9 [io  0x0000-0x0cf7 window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci_bus 0000:37: resource 10 [io  0x0d00-0xefff window]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.1: extending delay after power-on from D3hot to 20 msec
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.1: D0 power state depends on 0000:0f:00.0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI: CLS 64 bytes, default 64
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: Host address width 39
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: DRHD base: 0x000000fed90000 flags: 0x1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: dmar0: reg_base_addr fed90000 ver 1:0 cap c90780106f0462 ecap f02076
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: RMRR base: 0x000000defd0000 end: 0x000000defd0fff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: RMRR base: 0x000000defd1000 end: 0x000000defd1fff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: RMRR base: 0x000000defd2000 end: 0x000000defd2fff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: RMRR base: 0x000000defd3000 end: 0x000000defd3fff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: RMRR base: 0x000000defd4000 end: 0x000000defd4fff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: RMRR base: 0x000000defd5000 end: 0x000000defd5fff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: RMRR base: 0x000000defd6000 end: 0x000000defd6fff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: RMRR base: 0x000000defd7000 end: 0x000000defd7fff
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: ATSR flags: 0x0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: No SATC found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: dmar0: Using Queued invalidation
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Trying to unpack rootfs image as initramfs...
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:00.0: Adding to iommu group 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:01.0: Adding to iommu group 1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:03.0: Adding to iommu group 2
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:07.0: Adding to iommu group 3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:10.0: Adding to iommu group 4
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:10.1: Adding to iommu group 4
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:11.0: Adding to iommu group 5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:11.1: Adding to iommu group 5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:14.0: Adding to iommu group 6
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:14.1: Adding to iommu group 7
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:14.2: Adding to iommu group 8
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:15.0: Adding to iommu group 9
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.0: Adding to iommu group 10
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.1: Adding to iommu group 10
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.2: Adding to iommu group 10
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1a.7: Adding to iommu group 10
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1b.0: Adding to iommu group 11
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.0: Adding to iommu group 12
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1c.5: Adding to iommu group 12
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.0: Adding to iommu group 13
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.1: Adding to iommu group 13
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.2: Adding to iommu group 13
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1d.7: Adding to iommu group 13
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1e.0: Adding to iommu group 14
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.0: Adding to iommu group 15
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:00:1f.2: Adding to iommu group 15
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:03:00.0: Adding to iommu group 16
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.0: Adding to iommu group 17
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:0f:00.1: Adding to iommu group 17
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:01:00.0: Adding to iommu group 12
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:05.0: Adding to iommu group 14
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.0: Adding to iommu group 14
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:37:09.1: Adding to iommu group 14
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:00.0: Adding to iommu group 18
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:00.1: Adding to iommu group 18
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.0: Adding to iommu group 19
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.1: Adding to iommu group 19
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.2: Adding to iommu group 19
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.3: Adding to iommu group 19
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.4: Adding to iommu group 19
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:02.5: Adding to iommu group 19
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:03.0: Adding to iommu group 20
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:03.1: Adding to iommu group 20
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:03.2: Adding to iommu group 20
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:03.4: Adding to iommu group 20
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:04.0: Adding to iommu group 21
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:04.1: Adding to iommu group 21
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:04.2: Adding to iommu group 21
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:04.3: Adding to iommu group 21
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:05.0: Adding to iommu group 22
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:05.1: Adding to iommu group 22
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:05.2: Adding to iommu group 22
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:05.3: Adding to iommu group 22
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:06.0: Adding to iommu group 23
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:06.1: Adding to iommu group 23
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:06.2: Adding to iommu group 23
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: pci 0000:3f:06.3: Adding to iommu group 23
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: DMAR: Intel(R) Virtualization Technology for Directed I/O
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: software IO TLB: mapped [mem 0x00000000dafa5000-0x00000000defa5000] (64MB)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Initialise system trusted keyrings
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Key type blacklist registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: workingset: timestamp_bits=36 max_order=23 bucket_order=0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: zbud: loaded
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: squashfs: version 4.0 (2009/01/31) Phillip Lougher
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: fuse: init (API version 7.39)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: integrity: Platform Keyring initialized
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: integrity: Machine keyring initialized
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Key type asymmetric registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Asymmetric key parser 'x509' registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Block layer SCSI generic (bsg) driver version 0.4 loaded (major 243)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: io scheduler mq-deadline registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Monitor-Mwait will be used to enter C-1 state
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Monitor-Mwait will be used to enter C-2 state
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Monitor-Mwait will be used to enter C-3 state
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: \_PR_.CPU0: Found 3 idle states
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: input: Power Button as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: button: Power Button [PBTN]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: button: Power Button [PWRF]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Linux agpgart interface v0.103
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: loop: module loaded
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ACPI: bus type drm_connector registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tun: Universal TUN/TAP device driver, 1.6
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PPP generic driver version 2.4.2
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.0: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.0: new USB bus registered, assigned bus number 1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.0: detected 2 ports
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.0: irq 20, io port 0x0000d000
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb1: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb1: Product: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb1: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb1: SerialNumber: 0000:00:1a.0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 1-0:1.0: USB hub found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 1-0:1.0: 2 ports detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1d.7: EHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1d.7: new USB bus registered, assigned bus number 2
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1d.7: debug port 1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1d.7: irq 20, io mem 0xef004c00
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1d.7: USB 2.0 started, EHCI 1.00
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb2: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.08
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb2: Product: EHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb2: Manufacturer: Linux 6.8.0-138-generic ehci_hcd
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb2: SerialNumber: 0000:00:1d.7
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 2-0:1.0: USB hub found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 2-0:1.0: 6 ports detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1a.7: EHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1a.7: new USB bus registered, assigned bus number 3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1a.7: debug port 1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1a.7: irq 22, io mem 0xef004800
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ehci-pci 0000:00:1a.7: USB 2.0 started, EHCI 1.00
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb3: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.08
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb3: Product: EHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb3: Manufacturer: Linux 6.8.0-138-generic ehci_hcd
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb3: SerialNumber: 0000:00:1a.7
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 3-0:1.0: USB hub found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 3-0:1.0: 6 ports detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 1-0:1.0: USB hub found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 1-0:1.0: 2 ports detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.1: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.1: new USB bus registered, assigned bus number 4
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.1: detected 2 ports
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.1: irq 21, io port 0x0000d020
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb4: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb4: Product: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb4: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb4: SerialNumber: 0000:00:1a.1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 4-0:1.0: USB hub found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 4-0:1.0: 2 ports detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.2: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.2: new USB bus registered, assigned bus number 5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.2: detected 2 ports
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1a.2: irq 22, io port 0x0000d040
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb5: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb5: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb5: Product: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb5: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb5: SerialNumber: 0000:00:1a.2
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 5-0:1.0: USB hub found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 5-0:1.0: 2 ports detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.0: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.0: new USB bus registered, assigned bus number 6
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.0: detected 2 ports
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.0: irq 20, io port 0x0000d060
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb6: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb6: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb6: Product: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb6: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb6: SerialNumber: 0000:00:1d.0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 6-0:1.0: USB hub found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 6-0:1.0: 2 ports detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.1: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.1: new USB bus registered, assigned bus number 7
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.1: detected 2 ports
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.1: irq 21, io port 0x0000d080
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb7: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb7: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb7: Product: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb7: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb7: SerialNumber: 0000:00:1d.1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 7-0:1.0: USB hub found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 7-0:1.0: 2 ports detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.2: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.2: new USB bus registered, assigned bus number 8
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.2: detected 2 ports
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: uhci_hcd 0000:00:1d.2: irq 22, io port 0x0000d0a0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb8: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.08
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb8: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb8: Product: UHCI Host Controller
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb8: Manufacturer: Linux 6.8.0-138-generic uhci_hcd
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb usb8: SerialNumber: 0000:00:1d.2
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 8-0:1.0: USB hub found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hub 8-0:1.0: 2 ports detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f0e:PS2M] at 0x60,0x64 irq 1,12
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: serio: i8042 KBD port at 0x60,0x64 irq 1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: serio: i8042 AUX port at 0x60,0x64 irq 12
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: mousedev: PS/2 mouse device common for all mice
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rtc_cmos 00:00: RTC can wake from S4
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rtc_cmos 00:00: registered as rtc0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rtc_cmos 00:00: setting system clock to 2026-10-18T15:35:34 UTC (1792337734)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: rtc_cmos 00:00: alarms up to one month, y3k, 114 bytes nvram, hpet irqs
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: i2c_dev: i2c /dev entries driver
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: device-mapper: uevent: version 1.0.3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: device-mapper: ioctl: 4.48.0-ioctl (2023-03-01) initialised: dm-devel@redhat.com
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: intel_pstate: CPU model not supported
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ledtrig-cpu: registered to indicate activity on CPUs
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Relocating firmware framebuffer to offset 0x0000000001000000[d] within [mem 0xe8000000-0xe9ffffff flags 0x14220c]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: [drm] Initialized simpledrm 1.0.0 20200625 for simple-framebuffer.0 on minor 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: fbcon: Deferring console take-over
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: simple-framebuffer simple-framebuffer.0: [drm] fb0: simpledrmdrmfb frame buffer device
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: drop_monitor: Initializing network drop monitor service
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NET: Registered PF_INET6 protocol family
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input2
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-1: new high-speed USB device number 2 using ehci-pci
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-1: New USB device found, idVendor=a69c, idProduct=5721, bcdDevice= 2.00
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-1: Product: Aic MSC
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-1: Manufacturer: aicsemi
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-1: SerialNumber: 20200203
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Freeing initrd memory: 79284K
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Segment Routing with IPv6
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: In-situ OAM (IOAM) with IPv6
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: NET: Registered PF_PACKET protocol family
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Key type dns_resolver registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ENERGY_PERF_BIAS: Set to 'normal', was 'performance'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: microcode: Current revision: 0x0000001f
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: microcode: Updated early from: 0x00000013
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: IPI shorthand broadcast: enabled
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sched_clock: Marking stable (1013749407, 666058)->(1042145159, -27729694)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: registered taskstats version 1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loading compiled-in X.509 certificates
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Build time autogenerated kernel key: 03c33e7a3eb9f1bb240db7665813fa030f4400ba'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Live Patch Signing 2025 Kmod: d541cef61dc7e793b7eb7e899970a2eef0b5dc8c'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Live Patch Signing: 14df34d1a87cf37625abec039ef2bf521249b969'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing 2025 Kmod: 4627603d2357a2a3f81006370894c221175893e9'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing: 88f752e560a1e0737e31163a466ad7b70a850c19'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: blacklist: Loading compiled-in revocation X.509 certificates
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing: 61482aa2830d0ab2ad5af10b7250da9033ddcef0'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2017): 242ade75ac4a15e50d50c84b0d45ff3eae707a03'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (ESM 2018): 365188c1d374d6b07c3c8f240f8ef722433d6a8b'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2019): c0746fd6c5da3ae827864651ad66ae47fe24b3e8'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v1): a8d54bbb3825cfb94fa13c9f8a594a195c107b8d'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v2): 4cf046892d6fd3c9a5b03f98d845f90851dc6a8c'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v3): 100437bb6de6e469b581e61cd66bce3ef4ed53af'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (Ubuntu Core 2019): c1d57b8f6b743f23ee41f4f7ee292f06eecadfb9'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Key type .fscrypt registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Key type fscrypt-provisioning registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Key type encrypted registered
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: AppArmor: AppArmor sha256 policy hashing enabled
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ima: No TPM chip found, activating TPM-bypass!
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loading compiled-in module X.509 certificates
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'Build time autogenerated kernel key: 03c33e7a3eb9f1bb240db7665813fa030f4400ba'
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ima: Allocated hash algorithm: sha256
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ima: No architecture policies found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: Initialising EVM extended attributes:
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: security.selinux
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: security.SMACK64
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: security.SMACK64EXEC
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: security.SMACK64TRANSMUTE
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: security.SMACK64MMAP
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: security.apparmor
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: security.ima
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: security.capability
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: evm: HMAC attrs: 0x1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: PM:   Magic number: 14:996:588
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: RAS: Correctable Errors collector initialized.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: clk: Disabling unused clocks
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Freeing unused decrypted memory: 2028K
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Freeing unused kernel image (initmem) memory: 4928K
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Write protecting the kernel read-only data: 36864k
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Freeing unused kernel image (rodata/data gap) memory: 328K
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: x86/mm: Checked W+X mappings: passed, no W+X pages found.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: x86/mm: Checking user space page tables
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: x86/mm: Checked W+X mappings: passed, no W+X pages found.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Run /init as init process
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   with arguments:
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:     /init
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:     splash
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:   with environment:
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:     HOME=/
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:     TERM=linux
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 7-1: new full-speed USB device number 2 using uhci_hcd
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: FDC 0 is a post-1991 82077
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ahci 0000:00:1f.2: version 3.0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ahci 0000:00:1f.2: controller can't do SNTF, turning off CAP_SNTF
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ahci 0000:00:1f.2: AHCI 0001.0200 32 slots 6 ports 3 Gbps 0x3f impl RAID mode
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ahci 0000:00:1f.2: flags: 64bit ncq pm led clo pmp pio slum part ccc sxs 
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi host0: ahci
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi host1: ahci
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi host2: ahci
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi host3: ahci
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi host4: ahci
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi host5: ahci
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata1: SATA max UDMA/133 abar m2048@0xef004000 port 0xef004100 irq 28 lpm-pol 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata2: SATA max UDMA/133 abar m2048@0xef004000 port 0xef004180 irq 28 lpm-pol 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata3: SATA max UDMA/133 abar m2048@0xef004000 port 0xef004200 irq 28 lpm-pol 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata4: SATA max UDMA/133 abar m2048@0xef004000 port 0xef004280 irq 28 lpm-pol 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata5: SATA max UDMA/133 abar m2048@0xef004000 port 0xef004300 irq 28 lpm-pol 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata6: SATA max UDMA/133 abar m2048@0xef004000 port 0xef004380 irq 28 lpm-pol 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tg3 0000:01:00.0 eth0: Tigon3 [partno(BCM95754) rev 5784100] (PCI Express) MAC address 64:31:50:2f:77:13
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tg3 0000:01:00.0 eth0: attached PHY is 5784 (10/100/1000Base-T Ethernet) (WireSpeed[1], EEE[0])
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tg3 0000:01:00.0 eth0: RXcsums[1] LinkChgREG[0] MIirq[0] ASF[0] TSOcap[1]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tg3 0000:01:00.0 eth0: dma_rwctrl[76180000] dma_mask[64-bit]
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: gpio_ich gpio_ich.2.auto: GPIO from 512 to 572
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: firewire_ohci 0000:37:05.0: added OHCI v1.0 device as card 0, 8 IR + 8 IT contexts, quirks 0x0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 7-1: New USB device found, idVendor=046d, idProduct=c548, bcdDevice= 5.03
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 7-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 7-1: Product: USB Receiver
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 7-1: Manufacturer: Logitech
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hid: raw HID events driver (C) Jiri Kosina
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tsc: Refined TSC clocksource calibration: 3066.666 MHz
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x2c34469b3ec, max_idle_ns: 440795286947 ns
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: clocksource: Switched to clocksource tsc
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata6: SATA link down (SStatus 0 SControl 300)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata5: SATA link down (SStatus 0 SControl 300)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata4: SATA link down (SStatus 0 SControl 300)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata3: SATA link down (SStatus 0 SControl 300)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata2: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata2.00: ATA-9: ST1000DM003-1CH162, CC47, max UDMA/133
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata2.00: 1953525168 sectors, multi 0: LBA48 NCQ (depth 32), AA
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata2.00: configured for UDMA/133
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata1.00: ATAPI: hp      DVD-RAM GH60L, RD01, max UDMA/100
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: ata1.00: configured for UDMA/100
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi 0:0:0:0: CD-ROM            hp       DVD-RAM GH60L    RD01 PQ: 0 ANSI: 5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sr 0:0:0:0: [sr0] scsi3-mmc drive: 40x/40x writer dvd-ram cd/rw xa/form2 cdda tray
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: cdrom: Uniform CD-ROM driver Revision: 3.20
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sr 0:0:0:0: Attached scsi CD-ROM sr0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sr 0:0:0:0: Attached scsi generic sg0 type 5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi 1:0:0:0: Direct-Access     ATA      ST1000DM003-1CH1 CC47 PQ: 0 ANSI: 5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 1:0:0:0: Attached scsi generic sg1 type 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 1:0:0:0: [sda] 1953525168 512-byte logical blocks: (1.00 TB/932 GiB)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 1:0:0:0: [sda] 4096-byte physical blocks
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 1:0:0:0: [sda] Write Protect is off
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 1:0:0:0: [sda] Mode Sense: 00 3a 00 00
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 1:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 1:0:0:0: [sda] Preferred minimum I/O size 4096 bytes
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: firewire_core 0000:37:05.0: created device fw0: GUID 0060b000007778f7, S400
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:  sda: sda1 sda2 < sda5 sda6 >
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 1:0:0:0: [sda] Attached SCSI disk
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usbcore: registered new interface driver usbhid
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usbhid: USB HID core driver
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: input: Logitech USB Receiver as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.0/0003:046D:C548.0001/input/input5
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: tg3 0000:01:00.0 enp1s0: renamed from eth0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-5: new high-speed USB device number 4 using ehci-pci
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hid-generic 0003:046D:C548.0001: input,hidraw0: USB HID v1.11 Keyboard [Logitech USB Receiver] on usb-0000:00:1d.1-1/input0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: input: Logitech USB Receiver Mouse as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.1/0003:046D:C548.0002/input/input6
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: input: Logitech USB Receiver Consumer Control as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.1/0003:046D:C548.0002/input/input7
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: input: Logitech USB Receiver System Control as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.1/0003:046D:C548.0002/input/input8
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: input: Logitech USB Receiver as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.1/0003:046D:C548.0002/input/input9
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hid-generic 0003:046D:C548.0002: input,hiddev0,hidraw1: USB HID v1.11 Mouse [Logitech USB Receiver] on usb-0000:00:1d.1-1/input1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hid-generic 0003:046D:C548.0003: hiddev1,hidraw2: USB HID v1.11 Device [Logitech USB Receiver] on usb-0000:00:1d.1-1/input2
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: input: Logitech USB Receiver as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.3/0003:046D:C548.0004/input/input10
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: hid-generic 0003:046D:C548.0004: input,hidraw3: USB HID v1.11 Device [Logitech USB Receiver] on usb-0000:00:1d.1-1/input3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-5: New USB device found, idVendor=148f, idProduct=5370, bcdDevice= 1.01
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-5: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-5: Product: 802.11 n WLAN
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-5: Manufacturer: Ralink
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb 2-5: SerialNumber: 1.0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usb-storage 2-1:1.0: USB Mass Storage device detected
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi host6: usb-storage 2-1:1.0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usbcore: registered new interface driver usb-storage
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: usbcore: registered new interface driver uas
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: fbcon: Taking over console
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: Console: switching to colour frame buffer device 80x30
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: scsi 6:0:0:0: Direct-Access     AIC      flash            1.0  PQ: 0 ANSI: 4
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 6:0:0:0: Attached scsi generic sg2 type 0
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 6:0:0:0: [sdb] 15840 512-byte logical blocks: (8.11 MB/7.73 MiB)
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 6:0:0:0: [sdb] Write Protect is off
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 6:0:0:0: [sdb] Mode Sense: 03 00 00 00
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 6:0:0:0: [sdb] No Caching mode page found
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 6:0:0:0: [sdb] Assuming drive cache: write through
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel:  sdb: sdb1
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: sd 6:0:0:0: [sdb] Attached SCSI removable disk
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: EXT4-fs (sda6): mounted filesystem 9160544f-a439-4f43-8cdc-92441821adfb ro with ordered data mode. Quota mode: none.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: random: crng init done
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Inserted module 'autofs4'
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: systemd 249.11-0ubuntu3.23 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY -P11KIT -QRENCODE +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Detected architecture x86-64.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Hostname set to <mit-HP-Z400-Workstation>.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Queued start job for default target Graphical Interface.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Created slice Slice /system/modprobe.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Created slice User and Session Slice.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Reached target Remote File Systems.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Reached target Slice Units.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Reached target Mounting snaps.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Reached target Local Verity Protected Volumes.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Listening on Syslog Socket.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Listening on fsck to fsckd communication Socket.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Listening on initctl Compatibility Named Pipe.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Listening on Journal Audit Socket.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Listening on Journal Socket (/dev/log).
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Listening on Journal Socket.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Listening on udev Control Socket.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Listening on udev Kernel Socket.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounting Huge Pages File System...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounting POSIX Message Queue File System...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounting Kernel Debug File System...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounting Kernel Trace File System...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Journal Service...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Set the console keyboard layout...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Create List of Static Device Nodes...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Load Kernel Module configfs...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Load Kernel Module drm...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Load Kernel Module efi_pstore...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Load Kernel Module fuse...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Condition check resulted in File System Check on Root Device being skipped.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Load Kernel Modules...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Remount Root and Kernel File Systems...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Coldplug All udev Devices...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounted Huge Pages File System.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounted POSIX Message Queue File System.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounted Kernel Debug File System.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounted Kernel Trace File System.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Finished Create List of Static Device Nodes.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: modprobe@configfs.service: Deactivated successfully.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Finished Load Kernel Module configfs.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: modprobe@drm.service: Deactivated successfully.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Finished Load Kernel Module drm.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: modprobe@fuse.service: Deactivated successfully.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Finished Load Kernel Module fuse.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounting FUSE Control File System...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounting Kernel Configuration File System...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounted FUSE Control File System.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Mounted Kernel Configuration File System.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Finished Load Kernel Module efi_pstore.
+Oct 18 17:35:41 mit-HP-Z400-Workstation kernel: EXT4-fs (sda6): re-mounted 9160544f-a439-4f43-8cdc-92441821adfb r/w.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Finished Remount Root and Kernel File Systems.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Condition check resulted in Platform Persistent Storage Archival being skipped.
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Load/Save Random Seed...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Starting Create System Users...
+Oct 18 17:35:41 mit-HP-Z400-Workstation systemd[1]: Started Journal Service.
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: lp: driver loaded but no devices found
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: ppdev: user-space parallel port driver
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop0: detected capacity change from 0 to 8
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop1: detected capacity change from 0 to 213384
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop2: detected capacity change from 0 to 215440
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop3: detected capacity change from 0 to 113384
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop4: detected capacity change from 0 to 113672
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop5: detected capacity change from 0 to 130552
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop6: detected capacity change from 0 to 130632
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop7: detected capacity change from 0 to 151328
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop8: detected capacity change from 0 to 151512
+Oct 18 17:35:49 mit-HP-Z400-Workstation kernel: loop9: detected capacity change from 0 to 136784
+Oct 18 17:35:50 mit-HP-Z400-Workstation kernel: EDAC MC0: Giving out device to module i7core_edac.c controller i7 core #0: DEV 0000:3f:03.0 (INTERRUPT)
+Oct 18 17:35:50 mit-HP-Z400-Workstation kernel: EDAC PCI0: Giving out device to module i7core_edac controller EDAC PCI controller: DEV 0000:3f:03.0 (POLLED)
+Oct 18 17:35:50 mit-HP-Z400-Workstation kernel: EDAC i7core: Driver loaded, 1 memory controller(s) found.
+Oct 18 17:35:50 mit-HP-Z400-Workstation kernel: cryptd: max_cpu_qlen set to 1000
+Oct 18 17:35:50 mit-HP-Z400-Workstation kernel: SSE version of gcm_enc/dec engaged.
+Oct 18 17:35:50 mit-HP-Z400-Workstation kernel: IPMI message handler: version 39.2
+Oct 18 17:35:50 mit-HP-Z400-Workstation kernel: snd_hda_intel 0000:0f:00.1: Disabling MSI
+Oct 18 17:35:50 mit-HP-Z400-Workstation kernel: snd_hda_intel 0000:0f:00.1: Handle vga_switcheroo audio client
+Oct 18 17:35:50 mit-HP-Z400-Workstation kernel: ipmi device interface
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: input: HDA NVidia HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:03.0/0000:0f:00.1/sound/card1/input11
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: input: HDA NVidia HDMI/DP,pcm=7 as /devices/pci0000:00/0000:00:03.0/0000:0f:00.1/sound/card1/input12
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: hp_bioscfg: Unable to set BIOS settings on HP systems
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: snd_hda_codec_realtek hdaudioC0D0: ALC262: SKU not ready 0x411111f0
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: snd_hda_codec_realtek hdaudioC0D0: autoconfig for ALC262: line_outs=1 (0x15/0x0/0x0/0x0/0x0) type:line
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: snd_hda_codec_realtek hdaudioC0D0:    speaker_outs=1 (0x16/0x0/0x0/0x0/0x0)
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: snd_hda_codec_realtek hdaudioC0D0:    hp_outs=1 (0x1b/0x0/0x0/0x0/0x0)
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: snd_hda_codec_realtek hdaudioC0D0:    mono: mono_out=0x0
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: snd_hda_codec_realtek hdaudioC0D0:    inputs:
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: snd_hda_codec_realtek hdaudioC0D0:      Rear Mic=0x18
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: snd_hda_codec_realtek hdaudioC0D0:      Front Mic=0x19
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: snd_hda_codec_realtek hdaudioC0D0:      Line=0x1a
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: input: HDA Intel Rear Mic as /devices/pci0000:00/0000:00:1b.0/sound/card0/input14
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: input: HDA Intel Front Mic as /devices/pci0000:00/0000:00:1b.0/sound/card0/input15
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: input: HDA Intel Line as /devices/pci0000:00/0000:00:1b.0/sound/card0/input16
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: input: HDA Intel Line Out as /devices/pci0000:00/0000:00:1b.0/sound/card0/input17
+Oct 18 17:35:51 mit-HP-Z400-Workstation kernel: input: HDA Intel Front Headphone as /devices/pci0000:00/0000:00:1b.0/sound/card0/input18
+Oct 18 17:35:52 mit-HP-Z400-Workstation kernel: nvidia: loading out-of-tree module taints kernel.
+Oct 18 17:35:52 mit-HP-Z400-Workstation kernel: nvidia: module license 'NVIDIA' taints kernel.
+Oct 18 17:35:52 mit-HP-Z400-Workstation kernel: Disabling lock debugging due to kernel taint
+Oct 18 17:35:52 mit-HP-Z400-Workstation kernel: nvidia: module verification failed: signature and/or required key missing - tainting kernel
+Oct 18 17:35:52 mit-HP-Z400-Workstation kernel: nvidia: module license taints kernel.
+Oct 18 17:35:52 mit-HP-Z400-Workstation kernel: ------------[ cut here ]------------
+Oct 18 17:35:52 mit-HP-Z400-Workstation kernel: WARNING: CPU: 10 PID: 453 at arch/x86/kernel/alternative.c:830 patch_retpoline+0x1f8/0x240
+Oct 18 17:35:52 mit-HP-Z400-Workstation kernel: Modules linked in: irqbypass crct10dif_pclmul snd_hda_codec_realtek hp_wmi snd_hda_codec_hdmi snd_hda_codec_generic polyval_generic ghash_clmulni_intel sparse_keymap firmware_attributes_class ipmi_devintf platform_profile sha256_ssse3 snd_hda_intel snd_intel_dspcfg snd_intel_sdw_acpi ipmi_msghandler snd_hda_codec video snd_seq_midi snd_seq_midi_event snd_rawmidi snd_hda_core snd_seq sha1_ssse3 snd_hwdep snd_pcm aesni_intel snd_seq_device snd_timer input_leds serio_raw crypto_simd snd cryptd wmi_bmof intel_cstate soundcore i7core_edac mac_hid sch_fq_codel msr parport_pc ppdev lp parport efi_pstore ip_tables x_tables autofs4 uas usb_storage hid_generic usbhid hid gpio_ich crc32_pclmul psmouse firewire_ohci ahci firewire_core libahci lpc_ich tg3 crc_itu_t wmi floppy
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: CPU: 10 PID: 453 Comm: systemd-udevd Tainted: P          IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: Hardware name: Hewlett-Packard HP Z400 Workstation/0B4Ch, BIOS 786G3 v03.15 10/29/2010
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RIP: 0010:patch_retpoline+0x1f8/0x240
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: Code: d2 31 c9 31 f6 31 ff 45 31 c0 45 31 c9 45 31 d2 45 31 db c3 cc cc cc cc 4d 01 cb 83 fa 07 7e 2c b9 e0 ff ff ff e9 7b ff ff ff <0f> 0b b8 ff ff ff ff 31 d2 31 c9 31 f6 31 ff 45 31 c0 45 31 c9 45
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RSP: 0018:ffffd40e814b3888 EFLAGS: 00010212
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RAX: 0000000000001043 RBX: ffffffffc093505b RCX: 0000000000000000
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RDX: 00000000007a790c RSI: ffffd40e814b38b8 RDI: ffffffffc093505b
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RBP: ffffd40e814b3968 R08: 0000000000000000 R09: ffffd40e814b3928
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: R10: 0000000000000000 R11: 0000000000000000 R12: ffffd40e814b38b8
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: R13: 0000000000000000 R14: ffffffffc185fa20 R15: ffffffffc185f9e8
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: FS:  00007716434368c0(0000) GS:ffff8bf247d00000(0000) knlGS:0000000000000000
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: CR2: 000074a828e1e3ce CR3: 0000000101200002 CR4: 00000000000206f0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? apply_retpolines+0x6a/0x340
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? find_symbol+0x35/0x160
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  module_finalize+0x1c0/0x360
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  post_relocation+0xbb/0x100
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  load_module+0x55a/0xc80
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? security_kernel_post_read_file+0x75/0x90
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? kernel_read_file+0x2b0/0x330
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  init_module_from_file+0x96/0x100
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? init_module_from_file+0x96/0x100
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  idempotent_init_module+0x11c/0x310
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  __x64_sys_finit_module+0x64/0xd0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  x64_sys_call+0x15ed/0x2480
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  do_syscall_64+0x89/0x180
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? __seccomp_filter+0x384/0x570
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? ext4_llseek+0x5c/0x120
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? ksys_lseek+0x80/0xd0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? syscall_exit_to_user_mode+0x43/0x1e0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x95/0x180
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? syscall_exit_to_user_mode+0x43/0x1e0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x95/0x180
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? ksys_mmap_pgoff+0x120/0x270
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? arch_exit_to_user_mode_prepare.constprop.0+0x1a/0xe0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? syscall_exit_to_user_mode+0x43/0x1e0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x95/0x180
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? irqentry_exit+0x43/0x50
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  ? exc_page_fault+0x94/0x1b0
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  entry_SYSCALL_64_after_hwframe+0x78/0x80
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RIP: 0033:0x77164331e9dd
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 23 b4 0f 00 f7 d8 64 89 01 48
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RSP: 002b:00007ffdc5616448 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RAX: ffffffffffffffda RBX: 0000603016ad9910 RCX: 000077164331e9dd
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RDX: 0000000000000000 RSI: 0000771643599441 RDI: 0000000000000011
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: RBP: 0000000000020000 R08: 0000000000000000 R09: 0000000000000002
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: R10: 0000000000000011 R11: 0000000000000246 R12: 0000771643599441
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: R13: 0000603016acd450 R14: 0000603016978ff0 R15: 0000603016ad9d00
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: ---[ end trace 0000000000000000 ]---
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: nvidia-nvlink: Nvlink Core is being initialized, major device number 238
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: nvidia 0000:0f:00.0: vgaarb: VGA decodes changed: olddecodes=io+mem,decodes=none:owns=io+mem
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: NVRM: loading NVIDIA UNIX x86_64 Kernel Module  390.157  Wed Oct 12 09:19:07 UTC 2022 (using threaded interrupts)
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: nvidia-modeset: Loading NVIDIA Kernel Mode Setting Driver for UNIX platforms  390.157  Wed Oct 12 09:15:25 UTC 2022
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: [drm] [nvidia-drm] [GPU ID 0x00000f00] Loading driver
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: [drm] Initialized nvidia-drm 0.0.0 20160202 for 0000:0f:00.0 on minor 1
+Oct 18 17:35:53 mit-HP-Z400-Workstation kernel: kvm_intel: VM_EXIT_LOAD_IA32_PERF_GLOBAL_CTRL does not work properly. Using workaround
+Oct 18 17:35:54 mit-HP-Z400-Workstation kernel: input: Logitech USB Receiver as /devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.3/0003:046D:C548.0004/input/input19
+Oct 18 17:35:54 mit-HP-Z400-Workstation kernel: hid-multitouch 0003:046D:C548.0004: input,hidraw3: USB HID v1.11 Device [Logitech USB Receiver] on usb-0000:00:1d.1-1/input3
+Oct 18 17:35:54 mit-HP-Z400-Workstation kernel: nvidia-uvm: Loaded the UVM driver in 8 mode, major device number 237
+Oct 18 17:35:55 mit-HP-Z400-Workstation kernel: cfg80211: Loading compiled-in X.509 certificates for regulatory database
+Oct 18 17:35:55 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+Oct 18 17:35:55 mit-HP-Z400-Workstation kernel: Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+Oct 18 17:35:55 mit-HP-Z400-Workstation kernel: Adding 2097148k swap on /dev/sda5.  Priority:-2 extents:1 across:2097148k 
+Oct 18 17:35:56 mit-HP-Z400-Workstation kernel: usb 2-5: reset high-speed USB device number 4 using ehci-pci
+Oct 18 17:35:56 mit-HP-Z400-Workstation kernel: ieee80211 phy0: rt2x00_set_rt: Info - RT chipset 5390, rev 0502 detected
+Oct 18 17:35:56 mit-HP-Z400-Workstation kernel: ieee80211 phy0: rt2x00_set_rf: Info - RF chipset 5370 detected
+Oct 18 17:35:56 mit-HP-Z400-Workstation kernel: ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+Oct 18 17:35:56 mit-HP-Z400-Workstation kernel: usbcore: registered new interface driver rt2800usb
+Oct 18 17:35:56 mit-HP-Z400-Workstation kernel: rt2800usb 2-5:1.0 wlx000f55b19b78: renamed from wlan0
+Oct 18 17:35:56 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.823:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="libreoffice-senddoc" pid=746 comm="apparmor_parser"
+Oct 18 17:35:56 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.824:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="libreoffice-oosplash" pid=743 comm="apparmor_parser"
+Oct 18 17:35:56 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.824:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=733 comm="apparmor_parser"
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.824:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=733 comm="apparmor_parser"
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.828:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="libreoffice-xpdfimport" pid=761 comm="apparmor_parser"
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.858:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="tcpdump" pid=740 comm="apparmor_parser"
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.861:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=732 comm="apparmor_parser"
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.865:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ioq3ded" pid=741 comm="apparmor_parser"
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.865:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ubuntu_pro_apt_news" pid=735 comm="apparmor_parser"
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337756.869:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=734 comm="apparmor_parser"
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: WARNING: Flushing system-wide workqueues will be prohibited in near future.
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: CPU: 11 PID: 703 Comm: nvidia-smi Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: Hardware name: Hewlett-Packard HP Z400 Workstation/0B4Ch, BIOS 786G3 v03.15 10/29/2010
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  dump_stack_lvl+0x76/0xa0
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  dump_stack+0x10/0x20
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  __warn_flushing_systemwide_wq+0x1a/0x30
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  os_flush_work_queue+0x59/0x80 [nvidia]
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  rm_disable_adapter+0x52/0xd0 [nvidia]
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: WARNING: kernel stack frame pointer at 000000007db76387 in nvidia-smi:703 has bad value 000000003aa02d37
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: unwind stack type:0 next_sp:0000000000000000 mask:0x2 graph_idx:0
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000045f89e8f: ffffd40e8078bcb0 (0xffffd40e8078bcb0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000002b913bd4: ffffffffb025ca68 (__show_trace_log_lvl+0x268/0x400)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000ddb85c34: ffffffffb1d9a701 (kallsyms_seqs_of_names+0x9cba9/0xb6248)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000005282be52: ffff8bed4c0d4f80 (0xffff8bed4c0d4f80)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000aa26e889: ffffffffb1e20f78 (SIGMA2+0x6cd78/0x14ade0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000001061e5fa: ffffd40e8078bd20 (0xffffd40e8078bd20)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000006023b2e4: 0000000055a97000 (0x55a97000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000077538a93: 0000000000000002 (0x2)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000002da391eb: 0000000000000001 (0x1)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000106282b3: ffffd40e80788000 (0xffffd40e80788000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000007b839d42: ffffd40e8078c000 (0xffffd40e8078c000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000bdd33f5f: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000b695fbae: ffffd40e80788000 (0xffffd40e80788000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000f1e3608d: ffffd40e8078c000 (0xffffd40e8078c000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000e58f557c: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000067ebe558: 0000000000000002 (0x2)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000ea58d532: ffff8bed4c0d4f80 (0xffff8bed4c0d4f80)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000006877ebfb: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000009b9d0d54: 0000000000000001 (0x1)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000b7d062ff: ffffd40e8078bd18 (0xffffd40e8078bd18)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000089fbc777: ffffd40e8078bbb0 (0xffffd40e8078bbb0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000eac7a59d: ffffffffc1004302 (rm_disable_adapter+0x52/0xd0 [nvidia])
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000e17a2b0c: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000fad5076a: 98f16cd1f0503600 (0x98f16cd1f0503600)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000079ee0ea: 0000000000000246 (0x246)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000cde42f8e: ffffffffb1e20f78 (SIGMA2+0x6cd78/0x14ade0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000af4a6c8c: ffffd40e8078bdf0 (0xffffd40e8078bdf0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000008e09ef3a: ffff8bed55a97000 (0xffff8bed55a97000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000008a39a101: ffff8bed55a97480 (0xffff8bed55a97480)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000038a44ebf: ffffd40e8078bcc0 (0xffffd40e8078bcc0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000009752d91: ffffffffb025cd58 (show_stack+0x58/0x70)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000001c8a9098: ffffd40e8078bce0 (0xffffd40e8078bce0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000ef8f16fa: ffffffffb1385e06 (dump_stack_lvl+0x76/0xa0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000053424d19: ffff8bed44f03000 (0xffff8bed44f03000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000f746eb1c: 0000000000000001 (0x1)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000fa6c3aa5: ffffd40e8078bcf0 (0xffffd40e8078bcf0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000412c868a: ffffffffb1385e50 (dump_stack+0x10/0x20)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000009bb120a9: ffffd40e8078bd00 (0xffffd40e8078bd00)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000dbf72a28: ffffffffb032e9aa (__warn_flushing_systemwide_wq+0x1a/0x30)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000e7fd5b21: ffffd40e8078bd18 (0xffffd40e8078bd18)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000cb5306b4: ffffffffc0945d99 (os_flush_work_queue+0x59/0x80 [nvidia])
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000e02b45fc: 00000000c0f85b17 (0xc0f85b17)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000007db76387: ffff8bed44f06000 (0xffff8bed44f06000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000032b4d5f5: ffffffffc1004302 (rm_disable_adapter+0x52/0xd0 [nvidia])
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000003e58cb62: 00000000000002bf (0x2bf)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000a0f8e761: ffffffff00000067 (0xffffffff00000067)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000c17add72: 000f41ff6be07d40 (0xf41ff6be07d40)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000007e9777f5: 000f4200634bb900 (0xf4200634bb900)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000b312b1cf: 000f4200634bb900 (0xf4200634bb900)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000c9aef70e: 000f41ffec162500 (0xf41ffec162500)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000004ffa27ea: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000ee650191: 0000000000000200 (0x200)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000b17c0d96: 0000002000000005 (0x2000000005)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000c3039576: 00000000000002bf (0x2bf)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000079b7d53c: ffffd40e8055bde0 (0xffffd40e8055bde0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000931254ee: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000007104e9c3: ffffd40e8078bd01 (0xffffd40e8078bd01)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000019b308ba: 98f16cd1f0503601 (0x98f16cd1f0503601)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000a7f7add8: ffff8bed55a97000 (0xffff8bed55a97000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000c6bf9ab6: ffff8bed55a97000 (0xffff8bed55a97000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000385a0deb: ffff8bed55a97000 (0xffff8bed55a97000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000009e7a0d0d: ffff8bed44f03000 (0xffff8bed44f03000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000c33a022f: ffff8bed44f03000 (0xffff8bed44f03000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000005ea69d: ffffffffc09365ec (nv_shutdown_adapter+0x1c/0xb0 [nvidia])
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000cc34179c: ffff8bed55a97000 (0xffff8bed55a97000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000066426a78: ffff8bed44f03000 (0xffff8bed44f03000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000003f908869: ffff8bed55a97000 (0xffff8bed55a97000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000f0dfbbe1: ffffd40e8078be30 (0xffffd40e8078be30)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000efd8109b: ffffffffc0936b88 (nv_close_device+0x138/0x230 [nvidia])
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000020574e79: ffffd40e8078be10 (0xffffd40e8078be10)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000238fdcd0: ffff8bed4443fc00 (0xffff8bed4443fc00)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000058c3e582: ffff8bed55a97000 (0xffff8bed55a97000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000061e4f98e: ffff8bed411e0900 (0xffff8bed411e0900)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000065bbccf1: ffff8bed44f03000 (0xffff8bed44f03000)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000ff273ffc: ffff8bed55a97480 (0xffff8bed55a97480)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000004aa983da: ffffd40e8078be78 (0xffffd40e8078be78)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000007bb264de: ffffffffc093bd81 (nvidia_close+0xd1/0x410 [nvidia])
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000095ceb0ff: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000034760d1a: ffffffffc102d2e0 (nv_frontend_fops+0x120/0xffffffffffffde40 [nvidia])
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000006af0f156: ffff8bed4348c3b0 (0xffff8bed4348c3b0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000589378fc: ffff8bed411e0900 (0xffff8bed411e0900)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000008d1a3007: ffff8bed418c2920 (0xffff8bed418c2920)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000035ed7d76: ffff8bed40595900 (0xffff8bed40595900)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000037a8d8d2: ffffd40e8078bea0 (0xffffd40e8078bea0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000005dd56595: ffffffffc09354b7 (nvidia_frontend_close+0x47/0x80 [nvidia])
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000004925d020: ffff8bed411e0900 (0xffff8bed411e0900)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000b26f5192: 000000000008001b (0x8001b)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000008f102e97: ffff8bed4348c3b0 (0xffff8bed4348c3b0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000021736b5d: ffffd40e8078bed8 (0xffffd40e8078bed8)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000007660809b: ffffffffb06f56d3 (__fput+0xa3/0x2e0)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000edb0e498: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000aaedc251: ffff8bed411e0900 (0xffff8bed411e0900)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000004623239f: 0000000000000003 (0x3)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000688d3f52: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000030f627c8: ffffd40e8078bee8 (0xffffd40e8078bee8)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000087616cec: ffffffffb06f59bc (__fput_sync+0x1c/0x30)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000009b63df51: ffffd40e8078bf08 (0xffffd40e8078bf08)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000035b91d63: ffffffffb06ec26e (__x64_sys_close+0x3e/0x90)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000121eea7e: ffffd40e8078bf58 (0xffffd40e8078bf58)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000e9e05fd3: 0000000000000003 (0x3)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000031c79318: ffffd40e8078bf18 (0xffffd40e8078bf18)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000040a5d475: ffffffffb02072dd (x64_sys_call+0x19ad/0x2480)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000ebac8c7f: ffffd40e8078bf48 (0xffffd40e8078bf48)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000000f4c93be: ffffffffb142b739 (do_syscall_64+0x89/0x180)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000001763e465: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000005075d9cd: ffffffffb1600130 (entry_SYSCALL_64_after_hwframe+0x78/0x80)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000e7b646b3: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000c00715d8: 00007d906e1d8680 (0x7d906e1d8680)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000f32f819f: 00007d906e1d8680 (0x7d906e1d8680)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000a41e869b: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000006100990b: 0000000000000004 (0x4)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000003ae968d5: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000003aa64634: 0000000000000246 (0x246)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000009e9167eb: 0000000000000001 (0x1)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000f77e5931: 00007ffe6c0616bc (0x7ffe6c0616bc)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000ff759a6b: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000009b9056cd: ffffffffffffffda (0xffffffffffffffda)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000f83a806f: 00007d906e3150b7 (0x7d906e3150b7)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000aa4abde4: 0000000000000000 ...
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000005e3470da: 0000000000000004 (0x4)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000c081c397: 0000000000000004 (0x4)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000029c42cf2: 0000000000000003 (0x3)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 00000000a2b737be: 00007d906e3150b7 (0x7d906e3150b7)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000026e08da2: 0000000000000033 (0x33)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000059fef9b5: 0000000000000246 (0x246)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 0000000092f70486: 00007ffe6c061508 (0x7ffe6c061508)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel: 000000004cbcd175: 000000000000002b (0x2b)
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? nv_shutdown_adapter+0x1c/0xb0 [nvidia]
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? nv_close_device+0x138/0x230 [nvidia]
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? nvidia_close+0xd1/0x410 [nvidia]
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? nvidia_frontend_close+0x47/0x80 [nvidia]
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? __fput+0xa3/0x2e0
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? __fput_sync+0x1c/0x30
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? __x64_sys_close+0x3e/0x90
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? x64_sys_call+0x19ad/0x2480
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x89/0x180
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  ? entry_SYSCALL_64_after_hwframe+0x78/0x80
+Oct 18 17:35:57 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:36:05 mit-HP-Z400-Workstation kernel: ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading firmware file 'rt2870.bin'
+Oct 18 17:36:05 mit-HP-Z400-Workstation kernel: ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware detected - version: 0.36
+Oct 18 17:36:07 mit-HP-Z400-Workstation kernel: kauditd_printk_skb: 65 callbacks suppressed
+Oct 18 17:36:07 mit-HP-Z400-Workstation kernel: audit: type=1400 audit(1792337767.303:77): apparmor="DENIED" operation="capable" class="cap" profile="/usr/sbin/cupsd" pid=931 comm="cupsd" capability=12  capname="net_admin"
+Oct 18 17:36:08 mit-HP-Z400-Workstation kernel: tg3 0000:01:00.0 enp1s0: Link is up at 1000 Mbps, full duplex
+Oct 18 17:36:08 mit-HP-Z400-Workstation kernel: tg3 0000:01:00.0 enp1s0: Flow control is on for TX and on for RX
+Oct 18 17:36:09 mit-HP-Z400-Workstation kernel: set_capacity_and_notify: 25 callbacks suppressed
+Oct 18 17:36:09 mit-HP-Z400-Workstation kernel: loop35: detected capacity change from 0 to 8
+Oct 18 17:36:30 mit-HP-Z400-Workstation kernel: rfkill: input handler disabled
+Oct 18 17:36:55 mit-HP-Z400-Workstation kernel: scsi host7: Configuring AcceleRAID 160 PCI RAID Controller
+Oct 18 17:36:55 mit-HP-Z400-Workstation kernel: scsi host7:   Firmware Version: 6.00-05, Channels: 1, Memory Size: 16MB
+Oct 18 17:36:55 mit-HP-Z400-Workstation kernel: scsi host7:   Controller Queue Depth: 509, Maximum Blocks per Command: 2048
+Oct 18 17:36:55 mit-HP-Z400-Workstation kernel: scsi host7:   Driver Queue Depth: 509, Scatter/Gather Limit: 128 of 128 Segments
+Oct 18 17:36:55 mit-HP-Z400-Workstation kernel: scsi host7:   Device Channel 0: max 16 devices
+Oct 18 17:36:55 mit-HP-Z400-Workstation kernel: scsi host7:   Device Channel 1: max 16 devices
+Oct 18 17:36:55 mit-HP-Z400-Workstation kernel: scsi host7:   Physical: 1/2 channels, 0 disks, 1 devices
+Oct 18 17:36:55 mit-HP-Z400-Workstation kernel: scsi host7:   Logical: 2/2 channels, 0 disks
+Oct 18 17:36:55 mit-HP-Z400-Workstation kernel: scsi host7: DAC960
+Oct 18 17:36:57 mit-HP-Z400-Workstation kernel: scsi 7:0:7:0: RAID              MYLEX    AcceleRAID 160   0600 PQ: 6 ANSI: 3
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: INFO: task kworker/5:1:119 blocked for more than 122 seconds.
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: task:kworker/5:1     state:D stack:0     pid:119   tgid:119   ppid:2      flags:0x00004000
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: Workqueue: events worker [admit_command]
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  worker+0x20f/0x2c0 [admit_command]
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: INFO: task kworker/u24:16:510 blocked for more than 122 seconds.
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: task:kworker/u24:16  state:D stack:0     pid:510   tgid:510   ppid:2      flags:0x00004000
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: Workqueue: myrs_wq_7 myrs_monitor [myrsread]
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ? wb_over_bg_thresh+0x2aa/0x2c0
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  myrs_exec_cmd+0x7f/0xb0 [myrsread]
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  myrs_monitor+0xdc/0x4a0 [myrsread]
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ? wake_up_process+0x15/0x30
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:41:43 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: INFO: task kworker/5:1:119 blocked for more than 245 seconds.
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: task:kworker/5:1     state:D stack:0     pid:119   tgid:119   ppid:2      flags:0x00004000
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: Workqueue: events worker [admit_command]
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  worker+0x20f/0x2c0 [admit_command]
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: INFO: task kworker/u24:16:510 blocked for more than 245 seconds.
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: task:kworker/u24:16  state:D stack:0     pid:510   tgid:510   ppid:2      flags:0x00004000
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: Workqueue: myrs_wq_7 myrs_monitor [myrsread]
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ? wb_over_bg_thresh+0x2aa/0x2c0
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  myrs_exec_cmd+0x7f/0xb0 [myrsread]
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  myrs_monitor+0xdc/0x4a0 [myrsread]
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ? wake_up_process+0x15/0x30
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:43:46 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: INFO: task kworker/5:1:119 blocked for more than 368 seconds.
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: task:kworker/5:1     state:D stack:0     pid:119   tgid:119   ppid:2      flags:0x00004000
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: Workqueue: events worker [admit_command]
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  worker+0x20f/0x2c0 [admit_command]
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: INFO: task kworker/u24:16:510 blocked for more than 368 seconds.
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: task:kworker/u24:16  state:D stack:0     pid:510   tgid:510   ppid:2      flags:0x00004000
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: Workqueue: myrs_wq_7 myrs_monitor [myrsread]
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ? wb_over_bg_thresh+0x2aa/0x2c0
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  myrs_exec_cmd+0x7f/0xb0 [myrsread]
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  myrs_monitor+0xdc/0x4a0 [myrsread]
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ? wake_up_process+0x15/0x30
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:45:49 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: INFO: task kworker/5:1:119 blocked for more than 491 seconds.
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: task:kworker/5:1     state:D stack:0     pid:119   tgid:119   ppid:2      flags:0x00004000
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: Workqueue: events worker [admit_command]
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  worker+0x20f/0x2c0 [admit_command]
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: INFO: task kworker/u24:16:510 blocked for more than 491 seconds.
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: task:kworker/u24:16  state:D stack:0     pid:510   tgid:510   ppid:2      flags:0x00004000
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: Workqueue: myrs_wq_7 myrs_monitor [myrsread]
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ? wb_over_bg_thresh+0x2aa/0x2c0
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  myrs_exec_cmd+0x7f/0xb0 [myrsread]
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  myrs_monitor+0xdc/0x4a0 [myrsread]
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ? wake_up_process+0x15/0x30
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:47:52 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: INFO: task kworker/5:1:119 blocked for more than 614 seconds.
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: task:kworker/5:1     state:D stack:0     pid:119   tgid:119   ppid:2      flags:0x00004000
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: Workqueue: events worker [admit_command]
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  worker+0x20f/0x2c0 [admit_command]
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: INFO: task kworker/u24:16:510 blocked for more than 614 seconds.
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:       Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: task:kworker/u24:16  state:D stack:0     pid:510   tgid:510   ppid:2      flags:0x00004000
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: Workqueue: myrs_wq_7 myrs_monitor [myrsread]
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  __schedule+0x27c/0x6a0
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ? wb_over_bg_thresh+0x2aa/0x2c0
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  schedule+0x33/0x110
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  schedule_timeout+0x157/0x170
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  wait_for_completion+0x88/0x150
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  myrs_exec_cmd+0x7f/0xb0 [myrsread]
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  myrs_monitor+0xdc/0x4a0 [myrsread]
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ? wake_up_process+0x15/0x30
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  process_one_work+0x184/0x3a0
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  worker_thread+0x18b/0x330
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ? __pfx_worker_thread+0x10/0x10
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  kthread+0xf2/0x120
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ret_from_fork+0x47/0x70
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ? __pfx_kthread+0x10/0x10
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  ret_from_fork_asm+0x1b/0x30
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 17:49:55 mit-HP-Z400-Workstation kernel: Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+Oct 18 18:31:35 mit-HP-Z400-Workstation kernel: perf: interrupt took too long (2515 > 2500), lowering kernel.perf_event_max_sample_rate to 79000
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel: rfkill: input handler enabled
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel: WARNING: Flushing system-wide workqueues will be prohibited in near future.
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel: CPU: 4 PID: 1110 Comm: Xorg Tainted: P        W IOE      6.8.0-138-generic #138~22.04.1-Ubuntu
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel: Hardware name: Hewlett-Packard HP Z400 Workstation/0B4Ch, BIOS 786G3 v03.15 10/29/2010
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel: Call Trace:
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  <TASK>
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  dump_stack_lvl+0x76/0xa0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  dump_stack+0x10/0x20
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  __warn_flushing_systemwide_wq+0x1a/0x30
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  os_flush_work_queue+0x59/0x80 [nvidia]
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  rm_disable_adapter+0x52/0xd0 [nvidia]
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? nv_shutdown_adapter+0x1c/0xb0 [nvidia]
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? nv_close_device+0x138/0x230 [nvidia]
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? nvidia_close+0xd1/0x410 [nvidia]
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? nvidia_frontend_close+0x47/0x80 [nvidia]
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? __fput+0xa3/0x2e0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? __fput_sync+0x1c/0x30
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? __x64_sys_close+0x3e/0x90
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? x64_sys_call+0x19ad/0x2480
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x89/0x180
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? nvidia_frontend_unlocked_ioctl+0x5b/0xa0 [nvidia]
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? arch_exit_to_user_mode_prepare.constprop.0+0x8d/0xe0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? syscall_exit_to_user_mode+0x43/0x1e0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x95/0x180
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? kmem_cache_free+0x332/0x470
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? __fput+0x160/0x2e0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? arch_exit_to_user_mode_prepare.constprop.0+0x8d/0xe0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? syscall_exit_to_user_mode+0x43/0x1e0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x95/0x180
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? arch_exit_to_user_mode_prepare.constprop.0+0x8d/0xe0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? syscall_exit_to_user_mode+0x43/0x1e0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? do_syscall_64+0x95/0x180
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? arch_exit_to_user_mode_prepare.constprop.0+0x8d/0xe0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? irqentry_exit_to_user_mode+0x38/0x1e0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? irqentry_exit+0x43/0x50
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? exc_page_fault+0x94/0x1b0
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  ? entry_SYSCALL_64_after_hwframe+0x78/0x80
+Oct 18 18:49:07 mit-HP-Z400-Workstation kernel:  </TASK>
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd-shutdown[1]: Syncing filesystems and block devices.
+Oct 18 18:50:38 mit-HP-Z400-Workstation systemd-shutdown[1]: Sending SIGTERM to remaining processes...
