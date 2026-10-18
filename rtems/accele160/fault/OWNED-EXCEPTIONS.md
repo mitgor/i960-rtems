@@ -9,11 +9,22 @@ cached NMI entry `c0716160`, ISP `c0779040`, all table words and guards passed.
 Stale request, stable record, STOP retention, pending admission and unchanged
 DMA pin guards all passed. Local archive replay independently verifies this.
 
-Both guarded full firmware reads matched on that boot, closing the previous
-normal runtime's recovery gate. Mode 3's own reset recovery remains pending: SSH is refusing connections
-after that reset, and physical recovery has been requested.
-Mode 4 is now cross-built and archived but has not run. It is the next isolated
-test after recovery. Neither ownership profile is promoted to the normal prompt.
+Mode 4 also **passed on Accele160**, on boot
+`5caaf490-19ac-4b1b-ab1c-c01cacc9c924`, kernel
+`dbb43a389db7d6cd101284c8759e9ce2e6a37046ff83388171aed32fadad9ed4`.
+At tick 18 its raw architecture record was `2002,9002,f8,0` (NMI vector 248),
+with NISR `100`, IISR `f`, IDR `80000010`, IIMR `73`. The other IDR bit `10`
+was already present; the handler writes only bit 31 when acknowledging the
+injected NMI. The capture records pre-acknowledgment state, not an independent
+post-clear readback. Owned entries, ISP, both guards, stable snapshots and
+STOP resource retention passed. Exact archive replay passes.
+
+Both guarded full firmware reads on this newer boot match, closing mode 3's
+reset recovery. The previous normal runtime's recovery was closed by mode 3's
+prechecks. Mode 4's own post-test reset recovery is still pending. The final
+reset left SSH refusing connections; physical recovery was requested before restoring the previously qualified mode-0
+normal prompt. Mode 0 does not install the new exception ownership: normal
+owned-ISP/runtime qualification remains a separate next step.
 
 ## Ownership and entry
 
@@ -96,25 +107,26 @@ reserves bits above bit 6. Preserve read mask bits and change only bit 3.
 
 ## Resume and qualification
 
-1. After physical recovery, record a changed Linux boot ID and inspect retained
+1. After mode 4's reset, record a new Linux boot ID and inspect retained
    modules/owners. Do not force-unload or adopt a dead owner's buffers.
-2. Mode 3 is complete; do not repeat it merely to advance to mode 4. Overlay current source into `/home/mit/i960-exceptions-20261018/bundle`.
-   Preserve the pinned engine identity/template and inputs. Build the selected mode using
-   the commands in README, run `write_manifest.py`, regenerate `bundle.json`
-   file hashes, inspect assembly/symbols and archive the exact candidate locally.
-3. Launch that isolated bundle with `launch.py start --bundle PATH --port 8087
-   --max-frames 64 --restart-cycles 0 --paired-frames 32 --capture-all`.
-   The launcher performs both guarded full firmware reads before admission.
-4. Replay terminal captures; additionally resolve the recorded handler pointers
-   and fault IP against the exact kernel symbols/disassembly. Save the complete
-   session and bundle locally before resetting.
-5. Fresh reset and paired reads close mode 3 recovery. Rebuild as mode 4; repeat
-   the isolated launch and capture/replay. Resolve vector 248 and source bits
-   from raw data, never infer NMI delivery from a direct handler call.
-6. Reset and paired reads close mode 4 recovery. Only then prepare a separate
-   no-injection ownership profile and qualify ordinary task switching, Doom,
-   console, STOP and reset. Current mode 0 intentionally does not install owned
-   vectors; restoring it alone would not qualify the new ownership profile.
+2. Restore the previously qualified mode-0 bundle at
+   `/home/mit/i960-fault-20261018/bundle` using `launch.py start --bundle PATH
+   --port 8087 --max-frames 64 --restart-cycles 0 --paired-frames 32 --capture-all`.
+   Its two guarded full firmware reads close mode 4's reset gate. Qualify
+   ordinary game/console operation and leave the owner in idle for the prompt.
+   This mode is software-terminal-only; it does not qualify the new owned ISP.
+3. The updated Linux `~/rtems-console` calls `/home/mit/rtems-console-client.py`.
+   It now reports a missing service clearly. The Mac wrapper uses that shortcut.
+4. Subsequent work: prepare a separate no-injection ownership profile and
+   qualify normal task switching, Doom, console, STOP and reset with owned
+   vectors/ISP. Keep active-DMA and engine exclusion tests separate.
+
+Do not repeat modes 3/4 simply to restore the prompt; their completed immutable
+bundles are `mode3-tested.tar.xz` and `mode4-tested.tar.xz` in the evidence batch.
+`verify_archive.py ARCHIVE` independently replays raw records, firmware pairs,
+source/kernel hashes and exact symbols. The remote exceptions working bundle
+still contains mode 4 and deliberately enters a terminal park; it must not be
+used as the normal prompt image.
 
 Native checks: `rtems/accele160/fault/test.sh`. They run actual C with mock MMIO,
 all 2,048 stock-table corruptions, all 2,048 owned-table corruptions, a dropped

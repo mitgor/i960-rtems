@@ -1,3 +1,9 @@
+> Latest: both hardware exception tests passed; final NMI reset recovery and
+> normal prompt restoration are pending. The offline-error fix is now deployed
+> to Linux `~/rtems-console`, backed by `/home/mit/rtems-console-client.py`.
+> The Mac shortcut invokes that installed client. Installing a client does not
+> start the service. Restore the accepted mode-0 bundle after recovery.
+
 > P3b update: the real processor-fault test passed. Mode 3 reset recovery and
 > the separately built NMI test remain pending; prompt offline during testing.
 > See [current evidence](../../../artifacts/current/accele160-exceptions-20261018/README.md).

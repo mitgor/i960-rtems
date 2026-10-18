@@ -1,16 +1,35 @@
 # Accele160 P3b candidate and prior-session shutdown evidence
 
-Status: **mode 3 actual processor fault passed; mode 4 NMI awaits recovery**.
-Fresh boot `b748d05a-16d1-40bf-b96d-973127ab6856` and its paired firmware reads
-closed the previous normal runtime's reset check. The real `faulte` then passed
-at tick 18, exact fault IP `c0716230` = `_accele_raise_fault+4`, with owned
-fault entry `c0716150`, NMI entry `c0716160`, ISP `c0779040`, all fault entries,
-intact guards, stable records and retained resources after STOP.
+Status: **both actual hardware exception tests passed**. Mode 3 recovery is
+verified; mode 4 post-test reset recovery and normal prompt restoration await
+physical recovery from the final reboot (SSH refusing connections).
 
-The reset after this successful fault test again left SSH refusing connections.
-Mode 3 post-test reset recovery remains pending. Mode 4 has been cross-built
-and saved but has NOT run. Prompt remains offline. See
+Mode 3: fresh boot `b748d05a-16d1-40bf-b96d-973127ab6856`, actual `faulte`
+at tick 18, IP `c0716230` = `_accele_raise_fault+4`, fault entry `c0716150`,
+NMI entry `c0716160`, ISP `c0779040`. Mode 4: boot
+`5caaf490-19ac-4b1b-ab1c-c01cacc9c924`, actual MU-doorbell NMI at tick 18,
+raw hardware record `2002,9002,f8,0` (vector 248), fault entry `c0716270`,
+NMI entry `c0716280`, ISP `c0779040`. NISR/IISR/IDR/IIMR: `100,f,80000010,73`.
+Both verified all table entries and guards, stable raw records after STOP,
+pending admission, and intact retained DMA pins. Neither injected active DMA.
+
+Mode 4's paired guarded full firmware reads close mode 3's reset gate.
+The prior normal-runtime recovery was closed by mode 3's prechecks. No normal
+owned-ISP runtime claim is made. Restore the accepted software-only mode-0
+bundle `/home/mit/i960-fault-20261018/bundle` after final recovery; the exceptions
+bundle still contains deliberate NMI mode 4. See
 [`OWNED-EXCEPTIONS.md`](../../../rtems/accele160/fault/OWNED-EXCEPTIONS.md).
+
+- `mode4-tested.tar.xz`: exact executed mode-4 bundle and complete
+  `sessions/20261018T203301Z`, including paired firmware prechecks and raw
+  READY/stale/armed/terminal/stable/after-STOP captures.
+- `mode4-replay.json`: independent archive replay, including vector 248 and
+  NMI source evidence, symbols, kernel/image/source hashes and firmware pair.
+- `mode3-recovery.json`: links mode 4's fresh prechecks to completed fault-test
+  recovery. It supersedes the earlier pending reset state in mode3-replay.json.
+- `console-deployment.txt`: installed Linux client/shortcut hashes, verified
+  missing-socket message, and the accepted normal image's identity/build mode.
+  The Mac shortcut now calls the installed Linux shortcut. Service still offline.
 
 - `mode3-tested.tar.xz`: exact executed current mode-3 bundle and complete
   `sessions/20261018T202453Z`, including both guarded firmware reads and raw
@@ -21,7 +40,7 @@ and saved but has NOT run. Prompt remains offline. See
 - `previous-normal-recovery.json`: links the fresh paired reads to the prior
   normal runtime's reset gate. Supersedes the earlier pending recovery receipt.
 - `mode4-prepared.tar.xz` and `mode4-prepared-identity.json`: exact next NMI
-  test bundle, cross-built and not run. Kernel
+  test bundle, archived before execution; mode4-tested contains the actual run. Kernel
   `dbb43a389db7d6cd101284c8759e9ce2e6a37046ff83388171aed32fadad9ed4`.
 
 - `previous-normal-final.tar.xz`: complete prior normal session
@@ -51,7 +70,7 @@ Previous normal kernel:
 The firmware remains
 `1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd`.
 No firmware programming was performed. SCSI/cache exclusion, active-DMA fault
-containment, real NMI delivery, owned-ISP runtime and reset recovery remain
+containment, owned-ISP normal runtime and mode 4 reset recovery remain
 separate unclosed gates.
 
 Checksums cover this batch only. The unrelated pre-existing artifact symlink

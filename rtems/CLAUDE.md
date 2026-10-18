@@ -1644,3 +1644,17 @@ an offline service instead of showing a prompt when its socket is absent.
 The Linux `~/rtems-console` uses an older bundle's console client; deploy the
 updated client after SSH returns. Do not mistake this UI fix for restoration
 of RTEMS or launch a normal owner over retained exception-test resources.
+
+### P3b real NMI passed; restore normal prompt after final recovery
+
+Mode 4 passed on boot `5caaf490-19ac-4b1b-ab1c-c01cacc9c924`, tick 18,
+raw record `2002,9002,f8,0`; NISR/IISR/IDR/IIMR `100,f,80000010,73`.
+Its paired guarded firmware reads close mode 3 recovery. Full exact archive
+`mode4-tested.tar.xz`, replay and `mode3-recovery.json` are saved locally.
+Final reboot requested; mode 4 recovery and prompt restoration remain pending.
+Use `/home/mit/i960-fault-20261018/bundle` for accepted mode-0 restoration;
+exceptions working bundle still contains terminal mode 4. Do not repeat either
+injection to restore service. Mode 0 is not owned-vector runtime qualification.
+Linux shortcut now uses `/home/mit/rtems-console-client.py` (updated offline
+message), deployed independently of immutable bundle manifests; Mac shortcut
+also uses `~/rtems-console`. Service restoration is distinct from client install.

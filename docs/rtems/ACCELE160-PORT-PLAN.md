@@ -1,5 +1,15 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Latest P3b checkpoint — both hardware exception tests passed
+
+Actual `faulte` and actual MU-doorbell NMI passed with stable raw terminal
+records, owned table/NMI/ISP, guards and retained resources. Mode 3 reset
+recovery is closed; mode 4 recovery and normal prompt restoration follow its
+final reset. The accepted mode-0 prompt remains software-only. Normal runtime
+with owned ISP, active-DMA containment and engine exclusion remain open.
+See [current evidence](../../artifacts/current/accele160-exceptions-20261018/README.md).
+Earlier checkpoints below are historical.
+
 ## Latest P3b checkpoint — actual fault test passed
 
 Mode 3 passed on Accele160: exact hardware fault/IP, owned vectors/table/ISP,

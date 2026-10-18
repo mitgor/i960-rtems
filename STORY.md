@@ -6143,3 +6143,23 @@ raw evidence against the exact binary. The NMI image was then built and saved
 as its own candidate. Installing an NMI vector is not the same as delivering
 an NMI; that second experiment still needs its own fresh boot and doorbell
 write. The reset after the fault park is the next boundary to cross.
+
+The next boot let us ask the other question. After two more matching firmware
+reads, the host checked its messaging registers against the card's view,
+waited for the owned handler to be armed, and wrote the NMI doorbell once.
+
+At tick eighteen, the processor delivered vector 248. The saved source bits
+identified the messaging unit and its NMI doorbell. Another doorbell bit was
+already present, so the handler's acknowledgment writes only the injected bit.
+The record stayed unchanged across repeated reads and STOP, and the buffers
+stayed with their unfinished owner. This was an actual NMI delivery, not a
+call to a function with an NMI-shaped name.
+
+The firmware reads on this boot also closed the processor-fault test's reset
+check. We saved the new exact bundle and capture on the Mac, replayed them,
+and requested the final reset before bringing the ordinary prompt back. The
+console shortcut now explains an absent service instead of offering a prompt
+whose every command fails. That fixes the confusing symptom; restoring the
+service still needs the final recovery check. Normal running with the new
+owned interrupt stack is another qualification, beyond these two deliberately
+terminal experiments.

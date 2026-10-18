@@ -1,0 +1,14 @@
+7c2563b74650614ad057224be034c6c3068c3147ec5fd6e73b9adc39118b146f  /home/mit/rtems-console-client.py
+10639b269fe7fe6a0b76732e21e7eb925a7588c3f1f4361404d80d3b100900b6  /home/mit/rtems-console
+RTEMS console service is offline (no listening owner at /tmp/i960-confirmed-missing-console.sock). The console client does not start RTEMS. After a terminal fault test, reset the PC and restore the normal service before using this prompt.
+4a9c0278ff23815ea94d546a7fc43bfc3566c8ff916b70d0c2b0e7e42582ad3e  /home/mit/i960-fault-20261018/bundle/kernel/kernel.bin
+{
+  "card_profile": "accele160",
+  "terminal_schema": 1,
+  "terminal_test": 0,
+  "service_schema": 1,
+  "keyboard_fifo_schema": 1,
+  "reusable": true,
+  "persistent": true,
+  "private_cache_map": true
+}

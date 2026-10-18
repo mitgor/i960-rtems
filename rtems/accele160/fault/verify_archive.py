@@ -37,7 +37,8 @@ def verify(path):
         top=obj(session+'run/result.json')
         return dict(mode=mode,boot_id=top['boot_id'],kernel_sha256=manifest['kernel_sha256'],
             paired_firmware=True,ticks=w[27],fault_entry=hex(w[148]),nmi_entry=hex(w[149]),
-            raw_record=[hex(v) for v in w[161:165]],guards_intact=True,stable=True,retained=True,
+            raw_record=[hex(v) for v in w[161:165]],
+            nmi_sources=[hex(v) for v in w[151:155]] if mode==4 else None,guards_intact=True,stable=True,retained=True,
             hardware_fault_tested=mode==3,nmi_hardware_tested=mode==4,post_test_reset_verified=False)
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('archive');a=p.parse_args()

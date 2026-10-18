@@ -1,0 +1,27 @@
+{
+  "mode": 4,
+  "boot_id": "5caaf490-19ac-4b1b-ab1c-c01cacc9c924",
+  "kernel_sha256": "dbb43a389db7d6cd101284c8759e9ce2e6a37046ff83388171aed32fadad9ed4",
+  "paired_firmware": true,
+  "ticks": 18,
+  "fault_entry": "0xc0716270",
+  "nmi_entry": "0xc0716280",
+  "raw_record": [
+    "0x2002",
+    "0x9002",
+    "0xf8",
+    "0x0"
+  ],
+  "nmi_sources": [
+    "0x100",
+    "0xf",
+    "0x80000010",
+    "0x73"
+  ],
+  "guards_intact": true,
+  "stable": true,
+  "retained": true,
+  "hardware_fault_tested": false,
+  "nmi_hardware_tested": true,
+  "post_test_reset_verified": false
+}

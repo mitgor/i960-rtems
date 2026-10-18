@@ -2,4 +2,4 @@
 set -euo pipefail
 # Connect to the installed AcceleRAID service owner; never starts/replaces it.
 exec ssh -t "${I960_HOST:-mit@192.168.2.75}" \
-  'sudo python3 /home/mit/i960-service-20261018/bundle/project/rtems/accele160/service/console.py'
+  '/home/mit/rtems-console'

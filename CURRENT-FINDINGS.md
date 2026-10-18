@@ -1,3 +1,19 @@
+## Accele160 P3b — real NMI also passed
+
+Mode 4 passed on boot `5caaf490-19ac-4b1b-ab1c-c01cacc9c924`: actual host
+PCI doorbell NMI, vector 248, raw record `2002,9002,f8,0`, NISR `100`, IISR `f`,
+IDR `80000010`, IIMR `73`. Owned entries/ISP and guards passed; repeated records
+and STOP left admission/pins retained. Independent archive replay passes.
+The paired full guarded firmware reads close mode 3's reset recovery.
+
+The final reset was requested. Mode 4 recovery and normal prompt restoration
+are still pending. Restore the accepted mode-0 bundle from
+`/home/mit/i960-fault-20261018/bundle`, not the exceptions bundle (still mode 4).
+The console error fix is deployed to Linux `~/rtems-console`; the Mac shortcut
+now uses it. Normal runtime with owned vectors/ISP remains a future qualification.
+[Evidence](artifacts/current/accele160-exceptions-20261018/README.md).
+Previous checkpoints below are historical.
+
 ## Accele160 P3b — real processor fault passed
 
 Mode 3 passed on boot `b748d05a-16d1-40bf-b96d-973127ab6856`: the actual
