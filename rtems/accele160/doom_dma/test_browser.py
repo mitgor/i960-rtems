@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Exercise the browser API and input bounds without a card session."""
-import json,struct,urllib.request,time
+import json,struct,urllib.request,urllib.error,time
 from browser import BrowserSession
 s=BrowserSession(0)
 base=f'http://127.0.0.1:{s.port}'
 def get(path):
     with urllib.request.urlopen(base+path,timeout=2) as r:return r.read()
 def post(path,body):
-    req=urllib.request.Request(base+path,json.dumps(body).encode(),
+    req=urllib.request.Request(base+path,json.dumps(dict(body,run_id=body.get('run_id',s.run_id))).encode(),
         {'X-Session-Token':s.token,'Content-Type':'application/json'})
     with urllib.request.urlopen(req,timeout=2) as r:return r.status
 try:
@@ -28,5 +28,15 @@ try:
     assert s.disconnected(60)
     assert post('/heartbeat',{})==200 and not s.disconnected(60)
     assert post('/stop',{})==200 and s.stop.is_set()
+    s.idle(1)
+    assert post('/restart',{})==200 and s.restart.is_set()
+    s.begin_game(2)
+    assert not s.stop.is_set() and not s.restart.is_set() and s.next_key() is None
+    for path,body in (('/key',dict(key=173,down=1,run_id=1)),('/stop',dict(run_id=1)),('/restart',dict(run_id=1))):
+        try:post(path,body);raise AssertionError('stale request accepted')
+        except urllib.error.HTTPError as error:assert error.code==409
+    assert not s.stop.is_set()
+    s.publish(2,data)
+    assert json.loads(get('/status'))['run_id']==2
     print('browser binary frame, keys, STOP and session identity: verified')
 finally:s.close()

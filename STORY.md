@@ -5742,3 +5742,20 @@ sequence ownership between games. The next card test still needs a new RAM
 kernel and one initial reset; it does not need another firmware patch.
 [The investigation](artifacts/current/doom-reuse-investigation-20261018/README.md)
 keeps that distinction and the stale-message gates explicit.
+
+The next version now has that boundary in code. Init can audit a retired
+game and accept a new run without rebuilding RTEMS, replacing its stacks or
+forgetting the DMA history. The host sends the original engine image again,
+including its initialized data and the zero BSS gap, rather than trying to
+bring the retired process back to life. The browser has a new-game request,
+and old-game input carries a run number so it cannot leak into the next one.
+
+We tested the rearm policy itself under sanitizers, including a leaked loan,
+a stale frame ACK, damaged guards and wrong transport sequences. Those tests
+and the browser tests passed, and the new i960 kernel built. The physical
+proof is still ahead: the old session remains in its terminal STOP loop, so
+one initial power cycle is needed to install this RAM-only candidate. The
+accepted launcher has deliberately stayed on its previous bundle while the
+STOP, reload, menu Quit, reload and STOP card test waits.
+[The candidate record](artifacts/current/doom-rearm-20261018/README.md) keeps
+the implemented path separate from the hardware result we have yet to earn.

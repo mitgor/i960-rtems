@@ -5,7 +5,7 @@ from collections import deque
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 
-ALLOWED={173,175,172,174,163,162,182,13,27,9,121,110,*range(49,56)}
+ALLOWED={196,173,175,172,174,163,162,182,13,27,9,121,110,*range(49,56)}
 class BrowserSession:
     def __init__(self,port=8087):
         self.token=secrets.token_hex(24)
@@ -18,6 +18,9 @@ class BrowserSession:
         self.held=set()
         self.key_deadline=0.0
         self.stop=threading.Event()
+        self.restart=threading.Event()
+        self.run_id=1
+        self.state="running"
         self.client_seen=0.0
         self.page=Path(__file__).with_name('index.html').read_text().replace(
             '__TOKEN__',self.token).encode()
@@ -38,7 +41,7 @@ class BrowserSession:
                     with owner.lock:
                         state=dict(message=owner.message,
                                    frame=f'{owner.epoch}-{owner.generation}' if owner.frame else '',
-                                   binary=True,stopped=owner.stop.is_set())
+                                   binary=True,stopped=owner.stop.is_set(),run_id=owner.run_id,state=owner.state)
                     return self.reply(200,json.dumps(state).encode())
                 if self.path.startswith('/frame.bin'):
                     with owner.lock:packet=owner.frame
@@ -51,27 +54,44 @@ class BrowserSession:
                     n=int(self.headers.get('Content-Length','0'))
                     if not 0<n<=128:raise ValueError('length')
                     body=json.loads(self.rfile.read(n))
-                    with owner.lock:owner.client_seen=time.monotonic()
-                    if self.path=='/stop':
-                        owner.stop.set()
-                    elif self.path=='/heartbeat':
-                        with owner.lock:owner.key_deadline=time.monotonic()+3
-                    elif self.path=='/key':
-                        key=body['key'];down=body['down']
-                        if type(key) is not int or key not in ALLOWED or type(down) is not int or down not in (0,1):raise ValueError('key')
-                        with owner.lock:
+                    if not isinstance(body,dict):raise ValueError("object required")
+                    with owner.lock:
+                        owner.client_seen=time.monotonic()
+                        if self.path in ('/stop','/restart','/key'):
+                            if type(body.get('run_id')) is not int or body['run_id']!=owner.run_id:
+                                return self.reply(409,b'stale game')
+                            if self.path=='/restart':
+                                if owner.state!='idle':return self.reply(409,b'game is not idle')
+                            elif owner.state!='running':return self.reply(409,b'game is not running')
+                        if self.path=='/restart':owner.restart.set()
+                        elif self.path=='/stop':owner.stop.set()
+                        elif self.path=='/heartbeat':owner.key_deadline=time.monotonic()+3
+                        elif self.path=='/key':
+                            key=body['key'];down=body['down']
+                            if type(key) is not int or key not in ALLOWED or type(down) is not int or down not in (0,1):raise ValueError('key')
                             if len(owner.events)>=96:
                                 owner.stop.set();return self.reply(429,b'key queue full')
                             if down and key not in owner.held:owner.held.add(key);owner.events.append(key|0x100)
                             elif not down and key in owner.held:owner.held.remove(key);owner.events.append(key)
                             owner.key_deadline=time.monotonic()+3
-                    else:return self.reply(404,b'not found')
+                        else:return self.reply(404,b'not found')
                     self.reply(200,b'{}')
                 except (ValueError,KeyError,TypeError):self.reply(400,b'invalid request')
         self.http=ThreadingHTTPServer(('0.0.0.0',port),Handler)
         self.port=self.http.server_port
         self.thread=threading.Thread(target=self.http.serve_forever,daemon=True)
         self.thread.start()
+    def begin_game(self,run_id):
+        with self.lock:
+            assert run_id>=self.run_id
+            self.run_id=run_id;self.state='running'
+            self.events.clear();self.held.clear();self.stop.clear();self.restart.clear()
+            self.message=f'Loading game {run_id} on the card…'
+    def idle(self,run_id):
+        with self.lock:
+            assert run_id==self.run_id
+            self.state='idle';self.events.clear();self.held.clear();self.restart.clear()
+            self.message=f'Game {run_id} stopped safely. Click Start new game.'
     def publish(self,generation,payload):
         assert len(payload)==65536 and 0<generation<=0xffffffff
         packet=struct.pack('<8I',0x31424644,1,self.epoch,generation,320,200,65536,0)+payload

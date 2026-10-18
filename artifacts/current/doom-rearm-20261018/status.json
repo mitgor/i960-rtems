@@ -1,0 +1,28 @@
+{
+  "status": "candidate-native-tested-awaiting-initial-power-cycle",
+  "boot_id": "31291627-dcd0-44bd-9c81-50708c818d80",
+  "card_profile": "accele160",
+  "bdf": "0000:37:09.1",
+  "old_bdf": "0000:37:04.1",
+  "physical_restart_acceptance": false,
+  "installed_bundle_changed": false,
+  "flash_written": false,
+  "candidate_bundle": "/home/mit/i960-doom-rearm-20261018/bundle-candidate",
+  "manifest": {
+    "reusable": true,
+    "frames": 0,
+    "persistent": true,
+    "card_profile": "accele160",
+    "source_sha256": "7ce7018e5be098c09d0b6dbd283ee8582ef82277c3d128b7bb264333a1f1e4da",
+    "kernel_sha256": "6d857064d980be6b10db25aaf6fdd028f5b5cd4fcd258f2cc69fdcd2828e3d88",
+    "image_sha256": "f69d731d29434f0b32626cfa80adbe11865dbb3a2f069437b77b271362fdcff0",
+    "image_fnv": "0xfe04e546",
+    "engine_manifest_sha256": "4e45894dd6e5afcd0405da0a92c303780adeb501830c67fb4cfd9a63402a2d32",
+    "dma_module_sha256": "df48f83d1f303c69a55ffd9d4bf46e82c3e51bc3ad45b709140f0f04ab9dd1b6",
+    "native_fnv_sha256": "e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6",
+    "dma_source_sha256": "f98242f67568a78bc8cb216e9d7e96ae87a9ab96763bf73adc994fa0d1c5ccdb",
+    "copy_sha256": "136d0fe0670d73848cf5831ecf4cd26077accbcbb45168c45ac34a072106254c",
+    "engine_identity_sha256": "4fabffdf16c3d7dc15dcc42181d25c85b58ebfaeb91f1dc20d57a7cd295519c6"
+  },
+  "bundle_manifest_sha256": "4e3db9fc0566f5b1b1de507ad2fa1638b8238deeff0e1244cbf4c846c80f4b33"
+}

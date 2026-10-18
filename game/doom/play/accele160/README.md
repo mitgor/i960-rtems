@@ -31,7 +31,12 @@ does not silently reboot the PC. The old DAC960PG remains unbound and untouched.
 
 [A reusable-session investigation](reuse/README.md) now demonstrates native
 fresh-image restarts with the same arena and pins. Its audited RTEMS idle/rearm
-path still needs implementation and card acceptance; it is not installed.
+path is implemented as an opt-in candidate, cross-built and native-tested;
+[physical acceptance](../../../../artifacts/current/doom-rearm-20261018/README.md)
+awaits the initial power cycle. It is not installed. Build with `--reusable`.
+That candidate makes browser Stop/menu Quit park the game, adds Start new
+game, and makes a second `./doom` request restart from the same daemon.
+`./doom shutdown` retains the reset-only global STOP behavior.
 
 Live logs: `ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom'`.
 Captures are under `/home/mit/i960-doom/sessions/`; `latest-session.txt` points

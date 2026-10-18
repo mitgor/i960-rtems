@@ -9,6 +9,7 @@ from pathlib import Path
 import subprocess
 import sys
 import time
+import urllib.request
 
 
 def verify(bundle):
@@ -22,18 +23,45 @@ def verify(bundle):
     return cfg
 
 
+def game_control(action):
+    # This process can request a transition only from the existing owning
+    # daemon. It cannot adopt a retained kernel after that daemon dies.
+    path=Path('/run/i960-doom-control.json')
+    if not path.exists():return False
+    state=json.loads(path.read_text())
+    pid=int(subprocess.check_output(['systemctl','show','-p','MainPID','--value','i960-doom.service']))
+    if pid!=state['pid'] or state['boot_id']!=Path('/proc/sys/kernel/random/boot_id').read_text().strip():
+        raise RuntimeError('stale owning-daemon control record; reset required')
+    base='http://127.0.0.1:'+str(state['port'])
+    with urllib.request.urlopen(base+'/status',timeout=3) as response:
+        current=json.load(response)
+    if action=='start' and current['state']!='idle':return True
+    if action=='stop' and current['state']=='idle':return True
+    body=json.dumps(dict(run_id=current['run_id'])).encode()
+    request=urllib.request.Request(base+('/restart' if action=='start' else '/stop'),body,
+        {'X-Session-Token':state['token'],'Content-Type':'application/json'})
+    with urllib.request.urlopen(request,timeout=3) as response:
+        if response.status!=200:raise RuntimeError('owning daemon rejected game control')
+    return True
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('action',choices=('start','run','status','stop'),nargs='?',default='start')
+    p.add_argument('action',choices=('start','run','status','stop','shutdown'),nargs='?',default='start')
     p.add_argument('--bundle',type=Path,required=True)
     p.add_argument('--port',type=int,default=8087)
     p.add_argument('--max-frames',type=int,default=0)
+    p.add_argument('--restart-cycles',type=int,default=0)
+    p.add_argument('--quit-game',type=int,default=0)
+    p.add_argument('--paired-frames',type=int,choices=(4,32),default=4)
     p.add_argument('--capture-all',action='store_true')
     p.add_argument('--disconnect-seconds',type=float,default=300)
     a=p.parse_args();bundle=a.bundle.resolve()
     if a.action=='status':
         return subprocess.run(['systemctl','status','i960-doom.service','--no-pager']).returncode
-    if a.action=='stop':
+    if a.action=='stop' and game_control('stop'):
+        print('Game STOP requested; RTEMS stays owned for restart.');return 0
+    if a.action in ('stop','shutdown'):
         return subprocess.run(['systemctl','stop','i960-doom.service']).returncode
     if not 1024<=a.port<=65535 or a.max_frames<0 or a.disconnect_seconds<5:
         p.error('invalid session bounds')
@@ -48,6 +76,7 @@ def main():
     if a.action=='start':
         active=subprocess.run(['systemctl','is-active','--quiet','i960-doom.service']).returncode==0
         if active:
+            game_control('start')
             print(f'Doom is already running. Open http://192.168.2.75:{a.port}/');return 0
     for name in ('dma_frames','admit_command','reserve_command','copy_command','digest_command','release_command'):
         if Path('/sys/module',name).exists():
@@ -61,6 +90,7 @@ def main():
                  '--setenv=PYTHONUNBUFFERED=1',sys.executable,str(Path(__file__).resolve()),
                  'run','--bundle',str(bundle),'--port',str(a.port),
                  '--max-frames',str(a.max_frames),'--disconnect-seconds',str(a.disconnect_seconds)]
+        command+=['--restart-cycles',str(a.restart_cycles),'--quit-game',str(a.quit_game),'--paired-frames',str(a.paired_frames)]
         if a.capture_all:command+=['--capture-all']
         subprocess.run(command,check=True)
         print(f'Doom is starting. Open http://192.168.2.75:{a.port}/')
@@ -81,7 +111,7 @@ def main():
                         '--bdf',cfg['bdf'],'--module',str(bundle/'inputs/rawreader.ko'),
                         '--selector','9','--length','1048576','--out',str(session/f'pre-{number}')],check=True)
     command=[sys.executable,str(project/'rtems/accele160/doom_dma/run_bridge.py'),
-             '--persistent','--port',str(a.port),'--card-fnv','off',
+             '--persistent','--port',str(a.port),'--card-fnv','off','--paired-frames',str(a.paired_frames),
              '--max-frames',str(a.max_frames),'--disconnect-seconds',str(a.disconnect_seconds),
              '--fps-manifest',str(project/'rtems/accele160/doom_dma/persistent-manifest.json'),
              '--startup-oracle',str(bundle/'inputs/native-requests.bin'),
@@ -94,6 +124,9 @@ def main():
              '--readback0',str(session/'pre-0'),'--readback1',str(session/'pre-1'),'--out',str(session/'run')]
     for name in ('reserve','release','copy','digest','admit'):
         command+=['--'+name+'-module',str(bundle/'inputs'/(name+'_command.ko'))]
+    manifest=json.loads((project/'rtems/accele160/doom_dma/persistent-manifest.json').read_text())
+    if manifest.get('reusable'):
+        command+=['--reusable','--restart-cycles',str(a.restart_cycles),'--quit-game',str(a.quit_game)]
     if a.capture_all:command+=['--capture-all']
     os.execv(sys.executable,command)
 

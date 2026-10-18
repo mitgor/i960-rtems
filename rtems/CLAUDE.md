@@ -1521,3 +1521,13 @@ the timer, masks interrupts and loops forever; a RAM flag cannot restart it.
 Rearm must prove Init no longer owns an engine/IRQ continuation and validate
 other retained IRQ owners without zeroing their stacks. Native image-reload
 proof passes but no new kernel or PM reset was executed on the card.
+
+**Reusable AcceleRAID candidate (2026-10-18):** `DOOM_REUSABLE=1` and
+`run_bridge.py --reusable` retain RTEMS and fixed/DMA ownership between games.
+Ops 9/8 audit/rearm a retired image, followed by a fresh original template +
+zero BSS + relocation admission. Global counters persist; slot parity is local
+to each engine run. Never reinitialize the arena or call a retired engine.
+Native policy sanitizer/browser/DMA tests pass; physical repeated restarts
+are pending an initial power cycle. See `artifacts/current/doom-rearm-20261018`.
+Installed bundle-v2 remains accepted and reset-only. Do not promote the new
+candidate, adopt a dead daemon's resources, or clear terminal QUIE to resume.

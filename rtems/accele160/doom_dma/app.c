@@ -73,6 +73,8 @@ static unsigned int engine_running,engine_invoked,zone_loaned,first_frame_seen;
 static unsigned int engine_read_count,engine_read_done,engine_mark_count;
 static unsigned int engine_deadline,engine_text_live;
 static unsigned int key_seen;
+static unsigned int game_run=1u,game_idle,frame_origin,transport_frame;
+static struct arena_slot fixed_slots[7];
 static struct doom_runtime_checkpoint doom_api;
 #define ENGINE_ADMISSION (ENGINE_META+ENGINE_SITES*4u)
 #define ENGINE_RESERVE 900000u
@@ -82,6 +84,12 @@ static struct doom_runtime_checkpoint doom_api;
 #define STAGE_RESERVE (17u*STAGE_STRIDE)
 #ifndef DOOM_FPS_FRAMES
 #define DOOM_FPS_FRAMES 1u
+#endif
+#ifndef DOOM_REUSABLE
+#define DOOM_REUSABLE 0
+#endif
+#if DOOM_REUSABLE && !DOOM_PERSISTENT
+#error reusable requires persistent engine
 #endif
 #ifndef DOOM_PERSISTENT
 #define DOOM_PERSISTENT 0
@@ -439,13 +447,18 @@ static unsigned int wad_fetch(unsigned int offset,unsigned int n,unsigned int *v
 static unsigned int engine_owner(void){
  return engine_running&&(unsigned int)_Thread_Executing==switch_threads[0]&&!switch_fault;
 }
-static unsigned int engine_stopping(void){
+static void host_watchdog(void){
 #if DOOM_PERSISTENT
  unsigned int beat=live[13];
  if(beat!=host_heartbeat){host_heartbeat=beat;host_heartbeat_tick=ticks;}
  /* Process death must never grant permission to recycle a host buffer.
   * Request complete reboot-only quiescence if its heartbeat disappears. */
- if(ticks-host_heartbeat_tick>=3000u)control[3]=STOP;
+ if(host_heartbeat && ticks-host_heartbeat_tick>=3000u)control[3]=STOP;
+#endif
+}
+static unsigned int engine_stopping(void){
+#if DOOM_PERSISTENT
+ host_watchdog();
  return !engine_owner()||control[3]==STOP||control[15]==STOP;
 #else
  return !engine_owner()||control[3]==STOP||ticks-engine_report[2]>=180000u;
@@ -511,7 +524,7 @@ static int engine_read(unsigned int file,unsigned int offset,void *dst,unsigned 
  return (int)n;
 }
 static int engine_mark(unsigned int stage,unsigned int x,unsigned int y,unsigned int z){
- unsigned int i,slot,base,start,seq,value,hash;
+ unsigned int i,slot,base,start,seq,value,hash,generation;
  engine_mark_count++;engine_report[7]=stage;engine_report[8]=engine_mark_count;
  if(!engine_owner()||engine_stopping()){dma_drain();return -1;}
  if(stage==102u)return (int)engine_trace[3];
@@ -536,10 +549,12 @@ static int engine_mark(unsigned int stage,unsigned int x,unsigned int y,unsigned
   if(rtems_task_wake_after(1)!=RTEMS_SUCCESSFUL)return -1;
   priority0();
  }
+ generation=frame_origin+z;
+ if(generation<=transport_frame||generation>=0xfffffffeu)bounded_fatal(0x79001u);
  if(z<=dma_cfg[6])for(i=0;i<16u;i++)dma_copy(stage_odd[slot]+i*STAGE_STRIDE,(const void*)(x+i*4096u),4096u);
  hash=dma_cfg[7]?0u:byte_fnv((const void*)x,FRAME_BYTES);
- live[base+1u]=hash;live[base+2u]=ticks;live[base]=z;
- dma_kick(z,slot,(const void*)x,hash,live[base+2u]);
+ live[base+1u]=hash;live[base+2u]=ticks;live[base]=generation;transport_frame=generation;
+ dma_kick(generation,slot,(const void*)x,hash,live[base+2u]);
  if(DOOM_PERSISTENT){
   frame_base=(unsigned char*)x;frame_ready=1u;
   if(z==0xfffffffeu){control[15]=STOP;return 0;}
@@ -577,7 +592,8 @@ static unsigned int engine_first_frame(unsigned int *value){
  if(!admitted||!wad_ready||engine_invoked||!arena_valid(&doom_arena))return 20u;
  if(!digest_equal(image_base+ENGINE_META,ENGINE_SITES*4u,engine_metadata_sha))return 21u;
  engine_invoked=1u;first_frame_seen=0u;frame_ready=0u;
- key_seen=0u;
+ if(!DOOM_REUSABLE)key_seen=0u;
+ frame_origin=transport_frame;game_idle=0u;bridge[21]=0u;
  host_heartbeat=live[13];host_heartbeat_tick=ticks;
  engine_read_count=0u;engine_read_done=0u;engine_mark_count=0u;
  for(i=0;i<16u;i++)engine_trace[i]=0u;
@@ -651,6 +667,64 @@ static unsigned int engine_first_frame(unsigned int *value){
     r[10]!=1u||r[11]!=210u)bounded_fatal(0x7700au);
  return 0u;
 }
+/* The Init task alone retires and reloads an engine. Kernel stacks, arena
+ * generations, WAD/key/bridge counters and hardware DMA history survive. */
+static unsigned int reusable_audit(void){unsigned int i,j,ok=1u;
+ if(engine_running||zone_loaned||switch_fault||control[3]==STOP||
+    !arena_valid(&doom_arena))return 0u;
+ for(i=0;i<7u;i++)for(j=0;j<sizeof(struct arena_slot)/4u;j++)
+  if(((unsigned int*)&fixed_slots[i])[j]!=((unsigned int*)&doom_arena.slot[i])[j])return 0u;
+ for(i=7u;i<ARENA_SLOTS;i++)if(doom_arena.slot[i].span)return 0u;
+ for(i=0;i<4u;i++)for(j=0;j<64u;j++)
+  if(switch_irq_areas[i][j]!=0xa5u||switch_irq_areas[i][8128u+j]!=0xa5u)return 0u;
+ /* Other workers can own suspended IRQ continuations in their unchanged
+  * kernel stacks. Only Init's continuation could point into the engine. */
+ mask31();
+ if((unsigned int)_Thread_Executing!=switch_threads[0]||switch_active[0]||
+    life[0].live||life[0].entries!=life[0].returns||
+    _ISR_Nest_level||_Thread_Dispatch_disable_level)ok=0u;
+ for(i=0;i<4u;i++)if(life[i].entries-life[i].returns!=life[i].live||
+    switch_active[i]!=life[i].live)ok=0u;
+ bridge[25]=life[0].entries;bridge[26]=life[0].returns;
+ bridge[27]=switch_active[0]|(switch_active[1]<<1)|(switch_active[2]<<2)|(switch_active[3]<<3);
+ priority0();
+ if(!ok||dma_phase||dma_completed!=transport_frame||dma_busy_mask()||
+    REG(0x1400u)||REG(0x1410u)||REG(0x1420u)||REG(0x1404u))return 0u;
+ dma_peer_check();
+ if(dma_completed&&(REG(0x140cu)!=dma_desc_addr()+32u||REG(0x1424u)!=7u))return 0u;
+ if(live[2]!=live[5]||live[6]!=live[9]||wad_wire[0]!=wad_seq||
+    wad_wire[9]==0x444e4550u)return 0u;
+ if(REG(0xff008100u)!=0u||REG(0xff008108u)!=0xc0000002u||
+    REG(0xff00810cu)!=0xffc00001u||REG(0xff008110u)!=0xc0400002u||
+    REG(0xff008114u)!=0xffe00001u)return 0u;
+ if(!digest_equal(image_base+ENGINE_META,ENGINE_SITES*4u,engine_metadata_sha)||
+    byte_fnv(image_base,ENGINE_TEXT)!=engine_text_live)return 0u;
+ return 1u;
+}
+static unsigned int rearm_engine(unsigned int run,unsigned int n,unsigned int checksum,unsigned int commit){
+ unsigned int last,request,next,key;
+ if(!DOOM_REUSABLE)return 9u;
+ if(run!=game_run||game_run==0xffffffffu)return 40u;
+ if(!game_idle||!engine_invoked||!admitted||n!=16u)return 41u;
+ if(byte_fnv(inbound,n)!=checksum)return 3u;
+ last=little_word((const unsigned char*)inbound);
+ request=little_word((const unsigned char*)inbound+4);
+ next=little_word((const unsigned char*)inbound+8);
+ key=little_word((const unsigned char*)inbound+12);
+ if(last!=transport_frame||next!=game_run+1u)return 42u;
+ if(request!=wad_seq)return 43u;
+ if(key!=live[10]||live[12]!=key_seen||key<key_seen||key-key_seen>1u)return 44u;
+ if(!reusable_audit())return 45u;
+ if(!commit)return 0u;
+ /* Explicitly discard at most one unconsumed old-game key. This is not an
+  * engine ACK: bridge[23] records the discarded sequence for the host. */
+ bridge[23]=key!=key_seen?key:0u;key_seen=key;live[12]=key;
+ upload_bytes=0u;admitted=0u;wad_ready=0u;frame_ready=0u;engine_invoked=0u;
+ frame_base=(unsigned char*)ARENA_BASE+fixed_slots[2].offset+16u;
+ game_run=next;game_idle=0u;control[15]=0u;
+ bridge[20]=game_run;bridge[21]=0u;bridge[24]=1u;
+ return 0u;
+}
 /* PCI sideband never submits a stock mailbox command. The host writes a 4 KiB
  * odd-page stage, then publishes seq last. Only this task copies application
  * bytes; the ISR handles timer/context only. ACK is written last. */
@@ -696,6 +770,9 @@ static void bridge_poll(void){
  }else if(op==7u){
   if(offset||n){status=18u;goto reply;}
   status=engine_first_frame(&value);
+  if(DOOM_REUSABLE&&status==31u){game_idle=1u;bridge[21]=1u;}
+ }else if(op==8u||op==9u){
+  status=rearm_engine(offset,n,expected,op==8u);value=game_run;
  }else{status=9u;}
 reply:
  bridge[9]=status;bridge[10]=value;bridge[11]=upload_bytes;
@@ -703,6 +780,7 @@ reply:
  bridge[17]=arena_valid(&doom_arena);
  if(!bridge[17])bounded_fatal(0x74001u);
  bridge[18]=wad_good;bridge[19]=wad_bad;
+ bridge[20]=game_run;bridge[22]=transport_frame;
  last_seq=seq;bridge[8]=seq;
 }
 void bounded_fatal(unsigned int code){
@@ -825,6 +903,7 @@ static void Init(rtems_task_argument nonce){rtems_task_priority old;
   CHECK(rtems_task_wake_after(2));priority0();
   lease_invalidate_dcache();
   claim_report[4]=ticks;
+  if(DOOM_REUSABLE)host_watchdog();
   bridge_poll();
   if(ticks>=6u&&handoffs>=2u&&life[1].entries&&life[2].entries)
    control[4]=0x59444152u;
@@ -941,6 +1020,7 @@ unsigned int bounded_main(unsigned int report_addr,unsigned int nonce){
     stage_odd[1]+15u*STAGE_STRIDE+4096u>stage_alloc[1]+STAGE_RESERVE||
     !arena_valid(&doom_arena))
   bounded_fatal(0x73003u);
+ for(word=0;word<7u;word++)fixed_slots[word]=doom_arena.slot[word];
  for(word=0;word<WAD_BUFFER_BYTES;word++)wad_buffer[word]=0u;
  claim_report[7]=(unsigned int)image_base;
  claim_report[8]=(unsigned int)zone_base;
@@ -955,7 +1035,8 @@ unsigned int bounded_main(unsigned int report_addr,unsigned int nonce){
  live[0]=0x3145564cu;live[1]=BRIDGE_EPOCH;
  live[14]=(unsigned int)stage_odd[0];
  live[15]=(unsigned int)stage_odd[1];
- for(word=0;word<20u;word++)bridge[word]=0u;
+ for(word=0;word<32u;word++)bridge[word]=0u;
+ bridge[20]=game_run;
  bridge[6]=0x31475242u;
  bridge[7]=BRIDGE_EPOCH;
  for(word=0;word<16u;word++)wad_wire[word]=0u;
