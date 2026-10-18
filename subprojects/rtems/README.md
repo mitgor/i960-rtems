@@ -27,3 +27,9 @@ original cooperative profile: interrupt ownership, memory and module differ.
 The current runtime is trusted code in one address space. It is not a generic
 protected-process OS or a drop-in BSP for every i960 card. See
 [porting another card](../../docs/porting.md).
+
+See the [AcceleRAID feature-port plan](../../docs/rtems/ACCELE160-PORT-PLAN.md) for the current parity matrix and staged console, ownership, loader and networking gates.
+
+The [P1/P2 diagnostic service](../../rtems/accele160/service/README.md) provides
+an opt-in card-side prompt through the existing host owner; see its dated ledger
+for accepted kernel tests and pending host/recovery checks.

@@ -5997,3 +5997,25 @@ median. Those are different measurements, not one universal latency number.
 The spaceship moved in the browser, then we left it stopped in reusable idle.
 Global shutdown and deliberately expiring the card timeout are still separate
 work; this batch preserved the working session so the user can play.
+
+The next question was simpler than another game: could we ask RTEMS what it
+was doing? We gave one of its existing workers a small mailbox and kept the
+Linux daemon as the only owner of the card. An SSH terminal could now ask for
+its version, ticks, task owners, memory capacities and application state. The
+answers were assembled on the i960, not invented by a host-side status page.
+
+Two fresh Doom games each produced sixty-four frames while that worker was
+available. The frames repeated exactly, the WAD reads matched, and the same
+RTEMS instance survived the game restart before its audited global shutdown.
+The console's own tests rejected old identities and malformed requests. Most
+replies took milliseconds, though one waited almost five seconds around a
+reload. That distinction matters: we had a diagnostic prompt, not a promise
+of real-time response under every workload.
+
+A deliberately oversized terminal line found a Linux socket-close bug rather
+than a card fault. We corrected the response and EOF handling, kept slow
+clients bounded, and arranged to publish the socket only when the card was
+ready. Those changes passed native tests. The complete first card run was
+saved before resetting the PC; SSH then refused connections. The corrected
+host still needs its physical follow-up and the reset still needs its final
+firmware checks. The evidence stops there until the machine returns.

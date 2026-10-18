@@ -23,6 +23,9 @@ def main():
                  'host/accele160/readimage','rtems/accele160/doom_dma','game/doom/play/accele160'):
         shutil.copytree(a.project/name,a.out/'project'/name,
                         ignore=shutil.ignore_patterns('__pycache__','*.pyc','*.o'))
+    if manifest.get('service_schema'):
+        shutil.copytree(a.project/'rtems/accele160/service',a.out/'project/rtems/accele160/service',
+                        ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
     target=a.out/'project/rtems/residentnet/presentation_profile.py'
     target.parent.mkdir(parents=True,exist_ok=True)
     shutil.copyfile(a.project/'rtems/residentnet/presentation_profile.py',target)

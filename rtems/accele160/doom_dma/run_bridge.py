@@ -55,6 +55,7 @@ def main():
     if a.persistent:
         for sig in (signal.SIGINT,signal.SIGTERM):
             signal.signal(sig,lambda *_:signal_stop.set())
+    service_schema=0
     keyboard_fifo_schema=0
     modules=dict(MODULES)
     if a.frames==32:
@@ -64,6 +65,12 @@ def main():
         if 'admit_module_sha256' in fps_manifest:
             need(fps_manifest['admit_source_sha256']==sha((ROOT/'host/accele160/ram_admit/admit_command.c').read_bytes()),'private admission queue source identity')
             modules['admit']=fps_manifest['admit_module_sha256']
+        service_schema=fps_manifest.get('service_schema',0)
+        need(service_schema in (0,1),'service schema')
+        if service_schema:
+            need(set(fps_manifest['service_sources'])=={'protocol.h','card.inc','host.py'},'complete service source identities')
+            for name,digest in fps_manifest['service_sources'].items():
+                need(sha((Path(__file__).parent.parent/'service'/name).read_bytes())==digest,'service source identity')
         keyboard_fifo_schema=fps_manifest.get('keyboard_fifo_schema',0)
         need(keyboard_fifo_schema in (0,1),'keyboard FIFO schema')
         if keyboard_fifo_schema:
@@ -138,7 +145,9 @@ def main():
         cfg.seek(0x44);cfg.write(struct.pack('<I',addr));cfg.seek(0x44)
         need(struct.unpack('<I',cfg.read(4))[0]==addr,'PIATVR readback')
     def snap(addr):
-        translate(addr);return bytes(bar[PAGE:2*PAGE])
+        translate(addr);data=bytes(bar[PAGE:2*PAGE])
+        pump_service()
+        return data
     def write(addr,off,data):
         translate(addr);bar[PAGE+off:PAGE+off+len(data)]=data
         need(bytes(bar[PAGE+off:PAGE+off+len(data)])==data,'PCI writeback')
@@ -149,7 +158,13 @@ def main():
         return got
     active_owner=False
     quiescent=False
-    browser=None;control_file=None
+    browser=None;control_file=None;service=None;service_pumping=False
+    def pump_service():
+        nonlocal service_pumping
+        if service and service.started and not service.testing and not service_pumping:
+            service_pumping=True
+            try:service.pump(snap,write)
+            finally:service_pumping=False
     try:
         before=snap(0xc000e000);owner=snap(0xc0384000)
         upper_before=snap(0xc0f00000);stock_before=snap(0xc0010000)
@@ -266,6 +281,11 @@ def main():
         write(0xc000e000,0xa20,b'\xa5'*28)
         write(0xc000e000,0xa40,side)
         write(0xc000e000,0xa60,b'\xa5'*32)
+        if service_schema:
+            sys.path.insert(0,str(Path(__file__).parent.parent/'service'))
+            from host import Service
+            service=Service('/run/i960-rtems-console.sock',a.out/'console.jsonl',defer=True)
+            service.initialize(write)
         translate(original)
         need(status('ram-admit').get('started')=='0','admit started')
         (DEBUG/'accele-ram-admit/start').write_text('probe\n')
@@ -322,10 +342,13 @@ def main():
              and sha(wad[:512])=='93bd1ddcfc43fbf233207876f5cfcbaef4cf4e64a1093efa47be9517d93214bd','exact Freedoom WAD')
         admission=template+bytes(engine_manifest['metadata_offset']-len(template))+relocs
         need(len(admission)==engine_manifest['admission_bytes']<=900000,'admission geometry')
+        if service:
+            service.selftest(snap,write);service.start()
         seq=0;receipts=[];heartbeat=0;last_heartbeat=0
         def pump_heartbeat():
             nonlocal heartbeat,last_heartbeat
             now=time.monotonic()
+            pump_service()
             if a.reusable and now-last_heartbeat>=.5:
                 heartbeat+=1;write(0xc000e000,0xd34,struct.pack('<I',heartbeat));last_heartbeat=now
         def transact(op,offset=0,data=b'',expected_status=0,wire_n=None):
@@ -503,6 +526,7 @@ def main():
                 # pair. The card stages exactly one frame page in each odd page.
                 return b''.join(snap(ptr+i*8192-PAGE) for i in range(16))
             while a.persistent or time.monotonic()-began_engine<1830:
+                pump_service()
                 page=snap(0xc000e000)
                 req=struct.unpack_from('<16I',page,0xc00)
                 words=struct.unpack_from('<20I',page,0xb80)
@@ -820,6 +844,9 @@ def main():
                     rejected=transact(8,offset,struct.pack('<4I',*values),expected_status=want)
                     need(rejected[12]==1,'rejection did not retire admission')
                 game_result['idle_verified']=True
+                if service:
+                    service.record(event='idle_gate',game_run=game_run)
+                    service.selftest(snap,write)
             save(run/'game-result.json',game_result);games.append(game_result)
             save(a.out/'games.json',games)
             if not a.reusable or signal_stop.is_set() or (a.restart_cycles and game_run>=a.restart_cycles):break
@@ -913,6 +940,7 @@ def main():
                     error=repr(error),stop_error=repr(stop_error)))
         raise
     finally:
+        if service:service.close()
         if control_file and control_file.exists():
             try:
                 if json.loads(control_file.read_text()).get('pid')==os.getpid():control_file.unlink()

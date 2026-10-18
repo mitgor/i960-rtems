@@ -1,0 +1,3 @@
+protocol: seven commands, duplicate, epoch, sequence, length, opcode, reserved, capacity PASS
+host: valid, malformed, oversized, partial disconnect, queue bound, reconnect, corrupt reply PASS
+production audit pump: original page preserved, recursion excluded, selftest exclusion, exception reset PASS

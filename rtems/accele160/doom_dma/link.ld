@@ -13,4 +13,8 @@ SECTIONS {
  . = 0xc072c000;
  .entry_stack : { BYTE(0); . = . + 4094; BYTE(0); }
  ASSERT(. <= 0xc078f000, "RTEMS image overlaps staging page")
+ /* Explicit grant reservation; NOLOAD preserves the established 29-page image.
+  * Workspace ends c0760000, bank scratch ends c0763000, RIP samples c0772000. */
+ .service 0xc0775000 (NOLOAD) : { __service_start = .; . = . + 4096; __service_end = .; }
+ ASSERT(__service_end <= 0xc078b000, "service overlaps upload buffers")
 }

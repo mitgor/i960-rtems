@@ -885,6 +885,9 @@ static void arm_timer(void){unsigned int error=preflight();
  REG(0xff000318u)=0x36u;
 }
 
+#if ACCELE_SERVICE
+#include "../service/card.inc"
+#endif
 static void Worker(rtems_task_argument id){unsigned int i,old;
  switch_threads[id+1]=(unsigned int)_Thread_Executing;
  life[id+1].owner=switch_threads[id+1];
@@ -898,6 +901,9 @@ static void Worker(rtems_task_argument id){unsigned int i,old;
   * while an earlier interrupt continuation was still active. */
  for(i=0;(DOOM_PERSISTENT||ticks<200000u)&&!switch_stop;i++){
   loops[id]=i;
+#if ACCELE_SERVICE
+  if(id==0u)service_poll();
+#endif
   __asm__ volatile("":::"memory");
  }
  if(!switch_stop)switch_fault|=0x100u;
@@ -924,6 +930,9 @@ static void Init(rtems_task_argument nonce){rtems_task_priority old;
                          RTEMS_DEFAULT_ATTRIBUTES,&worker_id[1]));
  CHECK(rtems_task_start(worker_id[0],Worker,0));
  CHECK(rtems_task_start(worker_id[1],Worker,1));
+ #if ACCELE_SERVICE
+ service_init();
+ #endif
  arm_timer();priority0();
  for(i=0;;i++){
   CHECK(rtems_task_wake_after(2));priority0();

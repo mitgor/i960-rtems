@@ -12,7 +12,7 @@ for item in start timer_isr cache; do
   "$tools_bin/i960-coff-gcc" -mrp -c "$src/$item.S" -o "$out/$item.o"
 done
 "$tools_bin/i960-coff-gcc" -mrp -Os -fno-builtin -ffreestanding \
-  -D__rtems__ -DUSE_INLINES -DDOOM_FPS_FRAMES="${DOOM_FPS_FRAMES:-1}" \
+  -DACCELE_SERVICE="${ACCELE_SERVICE:-0}" -D__rtems__ -DUSE_INLINES -DDOOM_FPS_FRAMES="${DOOM_FPS_FRAMES:-1}" \
   -DDOOM_PERSISTENT="${DOOM_PERSISTENT:-0}" \
   -DDOOM_REUSABLE="${DOOM_REUSABLE:-0}" \
   -DDOOM_KEY_FIFO_SUPPORT="${DOOM_KEY_FIFO_SUPPORT:-0}" \
@@ -28,14 +28,14 @@ done
   "$rtems_build/libc.o" "$rtems_build/librtems-bounded.a"
 "$tools_bin/i960-elf-objcopy" -O binary "$out/kernel.elf" "$out/kernel.bin"
 "$tools_bin/i960-elf-nm" -n "$out/kernel.elf" > "$out/kernel.symbols"
-python3 - "$out" "${DOOM_PERSISTENT:-0}" "${DOOM_PRIVATE_CACHE_MAP:-1}" "${DOOM_REUSABLE:-0}" "${DOOM_KEY_FIFO_SUPPORT:-0}" <<'PY'
+python3 - "$out" "${DOOM_PERSISTENT:-0}" "${DOOM_PRIVATE_CACHE_MAP:-1}" "${DOOM_REUSABLE:-0}" "${DOOM_KEY_FIFO_SUPPORT:-0}" "${ACCELE_SERVICE:-0}" <<'PY'
 from pathlib import Path
 import sys,json
 p=Path(sys.argv[1]); image=(p/'kernel.bin').read_bytes()
 assert len(image)==29*4096,len(image)
 (p/'image.bin').write_bytes(image[:20*4096]+b'\xa5'*(9*4096))
 (p/'build.json').write_text(json.dumps(dict(card_profile='accele160',
-    keyboard_fifo_schema=int(sys.argv[5]),reusable=bool(int(sys.argv[4])),persistent=bool(int(sys.argv[2])),private_cache_map=bool(int(sys.argv[3]))),indent=2)+'\n')
+    service_schema=int(sys.argv[6]),keyboard_fifo_schema=int(sys.argv[5]),reusable=bool(int(sys.argv[4])),persistent=bool(int(sys.argv[2])),private_cache_map=bool(int(sys.argv[3]))),indent=2)+'\n')
 PY
 cc -O2 -shared -fPIC "$src/fnv_host.c" -o "$src/fnv_host.so"
 sha256sum "$out/kernel.bin" "$out/image.bin" "$src/fnv_host.so"

@@ -1545,3 +1545,26 @@ full ownership/system/STOP audits and WAD/native/HTTP/tamper replay pass.
 See `artifacts/current/accele160-flat-20261018`. Final post-reset read pair is
 pending. The optional `i960-doom-flat` wrapper is prepared; ordinary launcher
 unchanged. Preserve full audits and the four documented native differences.
+
+**AcceleRAID general RTEMS port plan (2026-10-18):** see
+[the staged parity plan](../docs/rtems/ACCELE160-PORT-PLAN.md).
+Persistent/reusable Doom, timer tasks and DMA frames already exist; do not
+restart their initial bring-up from historical README status. Next proposed
+batch is a separate service baseline and bounded read-only command prompt
+through the existing sole hardware owner. General shared-resource cancellation,
+heap/workspace integration, resident loading and card-side lwIP follow their
+own physical gates. This is planning only; no new on-card acceptance is claimed.
+
+**P1/P2 AcceleRAID diagnostic prompt (2026-10-18):**
+`ACCELE_SERVICE=1` adds a bounded read-only worker mailbox in the existing
+512 KiB grant, with a root-only Unix socket owned by the single host runner.
+See [service source/runbook](accele160/service/README.md) and
+[exact evidence](../artifacts/current/accele160-service-20261018/README.md).
+The kernel passed two 64-frame Doom games, idle/rearm, all frame/WAD audits,
+three console protocol gates and global STOP. 172 host replies were captured.
+The first host oversized-line close bug is fixed and native-tested; corrected
+host pumping/socket publication still needs its follow-up physical run.
+The acceptance reset currently refuses SSH; post-reset reads/live installation
+are pending physical recovery. Do not claim the prompt is currently reachable,
+change the installed Doom wrapper, or adopt retained mappings. `./rtems-console`
+connects only to an already running service-enabled owner. No firmware write.

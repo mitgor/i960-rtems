@@ -1,0 +1,19 @@
+{
+  "boot_id": "f7ddb4e1-7115-44ef-958d-ab86cb2f3ee7",
+  "bundle_files_verified": 236,
+  "kernel_sha256": "e19f3e9435e971a663591ad27e92e9a4ad886fb289307dda2f5c4f94ba675635",
+  "frames": 128,
+  "repeat_pixels_palette_exact": true,
+  "paired_pio_frames": 64,
+  "wad_reads_replayed": 10090,
+  "console_replies": 172,
+  "console_selftest_gates": 3,
+  "console_latency_ms": {
+    "min": 0.4121700000041528,
+    "median": 3.27838500001576,
+    "max": 4728.131618999982
+  },
+  "final_global_stop": true,
+  "post_reset_flash_pair": false,
+  "host_oversize_close_issue_fixed_in_followup": true
+}
