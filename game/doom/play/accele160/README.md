@@ -1,5 +1,9 @@
 # Persistent Doom on AcceleRAID 160
 
+See [doom_commands.md](../../../../doom_commands.md) for all installed launcher
+variants, commands, options, browser controls and reset boundaries. With the old
+card removed, select the reusable or flat wrapper explicitly as described there.
+
 From the repository on the Mac, run **`./doom`**, then open
 **http://192.168.2.75:8087/**. The installed Linux command is
 `/home/mit/.local/bin/i960-doom`. It starts a systemd service, checks the exact
