@@ -1,0 +1,12 @@
+{
+  "runtime_acceptance": true,
+  "games": 3,
+  "frames": 173,
+  "successful_rearms": 2,
+  "post_reset_flash_pair": false,
+  "production_default_changed": false,
+  "positive_browser_cli_idle_restart_tested": false,
+  "idle_host_loss_tested": false,
+  "boot_id": "f95c315b-33b1-4dd3-9f89-aacac7280f7f",
+  "tested_bundle": "/home/mit/i960-doom-rearm-20261018/bundle-retry"
+}

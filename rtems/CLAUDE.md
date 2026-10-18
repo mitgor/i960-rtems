@@ -1514,20 +1514,22 @@ and `artifacts/current/doom-persistent-20261018`. A 1,058-frame physical run
 passed cleanup, cache restoration, IRQ drain and full pre/post flash reads.
 Reset remains the exclusive ownership boundary; never unload pinned mappings.
 
-**Proposed reusable idle state:** see `game/doom/play/accele160/reuse/README.md`.
-Normal game STOP should eventually audit/park Doom while leaving RTEMS and
-its original grants/mappings alive. Current global STOP drains workers, stops
-the timer, masks interrupts and loops forever; a RAM flag cannot restart it.
-Rearm must prove Init no longer owns an engine/IRQ continuation and validate
-other retained IRQ owners without zeroing their stacks. Native image-reload
-proof passes but no new kernel or PM reset was executed on the card.
+**Reusable idle state:** see `game/doom/play/accele160/reuse/README.md`.
+Normal game STOP/Quit now audit and park Doom while RTEMS retains its
+original grants/mappings. The opt-in kernel passed two physical rearms.
+Global STOP still drains workers, stops the timer, masks interrupts and
+loops forever; a RAM flag cannot restart that terminal state. Init's engine
+and IRQ continuation must be gone before rearm; other retained kernel IRQ
+owners keep their original stacks. No PM reset was attempted.
 
 **Reusable AcceleRAID candidate (2026-10-18):** `DOOM_REUSABLE=1` and
 `run_bridge.py --reusable` retain RTEMS and fixed/DMA ownership between games.
 Ops 9/8 audit/rearm a retired image, followed by a fresh original template +
 zero BSS + relocation admission. Global counters persist; slot parity is local
 to each engine run. Never reinitialize the arena or call a retired engine.
-Native policy sanitizer/browser/DMA tests pass; physical repeated restarts
-are pending an initial power cycle. See `artifacts/current/doom-rearm-20261018`.
+Native policy sanitizer/browser/DMA tests pass. Physical STOP / fresh
+image / menu Quit / fresh image / STOP passed 65/43/65 frames, both rearms,
+96 paired PIO frames and all stale gates; final post-reset flash reads remain
+pending. Positive browser/CLI idle restart and idle host-loss gates remain. See `artifacts/current/doom-rearm-20261018`.
 Installed bundle-v2 remains accepted and reset-only. Do not promote the new
 candidate, adopt a dead daemon's resources, or clear terminal QUIE to resume.

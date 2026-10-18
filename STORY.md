@@ -5780,3 +5780,25 @@ the full capture and corrected the check to pages beyond the arena, keeping
 the arena, fixed allocation, IRQ, cache and DMA checks intact. That costs
 another initial power cycle before the repeated-game test, but leaves a
 precise, replayable explanation instead of silently relaxing an audit.
+
+The corrected audit let us reach the actual restart test. The first Doom
+game stopped after 65 frames, passed its idle checks, and the same Init task
+admitted a fresh image. The second game quit through F10 and Y at frame 43.
+It too cleaned up and rearmed. A third fresh game reached another 65 frames
+and stopped cleanly, all without rebooting Linux or rebuilding RTEMS.
+
+The details mattered. Frame generation 66 was the first frame of game two,
+so it correctly used local slot zero even though its global parity differed.
+Quit left one Y key-up pending at sequence four; rearm recorded it as
+discarded rather than pretending Doom had consumed it. The original arena,
+seven pinned allocation records and both coherent mappings stayed alive.
+Each idle boundary rejected stale run, frame, WAD, key and ACK state, and
+refused to enter the retired engine again.
+
+We replayed all 173 frame captures, 96 paired PIO comparisons, 15,137 engine
+WAD reads and fifteen HTTP samples. The first 32 pictures of every game
+matched the accepted baseline. The gate itself took about 0.446 seconds,
+but a restart still spent roughly 85 seconds uploading a fresh image and
+loading its WAD cache. This removes the workstation reboot, not the cold
+load. The planned final global shutdown passed too. Captures are local; the
+last pair of post-reset firmware reads is the remaining audit closure.

@@ -1,9 +1,10 @@
 # Reusing the exclusive card session after Doom exits
 
 **Implementation update:** the opt-in RTEMS idle/rearm kernel and retained
-host/browser owner are now built and pass native policy/API tests. Physical
-restart acceptance awaits one initial power cycle; the installed accepted
-bundle is unchanged. See [candidate status and exact card test](../../../../../artifacts/current/doom-rearm-20261018/README.md).
+host/browser owner now pass physical STOP / reload / menu Quit / reload /
+STOP: 65/43/65 frames, both rearms, 96 paired PIO frames and all stale gates.
+Final post-reset flash reads and positive browser/CLI idle restart remain;
+the installed accepted bundle is unchanged. See [candidate status and exact card test](../../../../../artifacts/current/doom-rearm-20261018/README.md).
 
 Investigation result: **feasible without returning to stock firmware or
 releasing the pinned DMA mappings**, but not enabled in the installed kernel.

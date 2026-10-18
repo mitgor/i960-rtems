@@ -29,6 +29,16 @@ with tarfile.open(a.archive) as t,tarfile.open(ROOT/'artifacts/current/wide-scre
     session,={n.split('/run/')[0] for n in t.getnames() if n.endswith('/run/result.json')}
     run=session+'/run';r=js(run+'/result.json')
     assert r['reusable'] and r['persistent'] and r['old']['driver'] is None
+    assert r['card']['bdf']=='0000:37:09.1' and r['card']['ids']==[4201,80,4201,84]
+    manifest=json.loads((HERE/'status.json').read_text())['manifest']
+    assert r['kernel_sha256']==manifest['kernel_sha256'] and r['image_sha256']==manifest['image_sha256']
+    inventory=js('bundle-retry/bundle.json')
+    host_source='project/rtems/accele160/doom_dma/run_bridge.py'
+    assert sha(read('bundle-retry/'+host_source))==inventory['files'][host_source]
+    with tarfile.open(HERE/'candidate.tar.xz') as frozen:
+        engine_bytes=frozen.extractfile('bundle-candidate/engine/manifest.json').read()
+        assert sha(engine_bytes)==manifest['engine_manifest_sha256']
+        engine=json.loads(engine_bytes)
     assert len(r['games'])==3 and r['frames']==r['dma_frames']==sum(g['frames'] for g in r['games'])
     assert r['boot_id']!='31291627-dcd0-44bd-9c81-50708c818d80'
     for i in (0,1):
@@ -47,6 +57,8 @@ with tarfile.open(a.archive) as t,tarfile.open(ROOT/'artifacts/current/wide-scre
         for local,row in enumerate(rows,1):
             n=len(allrows)+local
             assert row['generation']==n and row['local_frame']==local and row['game_run']==game
+            assert row['source']==claim0[7]+engine['play_offset']+row['slot']*65536
+            assert row['card_fnv_mode']=='off' and int(row['card_fnv'],16)==0
             image=check_frame(row,read(d+f'/dma-frame-{n:04d}.bin'))
             assert image==read(d+f'/live-frames/frame-{n:04d}.bin')
             if local<=32:
@@ -97,4 +109,18 @@ with tarfile.open(a.archive) as t,tarfile.open(ROOT/'artifacts/current/wide-scre
         successful_rearms=2,stale_rearm_rejections=15,retired_entry_rejections=3,
         discarded_old_game_keys=discarded,global_generation_differs_from_local_slot_parity=any(x['slot']!=((x['generation']-1)&1) for x in allrows),
         final_global_quiescence=True,old_card_unbound=True,post_reset_flash_pair=False)
+    reports_post=[]
+    if (HERE/'post-0/result.json').exists() and (HERE/'post-1/result.json').exists():
+        for number in (0,1):
+            d=HERE/f'post-{number}'
+            assert sha((d/'data.bin').read_bytes())==STOCK
+            request=json.loads((d/'request.json').read_text())
+            result=json.loads((d/'result.json').read_text())
+            state=dict(x.split('=') for x in (d/'status.txt').read_text().split())
+            assert all(state[k]=='0' for k in ('status','residual','guard_changes'))
+            assert request['boot_id']!=r['boot_id'] and result['bytes']==1048576
+            assert result['old_after']['driver'] is None
+            reports_post.append(request['boot_id'])
+        assert reports_post[0]==reports_post[1]
+        report['post_reset_flash_pair']=True;report['post_reset_boot_id']=reports_post[0]
     print(json.dumps(report,indent=2))

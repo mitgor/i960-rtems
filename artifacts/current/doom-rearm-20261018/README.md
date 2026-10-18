@@ -1,12 +1,74 @@
 # Reusable RTEMS idle/rearm candidate — 2026-10-18
 
-**Implemented and cross-built; physical acceptance is pending the initial
-power cycle.** This is not a claim that Doom has already restarted on the
-card. The installed `/home/mit/.local/bin/i960-doom` still selects the
-accepted `bundle-v2`, which globally halts after a game. The new candidate
-is isolated at `/home/mit/i960-doom-rearm-20261018/bundle-candidate`.
-No flash write, card command, driver unload or reset was issued in this batch.
-The old card was not touched.
+**Repeated card STOP/Quit/rearm passed:** three games ran in one RTEMS
+instance and owning host process on boot
+`f95c315b-33b1-4dd3-9f89-aacac7280f7f`. The final paired post-reset stock-flash
+reads are still pending. The installed launcher remains unchanged until that
+closure. See `card-replay.json` and `verify_card.py` for the physical proof.
+
+| Game | Exit | Frames | WAD reads | Entry to first frame |
+| --- | --- | ---: | ---: | ---: |
+| 1 | Owned STOP | 65 | 5,045 | 73.86 s |
+| 2 | Doom F10/Y menu Quit | 43 | 5,047 | 73.58 s |
+| 3 | Owned STOP | 65 | 5,045 | 73.65 s |
+
+Both image reloads succeeded without PC reset, arena initialization, new DMA
+mappings or a firmware write. Global generations ran 1–65, 66–108 and
+109–173. Source-slot parity followed each engine's local frame index,
+including the even global generation 66 using local slot 0. The same pinned
+card allocations and coherent host buses (`fff61000`, `fff41000`) survived.
+
+All **173** complete frame captures replay with full guards, native host FNV,
+SHA and exact completion/source/generation markers; **96** frames had full
+independent PIO comparisons. Every game's first 32 pixel/palette blocks match
+the accepted baseline. All **15,137** engine WAD reads replay against the
+immutable WAD; each game's first 5,043 requests match the native oracle.
+Fifteen independently sampled HTTP payloads also match their DMA receipts.
+
+The kernel rejected **15** stale/invalid rearm requests (old run, wrong
+frame/next-run, WAD sequence, key sequence and unacknowledged slot), plus
+three attempts to reenter a retired image. Each game passed Init IRQ/stack,
+fixed-record/arena/loan, restored-cache, text/relocation, DMA drain/peer,
+owner and outside-arena tail audits. Other owned worker IRQ continuations
+remained alive between games; their stacks were never cleared. All workers
+and IRQ continuations drained on the final planned global STOP.
+
+Menu Quit consumed key sequences 1–3; the outstanding Y-up at sequence **4**
+was explicitly recorded as discarded on rearm, then game three started with
+transport sequence 4 retained. No old event was injected into the fresh game.
+Three stale browser run requests and a restart while running returned HTTP
+409 on the live owner; idempotent launcher invocation kept the same PID.
+This tests rejection/idempotency, not a positive browser/CLI idle restart.
+
+The measured idle-to-rearm ACK interval was about **0.446 s** each time.
+Engine exit to the next first frame was **85.23 / 85.30 s**, including fresh
+image upload and cold WAD cache loading. Restart avoids PC reboot but is not
+a warm-cache restart. The first 32 frames deliberately use extra PIO auditing;
+their timing is not an FPS comparison with ordinary play.
+
+Reproduce the physical replay with:
+
+```sh
+python3 artifacts/current/doom-rearm-20261018/verify_card.py
+python3 artifacts/current/doom-rearm-20261018/verify_attempt.py
+```
+
+`card-acceptance-pre-reset.tar.xz` includes every game, both pre-flash reads,
+all command/frame/WAD receipts, idle/rearm/control pages, service log, exact
+retry host source/inventory and native oracle. The kernel/engine identities
+are unchanged from `candidate.tar.xz`. `retry-host.tar.xz` records the corrected
+boundary audit. Remaining gates: final paired post-reset reads, positive
+browser/CLI restart after a sustained idle, host loss while idle/uploading,
+long repeated play and level transitions. No PM/bus reset or dead-daemon
+adoption was attempted.
+
+## Candidate preparation record (before physical acceptance)
+
+The candidate was initially isolated at
+`/home/mit/i960-doom-rearm-20261018/bundle-candidate`; the corrected tested
+host bundle is `bundle-retry` in the same directory. No firmware write was
+issued. The old card remained unbound. The historical preparation snapshot
+`status.json` deliberately records that earlier, native-only stage.
 
 The last SSH check still found boot ID
 `31291627-dcd0-44bd-9c81-50708c818d80`, the original retained `admit_command`

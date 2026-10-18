@@ -27,4 +27,4 @@ with tarfile.open(here/'candidate.tar.xz') as archive:
     for name in ('rearm-policy.log','browser.log','dma.log'):
         text=read(name).decode();assert 'passed' in text or 'verified' in text
     assert 'OK' in read('launcher.log').decode()
-print(f'Frozen reusable candidate: {checked} archived bundle files and native logs verified; card restart acceptance PENDING')
+print(f'Frozen reusable candidate: {checked} archived bundle files and native logs verified; see verify_card.py for the subsequent physical acceptance')

@@ -1,0 +1,52 @@
+{
+  "boot_id": "f95c315b-33b1-4dd3-9f89-aacac7280f7f",
+  "games": [
+    {
+      "game": 1,
+      "frames": 65,
+      "wad_reads": 5045,
+      "reason": "frame limit",
+      "first_generation": 1,
+      "last_generation": 65,
+      "startup_s": 73.86,
+      "elapsed_s": 78.82774093400002
+    },
+    {
+      "game": 2,
+      "frames": 43,
+      "wad_reads": 5047,
+      "reason": "menu Quit",
+      "first_generation": 66,
+      "last_generation": 108,
+      "startup_s": 73.58,
+      "elapsed_s": 77.321688967
+    },
+    {
+      "game": 3,
+      "frames": 65,
+      "wad_reads": 5045,
+      "reason": "frame limit",
+      "first_generation": 109,
+      "last_generation": 173,
+      "startup_s": 73.65,
+      "elapsed_s": 78.62180337500007
+    }
+  ],
+  "total_frames": 173,
+  "http_samples": 15,
+  "first_32_pixels_palette_exact_each_game": true,
+  "all_wad_requests_replayed": true,
+  "full_dma_guards_markers_hashes": true,
+  "paired_pio_frames": 96,
+  "successful_rearms": 2,
+  "stale_rearm_rejections": 15,
+  "retired_entry_rejections": 3,
+  "discarded_old_game_keys": [
+    0,
+    4
+  ],
+  "global_generation_differs_from_local_slot_parity": true,
+  "final_global_quiescence": true,
+  "old_card_unbound": true,
+  "post_reset_flash_pair": false
+}
