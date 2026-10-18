@@ -19,7 +19,7 @@ Ctrl-C ends the native server.
 ## AcceleRAID 160 (pending physical acceptance)
 
 The candidate is staged at
-`/home/mit/i960-chip8-upgrade-20261018/build-g6/bundle`.
+`/home/mit/i960-chip8-upgrade-20261018/build-g8/bundle`.
 Do not start while Doom's exclusive resources remain pinned. A PC reset is
 required when switching workloads, although guest Stop/Start within one owning
 CHIP-8 RTEMS session is designed to reuse the session.
@@ -28,8 +28,8 @@ The explicit candidate launch, after a fresh boot, is:
 
 ```sh
 ssh -t mit@192.168.2.75 sudo -n python3 \
- /home/mit/i960-chip8-upgrade-20261018/build-g6/bundle/project/game/chip8/accele160/launch.py \
- --bundle /home/mit/i960-chip8-upgrade-20261018/build-g6/bundle start
+ /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/project/game/chip8/accele160/launch.py \
+ --bundle /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle start
 ```
 
 The root `./chip8` command targets this candidate: it starts/restarts the owned game,

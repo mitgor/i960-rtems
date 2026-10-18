@@ -31,6 +31,11 @@ def profile(project):
         s=once(s,'#define WAD_FILE_BYTES 28795076u','#define WAD_FILE_BYTES 0u')
         s=once(s,'a->file_id=1u;a->file_bytes=WAD_FILE_BYTES;','a->file_id=0u;a->file_bytes=0u;')
         s=once(s,'for(i=0;i<8u;i++)a->sha256[i]=wad_sha[i];','for(i=0;i<8u;i++)a->sha256[i]=0u;')
+        # A STOP while waiting for a destination must not count an unpublished
+        # source as delivered. Keep the original strict host equality audit.
+        committed=' if(first_frame_seen<DOOM_FPS_FRAMES)frame_ticks[first_frame_seen]=ticks;\n first_frame_seen=z;engine_report[5]=z;\n'
+        s=once(s,committed,'')
+        s=once(s,' generation=frame_origin+z;\n',committed+' generation=frame_origin+z;\n')
         s=once(s,'hash=dma_cfg[7]?0u:byte_fnv((const void*)x,FRAME_BYTES);','hash=dma_cfg[7]?0u:byte_fnv((const void*)x,512u);')
         return s
     change('rtems/accele160/doom_dma/app.c',kernel)
@@ -75,6 +80,8 @@ def profile(project):
         s=once(s,'            keyboard_mode=a.keyboard_mode\n','            oracle=Oracle(template[16:16+engine_manifest[\"rom_bytes\"]],hz=engine_manifest[\"cpu_hz\"])\n            keyboard_mode=a.keyboard_mode\n')
         s=once(s,'                        key_batches+=1;','                        oracle.submit(keys)\n                        key_batches+=1;')
         s=once(s,'                    profile=decode_profile(image,local_frame,options=engine_manifest)','                    oracle.check(image)\n                    profile=decode_profile(image,local_frame,options=engine_manifest)')
+        s=once(s,'            transact(2,0,wad[:512])\n','')
+        s=once(s,"        wad_query(0x56789,512,'stop')","        write(0xc000e000,0xa4c,struct.pack('<I',0x504f5453))")
         s=once(s,"need(final_bridge[18:20]==(38+total_reads,4),", "need(final_bridge[18:20]==(0,0),")
         return s.replace('i960-doom','i960-chip8').replace('Doom','CHIP-8')
     change('rtems/accele160/doom_dma/run_bridge.py',bridge)

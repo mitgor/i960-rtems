@@ -1,0 +1,18 @@
+{
+  "frames": 96,
+  "card_cadence_fps": 60.0,
+  "elapsed_s_including_initial_paired_audits": 2.2170874920000188,
+  "idle_verified": true,
+  "keys_tested": 0,
+  "failure": {
+    "error": "RuntimeError('bridge op=2 seq=96 status=5 wanted=0')",
+    "quiescent": true,
+    "status": {
+      "started": "1",
+      "done": "0",
+      "status": "-1",
+      "residual": "-1",
+      "released": "0"
+    }
+  }
+}

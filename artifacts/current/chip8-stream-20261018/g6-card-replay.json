@@ -1,0 +1,7 @@
+{
+  "games": 1,
+  "frames": 96,
+  "native_replay": true,
+  "compact_guards": true,
+  "sha256": true
+}

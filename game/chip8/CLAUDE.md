@@ -31,3 +31,20 @@ allocations, keeps full 64 KiB paired source audits and all system audits, and
 rejects any WAD/file request. Never adopt Doom's retained resources. The private
 admission worker is mandatory. No firmware write belongs to this upgrade.
 Builder workspaces are isolated; inventory sources and artifacts before use.
+
+First AcceleRAID physical batch: 96 frames replayed, 32 paired PIO checks,
+full audits, guest STOP and idle ownership passed. Second-game host adapter
+mistakenly repeated Doom WAD admission; status 5 correctly rejected it and
+failure STOP reached terminal QUIE. Build-g7 fixes that and explicit global
+STOP; run `accele160/test_generate.py` to prevent recurrence. Full repeated
+restart/input/browser acceptance is still pending a physical PC reset. See
+`artifacts/current/chip8-stream-20261018` for preserved evidence.
+
+Second physical batch (g7): 338+202 captured frames, 64 paired comparisons,
+30 consumed keys, all replay/guards pass. First STOP/idle/rearm passed; second
+STOP exposed frame counting before the DMA slot ownership wait. Build-g8 moves
+the commit after that wait, preserving strict captured-count equality. Actual
+generated wait/commit code passes ASan STOP/timeout/normal fixtures. Latest
+launcher target is g8; it is NOT yet fully accepted. Exact candidate binaries
+and both failed-batch captures are locally archived. Never adopt old pinned
+resources when the user's “back online” reply has not changed the boot ID.

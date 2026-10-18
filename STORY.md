@@ -5959,3 +5959,23 @@ passed, but the PC did not return from the authorized reboot needed to release
 the previous Doom owner. The [CHIP-8 record](artifacts/current/chip8-stream-20261018/README.md)
 keeps the physical test open; no new firmware was written and no retained DMA
 resources were forced free.
+
+After the power cycle, CHIP-8 produced its first ninety-six frames on the
+AcceleRAID. The native interpreter agreed with every captured state, the paired
+PIO reads agreed with DMA, and the card kept a sixty-hertz cadence. Guest Stop
+also reached the audited idle state. Starting the next game exposed a piece of
+Doom left in the host harness: it tried to admit a WAD to a guest that has no
+file channel. The card rejected it and the failure path parked RTEMS safely.
+We removed that command, replaced the old file-query shutdown with explicit
+STOP, and added a generation test for both. The corrected build is ready;
+the PC again needs a physical reset before the repeated-game and input tests.
+
+The next batch reached a real restart. Five hundred and forty captured frames
+across two games matched native replay, including thirty consumed key events.
+The second Stop caught a subtler boundary: the resident counter advanced while
+a frame was still waiting to own a DMA destination. We moved that commit past
+the ownership wait, instead of teaching the audit to tolerate an extra frame.
+A sanitizer test now executes that generated code through normal, STOP and
+timeout cases. The exact corrected build and both earlier captures are saved
+locally. Physical acceptance remains open until a fresh host session can run
+the corrected Stop/restart sequence.

@@ -1,0 +1,32 @@
+{
+  "games": [
+    {
+      "run_id": 1,
+      "frames": 60,
+      "gateway_delivered_fps": 60.064036879550635,
+      "key_to_observed_frame_ms_median": 11.306874919682741,
+      "key_to_observed_frame_ms_max": 20.508790854364634,
+      "samples": 5,
+      "stalled_video_input_stop": true
+    },
+    {
+      "run_id": 2,
+      "frames": 60,
+      "gateway_delivered_fps": 60.522767988657925,
+      "key_to_observed_frame_ms_median": 11.482541915029287,
+      "key_to_observed_frame_ms_max": 26.148416101932526,
+      "samples": 5,
+      "stalled_video_input_stop": true
+    },
+    {
+      "run_id": 3,
+      "frames": 60,
+      "gateway_delivered_fps": 60.5319915273648,
+      "key_to_observed_frame_ms_median": 9.16433334350586,
+      "key_to_observed_frame_ms_max": 20.52470901980996,
+      "samples": 5,
+      "stalled_video_input_stop": true
+    }
+  ],
+  "final_state": "idle"
+}
