@@ -9,8 +9,10 @@ The [opt-in idle/rearm candidate](../../artifacts/current/doom-rearm-20261018/RE
 passes actual-policy ASan/UBSan and browser tests. Physical STOP / reload / menu Quit / reload / STOP now passes
 65/43/65 frames in one RTEMS instance, all 96 paired PIO frames, two rearms
 and 15 stale-request rejections. Offline WAD/frame/HTTP replay passes.
-Close the final paired post-reset reads, then qualify positive browser/CLI
-restart after idle, idle/upload host loss and longer play before promotion.
+Both final guarded post-reset flash reads now pass, with the old card
+physically removed. Qualify positive browser/CLI restart after idle,
+idle/upload host loss and longer play before promotion. The optional
+`i960-doom-reusable` bundle supports explicit absent-peer checks.
 Preserve DMA/WAD/command counters,
 discard old-game input explicitly, reload template/data/BSS through admission,
 and qualify repeated card cycles and negative stale-message/loan/timeout paths.

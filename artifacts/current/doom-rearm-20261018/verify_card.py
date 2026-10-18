@@ -119,8 +119,10 @@ with tarfile.open(a.archive) as t,tarfile.open(ROOT/'artifacts/current/wide-scre
             state=dict(x.split('=') for x in (d/'status.txt').read_text().split())
             assert all(state[k]=='0' for k in ('status','residual','guard_changes'))
             assert request['boot_id']!=r['boot_id'] and result['bytes']==1048576
+            assert result['card_after']['bdf']=='0000:37:09.1' and result['card_after']['ids']==[4201,80,4201,84]
             assert result['old_after']['driver'] is None
             reports_post.append(request['boot_id'])
         assert reports_post[0]==reports_post[1]
         report['post_reset_flash_pair']=True;report['post_reset_boot_id']=reports_post[0]
+        report['post_reset_old_card_absent']=json.loads((HERE/'post-1/result.json').read_text())['old_after'].get('present') is False
     print(json.dumps(report,indent=2))

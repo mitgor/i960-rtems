@@ -3,10 +3,14 @@
   "games": 3,
   "frames": 173,
   "successful_rearms": 2,
-  "post_reset_flash_pair": false,
+  "post_reset_flash_pair": true,
   "production_default_changed": false,
   "positive_browser_cli_idle_restart_tested": false,
   "idle_host_loss_tested": false,
   "boot_id": "f95c315b-33b1-4dd3-9f89-aacac7280f7f",
-  "tested_bundle": "/home/mit/i960-doom-rearm-20261018/bundle-retry"
+  "tested_bundle": "/home/mit/i960-doom-rearm-20261018/bundle-retry",
+  "post_reset_boot_id": "b6aa3a85-ed23-4217-a507-4bdd9c670222",
+  "post_reset_old_card_absent": true,
+  "optional_singlecard_wrapper": "/home/mit/.local/bin/i960-doom-reusable",
+  "singlecard_target_execution_retested": false
 }

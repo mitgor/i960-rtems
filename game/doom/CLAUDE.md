@@ -1170,7 +1170,8 @@ zero BSS + relocation admission. Global counters persist; slot parity is local
 to each engine run. Never reinitialize the arena or call a retired engine.
 Native policy sanitizer/browser/DMA tests pass. Physical STOP / fresh
 image / menu Quit / fresh image / STOP passed 65/43/65 frames, both rearms,
-96 paired PIO frames and all stale gates; final post-reset flash reads remain
-pending. Positive browser/CLI idle restart and idle host-loss gates remain. See `artifacts/current/doom-rearm-20261018`.
+96 paired PIO frames and all stale gates. Both final guarded 1 MiB
+post-reset flash reads pass unchanged. The old card was then removed; explicit
+peer checks now accept confirmed absence, while target selection stays strict. Positive browser/CLI idle restart and idle host-loss gates remain. See `artifacts/current/doom-rearm-20261018`.
 Installed bundle-v2 remains accepted and reset-only. Do not promote the new
 candidate, adopt a dead daemon's resources, or clear terminal QUIE to resume.

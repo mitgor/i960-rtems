@@ -48,5 +48,7 @@
   "global_generation_differs_from_local_slot_parity": true,
   "final_global_quiescence": true,
   "old_card_unbound": true,
-  "post_reset_flash_pair": false
+  "post_reset_flash_pair": true,
+  "post_reset_boot_id": "b6aa3a85-ed23-4217-a507-4bdd9c670222",
+  "post_reset_old_card_absent": true
 }

@@ -8,7 +8,7 @@ from run_lease import (BDF,OLD,PAGE,DEVICE,DEBUG,FIRMWARE,HANDLER,
                        MODULES,NONCE,need,sha,fields,fnv,status,insmod,
                        done,command,release,verify_read)
 sys.path.insert(0,str(ROOT/'rtems/transport'))
-from card_select import select
+from card_select import select,require_unbound_or_absent
 from browser import BrowserSession
 
 IMAGE='957e49dc912153ddc0f80f3f22e1276df20e023c3e6ae427efe1b6c96778cdde'
@@ -97,7 +97,7 @@ def main():
              not Path('/sys/module',n+'_command').exists() and
              not (DEBUG/f'accele-{debug}').exists(),f'{n} module preflight')
     card=select(BDF,'accele160',driver='myrsread')
-    old=select(OLD,'dac960pg')
+    old=require_unbound_or_absent(OLD,'dac960pg')
     need(old['driver'] is None,'old card bound')
     need(not list(DEVICE.glob('host*/target*/*/block/*')),'block device')
     host,=DEVICE.glob('host*/scsi_host/host*')
@@ -618,7 +618,7 @@ def main():
                     if a.persistent and len(engine_reads)>256:del engine_reads[:-256]
                     if read_count%100==0:
                         ownercheck(owned)
-                        need(select(OLD,'dac960pg')['driver'] is None,
+                        need(require_unbound_or_absent(OLD,'dac960pg')['driver'] is None,
                              'old card touched during Doom')
                         save(run/'engine-reads.json',engine_reads)
                         print(f'Doom WAD reads: {read_count}, '
@@ -645,7 +645,7 @@ def main():
                      'retained Doom instance faulted')
                 if time.monotonic()-last_owner_audit>5:
                     ownercheck(owned)
-                    need(select(OLD,'dac960pg')['driver'] is None,'old card touched during play')
+                    need(require_unbound_or_absent(OLD,'dac960pg')['driver'] is None,'old card touched during play')
                     need(status('ram-admit').get('done')=='0',
                          'Doom callback escaped before first frame')
                     last_owner_audit=time.monotonic()
@@ -792,7 +792,7 @@ def main():
              'full-bank audit retained')
         need(snap(0xc0384000)[0x2a0:0xaa0]==owned[0x2a0:0xaa0],
              'grant ownership retained')
-        need(select(OLD,'dac960pg')['driver'] is None,'old card untouched')
+        need(require_unbound_or_absent(OLD,'dac960pg')['driver'] is None,'old card untouched')
         final_bridge=struct.unpack_from('<20I',page,0xb80)
         need(final_bridge[18:20]==(38+total_reads,4),
              'WAD success/rejection counters')
@@ -817,7 +817,7 @@ def main():
             engine_results=[f'0x{x:08x}' for x in result_words],
             heartbeat_before=first,heartbeat_after=heart[4],
             release='reboot-only',grant_retained=True,
-            card=select(BDF,'accele160'),old=select(OLD,'dac960pg')))
+            card=select(BDF,'accele160'),old=require_unbound_or_absent(OLD,'dac960pg')))
         print(f'Real Doom {frame_count}-frame run captured; WAD, cleanup and STOP passed')
     except BaseException as error:
         if active_owner and not quiescent:

@@ -3,7 +3,8 @@
 **Implementation update:** the opt-in RTEMS idle/rearm kernel and retained
 host/browser owner now pass physical STOP / reload / menu Quit / reload /
 STOP: 65/43/65 frames, both rearms, 96 paired PIO frames and all stale gates.
-Final post-reset flash reads and positive browser/CLI idle restart remain;
+Both final post-reset flash reads now pass. Positive browser/CLI idle
+restart and host-loss gates remain;
 the installed accepted bundle is unchanged. See [candidate status and exact card test](../../../../../artifacts/current/doom-rearm-20261018/README.md).
 
 Investigation result: **feasible without returning to stock firmware or

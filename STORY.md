@@ -5802,3 +5802,14 @@ but a restart still spent roughly 85 seconds uploading a fresh image and
 loading its WAD cache. This removes the workstation reboot, not the cold
 load. The planned final global shutdown passed too. Captures are local; the
 last pair of post-reset firmware reads is the remaining audit closure.
+
+The last power cycle also removed the old card from the workstation. The
+AcceleRAID kept the same PCI address, and both complete guarded flash reads
+matched the saved firmware exactly. That closed the restart acceptance.
+The host checks had assumed the old card would always be installed, so we
+made its absence an explicit state instead: the selected target still has
+to match exactly, and an unexpected or bound peer still stops the operation.
+The absent-peer path passed eleven selection tests and the real final read
+pair. An optional single-card launcher is ready; the ordinary default stays
+on its previous bundle until the browser/CLI idle and host-loss gates are
+qualified. No further Doom run or firmware write was needed for this closure.

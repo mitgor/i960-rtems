@@ -1,0 +1,21 @@
+{
+  "boot_id": "b6aa3a85-ed23-4217-a507-4bdd9c670222",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "present": false,
+    "ids": null,
+    "driver": null
+  }
+}

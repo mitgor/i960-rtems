@@ -67,11 +67,11 @@ def main():
         p.error('invalid session bounds')
     cfg=verify(bundle)
     sys.path.insert(0,str(bundle/'project/rtems/transport'))
-    from card_select import select
+    from card_select import select,require_unbound_or_absent
     card=select(cfg['bdf'],'accele160')
     if card['driver'] not in (None,'myrsread'):
         raise RuntimeError('new card already owned by '+card['driver'])
-    if select(cfg['old_bdf'],'dac960pg')['driver'] is not None:
+    if require_unbound_or_absent(cfg['old_bdf'],'dac960pg')['driver'] is not None:
         raise RuntimeError('old card must remain unbound')
     if a.action=='start':
         active=subprocess.run(['systemctl','is-active','--quiet','i960-doom.service']).returncode==0

@@ -33,7 +33,8 @@ does not silently reboot the PC. The old DAC960PG remains unbound and untouched.
 fresh-image restarts with the same arena and pins. Its audited RTEMS idle/rearm
 path now passes [physical STOP / reload / menu Quit / reload / STOP](../../../../artifacts/current/doom-rearm-20261018/README.md),
 with 173 frames, 96 full PIO comparisons and unchanged pinned mappings.
-Final post-reset flash closure and positive browser/CLI idle testing remain. It is not installed. Build with `--reusable`.
+Both final post-reset flash reads pass; positive browser/CLI idle testing remains. It is not the ordinary default; the optional installed launcher is described
+below. Build with `--reusable`.
 That candidate makes browser Stop/menu Quit park the game, adds Start new
 game, and makes a second `./doom` request restart from the same daemon.
 `./doom shutdown` retains the reset-only global STOP behavior.
@@ -74,3 +75,24 @@ through sudo. It may also pass `status`, `stop`, `--port`, `--max-frames`,
 `--capture-all` or `--disconnect-seconds`. The Mac wrapper allows a different
 SSH endpoint through `I960_HOST` and installed command path through
 `I960_DOOM_LAUNCHER`. No card BDF is auto-discovered.
+
+## Optional reusable session with the old card removed
+
+The three-game STOP/Quit/rearm card proof and final flash audits pass.
+The ordinary default still uses the older bundle and expects the old card to
+be present/unbound. For the new single-card optional bundle, set this once
+in the Mac shell, then use the usual command:
+
+```sh
+export I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-reusable
+./doom
+```
+
+This bundle records an absent old card explicitly and retains the exact
+AcceleRAID target gate. Stop or menu Quit parks only Doom; Start new game
+in the browser or another `./doom` requests a fresh image. `./doom stop`
+parks the game; `./doom shutdown` is terminal/reset-only. Automatic physical
+rearms are accepted. Positive browser/CLI idle restart, idle host loss and
+longer repeated play remain qualification work. The single-card policy was
+unit-tested and used for final READIMAGE audits; no additional Doom execution
+was performed after removing the old card.

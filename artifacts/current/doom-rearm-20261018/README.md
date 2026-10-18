@@ -2,9 +2,10 @@
 
 **Repeated card STOP/Quit/rearm passed:** three games ran in one RTEMS
 instance and owning host process on boot
-`f95c315b-33b1-4dd3-9f89-aacac7280f7f`. The final paired post-reset stock-flash
-reads are still pending. The installed launcher remains unchanged until that
-closure. See `card-replay.json` and `verify_card.py` for the physical proof.
+`f95c315b-33b1-4dd3-9f89-aacac7280f7f`. **Both final guarded post-reset
+firmware reads also pass; this acceptance batch is closed.** The ordinary
+launcher remains unchanged pending the positive browser/CLI idle and
+host-loss gates. See `card-replay.json` and `verify_card.py` for the physical proof.
 
 | Game | Exit | Frames | WAD reads | Entry to first frame |
 | --- | --- | ---: | ---: | ---: |
@@ -57,8 +58,7 @@ python3 artifacts/current/doom-rearm-20261018/verify_attempt.py
 all command/frame/WAD receipts, idle/rearm/control pages, service log, exact
 retry host source/inventory and native oracle. The kernel/engine identities
 are unchanged from `candidate.tar.xz`. `retry-host.tar.xz` records the corrected
-boundary audit. Remaining gates: final paired post-reset reads, positive
-browser/CLI restart after a sustained idle, host loss while idle/uploading,
+boundary audit. Remaining gates: positive browser/CLI restart after a sustained idle, host loss while idle/uploading,
 long repeated play and level transitions. No PM/bus reset or dead-daemon
 adoption was attempted.
 
@@ -73,7 +73,7 @@ issued. The old card remained unbound. The historical preparation snapshot
 The last SSH check still found boot ID
 `31291627-dcd0-44bd-9c81-50708c818d80`, the original retained `admit_command`
 and `dma_frames`, and an inactive Doom service. Its prior terminal QUIE state
-cannot accept a new kernel. A physical power-cycle request is pending.
+cannot accept a new kernel. At that stage, a physical power-cycle request was pending.
 
 ## What changed
 
@@ -135,15 +135,17 @@ The earlier actual Doom/Newlib native STOP → reload/Quit → reload/STOP proof
 remains in [the investigation](../doom-reuse-investigation-20261018/README.md).
 The Doom engine itself is unchanged from the accepted persistent build.
 
-## Exact next physical gate
+## Reproduce the completed physical gate
 
 After a fresh power cycle, inventory both BDFs, keep the old card unbound,
 and close the previous user-play session with two guarded full-flash reads.
-Then launch the isolated bundle (not the installed wrapper):
+The accepted three-game run used the isolated `bundle-retry` below. With
+the old card now absent, use `bundle-singlecard` instead; its host presence
+policy is unit/readback-tested but has not had another Doom execution:
 
 ```sh
-sudo -n python3 /home/mit/i960-doom-rearm-20261018/bundle-candidate/project/game/doom/play/accele160/launch.py \
-  --bundle /home/mit/i960-doom-rearm-20261018/bundle-candidate \
+sudo -n python3 /home/mit/i960-doom-rearm-20261018/bundle-retry/project/game/doom/play/accele160/launch.py \
+  --bundle /home/mit/i960-doom-rearm-20261018/bundle-retry \
   --port 8087 --max-frames 65 --restart-cycles 3 --quit-game 2 \
   --paired-frames 32 --capture-all
 ```
@@ -154,12 +156,12 @@ requests per game, all full DMA captures and guards, 32 complete paired
 PIO/DMA frames per game, final frame/text/heap/cache/IRQ/owner checks, retired
 entry rejection, stale rearm descriptors and a deliberately stale frame ACK.
 It archives each game separately and preserves global command/WAD/key/frame
-sequences. These tests are implemented but **have not yet run on the card**.
+sequences. All three games and both rearms now pass the physical replay.
 
-Next qualify browser/CLI restart from idle, idle heartbeat loss, stalled host
-and final global STOP; archive captures before reset and obtain two guarded
-post-reset full-flash reads. Keep the default bundle unchanged until physical
-acceptance passes. No generic device reset, force-unload or halted-callback
+Next qualify positive browser/CLI restart from sustained idle, idle/upload
+heartbeat loss and stalled-host transitions. Final global STOP and both
+guarded post-reset full-flash reads already pass. Keep the ordinary default
+unchanged until the remaining lifecycle gates pass. No generic device reset, force-unload or halted-callback
 revival is part of this route. WAD cache is rebuilt for each game initially.
 
 Rebuild with `game/doom/play/accele160/build.py --reusable` or reuse the
@@ -215,6 +217,47 @@ The host check is corrected to all eight accessible odd pages from
 Full arena/fixed-record/IRQ/cache/DMA/owner audits remain. Kernel, engine and
 firmware are unchanged. The new isolated bundle is
 `/home/mit/i960-doom-rearm-20261018/bundle-retry`; use the same acceptance
-command with that bundle/path. Another initial physical reset is pending
-because the failed attempt correctly stopped the owning daemon and kernel.
+command with that bundle/path. The failed attempt correctly stopped the owning daemon and kernel; another
+physical reset preceded the successful three-game retry.
 The installed bundle remains unchanged.
+
+## Final closure after removing the old card
+
+After the user's full power cycle, boot
+`b6aa3a85-ed23-4217-a507-4bdd9c670222` has only the expected AcceleRAID at
+`0000:37:09.1`; the DAC960PG is absent. Both [`post-0`](post-0/result.json) and
+[`post-1`](post-1/result.json) are complete 1 MiB reads matching
+`1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd`,
+with zero status, residual and guard changes. No firmware write was issued.
+The read modules released normally; no retained RTEMS/DMA modules exist on
+this boot. All frame/WAD/HTTP/tamper replay and final flash checks pass.
+
+The reader previously required the old card to exist. The new
+`require_unbound_or_absent()` helper records confirmed absence explicitly,
+but still rejects a bound peer, wrong identity, partial identity files,
+dangling sysfs link or missing sysfs root. Selection of the **target** remains
+strict and explicit. Eleven identity/absence tests pass on Mac and Linux;
+the actual final read pair exercised the absent-peer path. Doom preflight
+and periodic owner checks now use the same helper. The tested i960 kernel,
+engine and modules are unchanged. These host-only policy changes have not
+been through another Doom execution; no further card execution was needed
+to close this three-game batch.
+
+An optional verified bundle is ready at
+`/home/mit/i960-doom-rearm-20261018/bundle-singlecard`; its inventory, changed
+host sources and test log are in `singlecard-host.tar.xz`. The ordinary
+wrapper is unchanged. To opt into the reusable single-card session later:
+
+```sh
+export I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-reusable
+./doom
+```
+
+Open `http://192.168.2.75:8087/`. Browser Stop or menu Quit parks the game.
+The page's **Start new game** button or another `./doom` requests rearm from
+the live owning daemon. `./doom stop` parks only Doom; `./doom shutdown`
+performs the terminal global shutdown and requires reset. Positive browser/
+CLI restart after a sustained idle is the next acceptance gate; automatic
+card rearms and HTTP rejection/idempotency are the completed proof here.
+The optional launcher was verified with `--help` and its complete file
+inventory; no new Doom session was started after the final flash reads.
