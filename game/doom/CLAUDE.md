@@ -1205,3 +1205,31 @@ run IDs, bounded queues and full audits when addressing them. Card FPS and these
 probe timings are not browser paint/input-to-photon measurements. Evidence:
 `artifacts/current/doom-input-latency-20261018`. No runtime binaries changed;
 game 2 was deliberately stopped and RTEMS remains reusable/idle.
+
+**2026-10-18 accepted persistent browser transport:** The default installed
+`i960-doom-flat` is now an integrity-checked host wrapper around its preserved
+original owner launcher. It starts `i960-doom-stream.service` on **8088**; owner
+and legacy polling remain on **8087**. See `play/accele160/stream/README.md` and
+`artifacts/current/doom-stream-20261018`. Gateway code has no PCI/DMA access.
+It pins the live owner's PID/boot/token, uses only its authenticated loopback
+API, and exits on owner loss/change. Never use it to adopt retained resources.
+
+Input/video use separate authenticated WebSockets. Ordered input has run IDs,
+strict per-connection sequence and bounded queues; disconnect releases held keys.
+Video is latest-only with two exact-generation display credits and a 5 s stalled
+ACK bound. These browser ACKs are unrelated to hardware/DMA ACKs; every card
+frame still runs every full audit. The backend card mailbox remains one-key/ACK.
+The gateway polls local HTTP at 10 ms; direct owner push is future work.
+
+Matched Mac F6-to-received-frame median 142.13→106.18 ms (-25.3%), received FPS
+16.63→20.40 (+22.7%); no renderer speedup/paint-latency claim. Physical games
+3/4/5 completed 6,494/2,012/1,725 frames, all 12 paired PIO comparisons, global
+296/296 input ACKs and all full/idle audits. Real browser STOP and two browser
+fresh-game restarts pass, as do stalled-video independent input, stale-run and
+sequence-gap rejection, disconnect release and native UI F6/Shift+W. Replay
+matches all 4,316 gateway hashes and 796 probe payloads to original receipts.
+The accepted owner bundle's 190 hashes remain unchanged. Final state is live
+idle, textured; both services stay active and the test controller was closed.
+Use `./doom` or the page's Start new game. Extended/negative idle and actual
+event-to-paint instrumentation remain qualification work. Do not reboot just
+to restart this live idle owner.

@@ -1,0 +1,31 @@
+{
+  "games": [
+    {
+      "run": 3,
+      "frames": 6494,
+      "paired_pio": 4,
+      "keys_acked": 288,
+      "idle_verified": true
+    },
+    {
+      "run": 4,
+      "frames": 2012,
+      "paired_pio": 4,
+      "keys_acked": 292,
+      "idle_verified": true
+    },
+    {
+      "run": 5,
+      "frames": 1725,
+      "paired_pio": 4,
+      "keys_acked": 296,
+      "idle_verified": true
+    }
+  ],
+  "full_frames": 10231,
+  "gateway_payloads": 4316,
+  "matched_client_payloads": 796,
+  "manifest_files": 67,
+  "tamper_rejections": 2,
+  "owner_bundle_unchanged": true
+}

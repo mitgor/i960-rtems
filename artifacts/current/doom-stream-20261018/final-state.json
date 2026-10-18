@@ -1,0 +1,17 @@
+{
+  "status": {
+    "message": "Game 5 stopped safely. Click Start new game.",
+    "frame": "583444873-21565",
+    "binary": true,
+    "stopped": true,
+    "run_id": 5,
+    "state": "idle",
+    "flat_planes": 0,
+    "flat_switches": 0
+  },
+  "services": {
+    "i960-doom.service": "active",
+    "i960-doom-stream.service": "active"
+  },
+  "owner_pid": 33118
+}

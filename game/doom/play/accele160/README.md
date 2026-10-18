@@ -5,7 +5,7 @@ variants, commands, options, browser controls and reset boundaries. The default
 is the flat-enabled reusable wrapper, compatible with the old card removed.
 
 From the repository on the Mac, run **`./doom`**, then open
-**http://192.168.2.75:8087/**. The installed Linux command is
+**http://192.168.2.75:8088/**. The installed Linux command is
 `/home/mit/.local/bin/i960-doom-flat`. It starts a systemd service, checks the exact
 card/profile and pinned bundle, loads the exact BDF-gated reader driver on a
 fresh unbound card, performs two guarded complete stock-flash
@@ -41,7 +41,7 @@ fresh-image restarts with the same arena and pins. Its audited RTEMS idle/rearm
 path now passes [physical STOP / reload / menu Quit / reload / STOP](../../../../artifacts/current/doom-rearm-20261018/README.md),
 with 173 frames, 96 full PIO comparisons and unchanged pinned mappings.
 Both final post-reset flash reads pass. A later real CLI idle restart also passed;
-positive browser idle testing remains.
+real browser idle restart now also passes.
 The flat-enabled reusable bundle is now the Mac default by user request; its
 final post-reset flash pair remains pending. Build with `--reusable`.
 The reusable path makes browser Stop/menu Quit park the game, adds Start new
@@ -59,6 +59,21 @@ flash audits remain. For ordinary play, retain the first 32 frames, every
 In-memory histories are bounded. `--capture-all --max-frames 1024` retains
 every frame for acceptance tests and requests normal STOP at the frame limit.
 Per-frame card FNV is off; host hashing and ownership/system validation stay on.
+
+## Persistent browser transport
+
+The default flat wrapper also starts `i960-doom-stream.service` on port 8088.
+It forwards ordered keyboard events over a persistent connection and pushes
+only already-audited frames over a separate connection, with two display credits.
+The original owner and polling page stay on port 8087; card DMA and all audits
+are unchanged. Close other keyboard tabs before using the new page.
+
+Matched Mac measurements improved F6-to-received-frame median from 142.13 to
+106.18 ms (-25.3%), and received FPS from 16.63 to 20.40 (+22.7%). These are not
+renderer speedups or browser paint measurements. Physical stalled-viewer, stale
+input, disconnect release, sequence-gap and browser STOP/restart tests pass.
+See the [installation and protocol guide](stream/README.md) and
+[card evidence](../../../../artifacts/current/doom-stream-20261018/README.md).
 
 ## Rebuild and provision
 
@@ -101,7 +116,7 @@ This bundle records an absent old card explicitly and retains the exact
 AcceleRAID target gate. Stop or menu Quit parks only Doom; Start new game
 in the browser or another `./doom` requests a fresh image. `./doom stop`
 parks the game; `./doom shutdown` is terminal/reset-only. Automatic physical
-rearms and a real CLI idle restart are accepted. Positive browser idle restart, idle host loss and
+rearms and a real CLI idle restart are accepted. Browser idle restart also passed; idle host loss and
 longer repeated play remain qualification work. The single-card policy was
 unit-tested and used for final READIMAGE audits; no additional Doom execution
 was performed after removing the old card.
@@ -121,7 +136,7 @@ The default installed wrapper is `i960-doom-flat`. After the acceptance reset:
 ./doom
 ```
 
-Open `http://192.168.2.75:8087/`. F6 is debounced, and pressing it again returns
+Open `http://192.168.2.75:8088/`. F6 is debounced, and pressing it again returns
 to textures without rebuilding, reloading the level or reallocating buffers.
 Sky, walls, sprites, HUD and sector lighting remain; flat planes remove texture
 detail and distance shading. Half-height is independent and remains on hold.

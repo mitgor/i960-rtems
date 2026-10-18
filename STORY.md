@@ -5857,3 +5857,34 @@ and receipts in [the input-latency record](artifacts/current/doom-input-latency-
 All twelve toggles were confirmed, all new keys were acknowledged, and the
 second game parked safely after 1,428 frames. RTEMS stayed alive and reusable;
 the game was left stopped again.
+
+We then gave the browser two lasting connections: one for keyboard events and
+one for pictures. A large picture no longer holds up the next key release.
+The picture stream has only two credits, so a slow viewer gets the newest
+available frame instead of an ever-growing queue of old ones. The card's own
+audits and acknowledgements still happen for every frame, whether anyone sees
+it or not.
+
+We put this in a separate host gateway around the existing owner, without
+changing Doom, RTEMS or the DMA mappings. The matched Mac comparison moved
+from 142 to 106 milliseconds between F6 and receiving the changed picture.
+The receiver went from 16.6 to 20.4 frames a second. That is a useful reduction
+in delivery delay; it does not make the renderer faster or measure when the
+screen actually lights up. The earlier near-second delays were a worse
+network episode, so we did not use them to inflate the result.
+
+A viewer deliberately stopped acknowledging pictures. Input still reached a
+confirmed card frame in about 97 milliseconds, and only the stalled picture
+connection was closed. Stale inputs and missing sequence numbers were refused;
+disconnecting with a key down released it. A reconnect bug briefly offered an
+old cached picture, so we made new viewers wait for a fresh snapshot and kept
+a regression test for that case.
+
+The browser then stopped and restarted two more games in the same RTEMS
+instance. All 10,231 frames in this batch, twelve paired PIO comparisons and
+the final 296 input acknowledgements passed. We matched thousands of pushed
+pictures back to the original audited receipts. The default command now also
+starts the gateway on port 8088, and the old polling page remains on 8087.
+The last game is parked again, with both services ready for another start.
+The [streaming record](artifacts/current/doom-stream-20261018/README.md) keeps
+the measurements, exact deployment, receipts and a real browser screenshot.

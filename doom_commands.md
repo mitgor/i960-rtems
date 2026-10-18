@@ -8,7 +8,7 @@ pinned bundle and run the privileged launcher. Launching does not flash firmware
 
 | Installed launcher | Behavior | Current qualification |
 | --- | --- | --- |
-| `/home/mit/.local/bin/i960-doom-flat` | Reusable session; starts textured; F6 toggles flat floors/ceilings | 512-frame card comparison passed; final post-reset flash read pair pending |
+| `/home/mit/.local/bin/i960-doom-flat` | Reusable session with persistent input/pushed frames on port 8088; starts textured; F6 toggles planes | Card transport, browser STOP/restart and matched latency tests passed; earlier flat batch flash closure remains separate |
 | `/home/mit/.local/bin/i960-doom-reusable` | Reusable session, textured planes | Automatic STOP/Quit/reload passed; final flash audits passed |
 | `/home/mit/.local/bin/i960-doom` | Legacy, one game per hardware session | Requires the old card present and unbound; unsuitable while it is physically removed |
 
@@ -60,8 +60,8 @@ parks a reusable game; **Start new game** requests a fresh image and BSS reload.
 WAD loading repeats, so restarting is not instantaneous. SSH can disconnect
 after `start` returns.
 
-Automatic card rearms and a real CLI idle restart passed. Positive browser
-restart, extended idle and host-loss qualification remain open. The flat-enabled reusable wrapper is
+Automatic card rearms, CLI idle restart and real browser STOP/restart passed.
+Extended idle and host-loss qualification remain open. The flat-enabled reusable wrapper is
 now the Mac default by user request; those qualification gaps remain unchanged.
 The legacy launcher has no reusable idle path: its `stop` ends the hardware
 session and its installed parser does not support `shutdown` or newer benchmark
@@ -79,7 +79,10 @@ power cycle and final paired flash reads are still required to close that batch.
 
 ## Browser connection and controls
 
-Open [http://192.168.2.75:8087/](http://192.168.2.75:8087/) from the same LAN.
+With the default flat launcher, open
+[http://192.168.2.75:8088/](http://192.168.2.75:8088/) for persistent keyboard input
+and pushed frames. Close other Doom keyboard tabs first. Port 8087 remains the
+original polling page and is still used by the textured-only/legacy wrappers.
 Click the game image to focus it. Refresh reconnects to the existing game.
 
 | Key or button | Action |
@@ -108,7 +111,8 @@ These are the current reusable/flat launcher options:
 
 | Option | Default | Meaning |
 | --- | --- | --- |
-| `--port N` | `8087` | HTTP port, 1024–65535 |
+| `--port N` | `8087` | Original owning daemon HTTP port, 1024–65535 |
+| `--stream-port N` | `8088` | Pushed-frame gateway port; flat wrapper only, must differ from owner port |
 | `--max-frames N` | `0` | Normal game STOP at N frames; zero means unlimited |
 | `--capture-all` | Off | Retain every frame instead of the bounded capture sample |
 | `--paired-frames N` | `4` | Full independent PIO comparisons; choose 4 or 32 |
@@ -121,12 +125,13 @@ These are the current reusable/flat launcher options:
 Examples, after selecting a reusable wrapper and on a fresh hardware session:
 
 ```sh
-./doom --port 8088 --disconnect-seconds 600
+./doom --port 8089 --stream-port 8090 --disconnect-seconds 600
 ./doom --max-frames 256 --capture-all --paired-frames 32
 ```
 
 The second example is an alternative launch, not a way to reconfigure the first.
-Use port 8088 in the browser for the first example. Capturing all frames consumes
+Use port 8090 in the browser for the first example. Changing the port of an
+already running gateway requires stopping only `i960-doom-stream.service` first. Capturing all frames consumes
 more disk. Ownership checks and full system audits remain enabled with all these
 options; no audit-disable flag is provided.
 
@@ -161,6 +166,7 @@ it is not an interactive-play FPS guarantee. The accepted comparison measured
 
 ```sh
 ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom'
+ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom-stream'
 ssh mit@192.168.2.75 'sudo journalctl -b -u i960-doom --no-pager'
 ssh mit@192.168.2.75 'cat /home/mit/i960-flat-accele160-20261018/latest-session.txt'
 ```
@@ -184,6 +190,13 @@ ssh mit@192.168.2.75 '/home/mit/.local/bin/i960-doom-flat status'
 ssh mit@192.168.2.75 '/home/mit/.local/bin/i960-doom-flat stop'
 ssh mit@192.168.2.75 '/home/mit/.local/bin/i960-doom-flat shutdown'
 ```
+
+The gateway journal is `/home/mit/i960-doom-stream-20261018/transport.jsonl`.
+The installed flat wrapper starts it automatically, checks source/dependency
+identities and preserves the original owner wrapper. `stop` parks only Doom;
+`shutdown` stops both services and terminally shuts down RTEMS. See the
+[stream gateway guide](game/doom/play/accele160/stream/README.md) for installation,
+rollback and gateway-only restart commands. No hardware modules are unloaded.
 
 For foreground diagnostics, `./doom run` runs the owning launcher attached to
 SSH. It is not an attach command and requires the same fresh-session ownership

@@ -1,0 +1,50 @@
+{
+  "local": {
+    "http": {
+      "trials": 16,
+      "median_ms": 144.26565,
+      "max_ms": 148.96067,
+      "mean_run_fps": 18.857531512918236,
+      "fps_runs": [
+        18.503575745830126,
+        19.211487280006345
+      ]
+    },
+    "stream": {
+      "trials": 16,
+      "median_ms": 96.3682595,
+      "max_ms": 122.384097,
+      "mean_run_fps": 20.526378252871197,
+      "fps_runs": [
+        20.496036898663178,
+        20.556719607079213
+      ]
+    },
+    "latency_reduction_percent": 33.200828125059566,
+    "delivery_fps_increase_percent": 8.849762434758368
+  },
+  "mac": {
+    "http": {
+      "trials": 16,
+      "median_ms": 142.126833,
+      "max_ms": 269.460833,
+      "mean_run_fps": 16.625147942179634,
+      "fps_runs": [
+        18.175446485984317,
+        15.074849398374953
+      ]
+    },
+    "stream": {
+      "trials": 16,
+      "median_ms": 106.184271,
+      "max_ms": 165.145708,
+      "mean_run_fps": 20.396082480167905,
+      "fps_runs": [
+        20.575661105951365,
+        20.21650385438444
+      ]
+    },
+    "latency_reduction_percent": 25.289075427438824,
+    "delivery_fps_increase_percent": 22.682111167390207
+  }
+}

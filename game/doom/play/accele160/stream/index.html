@@ -1,0 +1,80 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Doom on AcceleRAID 160</title>
+<style>body{background:#141414;color:#eee;font:16px system-ui;max-width:960px;margin:28px auto;padding:0 16px}canvas{width:100%;height:auto;image-rendering:pixelated;background:black;outline:1px solid #555}button{font:inherit;padding:10px 18px;background:#333;color:white;border:1px solid #777;cursor:pointer}p{line-height:1.5}#status{color:#edc36e}</style>
+<h1>Doom on AcceleRAID 160</h1><p>Rendered by DoomGeneric under RTEMS on the i960 card. Click the picture to focus. Startup can take a few minutes. Persistent input and pushed frames. Refreshing reconnects to the current game.</p>
+<canvas id="screen" width="320" height="200" tabindex="0" aria-label="Interactive Doom framebuffer"></canvas>
+<p id="status">Connecting…</p><p><b>W / ↑</b> forward · <b>S / ↓</b> back · <b>A / D</b> turn · <b>← / →</b> turn · <b>Ctrl / Space</b> fire · <b>E</b> use/open · <b>Shift</b> run · <b>Enter</b> confirm · <b>Escape</b> menu</p>
+<button id="flat">Toggle flat planes (F6)</button> <button id="restart" disabled>Start new game</button> <button id="stop">Stop Doom</button><p>Keys release when focus is lost. Stop or menu Quit parks the game; Start new game reloads Doom while RTEMS keeps ownership. No sound yet.</p>
+<script>
+const token='__TOKEN__',screen=document.getElementById('screen'),ctx=screen.getContext('2d'),held=new Set();
+const keys={F6:192,F10:196,KeyW:173,ArrowUp:173,KeyS:175,ArrowDown:175,KeyA:172,ArrowLeft:172,KeyD:174,ArrowRight:174,ControlLeft:163,ControlRight:163,Space:163,KeyE:162,ShiftLeft:182,ShiftRight:182,Enter:13,Escape:27,Tab:9,KeyY:121,KeyN:110,Digit1:49,Digit2:50,Digit3:51,Digit4:52,Digit5:53,Digit6:54,Digit7:55};
+const label=document.getElementById('status'),flat=document.getElementById('flat');
+let control,video,ready=false,seq=0,runId=0,pending=new Set(),frameMeta=null,lastGeneration=0,epoch=0,retrying=false;
+function state(s){
+ if(runId!==s.run_id){held.clear();runId=s.run_id}
+ document.getElementById('restart').disabled=s.state!=='idle';
+ flat.hidden=s.flat_planes===null;
+ flat.textContent=s.flat_planes?'Planes: flat — switch to textures':'Planes: textured — switch to flat';
+ label.textContent=s.message+' · persistent input / pushed frames';
+}
+function send(op,data={}){
+ if(!ready)return false;
+ if(pending.size>=32||control.bufferedAmount>8192){control.close(1000,'input backlog');return false}
+ const n=++seq;pending.add(n);control.send(JSON.stringify({op,seq:n,run_id:runId,...data}));return true;
+}
+function release(){for(const k of held)send('key',{key:k,down:0});held.clear()}
+screen.onclick=()=>screen.focus();
+screen.onkeydown=e=>{const k=keys[e.code];if(k===undefined)return;e.preventDefault();if(!held.has(k)&&send('key',{key:k,down:1}))held.add(k)};
+screen.onkeyup=e=>{const k=keys[e.code];if(k===undefined)return;e.preventDefault();if(held.delete(k))send('key',{key:k,down:0})};
+screen.onblur=release;window.onblur=release;
+document.addEventListener('visibilitychange',()=>{if(document.hidden)release()});
+document.getElementById('stop').onclick=()=>{release();send('stop')};
+document.getElementById('restart').onclick=()=>send('restart');
+flat.onclick=()=>{send('key',{key:192,down:1});send('key',{key:192,down:0})};
+function reconnect(){
+ if(retrying)return;retrying=true;ready=false;held.clear();pending.clear();
+ if(control)control.close();if(video)video.close();
+ label.textContent='Connection lost; accepted keys released by server. Reconnecting…';
+ setTimeout(()=>{retrying=false;connect()},1000);
+}
+function connect(){
+ seq=0;pending.clear();ready=false;frameMeta=null;
+ const url=(location.protocol==='https:'?'wss://':'ws://')+location.host;
+ control=new WebSocket(url+'/input');
+ control.onopen=()=>control.send(JSON.stringify({token}));
+ control.onclose=reconnect;control.onerror=()=>control.close();
+ control.onmessage=e=>{try{
+  const m=JSON.parse(e.data);
+  if(m.type==='ready'){
+   ready=true;state(m.state);send('heartbeat');
+   video=new WebSocket(url+'/video');video.binaryType='arraybuffer';
+   video.onopen=()=>video.send(JSON.stringify({token}));
+   video.onclose=reconnect;video.onerror=()=>video.close();
+   video.onmessage=draw;
+  }else if(m.type==='ack'){
+   if(!pending.delete(m.seq))throw Error('Unexpected input ACK');
+   state(m.state);if(m.error)label.textContent=m.error;
+  }else throw Error('Invalid input reply');
+ }catch(error){label.textContent=error.message;control.close()}};
+}
+function draw(e){try{
+ if(typeof e.data==='string'){
+  if(frameMeta)throw Error('Missing binary frame');
+  const m=JSON.parse(e.data);if(m.type!=='frame')throw Error('Invalid frame metadata');
+  frameMeta=m.state;return;
+ }
+ if(!frameMeta)throw Error('Missing frame metadata');
+ const s=frameMeta;frameMeta=null;
+ const b=e.data,v=new DataView(b);
+ if(b.byteLength!==65568||v.getUint32(0,true)!==0x31424644||v.getUint32(4,true)!==1||v.getUint32(16,true)!==320||v.getUint32(20,true)!==200||v.getUint32(24,true)!==65536||v.getUint32(28,true)!==0)throw Error('Invalid binary frame');
+ const ep=v.getUint32(8,true),gen=v.getUint32(12,true);
+ if(s.frame!==ep+'-'+gen)throw Error('Frame identity mismatch');
+ if(ep!==epoch){epoch=ep;lastGeneration=0}
+ if(gen>lastGeneration){
+  const raw=new Uint8Array(b,32),im=ctx.createImageData(320,200);
+  for(let i=0;i<64000;i++){const p=64000+raw[i]*3;im.data[i*4]=raw[p];im.data[i*4+1]=raw[p+1];im.data[i*4+2]=raw[p+2];im.data[i*4+3]=255}
+  ctx.putImageData(im,0,0);lastGeneration=gen;state(s);
+ }
+ video.send(JSON.stringify({frame:s.frame}));
+}catch(error){label.textContent=error.message;video.close()}}
+setInterval(()=>{if(ready)send('heartbeat')},1000);connect();
+</script></html>

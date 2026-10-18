@@ -2,22 +2,34 @@
 
 ## Current play priority: input latency (2026-10-18)
 
+[Persistent input/pushed-frame acceptance](../../artifacts/current/doom-stream-20261018/README.md)
+now passes on the card: matched Mac F6-to-received-frame **142.13 → 106.18 ms
+(-25.3%)**, received FPS **16.63 → 20.40 (+22.7%)**. These are delivery metrics,
+not renderer speedup or browser paint latency. All 10,231 frames retained full
+audits; 12 paired PIO comparisons, real browser STOP/restart and stalled-viewer,
+stale-message, sequence-gap and disconnect-release gates pass. Default flat
+launcher starts the gateway on **8088**, keeping the original owner on 8087.
+
 [Physical investigation](../../artifacts/current/doom-input-latency-20261018/README.md)
 measures Linux-local F6 to validated frame at 74.4 ms median (8 trials), versus
 970.3 ms for Mac down/up/status confirmation (4 trials; not paint latency).
 Mac-to-router ping averages 228 ms while host-to-router averages 0.87 ms.
 
 1. Retest wired/another client and resolve the Mac-side network jitter first.
-2. Bounded persistent input transport: eliminate the shared HTTP promise chain
-   for keys/heartbeat/control while preserving key order and run identity.
+2. **Done:** bounded persistent input transport removes the shared browser HTTP
+   promise chain while preserving key order and run identity. Separate video
+   connection cannot block input; two display credits bound slow-viewer latency.
 3. Bounded card input FIFO/batching instead of one transition per mailbox ACK.
-4. Push latest fully audited frames instead of 50 ms status-then-frame polling.
+4. **Done at the browser:** pushed fully audited frames replace 50 ms
+   status-then-frame polling. Follow-up: direct owner publication rather than
+   the gateway's 10 ms loopback HTTP poll; gateway RSS is about 28 MiB.
 5. Correlate browser event/send/receive/paint with host enqueue/ACK and game tic;
    only then assess the outer 29 ms sleep. Do not equate card FPS with paint FPS.
 
 The real CLI idle restart passed into a 1,428-frame second game, all 24 new key
-edges ACKed and twelve F6 changes confirmed, then STOP parked safely. Browser
-restart and negative/long idle gates remain open. No binaries or audits changed.
+edges ACKed and twelve F6 changes confirmed, then STOP parked safely. Real
+browser restarts also pass in the streaming acceptance. Negative/long idle
+gates remain open. No engine/kernel binaries or audits changed.
 
 ## Usability priority: reusable exclusive session (repeated card restarts passed)
 
@@ -30,7 +42,8 @@ passes actual-policy ASan/UBSan and browser tests. Physical STOP / reload / menu
 and 15 stale-request rejections. Offline WAD/frame/HTTP replay passes.
 Both final guarded post-reset flash reads now pass, with the old card
 physically removed. Positive CLI idle restart now also passes (record above).
-Qualify browser restart after idle, idle/upload host loss and longer play. The
+Browser restart also passes in the streaming acceptance. Qualify idle/upload
+host loss and longer play. The
 `i960-doom-reusable` bundle supports explicit absent-peer checks.
 Preserve DMA/WAD/command counters,
 discard old-game input explicitly, reload template/data/BSS through admission,
@@ -49,8 +62,8 @@ already halted callback by clearing a flag. No firmware patch is proposed.
   audits and STOP, 20 stale rearm refusals, immutable WAD/HTTP and mutation
   replays; native pictures retain exactly the four known differences.
 - [ ] Close the final paired post-reset flash reads, then longer/different-scene
-  play. Positive browser idle-restart qualification remains independent; CLI
-  idle restart now passed in the input-latency investigation.
+  play. CLI and browser idle restarts now pass in the input/streaming records;
+  negative/long idle qualification remains independent.
 
 The old 11.5–12 FPS projection predates the accepted cached arena. Use the
 [actual new-card comparison](../../artifacts/current/accele160-flat-20261018/README.md).

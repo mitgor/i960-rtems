@@ -1,0 +1,18 @@
+{
+  "run_id": 3,
+  "stalled_video_close_code": 1008,
+  "input_during_stall_ms": 96.91119699982664,
+  "stale_rejected": true,
+  "disconnect_release_confirmed": true,
+  "sequence_gap_rejected": true,
+  "final": {
+    "message": "Game 3 stopped safely. Click Start new game.",
+    "frame": "583444873-17828",
+    "binary": true,
+    "stopped": true,
+    "run_id": 3,
+    "state": "idle",
+    "flat_planes": 0,
+    "flat_switches": 110
+  }
+}
