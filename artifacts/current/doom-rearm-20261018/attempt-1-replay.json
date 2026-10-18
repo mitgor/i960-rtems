@@ -1,0 +1,16 @@
+{
+  "frames": 65,
+  "all_captures_hashes_guards_markers": true,
+  "paired_pio_frames": 32,
+  "failure": "incorrect expected pattern inside an owned DMA staging allocation",
+  "address": "0xc0f41000",
+  "stage_base": "0xc0f31000",
+  "exact_stage_frame": 32,
+  "exact_stage_frame_page": 8,
+  "staging_bytes_match": true,
+  "engine_cleanup": true,
+  "terminal_stop": true,
+  "rearms_attempted": 0,
+  "corrected_audit": "all eight accessible odd pages above ARENA_END",
+  "kernel_changed": false
+}

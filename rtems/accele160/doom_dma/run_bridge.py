@@ -721,7 +721,9 @@ def main():
                 # All boot invariants and exact final image are checked each game.
                 need(struct.unpack_from('<16I',later,0xb00)==bank,'retained full-bank proof')
                 need(fields(pin_dir/'status')['guard_changes']=='0','idle DMA guards')
-                for index in (1793,1857,1919,2047):
+                # These are outside ARENA_END (0xc0ff0000). Earlier samples
+                # inside the arena can legitimately become DMA staging/heap.
+                for index in range(2033,2048,2):
                     expected=struct.pack('<1024I',*(pattern(index,w) for w in range(1024)))
                     need(snap(0xc0800000+(index-1)*PAGE)==expected,'idle untouched upper tail')
                 data=struct.pack('<4I',global_frames,request_seq,game_run+1,global_key)

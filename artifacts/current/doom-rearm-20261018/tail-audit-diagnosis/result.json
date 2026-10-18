@@ -1,0 +1,98 @@
+[
+  {
+    "index": 1793,
+    "address": "0xc0f01000",
+    "matches": true,
+    "different_bytes": 0,
+    "first_words": [
+      "0x86e2b60b",
+      "0x4450183e",
+      "0x387ea61",
+      "0xcefabc94",
+      "0x8c280edf",
+      "0x4b9fd102",
+      "0x16d2a335",
+      "0xd4007578"
+    ]
+  },
+  {
+    "index": 1857,
+    "address": "0xc0f41000",
+    "matches": false,
+    "different_bytes": 4080,
+    "first_words": [
+      "0x7070505",
+      "0x6060202",
+      "0x6060606",
+      "0x6f6f0606",
+      "0x6f6f6f6f",
+      "0x2020707",
+      "0x2020606",
+      "0x6060505"
+    ]
+  },
+  {
+    "index": 1919,
+    "address": "0xc0f7f000",
+    "matches": true,
+    "different_bytes": 0,
+    "first_words": [
+      "0x9c145975",
+      "0x5ea6f740",
+      "0x1971051f",
+      "0xd40c53ea",
+      "0x96dee1a1",
+      "0x51693e7c",
+      "0xc244c4b",
+      "0xcef69a06"
+    ]
+  },
+  {
+    "index": 2033,
+    "address": "0xc0ff1000",
+    "matches": true,
+    "different_bytes": 0,
+    "first_words": [
+      "0xfb147adb",
+      "0x39a6d4ee",
+      "0x7e7126b1",
+      "0xb30c7044",
+      "0xf1dec20f",
+      "0x36691dd2",
+      "0x6b246fe5",
+      "0xa9f6b9a8"
+    ]
+  },
+  {
+    "index": 2035,
+    "address": "0xc0ff3000",
+    "matches": true,
+    "different_bytes": 0,
+    "first_words": [
+      "0xefcc11f1",
+      "0x2d7ebfc4",
+      "0x6aa94d9b",
+      "0xa7d41b6e",
+      "0xe506a925",
+      "0x22b176f8",
+      "0x7ffc04cf",
+      "0xbd2ed282"
+    ]
+  },
+  {
+    "index": 2047,
+    "address": "0xc0fff000",
+    "matches": true,
+    "different_bytes": 0,
+    "first_words": [
+      "0xa6f18cf5",
+      "0x644322c0",
+      "0x2394d09f",
+      "0xeee9866a",
+      "0xac3b3421",
+      "0x6b8cebfc",
+      "0x36c199cb",
+      "0xf4134f86"
+    ]
+  }
+]

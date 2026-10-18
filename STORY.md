@@ -5767,3 +5767,16 @@ warm reboot at the user's request. It printed its reboot message but did not
 return over SSH, so it did not get us to the new kernel. The cold power cycle
 is still the practical prerequisite; no repeated card-game result is claimed
 from this attempt.
+
+The cold boot finally cleared that old session. The new reusable kernel
+ran 65 frames and stopped cleanly, with its first 32 pictures matching the
+accepted baseline. Then an audit I had added got its boundary wrong: it
+expected an initial memory-test pattern inside one of our own DMA staging
+allocations. The saved page was exactly page eight of frame 32. Nothing had
+corrupted it; it was doing its job.
+
+The failure path did its job too: it halted before any reload. We preserved
+the full capture and corrected the check to pages beyond the arena, keeping
+the arena, fixed allocation, IRQ, cache and DMA checks intact. That costs
+another initial power cycle before the repeated-game test, but leaves a
+precise, replayable explanation instead of silently relaxing an audit.

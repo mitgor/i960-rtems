@@ -129,3 +129,30 @@ flush in `myrs_remove()`, but **no PCI shutdown callback**, and the generator
 does not add one. A driver shutdown-command stall was considered, but the
 reviewed source does not support that diagnosis. The actual reboot stall
 cause is unproven. No reusable Doom card test has started in this follow-up.
+
+## First physical attempt: clean STOP, host-audit false positive
+
+Boot `05905c4e-1edf-4d19-bad9-3c8e3564ff87` cleared all retained modules.
+Both guarded 1 MiB pre-flash reads passed and the old card remained unbound.
+The candidate produced **65 frames**, then passed STOP, final-frame, private
+heap/zone cleanup, unchanged text, restored cache map and DMA drain checks.
+All 65 complete DMA captures replay with exact guards/markers/SHA; the first
+32 had full PIO comparisons. Five HTTP samples were independently observed.
+
+Before rearm, the new host audit incorrectly expected the original RAM-test
+pattern at page index 1857 (`0xc0f41000`), **inside** an owned staging
+allocation. The saved page exactly equals page 8 of paired frame 32, relative
+to slot 1's declared staging base `0xc0f31000`. This is legitimate frame data,
+not corruption or a failure of the kernel rearm policy. The error path safely
+entered terminal QUIE; **no rearm was attempted**. The captures and diagnosis
+are retained in `attempt-1.tar.xz`, `tail-audit-diagnosis/`,
+`attempt-1-replay.json` and `attempt-1-http/`.
+
+The host check is corrected to all eight accessible odd pages from
+`0xc0ff1000` through `0xc0fff000`, outside the `0xc0810000..0xc0ff0000` arena.
+Full arena/fixed-record/IRQ/cache/DMA/owner audits remain. Kernel, engine and
+firmware are unchanged. The new isolated bundle is
+`/home/mit/i960-doom-rearm-20261018/bundle-retry`; use the same acceptance
+command with that bundle/path. Another initial physical reset is pending
+because the failed attempt correctly stopped the owning daemon and kernel.
+The installed bundle remains unchanged.

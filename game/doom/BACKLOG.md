@@ -7,8 +7,11 @@ Doom STOP / fresh-image Quit / fresh-image STOP in one process with the same
 arena and fixed pins. The installed card kernel still halts after global STOP.
 The [opt-in idle/rearm candidate](../../artifacts/current/doom-rearm-20261018/README.md)
 is cross-built and passes actual-policy ASan/UBSan and browser tests. Its
-STOP / reload / menu Quit / reload / STOP card runner is ready; one initial
-physical power cycle is pending. Preserve DMA/WAD/command counters,
+First physical run passed 65 frames and STOP/cleanup, but a new host
+pattern audit falsely included an owned framebuffer staging page. Exact
+frame bytes prove the cause; it now checks only pages beyond the arena.
+A power cycle is pending before the repeated STOP / reload / menu Quit /
+reload / STOP retry. Preserve DMA/WAD/command counters,
 discard old-game input explicitly, reload template/data/BSS through admission,
 and qualify repeated card cycles and negative stale-message/loan/timeout paths.
 Do not reinitialize the live arena, unload retained modules or resume the
