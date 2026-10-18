@@ -25,7 +25,12 @@ unsigned doom_engine_entry(const struct doom_runtime_owned*a){int rc;const struc
  if(!a||a->io.version!=DOOM_API_BATCH_VERSION||!doom_platform_bind_owned(a,"/iwad.wad")||!doom_wad_backend_bind(&a->io,"/iwad.wad"))return 1;
  doom_platform_mark(1,0,0,0);
  doom_engine_result[0]=0x454e4750u;doom_engine_result[1]=2;
- doom_platform_startup(1800000u);rc=doom_platform_call(start);s=doom_platform_stats();doom_platform_mark(61,rc,0,0);
+#ifdef DOOM_PERSISTENT_PLAY
+ doom_platform_startup(0u); /* Card owner supplies heartbeat and STOP bounds. */
+#else
+ doom_platform_startup(1800000u);
+#endif
+ rc=doom_platform_call(start);s=doom_platform_stats();doom_platform_mark(61,rc,0,0);
  doom_engine_result[2]=6291456u;doom_engine_result[3]=s->frame_hash;doom_engine_result[4]=s->palette_hash;doom_engine_result[5]=s->frames;doom_engine_result[6]=rc==213;
  doom_engine_result[7]=s->peak_bytes;doom_engine_result[8]=s->peak_blocks;doom_engine_result[9]=rc==213?0:rc==210?2:rc==212?4:3;doom_engine_result[11]=rc;
  if(!doom_wad_backend_close()||!doom_platform_retire())return 5;

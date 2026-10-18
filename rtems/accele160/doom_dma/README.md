@@ -1,9 +1,15 @@
 # AcceleRAID Doom: direct ping-pong DMA qualification
 
+**Persistent play is now a separate build mode:** follow the
+[one-command guide](../../../game/doom/play/accele160/README.md) and
+[1,058-frame acceptance](../../../artifacts/current/doom-persistent-20261018/README.md).
+`DOOM_PERSISTENT=1` removes the 32-frame/global play limit in favor of the
+owned host heartbeat and graceful engine STOP. The default build and the
+legacy `run_live32.sh` path below remain bounded.
+
 This isolated subproject ports the old DAC960PG optimized engine and direct
 presentation to AcceleRAID 160 `0000:37:09.1`. The old card stays unbound.
-This is a bounded 32-frame acceptance harness; do not describe it as a
-qualified persistent interactive session. See the current evidence in
+The original mode is a bounded 32-frame acceptance harness. See its evidence in
 [accele160-doom-dma-20261017](../../../artifacts/current/accele160-doom-dma-20261017/README.md).
 
 ## Ownership and transport
@@ -62,4 +68,5 @@ admission rejection, timeout retention, aligned/unaligned copies and protected
 tails. Physical DMA acceptance, native tests and firmware audits are separate
 gates. Both bounded DMA/hash modes passed physical frame/STOP tests; see the evidence
 record for the final flash-audit status. WAD service currently remains 4 KiB scalar; shared request/completion
-rings, larger read-ahead and persistent play remain follow-up work.
+rings, larger read-ahead and multi-hour persistent-play qualification remain
+follow-up work. The separate persistent build and launcher are linked above.

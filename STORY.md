@@ -5684,3 +5684,39 @@ the accepted build. The next renderer experiment therefore needs to inspect
 the emitted column and texture-access loop, not assume a new target flag or
 more optimization everywhere will help. The captures and replay live in
 [the renderer experiment](artifacts/current/renderer-tune-20261018/README.md).
+
+
+The next change was about making the faster card usable. Its browser path
+still stopped after 32 frames, so even a successful launch was over almost
+as soon as the level appeared. We added a persistent engine and card mode,
+keeping the same render slots and DMA ownership. A host heartbeat replaced
+the long fixed lease. Normal STOP first lets Doom retire its allocations
+and preserves its last published frame for checking, then drains RTEMS and
+leaves the exclusive buffers pinned until reset.
+
+The first longer session ran 1,058 frames. Browser movement and firing
+worked, all 52 delivered key events were acknowledged, and the final frame,
+heap, code, interrupt stacks, DMA and ownership checks passed when the
+browser asked to stop. The first 32 pictures still matched the accepted
+wide-copy build exactly. Its matched window remained at 17.59 card FPS;
+the last 64 frames gave 19.33 after the player changed the scene, so that
+was not a new optimization claim. Both complete post-reset flash reads
+matched stock after the reboot again needed a physical power cycle.
+
+We wrapped the preflight and pinned inputs in a systemd service. Now
+`./doom` from the Mac repository starts the new-card session and prints
+the browser address; SSH can disconnect while the game continues. The
+fresh boot showed that the reader driver also needed to be provisioned
+explicitly, so the launcher includes its exact gated module. STOP still
+means a reset before another hardware session. This was a longer functional
+test, not a multi-hour soak, and those remaining lifetime tests stay open.
+[The persistent-play captures](artifacts/current/doom-persistent-20261018/README.md)
+keep the full run and its replay beside the simpler play instructions.
+
+The fresh no-limit browser session then ran another 1,565 frames and ended
+through Doom's own Quit path. Its final Y release arrived just after the
+engine had already retired, while the frame, heap and DMA checks still
+finished normally. We kept that ordinary-play capture separately; unlike
+the closed first acceptance, its next post-reset firmware pair was still
+pending. The launcher correctly refused a new game over the retained
+resources instead of trying to recycle them.

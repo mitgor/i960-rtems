@@ -2,7 +2,8 @@
 """Exercise the actual interactive engine, input, STOP and heap drain on host32."""
 import argparse,hashlib,json,struct,subprocess
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--build',type=Path,required=True);p.add_argument('--newlib',type=Path,required=True);p.add_argument('--wad',type=Path,required=True);p.add_argument('--wad-ring',action='store_true');p.add_argument('--runtime-flat-test',action='store_true');p.add_argument('--runtime-half-height-test',action='store_true');p.add_argument('--runtime-detail-test',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--build',type=Path,required=True);p.add_argument('--newlib',type=Path,required=True);p.add_argument('--wad',type=Path,required=True);p.add_argument('--frames',type=int,default=40);p.add_argument('--wad-ring',action='store_true');p.add_argument('--runtime-flat-test',action='store_true');p.add_argument('--runtime-half-height-test',action='store_true');p.add_argument('--runtime-detail-test',action='store_true');a=p.parse_args()
+assert 40<=a.frames<=1024
 r=Path(__file__).resolve().parents[1];s=(r/'runtime/startup/native.c').read_text();begin=s.index('static int mark(');end=s.index('\n#endif',begin)
 s=s[:begin]+'''static unsigned frames,event_sent;
 static int mark(unsigned stage,unsigned x,unsigned y,unsigned z){
@@ -11,7 +12,7 @@ static int mark(unsigned stage,unsigned x,unsigned y,unsigned z){
  if(frames==40){stop=1;return -1;}return 1;}
  if(stage==101){if(mode==6)return 1;if(frames==3&&event_sent==0){event_sent++;return 2+256+0xad;}if(frames>=20&&event_sent==1){event_sent++;return 2+0xad;}return 1;}
  return 1;
-}'''+s[end:];s=s.replace('"checkpoint_log.h"','"../runtime/startup/checkpoint_log.h"').replace('"../platform/platform.h"','"../runtime/platform/platform.h"').replace('"../heap.h"','"../runtime/heap.h"')
+}'''+s[end:];s=s.replace('if(frames==40)',f'if(frames=={a.frames})');s=s.replace('"checkpoint_log.h"','"../runtime/startup/checkpoint_log.h"').replace('"../platform/platform.h"','"../runtime/platform/platform.h"').replace('"../heap.h"','"../runtime/heap.h"')
 # I_GetEvent stops after key-up; queued test events must survive that frame.
 if a.runtime_detail_test:
  s='#include <stdlib.h>\n'+s
@@ -49,8 +50,8 @@ for i in range(3):
  (a.build/f'play-{i}.bin').write_bytes(run.stdout);(a.build/f'play-{i}.log').write_bytes(run.stderr)
  assert run.returncode==0,(run.returncode,run.stderr[-2000:])
  result=struct.unpack_from('<12I',run.stdout);extra=struct.unpack_from('<8I',run.stdout,48)
- assert result[5]==40 and result[9:]==(2,1,210) and extra[3]==2,(result,extra)
- rows.append(dict(result=result,extra=extra,trace_sha256=hashlib.sha256(run.stderr[:480]).hexdigest()))
+ assert result[5]==a.frames and result[9:]==(2,1,210) and extra[3]==2,(result,extra)
+ rows.append(dict(result=result,extra=extra,trace_sha256=hashlib.sha256(run.stderr[:a.frames*12]).hexdigest()))
 assert rows[0]==rows[1]
 assert rows[0]['trace_sha256']!=rows[2]['trace_sha256'], 'keyboard must alter rendered output'
-(a.build/'play-native.json').write_text(json.dumps(rows,indent=2)+'\n');print('PASS 40 interactive frames, input, STOP, heap drain and deterministic repeat')
+(a.build/'play-native.json').write_text(json.dumps(rows,indent=2)+'\n');print(f'PASS {a.frames} interactive frames, input, STOP, heap drain and deterministic repeat')

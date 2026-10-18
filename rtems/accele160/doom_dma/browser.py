@@ -18,6 +18,7 @@ class BrowserSession:
         self.held=set()
         self.key_deadline=0.0
         self.stop=threading.Event()
+        self.client_seen=0.0
         self.page=Path(__file__).with_name('index.html').read_text().replace(
             '__TOKEN__',self.token).encode()
         owner=self
@@ -50,6 +51,7 @@ class BrowserSession:
                     n=int(self.headers.get('Content-Length','0'))
                     if not 0<n<=128:raise ValueError('length')
                     body=json.loads(self.rfile.read(n))
+                    with owner.lock:owner.client_seen=time.monotonic()
                     if self.path=='/stop':
                         owner.stop.set()
                     elif self.path=='/heartbeat':
@@ -84,6 +86,9 @@ class BrowserSession:
                 for key in sorted(self.held):self.events.append(key)
                 self.held.clear()
             return self.events.popleft() if self.events else None
+    def disconnected(self,seconds):
+        with self.lock:
+            return bool(self.client_seen and time.monotonic()-self.client_seen>seconds)
     def close(self,message='Session ended'):
         with self.lock:self.message=message
         self.http.shutdown();self.http.server_close();self.thread.join(timeout=3)

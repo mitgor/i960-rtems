@@ -1144,3 +1144,13 @@ shared. Wall-clock MMIO is linked from
 `runtime/platform/card_clock_dac960pg.c` or `card_clock_accele160.c`, never
 from shared Doom code. The PG playable builder rejects AcceleRAID; the new
 card needs its own RTEMS image and DMA bridge. See `card_profiles/README.md`.
+
+**Persistent AcceleRAID play:** the Mac `./doom` wrapper and
+`game/doom/play/accele160/{build,provision,launch}.py` now provide one-command
+startup. `--persistent-play` and `DOOM_PERSISTENT=1` must agree in the engine
+and kernel manifests. The 1,058-frame card/input/browser STOP acceptance and
+paired reset flash reads are in `artifacts/current/doom-persistent-20261018`.
+Keep all full audits, native host FNV and source/ACK ownership checks. The
+engine stop request is separate from global RTEMS STOP so final cleanup and
+frame audits finish first. Buffers/grant remain reboot-pinned. Ordinary play
+retains sampled binary captures plus all JSONL receipts; histories are bounded.

@@ -223,7 +223,7 @@ if(!stats.frames||!dst||!rgb||n<64000||rn<768)return 0;for(i=0;i<64000;i++)((uns
 
 /* One-shot startup scope. No callback jumps while a cache read owns loans. */
 void doom_platform_startup(unsigned milliseconds){startup=1;started=io->ticks_ms();budget=milliseconds;virtual_ms=0;}
-void doom_platform_safe(void){if(!startup)return;if(doom_platform_checkpoint())fatal(210);if(io->ticks_ms()-started>=budget)fatal(
+void doom_platform_safe(void){if(!startup)return;if(doom_platform_checkpoint())fatal(210);if(budget&&io->ticks_ms()-started>=budget)fatal(
 #ifdef DOOM_PLAY
 210
 #else

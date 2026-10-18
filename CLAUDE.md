@@ -2283,3 +2283,13 @@ AcceleRAID FLASHIMAGE commands, RAM/cache maps or DMA code across profiles.
 New-card admission requires exact identity, read-only stock archive, bounded
 RAM proof, ownership/STOP, full post-reset audits and a dedicated transport.
 The profile registry is a guard, not proof that a new card is safe to flash.
+
+**Persistent new-card Doom — 2026-10-18:** `./doom` starts the installed
+AcceleRAID bundle via SSH/systemd; `./doom status` and `./doom stop` report
+and stop it. See `game/doom/play/accele160/README.md` and
+`artifacts/current/doom-persistent-20261018/README.md`. A 1,058-frame input/STOP
+run passed all full audits and paired pre/post-reset stock-flash reads. The
+reader driver is explicitly initialized on fresh boots. One session per boot;
+retained resources must never be force-unloaded. Ordinary capture retention
+is bounded, but every frame keeps guard/hash/marker/owner checks and a JSONL
+receipt. Multi-hour soak and separate physical signal/disconnect tests remain.

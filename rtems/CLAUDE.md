@@ -1506,3 +1506,10 @@ historical RTEMS runtime experiment name. The AcceleRAID exclusive Doom
 builder checks `CARD_PROFILE=accele160`. See `card_profiles/README.md` before
 porting RTEMS to another board. Keep linker, timer/IRQ, RAM grant, cache and
 DMA ownership board-specific with full STOP and restoration audits.
+
+**Persistent AcceleRAID Doom:** `DOOM_PERSISTENT=1` removes the fixed frame
+and worker leases, and combines host heartbeat with engine-only STOP at
+control[15], followed by audited global STOP. See `game/doom/play/accele160`
+and `artifacts/current/doom-persistent-20261018`. A 1,058-frame physical run
+passed cleanup, cache restoration, IRQ drain and full pre/post flash reads.
+Reset remains the exclusive ownership boundary; never unload pinned mappings.

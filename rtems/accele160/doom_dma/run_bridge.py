@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Run retained RTEMS Doom with checked live two-slot frame capture."""
-import argparse,os,fcntl,hashlib,json,mmap,struct,subprocess,sys,time
+import argparse,os,fcntl,hashlib,json,mmap,signal,struct,subprocess,sys,threading,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
 sys.path.insert(0,str(ROOT/'host/accele160/lease_probe'))
@@ -25,6 +25,10 @@ def main():
               'readback0','readback1','template','relocations','wad','out','engine_manifest','dma_module'):
         p.add_argument('--'+n.replace('_','-'),type=Path,required=True)
     p.add_argument('--frames',type=int,choices=(32,),default=32)
+    p.add_argument('--persistent',action='store_true')
+    p.add_argument('--max-frames',type=int,default=0,help='request graceful STOP after this many frames; 0 plays until STOP')
+    p.add_argument('--capture-all',action='store_true',help='retain every full frame during acceptance tests')
+    p.add_argument('--disconnect-seconds',type=float,default=300)
     p.add_argument('--fps-manifest',type=Path)
     p.add_argument('--startup-oracle',type=Path)
     p.add_argument('--port',type=int,default=0,
@@ -33,11 +37,17 @@ def main():
     p.add_argument('--stall-generation',type=int,default=0)
     p.add_argument('--card-fnv',choices=('on','off'),default='on',help='optional per-frame card FNV; all guards, ownership and system audits stay enabled')
     a=p.parse_args()
+    need(a.max_frames>=0 and a.disconnect_seconds>=5,'session bounds')
+    signal_stop=threading.Event()
+    if a.persistent:
+        for sig in (signal.SIGINT,signal.SIGTERM):
+            signal.signal(sig,lambda *_:signal_stop.set())
     if a.frames==32:
         need(a.fps_manifest is not None and a.startup_oracle is not None,
              'FPS manifest and native startup oracle required')
         fps_manifest=json.loads(a.fps_manifest.read_text())
-        need(fps_manifest['frames']==32 and
+        need(fps_manifest['frames']==(0 if a.persistent else 32) and
+             bool(fps_manifest.get('persistent'))==a.persistent and
              fps_manifest['source_sha256']==sha(Path(__file__).with_name('app.c').read_bytes()),
              'FPS source/manifest identity')
         for name,key in [('fnv_host.so','native_fnv_sha256'),('frame_dma.h','dma_source_sha256'),('copy.h','copy_sha256'),('engine_identity.h','engine_identity_sha256')]:
@@ -47,6 +57,8 @@ def main():
         from fast_fnv import fnv as native_fnv
         fnv=native_fnv
         engine_manifest=json.loads(a.engine_manifest.read_text())
+        need(bool(engine_manifest.get('persistent_play'))==a.persistent,
+             'persistent kernel/engine agreement')
         need(engine_manifest.get('card_profile','accele160')=='accele160',
              'Doom image card profile must be AcceleRAID 160')
         need(engine_manifest['double_buffer'] and engine_manifest['direct_frame'] and engine_manifest['no_fnv'],'admitted direct double-buffer engine')
@@ -425,11 +437,14 @@ def main():
               struct.pack('<5I',7,0,0,fnv(b''),0x161610e1))
         write(0xc000e000,0xb80,struct.pack('<I',engine_seq))
         began_engine=time.monotonic();last_owner_audit=0
+        heartbeat=0;last_heartbeat=0;stop_reason=None;stop_started=0
         last_request=began_engine
         last_capture=0
         trace_samples=[]
         live_seen=[0,0]
-        live_receipts=[]
+        live_receipts=[];frame_count=0;read_count=0
+        frame_journal=(run/'live-frame-receipts.jsonl').open('a',buffering=1)
+        read_journal=(run/'engine-reads.jsonl').open('a',buffering=1)
         key_out_seq=0
         live_dir=run/'live-frames';live_dir.mkdir()
         def read_card_bytes(ptr,n):
@@ -439,14 +454,30 @@ def main():
             # This PIATVR aperture exposes the odd 4 KiB page in every 8 KiB
             # pair. The card stages exactly one frame page in each odd page.
             return b''.join(snap(ptr+i*8192-PAGE) for i in range(16))
-        while time.monotonic()-began_engine<1830:
+        while a.persistent or time.monotonic()-began_engine<1830:
             page=snap(0xc000e000)
             req=struct.unpack_from('<16I',page,0xc00)
             words=struct.unpack_from('<20I',page,0xb80)
             er=struct.unpack_from('<16I',page,0xc40)
             trace=struct.unpack_from('<16I',page,0xcc0)
             live=struct.unpack_from('<16I',page,0xd00)
-            if browser and browser.stop.is_set():
+            now=time.monotonic()
+            if a.persistent:
+                if now-last_heartbeat>=.5:
+                    heartbeat+=1
+                    write(0xc000e000,0xd34,struct.pack('<I',heartbeat))
+                    last_heartbeat=now
+                reason=('signal' if signal_stop.is_set() else
+                        'browser STOP' if browser and browser.stop.is_set() else
+                        'browser disconnected' if browser and browser.disconnected(a.disconnect_seconds) else
+                        'frame limit' if a.max_frames and frame_count>=a.max_frames else None)
+                if reason and stop_reason is None:
+                    stop_reason=reason;stop_started=now
+                    write(0xc000e000,0xa7c,struct.pack('<I',0x504f5453))
+                    print('Stopping Doom:',reason,flush=True)
+                if stop_started and now-stop_started>30:
+                    raise RuntimeError('engine STOP deadline; retain resources')
+            elif browser and browser.stop.is_set():
                 raise RuntimeError('browser STOP requested')
             if browser and live[12]==key_out_seq:
                 key=browser.next_key()
@@ -462,11 +493,11 @@ def main():
             for slot,base in ((0,2),(1,6)):
                 generation=live[base]
                 if generation==live_seen[slot]:continue
-                if generation!=len(live_receipts)+1:continue
+                if generation!=frame_count+1:continue
                 need(generation==live_seen[slot]+2 or
                      (live_seen[slot]==0 and generation==slot+1),
                      'live slot generation monotonic')
-                need(generation<=a.frames and (generation-1)&1==slot and
+                need((a.persistent or generation<=a.frames) and (generation-1)&1==slot and
                      live[base+3]==live_seen[slot],
                      'live frame ownership/ACK')
                 marker=(pin_dir/f'marker{slot}.bin').read_bytes()
@@ -481,7 +512,8 @@ def main():
                 need(len(capture)==77824 and capture[:4096]==b'\xa5'*4096 and capture[69664:]==b'\xa5'*(77824-69664),'full DMA guards')
                 need(capture[69632:69664]==marker and (pin_dir/f'marker{slot}.bin').read_bytes()==marker,'immutable DMA completion marker')
                 image=capture[4096:69632]
-                (run/f'dma-frame-{generation:04d}.bin').write_bytes(capture)
+                retain=not a.persistent or a.capture_all or generation<=32 or generation%300==0
+                if retain:(run/f'dma-frame-{generation:04d}.bin').write_bytes(capture)
                 if generation<=a.paired_frames:
                     pio=read_card_bytes(live[14+slot],65536)
                     need(pio==image,'complete paired DMA/PIO frame')
@@ -491,14 +523,19 @@ def main():
                 host_hash=fnv(image)
                 need((host_hash if a.card_fnv=='on' else 0)==live[base+1],
                      'declared live frame payload checksum mode')
-                (live_dir/f'frame-{generation:04d}.bin').write_bytes(image)
+                if retain:(live_dir/f'frame-{generation:04d}.bin').write_bytes(image)
+                if a.persistent:(live_dir/'latest.bin').write_bytes(image)
                 if browser:browser.publish(generation,image)
-                live_receipts.append(dict(generation=generation,slot=slot,
+                receipt=dict(generation=generation,slot=slot,
                     card_tick=live[base+2],fnv=f'0x{host_hash:08x}',
                     card_fnv=f'0x{live[base+1]:08x}',card_fnv_mode=a.card_fnv,
                     sha256=sha(image),observed_ns=observed_ns,
                     observed_to_http_ns=time.monotonic_ns()-observed_ns,
-                    paired_pio=generation<=a.paired_frames,source=source))
+                    paired_pio=generation<=a.paired_frames,source=source)
+                frame_count=generation
+                live_receipts.append(receipt)
+                frame_journal.write(json.dumps(receipt)+'\n')
+                if a.persistent and len(live_receipts)>64:del live_receipts[:-64]
                 if generation==a.stall_generation:
                     stalled=time.monotonic()
                     time.sleep(3)
@@ -509,6 +546,12 @@ def main():
                       struct.pack('<I',generation))
                 live_seen[slot]=generation
                 last_request=time.monotonic()
+                if a.persistent and generation%100==0:
+                    window=live_receipts[-60:]
+                    dt=window[-1]['card_tick']-window[0]['card_tick']
+                    save(a.out/'progress.json',dict(frames=frame_count,wad_reads=read_count,
+                         card_fps=(len(window)-1)*100/dt if dt else 0,
+                         elapsed_s=time.monotonic()-began_engine,stop_reason=stop_reason))
             if time.monotonic()-last_capture>=1:
                 (run/'engine-latest-page.bin').write_bytes(page)
                 trace_samples.append(dict(elapsed_s=round(time.monotonic()-began_engine,3),
@@ -516,6 +559,7 @@ def main():
                                           reads=len(engine_reads)))
                 if len(trace_samples)%10==0:
                     save(run/'engine-trace.json',trace_samples)
+                if a.persistent and len(trace_samples)>600:del trace_samples[:-600]
                 last_capture=time.monotonic()
             if trace[0]==0x31435254 and trace[14]:
                 (run/'engine-fault-page.bin').write_bytes(page)
@@ -532,28 +576,31 @@ def main():
                      0<n<=PAGE and off+n<=len(wad),
                      'bounded engine WAD request')
                 part=wad[off:off+n]
-                if startup_oracle is not None and len(engine_reads)<len(startup_oracle):
-                    need((off,n)==startup_oracle[len(engine_reads)],
-                         f'native startup WAD request {len(engine_reads)+1}')
+                if startup_oracle is not None and read_count<len(startup_oracle):
+                    need((off,n)==startup_oracle[read_count],
+                         f'native startup WAD request {read_count+1}')
                 write(0xc078a000,0,part)
                 write(0xc000e000,0xc14,struct.pack('<4I',off,n,fnv(part),0))
                 write(0xc000e000,0xc10,struct.pack('<I',req[0]))
                 request_seq=req[0]
                 last_request=time.monotonic()
-                engine_reads.append(dict(request_seq=request_seq,offset=off,
+                read_count+=1
+                row=dict(request_seq=request_seq,offset=off,
                                          n=n,source_sha256=sha(part),
-                                         source_fnv=f'0x{fnv(part):08x}'))
-                if len(engine_reads)%100==0:
+                                         source_fnv=f'0x{fnv(part):08x}')
+                engine_reads.append(row);read_journal.write(json.dumps(row)+'\n')
+                if a.persistent and len(engine_reads)>256:del engine_reads[:-256]
+                if read_count%100==0:
                     ownercheck(owned)
                     need(select(OLD,'dac960pg')['driver'] is None,
                          'old card touched during Doom')
                     save(run/'engine-reads.json',engine_reads)
-                    print(f'Doom WAD reads: {len(engine_reads)}, '
+                    print(f'Doom WAD reads: {read_count}, '
                           f'elapsed {time.monotonic()-began_engine:.1f}s',
                           flush=True)
             elif req[0]>request_seq+1:
                 raise RuntimeError('engine WAD request sequence skipped')
-            if words[8]==engine_seq and len(live_receipts)==a.frames:break
+            if words[8]==engine_seq and (a.persistent or frame_count==a.frames):break
             if time.monotonic()-last_request>120:
                 (run/'engine-stall-page.bin').write_bytes(page)
                 save(run/'engine-trace.json',trace_samples)
@@ -571,6 +618,8 @@ def main():
                  struct.unpack_from('<I',page,0xb58)[0]==0,
                  'retained Doom instance faulted')
             if time.monotonic()-last_owner_audit>5:
+                ownercheck(owned)
+                need(select(OLD,'dac960pg')['driver'] is None,'old card touched during play')
                 need(status('ram-admit').get('done')=='0',
                      'Doom callback escaped before first frame')
                 last_owner_audit=time.monotonic()
@@ -579,21 +628,22 @@ def main():
         save(run/'engine-reads.json',engine_reads)
         save(run/'engine-trace.json',trace_samples)
         save(run/'live-frame-receipts.json',live_receipts)
-        need(len(live_receipts)==a.frames and
-             sorted(r['generation'] for r in live_receipts)==list(range(1,a.frames+1)),
+        frame_journal.close();read_journal.close()
+        need(a.persistent or (frame_count==a.frames and
+             sorted(r['generation'] for r in live_receipts)==list(range(1,a.frames+1))),
              'all live frames captured exactly once')
         if startup_oracle is not None:
-            need(len(engine_reads)>=len(startup_oracle),
+            need((a.persistent and stop_reason and not frame_count) or read_count>=len(startup_oracle),
                  'native startup WAD request count')
         (run/'engine-ack-page.bin').write_bytes(page)
         receipts.append(dict(seq=engine_seq,op=7,offset=0,n=0,
                              status=words[9],value=words[10]))
         result_words=struct.unpack_from('<12I',page,0xc80)
-        need(words[9:11]==(0,0x454e4702) and er[0:2]==
-             (0x314d5246,2) and er[4:6]==(0x454e4702,a.frames) and
+        need(words[9:11]==((31 if a.persistent else 0),0x454e4702) and er[0:2]==
+             (0x314d5246,2) and er[4:6]==(0x454e4702,frame_count) and
              er[9:11]==(0,1) and er[11]==er[12] and
              result_words[0:3]==(0x454e4750,2,6291456) and
-             result_words[5]==a.frames and result_words[9:12]==(2,1,210),
+             result_words[5] in ((frame_count,frame_count+1) if a.persistent else (a.frames,)) and result_words[9:12]==(2,1,210),
              'bounded real Doom frame return/cleanup')
         game_pages=[]
         for index in range(16):
@@ -602,23 +652,25 @@ def main():
             need(fnv(out)==got[10],f'Doom frame page {index}')
             game_pages.append(out)
         game_frame=b''.join(game_pages)
-        need(fnv(game_frame)==er[6] and
+        need((not frame_count or fnv(game_frame)==er[6]) and
              len(set(game_frame[:64000]))>32 and
+             (not frame_count or sha(game_frame)==live_receipts[-1]['sha256']) and
              (not result_words[3] or fnv(game_frame[:64000])==result_words[3]) and
              (not result_words[4] or fnv(game_frame[64000:64768])==result_words[4]),
              'complete real Doom frame and palette')
         frame_timing=None
-        if a.frames>1:
-            frame_ticks=struct.unpack_from('<'+str(a.frames)+'I',page,0xe00)
+        if frame_count>1:
+            frame_ticks=([r['card_tick'] for r in live_receipts] if a.persistent else
+                         struct.unpack_from('<'+str(a.frames)+'I',page,0xe00))
             need(all(frame_ticks[i]>=frame_ticks[i-1] for i in range(1,a.frames)) and
                  frame_ticks[-1]>frame_ticks[0], 'monotonic card frame timer')
             elapsed_ticks=frame_ticks[-1]-frame_ticks[0]
-            frame_timing=dict(frames=a.frames,timer_hz=100,
+            frame_timing=dict(frames=len(frame_ticks),timer_hz=100,
                               first_tick=frame_ticks[0],last_tick=frame_ticks[-1],
                               elapsed_ticks=elapsed_ticks,
-                              render_fps=(a.frames-1)*100/elapsed_ticks,
+                              render_fps=(len(frame_ticks)-1)*100/elapsed_ticks,
                               interframe_ticks=[frame_ticks[i]-frame_ticks[i-1]
-                                                for i in range(1,a.frames)])
+                                                for i in range(1,len(frame_ticks))])
             save(run/'frame-timing.json',frame_timing)
         (run/'game-frame.bin').write_bytes(game_frame)
         (run/'game-frame.pgm').write_bytes(
@@ -649,7 +701,7 @@ def main():
              struct.unpack_from('<I',page,0xa54)[0]==0x214b4341,
              'reboot-only quiescent ownership')
         dma_state=struct.unpack_from('<32I',page,0xd80)
-        need(dma_state[:3]==(0x31464d44,0x161610e1,0) and dma_state[11]==a.frames and dma_state[14:16]==(0,0),'all DMA sources drained before STOP')
+        need(dma_state[:3]==(0x31464d44,0x161610e1,0) and dma_state[11]==frame_count and dma_state[14:16]==(0,0),'all DMA sources drained before STOP')
         need(fields(pin_dir/'status')['guard_changes']=='0','final two-buffer guards')
         (run/'dma-pin-final.txt').write_text((pin_dir/'status').read_text())
         quiescent=True
@@ -659,7 +711,7 @@ def main():
              'grant ownership retained')
         need(select(OLD,'dac960pg')['driver'] is None,'old card untouched')
         final_bridge=struct.unpack_from('<20I',page,0xb80)
-        need(final_bridge[18:20]==(38+len(engine_reads),4),
+        need(final_bridge[18:20]==(38+read_count,4),
              'WAD success/rejection counters')
         save(a.out/'result.json',dict(boot_id=boot,image_sha256=image_sha,
             kernel_sha256=kernel_sha,firmware_sha256=FIRMWARE,
@@ -670,7 +722,9 @@ def main():
             frame_sha256=sha(frame),frame_fnv=f'0x{fnv(frame):08x}',
             wad_requests=len(wad_receipts),wad_good=final_bridge[18],
             wad_bad=final_bridge[19],
-            engine_wad_reads=len(engine_reads),
+            persistent=a.persistent,frames=frame_count,stop_reason=stop_reason or 'engine quit',
+            key_sequence_sent=key_out_seq,key_sequence_acked=struct.unpack_from('<I',page,0xd30)[0],
+            engine_wad_reads=read_count,
             engine_elapsed_seconds=time.monotonic()-began_engine,
             game_frame_sha256=sha(game_frame),
             game_frame_fnv=f'0x{fnv(game_frame):08x}',
@@ -681,7 +735,7 @@ def main():
             heartbeat_before=first,heartbeat_after=heart[4],
             release='reboot-only',grant_retained=True,
             card=select(BDF,'accele160'),old=select(OLD,'dac960pg')))
-        print(f'Real Doom {a.frames}-frame run captured; WAD, cleanup and STOP passed')
+        print(f'Real Doom {frame_count}-frame run captured; WAD, cleanup and STOP passed')
     except BaseException as error:
         if active_owner and not quiescent:
             try:

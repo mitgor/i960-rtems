@@ -83,6 +83,10 @@ static struct doom_runtime_checkpoint doom_api;
 #ifndef DOOM_FPS_FRAMES
 #define DOOM_FPS_FRAMES 1u
 #endif
+#ifndef DOOM_PERSISTENT
+#define DOOM_PERSISTENT 0
+#endif
+static unsigned int host_heartbeat,host_heartbeat_tick;
 #ifndef DOOM_PRIVATE_CACHE_MAP
 #define DOOM_PRIVATE_CACHE_MAP 0
 #endif
@@ -436,7 +440,16 @@ static unsigned int engine_owner(void){
  return engine_running&&(unsigned int)_Thread_Executing==switch_threads[0]&&!switch_fault;
 }
 static unsigned int engine_stopping(void){
+#if DOOM_PERSISTENT
+ unsigned int beat=live[13];
+ if(beat!=host_heartbeat){host_heartbeat=beat;host_heartbeat_tick=ticks;}
+ /* Process death must never grant permission to recycle a host buffer.
+  * Request complete reboot-only quiescence if its heartbeat disappears. */
+ if(ticks-host_heartbeat_tick>=3000u)control[3]=STOP;
+ return !engine_owner()||control[3]==STOP||control[15]==STOP;
+#else
  return !engine_owner()||control[3]==STOP||ticks-engine_report[2]>=180000u;
+#endif
 }
 #include "frame_dma.h"
 static void *engine_allocate(unsigned int n){unsigned int h;void *p;
@@ -510,9 +523,10 @@ static int engine_mark(unsigned int stage,unsigned int x,unsigned int y,unsigned
  }
  if(stage!=100u)return 1;
  slot=(z-1u)&1u;base=slot?6u:2u;
- if(z!=first_frame_seen+1u||z>DOOM_FPS_FRAMES||
+ if(z!=first_frame_seen+1u||(!DOOM_PERSISTENT&&z>DOOM_FPS_FRAMES)||
     x!=(unsigned int)(image_base+ENGINE_PLAY_OFFSET+slot*FRAME_BYTES)||y!=FRAME_BYTES)bounded_fatal(0x77007u);
- frame_ticks[first_frame_seen]=ticks;first_frame_seen=z;engine_report[5]=z;
+ if(first_frame_seen<DOOM_FPS_FRAMES)frame_ticks[first_frame_seen]=ticks;
+ first_frame_seen=z;engine_report[5]=z;
  /* Previous engine source must be drained before the adapter rotates to it. */
  dma_drain();start=ticks;
  while(live[base]!=live[base+3u]){
@@ -526,6 +540,11 @@ static int engine_mark(unsigned int stage,unsigned int x,unsigned int y,unsigned
  hash=dma_cfg[7]?0u:byte_fnv((const void*)x,FRAME_BYTES);
  live[base+1u]=hash;live[base+2u]=ticks;live[base]=z;
  dma_kick(z,slot,(const void*)x,hash,live[base+2u]);
+ if(DOOM_PERSISTENT){
+  frame_base=(unsigned char*)x;frame_ready=1u;
+  if(z==0xfffffffeu){control[15]=STOP;return 0;}
+  return 1;
+ }
  if(z<DOOM_FPS_FRAMES)return 1;
  dma_drain();frame_base=(unsigned char*)x;frame_ready=1u;
  for(i=0;i<DOOM_FPS_FRAMES;i++)((volatile unsigned int*)0xc000fe00u)[i]=frame_ticks[i];
@@ -559,6 +578,7 @@ static unsigned int engine_first_frame(unsigned int *value){
  if(!digest_equal(image_base+ENGINE_META,ENGINE_SITES*4u,engine_metadata_sha))return 21u;
  engine_invoked=1u;first_frame_seen=0u;frame_ready=0u;
  key_seen=0u;
+ host_heartbeat=live[13];host_heartbeat_tick=ticks;
  engine_read_count=0u;engine_read_done=0u;engine_mark_count=0u;
  for(i=0;i<16u;i++)engine_trace[i]=0u;
  engine_trace[0]=0x31435254u;
@@ -608,6 +628,8 @@ static unsigned int engine_first_frame(unsigned int *value){
   bounded_fatal(0x77023u);
 #endif
  for(i=0;i<12u;i++)engine_results[i]=r[i];
+ if(DOOM_PERSISTENT&&first_frame_seen)
+  engine_report[6]=byte_fnv(frame_base,FRAME_BYTES);
  post_text=byte_fnv(image_base,ENGINE_TEXT);
  engine_report[1]=2u;engine_report[3]=ticks;
  engine_report[4]=ret;engine_report[7]=r[3];engine_report[8]=r[4];
@@ -618,9 +640,11 @@ static unsigned int engine_first_frame(unsigned int *value){
   bounded_fatal(0x77008u);
  for(i=7u;i<ARENA_SLOTS;i++)if(doom_arena.slot[i].span)
   bounded_fatal(0x77009u);
- if(control[3]==STOP && first_frame_seen<DOOM_FPS_FRAMES &&
+ if((DOOM_PERSISTENT||control[3]==STOP) &&
+    (DOOM_PERSISTENT||first_frame_seen<DOOM_FPS_FRAMES) &&
     ret==0x454e4702u && r[0]==0x454e4750u &&
-    r[1]==2u && r[2]==ZONE_BYTES && r[5]==first_frame_seen &&
+    r[1]==2u && r[2]==ZONE_BYTES &&
+    (r[5]==first_frame_seen||(DOOM_PERSISTENT&&r[5]-first_frame_seen==1u)) &&
     r[9]==2u && r[10]==1u && r[11]==210u)return 31u;
  if(ret!=0x454e4702u||first_frame_seen!=DOOM_FPS_FRAMES||r[0]!=0x454e4750u||
     r[1]!=2u||r[2]!=ZONE_BYTES||r[5]!=DOOM_FPS_FRAMES||r[9]!=2u||
@@ -768,7 +792,7 @@ static void Worker(rtems_task_argument id){unsigned int i,old;
   * their earlier fixed iteration limit was a useful diagnostic, but did not
   * fix the startup stall: the actual fault was same-owner timer ISR reentry
   * while an earlier interrupt continuation was still active. */
- for(i=0;ticks<200000u&&!switch_stop;i++){
+ for(i=0;(DOOM_PERSISTENT||ticks<200000u)&&!switch_stop;i++){
   loops[id]=i;
   __asm__ volatile("":::"memory");
  }

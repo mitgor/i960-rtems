@@ -1,0 +1,24 @@
+{
+  "frames": 1058,
+  "http_frames": 53,
+  "key_events": 52,
+  "native_wad_reads": 5049,
+  "oracle_reads": 5043,
+  "engine_startup_seconds": 73.95,
+  "fixed_window_12_31_card_fps": 17.59259259259259,
+  "last_64_card_fps": 19.32515337423313,
+  "all_frame_guards_hashes_markers": true,
+  "final_frame_exact": true,
+  "tamper_rejections": 4,
+  "first_32_pixels_palette_match_accepted": true,
+  "engine_cleanup_and_quiescent_stop": true,
+  "old_card_unbound": true,
+  "paired_post_reset_flash_reads": true,
+  "fresh_session": {
+    "frames": 1565,
+    "captured_dma_samples": 37,
+    "final_frame_exact": true,
+    "quiescent_engine_quit": true,
+    "post_reset_pair_pending": true
+  }
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Exercise the browser API and input bounds without a card session."""
-import json,struct,urllib.request
+import json,struct,urllib.request,time
 from browser import BrowserSession
 s=BrowserSession(0)
 base=f'http://127.0.0.1:{s.port}'
@@ -23,6 +23,10 @@ try:
     assert s.next_key()==(173|0x100)
     assert post('/key',{'key':173,'down':0})==200
     assert s.next_key()==173
+    assert not s.disconnected(60)
+    s.client_seen=time.monotonic()-61
+    assert s.disconnected(60)
+    assert post('/heartbeat',{})==200 and not s.disconnected(60)
     assert post('/stop',{})==200 and s.stop.is_set()
     print('browser binary frame, keys, STOP and session identity: verified')
 finally:s.close()

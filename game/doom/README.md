@@ -1,5 +1,13 @@
 # DoomGeneric milestone 1: i960 compile and host memory profile
 
+**AcceleRAID 160 persistent play:** run `./doom` from the repository on the
+Mac and open http://192.168.2.75:8087/. The [single-command play guide](play/accele160/README.md)
+covers startup, controls, STOP, reset boundaries and reproducible provisioning.
+The card completed 1,058 frames with browser input, full audits and clean
+shutdown; [captures and replay](../../artifacts/current/doom-persistent-20261018/README.md)
+include paired pre/post-reset firmware reads. Old-card play uses its separate
+runner below.
+
 Open follow-up work: [Doom backlog](BACKLOG.md), including private memcpy/memset
 and renderer copy/fill profiling candidates.
 See the [ranked i960/Doom performance research](PERFORMANCE-RESEARCH.md) for
