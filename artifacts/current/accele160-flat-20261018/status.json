@@ -1,0 +1,11 @@
+{
+  "runtime_acceptance": true,
+  "frames": 512,
+  "paired_pio_frames": 128,
+  "physical_mode_on_off": true,
+  "one_binary": true,
+  "starts_textured": true,
+  "post_reset_flash_pair": false,
+  "ordinary_launcher_changed": false,
+  "optional_wrapper": "/home/mit/.local/bin/i960-doom-flat"
+}

@@ -10,6 +10,8 @@ from run_lease import (BDF,OLD,PAGE,DEVICE,DEBUG,FIRMWARE,HANDLER,
 sys.path.insert(0,str(ROOT/'rtems/transport'))
 from card_select import select,require_unbound_or_absent
 from browser import BrowserSession
+sys.path.insert(0,str(ROOT/'rtems/residentnet'))
+from presentation_profile import decode as decode_profile
 
 IMAGE='957e49dc912153ddc0f80f3f22e1276df20e023c3e6ae427efe1b6c96778cdde'
 KERNEL='9b9a848dc099a2d43db1752561caaf7320b925988a2313a502209f54c231d88e'
@@ -28,6 +30,7 @@ def main():
     p.add_argument('--persistent',action='store_true')
     p.add_argument('--reusable',action='store_true')
     p.add_argument('--restart-cycles',type=int,default=0,help='acceptance: automatically run this many games, then globally stop')
+    p.add_argument('--flat-benchmark',action='store_true',help='four games textured/flat/flat/textured; F6 transition probe in game 1')
     p.add_argument('--quit-game',type=int,default=0,help='acceptance: inject F10/Y instead of STOP in this run')
     p.add_argument('--max-frames',type=int,default=0,help='request graceful STOP after this many frames; 0 plays until STOP')
     p.add_argument('--capture-all',action='store_true',help='retain every full frame during acceptance tests')
@@ -42,6 +45,7 @@ def main():
     a=p.parse_args()
     need(not a.reusable or a.persistent,'reusable requires persistent')
     need(a.restart_cycles>=0 and (not a.restart_cycles or (a.reusable and a.max_frames>=40)),'restart test bounds')
+    need(not a.flat_benchmark or (a.reusable and a.restart_cycles==4 and a.max_frames>=128 and not a.quit_game),'flat benchmark bounds')
     need(not a.quit_game or (a.restart_cycles and 1<=a.quit_game<=a.restart_cycles),'bounded Quit test requires restart cycles')
     need(a.max_frames>=0 and a.disconnect_seconds>=5,'session bounds')
     signal_stop=threading.Event()
@@ -67,6 +71,7 @@ def main():
              'persistent kernel/engine agreement')
         need(engine_manifest.get('card_profile','accele160')=='accele160',
              'Doom image card profile must be AcceleRAID 160')
+        need(not a.flat_benchmark or engine_manifest.get('runtime_flat'),'flat benchmark engine option')
         need(engine_manifest['double_buffer'] and engine_manifest['direct_frame'] and engine_manifest['no_fnv'],'admitted direct double-buffer engine')
         kernel_sha=fps_manifest['kernel_sha256']
         image_sha=fps_manifest['image_sha256']
@@ -266,7 +271,7 @@ def main():
         active_owner=True
         if a.port:
             need(1024<=a.port<=65535,'browser port range')
-            browser=BrowserSession(a.port)
+            browser=BrowserSession(a.port,runtime_flat=bool(engine_manifest.get('runtime_flat')))
             if a.reusable:
                 control_file=Path('/run/i960-doom-control.json')
                 fd=os.open(control_file,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
@@ -459,7 +464,8 @@ def main():
                   struct.pack('<5I',7,0,0,fnv(b''),0x161610e1))
             write(0xc000e000,0xb80,struct.pack('<I',engine_seq))
             began_engine=time.monotonic();last_owner_audit=0
-            stop_reason=None;stop_started=0;quit_events=0
+            stop_reason=None;stop_started=0;quit_events=0;flat_events=0
+            flat_schedule=([(8,448),(8,192),(20,448),(20,192)] if game_run==1 else [(8,448),(8,192)] if game_run in (2,3) else [])
             last_request=began_engine
             last_capture=0
             trace_samples=[]
@@ -507,7 +513,9 @@ def main():
                     key=None
                     if game_run==a.quit_game and frame_count>=40 and quit_events<4:
                         key=(196|256,196,121|256,121)[quit_events];quit_events+=1
-                    elif browser:key=browser.next_key()
+                    elif a.flat_benchmark and flat_events<len(flat_schedule) and frame_count>=flat_schedule[flat_events][0]:
+                        key=flat_schedule[flat_events][1];flat_events+=1
+                    elif browser and not a.flat_benchmark:key=browser.next_key()
                     if key is not None:
                         write(0xc000e000,0xd2c,struct.pack('<I',key))
                         key_out_seq+=1
@@ -551,8 +559,14 @@ def main():
                          'declared live frame payload checksum mode')
                     if retain:(live_dir/f'frame-{generation:04d}.bin').write_bytes(image)
                     if a.persistent:(live_dir/'latest.bin').write_bytes(image)
-                    if browser:browser.publish(generation,image)
-                    receipt=dict(generation=generation,local_frame=local_frame,game_run=game_run,slot=slot,
+                    profile=decode_profile(image,local_frame,options=engine_manifest)
+                    if a.flat_benchmark:
+                        if local_frame<=8:need(profile['flat_planes']==0,'initial textured mode')
+                        if local_frame>=32:
+                            need(profile['flat_planes']==int(game_run in (2,3)),'confirmed benchmark mode')
+                            need(profile['flat_switches']==(2 if game_run==1 else 1 if game_run in (2,3) else 0),'confirmed F6 count')
+                    if browser:browser.publish(generation,image,profile)
+                    receipt=dict(profile=profile,generation=generation,local_frame=local_frame,game_run=game_run,slot=slot,
                         card_tick=live[base+2],fnv=f'0x{host_hash:08x}',
                         card_fnv=f'0x{live[base+1]:08x}',card_fnv_mode=a.card_fnv,
                         sha256=sha(image),observed_ns=observed_ns,

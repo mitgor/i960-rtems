@@ -11,7 +11,9 @@ def post(path,body):
         {'X-Session-Token':s.token,'Content-Type':'application/json'})
     with urllib.request.urlopen(req,timeout=2) as r:return r.status
 try:
-    assert b'AcceleRAID 160' in get('/')
+    assert b'AcceleRAID 160' in get('/') and b'id="flat"' not in get('/')
+    try:post('/key',dict(key=192,down=1));raise AssertionError('unsupported F6 accepted')
+    except urllib.error.HTTPError as error:assert error.code==400
     assert json.loads(get('/status'))['frame']==''
     data=bytes(65536)
     s.publish(1,data)
@@ -39,4 +41,17 @@ try:
     s.publish(2,data)
     assert json.loads(get('/status'))['run_id']==2
     print('browser binary frame, keys, STOP and session identity: verified')
+finally:s.close()
+
+# Only flat-enabled engines expose F6; status follows validated frame telemetry.
+s=BrowserSession(0,runtime_flat=True);base=f'http://127.0.0.1:{s.port}'
+try:
+    assert b'id="flat"' in get('/')
+    post('/key',dict(key=192,down=1));post('/key',dict(key=192,down=1))
+    assert s.next_key()==448 and s.next_key() is None
+    post('/key',dict(key=192,down=0));assert s.next_key()==192
+    s.publish(1,bytes(65536),dict(flat_planes=1,flat_switches=1))
+    status=json.loads(get('/status'));assert status['flat_planes']==status['flat_switches']==1
+    s.idle(1);s.begin_game(2);assert s.flat_mode==s.flat_switches==0
+    print('flat F6, debounce, confirmed mode telemetry and fresh-game reset: verified')
 finally:s.close()

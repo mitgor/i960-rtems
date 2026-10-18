@@ -23,6 +23,9 @@ def main():
                  'host/accele160/readimage','rtems/accele160/doom_dma','game/doom/play/accele160'):
         shutil.copytree(a.project/name,a.out/'project'/name,
                         ignore=shutil.ignore_patterns('__pycache__','*.pyc','*.o'))
+    target=a.out/'project/rtems/residentnet/presentation_profile.py'
+    target.parent.mkdir(parents=True,exist_ok=True)
+    shutil.copyfile(a.project/'rtems/residentnet/presentation_profile.py',target)
     for name in ('kernel.bin','image.bin','kernel.elf','kernel.map','kernel.symbols','build.json'):
         target=a.out/'kernel'/name;target.parent.mkdir(exist_ok=True)
         shutil.copyfile(a.kernel/name,target)

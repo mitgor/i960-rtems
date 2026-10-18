@@ -19,6 +19,24 @@ and qualify repeated card cycles and negative stale-message/loan/timeout paths.
 Do not reinitialize the live arena, unload retained modules or resume the
 already halted callback by clearing a flag. No firmware patch is proposed.
 
+## AcceleRAID runtime flat planes — physical result (2026-10-18)
+
+- [x] Port the shared `--runtime-flat` build option and confirmed F6/browser mode
+  control to the new-card bundle; textured remains the initial/default mode.
+- [x] Same-build textured/flat/flat/textured comparison: **17.975 → 22.129
+  card FPS (+23.109%)**. Renderer 49.00 → 38.06 ms; planes 13.81 → 2.44 ms.
+  Two 80-frame windows per mode, after transitions and the first 32 PIO frames.
+- [x] 512 full frames, 128 PIO comparisons, three rearms, all ownership/system
+  audits and STOP, 20 stale rearm refusals, immutable WAD/HTTP and mutation
+  replays; native pictures retain exactly the four known differences.
+- [ ] Close the final paired post-reset flash reads, then longer/different-scene
+  play. Positive browser/CLI idle-restart qualification remains independent.
+
+The old 11.5–12 FPS projection predates the accepted cached arena. Use the
+[actual new-card comparison](../../artifacts/current/accele160-flat-20261018/README.md).
+Do not extrapolate its stationary E1M1-spawn gain to every level or browser
+paint/input latency. Half-height remains on hold; no quality reduction is forced.
+
 ## New-card scaling priorities — N1 onward (2026-10-17)
 
 Keep full system audits, exact image identity and ownership checks in every

@@ -52,6 +52,7 @@ def main():
     p.add_argument('--port',type=int,default=8087)
     p.add_argument('--max-frames',type=int,default=0)
     p.add_argument('--restart-cycles',type=int,default=0)
+    p.add_argument('--flat-benchmark',action='store_true')
     p.add_argument('--quit-game',type=int,default=0)
     p.add_argument('--paired-frames',type=int,choices=(4,32),default=4)
     p.add_argument('--capture-all',action='store_true')
@@ -91,6 +92,7 @@ def main():
                  'run','--bundle',str(bundle),'--port',str(a.port),
                  '--max-frames',str(a.max_frames),'--disconnect-seconds',str(a.disconnect_seconds)]
         command+=['--restart-cycles',str(a.restart_cycles),'--quit-game',str(a.quit_game),'--paired-frames',str(a.paired_frames)]
+        if a.flat_benchmark:command+=['--flat-benchmark']
         if a.capture_all:command+=['--capture-all']
         subprocess.run(command,check=True)
         print(f'Doom is starting. Open http://192.168.2.75:{a.port}/')
@@ -127,6 +129,7 @@ def main():
     manifest=json.loads((project/'rtems/accele160/doom_dma/persistent-manifest.json').read_text())
     if manifest.get('reusable'):
         command+=['--reusable','--restart-cycles',str(a.restart_cycles),'--quit-game',str(a.quit_game)]
+    if a.flat_benchmark:command+=['--flat-benchmark']
     if a.capture_all:command+=['--capture-all']
     os.execv(sys.executable,command)
 

@@ -13,7 +13,8 @@ reconnects to the current game. Click the image for keyboard focus: W/S move,
 A/D turn, Ctrl or Space fires, E opens/uses, Shift runs, Enter confirms and
 Esc opens the menu. No sound is implemented. The accepted new-card low-detail
 renderer, optimized columns/memory copy and private cache map are used;
-flat planes and half-height remain disabled.
+Optional F6 flat planes are available in the separate flat-enabled bundle
+described below; normal builds remain textured and half-height stays disabled.
 
 `./doom status` reports the service. Use the page's **Stop Doom** button or
 `./doom stop` for audited shutdown. Keys release after focus loss or a
@@ -96,3 +97,23 @@ rearms are accepted. Positive browser/CLI idle restart, idle host loss and
 longer repeated play remain qualification work. The single-card policy was
 unit-tested and used for final READIMAGE audits; no additional Doom execution
 was performed after removing the old card.
+
+## Optional flat floors and ceilings on AcceleRAID
+
+Build with `--runtime-flat --reusable` for one engine that starts textured and
+switches with **F6** or the browser **Toggle flat planes** button. Status is
+confirmed from validated frame telemetry. The matched physical four-game
+comparison measured **17.975 textured vs 22.129 flat card FPS (+23.1%)**, with
+full audits and 128 paired PIO frames. See
+[measurements and images](../../../../artifacts/current/accele160-flat-20261018/README.md).
+
+The optional installed wrapper is `i960-doom-flat`. After the acceptance reset:
+
+```sh
+I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-flat ./doom
+```
+
+Open `http://192.168.2.75:8087/`. F6 is debounced, and pressing it again returns
+to textures without rebuilding, reloading the level or reallocating buffers.
+Sky, walls, sprites, HUD and sector lighting remain; flat planes remove texture
+detail and distance shading. Half-height is independent and remains on hold.

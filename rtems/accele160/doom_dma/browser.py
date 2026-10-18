@@ -5,9 +5,9 @@ from collections import deque
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 
-ALLOWED={196,173,175,172,174,163,162,182,13,27,9,121,110,*range(49,56)}
+ALLOWED={196,192,173,175,172,174,163,162,182,13,27,9,121,110,*range(49,56)}
 class BrowserSession:
-    def __init__(self,port=8087):
+    def __init__(self,port=8087,runtime_flat=False):
         self.token=secrets.token_hex(24)
         self.epoch=secrets.randbits(32) or 1
         self.lock=threading.Lock()
@@ -21,9 +21,14 @@ class BrowserSession:
         self.restart=threading.Event()
         self.run_id=1
         self.state="running"
+        self.runtime_flat=runtime_flat
+        self.flat_mode=0
+        self.flat_switches=0
         self.client_seen=0.0
         self.page=Path(__file__).with_name('index.html').read_text().replace(
             '__TOKEN__',self.token).encode()
+        if not runtime_flat:
+            self.page=self.page.replace(b'<button id="flat">Toggle flat planes (F6)</button> ',b'').replace(b'F6:192,',b'')
         owner=self
         class Handler(BaseHTTPRequestHandler):
             def log_message(self,*args):pass
@@ -41,7 +46,7 @@ class BrowserSession:
                     with owner.lock:
                         state=dict(message=owner.message,
                                    frame=f'{owner.epoch}-{owner.generation}' if owner.frame else '',
-                                   binary=True,stopped=owner.stop.is_set(),run_id=owner.run_id,state=owner.state)
+                                   binary=True,stopped=owner.stop.is_set(),run_id=owner.run_id,state=owner.state,flat_planes=owner.flat_mode if owner.runtime_flat else None,flat_switches=owner.flat_switches)
                     return self.reply(200,json.dumps(state).encode())
                 if self.path.startswith('/frame.bin'):
                     with owner.lock:packet=owner.frame
@@ -68,7 +73,7 @@ class BrowserSession:
                         elif self.path=='/heartbeat':owner.key_deadline=time.monotonic()+3
                         elif self.path=='/key':
                             key=body['key'];down=body['down']
-                            if type(key) is not int or key not in ALLOWED or type(down) is not int or down not in (0,1):raise ValueError('key')
+                            if type(key) is not int or key not in ALLOWED or (key==192 and not owner.runtime_flat) or type(down) is not int or down not in (0,1):raise ValueError('key')
                             if len(owner.events)>=96:
                                 owner.stop.set();return self.reply(429,b'key queue full')
                             if down and key not in owner.held:owner.held.add(key);owner.events.append(key|0x100)
@@ -84,7 +89,7 @@ class BrowserSession:
     def begin_game(self,run_id):
         with self.lock:
             assert run_id>=self.run_id
-            self.run_id=run_id;self.state='running'
+            self.run_id=run_id;self.state='running';self.flat_mode=0;self.flat_switches=0
             self.events.clear();self.held.clear();self.stop.clear();self.restart.clear()
             self.message=f'Loading game {run_id} on the card…'
     def idle(self,run_id):
@@ -92,11 +97,14 @@ class BrowserSession:
             assert run_id==self.run_id
             self.state='idle';self.events.clear();self.held.clear();self.restart.clear()
             self.message=f'Game {run_id} stopped safely. Click Start new game.'
-    def publish(self,generation,payload):
+    def publish(self,generation,payload,profile=None):
         assert len(payload)==65536 and 0<generation<=0xffffffff
         packet=struct.pack('<8I',0x31424644,1,self.epoch,generation,320,200,65536,0)+payload
         with self.lock:
             assert generation>self.generation
+            if self.runtime_flat:
+                assert profile is not None and profile['flat_planes'] in (0,1)
+                self.flat_mode=profile['flat_planes'];self.flat_switches=profile['flat_switches']
             self.frame=packet
             self.generation=generation
             self.message=f'Doom on AcceleRAID 160 · frame {generation}'

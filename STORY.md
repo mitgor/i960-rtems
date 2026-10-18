@@ -5813,3 +5813,24 @@ The absent-peer path passed eleven selection tests and the real final read
 pair. An optional single-card launcher is ready; the ordinary default stays
 on its previous bundle until the browser/CLI idle and host-loss gates are
 qualified. No further Doom run or firmware write was needed for this closure.
+
+Flat floors and ceilings turned out to be a useful porting test as well as
+a speed experiment. The renderer was already shared; the new card needed
+the build flag, F6/browser control and confirmed mode telemetry wired into
+its own transport. It still starts textured, and another F6 restores the
+textures in the same game.
+
+We ran four fresh games through the reusable RTEMS owner: textured, flat,
+flat, textured. The first game also switched on and back off before the
+measured window. All 512 captures, 128 paired PIO reads and three rearms
+passed the full checks. Textured repeats were 17.995 and 17.955 FPS; both
+flat repeats were 22.129. Plane work fell from 13.81 to 2.44 milliseconds.
+That is a 23.1 percent frame-rate gain, close to the old card's relative
+result, but on a much faster cached baseline than the earlier estimate.
+
+The tradeoff is visible: texture and distance shading disappear from the
+planes, while walls, sky, sprites, HUD and sector lighting stay. The native
+oracles kept exactly the same four known pixel differences, and none were
+added or hidden. The captures and pictures are saved in
+[the new-card flat-plane record](artifacts/current/accele160-flat-20261018/README.md).
+The final power-cycle flash reads are the remaining closure for this batch.

@@ -11,6 +11,7 @@ p=argparse.ArgumentParser(description=__doc__)
 for name in ('work','archive','newlib','rtems-build'):
     p.add_argument('--'+name,type=Path,required=True)
 p.add_argument('--reusable',action='store_true')
+p.add_argument('--runtime-flat',action='store_true',help='F6 switches textured/flat planes; starts textured')
 p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-')
 a=p.parse_args();root=Path(__file__).resolve().parents[4];w=a.work.resolve()
 if w.exists():p.error('choose a new build directory')
@@ -28,7 +29,7 @@ for suffix,target in (('host','host32'),('cross','i960')):
          '--archive',a.archive,'--target',target,'--card-profile','accele160','--cross',a.cross,
          '--newlib',a.newlib,'--arena-runtime','--wad-cache','--wad-profile','--platform-runtime',
          '--startup','--checkpoints','--point-side-o0','--visible','--play',
-         '--fast-render','--fast-columns','--wide-screen-copy'], 'engine-'+suffix)
+         '--fast-render','--fast-columns','--wide-screen-copy',*(['--runtime-flat'] if a.runtime_flat else [])], 'engine-'+suffix)
     engine=w/('engine-'+suffix)
     doom=engine/'doomgeneric-e257a09527062bfb986b6e5e0780839b6cbd5b71/doomgeneric'
     run([sys.executable,project/'game/doom/runtime/platform/build.py','--newlib',a.newlib,
@@ -46,6 +47,6 @@ import os
 env=dict(os.environ,DOOM_REUSABLE=str(int(a.reusable)),DOOM_PERSISTENT='1',DOOM_FPS_FRAMES='32',CARD_PROFILE='accele160')
 run(['bash',src/'build.sh',a.rtems_build,Path(a.cross).parent,w/'kernel'],'kernel',env)
 (w/'persistent-build.json').write_text(json.dumps(dict(card_profile='accele160',
-    kernel_persistent=True,reusable=a.reusable,private_cache_map=True,low_detail=True,card_fnv=False,
+    kernel_persistent=True,reusable=a.reusable,runtime_flat=a.runtime_flat,private_cache_map=True,low_detail=True,card_fnv=False,
     archive=str(a.archive),newlib=str(a.newlib),rtems_build=str(a.rtems_build)),indent=2)+'\n')
 print('Persistent engine and kernel built:',w)

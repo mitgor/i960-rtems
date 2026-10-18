@@ -1534,3 +1534,14 @@ post-reset flash reads pass unchanged. The old card was then removed; explicit
 peer checks now accept confirmed absence, while target selection stays strict. Positive browser/CLI idle restart and idle host-loss gates remain. See `artifacts/current/doom-rearm-20261018`.
 Installed bundle-v2 remains accepted and reset-only. Do not promote the new
 candidate, adopt a dead daemon's resources, or clear terminal QUIE to resume.
+
+**2026-10-18 AcceleRAID optional flat planes:** `game/doom/play/accele160/build.py
+--runtime-flat` reuses the shared F6 renderer and emits validated FLT1 frame
+telemetry. The new browser shows confirmed mode and hides/rejects F6 without
+the engine option. One cached low-detail binary starts textured; half-height
+is off. Full ABBA card run: 512 frames, 128 paired PIO frames, three rearms,
+full ownership/system/STOP audits and WAD/native/HTTP/tamper replay pass.
+17.975 textured vs 22.129 flat card FPS (+23.109%); planes 13.81 vs 2.44 ms.
+See `artifacts/current/accele160-flat-20261018`. Final post-reset read pair is
+pending. The optional `i960-doom-flat` wrapper is prepared; ordinary launcher
+unchanged. Preserve full audits and the four documented native differences.
