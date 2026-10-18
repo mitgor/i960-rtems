@@ -5646,3 +5646,25 @@ texture and column access patterns, or the separately measured presentation
 copy, instead of more work on these two small clip-array copies. The exact
 capture and post-reset status are indexed in
 [the experiment](artifacts/current/clip-copy-20261018/README.md).
+
+We took the measured presentation copy next. Doom keeps a persistent indexed
+screen because menus, the HUD and other partial redraws reuse old pixels; the
+two DMA delivery slots cannot simply become that screen while either may be
+pinned. We kept buffer ownership unchanged and made the existing 64,000-byte
+copy wider when both pointers permit it. The pinned compiler generated paired
+eight-byte loads and stores, with the older word and byte paths retained for
+other alignments. Host sanitizers covered all alignments, and native Doom play
+and STOP still passed.
+
+The new card then completed two separate 32-frame runs on the cached map. Both
+gave exactly the accepted pixels and palette through the browser, passed the
+full WAD, DMA, ownership, stalled-host and STOP audits, and matched stock in
+paired complete firmware reads before and after each run. The copy stage fell
+from 6.5 to 3.0 ms per frame, and both runs measured 17.59 card FPS in the
+same steady window where the prior build measured 16.96. The ten-millisecond
+profiling clock cannot resolve each individual copy precisely, but the two
+bounded runs reproduce the aggregate gain. We left this as an explicit
+exclusive-Doom build option while longer interactive play remains open. It
+improves the copy; it does not yet remove the persistent screen or redesign
+DMA-slot ownership. [The two replay archives](artifacts/current/wide-screen-copy-20261018/README.md)
+preserve the exact frames and audit proof.

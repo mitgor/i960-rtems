@@ -21,3 +21,21 @@ Run `python3 game/doom/screen_copy/test.py` for ASan/UBSan exact-edge tests acro
 all pointer alignments. Native engine repeatability and physical controlled
 frames provide integration evidence. See
 [card results and reproduction](../../../artifacts/notes/screen-copy-20261015.md).
+
+## Opt-in 8-byte copy on the cached AcceleRAID
+
+`game/doom/build.py --wide-screen-copy` selects [wide.h](wide.h) for private
+play builds. It uses paired 8-byte i960 loads/stores when both pointers are
+8-byte aligned; the exact 4-byte and byte paths remain for other alignments.
+The source remains Doom's persistent screen, and the destination remains the
+owned rotating delivery slot. No DMA, framebuffer geometry or redraw ownership
+changes. The pinned compiler emits `ldl`/`stl` for the fast path.
+
+Two bounded 32-frame runs on the cached AcceleRAID reproduced 17.593 card FPS
+versus the accepted 16.964 baseline, with the presentation-copy phase falling
+from 6.5 to 3.0 ms/frame in frames 12–31. Every delivered pixel/palette block
+matched; host sanitizer, native play, full system/ownership/DMA/WAD/HTTP,
+stalled-host and STOP checks passed. The 10 ms phase clock and short steady
+window limit the precision. Keep this option scoped to tested exclusive Doom
+builds; do not infer safe zero-copy or old-card behavior. [Exact captures and
+flash-audit status](../../../artifacts/current/wide-screen-copy-20261018/README.md).

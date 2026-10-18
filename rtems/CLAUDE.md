@@ -1,3 +1,14 @@
+**Exclusive AcceleRAID Doom presentation copy — 2026-10-18:**
+[Two audited 32-frame runs](../artifacts/current/wide-screen-copy-20261018/README.md)
+qualify an opt-in 8-byte CPU screen copy on the cached owned arena. Exact
+pixels, owner/system/DMA/PIO/HTTP/WAD/STOP/stalled-host gates and paired
+pre/post-reset stock-flash audits pass. The stage mean falls 6.5→3.0 ms and
+steady card FPS rises 16.964→17.593 twice. Keep the persistent Doom screen
+separate from the pinned rotating delivery slots; this change does not alter
+DMA ownership, transport or cache policy. It remains opt-in pending longer
+interactive qualification.
+
+
 **Cached Doom renderer experiment — 2026-10-18:**
 [Exact evidence](../artifacts/current/clip-copy-20261018/README.md) shows
 48.0 ms cached renderer wall: 27.5 BSP/walls, 14.5 planes, 6.0 masked.

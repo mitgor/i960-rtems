@@ -1,3 +1,17 @@
+**Opt-in wide screen copy — 2026-10-18:**
+`build.py --wide-screen-copy` selects `screen_copy/wide.h` for private play.
+It uses 8-byte `ldl/stl` pairs only when both buffers are 8-byte aligned,
+otherwise retains exact 4-byte/byte fallbacks. The 64-alignment host sanitizer
+test, 40-frame native play, and two 32-frame new-card runs pass. Each full
+frame matches cached baseline pixels/palette and all transport/ownership/WAD,
+STOP, stalled-host and paired pre/post-reset stock-flash audits pass.
+Presentation copy **6.5→3.0 ms**, steady card FPS **16.964→17.593** in both
+runs; see [exact evidence](../../artifacts/current/wide-screen-copy-20261018/README.md).
+Leave it opt-in and scoped to exclusive cached AcceleRAID Doom. Do not alias
+`I_VideoBuffer` to a rotating pinned slot: partial redraws and cached row
+pointers require persistent screen state.
+
+
 **Cached Doom wall-copy candidate — 2026-10-18:**
 `build.py --fast-clip-copy` is an opt-in replacement of the two
 `R_StoreWallRange` clip-array `memcpy` calls with the exact-count helper in

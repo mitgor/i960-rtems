@@ -1,3 +1,14 @@
+**Cached new-card Doom screen copy — 2026-10-18:**
+[Two full card archives](artifacts/current/wide-screen-copy-20261018/README.md)
+show the opt-in `game/doom/build.py --wide-screen-copy` reducing the measured
+internal screen copy from 6.5 to 3.0 ms/frame and raising the 20-frame steady
+card FPS from 16.964 to 17.593 (+3.70%) twice. All pixels, WAD, native,
+PIO/DMA/HTTP, owner/STOP/stalled-host, system, tamper and paired pre/post-reset
+stock-flash audits pass. Keep `I_VideoBuffer` persistent and DMA slots separate;
+this is a faster copy, not safe zero-copy. The option is tested only for the
+exclusive cached AcceleRAID low-detail/hash-off build and remains opt-in.
+
+
 **Cached Doom N3 experiment — 2026-10-18:**
 [Clip-copy evidence](artifacts/current/clip-copy-20261018/README.md) shows
 cached BSP/walls 27.5 ms, planes 14.5 ms and masked drawing 6.0 ms in the

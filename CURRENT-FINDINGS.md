@@ -1,3 +1,19 @@
+## Cached Doom presentation copy — 2026-10-18
+
+[Two complete AcceleRAID runs](artifacts/current/wide-screen-copy-20261018/README.md)
+qualified an opt-in exact 8-byte screen copy for the new-card exclusive Doom
+build. On frames 12–31, presentation copy fell **6.5→3.0 ms** and card FPS
+rose **16.964→17.593 (+3.70%)** in both 32-frame runs. All 64,768
+pixel/palette bytes matched the cached baseline in every frame. Native
+sanitizers and 40-frame play, full WAD/PIO/DMA/HTTP/ownership/STOP/stalled-host
+audits, independent replay, and both runs' paired pre/post-reset 1 MiB stock
+flash reads passed. The 10 ms stage clock and short fixed window limit timing
+precision; this is not sustained interactive qualification. The candidate
+remains opt-in as `game/doom/build.py --wide-screen-copy`. Doom's persistent
+screen and two rotating DMA slots still require a copy; true zero-copy needs a
+separate partial-redraw and pin-ownership design.
+
+
 ## Cached Doom clip-copy experiment — 2026-10-18
 
 [The exact candidate and comparison](artifacts/current/clip-copy-20261018/README.md)

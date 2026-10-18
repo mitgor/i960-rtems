@@ -41,9 +41,14 @@ is a bounded matched-engine result, not proof of a clock-frequency ratio.
    MiB/s clear on the cached new card. The 64 KiB cases barely change versus
    stock mapping; target hot-set locality and repeated reads, not a conjectured
    DMA limit. These are application-loop rates, not peak bus bandwidth.
-4. **N4 — Re-measure and eliminate the remaining internal presentation copy.**
-   The cached private-RAM baseline still measures 6.5 ms/frame. Render into a
-   safely owned persistent/leased destination if Doom semantics permit.
+4. **N4 — Presentation copy narrowed; true zero-copy remains open.**
+   The cached private-RAM baseline measures 6.5 ms/frame. An opt-in 8-byte
+   copy path reduces that to 3.0 ms in two exact-pixel 32-frame card runs,
+   both at 17.593 card FPS versus the 16.964 baseline (+3.70%); see the
+   [wide-copy acceptance](../../artifacts/current/wide-screen-copy-20261018/README.md).
+   `I_VideoBuffer` must retain partial redraw state while two DMA slots rotate.
+   Eliminating the last copy requires a separately tested ownership/redraw
+   design, not simply aliasing the persistent screen to a pinned slot.
 5. **N5 — Optional flat-color planes and runtime quality controls.** Keep normal
    rendering available; previous FPS estimates are obsolete under the cached
    arena. Half-height stays on hold.
