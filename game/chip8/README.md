@@ -1,5 +1,11 @@
 # Bounded CHIP-8 / RTEMS application
 
+New AcceleRAID/native streaming work (2026-10-18): see
+[commands](../../chip8_commands.md) and [card candidate](accele160/README.md).
+The card candidate is not yet physically accepted. The historical results below
+apply to the old DAC960 callback implementation.
+
+
 Status (2026-10-11): **implemented and tested on the real card.** The RTEMS
 payload passed a reset plus 300 scripted updates and 404 browser-session
 callbacks. All 705 replies match the native core byte for byte; 21 periodic full-allocation audits

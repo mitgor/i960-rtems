@@ -5942,3 +5942,20 @@ the fans, but the final test with graphics and the retained card together is
 for later: the user asked us to leave the PC running. The
 [shutdown record](artifacts/current/host-shutdown-20261018/README.md) keeps that
 remaining boundary explicit, and the ordinary launcher has not been switched.
+
+CHIP-8 came back to the workbench with a smaller version of Doom's delivery
+problem. Its display occupies only 256 bytes, so carrying a whole Doom frame
+would have hidden the benefit under padding. We built a compact packet around
+the pixels and interpreter state, gave it two guarded DMA destinations, and
+kept keyboard input on its own channel. A short press survives until the guest
+gets an instruction slice; its timers follow elapsed time rather than browser
+requests. The original interpreter and its old reply format stayed intact.
+
+On the native host, the new stream delivered sixty frames a second, with about
+twenty milliseconds from submitting a key to observing it in a frame. Every
+captured guest state was replayed against the original native core. Those are
+simulation measurements. The AcceleRAID build and its 32-bit adapter tests
+passed, but the PC did not return from the authorized reboot needed to release
+the previous Doom owner. The [CHIP-8 record](artifacts/current/chip8-stream-20261018/README.md)
+keeps the physical test open; no new firmware was written and no retained DMA
+resources were forced free.

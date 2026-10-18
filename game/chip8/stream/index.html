@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>i960 arcade · CHIP-8</title><style>
+body{margin:2em auto;padding:0 1em;max-width:850px;background:#10151c;color:#e6edf3;font:17px system-ui}canvas{width:100%;image-rendering:pixelated;border:1px solid #41516a;background:#050b0a;aspect-ratio:2}button{padding:.6em 1em;color:inherit;background:#25374a;border:1px solid #526b85;border-radius:5px}#status{font:14px monospace;white-space:pre-wrap}kbd{color:#80efb5}
+</style><h1>i960 arcade · CHIP-8</h1><p id="backend">Connecting…</p>
+<canvas width="64" height="32" tabindex="0" aria-label="CHIP-8 monochrome framebuffer"></canvas>
+<p>Move: <kbd>← ↑ ↓ →</kbd>. Keypad: <kbd>1234 / QWER / ASDF / ZXCV</kbd>.</p>
+<button id="start">Start new game</button> <button id="stop">Stop</button><p id="status"></p>
+<p>Independent keyboard and pushed video connections · packed pixels · 60 Hz guest timers. No audio.</p>
+<script>
+const token='__TOKEN__',scheme=location.protocol==='https:'?'wss:':'ws:',base=scheme+'//'+location.host;
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),pixels=ctx.createImageData(64,32);
+const map={'1':1,'2':2,'3':3,'4':12,q:4,w:5,e:6,r:13,a:7,s:8,d:9,f:14,z:10,x:0,c:11,v:15,arrowleft:4,arrowright:6,arrowup:2,arrowdown:8};
+let input,video,seq=0,run=0,state='connecting',held=new Map(),pending=[],painted=0,start=performance.now(),heartbeat;
+function note(s){document.querySelector('#status').textContent=s;}
+function send(op,data={}){if(input?.readyState===1&&run){input.send(JSON.stringify({seq:++seq,op,run_id:run,...data}));}}
+function update(s){if(run!==s.run_id){held.clear();pending=[];}run=s.run_id;state=s.state;document.querySelector('#backend').textContent=s.backend||s.message;}
+function release(){const keys=new Set(held.values());held.clear();if(keys.size)send('keys',{events:[...keys]});}
+addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(!(k in map)||state!=='running')return;e.preventDefault();if(held.has(k))return;const key=map[k],already=[...held.values()].includes(key);held.set(k,key);if(!already)send('key',{key,down:1});});
+addEventListener('keyup',e=>{const k=e.key.toLowerCase();if(!held.has(k))return;const key=held.get(k);held.delete(k);if(![...held.values()].includes(key))send('key',{key,down:0});});
+addEventListener('blur',release);document.addEventListener('visibilitychange',()=>{if(document.hidden)release();});
+document.querySelector('#stop').onclick=()=>{release();send('stop');};document.querySelector('#start').onclick=()=>send('restart');
+function paint(){if(pending.length){while(pending.length>1){const old=pending.shift();video.send(JSON.stringify({frame:old.meta.state.frame}));}const {packet,meta}=pending.shift();const bytes=new Uint8Array(packet),v=new DataView(packet);
+ if(packet.byteLength!==544||v.getUint32(0,true)!==0x31424643||v.getUint32(4,true)!==1||v.getUint32(16,true)!==64||v.getUint32(20,true)!==32||v.getUint32(24,true)!==512){video.close();note('Invalid frame');return;}
+ for(let i=0;i<2048;i++){const on=bytes[32+48+(i>>3)]&(128>>(i&7)),p=i*4;pixels.data[p]=on?128:5;pixels.data[p+1]=on?239:11;pixels.data[p+2]=on?181:10;pixels.data[p+3]=255;}
+ ctx.putImageData(pixels,0,0);painted++;update(meta.state);note(`Instructions ${v.getUint32(44,true)} · PC 0x${v.getUint32(48,true).toString(16)} · guest status ${v.getUint32(36,true)} · ${(painted*1000/(performance.now()-start)).toFixed(1)} displayed FPS`);
+ video.send(JSON.stringify({frame:meta.state.frame}));}
+ requestAnimationFrame(paint);}
+function connect(){input=new WebSocket(base+'/input');input.onopen=()=>input.send(JSON.stringify({token}));input.onmessage=e=>{const m=JSON.parse(e.data);if(m.state)update(m.state);if(m.error)note(m.error);if(m.type==='ready'){clearInterval(heartbeat);heartbeat=setInterval(()=>send('heartbeat'),1000);}};
+ input.onclose=()=>{clearInterval(heartbeat);held.clear();note('Input disconnected. Refresh to reconnect.');};
+ video=new WebSocket(base+'/video');video.binaryType='arraybuffer';let meta=null;
+ video.onopen=()=>video.send(JSON.stringify({token}));video.onmessage=e=>{if(typeof e.data==='string'){if(meta){video.close();return;}meta=JSON.parse(e.data);}else{if(!meta||pending.length>=2){video.close();note('Frame credit/order error');return;}const v=new DataView(e.data);if(e.data.byteLength!==544||v.getUint32(0,true)!==0x31424643||meta.state.frame!==`${v.getUint32(8,true)}-${v.getUint32(12,true)}`){video.close();return;}pending.push({packet:e.data,meta});meta=null;}};
+ video.onclose=()=>note('Video disconnected. Refresh to reconnect.');}
+connect();requestAnimationFrame(paint);
+</script></html>

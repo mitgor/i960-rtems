@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if [ "${1:-}" = '--native' ]; then
+ shift
+ make -s -C "$root/game/chip8" all
+ exec "${CHIP8_PYTHON:-python3}" "$root/game/chip8/stream/server.py" --backend native "$@"
+fi
+exec ssh -t mit@192.168.2.75 sudo -n python3 /home/mit/i960-chip8-upgrade-20261018/build-g6/bundle/project/game/chip8/accele160/launch.py --bundle /home/mit/i960-chip8-upgrade-20261018/build-g6/bundle "$@"

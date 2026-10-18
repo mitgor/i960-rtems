@@ -1,0 +1,2 @@
+actual FIFO rearm: all 16 pending old-run keys classified, corrupt descriptor rejected before mutation
+actual rearm policy: stale identities, DMA/ACK/WAD, loan/leak, fixed pins, IRQ, cache, digest and terminal STOP rejection passed

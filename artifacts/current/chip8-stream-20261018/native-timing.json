@@ -1,0 +1,10 @@
+{
+  "backend": "native host simulation; no PCI; no browser paint",
+  "frames": 180,
+  "fps": 60.07370440228512,
+  "key_to_observed_frame_ms_median": 20.115291699767113,
+  "key_to_observed_frame_ms_max": 20.76366590335965,
+  "input_samples": 18,
+  "packet_bytes": 544,
+  "payload_bytes": 512
+}

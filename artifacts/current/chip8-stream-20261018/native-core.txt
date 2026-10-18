@@ -1,0 +1,6 @@
+build/test
+CHIP-8: arithmetic, aliasing, stack, memory, wrap/collision, timer, key wait, protocol, all 65536 opcodes and 1000 random programs passed (ASan/UBSan)
+build/test-player
+PASS real-time player: 6001 oracle slices/3601 frames, guards, brief keys, rejection, clock wrap, bounded catch-up
+python3 test_host.py
+make: Nothing to be done for `all'.

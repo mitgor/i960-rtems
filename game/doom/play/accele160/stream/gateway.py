@@ -62,7 +62,9 @@ class Owner:
 
 
 class Gateway:
-    def __init__(self, owner, journal):
+    def __init__(self, owner, journal, *, allowed=None, frame_validator=validate_frame,
+                 page=None, running_prefix='Doom on AcceleRAID',
+                 reload_message='Reloading Doom image and WAD; RTEMS stays owned…'):
         self.owner = owner
         self.token = secrets.token_hex(24)
         self.journal = journal
@@ -72,10 +74,15 @@ class Gateway:
         self.status = None
         self.restart_pending = None
         self.closed = asyncio.Event()
+        self.allowed = ALLOWED if allowed is None else frozenset(allowed)
+        self.frame_validator = frame_validator
+        self.page = Path(__file__).with_name('index.html') if page is None else Path(page)
+        self.running_prefix = running_prefix
+        self.reload_message = reload_message
 
     def display_state(self, state):
         if state['run_id'] == self.restart_pending and state['state'] == 'idle':
-            return dict(state,state='reloading',message='Reloading Doom image and WAD; RTEMS stays owned…')
+            return dict(state,state='reloading',message=self.reload_message)
         return state
 
     def record(self, **data):
@@ -94,10 +101,10 @@ class Gateway:
                 if not self.videos:
                     self.latest = None
                 # Do not relabel a retained previous game's frame as a new one.
-                if self.videos and state['frame'] and state['message'].startswith('Doom on AcceleRAID'):
+                if self.videos and state['frame'] and state['message'].startswith(self.running_prefix):
                     if self.latest is None or state['frame'] != self.latest[0]['frame']:
                         packet = await self.owner.call('/frame.bin')
-                        epoch, generation = validate_frame(packet)
+                        epoch, generation = self.frame_validator(packet)
                         if state['frame'] != f'{epoch}-{generation}':
                             await asyncio.sleep(.002)
                             continue  # Racing publication: retry rather than mislabel mode/run.
@@ -115,7 +122,7 @@ class Gateway:
         if request.path in ('/input','/video'):
             return None
         if request.path == '/':
-            page = Path(__file__).with_name('index.html').read_text().replace('__TOKEN__',self.token)
+            page = self.page.read_text().replace('__TOKEN__',self.token)
             response = connection.respond(200, page)
             response.headers['Content-Type'] = 'text/html; charset=utf-8'
         elif request.path == '/status':
@@ -180,7 +187,7 @@ class Gateway:
                 body = dict(run_id=state['run_id'])
                 if op == 'key':
                     key, down = message.get('key'), message.get('down')
-                    if type(key) is not int or key not in ALLOWED or type(down) is not int or down not in (0,1):
+                    if type(key) is not int or key not in self.allowed or type(down) is not int or down not in (0,1):
                         raise ValueError('key')
                     if state['state'] != 'running':
                         await ws.send(json.dumps(dict(type='ack',seq=seq,error='game idle',state=state)))
@@ -190,7 +197,7 @@ class Gateway:
                     events=message.get('events')
                     if not state.get('keyboard_fifo') or not isinstance(events,list) or not 1<=len(events)<=16:
                         raise ValueError('bounded keyboard batch unsupported')
-                    if any(type(e) is not int or not 0<=e<=511 or (e&255) not in ALLOWED for e in events):
+                    if any(type(e) is not int or not 0<=e<=511 or (e&255) not in self.allowed for e in events):
                         raise ValueError('key batch')
                     if state['state']!='running':
                         await ws.send(json.dumps(dict(type='ack',seq=seq,error='game idle',state=state)))
