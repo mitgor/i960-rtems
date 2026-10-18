@@ -16949,13 +16949,13 @@
     },
     {
       "path": "artifacts/current/accele160-fault-20261018/README.md",
-      "size": 6750,
-      "sha256": "f5c9d4e10fc599e3d104eabb2d011990d71960fe7a7194b4d428cdd58fa394c5"
+      "size": 9125,
+      "sha256": "65254867ab08069a3c8a2682b794652a5571d8076bedf528067d99c5ccd2533e"
     },
     {
       "path": "artifacts/current/accele160-fault-20261018/SHA256SUMS",
-      "size": 833,
-      "sha256": "fb48b51872d3df6c4ae4be1d4db1b961b224a86acb3ad58ab6a5d824559a7239"
+      "size": 1168,
+      "sha256": "1c3fe309c07e2e2c2d19af503135d82bfcb397e42a271f21bf6769fcbc24754e"
     },
     {
       "path": "artifacts/current/accele160-fault-20261018/mode1.tar.xz",
@@ -16979,8 +16979,8 @@
     },
     {
       "path": "artifacts/current/accele160-fault-20261018/replay.json",
-      "size": 3532,
-      "sha256": "221ef6ff5230d0cb5eb3fef4f9ef09ce7f3c81608d8b432b2ba2804b39dec258"
+      "size": 3676,
+      "sha256": "30447c67962c81e512a31c29cc0f2a7fc7287a40378db1ff2ab081541de78e00"
     },
     {
       "path": "artifacts/current/accele160-fault-20261018/rom-audit.json",
@@ -16989,8 +16989,8 @@
     },
     {
       "path": "artifacts/current/accele160-fault-20261018/verify.py",
-      "size": 4477,
-      "sha256": "ab8fe1eee9440c085eff80f5c32b4a7d88ad0937c10c6298765c6d91fcb8b5e5"
+      "size": 5485,
+      "sha256": "269daa3f1543416f96903ebd8a3342adf46b13d79dd30484924c2d2621d6e476"
     },
     {
       "path": "artifacts/current/accele160-fault-20261018/mode0-prepared.tar.xz",
@@ -17001,6 +17001,26 @@
       "path": "artifacts/current/accele160-fault-20261018/mode2.tar.xz",
       "size": 1584904,
       "sha256": "209968d4d6e9b188755592eb0f5a40cc7fa34ecf35fa9d32b9fcf1b6b54e00d3"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/final-access.txt",
+      "size": 364,
+      "sha256": "f3b3e74a999e9fb4cc41fc433fa6a9107e99bf224af1e4d81c0a8ad58b920c85"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/mode0-live.tar.xz",
+      "size": 2648964,
+      "sha256": "0560c37ce3039f6401f4c5048227addf6e28ff35864c5f6a5684ac3b9968caff"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/normal-replay.json",
+      "size": 643,
+      "sha256": "7b352ec21011dc2440164f95ee3a5f914ebc5277b56c3a4682d3a1309cdb917b"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/verify_normal.py",
+      "size": 4767,
+      "sha256": "a2a23f25f765146c7f53a7df17a253b5daf5b8c210b414760405e88cabefcb5c"
     }
   ],
   "updated_date": "2026-10-18"

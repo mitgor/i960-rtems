@@ -71,5 +71,20 @@ if (HERE/'mode0-prepared.tar.xz').exists():
   m=json.load(t.extractfile('manifest-mode0.json'))
   assert m['terminal_schema']==1 and m['terminal_test']==0
   assert sha(t.extractfile('bundle/kernel/kernel.bin').read())==m['kernel_sha256']
-  prepared=dict(kernel_sha256=m['kernel_sha256'],bundle_files_verified=count,physical_acceptance=False)
+  prepared=dict(kernel_sha256=m['kernel_sha256'],bundle_files_verified=count,full_shutdown_qualification=False)
+if (HERE/'mode0-live.tar.xz').exists():
+ with tarfile.open(HERE/'mode0-live.tar.xz') as t:
+  names=t.getnames();runs={n.rsplit('/pre-0/',1)[0] for n in names if n.endswith('/pre-0/data.bin')}
+  assert len(runs)==1;session=runs.pop();boots=[]
+  for i in (0,1):
+   d=session+f'/pre-{i}'
+   assert sha(t.extractfile(d+'/data.bin').read())==STOCK
+   status=dict(x.split('=') for x in t.extractfile(d+'/status.txt').read().decode().split())
+   assert all(status[k]=='0' for k in ('status','residual','guard_changes'))
+   boots.append(json.load(t.extractfile(d+'/request.json'))['boot_id'])
+  assert boots[0]==boots[1] and boots[0]!=reports[1]['boot_id']
+  reports[1]['post_reset_verified']=True;reports[1]['post_reset_boot_id']=boots[0]
+  assert sha(t.extractfile('bundle/kernel/kernel.bin').read())==prepared['kernel_sha256']
+  prepared['normal_runtime_capture']='mode0-live.tar.xz; verify_normal.py'
+  prepared['full_shutdown_qualification']=False # complete qualification still needs global STOP/reset
 print(json.dumps(dict(previous_service_shutdown_and_reset_verified=True,runs=reports,prepared_mode0=prepared),indent=2))

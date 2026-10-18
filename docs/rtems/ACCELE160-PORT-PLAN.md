@@ -1,7 +1,7 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
-Planning baseline: 2026-10-18. This is an implementation and acceptance plan,
-not a new physical acceptance claim. No hardware was accessed for this review.
+Planning baseline: 2026-10-18. The original review used existing evidence;
+the checkpoints below record subsequent implementation and physical tests.
 
 ## P1/P2 implementation checkpoint
 
@@ -11,18 +11,21 @@ card protocol tests and global STOP passed; the accepted kernel and complete
 captures are archived. The corrected host then passed a fresh-boot physical
 follow-up through startup, 64 frames and audited idle, with clean oversized-line
 EOF and bounded abandoned/slow clients. The first run's post-reset firmware pair
-matches. P1/P2 diagnostic service acceptance is complete; the isolated corrected
-owner is left running for `./rtems-console`. Its eventual global shutdown/reset
-is separate. The default installed Doom/CHIP-8 bundle is not promoted.
+matches. P1/P2 diagnostic service acceptance is complete. Its follow-up owner
+later shut down and passed reset checks during P3; the current prompt is the
+mode-0 owner described below. The default installed Doom/CHIP-8 bundle is not
+promoted.
 
 ## P3a checkpoint — both terminal tests passed
 
 [Software terminal diagnostics](../../rtems/accele160/fault/README.md) passed
 both physical tests: explicit fatal and deliberately corrupted private guard,
 with stable records, stale-trigger refusal and retained resources after STOP.
-Mode 1's reset pair is closed. Mode 2's reset pair and ordinary mode-0 runtime
-qualification remain pending recovery; the mode-0 kernel is built and archived.
-The prompt is offline. [Evidence](../../artifacts/current/accele160-fault-20261018/README.md).
+Both terminal tests' post-reset firmware pairs are now closed. The mode-0
+normal profile ran two 64-frame games, audited idle/rearm and console traffic;
+the prompt is restored and its owner left running in verified idle. The live
+mode-0 session's global STOP/reset qualification is still separate.
+[Evidence](../../artifacts/current/accele160-fault-20261018/README.md).
 Hardware fault/NMI ownership and engine exclusion remain further P3 gates.
 
 ## Goal and current evidence

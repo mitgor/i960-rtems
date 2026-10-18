@@ -165,12 +165,14 @@
       "stable": true,
       "retained": true,
       "firmware_prechecks": true,
-      "post_reset_verified": false
+      "post_reset_verified": true,
+      "post_reset_boot_id": "f999aba6-1276-470b-9130-1c589ed25d55"
     }
   ],
   "prepared_mode0": {
     "kernel_sha256": "4a9c0278ff23815ea94d546a7fc43bfc3566c8ff916b70d0c2b0e7e42582ad3e",
     "bundle_files_verified": 248,
-    "physical_acceptance": false
+    "full_shutdown_qualification": false,
+    "normal_runtime_capture": "mode0-live.tar.xz; verify_normal.py"
   }
 }

@@ -2,8 +2,9 @@
 
 Status 2026-10-18: cross-built; **both software terminal tests passed on the
 card**, including deliberate private guard corruption and retained resources.
-Mode 1 reset recovery is verified. Mode 2 reset recovery and the built mode-0
-normal-runtime profile await the PC returning over SSH. See
+Both terminal tests have verified reset recovery. The mode-0 normal profile
+ran two 64-frame games with console traffic and audited idle/rearm. Its prompt
+is restored; the owner remains live in idle. Mode 0 global STOP/reset is separate. See
 [the evidence ledger](../../../artifacts/current/accele160-fault-20261018/README.md).
 This is the first bounded part of P3, not completion of fault/NMI ownership.
 

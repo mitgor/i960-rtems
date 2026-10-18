@@ -1595,3 +1595,14 @@ Mode-0 kernel and exact bundle are now built remotely and archived locally in
 after mode-2 reboot; prompt offline. Next: fresh boot/paired flash closes mode 2,
 then mode-0 Doom/rearm/console/global STOP and reset validation before live
 prompt restoration. No new source overlay is required for the prepared bundle.
+
+**P3a normal-runtime follow-up / prompt restored:** fresh boot
+`f999aba6-1276-470b-9130-1c589ed25d55`, no retained prior owner, both guarded
+full firmware reads match. Mode-2 reset proof is closed. The prepared mode-0
+kernel ran two 64-frame Doom games with idle/rearm and console traffic. Leave
+`/home/mit/i960-fault-20261018/bundle` and the sole `i960-doom` owner running;
+it is idle at game 2 / 128 frames. Linux `~/rtems-console` and repository
+`./rtems-console` connect successfully via the existing socket. No global STOP
+or subsequent reset has been performed on this live mode-0 session; do not
+claim complete P3 or release retained resources. Hardware fault/NMI handlers
+remain stock. See the P3 ledger for exact archived replay and client counts.

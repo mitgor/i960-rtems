@@ -1,6 +1,6 @@
 # AcceleRAID P3a terminal diagnostics — 2026-10-18
 
-Status: **both software-terminal tests passed; mode-2 reset/normal-runtime tests open**.
+Status: **both terminal tests and their resets passed; normal runtime tested, prompt restored**.
 No firmware was written. P3 fault/NMI/hardware engine ownership is not complete.
 [Source, layout and runbook](../../../rtems/accele160/fault/README.md).
 
@@ -95,16 +95,60 @@ hashes. `mode0-prepared.tar.xz` preserves that complete prepared bundle and
 build logs locally. Its kernel SHA-256 is
 `4a9c0278ff23815ea94d546a7fc43bfc3566c8ff916b70d0c2b0e7e42582ad3e`;
 image SHA-256 `d1423bbbbc7bff195dff7006ca0f26f094aaf44f8aa71d00389475984555038e`.
-All included file hashes replay, but this kernel has not run on the card.
+All included file hashes replay, and the exact same kernel subsequently passed the normal-runtime test below.
 
-The PC again refuses SSH after rebooting from mode 2. The user was asked to
-power-cycle if stuck. **The prompt is offline.** After recovery, verify fresh
-boot/no old owner and launch the isolated mode-0 bundle with full guarded
-prechecks; those reads close mode 2's reset gate. Run two bounded Doom games,
-console client tests, idle/rearm/global STOP and capture everything, then
-verify reset and restore a live prompt using the accepted service profile.
-Do not adopt or free retained mappings. No new source overlay is currently
-needed; the remote mode-0 bundle already includes the corrected test ordering.
+## Recovery and normal runtime — prompt restored
+
+Fresh boot `f999aba6-1276-470b-9130-1c589ed25d55` had no retained daemon or
+module. Two guarded full-flash reads matched the exact firmware, with zero
+status/residual/guard changes. These close mode 2's reset gate; both deliberate
+terminal tests now have paired post-reset evidence.
+
+Session `20261018T195841Z` ran the exact prepared mode-0 kernel with terminal
+handling enabled and injection disabled. Two bounded 64-frame games reached
+fully audited idle; the second was restarted through the existing owner's
+control API. Independent replay verifies 128 guarded DMA captures, 64 paired
+PIO flags, all 10,090 WAD reads/native startup sequences, and both idle/DMA/IRQ/
+heap receipts. Every frame's 64,768 pixel/palette bytes match the original
+service acceptance. The source retains its existing full runtime audits.
+
+The 250-second socket test completed 1,397 exchanges without client errors,
+covering all seven commands, invalid/oversized lines, abandoned requests,
+eight slow clients and reconnects across loading, frames, rearm and idle.
+Three full on-card protocol gates passed. The journal has 1,398 successful
+card replies (host-rejected commands are not card requests; an abandoned
+request and manual diagnostics also appear). Reply latency was min 0.665 ms,
+median 8.468 ms and max 4,845.637 ms. The maximum is close to the unchanged
+five-second card-reply deadline; no hard latency bound or scheduling solution
+is claimed. Fair scheduling/latency work remains a later port gate.
+
+`mode0-live.tar.xz` preserves the exact 248 included bundle files, complete
+session and raw frames, prechecks, build/manifest, service/restart logs and
+client results. `verify_normal.py` independently replays it; `normal-replay.json`
+records the result. `verify.py` also uses its prechecks to close mode 2's reset
+proof. `final-access.txt` records both repository-wrapper and Linux-home
+shortcut access after archiving (line endings normalized), plus service and
+boot identity.
+
+```sh
+python3 artifacts/current/accele160-fault-20261018/verify_normal.py
+# From Linux over SSH:
+~/rtems-console
+# From this repository on the Mac:
+./rtems-console
+```
+
+The sole `i960-doom` owner at `/home/mit/i960-fault-20261018/bundle` is left
+running in verified idle: game 2, 128 total frames. Client `quit` disconnects
+without stopping RTEMS. The existing Linux shortcut uses the compatible client
+from the earlier service bundle and reaches the same root-only socket; it does
+not adopt another hardware session.
+
+**Mode 0's own global STOP and subsequent reset are not performed in this live
+session.** The previous service and both terminal-test resets have their own
+proofs. Complete mode-0 shutdown qualification remains separate so the prompt
+can stay available. Neither default Doom/CHIP-8 bundle nor firmware was replaced.
+Keep the owner and retained resources intact until an explicitly managed shutdown.
 
 Remaining P3: real owned fault/NMI entry and stack policy; controlled hardware
 fault/NMI tests; all interrupt routes; SCSI/cache/other bus-master exclusion;

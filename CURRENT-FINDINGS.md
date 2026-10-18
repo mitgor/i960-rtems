@@ -1,4 +1,4 @@
-## AcceleRAID P3a — both terminal tests passed; recovery pending
+## AcceleRAID P3a — recovery verified and prompt restored
 
 [The opt-in terminal profile](rtems/accele160/fault/README.md) passed both
 software-terminal tests: explicit fatal `7d001` with intact private stack
@@ -12,10 +12,19 @@ captures NMI `c00521b0`, ISP `c0001000`, and sixteen fault entries
 `(c0053400,0)` followed by sixteen zeros. These remain stock-owned paths;
 software containment does not qualify hardware fault/NMI or SCSI exclusion.
 
-The normal-running mode-0 kernel is built and archived, but SSH again refuses
-connections after mode 2's reboot. **The prompt is offline.** Mode-2 post-reset
-checks, mode-0 Doom/console/STOP qualification and prompt restoration remain.
-[Exact evidence and resume state](artifacts/current/accele160-fault-20261018/README.md).
+**Recovery and normal-runtime follow-up passed** on boot
+`f999aba6-1276-470b-9130-1c589ed25d55`: both full guarded firmware reads match,
+closing mode 2's reset gate. The mode-0 profile (terminal handling enabled,
+deliberate injection disabled) ran two 64-frame Doom games with audited idle
+and rearm. Console clients remained responsive across loading/rendering/restart.
+The prompt is restored: `~/rtems-console` on Linux or `./rtems-console` from the
+Mac repository. The isolated owner remains in verified idle with 128 frames. Replay verifies
+10,090 WAD reads and 1,398 card replies; 1,397 external exchanges had no errors.
+Median reply latency was 8.468 ms, worst 4.846 s, close to the unchanged 5 s
+deadline; no hard response-time bound is claimed.
+Its own global STOP/post-reset qualification remains separate; no such receipt
+is claimed for this live mode-0 session.
+[Exact evidence and current state](artifacts/current/accele160-fault-20261018/README.md).
 
 ## AcceleRAID RTEMS prompt — 2026-10-18
 

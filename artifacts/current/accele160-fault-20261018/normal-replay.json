@@ -1,0 +1,22 @@
+{
+  "boot_id": "f999aba6-1276-470b-9130-1c589ed25d55",
+  "bundle_files_verified": 248,
+  "kernel_sha256": "4a9c0278ff23815ea94d546a7fc43bfc3566c8ff916b70d0c2b0e7e42582ad3e",
+  "frames": 128,
+  "paired_pio_frames": 64,
+  "wad_reads_replayed": 10090,
+  "idle_verified": true,
+  "console_replies": 1398,
+  "console_selftest_gates": 3,
+  "external_exchanges": 1397,
+  "external_errors": 0,
+  "oversized_line_clean_eof": true,
+  "mode2_post_reset_flash_pair": true,
+  "console_latency_ms": {
+    "min": 0.6648160000395364,
+    "median": 8.468034999964402,
+    "max": 4845.6373640000265
+  },
+  "global_stop": false,
+  "session_left_running": true
+}

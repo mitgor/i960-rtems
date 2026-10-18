@@ -7,9 +7,10 @@ The corrected isolated service passed its physical follow-up and was left in
 audited idle on 2026-10-18. Use the access command below while that owner is
 running. The ordinary installed Doom/CHIP-8 bundles do not contain this code.
 
-Current follow-up: the P3 investigation shut this owner down normally; SSH
-refused connections after reset. The prompt is offline pending physical recovery
-and restoration. See [P3 status](../fault/README.md).
+Current follow-up: P3 recovery checks passed and the mode-0 terminal-enabled
+service at `/home/mit/i960-fault-20261018/bundle` is running in audited idle.
+Both existing shortcuts work: `~/rtems-console` on Linux and `./rtems-console`
+in this Mac repository. See [P3 status](../fault/README.md).
 
 ## Access
 

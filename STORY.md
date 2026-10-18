@@ -6083,3 +6083,16 @@ injection disabled. Its next job is ordinary Doom and console work, followed
 by the existing shutdown checks. The reset after the guard test again left
 SSH unavailable, so that normal-runtime qualification and restoration of the
 prompt are still waiting on the PC.
+
+The next fresh boot closed the guard test's reset check: both complete firmware
+reads still matched. We then loaded the normal profile, keeping terminal
+handling enabled and deliberate injection disabled. Doom ran sixty-four frames,
+returned to audited idle, and started another game through the same owner.
+The second sixty-four frames also ended in verified idle while the console
+continued answering questions.
+
+This time the useful result stayed on the card. The Linux home-directory
+shortcut reached the prompt again; `apps` reported game two stopped and 128
+frames delivered. The captures preserve the distinction: both terminal tests
+have reset proof, while this normal session is still alive. Its eventual global
+shutdown is another event, not something we claimed just to close the chapter.
