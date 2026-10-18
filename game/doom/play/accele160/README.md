@@ -29,6 +29,10 @@ then prints that a reset/power-cycle is required. Never force-unload retained
 modules. Start a new session with `./doom` after Linux returns. The launcher
 does not silently reboot the PC. The old DAC960PG remains unbound and untouched.
 
+[A reusable-session investigation](reuse/README.md) now demonstrates native
+fresh-image restarts with the same arena and pins. Its audited RTEMS idle/rearm
+path still needs implementation and card acceptance; it is not installed.
+
 Live logs: `ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom'`.
 Captures are under `/home/mit/i960-doom/sessions/`; `latest-session.txt` points
 to the current session. Every frame gets complete buffer guards, native host

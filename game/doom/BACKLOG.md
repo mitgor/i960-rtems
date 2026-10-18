@@ -1,5 +1,16 @@
 # Doom backlog
 
+## Usability priority: reusable exclusive session (investigated, not deployed)
+
+The [reuse investigation](play/accele160/reuse/README.md) proves actual native
+Doom STOP / fresh-image Quit / fresh-image STOP in one process with the same
+arena and fixed pins. The installed card kernel still halts after global STOP.
+Next add an opt-in audited idle/rearm path, preserve DMA/WAD/command counters,
+discard old-game input explicitly, reload template/data/BSS through admission,
+and qualify repeated card cycles and negative stale-message/loan/timeout paths.
+Do not reinitialize the live arena, unload retained modules or resume the
+already halted callback by clearing a flag. No firmware patch is proposed.
+
 ## New-card scaling priorities — N1 onward (2026-10-17)
 
 Keep full system audits, exact image identity and ownership checks in every

@@ -2293,3 +2293,13 @@ reader driver is explicitly initialized on fresh boots. One session per boot;
 retained resources must never be force-unloaded. Ordinary capture retention
 is bounded, but every frame keeps guard/hash/marker/owner checks and a JSONL
 receipt. Multi-hour soak and separate physical signal/disconnect tests remain.
+
+**Exclusive-session reuse investigation:** `game/doom/play/accele160/reuse`
+and `artifacts/current/doom-reuse-investigation-20261018` prove native actual
+Doom STOP/fresh-image Quit/fresh-image STOP in one process with unchanged
+arena/fixed pins and identical first 32 frames. Outer-runtime ASan/UBSan also
+passes; it is not i960/DMA/IRQ restart acceptance. The installed card is
+confirmed in terminal QUIE and remains reset-only. Next implement audited
+RTEMS idle/rearm, fresh template/data/BSS admission and monotonic transport
+counters with explicit stale-key discard. Never reset the live arena or
+force-unload mappings. Linux exposes PM reset, but it was not attempted.

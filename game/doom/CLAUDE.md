@@ -1154,3 +1154,11 @@ Keep all full audits, native host FNV and source/ACK ownership checks. The
 engine stop request is separate from global RTEMS STOP so final cleanup and
 frame audits finish first. Buffers/grant remain reboot-pinned. Ordinary play
 retains sampled binary captures plus all JSONL receipts; histories are bounded.
+
+**Soft restart investigation:** `play/accele160/reuse/README.md` is the design
+and native proof. Reusing the retired engine entry correctly rejects; fresh
+Doom/Newlib image reload works for STOP/Quit/STOP with one retained native
+arena and seven fixed pins. Keep global frame/WAD/bridge/key counters outside
+the fresh image, distinguish local Doom frame parity, reject stale run IDs,
+and explicitly discard an unconsumed old-game key-up. The terminal global
+STOP kernel cannot resume; no production restart command is qualified yet.

@@ -1513,3 +1513,11 @@ control[15], followed by audited global STOP. See `game/doom/play/accele160`
 and `artifacts/current/doom-persistent-20261018`. A 1,058-frame physical run
 passed cleanup, cache restoration, IRQ drain and full pre/post flash reads.
 Reset remains the exclusive ownership boundary; never unload pinned mappings.
+
+**Proposed reusable idle state:** see `game/doom/play/accele160/reuse/README.md`.
+Normal game STOP should eventually audit/park Doom while leaving RTEMS and
+its original grants/mappings alive. Current global STOP drains workers, stops
+the timer, masks interrupts and loops forever; a RAM flag cannot restart it.
+Rearm must prove Init no longer owns an engine/IRQ continuation and validate
+other retained IRQ owners without zeroing their stacks. Native image-reload
+proof passes but no new kernel or PM reset was executed on the card.

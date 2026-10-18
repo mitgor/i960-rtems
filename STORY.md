@@ -5720,3 +5720,25 @@ finished normally. We kept that ordinary-play capture separately; unlike
 the closed first acceptance, its next post-reset firmware pair was still
 pending. The launcher correctly refused a new game over the retained
 resources instead of trying to recycle them.
+
+That raised the next practical question: did quitting Doom really have to
+mean rebooting the workstation? The control-page snapshot showed why the
+installed version did. It had acknowledged global STOP, drained DMA and
+stopped its heartbeat in the final interrupt-masked loop. There was no
+running command handler left to notice a cleared flag. That was a deliberate
+shutdown policy, rather than evidence that the exclusive grant itself had
+to be discarded after every game.
+
+We tested the smaller question first on the host. The actual private Doom
+and Newlib image ran through STOP, a fresh image and menu Quit, then another
+fresh image and STOP, in one process. The arena and seven fixed pinned
+allocations stayed alive throughout. Every dynamic allocation returned,
+the first 32 pictures matched across all three games, and entering the old
+retired image directly was rejected. The outer runtime also passed its
+sanitizer run. That did not prove i960 cache or DMA reuse, but it gave us a
+concrete design: keep RTEMS alive at an audited idle boundary, reload the
+engine's initialized data and BSS through admission, and preserve transport
+sequence ownership between games. The next card test still needs a new RAM
+kernel and one initial reset; it does not need another firmware patch.
+[The investigation](artifacts/current/doom-reuse-investigation-20261018/README.md)
+keeps that distinction and the stale-message gates explicit.

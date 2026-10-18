@@ -1,0 +1,44 @@
+{
+  "host_only": true,
+  "outer_runtime_sanitized": true,
+  "engine_instrumented": false,
+  "cycles": 3,
+  "same_process": true,
+  "same_arena": true,
+  "same_entry": true,
+  "engine_object_sha256": "86bf6f53a6926d95e4d1b3a8d43a42c3b4de33872ae71523534dc6e03dd8c3f7",
+  "sources": {
+    "game/doom/play/accele160/reuse/native.c": "bc2542e42ccaf98a294e3f4987716f1e83bdf60b5e88e8b7b1a8cecd7bebfab8",
+    "game/doom/runtime/heap.c": "64552fe903756c52e3e03d7a54a6098cf6263e32c5ff3a281c9a7e526e0ddd90",
+    "loader/segmented/arena.c": "4a0b516f5cafd559356118fb9d587187d9aa44030e8f12db930766301cae8008"
+  },
+  "commands": [
+    [
+      "gcc",
+      "-m32",
+      "-shared",
+      "-Wl,-z,notext",
+      "-o",
+      "/home/mit/i960-doom-reuse-20261018/native-asan/engine.so",
+      "/home/mit/i960-doom-persistent-20261018/build/platform-host/doom-platform.o"
+    ],
+    [
+      "gcc",
+      "-m32",
+      "-O2",
+      "-funsigned-char",
+      "-fno-strict-aliasing",
+      "-no-pie",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-g",
+      "/home/mit/i960-doom-persistent-20261018/build/project/game/doom/play/accele160/reuse/native.c",
+      "/home/mit/i960-doom-persistent-20261018/build/project/game/doom/runtime/heap.c",
+      "/home/mit/i960-doom-persistent-20261018/build/project/loader/segmented/arena.c",
+      "-ldl",
+      "-o",
+      "/home/mit/i960-doom-reuse-20261018/native-asan/reuse-native"
+    ]
+  ],
+  "stdout": "epoch=1 stop=owner-stop frames=64 reads=5045 total_reads=5045 same_entry=1 empty_dynamic_heap=1 fixed_pins_unchanged=1 retired_reentry_rejected=1\nepoch=2 stop=menu-quit frames=42 reads=5047 total_reads=10092 same_entry=1 empty_dynamic_heap=1 fixed_pins_unchanged=1 retired_reentry_rejected=1\nepoch=3 stop=owner-stop frames=64 reads=5045 total_reads=15137 same_entry=1 empty_dynamic_heap=1 fixed_pins_unchanged=1 retired_reentry_rejected=1\nPASS three fresh-image epochs in one process and one retained arena\n"
+}
