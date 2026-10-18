@@ -16,15 +16,15 @@ Open <http://127.0.0.1:8096/>. This runs on the host, not the card.
 There are no automatic ROM downloads. Original CHIP-8 dialect only; no SCHIP/XO.
 Ctrl-C ends the native server.
 
-## AcceleRAID 160 (pending physical acceptance)
+## AcceleRAID 160 (reusable play tested on the card)
 
-The candidate is staged at
+The tested reusable build is staged at
 `/home/mit/i960-chip8-upgrade-20261018/build-g8/bundle`.
 Do not start while Doom's exclusive resources remain pinned. A PC reset is
 required when switching workloads, although guest Stop/Start within one owning
 CHIP-8 RTEMS session is designed to reuse the session.
 
-The explicit candidate launch, after a fresh boot, is:
+From a fresh boot, or to reuse its existing owning session:
 
 ```sh
 ssh -t mit@192.168.2.75 sudo -n python3 \
@@ -32,10 +32,12 @@ ssh -t mit@192.168.2.75 sudo -n python3 \
  --bundle /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle start
 ```
 
-The root `./chip8` command targets this candidate: it starts/restarts the owned game,
+The root `./chip8` command targets this tested build: it starts/restarts the owned game,
 `./chip8 stop` parks the guest, and `./chip8 status` reports its owner.
 `./chip8 shutdown` ends RTEMS globally and requires a PC reset before reuse.
-**Card execution is not yet qualified; use only for the acceptance batch.**
+Four games, three restarts, full FIFO batches, stalled video and a three-second
+host pause passed on the card. The session is currently idle: click **Start new
+game** on the page or run `./chip8` to play.
 
 Open <http://192.168.2.75:8096/> for the card gateway. Port 8095 is the private
 owner's diagnostic HTTP endpoint; normal play uses 8096.
@@ -55,3 +57,18 @@ Arrow keys also move the included original spaceship demo. Stop pauses by
 ending the guest; Start new game resets it. Blur/hidden tabs release held keys.
 Only one keyboard operator should control a game at a time. No sound output is
 implemented.
+
+If the gateway closes after a host pause/owner timeout, run `./chip8` and
+refresh the page. This explicitly restarts only the gateway against the same
+verified owner. A second keyboard client may be refused; close it and refresh.
+Do not force-unload modules or adopt a daemon which has disappeared.
+
+Measured: 47–48 FPS delivered over LAN WebSockets in the scripted tests and
+about 52 displayed FPS in the in-app browser. Key submission to a frame showing
+the changed key state had 30–39 ms median latency across the three scripted
+games (not a measurement of visible game movement). The guest remains capped
+at 500 instructions/s. Full details: [acceptance record](artifacts/current/chip8-stream-20261018/README.md).
+
+Global `shutdown` remains a terminal transition; SIGTERM/global shutdown and
+a deliberately expired card-side timeout were not exercised in this reusable
+acceptance batch. They are separate from the tested guest Stop/Start controls.

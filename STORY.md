@@ -5979,3 +5979,21 @@ A sanitizer test now executes that generated code through normal, STOP and
 timeout cases. The exact corrected build and both earlier captures are saved
 locally. Physical acceptance remains open until a fresh host session can run
 the corrected Stop/restart sequence.
+
+The fresh boot finally closed the reusable CHIP-8 test. Four games produced
+7,123 captured frames, all replayed against the unchanged native interpreter.
+One hundred and twenty-eight full PIO comparisons agreed with the compact DMA
+payloads, and the keyboard FIFO reached all sixteen entries without losing
+its sequence. Stop returned each game to audited idle; the next game reused
+the same RTEMS owner. We also paused the host for three seconds. Both guarded
+DMA destinations stayed unchanged until the host resumed. The gateway closed
+on its shorter timeout and was restarted explicitly against that same owner.
+
+The card's steady clock still reached sixty frames a second. The LAN test
+received about forty-seven to forty-eight, while the actual browser settled
+around fifty-two displayed frames a second. Key submission to a frame showing
+its changed state took roughly thirty to thirty-nine milliseconds at the
+median. Those are different measurements, not one universal latency number.
+The spaceship moved in the browser, then we left it stopped in reusable idle.
+Global shutdown and deliberately expiring the card timeout are still separate
+work; this batch preserved the working session so the user can play.

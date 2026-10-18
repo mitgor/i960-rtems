@@ -48,3 +48,20 @@ generated wait/commit code passes ASan STOP/timeout/normal fixtures. Latest
 launcher target is g8; it is NOT yet fully accepted. Exact candidate binaries
 and both failed-batch captures are locally archived. Never adopt old pinned
 resources when the user's “back online” reply has not changed the boot ID.
+
+## Current accepted reusable build: g8
+
+Physical acceptance passed: boot 6b1199a3-8fe8-4aad-abe7-e0fa1649c01f, four
+games/three rearm transitions, 7,123 frames replayed, 128 full PIO comparisons,
+98 cumulative consumed key edges, FIFO depth 16 and three-second host pause
+with both 12 KiB destinations unchanged. Four guest STOP/idle audits passed.
+The owner is left idle and `./chip8` reuses it. Measured LAN delivery 47–48 FPS;
+browser about 52 FPS; key-state-to-frame median 30–39 ms. This supersedes the
+pending status in earlier chronological entries above.
+
+The stalled-host pause intentionally exceeds the gateway's two-second HTTP
+timeout. It fails closed; an explicit `./chip8` restarts only that gateway and
+the page must refresh. Never silently adopt a changed owner. Global SIGTERM
+and an expired card-side timeout were NOT tested in the accepted reusable
+batch. Do not claim that acceptance, nor that global shutdown can rearm.
+Exact sources/binaries and complete evidence are in the current artifact folder.

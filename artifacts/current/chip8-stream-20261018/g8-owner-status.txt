@@ -1,0 +1,21 @@
+● i960-chip8.service - /usr/bin/python3 /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/project/game/doom/play/accele160/launch.py run --bundle /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle --port 8095 --max-frames 0 --disconnect-seconds 300 --restart-cycles 0 --quit-game 0 --paired-frames 32 --keyboard-mode fifo --capture-all
+     Loaded: loaded (/run/systemd/transient/i960-chip8.service; transient)
+  Transient: yes
+     Active: active (running) since Sun 2026-10-18 20:43:32 CEST; 3min 54s ago
+   Main PID: 15768 (python3)
+      Tasks: 2 (limit: 28716)
+     Memory: 175.0M
+        CPU: 1min 1.561s
+     CGroup: /system.slice/i960-chip8.service
+             └─15768 /usr/bin/python3 /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/project/rtems/accele160/doom_dma/run_bridge.py --persistent --port 8095 --card-fnv off --paired-frames 32 --keyboard-mode fifo --max-frames 0 --disconnect-seconds 300.0 --fps-manifest /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/project/rtems/accele160/doom_dma/persistent-manifest.json --engine-manifest /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/engine/manifest.json --dma-module /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/inputs/dma_frames.ko --kernel /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/kernel/kernel.bin --image /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/kernel/image.bin --handler /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/inputs/handler.bin --firmware /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/inputs/candidate.bin --template /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/engine/template.bin --relocations /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/engine/relocations.bin --readback0 /home/mit/i960-chip8-upgrade-20261018/build-g8/sessions/20261018T184334Z/pre-0 --readback1 /home/mit/i960-chip8-upgrade-20261018/build-g8/sessions/20261018T184334Z/pre-1 --out /home/mit/i960-chip8-upgrade-20261018/build-g8/sessions/20261018T184334Z/run --reserve-module /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/inputs/reserve_command.ko --release-module /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/inputs/release_command.ko --copy-module /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/inputs/copy_command.ko --digest-module /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/inputs/digest_command.ko --admit-module /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/inputs/admit_command.ko --reusable --restart-cycles 0 --quit-game 0 --capture-all
+
+Oct 18 20:43:36 mit-HP-Z400-Workstation python3[15858]: done=1 status=0 residual=0 selector=9 length=1048576 released=0 guard_changes=0
+Oct 18 20:43:53 mit-HP-Z400-Workstation python3[15768]: Browser session: http://192.168.2.75:8095/
+Oct 18 20:43:59 mit-HP-Z400-Workstation python3[15768]: Stopping CHIP-8: browser STOP
+Oct 18 20:44:00 mit-HP-Z400-Workstation python3[15768]: Game 1 parked with 226 frames; RTEMS and DMA ownership retained
+Oct 18 20:44:05 mit-HP-Z400-Workstation python3[15768]: Stopping CHIP-8: browser STOP
+Oct 18 20:44:05 mit-HP-Z400-Workstation python3[15768]: Game 2 parked with 208 frames; RTEMS and DMA ownership retained
+Oct 18 20:44:10 mit-HP-Z400-Workstation python3[15768]: Stopping CHIP-8: browser STOP
+Oct 18 20:44:11 mit-HP-Z400-Workstation python3[15768]: Game 3 parked with 213 frames; RTEMS and DMA ownership retained
+Oct 18 20:46:40 mit-HP-Z400-Workstation python3[15768]: Stopping CHIP-8: browser STOP
+Oct 18 20:46:41 mit-HP-Z400-Workstation python3[15768]: Game 4 parked with 6476 frames; RTEMS and DMA ownership retained

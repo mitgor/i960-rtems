@@ -1,6 +1,7 @@
 # AcceleRAID 160 CHIP-8 profile
 
-This is a **candidate**, not yet accepted on physical hardware. It ports the
+The build-g8 **reusable play path passed physical testing**: four games,
+three restarts, full FIFO batches and stalled-host ownership. It ports the
 CHIP-8 workload into the existing exclusive RTEMS owner. It does not program
 firmware or replace the installed Doom launcher.
 
@@ -71,7 +72,10 @@ The WebSocket tests require the pinned dependency described in
 512-byte descriptor profile. `test_rearm.py --keyboard-fifo` exercises the actual
 resident rearm policy with mocked scheduling/MMIO.
 
-Hardware acceptance must include both guarded full-flash reads, compact DMA
-versus full paired PIO, native replay of every frame, input down/up, STOP,
-repeated rearm, stale-input rejection and stalled-host handling. Retained QUIE
+The accepted batch included both guarded full-flash reads, compact DMA
+versus 128 full paired PIO comparisons, native replay of all 7,123 frames,
+input down/up, STOP, repeated rearm, stale-input rejection and a three-second
+stalled-host test. Global SIGTERM shutdown and deliberately expired card-side
+timeout remain untested in this batch; do not conflate reusable guest STOP
+with global shutdown. The owner remains in reusable idle. Retained QUIE
 resources require resetting the PC; never force-unload or adopt them.

@@ -2,7 +2,9 @@
 
 New AcceleRAID/native streaming work (2026-10-18): see
 [commands](../../chip8_commands.md) and [card candidate](accele160/README.md).
-The card candidate is not yet physically accepted. The historical results below
+The new reusable path passed four games and 7,123 audited card frames. See
+[acceptance results](../../artifacts/current/chip8-stream-20261018/README.md).
+The historical results below
 apply to the old DAC960 callback implementation.
 
 
