@@ -15,6 +15,17 @@ matches. P1/P2 diagnostic service acceptance is complete; the isolated corrected
 owner is left running for `./rtems-console`. Its eventual global shutdown/reset
 is separate. The default installed Doom/CHIP-8 bundle is not promoted.
 
+## P3a checkpoint — first terminal test passed
+
+[Software terminal diagnostics](../../rtems/accele160/fault/README.md) are
+implemented, cross-built and native-tested. Mode 1 passed on the card with a
+stable software-fatal record, intact private stack guards, stale-trigger refusal
+and retained resources after STOP. The preceding service's global STOP/reset
+pair is closed. Mode 2 is built but awaits recovery after mode 1's reset;
+post-reset checks, guard test and ordinary mode-0 service qualification remain.
+The prompt is offline. [Evidence](../../artifacts/current/accele160-fault-20261018/README.md).
+Hardware fault/NMI ownership and engine exclusion remain further P3 gates.
+
 ## Goal and current evidence
 
 Turn the AcceleRAID's application-specific, reusable RTEMS runtime into a

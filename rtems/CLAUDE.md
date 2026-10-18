@@ -1569,3 +1569,18 @@ is left running; `./rtems-console` connects to it. Preserve its retained mapping
 do not change the installed Doom wrapper or adopt the owner. The live follow-up
 has not performed global STOP/reset; the first archived kernel run did. Exact
 counts and latency are in the evidence ledger. No firmware write.
+
+**P3a terminal diagnostics (2026-10-18), partial physical acceptance:**
+See [implementation/runbook](accele160/fault/README.md) and
+[ledger](../artifacts/current/accele160-fault-20261018/README.md).
+`ACCELE_TERMINAL=1` reserves record c0777000 and stack c0778000 inside the
+existing grant. Mode 1 passed on-card: code 7d001 at tick 18, stable record,
+intact stack guards, masked interrupts, stale trigger refusal and retained
+admission/DMA after STOP. Hardware fault/NMI vectors remain stock. The first
+16 fault entries are (c0053400,0), next 16 zero; NMI c00521b0, ISP c0001000.
+Previous service shutdown/reset proof is closed. Mode 2 is built remotely;
+SSH again refuses connections after resetting mode 1. Prompt remains offline.
+Sync the final host runner correction (bank/arena audits before injection),
+regenerate bundle identities, verify fresh boot/flash, run mode 2, collect its
+archive, reset and qualify mode 0 before restoring the prompt. Do not adopt
+retained resources or claim full P3 ownership. Exact mode-1 archive is immutable.

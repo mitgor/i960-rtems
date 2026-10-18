@@ -16946,6 +16946,51 @@
       "path": "artifacts/vendor-fujitsu/4.07-0-39/unpacked.bin",
       "size": 304120,
       "sha256": "6d35598e082f72c83fcc6030e3b4788dfb6f7c334ada569f7e2a140a9195a3fe"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/README.md",
+      "size": 4965,
+      "sha256": "26393b24578b8fcf3f99c3b5b72d4ed32a01150bc9958ea4ad3e955f6ef9a4d9"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/SHA256SUMS",
+      "size": 666,
+      "sha256": "046db2d0670437900bfc3fea60d8fbe4058a0953da7a12e3aaf4e9850fa4162b"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/mode1.tar.xz",
+      "size": 1426176,
+      "sha256": "ae0cc66b04813652939bbc7fe387f9ceb544cc5e9b4d67952bf1e01b53811a34"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/native-tests.txt",
+      "size": 269,
+      "sha256": "0c70f15a1af2c9552541e634fe3860503cae1e6a87f66cd561148f3b77fed740"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/previous-service-final.tar.xz",
+      "size": 1558544,
+      "sha256": "dcbdf00cfd899ebf9d633a611c2b2fa889cc7111feca486f3a852cd03289e3a4"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/previous-service-shutdown.json",
+      "size": 5961,
+      "sha256": "dbd85634640fe0104e4cf42637b3267e382e267c1237e6abf35984888932b0ce"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/replay.json",
+      "size": 1712,
+      "sha256": "ad3b8f491e6f2f42d73c97633233cd5d20355191b9d8806690177d5b34446b69"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/rom-audit.json",
+      "size": 476,
+      "sha256": "6b1f0c27d766d446398867fe85c134d8c97084f4e18dbbb7f395a4c91fd96732"
+    },
+    {
+      "path": "artifacts/current/accele160-fault-20261018/verify.py",
+      "size": 3762,
+      "sha256": "6353bb971dcb03799742ebe182dd5f7ed364314ecd78b003c2b52f54cbc2dbb7"
     }
   ],
   "updated_date": "2026-10-18"

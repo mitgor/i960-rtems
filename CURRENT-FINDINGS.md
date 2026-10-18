@@ -1,3 +1,20 @@
+## AcceleRAID P3a — first terminal test passed; next reset pending
+
+[The opt-in terminal profile](rtems/accele160/fault/README.md) cross-built and
+passed its first on-card software-fatal test on boot
+`1eaf5d65-1ede-40da-a02c-8888d6b91e9f`. It parked at tick 18 with stable
+code `7d001`, intact stack guards, interrupts masked and all pins retained;
+stale trigger and post-terminal STOP checks passed. Native tests and archived
+physical replay pass. This is software containment, not hardware fault/NMI
+ownership or SCSI exclusion. The live inventory captures NMI `c00521b0`, ISP
+`c0001000`, and sixteen fault entries `(c0053400,0)` followed by sixteen zeros.
+
+The previous P1/P2 service's shutdown and fresh-boot firmware pair are closed.
+Mode 2 (deliberate guard corruption) is cross-built, but the PC again refuses
+SSH after resetting from mode 1. **The prompt is offline.** Mode-1 post-reset
+checks, mode-2 acceptance, mode-0 normal runtime qualification and prompt
+restoration remain pending. [Exact evidence and resume state](artifacts/current/accele160-fault-20261018/README.md).
+
 ## AcceleRAID RTEMS prompt — 2026-10-18
 
 [Source and exact evidence](artifacts/current/accele160-service-20261018/README.md)

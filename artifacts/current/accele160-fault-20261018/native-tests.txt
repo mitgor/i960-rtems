@@ -1,0 +1,3 @@
+actual card C: bounded MMIO inventory, guards, stale trigger and terminal record passed
+terminal capture, stale request, STOP retention and tamper tests passed
+production audit pump: original page preserved, recursion excluded, selftest exclusion, exception reset PASS

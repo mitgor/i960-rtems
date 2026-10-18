@@ -23,6 +23,9 @@ def main():
                  'host/accele160/readimage','rtems/accele160/doom_dma','game/doom/play/accele160'):
         shutil.copytree(a.project/name,a.out/'project'/name,
                         ignore=shutil.ignore_patterns('__pycache__','*.pyc','*.o'))
+    if manifest.get('terminal_schema'):
+        shutil.copytree(a.project/'rtems/accele160/fault',a.out/'project/rtems/accele160/fault',
+                        ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
     if manifest.get('service_schema'):
         shutil.copytree(a.project/'rtems/accele160/service',a.out/'project/rtems/accele160/service',
                         ignore=shutil.ignore_patterns('__pycache__','*.pyc'))

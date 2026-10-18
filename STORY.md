@@ -6033,3 +6033,39 @@ on the card through SSH. `apps` reports the stopped game and its sixty-four
 frames; `uptime` keeps advancing. Quitting the prompt only disconnects the
 terminal. The captured follow-up is an audited live idle session, while its
 future global shutdown and reset remain a separate event.
+
+The next audit found a boundary hidden inside the old failure path. After
+claiming RAM, a software fatal still restored the stock timer settings before
+parking. We prepared a separate terminal stack and a fixed record instead:
+mask the interrupt sources, stop our borrowed timer, save what can safely be
+read, and keep ownership. Nothing in that path tells Linux that a possibly
+unfinished transfer is safe to free.
+
+The new tests distinguish a deliberate software fatal from a damaged guard.
+They do not pretend to be a real processor fault or NMI. Those vectors still
+belong to stock firmware, and stopping the other engines remains separate
+work. Native tests exercised the actual C record builder and the host's refusal
+to accept completion or changed guards. The i960 entry still needs its build
+and physical test.
+
+We closed the running console session through the normal audited shutdown and
+saved its receipt. The reset needed for the new image again left SSH refusing
+connections. For now the prompt is offline; the implementation and tests are
+saved, and the card acceptance waits for the machine to return.
+
+After the machine returned, the new image built within the same grant and
+passed its first physical test. At tick eighteen it deliberately entered the
+software-fatal path, changed to its private stack and left a stable record.
+A stale trigger did nothing. STOP after the park did not pretend that the
+firmware callback had completed or that the DMA buffers could be released.
+
+The record also put names to the next boundary: the cached NMI still pointed
+to `c00521b0`, the stock interrupt stack was `c0001000`, and sixteen fault
+entries pointed to `c0053400`. The other sixteen were zero. We now had the
+actual new-board table, not an address borrowed from the older card.
+
+Both firmware reads on that fresh boot closed the earlier console session's
+reset check. We saved the new binary and full capture locally and built the
+second image, which deliberately changes a private stack guard. The reset
+between those isolated tests again left SSH refusing connections. The first
+terminal test stands; its reset proof and the guard test are still open.

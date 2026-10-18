@@ -55,6 +55,7 @@ def main():
     if a.persistent:
         for sig in (signal.SIGINT,signal.SIGTERM):
             signal.signal(sig,lambda *_:signal_stop.set())
+    terminal_schema=0;terminal_test=0;terminal_nonce=0
     service_schema=0
     keyboard_fifo_schema=0
     modules=dict(MODULES)
@@ -65,6 +66,16 @@ def main():
         if 'admit_module_sha256' in fps_manifest:
             need(fps_manifest['admit_source_sha256']==sha((ROOT/'host/accele160/ram_admit/admit_command.c').read_bytes()),'private admission queue source identity')
             modules['admit']=fps_manifest['admit_module_sha256']
+        terminal_schema=fps_manifest.get('terminal_schema',0)
+        terminal_test=fps_manifest.get('terminal_test',0)
+        need(terminal_schema in (0,1) and terminal_test in (0,1,2) and (terminal_schema or not terminal_test),'terminal profile')
+        if terminal_schema:
+            need(set(fps_manifest['terminal_sources'])=={'policy.h','card.inc','terminal.S','host.py'},'terminal source set')
+            for name,digest in fps_manifest['terminal_sources'].items():
+                need(sha((Path(__file__).parent.parent/'fault'/name).read_bytes())==digest,'terminal source identity')
+            import importlib.util
+            spec=importlib.util.spec_from_file_location('accele_terminal',Path(__file__).parent.parent/'fault/host.py')
+            terminal=importlib.util.module_from_spec(spec);spec.loader.exec_module(terminal)
         service_schema=fps_manifest.get('service_schema',0)
         need(service_schema in (0,1),'service schema')
         if service_schema:
@@ -281,6 +292,7 @@ def main():
         write(0xc000e000,0xa20,b'\xa5'*28)
         write(0xc000e000,0xa40,side)
         write(0xc000e000,0xa60,b'\xa5'*32)
+        if terminal_schema:terminal_nonce=terminal.initialize(write)
         if service_schema:
             sys.path.insert(0,str(Path(__file__).parent.parent/'service'))
             from host import Service
@@ -303,7 +315,7 @@ def main():
         need(ready and status('ram-admit').get('done')=='0',
              'RTEMS READY missing or early completion; retain grant')
         active_owner=True
-        if a.port:
+        if a.port and not terminal_test:
             need(1024<=a.port<=65535,'browser port range')
             browser=BrowserSession(a.port,runtime_flat=bool(engine_manifest.get('runtime_flat')),
                 keyboard_mode=a.keyboard_mode,keyboard_fifo=bool(keyboard_fifo_schema),keyboard_test=a.keyboard_selftest)
@@ -334,6 +346,14 @@ def main():
             expected=struct.pack('<1024I',*(pattern(index,w) for w in range(1024)))
             need(snap(0xc0800000+(index-1)*PAGE)==expected,
                  f'untouched upper page {index}')
+        if terminal_test:
+            terminal_result=terminal.exercise(snap,write,terminal_nonce,terminal_test,
+                a.out/'terminal',lambda:status('ram-admit'),lambda:fields(pin_dir/'status'))
+            save(a.out/'result.json',dict(terminal=terminal_result,boot_id=boot,
+                 kernel_sha256=kernel_sha,image_sha256=image_sha,release='reboot-only',
+                 card=select(BDF,'accele160'),old=require_unbound_or_absent(OLD,'dac960pg')))
+            quiescent=True # terminal park, not QUIE or driver completion
+            return
         template=a.template.read_bytes();relocs=a.relocations.read_bytes()
         wad=a.wad.read_bytes()
         need(sha(template)==engine_manifest['template_sha256'] and len(template)==engine_manifest['file_bytes'],'exact Doom template')

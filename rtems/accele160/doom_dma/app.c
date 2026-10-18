@@ -154,6 +154,21 @@ static unsigned int preflight(void){
  if(REG(0x4u)!=0xaaaaaaaau)return 18u;
  return 0u;
 }
+#ifndef ACCELE_TERMINAL
+#define ACCELE_TERMINAL 0
+#endif
+#ifndef ACCELE_TERMINAL_TEST
+#define ACCELE_TERMINAL_TEST 0
+#endif
+#if ACCELE_TERMINAL_TEST < 0 || ACCELE_TERMINAL_TEST > 2
+#error terminal test must be 0, 1 or 2
+#endif
+#if ACCELE_TERMINAL_TEST && !ACCELE_TERMINAL
+#error terminal test requires terminal profile
+#endif
+#if ACCELE_TERMINAL
+#include "../fault/card.inc"
+#endif
 static void stop_timer(void){
  if(!armed)return;
  mask31();
@@ -810,6 +825,9 @@ reply:
  last_seq=seq;bridge[8]=seq;
 }
 void bounded_fatal(unsigned int code){
+#if ACCELE_TERMINAL
+ if(claimed && at_initialized)accele_terminal_enter(code);
+#endif
  stop_timer();
  if(claimed){
   claim_report[6]=0xf0000000u|code;
@@ -939,6 +957,9 @@ static void Init(rtems_task_argument nonce){rtems_task_priority old;
   lease_invalidate_dcache();
   claim_report[4]=ticks;
   if(DOOM_REUSABLE)host_watchdog();
+#if ACCELE_TERMINAL
+  at_poll();
+#endif
   bridge_poll();
   if(ticks>=6u&&handoffs>=2u&&life[1].entries&&life[2].entries)
    control[4]=0x59444152u;
@@ -1017,6 +1038,9 @@ unsigned int bounded_main(unsigned int report_addr,unsigned int nonce){
  if(dma_busy_mask())bounded_fatal(0x72001u);
  /* This is the irreversible boundary until card reset: stock-only diagnostic
   * pages and all other upper pages become the RTEMS application arena. */
+#if ACCELE_TERMINAL
+ at_init();
+#endif
  claimed=1u;
  claim_report[0]=0x314d5241u; /* ARM1 */
  claim_report[1]=BANK_PAGES;
