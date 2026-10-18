@@ -1,3 +1,22 @@
+**Latest Accele160 stalled-DMA qualification — 2026-10-19:**
+Profiles 8/9 deliberately suspend DMA0 via CE=0 after activity is established.
+Actual fault/NMI entries exhaust 10000000 polls with CSR=0x400 and unchanged
+nonzero outstanding counts. STOP/unload/host-process exit retain the command,
+source, descriptors and both host targets. [Evidence](../artifacts/current/accele160-stalled-dma-20261018/README.md)
+and [design](accele160/fault/STALLED-DMA.md). CCR disabled is not completion.
+New words 195–203 occupy the existing record; no RAM extension. `post_exit.py`
+audits retained resources after the runner exits. Preserve mode-5 service.
+
+Live owner: `/home/mit/i960-owned-runtime-20261018/bundle`, session `20261018T221116Z`,
+boot `a320a74a-d22e-4bdc-83f9-ef2649e30e2f`, original qualified kernel
+`55dc845a43b53fe0e84aba8ed180f28e0331999b74857c96d5e8ff2bb2d5d002`.
+Both test reset gates passed paired firmware reads. Restoration passed 64 frames,
+5045 WAD reads, 529 external console exchanges; prompt and gateway 8088 are
+live at verified idle. Keep this owner running; never force-unload or adopt
+retained sessions. Existing admission-module changes remain a separate task.
+Controlled suspension is qualified; unresponsive targets, indefinite retries,
+blocked MMIO, resume/abort, reclamation and SCSI/cache exclusion remain open.
+
 **Latest Accele160 active-DMA exceptions — 2026-10-18:**
 Profiles 6/7 passed actual fault/NMI containment with entry CSR=0x400,
 finite DMA completion, intact guards/integrity, refused unload and retained

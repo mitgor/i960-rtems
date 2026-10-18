@@ -57,6 +57,7 @@ not establish DMA containment.
 
 This does not establish aborting a stalled DMA engine, reclamation after a
 fault, exclusion of stock SCSI/cache activity, or resuming an interrupted task.
-The bounded polling timeout branch is a retention policy, not a hardware
-stalled-engine qualification. A later transfer completion never authorizes
+Profiles 6/7 do not exercise the hardware timeout branch. The later
+[profiles 8/9](STALLED-DMA.md) test deliberate hardware suspension; arbitrary
+stalled-engine failure remains unqualified. A later transfer completion never authorizes
 resource reuse by itself.

@@ -1,0 +1,14 @@
+[
+  {
+    "archive": "artifacts/current/accele160-active-dma-exceptions-20261018/fault-tested.tar.xz",
+    "mode": 6,
+    "kernel": "d43dfde43574eb53cd5505312dd18716fdff5f99a3d16a0378a6e59100a1dc70",
+    "passed": true
+  },
+  {
+    "archive": "artifacts/current/accele160-active-dma-exceptions-20261018/nmi-tested.tar.xz",
+    "mode": 7,
+    "kernel": "85d89ad77217a5d01459abd2b9eb1bc1d7eb6e1fd6c97cd3f48d20119ce06a1e",
+    "passed": true
+  }
+]

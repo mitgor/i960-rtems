@@ -120,7 +120,7 @@ static void at_dma_test(void){
  for(i=0;i<8u;i++)dma_marker[i]=0x444d4100u+i;
  at[180]=desc;at[181]=(unsigned int)source;at[182]=dma_bus[0];
  at[183]=1024u;at[185]=(unsigned int)dma_marker;
-#if ACCELE_TERMINAL_TEST == 7
+#if ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9
  if(REG(0x1700u)||(REG(0x1324u)&8u)||(REG(0x1320u)&0x80000000u))
   accele_terminal_enter(0x7d016u);
  REG(0x1328u)=at[154]&~8u;DMA_SYNC();
@@ -130,7 +130,25 @@ static void at_dma_test(void){
  for(i=0;i<100000u;i++){csr=REG(0x1404u);if(csr&0x42du)break;}
  at[184]=csr;DMA_SYNC();
  if(!(csr&0x400u)||(csr&0x2du))accele_terminal_enter(0x7d021u);
-#if ACCELE_TERMINAL_TEST == 6
+#if ACCELE_TERMINAL_TEST >= 8
+ /* 273353-001 19.14.1: CE=0 suspends, it does NOT abort or drain queues.
+  * Only our DMA0 is changed. Keep all buffers/descriptors until reset. */
+ REG(0x1400u)=0u;DMA_SYNC();
+ {unsigned stable=0,old_d=~0u,old_n=~0u,old_b=~0u,d,n,b;
+  for(i=0;i<100000u&&stable<4096u;i++){
+   csr=REG(0x1404u);d=REG(0x140cu);n=REG(0x1410u);b=REG(0x1420u);
+   if(d==old_d&&n==old_n&&b==old_b)stable++;else stable=0;
+   old_d=d;old_n=n;old_b=b;
+   if(!(csr&0x400u)||(csr&0x2du)||REG(0x1400u))break;
+  }
+  at[196]=csr;at[197]=REG(0x1400u);at[198]=old_d;at[199]=old_n;
+  at[200]=old_b;at[201]=REG(0x1424u);at[202]=i;at[203]=stable;
+  if(stable!=4096u||!old_b||!old_n||at[197]||!(csr&0x400u)||(csr&0x2du))
+   accele_terminal_enter(0x7d022u);
+  at[195]=1u;DMA_SYNC();
+ }
+#endif
+#if ACCELE_TERMINAL_TEST == 6 || ACCELE_TERMINAL_TEST == 8
  accele_raise_fault();
 #else
  at[155]=1u;DMA_SYNC(); /* Host may now issue the actual doorbell NMI. */

@@ -1,3 +1,29 @@
+## Accele160 P3d — hardware suspension and terminal timeout qualified
+
+Profiles 8/9 deliberately suspend an established DMA0 transfer with CCR.CE=0,
+then enter real `faulte` / host-doorbell NMI. Both exhaust all 10000000 status
+polls with CSR=0x400, CCR=0, unchanged descriptor state and nonzero remaining
+bytes (65032 / 65040). Partial host payloads (504 / 496 bytes) stay stable,
+neither marker appears, and all stack/host guards, peer-register, owner-table,
+source/descriptor fingerprint and visible-page checks pass. STOP, refused
+buffer unload and host-process exit leave `done=0 released=0` and pins retained.
+The separate post-exit audit confirms unchanged host payloads and retention.
+
+Fresh paired firmware reads close both reset gates. The original qualified
+profile-5 kernel is restored on boot `a320a74a-d22e-4bdc-83f9-ef2649e30e2f`, session
+`20261018T221116Z` under `/home/mit/i960-owned-runtime-20261018`. Its
+64-frame/5045-WAD/529-exchange run passed with zero external errors and three
+owned-state captures. The prompt works, the game is at verified idle, and the
+streaming gateway on 8088 is active. No flash writes were performed.
+
+[Evidence](artifacts/current/accele160-stalled-dma-20261018/README.md) and
+[implementation](rtems/accele160/fault/STALLED-DMA.md). This is a controlled
+hardware suspension, not an unresponsive PCI target or indefinite retry test.
+The bound counts completed MMIO polls; observed ~2.49 s trigger-to-report
+latency is not a hard guarantee for a broken bus. Resume/abort, reclaim without
+reboot and broader stock SCSI/cache exclusion remain open. Earlier live-session
+references below are historical.
+
 ## Accele160 P3c — active-DMA fault/NMI containment qualified
 
 Both real `faulte` and host-doorbell NMI entered with DMA0 CSR=0x400. The

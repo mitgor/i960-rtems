@@ -12,14 +12,19 @@ static volatile unsigned *at=record;
 static jmp_buf escape;
 static unsigned *reg(unsigned a){
  assert(a<sizeof(regs));
- if(a==0x1404 && regs[0x1400/4]){
+ if(a==0x1404 && (regs[0x1400/4]||record[195])){
+#if ACCELE_TERMINAL_TEST >= 8
+  if(!regs[0x140c/4]){regs[0x140c/4]=record[180];regs[0x1410/4]=record[180]+32;regs[0x1420/4]=65536;regs[0x1424/4]=7;}
+#endif
   regs[a/4]=++reads<finish_after?0x400:0;
   regs[a/4]|=forced_error;
  }
  return &regs[a/4];
 }
 #define REG(a) (*reg(a))
+#ifndef ACCELE_TERMINAL_TEST
 #define ACCELE_TERMINAL_TEST 6
+#endif
 #define DMA_CFG_PTR cfg
 #define DMA_LOG_PTR logwords
 #define DMA_SYNC() ((void)0)
@@ -53,11 +58,14 @@ int main(void){
   assert(d[i*8+4]==(i==1024?32:65536));
   assert(d[i*8+5]==7 && !d[i*8+2] && !d[i*8+6] && !d[i*8+7]);
  }
+#if ACCELE_TERMINAL_TEST >= 8
+ assert(at[195]==1 && at[203]==4096 && at[197]==0);
+#endif
  /* A stuck active engine exhausts a finite bound and stays enabled/retained. */
- at_dma_finish();assert(at[175]==10000000 && at[186]==0x400 && at[187]==1);
- finish_after=reads+3;at_dma_finish();assert(at[175]==2 && at[186]==0 && at[187]==1);
+ at_dma_finish();assert(at[175]==10000000 && at[186]==0x400 && at[187]==(ACCELE_TERMINAL_TEST>=8?0:1));
+ finish_after=reads+3;at_dma_finish();assert(at[175]==2 && at[186]==0 && at[187]==(ACCELE_TERMINAL_TEST>=8?0:1));
  assert(at[192]==byte_fnv(storage+4096,65536) && at[193]==byte_fnv((void*)(uintptr_t)at[180],32800) && at[194]==1);
- forced_error=8;at_dma_finish();assert(at[175]==0 && at[186]==8 && at[187]==1);
+ forced_error=8;at_dma_finish();assert(at[175]==0 && at[186]==8 && at[187]==(ACCELE_TERMINAL_TEST>=8?0:1));
  puts("actual diagnostic: aligned bounded chain, inactive completion, error and 10M-poll timeout retain DMA ownership (simulated)");
  return 0;
 }

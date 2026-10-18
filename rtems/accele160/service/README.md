@@ -1,3 +1,8 @@
+> After suspended-DMA timeout tests, the original profile-5 prompt is restored
+> on boot `a320a74a-d22e-4bdc-83f9-ef2649e30e2f`, session `20261018T221116Z`.
+> Its 64-frame run and 529 external exchanges passed; the game is idle and
+> gateway 8088 is active. [Current evidence](../../../artifacts/current/accele160-stalled-dma-20261018/README.md).
+
 > After the active-DMA fault/NMI tests, profile 5 is restored on boot
 > `b92db15d-de4d-4a57-9997-f6236dafa06a`, session `20261018T215108Z`.
 > The prompt passed 541 exchanges during a 64-frame run and is left at verified

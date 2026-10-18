@@ -6256,3 +6256,45 @@ workspace loan came back, and `apps` reported verified idle. We left that
 prompt running and brought the streaming gateway back beside it. The deliberate
 exception images stayed in their own archives, with the ordinary service back
 in charge of the card.
+
+A transfer that eventually finishes still leaves the timeout branch mostly
+untested. For the next experiment, we used the controller's documented channel
+suspend bit. We let DMA0 begin its finite chain, cleared its enable bit, and
+waited until its current descriptor, next descriptor and remaining byte count
+stopped changing. The manual was explicit about the distinction: suspension
+keeps queued data valid. It is not an abort or a receipt that memory is free.
+
+The processor fault arrived with 65,032 bytes still outstanding. The terminal
+handler made all ten million status reads and found the same unfinished
+transfer at the end: Channel Active set, Channel Enable clear. The host saw
+the terminal report about 2.49 seconds after its trigger. Only the first 504
+bytes of the destination had changed to the source pattern; the rest was still
+the original fill, and the completion marker was absent.
+
+We checked the buffers twice, sent STOP, tried ordinary module removal, and
+let the host test process exit. None of that completed the command or gave up
+the pins. A separate audit after process exit found the same bytes and the
+same unfinished owner. The source and descriptor fingerprints, visible pages,
+peer registers and stack guards agreed too.
+
+After a reboot and two matching firmware reads, the real doorbell NMI repeated
+the experiment. Vector 248 arrived with 65,040 bytes outstanding. Ten million
+polls later, they were still outstanding. The second capture passed the same
+checks, including retention after the host process was gone. We saved both
+exact images and captures before their resets.
+
+This time the timeout evidence came from physical hardware. Its scope remains
+specific: we deliberately suspended a working channel. We did not reproduce
+an unresponsive PCI target, an endless retry, or a bus that stops answering
+status reads. Ten million completed reads give a finite polling bound; they
+do not promise a wall-clock deadline for a broken bus. Resuming or aborting
+that transfer and reclaiming its memory remain separate work. For now, an
+unfinished transfer stays with its owner until reset.
+
+The final reboot came back without physical help. The firmware matched on both
+complete reads, and the normal owned-handler image ran another sixty-four
+frames and 5,045 WAD requests. The prompt passed 529 external exchanges,
+its ownership snapshots and guards stayed intact, and the game returned its
+workspace loan. We left the service at verified idle and restored the streaming
+gateway. Both deliberately suspended transfers now had a verified reset path,
+and the ordinary prompt was back on the card.

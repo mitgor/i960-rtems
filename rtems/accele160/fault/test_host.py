@@ -95,3 +95,24 @@ for mode in (6,7):
         except AssertionError:pass
         else:raise AssertionError(('active DMA evidence tamper accepted',mode,index))
 print('active DMA entry evidence rejects inactive, errors, invalid chain and peer activity')
+
+# A disabled channel is NOT drained: require active CSR and frozen outstanding
+# descriptor/count across entry and the entire timeout, with no completion marker.
+w=[0]*208;w[25]=8;w[175]=10000000;w[180]=0xc0821000
+w[195:204]=[1,0x400,0,0xc0821000,0xc0821020,50000,7,4097,4096]
+w[176:180]=[0x400,0,w[199],w[200]];w[186:192]=w[196:202]
+host.validate_dma_observation(tuple(w))
+for index in (175,176,177,178,179,186,187,188,189,190,191,195,196,197,198,199,200,201,203):
+    bad=w[:];bad[index]^=1
+    try:host.validate_dma_observation(tuple(bad))
+    except AssertionError:pass
+    else:raise AssertionError(('stall evidence tamper accepted',index))
+payload=bytes((i^(i>>8)^0x69)&255 for i in range(65536))
+b=b'\xa5'*4096+payload[:4096]+b'\x5a'*(65536-4096)+bytes(32)+b'\xa5'*8160
+host.validate_dma_frame(b,0,True)
+for offset in (0,4100,69632,77823):
+    bad=bytearray(b);bad[offset]^=1
+    try:host.validate_dma_frame(bad,0,True)
+    except AssertionError:pass
+    else:raise AssertionError(('stall payload tamper accepted',offset))
+print('stalled DMA: disabled is not drained; progress/error/marker/guard corruption rejected')

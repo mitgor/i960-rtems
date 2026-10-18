@@ -344,3 +344,27 @@ Both P3c reset gates are now closed by fresh paired firmware reads. The normal
 profile-5 prompt is restored on boot `b92db15d-de4d-4a57-9997-f6236dafa06a`
 after 64 frames and 541 error-free external console exchanges. It remains live
 at verified idle with gateway 8088 restored; the test profiles are not defaults.
+
+## P3d — deliberate DMA suspension and timeout
+
+Profiles 8/9 now test the terminal path with DMA0 deliberately suspended via
+CCR.CE=0 after hardware activity is established. Both actual `faulte` and
+host-doorbell NMI exhaust all 10000000 CSR polls with unchanged nonzero
+outstanding descriptor/count, CSR=0x400 and CCR=0. Disabled does not mean
+completed. Neither marker appears; guards, source/chain checks and frozen
+partial host payloads pass. STOP, refused buffer unload and clean owner-process
+exit leave `done=0 released=0` and pins retained. A separate post-exit audit
+confirms that result. Native tests cover forged completion/progress and damaged
+payload/marker/guard rejection. [Design](../../rtems/accele160/fault/STALLED-DMA.md)
+and [evidence](../../artifacts/current/accele160-stalled-dma-20261018/README.md).
+
+Remaining: an unresponsive PCI target / indefinite retry, blocked MMIO reads,
+resume/abort and reclamation without reboot, broader SCSI/cache exclusion.
+The loop bound counts completed MMIO reads; the observed ~2.49 s trigger-to-report
+latency is not a general wall-clock guarantee. Normal service stays profile 5.
+
+Both P3d reset gates are closed by fresh paired firmware reads. Normal profile 5
+is restored on boot `a320a74a-d22e-4bdc-83f9-ef2649e30e2f`, session `20261018T221116Z`,
+after 64 frames and 529 error-free external console exchanges. The prompt
+and gateway 8088 remain live at verified idle. The diagnostic profiles are not
+defaults; recovery used reboot, not DMA resume or memory reclamation.

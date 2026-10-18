@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Replay an active-DMA terminal archive; never execute archived code."""
 import argparse,hashlib,json,struct,tarfile
-from host import validate,dma_fnv,dma_descriptors
+from host import validate,dma_fnv,dma_descriptors,validate_dma_observation,validate_dma_frame
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def verify(path):
     with tarfile.open(path) as t:
@@ -11,25 +11,21 @@ def verify(path):
     for n,h in obj('bundle/bundle.json')['files'].items():assert sha(read('bundle/'+n))==h,n
     result,=[n for n in files if n.endswith('/run/terminal/result.json')]
     terminal=result[:-11];session=terminal[:-13];r=obj(result);mode=r['mode'];nonce=r['nonce']
-    assert mode in (6,7)
-    assert r['hardware_fault_tested']==(mode==6) and r['nmi_hardware_tested']==(mode==7)
+    assert mode in (6,7,8,9)
+    assert r['hardware_fault_tested']==(mode in (6,8)) and r['nmi_hardware_tested']==(mode in (7,9))
     ready=read(terminal+'ready.bin');validate(ready,nonce,mode,False)
     assert read(terminal+'stale.bin')[64:]==ready[64:]
     raw=read(terminal+'terminal.bin');w=validate(raw,nonce,mode,True)
     assert raw==read(terminal+'stable.bin')==read(terminal+'after-stop.bin')
-    assert w[29]==0
-    assert w[175]<10000000 and not w[186]&0x42d
-    assert w[187:192]==(1,w[180]+32768,0,0,7)
-    if mode==7:assert validate(read(terminal+'armed.bin'),nonce,mode,False)[155]==1
+    validate_dma_observation(w)
+    if mode in (7,9):assert validate(read(terminal+'armed.bin'),nonce,mode,False)[155]==1
     expected=bytes((i^(i>>8)^0x69)&255 for i in range(65536))
     assert w[192]==dma_fnv(expected) and w[194]==1
     for off in range(0,65536,8192):
         assert read(terminal+f'source-{off:05x}.bin')==expected[off:off+4096]
     for slot in (0,1):
-        b=read(terminal+f'frame{slot}.bin');assert len(b)==77824
-        assert b[:4096]==b'\xa5'*4096 and b[69664:]==b'\xa5'*8160
-        assert b[4096:69632]==(expected if slot==0 else b'\x5a'*65536)
-        assert b[69632:69664]==(struct.pack('<8I',*(0x444d4100+i for i in range(8))) if slot==0 else bytes(32))
+        b=read(terminal+f'frame{slot}.bin');validate_dma_frame(b,slot,mode>=8)
+        if mode>=8:assert b==read(terminal+f'delayed-frame{slot}.bin')
     descriptors=dma_descriptors(w);assert w[193]==dma_fnv(descriptors)
     for off in range(0,32800,8192):
         n=min(4096,32800-off)
@@ -39,11 +35,20 @@ def verify(path):
     assert r['admission']['done']=='0' and r['admission']['released']=='0'
     assert r['pin']['retained']=='1' and r['pin']['guard_changes']=='0'
     assert int(r['pin']['bus0'],16)==w[182]
-    assert all(r[k] for k in ('retained','active_dma_at_entry','drained_after_terminal',
+    assert all(r[k] for k in ('retained','active_dma_at_entry',
         'dma_source_retained','dma_destination_retained','completion_not_synthesized'))
+    assert r['drained_after_terminal']==(mode<8)
+    if mode>=8:assert r['stalled_timeout']
+    if mode>=8:
+        exit_state=obj(session+'run/post-owner-exit.json')
+        assert exit_state['boot_id']==obj(session+'run/result.json')['boot_id']
+        assert exit_state['owner_unit'] in ('inactive','failed','unknown')
+        assert exit_state['admission']['done']=='0' and exit_state['admission']['released']=='0'
+        assert exit_state['pin']==r['pin']
+        for slot in (0,1):assert exit_state['frame_sha256'][str(slot)]==sha(read(terminal+f'frame{slot}.bin'))
     symbols={a[2]:int(a[0],16) for line in read('bundle/kernel/kernel.symbols').decode().splitlines() if len(a:=line.split())==3}
     assert w[148]==symbols['_accele_fault_entry'] and w[149]==symbols['_accele_nmi_entry']
-    if mode==6:assert w[164]==symbols['_accele_raise_fault']+4
+    if mode in (6,8):assert w[164]==symbols['_accele_raise_fault']+4
     m=obj('bundle/project/rtems/accele160/doom_dma/persistent-manifest.json');assert m['terminal_test']==mode
     for n in ('kernel','image'):assert sha(read('bundle/kernel/'+n+'.bin'))==m[n+'_sha256']
     for n,h in m['terminal_sources'].items():assert sha(read('bundle/project/rtems/accele160/fault/'+n))==h
@@ -57,9 +62,9 @@ def verify(path):
         boots.append(obj(prefix+'request.json')['boot_id'])
     assert boots[0]==boots[1]==obj(session+'run/result.json')['boot_id']
     return dict(mode=mode,boot_id=boots[0],kernel_sha256=m['kernel_sha256'],paired_firmware=True,
-        entry_csr=hex(w[176]),entry_next_descriptor=hex(w[178]),entry_byte_count=w[179],
-        drain_polls=w[175],drain_csr=hex(w[186]),finite_bytes=1024*65536,
-        fault_or_nmi_record=[hex(v) for v in w[161:165]],full_post_drain_fnv_and_visible_page_checks=True,
+        entry_csr=hex(w[176]),entry_ccr=hex(w[177]),post_owner_exit_verified=mode>=8,entry_next_descriptor=hex(w[178]),entry_byte_count=w[179],
+        stalled_timeout=mode>=8,terminal_seconds=r.get('terminal_seconds'),drain_polls=w[175],drain_csr=hex(w[186]),finite_bytes=1024*65536,
+        fault_or_nmi_record=[hex(v) for v in w[161:165]],source_chain_fnv_and_visible_page_checks=True,
         guards_intact=True,second_target_untouched=True,release_denied=True,retained=True,
         post_test_reset_verified=False)
 if __name__=='__main__':

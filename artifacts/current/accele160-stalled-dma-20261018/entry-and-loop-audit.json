@@ -1,0 +1,16 @@
+[
+  {
+    "mode": 8,
+    "kernel": "943795e0d427e9d4eea2897d06e968748ad741110b1fd70f1dab1a5a958f498e",
+    "poll_loop": "<_at_dma_finish>:\nc0712c00:\t00 1e b8 5c \tmov\t0,g7\nc0712c04:\t00 30 b0 8c \tlda\t98967f <SIZE_REGS+0x989653>,g6\nc0712c08:\t7f 96 98 00 \n\nc0712c0c <L719>:\nc0712c0c:\t00 30 a8 90 \tld\t1404 <SIZE_REGS+0x13d8>,g5\nc0712c10:\t04 14 00 00 \nc0712c14:\t2d 04 a0 8c \tlda\t0x42d,g4\nc0712c18:\t95 00 a5 58 \tand\tg5,g4,g4\nc0712c1c:\t8a 19 80 58 \tsetbit\t10,0,g0\nc0712c20:\t0c 00 85 35 \tcmpobne\tg0,g4,c0712c2c <L715>\nc0712c24:\t17 50 b8 59 \taddo\tg7,1,g7\nc0712c28:\te4 df b5 33 \tcmpobge\tg6,g7,c0712c0c <L719>\n\nc0712c2c <L715>:\nc0712c2c:\t00 30 b8 92 \tst\tg7,c07772bc <__service_end+0x12bc>\nc0712c30:\tbc 72 77 c0 \nc0712c34:\t00 30 a8 92 \tst\tg5,c07772e8 <__service_end+0x12e8>\nc0712c38:\t",
+    "early_entry_capture": true,
+    "bound": 10000000
+  },
+  {
+    "mode": 9,
+    "kernel": "b218b15b054c87475c86dcf39f53b6a7cbcaae936ebda9abd504a0a3b332e52d",
+    "poll_loop": "<_at_dma_finish>:\nc0712ca0:\t00 1e b8 5c \tmov\t0,g7\nc0712ca4:\t00 30 b0 8c \tlda\t98967f <SIZE_REGS+0x989653>,g6\nc0712ca8:\t7f 96 98 00 \n\nc0712cac <L726>:\nc0712cac:\t00 30 a8 90 \tld\t1404 <SIZE_REGS+0x13d8>,g5\nc0712cb0:\t04 14 00 00 \nc0712cb4:\t2d 04 a0 8c \tlda\t0x42d,g4\nc0712cb8:\t95 00 a5 58 \tand\tg5,g4,g4\nc0712cbc:\t8a 19 80 58 \tsetbit\t10,0,g0\nc0712cc0:\t0c 00 85 35 \tcmpobne\tg0,g4,c0712ccc <L722>\nc0712cc4:\t17 50 b8 59 \taddo\tg7,1,g7\nc0712cc8:\te4 df b5 33 \tcmpobge\tg6,g7,c0712cac <L726>\n\nc0712ccc <L722>:\nc0712ccc:\t00 30 b8 92 \tst\tg7,c07772bc <__service_end+0x12bc>\nc0712cd0:\tbc 72 77 c0 \nc0712cd4:\t00 30 a8 92 \tst\tg5,c07772e8 <__service_end+0x12e8>\nc0712cd8:\t",
+    "early_entry_capture": true,
+    "bound": 10000000
+  }
+]

@@ -1,3 +1,7 @@
+> Deliberate hardware suspension is now covered by profiles 8/9: actual
+> fault/NMI entry, exhausted timeout, and retained resources after host exit.
+> See [STALLED-DMA.md](STALLED-DMA.md). Unresponsive PCI targets remain separate.
+
 > Active-DMA follow-up: diagnostic profiles 6/7 now have accepted hardware
 > fault/NMI captures with entry-time DMA activity and retained resources.
 > See [ACTIVE-DMA.md](ACTIVE-DMA.md). Normal service remains profile 5.
