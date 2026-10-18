@@ -1,12 +1,12 @@
 # Persistent Doom on AcceleRAID 160
 
 See [doom_commands.md](../../../../doom_commands.md) for all installed launcher
-variants, commands, options, browser controls and reset boundaries. With the old
-card removed, select the reusable or flat wrapper explicitly as described there.
+variants, commands, options, browser controls and reset boundaries. The default
+is the flat-enabled reusable wrapper, compatible with the old card removed.
 
 From the repository on the Mac, run **`./doom`**, then open
 **http://192.168.2.75:8087/**. The installed Linux command is
-`/home/mit/.local/bin/i960-doom`. It starts a systemd service, checks the exact
+`/home/mit/.local/bin/i960-doom-flat`. It starts a systemd service, checks the exact
 card/profile and pinned bundle, loads the exact BDF-gated reader driver on a
 fresh unbound card, performs two guarded complete stock-flash
 reads on this boot, admits the persistent engine and starts browser output.
@@ -17,35 +17,39 @@ reconnects to the current game. Click the image for keyboard focus: W/S move,
 A/D turn, Ctrl or Space fires, E opens/uses, Shift runs, Enter confirms and
 Esc opens the menu. No sound is implemented. The accepted new-card low-detail
 renderer, optimized columns/memory copy and private cache map are used;
-Optional F6 flat planes are available in the separate flat-enabled bundle
-described below; normal builds remain textured and half-height stays disabled.
+each fresh game starts textured, and F6 toggles flat floors and ceilings.
+Half-height stays disabled.
 
 `./doom status` reports the service. Use the page's **Stop Doom** button or
-`./doom stop` for audited shutdown. Keys release after focus loss or a
+`./doom stop` to park the game with audited cleanup. Keys release after focus loss or a
 three-second key-heartbeat timeout. Once a browser has attached, five minutes
 without browser heartbeat requests STOP. Before the first attachment the game
 can run unattended. The card separately stops if its host process heartbeat
 disappears for 30 seconds; frame-slot ACK waits remain bounded to five seconds
 and DMA completion to 50 ticks. These are different ownership/lifetime limits.
 
-**One hardware session per boot:** after STOP, failure or process death,
+**One hardware owner per boot:** game Stop or menu Quit parks the reusable
+engine; another `./doom` requests a fresh game with the same owner. After global
+shutdown (`./doom shutdown`), failure or process death,
 buffers and the exclusive grant remain pinned until PC reset. Starting again
 then prints that a reset/power-cycle is required. Never force-unload retained
 modules. Start a new session with `./doom` after Linux returns. The launcher
-does not silently reboot the PC. The old DAC960PG remains unbound and untouched.
+does not silently reboot the PC. The old DAC960PG is physically removed.
 
 [A reusable-session investigation](reuse/README.md) now demonstrates native
 fresh-image restarts with the same arena and pins. Its audited RTEMS idle/rearm
 path now passes [physical STOP / reload / menu Quit / reload / STOP](../../../../artifacts/current/doom-rearm-20261018/README.md),
 with 173 frames, 96 full PIO comparisons and unchanged pinned mappings.
-Both final post-reset flash reads pass; positive browser/CLI idle testing remains. It is not the ordinary default; the optional installed launcher is described
-below. Build with `--reusable`.
-That candidate makes browser Stop/menu Quit park the game, adds Start new
+Both final post-reset flash reads pass; positive browser/CLI idle testing remains.
+The flat-enabled reusable bundle is now the Mac default by user request; its
+final post-reset flash pair remains pending. Build with `--reusable`.
+The reusable path makes browser Stop/menu Quit park the game, adds Start new
 game, and makes a second `./doom` request restart from the same daemon.
 `./doom shutdown` retains the reset-only global STOP behavior.
 
 Live logs: `ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom'`.
-Captures are under `/home/mit/i960-doom/sessions/`; `latest-session.txt` points
+Default captures are under `/home/mit/i960-flat-accele160-20261018/sessions/`;
+the sibling `latest-session.txt` points
 to the current session. Every frame gets complete buffer guards, native host
 FNV, completion-marker/source/generation/ACK checks. The first four also get
 full independent PIO comparisons. Full card code/heap/owner/IRQ/system and
@@ -84,9 +88,8 @@ SSH endpoint through `I960_HOST` and installed command path through
 ## Optional reusable session with the old card removed
 
 The three-game STOP/Quit/rearm card proof and final flash audits pass.
-The ordinary default still uses the older bundle and expects the old card to
-be present/unbound. For the new single-card optional bundle, set this once
-in the Mac shell, then use the usual command:
+The default flat-enabled bundle supports the single-card setup. To select
+the older textured-only reusable bundle explicitly:
 
 ```sh
 export I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-reusable
@@ -111,10 +114,10 @@ comparison measured **17.975 textured vs 22.129 flat card FPS (+23.1%)**, with
 full audits and 128 paired PIO frames. See
 [measurements and images](../../../../artifacts/current/accele160-flat-20261018/README.md).
 
-The optional installed wrapper is `i960-doom-flat`. After the acceptance reset:
+The default installed wrapper is `i960-doom-flat`. After the acceptance reset:
 
 ```sh
-I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-flat ./doom
+./doom
 ```
 
 Open `http://192.168.2.75:8087/`. F6 is debounced, and pressing it again returns

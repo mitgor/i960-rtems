@@ -12,15 +12,15 @@ pinned bundle and run the privileged launcher. Launching does not flash firmware
 | `/home/mit/.local/bin/i960-doom-reusable` | Reusable session, textured planes | Automatic STOP/Quit/reload passed; final flash audits passed |
 | `/home/mit/.local/bin/i960-doom` | Legacy, one game per hardware session | Requires the old card present and unbound; unsuitable while it is physically removed |
 
-`./doom` defaults to the **legacy** wrapper. Select the flat-enabled version
-explicitly for the current single-card setup:
+`./doom` defaults to the **flat-enabled reusable** wrapper. Each fresh game
+starts textured; press **F6** to toggle flat floors and ceilings. No environment
+override is needed for the current single-card setup:
 
 ```sh
-export I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-flat
 ./doom
 ```
 
-Or select the textured reusable version:
+To explicitly select the older textured-only reusable version:
 
 ```sh
 export I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-reusable
@@ -33,13 +33,16 @@ For a one-command selection without changing the shell environment:
 I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-flat ./doom
 ```
 
+An existing `I960_DOOM_LAUNCHER` environment override still takes precedence.
+Use `unset I960_DOOM_LAUNCHER` to return to the new default.
+
 All variants share `i960-doom.service` and one exclusive card lock. Choose the
 bundle before starting a fresh hardware session. Calling another wrapper while
 the service owns the card does **not** replace its running engine or kernel.
 
 ## Start, stop and restart
 
-These commands assume one of the reusable wrappers is selected above:
+These commands work with the default flat-enabled reusable wrapper:
 
 ```sh
 ./doom                  # Start service, or restart the game from live idle
@@ -58,7 +61,8 @@ WAD loading repeats, so restarting is not instantaneous. SSH can disconnect
 after `start` returns.
 
 Automatic card rearms passed. Positive browser/CLI idle restart, extended idle
-and host-loss qualification remain open; the reusable launchers are optional.
+and host-loss qualification remain open. The flat-enabled reusable wrapper is
+now the Mac default by user request; those qualification gaps remain unchanged.
 The legacy launcher has no reusable idle path: its `stop` ends the hardware
 session and its installed parser does not support `shutdown` or newer benchmark
 options.

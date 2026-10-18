@@ -6,6 +6,6 @@ import subprocess
 import sys
 
 host=os.environ.get('I960_HOST','mit@192.168.2.75')
-launcher=os.environ.get('I960_DOOM_LAUNCHER','/home/mit/.local/bin/i960-doom')
+launcher=os.environ.get('I960_DOOM_LAUNCHER','/home/mit/.local/bin/i960-doom-flat')
 raise SystemExit(subprocess.call(['ssh','-o','BatchMode=yes',host,
                                   shlex.join([launcher,*sys.argv[1:]])]))
