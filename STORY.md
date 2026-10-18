@@ -6019,3 +6019,17 @@ ready. Those changes passed native tests. The complete first card run was
 saved before resetting the PC; SSH then refused connections. The corrected
 host still needs its physical follow-up and the reset still needs its final
 firmware checks. The evidence stops there until the machine returns.
+
+The machine returned on a fresh boot. Both complete firmware reads matched,
+closing the first run's reset check. We installed the corrected host around the
+same kernel and asked questions while Doom loaded, drew sixty-four frames and
+returned to idle. The oversized line now ended with a readable error and a clean
+EOF. Abandoned connections and eight slow clients did not take the owner down.
+The replies still slowed during heavier work; a diagnostic console had not
+magically changed the scheduler.
+
+This time we left RTEMS awake. From the Mac, `./rtems-console` reaches the worker
+on the card through SSH. `apps` reports the stopped game and its sixty-four
+frames; `uptime` keeps advancing. Quitting the prompt only disconnects the
+terminal. The captured follow-up is an audited live idle session, while its
+future global shutdown and reset remain a separate event.

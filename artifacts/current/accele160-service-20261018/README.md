@@ -47,7 +47,9 @@ It contains exact kernel/engine/host source and binaries, matching baseline
 build, modules/firmware, bundle identities, both pre-run flash reads, full
 captures, the console journal and host logs. Freedoom bytes are referenced
 from the existing `artifacts/doom-m1-20261011/freedoom-0.13.0.zip` instead of
-being duplicated. Nothing in the archive is a substitute for pending reset checks.
+being duplicated. The separate `post-0`/`post-1` records now close its reset checks: both
+guarded 1 MiB reads match the firmware above on fresh boot
+`97e816ae-5c7f-467e-a59a-4235ef11c519`, with zero status, residual and guard changes.
 
 ## Host issues found and correction
 
@@ -71,11 +73,12 @@ rearm, keyboard producer and 32-bit DMA policy tests also passed on Linux.
 
 ## Status and limits
 
-At this checkpoint the first physical kernel test and replay passed; the host
-corrections still require their follow-up physical test. The PC refused SSH
-after the acceptance reset. Post-reset flash checks and installation of the
-corrected live prompt are pending recovery. Do not advertise the prompt as
-currently available on the basis of the first archive alone.
+P1/P2 diagnostic service acceptance is complete. The fresh-boot follow-up passed
+with the corrected host and byte-identical kernel. The isolated service is left
+running in audited reusable idle; run `./rtems-console` from the Mac repository.
+The ordinary Doom/CHIP-8 installed bundles were not promoted. The first run's
+global STOP and paired post-reset checks are closed; the live follow-up's eventual
+global shutdown/reset remain separate, and retained resources must stay owned.
 
 This is a read-only diagnostic interpreter, not Bash, the full RTEMS shell,
 networking, arbitrary task control, an independent watchdog or measured maximum
@@ -89,30 +92,52 @@ Replay:
 python3 artifacts/current/accele160-service-20261018/verify.py
 ```
 
-## Resume after recovery
+## Completed recovery and corrected-host follow-up
 
-1. Verify a fresh boot and no existing driver session/daemon owner. The isolated
-   remote workspace is `/home/mit/i960-service-20261018`; `acceptance-1.tar.xz`
-   preserves the original first-run bundle even after its working copy changes.
-2. Overlay the corrected repository `service/` files and `doom_dma/run_bridge.py`
-   onto that bundle's project. The card kernel remains byte-identical to the
-   SHA above. Regenerate `persistent-manifest.json` with `write_manifest.py`,
-   then regenerate the explicit bundle file hashes. Do not silently modify an
-   installed ordinary Doom or CHIP-8 bundle.
-3. Use the existing launcher with this bundle, `--max-frames 64`,
-   `--restart-cycles 0`, `--paired-frames 32`, `--capture-all`, and port 8087.
-   Its two fresh guarded READIMAGE prechecks also provide the pending post-reset
-   pair for the first run; copy those to this ledger's `post-0`/`post-1`.
-4. Run `service/accept_client.py` over SSH through loading/rendering and idle,
-   preserving all replies/errors. Verify oversized-line error/EOF, disconnects,
-   slow clients, actual older-sequence rejection and renewed prompt access.
-   Exercise another game through the existing owner if needed. Record revised
-   latency rather than assuming page-group pumping removes target-side waits.
-5. Archive and replay that follow-up separately. Leave the corrected prompt
-   available in audited reusable idle if all gates pass; document that this
-   still-running session's eventual global shutdown/post-reset pair is separate.
-   If it fails, retain resources and evidence rather than adopting or unloading
-   the uncertain owner. Update all pending status notes only from new evidence.
+Fresh boot `97e816ae-5c7f-467e-a59a-4235ef11c519` had no active service or
+retained DMA/admission driver. The corrected sources were overlaid only into
+`/home/mit/i960-service-20261018/bundle`, with manifest and bundle identities
+regenerated. No kernel rebuild or firmware write was needed. The original
+`acceptance-1.tar.xz` remains unchanged.
+
+Session `20261018T191527Z` used port 8087, 64 frames, 32 paired PIO frames,
+full captures, and unlimited reusable idle (`--restart-cycles 0`). Its two
+prechecks also supply `post-0`/`post-1` for the earlier acceptance run.
+
+The 160-second external client test completed 809 exchanges with no client
+errors. It covered all seven commands, unknown and oversized lines, abandoned
+partial/full requests, eight slow clients, expiry and reconnects, through
+loading, rendering and idle. The exact 130-byte oversized wire input returned
+`error: command too long` followed by clean EOF. Two full card protocol gates
+passed, including explicit older-sequence rejection. The journal contains 810
+card replies: the external test's valid requests, an abandoned complete request,
+and two additional manual diagnostic requests. Host-rejected commands do not
+become card requests.
+
+Independent replay validates all 64 guarded DMA frames, 32 paired PIO flags,
+5,045 WAD reads, native startup order, exact pixel/palette agreement with the
+first acceptance, and the per-game idle/heap/IRQ/DMA receipts. Host-observed
+reply latency was median **15.547 ms**, maximum **2,559.823 ms**, minimum
+0.687 ms. This workload includes the idle loop's polling cadence and startup
+work; it is not a controlled performance comparison or an interrupt bound.
+
+`followup.tar.xz` (SHA-256
+`fea950cf4c46938aae4ebee6969b7175df0eb86a85434ff334e535b0e9bc4d1e`)
+contains the corrected exact bundle, complete new session, external client
+results and service log. It omits the same already archived Freedoom WAD.
+All 237 included bundle file hashes verify. It is a snapshot of a still-running
+idle owner, not a global STOP receipt. `final-access.txt` separately records
+successful access through the repository wrapper after archiving, `apps` idle,
+advancing uptime availability, the active service and boot identity.
+
+```sh
+python3 artifacts/current/accele160-service-20261018/verify_followup.py
+./rtems-console
+```
+
+Leave the single owner and retained modules intact. After a future shutdown or
+reset, use the documented isolated launcher and its full readback/admission
+gates; the console client never starts or adopts a hardware session itself.
 
 ## Repository inventory check
 

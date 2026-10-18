@@ -5,12 +5,14 @@ add an opt-in read-only command service (`help`, `version`, `uptime`, `tasks`,
 `mem`, `apps`, `stats`) through the sole Linux owner. Two 64-frame Doom games,
 rearm, three card protocol gates, all frame/WAD/ownership checks and global
 STOP passed. Replay validates 172 replies, all 128 frames and 10,090 WAD reads.
-A host oversized-line close issue is corrected/native-tested; revised host
-pumping and deferred endpoint publication still need a card follow-up. The PC
-refuses SSH after the acceptance reboot, so post-reset reads and live prompt
-restoration are pending recovery. The kernel adds no task/IRQ/DMA owner or RAM
-grant. Median reply latency was 3.3 ms, worst 4.73 s during reload/audits;
-this is not an IRQ-gap or hard-real-time claim.
+The corrected host passed its physical follow-up through loading, 64 frames,
+and audited idle: oversized input returns clean error/EOF, and abandoned/slow
+clients do not stop the owner. Both post-reset guarded firmware reads match.
+The isolated service is left running; use `./rtems-console` from this repository.
+The kernel adds no task/IRQ/DMA owner or RAM grant. Response latency remains
+workload-dependent; this is not an IRQ-gap or hard-real-time claim. See the
+ledger for exact counts and latency, and the distinction between the closed
+first run and the live follow-up session.
 
 ## Cached Doom presentation copy — 2026-10-18
 

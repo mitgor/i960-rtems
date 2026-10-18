@@ -1,0 +1,20 @@
+{
+  "bundle_files_verified": 237,
+  "kernel_sha256": "e19f3e9435e971a663591ad27e92e9a4ad886fb289307dda2f5c4f94ba675635",
+  "frames": 64,
+  "paired_pio_frames": 32,
+  "wad_reads_replayed": 5045,
+  "idle_verified": true,
+  "console_replies": 810,
+  "console_selftest_gates": 2,
+  "external_exchanges": 809,
+  "external_errors": 0,
+  "oversized_line_clean_eof": true,
+  "console_latency_ms": {
+    "min": 0.6871849999470214,
+    "median": 15.547364999974889,
+    "max": 2559.8232080000116
+  },
+  "global_stop": false,
+  "session_left_running": true
+}

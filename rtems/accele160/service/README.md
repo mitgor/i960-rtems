@@ -3,7 +3,9 @@
 This opt-in candidate extends the existing persistent/reusable Doom kernel.
 Physical acceptance status and exact binaries belong in
 [the dated evidence ledger](../../../artifacts/current/accele160-service-20261018/README.md).
-Do not infer that the currently installed Doom/CHIP-8 bundle contains this code.
+The corrected isolated service passed its physical follow-up and was left in
+audited idle on 2026-10-18. Use the access command below while that owner is
+running. The ordinary installed Doom/CHIP-8 bundles do not contain this code.
 
 ## Access
 

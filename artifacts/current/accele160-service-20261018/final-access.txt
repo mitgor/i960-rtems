@@ -1,0 +1,11 @@
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+AcceleRAID RTEMS diagnostic prompt (help; quit disconnects)
+rtems> RTEMS 4.6.6 / AcceleRAID160 / SVC1
+rtems> run=1
+running=0
+idle=1
+frames=64
+rtems> ticks=21763
+tick_ms=10
+rtems> active
+97e816ae-5c7f-467e-a59a-4235ef11c519

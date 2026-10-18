@@ -1562,9 +1562,10 @@ See [service source/runbook](accele160/service/README.md) and
 [exact evidence](../artifacts/current/accele160-service-20261018/README.md).
 The kernel passed two 64-frame Doom games, idle/rearm, all frame/WAD audits,
 three console protocol gates and global STOP. 172 host replies were captured.
-The first host oversized-line close bug is fixed and native-tested; corrected
-host pumping/socket publication still needs its follow-up physical run.
-The acceptance reset currently refuses SSH; post-reset reads/live installation
-are pending physical recovery. Do not claim the prompt is currently reachable,
-change the installed Doom wrapper, or adopt retained mappings. `./rtems-console`
-connects only to an already running service-enabled owner. No firmware write.
+The corrected host passed its fresh-boot physical follow-up: startup, 64 frames,
+audited idle, clean oversized-line error/EOF, abandoned and slow clients, and
+renewed command access. Both post-reset firmware reads match. The isolated owner
+is left running; `./rtems-console` connects to it. Preserve its retained mappings;
+do not change the installed Doom wrapper or adopt the owner. The live follow-up
+has not performed global STOP/reset; the first archived kernel run did. Exact
+counts and latency are in the evidence ledger. No firmware write.

@@ -2974,13 +2974,13 @@
     },
     {
       "path": "artifacts/current/accele160-service-20261018/README.md",
-      "size": 7161,
-      "sha256": "031bbdf43bd5131318455f7c438a824f8177005fc5083ff800fce7e0b601452f"
+      "size": 8321,
+      "sha256": "927f15be965c3ac05a7a1482c021fdd31e3c152ebb2b1fd035881374adebcf60"
     },
     {
       "path": "artifacts/current/accele160-service-20261018/SHA256SUMS",
-      "size": 494,
-      "sha256": "bd64e542ed07ef72364149429fe835399632bbf57b07f23bfe8c8463322ea426"
+      "size": 1505,
+      "sha256": "ecb65ae502f1fa8dd1fcb9278fb4b51a4ab73a72c7002c01944a477ec29bda43"
     },
     {
       "path": "artifacts/current/accele160-service-20261018/acceptance-1.tar.xz",
@@ -2999,13 +2999,73 @@
     },
     {
       "path": "artifacts/current/accele160-service-20261018/replay.json",
-      "size": 587,
-      "sha256": "559bbc85cc8b9d6bd4f3062ade2398637d5cda513c78a64e1d905fd4bfac265c"
+      "size": 650,
+      "sha256": "2e09856e5f01ba4ba2332d49ae8cd7d711e3078cd6841dadd10e645c852eacd3"
     },
     {
       "path": "artifacts/current/accele160-service-20261018/verify.py",
       "size": 6729,
       "sha256": "3f900e983b4eb5579774fa9ea86ace77b2de59fc47dcdede838496f09128b66a"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/final-access.txt",
+      "size": 294,
+      "sha256": "9e4be4cb440351d47ba6546d72af9f110dc92ccf5935d7b11fec198682e1a124"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/followup-replay.json",
+      "size": 548,
+      "sha256": "6699a5d25f28374d485231491654014646187fb8f3c2391b2797c484e99aaf2b"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/followup.tar.xz",
+      "size": 2226616,
+      "sha256": "fea950cf4c46938aae4ebee6969b7175df0eb86a85434ff334e535b0e9bc4d1e"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/post-0/data.bin",
+      "size": 1048576,
+      "sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/post-0/request.json",
+      "size": 341,
+      "sha256": "96332369aa95580e70cbe3ae38f003b2fce1d5babf8a827010f179d26d0638c3"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/post-0/result.json",
+      "size": 435,
+      "sha256": "4de72ad3a7aac63d447190afacdb6d796344ee33c9643eae7d41f73a6c017ea9"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/post-0/status.txt",
+      "size": 80,
+      "sha256": "bd0a5f982a9dd36c383aaabee6b6dee63bfbef6e54d475bcb6f4b596ae8c5b83"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/post-1/data.bin",
+      "size": 1048576,
+      "sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/post-1/request.json",
+      "size": 341,
+      "sha256": "96332369aa95580e70cbe3ae38f003b2fce1d5babf8a827010f179d26d0638c3"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/post-1/result.json",
+      "size": 436,
+      "sha256": "b1b5d3fd91ac53a4cdaae0bdb5da0fc488808b37cd018ab995f8640e82849697"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/post-1/status.txt",
+      "size": 80,
+      "sha256": "bd0a5f982a9dd36c383aaabee6b6dee63bfbef6e54d475bcb6f4b596ae8c5b83"
+    },
+    {
+      "path": "artifacts/current/accele160-service-20261018/verify_followup.py",
+      "size": 3696,
+      "sha256": "6200fca4dcfc0b514639746d8e33d449edc2352fca2c57cb0c00b428392e3716"
     },
     {
       "path": "artifacts/current/accele160-startup-20261016/README.md",

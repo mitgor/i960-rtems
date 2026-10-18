@@ -8,10 +8,12 @@ not a new physical acceptance claim. No hardware was accessed for this review.
 [The service batch](../../artifacts/current/accele160-service-20261018/README.md)
 now contains an opt-in kernel and host prompt. Two 64-frame games, rearm,
 card protocol tests and global STOP passed; the accepted kernel and complete
-captures are archived. A host socket correction passed native tests but still
-needs its physical follow-up. Post-reset firmware checks and leaving the
-corrected service running are pending PC recovery. This is partial P1/P2
-closure, not promotion of the default installed bundle.
+captures are archived. The corrected host then passed a fresh-boot physical
+follow-up through startup, 64 frames and audited idle, with clean oversized-line
+EOF and bounded abandoned/slow clients. The first run's post-reset firmware pair
+matches. P1/P2 diagnostic service acceptance is complete; the isolated corrected
+owner is left running for `./rtems-console`. Its eventual global shutdown/reset
+is separate. The default installed Doom/CHIP-8 bundle is not promoted.
 
 ## Goal and current evidence
 

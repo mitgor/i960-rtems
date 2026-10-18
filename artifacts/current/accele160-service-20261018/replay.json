@@ -14,6 +14,7 @@
     "max": 4728.131618999982
   },
   "final_global_stop": true,
-  "post_reset_flash_pair": false,
-  "host_oversize_close_issue_fixed_in_followup": true
+  "post_reset_flash_pair": true,
+  "host_oversize_close_issue_fixed_in_followup": true,
+  "post_reset_boot_id": "97e816ae-5c7f-467e-a59a-4235ef11c519"
 }
