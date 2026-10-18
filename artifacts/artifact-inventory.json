@@ -4908,11 +4908,6 @@
       "sha256": "9f511bcb3031adfb8f87b6baf53be19c978fe3cd867946d874f8536b86de292e"
     },
     {
-      "path": "artifacts/one-shot-harness-20261010/captures.tar",
-      "size": 3481600,
-      "sha256": "5607554358c54fc03292315491991ee45b87ca44a6b72abadd6816032048ab62"
-    },
-    {
       "path": "artifacts/one-shot-harness-20261010/captures/board-5a.bin",
       "size": 512,
       "sha256": "430b497e3a2145c057c8dbea57fc1b412ca43bcded27b35f6d374c2d71df577f"
@@ -5216,6 +5211,11 @@
       "path": "artifacts/one-shot-harness-20261010/captures/upload-test.bin",
       "size": 16,
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+    },
+    {
+      "path": "artifacts/one-shot-harness-20261010/captures.tar",
+      "size": 3481600,
+      "sha256": "5607554358c54fc03292315491991ee45b87ca44a6b72abadd6816032048ab62"
     },
     {
       "path": "artifacts/one-shot-harness-20261010/dmesg-after.txt",
@@ -5953,56 +5953,6 @@
       "sha256": "8143d2bf273e7204caa2d7270cef1cbc8ec5339d29beb0e6985e8c92bcf5142e"
     },
     {
-      "path": "artifacts/programmed-rom-20261010/postboot-build/Makefile",
-      "size": 540,
-      "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/postboot-build/dac960dump.c",
-      "size": 31308,
-      "sha256": "f5a6d0f6da03c07f75720b4f4db69e976c95f4dddaadf634d468407083c9d8bf"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/postboot-build/dac960dump.ko",
-      "size": 555456,
-      "sha256": "400469594193e69104d73c64e4fe91b4f53e082e908d827ed98948fb48b40185"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/postboot-build/ram_scratch.h",
-      "size": 1134,
-      "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/postboot-build/rom_exec.h",
-      "size": 1935,
-      "sha256": "234a54a4846155634a6f114282c3e2dea16efe258a4172bb46b1eb1461547442"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/postboot-build/stage_data.h",
-      "size": 1791,
-      "sha256": "4373b5db276ad221c42fcda4f07d552a87e4182e32a5cb2c4f5f20f46b946214"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/postboot-build/stage_rehearsal.h",
-      "size": 2899,
-      "sha256": "3940d8edd4c3d1181231147deeea94a67b8cfe4762fcdee2d03876d28ef3f5cd"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/postboot-build/staging_pointer.h",
-      "size": 1829,
-      "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/postboot-state.txt",
-      "size": 295,
-      "sha256": "0aa87548de7867cb0eeac114bcac1ad4995e9e9d9a298e9866bdab389b6c092b"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/postboot.tar",
-      "size": 3338240,
-      "sha256": "d7273f853e5a9e2b39700d6ab33f325a707ce5e97c4027a89eff21e29f6b24d4"
-    },
-    {
       "path": "artifacts/programmed-rom-20261010/postboot/captures/board-5a.bin",
       "size": 512,
       "sha256": "430b497e3a2145c057c8dbea57fc1b412ca43bcded27b35f6d374c2d71df577f"
@@ -6313,6 +6263,56 @@
       "sha256": "7bd192383b6fc1ee1eab937cf63099a429cebef7432313584b8cb6be5360131c"
     },
     {
+      "path": "artifacts/programmed-rom-20261010/postboot-build/Makefile",
+      "size": 540,
+      "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/postboot-build/dac960dump.c",
+      "size": 31308,
+      "sha256": "f5a6d0f6da03c07f75720b4f4db69e976c95f4dddaadf634d468407083c9d8bf"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/postboot-build/dac960dump.ko",
+      "size": 555456,
+      "sha256": "400469594193e69104d73c64e4fe91b4f53e082e908d827ed98948fb48b40185"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/postboot-build/ram_scratch.h",
+      "size": 1134,
+      "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/postboot-build/rom_exec.h",
+      "size": 1935,
+      "sha256": "234a54a4846155634a6f114282c3e2dea16efe258a4172bb46b1eb1461547442"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/postboot-build/stage_data.h",
+      "size": 1791,
+      "sha256": "4373b5db276ad221c42fcda4f07d552a87e4182e32a5cb2c4f5f20f46b946214"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/postboot-build/stage_rehearsal.h",
+      "size": 2899,
+      "sha256": "3940d8edd4c3d1181231147deeea94a67b8cfe4762fcdee2d03876d28ef3f5cd"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/postboot-build/staging_pointer.h",
+      "size": 1829,
+      "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/postboot-state.txt",
+      "size": 295,
+      "sha256": "0aa87548de7867cb0eeac114bcac1ad4995e9e9d9a298e9866bdab389b6c092b"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/postboot.tar",
+      "size": 3338240,
+      "sha256": "d7273f853e5a9e2b39700d6ab33f325a707ce5e97c4027a89eff21e29f6b24d4"
+    },
+    {
       "path": "artifacts/programmed-rom-20261010/postboot_stage.h",
       "size": 2899,
       "sha256": "3940d8edd4c3d1181231147deeea94a67b8cfe4762fcdee2d03876d28ef3f5cd"
@@ -6321,16 +6321,6 @@
       "path": "artifacts/programmed-rom-20261010/pre-program-state.txt",
       "size": 331,
       "sha256": "4fcafc57a0c3aa7f41dbce6ba64368cc01724d47192b24a3204df3db06f5e484"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/programming-validation.json",
-      "size": 202,
-      "sha256": "64035c7376999a20b88b646ab109f8a8637ad41b700444ebc1149053faac3dc9"
-    },
-    {
-      "path": "artifacts/programmed-rom-20261010/programming.tar",
-      "size": 3502080,
-      "sha256": "df9e8e0330942b664c4454f2e8a1f8a93ca4743f3c5a08bcc21a2b38ed4c788a"
     },
     {
       "path": "artifacts/programmed-rom-20261010/programming/captures/board-5a.bin",
@@ -6648,6 +6638,16 @@
       "sha256": "af52d4d511b25a07c56b39da35014fa257f80dd4972c81b19b7c11073f65a470"
     },
     {
+      "path": "artifacts/programmed-rom-20261010/programming-validation.json",
+      "size": 202,
+      "sha256": "64035c7376999a20b88b646ab109f8a8637ad41b700444ebc1149053faac3dc9"
+    },
+    {
+      "path": "artifacts/programmed-rom-20261010/programming.tar",
+      "size": 3502080,
+      "sha256": "df9e8e0330942b664c4454f2e8a1f8a93ca4743f3c5a08bcc21a2b38ed4c788a"
+    },
+    {
       "path": "artifacts/programmed-rom-20261010/tests.txt",
       "size": 944,
       "sha256": "3768bb2cb23e1deb5b581108bc7250f8491e5462dac3116ebb1228547112e01c"
@@ -6741,11 +6741,6 @@
       "path": "artifacts/programming-preflight-20261010/build/validate_live.py",
       "size": 3271,
       "sha256": "6d341e18e2397c439bc6e00bb704dc50a01964ccb1eee1a707af10f31d1632d5"
-    },
-    {
-      "path": "artifacts/programming-preflight-20261010/captures.tar",
-      "size": 3450880,
-      "sha256": "2c2b961457e0a70b5e2f568e6b8091cbfcfc3382918e773c157261f19f89631b"
     },
     {
       "path": "artifacts/programming-preflight-20261010/captures/board-5a.bin",
@@ -7051,6 +7046,11 @@
       "path": "artifacts/programming-preflight-20261010/captures/upload-test.bin",
       "size": 16,
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+    },
+    {
+      "path": "artifacts/programming-preflight-20261010/captures.tar",
+      "size": 3450880,
+      "sha256": "2c2b961457e0a70b5e2f568e6b8091cbfcfc3382918e773c157261f19f89631b"
     },
     {
       "path": "artifacts/programming-preflight-20261010/dmesg-after.txt",
@@ -7373,56 +7373,6 @@
       "sha256": "38d20c44e0bec9b1f6cbc59847062dc0b2946d415e6c630d0a8afb0dd079a8d1"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/Makefile",
-      "size": 540,
-      "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/dac960dump.c",
-      "size": 27004,
-      "sha256": "8ac2d9948f7539d6f96f63a35f46c233658248f500a2abddc6973c01001c1325"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/dac960dump.ko",
-      "size": 509816,
-      "sha256": "16e5c7c0e1b0b5730e7c8284caa25e473776a196f53668da5db3eb482b3a9941"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/link.ld",
-      "size": 274,
-      "sha256": "7c3cfcdcc0030914a7ebdb6771960048006cd6988400b71ae6272d6d00a6e60e"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/ram_scratch.h",
-      "size": 1134,
-      "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/rom_exec.h",
-      "size": 1884,
-      "sha256": "6232600c7e4eb9f316b358cf35f968881cb94f835ce050ad6da9ee72375d8454"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/romfetch.bin",
-      "size": 44,
-      "sha256": "51f0efa1a470a92c7bb4e6fabd1a13001306bc0e0f0b3624eadec0204231c833"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/romfetch.dis",
-      "size": 521,
-      "sha256": "fc1cb895b7ce0964d1668b03792f4ead2b08ba2716d5826eae847eb40f063b03"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/staging_pointer.h",
-      "size": 1829,
-      "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt1-build/start.s",
-      "size": 762,
-      "sha256": "60f558bfa46810fe3795a71de619d9a458595c13468d0a19bef5defbbf97719f"
-    },
-    {
       "path": "artifacts/romfetch-live-20261010/attempt1/board-5a.bin",
       "size": 512,
       "sha256": "f5bacb648f7f7a61f1828ec12cff8748537ae4139f2988f328bf47540288cb26"
@@ -7688,6 +7638,71 @@
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
     },
     {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/Makefile",
+      "size": 540,
+      "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/dac960dump.c",
+      "size": 27004,
+      "sha256": "8ac2d9948f7539d6f96f63a35f46c233658248f500a2abddc6973c01001c1325"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/dac960dump.ko",
+      "size": 509816,
+      "sha256": "16e5c7c0e1b0b5730e7c8284caa25e473776a196f53668da5db3eb482b3a9941"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/link.ld",
+      "size": 274,
+      "sha256": "7c3cfcdcc0030914a7ebdb6771960048006cd6988400b71ae6272d6d00a6e60e"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/ram_scratch.h",
+      "size": 1134,
+      "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/rom_exec.h",
+      "size": 1884,
+      "sha256": "6232600c7e4eb9f316b358cf35f968881cb94f835ce050ad6da9ee72375d8454"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/romfetch.bin",
+      "size": 44,
+      "sha256": "51f0efa1a470a92c7bb4e6fabd1a13001306bc0e0f0b3624eadec0204231c833"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/romfetch.dis",
+      "size": 521,
+      "sha256": "fc1cb895b7ce0964d1668b03792f4ead2b08ba2716d5826eae847eb40f063b03"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/staging_pointer.h",
+      "size": 1829,
+      "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt1-build/start.s",
+      "size": 762,
+      "sha256": "60f558bfa46810fe3795a71de619d9a458595c13468d0a19bef5defbbf97719f"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt2/i960-romexec2-attempt2.tar",
+      "size": 30720,
+      "sha256": "1a9c3b27f866637e6f015175b6e34d47661372d87b691456f2ec076d36b1550a"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt2/i960-romexec2-dmesg.txt",
+      "size": 15082,
+      "sha256": "bdb105b1d26212bdd1dbde03cce7e942a5da2b471995ccde529e2a2638a4bb9d"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt2/result-from-dmesg.txt",
+      "size": 7663,
+      "sha256": "b989652f51ed6ed5e3345d34d51e254bb882b7d182f1a09d7d6938c71244d4c2"
+    },
+    {
       "path": "artifacts/romfetch-live-20261010/attempt2-build/Makefile",
       "size": 586,
       "sha256": "76e48ad0b02b07e8b8eabbbcb90ce99c6aa4106197852ef4b7f555fe67800613"
@@ -7746,81 +7761,6 @@
       "path": "artifacts/romfetch-live-20261010/attempt2-build/start.s",
       "size": 841,
       "sha256": "7451f797c353901f3d558b9dfd90c862b677d563f4d17a92e513afd29f74ba11"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt2/i960-romexec2-attempt2.tar",
-      "size": 30720,
-      "sha256": "1a9c3b27f866637e6f015175b6e34d47661372d87b691456f2ec076d36b1550a"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt2/i960-romexec2-dmesg.txt",
-      "size": 15082,
-      "sha256": "bdb105b1d26212bdd1dbde03cce7e942a5da2b471995ccde529e2a2638a4bb9d"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt2/result-from-dmesg.txt",
-      "size": 7663,
-      "sha256": "b989652f51ed6ed5e3345d34d51e254bb882b7d182f1a09d7d6938c71244d4c2"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/Makefile",
-      "size": 864,
-      "sha256": "03b27cb4be581a1e4ef96665193ba98cbd333abbf2125d35d4f95ba43fd8b98a"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/dac960dump.c",
-      "size": 27828,
-      "sha256": "7f06da1cf62dd5d590cd04a357f91e5a6866b2f0a9eab7e27cc78cdf7f759001"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/dac960dump.ko",
-      "size": 511336,
-      "sha256": "ef969e5297d772ccdd8590a0794026db7fcbc42b6f192d5312d2f0f755d1317c"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/icctl-control.bin",
-      "size": 28,
-      "sha256": "9809bdd45fcafca81eda59e16e65df231f207c7f47b7d0f0759123f54166eaa1"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/icctl_control.s",
-      "size": 391,
-      "sha256": "86b3bb81f5d44642898d9c128bae78dd2454d283c414a49720a8f9fa29502937"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/link.ld",
-      "size": 274,
-      "sha256": "7c3cfcdcc0030914a7ebdb6771960048006cd6988400b71ae6272d6d00a6e60e"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/ram-link.ld",
-      "size": 295,
-      "sha256": "40f9c2a4fabf269814ced4b6d91093ea5424cf0b49e1eb57f2efb95073a27268"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/ram-status.bin",
-      "size": 24,
-      "sha256": "650e1e746262451761e926561c0019f7e6fe9cc95f30ed843ea7ceef9a4d9dea"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/ram_scratch.h",
-      "size": 1134,
-      "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/ram_status.s",
-      "size": 270,
-      "sha256": "81225565d8c5f20862f452113e77075ca82ec0d80ef758feee3f5261c5f22638"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/rom_exec.h",
-      "size": 1893,
-      "sha256": "b047dc22a12d6681f3dc26a9f49f2ae4c5e89b889b0a8fb5616771db3966ee82"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt3-build/staging_pointer.h",
-      "size": 1829,
-      "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
     },
     {
       "path": "artifacts/romfetch-live-20261010/attempt3/board-5a.bin",
@@ -8103,62 +8043,62 @@
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/Makefile",
-      "size": 1172,
-      "sha256": "cab386c1a5a452e8f6672117f913fad1b183466853261bc72c1ae8fbb0e05042"
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/Makefile",
+      "size": 864,
+      "sha256": "03b27cb4be581a1e4ef96665193ba98cbd333abbf2125d35d4f95ba43fd8b98a"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/dac960dump.c",
-      "size": 27814,
-      "sha256": "854b67332da5be0da75606338f8a0f703acf022ebfec1f088cfd62da39dceb5e"
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/dac960dump.c",
+      "size": 27828,
+      "sha256": "7f06da1cf62dd5d590cd04a357f91e5a6866b2f0a9eab7e27cc78cdf7f759001"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/dac960dump.ko",
-      "size": 511392,
-      "sha256": "faef4af9641b1a188fd5cd1804a84f22388eebdb0c8188c4abba3bd87a4d757b"
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/dac960dump.ko",
+      "size": 511336,
+      "sha256": "ef969e5297d772ccdd8590a0794026db7fcbc42b6f192d5312d2f0f755d1317c"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/link.ld",
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/icctl-control.bin",
+      "size": 28,
+      "sha256": "9809bdd45fcafca81eda59e16e65df231f207c7f47b7d0f0759123f54166eaa1"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/icctl_control.s",
+      "size": 391,
+      "sha256": "86b3bb81f5d44642898d9c128bae78dd2454d283c414a49720a8f9fa29502937"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/link.ld",
       "size": 274,
       "sha256": "7c3cfcdcc0030914a7ebdb6771960048006cd6988400b71ae6272d6d00a6e60e"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram-call-control.bin",
-      "size": 40,
-      "sha256": "b22f28b1c0a06527a0a0d60e85a91ecdbdd0a9bc93f796fd573b9e74844b749f"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram-link.ld",
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/ram-link.ld",
       "size": 295,
       "sha256": "40f9c2a4fabf269814ced4b6d91093ea5424cf0b49e1eb57f2efb95073a27268"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram-status.bin",
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/ram-status.bin",
       "size": 24,
       "sha256": "650e1e746262451761e926561c0019f7e6fe9cc95f30ed843ea7ceef9a4d9dea"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram_call_control.s",
-      "size": 266,
-      "sha256": "f3dd7b825a51e495cdcf2b2d95a9aa78a3561778bc288ffa03573a72c47b3af8"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram_scratch.h",
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/ram_scratch.h",
       "size": 1134,
       "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram_status.s",
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/ram_status.s",
       "size": 270,
       "sha256": "81225565d8c5f20862f452113e77075ca82ec0d80ef758feee3f5261c5f22638"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/rom_exec.h",
-      "size": 1949,
-      "sha256": "66dc7fff950b41713e50f88b9a0dd462db4a826091acb865ecb7f06cf6ce0f72"
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/rom_exec.h",
+      "size": 1893,
+      "sha256": "b047dc22a12d6681f3dc26a9f49f2ae4c5e89b889b0a8fb5616771db3966ee82"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt4-build/staging_pointer.h",
+      "path": "artifacts/romfetch-live-20261010/attempt3-build/staging_pointer.h",
       "size": 1829,
       "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
     },
@@ -8443,62 +8383,62 @@
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/Makefile",
-      "size": 1470,
-      "sha256": "aaaae51b7bc4cb3df35d107505e0d002065d8f316c81d0f5a1b08f57bffe0db4"
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/Makefile",
+      "size": 1172,
+      "sha256": "cab386c1a5a452e8f6672117f913fad1b183466853261bc72c1ae8fbb0e05042"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/dac960dump.c",
-      "size": 29501,
-      "sha256": "bfd7d2ef2205876399dfc3cf83a98b5befbec2c563ba6864b46c8c3d3b096a58"
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/dac960dump.c",
+      "size": 27814,
+      "sha256": "854b67332da5be0da75606338f8a0f703acf022ebfec1f088cfd62da39dceb5e"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/dac960dump.ko",
-      "size": 524328,
-      "sha256": "ee6ea7de9d8e3770096fe5d12566e3db8e3f52f66056f4b3dc351360c6f90079"
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/dac960dump.ko",
+      "size": 511392,
+      "sha256": "faef4af9641b1a188fd5cd1804a84f22388eebdb0c8188c4abba3bd87a4d757b"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/flash-ret-probe.bin",
-      "size": 36,
-      "sha256": "88d2bd6d35a5c034405b8a0ab31b15a2d14c1b6452cb85bb4f0b4cb5ae03f516"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/flash_ret_probe.s",
-      "size": 437,
-      "sha256": "c9fa417ed11b8ece43e34ac9b11ad5595b38cce93d23d51e025ca4f0758712e7"
-    },
-    {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/link.ld",
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/link.ld",
       "size": 274,
       "sha256": "7c3cfcdcc0030914a7ebdb6771960048006cd6988400b71ae6272d6d00a6e60e"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/ram-link.ld",
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram-call-control.bin",
+      "size": 40,
+      "sha256": "b22f28b1c0a06527a0a0d60e85a91ecdbdd0a9bc93f796fd573b9e74844b749f"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram-link.ld",
       "size": 295,
       "sha256": "40f9c2a4fabf269814ced4b6d91093ea5424cf0b49e1eb57f2efb95073a27268"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/ram-status.bin",
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram-status.bin",
       "size": 24,
       "sha256": "650e1e746262451761e926561c0019f7e6fe9cc95f30ed843ea7ceef9a4d9dea"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/ram_scratch.h",
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram_call_control.s",
+      "size": 266,
+      "sha256": "f3dd7b825a51e495cdcf2b2d95a9aa78a3561778bc288ffa03573a72c47b3af8"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram_scratch.h",
       "size": 1134,
       "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/ram_status.s",
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/ram_status.s",
       "size": 270,
       "sha256": "81225565d8c5f20862f452113e77075ca82ec0d80ef758feee3f5261c5f22638"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/rom_exec.h",
-      "size": 1935,
-      "sha256": "234a54a4846155634a6f114282c3e2dea16efe258a4172bb46b1eb1461547442"
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/rom_exec.h",
+      "size": 1949,
+      "sha256": "66dc7fff950b41713e50f88b9a0dd462db4a826091acb865ecb7f06cf6ce0f72"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/attempt5-build/staging_pointer.h",
+      "path": "artifacts/romfetch-live-20261010/attempt4-build/staging_pointer.h",
       "size": 1829,
       "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
     },
@@ -8783,32 +8723,62 @@
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map-build/Makefile",
-      "size": 540,
-      "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/Makefile",
+      "size": 1470,
+      "sha256": "aaaae51b7bc4cb3df35d107505e0d002065d8f316c81d0f5a1b08f57bffe0db4"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map-build/dac960dump.c",
-      "size": 29503,
-      "sha256": "61660a3b8d0700ff9dbcb2a26548b370feb66442e6015896fe6832d9e676978c"
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/dac960dump.c",
+      "size": 29501,
+      "sha256": "bfd7d2ef2205876399dfc3cf83a98b5befbec2c563ba6864b46c8c3d3b096a58"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map-build/dac960dump.ko",
-      "size": 521888,
-      "sha256": "cb00c4e7f2af207ace2bd9eb98f5fd5c41883d57511669c8f4328174766098e0"
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/dac960dump.ko",
+      "size": 524328,
+      "sha256": "ee6ea7de9d8e3770096fe5d12566e3db8e3f52f66056f4b3dc351360c6f90079"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map-build/ram_scratch.h",
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/flash-ret-probe.bin",
+      "size": 36,
+      "sha256": "88d2bd6d35a5c034405b8a0ab31b15a2d14c1b6452cb85bb4f0b4cb5ae03f516"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/flash_ret_probe.s",
+      "size": 437,
+      "sha256": "c9fa417ed11b8ece43e34ac9b11ad5595b38cce93d23d51e025ca4f0758712e7"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/link.ld",
+      "size": 274,
+      "sha256": "7c3cfcdcc0030914a7ebdb6771960048006cd6988400b71ae6272d6d00a6e60e"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/ram-link.ld",
+      "size": 295,
+      "sha256": "40f9c2a4fabf269814ced4b6d91093ea5424cf0b49e1eb57f2efb95073a27268"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/ram-status.bin",
+      "size": 24,
+      "sha256": "650e1e746262451761e926561c0019f7e6fe9cc95f30ed843ea7ceef9a4d9dea"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/ram_scratch.h",
       "size": 1134,
       "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map-build/rom_exec.h",
-      "size": 1949,
-      "sha256": "66dc7fff950b41713e50f88b9a0dd462db4a826091acb865ecb7f06cf6ce0f72"
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/ram_status.s",
+      "size": 270,
+      "sha256": "81225565d8c5f20862f452113e77075ca82ec0d80ef758feee3f5261c5f22638"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map-build/staging_pointer.h",
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/rom_exec.h",
+      "size": 1935,
+      "sha256": "234a54a4846155634a6f114282c3e2dea16efe258a4172bb46b1eb1461547442"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/attempt5-build/staging_pointer.h",
       "size": 1829,
       "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
     },
@@ -9093,32 +9063,32 @@
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map2-build/Makefile",
+      "path": "artifacts/romfetch-live-20261010/flash-map-build/Makefile",
       "size": 540,
       "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map2-build/dac960dump.c",
-      "size": 29398,
-      "sha256": "668a16d2bf2b1d2c5e0ff04a6e8a7dcba35d94d2da6febf3e3a2aa13660cbef9"
+      "path": "artifacts/romfetch-live-20261010/flash-map-build/dac960dump.c",
+      "size": 29503,
+      "sha256": "61660a3b8d0700ff9dbcb2a26548b370feb66442e6015896fe6832d9e676978c"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map2-build/dac960dump.ko",
-      "size": 522952,
-      "sha256": "a08445e219588ed24a92dfb52fd7564dcdc8975e8534d14158896a96bd03e231"
+      "path": "artifacts/romfetch-live-20261010/flash-map-build/dac960dump.ko",
+      "size": 521888,
+      "sha256": "cb00c4e7f2af207ace2bd9eb98f5fd5c41883d57511669c8f4328174766098e0"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map2-build/ram_scratch.h",
+      "path": "artifacts/romfetch-live-20261010/flash-map-build/ram_scratch.h",
       "size": 1134,
       "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map2-build/rom_exec.h",
+      "path": "artifacts/romfetch-live-20261010/flash-map-build/rom_exec.h",
       "size": 1949,
       "sha256": "66dc7fff950b41713e50f88b9a0dd462db4a826091acb865ecb7f06cf6ce0f72"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map2-build/staging_pointer.h",
+      "path": "artifacts/romfetch-live-20261010/flash-map-build/staging_pointer.h",
       "size": 1829,
       "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
     },
@@ -9403,32 +9373,32 @@
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map3-build/Makefile",
+      "path": "artifacts/romfetch-live-20261010/flash-map2-build/Makefile",
       "size": 540,
       "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map3-build/dac960dump.c",
-      "size": 29479,
-      "sha256": "c98147e68ef504559b2ab0cfb5d891a9d2f7d7310b963885b158bb7daa28a76c"
+      "path": "artifacts/romfetch-live-20261010/flash-map2-build/dac960dump.c",
+      "size": 29398,
+      "sha256": "668a16d2bf2b1d2c5e0ff04a6e8a7dcba35d94d2da6febf3e3a2aa13660cbef9"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map3-build/dac960dump.ko",
-      "size": 524336,
-      "sha256": "52b788dc01258630c7bf093dc102343302792459a5842ae61ad408daa1a7fa38"
+      "path": "artifacts/romfetch-live-20261010/flash-map2-build/dac960dump.ko",
+      "size": 522952,
+      "sha256": "a08445e219588ed24a92dfb52fd7564dcdc8975e8534d14158896a96bd03e231"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map3-build/ram_scratch.h",
+      "path": "artifacts/romfetch-live-20261010/flash-map2-build/ram_scratch.h",
       "size": 1134,
       "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map3-build/rom_exec.h",
+      "path": "artifacts/romfetch-live-20261010/flash-map2-build/rom_exec.h",
       "size": 1949,
       "sha256": "66dc7fff950b41713e50f88b9a0dd462db4a826091acb865ecb7f06cf6ce0f72"
     },
     {
-      "path": "artifacts/romfetch-live-20261010/flash-map3-build/staging_pointer.h",
+      "path": "artifacts/romfetch-live-20261010/flash-map2-build/staging_pointer.h",
       "size": 1829,
       "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
     },
@@ -9711,6 +9681,36 @@
       "path": "artifacts/romfetch-live-20261010/flash-map3/upload-test.bin",
       "size": 16,
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/flash-map3-build/Makefile",
+      "size": 540,
+      "sha256": "e0263f6ebe08cf08d24ae4ffca9e10575e023681aa08346e4ad7c05f9206a2e9"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/flash-map3-build/dac960dump.c",
+      "size": 29479,
+      "sha256": "c98147e68ef504559b2ab0cfb5d891a9d2f7d7310b963885b158bb7daa28a76c"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/flash-map3-build/dac960dump.ko",
+      "size": 524336,
+      "sha256": "52b788dc01258630c7bf093dc102343302792459a5842ae61ad408daa1a7fa38"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/flash-map3-build/ram_scratch.h",
+      "size": 1134,
+      "sha256": "6bbf3b110d7a55f533ac6d4b0db45de2fce8d8e70bb7a3eaf73a523762dfa9ed"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/flash-map3-build/rom_exec.h",
+      "size": 1949,
+      "sha256": "66dc7fff950b41713e50f88b9a0dd462db4a826091acb865ecb7f06cf6ce0f72"
+    },
+    {
+      "path": "artifacts/romfetch-live-20261010/flash-map3-build/staging_pointer.h",
+      "size": 1829,
+      "sha256": "e07e88badd950f9a284fccdae6d788c5cf930a365a50c4def553e3f68457e3d4"
     },
     {
       "path": "artifacts/romfetch-live-20261010/validation.json",
@@ -12273,11 +12273,6 @@
       "sha256": "9afbdba2b6c9ab2ac55b294405da4266a2a41ac97eb2b7f0150b08fe78b97ef9"
     },
     {
-      "path": "artifacts/staging-rehearsal-20261010/captures.tar",
-      "size": 3409920,
-      "sha256": "6a1284a2a37029dfe3876e4284eda2bf7aa9204db0fd0e8646a13cb36d490822"
-    },
-    {
       "path": "artifacts/staging-rehearsal-20261010/captures/board-5a.bin",
       "size": 512,
       "sha256": "430b497e3a2145c057c8dbea57fc1b412ca43bcded27b35f6d374c2d71df577f"
@@ -12581,6 +12576,11 @@
       "path": "artifacts/staging-rehearsal-20261010/captures/upload-test.bin",
       "size": 16,
       "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+    },
+    {
+      "path": "artifacts/staging-rehearsal-20261010/captures.tar",
+      "size": 3409920,
+      "sha256": "6a1284a2a37029dfe3876e4284eda2bf7aa9204db0fd0e8646a13cb36d490822"
     },
     {
       "path": "artifacts/staging-rehearsal-20261010/dmesg-after.txt",
@@ -16273,11 +16273,6 @@
       "sha256": "02ffd2d4e5c2f9ecc5c9fbef4f56b92c82ba0a08f948d2b59d5c3e0dd96dc290"
     },
     {
-      "path": "artifacts/transfer-20261011/module-base.log",
-      "size": 995,
-      "sha256": "7736f07322d958d25a2ca8a77da9c494713f9c196dc98505016f2f46461a76fd"
-    },
-    {
       "path": "artifacts/transfer-20261011/module-base/dac960rtems.ko",
       "size": 676816,
       "sha256": "2024741540a7d4f6e7abc506d54a60eac26850cb70c03052d2d5a78275cf6f67"
@@ -16298,9 +16293,9 @@
       "sha256": "63b633785eb38389db25a34a8f2fe495853ed0a3900d69d2d30093fb3f1e9075"
     },
     {
-      "path": "artifacts/transfer-20261011/module-fast-v2.log",
-      "size": 1013,
-      "sha256": "0d33e33a42b47d9f5305b3433eddf0286445956ebdaa85b59ae8890f451d1539"
+      "path": "artifacts/transfer-20261011/module-base.log",
+      "size": 995,
+      "sha256": "7736f07322d958d25a2ca8a77da9c494713f9c196dc98505016f2f46461a76fd"
     },
     {
       "path": "artifacts/transfer-20261011/module-fast-v2/dac960rtems.ko",
@@ -16323,14 +16318,14 @@
       "sha256": "86e202a8258f2ba0be0e70a585a876b53d3ba9866ee31da31d2630e634288d91"
     },
     {
+      "path": "artifacts/transfer-20261011/module-fast-v2.log",
+      "size": 1013,
+      "sha256": "0d33e33a42b47d9f5305b3433eddf0286445956ebdaa85b59ae8890f451d1539"
+    },
+    {
       "path": "artifacts/transfer-20261011/module-fast.log",
       "size": 995,
       "sha256": "850fec1f48ef097ee2d11d09af8daf82e8a8e23d5336a9c40bf1ee8312f32c41"
-    },
-    {
-      "path": "artifacts/transfer-20261011/module-release.log",
-      "size": 1013,
-      "sha256": "c72868d4d0e44097969dbfa7ab8d8ca2bf3bcb8c46405489d4a4b3450d46583a"
     },
     {
       "path": "artifacts/transfer-20261011/module-release/dac960rtems.ko",
@@ -16351,6 +16346,11 @@
       "path": "artifacts/transfer-20261011/module-release/transfer-build.json",
       "size": 58,
       "sha256": "8b39d8aa5734f13fe4b3b7a2c6e64e1257b54cc3e3750961bb358e2e02aba2cc"
+    },
+    {
+      "path": "artifacts/transfer-20261011/module-release.log",
+      "size": 1013,
+      "sha256": "c72868d4d0e44097969dbfa7ab8d8ca2bf3bcb8c46405489d4a4b3450d46583a"
     },
     {
       "path": "artifacts/transfer-20261011/native-linux.txt",
@@ -16568,31 +16568,6 @@
       "sha256": "02dafe8a9a58d6807cebc6ad1ec88af93a76f53b0a744e8ed17666879106ec60"
     },
     {
-      "path": "artifacts/upload-20261011/module-quiet-v1/dac960rtems.ko",
-      "size": 708752,
-      "sha256": "8d7e1aa6f4041d40acb476513ba7730a682350c51afc02c067e14de809f416ae"
-    },
-    {
-      "path": "artifacts/upload-20261011/module-quiet-v1/driver.dis",
-      "size": 476965,
-      "sha256": "c59e1b500fbbb55fb43010211950fe6d5726772433149c332cba3edb721b2f97"
-    },
-    {
-      "path": "artifacts/upload-20261011/module-quiet-v1/source.tar.gz",
-      "size": 19360,
-      "sha256": "b746e45262e180197945cfb1b3533a3854e315317b4f04afd83ca338116d40b9"
-    },
-    {
-      "path": "artifacts/upload-20261011/module-quiet-v1/transfer-build.json",
-      "size": 57,
-      "sha256": "86e202a8258f2ba0be0e70a585a876b53d3ba9866ee31da31d2630e634288d91"
-    },
-    {
-      "path": "artifacts/upload-20261011/module-quiet-v1/upload-build.json",
-      "size": 47,
-      "sha256": "1db0fedeec669fd06d9775e8222042a74af0bf829efbfdac72be3c89e36bb413"
-    },
-    {
       "path": "artifacts/upload-20261011/module-quiet/dac960rtems.ko",
       "size": 708424,
       "sha256": "060c8431c2b4f5e93eec67c47629cfafea11074352f6c17906857ba33ac83731"
@@ -16614,6 +16589,31 @@
     },
     {
       "path": "artifacts/upload-20261011/module-quiet/upload-build.json",
+      "size": 47,
+      "sha256": "1db0fedeec669fd06d9775e8222042a74af0bf829efbfdac72be3c89e36bb413"
+    },
+    {
+      "path": "artifacts/upload-20261011/module-quiet-v1/dac960rtems.ko",
+      "size": 708752,
+      "sha256": "8d7e1aa6f4041d40acb476513ba7730a682350c51afc02c067e14de809f416ae"
+    },
+    {
+      "path": "artifacts/upload-20261011/module-quiet-v1/driver.dis",
+      "size": 476965,
+      "sha256": "c59e1b500fbbb55fb43010211950fe6d5726772433149c332cba3edb721b2f97"
+    },
+    {
+      "path": "artifacts/upload-20261011/module-quiet-v1/source.tar.gz",
+      "size": 19360,
+      "sha256": "b746e45262e180197945cfb1b3533a3854e315317b4f04afd83ca338116d40b9"
+    },
+    {
+      "path": "artifacts/upload-20261011/module-quiet-v1/transfer-build.json",
+      "size": 57,
+      "sha256": "86e202a8258f2ba0be0e70a585a876b53d3ba9866ee31da31d2630e634288d91"
+    },
+    {
+      "path": "artifacts/upload-20261011/module-quiet-v1/upload-build.json",
       "size": 47,
       "sha256": "1db0fedeec669fd06d9775e8222042a74af0bf829efbfdac72be3c89e36bb413"
     },
