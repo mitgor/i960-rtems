@@ -1,0 +1,7 @@
+{
+  "kernel_sha256": "dbb43a389db7d6cd101284c8759e9ce2e6a37046ff83388171aed32fadad9ed4",
+  "image_sha256": "4dd84143f8d483db5b1eda3cb0dcda2f3c3a75c640d5b8d467cc86d426daca86",
+  "mode": 4,
+  "cross_built": true,
+  "hardware_executed": false
+}

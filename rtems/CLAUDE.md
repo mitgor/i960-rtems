@@ -1624,3 +1624,17 @@ Do not promote the prepared binary or claim hardware/NMI/reset success.
 Native `fault/test.sh` passes; legacy mode-1/2 captures still validate.
 Preserve modes 0/1/2 semantics. New ISP needs ordinary runtime qualification.
 No engine-stop or general damaged-stack recovery proof has been added.
+
+### P3b recovery follow-up: actual fault passed
+
+Fresh boot `b748d05a-16d1-40bf-b96d-973127ab6856` had no retained test modules.
+Both full guarded reads matched; prior normal-runtime reset is now verified.
+Current mode 3 passed on the card, tick 18, raw `2002,9002,50001,c0716230`;
+IP equals `_accele_raise_fault+4`, with all owned table/vector/ISP and guards.
+`mode3-tested.tar.xz` and `mode3-replay.json` preserve exact bundle/session and
+independent validation in `artifacts/current/accele160-exceptions-20261018`.
+Do NOT repeat mode 3 just to move on. Its post-test reset recovery is next.
+Remote working bundle now contains mode 4 (`dbb43a389db7d6cd101284c8759e9ce2e6a37046ff83388171aed32fadad9ed4`), also archived locally as
+`mode4-prepared.tar.xz`. Run it only after a fresh boot and paired reads; no NMI
+hardware result yet. Prompt remains offline. Keep no-injection ownership
+runtime qualification separate from software-only mode 0.

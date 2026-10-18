@@ -1,3 +1,7 @@
+> P3b update: the real processor-fault test passed. Mode 3 reset recovery and
+> the separately built NMI test remain pending; prompt offline during testing.
+> See [current evidence](../../../artifacts/current/accele160-exceptions-20261018/README.md).
+
 > Latest status (2026-10-18): prompt currently offline. The previous normal
 > service completed global STOP, then its reset left SSH unavailable. Owned
 > fault/NMI tests await physical recovery. See [P3b](../fault/OWNED-EXCEPTIONS.md).

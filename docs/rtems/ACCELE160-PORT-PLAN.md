@@ -1,5 +1,14 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Latest P3b checkpoint — actual fault test passed
+
+Mode 3 passed on Accele160: exact hardware fault/IP, owned vectors/table/ISP,
+guards, stable record and STOP resource retention. Paired guarded firmware reads
+close the prior normal-runtime reset. Mode 3 recovery and real NMI mode 4 are
+still open; mode 4 is built and archived for the next fresh boot. Prompt offline.
+See [current evidence](../../artifacts/current/accele160-exceptions-20261018/README.md).
+The earlier checkpoints below are retained as history.
+
 ## Latest P3b checkpoint — awaiting physical recovery
 
 The owned fault/NMI candidate is implemented and passes native tests; on-card

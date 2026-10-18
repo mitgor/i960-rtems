@@ -1,9 +1,10 @@
 # P3 — terminal records and owned exception work
 
-Current P3b status: [owned fault/NMI candidate](OWNED-EXCEPTIONS.md) is
-implemented and native-tested. Hardware runs await physical recovery after the
-previous normal runtime's reset. The prompt is currently offline. The earlier
-mode-3 revision is cross-built and archived; rebuild current source before use.
+Current P3b status: [owned fault/NMI implementation](OWNED-EXCEPTIONS.md)
+passed the real mode-3 processor-fault test on Accele160, including exact fault
+IP, all owned entries, guards and retained resources after STOP. Mode 3 reset
+recovery and the real mode-4 NMI test remain pending. The mode-4 image is built
+and archived; the prompt is currently offline during isolated fault testing.
 
 Historical P3a status 2026-10-18: cross-built; **both software terminal tests passed on the
 card**, including deliberate private guard corruption and retained resources.

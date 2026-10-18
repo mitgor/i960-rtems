@@ -6125,3 +6125,21 @@ left SSH refusing connections before either new experiment ran. The first
 binary and the previous session's final evidence are safe on the Mac; the
 latest source needs a fresh build when the PC returns. The prompt is offline
 for now, and the hardware result remains an open question.
+
+When the PC returned, both complete firmware reads matched again. That closed
+the normal session's reset check and gave the new handler a fresh starting
+point. We rebuilt the current source, loaded it, and let the test execute
+`faulte` on the card.
+
+This time the record came from the processor itself. At tick eighteen it
+reported fault type `050001` and address `c0716230`. The saved symbols put that
+address exactly on the `faulte` instruction. All thirty-two table entries
+pointed at our handler, the cached NMI entry and interrupt stack were ours,
+and both stacks' guards remained intact. Repeated snapshots agreed. STOP
+still did not turn a terminal park into permission to reuse the buffers.
+
+We brought the complete bundle and session back to the Mac and replayed the
+raw evidence against the exact binary. The NMI image was then built and saved
+as its own candidate. Installing an NMI vector is not the same as delivering
+an NMI; that second experiment still needs its own fresh boot and doorbell
+write. The reset after the fault park is the next boundary to cross.

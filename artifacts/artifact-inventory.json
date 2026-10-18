@@ -17024,13 +17024,13 @@
     },
     {
       "path": "artifacts/current/accele160-exceptions-20261018/README.md",
-      "size": 2577,
-      "sha256": "946c9029ebbcc935926422864cba95e0c84c4104462e5c5e46b8b872cde08288"
+      "size": 3766,
+      "sha256": "e418b2e23d7d25836d42703645401f6c45790b2dd9bbd0ea68c2b6d4b558719a"
     },
     {
       "path": "artifacts/current/accele160-exceptions-20261018/SHA256SUMS",
-      "size": 1084,
-      "sha256": "cd3c65e769911ddc3ae221772729683d68abfad15d3b4349ea4ad14521565ad6"
+      "size": 1773,
+      "sha256": "c28be4f9adbf85a9c6bf846c4c28e6f78339e460b3edb6b274433c3cbfa06908"
     },
     {
       "path": "artifacts/current/accele160-exceptions-20261018/legacy-replay.json",
@@ -17066,6 +17066,31 @@
       "path": "artifacts/current/accele160-exceptions-20261018/previous-normal-stop-replay.json",
       "size": 224,
       "sha256": "f44f37d49ba04a0e388996aa88cc34dfcd6457d410daf377d731a441e1da8042"
+    },
+    {
+      "path": "artifacts/current/accele160-exceptions-20261018/mode3-replay.json",
+      "size": 506,
+      "sha256": "18cb4289a32465171b5785741794eaa8ce95f310e7fd603567cce6d31663c3ae"
+    },
+    {
+      "path": "artifacts/current/accele160-exceptions-20261018/mode3-tested.tar.xz",
+      "size": 8689232,
+      "sha256": "a909364144edf7bcc53687aeafa5c84c6f1b5a8971c3cf91685ad1217e824359"
+    },
+    {
+      "path": "artifacts/current/accele160-exceptions-20261018/mode4-prepared-identity.json",
+      "size": 242,
+      "sha256": "48579a09424e280980d6b741f417dcdeda90a7fa965b00b84082aaf5ca35c4c4"
+    },
+    {
+      "path": "artifacts/current/accele160-exceptions-20261018/mode4-prepared.tar.xz",
+      "size": 8593252,
+      "sha256": "941f8aa0c2e84348565cfa2e79eb9cdc57ed5d7e0b5b3e405e2e6f3a0f52ea02"
+    },
+    {
+      "path": "artifacts/current/accele160-exceptions-20261018/previous-normal-recovery.json",
+      "size": 343,
+      "sha256": "3900834bb30b5a5baf3a8c569ac7b40b5d51b18ead9c9e81b88cb843fb827548"
     }
   ],
   "updated_date": "2026-10-18"

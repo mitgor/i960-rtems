@@ -1,0 +1,8 @@
+{
+  "previous_boot": "f999aba6-1276-470b-9130-1c589ed25d55",
+  "fresh_boot": "b748d05a-16d1-40bf-b96d-973127ab6856",
+  "proof_archive": "mode3-tested.tar.xz",
+  "proof_sha256": "a909364144edf7bcc53687aeafa5c84c6f1b5a8971c3cf91685ad1217e824359",
+  "paired_guarded_full_firmware_reads": true,
+  "previous_normal_reset_recovery_verified": true
+}

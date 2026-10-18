@@ -1,3 +1,20 @@
+## Accele160 P3b — real processor fault passed
+
+Mode 3 passed on boot `b748d05a-16d1-40bf-b96d-973127ab6856`: the actual
+`faulte` instruction reached the owned handler at tick 18. Raw fault record
+`2002,9002,50001,c0716230` resolves to the exact compiled instruction. All 32
+fault entries, cached NMI pointer, owned ISP and guards passed; the terminal
+record stayed identical after STOP with admission and DMA pins retained.
+Local archive replay verifies symbols, source/kernel hashes and both guarded
+full firmware reads. Those reads close the previous normal runtime's reset
+recovery. No actual NMI delivery or active-DMA fault containment is claimed.
+
+The mode-4 NMI image is built and saved locally. Mode 3's own recovery and
+mode 4's card test await the next fresh boot. The prompt is offline during
+these isolated tests. [Evidence](artifacts/current/accele160-exceptions-20261018/README.md)
+and [resume steps](rtems/accele160/fault/OWNED-EXCEPTIONS.md).
+Older blocked/live-session entries below are historical.
+
 ## Accele160 P3b — owned exception candidate; hardware tests pending
 
 Implemented opt-in owned fault/NMI entries, all 32 local fault-table entries,

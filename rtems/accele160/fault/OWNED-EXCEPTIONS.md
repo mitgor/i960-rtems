@@ -1,10 +1,19 @@
 # P3b: Accele160 owned fault and NMI candidate
 
-2026-10-18: implemented and native-tested; **hardware qualification pending**.
-The first mode-3 revision cross-built and was archived before a reset. The PC
-then refused SSH, before either new injection ran. Current source contains
-additional ownership checks and the mode-4 doorbell path and must be rebuilt.
-Neither candidate is promoted to the normal prompt profile.
+2026-10-18: **mode 3 passed on Accele160** on fresh boot
+`b748d05a-16d1-40bf-b96d-973127ab6856`. Kernel
+`08690ea79e991169c713c8dc6cd910da550e13115f02afe98c4b62f11a33acf7`
+recorded a real `faulte` at tick 18: raw words `2002,9002,50001,c0716230`.
+The IP resolves exactly to `_accele_raise_fault+4`; fault entry `c0716150`,
+cached NMI entry `c0716160`, ISP `c0779040`, all table words and guards passed.
+Stale request, stable record, STOP retention, pending admission and unchanged
+DMA pin guards all passed. Local archive replay independently verifies this.
+
+Both guarded full firmware reads matched on that boot, closing the previous
+normal runtime's recovery gate. Mode 3's own reset recovery remains pending: SSH is refusing connections
+after that reset, and physical recovery has been requested.
+Mode 4 is now cross-built and archived but has not run. It is the next isolated
+test after recovery. Neither ownership profile is promoted to the normal prompt.
 
 ## Ownership and entry
 
@@ -89,8 +98,8 @@ reserves bits above bit 6. Preserve read mask bits and change only bit 3.
 
 1. After physical recovery, record a changed Linux boot ID and inspect retained
    modules/owners. Do not force-unload or adopt a dead owner's buffers.
-2. Overlay current source into `/home/mit/i960-exceptions-20261018/bundle`.
-   Preserve the pinned engine identity/template and inputs. Build mode 3 using
+2. Mode 3 is complete; do not repeat it merely to advance to mode 4. Overlay current source into `/home/mit/i960-exceptions-20261018/bundle`.
+   Preserve the pinned engine identity/template and inputs. Build the selected mode using
    the commands in README, run `write_manifest.py`, regenerate `bundle.json`
    file hashes, inspect assembly/symbols and archive the exact candidate locally.
 3. Launch that isolated bundle with `launch.py start --bundle PATH --port 8087
