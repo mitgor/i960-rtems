@@ -1,0 +1,16 @@
+{
+  "boot_id": "aea81f51-24ce-493b-a7d2-114195611d5b",
+  "nmi_reset_recovery_verified": true,
+  "normal_kernel": "4a9c0278ff23815ea94d546a7fc43bfc3566c8ff916b70d0c2b0e7e42582ad3e",
+  "frames": 64,
+  "paired_pio_frames": 32,
+  "wad_reads": 5045,
+  "idle_verified": true,
+  "console_replies": 581,
+  "external_exchanges": 577,
+  "external_errors": 0,
+  "max_console_latency_ms": 4606.300191000002,
+  "session_left_running": true,
+  "global_stop_tested": false,
+  "owned_exception_runtime": false
+}

@@ -17024,13 +17024,13 @@
     },
     {
       "path": "artifacts/current/accele160-exceptions-20261018/README.md",
-      "size": 5045,
-      "sha256": "9b43bfe40693d162e5db3275c1a1055c5960e4991749e87155f2bee4e0f59678"
+      "size": 6250,
+      "sha256": "515c658cf033bc598fafed2735253e5753dc50eed38f76e6757f17430874f5a5"
     },
     {
       "path": "artifacts/current/accele160-exceptions-20261018/SHA256SUMS",
-      "size": 2310,
-      "sha256": "cdcf8864f5f792b86712ac92d4f8eaffe0a4eff6778af00c745815e160e5c6ad"
+      "size": 2853,
+      "sha256": "6827ae729e6a19b822e99648ed24bb51bc5953b26c081197825871b9b3a8f3eb"
     },
     {
       "path": "artifacts/current/accele160-exceptions-20261018/legacy-replay.json",
@@ -17111,6 +17111,26 @@
       "path": "artifacts/current/accele160-exceptions-20261018/mode4-tested.tar.xz",
       "size": 8861652,
       "sha256": "f2f8b4586598e257fabbc8b77d8af53807d45bff944b85c2e5e999c3af5ff2ee"
+    },
+    {
+      "path": "artifacts/current/accele160-exceptions-20261018/mode0-restored-live.tar.xz",
+      "size": 9656372,
+      "sha256": "c6163d9a43408ff6e39b6b0a0231472f7e51b3f548bb0d9f08888da8c88603ca"
+    },
+    {
+      "path": "artifacts/current/accele160-exceptions-20261018/restored-prompt.txt",
+      "size": 253,
+      "sha256": "4c3ab510f8a33a30be50279239309f1b179f0d8c4e65f070426423106a4acc4d"
+    },
+    {
+      "path": "artifacts/current/accele160-exceptions-20261018/restored-replay.json",
+      "size": 496,
+      "sha256": "c9ceced087835ef52e2feba1a0da5a3db1f03fbcbf3ab554c6d7d9e8ed294bf5"
+    },
+    {
+      "path": "artifacts/current/accele160-exceptions-20261018/verify_restored.py",
+      "size": 4432,
+      "sha256": "80d6161f7d0a2a424b8be20d44fd10859d1def3bc85e20fe162ff03114801245"
     }
   ],
   "updated_date": "2026-10-18"

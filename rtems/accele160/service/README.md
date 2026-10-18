@@ -1,3 +1,10 @@
+> Current status: normal RTEMS service restored on boot
+> `aea81f51-24ce-493b-a7d2-114195611d5b`. Both guarded firmware reads passed,
+> closing NMI reset recovery. Use `~/rtems-console` on Linux or `./rtems-console`
+> from the Mac repository. The installed client now explains an offline service.
+> This is the previously qualified software-terminal-only mode-0 image.
+> Earlier offline notices below are historical.
+
 > Latest: both hardware exception tests passed; final NMI reset recovery and
 > normal prompt restoration are pending. The offline-error fix is now deployed
 > to Linux `~/rtems-console`, backed by `/home/mit/rtems-console-client.py`.

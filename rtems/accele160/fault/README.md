@@ -1,10 +1,11 @@
 # P3 — terminal records and owned exception work
 
 Current P3b status: [owned fault/NMI implementation](OWNED-EXCEPTIONS.md)
-passed both the actual processor fault and actual host-doorbell NMI tests.
-Mode 3 recovery is verified. Mode 4 recovery and normal prompt restoration
-await its final reset. Owned-ISP normal-runtime qualification remains separate
-from the previously qualified software-only mode-0 prompt.
+passed both real hardware exception tests and both reset-recovery gates.
+The normal prompt is restored in mode 0 after a 64-frame game with verified
+idle and 577 successful external console exchanges. The owner remains live.
+Owned-ISP normal-runtime qualification remains separate from this previously
+qualified software-only mode-0 prompt.
 
 Historical P3a status 2026-10-18: cross-built; **both software terminal tests passed on the
 card**, including deliberate private guard corruption and retained resources.

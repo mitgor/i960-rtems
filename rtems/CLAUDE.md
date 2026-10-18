@@ -1658,3 +1658,20 @@ injection to restore service. Mode 0 is not owned-vector runtime qualification.
 Linux shortcut now uses `/home/mit/rtems-console-client.py` (updated offline
 message), deployed independently of immutable bundle manifests; Mac shortcut
 also uses `~/rtems-console`. Service restoration is distinct from client install.
+
+### Final NMI recovery and normal prompt restoration
+
+Fresh boot `aea81f51-24ce-493b-a7d2-114195611d5b`, no retained test modules.
+Accepted mode-0 bundle `/home/mit/i960-fault-20261018/bundle` restored; paired
+full guarded firmware reads close mode 4 reset recovery. Normal session is
+`/home/mit/i960-fault-20261018/sessions/20261018T204122Z`. Leave this owner live
+for the user's prompt; do not reset merely to finish documentation. Linux
+`~/rtems-console` and Mac `./rtems-console` reach the installed service client.
+Hardware exception modes 3 and 4 are both tested and recovered. Normal runtime
+with owned fault/NMI vectors and ISP remains separate: mode 0 is software-only.
+
+Restoration acceptance completed: 64 frames, 5,045 WAD reads, one verified idle,
+577 external console exchanges without connection errors. All raw evidence is
+in `mode0-restored-live.tar.xz`; `verify_restored.py` replays it. Service remains
+active; `apps` reports run=1/running=0/idle=1/frames=64. Both exception reset
+gates are closed. This live session has no global STOP receipt, intentionally.

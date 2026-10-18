@@ -1,8 +1,25 @@
 # Accele160 P3b candidate and prior-session shutdown evidence
 
-Status: **both actual hardware exception tests passed**. Mode 3 recovery is
-verified; mode 4 post-test reset recovery and normal prompt restoration await
-physical recovery from the final reboot (SSH refusing connections).
+Status: **both actual hardware exception tests and both reset-recovery gates
+passed; normal prompt restored and left live**. Final recovery boot:
+`aea81f51-24ce-493b-a7d2-114195611d5b`. Both guarded full firmware reads
+match. The accepted mode-0 normal image completed 64 Doom frames, verified idle
+and 577 external console exchanges without connection errors. `~/rtems-console`
+now answers `apps`, `mem` and `stats`; Mac `./rtems-console` uses the same client.
+
+The normal session is `/home/mit/i960-fault-20261018/sessions/20261018T204122Z`.
+Do not reset this working prompt just to finish bookkeeping. Its own global
+STOP/post-reset is not claimed. It is the prior software-terminal-only image;
+normal runtime with new owned vectors/ISP remains a separate qualification.
+
+- `mode0-restored-live.tar.xz`: exact normal bundle, full live session snapshot
+  and `restored-console.json` with all 577 external exchanges. It preserves all
+  64 guarded DMA frames, paired PIO receipts, WAD requests and console wire log.
+- `verify_restored.py`, `restored-replay.json`: independent manifest/firmware,
+  frame/guard/FNV, WAD, idle and console replay. The new boot and firmware pair
+  close mode 4 recovery, superseding the pending state in mode4-replay.json.
+- `restored-prompt.txt`: installed shortcut replies (`run=1`, `idle=1`,
+  `frames=64`, `zone_loaned=0`) and active service status.
 
 Mode 3: fresh boot `b748d05a-16d1-40bf-b96d-973127ab6856`, actual `faulte`
 at tick 18, IP `c0716230` = `_accele_raise_fault+4`, fault entry `c0716150`,
@@ -14,10 +31,10 @@ Both verified all table entries and guards, stable raw records after STOP,
 pending admission, and intact retained DMA pins. Neither injected active DMA.
 
 Mode 4's paired guarded full firmware reads close mode 3's reset gate.
-The prior normal-runtime recovery was closed by mode 3's prechecks. No normal
-owned-ISP runtime claim is made. Restore the accepted software-only mode-0
-bundle `/home/mit/i960-fault-20261018/bundle` after final recovery; the exceptions
-bundle still contains deliberate NMI mode 4. See
+The prior normal-runtime recovery was closed by mode 3's prechecks. The final
+mode-0 restoration closes mode 4 recovery. No normal owned-ISP runtime claim is
+made. The restored bundle is `/home/mit/i960-fault-20261018/bundle`; the exceptions
+bundle still contains deliberate NMI mode 4 and must not be used for the prompt. See
 [`OWNED-EXCEPTIONS.md`](../../../rtems/accele160/fault/OWNED-EXCEPTIONS.md).
 
 - `mode4-tested.tar.xz`: exact executed mode-4 bundle and complete
@@ -29,7 +46,7 @@ bundle still contains deliberate NMI mode 4. See
   recovery. It supersedes the earlier pending reset state in mode3-replay.json.
 - `console-deployment.txt`: installed Linux client/shortcut hashes, verified
   missing-socket message, and the accepted normal image's identity/build mode.
-  The Mac shortcut now calls the installed Linux shortcut. Service still offline.
+  The Mac shortcut now calls the installed Linux shortcut. This receipt preceded the now-restored service.
 
 - `mode3-tested.tar.xz`: exact executed current mode-3 bundle and complete
   `sessions/20261018T202453Z`, including both guarded firmware reads and raw
@@ -70,8 +87,7 @@ Previous normal kernel:
 The firmware remains
 `1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd`.
 No firmware programming was performed. SCSI/cache exclusion, active-DMA fault
-containment, owned-ISP normal runtime and mode 4 reset recovery remain
-separate unclosed gates.
+containment and owned-ISP normal runtime remain separate unclosed gates.
 
 Checksums cover this batch only. The unrelated pre-existing artifact symlink
 `artifacts/current/accele160-flat-20261018/post-0/data.bin` still prevents a

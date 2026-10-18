@@ -6163,3 +6163,20 @@ whose every command fails. That fixes the confusing symptom; restoring the
 service still needs the final recovery check. Normal running with the new
 owned interrupt stack is another qualification, beyond these two deliberately
 terminal experiments.
+
+The final power cycle brought back matching firmware reads once more. That
+closed the NMI experiment's recovery check, so both deliberately terminal
+tests now had an exit proven by a fresh boot.
+
+We restored the ordinary image and left it running. Doom completed sixty-four
+frames and returned to verified idle while the console survived 577 exchanges,
+including rejected commands and abandoned clients. The home-directory
+shortcut answered `mem` and `stats`; `apps` said the game had stopped and the
+RTEMS owner was still there. This time the prompt was backed by a live service.
+
+The distinction matters for the next chapter. The restored image is the known
+normal profile, with software terminal handling. The new fault and NMI entries
+have proved their terminal paths; ordinary task switching with those vectors
+and the owned interrupt stack still needs its own qualification. We kept the
+working prompt available instead of ending another session just to tidy the
+last line of the log.

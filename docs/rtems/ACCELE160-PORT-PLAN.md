@@ -1,5 +1,14 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Latest P3b checkpoint — recovery complete, prompt restored
+
+Both hardware exception tests and both post-reset firmware pairs passed.
+Normal mode 0 is restored on boot `aea81f51-24ce-493b-a7d2-114195611d5b`,
+with one 64-frame game, verified idle and 577 successful console exchanges.
+Leave this owner live for the user's prompt. Next is normal runtime with owned
+vectors/ISP; mode 0 remains software-only. Active-DMA fault containment and
+engine exclusion are still separate open gates. Earlier entries are historical.
+
 ## Latest P3b checkpoint — both hardware exception tests passed
 
 Actual `faulte` and actual MU-doorbell NMI passed with stable raw terminal

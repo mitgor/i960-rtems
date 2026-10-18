@@ -1,3 +1,20 @@
+## Accele160 P3b recovery complete — normal prompt restored
+
+Fresh boot `aea81f51-24ce-493b-a7d2-114195611d5b` passed both guarded full
+firmware reads, closing the real-NMI test's reset gate. Both hardware exception
+tests now have verified recovery. The accepted mode-0 normal image ran one
+64-frame Doom game, returned to audited idle, and completed 577 external console
+exchanges without connection errors. `apps`, `stats`, and `mem` work through the
+installed Linux shortcut. Service remains live in idle; **do not reset it merely
+to close this task**.
+
+Use `~/rtems-console` on Linux or `./rtems-console` from the Mac repository.
+Session: `/home/mit/i960-fault-20261018/sessions/20261018T204122Z`.
+This image is software-terminal-only: normal running with the new owned
+fault/NMI vectors and ISP remains the next distinct qualification. This live
+session has no global STOP receipt. [Evidence](artifacts/current/accele160-exceptions-20261018/README.md).
+Earlier offline/reset notices below are historical.
+
 ## Accele160 P3b — real NMI also passed
 
 Mode 4 passed on boot `5caaf490-19ac-4b1b-ab1c-c01cacc9c924`: actual host

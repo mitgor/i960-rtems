@@ -21,10 +21,12 @@ STOP resource retention passed. Exact archive replay passes.
 
 Both guarded full firmware reads on this newer boot match, closing mode 3's
 reset recovery. The previous normal runtime's recovery was closed by mode 3's
-prechecks. Mode 4's own post-test reset recovery is still pending. The final
-reset left SSH refusing connections; physical recovery was requested before restoring the previously qualified mode-0
-normal prompt. Mode 0 does not install the new exception ownership: normal
-owned-ISP/runtime qualification remains a separate next step.
+prechecks. Mode 4's post-test reset recovery is now verified on fresh boot
+`aea81f51-24ce-493b-a7d2-114195611d5b`: both guarded full firmware reads
+match. The accepted mode-0 normal prompt is restored, with a 64-frame game,
+audited idle, and 577 successful external console exchanges. The service is
+left live for the user. Mode 0 does not install the new exception ownership;
+normal owned-ISP/runtime qualification remains a separate next step.
 
 ## Ownership and entry
 
@@ -105,21 +107,20 @@ IDR `1320`, IISR `1324`, IIMR `1328`. The host equivalents are offsets
 Do not copy the older PG's fixed `0x1f3/0x1fb` mask values: the 80303 definition
 reserves bits above bit 6. Preserve read mask bits and change only bit 3.
 
-## Resume and qualification
+## Current service and next qualification
 
-1. After mode 4's reset, record a new Linux boot ID and inspect retained
-   modules/owners. Do not force-unload or adopt a dead owner's buffers.
-2. Restore the previously qualified mode-0 bundle at
-   `/home/mit/i960-fault-20261018/bundle` using `launch.py start --bundle PATH
-   --port 8087 --max-frames 64 --restart-cycles 0 --paired-frames 32 --capture-all`.
-   Its two guarded full firmware reads close mode 4's reset gate. Qualify
-   ordinary game/console operation and leave the owner in idle for the prompt.
-   This mode is software-terminal-only; it does not qualify the new owned ISP.
-3. The updated Linux `~/rtems-console` calls `/home/mit/rtems-console-client.py`.
-   It now reports a missing service clearly. The Mac wrapper uses that shortcut.
-4. Subsequent work: prepare a separate no-injection ownership profile and
-   qualify normal task switching, Doom, console, STOP and reset with owned
-   vectors/ISP. Keep active-DMA and engine exclusion tests separate.
+The completed recovery run uses `/home/mit/i960-fault-20261018/bundle`, session
+`sessions/20261018T204122Z`, accepted normal kernel
+`4a9c0278ff23815ea94d546a7fc43bfc3566c8ff916b70d0c2b0e7e42582ad3e`.
+It remains live in verified idle. Linux `~/rtems-console` calls the updated
+`/home/mit/rtems-console-client.py`; the Mac wrapper uses that shortcut.
+Do not stop/reset the service merely to finish evidence collection. The live
+snapshot does not claim global STOP or subsequent reset of this new session.
+
+Next: prepare a separate no-injection ownership profile and qualify normal
+task switching, Doom, console, STOP and reset with owned vectors/ISP. Keep
+active-DMA and engine exclusion tests separate. The restored mode 0 is the
+previously qualified software-terminal-only profile and is not that new test.
 
 Do not repeat modes 3/4 simply to restore the prompt; their completed immutable
 bundles are `mode3-tested.tar.xz` and `mode4-tested.tar.xz` in the evidence batch.
