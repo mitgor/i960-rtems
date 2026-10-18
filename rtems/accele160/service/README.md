@@ -117,3 +117,13 @@ slow clients and reconnects during application activity. Existing complete
 frame/WAD/owner/cache/STOP and post-reset stock-flash gates remain required.
 No independent watchdog or maximum hardware IRQ-gap claim follows from this
 prompt. Record host command latency separately from RTEMS ticks and frame rate.
+
+### Missing socket diagnostic
+
+`./rtems-console` is a client, not an RTEMS launcher. The old client printed a
+prompt even without `/run/i960-rtems-console.sock`; each command then failed
+with `Errno 2`. The client now checks for the missing socket before displaying
+the interactive prompt and explains missing/refused connections. This change
+is local until deployed to the Linux console client; SSH was refusing connections
+when the issue was reported. Do not restart an owner over retained fault-test
+resources. Restore a normal service only after the required reset checks.

@@ -1638,3 +1638,9 @@ Remote working bundle now contains mode 4 (`dbb43a389db7d6cd101284c8759e9ce2e6a3
 `mode4-prepared.tar.xz`. Run it only after a fresh boot and paired reads; no NMI
 hardware result yet. Prompt remains offline. Keep no-injection ownership
 runtime qualification separate from software-only mode 0.
+
+Console diagnostic follow-up: local `accele160/service/console.py` now reports
+an offline service instead of showing a prompt when its socket is absent.
+The Linux `~/rtems-console` uses an older bundle's console client; deploy the
+updated client after SSH returns. Do not mistake this UI fix for restoration
+of RTEMS or launch a normal owner over retained exception-test resources.
