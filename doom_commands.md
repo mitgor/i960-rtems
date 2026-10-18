@@ -8,7 +8,7 @@ pinned bundle and run the privileged launcher. Launching does not flash firmware
 
 | Installed launcher | Behavior | Current qualification |
 | --- | --- | --- |
-| `/home/mit/.local/bin/i960-doom-flat` | Reusable session with persistent input/pushed frames on port 8088; starts textured; F6 toggles planes | Card transport, browser STOP/restart and matched latency tests passed; earlier flat batch flash closure remains separate |
+| `/home/mit/.local/bin/i960-doom-flat` | Reusable session with persistent input/pushed frames on port 8088; starts textured; F6 toggles planes | FIFO/pushed-frame transport, STOP/restarts, matched latency and both batches’ closing flash reads passed |
 | `/home/mit/.local/bin/i960-doom-reusable` | Reusable session, textured planes | Automatic STOP/Quit/reload passed; final flash audits passed |
 | `/home/mit/.local/bin/i960-doom` | Legacy, one game per hardware session | Requires the old card present and unbound; unsuitable while it is physically removed |
 
@@ -120,6 +120,7 @@ These are the current reusable/flat launcher options:
 | `--restart-cycles N` | `0` | Automatic reusable-game acceptance batch; requires at least 40 frames per game |
 | `--quit-game N` | `0` | Use menu Quit in game N of an automatic restart batch |
 | `--flat-benchmark` | Off | Four-game textured/flat/flat/textured comparison; requires flat engine, four cycles and at least 128 frames |
+| `--keyboard-mode MODE` | `fifo` | Fresh-session input transport: `fifo` or `mailbox`; active daemon keeps its mode |
 | `--bundle PATH` | Set by wrapper | Pinned Linux bundle; normally leave wrapper selection in charge |
 
 Examples, after selecting a reusable wrapper and on a fresh hardware session:
@@ -136,6 +137,33 @@ more disk. Ownership checks and full system audits remain enabled with all these
 options; no audit-disable flag is provided.
 
 ## Automated card acceptance commands
+
+The ordinary `./doom` now selects the accepted sixteen-entry **card keyboard
+FIFO** and pushed-frame gateway. Eight-game physical acceptance, full-ring STOP,
+restarts and paired post-reset firmware reads passed. Textured remains default;
+F6 switches flat planes. See the [FIFO findings](artifacts/current/doom-key-fifo-20261018/README.md).
+
+For a matched comparison on a **fresh hardware session**:
+
+```sh
+./doom --keyboard-mode mailbox
+# Or the default: ./doom --keyboard-mode fifo
+```
+
+These flags do not change a retained running daemon. The dedicated
+`i960-doom-key-fifo` core launcher also accepts `--keyboard-selftest` for the
+bounded pending-input STOP probe; leave it off during ordinary play. The test
+runner selects modes at idle, admits a fresh engine per game, and owns input:
+
+```sh
+/tmp/i960-doom-stream-venv/bin/python \
+  game/doom/play/accele160/stream/benchmark_fifo.py \
+  --host 192.168.2.75 --out NEW_RESULTS_DIRECTORY
+```
+
+The full-ring probe requires a fresh acceptance owner started explicitly with
+`--keyboard-selftest --paired-frames 32`, plus the updated gateway. Do not run
+this input-injecting comparison while another person is playing.
 
 Run only when intending a bounded test followed by **terminal global shutdown**.
 These batches need a reset afterward, unlike ordinary reusable game STOP.
@@ -168,14 +196,15 @@ it is not an interactive-play FPS guarantee. The accepted comparison measured
 ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom'
 ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom-stream'
 ssh mit@192.168.2.75 'sudo journalctl -b -u i960-doom --no-pager'
-ssh mit@192.168.2.75 'cat /home/mit/i960-flat-accele160-20261018/latest-session.txt'
+ssh mit@192.168.2.75 'cat /home/mit/i960-key-fifo-20261018/latest-session.txt'
 ```
 
 Session roots by wrapper:
 
 | Wrapper | Session directory and pointer |
 | --- | --- |
-| Flat | `/home/mit/i960-flat-accele160-20261018/sessions/`, sibling `latest-session.txt` |
+| Default flat + FIFO | `/home/mit/i960-key-fifo-20261018/sessions/`, sibling `latest-session.txt` |
+| Original flat baseline | `/home/mit/i960-flat-accele160-20261018/sessions/`, sibling `latest-session.txt` |
 | Reusable | `/home/mit/i960-doom-rearm-20261018/sessions/`, sibling `latest-session.txt` |
 | Legacy | `/home/mit/i960-doom/sessions/`, sibling `latest-session.txt` |
 

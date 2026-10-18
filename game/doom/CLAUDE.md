@@ -1233,3 +1233,53 @@ idle, textured; both services stay active and the test controller was closed.
 Use `./doom` or the page's Start new game. Extended/negative idle and actual
 event-to-paint instrumentation remain qualification work. Do not reboot just
 to restart this live idle owner.
+
+**Latest state — card FIFO physical acceptance (2026-10-18):**
+Eight fresh games in one owned RTEMS instance passed 3,073 full-audit frames,
+256 paired PIO/DMA comparisons and seven rearms. Full-ring STOP left sixteen
+pending entries, all explicitly discarded at committed rearm. Final accounting:
+848 published = 832 consumed + 16 discarded, no pending or inherited keys.
+See `artifacts/current/doom-key-fifo-20261018/README.md`, `verification.json` and
+`status.json` for reset/deployment closure and exact runnable paths.
+
+Actual C/Python FIFO is `rtems/accele160/doom_dma/key_fifo.{h,py}`; build flag
+`--keyboard-fifo` records schema/source identity. Sixteen entries at host
+control e80..fff, strict sequence/run/complement/guards, exact PCI readback,
+tail last; owning Init task validates/copies and syncf-publishes ACK last.
+IRQ handlers do no queue work. Counters persist across rearm; pending old-game
+entries must all validate before committed discard. Never overwrite a full
+ring, reset its counters, force-unload retained resources or re-enter an old
+image. Mode changes are idle-only for fresh engine entry with empty transport.
+The acceptance-only `--keyboard-selftest` endpoint is off on normal launches.
+
+Mac received-frame two-pulse tail 204.84→144.70 ms, eight-pulse 816.67→452.79 ms.
+Longer singles 113.55→108.26 ms at 19.69/19.75 received FPS; shorter singles
+favored mailbox, so do not claim robust first-key or FPS improvement. All 204
+bundle inputs and every observer hash replay; first32 per game match the old
+native-qualified textured pixels/palette. Native/32-bit ASan/UBSan C and actual
+rearm tests passed (80,000 ordered events, wraps, corrupt/stale/full rejection,
+sixteen pending entries). No firmware writes or new memory allocations.
+
+Next input limitation: upstream I_GetEvent breaks after key-up. Also persistent
+startup_entry calls doom_platform_startup(0), leaving the virtual clock enabled:
+DG_SleepMs(29) advances virtual time/checks safety, not a real 29 ms sleep.
+Investigate bounded input draining/live-play pacing separately, preserving
+native repeatability, bounded STOP and full audits. Do not silently change the
+engine while attributing gains to this FIFO.
+
+Closing post-reset READIMAGE pair passed on boot
+79fef5a0-de03-410c-8cc0-3b4051afdb3b: exact full firmware SHA
+1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd,
+zero status/residual/guard changes. Default flat wrapper now delegates through
+its pinned gateway to `/home/mit/i960-key-fifo-20261018/bundle`. Core FIFO
+launcher auto-selects FIFO from the verified schema; mailbox remains a
+fresh-session option. Pre-FIFO core wrapper is `owner-launcher-pre-fifo` under
+the stream root. Do not switch a live retained owner. Normal default launch
+omits --keyboard-selftest; only explicit acceptance enables /keys-stop.
+
+Final normal-launch smoke: 168 additional audited frames, 32 paired PIO checks,
+16/16 keys consumed, F6 switches8, starts/ends textured. `/keys-stop` returns409
+without --keyboard-selftest. Ordinary ./doom stop parked game1 safely on boot
+79fef5a0-de03-410c-8cc0-3b4051afdb3b; service/RTEMS/gateway remain live for ./doom
+or the browser's Start new game. Source bundle is still the accepted kernel
+SHA8f3b61c3100f96b9eee24d3487bc53553982e4f22c9fb11a2e9abdeb6ce7f185.

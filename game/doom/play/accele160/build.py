@@ -11,6 +11,7 @@ p=argparse.ArgumentParser(description=__doc__)
 for name in ('work','archive','newlib','rtems-build'):
     p.add_argument('--'+name,type=Path,required=True)
 p.add_argument('--reusable',action='store_true')
+p.add_argument('--keyboard-fifo',action='store_true',help='bounded card-side keyboard ring with mailbox comparison mode')
 p.add_argument('--runtime-flat',action='store_true',help='F6 switches textured/flat planes; starts textured')
 p.add_argument('--cross',default='/home/mit/i960/tools/bin/i960-coff-')
 a=p.parse_args();root=Path(__file__).resolve().parents[4];w=a.work.resolve()
@@ -44,9 +45,9 @@ run([sys.executable,project/'game/doom/runtime/engine/admit.py',w/'packed',
 src=project/'rtems/accele160/doom_dma'
 shutil.copyfile(w/'admission/engine_identity.h',src/'engine_identity.h')
 import os
-env=dict(os.environ,DOOM_REUSABLE=str(int(a.reusable)),DOOM_PERSISTENT='1',DOOM_FPS_FRAMES='32',CARD_PROFILE='accele160')
+env=dict(os.environ,DOOM_REUSABLE=str(int(a.reusable)),DOOM_KEY_FIFO_SUPPORT=str(int(a.keyboard_fifo)),DOOM_PERSISTENT='1',DOOM_FPS_FRAMES='32',CARD_PROFILE='accele160')
 run(['bash',src/'build.sh',a.rtems_build,Path(a.cross).parent,w/'kernel'],'kernel',env)
 (w/'persistent-build.json').write_text(json.dumps(dict(card_profile='accele160',
-    kernel_persistent=True,reusable=a.reusable,runtime_flat=a.runtime_flat,private_cache_map=True,low_detail=True,card_fnv=False,
+    kernel_persistent=True,reusable=a.reusable,keyboard_fifo_schema=int(a.keyboard_fifo),runtime_flat=a.runtime_flat,private_cache_map=True,low_detail=True,card_fnv=False,
     archive=str(a.archive),newlib=str(a.newlib),rtems_build=str(a.rtems_build)),indent=2)+'\n')
 print('Persistent engine and kernel built:',w)

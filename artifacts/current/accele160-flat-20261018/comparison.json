@@ -81,5 +81,5 @@
     29581
   ],
   "tamper_rejections": 4,
-  "post_reset_flash_pair": false
+  "post_reset_flash_pair": true
 }

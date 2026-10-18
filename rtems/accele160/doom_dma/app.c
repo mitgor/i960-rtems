@@ -13,6 +13,8 @@
 #include "sha256.h"
 #include "copy.h"
 #include "engine_identity.h"
+#define KF_SYNC() __asm__ volatile("syncf":::"memory")
+#include "key_fifo.h"
 #include "../../../game/doom/runtime/startup/checkpoint_api.h"
 extern unsigned char _bss_start[],_bss_end[],switch_irq_areas[4][8192];
 extern void bounded_escape(unsigned int) __attribute__((noreturn));
@@ -73,6 +75,8 @@ static unsigned int engine_running,engine_invoked,zone_loaned,first_frame_seen;
 static unsigned int engine_read_count,engine_read_done,engine_mark_count;
 static unsigned int engine_deadline,engine_text_live;
 static unsigned int key_seen;
+static struct key_fifo_state keyboard;
+static volatile unsigned int * const key_wire=(volatile unsigned int*)0xc000fe80u;
 static unsigned int game_run=1u,game_idle,frame_origin,transport_frame;
 static struct arena_slot fixed_slots[7];
 static struct doom_runtime_checkpoint doom_api;
@@ -87,6 +91,9 @@ static struct doom_runtime_checkpoint doom_api;
 #endif
 #ifndef DOOM_REUSABLE
 #define DOOM_REUSABLE 0
+#endif
+#ifndef DOOM_KEY_FIFO_SUPPORT
+#define DOOM_KEY_FIFO_SUPPORT 0
 #endif
 #if DOOM_REUSABLE && !DOOM_PERSISTENT
 #error reusable requires persistent engine
@@ -529,7 +536,14 @@ static int engine_mark(unsigned int stage,unsigned int x,unsigned int y,unsigned
  if(!engine_owner()||engine_stopping()){dma_drain();return -1;}
  if(stage==102u)return (int)engine_trace[3];
  if(stage==101u){
-  dma_step();lease_invalidate_dcache();seq=live[10];
+  dma_step();lease_invalidate_dcache();
+#if DOOM_KEY_FIFO_SUPPORT
+  {unsigned int available,error=kf_pop(&keyboard,key_wire,live,ticks,first_frame_seen,&value,&available);
+   if(error){key_wire[8]=error;bounded_fatal(0x7b000u|error);}
+   key_seen=keyboard.cursor;
+   return available?(int)(value+2u):1;}
+#endif
+  seq=live[10];
   if(seq==key_seen)return 1;
   if(seq!=key_seen+1u||live[12]!=key_seen||(live[11]&0xfffffe00u))bounded_fatal(0x7700bu);
   value=live[11];key_seen=seq;live[12]=seq;return (int)(value+2u);
@@ -593,6 +607,10 @@ static unsigned int engine_first_frame(unsigned int *value){
  if(!digest_equal(image_base+ENGINE_META,ENGINE_SITES*4u,engine_metadata_sha))return 21u;
  engine_invoked=1u;first_frame_seen=0u;frame_ready=0u;
  if(!DOOM_REUSABLE)key_seen=0u;
+#if DOOM_KEY_FIFO_SUPPORT
+ {unsigned int error=kf_begin(&keyboard,key_wire,live,game_run);
+  if(error){key_wire[8]=error;bounded_fatal(0x7b100u|error);}}
+#endif
  frame_origin=transport_frame;game_idle=0u;bridge[21]=0u;
  host_heartbeat=live[13];host_heartbeat_tick=ticks;
  engine_read_count=0u;engine_read_done=0u;engine_mark_count=0u;
@@ -713,12 +731,20 @@ static unsigned int rearm_engine(unsigned int run,unsigned int n,unsigned int ch
  key=little_word((const unsigned char*)inbound+12);
  if(last!=transport_frame||next!=game_run+1u)return 42u;
  if(request!=wad_seq)return 43u;
+#if DOOM_KEY_FIFO_SUPPORT
+ if(key!=key_wire[4]||key_seen!=keyboard.cursor||kf_pending(&keyboard,key_wire,live))return 44u;
+#else
  if(key!=live[10]||live[12]!=key_seen||key<key_seen||key-key_seen>1u)return 44u;
+#endif
  if(!reusable_audit())return 45u;
  if(!commit)return 0u;
  /* Explicitly discard at most one unconsumed old-game key. This is not an
   * engine ACK: bridge[23] records the discarded sequence for the host. */
- bridge[23]=key!=key_seen?key:0u;key_seen=key;live[12]=key;
+ bridge[23]=key!=key_seen?key:0u;
+#if DOOM_KEY_FIFO_SUPPORT
+ kf_rearm(&keyboard,key_wire,live,next);
+#endif
+ key_seen=key;live[12]=key;
  upload_bytes=0u;admitted=0u;wad_ready=0u;frame_ready=0u;engine_invoked=0u;
  frame_base=(unsigned char*)ARENA_BASE+fixed_slots[2].offset+16u;
  game_run=next;game_idle=0u;control[15]=0u;
@@ -1035,6 +1061,9 @@ unsigned int bounded_main(unsigned int report_addr,unsigned int nonce){
  live[0]=0x3145564cu;live[1]=BRIDGE_EPOCH;
  live[14]=(unsigned int)stage_odd[0];
  live[15]=(unsigned int)stage_odd[1];
+#if DOOM_KEY_FIFO_SUPPORT
+ kf_init(&keyboard,key_wire,game_run);
+#endif
  for(word=0;word<32u;word++)bridge[word]=0u;
  bridge[20]=game_run;
  bridge[6]=0x31475242u;

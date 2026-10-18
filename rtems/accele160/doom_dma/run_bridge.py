@@ -10,6 +10,7 @@ from run_lease import (BDF,OLD,PAGE,DEVICE,DEBUG,FIRMWARE,HANDLER,
 sys.path.insert(0,str(ROOT/'rtems/transport'))
 from card_select import select,require_unbound_or_absent
 from browser import BrowserSession
+import key_fifo
 sys.path.insert(0,str(ROOT/'rtems/residentnet'))
 from presentation_profile import decode as decode_profile
 
@@ -31,6 +32,8 @@ def main():
     p.add_argument('--reusable',action='store_true')
     p.add_argument('--restart-cycles',type=int,default=0,help='acceptance: automatically run this many games, then globally stop')
     p.add_argument('--flat-benchmark',action='store_true',help='four games textured/flat/flat/textured; F6 transition probe in game 1')
+    p.add_argument('--keyboard-mode',choices=('mailbox','fifo'),default='mailbox')
+    p.add_argument('--keyboard-selftest',action='store_true',help='enable authenticated bounded pending-input STOP probe')
     p.add_argument('--quit-game',type=int,default=0,help='acceptance: inject F10/Y instead of STOP in this run')
     p.add_argument('--max-frames',type=int,default=0,help='request graceful STOP after this many frames; 0 plays until STOP')
     p.add_argument('--capture-all',action='store_true',help='retain every full frame during acceptance tests')
@@ -52,10 +55,15 @@ def main():
     if a.persistent:
         for sig in (signal.SIGINT,signal.SIGTERM):
             signal.signal(sig,lambda *_:signal_stop.set())
+    keyboard_fifo_schema=0
     if a.frames==32:
         need(a.fps_manifest is not None and a.startup_oracle is not None,
              'FPS manifest and native startup oracle required')
         fps_manifest=json.loads(a.fps_manifest.read_text())
+        keyboard_fifo_schema=fps_manifest.get('keyboard_fifo_schema',0)
+        need(keyboard_fifo_schema in (0,1),'keyboard FIFO schema')
+        if keyboard_fifo_schema:
+            need(fps_manifest['key_fifo_sha256']==sha(Path(__file__).with_name('key_fifo.h').read_bytes()),'keyboard FIFO source identity')
         need(bool(fps_manifest.get('reusable'))==a.reusable and fps_manifest['frames']==(0 if a.persistent else 32) and
              bool(fps_manifest.get('persistent'))==a.persistent and
              fps_manifest['source_sha256']==sha(Path(__file__).with_name('app.c').read_bytes()),
@@ -84,6 +92,8 @@ def main():
              'first-frame run must omit FPS inputs')
         kernel_sha=KERNEL;image_sha=IMAGE;image_fnv=EXPECTED_FNV
         startup_oracle=None
+    need(a.keyboard_mode=='mailbox' or keyboard_fifo_schema==1,'kernel lacks bounded keyboard FIFO')
+    need(not a.keyboard_selftest or keyboard_fifo_schema==1,'keyboard selftest requires FIFO kernel')
     lock=open('/run/lock/i960-loadrun.lock','w')
     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     for n,want in [('handler',HANDLER),('firmware',FIRMWARE),
@@ -271,7 +281,8 @@ def main():
         active_owner=True
         if a.port:
             need(1024<=a.port<=65535,'browser port range')
-            browser=BrowserSession(a.port,runtime_flat=bool(engine_manifest.get('runtime_flat')))
+            browser=BrowserSession(a.port,runtime_flat=bool(engine_manifest.get('runtime_flat')),
+                keyboard_mode=a.keyboard_mode,keyboard_fifo=bool(keyboard_fifo_schema),keyboard_test=a.keyboard_selftest)
             if a.reusable:
                 control_file=Path('/run/i960-doom-control.json')
                 fd=os.open(control_file,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
@@ -455,9 +466,12 @@ def main():
         game_run=1;global_frames=0;global_seen=[0,0];global_key=0;total_reads=0
         games=[];boot_run=run
         while True:
+            keyboard_mode=a.keyboard_mode
             if a.reusable:
                 run=boot_run/f'game-{game_run:04d}';run.mkdir()
-                if browser:browser.begin_game(game_run)
+                if browser:keyboard_mode=browser.begin_game(game_run)
+            if keyboard_fifo_schema:
+                key_fifo.configure(snap(0xc000e000),write,global_key,game_run,keyboard_mode)
             # One admitted image per game; all transport state remains boot-owned.
             seq+=1;engine_seq=seq;engine_reads=[]
             write(0xc000e000,0xb84,
@@ -474,6 +488,8 @@ def main():
             frame_journal=(run/'live-frame-receipts.jsonl').open('a',buffering=1)
             read_journal=(run/'engine-reads.jsonl').open('a',buffering=1)
             key_out_seq=global_key
+            key_acked=global_key;key_batches=0;key_max_depth=0
+            key_journal=(run/'keyboard-receipts.jsonl').open('a',buffering=1)
             live_dir=run/'live-frames';live_dir.mkdir()
             def read_card_bytes(ptr,n):
                 need(n==65536 and ptr&8191==4096 and
@@ -509,14 +525,44 @@ def main():
                         raise RuntimeError('engine STOP deadline; retain resources')
                 elif browser and browser.stop.is_set():
                     raise RuntimeError('browser STOP requested')
-                if live[12]==key_out_seq:
+                if keyboard_fifo_schema:
+                    kbd=key_fifo.snapshot(page,key_out_seq,game_run,keyboard_mode)
+                    need(kbd[5]>=key_acked,'keyboard ACK monotonic')
+                    if kbd[5]!=key_acked:
+                        key_journal.write(json.dumps(dict(op='ack',seq=kbd[5],card_tick=kbd[10],card_frame=kbd[11],host_ns=time.monotonic_ns()))+'\n')
+                        key_acked=kbd[5]
+                    key_max_depth=max(key_max_depth,key_out_seq-key_acked)
+                    available=(16 if keyboard_mode=='fifo' else 1)-(key_out_seq-key_acked)
+                    if browser:
+                        with browser.lock:
+                            browser.keyboard_stats=dict(published=key_out_seq,acked=kbd[5],discarded=kbd[6],run_id=kbd[7],card_max_depth=kbd[9])
+                    if browser and browser.keyboard_stop_after_batch.is_set() and available<16:
+                        available=0
+                else:
+                    available=int(live[12]==key_out_seq)
+                keys=[]
+                for _ in range(available if stop_reason is None else 0):
                     key=None
                     if game_run==a.quit_game and frame_count>=40 and quit_events<4:
                         key=(196|256,196,121|256,121)[quit_events];quit_events+=1
                     elif a.flat_benchmark and flat_events<len(flat_schedule) and frame_count>=flat_schedule[flat_events][0]:
                         key=flat_schedule[flat_events][1];flat_events+=1
                     elif browser and not a.flat_benchmark:key=browser.next_key()
-                    if key is not None:
+                    if key is None:break
+                    keys.append(key)
+                if keys:
+                    if keyboard_fifo_schema:
+                        key_out_seq=key_fifo.submit(write,key_out_seq,key_acked,game_run,keyboard_mode,keys)
+                        key_batches+=1;key_max_depth=max(key_max_depth,key_out_seq-key_acked)
+                        key_journal.write(json.dumps(dict(op='submit',last_seq=key_out_seq,events=keys,acked=key_acked,host_ns=time.monotonic_ns()))+'\n')
+                        if browser and browser.keyboard_stop_after_batch.is_set():
+                            need(a.keyboard_selftest and keyboard_mode=='fifo' and len(keys)==16,'bounded keyboard STOP probe')
+                            browser.keyboard_stop_after_batch.clear();browser.stop.set()
+                            stop_reason='keyboard pending STOP probe';stop_started=time.monotonic()
+                            write(0xc000e000,0xa7c,struct.pack('<I',0x504f5453))
+                            print('Stopping Doom with a published 16-entry keyboard batch',flush=True)
+                    else:
+                        key=keys[0]
                         write(0xc000e000,0xd2c,struct.pack('<I',key))
                         key_out_seq+=1
                         write(0xc000e000,0xd28,struct.pack('<I',key_out_seq))
@@ -546,7 +592,7 @@ def main():
                     need(len(capture)==77824 and capture[:4096]==b'\xa5'*4096 and capture[69664:]==b'\xa5'*(77824-69664),'full DMA guards')
                     need(capture[69632:69664]==marker and (pin_dir/f'marker{slot}.bin').read_bytes()==marker,'immutable DMA completion marker')
                     image=capture[4096:69632]
-                    retain=not a.persistent or a.capture_all or generation<=32 or generation%300==0
+                    retain=not a.persistent or a.capture_all or local_frame<=max(32,a.paired_frames) or generation%300==0
                     if retain:(run/f'dma-frame-{generation:04d}.bin').write_bytes(capture)
                     if local_frame<=a.paired_frames:
                         pio=read_card_bytes(live[14+slot],65536)
@@ -718,6 +764,17 @@ def main():
             ownercheck(owned)
             page=snap(0xc000e000)
             (run/'prestop-page.bin').write_bytes(page)
+            keyboard_result=None
+            if keyboard_fifo_schema:
+                kbd=key_fifo.snapshot(page,key_out_seq,game_run,keyboard_mode)
+                waiting=key_fifo.pending(page,key_out_seq,game_run,keyboard_mode)
+                need(kbd[5]==kbd[6]+kbd[13] and struct.unpack_from('<I',page,0xd30)[0]==kbd[5],'keyboard consumed/discarded conservation')
+                keyboard_result=dict(mode=keyboard_mode,published=key_out_seq,acked=kbd[5],consumed=kbd[13],
+                    discarded=kbd[6],pending=waiting,max_depth=key_max_depth,card_max_depth=kbd[9],batches=key_batches)
+                key_acked=kbd[5]
+                if browser:
+                    with browser.lock:browser.keyboard_stats=dict(keyboard_result,run_id=game_run)
+            key_journal.close()
             first=claim[4]
             time.sleep(.25)
             later=snap(0xc000e000)
@@ -727,7 +784,7 @@ def main():
             total_reads+=read_count
             global_frames+=frame_count;global_seen=list(live_seen);global_key=key_out_seq
             game_result=dict(game_run=game_run,frames=frame_count,global_frames=global_frames,
-                wad_reads=read_count,request_seq=request_seq,key_sent=key_out_seq,key_acked=live[12],
+                wad_reads=read_count,request_seq=request_seq,key_sent=key_out_seq,key_acked=key_acked if keyboard_fifo_schema else live[12],keyboard=keyboard_result,
                 reason=stop_reason or 'menu Quit',frame_timing=frame_timing,
                 elapsed_s=time.monotonic()-began_engine,frame_sha256=sha(game_frame),
                 engine_report=list(er),engine_results=list(result_words))

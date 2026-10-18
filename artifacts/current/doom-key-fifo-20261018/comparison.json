@@ -1,0 +1,74 @@
+{
+  "mac-abba": {
+    "1": {
+      "mailbox": {
+        "n": 16,
+        "median_ms": 100.231208,
+        "min_ms": 79.871291,
+        "max_ms": 117.989792,
+        "mean_delivered_fps": 19.733563059179964
+      },
+      "fifo": {
+        "n": 16,
+        "median_ms": 110.35835399999999,
+        "min_ms": 76.265792,
+        "max_ms": 212.033667,
+        "mean_delivered_fps": 19.489741180428187
+      },
+      "reduction_percent": -10.103785240221775
+    },
+    "2": {
+      "mailbox": {
+        "n": 16,
+        "median_ms": 204.8416665,
+        "min_ms": 176.231833,
+        "max_ms": 327.593166,
+        "mean_delivered_fps": 18.55391942801482
+      },
+      "fifo": {
+        "n": 16,
+        "median_ms": 144.702021,
+        "min_ms": 111.897584,
+        "max_ms": 184.532292,
+        "mean_delivered_fps": 18.33342160269072
+      },
+      "reduction_percent": 29.359088181407667
+    },
+    "8": {
+      "mailbox": {
+        "n": 12,
+        "median_ms": 816.671771,
+        "min_ms": 788.064208,
+        "max_ms": 985.076542,
+        "mean_delivered_fps": 19.215422018975634
+      },
+      "fifo": {
+        "n": 12,
+        "median_ms": 452.7922085,
+        "min_ms": 432.98675,
+        "max_ms": 615.92325,
+        "mean_delivered_fps": 18.711942387618862
+      },
+      "reduction_percent": 44.55640263583936
+    }
+  },
+  "mac-single-abba": {
+    "1": {
+      "mailbox": {
+        "n": 64,
+        "median_ms": 113.554375,
+        "min_ms": 72.925292,
+        "max_ms": 284.035,
+        "mean_delivered_fps": 19.690891741388928
+      },
+      "fifo": {
+        "n": 64,
+        "median_ms": 108.255875,
+        "min_ms": 69.67775,
+        "max_ms": 297.761542,
+        "mean_delivered_fps": 19.750193035923388
+      },
+      "reduction_percent": 4.666046552587688
+    }
+  }
+}

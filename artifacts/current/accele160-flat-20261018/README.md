@@ -71,8 +71,11 @@ host engine and native oracle pictures/reports. The pinned WAD is reused from
 `artifacts/doom-m1-20261011`, not duplicated. Native oracle source is in the repo
 and its exact generated C is included beside the native pictures.
 
-**Final paired post-reset flash reads are pending.** The ordinary launcher is
-unchanged. An optional wrapper is prepared but no new card execution was started:
+**Final paired post-reset flash reads passed.** The later clean-boot FIFO
+pre-read pair closes this batch: identical full 1 MiB images, zero DMA guard
+changes/status/residual. `post-0` and `post-1` retain the request/results and
+reference the existing canonical ROM without duplicating it. Independent
+`verify.py` passes; the ordinary launcher already selects the flat-enabled build:
 
 ```sh
 I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-flat ./doom
@@ -115,4 +118,5 @@ exactly the known four pre-existing differences at 29260, 29261, 29580, 29581.
 They are not introduced by the flat mode and are not silently ignored.
 
 The new admission is **873,980 bytes** within the unchanged 900,000-byte image
-budget. The ordinary launcher has not been replaced during this experiment.
+budget. The ordinary launcher was subsequently changed to the flat-enabled reusable build.
+Later streaming/FIFO work preserves its textured default and F6 toggle.

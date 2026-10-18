@@ -7,7 +7,7 @@ this is a policy test, not a hardware coherency or interrupt timing proof.
 import argparse,subprocess,tempfile
 from pathlib import Path
 p=argparse.ArgumentParser(description=__doc__)
-p.add_argument('--cc',default='gcc');a=p.parse_args()
+p.add_argument('--cc',default='gcc');p.add_argument('--keyboard-fifo',action='store_true');a=p.parse_args()
 src=Path(__file__).with_name('app.c').read_text()
 functions=src[src.index('static unsigned int reusable_audit('):src.index('/* PCI sideband never submits')]
 preamble=r'''
@@ -107,6 +107,23 @@ int main(void){unsigned i;
  puts("actual rearm policy: stale identities, DMA/ACK/WAD, loan/leak, fixed pins, IRQ, cache, digest and terminal STOP rejection passed");
 }
 '''
+if a.keyboard_fifo:
+    preamble += '\n#define DOOM_KEY_FIFO_SUPPORT 1\n#include "key_fifo.h"\nstatic struct key_fifo_state keyboard;\nstatic unsigned key_wire[96];\n'
+    checks=checks.replace('transport_frame=dma_completed=65;',
+        'kf_init(&keyboard,key_wire,1);keyboard.cursor=key_wire[5]=97;key_wire[4]=98;transport_frame=dma_completed=65;')
+    checks=checks.replace(' puts("actual rearm policy:',r'''
+ reset();keyboard.mode=key_wire[14]=1;key_wire[4]=live[10]=113;
+ {unsigned seq,base;for(seq=98;seq<=113;seq++){
+   base=16+((seq-1)&15)*4;key_wire[base]=seq;key_wire[base+1]=1;
+   key_wire[base+2]=448;key_wire[base+3]=~seq;}
+  {unsigned words[4]={65,5045,2,113};memcpy(inbound,words,16);}}
+ assert(rearm_engine(1,16,byte_fnv(inbound,16),0)==0&&keyboard.cursor==97&&!keyboard.discarded);
+ key_wire[21]=0;
+ assert(call(1)==44&&admitted&&keyboard.cursor==97&&!keyboard.discarded);
+ key_wire[21]=1;
+ assert(call(1)==0&&key_seen==113&&keyboard.cursor==113&&keyboard.discarded==16&&key_wire[7]==2);
+ puts("actual FIFO rearm: all 16 pending old-run keys classified, corrupt descriptor rejected before mutation");
+ puts("actual rearm policy:''')
 with tempfile.TemporaryDirectory() as tmp:
     path=Path(tmp);(path/'test.c').write_text(preamble+functions+checks)
     root=Path(__file__).resolve().parents[3]

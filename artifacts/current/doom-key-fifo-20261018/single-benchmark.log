@@ -1,0 +1,4 @@
+0 fifo burst=1: 103.98 ms; 19.82 delivered FPS
+1 mailbox burst=1: 120.68 ms; 19.67 delivered FPS
+2 mailbox burst=1: 110.03 ms; 19.71 delivered FPS
+3 fifo burst=1: 118.36 ms; 19.68 delivered FPS

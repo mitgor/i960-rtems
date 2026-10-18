@@ -1,0 +1,18 @@
+{
+  "reusable": true,
+  "frames": 0,
+  "persistent": true,
+  "card_profile": "accele160",
+  "source_sha256": "95e34f940f7f1447b575b33785c45db2fd9bae3a91d8b01fcfc917eaa35a996f",
+  "kernel_sha256": "8f3b61c3100f96b9eee24d3487bc53553982e4f22c9fb11a2e9abdeb6ce7f185",
+  "image_sha256": "948f6470ab8a475fe1570c0b353cd542f44b26cb9bda1a83af6ddb6a62c79f02",
+  "image_fnv": "0xe7b54349",
+  "engine_manifest_sha256": "6acc78fd90a1a423c5cb8cc75a5472762651ccf623125320269e745fe30e730a",
+  "dma_module_sha256": "df48f83d1f303c69a55ffd9d4bf46e82c3e51bc3ad45b709140f0f04ab9dd1b6",
+  "keyboard_fifo_schema": 1,
+  "key_fifo_sha256": "d84474b69d3f458bfe99155510588334f0af2d1fc6abeeb26f807863c02cef9b",
+  "native_fnv_sha256": "e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6",
+  "dma_source_sha256": "f98242f67568a78bc8cb216e9d7e96ae87a9ab96763bf73adc994fa0d1c5ccdb",
+  "copy_sha256": "136d0fe0670d73848cf5831ecf4cd26077accbcbb45168c45ac34a072106254c",
+  "engine_identity_sha256": "bca3cad30e240112ef7216c3b1be282b65403b75f4aec686592890c25959a6ba"
+}

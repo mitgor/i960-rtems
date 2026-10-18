@@ -7,7 +7,8 @@ from pathlib import Path
 
 ALLOWED={196,192,173,175,172,174,163,162,182,13,27,9,121,110,*range(49,56)}
 class BrowserSession:
-    def __init__(self,port=8087,runtime_flat=False):
+    def __init__(self,port=8087,runtime_flat=False,keyboard_mode='mailbox',keyboard_fifo=False,keyboard_test=False):
+        assert keyboard_mode in ('mailbox','fifo') and (keyboard_mode=='mailbox' or keyboard_fifo)
         self.token=secrets.token_hex(24)
         self.epoch=secrets.randbits(32) or 1
         self.lock=threading.Lock()
@@ -22,6 +23,11 @@ class BrowserSession:
         self.run_id=1
         self.state="running"
         self.runtime_flat=runtime_flat
+        self.keyboard_fifo=keyboard_fifo
+        self.keyboard_mode=self.next_keyboard_mode=keyboard_mode
+        self.keyboard_test=keyboard_test
+        self.keyboard_stop_after_batch=threading.Event()
+        self.keyboard_stats=None
         self.flat_mode=0
         self.flat_switches=0
         self.client_seen=0.0
@@ -46,7 +52,8 @@ class BrowserSession:
                     with owner.lock:
                         state=dict(message=owner.message,
                                    frame=f'{owner.epoch}-{owner.generation}' if owner.frame else '',
-                                   binary=True,stopped=owner.stop.is_set(),run_id=owner.run_id,state=owner.state,flat_planes=owner.flat_mode if owner.runtime_flat else None,flat_switches=owner.flat_switches)
+                                   binary=True,stopped=owner.stop.is_set(),run_id=owner.run_id,state=owner.state,flat_planes=owner.flat_mode if owner.runtime_flat else None,flat_switches=owner.flat_switches,
+                                   keyboard_mode=owner.keyboard_mode,next_keyboard_mode=owner.next_keyboard_mode,keyboard_fifo=owner.keyboard_fifo,keyboard_stats=owner.keyboard_stats)
                     return self.reply(200,json.dumps(state).encode())
                 if self.path.startswith('/frame.bin'):
                     with owner.lock:packet=owner.frame
@@ -57,18 +64,39 @@ class BrowserSession:
                     return self.reply(403,b'forbidden')
                 try:
                     n=int(self.headers.get('Content-Length','0'))
-                    if not 0<n<=128:raise ValueError('length')
+                    if not 0<n<=256:raise ValueError('length')
                     body=json.loads(self.rfile.read(n))
                     if not isinstance(body,dict):raise ValueError("object required")
                     with owner.lock:
                         owner.client_seen=time.monotonic()
-                        if self.path in ('/stop','/restart','/key'):
+                        if self.path in ('/stop','/restart','/key','/keys','/keys-stop','/keyboard-mode'):
                             if type(body.get('run_id')) is not int or body['run_id']!=owner.run_id:
                                 return self.reply(409,b'stale game')
-                            if self.path=='/restart':
+                            if self.path in ('/restart','/keyboard-mode'):
                                 if owner.state!='idle':return self.reply(409,b'game is not idle')
                             elif owner.state!='running':return self.reply(409,b'game is not running')
-                        if self.path=='/restart':owner.restart.set()
+                        if self.path=='/keyboard-mode':
+                            mode=body.get('mode')
+                            if mode not in ('mailbox','fifo') or (mode=='fifo' and not owner.keyboard_fifo):raise ValueError('keyboard mode')
+                            owner.next_keyboard_mode=mode
+                        elif self.path=='/restart':owner.restart.set()
+                        elif self.path in ('/keys','/keys-stop'):
+                            values=body.get('events')
+                            if not owner.keyboard_fifo or not isinstance(values,list) or not 1<=len(values)<=16:raise ValueError('key batch')
+                            if self.path=='/keys-stop' and (not owner.keyboard_test or owner.keyboard_mode!='fifo' or len(values)!=16 or owner.events or owner.held):
+                                return self.reply(409,b'keyboard STOP probe not ready/enabled')
+                            held=set(owner.held);events=[]
+                            for event in values:
+                                if type(event) is not int or not 0<=event<=511:raise ValueError('key event')
+                                key=event&255;down=event>>8
+                                if key not in ALLOWED or (key==192 and not owner.runtime_flat):raise ValueError('key')
+                                if down and key not in held:held.add(key);events.append(event)
+                                elif not down and key in held:held.remove(key);events.append(event)
+                            if len(owner.events)+len(events)>96:
+                                owner.stop.set();return self.reply(429,b'key queue full')
+                            if self.path=='/keys-stop' and (len(events)!=16 or held):raise ValueError('STOP probe needs sixteen balanced transitions')
+                            owner.held=held;owner.events.extend(events);owner.key_deadline=time.monotonic()+3
+                            if self.path=='/keys-stop':owner.keyboard_stop_after_batch.set()
                         elif self.path=='/stop':owner.stop.set()
                         elif self.path=='/heartbeat':owner.key_deadline=time.monotonic()+3
                         elif self.path=='/key':
@@ -90,8 +118,11 @@ class BrowserSession:
         with self.lock:
             assert run_id>=self.run_id
             self.run_id=run_id;self.state='running';self.flat_mode=0;self.flat_switches=0
+            self.keyboard_mode=self.next_keyboard_mode
             self.events.clear();self.held.clear();self.stop.clear();self.restart.clear()
+            self.keyboard_stop_after_batch.clear();self.keyboard_stats=None
             self.message=f'Loading game {run_id} on the card…'
+            return self.keyboard_mode
     def idle(self,run_id):
         with self.lock:
             assert run_id==self.run_id

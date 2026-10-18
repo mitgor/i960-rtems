@@ -186,6 +186,16 @@ class Gateway:
                         await ws.send(json.dumps(dict(type='ack',seq=seq,error='game idle',state=state)))
                         continue
                     body.update(key=key, down=down)
+                elif op == 'keys':
+                    events=message.get('events')
+                    if not state.get('keyboard_fifo') or not isinstance(events,list) or not 1<=len(events)<=16:
+                        raise ValueError('bounded keyboard batch unsupported')
+                    if any(type(e) is not int or not 0<=e<=511 or (e&255) not in ALLOWED for e in events):
+                        raise ValueError('key batch')
+                    if state['state']!='running':
+                        await ws.send(json.dumps(dict(type='ack',seq=seq,error='game idle',state=state)))
+                        continue
+                    body.update(events=events)
                 elif op not in ('heartbeat','stop','restart'):
                     raise ValueError('operation')
                 if op == 'restart' and self.restart_pending == state['run_id']:
@@ -199,6 +209,10 @@ class Gateway:
                 if op == 'key':
                     if down: held.add(key)
                     else: held.discard(key)
+                if op == 'keys':
+                    for event in events:
+                        if event>>8:held.add(event&255)
+                        else:held.discard(event&255)
                 if op == 'restart':
                     self.restart_pending = state['run_id']
                 self.record(type='input', seq=seq, op=op, run_id=state['run_id'],

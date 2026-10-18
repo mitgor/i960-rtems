@@ -1,0 +1,28 @@
+{
+  "games": 4,
+  "final": {
+    "message": "Game 4 stopped safely. Click Start new game.",
+    "frame": "1585128181-1595",
+    "binary": true,
+    "stopped": true,
+    "run_id": 4,
+    "state": "idle",
+    "flat_planes": 0,
+    "flat_switches": 72,
+    "keyboard_mode": "fifo",
+    "next_keyboard_mode": "fifo",
+    "keyboard_fifo": true,
+    "keyboard_stats": {
+      "mode": "fifo",
+      "published": 592,
+      "acked": 592,
+      "consumed": 576,
+      "discarded": 16,
+      "pending": 0,
+      "max_depth": 16,
+      "card_max_depth": 16,
+      "batches": 30,
+      "run_id": 4
+    }
+  }
+}

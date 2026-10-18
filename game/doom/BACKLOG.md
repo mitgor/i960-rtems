@@ -2,6 +2,18 @@
 
 ## Current play priority: input latency (2026-10-18)
 
+**Card FIFO physical comparison passed:**
+[`doom-key-fifo-20261018`](../../artifacts/current/doom-key-fifo-20261018/README.md)
+uses sixteen sequence/run-tagged entries with tail-last/ACK-last ordering.
+Eight fresh games, 3,073 full-audit frames and 256 paired PIO comparisons passed,
+including full-ring STOP and exact retirement of sixteen pending old-game keys.
+Two-pulse tail **204.84 → 144.70 ms (-29.4%)**; eight-pulse tail
+**816.67 → 452.79 ms (-44.6%)**. Longer single-key ABBA **113.55 → 108.26 ms**
+and received **19.69 → 19.75 FPS**: no convincing first-key/renderer speedup.
+The shorter singles reversed direction; retain that limitation in any claim.
+Closing full-flash pair passed; default ./doom now selects FIFO. A further
+168-frame/32-PIO ordinary-launch/F6/STOP smoke test passed with selftest off.
+
 [Persistent input/pushed-frame acceptance](../../artifacts/current/doom-stream-20261018/README.md)
 now passes on the card: matched Mac F6-to-received-frame **142.13 → 106.18 ms
 (-25.3%)**, received FPS **16.63 → 20.40 (+22.7%)**. These are delivery metrics,
@@ -19,12 +31,18 @@ Mac-to-router ping averages 228 ms while host-to-router averages 0.87 ms.
 2. **Done:** bounded persistent input transport removes the shared browser HTTP
    promise chain while preserving key order and run identity. Separate video
    connection cannot block input; two display credits bound slow-viewer latency.
-3. Bounded card input FIFO/batching instead of one transition per mailbox ACK.
+3. Bounded card input FIFO/batching instead of one transition per mailbox ACK:
+   **done/card-tested** as above; mailbox remains selectable.
 4. **Done at the browser:** pushed fully audited frames replace 50 ms
    status-then-frame polling. Follow-up: direct owner publication rather than
    the gateway's 10 ms loopback HTTP poll; gateway RSS is about 28 MiB.
-5. Correlate browser event/send/receive/paint with host enqueue/ACK and game tic;
-   only then assess the outer 29 ms sleep. Do not equate card FPS with paint FPS.
+5. **Next engine experiments:** bounded input drain across key-up events
+   (`I_GetEvent` currently breaks), then separate deterministic startup clock from
+   live-play time. `doom_platform_startup(0)` leaves persistent play on virtual
+   time; its `DG_SleepMs(29)` advances that clock rather than sleeping 29 real ms.
+   Keep STOP checks and bounded tic/input work; repeat native determinism and
+   matched card latency before promotion. Correlate browser event/send/paint with
+   host enqueue/card ACK and game tic. Card FPS is not paint FPS.
 
 The real CLI idle restart passed into a 1,428-frame second game, all 24 new key
 edges ACKed and twelve F6 changes confirmed, then STOP parked safely. Real

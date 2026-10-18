@@ -1,0 +1,241 @@
+{
+  "games": [
+    {
+      "run": 1,
+      "mode": "fifo",
+      "frames": 375,
+      "paired_pio": 32,
+      "keyboard": {
+        "mode": "fifo",
+        "published": 160,
+        "acked": 144,
+        "consumed": 144,
+        "discarded": 0,
+        "pending": 16,
+        "max_depth": 16,
+        "card_max_depth": 16,
+        "batches": 31
+      },
+      "idle_verified": true
+    },
+    {
+      "run": 2,
+      "mode": "mailbox",
+      "frames": 429,
+      "paired_pio": 32,
+      "keyboard": {
+        "mode": "mailbox",
+        "published": 304,
+        "acked": 304,
+        "consumed": 288,
+        "discarded": 16,
+        "pending": 0,
+        "max_depth": 1,
+        "card_max_depth": 16,
+        "batches": 144
+      },
+      "idle_verified": true
+    },
+    {
+      "run": 3,
+      "mode": "mailbox",
+      "frames": 419,
+      "paired_pio": 32,
+      "keyboard": {
+        "mode": "mailbox",
+        "published": 448,
+        "acked": 448,
+        "consumed": 432,
+        "discarded": 16,
+        "pending": 0,
+        "max_depth": 1,
+        "card_max_depth": 16,
+        "batches": 144
+      },
+      "idle_verified": true
+    },
+    {
+      "run": 4,
+      "mode": "fifo",
+      "frames": 372,
+      "paired_pio": 32,
+      "keyboard": {
+        "mode": "fifo",
+        "published": 592,
+        "acked": 592,
+        "consumed": 576,
+        "discarded": 16,
+        "pending": 0,
+        "max_depth": 16,
+        "card_max_depth": 16,
+        "batches": 30
+      },
+      "idle_verified": true
+    },
+    {
+      "run": 5,
+      "mode": "fifo",
+      "frames": 364,
+      "paired_pio": 32,
+      "keyboard": {
+        "mode": "fifo",
+        "published": 656,
+        "acked": 656,
+        "consumed": 640,
+        "discarded": 16,
+        "pending": 0,
+        "max_depth": 2,
+        "card_max_depth": 16,
+        "batches": 64
+      },
+      "idle_verified": true
+    },
+    {
+      "run": 6,
+      "mode": "mailbox",
+      "frames": 377,
+      "paired_pio": 32,
+      "keyboard": {
+        "mode": "mailbox",
+        "published": 720,
+        "acked": 720,
+        "consumed": 704,
+        "discarded": 16,
+        "pending": 0,
+        "max_depth": 1,
+        "card_max_depth": 16,
+        "batches": 64
+      },
+      "idle_verified": true
+    },
+    {
+      "run": 7,
+      "mode": "mailbox",
+      "frames": 365,
+      "paired_pio": 32,
+      "keyboard": {
+        "mode": "mailbox",
+        "published": 784,
+        "acked": 784,
+        "consumed": 768,
+        "discarded": 16,
+        "pending": 0,
+        "max_depth": 1,
+        "card_max_depth": 16,
+        "batches": 64
+      },
+      "idle_verified": true
+    },
+    {
+      "run": 8,
+      "mode": "fifo",
+      "frames": 372,
+      "paired_pio": 32,
+      "keyboard": {
+        "mode": "fifo",
+        "published": 848,
+        "acked": 848,
+        "consumed": 832,
+        "discarded": 16,
+        "pending": 0,
+        "max_depth": 2,
+        "card_max_depth": 16,
+        "batches": 63
+      },
+      "idle_verified": true
+    }
+  ],
+  "frames": 3073,
+  "paired_pio_frames": 256,
+  "retained_captures": 266,
+  "exact_baseline_frames": 256,
+  "native_oracle_reads_per_game": 5043,
+  "gateway_payloads": 2663,
+  "client_frames": 2648,
+  "bundle_members": 204,
+  "tamper_rejections": 6,
+  "full_audits_and_ownership": true,
+  "post_reset_flash_pair": true,
+  "measurements": {
+    "mac-abba": {
+      "1": {
+        "mailbox": {
+          "n": 16,
+          "median_ms": 100.231208,
+          "min_ms": 79.871291,
+          "max_ms": 117.989792,
+          "mean_delivered_fps": 19.733563059179964
+        },
+        "fifo": {
+          "n": 16,
+          "median_ms": 110.35835399999999,
+          "min_ms": 76.265792,
+          "max_ms": 212.033667,
+          "mean_delivered_fps": 19.489741180428187
+        },
+        "reduction_percent": -10.103785240221775
+      },
+      "2": {
+        "mailbox": {
+          "n": 16,
+          "median_ms": 204.8416665,
+          "min_ms": 176.231833,
+          "max_ms": 327.593166,
+          "mean_delivered_fps": 18.55391942801482
+        },
+        "fifo": {
+          "n": 16,
+          "median_ms": 144.702021,
+          "min_ms": 111.897584,
+          "max_ms": 184.532292,
+          "mean_delivered_fps": 18.33342160269072
+        },
+        "reduction_percent": 29.359088181407667
+      },
+      "8": {
+        "mailbox": {
+          "n": 12,
+          "median_ms": 816.671771,
+          "min_ms": 788.064208,
+          "max_ms": 985.076542,
+          "mean_delivered_fps": 19.215422018975634
+        },
+        "fifo": {
+          "n": 12,
+          "median_ms": 452.7922085,
+          "min_ms": 432.98675,
+          "max_ms": 615.92325,
+          "mean_delivered_fps": 18.711942387618862
+        },
+        "reduction_percent": 44.55640263583936
+      }
+    },
+    "mac-single-abba": {
+      "1": {
+        "mailbox": {
+          "n": 64,
+          "median_ms": 113.554375,
+          "min_ms": 72.925292,
+          "max_ms": 284.035,
+          "mean_delivered_fps": 19.690891741388928
+        },
+        "fifo": {
+          "n": 64,
+          "median_ms": 108.255875,
+          "min_ms": 69.67775,
+          "max_ms": 297.761542,
+          "mean_delivered_fps": 19.750193035923388
+        },
+        "reduction_percent": 4.666046552587688
+      }
+    }
+  },
+  "ordinary_launcher_smoke": {
+    "frames": 168,
+    "paired_pio": 32,
+    "default_fifo": true,
+    "selftest_disabled": true,
+    "reusable_idle": true,
+    "gateway_manifest_files": 68
+  }
+}

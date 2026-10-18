@@ -18,7 +18,10 @@ A/D turn, Ctrl or Space fires, E opens/uses, Shift runs, Enter confirms and
 Esc opens the menu. No sound is implemented. The accepted new-card low-detail
 renderer, optimized columns/memory copy and private cache map are used;
 each fresh game starts textured, and F6 toggles flat floors and ceilings.
-Half-height stays disabled.
+Half-height stays disabled. The default kernel now uses the bounded sixteen-entry
+card keyboard FIFO; `--keyboard-mode mailbox` is a fresh-session comparison
+option. [Measured FIFO findings](../../../../artifacts/current/doom-key-fifo-20261018/README.md)
+report queue-tail improvement separately from first-key latency and FPS.
 
 `./doom status` reports the service. Use the page's **Stop Doom** button or
 `./doom stop` to park the game with audited cleanup. Keys release after focus loss or a

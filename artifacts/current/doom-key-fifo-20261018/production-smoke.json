@@ -1,0 +1,940 @@
+{
+  "probe": {
+    "mode": "stream",
+    "host": "192.168.2.75",
+    "run_id": 1,
+    "burst": 1,
+    "jitter": false,
+    "keyboard_mode": "fifo",
+    "trials": [
+      {
+        "trial": 1,
+        "ms": 166.215042,
+        "before_generation": 48,
+        "confirmed_generation": 52
+      },
+      {
+        "trial": 2,
+        "ms": 304.738709,
+        "before_generation": 61,
+        "confirmed_generation": 68
+      },
+      {
+        "trial": 3,
+        "ms": 143.18475,
+        "before_generation": 74,
+        "confirmed_generation": 78
+      },
+      {
+        "trial": 4,
+        "ms": 99.420416,
+        "before_generation": 86,
+        "confirmed_generation": 89
+      },
+      {
+        "trial": 5,
+        "ms": 144.262958,
+        "before_generation": 95,
+        "confirmed_generation": 99
+      },
+      {
+        "trial": 6,
+        "ms": 193.1375,
+        "before_generation": 105,
+        "confirmed_generation": 110
+      },
+      {
+        "trial": 7,
+        "ms": 112.400166,
+        "before_generation": 117,
+        "confirmed_generation": 121
+      },
+      {
+        "trial": 8,
+        "ms": 142.194,
+        "before_generation": 127,
+        "confirmed_generation": 133
+      }
+    ],
+    "frames": [
+      {
+        "ns": 2600879071638833,
+        "generation": 48,
+        "flat": 0,
+        "switches": 0,
+        "sha256": "3db3b05d89ed0906e832cf2982ae58398207036d00982c1cd8f70ad889d8b34a"
+      },
+      {
+        "ns": 2600879077069500,
+        "generation": 49,
+        "flat": 0,
+        "switches": 0,
+        "sha256": "681938350e1c723ca59cb265539b50d3be478cebd99a8670db1941153849941b"
+      },
+      {
+        "ns": 2600879099690333,
+        "generation": 50,
+        "flat": 0,
+        "switches": 0,
+        "sha256": "3e08ba877a27d29416113fa7e0802d365af602d4436198b22f5c873861299e64"
+      },
+      {
+        "ns": 2600879239114375,
+        "generation": 51,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "a3d7c9879e4d39df0090590fde932dcd87ffb324ef3bbfac0443bbad32c248d4"
+      },
+      {
+        "ns": 2600879239605333,
+        "generation": 52,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "ed013516783505db9342ba75b72b2125f47ebb95301cf6b8cef6424a0b00e9ff"
+      },
+      {
+        "ns": 2600879246869916,
+        "generation": 53,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "abfb3a566c0ae283b566e5119e5d2c0b7bbc968bef0a6398baa0a553b9fa42b9"
+      },
+      {
+        "ns": 2600879279691958,
+        "generation": 54,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "f3eb85dc2910c4bd96249e50ee1846e942e368de69b3c1816fef738b97af9d4e"
+      },
+      {
+        "ns": 2600879416091166,
+        "generation": 55,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "03e646eeab466870529c1c5eb19c2a6967c2a544adb6caa1fc053cc6a7ba02d9"
+      },
+      {
+        "ns": 2600879421298375,
+        "generation": 57,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "01f3089f50532c48e83b35d54f2f291c5c7ae9754bd4baa13cb52dcafcbf17b7"
+      },
+      {
+        "ns": 2600879469434083,
+        "generation": 58,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "b8c9522b5b167cfdb8de270fced4947cf81c637df224377fc557bc3671283589"
+      },
+      {
+        "ns": 2600879509721208,
+        "generation": 59,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "18263a91a499f5ac2c63e1d0278cc3d4ea217e44666423c62f885a207148807f"
+      },
+      {
+        "ns": 2600879548904833,
+        "generation": 60,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "3788b944aa8704019ea619be0a136c3938f957f10d6d3d55da4b3794aac9956f"
+      },
+      {
+        "ns": 2600879600116333,
+        "generation": 61,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "77e666cca476666f0a8bc439f9095cdd95042a64e6692a9ba2dcf7bbf883534b"
+      },
+      {
+        "ns": 2600879761268375,
+        "generation": 62,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "cd1853ca0c293717f2ee17e30d92b5c3018aea9f905187461134f045b4d1b4cc"
+      },
+      {
+        "ns": 2600879762699666,
+        "generation": 63,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "08b7db9bb88b08830572cdce286d04930540ffd5691c941dea195d633ae1e1e8"
+      },
+      {
+        "ns": 2600879770894666,
+        "generation": 64,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "5f07b98b2565df33951f3ec980732a397c4ad11cd34909d471a4cf0aea25164e"
+      },
+      {
+        "ns": 2600879776339958,
+        "generation": 65,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "32b3aae715c637e83aecdc25aa19670d9f0d247e3bac37b387f4ec7289b003c2"
+      },
+      {
+        "ns": 2600879945588875,
+        "generation": 66,
+        "flat": 1,
+        "switches": 1,
+        "sha256": "32d5a31b05717b1433a742e48dd4c30459906e14dd74d17d50baaa4fe9af123c"
+      },
+      {
+        "ns": 2600879946178750,
+        "generation": 68,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "fda3475e013d1e6c67d28f53886f616a14fcb6ef71ee4b77b4a677c3d16739d5"
+      },
+      {
+        "ns": 2600879980054958,
+        "generation": 69,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "b26abc40c76df74c3277b2eaedc6419599e18ceb63c85c4d825f6ce61826fe8a"
+      },
+      {
+        "ns": 2600880068676916,
+        "generation": 70,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "38c261b17ca2bfb625e10779feb979a54b23364e71ccf987c5774e370fd305c5"
+      },
+      {
+        "ns": 2600880097762250,
+        "generation": 71,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "b608f60ad423d212e4661abcfd819f7b39887f5c5eb3c0502c71e46cc1181f1a"
+      },
+      {
+        "ns": 2600880240493125,
+        "generation": 72,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "e837ff3d20a1c4ff9c921594a2017d6f74829a4fe70a3531777239d0c781c2b8"
+      },
+      {
+        "ns": 2600880240956375,
+        "generation": 73,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "4ec179d2f77d6c2bc07ca116a7b431d6b6c8247ab5fc64e4de2a8fa0a6262a7e"
+      },
+      {
+        "ns": 2600880264810833,
+        "generation": 74,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "303133b63e882dd28438e6000be30a1c32308039ef04c02956d977037f361aa1"
+      },
+      {
+        "ns": 2600880363212625,
+        "generation": 75,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "3b3a232e202e0a8cca9d23e2bbb1acffe57370735c2acf04f9751920fe8acfb9"
+      },
+      {
+        "ns": 2600880380936833,
+        "generation": 76,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "4efb723333d05a3e1c800aa1f78288ba3a407d44e0470d597d43c2d980676c81"
+      },
+      {
+        "ns": 2600880459501583,
+        "generation": 77,
+        "flat": 0,
+        "switches": 2,
+        "sha256": "0f9c0dd62985fc7691f279ea0b272a01cc7b37d34cec4ad51cf16036e8c46f20"
+      },
+      {
+        "ns": 2600880490900458,
+        "generation": 78,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "d2205770d1648848ad7d2e2f423bbde3a7fbb646da3353e51260ec6064bfc21a"
+      },
+      {
+        "ns": 2600880532525875,
+        "generation": 79,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "c4b542197ef7673b7685d8ff7a3f846588bc9570232415c6f002474011b05370"
+      },
+      {
+        "ns": 2600880586892833,
+        "generation": 80,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "5eab351241956e9a72c53acae509a8ba04d84b11d74f707d379e04b72ea05d9c"
+      },
+      {
+        "ns": 2600880622650708,
+        "generation": 81,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "5d30a3be4fb6316d8bb6339e2f00f7f2436801be047a9bdd31039773f683a13e"
+      },
+      {
+        "ns": 2600880667631000,
+        "generation": 82,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "1639b550e7ca9e833f6f929caa98d41277c45031c51e5aaf66bdef3fd4658829"
+      },
+      {
+        "ns": 2600880706908916,
+        "generation": 83,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "6350b6a79fd6213d9017499170fd063677d1468fdefafc9e9691b1fa55c9df80"
+      },
+      {
+        "ns": 2600880764704083,
+        "generation": 84,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "b716f00e81d0ae08be070bc9b4e41f38e7ecee82c88649137bb746a0db723387"
+      },
+      {
+        "ns": 2600880799498416,
+        "generation": 85,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "77b1fc8d83272e190052fe251de0767f4bca33e8e76f337d0d9b5fb376cf77a4"
+      },
+      {
+        "ns": 2600880840317375,
+        "generation": 86,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "0b0afe4e1de0b7c5d13c00860ea572a64a59577a1e560a0452a0f686e944db31"
+      },
+      {
+        "ns": 2600880894140041,
+        "generation": 87,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "f350051cb2ed1d22600c1d9cf6861357e6b4becbb45976e263962faecbd88cd6"
+      },
+      {
+        "ns": 2600880938573333,
+        "generation": 88,
+        "flat": 1,
+        "switches": 3,
+        "sha256": "f17c8e64b946aad8129b91f4fd871df496aab2c8e89c7a9459b934fb5961f48a"
+      },
+      {
+        "ns": 2600880991696791,
+        "generation": 89,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "529194892d6606ad78815208be09732281a83e3bd3889346865be520b813f5cb"
+      },
+      {
+        "ns": 2600881088423291,
+        "generation": 90,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "255eb1426daa0b5ab8b919854d22cdaa5d9cc3e620542f7fe661661b3260fb28"
+      },
+      {
+        "ns": 2600881099291500,
+        "generation": 91,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "43213eafb937c5904b338c3a9afd92c1d9c45242bee597ace4e64154964f3ebf"
+      },
+      {
+        "ns": 2600881154079291,
+        "generation": 92,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "41a6929aef2b465e1942cb95263e98487bf8d4d4a93af9d432764113bb4391c9"
+      },
+      {
+        "ns": 2600881295231041,
+        "generation": 93,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "0158bce5d3ba9eb4fec6f470586917b4e2104baf4bd3b418dbc632de61e8bca2"
+      },
+      {
+        "ns": 2600881295953541,
+        "generation": 94,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "532cc350ccda8555e7fc41903a56c60b4ebfc91ffad066136b13029694542cb4"
+      },
+      {
+        "ns": 2600881324914416,
+        "generation": 95,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "fb51a55760e72f7f5187468b554b7b20ec82bf0ee0835457345c9f3e4e8dd14e"
+      },
+      {
+        "ns": 2600881437645041,
+        "generation": 96,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "bed543467d8a80a34b07a97eda06d6327e7900e77916e86d2227aa24e1ead96d"
+      },
+      {
+        "ns": 2600881438076083,
+        "generation": 97,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "8bf7eae5c5cf64a3abd50fa1f2a99ec62161cf320068df318ba054f9f8d3d5f4"
+      },
+      {
+        "ns": 2600881520777666,
+        "generation": 98,
+        "flat": 0,
+        "switches": 4,
+        "sha256": "8e8087b948c2edb90feb8bd014d1ee073109234fcb208be5cc0f766d0b47f313"
+      },
+      {
+        "ns": 2600881537408166,
+        "generation": 99,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "52938a826dcbf2f619eacb94d78bf76cd174829ac8fe7eb75d60bbeb167ae04c"
+      },
+      {
+        "ns": 2600881577934833,
+        "generation": 100,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "3d6edc50d3e5ca4579f96096c167e9debe8a56037a80b1c8ba713bdf033b93d9"
+      },
+      {
+        "ns": 2600881665369958,
+        "generation": 101,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "1ae5bec47828636a833dae143920c50eadcb3e594224d809edf17ccf2ff42c51"
+      },
+      {
+        "ns": 2600881670747458,
+        "generation": 102,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "2b1fc23e16fa3bdf78cb8ea18ef25174bc1888332e654a0eb8d07fee90381d14"
+      },
+      {
+        "ns": 2600881708701875,
+        "generation": 103,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "b2df08ace22cc657c47b7a0741f0e13fe406f097844895ac8caf6f0bfb84fbe3"
+      },
+      {
+        "ns": 2600881774492291,
+        "generation": 104,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "390694bf9d8bf4565e22ce4a18d4d282bb8e7dacbc664caef38f1d29ba66b690"
+      },
+      {
+        "ns": 2600881803489041,
+        "generation": 105,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "52662270ee265d96f2d2f7c6ad52c468b959eefed179f2b9f63b8c18a7d62b45"
+      },
+      {
+        "ns": 2600881954536375,
+        "generation": 106,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "2dde73466b3be58ae4e070a745d614b2730e200827545d4643e5edee6e07f3d4"
+      },
+      {
+        "ns": 2600881955576583,
+        "generation": 107,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "fe2aea509e9864a5035e4de90c3661328f72e91e44237059234bd1ef28fd326f"
+      },
+      {
+        "ns": 2600881961260708,
+        "generation": 108,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "8928777d9a7d2c8e46a467855db524c8615113f86e1fd84299dd07d1f3bd2a18"
+      },
+      {
+        "ns": 2600881989116208,
+        "generation": 109,
+        "flat": 1,
+        "switches": 5,
+        "sha256": "f6acfd61690858138bbbc025d5e5851c234e63d9e9060d4d5bc6cce2230da034"
+      },
+      {
+        "ns": 2600882132166625,
+        "generation": 110,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "5686ac3a94dea9383fc0f4f3949f57d9ccae8b90b434e48f19b3c0a180c78a2b"
+      },
+      {
+        "ns": 2600882151737875,
+        "generation": 111,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "4f224886ec8bf1da17be5e488ebbef76f1b89f2c648c3aeadacb5f6ca27780c9"
+      },
+      {
+        "ns": 2600882157486875,
+        "generation": 112,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "20f2529318878bf9bb077f31fcad16bf3b24eb44c1fc69f2bedb36f030a0b974"
+      },
+      {
+        "ns": 2600882199319000,
+        "generation": 113,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "8b1d8a32160ede3891234338e9b346de3a8a269535b30dc410c0f55ff800894f"
+      },
+      {
+        "ns": 2600882383234041,
+        "generation": 114,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "7531265a4051b368167a0599aea45a03d74387a728c82deef713573e55067366"
+      },
+      {
+        "ns": 2600882383988250,
+        "generation": 115,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "b47e0c99b5b0b157d560b4b910898e61b4a60c105987c31473cb8f8938fd6bc3"
+      },
+      {
+        "ns": 2600882390038000,
+        "generation": 116,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "47afb8aeec80998dc18e700f2d9e2c9b4647b8588bfd8bc6b1c9e004cc310351"
+      },
+      {
+        "ns": 2600882426424083,
+        "generation": 117,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "de611e35a71d433c361a4341b6892eabcfdb90d50aea425e3a7206fd955514f3"
+      },
+      {
+        "ns": 2600882561398458,
+        "generation": 118,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "c20cc1bbf7af8ce5238bb0447eb8874bc33cb9907a4d1a55e0f9e92877ac4c52"
+      },
+      {
+        "ns": 2600882565874916,
+        "generation": 119,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "086f0c25a566c0aa88ab7b0421fc7157f4c3d6a77a439580b54d2bb3fcc6610e"
+      },
+      {
+        "ns": 2600882607617791,
+        "generation": 120,
+        "flat": 0,
+        "switches": 6,
+        "sha256": "98be97f217375da705a555de522c1e1e86461ae7ecd2fdb1013c2fd9931ffe76"
+      },
+      {
+        "ns": 2600882645967791,
+        "generation": 121,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "8385d3d060c25e371073aff85a556696b122efa5033de32aeb7f972e9446ea5c"
+      },
+      {
+        "ns": 2600882696303125,
+        "generation": 122,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "5843ec68514961c12b76967f45b9607d13033bb011325358d1a4e83b8817e31e"
+      },
+      {
+        "ns": 2600882735367125,
+        "generation": 123,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "9e6eeeafbbd38d47f82ec0916eff2019ca883031b5d76345dc69d9a0d2366711"
+      },
+      {
+        "ns": 2600882774865875,
+        "generation": 124,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "27f638a7d869af4cc4c6dfa611c004587ae273bd8ab16d791997b1ad9af42133"
+      },
+      {
+        "ns": 2600882910042000,
+        "generation": 125,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "3f43f9523ee297158e07ce9d9fa781754eb013af0728b5accd1d89c6a3199083"
+      },
+      {
+        "ns": 2600882915166666,
+        "generation": 126,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "df519337dd0bed5d31d962a3de3e978a90ee618dddb0220db75ee94d248d4448"
+      },
+      {
+        "ns": 2600882918021583,
+        "generation": 127,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "7243e6b2d04ebca7eaf4fdeca12f92cc77ba35a9f98be0508fe61ba0d4cb6162"
+      },
+      {
+        "ns": 2600883084088625,
+        "generation": 128,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "5723973f8565ddd945677e480046007dc0d7828dc0d965a1d893fb49fcd8f691"
+      },
+      {
+        "ns": 2600883085519458,
+        "generation": 129,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "a76b83e969b586aa52cae6fbca5bd3a69dc5aa3be7af4d82e008054a20074c1c"
+      },
+      {
+        "ns": 2600883091736250,
+        "generation": 130,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "aab7ca042754db5882604ecb117c2599e8415a81844226814837aae2bef0f56e"
+      },
+      {
+        "ns": 2600883096267541,
+        "generation": 131,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "2090c8350be105c1f3f3c63e33cf46182d640ae3a8ca50391e049fca85a19464"
+      },
+      {
+        "ns": 2600883154057416,
+        "generation": 132,
+        "flat": 1,
+        "switches": 7,
+        "sha256": "f4237305b9c3db40a511dc6f97cde895287a9ebd39afece51cee140a0a522a12"
+      },
+      {
+        "ns": 2600883190943833,
+        "generation": 133,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "38aee006373f363a619c71950b90245ccbb937b5d7e0cf644f5d7afcb9e35d01"
+      },
+      {
+        "ns": 2600883259809875,
+        "generation": 134,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "8d2f93b19be8cbbe18a85b099cf7ff143005c8102b02abab966fa7b70308238e"
+      },
+      {
+        "ns": 2600883431521916,
+        "generation": 135,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "1a129b69aec6b6a6fca7b02cef6e8f4a1f23949f8a502d57df6bcec5101f5c80"
+      },
+      {
+        "ns": 2600883431664375,
+        "generation": 136,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "75ca3cb8121d9a7207c119c733bcc0530fe5eb21a602e4670c90e194ddc94849"
+      },
+      {
+        "ns": 2600883441255875,
+        "generation": 137,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "9bc76099e2d384cf0c9a0a30a936ed77c55f31ded2efe6ed8c68f70e42b78002"
+      },
+      {
+        "ns": 2600883609463875,
+        "generation": 138,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "7e682cc11dad600a9284bcfa7e92871f86187cb310a17befcd4d2f69de73d89d"
+      },
+      {
+        "ns": 2600883610424875,
+        "generation": 139,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "85dc3387cf578da40225a378630e594b06eafd961159fc2e18a9c7eafda70a83"
+      },
+      {
+        "ns": 2600883617021708,
+        "generation": 140,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "4f2ec5d88f3b84bac79b3e7b75347d8194397c55bfd18a9f124d7feec8cd27bd"
+      },
+      {
+        "ns": 2600883642261833,
+        "generation": 141,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "f5fbb361365dcbbfb1fa4687688aa9e1fc81dc421af50eed7ed6d7eba5c0e473"
+      },
+      {
+        "ns": 2600883694348750,
+        "generation": 142,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "b4c6695241d11ffe464c709e7f23e3baba2bcc1789d5f4eb12d6797c2d369f04"
+      },
+      {
+        "ns": 2600883748738125,
+        "generation": 143,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "8867614807a095b3c8ef8d719bd932286c90001c819ee51d22353a8f100cd349"
+      },
+      {
+        "ns": 2600883804245666,
+        "generation": 144,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "1ff2721aea04a2acc44a04f5e2aaa62e9447c309d914dd7507867256a7427e1c"
+      },
+      {
+        "ns": 2600883958415666,
+        "generation": 145,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "21b82e55edcf55ca89c3ac814df3d906acea455f2281bbac8f8404f0ebdfeace"
+      },
+      {
+        "ns": 2600883959035000,
+        "generation": 146,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "6a55d88939f56b998bac86c972a75eb2abda27f60b0c6c46af8905b7a953e75d"
+      },
+      {
+        "ns": 2600883974387041,
+        "generation": 147,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "74a56a74743a04f6b9b68de8279d92eca93611c9afb2cd6cc3dbf65c81588130"
+      },
+      {
+        "ns": 2600884142160875,
+        "generation": 148,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "3233bd9f8ca1cc4523d2fbd64e86d400fc119658115639f8202c64616f9118e5"
+      },
+      {
+        "ns": 2600884142351791,
+        "generation": 149,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "b386bb239c7672a4ffaa3a94a05f9ef1a2ecb856c6da3233f32591822de55465"
+      },
+      {
+        "ns": 2600884153547958,
+        "generation": 150,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "ec6ddfe4030d7e657c6a4772a669a723c1c12002043c738f1673446e9a15f934"
+      },
+      {
+        "ns": 2600884196744250,
+        "generation": 151,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "23250fbd86bb3f3b771b99bc70c402640ab21670d0bf393ddb8528883798901c"
+      },
+      {
+        "ns": 2600884251769833,
+        "generation": 152,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "11e9003a9fe9b28fb0104dbeee9fed0cb91ec9bcaf38ddbae6bc65db8e912236"
+      },
+      {
+        "ns": 2600884305460875,
+        "generation": 153,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "bf6a319f9a171f8cf1e77e3e7a0489796c7c1c946de3affe3cdd2a48ccca3089"
+      },
+      {
+        "ns": 2600884434291458,
+        "generation": 154,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "fea4c219f255c1cbbc9e3a7b435f6d0fd594c4e45a2c0f5cbce6219f21e709e7"
+      },
+      {
+        "ns": 2600884434634666,
+        "generation": 155,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "cd221d4272f70ebc482576b920ccb73d3a318a281861636e13cbcbf79861483e"
+      },
+      {
+        "ns": 2600884557625250,
+        "generation": 156,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "e34e76e1278a5b183add21c1aaac00e72cf3576362e0df7d119253122a3d0e26"
+      },
+      {
+        "ns": 2600884559396208,
+        "generation": 157,
+        "flat": 0,
+        "switches": 8,
+        "sha256": "b5e78d79ef54a15a1d4e902e861492dd2f6b88864989eca3abffe6397d60d7f2"
+      }
+    ],
+    "input_acks": [
+      {
+        "seq": 1,
+        "ms": 33.340416
+      },
+      {
+        "seq": 2,
+        "ms": 9.862375
+      },
+      {
+        "seq": 3,
+        "ms": 15.286583
+      },
+      {
+        "seq": 4,
+        "ms": 128.032375
+      },
+      {
+        "seq": 5,
+        "ms": 134.31575
+      },
+      {
+        "seq": 6,
+        "ms": 54.575959
+      },
+      {
+        "seq": 7,
+        "ms": 17.564416
+      },
+      {
+        "seq": 8,
+        "ms": 20.623791
+      },
+      {
+        "seq": 9,
+        "ms": 10.228333
+      },
+      {
+        "seq": 10,
+        "ms": 13.855375
+      },
+      {
+        "seq": 11,
+        "ms": 70.2005
+      },
+      {
+        "seq": 12,
+        "ms": 45.673334
+      },
+      {
+        "seq": 13,
+        "ms": 49.745375
+      },
+      {
+        "seq": 14,
+        "ms": 22.311625
+      },
+      {
+        "seq": 15,
+        "ms": 27.305958
+      },
+      {
+        "seq": 16,
+        "ms": 127.571834
+      },
+      {
+        "seq": 17,
+        "ms": 34.080583
+      },
+      {
+        "seq": 18,
+        "ms": 37.574958
+      },
+      {
+        "seq": 19,
+        "ms": 66.254
+      },
+      {
+        "seq": 20,
+        "ms": 50.126709
+      },
+      {
+        "seq": 21,
+        "ms": 54.176292
+      },
+      {
+        "seq": 22,
+        "ms": 115.490166
+      }
+    ],
+    "median_ms": 143.72385400000002,
+    "min_ms": 99.420416,
+    "max_ms": 304.738709,
+    "delivered_fps": 19.49794655416959,
+    "delivered_interval_p95_ms": 166.067042
+  },
+  "final": {
+    "message": "Game 1 stopped safely. Click Start new game.",
+    "frame": "1428049018-168",
+    "binary": true,
+    "stopped": true,
+    "run_id": 1,
+    "state": "idle",
+    "flat_planes": 0,
+    "flat_switches": 8,
+    "keyboard_mode": "fifo",
+    "next_keyboard_mode": "fifo",
+    "keyboard_fifo": true,
+    "keyboard_stats": {
+      "mode": "fifo",
+      "published": 16,
+      "acked": 16,
+      "consumed": 16,
+      "discarded": 0,
+      "pending": 0,
+      "max_depth": 2,
+      "card_max_depth": 2,
+      "batches": 15,
+      "run_id": 1
+    }
+  },
+  "selftest_disabled": true,
+  "ordinary_start_and_stop": true
+}

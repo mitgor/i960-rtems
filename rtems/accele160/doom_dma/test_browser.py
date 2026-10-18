@@ -43,6 +43,42 @@ try:
     print('browser binary frame, keys, STOP and session identity: verified')
 finally:s.close()
 
+# Keyboard mode is a next-game setting, never an active-game mutation.
+s=BrowserSession(0,runtime_flat=True,keyboard_fifo=True);base=f'http://127.0.0.1:{s.port}'
+try:
+    try:post('/keyboard-mode',dict(mode='fifo'));raise AssertionError('live mode switch')
+    except urllib.error.HTTPError as error:assert error.code==409
+    s.idle(1);post('/keyboard-mode',dict(mode='fifo'))
+    assert s.keyboard_mode=='mailbox' and s.next_keyboard_mode=='fifo'
+    assert s.begin_game(2)=='fifo'
+    try:post('/keyboard-mode',dict(mode='mailbox',run_id=1));raise AssertionError('stale mode switch')
+    except urllib.error.HTTPError as error:assert error.code==409
+    s.idle(2)
+    try:post('/keyboard-mode',dict(mode='unbounded'));raise AssertionError('invalid mode')
+    except urllib.error.HTTPError as error:assert error.code==400
+    s.begin_game(3)
+    post('/keys',dict(events=[448,192]*8))
+    assert [s.next_key() for _ in range(16)]==[448,192]*8 and s.next_key() is None
+    for values in ([448]*17,[448,999],[True]):
+        try:post('/keys',dict(events=values));raise AssertionError('invalid batch')
+        except urllib.error.HTTPError as error:assert error.code==400
+        assert s.next_key() is None and not s.held
+    try:post('/keys-stop',dict(events=[448,192]*8));raise AssertionError('unarmed test probe')
+    except urllib.error.HTTPError as error:assert error.code==409
+    print('keyboard next-game mode, active/stale/invalid rejection: verified')
+finally:s.close()
+
+s=BrowserSession(0,runtime_flat=True,keyboard_mode='fifo',keyboard_fifo=True,keyboard_test=True);base=f'http://127.0.0.1:{s.port}'
+try:
+    post('/keys-stop',dict(events=[448,192]*8))
+    assert s.keyboard_stop_after_batch.is_set() and [s.next_key() for _ in range(16)]==[448,192]*8
+    s.begin_game(2);assert not s.keyboard_stop_after_batch.is_set()
+    try:post('/keys-stop',dict(events=[448]*16));raise AssertionError('unbalanced STOP probe')
+    except urllib.error.HTTPError as error:assert error.code==400
+    assert not s.held and not s.events
+    print('atomic sixteen-event batches and opt-in pending-input STOP probe: verified')
+finally:s.close()
+
 # Only flat-enabled engines expose F6; status follows validated frame telemetry.
 s=BrowserSession(0,runtime_flat=True);base=f'http://127.0.0.1:{s.port}'
 try:

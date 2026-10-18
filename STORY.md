@@ -5888,3 +5888,45 @@ starts the gateway on port 8088, and the old polling page remains on 8087.
 The last game is parked again, with both services ready for another start.
 The [streaming record](artifacts/current/doom-stream-20261018/README.md) keeps
 the measurements, exact deployment, receipts and a real browser screenshot.
+
+The next queue belongs on the card. We found room for sixteen keyboard
+descriptors in the borrowed control page, after the frame timestamps and
+clear of DMA state. The host writes each event before publishing the tail;
+the owning task validates and copies it before acknowledging it. No keyboard
+work moves into the interrupt handler.
+
+Retirement matters as much as delivery. STOP can leave keys in that queue,
+so a fresh game must not inherit them. The rearm gate now validates every
+pending descriptor and records it as discarded only when rearm commits.
+The native tests passed 80,000 events and repeated wraps, and the actual
+rearm policy passed its 32-bit sanitizer tests with a full pending ring.
+The new RTEMS kernel builds with the same Doom image and keeps mailbox mode
+for a matched comparison.
+
+The PC did return, and we could compare the two transports in the same kernel.
+Eight fresh games produced 3,073 fully audited frames and 256 independent PIO
+comparisons. A STOP with all sixteen queue entries pending was followed by a
+clean rearm: those keys were recorded as discarded, and the new game inherited
+none of them. At the end, 848 published events accounted for exactly 832 consumed
+and sixteen discarded events.
+
+The queue helps when keys pile up. Two pulses reached the received picture in
+145 ms instead of 205 ms; eight took 453 ms instead of 817 ms. The first short
+single-key sample actually favored the mailbox, so we ran another four games
+with longer, phase-varied probes. Those medians were 114 ms for the mailbox and
+108 ms for the FIFO, at roughly twenty received frames a second in either mode.
+That is useful queue drainage, not a claim that the renderer or first key became
+much faster.
+
+There is another boundary inside Doom: its input loop stops draining after a
+key release. We also checked the apparent 29 ms sleep and found that this build
+advances a virtual clock there rather than waiting 29 real milliseconds. Those
+are separate engine experiments. For now the engine is unchanged, and the
+[FIFO record](artifacts/current/doom-key-fifo-20261018/README.md) keeps the exact
+build, matched trials, full audits and reset closure together.
+
+The closing firmware reads matched the accepted full image with clean DMA
+guards after reset. We kept one canonical ROM and referenced it from the new
+records. The ordinary command now selects the tested FIFO kernel, with the
+same textured default, F6 toggle and reusable game Stop. Mailbox mode remains
+available for comparisons on a fresh hardware session.

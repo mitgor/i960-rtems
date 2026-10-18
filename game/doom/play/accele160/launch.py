@@ -53,6 +53,8 @@ def main():
     p.add_argument('--max-frames',type=int,default=0)
     p.add_argument('--restart-cycles',type=int,default=0)
     p.add_argument('--flat-benchmark',action='store_true')
+    p.add_argument('--keyboard-mode',choices=('mailbox','fifo'))
+    p.add_argument('--keyboard-selftest',action='store_true')
     p.add_argument('--quit-game',type=int,default=0)
     p.add_argument('--paired-frames',type=int,choices=(4,32),default=4)
     p.add_argument('--capture-all',action='store_true')
@@ -67,6 +69,9 @@ def main():
     if not 1024<=a.port<=65535 or a.max_frames<0 or a.disconnect_seconds<5:
         p.error('invalid session bounds')
     cfg=verify(bundle)
+    transport_manifest=json.loads((bundle/'project/rtems/accele160/doom_dma/persistent-manifest.json').read_text())
+    if a.keyboard_mode is None:a.keyboard_mode='fifo' if transport_manifest.get('keyboard_fifo_schema') else 'mailbox'
+    if a.keyboard_mode=='fifo' and not transport_manifest.get('keyboard_fifo_schema'):p.error('bundle lacks card keyboard FIFO')
     sys.path.insert(0,str(bundle/'project/rtems/transport'))
     from card_select import select,require_unbound_or_absent
     card=select(cfg['bdf'],'accele160')
@@ -91,9 +96,10 @@ def main():
                  '--setenv=PYTHONUNBUFFERED=1',sys.executable,str(Path(__file__).resolve()),
                  'run','--bundle',str(bundle),'--port',str(a.port),
                  '--max-frames',str(a.max_frames),'--disconnect-seconds',str(a.disconnect_seconds)]
-        command+=['--restart-cycles',str(a.restart_cycles),'--quit-game',str(a.quit_game),'--paired-frames',str(a.paired_frames)]
+        command+=['--restart-cycles',str(a.restart_cycles),'--quit-game',str(a.quit_game),'--paired-frames',str(a.paired_frames),'--keyboard-mode',a.keyboard_mode]
         if a.flat_benchmark:command+=['--flat-benchmark']
         if a.capture_all:command+=['--capture-all']
+        if a.keyboard_selftest:command+=['--keyboard-selftest']
         subprocess.run(command,check=True)
         print(f'Doom is starting. Open http://192.168.2.75:{a.port}/')
         print('Startup takes a few minutes. Logs: sudo journalctl -fu i960-doom')
@@ -113,7 +119,7 @@ def main():
                         '--bdf',cfg['bdf'],'--module',str(bundle/'inputs/rawreader.ko'),
                         '--selector','9','--length','1048576','--out',str(session/f'pre-{number}')],check=True)
     command=[sys.executable,str(project/'rtems/accele160/doom_dma/run_bridge.py'),
-             '--persistent','--port',str(a.port),'--card-fnv','off','--paired-frames',str(a.paired_frames),
+             '--persistent','--port',str(a.port),'--card-fnv','off','--paired-frames',str(a.paired_frames),'--keyboard-mode',a.keyboard_mode,
              '--max-frames',str(a.max_frames),'--disconnect-seconds',str(a.disconnect_seconds),
              '--fps-manifest',str(project/'rtems/accele160/doom_dma/persistent-manifest.json'),
              '--startup-oracle',str(bundle/'inputs/native-requests.bin'),
@@ -131,6 +137,7 @@ def main():
         command+=['--reusable','--restart-cycles',str(a.restart_cycles),'--quit-game',str(a.quit_game)]
     if a.flat_benchmark:command+=['--flat-benchmark']
     if a.capture_all:command+=['--capture-all']
+    if a.keyboard_selftest:command+=['--keyboard-selftest']
     os.execv(sys.executable,command)
 
 

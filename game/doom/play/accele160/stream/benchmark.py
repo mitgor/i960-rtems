@@ -18,7 +18,7 @@ import urllib.request
 from websockets.asyncio.client import connect
 
 
-async def trial(mode, host, trials):
+async def trial(mode, host, trials, burst=1, jitter=False):
     owner=f'http://{host}:8087'
     gateway=f'http://{host}:8088'
     opener=urllib.request.build_opener(urllib.request.ProxyHandler({}))
@@ -101,24 +101,25 @@ async def trial(mode, host, trials):
         for i in range(trials):
             before=latest.copy();start=time.monotonic_ns()
             try:
-                await send('key',key=192,down=1)
+                if burst==1:await send('key',key=192,down=1)
+                else:await send('keys',events=[448,192]*burst)
             finally:
-                await send('key',key=192,down=0)
+                if burst==1:await send('key',key=192,down=0)
             deadline=time.monotonic()+10
-            while latest['switches']!=before['switches']+1:
+            while latest['switches']!=before['switches']+burst:
                 for task in tasks:
                     if task.done():await task
                 assert time.monotonic()<deadline,'F6 frame timeout'
                 await asyncio.sleep(.002)
-            assert latest['flat']==1-before['flat']
+            assert latest['flat']==(before['flat']^(burst&1))
             pulses.append(dict(trial=i+1,ms=(latest['ns']-start)/1e6,
                 before_generation=before['generation'],confirmed_generation=latest['generation']))
-            await asyncio.sleep(.4)
+            await asyncio.sleep(.25+((i*37+19)%173)/1000 if jitter else .4)
         assert latest['flat']==initial,'use an even trial count'
         await asyncio.sleep(1)
         values=[x['ms'] for x in pulses]
         intervals=[(b['ns']-a['ns'])/1e6 for a,b in zip(frames,frames[1:])]
-        return dict(mode=mode,host=host,run_id=run_id,trials=pulses,frames=frames,input_acks=acks,
+        return dict(mode=mode,host=host,run_id=run_id,burst=burst,jitter=jitter,keyboard_mode=state.get('keyboard_mode'),trials=pulses,frames=frames,input_acks=acks,
             median_ms=statistics.median(values),min_ms=min(values),max_ms=max(values),
             delivered_fps=(len(frames)-1)*1e9/(frames[-1]['ns']-frames[0]['ns']),
             delivered_interval_p95_ms=sorted(intervals)[int(.95*len(intervals))])
@@ -134,13 +135,14 @@ async def main():
     p.add_argument('--host',default='127.0.0.1')
     p.add_argument('--trials',type=int,default=8)
     p.add_argument('--order',default='http,stream,stream,http')
+    p.add_argument('--burst',type=int,choices=(1,2,4,8),default=1)
     a=p.parse_args()
     assert a.trials>=2 and a.trials%2==0
     results=[]
     try:
         for mode in a.order.split(','):
             assert mode in ('http','stream')
-            result=await trial(mode,a.host,a.trials)
+            result=await trial(mode,a.host,a.trials,a.burst)
             results.append(result)
             print(f'{mode}: {result["median_ms"]:.2f} ms median, {result["delivered_fps"]:.2f} delivered FPS',file=sys.stderr,flush=True)
     finally:

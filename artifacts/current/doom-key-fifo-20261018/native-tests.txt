@@ -1,0 +1,20 @@
+Observed native tests, 2026-10-18. Physical acceptance is recorded separately in verification.json.
+
+Mac: cc -O1 -g -fsanitize=address,undefined rtems/accele160/doom_dma/test_key_fifo.c -o /tmp/i960-test-key-fifo
+PASS actual FIFO: 80000 ordered events/wraps, full refusal, commit ordering, all header/guard/entry mutations, stale runs, explicit STOP discard, mode and sequence bounds
+
+Linux: gcc -m32 -O1 -g -fsanitize=address,undefined rtems/accele160/doom_dma/test_key_fifo.c -o test-key-fifo
+Same 80000-event test passed.
+Linux: python3 rtems/accele160/doom_dma/test_rearm.py --keyboard-fifo
+actual FIFO rearm: all 16 pending old-run keys classified, corrupt descriptor rejected before mutation
+actual rearm policy: stale identities, DMA/ACK/WAD, loan/leak, fixed pins, IRQ, cache, digest and terminal STOP rejection passed
+Linux: python3 rtems/accele160/doom_dma/test_rearm.py
+Original non-FIFO policy fixtures passed too.
+
+Python production producer test passed exact ring layout, descriptors-before-tail, full/invalid/wrap refusal, quiescent mode change and stale descriptor audit.
+Browser tests passed next-game mode, active/stale/invalid rejection, atomic 16-event batches and opt-in pending-input STOP probe.
+Production gateway tests passed authentication/origin, ordered keys/batches, stale games, disconnect releases, two-credit latest frames, independent input, STOP/rearm and packet mutations.
+
+These native tests do not prove real i960 memory ordering or hardware timing.
+
+After the eight-game physical comparison, production Python producer/browser/gateway tests were rerun unchanged and passed. git diff --check passed.

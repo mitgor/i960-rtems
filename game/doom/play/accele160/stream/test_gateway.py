@@ -26,7 +26,7 @@ class TestOwner(Owner):
 
 
 async def main():
-    browser=BrowserSession(0,runtime_flat=True)
+    browser=BrowserSession(0,runtime_flat=True,keyboard_fifo=True)
     journal=io.StringIO()
     gateway=Gateway(TestOwner(browser),journal)
     async with serve(gateway.handler,'127.0.0.1',0,process_request=gateway.http,
@@ -106,6 +106,8 @@ async def main():
             browser.begin_game(2)
             assert (await message(control,3,'stop',run_id=1))['error']=='stale game'
             assert not browser.stop.is_set()
+            assert 'error' not in await message(control,4,'keys',run_id=2,events=[448,192]*8)
+            assert [browser.next_key() for _ in range(16)]==[448,192]*8
             await control.close()
             for _ in range(100):
                 if gateway.controller is None:break

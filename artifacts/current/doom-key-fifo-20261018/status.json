@@ -1,0 +1,20 @@
+{
+  "native_tests_pass": true,
+  "native_ordered_events": 80000,
+  "kernel_build_pass": true,
+  "card_acceptance": true,
+  "performance_measured": true,
+  "ordinary_launcher_changed": true,
+  "firmware_written": false,
+  "new_kernel_uploaded": true,
+  "remote_root": "/home/mit/i960-key-fifo-20261018",
+  "candidate_launcher": "/home/mit/.local/bin/i960-doom-key-fifo",
+  "blocker": null,
+  "frames": 3073,
+  "paired_pio_frames": 256,
+  "reusable_games": 8,
+  "pending_stop_discarded": 16,
+  "post_reset_flash_pair": true,
+  "default_keyboard_mode": "fifo",
+  "production_smoke_test": "passed; 168 audited frames, 32 paired PIO comparisons; normal selftest disabled; game parked, RTEMS live"
+}
