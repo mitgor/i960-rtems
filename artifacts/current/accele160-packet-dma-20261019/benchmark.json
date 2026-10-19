@@ -1,0 +1,2900 @@
+{
+  "rows": [
+    {
+      "mode": "dma-check",
+      "payload_bytes": 64,
+      "nonce": 0,
+      "ms": 25.4411469999809,
+      "owner_ms": 16.36288700001387,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 256,
+      "nonce": 1,
+      "ms": 21.495713999968302,
+      "owner_ms": 11.12983599995232,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1024,
+      "nonce": 2,
+      "ms": 22.85619100001668,
+      "owner_ms": 12.367147999952977,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1400,
+      "nonce": 3,
+      "ms": 21.579535999990185,
+      "owner_ms": 11.133068999981788,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 64,
+      "nonce": 4,
+      "ms": 31.995539999968514,
+      "owner_ms": 21.521905000042807,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 256,
+      "nonce": 5,
+      "ms": 21.709016999977848,
+      "owner_ms": 11.130269000034332,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1024,
+      "nonce": 6,
+      "ms": 17.07687300000771,
+      "owner_ms": 11.133221000022786,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1400,
+      "nonce": 7,
+      "ms": 27.481895999983408,
+      "owner_ms": 16.35121400005346,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 64,
+      "nonce": 8,
+      "ms": 37.22670599995581,
+      "owner_ms": 26.779685999997582,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 256,
+      "nonce": 9,
+      "ms": 16.453561999981048,
+      "owner_ms": 5.9117380000088815,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1024,
+      "nonce": 10,
+      "ms": 21.68885800000453,
+      "owner_ms": 11.133667000024161,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1400,
+      "nonce": 11,
+      "ms": 23.054667999986123,
+      "owner_ms": 16.425551999986965,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 64,
+      "nonce": 12,
+      "ms": 16.373354999984713,
+      "owner_ms": 5.91191900002741,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 256,
+      "nonce": 13,
+      "ms": 21.59974799997144,
+      "owner_ms": 11.098921999973754,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1024,
+      "nonce": 14,
+      "ms": 21.615040000028785,
+      "owner_ms": 11.12743899994939,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1400,
+      "nonce": 15,
+      "ms": 17.046013000026505,
+      "owner_ms": 11.152837999986787,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 64,
+      "nonce": 16,
+      "ms": 16.997736000007535,
+      "owner_ms": 5.911192000041865,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 256,
+      "nonce": 17,
+      "ms": 21.621276000018952,
+      "owner_ms": 11.085399000023699,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1024,
+      "nonce": 18,
+      "ms": 21.550462999982756,
+      "owner_ms": 11.158802000011292,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1400,
+      "nonce": 19,
+      "ms": 21.474646000001485,
+      "owner_ms": 11.102702000016507,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 64,
+      "nonce": 20,
+      "ms": 16.380145000027824,
+      "owner_ms": 5.905906000009509,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 256,
+      "nonce": 21,
+      "ms": 17.756500999951186,
+      "owner_ms": 7.267001000002438,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1024,
+      "nonce": 22,
+      "ms": 26.809926999987965,
+      "owner_ms": 16.335780000019895,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1400,
+      "nonce": 23,
+      "ms": 37.22163099996578,
+      "owner_ms": 26.816773999996713,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 64,
+      "nonce": 24,
+      "ms": 16.371418999995058,
+      "owner_ms": 5.899811000006139,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 256,
+      "nonce": 25,
+      "ms": 22.920902000009846,
+      "owner_ms": 12.375388999998904,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1024,
+      "nonce": 26,
+      "ms": 21.58235600001035,
+      "owner_ms": 11.131175999992138,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1400,
+      "nonce": 27,
+      "ms": 37.19212900000457,
+      "owner_ms": 26.83953000001793,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 64,
+      "nonce": 28,
+      "ms": 16.407004999962282,
+      "owner_ms": 5.9054760000094575,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 256,
+      "nonce": 29,
+      "ms": 17.072876000042925,
+      "owner_ms": 11.078401000020222,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1024,
+      "nonce": 30,
+      "ms": 27.46441300001834,
+      "owner_ms": 16.307707999999366,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma-check",
+      "payload_bytes": 1400,
+      "nonce": 31,
+      "ms": 21.559045000003607,
+      "owner_ms": 11.133352999991075,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 32,
+      "ms": 34.53438100001449,
+      "owner_ms": 22.991931999968074,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 32,
+      "ms": 17.08651599994937,
+      "owner_ms": 10.6134769999926,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 32,
+      "ms": 20.808896999994886,
+      "owner_ms": 11.526633000016773,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 32,
+      "ms": 20.934291000003213,
+      "owner_ms": 10.539090000008855,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 32,
+      "ms": 20.05971299996645,
+      "owner_ms": 11.49342000002207,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 32,
+      "ms": 21.048434000022098,
+      "owner_ms": 10.494039999969118,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 32,
+      "ms": 39.36561500000835,
+      "owner_ms": 28.600337999989733,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 32,
+      "ms": 36.96099299997968,
+      "owner_ms": 26.19669200004182,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 33,
+      "ms": 14.76087999998299,
+      "owner_ms": 5.26912700001958,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 33,
+      "ms": 24.526605000005475,
+      "owner_ms": 14.002455000024838,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 33,
+      "ms": 15.388881000035326,
+      "owner_ms": 5.305813000006765,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 33,
+      "ms": 21.802212000011423,
+      "owner_ms": 11.53917200002752,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 33,
+      "ms": 20.357190999959585,
+      "owner_ms": 10.522175000005518,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 33,
+      "ms": 22.072481999998672,
+      "owner_ms": 11.489772999993875,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 33,
+      "ms": 21.380307000015364,
+      "owner_ms": 11.97375400005285,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 33,
+      "ms": 39.40116999996235,
+      "owner_ms": 28.856490999999096,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 34,
+      "ms": 31.95943600002238,
+      "owner_ms": 23.07586900002434,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 34,
+      "ms": 12.224772000024586,
+      "owner_ms": 6.112010000038026,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 34,
+      "ms": 26.517998999963766,
+      "owner_ms": 17.325451999965935,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 34,
+      "ms": 21.229245999961677,
+      "owner_ms": 10.643841999979031,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 34,
+      "ms": 20.555314999967322,
+      "owner_ms": 11.52344299998731,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 34,
+      "ms": 38.36602000001221,
+      "owner_ms": 27.76916200002688,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 34,
+      "ms": 20.378780999976698,
+      "owner_ms": 11.493741000037971,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 34,
+      "ms": 36.90183599996999,
+      "owner_ms": 26.352786999950695,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 35,
+      "ms": 14.30285700001832,
+      "owner_ms": 5.39609599996993,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 35,
+      "ms": 17.772852000007333,
+      "owner_ms": 11.509832999990977,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 35,
+      "ms": 20.061228999963987,
+      "owner_ms": 10.643674999982977,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 35,
+      "ms": 22.185832999980448,
+      "owner_ms": 11.565156000017396,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 35,
+      "ms": 19.442846999993435,
+      "owner_ms": 10.629985999969449,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 35,
+      "ms": 22.102588999985073,
+      "owner_ms": 11.54391500000429,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 35,
+      "ms": 36.84329399999342,
+      "owner_ms": 28.041676999976062,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 35,
+      "ms": 22.064021000005596,
+      "owner_ms": 11.537844999963909,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 36,
+      "ms": 31.7737849999844,
+      "owner_ms": 23.08263699995905,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 36,
+      "ms": 16.905576999988625,
+      "owner_ms": 10.626348000016606,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 36,
+      "ms": 20.882077000010213,
+      "owner_ms": 11.576811999987058,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 36,
+      "ms": 21.22702899998785,
+      "owner_ms": 10.625891000017873,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 36,
+      "ms": 20.03000899998142,
+      "owner_ms": 11.536485999954493,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 36,
+      "ms": 16.022963000011714,
+      "owner_ms": 5.391108000026179,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 36,
+      "ms": 15.82319900001039,
+      "owner_ms": 11.590571999988697,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 36,
+      "ms": 27.055206999989423,
+      "owner_ms": 15.85705100001178,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 37,
+      "ms": 29.55821500000866,
+      "owner_ms": 21.112811000023157,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 37,
+      "ms": 22.166137999988678,
+      "owner_ms": 11.572208000018236,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 37,
+      "ms": 19.31654800000615,
+      "owner_ms": 10.626279999996768,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 37,
+      "ms": 18.330032000051233,
+      "owner_ms": 11.693822999973236,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 37,
+      "ms": 19.10809999998264,
+      "owner_ms": 10.650615000031394,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 37,
+      "ms": 22.151990999986992,
+      "owner_ms": 11.55666099998598,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 37,
+      "ms": 34.654355999975905,
+      "owner_ms": 26.300261000017144,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 37,
+      "ms": 24.640118000036182,
+      "owner_ms": 14.128034000009393,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 38,
+      "ms": 31.426751000026343,
+      "owner_ms": 23.117723000041224,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 38,
+      "ms": 21.185093000042343,
+      "owner_ms": 10.6180459999905,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 38,
+      "ms": 14.056078000010075,
+      "owner_ms": 5.797468000025674,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 38,
+      "ms": 22.738550000042324,
+      "owner_ms": 12.098489999971207,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 38,
+      "ms": 19.784110999978566,
+      "owner_ms": 11.541755999985526,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 38,
+      "ms": 21.185941999988245,
+      "owner_ms": 10.639513999990413,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 38,
+      "ms": 36.95671999997785,
+      "owner_ms": 28.80842299998676,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 38,
+      "ms": 38.3282779999945,
+      "owner_ms": 27.790901999992457,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 39,
+      "ms": 13.419799000018884,
+      "owner_ms": 5.3828740000199105,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 39,
+      "ms": 22.154478000004474,
+      "owner_ms": 11.53599999997823,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 39,
+      "ms": 13.479868999979772,
+      "owner_ms": 5.402595000020938,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 39,
+      "ms": 17.77203199998212,
+      "owner_ms": 11.567014000036124,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 39,
+      "ms": 24.470250999968357,
+      "owner_ms": 15.850035000028129,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 39,
+      "ms": 22.106113000006644,
+      "owner_ms": 11.502897000013945,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 39,
+      "ms": 34.325962000025356,
+      "owner_ms": 26.382076000004417,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 39,
+      "ms": 17.76088100001516,
+      "owner_ms": 11.50186299997813,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 40,
+      "ms": 14.257622000002357,
+      "owner_ms": 5.793267000001379,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 40,
+      "ms": 21.266034999996464,
+      "owner_ms": 10.623128000020188,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 40,
+      "ms": 19.41164499999104,
+      "owner_ms": 11.53212799999892,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 40,
+      "ms": 15.995707999991282,
+      "owner_ms": 5.396003999976529,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 40,
+      "ms": 19.606539999983852,
+      "owner_ms": 11.552983999990829,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 40,
+      "ms": 22.532825999974193,
+      "owner_ms": 10.63584799999262,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 40,
+      "ms": 19.32812100000092,
+      "owner_ms": 11.611602000016319,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 40,
+      "ms": 36.89895700000534,
+      "owner_ms": 26.31675999998606,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 41,
+      "ms": 13.06859699997176,
+      "owner_ms": 5.385483999987173,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 41,
+      "ms": 18.933125999978984,
+      "owner_ms": 8.343770999999833,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 41,
+      "ms": 18.210067000040908,
+      "owner_ms": 10.643464999986918,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 41,
+      "ms": 22.150521000014578,
+      "owner_ms": 11.528200000043398,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 41,
+      "ms": 18.240983999987748,
+      "owner_ms": 10.631059000047571,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 41,
+      "ms": 16.384257999959573,
+      "owner_ms": 5.793262999986837,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 41,
+      "ms": 19.650602000012896,
+      "owner_ms": 12.120973000037338,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 41,
+      "ms": 22.250929999984237,
+      "owner_ms": 11.68068399999811,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 42,
+      "ms": 30.533506999972815,
+      "owner_ms": 23.04518400001143,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 42,
+      "ms": 21.17266999999856,
+      "owner_ms": 10.573068000041985,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 42,
+      "ms": 15.875281999967683,
+      "owner_ms": 8.356687000002694,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 42,
+      "ms": 21.283616999994592,
+      "owner_ms": 10.654821000002812,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 42,
+      "ms": 18.904132999978174,
+      "owner_ms": 11.593982999954733,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 42,
+      "ms": 36.98993199998313,
+      "owner_ms": 26.371631000017715,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 42,
+      "ms": 21.42160599998988,
+      "owner_ms": 14.103336999994553,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 42,
+      "ms": 36.91637299999684,
+      "owner_ms": 26.403114999993704,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 43,
+      "ms": 12.631764999980533,
+      "owner_ms": 5.400177999945299,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 43,
+      "ms": 22.152437999977792,
+      "owner_ms": 11.531052000009367,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 43,
+      "ms": 14.206865000005564,
+      "owner_ms": 6.899703999977191,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 43,
+      "ms": 22.169329000007565,
+      "owner_ms": 11.538561999998365,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 43,
+      "ms": 17.944106000015836,
+      "owner_ms": 10.627800999998271,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 43,
+      "ms": 16.39419299999645,
+      "owner_ms": 5.802764999998544,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 43,
+      "ms": 17.789905999961775,
+      "owner_ms": 10.646329999985937,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 43,
+      "ms": 24.640115000011065,
+      "owner_ms": 14.08587800000305,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 44,
+      "ms": 30.12474799999154,
+      "owner_ms": 23.062648999996327,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 44,
+      "ms": 16.022609999993165,
+      "owner_ms": 5.414932000007866,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 44,
+      "ms": 18.65426000000525,
+      "owner_ms": 11.564262999968378,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 44,
+      "ms": 22.737832000018443,
+      "owner_ms": 12.10708599995769,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 44,
+      "ms": 18.547821999959524,
+      "owner_ms": 11.513394000019161,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 44,
+      "ms": 36.8011879999699,
+      "owner_ms": 26.338920999990023,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 44,
+      "ms": 18.403718000001845,
+      "owner_ms": 11.539031000040723,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 44,
+      "ms": 38.3823829999983,
+      "owner_ms": 27.804185999968922,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 45,
+      "ms": 12.242149000030622,
+      "owner_ms": 5.403915999977471,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 45,
+      "ms": 22.167529999990165,
+      "owner_ms": 11.536195000019234,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 45,
+      "ms": 12.242887000013525,
+      "owner_ms": 5.385074000002987,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 45,
+      "ms": 22.31163800001923,
+      "owner_ms": 11.523092999993878,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 45,
+      "ms": 18.70908099999724,
+      "owner_ms": 10.633127000005516,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 45,
+      "ms": 21.972774000005302,
+      "owner_ms": 11.54574499997807,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 45,
+      "ms": 33.179645000018354,
+      "owner_ms": 26.172096999971473,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 45,
+      "ms": 22.194280999997318,
+      "owner_ms": 11.447249000013926,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 46,
+      "ms": 32.37562499998603,
+      "owner_ms": 22.959238999987974,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 46,
+      "ms": 20.739532000050076,
+      "owner_ms": 10.491905999970186,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 46,
+      "ms": 19.757475999995222,
+      "owner_ms": 11.424206999947728,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 46,
+      "ms": 16.029081999988648,
+      "owner_ms": 5.370950999974866,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 46,
+      "ms": 21.345208000013827,
+      "owner_ms": 13.935403000004953,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 46,
+      "ms": 20.923074999984692,
+      "owner_ms": 10.535409999988588,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 46,
+      "ms": 35.95536800003174,
+      "owner_ms": 28.764398000021174,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 46,
+      "ms": 38.54846100000486,
+      "owner_ms": 27.745997000010902,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 47,
+      "ms": 32.380289999991874,
+      "owner_ms": 21.09930000000304,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 47,
+      "ms": 22.14079700002003,
+      "owner_ms": 11.528583000028902,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 47,
+      "ms": 28.193467999983568,
+      "owner_ms": 21.162494000009247,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 47,
+      "ms": 22.899423000012575,
+      "owner_ms": 11.560836000001018,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 47,
+      "ms": 22.015445999954864,
+      "owner_ms": 10.624711999980718,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 47,
+      "ms": 39.399503000026925,
+      "owner_ms": 28.81048399996189,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 47,
+      "ms": 34.117878000017754,
+      "owner_ms": 22.59096700004193,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 47,
+      "ms": 22.043363999955545,
+      "owner_ms": 11.550021999994442,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 48,
+      "ms": 28.814831999966373,
+      "owner_ms": 17.349203999970086,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 48,
+      "ms": 21.162732999982836,
+      "owner_ms": 10.619994999956361,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 48,
+      "ms": 13.44335199996749,
+      "owner_ms": 5.803035999974782,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 48,
+      "ms": 21.257595999998102,
+      "owner_ms": 10.651023999969311,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 48,
+      "ms": 40.09792599998718,
+      "owner_ms": 28.811905999987175,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 48,
+      "ms": 16.015443000014784,
+      "owner_ms": 5.4548479999994015,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 48,
+      "ms": 19.02255699997113,
+      "owner_ms": 11.541465999982847,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 48,
+      "ms": 36.97562199999993,
+      "owner_ms": 26.397134000035294,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 49,
+      "ms": 32.269843999984005,
+      "owner_ms": 21.114694000004874,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 49,
+      "ms": 18.970074999970166,
+      "owner_ms": 8.349981999970169,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 49,
+      "ms": 16.539667000017744,
+      "owner_ms": 5.391021999969325,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 49,
+      "ms": 22.155069000007188,
+      "owner_ms": 11.555532999977913,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 49,
+      "ms": 37.56435900004362,
+      "owner_ms": 26.391037999985656,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 49,
+      "ms": 18.768577000003006,
+      "owner_ms": 8.23390699997617,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 49,
+      "ms": 37.41187500003207,
+      "owner_ms": 26.37121399999387,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 49,
+      "ms": 39.443666000011035,
+      "owner_ms": 28.849809999996978,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 50,
+      "ms": 30.87628800000175,
+      "owner_ms": 24.42590900000141,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 50,
+      "ms": 15.960044999985712,
+      "owner_ms": 5.386395000016364,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 50,
+      "ms": 16.807194000023173,
+      "owner_ms": 5.802780999999868,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 50,
+      "ms": 21.19715100002395,
+      "owner_ms": 10.62355099998058,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 50,
+      "ms": 36.53189699997483,
+      "owner_ms": 25.561417000005804,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 50,
+      "ms": 21.20121600000857,
+      "owner_ms": 10.649161999992884,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 50,
+      "ms": 33.879694000006566,
+      "owner_ms": 23.00331100002495,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 50,
+      "ms": 22.69035299997313,
+      "owner_ms": 12.113079000016569,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 51,
+      "ms": 26.664382999967984,
+      "owner_ms": 15.881417000002784,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 51,
+      "ms": 22.179249999965123,
+      "owner_ms": 11.560734999989108,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 51,
+      "ms": 32.534015000010186,
+      "owner_ms": 26.345397000000048,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 51,
+      "ms": 22.82694799998808,
+      "owner_ms": 11.558134999972935,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 51,
+      "ms": 37.03551499995683,
+      "owner_ms": 26.31542400001763,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 51,
+      "ms": 22.004883000022346,
+      "owner_ms": 11.475487999973666,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 51,
+      "ms": 33.324354999990646,
+      "owner_ms": 22.633662999965054,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 51,
+      "ms": 22.090515000002142,
+      "owner_ms": 11.560778999978538,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 52,
+      "ms": 27.72231000000147,
+      "owner_ms": 17.259723999984544,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 52,
+      "ms": 21.24395599997797,
+      "owner_ms": 10.632838999981686,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 52,
+      "ms": 12.624700000003486,
+      "owner_ms": 5.926833999978953,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 52,
+      "ms": 21.183219999954872,
+      "owner_ms": 10.62574599995969,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 52,
+      "ms": 39.39660100002129,
+      "owner_ms": 28.856965999978,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 52,
+      "ms": 38.46185200001173,
+      "owner_ms": 27.840066999999635,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 52,
+      "ms": 33.40041200004862,
+      "owner_ms": 23.03773800002773,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 52,
+      "ms": 21.277053999995132,
+      "owner_ms": 10.682191000000785,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 53,
+      "ms": 22.407310999994934,
+      "owner_ms": 16.594374000021617,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 53,
+      "ms": 28.08992299998181,
+      "owner_ms": 17.294000999982018,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 53,
+      "ms": 31.468962000019474,
+      "owner_ms": 21.097249999968426,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 53,
+      "ms": 22.1839210000212,
+      "owner_ms": 11.54823199999555,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 53,
+      "ms": 38.18989500001635,
+      "owner_ms": 27.82987599999842,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 53,
+      "ms": 16.364765999981046,
+      "owner_ms": 5.799435000028552,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 53,
+      "ms": 36.56572300002381,
+      "owner_ms": 26.361989000008634,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 53,
+      "ms": 17.52614200000835,
+      "owner_ms": 11.550471999953515,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 54,
+      "ms": 34.074246000045605,
+      "owner_ms": 23.086377000026914,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 54,
+      "ms": 15.991452000037043,
+      "owner_ms": 5.385047999993731,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 54,
+      "ms": 15.96052399997916,
+      "owner_ms": 5.794356000023981,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 54,
+      "ms": 21.29711300000281,
+      "owner_ms": 10.652746000005209,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 54,
+      "ms": 34.594033999951534,
+      "owner_ms": 23.065541999983452,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 54,
+      "ms": 21.184692000019822,
+      "owner_ms": 10.595782999985204,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 54,
+      "ms": 38.618966000001365,
+      "owner_ms": 28.8256550000483,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 54,
+      "ms": 38.27751400001489,
+      "owner_ms": 26.281960999995135,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 55,
+      "ms": 25.788337000051342,
+      "owner_ms": 15.884970000001886,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 55,
+      "ms": 22.172163999982786,
+      "owner_ms": 11.56659700001228,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 55,
+      "ms": 32.496661999971366,
+      "owner_ms": 22.582682999995995,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 55,
+      "ms": 22.185215999968477,
+      "owner_ms": 11.57439799999338,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 55,
+      "ms": 36.311428999965756,
+      "owner_ms": 26.353147000008903,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 55,
+      "ms": 12.938258999952268,
+      "owner_ms": 6.98053799999343,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 55,
+      "ms": 20.589285999960794,
+      "owner_ms": 10.631045999957678,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 55,
+      "ms": 22.081974000002447,
+      "owner_ms": 11.541918000034457,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 56,
+      "ms": 27.133757000001424,
+      "owner_ms": 17.315253999981906,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 56,
+      "ms": 16.681776999973863,
+      "owner_ms": 10.625374999960968,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 56,
+      "ms": 16.311081999958787,
+      "owner_ms": 5.798287999994045,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 56,
+      "ms": 21.254137999960676,
+      "owner_ms": 10.611530000005587,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 56,
+      "ms": 39.568581000025915,
+      "owner_ms": 28.77272199998515,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 56,
+      "ms": 15.825216999985514,
+      "owner_ms": 5.303311999966809,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 56,
+      "ms": 20.040337000011732,
+      "owner_ms": 11.514421000015318,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 56,
+      "ms": 20.881248000023334,
+      "owner_ms": 10.484520999966662,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 57,
+      "ms": 27.8074899999865,
+      "owner_ms": 20.833672999970076,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 57,
+      "ms": 22.24703199999567,
+      "owner_ms": 11.491323000029752,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 57,
+      "ms": 17.75003199998082,
+      "owner_ms": 11.223922999988645,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 57,
+      "ms": 22.03762800002096,
+      "owner_ms": 11.490868000009868,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 57,
+      "ms": 32.25374800001646,
+      "owner_ms": 20.958226999994167,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 57,
+      "ms": 22.025240999994367,
+      "owner_ms": 11.411506999991161,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 57,
+      "ms": 17.438921999996637,
+      "owner_ms": 10.710524999979043,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 57,
+      "ms": 39.1778349999754,
+      "owner_ms": 28.81776699996408,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 58,
+      "ms": 26.448750999975346,
+      "owner_ms": 17.299315999991904,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 58,
+      "ms": 22.429303000023992,
+      "owner_ms": 11.882195999987744,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 58,
+      "ms": 32.19873400001916,
+      "owner_ms": 23.05610399997704,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 58,
+      "ms": 20.99802999998701,
+      "owner_ms": 10.485634000019672,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 58,
+      "ms": 34.52423100003443,
+      "owner_ms": 25.314591999972436,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 58,
+      "ms": 20.958391000021948,
+      "owner_ms": 10.546385999987251,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 58,
+      "ms": 32.07165399999212,
+      "owner_ms": 23.047767000036856,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 58,
+      "ms": 20.924198999978216,
+      "owner_ms": 10.533841999972537,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 59,
+      "ms": 31.05400900000177,
+      "owner_ms": 22.3003170000311,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 59,
+      "ms": 16.221313000016835,
+      "owner_ms": 5.768318000036743,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 59,
+      "ms": 13.756662999981017,
+      "owner_ms": 5.328491999989637,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 59,
+      "ms": 22.0734499999935,
+      "owner_ms": 11.548703000016758,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 59,
+      "ms": 27.36966800000573,
+      "owner_ms": 17.089007999970818,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 59,
+      "ms": 16.18936200003418,
+      "owner_ms": 5.774301000030846,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 59,
+      "ms": 19.555018000005475,
+      "owner_ms": 10.533436000002894,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 59,
+      "ms": 18.521211000006588,
+      "owner_ms": 11.617403999991893,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 60,
+      "ms": 26.748252999993838,
+      "owner_ms": 17.252906999999595,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 60,
+      "ms": 21.05233199995382,
+      "owner_ms": 10.54574599999114,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 60,
+      "ms": 34.074282999995376,
+      "owner_ms": 25.360051999996358,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 60,
+      "ms": 15.857523999954992,
+      "owner_ms": 5.31404400004476,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 60,
+      "ms": 20.21240599998464,
+      "owner_ms": 11.52739299999439,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 60,
+      "ms": 36.71007999997755,
+      "owner_ms": 26.260103999959483,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 60,
+      "ms": 34.06857800001717,
+      "owner_ms": 25.406223000004502,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 60,
+      "ms": 36.61474000000453,
+      "owner_ms": 26.209582999968006,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 61,
+      "ms": 29.412073000003147,
+      "owner_ms": 21.01264899999933,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 61,
+      "ms": 18.87241899999026,
+      "owner_ms": 12.777373999995234,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 61,
+      "ms": 13.787479000029634,
+      "owner_ms": 5.285915000001751,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 61,
+      "ms": 22.06521599998723,
+      "owner_ms": 11.548097999991569,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 61,
+      "ms": 34.575399000004836,
+      "owner_ms": 26.24960500003226,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 61,
+      "ms": 18.426800999975512,
+      "owner_ms": 11.626013000011426,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 61,
+      "ms": 34.61015599998518,
+      "owner_ms": 26.18234599998459,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 61,
+      "ms": 21.89824800001361,
+      "owner_ms": 11.503857999969114,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 62,
+      "ms": 28.09991499998432,
+      "owner_ms": 19.752200000027642,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 62,
+      "ms": 15.780431999985467,
+      "owner_ms": 5.313435999994454,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 62,
+      "ms": 14.139220000004116,
+      "owner_ms": 5.772766000006868,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 62,
+      "ms": 21.052273000009336,
+      "owner_ms": 10.535677000007126,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 62,
+      "ms": 39.2481520000274,
+      "owner_ms": 31.141769999976532,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 62,
+      "ms": 36.66545999999471,
+      "owner_ms": 26.226461000021573,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 62,
+      "ms": 31.224781999981133,
+      "owner_ms": 23.05506600004037,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 62,
+      "ms": 22.291534000032698,
+      "owner_ms": 11.87818400001106,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 63,
+      "ms": 23.841369999956896,
+      "owner_ms": 15.7857829999557,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 63,
+      "ms": 22.067944000013995,
+      "owner_ms": 11.545093999984601,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 63,
+      "ms": 13.473312999963127,
+      "owner_ms": 5.338902999994843,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 63,
+      "ms": 17.194099999983337,
+      "owner_ms": 11.504993000016839,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 63,
+      "ms": 19.73376600000165,
+      "owner_ms": 10.538633999999547,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 63,
+      "ms": 39.1408209999895,
+      "owner_ms": 28.755719000002955,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 63,
+      "ms": 29.45790799998349,
+      "owner_ms": 26.23012800000879,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 63,
+      "ms": 22.985351999977865,
+      "owner_ms": 11.505945999999767,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 64,
+      "ms": 25.221882000039386,
+      "owner_ms": 17.305333000024348,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 64,
+      "ms": 21.068389999982173,
+      "owner_ms": 10.54535999998052,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 64,
+      "ms": 13.746808999997029,
+      "owner_ms": 5.782998999961819,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 64,
+      "ms": 17.142229999990377,
+      "owner_ms": 6.659137999974973,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 64,
+      "ms": 19.43131499996298,
+      "owner_ms": 11.536428999988857,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 64,
+      "ms": 36.613527999975304,
+      "owner_ms": 26.19375299997273,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 64,
+      "ms": 33.16778700002487,
+      "owner_ms": 25.367714000026353,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 64,
+      "ms": 20.934437999983402,
+      "owner_ms": 10.54753900001515,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 65,
+      "ms": 23.57225000002927,
+      "owner_ms": 15.786273999992773,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 65,
+      "ms": 22.02366399995981,
+      "owner_ms": 11.512153000012404,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 65,
+      "ms": 8.26698799994574,
+      "owner_ms": 5.31212499998901,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 65,
+      "ms": 23.57016600001316,
+      "owner_ms": 17.392296000025453,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 65,
+      "ms": 18.14750500000173,
+      "owner_ms": 10.562141999969299,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 65,
+      "ms": 39.23672799999167,
+      "owner_ms": 28.81060299995397,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 65,
+      "ms": 29.802879999976994,
+      "owner_ms": 22.294062000014492,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 65,
+      "ms": 21.913214999983666,
+      "owner_ms": 11.50686900001574,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 66,
+      "ms": 24.81317100000524,
+      "owner_ms": 17.261501999996653,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 66,
+      "ms": 20.883758000024955,
+      "owner_ms": 10.566634999975122,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 66,
+      "ms": 32.922681000002285,
+      "owner_ms": 23.06467599998996,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 66,
+      "ms": 20.992628999977114,
+      "owner_ms": 10.485158999983923,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 66,
+      "ms": 31.490834999999606,
+      "owner_ms": 28.78234299998894,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 66,
+      "ms": 22.034235999967677,
+      "owner_ms": 10.536911000031068,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 66,
+      "ms": 30.38752299994485,
+      "owner_ms": 23.022161000028518,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 66,
+      "ms": 20.92376600000989,
+      "owner_ms": 10.572878999994373,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 67,
+      "ms": 29.73103499999752,
+      "owner_ms": 22.362606000001506,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 67,
+      "ms": 16.2896260000025,
+      "owner_ms": 5.78272399997104,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 67,
+      "ms": 12.599944999976742,
+      "owner_ms": 5.317038999976376,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 67,
+      "ms": 21.858882000003632,
+      "owner_ms": 11.462160999997195,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 67,
+      "ms": 36.95624200003067,
+      "owner_ms": 27.521863000004032,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 67,
+      "ms": 16.490307999958986,
+      "owner_ms": 5.768001000035383,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 67,
+      "ms": 36.603014999968764,
+      "owner_ms": 26.06638299999986,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 67,
+      "ms": 22.13033399999631,
+      "owner_ms": 11.408541999969657,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 68,
+      "ms": 30.603136000024733,
+      "owner_ms": 24.301103000027524,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 68,
+      "ms": 21.02036600001611,
+      "owner_ms": 10.478767999984484,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 68,
+      "ms": 33.46628900004589,
+      "owner_ms": 22.905993999984275,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 68,
+      "ms": 22.511243999986164,
+      "owner_ms": 11.94715299999416,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 68,
+      "ms": 29.93990999999596,
+      "owner_ms": 23.000485000011395,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 68,
+      "ms": 21.057915000028515,
+      "owner_ms": 10.598496000000068,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 68,
+      "ms": 32.4277180000081,
+      "owner_ms": 25.38699900003394,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 68,
+      "ms": 36.738759999991544,
+      "owner_ms": 26.247360000013487,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 69,
+      "ms": 27.91757500000358,
+      "owner_ms": 21.024330999978247,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 69,
+      "ms": 17.39281100003609,
+      "owner_ms": 11.512346000017715,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 69,
+      "ms": 13.065384000015001,
+      "owner_ms": 5.353460000037558,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 69,
+      "ms": 22.0927720000077,
+      "owner_ms": 11.548301999994237,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 69,
+      "ms": 33.14884799999618,
+      "owner_ms": 26.298924000002444,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 69,
+      "ms": 17.473972999994203,
+      "owner_ms": 11.521223000045211,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 69,
+      "ms": 34.10013600000639,
+      "owner_ms": 26.317075000008572,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 69,
+      "ms": 22.015979000002517,
+      "owner_ms": 11.532455999997637,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 70,
+      "ms": 24.059944999976324,
+      "owner_ms": 17.270504000009623,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 70,
+      "ms": 22.52945500003989,
+      "owner_ms": 11.991158000000723,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 70,
+      "ms": 29.875479999986965,
+      "owner_ms": 23.07404100002941,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 70,
+      "ms": 21.15231999999878,
+      "owner_ms": 10.59670899996945,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 70,
+      "ms": 32.142904000011185,
+      "owner_ms": 25.484821000020474,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 70,
+      "ms": 21.10636700001578,
+      "owner_ms": 10.594315999981063,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 70,
+      "ms": 28.98349499997721,
+      "owner_ms": 17.25384200000235,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 70,
+      "ms": 21.039727000015773,
+      "owner_ms": 10.560780000048453,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 64,
+      "nonce": 71,
+      "ms": 23.721370999965075,
+      "owner_ms": 17.16241400004037,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 64,
+      "nonce": 71,
+      "ms": 22.083491999978833,
+      "owner_ms": 11.499298999979146,
+      "reply_bytes": 96
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 256,
+      "nonce": 71,
+      "ms": 32.88921500001152,
+      "owner_ms": 26.24690800001872,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 256,
+      "nonce": 71,
+      "ms": 16.250374999970063,
+      "owner_ms": 5.787058999999317,
+      "reply_bytes": 288
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1024,
+      "nonce": 71,
+      "ms": 34.382656999980554,
+      "owner_ms": 26.247485999988385,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1024,
+      "nonce": 71,
+      "ms": 21.975353000016185,
+      "owner_ms": 11.52429100000063,
+      "reply_bytes": 1056
+    },
+    {
+      "mode": "dma",
+      "payload_bytes": 1400,
+      "nonce": 71,
+      "ms": 28.110115000004043,
+      "owner_ms": 21.083439999983966,
+      "reply_bytes": 1432
+    },
+    {
+      "mode": "pio",
+      "payload_bytes": 1400,
+      "nonce": 71,
+      "ms": 22.85891299999321,
+      "owner_ms": 11.516187999973226,
+      "reply_bytes": 1432
+    }
+  ],
+  "summary": {
+    "64": {
+      "pio": {
+        "median_ms": 24.2932749999909,
+        "max_ms": 34.53438100001449
+      },
+      "dma": {
+        "median_ms": 21.1677014999907,
+        "max_ms": 32.380289999991874
+      }
+    },
+    "256": {
+      "pio": {
+        "median_ms": 21.948255000012296,
+        "max_ms": 34.074282999995376
+      },
+      "dma": {
+        "median_ms": 20.963459999990164,
+        "max_ms": 32.88921500001152
+      }
+    },
+    "1024": {
+      "pio": {
+        "median_ms": 21.974063500010743,
+        "max_ms": 40.09792599998718
+      },
+      "dma": {
+        "median_ms": 22.02484099996127,
+        "max_ms": 38.46185200001173
+      }
+    },
+    "1400": {
+      "pio": {
+        "median_ms": 22.554921499988723,
+        "max_ms": 39.443666000011035
+      },
+      "dma": {
+        "median_ms": 33.71224549999852,
+        "max_ms": 38.54846100000486
+      }
+    }
+  },
+  "cpu_before": {
+    "i960-doom": {
+      "pid": 3298,
+      "ticks": 3477
+    },
+    "i960-combined": {
+      "pid": 7073,
+      "ticks": 18
+    }
+  },
+  "cpu_after": {
+    "i960-doom": {
+      "pid": 3298,
+      "ticks": 3549
+    },
+    "i960-combined": {
+      "pid": 7073,
+      "ticks": 42
+    }
+  },
+  "clock_ticks": 100,
+  "elapsed_s": 8.74566235399999,
+  "final": {
+    "sequence": 641,
+    "status": 0,
+    "epoch": 4227818548,
+    "value": 24,
+    "state": 3,
+    "reservation": 520,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 1868,
+    "started": 1,
+    "data": "600100006001000000000000000000000000000000000000",
+    "transport": "dma",
+    "latency_ms": 16.423717999998644
+  },
+  "paired_checks": 33
+}

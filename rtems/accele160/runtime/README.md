@@ -1,3 +1,7 @@
+See [PACKET-DMA.md](PACKET-DMA.md) for the next owner-polling and opt-in
+reply-DMA qualification. Its dated artifact record distinguishes measurements
+from pending endurance stages.
+
 ## Combined service
 
 Networking, the independent diagnostic console and two bounded applications now

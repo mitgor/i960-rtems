@@ -770,6 +770,8 @@ static unsigned int rearm_engine(unsigned int run,unsigned int n,unsigned int ch
  * odd-page stage, then publishes seq last. Only this task copies application
  * bytes; the ISR handles timer/context only. ACK is written last. */
 #if ACCELE_RUNTIME
+#include "../runtime/packet_dma.h"
+#define AR_PACKET_DMA(seq,epoch,source) packet_dma_reply(seq,epoch,source)
 #include "../runtime/card.inc"
 #endif
 static void bridge_poll(void){

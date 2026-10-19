@@ -8,7 +8,7 @@ for i in range(3):s.put(('a',i),False)
 assert [s.pop()[0] for _ in range(12)]==list('nnnannnannna')
 with tempfile.TemporaryDirectory() as d:
  calls=[];stop=threading.Event()
- def backend(op,payload):calls.append((op,payload));return dict(status=0,op=op,data=payload.hex())
+ def backend(op,payload,transport="pio"):calls.append((op,payload,transport));return dict(status=0,op=op,data=payload.hex())
  b=Broker(Path(d)/'s',backend,Path(d)/'log')
  def serve():
   while not stop.is_set():b.once()
@@ -22,15 +22,16 @@ with tempfile.TemporaryDirectory() as d:
   try:c.call(99)
   except RuntimeError:pass
   else:raise AssertionError('invalid op accepted')
-  assert not any(op==99 for op,_ in calls)
+  assert not any(op==99 for op,_,_ in calls)
   assert c.call(5,b'\xf1APP')['status']==0
+  assert c.call(7,transport='dma-check')['status']==0 and calls[-1][2]=='dma-check'
  finally:stop.set();t.join(2);b.close()
 print('broker: 3:1 arbitration, request bounds, completed disconnect, reconnect and no retry passed')
 # Every peer is queued before the first poll: ingress classification must finish
 # before dispatch. Accept-one/dispatch-one would service the first application.
 with tempfile.TemporaryDirectory() as d:
  order=[]
- def backend(op,payload):order.append('n' if op==5 else 'a');return dict(status=0)
+ def backend(op,payload,transport="pio"):order.append('n' if op==5 else 'a');return dict(status=0)
  b=Broker(Path(d)/'s',backend,Path(d)/'log');peers=[]
  try:
   for op in [7]*3+[5]*9:

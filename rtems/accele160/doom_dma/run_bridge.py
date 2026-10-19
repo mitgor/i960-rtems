@@ -89,7 +89,7 @@ def main():
         need(fps_manifest.get('runtime_schema',0) in (0,1),'runtime schema')
         if fps_manifest.get('runtime_schema',0):
             need(service_schema==1 and not a.restart_cycles,'runtime requires console owner and a retained idle lease')
-            for key,folder,names in [('runtime_sources',Path(__file__).parent.parent/'runtime',{'runtime.h','runtime.c','card.inc','host.py'}),('segmented_sources',ROOT/'loader/segmented',{'arena.h','arena.c','image.h','image.c'})]:
+            for key,folder,names in [('runtime_sources',Path(__file__).parent.parent/'runtime',{'runtime.h','runtime.c','card.inc','host.py','packet_dma.h'}),('segmented_sources',ROOT/'loader/segmented',{'arena.h','arena.c','image.h','image.c'})]:
                 need(set(fps_manifest[key])==names,'complete runtime source set')
                 for name,digest in fps_manifest[key].items():need(sha((folder/name).read_bytes())==digest,'runtime source identity')
         keyboard_fifo_schema=fps_manifest.get('keyboard_fifo_schema',0)
@@ -910,15 +910,19 @@ def main():
                 spec=spec_from_file_location('application_host',Path(__file__).parent.parent/'runtime/host.py')
                 module=module_from_spec(spec);spec.loader.exec_module(module)
                 application_service=module.Runtime('/run/i960-rtems-runtime.sock',a.out/'applications.jsonl')
-            idle_started=time.monotonic()
+            idle_started=time.monotonic();last_idle_audit=0
             while not a.restart_cycles and not signal_stop.is_set() and not (browser and browser.restart.is_set() and application_service is None):
                 if application_service and browser and browser.restart.is_set():
                     browser.restart.clear()
                     service.record(event='restart_refused',reason='application service owns the idle lease')
-                pump_heartbeat();ownercheck(owned)
-                page=snap(0xc000e000)
-                need(struct.unpack_from('<I',page,0xb58)[0]==0 and status('ram-admit').get('done')=='0','idle owner fault')
-                time.sleep(.1)
+                pump_heartbeat()
+                now=time.monotonic()
+                if now-last_idle_audit>=.1:
+                    ownercheck(owned)
+                    page=snap(0xc000e000)
+                    need(struct.unpack_from('<I',page,0xb58)[0]==0 and status('ram-admit').get('done')=='0','idle owner fault')
+                    last_idle_audit=now
+                time.sleep(.005)
             if signal_stop.is_set():break
             rearmed=transact(8,game_run,struct.pack('<4I',global_frames,request_seq,game_run+1,global_key))
             need(rearmed[12:14]==(0,0) and rearmed[11]==0,'fresh admission gate')

@@ -1,0 +1,3 @@
+6 MiB loan: full pattern, cancelled pinned retention, wrong owner, drained release, guard quarantine passed
+Accele runtime: bounded partitions, exact board/base, two segmented reloads, BSS zero, pinned cancellation retention, stale handles, busy close and poisoned guard retention passed
+actual application card adapter: idle gate, epochs, upload chunks, incremental verification, cache sync, busy retention, bounded timer catch-up, packet reply, duplicate and close passed

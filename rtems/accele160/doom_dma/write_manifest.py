@@ -29,7 +29,7 @@ if m['terminal_test']==19:
  m['engine_inventory_sources'].update({n:sha(src.parent/'ownership'/n) for n in ('qlogic_dma_bank.h','qlogic_dma_bank.py')})
 m['runtime_schema']=json.loads((build/'build.json').read_text()).get('runtime_schema',0)
 if m['runtime_schema']:
- m['runtime_sources']={name:sha(src.parent/'runtime'/name) for name in ('runtime.h','runtime.c','card.inc','host.py')}
+ m['runtime_sources']={name:sha(src.parent/'runtime'/name) for name in ('runtime.h','runtime.c','card.inc','host.py','packet_dma.h')}
  m['segmented_sources']={name:sha(src.parents[2]/'loader/segmented'/name) for name in ('arena.h','arena.c','image.h','image.c')}
 m['service_schema']=json.loads((build/'build.json').read_text()).get('service_schema',0)
 if m['service_schema']:

@@ -1,0 +1,53 @@
+{
+  "net": {
+    "received": 10,
+    "transmitted": 6,
+    "dropped": 0,
+    "fetch_state": 0,
+    "fetch_bytes": 0,
+    "fetch_hash": 0,
+    "module_calls": 174,
+    "running": true,
+    "poisoned": false
+  },
+  "apps": [
+    {
+      "status": 0,
+      "id": 1,
+      "generation": 1,
+      "running": 1,
+      "updates": 166,
+      "elapsed_ms": 2190,
+      "requests": 0,
+      "stops": 0,
+      "errors": 0,
+      "length": 0,
+      "text": ""
+    },
+    {
+      "status": 0,
+      "id": 2,
+      "generation": 1,
+      "running": 1,
+      "updates": 168,
+      "elapsed_ms": 2210,
+      "requests": 0,
+      "stops": 0,
+      "errors": 0,
+      "length": 0,
+      "text": ""
+    }
+  ],
+  "tasks": "owner=3228951616\nirq_live=0\nowner=3228951984\nirq_live=0\nowner=3228952352\nirq_live=1\nowner=3228953160\nirq_live=0\nhandoffs=384922\nfault=0\n",
+  "mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.\n",
+  "pin_status": "bdf=0000:37:09.1 bytes=65536 total=77824 bus0=0xfff61000 bus1=0xfff41000 guard_changes=0 retained=1\n",
+  "boot": "724cee4d-a331-4cbb-840b-7b5bb5541ccc",
+  "owner_pid": "3298",
+  "units": [
+    "active",
+    "active",
+    "active"
+  ],
+  "gateway": "active",
+  "relay_transport": "pio"
+}

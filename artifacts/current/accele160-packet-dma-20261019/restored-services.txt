@@ -1,0 +1,22 @@
+RTEMS combined prompt: help, net, app list/start/stop/echo; quit disconnects
+rtems> accepted=34723
+rejected=12
+wad_good=5083
+wad_bad=3
+dma_completed=64
+worker_loops=422524065
+
+rtems> {
+  "received": 18,
+  "transmitted": 12,
+  "dropped": 0,
+  "fetch_state": 0,
+  "fetch_bytes": 0,
+  "fetch_hash": 0,
+  "module_calls": 2562,
+  "running": true,
+  "poisoned": false
+}
+rtems> gateway HTTP 200
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda6       458G  243G  192G  56% /

@@ -1,0 +1,2 @@
+broker: 3:1 arbitration, request bounds, completed disconnect, reconnect and no retry passed
+broker: actual socket ingress batch observes the 3:1 scheduling order

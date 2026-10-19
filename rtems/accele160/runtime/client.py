@@ -4,9 +4,11 @@ import os,argparse,json,socket,struct,zlib,time
 from pathlib import Path
 class Client:
  def __init__(self,path=None):self.path=path or os.environ.get('I960_RUNTIME_SOCKET','/run/i960-rtems-runtime.sock')
- def call(self,op,data=b''):
+ def call(self,op,data=b'',transport=None):
+  if transport is None:transport=os.environ.get('I960_REPLY_TRANSPORT','pio') if op in (5,7) else 'pio'
+  if transport not in ('pio','dma','dma-check'):raise ValueError('unknown reply transport')
   with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as s:
-   s.settimeout(12);s.connect(self.path);s.sendall((json.dumps(dict(op=op,data=data.hex()))+'\n').encode());reply=b''
+   s.settimeout(12);s.connect(self.path);s.sendall((json.dumps(dict(op=op,data=data.hex(),transport=transport))+'\n').encode());reply=b''
    while b'\n' not in reply:
     chunk=s.recv(8192)
     if not chunk:raise RuntimeError('runtime disconnected')

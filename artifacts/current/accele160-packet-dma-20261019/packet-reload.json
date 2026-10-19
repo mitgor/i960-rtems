@@ -1,0 +1,33 @@
+{
+  "before": {
+    "sequence": 157955,
+    "status": 0,
+    "epoch": 4227818548,
+    "value": 24,
+    "state": 3,
+    "reservation": 520,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 344696,
+    "started": 1,
+    "data": "fb700100f842010000000000000000000000000000000000",
+    "transport": "dma",
+    "latency_ms": 11.148996000883926
+  },
+  "after": {
+    "sequence": 158403,
+    "status": 0,
+    "epoch": 4227818550,
+    "value": 24,
+    "state": 3,
+    "reservation": 1032,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 170,
+    "started": 1,
+    "data": "0a0000000600000000000000000000000000000000000000",
+    "transport": "dma",
+    "latency_ms": 5.948682000052941
+  },
+  "complete_page_comparisons": true
+}

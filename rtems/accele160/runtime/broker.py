@@ -55,8 +55,10 @@ class Broker:
      if b'\n' not in p['data']:continue
      req=json.loads(p['data']);op=req['op'];data=bytes.fromhex(req.get('data',''))
      if type(op)!=int or not 1<=op<=9 or len(data)>1500:raise ValueError('request bounds')
+     transport=req.get('transport','pio')
+     if transport not in ('pio','dma','dma-check') or (transport!='pio' and op not in (5,7)):raise ValueError('reply transport')
      network=op==5 and (not data or data[0]>>4 in (4,6))
-     p.update(op=op,payload=data,kind='network' if network else 'application',queued=True,arrival=time.monotonic(),until=time.monotonic()+5)
+     p.update(op=op,payload=data,transport=transport,kind='network' if network else 'application',queued=True,arrival=time.monotonic(),until=time.monotonic()+5)
      self.schedule.put(p,network)
    except BlockingIOError:pass
    except (ValueError,KeyError,TypeError) as e:self.reply(p,dict(error=str(e)))
@@ -69,7 +71,7 @@ class Broker:
   # Before dispatch a dead/expired peer can be forgotten. After dispatch the
   # owner's actual result is authoritative; no automatic operation retry.
   start=time.monotonic();self.sequence+=1
-  try:result=self.backend(p['op'],p['payload'])
+  try:result=self.backend(p['op'],p['payload'],transport=p['transport'])
   except RuntimeError as e:result=e.args[0] if e.args and isinstance(e.args[0],dict) else dict(error=str(e))
   except OSError as e:result=dict(error=str(e))
   self.log.info(json.dumps(dict(sequence=self.sequence,kind=p['kind'],op=p['op'],wait_ms=(start-p['arrival'])*1000,backend_ms=(time.monotonic()-start)*1000,status=result.get('status'),error=result.get('error'))))

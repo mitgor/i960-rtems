@@ -39,6 +39,9 @@ static void app_init(unsigned int epoch){unsigned int i;
  for(i=0;i<1024u;i++)app_wire[i]=0;
  ar_loan_init(&app_loan);ar_init(&app_runtime,epoch);app_sequence=app_started=0;app_tick=ticks;
  app_wire[416]=0x31525041u;app_wire[419]=epoch;
+#ifdef AR_PACKET_DMA
+ app_wire[427]=0x31414d44u;
+#endif
 }
 static void app_poll(void){
  unsigned int seq=app_wire[0],op=app_wire[2],n=app_wire[3],i,status=0,value=0;
@@ -54,7 +57,12 @@ static void app_poll(void){
  if(app_sequence==0xffffffffu||seq!=app_sequence+1u){status=2;goto reply;}
  app_sequence=seq; /* Every authenticated next sequence is consumed, including refusal. */
  if(n>sizeof(input)){status=3;goto reply;}
- for(i=5;i<16;i++)if(app_wire[i]){status=3;goto reply;}
+ for(i=6;i<16;i++)if(app_wire[i]){status=3;goto reply;}
+#ifdef AR_PACKET_DMA
+ if(app_wire[5]>1u||(app_wire[5]&&op!=5u&&op!=7u)){status=3;goto reply;}
+#else
+ if(app_wire[5]){status=3;goto reply;}
+#endif
  for(i=0;i<n;i++)input[i]=((volatile unsigned char*)(app_wire+16))[i];
  if(seg_crc32(0,input,n)!=app_wire[4]){status=4;goto reply;}
  if(op==1){ /* begin: board, ABI, exact link base, fixed-size segment manifest */
@@ -100,4 +108,7 @@ reply:
  app_wire[423]=app_runtime.busy;app_wire[424]=app_runtime.poisoned;
  app_wire[425]=app_runtime.calls;app_wire[426]=app_started;
  AR_SYNC();app_wire[417]=seq;
+#ifdef AR_PACKET_DMA
+ if(app_wire[5]==1u&&(op==5u||op==7u))AR_PACKET_DMA(seq,app_runtime.epoch,(const void*)app_wire);
+#endif
 }

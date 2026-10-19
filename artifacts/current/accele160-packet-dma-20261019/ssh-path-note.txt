@@ -1,0 +1,5 @@
+After the raw DMA benchmark, new IPv4 SSH connections to 192.168.2.75 stalled during key exchange. ICMP echo, the port-8087 status endpoint, and routed global IPv6 card HTTP still responded. Linux ss showed retransmitted SSH setup data; the Mac's cached route reported MTU 1405. These observations do not establish a cause.
+SSH over 2a02:8106:40:9000:f662:19ee:dbad:1f1e worked with HostKeyAlias=192.168.2.75, preserving existing host-key verification. Work continued over that connection. IPQoS=none and a smaller key-exchange choice did not restore the IPv4 path. A one-off local TCP_MAXSEG=536 proxy experiment was rejected by macOS with EINVAL before connection; no persistent network configuration was changed.
+Do not attribute the SSH failure to the card without additional evidence. Endurance traffic was generated on the Linux host, while public IPv6 HTTP was checked from the Mac.
+
+Final check: IPv4 SSH BatchMode/ConnectTimeout=5 completed with exit 0 after endurance/recovery, without changing network configuration. Root cause remains unproved.

@@ -1,0 +1,5 @@
+owner RPC: bounded publication, exact reply payload, uncertain timeout quarantine, no release writes after uncertainty passed
+packet DMA host: capability, exact sequence/epoch, stale-marker wait, no PIO fallback and timeout quarantine passed
+owner RPC: successful CLOSE epoch transition accepted
+DMA/PIO diagnostic: complete page comparison, corruption detection and quarantine passed
+DMA malformed/partially matching marker: fail-closed before target read

@@ -1,0 +1,76 @@
+{
+  "kernel_sha256": "a3d6722a907ed59dab707d5715d1cb4b476b7dd192662e319e2656b001188503",
+  "packet_trials": 352,
+  "raw_packet_replay": {
+    "dma-check": 32,
+    "pio": 160,
+    "dma": 160
+  },
+  "dma_replies_during_endurance": 151739,
+  "paired_pages": 235,
+  "benchmark": {
+    "64": {
+      "pio": {
+        "median_ms": 24.2932749999909,
+        "max_ms": 34.53438100001449
+      },
+      "dma": {
+        "median_ms": 21.1677014999907,
+        "max_ms": 32.380289999991874
+      }
+    },
+    "256": {
+      "pio": {
+        "median_ms": 21.948255000012296,
+        "max_ms": 34.074282999995376
+      },
+      "dma": {
+        "median_ms": 20.963459999990164,
+        "max_ms": 32.88921500001152
+      }
+    },
+    "1024": {
+      "pio": {
+        "median_ms": 21.974063500010743,
+        "max_ms": 40.09792599998718
+      },
+      "dma": {
+        "median_ms": 22.02484099996127,
+        "max_ms": 38.46185200001173
+      }
+    },
+    "1400": {
+      "pio": {
+        "median_ms": 22.554921499988723,
+        "max_ms": 39.443666000011035
+      },
+      "dma": {
+        "median_ms": 33.71224549999852,
+        "max_ms": 38.54846100000486
+      }
+    }
+  },
+  "endurance_seconds": 3603.0589190339997,
+  "events": 78344,
+  "counts": {
+    "console": 34560,
+    "counter": 9682,
+    "echo": 9682,
+    "http": 11726,
+    "udp": 11726,
+    "restart": 968
+  },
+  "max_ms": {
+    "http": 620.5774899999597,
+    "udp": 218.51810300000807,
+    "console": 106.6066140001567,
+    "counter": 163.61330300003374,
+    "echo": 314.63948599997593,
+    "restart": 740.2695769999923
+  },
+  "loan_max_ms": 161.79574099999172,
+  "guards": true,
+  "prompt_and_http_restored": true,
+  "default_transport": "pio",
+  "uniform_dma_speedup_proved": false
+}

@@ -1,3 +1,51 @@
+## Accele160 faster polling / reply DMA — 2026-10-19 (one-hour qualification passed)
+
+Current owner is now `/home/mit/i960-packet-dma-20261019/bundle`, boot
+`724cee4d-a331-4cbb-840b-7b5bb5541ccc`. The preceding combined owner closed its
+module and shut down cleanly before reset. The new normal profile-5 kernel is
+`a3d6722a907ed59dab707d5715d1cb4b476b7dd192662e319e2656b001188503`.
+It passed the ordinary 64-frame baseline and loaded the combined module. Do not
+start a second owner or modify the frozen live bundle.
+
+The owner now pumps services every 5 ms; full ownership/fault audits remain at
+100 ms and heartbeat at 500 ms. Opt-in reply DMA borrows the existing DMA0 and
+pinned host slot only after game retirement. It copies the 4 KiB runtime reply
+page followed by an exact epoch/sequence marker, drains with a finite observer,
+and retains all resources on uncertainty. Upload/request traffic stays PIO.
+Native finite-chain, timeout/error, stale-marker, full-page comparison and
+quarantine tests pass. See `rtems/accele160/runtime/PACKET-DMA.md`.
+
+The raw hardware trial passed 32 full-page DMA/PIO comparisons, 320 alternating
+UDP reply transactions (64/256/1024/1400-byte payloads), and one final full-page
+query comparison. Another 200 full-page comparisons passed under mixed load.
+Measured DMA speed varied by size; no uniform acceleration is proved. Routed
+HTTP medians were about 150 ms for both PIO and DMA. PIO remains the intended
+final default. The 3,603-second DMA endurance run passed 78,344 workload events
+with zero errors/drops and intact guards. Maximum HTTP/console times were
+621/107 ms. Sixty status queries after the run had a 38.5 ms median (old
+100 ms polling: 205.6 ms); this is host round-trip latency, not an IRQ bound.
+Relay pause/death, broker restart, abandoned client, partial-upload refusal and
+module reload passed without changing boot or PCI owner. DMA/PIO comparisons
+before and after two epoch transitions bring the full-page total to 235.
+The prompt, PIO relay, IPv6 HTTP and browser gateway are active. Evidence and
+replay commands: `artifacts/current/accele160-packet-dma-20261019/README.md`.
+Eight-hour endurance and fresh packet-DMA hardware fault injection remain open.
+
+Root operational tools are in `/home/mit/i960-packet-dma-20261019`.
+`~/rtems-console` points there, via `/run/i960-combined.sock`; `quit` disconnects
+only. The previous wrapper is `~/rtems-console.before-packet-dma-20261019`.
+Public card HTTP remains `http://[2a02:8106:40:9000::960]/` and was fetched from
+the Mac during the DMA run. Internet ingress remains unverified.
+
+IPv4 SSH began retransmitting during connection setup after the raw benchmark;
+ICMP and the browser status endpoint still responded. IPv6 SSH works:
+`ssh -6 -o HostKeyAlias=192.168.2.75 mit@2a02:8106:40:9000:f662:19ee:dbad:1f1e`.
+This uses the existing verified host key. The cause of the IPv4 path issue is
+not established; do not attribute it to the card or change unrelated network
+settings without evidence. The final IPv4 SSH check succeeded without a network
+configuration change. The PC did return from reset without another manual
+power cycle being reported.
+
 ## Combined networking, console and applications — 2026-10-19
 
 Current operational tools/module: `/home/mit/i960-combined-20261019`.

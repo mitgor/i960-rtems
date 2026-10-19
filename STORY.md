@@ -6762,3 +6762,61 @@ new module, confirmed that execution was refused, aborted it and loaded the full
 image. Both applications came back with fresh state, and routed HTTP returned.
 All of this stayed on the same boot and PCI-owner process. The unified prompt
 was left running, with the old diagnostic wrapper saved beside it.
+
+### Taking the hundred-millisecond wait out of the path
+
+The next delay was visible in the host code: an idle owner slept for a tenth of
+a second after each pass. A simple series of sixty status requests took about
+206 milliseconds at the median. We separated the work. The small service pump
+could run every five milliseconds, while ownership checks kept their original
+hundred-millisecond cadence and heartbeat writes kept their half-second cadence.
+A virtual-clock test exercised the actual loop, including a fault arriving
+between audits.
+
+That required a new owner session. We closed the module, saved the old owner's
+successful final result and rebooted. SSH took a while to return, but the new
+boot eventually appeared. The replacement kernel then ran the familiar sixty-four
+frames, paired the first thirty-two with PIO, retired Doom and admitted the
+combined network module.
+
+For packet replies we borrowed what was already pinned. DMA0 copied the kernel's
+four-kilobyte reply page into the existing host slot, then published a distinct
+marker containing the service epoch and exact request sequence. The card drained
+the finite chain before another request could use it. Old markers could not
+complete new requests, and uncertain completion meant retention rather than a
+retry. Uploads still used PIO; this was not direct access to the network card.
+
+The first thirty-two replies matched PIO across every byte of the page. We then
+alternated transport order for four UDP payload sizes, checked every echoed
+payload and performed another complete-page comparison. Two hundred further
+comparisons passed while ordinary traffic was running. The new path worked,
+but its speed was not a simple victory: small replies sometimes improved,
+large replies sometimes became slower, and routed HTTP had almost the same
+150-millisecond median with either transport. We kept PIO as the intended default
+and used DMA for the longer reliability experiment.
+
+During that work, IPv4 SSH stopped completing its setup. Ping and the browser
+status endpoint still answered; IPv6 SSH worked immediately, and the card's
+IPv6 page remained reachable. We continued over that verified host connection
+and recorded the interruption without inventing a cause. It was another reason
+to keep access failures separate from evidence of a controller fault.
+
+The longer experiment finished just over an hour later: 78,344 workload events,
+no reported errors, no dropped packets and no changed guards. The largest HTTP
+round trip was 621 milliseconds; the largest console exchange was 107. Alongside
+that traffic, we had written and verified six mebibytes, cancelled the owner
+while two references remained pinned, observed the close refusal, and released
+the allocation only after those references drained.
+
+With the endurance workload stopped, sixty ordinary status queries had a median
+of 38.5 milliseconds, down from 205.6 before the polling change. That was useful
+progress in host responsiveness, not a new claim about interrupt latency.
+
+We finished by interrupting the replaceable host processes. The relay paused and
+died, the broker restarted, a client disappeared and a partial upload was refused
+execution. The same PCI owner stayed alive throughout. After closing, aborting
+and reloading the module, DMA still matched PIO across the complete reply page
+and the two expected epoch changes. PIO went back to being the normal transport,
+the command prompt and IPv6 page returned, and the browser gateway remained
+available. The new path had earned an hour of evidence, not a claim of universal
+speed or unlimited endurance.

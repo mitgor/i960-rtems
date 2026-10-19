@@ -8,7 +8,7 @@ s=Service();c=s.client;out={}
 def save():(root/'recovery.json').write_text(json.dumps(out,indent=2)+'\n')
 def cmd(*args):return subprocess.check_output(args,text=True).strip()
 def route_remove():cmd('python3',str(root/'public_ipv6.py'),'remove')
-def start_link():return cmd('bash',str(root/'start_link.sh'))
+def start_link():return cmd('bash',str(root/'start_link.sh'),str(root),'pio')
 def http():
  with urllib.request.build_opener(urllib.request.ProxyHandler({})).open('http://[fd96:196:960::2]/',timeout=5) as r:
   b=r.read();assert r.status==200 and b'AcceleRAID 160' in b;return len(b)

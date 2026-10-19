@@ -51,10 +51,12 @@ def guarded(fn):
  except BaseException as e:
   with lock:errors.append(dict(worker=fn.__name__,error=repr(e)))
 threads=[threading.Thread(target=guarded,args=(fn,)) for fn in (traffic,console,apps)]
-start=time.monotonic()
+start=time.monotonic();last_checkpoint=0
 for t in threads:t.start()
 while any(t.is_alive() for t in threads):
- with lock:a.out.write_text(json.dumps(dict(duration_s=time.monotonic()-start,limits=dict(http_s=5,console_s=5,app_echo_s=3),errors=errors,rows=rows),indent=2)+'\n')
+ if time.monotonic()-last_checkpoint>=5:
+  with lock:a.out.write_text(json.dumps(dict(duration_s=time.monotonic()-start,limits=dict(http_s=5,console_s=5,app_echo_s=3),errors=errors,rows=rows),indent=2)+'\n')
+  last_checkpoint=time.monotonic()
  for t in threads:t.join(.1)
 with lock:a.out.write_text(json.dumps(dict(duration_s=time.monotonic()-start,limits=dict(http_s=5,console_s=5,app_echo_s=3),errors=errors,rows=rows),indent=2)+'\n')
 for kind in ('http','udp','console','counter','echo','restart'):

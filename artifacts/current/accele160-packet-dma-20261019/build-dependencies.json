@@ -1,0 +1,44 @@
+{
+  "rtems_build": "/home/mit/i960-accele160-rtems-20261017/accele160",
+  "toolchain": "/home/mit/i960/tools/bin",
+  "environment": {
+    "ACCELE_RUNTIME": 1,
+    "ACCELE_SERVICE": 1,
+    "ACCELE_TERMINAL": 1,
+    "ACCELE_TERMINAL_TEST": 5,
+    "DOOM_KEY_FIFO_SUPPORT": 1,
+    "DOOM_REUSABLE": 1,
+    "DOOM_PERSISTENT": 1,
+    "DOOM_FPS_FRAMES": 32
+  },
+  "files": {
+    "/home/mit/i960-accele160-rtems-20261017/accele160/context.o": {
+      "bytes": 1036,
+      "sha256": "c698bbf81676348bf4d81d816b5e6dbfe88be23ad227573bbd730d996d808366"
+    },
+    "/home/mit/i960-accele160-rtems-20261017/accele160/libc.o": {
+      "bytes": 1644,
+      "sha256": "b6eb8418533e221b25b1b6bcd1d4ba4ad9557d4d0e760d5cc0c56eb64d8b6d37"
+    },
+    "/home/mit/i960-accele160-rtems-20261017/accele160/librtems-bounded.a": {
+      "bytes": 276040,
+      "sha256": "bc585b29d52849e7d7fc164050b1307de8ea2e654f15a65793c8f3d1dd79ef38"
+    },
+    "/home/mit/i960/tools/bin/i960-coff-gcc": {
+      "bytes": 267944,
+      "sha256": "e607498834292e0520f8193d27c5633b2cc453e7091d16d973737b4db1890ae1"
+    },
+    "/home/mit/i960/tools/bin/i960-elf-ld": {
+      "bytes": 5510680,
+      "sha256": "a36b72168b623c3a0259c5d7406de91312bdde775377addd79aeae0542280c9d"
+    },
+    "/home/mit/i960/tools/bin/i960-elf-objcopy": {
+      "bytes": 5259376,
+      "sha256": "806e8e83ad0970c4cce96805390c8934b2d188492b5b0f91c237a3a2392e0027"
+    },
+    "/home/mit/i960/tools/bin/i960-elf-nm": {
+      "bytes": 4300440,
+      "sha256": "3020dd6853598ddb430617fdce5d64de688038bd20c2466cdbe6ad44d98e4a99"
+    }
+  }
+}
