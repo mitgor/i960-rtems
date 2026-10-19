@@ -6492,3 +6492,28 @@ streaming gateway. The inventory had not claimed more memory or stopped the
 SCSI processor. It had replaced a generic question about unused engines with a
 specific next job: corroborate the QLogic device, trace its queues and mailbox
 callbacks, and establish a stop contract for this board.
+
+The next probe asked the device itself. We followed the firmware's secondary
+configuration path, selected only its known device, and restored the selector
+after five reads. The identity came back as 1077:1016, with the expected memory
+BAR. One detail changed: the physical revision was six, although the firmware
+metadata word had been zero. The PCI command also left memory decoding and bus
+mastering enabled. We had corroborated the device, not made it harmless.
+
+The disassembly now gave its memory traffic a more concrete shape. A context at
+c0600d00 led to an eight-kilobyte request ring and a four-kilobyte response ring.
+There were software pending lists as well, and mailbox transactions shared
+registers with queue-index publication. The interrupt callback could process a
+completion and try pending work. Those dependencies had to remain visible in a
+future stop contract; an empty-looking register was still not permission to
+reuse their memory.
+
+The opt-in runtime completed sixty-four frames and 5,045 WAD reads while the
+prompt handled 697 external exchanges without errors. Ready, mid-game, idle
+and final STOP snapshots all agreed, and the selector returned to exactly the
+value we had found. We kept the binaries and complete captures, then reset.
+The original normal kernel came back through two matching full firmware reads,
+another sixty-four frames and 681 external console exchanges. Its memory loan
+was returned, the prompt was left at verified idle, and the streaming gateway
+was restored. The next step was a checked snapshot of the known queue state,
+with those ranges still reserved until hardware isolation was established.

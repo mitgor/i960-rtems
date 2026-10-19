@@ -1,0 +1,7 @@
+{
+  "quiescent": true,
+  "stop_ack": true,
+  "pending_callback": true,
+  "pins_retained": true,
+  "guards_intact": true
+}

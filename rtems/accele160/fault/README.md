@@ -151,3 +151,8 @@ and DMA ownership preserved.
 [Profile 14 core-engine inventory](../ownership/PROFILE14.md) extends normal
 owned-handler operation without injection. Profile 5 remains the default; 14
 adds the fixed 48-read report extension and preserves the same terminal entry.
+
+[Profile 15 QLogic corroboration](../ownership/PROFILE15.md) extends the same
+normal owned runtime with exact-device configuration reads. The exception entry
+object remains identical to profile 5. Configuration faults retain resources
+and require reset; no fault injection is accepted by profile 15.

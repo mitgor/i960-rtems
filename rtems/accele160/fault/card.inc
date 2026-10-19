@@ -127,19 +127,27 @@ void accele_terminal_record(void){
  AT_SYNC();at[31]=AT_DONE;
  AT_PARK();
 }
-#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14)
+#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15)
 /* Host requests use words 3/4; ack 166 publishes a complete immutable sample.
  * No injection token is accepted by this profile. */
-#if ACCELE_TERMINAL_TEST == 14
+#if ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15
 #include "../ownership/inventory.h"
+#if ACCELE_TERMINAL_TEST == 15
+#define Q_READ(a) REG(a)
+#define Q_WRITE(a,v) do { REG(a)=(v); AT_SYNC(); } while(0)
+#include "../ownership/qlogic_config.h"
+#endif
 #endif
 static void at_runtime_snapshot(unsigned int phase){
  at_snapshot();at[26]=at_guard();at[147]=at_irq_guard();
  at[167]=ticks;at[168]=handoffs;at[169]=switch_fault;
  at[170]=at_owned_valid();at[171]=phase;
  if(!at[170]||!at[26]||at[169])accele_terminal_enter(0x7d019u);
-#if ACCELE_TERMINAL_TEST == 14
+#if ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15
  at_engine_snapshot(at,at_nonce,at[4],phase);
+#if ACCELE_TERMINAL_TEST == 15
+ at_qlogic_snapshot(at,at_nonce,at[4],phase);
+#endif
 #endif
  AT_SYNC();at[166]=at[4];
 }
@@ -148,7 +156,7 @@ static void at_runtime_snapshot(unsigned int phase){
 static void at_dma_test(void);
 #endif
 static void at_poll(void){
-#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14)
+#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15)
  if(at[3]==at_nonce && at_nonce && at[4] && at[4]!=at[166])
   at_runtime_snapshot(0u);
 #endif

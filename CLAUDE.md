@@ -1,3 +1,12 @@
+**2026-10-19 Accele160 QLogic corroboration:** Opt-in profile 15 confirms the
+physical secondary device is ISP10160 `1077:1016`, revision 6, memory BAR
+`fff00000`, with memory decode and bus mastering enabled. Earlier firmware
+revision metadata was zero. The probe restores SOCCAR and never writes device
+configuration; no SCSI isolation or extra RAM ownership is established. See
+[runtime contract and queue dependencies](rtems/accele160/ownership/PROFILE15.md)
+and the [current port checkpoint](docs/rtems/ACCELE160-PORT-PLAN.md) for the
+restored service and next gate. Keep normal profile 5 as the prompt owner.
+
 **Cached new-card Doom screen copy — 2026-10-18:**
 [Two full card archives](artifacts/current/wide-screen-copy-20261018/README.md)
 show the opt-in `game/doom/build.py --wide-screen-copy` reducing the measured

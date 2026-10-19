@@ -1,0 +1,21 @@
+{
+  "samples": 4,
+  "all_samples_equal": true,
+  "qlogic": {
+    "selector_before": "0x1000c",
+    "selector_after": "0x1000c",
+    "config": {
+      "0x00": "0x10161077",
+      "0x04": "0x02b00006",
+      "0x08": "0x01000006",
+      "0x10": "0x00000001",
+      "0x14": "0xfff00000"
+    },
+    "device_config_writes": false,
+    "ownership_proven": false
+  },
+  "physical_revision": 6,
+  "firmware_revision_word": 0,
+  "device_bus_master_enabled": true,
+  "memory_ownership_expanded": false
+}

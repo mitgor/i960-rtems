@@ -17996,6 +17996,111 @@
       "path": "artifacts/current/accele160-engine-inventory-20261019/tested-replay.json",
       "size": 9097,
       "sha256": "b04a1f033412654f0f72cbc1761c4bd05fa015934cd617e8f682e1d5efa3646c"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/README.md",
+      "size": 3232,
+      "sha256": "d2a5f0135ddc3725fbb7409a41d7939db452f2e6c6b87e2a2c6535df33bff73d"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/SHA256SUMS",
+      "size": 2733,
+      "sha256": "2bdf629227df90fa239ad863bff569b59c5364000fb8dc356fa954494685dd45"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/build.txt",
+      "size": 5938,
+      "sha256": "bd4de193a5a7c10f217e4c2392a11ebfffd6d2cc03f0d35d0be7820bf9608ebb"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/entry-object-check.txt",
+      "size": 258,
+      "sha256": "3dea93cb27c4b1b2d9be166b7c8647db01283b98dd99a8a91674597e86cb9293"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/firmware-tests.txt",
+      "size": 79,
+      "sha256": "d421a726bc6728fd42ffea868a4a6651ef773b61491947e5a9674864dc6e6d45"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/native-tests.txt",
+      "size": 1769,
+      "sha256": "49b1b4c2ad9a02d274ad1cc643accd48ce1653763de870db0edb7c6349d81d37"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/observations.json",
+      "size": 493,
+      "sha256": "a096ed19ffd8a74277d7f4aa87b264a23f222eee8e2b5a8e4bca0a13e7a5d2f1"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/previous-final-check.json",
+      "size": 122,
+      "sha256": "1d4b83b085bd9b97b0487fb8711410dff70aab755493e0e23982a91732a3a5b7"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/previous-final.tar.xz",
+      "size": 1555576,
+      "sha256": "953e60ffc0a5ada1fa0696db4cc7d97d2e662c90f9d70a4e40b2b941e47108cc"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/provenance.json",
+      "size": 412,
+      "sha256": "694e86af0432e37311da3ea535e8e44867ff6753ad57561a395097d69c877f04"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/qlogic-dependencies.dis",
+      "size": 61312,
+      "sha256": "296baae5ccc78cb4d291118214418a6c0c0579ca00d81a405b72cf542fc02ad3"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/qlogic-firmware-audit.json",
+      "size": 1755,
+      "sha256": "980986219d8e4a8bf8c7de1c6bfd74959abfb518bd8711853d1e37e8e88a7c48"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/recovery.json",
+      "size": 934,
+      "sha256": "040de713103740e9d6e32a4298f505a09beb94f528c77cd978ccca4bbd1e6470"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/restored-live.tar.xz",
+      "size": 9570192,
+      "sha256": "f3ff0e17a42cc953075bbca5ad940b474837430fdfc2a8d2e1f601b7e4ab1458"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/restored-prompt.txt",
+      "size": 245,
+      "sha256": "947d28cf68abaec0785e94e1ca21c4f5e474678ef53f50eaff840e8ac88fdd48"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/restored-replay.json",
+      "size": 858,
+      "sha256": "3180ce12f50b664fd8b35508cc3a872d73d0206713702372c0d79d24bf1e260b"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/restored-services.txt",
+      "size": 68,
+      "sha256": "1c9be331f3eedaacefd51982a7c99448384e297597e4f9e71ec8fdcd92836896"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/tested-final-replay.json",
+      "size": 2192,
+      "sha256": "f476d7b6f96ba451fe90b1157c82c5f547f1ac3807682358efb422375cee8340"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/tested-final.tar.xz",
+      "size": 1554376,
+      "sha256": "7054d7132fcf9e2ceea2f4d05dddc4d79a7ff58ea489a6fc78d7773f6d1e8ae2"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/tested-live.tar.xz",
+      "size": 9606880,
+      "sha256": "3f4dbe0a2cb684570320ffa33d9ab91dc050456a11b2d5587cbb4752a29ba1ec"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-config-20261019/tested-replay.json",
+      "size": 10187,
+      "sha256": "bf66e52d3f2e1d51b7a149bfd4af5a74d0766b7a45c52b0d8e0273ffcb7e00dc"
     }
   ],
   "updated_date": "2026-10-18"

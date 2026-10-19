@@ -1,6 +1,10 @@
 # Accele160 engine-ownership audit (P3i)
 
-Follow-up: [profile 14](PROFILE14.md) now supplies live core-engine and firmware
+Latest follow-up: [profile 15](PROFILE15.md) adds identity-gated secondary PCI
+configuration reads and a pinned QLogic queue/mailbox dependency trace. Normal
+profile 5 remains the service; neither profile grants more RAM.
+
+Prior follow-up: [profile 14](PROFILE14.md) now supplies live core-engine and firmware
 metadata captures, identifies the QLogic ISP10160 path and records stock DMA1/AAU
 dependencies. The P3i audit below is historical; permanent exclusion remains open.
 

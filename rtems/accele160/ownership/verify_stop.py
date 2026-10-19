@@ -19,8 +19,13 @@ def verify(live,final):
     page=files[name];nonce=struct.unpack_from('<I',page,68)[0]
     assert nonce==struct.unpack_from('<I',before[run+'owned-ready.bin'],68)[0]
     assert row['sequence']==samples[-2]['sequence']
-    w=validate_runtime(page,nonce,row['sequence'],1,14)
+    mode=json.loads(before['bundle/project/rtems/accele160/doom_dma/persistent-manifest.json'])['terminal_test']
+    assert mode in (14,15)
+    w=validate_runtime(page,nonce,row['sequence'],1,mode)
     inv=decode(page,nonce,row['sequence'],1)
+    if mode==15:
+        from qlogic_config import decode as config_decode
+        inv['qlogic']=config_decode(page,nonce,row['sequence'],1)
     assert w[167]>=samples[-2]['ticks'] and w[168]>=samples[-2]['handoffs']
     q=files[run+'persist/quiescent-page.bin']
     assert struct.unpack_from('<2I',q,0xb54)==(0x45495551,0)

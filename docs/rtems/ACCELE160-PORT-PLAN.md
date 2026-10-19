@@ -1,5 +1,35 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Accele160 P3k — direct QLogic identity and queue dependency trace
+
+Opt-in profile 15 passed 64 frames, 5045 WAD reads and 697 external console
+exchanges without errors. Ready/frame32/idle/STOP configuration snapshots agree:
+physical `1077:1016`, revision **6**, memory BAR `fff00000`, command `0006`
+(memory decode and bus mastering enabled). SOCCAR returned exactly to `1000c`
+after every sample. The earlier firmware revision word was zero; it is not an
+authoritative hardware revision. Only the selector register is written; no
+configuration data writes, chip MMIO, engine reset or extra RAM claim occurred.
+
+The pinned queue trace identifies channel context `c0600d00`, request storage
+`c0600df0` (8 KiB), response storage `c0604df0` (4 KiB), software pending lists,
+mailbox/interrupt callbacks and queue-index publication. These remain reserved.
+The next step is a checked fixed RAM snapshot of context fields, indices,
+pending head/tail and active counters, followed by completing the stop/isolation
+contract. Do not traverse unknown pointers or infer isolation from quiet fields.
+
+[Protocol and findings](../../rtems/accele160/ownership/PROFILE15.md) and
+[artifacts and replays](../../artifacts/current/accele160-qlogic-config-20261019/README.md).
+
+After clean STOP with callback/pins retained, reset recovery passed paired full
+firmware reads. Normal profile 5 is restored at
+`/home/mit/i960-owned-runtime-20261018/bundle`, session `20261019T092824Z`,
+boot `96907303-fe0a-4c0f-a7bd-558d044f44c6`. It passed 64 frames, 5045 WAD reads and
+681 external exchanges with no errors. The user-facing prompt is live at
+verified idle with no zone loan; gateway 8088 returns HTTP 200. No physical
+intervention was needed. Prior checkpoints and their running-session claims
+below are historical.
+
+
 ## Accele160 P3j — core inventory and QLogic firmware dependencies qualified
 
 Opt-in profile 14 passed two fresh-boot 64-frame runs, each with 5045 WAD reads
