@@ -116,3 +116,17 @@ for offset in (0,4100,69632,77823):
     except AssertionError:pass
     else:raise AssertionError(('stall payload tamper accepted',offset))
 print('stalled DMA: disabled is not drained; progress/error/marker/guard corruption rejected')
+
+# The successful resumed transfer must retain a distinct timeout record.
+w=w+[0]*16;w[25]=10;w[208:221]=[3,0x400,123,0,1,w[180]+32768,0,0,7,0,0,1,1]
+host.validate_dma_observation(tuple(w))
+for index in (175,186,187,204,205,208,209,211,212,213,214,215,216,217,218,219,220):
+    bad=w[:];bad[index]^=1
+    try:host.validate_dma_observation(tuple(bad))
+    except AssertionError:pass
+    else:raise AssertionError(('resume evidence tamper accepted',index))
+bad=w[:];bad[210]=10000000
+try:host.validate_dma_observation(tuple(bad))
+except AssertionError:pass
+else:raise AssertionError('resume timeout accepted as completion')
+print('resume: distinct timeout/completion, fingerprints and guard evidence required')

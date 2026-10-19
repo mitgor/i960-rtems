@@ -1,3 +1,26 @@
+**Latest Accele160 DMA resume qualification — 2026-10-19:**
+Profile 10 gates a single DMA0 CE resume after preserving a real fault-path
+10000000-poll timeout. Hardware completed the same finite chain after 1843705
+further polls. Buffers, source, descriptors and pending firmware callback stay
+owned until reset, even after DMA completion. [Evidence](../artifacts/current/accele160-dma-resume-20261019/README.md)
+and [design](accele160/fault/DMA-RESUME.md). The record is now 224 words in its
+existing page; 204/205 hold initial fingerprints and 208–220 resume evidence.
+Modes 6–9 replay successfully. Normal service remains the original mode 5.
+
+Live bundle: `/home/mit/i960-owned-runtime-20261018/bundle`, session `20261019T031433Z`,
+boot `f191f6f8-c1ae-4ce3-aee1-9e02024cf6ba`, kernel
+`55dc845a43b53fe0e84aba8ed180f28e0331999b74857c96d5e8ff2bb2d5d002`.
+Fresh paired firmware reads close reset recovery. Normal restoration passed
+64 frames, 5045 WAD reads, 685 external console exchanges, zero errors and
+owned snapshots. Leave this owner running at verified idle; the prompt and
+8088 streaming gateway are restored. Never force-unload or adopt retained
+sessions. Admission module/source changes belong to another task.
+
+Next: qualify the same gated resume through actual NMI, then hardware refusal
+of a deliberately invalid resume gate without enabling DMA. No general abort,
+arbitrary PCI retry recovery, task restart or memory reclamation is established.
+Historical session details follow.
+
 **Latest Accele160 stalled-DMA qualification — 2026-10-19:**
 Profiles 8/9 deliberately suspend DMA0 via CE=0 after activity is established.
 Actual fault/NMI entries exhaust 10000000 polls with CSR=0x400 and unchanged

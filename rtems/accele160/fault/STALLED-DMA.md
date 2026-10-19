@@ -46,3 +46,6 @@ bus access, or an arbitrary damaged engine. The bound is a count of completed
 MMIO polls, not a hard wall-clock deadline when the bus itself stops responding.
 No resume, abort, or memory reclamation without reboot is claimed. Broader
 stock SCSI/cache exclusion remains separate work.
+
+The separate [profile 10 diagnostic](DMA-RESUME.md) investigates CE resume
+after this timeout. Profiles 8/9 continue to park with CE clear.

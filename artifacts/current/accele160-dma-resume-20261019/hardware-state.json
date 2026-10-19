@@ -1,0 +1,36 @@
+{
+  "suspended": {
+    "csr": "0x400",
+    "ccr": 0,
+    "dar": "0xc0821000",
+    "ndar": "0xc0821020",
+    "bcr": 65040,
+    "dcr": 7,
+    "settle_iterations": 4098,
+    "stable_iterations": 4096
+  },
+  "timeout": {
+    "polls": 10000000,
+    "csr": "0x400",
+    "ccr": 0,
+    "dar": "0xc0821000",
+    "ndar": "0xc0821020",
+    "bcr": 65040,
+    "dcr": 7
+  },
+  "resume": {
+    "attempt": 3,
+    "csr_before": "0x400",
+    "polls": 1843705,
+    "csr": "0x0",
+    "ccr": 1,
+    "dar": "0xc0829000",
+    "ndar": 0,
+    "bcr": 0,
+    "dcr": 7,
+    "source_fnv": "0xdb369dc5",
+    "descriptor_fnv": "0x702bc565",
+    "peers": 1,
+    "owned_guards": 1
+  }
+}

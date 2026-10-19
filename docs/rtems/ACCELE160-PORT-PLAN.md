@@ -368,3 +368,23 @@ is restored on boot `a320a74a-d22e-4bdc-83f9-ef2649e30e2f`, session `20261018T22
 after 64 frames and 529 error-free external console exchanges. The prompt
 and gateway 8088 remain live at verified idle. The diagnostic profiles are not
 defaults; recovery used reboot, not DMA resume or memory reclamation.
+
+### P3e — controlled DMA resume after deliberate suspension (2026-10-19)
+
+Profile 10 now preserves a real fault-path 10000000-poll timeout, revalidates
+ownership and the exact suspended transfer, and enables DMA0 CE once. The card
+completed the existing finite chain after 1843705 further polls; source and
+chain fingerprints, final payload/marker, stack and host guards, peer registers,
+allocator owner table and post-owner-exit retention all passed. It remains a
+reset-only diagnostic. Normal profile 5 is the service baseline.
+
+[Design](../../rtems/accele160/fault/DMA-RESUME.md) and
+[evidence](../../artifacts/current/accele160-dma-resume-20261019/README.md).
+Native tests cover rejected gates, no retry, and a second bounded timeout;
+only successful controlled resume after real `faulte` was tested on hardware.
+
+The next bounded extension is the same controlled resume through the actual
+NMI entry, preserving its source acknowledgement and original timeout record.
+After that, qualify hardware gate rejection without changing CE and retain the
+reset-only ownership policy. Generic PCI errors/retries, abort, arbitrary task
+restart, SCSI/cache exclusion and memory reclamation remain separate gaps.

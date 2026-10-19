@@ -79,8 +79,43 @@ static void dma_kick(unsigned gen,unsigned slot,const void *source,unsigned hash
 }
 
 #if ACCELE_TERMINAL_TEST >= 6
+#if ACCELE_TERMINAL_TEST == 10
+/* One-shot diagnostic CE resume, never generic fault recovery. Preserve the
+ * timeout record, recheck its exact suspended state, then observe a new bound.
+ * No descriptor reload, chain-resume bit, completion publication or release. */
+static void at_dma_resume(void){unsigned i,ch,csr;
+ if(at[208])return;
+ at[208]=1u; /* Attempt latched even when the gate refuses. */
+ if(at[160]!=1u||at[20]!=0x7d003u||!claimed||switch_fault||
+    !at_guard()||!at_owned_valid()||at[175]!=10000000u||at[195]!=1u||
+    at[203]!=4096u||at[186]!=0x400u||at[187]||at[191]!=7u||
+    at[183]!=1024u||at[184]!=0x400u||!at[194]||
+    at[192]!=at[204]||at[193]!=at[205])return;
+ for(i=0;i<6u;i++)if(at[186+i]!=at[196+i])return;
+ if(at[188]<at[180]||at[188]>=at[180]+32768u||
+    (at[188]&31u)||at[189]!=at[188]+32u||!at[190]||at[190]>65536u)return;
+ csr=REG(0x1404u);at[209]=csr;
+ if(csr!=0x400u||REG(0x1400u)||REG(0x140cu)!=at[188]||
+    REG(0x1410u)!=at[189]||REG(0x1420u)!=at[190]||REG(0x1424u)!=7u)return;
+ at[208]=2u;DMA_SYNC();REG(0x1400u)=1u;DMA_SYNC();
+ for(i=0;i<10000000u;i++){
+  csr=REG(0x1404u);if(!(csr&0x400u)||(csr&0x2du))break;
+ }
+ at[210]=i;at[211]=csr;at[212]=REG(0x1400u);at[213]=REG(0x140cu);
+ at[214]=REG(0x1410u);at[215]=REG(0x1420u);at[216]=REG(0x1424u);
+ at[217]=byte_fnv((const void*)at[181],65536u);
+ at[218]=byte_fnv((const void*)at[180],32800u);at[219]=1u;
+ for(ch=1;ch<3u;ch++)for(i=0;i<8u;i++)
+  if(REG(0x1400u+ch*64u+dma_offsets[i])!=dma_peers[ch-1u][i])at[219]=0u;
+ at[220]=at_guard()&&at_owned_valid();
+ if(at[210]<10000000u&&!at[211]&&at[212]==1u&&
+    at[213]==at[180]+32768u&&!at[214]&&!at[215]&&at[216]==7u&&
+    at[217]==at[204]&&at[218]==at[205]&&at[219]&&at[220])at[208]=3u;
+}
+#endif
 /* Diagnostic only, after CPU containment. Observe a bounded number of polls;
- * NEVER disable the channel or publish firmware completion/release. On timeout
+ * Never publish firmware completion/release. Profile 10 alone may CE-resume
+ * its deliberately suspended chain after the recorded timeout. On timeout
  * the same terminal park retains source, descriptors and host destinations. */
 static void at_dma_finish(void){unsigned i,ch,csr=0;
  for(i=0;i<10000000u;i++){
@@ -96,6 +131,9 @@ static void at_dma_finish(void){unsigned i,ch,csr=0;
   for(ch=1;ch<3u;ch++)for(i=0;i<8u;i++)
    if(REG(0x1400u+ch*64u+dma_offsets[i])!=dma_peers[ch-1u][i])at[194]=0u;
  }
+#if ACCELE_TERMINAL_TEST == 10
+ at_dma_resume();
+#endif
 }
 /* Isolated diagnostic before engine admission. Finite 1024 x 64 KiB chain
  * repeats an immutable source into ONE existing guarded/pinned destination.
@@ -120,6 +158,9 @@ static void at_dma_test(void){
  for(i=0;i<8u;i++)dma_marker[i]=0x444d4100u+i;
  at[180]=desc;at[181]=(unsigned int)source;at[182]=dma_bus[0];
  at[183]=1024u;at[185]=(unsigned int)dma_marker;
+#if ACCELE_TERMINAL_TEST == 10
+ at[204]=byte_fnv(source,65536u);at[205]=byte_fnv((const void*)desc,32800u);
+#endif
 #if ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9
  if(REG(0x1700u)||(REG(0x1324u)&8u)||(REG(0x1320u)&0x80000000u))
   accele_terminal_enter(0x7d016u);
@@ -148,7 +189,7 @@ static void at_dma_test(void){
   at[195]=1u;DMA_SYNC();
  }
 #endif
-#if ACCELE_TERMINAL_TEST == 6 || ACCELE_TERMINAL_TEST == 8
+#if ACCELE_TERMINAL_TEST == 6 || ACCELE_TERMINAL_TEST == 8 || ACCELE_TERMINAL_TEST == 10
  accele_raise_fault();
 #else
  at[155]=1u;DMA_SYNC(); /* Host may now issue the actual doorbell NMI. */

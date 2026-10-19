@@ -4,7 +4,7 @@ import argparse,hashlib,json,subprocess
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('session',type=Path);a=p.parse_args()
 run=a.session/'run';result=json.loads((run/'result.json').read_text())
-assert result['terminal']['mode'] in (8,9)
+assert result['terminal']['mode'] in (8,9,10)
 assert Path('/proc/sys/kernel/random/boot_id').read_text().strip()==result['boot_id']
 u=subprocess.run(['systemctl','is-active','i960-doom.service'],capture_output=True,text=True)
 assert u.returncode!=0 and u.stdout.strip() in ('inactive','failed','unknown')

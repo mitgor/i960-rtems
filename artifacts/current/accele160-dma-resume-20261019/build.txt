@@ -1,0 +1,37 @@
+e9cb1c8233d319b1b553c351bef8d0e55eb4f4408fa38ea9579770b3399daa86  /home/mit/i960-dma-resume-20261019/bundle/kernel/kernel.bin
+7f8aee261009171b7154a9b21af8c2b61ef5225615a371ece0539db56efc9abd  /home/mit/i960-dma-resume-20261019/bundle/kernel/image.bin
+e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6  /home/mit/i960-dma-resume-20261019/bundle/project/rtems/accele160/doom_dma/fnv_host.so
+{
+  "reusable": true,
+  "frames": 0,
+  "persistent": true,
+  "card_profile": "accele160",
+  "source_sha256": "d6fe93643f11436206b9707765aa25442407f274a7ec1a0d95dbd7c4a69f61c2",
+  "kernel_sha256": "e9cb1c8233d319b1b553c351bef8d0e55eb4f4408fa38ea9579770b3399daa86",
+  "image_sha256": "7f8aee261009171b7154a9b21af8c2b61ef5225615a371ece0539db56efc9abd",
+  "image_fnv": "0xc0c52d31",
+  "engine_manifest_sha256": "6acc78fd90a1a423c5cb8cc75a5472762651ccf623125320269e745fe30e730a",
+  "dma_module_sha256": "df48f83d1f303c69a55ffd9d4bf46e82c3e51bc3ad45b709140f0f04ab9dd1b6",
+  "terminal_schema": 1,
+  "terminal_test": 10,
+  "terminal_sources": {
+    "policy.h": "0ab08bb1070e8ee174525e85c4726a95db87a6e8bb3733064aa9b4e96ebaaddb",
+    "card.inc": "2a1f8c549a334d9038155553f153aaed4edd2a554799f957894b0f786648bca6",
+    "terminal.S": "b035c421687666d9fe8ef60eed325b87720ca120dade821c1cc14a67c4188a20",
+    "host.py": "8172fa10ca508c496d46a25714c295a85a319655be5bc20e5b3e0e1e372440c5"
+  },
+  "service_schema": 1,
+  "service_sources": {
+    "protocol.h": "a844e3bbddb51eda1c7e8e006243bdf4b889facd940362e0d9968a036197226f",
+    "card.inc": "a775032964276335211746daad0c8a3a25e0102965815611abe7deee189c36eb",
+    "host.py": "348938ab39d51f79821eee220d4522738c9c6cdd8de01373873247145d0a9a4b"
+  },
+  "keyboard_fifo_schema": 1,
+  "key_fifo_sha256": "d84474b69d3f458bfe99155510588334f0af2d1fc6abeeb26f807863c02cef9b",
+  "admit_module_sha256": "313af2acae9e740dfb90e10e053beeca47efe9cfd5d0bfa74c1cdd07abd28c15",
+  "admit_source_sha256": "7f9a6334a95e923edb4e35e125740e5884a674e7b390a80164a5ff3173105167",
+  "native_fnv_sha256": "e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6",
+  "dma_source_sha256": "777f19efc7babb56b0600de9fdb4e00d64c63ff920d9bf914df1dfaf923ff49b",
+  "copy_sha256": "136d0fe0670d73848cf5831ecf4cd26077accbcbb45168c45ac34a072106254c",
+  "engine_identity_sha256": "bca3cad30e240112ef7216c3b1be282b65403b75f4aec686592890c25959a6ba"
+}

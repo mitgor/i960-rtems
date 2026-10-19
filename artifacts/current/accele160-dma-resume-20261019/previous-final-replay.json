@@ -1,0 +1,40 @@
+{
+  "scope": "Final STOP evidence only; prior full live replay is in accele160-stalled-dma-20261018",
+  "global_stop": true,
+  "pending_retained": true,
+  "guards_intact": true,
+  "owned_samples": [
+    {
+      "sequence": 1,
+      "phase": 0,
+      "ticks": 8,
+      "handoffs": 8,
+      "owned": true,
+      "label": "ready"
+    },
+    {
+      "sequence": 2,
+      "phase": 0,
+      "ticks": 9437,
+      "handoffs": 8576,
+      "owned": true,
+      "label": "game-1-frame32"
+    },
+    {
+      "sequence": 3,
+      "phase": 0,
+      "ticks": 9786,
+      "handoffs": 8654,
+      "owned": true,
+      "label": "game-1-idle"
+    },
+    {
+      "sequence": 3,
+      "phase": 1,
+      "ticks": 1772023,
+      "handoffs": 1770891,
+      "owned": true,
+      "label": "quiescent"
+    }
+  ]
+}

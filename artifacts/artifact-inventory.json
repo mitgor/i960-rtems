@@ -17426,6 +17426,101 @@
       "path": "artifacts/current/accele160-stalled-dma-20261018/restored-services.txt",
       "size": 84,
       "sha256": "5b9dec8a6e2cb07e36ea7e6ae7437144978cf879d34f9e3452356b49bb6c9e71"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/README.md",
+      "size": 4081,
+      "sha256": "73fed1c6b760d7cf195e35f2b2c6ffdbf8520ccdad493b41aa4b426adfe25564"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/SHA256SUMS",
+      "size": 2404,
+      "sha256": "46cf450af567dcd6ba0f5337744af7eadbded8b0ba4b29d00b3fef8932e44c65"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/build.txt",
+      "size": 2353,
+      "sha256": "e7edcca49b2f0ba00abdcf914aa849850b3e1559f38425868ea30c6b5d254734"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/entry-and-loop-audit.json",
+      "size": 314,
+      "sha256": "8d0c1b4e1d5553bf3fb9560d9d2db072f65fade6b59c64e1f31492b31e91d226"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/hardware-state.json",
+      "size": 654,
+      "sha256": "1f1c488801f29ff617802a44657f627bea38e19b2cd186768d016b85ccdfe728"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/native-tests-linux.txt",
+      "size": 1237,
+      "sha256": "67e8fc26cf0519e0ac1627c91597f2c5f085246d97dc486daa6531bfa168dd77"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/native-tests.txt",
+      "size": 871,
+      "sha256": "855640a42df6c9a91dcc3e0babdd40f743e33573567676a43b6d4830582ffd27"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/prepared.tar.xz",
+      "size": 8627440,
+      "sha256": "108407ba062a7b291991ffd79f3fe491ee3aaaeb3382469456ba5c0d3fe581fd"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/previous-final-replay.json",
+      "size": 787,
+      "sha256": "c3eec37ca01cc552a3cca5ef0702316bea3c71d619c5efdbecbb236a6feffac6"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/previous-final.tar.xz",
+      "size": 9734820,
+      "sha256": "a1844f7b61bb3069d84e75fde8d12b7e7585cc9182cf94d90ca0da8fad230aef"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/previous-modes-replay.json",
+      "size": 3812,
+      "sha256": "1f34472dbbea26f318c508c55e550131e7f799f2dadf6d3293bce1433a174c2b"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/recovery.json",
+      "size": 857,
+      "sha256": "2284d2db2992be8df2144e7270430963867fc64f02217fa6c13cb763d28d1fd7"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/restored-live.tar.xz",
+      "size": 9742828,
+      "sha256": "a4d486ab022b7b13607c7195dff57302dabd9cfd727f05517bb0d230f189218b"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/restored-prompt.txt",
+      "size": 246,
+      "sha256": "0b3ccbb14030b9502c4d562c4929e802ec72fa027cb0dc595b07e892a4e75719"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/restored-replay.json",
+      "size": 858,
+      "sha256": "e418eca2993abdbc6497c38f0040b551410c7b2b573f07cbcbb5d8736b5df568"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/restored-services.txt",
+      "size": 101,
+      "sha256": "4882418a49accaea777efbc5bf93d610484a8b51c69e40d6dc36e03f8a4e9051"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/resume-disassembly.txt",
+      "size": 11447,
+      "sha256": "9ee9baba388f92297db7141556f52c4655a2d5ba33e962cccdb0ed8e603b6285"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/tested-replay.json",
+      "size": 829,
+      "sha256": "3da1e993bbbf794a043b62ad28f72d5b1b21de47afdc174eefc4a95f13ec1b84"
+    },
+    {
+      "path": "artifacts/current/accele160-dma-resume-20261019/tested.tar.xz",
+      "size": 8730320,
+      "sha256": "b8ed9f6e5823a21702608841bb9c572bee970d43e0113f797dbead9f4e1ea480"
     }
   ],
   "updated_date": "2026-10-18"

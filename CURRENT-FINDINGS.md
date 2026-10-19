@@ -1,3 +1,29 @@
+## Accele160 P3e — controlled fault-path DMA resume qualified
+
+Profile 10 preserves the deliberate suspension and real fault-path timeout,
+then revalidates ownership and sets DMA0 CCR.CE once. On hardware, the initial
+10000000 polls left CSR=0x400, CCR=0 and BCR=65040 unchanged; resume completed
+after 1843705 further polls with CSR=0, final DAR=0xc0829000 and NDAR/BCR=0.
+The original timeout remains in the record. Full payload/marker, both destination
+guards, stack guards, source/descriptor fingerprints, visible pages, peer
+registers and allocator ownership passed. STOP, refused unload and host-process
+exit preserved pins and admission `done=0 released=0`.
+
+Both fresh firmware reads after reset match. The original qualified profile-5
+kernel is restored on boot `f191f6f8-c1ae-4ce3-aee1-9e02024cf6ba`, session `20261019T031433Z`
+under `/home/mit/i960-owned-runtime-20261018`. Restoration passed 64 frames,
+5045 WAD reads and 685 external console exchanges with zero errors. Owned
+snapshots and guards pass, the game is at verified idle, and the prompt and
+streaming gateway 8088 are available. No flash was written.
+
+[Evidence](artifacts/current/accele160-dma-resume-20261019/README.md) and
+[design](rtems/accele160/fault/DMA-RESUME.md). This qualifies one deliberately
+suspended healthy transfer through the fault path. NMI resume, generic PCI
+errors/retries, arbitrary task recovery, abort, release without reset and broader
+SCSI/cache exclusion remain open. A second timeout and rejected resume gates
+were exercised natively, not on hardware. Earlier live-session details below
+are historical.
+
 ## Accele160 P3d — hardware suspension and terminal timeout qualified
 
 Profiles 8/9 deliberately suspend an established DMA0 transfer with CCR.CE=0,

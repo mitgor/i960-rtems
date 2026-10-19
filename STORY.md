@@ -6298,3 +6298,46 @@ its ownership snapshots and guards stayed intact, and the game returned its
 workspace loan. We left the service at verified idle and restored the streaming
 gateway. Both deliberately suspended transfers now had a verified reset path,
 and the ordinary prompt was back on the card.
+
+
+The suspended channel had answered one question: we could leave a transfer
+unfinished without pretending that its memory was free. The next question was
+whether it could finish what it had started. The manual gave us a narrow way
+to ask. Setting Channel Enable again should resume the same transfer, including
+any data still in its queues. We did not need another descriptor or another
+host address.
+
+The new diagnostic kept the old timeout intact. A real fault arrived with
+65,040 bytes left in the first descriptor. Ten million status reads later,
+the channel was still active and disabled, with exactly the same outstanding
+work. Only then did the handler check its ownership, guards, fingerprints and
+registers and set the enable bit once.
+
+This time the count reached the end. After another 1,843,705 polls, DMA0 was
+inactive at the final descriptor, with no next descriptor and no bytes left.
+The host had the complete pattern and the marker that followed it. The other
+target had not changed. Neither had the source, descriptor chain, peer
+registers or guards. The original timeout was still there beside the new
+completion record; finishing later did not erase the fact that it had timed
+out first.
+
+We still refused to free anything. The firmware callback had not returned,
+STOP could not turn the terminal park into a normal exit, and unloading the
+buffer module failed. After the host process ended, a separate audit found the
+same bytes and the same retained allocations. DMA completion was useful
+information, but it was not ownership of the whole controller.
+
+The experiment established one controlled fault-path resume of a deliberately
+suspended, healthy engine. It did not establish a cure for a dead PCI target,
+an endless retry, or an arbitrary fault. The NMI path would need its own test.
+A second timeout and refused resume gates were tested in the native harness;
+the physical card supplied the successful resume capture.
+
+The reset returned without a trip to the machine. Two complete firmware reads
+matched again. The ordinary owned-handler kernel ran another sixty-four frames
+and 5,045 WAD requests, while the prompt passed 685 external exchanges.
+Its guards and ownership snapshots held, and the game returned its workspace
+loan. We left the normal prompt at verified idle and restored the streaming
+gateway. The new capture showed that a suspended transfer could finish later;
+it also kept the boundary clear between finishing DMA and safely releasing
+the controller's resources.

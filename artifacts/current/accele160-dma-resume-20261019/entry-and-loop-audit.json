@@ -1,0 +1,9 @@
+{
+  "resume_function": "c0712c00",
+  "ce_write": "c0712e20",
+  "csr_poll": "c0712e38",
+  "loop_bound": 10000000,
+  "original_timeout_preserved": true,
+  "manual": "Intel 80303 273353-001 section 19.14.1",
+  "scope": "Reviewed compiled diagnostic CE write and volatile bounded observer; hardware result separate"
+}

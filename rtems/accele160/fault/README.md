@@ -133,3 +133,6 @@ Remaining P3: owned fault/NMI entries and entry-stack policy; real controlled
 fault/NMI tests; all interrupt routes; SCSI/cache/other bus-master exclusion;
 terminal behavior with genuinely active/stalled DMA; reset recovery. The
 existing PG coexistence profile stays unchanged.
+
+See [DMA resume after timeout](DMA-RESUME.md) for isolated profile 10 and its
+reset-only resource lifetime.
