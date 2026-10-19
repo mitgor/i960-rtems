@@ -48,8 +48,10 @@ For channel 0, firmware stores a context pointer at `c03e5bc8`; its setup at
 `c006ad40` chooses `c0600d00`. The chip mapping from `c0384b8c` becomes context
 field `+28`. Setup at `c006ae18` assigns the request ring at `c0600df0`, and
 `c006ae38` assigns the response ring at `c0604df0`. For the `1016` branch,
-capacities are 128 and 64 entries, with 64-byte entries in the consumer/producer
-code: 8 KiB request storage and 4 KiB response storage. These ranges remain
+capacities are **256 and 128 entries**, with 64-byte entries in the consumer/producer
+code: **16 KiB request storage and 8 KiB response storage**. The earlier static
+interpretation said 128/64 entries; profile 16 physical context reads corrected
+that mistaken conditional-selection interpretation. See [profile 16](PROFILE16.md). These ranges remain
 reserved; static locations alone do not establish safe reuse or DMA translation.
 
 | Context field | Evidence and interpretation |

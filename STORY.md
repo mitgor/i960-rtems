@@ -6517,3 +6517,29 @@ another sixty-four frames and 681 external console exchanges. Its memory loan
 was returned, the prompt was left at verified idle, and the streaming gateway
 was restored. The next step was a checked snapshot of the known queue state,
 with those ranges still reserved until hardware isolation was established.
+
+Reading the queue context corrected our own interpretation of the disassembly.
+The live request capacity was 256 entries and the response capacity 128, twice
+what we had inferred from the conditional-selection instructions. At sixty-four
+bytes per entry that meant sixteen kilobytes of request storage and eight of
+responses. The bases were right; the sizes were not. We kept the original test
+bundle and its failed size hypothesis, corrected the decoder, and replayed the
+raw records so the change in understanding remained visible.
+
+The more useful result was the disagreement between two software indices. The
+pending list was empty and the active-exchange count zero, but the request
+producer was thirty-seven while its cached consumer was still zero. The response
+indices both stood at twenty-two. All four snapshots, through final STOP,
+matched. We had a concrete reason not to turn quiet software bookkeeping into
+a claim that the chip had drained: the cached consumer still needed comparison
+with the device itself. The resource word of 578 was a mailbox report, not
+another count of active requests.
+
+The new snapshot added only fixed RAM reads behind an exact context-pointer
+check. It never followed the captured list or ring pointers. Sixty-four frames,
+5,045 WAD reads and 709 external console exchanges passed before clean STOP.
+After reset, two full firmware reads matched again, and the ordinary kernel
+completed another sixty-four frames with 709 external exchanges. We left the
+prompt at verified idle, its memory loan returned and the streaming gateway
+restored. The next observation belonged at the chip's queue registers, with
+its access semantics checked before adding even those reads.

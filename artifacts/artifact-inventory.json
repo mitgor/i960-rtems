@@ -18101,6 +18101,121 @@
       "path": "artifacts/current/accele160-qlogic-config-20261019/tested-replay.json",
       "size": 10187,
       "sha256": "bf66e52d3f2e1d51b7a149bfd4af5a74d0766b7a45c52b0d8e0273ffcb7e00dc"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/README.md",
+      "size": 3084,
+      "sha256": "61120133100bde64d50871a64bc00956387df7f9b680176e70bc29dfc0c4c1e9"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/SHA256SUMS",
+      "size": 3005,
+      "sha256": "28d1b72bc81271fe41796608be461d0d4fb33217de516afde2238005a5a5b3b9"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/accounting-dependencies.dis",
+      "size": 1576,
+      "sha256": "ea27c058bc5fa50f146a936bf11263e9e0c2c133940f19f7ee6dad340987e425"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/analysis-qlogic_queue.py",
+      "size": 1254,
+      "sha256": "235b363e4fd67e827cac2e955a4adefb25f0716c80eddbae9b55cc3c67d07878"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/build.txt",
+      "size": 6793,
+      "sha256": "aca4290af0babdbe8efecb7c93263316a77e3fafc9364bd30aa6ae752ebfb8eb"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/corrected-ready-analysis.json",
+      "size": 949,
+      "sha256": "f7424be0ac49d832bb1b2da4cf5d8e538b615372a9b925f8b619b1ac51910d4e"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/entry-object-check.txt",
+      "size": 257,
+      "sha256": "5c3d5f745bc825aaeb17864bbfb439d2a599146e3eaeb6c91a21f4fefecb7fff"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/firmware-audit.json",
+      "size": 1833,
+      "sha256": "dafa53a8f54ddf289646174dc5addd40a5bde3cb987998e9c3f1fe54883f429b"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/firmware-tests.txt",
+      "size": 79,
+      "sha256": "d421a726bc6728fd42ffea868a4a6651ef773b61491947e5a9674864dc6e6d45"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/native-tests.txt",
+      "size": 2052,
+      "sha256": "621628b3169fc5b930eef9fcb0e4a9ab6b9a9e017859dcf550b4de495cc60d7e"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/observations.json",
+      "size": 999,
+      "sha256": "3236329a9f04f3d8158c64ce18cebedc62469fe3473033b687b549b6a467477f"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/previous-final-check.json",
+      "size": 122,
+      "sha256": "1d4b83b085bd9b97b0487fb8711410dff70aab755493e0e23982a91732a3a5b7"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/previous-final.tar.xz",
+      "size": 1553904,
+      "sha256": "cb8bac6bfbd2413319f6993a1fa3740bd703fc552e413892f1aa55da69344c17"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/probe-source-check.json",
+      "size": 446,
+      "sha256": "4cc9d89dee1692ee033bc16d9d4ba1a06a504f7a80c2e4dadeb4a36a96e98e11"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/recovery.json",
+      "size": 934,
+      "sha256": "4cf55f885d036eed2452788128ea9a28579e6d803b86b6734eb5ff9a4db5c827"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/restored-live.tar.xz",
+      "size": 9572116,
+      "sha256": "a10ff3679ace9156f2e0a7e936585b3aa74aaceebd355e3d3268c6aac6cc3713"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/restored-prompt.txt",
+      "size": 245,
+      "sha256": "f8f425aeb0f4327a71865c4a86c0c90e2f9814f532349bad2fc53b40ae9983ac"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/restored-replay.json",
+      "size": 856,
+      "sha256": "ffeb6662918488f7b0d79edd90ddd288c57e8917f5f388a9bf3ebe008f58ead3"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/restored-services.txt",
+      "size": 68,
+      "sha256": "4a2eb16400b2c78a7797d2f71bbe060a589780298cf3f901ebce3b981a714f45"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/tested-final-replay.json",
+      "size": 2891,
+      "sha256": "971ebd430d4ed50ec34db17f04e9105d2d33fb1b7c6d6acb78f07cf8ffd5dd4e"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/tested-final.tar.xz",
+      "size": 1554744,
+      "sha256": "70553f90a34c78929516e9d19488ec8f901e6d0bf52b089869d5866d6f770bb6"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/tested-live.tar.xz",
+      "size": 9611684,
+      "sha256": "a7bcf0967c8bc6e56f505cad33ab44db60782486731e9a4d3a6e0ddc37418da0"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-queue-20261019/tested-replay.json",
+      "size": 12654,
+      "sha256": "98262943989cfe77501422bec4db0c486f8c343d34cea934617ed2b0ab1d0115"
     }
   ],
   "updated_date": "2026-10-18"

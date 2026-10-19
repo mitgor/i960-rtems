@@ -156,3 +156,7 @@ adds the fixed 48-read report extension and preserves the same terminal entry.
 normal owned runtime with exact-device configuration reads. The exception entry
 object remains identical to profile 5. Configuration faults retain resources
 and require reset; no fault injection is accepted by profile 15.
+
+[Profile 16 queue-state inventory](../ownership/PROFILE16.md) keeps normal
+owned handling and adds fixed, pointer-checked RAM observations. It rejects
+injection requests and grants no additional hardware or memory ownership.

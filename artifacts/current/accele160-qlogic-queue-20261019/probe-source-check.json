@@ -1,0 +1,8 @@
+{
+  "probe_source_unchanged": true,
+  "probe_sha256": "d9bc40db2b0bcbb4debf94947744e49ea269cc31fc271c5fd3e9ec9bcbee30d5",
+  "ready_record_sha256": "93f5adf3938ea11f65927e27d2b41f7e60aae36ce289f9b2de4ca36efd1ec22a",
+  "captured_decoder_sha256": "a0b63d7d433e008af5a4ee36915d75c57c9ca256342839eed2775d924683aded",
+  "analysis_decoder_sha256": "235b363e4fd67e827cac2e955a4adefb25f0716c80eddbae9b55cc3c67d07878",
+  "analysis_correction_only": true
+}

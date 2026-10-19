@@ -28,6 +28,7 @@ def audit(runtime):
         if runtime[off:off+len(bytes.fromhex(hexbytes))]!=bytes.fromhex(hexbytes):raise ValueError(name)
     return dict(runtime_sha256=RUNTIME,anchors=ANCHORS,
       context_pointer='0xc03e5bc8',channel0_context='0xc0600d00',
-      request_storage='0xc0600df0..0xc0602def',response_storage='0xc0604df0..0xc0605def',
+      request_storage='0xc0600df0..0xc0604def',response_storage='0xc0604df0..0xc0606def',
+      size_basis='profile16 corroborated context capacities: 256/128 entries',
       all_callers_audited=False,live_queue_state_observed=False,memory_reclaimable=False)
 if __name__=='__main__':print(json.dumps(audit(Path(sys.argv[1]).read_bytes()),indent=2))

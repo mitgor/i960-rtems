@@ -1,5 +1,34 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Accele160 P3l — checked QLogic software queue state
+
+Profile 16 passed 64 frames, 5045 WAD reads and 709 external console
+exchanges, with matching ready/frame32/idle/STOP snapshots and retained resources.
+It adds at most 18 fixed RAM reads, verifies the exact context pointer, and does
+not follow pointers or perform new PCI/chip accesses.
+
+Physical context corrects the prior static ring-size inference: **256 request
+entries (16 KiB), 128 response entries (8 KiB)**. Pending head/tail and active
+exchanges are zero; request producer/cached consumer are **37/0**, response
+producer/consumer **22/22**. The mailbox resource word is 578, not an active-work
+count. All four samples agree. This is not hardware-drain or reclaim evidence.
+The original test bundle preserves the smaller analysis hypothesis; corrected
+offline decoding and both source hashes make the correction explicit.
+
+[Protocol, correction and observations](../../rtems/accele160/ownership/PROFILE16.md)
+and [artifacts/replays](../../artifacts/current/accele160-qlogic-queue-20261019/README.md).
+Next: review chip register access semantics and implement a bounded read-only
+device-state snapshot to compare real queue indices with cached software state.
+Then complete the stop/isolation contract; retain all firmware ranges meanwhile.
+
+Normal profile 5 is restored at `/home/mit/i960-owned-runtime-20261018/bundle`,
+session `20261019T101634Z`, boot `9086e6f3-5eb2-424e-a210-d4dee54608dd`. Paired
+full firmware reads, 64 frames, 5045 WAD reads and 709 external exchanges
+passed. `~/rtems-console` works at verified idle with no zone loan; gateway 8088
+returns HTTP 200. No physical recovery was needed. Earlier checkpoint sizes and
+running-session claims below are historical and superseded here.
+
+
 ## Accele160 P3k — direct QLogic identity and queue dependency trace
 
 Opt-in profile 15 passed 64 frames, 5045 WAD reads and 697 external console

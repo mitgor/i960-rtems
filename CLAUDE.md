@@ -1,3 +1,11 @@
+**2026-10-19 Accele160 queue snapshot:** Profile 16 checks the exact QLogic
+context and captures fixed RAM fields without pointer traversal or chip access.
+Physical capacities correct the prior inference to 256/128 entries (16/8 KiB).
+Pending/active counts are zero but request indices are 37/0; no hardware drain
+or new RAM ownership is proved. Normal profile 5 is restored; consult the
+[current checkpoint](docs/rtems/ACCELE160-PORT-PLAN.md) and
+[profile 16 contract](rtems/accele160/ownership/PROFILE16.md) before card work.
+
 **2026-10-19 Accele160 QLogic corroboration:** Opt-in profile 15 confirms the
 physical secondary device is ISP10160 `1077:1016`, revision 6, memory BAR
 `fff00000`, with memory decode and bus mastering enabled. Earlier firmware

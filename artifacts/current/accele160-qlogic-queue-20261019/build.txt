@@ -1,0 +1,90 @@
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.quarantine'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+660d5783b3c4fb597fcd41c9a3697d1d5bb636294cc7525064b15d778aa6b03f  /home/mit/i960-qlogic-queue-20261019/bundle/kernel/kernel.bin
+ba8ddbc21be788d61f41ef45c1394b3325ab5b639de9af746c6dfd5ead3d6d04  /home/mit/i960-qlogic-queue-20261019/bundle/kernel/image.bin
+e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6  /home/mit/i960-qlogic-queue-20261019/bundle/project/rtems/accele160/doom_dma/fnv_host.so
+{
+  "reusable": true,
+  "frames": 0,
+  "persistent": true,
+  "card_profile": "accele160",
+  "source_sha256": "a9d4426ff0a0b1b745799747d59bd5158a990174656cbe18f01187a6e70da971",
+  "kernel_sha256": "660d5783b3c4fb597fcd41c9a3697d1d5bb636294cc7525064b15d778aa6b03f",
+  "image_sha256": "ba8ddbc21be788d61f41ef45c1394b3325ab5b639de9af746c6dfd5ead3d6d04",
+  "image_fnv": "0x90fb01eb",
+  "engine_manifest_sha256": "6acc78fd90a1a423c5cb8cc75a5472762651ccf623125320269e745fe30e730a",
+  "dma_module_sha256": "df48f83d1f303c69a55ffd9d4bf46e82c3e51bc3ad45b709140f0f04ab9dd1b6",
+  "terminal_schema": 1,
+  "terminal_test": 16,
+  "terminal_sources": {
+    "policy.h": "dcd451ae1238c01b0a6572de1e79ebab0ed6c3afc49f199ce79bc43737d64313",
+    "card.inc": "ff6209f67c64f032afdb85048e6a13fcbed8f54f09868ccd30f2b3bd9729de64",
+    "terminal.S": "ff8b27d3338385b9f0ffbd868048da7c7b6d31874317322f1816bd1987908984",
+    "host.py": "6ec489053eb00005219756eae742389cd21b359edc9dda07ab01a7bee81f79f4"
+  },
+  "engine_inventory_sources": {
+    "inventory.h": "eb4aa96bc5a2530ea1f3fc7b6551a8833cf20da7073f67c246e5fd11211245d4",
+    "inventory.py": "8ff3945c1d3624cb277381fe723b3088a841e6d09978f37c65aca32762b8474f",
+    "qlogic_queue.h": "d9bc40db2b0bcbb4debf94947744e49ea269cc31fc271c5fd3e9ec9bcbee30d5",
+    "qlogic_queue.py": "a0b63d7d433e008af5a4ee36915d75c57c9ca256342839eed2775d924683aded"
+  },
+  "service_schema": 1,
+  "service_sources": {
+    "protocol.h": "a844e3bbddb51eda1c7e8e006243bdf4b889facd940362e0d9968a036197226f",
+    "card.inc": "a775032964276335211746daad0c8a3a25e0102965815611abe7deee189c36eb",
+    "host.py": "348938ab39d51f79821eee220d4522738c9c6cdd8de01373873247145d0a9a4b"
+  },
+  "keyboard_fifo_schema": 1,
+  "key_fifo_sha256": "d84474b69d3f458bfe99155510588334f0af2d1fc6abeeb26f807863c02cef9b",
+  "admit_module_sha256": "313af2acae9e740dfb90e10e053beeca47efe9cfd5d0bfa74c1cdd07abd28c15",
+  "admit_source_sha256": "7f9a6334a95e923edb4e35e125740e5884a674e7b390a80164a5ff3173105167",
+  "native_fnv_sha256": "e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6",
+  "dma_source_sha256": "667fda5cc85ebd0ae36c1f4ee135525dc8d9e0df86222ff9cec5991629408123",
+  "copy_sha256": "136d0fe0670d73848cf5831ecf4cd26077accbcbb45168c45ac34a072106254c",
+  "engine_identity_sha256": "bca3cad30e240112ef7216c3b1be282b65403b75f4aec686592890c25959a6ba"
+}
