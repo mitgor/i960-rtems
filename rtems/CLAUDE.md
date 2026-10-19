@@ -1,3 +1,28 @@
+**Latest Accele160 P3h qualification — 2026-10-19:**
+Profile 13 passed real NMI source-evidence refusal and a corrected-but-latched
+retry. Saved word 151 is temporarily 0 instead of 0x100, then restored; actual
+MU acknowledgement is untouched. Words 224/225 record original/invalid source,
+239 identifies field 151; 208/226/227 remain 1. Both 10000000-poll timeouts retain
+CSR=0x400, CCR=0, BCR=65032 and a stable 504-byte partial payload without marker.
+Post-ack MU words 221–223 are 3/0/0x7b and agree with independent PCI aliases.
+Record size stays AT_WORDS=240. Modes 6–12 replay; native and hardware tests pass.
+[Evidence](../artifacts/current/accele160-nmi-dma-refusal-20261019/README.md).
+
+Live normal bundle `/home/mit/i960-owned-runtime-20261018/bundle`, session
+`20261019T041732Z`, boot `bbefd6d3-016a-4c9e-8388-36a164e78fd4`, kernel
+`55dc845a43b53fe0e84aba8ed180f28e0331999b74857c96d5e8ff2bb2d5d002`.
+Fresh paired firmware reads, 64 frames, 5045 WAD reads and 709 external
+console exchanges passed. Prompt and gateway 8088 are restored at verified idle.
+Leave this owner running. Never force-unload, unbind or adopt a retained
+terminal session; release remains reset-only. Admission module/source changes
+belong to a separate task and were not included here.
+
+Next: consolidate P3 evidence and audit permanent stock SCSI/cache-engine
+ownership before P4 general task/resource cancellation. Controlled resume and
+refusal now pass through both fault and NMI; arbitrary unknown sources, PCI
+failures, DMA abort/reclaim and full engine exclusion remain open. Older live
+session and next-step statements below are historical.
+
 **Latest Accele160 DMA refusal qualification — 2026-10-19:**
 Profile 12 passed real fault entry, evidence-only source-fingerprint corruption,
 actual gate refusal, corrected-but-latched retry and a second full 10000000-poll

@@ -154,3 +154,14 @@ for index in tuple(range(208,239)):
     except AssertionError:pass
     else:raise AssertionError(('refusal evidence tamper accepted',index))
 print('refusal: no enable/completion, original evidence restored, retry latched, second timeout required')
+
+# NMI refusal modifies only saved NISR evidence, with actual MU acknowledged.
+w[25]=13;w[151:156]=[0x100,0xb,0x80000000,0x73,1];w[160]=2;w[163]=248
+w[221:226]=[3,0,0x7b,0x100,0];w[239]=151
+host.validate_dma_observation(tuple(w))
+for index,mask in [(151,0x100),(152,8),(153,0x80000000),(154,8),(155,1),(160,1),(163,1)]+[(i,1) for i in range(208,240)]:
+    bad=w[:];bad[index]^=mask
+    try:host.validate_dma_observation(tuple(bad))
+    except AssertionError:pass
+    else:raise AssertionError(('NMI refusal tamper accepted',index))
+print('NMI refusal: source evidence restored, MU ack intact, retry latched and second timeout required')

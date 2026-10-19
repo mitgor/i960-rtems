@@ -83,7 +83,7 @@ static void at_install_owned(void){unsigned int i;
  for(i=0;i<64;i++)if(REG(0xc0000800u+4*i)!=((i&1u)?0u:at[148]))
   accele_terminal_enter(0x7d014u);
  at[147]=at_irq_guard();at[146]=2u;
-#if ACCELE_TERMINAL_TEST == 4 || ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST == 4 || ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9 || ACCELE_TERMINAL_TEST == 11 || ACCELE_TERMINAL_TEST == 13
  at[151]=REG(0x1700u);at[152]=REG(0x1324u);
  at[153]=REG(0x1320u);at[154]=REG(0x1328u);
  if(at[151]||(at[152]&8u)||(at[153]&0x80000000u))
@@ -114,7 +114,7 @@ void accele_terminal_record(void){
  if(at[160]==2u){
   /* Save source before masking/acknowledging ONLY the test doorbell. */
   at[152]=REG(0x1324u);at[153]=REG(0x1320u);at[154]=REG(0x1328u);
-#if ACCELE_TERMINAL_TEST == 4 || ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST == 4 || ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9 || ACCELE_TERMINAL_TEST == 11 || ACCELE_TERMINAL_TEST == 13
   if(at[155]==1u){REG(0x1328u)=at[154]|8u;REG(0x1320u)=0x80000000u;AT_SYNC();}
 #endif
  }
@@ -158,7 +158,7 @@ static void at_poll(void){
 #if ACCELE_TERMINAL_TEST == 3
   accele_raise_fault();
 #endif
-#if ACCELE_TERMINAL_TEST == 4 || ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST == 4 || ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9 || ACCELE_TERMINAL_TEST == 11 || ACCELE_TERMINAL_TEST == 13
   if(!at[155]){
    if(REG(0x1700u)||(REG(0x1324u)&8u)||(REG(0x1320u)&0x80000000u))
     accele_terminal_enter(0x7d016u);

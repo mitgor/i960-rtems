@@ -17716,6 +17716,101 @@
       "path": "artifacts/current/accele160-dma-refusal-20261019/tested.tar.xz",
       "size": 8732528,
       "sha256": "a7d9b7240a8929284564bf45fb0711f053a8548b87e6b10e62b4a987921363ec"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/README.md",
+      "size": 4740,
+      "sha256": "d43f59a7d076e43686c3a86145af39f25e6752f5f3e0331784e392da5b2142df"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/SHA256SUMS",
+      "size": 2495,
+      "sha256": "f67ee2f1d287d13a9e8a2eb529fb3e13636693593fde8e3ab8b953c2213301e1"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/build.txt",
+      "size": 2368,
+      "sha256": "e3b5786f2268c72c3cce8fddc39dab055ecf87e4cfad1e9f3a8f879b82196cf0"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/entry-and-loop-audit.json",
+      "size": 327,
+      "sha256": "d75d91196e1a917acafd6818f625f15669d7504293af2a460cfde6ca88a7a918"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/hardware-state.json",
+      "size": 498,
+      "sha256": "d042116d727f645adb5f3aab80411722667426af913fb1d8a65690a3c60d8c5a"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/native-tests-linux.txt",
+      "size": 1860,
+      "sha256": "2d08a0083a267fd79e640568d89b775ca149ffe9ecbbe3bf2a581b9821cd7ab4"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/native-tests.txt",
+      "size": 1132,
+      "sha256": "839211174c296635868663093623087c6c1f1d5e22c92e7b36830d25e89d0633"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/prepared.tar.xz",
+      "size": 8632688,
+      "sha256": "dbeedd5e394f4c64fcfaf5cbb72d8b098b72314b820e232777e999bc3df54344"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/previous-final-replay.json",
+      "size": 772,
+      "sha256": "1bb5180e70fe1dded0c8b94ee73a9ab448f704947598638e05f42c149d001fac"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/previous-final.tar.xz",
+      "size": 9742008,
+      "sha256": "5736b833756b43d17a011c2ad22a8dfab87144414811ec9deababa6814b6080f"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/previous-modes-replay.json",
+      "size": 7130,
+      "sha256": "ae8426a64c3635de051f9a072fd381935b37c31682364f4e136304caca049deb"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/recovery.json",
+      "size": 935,
+      "sha256": "045d0ea9a38c9bb56d6976e7728712e6e48b392315cd5b5cd883a6bbc85398ab"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/refusal-disassembly.txt",
+      "size": 21816,
+      "sha256": "4745db078d1b504c5d79584d072f3358439197a95e0af2e89235a5e0a53e7317"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/restored-live.tar.xz",
+      "size": 9744592,
+      "sha256": "8661b4d26552a515e1bd90d960e842ecbaea6617e5c298756a92652011c4e5ea"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/restored-prompt.txt",
+      "size": 245,
+      "sha256": "ec3543b1c76f825834ddb1b61e5262736ce33fa9a55af935381c6bc6edb07ab2"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/restored-replay.json",
+      "size": 856,
+      "sha256": "7504dcab7cbe9ed2235b474b353bf8fcc6d6a004bc532c11f70574073e3e9769"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/restored-services.txt",
+      "size": 101,
+      "sha256": "8c40822d32647ab7b4777059f7dd96de25c2893d0d4b8f4566d9103fb560d5d3"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/tested-replay.json",
+      "size": 882,
+      "sha256": "6bcef8a851a7bfa3ac220f402dbe5fac9d6ba70baba182583ee362017052d4bf"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-refusal-20261019/tested.tar.xz",
+      "size": 8735480,
+      "sha256": "7988e027bf1b6c12ece2859e749f9bdfa3b9b590c3590fb261055f7fe69daa17"
     }
   ],
   "updated_date": "2026-10-18"

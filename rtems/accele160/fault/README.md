@@ -142,3 +142,7 @@ NMI path with source/acknowledgement gating and independent PCI MU checks.
 
 See [profile 12 resume refusal](DMA-REFUSAL.md) for evidence-only corruption,
 a refused corrected retry and a second bounded timeout with resources retained.
+
+[Profile 13](DMA-REFUSAL.md#profile-13-nmi-source-evidence-refusal) qualifies
+the NMI refusal path using saved source evidence, with real MU acknowledgement
+and DMA ownership preserved.

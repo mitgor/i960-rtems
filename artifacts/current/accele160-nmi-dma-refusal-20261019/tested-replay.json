@@ -1,0 +1,32 @@
+{
+  "mode": 13,
+  "boot_id": "7028b527-0a73-4d75-bc67-8dbcd115fd73",
+  "kernel_sha256": "7596eba4062c2c96a87b8e204a124b26cd9c14de1b20e57c731e700ed46a2e28",
+  "paired_firmware": true,
+  "entry_csr": "0x400",
+  "entry_ccr": "0x0",
+  "post_owner_exit_verified": true,
+  "entry_next_descriptor": "0xc0821020",
+  "entry_byte_count": 65032,
+  "resume_refused": true,
+  "refusal_observer_polls": 10000000,
+  "resumed_after_timeout": false,
+  "resume_polls": null,
+  "stalled_timeout": true,
+  "terminal_seconds": 4.988222890000003,
+  "drain_polls": 10000000,
+  "drain_csr": "0x400",
+  "finite_bytes": 67108864,
+  "fault_or_nmi_record": [
+    "0x2002",
+    "0x9004",
+    "0xf8",
+    "0x0"
+  ],
+  "source_chain_fnv_and_visible_page_checks": true,
+  "guards_intact": true,
+  "second_target_untouched": true,
+  "release_denied": true,
+  "retained": true,
+  "post_test_reset_verified": false
+}

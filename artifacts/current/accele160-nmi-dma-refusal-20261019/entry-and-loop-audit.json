@@ -1,0 +1,9 @@
+{
+  "gate": "c0712ca0",
+  "first_gate_call": "c0713334",
+  "corrected_retry_call": "c0713360",
+  "second_csr_loop": "c0713384",
+  "poll_bound": 10000000,
+  "injected_field": 151,
+  "scope": "Reviewed saved NISR flip/restore, both real gate calls, acknowledgement checks and second bounded observer; hardware result separate"
+}

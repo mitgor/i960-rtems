@@ -1,0 +1,14 @@
+actual card C: bounded MMIO inventory, guards, stale trigger and terminal record passed
+owned table baseline: 2048 corruptions rejected; all entries, ISP/NMI and guards passed
+owned table baseline: 2048 corruptions rejected; all entries, ISP/NMI and guards passed
+owned table baseline: 2048 corruptions rejected; all entries, ISP/NMI and guards passed
+terminal capture, stale request, STOP retention and tamper tests passed
+owned-vector and real fault-record host validation passed
+NMI owner-only one-write gate and alias mismatch rejection passed (simulated)
+runtime sample epoch/phase/ownership/terminal rejection passed
+active DMA entry evidence rejects inactive, errors, invalid chain and peer activity
+stalled DMA: disabled is not drained; progress/error/marker/guard corruption rejected
+resume: distinct timeout/completion, fingerprints and guard evidence required
+NMI resume: vector, source, arm, acknowledgement and mask required
+refusal: no enable/completion, original evidence restored, retry latched, second timeout required
+NMI refusal: source evidence restored, MU ack intact, retry latched and second timeout required

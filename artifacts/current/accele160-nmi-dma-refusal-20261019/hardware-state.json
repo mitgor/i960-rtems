@@ -1,0 +1,33 @@
+{
+  "partial_payload_bytes": 504,
+  "first_timeout_state": [
+    1024,
+    0,
+    3229749248,
+    3229749280,
+    65032,
+    7
+  ],
+  "second_timeout_state": [
+    1024,
+    0,
+    3229749248,
+    3229749280,
+    65032,
+    7
+  ],
+  "saved_nisr_restored": 256,
+  "original_evidence": 256,
+  "invalid_evidence": 0,
+  "first_attempt": 1,
+  "retry_attempt": 1,
+  "latch": 1,
+  "injected_word": 151,
+  "post_ack_mu": [
+    3,
+    0,
+    123
+  ],
+  "first_polls": 10000000,
+  "second_polls": 10000000
+}

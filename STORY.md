@@ -6408,3 +6408,36 @@ Its ownership snapshots and guards held, the game returned its workspace loan,
 and we left the prompt at verified idle with the streaming gateway restored.
 The refusal test now had both its physical capture and a verified path back
 to ordinary operation.
+
+
+The next refusal test came through the real NMI doorbell. We let the owned
+handler identify vector 248, mask the injected source and acknowledge it before
+changing any evidence. Only then, after the first timeout, did the diagnostic
+replace the saved NMI source value with zero. The hardware source and its
+acknowledgement were left alone.
+
+The resume gate refused. Putting the saved source value back did not clear the
+attempt latch, so the corrected retry was refused as well. The second ten
+million status reads found the same unfinished transfer with Channel Enable
+still clear. The host's independent message-unit reads agreed that the real
+doorbell remained acknowledged and masked.
+
+The partial payload did not grow into a completed frame. No marker appeared,
+the second destination stayed untouched, and the source, descriptors, stacks,
+peer registers and allocation table retained their expected contents. STOP,
+refused module unload and owner-process exit did not free the outstanding
+transfer's resources.
+
+We now had physical captures of both resume and refusal through fault and NMI
+entry. These were deliberately controlled cases, not proof that arbitrary
+hardware failures could be repaired. The remaining stock-engine ownership
+questions deserved their own audit before we treated this as a general
+multi-application platform.
+
+The reset again returned without a trip to the machine. Both full firmware
+reads matched, and the original owned-handler kernel completed sixty-four
+frames and 5,045 WAD requests. The prompt handled 709 external exchanges
+without errors. Its owned-state checks passed, the workspace loan came back,
+and we left the ordinary prompt at verified idle with the streaming gateway
+restored. The NMI refusal capture now had its own checked route back to normal
+operation as well.

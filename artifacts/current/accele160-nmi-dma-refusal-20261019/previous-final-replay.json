@@ -1,0 +1,40 @@
+{
+  "scope": "Final STOP evidence; prior live replay in accele160-dma-refusal-20261019",
+  "global_stop": true,
+  "pending_retained": true,
+  "guards_intact": true,
+  "owned_samples": [
+    {
+      "sequence": 1,
+      "phase": 0,
+      "ticks": 8,
+      "handoffs": 8,
+      "owned": true,
+      "label": "ready"
+    },
+    {
+      "sequence": 2,
+      "phase": 0,
+      "ticks": 9483,
+      "handoffs": 8612,
+      "owned": true,
+      "label": "game-1-frame32"
+    },
+    {
+      "sequence": 3,
+      "phase": 0,
+      "ticks": 9838,
+      "handoffs": 8688,
+      "owned": true,
+      "label": "game-1-idle"
+    },
+    {
+      "sequence": 3,
+      "phase": 1,
+      "ticks": 112137,
+      "handoffs": 110987,
+      "owned": true,
+      "label": "quiescent"
+    }
+  ]
+}

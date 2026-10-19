@@ -8,7 +8,7 @@ static unsigned regs[4096],cfg[16],logwords[32],record[1024];
 static unsigned char storage[131072] __attribute__((aligned(4096)));
 static unsigned char *image_base=storage+16;
 static unsigned claimed=1,ticks,reads,finish_after=~0u,forced_error;
-#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 13
 static unsigned switch_fault,resume_complete,resume_reads;
 static unsigned at_guard(void){return 1;}
 #endif
@@ -22,7 +22,7 @@ static unsigned *reg(unsigned a){
 #endif
   regs[a/4]=++reads<finish_after?0x400:0;
   regs[a/4]|=forced_error;
-#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 13
   if(record[208]==2 && regs[0x1400/4] && resume_complete && ++resume_reads==3){
    regs[a/4]=0;regs[0x140c/4]=record[180]+32768;
    regs[0x1410/4]=regs[0x1420/4]=0;
@@ -57,7 +57,7 @@ int main(void){
  cfg[0]=0x31464d44;cfg[1]=BRIDGE_EPOCH;cfg[2]=0x10000000;cfg[3]=0x20000000;
  cfg[4]=65536;cfg[5]=0x314d5241;cfg[6]=32;
  int rc=setjmp(escape);if(!rc)at_dma_test();
-#if ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST == 11 || ACCELE_TERMINAL_TEST == 13
  assert(rc==0 && at[155]==1);
 #else
  assert(rc==2);
@@ -76,19 +76,26 @@ int main(void){
 #if ACCELE_TERMINAL_TEST >= 8
  assert(at[195]==1 && at[203]==4096 && at[197]==0);
 #endif
-#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
- #if ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 13
+ #if ACCELE_TERMINAL_TEST == 11 || ACCELE_TERMINAL_TEST == 13
  at[160]=2;at[20]=0x7d004;at[163]=248;
  at[151]=0x100;at[152]=0xb;at[153]=0x80000000;at[154]=0x73;
  regs[0x1324/4]=3;regs[0x1320/4]=0;regs[0x1328/4]=0x7b;
 #else
  at[160]=1;at[20]=0x7d003;
 #endif
-#if ACCELE_TERMINAL_TEST == 12
+#if ACCELE_TERMINAL_TEST == 12 || ACCELE_TERMINAL_TEST == 13
  at_dma_finish();assert(at[175]==10000000 && at[228]==10000000);
  assert(at[208]==1 && at[226]==1 && at[227]==1 && regs[0x1400/4]==0);
+#if ACCELE_TERMINAL_TEST == 13
+ assert(at[224]==0x100 && at[225]==0 && at[151]==0x100 && at[239]==151);
+ assert(at[221]==3 && at[222]==0 && at[223]==0x7b);
+ assert(regs[0x1324/4]==3 && regs[0x1320/4]==0 && regs[0x1328/4]==0x7b);
+#else
  assert(at[224]==at[192] && at[204]==at[224] && at[225]==(at[224]^1));
- for(i=209;i<224;i++)assert(!at[i]);
+ for(i=221;i<224;i++)assert(!at[i]);
+#endif
+ for(i=209;i<221;i++)assert(!at[i]);
  for(i=0;i<6;i++)assert(at[229+i]==at[186+i]);
  assert(at[235]==at[204] && at[236]==at[205] && at[237] && at[238]);
  puts("actual refusal: evidence-only corruption, corrected retry refused, second 10M timeout and unchanged hardware (simulated)");
@@ -105,7 +112,7 @@ int main(void){
  }
  at[208]=0;switch_fault=1;at_dma_resume();assert(at[208]==1 && !regs[0x1400/4]);switch_fault=0;
  at[208]=0;forced_error=8;at_dma_resume();assert(at[208]==1 && !regs[0x1400/4]);forced_error=0;
-#if ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST == 11 || ACCELE_TERMINAL_TEST == 13
  {unsigned fields[]={151,152,153,154,155,163};
   unsigned masks[]={0x100,8,0x80000000,8,1,1};
   for(i=0;i<6;i++){

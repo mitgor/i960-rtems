@@ -1,0 +1,37 @@
+7596eba4062c2c96a87b8e204a124b26cd9c14de1b20e57c731e700ed46a2e28  /home/mit/i960-nmi-dma-refusal-20261019/bundle/kernel/kernel.bin
+d6560599cf5ffb591d5491bbda39030e8635c89d10938249ae51dd494bb31507  /home/mit/i960-nmi-dma-refusal-20261019/bundle/kernel/image.bin
+e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6  /home/mit/i960-nmi-dma-refusal-20261019/bundle/project/rtems/accele160/doom_dma/fnv_host.so
+{
+  "reusable": true,
+  "frames": 0,
+  "persistent": true,
+  "card_profile": "accele160",
+  "source_sha256": "abac12792a68265bee0b97a169e42e1c227682828bfd92caf2f1de9b2307c47d",
+  "kernel_sha256": "7596eba4062c2c96a87b8e204a124b26cd9c14de1b20e57c731e700ed46a2e28",
+  "image_sha256": "d6560599cf5ffb591d5491bbda39030e8635c89d10938249ae51dd494bb31507",
+  "image_fnv": "0xd478a0bc",
+  "engine_manifest_sha256": "6acc78fd90a1a423c5cb8cc75a5472762651ccf623125320269e745fe30e730a",
+  "dma_module_sha256": "df48f83d1f303c69a55ffd9d4bf46e82c3e51bc3ad45b709140f0f04ab9dd1b6",
+  "terminal_schema": 1,
+  "terminal_test": 13,
+  "terminal_sources": {
+    "policy.h": "dcd451ae1238c01b0a6572de1e79ebab0ed6c3afc49f199ce79bc43737d64313",
+    "card.inc": "0491b169d889fcc86f95f598760d923366a8596badef59536cc26aebdca062ad",
+    "terminal.S": "b035c421687666d9fe8ef60eed325b87720ca120dade821c1cc14a67c4188a20",
+    "host.py": "65357eb17a584f108f48ae0a9c09c0349ae3b46476303012cc59fbe729494f3a"
+  },
+  "service_schema": 1,
+  "service_sources": {
+    "protocol.h": "a844e3bbddb51eda1c7e8e006243bdf4b889facd940362e0d9968a036197226f",
+    "card.inc": "a775032964276335211746daad0c8a3a25e0102965815611abe7deee189c36eb",
+    "host.py": "348938ab39d51f79821eee220d4522738c9c6cdd8de01373873247145d0a9a4b"
+  },
+  "keyboard_fifo_schema": 1,
+  "key_fifo_sha256": "d84474b69d3f458bfe99155510588334f0af2d1fc6abeeb26f807863c02cef9b",
+  "admit_module_sha256": "313af2acae9e740dfb90e10e053beeca47efe9cfd5d0bfa74c1cdd07abd28c15",
+  "admit_source_sha256": "7f9a6334a95e923edb4e35e125740e5884a674e7b390a80164a5ff3173105167",
+  "native_fnv_sha256": "e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6",
+  "dma_source_sha256": "b7e0369ec292cea6610019c586c792bb02a05ed60f6256251b70071196fea946",
+  "copy_sha256": "136d0fe0670d73848cf5831ecf4cd26077accbcbb45168c45ac34a072106254c",
+  "engine_identity_sha256": "bca3cad30e240112ef7216c3b1be282b65403b75f4aec686592890c25959a6ba"
+}

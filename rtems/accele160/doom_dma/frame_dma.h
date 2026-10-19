@@ -79,14 +79,14 @@ static void dma_kick(unsigned gen,unsigned slot,const void *source,unsigned hash
 }
 
 #if ACCELE_TERMINAL_TEST >= 6
-#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 13
 /* One-shot diagnostic CE resume, never generic fault recovery. Preserve the
  * timeout record, recheck its exact suspended state, then observe a new bound.
  * No descriptor reload, chain-resume bit, completion publication or release. */
 static void at_dma_resume(void){unsigned i,ch,csr;
  if(at[208])return;
  at[208]=1u; /* Attempt latched even when the gate refuses. */
- #if ACCELE_TERMINAL_TEST == 11
+ #if ACCELE_TERMINAL_TEST == 11 || ACCELE_TERMINAL_TEST == 13
  /* The sole injected doorbell must have been observed, masked and cleared
   * by the owned NMI handler before any DMA restart. IISR is read-only here. */
  at[221]=REG(0x1324u);at[222]=REG(0x1320u);at[223]=REG(0x1328u);
@@ -142,13 +142,19 @@ static void at_dma_finish(void){unsigned i,ch,csr=0;
   for(ch=1;ch<3u;ch++)for(i=0;i<8u;i++)
    if(REG(0x1400u+ch*64u+dma_offsets[i])!=dma_peers[ch-1u][i])at[194]=0u;
  }
-#if ACCELE_TERMINAL_TEST == 12
- /* Corrupt only the recorded expected fingerprint, never live DMA memory.
-  * Restore that evidence after refusal and prove the one-shot latch refuses
-  * a retry too. Preserve both values and observe a second full timeout. */
- at[224]=at[204];at[204]^=1u;at[225]=at[204];DMA_SYNC();
- at_dma_resume();at[226]=at[208];
- at[204]=at[224];DMA_SYNC();at_dma_resume();at[227]=at[208];
+#if ACCELE_TERMINAL_TEST == 12 || ACCELE_TERMINAL_TEST == 13
+ /* Change only recorded evidence: expected fingerprint (12), NISR (13).
+  * The actual NMI has already been acknowledged; never change live sources.
+  * Restore the evidence, retry with the latch intact, then observe timeout. */
+ {const unsigned field=ACCELE_TERMINAL_TEST==13?151u:204u;
+  const unsigned mask=ACCELE_TERMINAL_TEST==13?0x100u:1u;
+#if ACCELE_TERMINAL_TEST == 13
+  at[239]=field;
+#endif
+  at[224]=at[field];at[field]^=mask;at[225]=at[field];DMA_SYNC();
+  at_dma_resume();at[226]=at[208];
+  at[field]=at[224];DMA_SYNC();at_dma_resume();at[227]=at[208];
+ }
  for(i=0;i<10000000u;i++){
   csr=REG(0x1404u);if(!(csr&0x400u)||(csr&0x2du))break;
  }
@@ -186,10 +192,10 @@ static void at_dma_test(void){
  for(i=0;i<8u;i++)dma_marker[i]=0x444d4100u+i;
  at[180]=desc;at[181]=(unsigned int)source;at[182]=dma_bus[0];
  at[183]=1024u;at[185]=(unsigned int)dma_marker;
-#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 13
  at[204]=byte_fnv(source,65536u);at[205]=byte_fnv((const void*)desc,32800u);
 #endif
-#if ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9 || ACCELE_TERMINAL_TEST == 11 || ACCELE_TERMINAL_TEST == 13
  if(REG(0x1700u)||(REG(0x1324u)&8u)||(REG(0x1320u)&0x80000000u))
   accele_terminal_enter(0x7d016u);
  REG(0x1328u)=at[154]&~8u;DMA_SYNC();

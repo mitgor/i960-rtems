@@ -1,3 +1,28 @@
+## Accele160 P3h — real NMI resume refusal qualified
+
+Profile 13 passed real vector-248 NMI, acknowledged source 0x100, saved-source
+invalidation to zero, actual resume-gate refusal, and corrected-but-latched
+retry. The two 10000000-poll observers retained CSR=0x400, CCR=0, BCR=65032;
+the stable 504-byte partial payload had no marker. Independent PCI MU reads
+agree with core IISR=3, IDR=0, IIMR=0x7b. Guards, fingerprints, visible pages,
+peer registers, ownership and post-owner-exit retention passed. Admission
+remained `done=0 released=0`. No live source or descriptor bytes were corrupted.
+
+Reset recovery passed fresh paired firmware reads and normal profile 5 in
+session `20261019T041732Z`, boot `bbefd6d3-016a-4c9e-8388-36a164e78fd4`, under
+`/home/mit/i960-owned-runtime-20261018`. It passed 64 frames, 5045 WAD reads and
+709 external console exchanges with zero errors. Prompt and gateway 8088
+are restored at verified idle with no zone loan. No physical intervention or
+flash writing was required.
+
+[Evidence](artifacts/current/accele160-nmi-dma-refusal-20261019/README.md) and
+[design](rtems/accele160/fault/DMA-REFUSAL.md). Modes 6–12 still replay.
+The controlled resume/refusal matrix now covers both fault and NMI entry.
+Next: consolidate P3 and audit stock SCSI/cache-engine ownership before general
+P4 task cancellation. Arbitrary fault/PCI recovery, generic DMA abort, reclaim
+without reset and permanent engine exclusion remain unproved. Historical live
+sessions and next-step statements below are superseded by this checkpoint.
+
 ## Accele160 P3g — resume refusal and corrected retry qualified
 
 Profile 12 passed on the card. After real fault entry and 10000000 suspended

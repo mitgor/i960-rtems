@@ -46,3 +46,31 @@ This qualifies a deliberate evidence mismatch and a latched retry through the
 fault path. It does not establish arbitrary corruption recovery, NMI-path gate
 refusal, DMA abort, release without reset or a wall-clock deadline on a blocked
 bus. Both bounds count completed MMIO reads.
+
+
+## Profile 13: NMI source-evidence refusal
+
+Profile 13 uses a real host-doorbell NMI and the existing source acknowledgement.
+After the first timeout it changes only saved NISR evidence (word 151), from
+0x100 to zero, and calls the actual NMI resume gate. It restores 0x100 and calls
+again without clearing the attempt latch. The actual NISR register, MU status,
+DMA source, descriptors and guards are not corrupted. The same second bounded
+observer and reset-only retention policy apply.
+
+Words 224/225 hold original/invalid saved NISR, 226/227 the two attempt results,
+and 228–238 the second observer and ownership evidence as above. Word 239 is
+151, identifying the injected field. In this profile, words 208–220 must be
+`(1, 0, …, 0)`; 221–223 contain the valid post-acknowledgement IISR/IDR/IIMR.
+The original NISR evidence at 151 must be restored. Source and descriptor
+fingerprints remain independently checked and unmodified.
+
+The host requires real vector 248, exact NMI source, intact mask/acknowledgement,
+and PCI MU aliases equal to the core snapshot. It also requires both full
+10000000-poll timeouts, unchanged suspended DMA, partial host payload without
+marker, denied unload and post-owner-exit retention. Native negative tests
+reject altered injection, retry, source/acknowledgement and timeout evidence.
+The record remains 240 words within its existing page.
+
+This tests one invalid NMI-source evidence value and a corrected-but-latched
+retry. It does not establish recovery from an unknown physical NMI source,
+arbitrary memory corruption, DMA abort or reclamation without reset.

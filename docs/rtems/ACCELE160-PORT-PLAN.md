@@ -1,6 +1,25 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
-## Latest P3b checkpoint — normal owned runtime passed
+## Current P3h checkpoint — controlled DMA exception matrix qualified
+
+Profiles 6/7 drain active DMA through fault/NMI; 8/9 retain suspended transfers
+through bounded observers; 10/11 permit one gated resume; 12/13 refuse invalid
+saved evidence and a corrected retry through the one-shot latch. Profile 13
+now has real NMI evidence, independent MU acknowledgement reads, unchanged
+suspended state, post-owner-exit retention and verified reset recovery.
+[Evidence and limits](../../artifacts/current/accele160-nmi-dma-refusal-20261019/README.md).
+
+Normal profile 5 is restored in session `20261019T041732Z`, boot
+`bbefd6d3-016a-4c9e-8388-36a164e78fd4`, with 64 frames, 5045 WAD reads and 709 external
+console exchanges passing. Leave the prompt owner running at verified idle.
+
+P3 is not complete: permanent stock SCSI/cache-engine exclusion, unknown fault
+sources and stronger latency/endurance bounds remain separate. Next consolidate
+the matrix and audit hardware ownership before P4 task/resource cancellation.
+Preserve stock-firmware coexistence and the DAC960PG implementation as future
+options. All checkpoint/live-session statements below are historical.
+
+## Historical P3b checkpoint — normal owned runtime passed
 
 [Profile 5](../../rtems/accele160/fault/OWNED-RUNTIME.md) passed two-game normal
 operation, rearm, console traffic, owned table/NMI/ISP/guard checks and final
@@ -10,7 +29,7 @@ reads. The same no-injection profile restores the prompt. Active-DMA exception
 containment, SCSI/cache exclusion, stronger latency bounds and long endurance
 remain separate. See the new evidence batch; earlier checkpoints are historical.
 
-## Latest P3b checkpoint — recovery complete, prompt restored
+## Historical P3b checkpoint — recovery complete, prompt restored
 
 Both hardware exception tests and both post-reset firmware pairs passed.
 Normal mode 0 is restored on boot `aea81f51-24ce-493b-a7d2-114195611d5b`,
@@ -19,7 +38,7 @@ Leave this owner live for the user's prompt. Next is normal runtime with owned
 vectors/ISP; mode 0 remains software-only. Active-DMA fault containment and
 engine exclusion are still separate open gates. Earlier entries are historical.
 
-## Latest P3b checkpoint — both hardware exception tests passed
+## Historical P3b checkpoint — both hardware exception tests passed
 
 Actual `faulte` and actual MU-doorbell NMI passed with stable raw terminal
 records, owned table/NMI/ISP, guards and retained resources. Mode 3 reset
@@ -29,7 +48,7 @@ with owned ISP, active-DMA containment and engine exclusion remain open.
 See [current evidence](../../artifacts/current/accele160-exceptions-20261018/README.md).
 Earlier checkpoints below are historical.
 
-## Latest P3b checkpoint — actual fault test passed
+## Historical P3b checkpoint — actual fault test passed
 
 Mode 3 passed on Accele160: exact hardware fault/IP, owned vectors/table/ISP,
 guards, stable record and STOP resource retention. Paired guarded firmware reads
@@ -38,7 +57,7 @@ still open; mode 4 is built and archived for the next fresh boot. Prompt offline
 See [current evidence](../../artifacts/current/accele160-exceptions-20261018/README.md).
 The earlier checkpoints below are retained as history.
 
-## Latest P3b checkpoint — awaiting physical recovery
+## Historical P3b checkpoint — awaiting physical recovery
 
 The owned fault/NMI candidate is implemented and passes native tests; on-card
 qualification has not begun. The previous normal prompt was shut down cleanly,

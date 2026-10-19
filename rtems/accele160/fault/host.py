@@ -36,15 +36,19 @@ def validate_dma_observation(w):
         assert w[204]==w[192]==w[217] and w[205]==w[193]==w[218]
         assert w[219:221]==(1,1)
 
-    if w[25]==11:
+    if w[25] in (11,13):
         assert w[151]==0x100 and w[155]==1 and w[160]==2 and w[163]==248
         assert w[152]&8 and w[153]&0x80000000 and not w[154]&8
         assert w[221:224]==(w[152]&~8,w[153]&~0x80000000,w[154]|8)
 
-    if w[25]==12:
-        assert w[208:224]==(1,)+(0,)*15
-        assert w[224]==w[204]==w[192]==w[235]
-        assert w[225]==w[224]^1 and w[205]==w[193]==w[236]
+    if w[25] in (12,13):
+        assert w[208:221]==(1,)+(0,)*12
+        assert w[204]==w[192]==w[235] and w[205]==w[193]==w[236]
+        if w[25]==12:
+            assert w[221:224]==(0,0,0)
+            assert w[224]==w[204] and w[225]==w[224]^1
+        else:
+            assert w[224]==w[151]==0x100 and w[225]==0 and w[239]==151
         assert w[226:229]==(1,1,10000000)
         assert w[229:235]==w[186:192] and w[237:239]==(1,1)
 
@@ -108,7 +112,7 @@ def validate(page,nonce,mode,terminal):
     return w
 
 def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,frame_read=None,deny_release=None):
-    assert mode in (1,2,3,4,6,7,8,9,10,11,12)
+    assert mode in (1,2,3,4,6,7,8,9,10,11,12,13)
     out=Path(out);out.mkdir(exist_ok=True)
     pin_before=pin_status()
     assert pin_before.get('guard_changes')=='0' and status().get('done')=='0'
@@ -119,14 +123,14 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,f
     time.sleep(.1)
     stale=snap(ADDRESS);assert stale[64:]==before[64:]
     (out/'stale.bin').write_bytes(stale)
-    if mode in (4,7,9,11):
+    if mode in (4,7,9,11,13):
         assert nmi is not None and mu_read is not None
         # Manual 273353 section 16.2: BAR0 first page maps MU registers.
         # Verify host/local IDR, IISR and IIMR aliases before the sole write.
         assert mu_read()==(decode(before)[153],decode(before)[152],decode(before)[154])
     triggered=time.monotonic()
     write(ADDRESS,0,struct.pack('<3I',nonce,1,0x54455354))
-    if mode in (4,7,9,11):
+    if mode in (4,7,9,11,13):
         armed_deadline=time.monotonic()+5
         while time.monotonic()<armed_deadline:
             armed=snap(ADDRESS);aw=decode(armed)
@@ -146,7 +150,7 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,f
     else:raise RuntimeError('terminal record deadline; retain all resources')
     terminal_seconds=time.monotonic()-triggered
     (out/'terminal.bin').write_bytes(page);w=validate(page,nonce,mode,True)
-    if mode==11:
+    if mode in (11,13):
         # Independently read the PCI-visible MU aliases after the core's ack.
         mu=mu_read();(out/'mu-after.json').write_text(json.dumps(dict(idr=mu[0],iisr=mu[1],iimr=mu[2]),indent=2)+'\n')
         assert mu==(w[222],w[221],w[223])
@@ -160,7 +164,7 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,f
     state=status();pin=pin_status()
     assert state.get('done')=='0' and pin.get('guard_changes')=='0' and pin==pin_before
     result=dict(schema=1,terminal_seconds=terminal_seconds,nonce=nonce,mode=mode,stable=True,retained=True,
-        admission=state,pin=pin,code=w[20],ticks=w[27],hardware_fault_tested=mode in (3,6,8,10,12),nmi_hardware_tested=mode in (4,7,9,11),
+        admission=state,pin=pin,code=w[20],ticks=w[27],hardware_fault_tested=mode in (3,6,8,10,12),nmi_hardware_tested=mode in (4,7,9,11,13),
         nmi_owned=mode>=3,scsi_excluded=False)
     if mode>=6:
         assert frame_read and deny_release
@@ -169,7 +173,7 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,f
         expected=bytes((i^(i>>8)^0x69)&255 for i in range(65536))
         for slot in (0,1):
             data=frame_read(slot);(out/f'frame{slot}.bin').write_bytes(data)
-            validate_dma_frame(data,slot,mode in (8,9,12))
+            validate_dma_frame(data,slot,mode in (8,9,12,13))
             if mode>=8:
                 time.sleep(1)
                 delayed=frame_read(slot);(out/f'delayed-frame{slot}.bin').write_bytes(delayed)
@@ -190,7 +194,7 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,f
         denied=deny_release();(out/'release-denied.json').write_text(json.dumps(denied,indent=2)+'\n')
         assert denied['returncode']!=0 and pin_status()==pin_before and status().get('done')=='0'
         assert snap(ADDRESS)==page
-        result.update(active_dma_at_entry=True,finite_bytes=1024*65536,drained_after_terminal=mode<8 or mode in (10,11),stalled_timeout=mode>=8,resumed_after_timeout=mode in (10,11),resume_refused=mode==12,
+        result.update(active_dma_at_entry=True,finite_bytes=1024*65536,drained_after_terminal=mode<8 or mode in (10,11),stalled_timeout=mode>=8,resumed_after_timeout=mode in (10,11),resume_refused=mode in (12,13),
             dma_source_retained=True,dma_destination_retained=True,completion_not_synthesized=True)
     (out/'result.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
