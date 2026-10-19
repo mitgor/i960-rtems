@@ -1,3 +1,11 @@
+**2026-10-19 Accele160 chip/cache comparison:** Profile 17 confirms chip request
+consumer 37 versus cached 0, with software producer 37; response indices are 22.
+All four phases/eight passes agree. ISR is zero, semaphore is 2 (STATUS set,
+LOCK clear), not an all-zero status. No chip writes, drain proof or new RAM grant.
+Normal profile 5 and prompt/gateway are restored. Read the
+[current checkpoint](docs/rtems/ACCELE160-PORT-PLAN.md) and
+[profile 17 contract](rtems/accele160/ownership/PROFILE17.md) before card work.
+
 **2026-10-19 Accele160 queue snapshot:** Profile 16 checks the exact QLogic
 context and captures fixed RAM fields without pointer traversal or chip access.
 Physical capacities correct the prior inference to 256/128 entries (16/8 KiB).

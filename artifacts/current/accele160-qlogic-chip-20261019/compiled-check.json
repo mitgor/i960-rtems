@@ -1,0 +1,7 @@
+{
+  "kernel_sha256": "8a428f6cf3b83569f39c1e3adf3274f2782f00290a83653bdab404ba8aca494e",
+  "exception_object_sha256": "c58a50215e82dd1602d112651b59d9f26e065523a97246f8c3fa2506c060f507",
+  "normal_exception_object_equal": true,
+  "chip_access": "one ldos loop body, twelve fixed iterations; stores target report only",
+  "chip_source_sha256": "ea57cd74aa7c7469ae8b87c9202250a45c4a82f6d40f2d9159a796703109b13e"
+}

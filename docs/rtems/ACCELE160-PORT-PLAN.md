@@ -1,5 +1,35 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Accele160 P3m — actual chip indices resolve the stale cache
+
+Profile 17 passed 64 frames, 5045 WAD reads and 709 external console
+exchanges without errors. Ready/frame32/idle/STOP each contain two identical
+16-bit chip samples: ISR 0, semaphore 2, request consumer **37**, response
+producer **22**. Software producer/cached consumer remain **37/0**, and response
+producer/consumer **22/22**. The chip has caught up to the producer at these
+observations; the cached request consumer is stale. The firmware refreshes it
+on the queue-space path. This does not prove SCSI/DMA stop or hardware isolation.
+
+The semaphore STATUS bit is set; LOCK is clear. The decoder deliberately reports
+`status_zero=false`. The probe writes no chip register and does not acknowledge
+interrupts or issue mailbox commands. PCI identity/BAR/memory-decode and checked
+RAM context gate twelve fixed halfword reads. It retains all firmware memory.
+
+[Protocol and access evidence](../../rtems/accele160/ownership/PROFILE17.md),
+[complete artifacts and replays](../../artifacts/current/accele160-qlogic-chip-20261019/README.md).
+Next: establish a board-specific stop/isolation contract covering ISP RISC,
+SXP/DMA, pending mailbox work and stock callbacks before any disable/reset test
+or memory reclamation. Equal ring indices alone are insufficient. Preserve the
+host ATU/MU path and keep DMA1/firmware queues reserved.
+
+Normal profile 5 is restored at `/home/mit/i960-owned-runtime-20261018/bundle`,
+session `20261019T105649Z`, boot `417ae821-f1d1-4305-9e91-614598e4a5cb`. Paired full
+firmware reads, 64 frames, 5045 WAD reads and 713 external exchanges
+passed. `~/rtems-console` is working at verified idle, zone loan zero; gateway
+8088 returns HTTP 200. No physical intervention was needed. Earlier running
+session claims below are historical and superseded here.
+
+
 ## Accele160 P3l — checked QLogic software queue state
 
 Profile 16 passed 64 frames, 5045 WAD reads and 709 external console

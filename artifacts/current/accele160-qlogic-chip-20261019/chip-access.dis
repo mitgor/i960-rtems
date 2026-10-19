@@ -1,0 +1,76 @@
+000014c0 <_at_qlogic_chip>:
+    14c0:	00 30 f0 8c 	lda	15ac <Li960R30>,g14
+    14c4:	ac 15 00 00
+			14c4: R_960_32	.text
+
+000014c8 <at_qlogic_chip.lf>:
+    14c8:	1e 16 b8 5c 	mov	g14,g7
+    14cc:	00 1e f0 5c 	mov	0,g14
+    14d0:	07 de b0 59 	shlo	7,3,g6
+    14d4:	Address 0x00000000000014d4 is out of bounds.
+
+
+000014d8 <L331>:
+    14d8:	16 1d f4 92 	st	g14,(g0)[g6*4]
+    14dc:	16 50 b0 59 	addo	g6,1,g6
+    14e0:	f8 9f a5 33 	cmpobge	g4,g6,14d8 <L331>
+    14e4:	00 30 a0 8c 	lda	31504351 <L1384+0x314fdcb1>,g4
+    14e8:	51 43 50 31
+    14ec:	00 26 a4 92 	st	g4,0x600(g0)
+    14f0:	01 1e a0 5c 	mov	1,g4
+    14f4:	04 26 a4 92 	st	g4,0x604(g0)
+    14f8:	08 26 8c 92 	st	g1,0x608(g0)
+    14fc:	0c 26 94 9a 	stl	g2,0x60c(g0)
+    1500:	14 26 a4 92 	st	g4,0x614(g0)
+    1504:	14 25 a4 90 	ld	0x514(g0),g4
+    1508:	a0 20 05 35 	cmpobne	0,g4,15a8 <L326>
+    150c:	20 25 a4 90 	ld	0x520(g0),g4
+    1510:	98 20 2d 35 	cmpobne	5,g4,15a8 <L326>
+    1514:	28 25 ac 90 	ld	0x528(g0),g5
+    1518:	00 30 a0 8c 	lda	10161077 <L1384+0x1015a9d7>,g4
+    151c:	77 10 16 10
+    1520:	88 40 a5 35 	cmpobne	g4,g5,15a8 <L326>
+    1524:	2c 25 a4 90 	ld	0x52c(g0),g4
+    1528:	80 20 0d 30 	bbc	1,g4,15a8 <L326>
+    152c:	38 25 ac 90 	ld	0x538(g0),g5
+    1530:	00 30 a0 8c 	lda	fff00000 <L1384+0xffef9960>,g4
+    1534:	00 00 f0 ff
+    1538:	70 40 a5 35 	cmpobne	g4,g5,15a8 <L326>
+    153c:	94 25 a4 90 	ld	0x594(g0),g4
+    1540:	68 20 05 35 	cmpobne	0,g4,15a8 <L326>
+    1544:	9c 25 a4 90 	ld	0x59c(g0),g4
+    1548:	60 20 75 35 	cmpobne	14,g4,15a8 <L326>
+    154c:	98 25 ac 90 	ld	0x598(g0),g5
+    1550:	00 30 a0 8c 	lda	c0600d00 <L1384+0xc05fa660>,g4
+    1554:	00 0d 60 c0
+    1558:	50 40 a5 35 	cmpobne	g4,g5,15a8 <L326>
+    155c:	a0 25 ac 90 	ld	0x5a0(g0),g5
+    1560:	00 30 a0 8c 	lda	8bf00000 <L1384+0x8bef9960>,g4
+    1564:	00 00 f0 8b
+    1568:	40 40 a5 35 	cmpobne	g4,g5,15a8 <L326>
+    156c:	00 1e b0 5c 	mov	0,g6
+
+00001570 <L338>:
+    1570:	06 8c a5 70 	remo	6,g6,g4
+    1574:	16 50 a8 59 	addo	g6,1,g5
+    1578:	14 39 a0 90 	ld	149c <_at_qc_offsets>[g4*4],g4
+    157c:	9c 14 00 00
+			157c: R_960_32	.text
+    1580:	00 34 a5 88 	ldos	8bf00000 <L1384+0x8bef9960>(g4),g4
+    1584:	00 00 f0 8b
+    1588:	10 0e a5 59 	shlo	16,g4,g4
+    158c:	10 0c a5 59 	shro	16,g4,g4
+    1590:	16 3d a4 92 	st	g4,620 <L102+0x8>(g0)[g6*4]
+    1594:	20 06 00 00
+    1598:	18 26 ac 92 	st	g5,0x618(g0)
+    159c:	15 16 b0 5c 	mov	g5,g6
+    15a0:	d0 7f 5d 33 	cmpobge	11,g5,1570 <L338>
+    15a4:	Address 0x00000000000015a4 is out of bounds.
+
+
+000015a8 <L326>:
+    15a8:	Address 0x00000000000015a8 is out of bounds.
+
+
+000015ac <Li960R30>:
+    15ac:	00 00 00 0a 	ret

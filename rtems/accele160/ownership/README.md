@@ -1,9 +1,13 @@
 # Accele160 engine-ownership audit (P3i)
 
-Latest: [profile 16](PROFILE16.md) snapshots the fixed QLogic context, ring
+Latest: [profile 17](PROFILE17.md) compares two fixed 16-bit chip-index samples
+with checked firmware RAM, behind physical PCI identity and mapping gates.
+It preserves status evidence and grants no ownership.
+
+Prior: [profile 16](PROFILE16.md) snapshots the fixed QLogic context, ring
 indices and accounting words without chip accesses or pointer traversal.
 
-Latest follow-up: [profile 15](PROFILE15.md) adds identity-gated secondary PCI
+Prior follow-up: [profile 15](PROFILE15.md) adds identity-gated secondary PCI
 configuration reads and a pinned QLogic queue/mailbox dependency trace. Normal
 profile 5 remains the service; neither profile grants more RAM.
 

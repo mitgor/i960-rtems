@@ -1,0 +1,74 @@
+Firmware addresses c0070614..c0070664
+c0070614:	4c 20 a1 88 	ldos	0x4c(r4),g4
+c0070618:	38 20 a9 90 	ld	0x38(r4),g5
+c007061c:	4e 20 b1 88 	ldos	0x4e(r4),g6
+c0070620:	01 49 ad 59 	subo	1,g5,g5
+c0070624:	14 50 a0 59 	addo	g4,1,g4
+c0070628:	94 40 a5 58 	and	g4,g5,g4
+c007062c:	34 80 a5 3d 	cmpibne	g4,g6,0xc0070660
+c0070630:	28 20 a1 90 	ld	0x28(r4),g4
+c0070634:	4c 20 a9 88 	ldos	0x4c(r4),g5
+c0070638:	38 20 b1 90 	ld	0x38(r4),g6
+c007063c:	78 20 a5 88 	ldos	0x78(g4),g4
+c0070640:	15 50 a8 59 	addo	g5,1,g5
+c0070644:	01 89 b5 59 	subo	1,g6,g6
+c0070648:	4e 20 a1 8a 	stos	g4,0x4e(r4)
+c007064c:	4e 20 a1 88 	ldos	0x4e(r4),g4
+c0070650:	95 80 ad 58 	and	g5,g6,g5
+c0070654:	0c 00 ad 3d 	cmpibne	g5,g4,0xc0070660
+c0070658:	00 1e 80 5c 	mov	0,g0
+c007065c:	00 00 00 0a 	ret
+c0070660:	4c 20 51 88 	ldos	0x4c(r4),r10
+Firmware addresses c006ef80..c006f050
+c006ef80:	10 39 28 90 	ld	0xc03e5bc8[g0*4],r5
+c006ef84:	c8 5b 3e c0
+c006ef88:	28 60 21 90 	ld	0x28(r5),r4
+c006ef8c:	0a 20 a1 88 	ldos	0xa(r4),g4
+c006ef90:	02 2f 05 5a 	chkbit	2,g4
+c006ef94:	10 16 30 5c 	mov	g0,r6
+c006ef98:	6c 00 00 10 	bno	0xc006f004
+c006ef9c:	c0 20 a1 88 	ldos	0xc0(r4),g4
+c006efa0:	0c de 91 59 	shlo	12,7,g2
+c006efa4:	c0 20 91 8a 	stos	g2,0xc0(r4)
+c006efa8:	58 02 00 09 	call	0xc006f200
+c006efac:	7a 20 a9 88 	ldos	0x7a(r4),g5
+c006efb0:	08 00 00 08 	b	0xc006efb8
+c006efb4:	14 16 a8 5c 	mov	g4,g5
+c006efb8:	7a 20 a1 88 	ldos	0x7a(r4),g4
+c006efbc:	f8 1f ad 3d 	cmpibne	g5,g4,0xc006efb4
+c006efc0:	06 16 80 5c 	mov	r6,g0
+c006efc4:	50 60 a1 8a 	stos	g4,0x50(r5)
+c006efc8:	28 09 00 09 	call	0xc006f8f0
+c006efcc:	2c 20 04 3a 	cmpibe	0,g0,0xc006eff8
+c006efd0:	1c 00 00 08 	b	0xc006efec
+c006efd4:	2c 60 81 90 	ld	0x2c(r5),g0
+c006efd8:	e8 15 00 09 	call	0xc00705c0
+c006efdc:	2c 20 04 3a 	cmpibe	0,g0,0xc006f008
+c006efe0:	2c 60 89 90 	ld	0x2c(r5),g1
+c006efe4:	06 16 80 5c 	mov	r6,g0
+c006efe8:	20 1b 00 0b 	bal	0xc0070b08
+c006efec:	2c 60 a1 90 	ld	0x2c(r5),g4
+c006eff0:	e4 3f 05 3d 	cmpibne	0,g4,0xc006efd4
+c006eff4:	00 00 00 0a 	ret
+c006eff8:	00 30 80 8c 	lda	0xc006ef70,g0
+c006effc:	70 ef 06 c0
+c006f000:	70 b3 f9 08 	b	0xc000a370
+c006f004:	00 00 00 0a 	ret
+c006f008:	00 00 00 0a 	ret
+c006f00c:	00 00 00 00 	.word	0x00000000
+c006f010:	4d 42 4f 58 	notand	r13,sf29,r9
+c006f014:	20 43 4d 44 	.word	0x444d4320
+c006f018:	20 43 4f 4d 	.word	0x4d4f4320
+c006f01c:	50 4c 45 54 	.word	0x54454c50
+c006f020:	45 3a 20 74 	.word	0x74203a45
+c006f024:	6f 74 61 6c 	.word	0x6c61746f
+c006f028:	53 63 73 69 	.word	0x69736353
+c006f02c:	41 63 74 69 	.word	0x69746341
+c006f030:	76 65 45 78 	.word	0x78456576
+c006f034:	63 68 61 6e 	.word	0x6e616863
+c006f038:	67 65 73 20 	testno.f	14
+c006f03c:	75 6e 64 65 	dcctl	21,sf17,sf12
+c006f040:	72 66 6c 6f 	.word	0x6f6c6672
+c006f044:	77 20 6f 6e 	.word	0x6e6f2077
+c006f048:	20 63 68 61 	.word	0x61686320
+c006f04c:	6e 6e 65 6c 	.word	0x6c656e6e

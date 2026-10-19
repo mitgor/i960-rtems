@@ -6543,3 +6543,27 @@ completed another sixty-four frames with 709 external exchanges. We left the
 prompt at verified idle, its memory loan returned and the streaming gateway
 restored. The next observation belonged at the chip's queue registers, with
 its access semantics checked before adding even those reads.
+
+The chip answered the question that the cached context could not. Its request
+consumer was thirty-seven, exactly where the software producer stood, while
+the cached consumer remained zero. The response side agreed at twenty-two.
+The firmware's queue-space path explained why the old consumer could survive:
+it did not need to refresh that cache for every completed request.
+
+We read only four known registers, twice, with interrupt and semaphore status
+around the two indices. Physical PCI identity and the checked firmware context
+had to match before any chip access. All eight passes, from ready through the
+last STOP, agreed. The interrupt status was zero, but the semaphore was two:
+its status bit was set and its lock bit clear. We kept that distinction in the
+record. Equal queue indices resolved the bookkeeping puzzle; they did not stop
+the SCSI processor or establish that its DMA engines could no longer touch RAM.
+
+The test completed sixty-four frames, 5,045 WAD reads and 709 external prompt
+exchanges without errors. The new loads were sixteen-bit instructions, and the
+fault and NMI entry object remained identical to the ordinary runtime. Final
+STOP retained the pending callback and pinned buffers, and its fourth snapshot
+matched the first three. After reset, two full firmware reads matched again.
+The normal kernel completed another sixty-four frames and 713 external
+exchanges. We left the prompt at verified idle, the memory loan returned and
+the streaming gateway restored. The next boundary was still an explicit stop
+and isolation contract for the SCSI processor, its engines and its callbacks.

@@ -26,12 +26,18 @@ cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=16 
 cc -Wall -Wextra -Werror -fsanitize=address,undefined "$src/../ownership/test_qlogic_queue.c" -o "$work/queue"
 "$work/queue"
 python3 "$src/../ownership/test_qlogic_queue.py"
-for mode in 5 13 14 15 16; do
+cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=17 "$src/test_owned.c" -o "$work/chip-runtime"
+"$work/chip-runtime"
+cc -Wall -Wextra -Werror -fsanitize=address,undefined "$src/../ownership/test_qlogic_chip.c" -o "$work/chip"
+"$work/chip"
+python3 "$src/../ownership/test_qlogic_chip.py"
+for mode in 5 13 14 15 16 17; do
  cc -E -P -x assembler-with-cpp -DACCELE_TERMINAL=1 -DACCELE_TERMINAL_TEST=$mode "$src/terminal.S" > "$work/entry-$mode.S"
 done
 cmp "$work/entry-5.S" "$work/entry-14.S"
 cmp "$work/entry-5.S" "$work/entry-15.S"
 cmp "$work/entry-5.S" "$work/entry-16.S"
+cmp "$work/entry-5.S" "$work/entry-17.S"
 python3 - "$work" <<'CHECK_ENTRY'
 from pathlib import Path
 import sys

@@ -1,4 +1,8 @@
 > Deliberate hardware suspension is now covered by profiles 8/9: actual
+
+Profile 17 adds identity-gated ISP10160 halfword queue/status observations during
+normal runtime; see [its contract](../ownership/PROFILE17.md). It keeps the normal
+exception entry and does not enable diagnostic injection or reclaim memory.
 > fault/NMI entry, exhausted timeout, and retained resources after host exit.
 > See [STALLED-DMA.md](STALLED-DMA.md). Unresponsive PCI targets remain separate.
 

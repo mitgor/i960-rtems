@@ -1,0 +1,23 @@
+{
+  "inventory_boot": "91c44f87-bf3e-4d82-a94a-9731e978ba81",
+  "recovery_boot": "417ae821-f1d1-4305-9e91-614598e4a5cb",
+  "fresh_boot": true,
+  "paired_firmware": [
+    {
+      "sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+      "boot_id": "417ae821-f1d1-4305-9e91-614598e4a5cb",
+      "status": "done=1 status=0 residual=0 selector=9 length=1048576 released=0 guard_changes=0"
+    },
+    {
+      "sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+      "boot_id": "417ae821-f1d1-4305-9e91-614598e4a5cb",
+      "status": "done=1 status=0 residual=0 selector=9 length=1048576 released=0 guard_changes=0"
+    }
+  ],
+  "normal_session": "20261019T105649Z",
+  "normal_kernel": "55dc845a43b53fe0e84aba8ed180f28e0331999b74857c96d5e8ff2bb2d5d002",
+  "restoration_replay": "restored-replay.json",
+  "prompt_restored": true,
+  "gateway_http": 200,
+  "physical_intervention": false
+}

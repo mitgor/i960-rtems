@@ -1,0 +1,17 @@
+[
+  {
+    "file": "isp.c",
+    "sha256": "3669eb6afd6c33de3a7e5041fce086c8177b32093ef073bd757d3f6190ccbd88",
+    "url": "https://raw.githubusercontent.com/freebsd/freebsd-src/releng/12.4/sys/dev/isp/isp.c"
+  },
+  {
+    "file": "isp_pci.c",
+    "sha256": "8d1fd34666236c09a83c0a960a4a065abce6315c1e8d3f04e97db033d14ad146",
+    "url": "https://raw.githubusercontent.com/freebsd/freebsd-src/releng/12.4/sys/dev/isp/isp_pci.c"
+  },
+  {
+    "file": "ispreg.h",
+    "sha256": "855f7361c6d74a51483f590830bf3cc40520740cc9b67c7987ebc1bd10673e32",
+    "url": "https://raw.githubusercontent.com/freebsd/freebsd-src/releng/12.4/sys/dev/isp/ispreg.h"
+  }
+]

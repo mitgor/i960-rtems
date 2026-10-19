@@ -18216,6 +18216,131 @@
       "path": "artifacts/current/accele160-qlogic-queue-20261019/tested-replay.json",
       "size": 12654,
       "sha256": "98262943989cfe77501422bec4db0c486f8c343d34cea934617ed2b0ab1d0115"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/README.md",
+      "size": 3862,
+      "sha256": "a5635702cac27d68f571e0ac8199e275238e3f50efe04878f9e222e6b50c0b96"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/SHA256SUMS",
+      "size": 3224,
+      "sha256": "36f5df920e60993e9acb472a64d934b29f2794a008dbccdfd0d4fea25687fac4"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/app.dis",
+      "size": 287177,
+      "sha256": "513ed38c794d6042f498759524983a13b9e04a0756cb582b329d0ab82a70d453"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/build.log",
+      "size": 407,
+      "sha256": "50aa98e21e144686e1827a6b8033721ad6d917b41721af956843da4b0f0d218a"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/chip-access.dis",
+      "size": 2626,
+      "sha256": "0100dc6c71e4ccf724bd447ee2be26233fad556ac9700b9502d2bb3ae7056808"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/compiled-check.json",
+      "size": 411,
+      "sha256": "0a32833418250d369fa41f2f597e280b01dab4c58ee820c7356e6de8c39daf47"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/firmware-queue-access.dis",
+      "size": 2815,
+      "sha256": "dabe4136c5a0651ecf349e7128f7d152d18399436b9b0b64ea5912f58c0de8db"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/linux-tests.log",
+      "size": 3042,
+      "sha256": "e24a03c18a3119631917245fe1616b9d5a60d840df60056e4ee0d51bde5a043b"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/native-tests.txt",
+      "size": 2314,
+      "sha256": "c3aa4cccc5ea29de334629a4d14ee97fe2fe4d0a712817cc810f37eb942cd55e"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/observations.json",
+      "size": 9757,
+      "sha256": "fb2829f5a75d0990cc1f3bcc69f5f5e0087c9bbf4d746facbbf5e74e60e5a95d"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/previous-final-check.json",
+      "size": 200,
+      "sha256": "4008a7e60b4d859663d3c1ea07cbc4484e96dd1ebbf36422e98072010ee598be"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/previous-final.tar.xz",
+      "size": 1554872,
+      "sha256": "df456f13304d3a43ecfb011240d410821153535302d2dbdc716723fc12633642"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/previous-profile-replays.json",
+      "size": 251,
+      "sha256": "c99aff45406fc82aaa3e23effc0876e4b0984eb9aa33ee9aad2a2bcef2233356"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/recovery.json",
+      "size": 934,
+      "sha256": "bce3b75bfb582538a0c1a7459974ccda8eeccdd8a786baad60129c5a54e50b17"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/references/freebsd-isp.tar.xz",
+      "size": 61692,
+      "sha256": "0b533a679d4a11de4ca7cc04e3498ba28207ece3ae56201ea5af1e74113e46ee"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/references/sources.json",
+      "size": 644,
+      "sha256": "a49cd26c48210720cfd3d75871084ebd3d65db7f9381d6430be4000ee56deb31"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/restored-live.tar.xz",
+      "size": 9571772,
+      "sha256": "c59f47cc9ed0a88ed9cf96397fb02507427aa6830a674f1f2f05156d323bf7ae"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/restored-prompt.txt",
+      "size": 245,
+      "sha256": "df0fb8953010c6a9ce00b6b0f9a5f84a131d927cddb7f84c1f76703e8ab1cf0f"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/restored-replay.json",
+      "size": 857,
+      "sha256": "eddc3e9e99436dde04b44c515fbc4f5847adbed949f4132744709e02df9afcb5"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/restored-services.txt",
+      "size": 68,
+      "sha256": "82d2b0429c90b83090cc203cd603d2874ff519fe27689fde7513eaa66022760d"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/source-check.json",
+      "size": 1055,
+      "sha256": "b1959a754b19a86c48ae036a6fe0c3f45a98bc0ff56b91a63415aa44c3276d5d"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/stop-replay.json",
+      "size": 4013,
+      "sha256": "551712ac751c09783ad22d31ae6a5a7fbbfed89de760b2238222418bf04e6b6e"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/tested-final.tar.xz",
+      "size": 1555620,
+      "sha256": "4b69458282f1cc8fd91b9f0c51eaa66983587f30df4455765b4e5b0cbbfd83f0"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/tested-live.tar.xz",
+      "size": 9617336,
+      "sha256": "a216371d4c14deb46ca9d02568aac7cb617053a3622b79ec77ce6a7ff247ddf2"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-chip-20261019/tested-replay.json",
+      "size": 16085,
+      "sha256": "71d6aa4d38bf2a76d6256564dc23693173d63c79c01e07407624c2854f2693cb"
     }
   ],
   "updated_date": "2026-10-18"

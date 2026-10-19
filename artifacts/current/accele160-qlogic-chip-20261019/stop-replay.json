@@ -1,0 +1,148 @@
+{
+  "quiescent": true,
+  "stop_ack": true,
+  "pending_callback": true,
+  "pins_retained": true,
+  "owned_guards": true,
+  "live_archive_sha256": "a216371d4c14deb46ca9d02568aac7cb617053a3622b79ec77ce6a7ff247ddf2",
+  "final_engine_sample": {
+    "registers": {
+      "0x1400": "0x00000000",
+      "0x140c": "0xc071c580",
+      "0x1410": "0x00000000",
+      "0x1414": "0xfff51020",
+      "0x1418": "0x00000000",
+      "0x141c": "0xc071c5e0",
+      "0x1420": "0x00000000",
+      "0x1424": "0x00000007",
+      "0x1440": "0x00000000",
+      "0x144c": "0xc0611320",
+      "0x1450": "0x00000000",
+      "0x1454": "0xffd10000",
+      "0x1458": "0x00000000",
+      "0x145c": "0xc0790000",
+      "0x1460": "0x00000000",
+      "0x1464": "0x0000003f",
+      "0x1480": "0x00000000",
+      "0x148c": "0x00000000",
+      "0x1490": "0x00000000",
+      "0x1494": "0x00000000",
+      "0x1498": "0x00000000",
+      "0x149c": "0x00000000",
+      "0x14a0": "0x00000000",
+      "0x14a4": "0x00000000",
+      "0x1600": "0x00000000",
+      "0x104c": "0x00001554",
+      "0x1800": "0x00000000",
+      "0x1808": "0x00000000",
+      "0x180c": "0x00000000",
+      "0x1820": "0x00000000",
+      "0x1824": "0x00000000",
+      "0x1828": "0x00000000",
+      "0xc0384b6c": "0x00000000",
+      "0xc0384b70": "0x00000001",
+      "0xc0384b8c": "0x8bf00000",
+      "0xc0384b90": "0xfff00000",
+      "0xc0384b94": "0x00000000",
+      "0xc0384b98": "0x00000000",
+      "0xc0384b9c": "0x00000000",
+      "0xc0384ba0": "0x00000010",
+      "0xc0384ba4": "0x00000000",
+      "0xc0384ba8": "0xff000000",
+      "0xc0384bac": "0xfe000000",
+      "0xc0384e78": "0x10161077",
+      "0xc0384e7c": "0x00000000",
+      "0xc049b7cc": "0x00000000",
+      "0xc049b7d0": "0x00000000",
+      "0xc049b7d4": "0x00000000"
+    },
+    "atomic": false,
+    "csr_asr_read": false,
+    "ownership_proven": false,
+    "qlogic_chip": {
+      "config": {
+        "selector_before": "0x1000c",
+        "selector_after": "0x1000c",
+        "config": {
+          "0x00": "0x10161077",
+          "0x04": "0x02b00006",
+          "0x08": "0x01000006",
+          "0x10": "0x00000001",
+          "0x14": "0xfff00000"
+        },
+        "device_config_writes": false,
+        "ownership_proven": false
+      },
+      "software": {
+        "registers": {
+          "0xc0600d28": "0x8bf00000",
+          "0xc0600d2c": "0x00000000",
+          "0xc0600d30": "0x00000000",
+          "0xc0600d34": "0xc0600df0",
+          "0xc0600d38": "0x00000100",
+          "0xc0600d3c": "0xc0604df0",
+          "0xc0600d40": "0x00000080",
+          "0xc0600d44": "0xc0601730",
+          "0xc0600d48": "0xc0605370",
+          "0xc0600d4c": "0x00000025",
+          "0xc0600d50": "0x00160016",
+          "0xc0498280": "0x00000000",
+          "0xc0498284": "0x00000000",
+          "0xc049828c": "0x00000242"
+        },
+        "expected_layout": true,
+        "ring_pointers_in_range": true,
+        "indices_in_range": true,
+        "request_indices": [
+          37,
+          0
+        ],
+        "response_indices": [
+          22,
+          22
+        ],
+        "pending_head": "0x0",
+        "pending_tail": "0x0",
+        "channel0_counters": [
+          0,
+          0,
+          578
+        ],
+        "software_indices_equal": false,
+        "atomic": false,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "raw_samples": [
+        [
+          0,
+          2,
+          37,
+          22,
+          0,
+          2
+        ],
+        [
+          0,
+          2,
+          37,
+          22,
+          0,
+          2
+        ]
+      ],
+      "stable": true,
+      "status_zero": false,
+      "chip_request_consumer": 37,
+      "chip_response_producer": 22,
+      "indices_in_range": true,
+      "request_consumer_matches_cache": false,
+      "response_producer_matches_cache": true,
+      "request_ring_equal_observed": true,
+      "response_ring_equal_observed": true,
+      "atomic": false,
+      "hardware_drained": false,
+      "ownership_proven": false
+    }
+  }
+}
