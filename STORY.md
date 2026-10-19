@@ -6719,3 +6719,46 @@ That proved the routed LAN path to a global address. It did not prove that the
 upstream router admitted connections from the Internet, and our external fetch
 tool could not test an IPv6-literal URL. We kept that distinction in the record,
 along with the binaries, full memory-test replies and routing rollback evidence.
+
+### Keeping the prompt open while the card works
+
+The network server and the prompt could each work, but that was not yet a
+combined application environment. We added two deliberately small residents to
+the network module: a counter and a text service that returns uppercase ASCII.
+They share its bounded updates, while the diagnostic worker keeps its independent
+channel. Stopping the counter no longer means stopping HTTP. An old stop request
+cannot stop the next generation of the counter.
+
+The first mixed endurance run found a problem that separate demonstrations had
+missed. After roughly eight minutes, one HTTP request timed out. The server
+answered again afterward and its packet-drop count remained zero. We kept the
+failed run. A host broker then gave already-arrived network and application
+requests bounded queues and a three-to-one service ratio. Its first version
+accepted one request and dispatched it immediately, which defeated that policy.
+A socket-level test exposed the mistake; the corrected version classifies the
+waiting requests before choosing one.
+
+The repeat lasted just over ten minutes and completed 4,837 operations without
+an error. HTTP, UDP, prompt commands, text replies and counter restarts overlapped.
+During that traffic, the six-megabyte loan test also cancelled an owner with two
+references still held, verified its bytes and released it only after both drained.
+Its longest round trip grew to about 830 milliseconds under load. The slowest
+HTTP request took 2.38 seconds. Those are measurements of this run, not promises
+about worst-case interrupts or proof that the original timeout has one known cause.
+
+DMA remained a separate question. We replayed the saved fault, NMI, suspended
+transfer and refused-resume captures, and checked the production DMA code with
+native tests. We did not quietly relabel packet copies as DMA. The current host
+owner sleeps for a hundred milliseconds between idle iterations; that cadence
+must be separated from slower ownership audits before a fair packet-DMA speed
+comparison. The combined service still moves packets through PIO. A ten-minute
+pass is useful evidence, but it is not an overnight endurance result.
+
+We then stopped the relay long enough for a UDP request to time out. The prompt
+and counter kept working. Killing the relay removed its TUN interface, exposing
+a cleanup assumption that we fixed explicitly. Killing and restarting the broker
+did not replace the hardware owner. Finally, we wrote only the first chunk of a
+new module, confirmed that execution was refused, aborted it and loaded the full
+image. Both applications came back with fresh state, and routed HTTP returned.
+All of this stayed on the same boot and PCI-owner process. The unified prompt
+was left running, with the old diagnostic wrapper saved beside it.

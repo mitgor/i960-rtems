@@ -1,0 +1,8 @@
+{
+  "owner_bundle": "/home/mit/i960-reclaim-ipv6-20261019/bundle",
+  "owner_session": "/home/mit/i960-reclaim-ipv6-20261019/sessions/20261019T175819Z",
+  "first_sequence": 6525,
+  "first_time": 1528.078420754,
+  "kernel_sha256": "26b916dfd1c85a986d24b4bac17c7972b8b5108fed5bb56e9d0028afbed6bc80",
+  "module_sha256": "0838b698ba78c1b58a578f46137d1e11adb5e25d1bcbb0da22c370aa627757bf"
+}

@@ -1,0 +1,30 @@
+{
+  "module_sha256": "0838b698ba78c1b58a578f46137d1e11adb5e25d1bcbb0da22c370aa627757bf",
+  "same_kernel_boot": "8cdab7ff-48a3-481f-bb54-0924025016c0",
+  "endurance_seconds": 601.4168682180002,
+  "counts": {
+    "console": 3132,
+    "counter": 536,
+    "echo": 536,
+    "http": 290,
+    "udp": 290,
+    "restart": 53
+  },
+  "max_ms": {
+    "http": 2379.349752000053,
+    "udp": 732.6150330000019,
+    "console": 236.24357900007453,
+    "counter": 597.5985929999297,
+    "echo": 1657.9622760000348,
+    "restart": 2587.543142999948
+  },
+  "concurrent_loan_bytes": 6291424,
+  "relay_pause_resume": true,
+  "relay_death_recovered": true,
+  "broker_death_recovered": true,
+  "partial_upload_never_executed": true,
+  "pristine_reload": true,
+  "services_running": true,
+  "packet_dma_enabled": false,
+  "arbitrary_concurrent_upload": false
+}

@@ -34,6 +34,21 @@ class Routing(unittest.TestCase):
       p.remove()
      self.assertFalse(p.STATE.exists());self.assertFalse(present)
      self.assertNotIn(('ip','-6','route','flush'),calls)
+ def test_remove_after_tun_death(self):
+  with tempfile.TemporaryDirectory() as d:
+   state=Path(d)/'state';state.write_text(json.dumps(dict(address='2a02:8106:40:9000::960',lan='lan',tun='tun',proxy=True,route=True,table=True,dad=False,sysctls={'net.ipv6.conf.all.forwarding':'0','net.ipv6.conf.tun.forwarding':'0'})))
+   calls=[]
+   def run(*args):
+    calls.append(args)
+    if args==('ip','-j','link','show'):return '[{"ifname":"lan"}]'
+    if args[:3]==('nft','-j','list'):return '{"nftables":[{"table":{"family":"ip6","name":"i960_card_public"}}]}'
+    if args[:5]==('ip','-6','neigh','show','proxy'):return '2a02:8106:40:9000::960 dev lan proxy'
+    return ''
+   with patch.object(p,'STATE',state),patch.object(p,'run',run):p.remove();p.remove()
+   self.assertFalse(state.exists())
+   self.assertIn(('nft','delete','table','ip6','i960_card_public'),calls)
+   self.assertFalse(any(x[:4]==('ip','-6','route','del') for x in calls))
+   self.assertFalse(any('net.ipv6.conf.tun.forwarding=0' in x for x in calls))
  def test_reject_non_global(self):
   with self.assertRaises(ValueError):p.apply('fd96::2','lan','tun')
 if __name__=='__main__':unittest.main()

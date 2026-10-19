@@ -74,10 +74,19 @@ def remove():
  if not STATE.exists():return
  s=json.loads(STATE.read_text());ip=s['address'];lan=s['lan'];tun=s['tun']
  # On failure keep state for explicit repair; never flush unrelated rules.
- if s['proxy']:run('ip','-6','neigh','del','proxy',ip,'dev',lan);s['proxy']=False;STATE.write_text(json.dumps(s))
- if s['route']:run('ip','-6','route','del',ip+'/128','dev',tun);s['route']=False;STATE.write_text(json.dumps(s))
- for k,v in s['sysctls'].items():sysctl(k,v)
- if s['table']:run('nft','delete','table','ip6',TABLE);s['table']=False;STATE.write_text(json.dumps(s))
+ if s['proxy']:
+  if any(line.split()[0]==ip for line in run('ip','-6','neigh','show','proxy','dev',lan).splitlines() if line.split()):run('ip','-6','neigh','del','proxy',ip,'dev',lan)
+  s['proxy']=False;STATE.write_text(json.dumps(s))
+ if s['route']:
+  if run('ip','-6','route','show','exact',ip+'/128'):run('ip','-6','route','del',ip+'/128','dev',tun)
+  s['route']=False;STATE.write_text(json.dumps(s))
+ available={d['ifname'] for d in json.loads(run('ip','-j','link','show'))}|{'all','default'}
+ for k,v in s['sysctls'].items():
+  if k.split('.')[-2] in available:sysctl(k,v)
+ if s['table']:
+  tables=json.loads(run('nft','-j','list','tables'))['nftables']
+  if any(x.get('table',{}).get('name')==TABLE and x['table'].get('family')=='ip6' for x in tables):run('nft','delete','table','ip6',TABLE)
+  s['table']=False;STATE.write_text(json.dumps(s))
  if s['dad']:run('ip','-6','addr','del',ip+'/128','dev',lan)
  STATE.unlink()
 if __name__=='__main__':

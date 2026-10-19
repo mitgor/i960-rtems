@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Root console-side client. All PCI is performed by the existing owner."""
-import argparse,json,socket,struct,zlib,time
+import os,argparse,json,socket,struct,zlib,time
 from pathlib import Path
 class Client:
- def __init__(self,path='/run/i960-rtems-runtime.sock'):self.path=path
+ def __init__(self,path=None):self.path=path or os.environ.get('I960_RUNTIME_SOCKET','/run/i960-rtems-runtime.sock')
  def call(self,op,data=b''):
   with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as s:
    s.settimeout(12);s.connect(self.path);s.sendall((json.dumps(dict(op=op,data=data.hex()))+'\n').encode());reply=b''

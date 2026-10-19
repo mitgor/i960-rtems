@@ -1,3 +1,57 @@
+## Combined networking, console and applications — 2026-10-19
+
+Current operational tools/module: `/home/mit/i960-combined-20261019`.
+The hardware owner and kernel remain the earlier reclamation session
+`/home/mit/i960-reclaim-ipv6-20261019`, session `20261019T175819Z`;
+boot `8cdab7ff-48a3-481f-bb54-0924025016c0`. Do not start a second PCI owner.
+The new root-only broker `/run/i960-combined.sock` serializes network/application
+RPCs with bounded queues and a 3:1 policy when both classes are queued. Set
+`I960_RUNTIME_SOCKET=/run/i960-combined.sock` for the combined client and relay.
+The independent diagnostic socket still works without the broker.
+
+The combined lwIP module adds two bounded bundled applications (counter and
+uppercase echo). `~/rtems-console` now supports `net`, `app list`,
+`app start/stop counter/echo`, and `app echo TEXT`, plus existing diagnostics.
+Its previous wrapper is backed up as `~/rtems-console.before-combined-20261019`.
+These are callbacks inside Init, not arbitrary concurrent segmented applications
+or unrestricted RTEMS task cancellation. Generation tokens apply within one
+loaded module instance and must be discarded across unload/reload.
+
+The final mixed run passed **601.417 seconds / 4,837 events / zero errors**.
+Maximum observed HTTP/console/echo round trips were 2379.350/236.244/1657.962 ms.
+The concurrent full-zone loan wrote/read **6,291,424 bytes in 192 steps**, retained
+two cancelled references safely and refused close until release; maximum RPC
+was 829.627 ms under load. These are observed host latencies, not IRQ bounds.
+The first direct-client run had one HTTP timeout and is retained as failed
+evidence; the first broker prototype was stopped early to fix ingress batching.
+The precise cause of the initial HTTP timeout is not established.
+
+Use the **root-level** `i960-combined-20261019/public_ipv6.py` for routing
+removal/reapply: it handles a missing TUN after relay death. Earlier frozen
+bundle helpers predate that correction. Card HTTP remains
+`http://[2a02:8106:40:9000::960]/`; LAN access is tested, Internet ingress is not.
+
+DMA archives for profiles 6–13 and the current kernel's prior 64-frame baseline
+were replayed, and native DMA ownership tests passed. No fresh DMA fault/NMI was
+injected in this combined run. **Packet transport is still PIO; packet DMA
+acceleration is unqualified.** The current owner sleeps 100 ms in its idle loop;
+qualify fast service polling independently of slower ownership audits before
+comparing packet DMA and PIO under identical scheduling. This needs a fresh
+owner baseline, not modification of the live process. One-hour/eight-hour
+endurance and bounded underlying owner journals remain open.
+
+Recovery passed on the same boot and PCI-owner PID: abandoned client, occupied
+upload refusal, relay pause/resume and death, broker death/restart, and interrupted
+upload rejection/abort followed by a pristine module reload. Both apps, the
+prompt and routed HTTP were restored. This tests host service/module recovery,
+not new PCI-owner death, hardware reset or DMA fault injections. The first
+recovery attempt stopped before injection on unsupported systemctl spelling;
+`--kill-who=main` corrected it. P8 is bounded integration; P9 packet acceleration
+is open; P10 has these recovery cases; P11 has the ten-minute stage only.
+
+Design and reproduction: `rtems/accele160/runtime/COMBINED-SERVICE.md`.
+Evidence: `artifacts/current/accele160-combined-20261019/README.md`.
+
 ## Accele160 idle-zone reclamation and global IPv6 — 2026-10-19
 
 Live bundle: `/home/mit/i960-reclaim-ipv6-20261019/bundle`, session

@@ -1,0 +1,72 @@
+{
+  "started": 1792435228.746762,
+  "before": {
+    "sequence": 15484,
+    "status": 0,
+    "epoch": 523002806,
+    "value": 24,
+    "state": 3,
+    "reservation": 1288,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 61207,
+    "started": 1,
+    "data": "fe0d0000330c000000000000000000000000000000000000"
+  },
+  "attach": {
+    "sequence": 15488,
+    "status": 0,
+    "epoch": 523002806,
+    "value": 6291456,
+    "state": 3,
+    "reservation": 1288,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 61241,
+    "started": 1,
+    "data": ""
+  },
+  "close_refused": {
+    "sequence": 15492,
+    "status": 12,
+    "epoch": 523002806,
+    "value": 0,
+    "state": 3,
+    "reservation": 1288,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 61265,
+    "started": 1,
+    "data": ""
+  },
+  "release": {
+    "sequence": 16254,
+    "status": 0,
+    "epoch": 523002806,
+    "value": 0,
+    "state": 3,
+    "reservation": 1288,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 65939,
+    "started": 1,
+    "data": ""
+  },
+  "after": {
+    "sequence": 16258,
+    "status": 0,
+    "epoch": 523002806,
+    "value": 24,
+    "state": 3,
+    "reservation": 1288,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 65974,
+    "started": 1,
+    "data": "6a0f0000720d000000000000000000000000000000000000"
+  },
+  "bytes_written_and_verified": 6291424,
+  "cancelled_with_two_pins": true,
+  "max_rpc_ms": 829.6271180001895,
+  "finished": 1792435322.7872343
+}

@@ -18796,6 +18796,116 @@
       "path": "artifacts/current/accele160-reclaim-ipv6-20261019/tested-live.tar.xz",
       "size": 13175400,
       "sha256": "139ba4b005c7e08b30ce16bd37aeeb578ab2370315961410a78b7b0939dce08d"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/.gitattributes",
+      "size": 22,
+      "sha256": "bff890238d74d6b9775fa66060c1f4bba66e15f931e5de170ac11ce158147508"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/README.md",
+      "size": 5689,
+      "sha256": "87c8c3028dc8d556eb7675c9ec9ea3a78a94d06fbf9db6e9af50d007c92f3c49"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/SHA256SUMS",
+      "size": 2771,
+      "sha256": "b214617a057780e9bd0262dac121bd08b5415ba7a2617e53c730c15ef2d33541"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/capture.json",
+      "size": 385,
+      "sha256": "c5046589f47074c005c852eee7ef96cd79f794e923600e39f01cd67c589a57f5"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/concurrent-loan-summary.txt",
+      "size": 1427,
+      "sha256": "b5f0646a8831707ea78d6117a50a77f604284fba74b30b61d7e5c348ac15b05e"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/current-kernel-dma-baseline.json",
+      "size": 859,
+      "sha256": "66f869eef1cbc28d1033dba00ecd30fbb071213f7d824e2db5c7d81afc27f591"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/dma-evidence.json",
+      "size": 17743,
+      "sha256": "75942657ba634b0dd6b8e42d976547b2ececac24f6c9118c30b5614b6f80a3f7"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/endurance-summary.json",
+      "size": 286,
+      "sha256": "0ed8b1792d4d5b76558578516bc5ad6aad731e6b28dabe07ca78036019a76e62"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/final-restoration.txt",
+      "size": 628,
+      "sha256": "82b87e9e15b67f0fcfa165b8d4147ea8e92f7e637ec26cc093b9b411db4f3c08"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/final-status.json",
+      "size": 1166,
+      "sha256": "f9d7444e2a14b6f9c95adc8eb6e046473fa128a7f2e7aa37748638c638990643"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/global-http-final.headers",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/global-http-final.html",
+      "size": 2688,
+      "sha256": "8860b4dae1f100bbca017c16e94805f128009ba0b53f93e53e5d45114d85c30c"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/global-http.headers",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/global-http.html",
+      "size": 2687,
+      "sha256": "d9a6065cbac0e685f062eaed3bbb3ad8cbd32eecc484765d7bea7654396f6d63"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/initial-qualification.txt",
+      "size": 1027,
+      "sha256": "942ffa8c505860ea57460921122b3bc2346cb4bbb92bd131aee0eeeccb01ea6c"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/native-combined.txt",
+      "size": 422,
+      "sha256": "ee406923aadafa14959c6ff381608517e74f49c381b8533869e6ca45e99814cf"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/native-dma.txt",
+      "size": 98,
+      "sha256": "32a6382caee2a85fc4ededc9d7bd80029f6d4a1d7a0b06f9e2bafb09fc7563bc"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/native-tests.txt",
+      "size": 1195,
+      "sha256": "66858d7ea8e881706318931fb5cb55ccc57023603b92fe75dd268bb2fe29957a"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/prompt-restored.txt",
+      "size": 1705,
+      "sha256": "3578c544867f5b4fa4082160341fdc47f84cd795bed0e9e93d1b2550e1e18aa8"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/recovery-summary.json",
+      "size": 140,
+      "sha256": "124e1286c5aac18f8b65c686c044093ade81ce319898d658ef247ef196838375"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/tested-live.tar.xz",
+      "size": 12786800,
+      "sha256": "d81f6c772720d5e7b84fc802bc9e66657ce0c5d5dc7a38cecbfcd519254a77b2"
+    },
+    {
+      "path": "artifacts/current/accele160-combined-20261019/verified.json",
+      "size": 836,
+      "sha256": "92cbc2d5a27bc321745e957a6343dc9a858c406c938d7d419f3d6ce7fe1c2773"
     }
   ],
   "updated_date": "2026-10-18"

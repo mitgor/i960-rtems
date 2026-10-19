@@ -1,0 +1,22 @@
+{
+  "ipv4": {
+    "udp_echo": true,
+    "http_bytes": 2788,
+    "http200": true,
+    "card_identity": true,
+    "fin": true
+  },
+  "ipv6": {
+    "udp_echo": true,
+    "http_bytes": 2790,
+    "http200": true,
+    "card_identity": true,
+    "fin": true
+  },
+  "counters": {
+    "rx": 16,
+    "tx": 18,
+    "drops": 0
+  }
+}
+{"combined_apps": true, "echo": true, "stale_stop_refused": true, "network_after_app_restart": true}

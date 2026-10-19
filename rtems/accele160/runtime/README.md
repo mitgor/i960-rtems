@@ -1,3 +1,11 @@
+## Combined service
+
+Networking, the independent diagnostic console and two bounded applications now
+share the running card service. See [COMBINED-SERVICE.md](COMBINED-SERVICE.md) for
+commands, ownership boundaries, arbitration, recovery and qualification limits.
+The packet transport remains PIO; general concurrent segmented applications and
+unrestricted task cancellation remain separate work.
+
 # Accele160 resident applications and network module
 
 This opt-in extension (`ACCELE_RUNTIME=1`, with `ACCELE_SERVICE=1`) integrates

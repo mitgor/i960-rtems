@@ -1,0 +1,51 @@
+{
+  "net": {
+    "received": 10,
+    "transmitted": 6,
+    "dropped": 0,
+    "fetch_state": 0,
+    "fetch_bytes": 0,
+    "fetch_hash": 0,
+    "module_calls": 1290,
+    "running": true,
+    "poisoned": false
+  },
+  "apps": [
+    {
+      "status": 0,
+      "id": 1,
+      "generation": 1,
+      "running": 1,
+      "updates": 1269,
+      "elapsed_ms": 23130,
+      "requests": 0,
+      "stops": 0,
+      "errors": 0,
+      "length": 0,
+      "text": ""
+    },
+    {
+      "status": 0,
+      "id": 2,
+      "generation": 1,
+      "running": 1,
+      "updates": 1270,
+      "elapsed_ms": 23130,
+      "requests": 1,
+      "stops": 0,
+      "errors": 0,
+      "length": 0,
+      "text": ""
+    }
+  ],
+  "tasks": "owner=3228951616\nirq_live=0\nowner=3228951984\nirq_live=0\nowner=3228952352\nirq_live=1\nowner=3228953160\nirq_live=0\nhandoffs=306146\nfault=0\n",
+  "mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.\n",
+  "uptime": "ticks=310905\ntick_ms=10\n",
+  "boot": "8cdab7ff-48a3-481f-bb54-0924025016c0",
+  "units": [
+    "active",
+    "active",
+    "active",
+    "active"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "received": 22,
+  "transmitted": 13,
+  "dropped": 0,
+  "fetch_state": 0,
+  "fetch_bytes": 0,
+  "fetch_hash": 0,
+  "module_calls": 4403,
+  "running": true,
+  "poisoned": false
+}
+[
+  {
+    "status": 0,
+    "id": 1,
+    "generation": 1,
+    "running": 1,
+    "updates": 4386,
+    "elapsed_ms": 82040,
+    "requests": 0,
+    "stops": 0,
+    "errors": 0,
+    "length": 0,
+    "text": ""
+  },
+  {
+    "status": 0,
+    "id": 2,
+    "generation": 1,
+    "running": 1,
+    "updates": 4392,
+    "elapsed_ms": 82140,
+    "requests": 1,
+    "stops": 0,
+    "errors": 0,
+    "length": 0,
+    "text": ""
+  }
+]
+active
+active
+active
+active

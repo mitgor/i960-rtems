@@ -1,0 +1,14 @@
+bounded apps: concurrent progress, echo, independent stop, stale generation, idempotent stop and bounds passed
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.007s
+
+OK
+bounded apps: concurrent progress, echo, independent stop, stale generation, idempotent stop and bounds passed
+broker: 3:1 arbitration, request bounds, completed disconnect, reconnect and no retry passed
+broker: actual socket ingress batch observes the 3:1 scheduling order
+owner RPC: bounded publication, exact reply payload, uncertain timeout quarantine, no release writes after uncertainty passed
+production audit pump: original page preserved, recursion excluded, selftest exclusion, exception reset PASS
+6 MiB loan: full pattern, cancelled pinned retention, wrong owner, drained release, guard quarantine passed
+Accele runtime: bounded partitions, exact board/base, two segmented reloads, BSS zero, pinned cancellation retention, stale handles, busy close and poisoned guard retention passed
+actual application card adapter: idle gate, epochs, upload chunks, incremental verification, cache sync, busy retention, bounded timer catch-up, packet reply, duplicate and close passed

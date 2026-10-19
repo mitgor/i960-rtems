@@ -1,0 +1,61 @@
+{
+  "sequence": 6525,
+  "status": 0,
+  "epoch": 523002805,
+  "value": 24,
+  "state": 3,
+  "reservation": 1032,
+  "busy": 0,
+  "poisoned": 0,
+  "calls": 67769,
+  "started": 1,
+  "data": "06010000c800000000000000000000000000000000000000"
+}
+{
+  "sequence": 6526,
+  "status": 0,
+  "epoch": 523002806,
+  "value": 0,
+  "state": 0,
+  "reservation": 0,
+  "busy": 0,
+  "poisoned": 0,
+  "calls": 0,
+  "started": 0,
+  "data": ""
+}
+{
+  "sequence": 6813,
+  "status": 0,
+  "epoch": 523002806,
+  "value": 0,
+  "state": 3,
+  "reservation": 1288,
+  "busy": 0,
+  "poisoned": 0,
+  "calls": 1,
+  "started": 1,
+  "data": ""
+}
+{
+  "ipv4": {
+    "udp_echo": true,
+    "http_bytes": 2788,
+    "http200": true,
+    "card_identity": true,
+    "fin": true
+  },
+  "ipv6": {
+    "udp_echo": true,
+    "http_bytes": 2790,
+    "http200": true,
+    "card_identity": true,
+    "fin": true
+  },
+  "counters": {
+    "rx": 16,
+    "tx": 18,
+    "drops": 0
+  }
+}
+{"combined_apps": true, "echo": true, "stale_stop_refused": true, "network_after_app_restart": true}
