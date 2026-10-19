@@ -1,0 +1,10 @@
+{
+  "10.196.0.2": {
+    "udp_echo": true,
+    "tcp_echo": true
+  },
+  "fd96:196:960::2": {
+    "udp_echo": true,
+    "tcp_echo": true
+  }
+}

@@ -16,7 +16,7 @@ def verify(path,live=False):
     def rows(n):return [json.loads(x) for x in read(n).splitlines()]
     for name,h in js('bundle/bundle.json')['files'].items():assert sha(read('bundle/'+name))==h,name
     m=js('bundle/project/rtems/accele160/doom_dma/persistent-manifest.json')
-    assert m['terminal_test'] in (5,14,15,16,17,18) and m['terminal_schema']==m['service_schema']==1
+    assert m['terminal_test'] in (5,14,15,16,17,18,19) and m['terminal_schema']==m['service_schema']==1
     assert sha(read('bundle/kernel/kernel.bin'))==m['kernel_sha256']
     assert sha(read('bundle/inputs/admit_command.ko'))==m['admit_module_sha256']
     run,={n[:-len('/games.json')] for n in files if n.endswith('/run/games.json')}
@@ -33,13 +33,13 @@ def verify(path,live=False):
     for r in samples:
         page=read(run+'/owned-'+r['label']+'.bin');nonce=struct.unpack_from('<I',page,68)[0]
         w=validate_runtime(page,nonce,r['sequence'],r['phase'],m['terminal_test'])
-        if m['terminal_test'] in (14,15,16,17,18):
+        if m['terminal_test'] in (14,15,16,17,18,19):
             import importlib.util
             spec=importlib.util.spec_from_file_location('engine_inventory',__import__('pathlib').Path(__file__).parent.parent/'ownership/inventory.py')
             module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
             module.decode(page,nonce,r['sequence'],r['phase'])
-            if m['terminal_test'] in (15,16,17,18):
-                spec=importlib.util.spec_from_file_location('qlogic_config',__import__('pathlib').Path(__file__).parent.parent/('ownership/qlogic_config.py' if m['terminal_test']==15 else ('ownership/qlogic_chip.py' if m['terminal_test']==17 else ('ownership/qlogic_pause.py' if m['terminal_test']==18 else 'ownership/qlogic_queue.py'))))
+            if m['terminal_test'] in (15,16,17,18,19):
+                spec=importlib.util.spec_from_file_location('qlogic_config',__import__('pathlib').Path(__file__).parent.parent/('ownership/qlogic_config.py' if m['terminal_test']==15 else ('ownership/qlogic_chip.py' if m['terminal_test']==17 else ('ownership/qlogic_dma_bank.py' if m['terminal_test']==19 else 'ownership/qlogic_pause.py' if m['terminal_test'] in (18,19) else 'ownership/qlogic_queue.py'))))
                 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
                 module.decode(page,nonce,r['sequence'],r['phase'])
         assert w[148]==symbols['_accele_fault_entry'] and w[149]==symbols['_accele_nmi_entry']

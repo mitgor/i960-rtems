@@ -1,5 +1,60 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Latest checkpoint — P3o and initial P5/P6/P7 integration (2026-10-19)
+
+[Profile 19](../../rtems/accele160/ownership/PROFILE19.md) qualified paused DMA-bank
+inspection and unconditional, verified CONF1 restoration before HCCR release.
+Both passes reported command `1/8/0`, data `8/8/0` (config/status/FIFO).
+64 frames, 5,045 WAD reads and 709 external console exchanges passed; final STOP
+retained resources. Terminal count is observed, but SCSI/DMA exclusion and new
+stock-RAM ownership are still unproved.
+
+The [resident application extension](../../rtems/accele160/runtime/README.md)
+now runs on Accele160 with the existing 192 KiB workspace and owned IRQ stacks.
+It reserves 512 KiB inside the already qualified upper arena: 384 KiB for a
+segmented module, 128 KiB for a separate general heap. The card loaded hello,
+unloaded it to zero reservation, loaded networking, unloaded it, and loaded
+networking again without resetting between applications. All three on-card heap
+proofs passed. Network file data is 84,944 bytes, total code/data/BSS 198,688 bytes.
+
+Card-side lwIP now passes IPv4/IPv6 UDP and TCP HTTP through the owner channel,
+plus real TUN ICMP, UDP/TCP echo and HTTP. Both ping tests received 5/5 packets.
+A deliberate abandoned query and relay reconnect passed; 109 module timer
+calls occurred during two seconds without host packets. Baseline RTEMS passed
+64 frames, 5,045 WAD reads, 721 external console exchanges; an additional
+245 console exchanges during networking had zero errors.
+This is a bounded single-owner module ABI, not completion of every P4–P7 gate.
+
+Current service: `/home/mit/i960-runtime-port-v4-20261019/bundle`,
+session `20261019T140746Z`, boot `2433f02b-0e55-4467-a072-0b2c70c8fb48`.
+Kernel SHA256 `d3865059b0c54b1f77dbbe434cd710be83431254b9cfbafd5bd857e21db54e40`.
+`~/rtems-console` works; the module is running with no poison/busy indication,
+Doom idle and zone loan zero. `i960-doom`, `i960-doom-stream` (8088), and
+`i960-rtems-ip` are active. Card HTTP: `10.196.0.2:80` and
+`[fd96:196:960::2]:80` on the private host TUN link. Public routing is unchanged.
+The original normal profile remains at `/home/mit/i960-owned-runtime-20261018/bundle`.
+
+Next work, in order:
+
+1. Add bounded allocator/reallocation and shared-reference APIs for applications;
+   measure allocation and interrupt latency. Convert the retained 6 MiB Doom
+   zone into an explicit loan before offering that space to general services.
+   Expand workspace/stacks only with a placement manifest and bootstrap guards.
+2. Extend the single absolute-address module ABI: declared imports/relocations,
+   more application lifetimes, and on-card interrupted/bad-checksum upload tests.
+   Qualify fault/NMI containment while module code is executing. Arbitrary
+   non-cooperative module cancellation is not yet established.
+3. Add outbound fetch/DNS controls, host forwarding and separately approved
+   public IPv6 routing; qualify reconnect/loss/backpressure and long endurance.
+   Bound/rotate the packet transport journal before continuous heavy use.
+4. Continue ISP10160 SXP/DMA stop/drain and firmware dependency work before
+   reclaiming stock allocations toward 10–12 MiB. This port claims no new RAM.
+
+Evidence: [DMA batch](../../artifacts/current/accele160-qlogic-dma-bank-20261019/README.md)
+and [application/network batch](../../artifacts/current/accele160-runtime-port-20261019/README.md).
+Both preserve failed attempts as well as passing captures. Earlier checkpoints
+below are historical; their “next” and live-session statements are superseded.
+
 ## Accele160 P3n — one-shot QLogic RISC pause/release qualified
 
 Profile 18 passed 64 frames, 5045 WAD reads and 713 external console

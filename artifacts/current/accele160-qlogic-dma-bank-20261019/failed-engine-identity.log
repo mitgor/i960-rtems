@@ -1,0 +1,17 @@
+Oct 19 15:36:14 mit-HP-Z400-Workstation systemd[1]: Started /usr/bin/python3 /home/mit/i960-qlogic-dma-bank-20261019/bundle/project/game/doom/play/accele160/launch.py run --bundle /home/mit/i960-qlogic-dma-bank-20261019/bundle --port 8087 --max-frames 64 --disconnect-seconds 300 --restart-cycles 0 --quit-game 0 --paired-frames 32 --keyboard-mode fifo --capture-all.
+Oct 19 15:36:17 mit-HP-Z400-Workstation python3[8030]: done=1 status=0 residual=0 selector=9 length=1048576 released=0 guard_changes=0
+Oct 19 15:36:17 mit-HP-Z400-Workstation python3[8033]: done=1 status=0 residual=0 selector=9 length=1048576 released=0 guard_changes=0
+Oct 19 15:36:35 mit-HP-Z400-Workstation python3[7938]: Browser session: http://192.168.2.75:8087/
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]: Traceback (most recent call last):
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]:   File "/home/mit/i960-qlogic-dma-bank-20261019/bundle/project/rtems/accele160/doom_dma/run_bridge.py", line 997, in <module>
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]:     if __name__=='__main__':main()
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]:   File "/home/mit/i960-qlogic-dma-bank-20261019/bundle/project/rtems/accele160/doom_dma/run_bridge.py", line 426, in main
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]:     words=transact(1,off,part)
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]:   File "/home/mit/i960-qlogic-dma-bank-20261019/bundle/project/rtems/accele160/doom_dma/run_bridge.py", line 415, in transact
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]:     need(words[9]==expected_status,
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]:   File "/home/mit/i960-qlogic-dma-bank-20261019/bundle/project/host/accele160/lease_probe/run_lease.py", line 25, in need
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]:     if not ok: raise RuntimeError(reason)
+Oct 19 15:36:40 mit-HP-Z400-Workstation python3[7938]: RuntimeError: bridge op=1 seq=215 status=2 wanted=0
+Oct 19 15:36:40 mit-HP-Z400-Workstation systemd[1]: i960-doom.service: Main process exited, code=exited, status=1/FAILURE
+Oct 19 15:36:40 mit-HP-Z400-Workstation systemd[1]: i960-doom.service: Failed with result 'exit-code'.
+Oct 19 15:36:40 mit-HP-Z400-Workstation systemd[1]: i960-doom.service: Consumed 7.477s CPU time.

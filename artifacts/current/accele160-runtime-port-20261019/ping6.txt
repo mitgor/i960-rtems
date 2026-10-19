@@ -1,0 +1,10 @@
+PING fd96:196:960::2(fd96:196:960::2) 56 data bytes
+64 bytes from fd96:196:960::2: icmp_seq=1 ttl=255 time=204 ms
+64 bytes from fd96:196:960::2: icmp_seq=2 ttl=255 time=130 ms
+64 bytes from fd96:196:960::2: icmp_seq=3 ttl=255 time=265 ms
+64 bytes from fd96:196:960::2: icmp_seq=4 ttl=255 time=193 ms
+64 bytes from fd96:196:960::2: icmp_seq=5 ttl=255 time=119 ms
+
+--- fd96:196:960::2 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+rtt min/avg/max/mdev = 119.437/182.147/264.546/52.899 ms

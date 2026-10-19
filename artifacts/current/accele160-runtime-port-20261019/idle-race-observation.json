@@ -1,0 +1,31 @@
+{
+  "hello_text": "Hello from Accele160 RTEMS segmented application\n",
+  "heap_proof_mask": 255,
+  "close": {
+    "sequence": 10,
+    "status": 0,
+    "epoch": 3406103880,
+    "value": 0,
+    "state": 0,
+    "reservation": 0,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 0,
+    "started": 0,
+    "data": ""
+  },
+  "stop": {
+    "error": "RuntimeError('bridge op=9 seq=335 status=45 wanted=0')",
+    "quiescent": true,
+    "status": {
+      "started": "1",
+      "done": "0",
+      "status": "-1",
+      "residual": "-1",
+      "released": "0",
+      "monitor_paused": "1",
+      "shutting_down": "0",
+      "submitted": "1"
+    }
+  }
+}

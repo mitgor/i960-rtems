@@ -20,7 +20,7 @@ def verify(live,final):
     assert nonce==struct.unpack_from('<I',before[run+'owned-ready.bin'],68)[0]
     assert row['sequence']==samples[-2]['sequence']
     mode=json.loads(before['bundle/project/rtems/accele160/doom_dma/persistent-manifest.json'])['terminal_test']
-    assert mode in (14,15,16,17,18)
+    assert mode in (14,15,16,17,18,19)
     w=validate_runtime(page,nonce,row['sequence'],1,mode)
     inv=decode(page,nonce,row['sequence'],1)
     if mode==15:
@@ -32,11 +32,15 @@ def verify(live,final):
     if mode==17:
         from qlogic_chip import decode as chip_decode
         inv['qlogic_chip']=chip_decode(page,nonce,row['sequence'],1)
-    if mode==18:
+    if mode in (18,19):
         from qlogic_pause import decode as pause_decode
         inv['qlogic_pause']=pause_decode(page,nonce,row['sequence'],1)
         assert page[416*4:419*4]==before[run+'owned-ready.bin'][416*4:419*4]
         assert page[421*4:464*4]==before[run+'owned-ready.bin'][421*4:464*4]
+    if mode==19:
+        from qlogic_dma_bank import decode as bank_decode
+        inv['qlogic_dma_bank']=bank_decode(page,nonce,row['sequence'],1)
+        assert page[464*4:512*4]==before[run+'owned-ready.bin'][464*4:512*4]
     assert w[167]>=samples[-2]['ticks'] and w[168]>=samples[-2]['handoffs']
     q=files[run+'persist/quiescent-page.bin']
     assert struct.unpack_from('<2I',q,0xb54)==(0x45495551,0)

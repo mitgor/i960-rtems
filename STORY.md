@@ -6594,3 +6594,84 @@ its prompt at verified idle and restored the streaming gateway. RISC control
 was now demonstrated on this workload. The remaining boundary was the DMA and
 SCSI machinery beside it: inspect those banks under a confirmed pause, restore
 the bank unconditionally, and establish completion before claiming more RAM.
+
+The next probe crossed the bank-selection boundary deliberately. We paused the
+QLogic RISC, selected its DMA window, and read configuration, status and FIFO
+status for both engines twice. Configuration moved from 0x74 to 0x374 and back
+to exactly 0x74. Only after reading that restoration back did we touch HCCR
+again. It still reported the pause, and release returned it to zero.
+
+Both passes agreed. Command DMA showed configuration one, status eight and an
+empty FIFO count; data DMA showed configuration eight, status eight and the same
+zero count. The reference PCI definitions called that status bit terminal count,
+with no channel or pipeline bits set. It was useful evidence of completed work
+at that moment, but still no promise that the machinery could never start again.
+We left its memory alone.
+
+The first surrounding Doom test caught a mistake in the test bundle: an older
+generated engine-identity header did not match the supplied engine. Upload was
+refused and STOP retained the resources. We kept the failed capture, restored
+the matching header, and repeated the run after reset. Sixty-four frames, 5,045
+WAD reads and 709 external prompt exchanges passed. The same bank transaction
+survived in all later snapshots and final STOP, without being attempted again.
+
+There was useful work available without winning another megabyte from the stock
+firmware. The existing upper-bank arena had room for a separate half-megabyte
+reservation after Doom's fixed allocations: 384 KiB for a segmented application
+and 128 KiB for a guarded general heap. The RTEMS workspace stayed at its already
+qualified 192 KiB. We made the Init task the single owner of loading and module
+calls, while the independent diagnostic worker kept the prompt alive.
+
+The first application upload taught us another old-compiler lesson. A segment
+with five 32-bit fields occupied thirty-two bytes under the i960 compiler, not
+twenty. Copying a host-side structure into a card-side structure was not a wire
+protocol. The card refused the request before allocating anything. We preserved
+that run too, changed the protocol to decode each little-endian field explicitly,
+and kept the compiler's padding out of the contract.
+
+With that corrected, the card printed a greeting from its newly loaded module.
+The heap check allocated and filled memory, cancelled a pinned handle without
+freeing it, verified the bytes, drained the pin and rejected the stale handle.
+All eight checks passed, and closing the application returned the reservation
+to zero.
+
+Then the host caught a second boundary mistake. The card's idle flag became
+visible before the host finished its own final Doom audits. A network upload
+could allocate in that gap, so the unchanged rearm check correctly refused to
+call the arena empty. STOP still reached quiescence. We moved publication of
+the application socket behind the completed host idle gate. The new service
+would own that idle lease until shutdown; repeated Doom games remained available
+through the ordinary profile rather than racing an application allocation.
+
+Behind the completed idle gate, both applications ran. The small one printed its
+greeting and released its reservation. The network module loaded next, answered
+UDP and completed TCP HTTP exchanges over IPv4 and IPv6, then closed. Loading it
+again cleared its BSS and repeated the same tests with fresh counters. Ordinary
+Linux pings and curl requests worked through a TUN interface too: packets crossed
+the host, but the TCP state and Darth Vader page lived on the card.
+
+Stopping that relay found a host bug rather than a card fault. The owner had
+finished a card request but held onto the Unix socket after its client vanished.
+Later clients waited behind that dead peer. The diagnostic prompt still worked,
+and global STOP still reached quiescence with all resources retained. We changed
+the owner to retire a disconnected peer after completion while keeping uncertain
+card operations quarantined. A native disconnect/reconnect test reproduced the
+case before another hardware run.
+
+
+The final run survived an abandoned application client and accepted its next
+connection. With the host sending no packets for two seconds, the module ran
+109 timer calls on its own. Both IP families answered five ordinary pings,
+UDP and TCP echo, and curl requests for the card's page. We repeated the small
+application, heap proof, unload and network reload sequence, then left the
+network module running. The original prompt remained available, with another
+245 error-free exchanges during networking, and the streaming gateway was
+restored beside the new TUN relay.
+
+This was a practical expansion rather than a larger ownership claim. The network
+image carried 84,944 file bytes and occupied 198,688 bytes with its BSS, beyond
+the old 64 KiB upload boundary but comfortably inside its new partition. The
+kernel workspace did not move, and no stock DMA or SCSI allocation became ours.
+Those boundaries remained the next work: general shared application lifetimes,
+more flexible memory loans, longer networking runs, and a demonstrated stop for
+the engines before taking their RAM.

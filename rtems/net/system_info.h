@@ -8,7 +8,12 @@ static void info_row(struct info_writer*w,const char*label,unsigned int v){info_
 static void system_info(struct info_writer*w,unsigned int seconds,unsigned int requests,unsigned int rx,unsigned int tx,unsigned int drops,unsigned int clients){
  info_text(w,"<section aria-labelledby=\"system\"><h2 id=\"system\">Card system information</h2><p>Live values from the Mylex card, not the Linux host. Refresh to update.</p><table><tbody><tr><th>Runtime uptime</th><td>");
  info_number(w,seconds/86400);info_text(w,"d ");info_number(w,seconds/3600%24);info_text(w,"h ");info_number(w,seconds/60%60);info_text(w,"m ");info_number(w,seconds%60);info_text(w,"s</td></tr>");
+
+#ifdef ACCELE_NET
+ info_text(w,"<tr><th>Operating system</th><td>RTEMS 4.6.6</td></tr><tr><th>TCP/IP stack</th><td>lwIP 2.1.3; IPv4 + IPv6</td></tr><tr><th>Board / CPU</th><td>Mylex AcceleRAID 160 / Intel 80303</td></tr><tr><th>Memory budgets</th><td>192 KiB existing RTEMS workspace; 384 KiB module partition; separate 128 KiB general heap; 48 KiB lwIP heap within the module. Capacities, not free-memory readings.</td></tr>");
+#else
  info_text(w,"<tr><th>Operating system</th><td>RTEMS 4.6.6</td></tr><tr><th>TCP/IP stack</th><td>lwIP 2.1.3; IPv4 + IPv6</td></tr><tr><th>Board / CPU</th><td>Mylex DAC960 / Intel i960RP, 32-bit, no FPU</td></tr><tr><th>CPU frequency</th><td>Not measured. Timer bus: approximately 33.333 MHz (previously measured).</td></tr><tr><th>CPU load / temperature</th><td>Unavailable: no CPU idle accounting or card temperature sensor interface.</td></tr><tr><th>Memory configuration</th><td>16 MiB card DRAM; 512 KiB loader staging; 48 KiB RTEMS workspace; 48 KiB lwIP heap. These are capacities, not free-memory readings.</td></tr>");
+#endif
 #ifdef I960_BACKGROUND_NET
  info_text(w,"<tr><th>Clock</th><td>Hardware timer; nominal 100 ticks/s. Uptime starts when this runtime is loaded.</td></tr>");
 #else

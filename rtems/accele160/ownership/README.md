@@ -116,3 +116,5 @@ python3 rtems/accele160/ownership/test_audit.py
 The decoder always reports broader ownership as unproved, even for a synthetic
 capture with reset asserted and grants disabled. Tests reject changed identity,
 boot/order, short reads, inactive services and non-idle/loaned runtime state.
+
+Profile 19: [paused DMA bank inspection and restoration](PROFILE19.md).

@@ -1,0 +1,39 @@
+{
+  "external_exchanges": 713,
+  "external_errors": 0,
+  "boot_id": "dde0bffe-1efc-40fa-a6b9-52da45ce802d",
+  "kernel_sha256": "2dc008b1552c0f34bfa5b8bd0230386535db45d5d98da42866546167a8670c5a",
+  "owned_samples": [
+    {
+      "sequence": 1,
+      "phase": 0,
+      "ticks": 10,
+      "handoffs": 10,
+      "owned": true,
+      "label": "ready"
+    },
+    {
+      "sequence": 2,
+      "phase": 0,
+      "ticks": 9392,
+      "handoffs": 8522,
+      "owned": true,
+      "label": "game-1-frame32"
+    },
+    {
+      "sequence": 3,
+      "phase": 0,
+      "ticks": 9749,
+      "handoffs": 8602,
+      "owned": true,
+      "label": "game-1-idle"
+    }
+  ],
+  "frames": 64,
+  "wad_reads": 5045,
+  "console_replies": 718,
+  "max_console_latency_ms": 3383.6945669999923,
+  "owned_vectors_and_guards": true,
+  "global_stop": false,
+  "session_left_running": true
+}

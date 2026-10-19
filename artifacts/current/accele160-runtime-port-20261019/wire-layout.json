@@ -1,0 +1,8 @@
+{
+  "measured_i960": {"sizeof_manifest": 272, "sizeof_segment": 32},
+  "native_host": {"sizeof_manifest": 172, "sizeof_segment": 20},
+  "wire": {"begin_bytes": 184, "board_header_words": 3, "manifest_header_words": 3, "segment_slots": 8, "words_per_segment": 5},
+  "correction": "Decode each little-endian field; never copy wire bytes into compiler-padded structures.",
+  "probe_source": "#include \"image.h\"\nunsigned int sizes[]={sizeof(struct manifest),sizeof(struct segment)};\n",
+  "i960_objdump_data": "10010000 20000000"
+}

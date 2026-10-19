@@ -1,0 +1,32 @@
+{
+  "before": {
+    "sequence": 702,
+    "status": 0,
+    "epoch": 3863996595,
+    "value": 24,
+    "state": 3,
+    "reservation": 1032,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 2641,
+    "started": 1,
+    "data": "360000002f00000000000000000000000000000000000000"
+  },
+  "after": {
+    "sequence": 703,
+    "status": 0,
+    "epoch": 3863996595,
+    "value": 24,
+    "state": 3,
+    "reservation": 1032,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 2750,
+    "started": 1,
+    "data": "360000002f00000000000000000000000000000000000000"
+  },
+  "module_calls_without_host_packets": 109,
+  "disconnect_events_before": 0,
+  "disconnect_events_after": 2,
+  "reconnected": true
+}

@@ -1,0 +1,5 @@
+Accele runtime: bounded partitions, exact board/base, two segmented reloads, BSS zero, pinned cancellation retention, stale handles, busy close and poisoned guard retention passed
+actual application card adapter: idle gate, epochs, upload chunks, incremental verification, cache sync, busy retention, bounded timer catch-up, packet reply, duplicate and close passed
+owner RPC: bounded publication, exact reply payload, uncertain timeout quarantine, no release writes after uncertainty passed
+production audit pump: original page preserved, recursion excluded, selftest exclusion, exception reset PASS
+owner RPC: bounded publication, exact reply payload, uncertain timeout quarantine, no release writes after uncertainty passed

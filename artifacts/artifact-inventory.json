@@ -18471,6 +18471,256 @@
       "path": "artifacts/current/accele160-qlogic-pause-20261019/tested-replay.json",
       "size": 18443,
       "sha256": "2386f27b1ed30dcad4fc8c4df2fc174e94368cf98bd27ebe16b0cf494d3dfefc"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/README.md",
+      "size": 2259,
+      "sha256": "bc565fa85d9e091bc64a6c063655ee859d7ac26d8a46738c9d071ad7d20cd660"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/SHA256SUMS",
+      "size": 2070,
+      "sha256": "1221152cd0713cbc2ed593642b6e5960957ab7b777be3413e40d20bdba43d097"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/app.dis",
+      "size": 303910,
+      "sha256": "9565a2abe46a37821c90c3dae3e718297a5ad5e221c982073df88d0db9870617"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/build.log",
+      "size": 419,
+      "sha256": "ddd5514b5024b370910680bdc6b4ef73264b3b919bf2854d03ef3613acf20a52"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/driver-sources.json",
+      "size": 1056,
+      "sha256": "c7de737574503c0d2a2619877af1167708928c2490b85ed41fc04b235aa48e1e"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/driver-sources.tar.xz",
+      "size": 93748,
+      "sha256": "2a0265adcbeedcd0328e6d24c9edd3cf4a80c954f9f3e004ffdaa17ad0bedd17"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/failed-engine-identity.log",
+      "size": 2335,
+      "sha256": "94b3c96720c2622600059bdabad04307d6bba9ffb50a34a7703b1ef5e220e278"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/failed-engine-identity.tar.xz",
+      "size": 8760492,
+      "sha256": "89b6567f189d7e1876a89af5cb2c10fb2ccb13aa0009393762df2d1b3cb4ec8a"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/first-bank-observation.json",
+      "size": 3371,
+      "sha256": "d560a805e7a7f9a41ce446f99dedff30b883a55aea21de894663c2617821cbcf"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/linux-tests.log",
+      "size": 3922,
+      "sha256": "d816f4c3be0a17e85e280e061c7731644f251298a0582a32011e90cb1236d4d3"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/native-tests.txt",
+      "size": 3194,
+      "sha256": "7b8929737f4593ac243d0733826fd733889cef62d9b7f3f5bc4688f46fa7b2c7"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/previous-final.tar.xz",
+      "size": 1554696,
+      "sha256": "fee4c0f38d35c9688a02765f5a4ee71b9136aa50193cb78290a727dfeabe11b8"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/stop-replay.json",
+      "size": 8730,
+      "sha256": "e6b52163e9824a8d337d0cca9a293bb0db789f0ab675e69f3e3fb7ef861812e6"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/tested-final.tar.xz",
+      "size": 1687664,
+      "sha256": "788b5de772bf44968e6ba6c14751264b9e4a3c209c0f231db39408868da03db8"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/tested-live.tar.xz",
+      "size": 9776776,
+      "sha256": "48afc81bbbc6b9e86021d69d0bec46afb01a032766970525558c877a80b81c36"
+    },
+    {
+      "path": "artifacts/current/accele160-qlogic-dma-bank-20261019/tested-replay.json",
+      "size": 31271,
+      "sha256": "84c3a4256623e847b66531d48b6e675c52e449b6eed80ac89b84779e7aa39fd7"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/.gitattributes",
+      "size": 100,
+      "sha256": "47958c3c64503e7c76fe346bc8abf660f8a161d4de08f9c1a11f475be734a71f"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/README.md",
+      "size": 4798,
+      "sha256": "5e22d4924a4aa1d20d58684806a45bb31d3ed154b231b2fd4585c53a5a87f4d3"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/SHA256SUMS",
+      "size": 4454,
+      "sha256": "991e6a3e21f89e0261e92479a9999d9af5ea09c469b2d2659286c07113d37138"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/application-qualification.json",
+      "size": 4782,
+      "sha256": "c59308a3789461a4703fe85bd1ce2172e76107be5212b20d91c3e2b2eb3cedc2"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/autonomous-timers.json",
+      "size": 682,
+      "sha256": "fa7af67f1b912250a36efc3401b1dd13d136eb75b38e97af0f886ca912d30cc9"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/build.log",
+      "size": 419,
+      "sha256": "89dc21d6c08fae95e6cbb539ef2f02b878aeb7871a290a81c1c642bfe667cabf"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/final-prompt.txt",
+      "size": 381,
+      "sha256": "55788509c25ac081debb30ac179530907e678691109fdfb164497580b58ced08"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/first-wire-refusal.tar.xz",
+      "size": 13067444,
+      "sha256": "070569360beac60e1b5f1a530b92c834e1e1d0f9fa700cdcfff4cfa0419143ca"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/first-wire-runtime.json",
+      "size": 858,
+      "sha256": "20eef2feb3fd555392f8dccfa4b5597f81e00e865e5975150a48ff8709c883f6"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/first-wire-stop.json",
+      "size": 261,
+      "sha256": "ab7e3b112f841572046b25dbbfd3c954aa99d6e5ba3fe64abeb5c01dae3bc782"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/first-wire-stop.tar.xz",
+      "size": 1555744,
+      "sha256": "7b914ff28af4fb9e143d02f4e9cfc380a99926fad8dbf17c5b3439be14203380"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/hello-build.log",
+      "size": 419,
+      "sha256": "d6877b60b5a204731a0c0c39ff47cb1be2adea8dab41b6cb7a7b6d2b843d5cb2"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/http4.headers",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/http4.html",
+      "size": 2688,
+      "sha256": "decd7f0f017f63270cc6de8d26b0b33809c689fad73f8081c2fc0ba2c9a0de1a"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/http6.headers",
+      "size": 103,
+      "sha256": "e901aeaefe32f4aac2781e54c8dd9fac1493433d87d33085867346a0f653ea55"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/http6.html",
+      "size": 2688,
+      "sha256": "7a59d159b958f8fc66dc1a028f79a6d3f7f1dce61b6b578d6ac52c7c3ca030e0"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/idle-race-observation.json",
+      "size": 639,
+      "sha256": "97ea2c5263bbb0d3da4bbf6036b633e1f7a8a7a2ba769e34138b8609a0039dc2"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/idle-race.tar.xz",
+      "size": 13071364,
+      "sha256": "db2b9beaef634bc43456c2f77ceedd0af18be20fa01260a641997d109f834a79"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/native-network.json",
+      "size": 321,
+      "sha256": "f6a33715b8d0581312db7ea6f67049e6ef997908e52e69f623fcc415753749d9"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/native-runtime.log",
+      "size": 492,
+      "sha256": "639eab7be463924f96bbd13758121aace9fc3c63fa2aaabbb3c4aa429d368d69"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/native-runtime.txt",
+      "size": 727,
+      "sha256": "18bb9968c3b8ac8e2205e2588592de416028a8d5bec0d4a1a16489ffec23c7ee"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/network-build.log",
+      "size": 442,
+      "sha256": "7aada3600ac4432f2e6865e2a5650330de87e7b42349dac69d081b5583ac7eb9"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/network-qualified-before-reconnect.tar.xz",
+      "size": 13171848,
+      "sha256": "927c27f5d972cfab3e00061a0c524a7fa62f0f01bc51576d500e474a3022c92d"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/network-regression.txt",
+      "size": 298,
+      "sha256": "cbcf48df9476148da55ce002e1b8bfdc8ee54555e68fa546be88252447ac802e"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/ping4.txt",
+      "size": 492,
+      "sha256": "83fb899484779804061e0de0bb98f95030955a1d17cbd8248515593f6d60f4c8"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/ping6.txt",
+      "size": 523,
+      "sha256": "60b48ee1728a55d4b36df08e77ea084db817e1759c838589e2fd80b647242c51"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/relay-stop-final.json",
+      "size": 261,
+      "sha256": "ab7e3b112f841572046b25dbbfd3c954aa99d6e5ba3fe64abeb5c01dae3bc782"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/relay-stop-final.tar.xz",
+      "size": 1649416,
+      "sha256": "bc8b732e9bc7dbbbb05a8b857e4e43341d254c399ea2940ff7afee5ef85052af"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/restoration.json",
+      "size": 1561,
+      "sha256": "b0de9f88b64f794e7549cfc50ae044976c381b7951362277db54362b965b036d"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/segmented-tests.txt",
+      "size": 138,
+      "sha256": "4549669c2e64ff4dc39f5251224c6a01626df9335459be918d8048a7ecd5c9b7"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/socket-echo.json",
+      "size": 140,
+      "sha256": "bd496a7ee3c979184ca76d7c5e3d34d1e5abbf785315623740e7b369dbfef708"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/tested-live.tar.xz",
+      "size": 13140248,
+      "sha256": "124f0c34a4597af2ee673ecbed25efb9443d7003197b56cb403dac4bdc992a98"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/tested-replay.json",
+      "size": 1291,
+      "sha256": "4249ca81364bf4fdf8445bdf8dfae26a49385ca8a8d56b6c6809a316392f940f"
+    },
+    {
+      "path": "artifacts/current/accele160-runtime-port-20261019/wire-layout.json",
+      "size": 531,
+      "sha256": "6815d3772fb472dd95efb8a36b1389222d220d099d9b15242afc344725626fd8"
     }
   ],
   "updated_date": "2026-10-18"

@@ -1,0 +1,46 @@
+{
+  "boot_id": "2433f02b-0e55-4467-a072-0b2c70c8fb48",
+  "kernel_sha256": "d3865059b0c54b1f77dbbe434cd710be83431254b9cfbafd5bd857e21db54e40",
+  "bundle": "/home/mit/i960-runtime-port-v4-20261019/bundle",
+  "services": {
+    "i960-doom": "active",
+    "i960-doom-stream": "active",
+    "i960-rtems-ip": "active"
+  },
+  "http": {
+    "card_ipv4": {
+      "bytes": 2688,
+      "sha256": "9d8b153e1a7beb18fe5310e93731c781392676142e5ea75a343ee862e8e187c6",
+      "http200": true
+    },
+    "card_ipv6": {
+      "bytes": 2688,
+      "sha256": "a356ab56ae304455ce8a77c826c2d4491c4d1825c421261f811e5387448ae707",
+      "http200": true
+    },
+    "gateway": {
+      "bytes": 5801,
+      "sha256": "65bcb8599b73fdbf9a7d42655cdd0472884665d00c340e474353f2cfe2bc1dcb",
+      "http200": true
+    }
+  },
+  "console": {
+    "apps": "run=1\nrunning=0\nidle=1\nframes=64\n",
+    "mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.\n",
+    "tasks": "owner=3228951616\nirq_live=0\nowner=3228951984\nirq_live=0\nowner=3228952352\nirq_live=1\nowner=3228953160\nirq_live=0\nhandoffs=36058\nfault=0\n",
+    "stats": "accepted=1040\nrejected=12\nwad_good=5083\nwad_bad=3\ndma_completed=64\nworker_loops=36858589\n"
+  },
+  "application": {
+    "sequence": 806,
+    "status": 0,
+    "epoch": 3863996595,
+    "value": 24,
+    "state": 3,
+    "reservation": 1032,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 10800,
+    "started": 1,
+    "data": "470000003b00000000000000000000000000000000000000"
+  }
+}

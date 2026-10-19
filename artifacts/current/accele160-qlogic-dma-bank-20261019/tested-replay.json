@@ -1,0 +1,1077 @@
+{
+  "external_exchanges": 709,
+  "external_errors": 0,
+  "boot_id": "2930b50e-ed7e-4ccb-b5e4-bc8b9d3916cc",
+  "kernel_sha256": "027d84cb3b90e2ffe6afdc66d1d7b3cdde84a0ed3cec5863a231f99e9e022614",
+  "owned_samples": [
+    {
+      "sequence": 1,
+      "phase": 0,
+      "ticks": 8,
+      "handoffs": 8,
+      "owned": true,
+      "label": "ready"
+    },
+    {
+      "sequence": 2,
+      "phase": 0,
+      "ticks": 9507,
+      "handoffs": 8636,
+      "owned": true,
+      "label": "game-1-frame32"
+    },
+    {
+      "sequence": 3,
+      "phase": 0,
+      "ticks": 9866,
+      "handoffs": 8716,
+      "owned": true,
+      "label": "game-1-idle"
+    }
+  ],
+  "frames": 64,
+  "wad_reads": 5045,
+  "console_replies": 710,
+  "max_console_latency_ms": 2465.582912000002,
+  "owned_vectors_and_guards": true,
+  "global_stop": false,
+  "session_left_running": true,
+  "profile": 19,
+  "engine_samples": [
+    {
+      "registers": {
+        "0x1400": "0x00000000",
+        "0x140c": "0x00000000",
+        "0x1410": "0x00000000",
+        "0x1414": "0x00000000",
+        "0x1418": "0x00000000",
+        "0x141c": "0x00000000",
+        "0x1420": "0x00000000",
+        "0x1424": "0x00000000",
+        "0x1440": "0x00000000",
+        "0x144c": "0xc0611320",
+        "0x1450": "0x00000000",
+        "0x1454": "0xffd10000",
+        "0x1458": "0x00000000",
+        "0x145c": "0xc0790000",
+        "0x1460": "0x00000000",
+        "0x1464": "0x0000003f",
+        "0x1480": "0x00000000",
+        "0x148c": "0x00000000",
+        "0x1490": "0x00000000",
+        "0x1494": "0x00000000",
+        "0x1498": "0x00000000",
+        "0x149c": "0x00000000",
+        "0x14a0": "0x00000000",
+        "0x14a4": "0x00000000",
+        "0x1600": "0x00000000",
+        "0x104c": "0x00001554",
+        "0x1800": "0x00000000",
+        "0x1808": "0x00000000",
+        "0x180c": "0x00000000",
+        "0x1820": "0x00000000",
+        "0x1824": "0x00000000",
+        "0x1828": "0x00000000",
+        "0xc0384b6c": "0x00000000",
+        "0xc0384b70": "0x00000001",
+        "0xc0384b8c": "0x8bf00000",
+        "0xc0384b90": "0xfff00000",
+        "0xc0384b94": "0x00000000",
+        "0xc0384b98": "0x00000000",
+        "0xc0384b9c": "0x00000000",
+        "0xc0384ba0": "0x00000010",
+        "0xc0384ba4": "0x00000000",
+        "0xc0384ba8": "0xff000000",
+        "0xc0384bac": "0xfe000000",
+        "0xc0384e78": "0x10161077",
+        "0xc0384e7c": "0x00000000",
+        "0xc049b7cc": "0x00000000",
+        "0xc049b7d0": "0x00000000",
+        "0xc049b7d4": "0x00000000"
+      },
+      "atomic": false,
+      "csr_asr_read": false,
+      "ownership_proven": false,
+      "qlogic_pause": {
+        "chip": {
+          "config": {
+            "selector_before": "0x1000c",
+            "selector_after": "0x1000c",
+            "config": {
+              "0x00": "0x10161077",
+              "0x04": "0x02b00006",
+              "0x08": "0x01000006",
+              "0x10": "0x00000001",
+              "0x14": "0xfff00000"
+            },
+            "device_config_writes": false,
+            "ownership_proven": false
+          },
+          "software": {
+            "registers": {
+              "0xc0600d28": "0x8bf00000",
+              "0xc0600d2c": "0x00000000",
+              "0xc0600d30": "0x00000000",
+              "0xc0600d34": "0xc0600df0",
+              "0xc0600d38": "0x00000100",
+              "0xc0600d3c": "0xc0604df0",
+              "0xc0600d40": "0x00000080",
+              "0xc0600d44": "0xc0601730",
+              "0xc0600d48": "0xc0605370",
+              "0xc0600d4c": "0x00000025",
+              "0xc0600d50": "0x00160016",
+              "0xc0498280": "0x00000000",
+              "0xc0498284": "0x00000000",
+              "0xc049828c": "0x00000242"
+            },
+            "expected_layout": true,
+            "ring_pointers_in_range": true,
+            "indices_in_range": true,
+            "request_indices": [
+              37,
+              0
+            ],
+            "response_indices": [
+              22,
+              22
+            ],
+            "pending_head": "0x0",
+            "pending_tail": "0x0",
+            "channel0_counters": [
+              0,
+              0,
+              578
+            ],
+            "software_indices_equal": false,
+            "atomic": false,
+            "hardware_drained": false,
+            "ownership_proven": false
+          },
+          "raw_samples": [
+            [
+              0,
+              2,
+              37,
+              22,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              37,
+              22,
+              0,
+              2
+            ]
+          ],
+          "stable": true,
+          "status_zero": false,
+          "chip_request_consumer": 37,
+          "chip_response_producer": 22,
+          "indices_in_range": true,
+          "request_consumer_matches_cache": false,
+          "response_producer_matches_cache": true,
+          "request_ring_equal_observed": true,
+          "response_ring_equal_observed": true,
+          "atomic": false,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "one_shot": true,
+        "origin_sequence": 1,
+        "conf1": 116,
+        "icr": 6,
+        "hccr_before": 0,
+        "hccr_paused": 32,
+        "hccr_released": 0,
+        "pause_polls": 1,
+        "release_polls": 1,
+        "chip_writes": 2,
+        "after": {
+          "conf1": 116,
+          "icr": 6,
+          "hccr": 0,
+          "isr": 0,
+          "semaphore": 2,
+          "request_consumer": 37,
+          "response_producer": 22
+        },
+        "ticks_before": 8,
+        "ticks_after": 8,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "qlogic_dma_bank": {
+        "pause": {
+          "chip": {
+            "config": {
+              "selector_before": "0x1000c",
+              "selector_after": "0x1000c",
+              "config": {
+                "0x00": "0x10161077",
+                "0x04": "0x02b00006",
+                "0x08": "0x01000006",
+                "0x10": "0x00000001",
+                "0x14": "0xfff00000"
+              },
+              "device_config_writes": false,
+              "ownership_proven": false
+            },
+            "software": {
+              "registers": {
+                "0xc0600d28": "0x8bf00000",
+                "0xc0600d2c": "0x00000000",
+                "0xc0600d30": "0x00000000",
+                "0xc0600d34": "0xc0600df0",
+                "0xc0600d38": "0x00000100",
+                "0xc0600d3c": "0xc0604df0",
+                "0xc0600d40": "0x00000080",
+                "0xc0600d44": "0xc0601730",
+                "0xc0600d48": "0xc0605370",
+                "0xc0600d4c": "0x00000025",
+                "0xc0600d50": "0x00160016",
+                "0xc0498280": "0x00000000",
+                "0xc0498284": "0x00000000",
+                "0xc049828c": "0x00000242"
+              },
+              "expected_layout": true,
+              "ring_pointers_in_range": true,
+              "indices_in_range": true,
+              "request_indices": [
+                37,
+                0
+              ],
+              "response_indices": [
+                22,
+                22
+              ],
+              "pending_head": "0x0",
+              "pending_tail": "0x0",
+              "channel0_counters": [
+                0,
+                0,
+                578
+              ],
+              "software_indices_equal": false,
+              "atomic": false,
+              "hardware_drained": false,
+              "ownership_proven": false
+            },
+            "raw_samples": [
+              [
+                0,
+                2,
+                37,
+                22,
+                0,
+                2
+              ],
+              [
+                0,
+                2,
+                37,
+                22,
+                0,
+                2
+              ]
+            ],
+            "stable": true,
+            "status_zero": false,
+            "chip_request_consumer": 37,
+            "chip_response_producer": 22,
+            "indices_in_range": true,
+            "request_consumer_matches_cache": false,
+            "response_producer_matches_cache": true,
+            "request_ring_equal_observed": true,
+            "response_ring_equal_observed": true,
+            "atomic": false,
+            "hardware_drained": false,
+            "ownership_proven": false
+          },
+          "one_shot": true,
+          "origin_sequence": 1,
+          "conf1": 116,
+          "icr": 6,
+          "hccr_before": 0,
+          "hccr_paused": 32,
+          "hccr_released": 0,
+          "pause_polls": 1,
+          "release_polls": 1,
+          "chip_writes": 2,
+          "after": {
+            "conf1": 116,
+            "icr": 6,
+            "hccr": 0,
+            "isr": 0,
+            "semaphore": 2,
+            "request_consumer": 37,
+            "response_producer": 22
+          },
+          "ticks_before": 8,
+          "ticks_after": 8,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "origin_sequence": 1,
+        "bank_writes": 2,
+        "register_reads": 12,
+        "conf1_saved": 116,
+        "conf1_selected": 884,
+        "conf1_restored": 116,
+        "hccr_still_paused": 32,
+        "physical_offsets": [
+          128,
+          132,
+          134,
+          192,
+          196,
+          198
+        ],
+        "samples": [
+          {
+            "command_config": 1,
+            "command_status": 8,
+            "command_fifo_status": 0,
+            "data_config": 8,
+            "data_status": 8,
+            "data_fifo_status": 0
+          },
+          {
+            "command_config": 1,
+            "command_status": 8,
+            "command_fifo_status": 0,
+            "data_config": 8,
+            "data_status": 8,
+            "data_fifo_status": 0
+          }
+        ],
+        "samples_equal": true,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "member": "sessions/20261019T134058Z/run/owned-ready.bin",
+      "sequence": 1,
+      "ticks": 8
+    },
+    {
+      "registers": {
+        "0x1400": "0x00000000",
+        "0x140c": "0xc071cbe0",
+        "0x1410": "0x00000000",
+        "0x1414": "0xfff71020",
+        "0x1418": "0x00000000",
+        "0x141c": "0xc071cc40",
+        "0x1420": "0x00000000",
+        "0x1424": "0x00000007",
+        "0x1440": "0x00000000",
+        "0x144c": "0xc0611320",
+        "0x1450": "0x00000000",
+        "0x1454": "0xffd10000",
+        "0x1458": "0x00000000",
+        "0x145c": "0xc0790000",
+        "0x1460": "0x00000000",
+        "0x1464": "0x0000003f",
+        "0x1480": "0x00000000",
+        "0x148c": "0x00000000",
+        "0x1490": "0x00000000",
+        "0x1494": "0x00000000",
+        "0x1498": "0x00000000",
+        "0x149c": "0x00000000",
+        "0x14a0": "0x00000000",
+        "0x14a4": "0x00000000",
+        "0x1600": "0x00000000",
+        "0x104c": "0x00001554",
+        "0x1800": "0x00000000",
+        "0x1808": "0x00000000",
+        "0x180c": "0x00000000",
+        "0x1820": "0x00000000",
+        "0x1824": "0x00000000",
+        "0x1828": "0x00000000",
+        "0xc0384b6c": "0x00000000",
+        "0xc0384b70": "0x00000001",
+        "0xc0384b8c": "0x8bf00000",
+        "0xc0384b90": "0xfff00000",
+        "0xc0384b94": "0x00000000",
+        "0xc0384b98": "0x00000000",
+        "0xc0384b9c": "0x00000000",
+        "0xc0384ba0": "0x00000010",
+        "0xc0384ba4": "0x00000000",
+        "0xc0384ba8": "0xff000000",
+        "0xc0384bac": "0xfe000000",
+        "0xc0384e78": "0x10161077",
+        "0xc0384e7c": "0x00000000",
+        "0xc049b7cc": "0x00000000",
+        "0xc049b7d0": "0x00000000",
+        "0xc049b7d4": "0x00000000"
+      },
+      "atomic": false,
+      "csr_asr_read": false,
+      "ownership_proven": false,
+      "qlogic_pause": {
+        "chip": {
+          "config": {
+            "selector_before": "0x1000c",
+            "selector_after": "0x1000c",
+            "config": {
+              "0x00": "0x10161077",
+              "0x04": "0x02b00006",
+              "0x08": "0x01000006",
+              "0x10": "0x00000001",
+              "0x14": "0xfff00000"
+            },
+            "device_config_writes": false,
+            "ownership_proven": false
+          },
+          "software": {
+            "registers": {
+              "0xc0600d28": "0x8bf00000",
+              "0xc0600d2c": "0x00000000",
+              "0xc0600d30": "0x00000000",
+              "0xc0600d34": "0xc0600df0",
+              "0xc0600d38": "0x00000100",
+              "0xc0600d3c": "0xc0604df0",
+              "0xc0600d40": "0x00000080",
+              "0xc0600d44": "0xc0601730",
+              "0xc0600d48": "0xc0605370",
+              "0xc0600d4c": "0x00000025",
+              "0xc0600d50": "0x00160016",
+              "0xc0498280": "0x00000000",
+              "0xc0498284": "0x00000000",
+              "0xc049828c": "0x00000242"
+            },
+            "expected_layout": true,
+            "ring_pointers_in_range": true,
+            "indices_in_range": true,
+            "request_indices": [
+              37,
+              0
+            ],
+            "response_indices": [
+              22,
+              22
+            ],
+            "pending_head": "0x0",
+            "pending_tail": "0x0",
+            "channel0_counters": [
+              0,
+              0,
+              578
+            ],
+            "software_indices_equal": false,
+            "atomic": false,
+            "hardware_drained": false,
+            "ownership_proven": false
+          },
+          "raw_samples": [
+            [
+              0,
+              2,
+              37,
+              22,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              37,
+              22,
+              0,
+              2
+            ]
+          ],
+          "stable": true,
+          "status_zero": false,
+          "chip_request_consumer": 37,
+          "chip_response_producer": 22,
+          "indices_in_range": true,
+          "request_consumer_matches_cache": false,
+          "response_producer_matches_cache": true,
+          "request_ring_equal_observed": true,
+          "response_ring_equal_observed": true,
+          "atomic": false,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "one_shot": true,
+        "origin_sequence": 1,
+        "conf1": 116,
+        "icr": 6,
+        "hccr_before": 0,
+        "hccr_paused": 32,
+        "hccr_released": 0,
+        "pause_polls": 1,
+        "release_polls": 1,
+        "chip_writes": 2,
+        "after": {
+          "conf1": 116,
+          "icr": 6,
+          "hccr": 0,
+          "isr": 0,
+          "semaphore": 2,
+          "request_consumer": 37,
+          "response_producer": 22
+        },
+        "ticks_before": 8,
+        "ticks_after": 8,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "qlogic_dma_bank": {
+        "pause": {
+          "chip": {
+            "config": {
+              "selector_before": "0x1000c",
+              "selector_after": "0x1000c",
+              "config": {
+                "0x00": "0x10161077",
+                "0x04": "0x02b00006",
+                "0x08": "0x01000006",
+                "0x10": "0x00000001",
+                "0x14": "0xfff00000"
+              },
+              "device_config_writes": false,
+              "ownership_proven": false
+            },
+            "software": {
+              "registers": {
+                "0xc0600d28": "0x8bf00000",
+                "0xc0600d2c": "0x00000000",
+                "0xc0600d30": "0x00000000",
+                "0xc0600d34": "0xc0600df0",
+                "0xc0600d38": "0x00000100",
+                "0xc0600d3c": "0xc0604df0",
+                "0xc0600d40": "0x00000080",
+                "0xc0600d44": "0xc0601730",
+                "0xc0600d48": "0xc0605370",
+                "0xc0600d4c": "0x00000025",
+                "0xc0600d50": "0x00160016",
+                "0xc0498280": "0x00000000",
+                "0xc0498284": "0x00000000",
+                "0xc049828c": "0x00000242"
+              },
+              "expected_layout": true,
+              "ring_pointers_in_range": true,
+              "indices_in_range": true,
+              "request_indices": [
+                37,
+                0
+              ],
+              "response_indices": [
+                22,
+                22
+              ],
+              "pending_head": "0x0",
+              "pending_tail": "0x0",
+              "channel0_counters": [
+                0,
+                0,
+                578
+              ],
+              "software_indices_equal": false,
+              "atomic": false,
+              "hardware_drained": false,
+              "ownership_proven": false
+            },
+            "raw_samples": [
+              [
+                0,
+                2,
+                37,
+                22,
+                0,
+                2
+              ],
+              [
+                0,
+                2,
+                37,
+                22,
+                0,
+                2
+              ]
+            ],
+            "stable": true,
+            "status_zero": false,
+            "chip_request_consumer": 37,
+            "chip_response_producer": 22,
+            "indices_in_range": true,
+            "request_consumer_matches_cache": false,
+            "response_producer_matches_cache": true,
+            "request_ring_equal_observed": true,
+            "response_ring_equal_observed": true,
+            "atomic": false,
+            "hardware_drained": false,
+            "ownership_proven": false
+          },
+          "one_shot": true,
+          "origin_sequence": 1,
+          "conf1": 116,
+          "icr": 6,
+          "hccr_before": 0,
+          "hccr_paused": 32,
+          "hccr_released": 0,
+          "pause_polls": 1,
+          "release_polls": 1,
+          "chip_writes": 2,
+          "after": {
+            "conf1": 116,
+            "icr": 6,
+            "hccr": 0,
+            "isr": 0,
+            "semaphore": 2,
+            "request_consumer": 37,
+            "response_producer": 22
+          },
+          "ticks_before": 8,
+          "ticks_after": 8,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "origin_sequence": 1,
+        "bank_writes": 2,
+        "register_reads": 12,
+        "conf1_saved": 116,
+        "conf1_selected": 884,
+        "conf1_restored": 116,
+        "hccr_still_paused": 32,
+        "physical_offsets": [
+          128,
+          132,
+          134,
+          192,
+          196,
+          198
+        ],
+        "samples": [
+          {
+            "command_config": 1,
+            "command_status": 8,
+            "command_fifo_status": 0,
+            "data_config": 8,
+            "data_status": 8,
+            "data_fifo_status": 0
+          },
+          {
+            "command_config": 1,
+            "command_status": 8,
+            "command_fifo_status": 0,
+            "data_config": 8,
+            "data_status": 8,
+            "data_fifo_status": 0
+          }
+        ],
+        "samples_equal": true,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "member": "sessions/20261019T134058Z/run/owned-game-1-frame32.bin",
+      "sequence": 2,
+      "ticks": 9507
+    },
+    {
+      "registers": {
+        "0x1400": "0x00000000",
+        "0x140c": "0xc071cbe0",
+        "0x1410": "0x00000000",
+        "0x1414": "0xfff51020",
+        "0x1418": "0x00000000",
+        "0x141c": "0xc071cc40",
+        "0x1420": "0x00000000",
+        "0x1424": "0x00000007",
+        "0x1440": "0x00000000",
+        "0x144c": "0xc0611320",
+        "0x1450": "0x00000000",
+        "0x1454": "0xffd10000",
+        "0x1458": "0x00000000",
+        "0x145c": "0xc0790000",
+        "0x1460": "0x00000000",
+        "0x1464": "0x0000003f",
+        "0x1480": "0x00000000",
+        "0x148c": "0x00000000",
+        "0x1490": "0x00000000",
+        "0x1494": "0x00000000",
+        "0x1498": "0x00000000",
+        "0x149c": "0x00000000",
+        "0x14a0": "0x00000000",
+        "0x14a4": "0x00000000",
+        "0x1600": "0x00000000",
+        "0x104c": "0x00001554",
+        "0x1800": "0x00000000",
+        "0x1808": "0x00000000",
+        "0x180c": "0x00000000",
+        "0x1820": "0x00000000",
+        "0x1824": "0x00000000",
+        "0x1828": "0x00000000",
+        "0xc0384b6c": "0x00000000",
+        "0xc0384b70": "0x00000001",
+        "0xc0384b8c": "0x8bf00000",
+        "0xc0384b90": "0xfff00000",
+        "0xc0384b94": "0x00000000",
+        "0xc0384b98": "0x00000000",
+        "0xc0384b9c": "0x00000000",
+        "0xc0384ba0": "0x00000010",
+        "0xc0384ba4": "0x00000000",
+        "0xc0384ba8": "0xff000000",
+        "0xc0384bac": "0xfe000000",
+        "0xc0384e78": "0x10161077",
+        "0xc0384e7c": "0x00000000",
+        "0xc049b7cc": "0x00000000",
+        "0xc049b7d0": "0x00000000",
+        "0xc049b7d4": "0x00000000"
+      },
+      "atomic": false,
+      "csr_asr_read": false,
+      "ownership_proven": false,
+      "qlogic_pause": {
+        "chip": {
+          "config": {
+            "selector_before": "0x1000c",
+            "selector_after": "0x1000c",
+            "config": {
+              "0x00": "0x10161077",
+              "0x04": "0x02b00006",
+              "0x08": "0x01000006",
+              "0x10": "0x00000001",
+              "0x14": "0xfff00000"
+            },
+            "device_config_writes": false,
+            "ownership_proven": false
+          },
+          "software": {
+            "registers": {
+              "0xc0600d28": "0x8bf00000",
+              "0xc0600d2c": "0x00000000",
+              "0xc0600d30": "0x00000000",
+              "0xc0600d34": "0xc0600df0",
+              "0xc0600d38": "0x00000100",
+              "0xc0600d3c": "0xc0604df0",
+              "0xc0600d40": "0x00000080",
+              "0xc0600d44": "0xc0601730",
+              "0xc0600d48": "0xc0605370",
+              "0xc0600d4c": "0x00000025",
+              "0xc0600d50": "0x00160016",
+              "0xc0498280": "0x00000000",
+              "0xc0498284": "0x00000000",
+              "0xc049828c": "0x00000242"
+            },
+            "expected_layout": true,
+            "ring_pointers_in_range": true,
+            "indices_in_range": true,
+            "request_indices": [
+              37,
+              0
+            ],
+            "response_indices": [
+              22,
+              22
+            ],
+            "pending_head": "0x0",
+            "pending_tail": "0x0",
+            "channel0_counters": [
+              0,
+              0,
+              578
+            ],
+            "software_indices_equal": false,
+            "atomic": false,
+            "hardware_drained": false,
+            "ownership_proven": false
+          },
+          "raw_samples": [
+            [
+              0,
+              2,
+              37,
+              22,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              37,
+              22,
+              0,
+              2
+            ]
+          ],
+          "stable": true,
+          "status_zero": false,
+          "chip_request_consumer": 37,
+          "chip_response_producer": 22,
+          "indices_in_range": true,
+          "request_consumer_matches_cache": false,
+          "response_producer_matches_cache": true,
+          "request_ring_equal_observed": true,
+          "response_ring_equal_observed": true,
+          "atomic": false,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "one_shot": true,
+        "origin_sequence": 1,
+        "conf1": 116,
+        "icr": 6,
+        "hccr_before": 0,
+        "hccr_paused": 32,
+        "hccr_released": 0,
+        "pause_polls": 1,
+        "release_polls": 1,
+        "chip_writes": 2,
+        "after": {
+          "conf1": 116,
+          "icr": 6,
+          "hccr": 0,
+          "isr": 0,
+          "semaphore": 2,
+          "request_consumer": 37,
+          "response_producer": 22
+        },
+        "ticks_before": 8,
+        "ticks_after": 8,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "qlogic_dma_bank": {
+        "pause": {
+          "chip": {
+            "config": {
+              "selector_before": "0x1000c",
+              "selector_after": "0x1000c",
+              "config": {
+                "0x00": "0x10161077",
+                "0x04": "0x02b00006",
+                "0x08": "0x01000006",
+                "0x10": "0x00000001",
+                "0x14": "0xfff00000"
+              },
+              "device_config_writes": false,
+              "ownership_proven": false
+            },
+            "software": {
+              "registers": {
+                "0xc0600d28": "0x8bf00000",
+                "0xc0600d2c": "0x00000000",
+                "0xc0600d30": "0x00000000",
+                "0xc0600d34": "0xc0600df0",
+                "0xc0600d38": "0x00000100",
+                "0xc0600d3c": "0xc0604df0",
+                "0xc0600d40": "0x00000080",
+                "0xc0600d44": "0xc0601730",
+                "0xc0600d48": "0xc0605370",
+                "0xc0600d4c": "0x00000025",
+                "0xc0600d50": "0x00160016",
+                "0xc0498280": "0x00000000",
+                "0xc0498284": "0x00000000",
+                "0xc049828c": "0x00000242"
+              },
+              "expected_layout": true,
+              "ring_pointers_in_range": true,
+              "indices_in_range": true,
+              "request_indices": [
+                37,
+                0
+              ],
+              "response_indices": [
+                22,
+                22
+              ],
+              "pending_head": "0x0",
+              "pending_tail": "0x0",
+              "channel0_counters": [
+                0,
+                0,
+                578
+              ],
+              "software_indices_equal": false,
+              "atomic": false,
+              "hardware_drained": false,
+              "ownership_proven": false
+            },
+            "raw_samples": [
+              [
+                0,
+                2,
+                37,
+                22,
+                0,
+                2
+              ],
+              [
+                0,
+                2,
+                37,
+                22,
+                0,
+                2
+              ]
+            ],
+            "stable": true,
+            "status_zero": false,
+            "chip_request_consumer": 37,
+            "chip_response_producer": 22,
+            "indices_in_range": true,
+            "request_consumer_matches_cache": false,
+            "response_producer_matches_cache": true,
+            "request_ring_equal_observed": true,
+            "response_ring_equal_observed": true,
+            "atomic": false,
+            "hardware_drained": false,
+            "ownership_proven": false
+          },
+          "one_shot": true,
+          "origin_sequence": 1,
+          "conf1": 116,
+          "icr": 6,
+          "hccr_before": 0,
+          "hccr_paused": 32,
+          "hccr_released": 0,
+          "pause_polls": 1,
+          "release_polls": 1,
+          "chip_writes": 2,
+          "after": {
+            "conf1": 116,
+            "icr": 6,
+            "hccr": 0,
+            "isr": 0,
+            "semaphore": 2,
+            "request_consumer": 37,
+            "response_producer": 22
+          },
+          "ticks_before": 8,
+          "ticks_after": 8,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "origin_sequence": 1,
+        "bank_writes": 2,
+        "register_reads": 12,
+        "conf1_saved": 116,
+        "conf1_selected": 884,
+        "conf1_restored": 116,
+        "hccr_still_paused": 32,
+        "physical_offsets": [
+          128,
+          132,
+          134,
+          192,
+          196,
+          198
+        ],
+        "samples": [
+          {
+            "command_config": 1,
+            "command_status": 8,
+            "command_fifo_status": 0,
+            "data_config": 8,
+            "data_status": 8,
+            "data_fifo_status": 0
+          },
+          {
+            "command_config": 1,
+            "command_status": 8,
+            "command_fifo_status": 0,
+            "data_config": 8,
+            "data_status": 8,
+            "data_fifo_status": 0
+          }
+        ],
+        "samples_equal": true,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "member": "sessions/20261019T134058Z/run/owned-game-1-idle.bin",
+      "sequence": 3,
+      "ticks": 9866
+    }
+  ],
+  "firmware_dependencies": {
+    "firmware_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+    "runtime_sha256": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
+    "anchors": {
+      "qlogic_1016_dispatch": {
+        "address": "0xc005182c",
+        "bytes": "0030e88c161000009842a73a"
+      },
+      "qlogic_1016_init_call": {
+        "address": "0xc0051af8",
+        "bytes": "28cf0109"
+      },
+      "qlogic_1016_init_branch": {
+        "address": "0xc006ea20",
+        "bytes": "70feff08"
+      },
+      "qlogic_callback_install": {
+        "address": "0xc006e8cc",
+        "bytes": "0034a492284b38c00034ac92244b38c0"
+      },
+      "dma1_descriptor_register": {
+        "address": "0xc004f6d4",
+        "bytes": "0030208c50140000"
+      },
+      "dma1_submit_and_enable": {
+        "address": "0xc004f6e4",
+        "bytes": "0010a9920034a192f0ffffff"
+      },
+      "aau_next_descriptor_register": {
+        "address": "0xc00822b0",
+        "bytes": "0030a88c0c180000"
+      },
+      "aau_submit_and_enable": {
+        "address": "0xc00822c0",
+        "bytes": "005085920074b592f4ffffff"
+      },
+      "aau_completion_control": {
+        "address": "0xc0082550",
+        "bytes": "0030f09200180000"
+      },
+      "channel_stride": {
+        "address": "0xc0053ba0",
+        "bytes": "dc03988c"
+      },
+      "channel_vendor_store": {
+        "address": "0xc0053bb0",
+        "bytes": "0034818a784e38c0"
+      },
+      "channel_device_store": {
+        "address": "0xc0053bbc",
+        "bytes": "0034a18a7a4e38c0"
+      },
+      "channel_script_pointer_store": {
+        "address": "0xc005e7b0",
+        "bytes": "2ca08d92"
+      },
+      "secondary_config_selector": {
+        "address": "0xc0053d58",
+        "bytes": "0030a08ca8120000"
+      },
+      "primary_config_selector": {
+        "address": "0xc0053d94",
+        "bytes": "0030a08ca4120000"
+      }
+    },
+    "dma1_descriptor_pointer": "0xc0494a20",
+    "aau_queue": [
+      "0xc049b7cc",
+      "0xc049b7d0",
+      "0xc049b7d4"
+    ],
+    "channel_stride": "0x3dc",
+    "channel0_vendor_device": "0xc0384e78",
+    "channel0_revision": "0xc0384e7c",
+    "channel0_core_register_mapping": "0xc0384b8c",
+    "channel0_pci_register_bar": "0xc0384b90",
+    "channel0_pci_script_bar": "0xc0384b94",
+    "channel0_core_script_mapping": "0xc0384b98",
+    "symbios_alternate_script_start_offset": "0x2c",
+    "qlogic_setup": "0xc006e890",
+    "qlogic_callback_table": "0xc0384b24..0xc0384b64",
+    "live_chip_identity_proven": false,
+    "all_callers_audited": false
+  },
+  "memory_reclaimed": false,
+  "engines_disabled": false,
+  "scsi_config_independently_read": true
+}

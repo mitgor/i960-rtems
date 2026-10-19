@@ -1,0 +1,25 @@
+run=1
+running=0
+idle=1
+frames=64
+workspace_bytes=196608
+arena_bytes=8257536
+fixed_allocations=7
+zone_loaned=0
+No dynamic heap walk; values are observational.
+accepted=971
+rejected=12
+wad_good=5083
+wad_bad=3
+dma_completed=64
+worker_loops=18104128
+owner=3228951616
+irq_live=0
+owner=3228951984
+irq_live=0
+owner=3228952352
+irq_live=1
+owner=3228953160
+irq_live=0
+handoffs=26328
+fault=0

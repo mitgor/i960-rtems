@@ -1,0 +1,53 @@
+{
+  "external_exchanges": 721,
+  "external_errors": 0,
+  "boot_id": "2433f02b-0e55-4467-a072-0b2c70c8fb48",
+  "kernel_sha256": "d3865059b0c54b1f77dbbe434cd710be83431254b9cfbafd5bd857e21db54e40",
+  "owned_samples": [
+    {
+      "sequence": 1,
+      "phase": 0,
+      "ticks": 10,
+      "handoffs": 10,
+      "owned": true,
+      "label": "ready"
+    },
+    {
+      "sequence": 2,
+      "phase": 0,
+      "ticks": 9464,
+      "handoffs": 8596,
+      "owned": true,
+      "label": "game-1-frame32"
+    },
+    {
+      "sequence": 3,
+      "phase": 0,
+      "ticks": 9821,
+      "handoffs": 8674,
+      "owned": true,
+      "label": "game-1-idle"
+    }
+  ],
+  "frames": 64,
+  "wad_reads": 5045,
+  "console_replies": 1020,
+  "max_console_latency_ms": 3158.3147530000133,
+  "owned_vectors_and_guards": true,
+  "global_stop": false,
+  "session_left_running": true,
+  "network_console_exchanges": 245,
+  "relay_reconnect": true,
+  "autonomous_module_calls": 109,
+  "tun_ipv4_ipv6_ping_http": true,
+  "tun_udp_tcp_echo": true,
+  "hello_text": true,
+  "module_loads": 3,
+  "zero_reservation_closes": 2,
+  "general_heap_proofs": 3,
+  "dual_stack_http_runs": 2,
+  "application_replies": 703,
+  "network_left_running": true,
+  "new_stock_ram_reclaimed": false,
+  "unrestricted_task_containment": false
+}

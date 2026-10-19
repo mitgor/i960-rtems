@@ -1,0 +1,1 @@
+PASS: 6 MiB allocation, 128 slots, fragmentation, 10000 operations, stale handles, pins/cancel, segmented load/BSS/checksum/cache failure

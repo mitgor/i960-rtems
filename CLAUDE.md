@@ -1,3 +1,28 @@
+## Latest Accele160 state — 2026-10-19 resident applications/network
+
+Read `docs/rtems/ACCELE160-PORT-PLAN.md` and `rtems/accele160/runtime/README.md`
+before touching the card. Live immutable bundle: `/home/mit/i960-runtime-port-v4-20261019/bundle`;
+session `20261019T140746Z`, boot `2433f02b-0e55-4467-a072-0b2c70c8fb48`.
+The prompt and card-side IPv4/IPv6 HTTP are running. Root owner sockets:
+`/run/i960-rtems-console.sock`, `/run/i960-rtems-runtime.sock`. TUN `accele0`
+serves card `10.196.0.2` / `fd96:196:960::2`; host gateway 8088 remains separate.
+Do not create a second PCI owner or overwrite this active bundle. The application
+service owns its qualified idle lease; browser restarts are refused. Normal
+Doom-only profile is preserved at `/home/mit/i960-owned-runtime-20261018/bundle`.
+Global shutdown retains the firmware callback, grant and DMA pins until reset.
+
+Profile 19's paused DMA-window reads/restoration passed. DMA/SCSI exclusion and
+10–12 MiB ownership remain unproved. The new 512 KiB reservation is within the
+already qualified upper arena, split into 384 KiB module and 128 KiB general
+heap; existing workspace/stacks are unchanged. Module wire fields are explicit
+LE words: i960 structs have different padding. The host opens application
+admission only after all idle audits. Disconnected completed clients are retired;
+uncertain card I/O remains quarantined. Preserve bundle-generated
+`engine_identity.h` matching its engine; the repository's older generated header
+must not overwrite it. Tests, rejected runs, binaries and sources are in
+`artifacts/current/accele160-qlogic-dma-bank-20261019/` and
+`artifacts/current/accele160-runtime-port-20261019/`.
+
 **2026-10-19 Accele160 RISC control:** Profile 18 qualified one-shot pause/release:
 HCCR 0000→0020→0000, one poll each, controls/indices unchanged. It does not prove
 SXP/DMA drain or new RAM ownership. CONF1 bank bits must be clear before HCCR;

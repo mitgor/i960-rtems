@@ -86,3 +86,14 @@ offsets or 2300 queue registers on this 10160.
 
 Exact source snapshots, URLs, SHA-256 values and stock-firmware disassembly are
 preserved in the [profile-18 artifacts](../../../artifacts/current/accele160-qlogic-pause-20261019/README.md).
+
+
+## Profile 19: DMA-window inspection completed
+
+The [paused-bank transaction](PROFILE19.md) now verifies selection and exact,
+unconditional restoration of CONF1 before any HCCR release. Both six-register
+passes agree; command/data status `0008` has the reference terminal-count bit
+set, channel/pipeline masks zero and FIFO status zero. These are observations,
+not a hardware exclusion guarantee. All stock DMA/SCSI RAM remains reserved.
+The separate application-loader work uses only the already validated upper
+arena and does not depend on widening this ownership claim.

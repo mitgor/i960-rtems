@@ -38,6 +38,9 @@ static void at_qlogic_pause(volatile unsigned int *r,unsigned int nonce,
  }
  if(!(r[427]&0x20u))return;
  if((r[427]&~0x20u)!=r[426]){r[421]=6;return;}
+#ifdef QP_PAUSED
+ if(!QP_PAUSED(r)){r[421]=6;return;}
+#endif
  r[421]=5;r[431]=2;QP_WRITE16(0x8bf000c0u,0x3000u);
  for(i=0;i<QP_POLLS;i++){
   v=QP_READ16(0x8bf000c0u);r[429]=v;r[430]=i+1;

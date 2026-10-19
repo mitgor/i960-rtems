@@ -68,7 +68,7 @@ def main():
             modules['admit']=fps_manifest['admit_module_sha256']
         terminal_schema=fps_manifest.get('terminal_schema',0)
         terminal_test=fps_manifest.get('terminal_test',0)
-        need(terminal_schema in (0,1) and terminal_test in (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18) and (terminal_schema or not terminal_test),'terminal profile')
+        need(terminal_schema in (0,1) and terminal_test in (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19) and (terminal_schema or not terminal_test),'terminal profile')
         if terminal_schema:
             need(set(fps_manifest['terminal_sources'])=={'policy.h','card.inc','terminal.S','host.py'},'terminal source set')
             for name,digest in fps_manifest['terminal_sources'].items():
@@ -76,8 +76,8 @@ def main():
             import importlib.util
             spec=importlib.util.spec_from_file_location('accele_terminal',Path(__file__).parent.parent/'fault/host.py')
             terminal=importlib.util.module_from_spec(spec);spec.loader.exec_module(terminal)
-        if terminal_test in (14,15,16,17,18):
-            need(set(fps_manifest['engine_inventory_sources'])==({'inventory.h','inventory.py'} | ({'qlogic_config.h','qlogic_config.py'} if terminal_test==15 else ({'qlogic_queue.h','qlogic_queue.py'} if terminal_test==16 else (({'qlogic_config.h','qlogic_config.py','qlogic_queue.h','qlogic_queue.py','qlogic_chip.h','qlogic_chip.py'} | ({'qlogic_pause.h','qlogic_pause.py'} if terminal_test==18 else set())) if terminal_test in (17,18) else set())))),'inventory source set')
+        if terminal_test in (14,15,16,17,18,19):
+            need(set(fps_manifest['engine_inventory_sources'])==({'inventory.h','inventory.py'} | ({'qlogic_config.h','qlogic_config.py'} if terminal_test==15 else ({'qlogic_queue.h','qlogic_queue.py'} if terminal_test==16 else (({'qlogic_config.h','qlogic_config.py','qlogic_queue.h','qlogic_queue.py','qlogic_chip.h','qlogic_chip.py'} | ({'qlogic_pause.h','qlogic_pause.py'} | ({'qlogic_dma_bank.h','qlogic_dma_bank.py'} if terminal_test==19 else set()) if terminal_test in (18,19) else set())) if terminal_test in (17,18,19) else set())))),'inventory source set')
             for name,digest in fps_manifest['engine_inventory_sources'].items():
                 need(sha((Path(__file__).parent.parent/'ownership'/name).read_bytes())==digest,'inventory source identity')
         service_schema=fps_manifest.get('service_schema',0)
@@ -86,6 +86,12 @@ def main():
             need(set(fps_manifest['service_sources'])=={'protocol.h','card.inc','host.py'},'complete service source identities')
             for name,digest in fps_manifest['service_sources'].items():
                 need(sha((Path(__file__).parent.parent/'service'/name).read_bytes())==digest,'service source identity')
+        need(fps_manifest.get('runtime_schema',0) in (0,1),'runtime schema')
+        if fps_manifest.get('runtime_schema',0):
+            need(service_schema==1 and not a.restart_cycles,'runtime requires console owner and a retained idle lease')
+            for key,folder,names in [('runtime_sources',Path(__file__).parent.parent/'runtime',{'runtime.h','runtime.c','card.inc','host.py'}),('segmented_sources',ROOT/'loader/segmented',{'arena.h','arena.c','image.h','image.c'})]:
+                need(set(fps_manifest[key])==names,'complete runtime source set')
+                for name,digest in fps_manifest[key].items():need(sha((folder/name).read_bytes())==digest,'runtime source identity')
         keyboard_fifo_schema=fps_manifest.get('keyboard_fifo_schema',0)
         need(keyboard_fifo_schema in (0,1),'keyboard FIFO schema')
         if keyboard_fifo_schema:
@@ -173,12 +179,14 @@ def main():
         return got
     active_owner=False
     quiescent=False
-    browser=None;control_file=None;service=None;service_pumping=False
+    browser=None;control_file=None;service=None;service_pumping=False;application_service=None
     def pump_service():
         nonlocal service_pumping
         if service and service.started and not service.testing and not service_pumping:
             service_pumping=True
-            try:service.pump(snap,write)
+            try:
+                service.pump(snap,write)
+                if application_service:application_service.pump(snap,write)
             finally:service_pumping=False
     try:
         before=snap(0xc000e000);owner=snap(0xc0384000)
@@ -319,7 +327,7 @@ def main():
         need(ready and status('ram-admit').get('done')=='0',
              'RTEMS READY missing or early completion; retain grant')
         active_owner=True
-        if a.port and terminal_test in (0,5,14,15,16,17,18):
+        if a.port and terminal_test in (0,5,14,15,16,17,18,19):
             need(1024<=a.port<=65535,'browser port range')
             browser=BrowserSession(a.port,runtime_flat=bool(engine_manifest.get('runtime_flat')),
                 keyboard_mode=a.keyboard_mode,keyboard_fifo=bool(keyboard_fifo_schema),keyboard_test=a.keyboard_selftest)
@@ -370,7 +378,7 @@ def main():
         runtime_seq=0;runtime_samples=[]
         def runtime_audit(label,phase=0):
             nonlocal runtime_seq
-            if terminal_test not in (5,14,15,16,17,18):return
+            if terminal_test not in (5,14,15,16,17,18,19):return
             if not phase:runtime_seq+=1
             row=terminal.runtime_sample(snap,write,terminal_nonce,runtime_seq,
                 a.out/('owned-'+label+'.bin'),phase,terminal_test)
@@ -897,8 +905,16 @@ def main():
             if not a.reusable or signal_stop.is_set() or (a.restart_cycles and game_run>=a.restart_cycles):break
             if browser:browser.idle(game_run)
             print(f'Game {game_run} parked with {frame_count} frames; RTEMS and DMA ownership retained',flush=True)
+            if fps_manifest.get('runtime_schema',0) and application_service is None:
+                from importlib.util import spec_from_file_location,module_from_spec
+                spec=spec_from_file_location('application_host',Path(__file__).parent.parent/'runtime/host.py')
+                module=module_from_spec(spec);spec.loader.exec_module(module)
+                application_service=module.Runtime('/run/i960-rtems-runtime.sock',a.out/'applications.jsonl')
             idle_started=time.monotonic()
-            while not a.restart_cycles and not signal_stop.is_set() and not (browser and browser.restart.is_set()):
+            while not a.restart_cycles and not signal_stop.is_set() and not (browser and browser.restart.is_set() and application_service is None):
+                if application_service and browser and browser.restart.is_set():
+                    browser.restart.clear()
+                    service.record(event='restart_refused',reason='application service owns the idle lease')
                 pump_heartbeat();ownercheck(owned)
                 page=snap(0xc000e000)
                 need(struct.unpack_from('<I',page,0xb58)[0]==0 and status('ram-admit').get('done')=='0','idle owner fault')
@@ -986,6 +1002,7 @@ def main():
                     error=repr(error),stop_error=repr(stop_error)))
         raise
     finally:
+        if application_service:application_service.close()
         if service:service.close()
         if control_file and control_file.exists():
             try:

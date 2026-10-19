@@ -1,0 +1,212 @@
+{
+  "baseline_apps": "run=1\nrunning=0\nidle=1\nframes=64\n",
+  "baseline_mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.\n",
+  "initial": {
+    "sequence": 1,
+    "status": 0,
+    "epoch": 3863996593,
+    "value": 0,
+    "state": 0,
+    "reservation": 0,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 0,
+    "started": 0,
+    "data": ""
+  },
+  "hello_upload": {
+    "sequence": 7,
+    "status": 0,
+    "epoch": 3863996593,
+    "value": 0,
+    "state": 3,
+    "reservation": 520,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 1,
+    "started": 1,
+    "data": ""
+  },
+  "hello_reply": {
+    "sequence": 8,
+    "status": 0,
+    "epoch": 3863996593,
+    "value": 49,
+    "state": 3,
+    "reservation": 520,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 8,
+    "started": 1,
+    "data": "48656c6c6f2066726f6d20416363656c65313630205254454d53207365676d656e746564206170706c69636174696f6e0a"
+  },
+  "hello_heap": {
+    "sequence": 9,
+    "status": 0,
+    "epoch": 3863996593,
+    "value": 255,
+    "state": 3,
+    "reservation": 520,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 13,
+    "started": 1,
+    "data": ""
+  },
+  "hello_close": {
+    "sequence": 10,
+    "status": 0,
+    "epoch": 3863996594,
+    "value": 0,
+    "state": 0,
+    "reservation": 0,
+    "busy": 0,
+    "poisoned": 0,
+    "calls": 0,
+    "started": 0,
+    "data": ""
+  },
+  "network_1": {
+    "upload": {
+      "sequence": 294,
+      "status": 0,
+      "epoch": 3863996594,
+      "value": 0,
+      "state": 3,
+      "reservation": 776,
+      "busy": 0,
+      "poisoned": 0,
+      "calls": 1,
+      "started": 1,
+      "data": ""
+    },
+    "traffic": {
+      "ipv4": {
+        "udp_echo": true,
+        "http_bytes": 2788,
+        "http200": true,
+        "card_identity": true,
+        "fin": true
+      },
+      "ipv6": {
+        "udp_echo": true,
+        "http_bytes": 2790,
+        "http200": true,
+        "card_identity": true,
+        "fin": true
+      },
+      "counters": {
+        "rx": 16,
+        "tx": 18,
+        "drops": 0
+      }
+    },
+    "heap": {
+      "sequence": 312,
+      "status": 0,
+      "epoch": 3863996594,
+      "value": 255,
+      "state": 3,
+      "reservation": 776,
+      "busy": 0,
+      "poisoned": 0,
+      "calls": 119,
+      "started": 1,
+      "data": ""
+    },
+    "mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.\n",
+    "query": {
+      "sequence": 313,
+      "status": 0,
+      "epoch": 3863996594,
+      "value": 24,
+      "state": 3,
+      "reservation": 776,
+      "busy": 0,
+      "poisoned": 0,
+      "calls": 131,
+      "started": 1,
+      "data": "100000001200000000000000000000000000000000000000"
+    },
+    "close": {
+      "sequence": 314,
+      "status": 0,
+      "epoch": 3863996595,
+      "value": 0,
+      "state": 0,
+      "reservation": 0,
+      "busy": 0,
+      "poisoned": 0,
+      "calls": 0,
+      "started": 0,
+      "data": ""
+    }
+  },
+  "network_2": {
+    "upload": {
+      "sequence": 598,
+      "status": 0,
+      "epoch": 3863996595,
+      "value": 0,
+      "state": 3,
+      "reservation": 1032,
+      "busy": 0,
+      "poisoned": 0,
+      "calls": 1,
+      "started": 1,
+      "data": ""
+    },
+    "traffic": {
+      "ipv4": {
+        "udp_echo": true,
+        "http_bytes": 2788,
+        "http200": true,
+        "card_identity": true,
+        "fin": true
+      },
+      "ipv6": {
+        "udp_echo": true,
+        "http_bytes": 2790,
+        "http200": true,
+        "card_identity": true,
+        "fin": true
+      },
+      "counters": {
+        "rx": 16,
+        "tx": 18,
+        "drops": 0
+      }
+    },
+    "heap": {
+      "sequence": 616,
+      "status": 0,
+      "epoch": 3863996595,
+      "value": 255,
+      "state": 3,
+      "reservation": 1032,
+      "busy": 0,
+      "poisoned": 0,
+      "calls": 119,
+      "started": 1,
+      "data": ""
+    },
+    "mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.\n",
+    "query": {
+      "sequence": 617,
+      "status": 0,
+      "epoch": 3863996595,
+      "value": 24,
+      "state": 3,
+      "reservation": 1032,
+      "busy": 0,
+      "poisoned": 0,
+      "calls": 130,
+      "started": 1,
+      "data": "100000001200000000000000000000000000000000000000"
+    }
+  },
+  "final_apps": "run=1\nrunning=0\nidle=1\nframes=64\n",
+  "final_mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.\n",
+  "final_stats": "accepted=788\nrejected=12\nwad_good=5083\nwad_bad=3\ndma_completed=64\nworker_loops=12649012\n",
+  "left_network_running": true
+}

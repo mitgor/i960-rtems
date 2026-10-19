@@ -36,7 +36,12 @@ cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=18 
 cc -Wall -Wextra -Werror -fsanitize=address,undefined "$src/../ownership/test_qlogic_pause.c" -o "$work/pause"
 "$work/pause"
 python3 "$src/../ownership/test_qlogic_pause.py"
-for mode in 5 13 14 15 16 17 18; do
+cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=19 "$src/test_owned.c" -o "$work/bank-runtime"
+"$work/bank-runtime"
+cc -Wall -Wextra -Werror -fsanitize=address,undefined "$src/../ownership/test_qlogic_dma_bank.c" -o "$work/bank"
+"$work/bank"
+python3 "$src/../ownership/test_qlogic_dma_bank.py"
+for mode in 5 13 14 15 16 17 18 19; do
  cc -E -P -x assembler-with-cpp -DACCELE_TERMINAL=1 -DACCELE_TERMINAL_TEST=$mode "$src/terminal.S" > "$work/entry-$mode.S"
 done
 cmp "$work/entry-5.S" "$work/entry-14.S"
@@ -44,6 +49,7 @@ cmp "$work/entry-5.S" "$work/entry-15.S"
 cmp "$work/entry-5.S" "$work/entry-16.S"
 cmp "$work/entry-5.S" "$work/entry-17.S"
 cmp "$work/entry-5.S" "$work/entry-18.S"
+cmp "$work/entry-5.S" "$work/entry-19.S"
 python3 - "$work" <<'CHECK_ENTRY'
 from pathlib import Path
 import sys

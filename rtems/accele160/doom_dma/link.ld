@@ -16,6 +16,7 @@ SECTIONS {
  /* Explicit grant reservation; NOLOAD preserves the established 29-page image.
   * Workspace ends c0760000, bank scratch ends c0763000, RIP samples c0772000. */
  .service 0xc0775000 (NOLOAD) : { __service_start = .; . = . + 4096; __service_end = .; }
+ .applications 0xc077b000 (NOLOAD) : { . = . + 4096; }
  .terminal 0xc0777000 (NOLOAD) : { . = . + 12288; }
  ASSERT(0xc077a000 <= 0xc078b000, "terminal overlaps upload buffers")
  ASSERT(__service_end <= 0xc078b000, "service overlaps upload buffers")

@@ -7,6 +7,7 @@ tree=ast.parse(source.read_text());main=next(n for n in tree.body if isinstance(
 parts=[ast.unparse(n) for n in main.body if isinstance(n,ast.FunctionDef) and n.name in ('snap','write','pump_service')]
 body=textwrap.indent('\n'.join(parts),'    ')
 setup='''def make(service):
+    application_service=None
     service_pumping=False
     PAGE=4096
     selected=[0]

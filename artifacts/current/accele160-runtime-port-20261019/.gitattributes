@@ -1,0 +1,2 @@
+# Preserve HTTP wire captures, including CRLF and the terminating empty line.
+*.headers -text -diff

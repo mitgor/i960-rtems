@@ -1,0 +1,23 @@
+{
+  "board": 23072887,
+  "abi": 1,
+  "base": 3237285024,
+  "entry": 83952,
+  "segments": [
+    {
+      "offset": 0,
+      "file_bytes": 84912,
+      "memory_bytes": 84912,
+      "flags": 1,
+      "crc32": 2738169952
+    },
+    {
+      "offset": 84912,
+      "file_bytes": 32,
+      "memory_bytes": 113776,
+      "flags": 2,
+      "crc32": 2952873731
+    }
+  ],
+  "sha256": "01fb0977bf438201ced2cafafca138e18b3431ce264de70c20a0e2f8e9270d00"
+}

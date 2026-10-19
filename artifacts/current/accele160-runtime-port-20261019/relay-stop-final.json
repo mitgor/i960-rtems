@@ -1,0 +1,4 @@
+{
+  "dma-pin-final.txt": "bdf=0000:37:09.1 bytes=65536 total=77824 bus0=0xfff61000 bus1=0xfff41000 guard_changes=0 retained=1\n",
+  "admit-pending-status.txt": "started=1 done=0 status=-1 residual=-1 released=0 monitor_paused=1 shutting_down=0 submitted=1\n"
+}

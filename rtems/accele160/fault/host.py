@@ -201,7 +201,7 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,f
 
 
 def validate_runtime(page,nonce,seq,phase,mode=5):
-    assert mode in (5,14,15,16,17,18)
+    assert mode in (5,14,15,16,17,18,19)
     w=validate(page,nonce,mode,False)
     assert w[24]==0 and w[160]==0 and w[155]==0
     assert w[166]==seq and w[167]>=6 and w[168]>=2
@@ -223,13 +223,13 @@ def runtime_sample(snap,write,nonce,seq,out,phase=0,mode=5):
     validate_runtime(page,nonce,seq,phase,mode)
     # No second sample request, so the card-owned report must stay immutable.
     assert snap(ADDRESS)[64:]==page[64:]
-    if mode in (14,15,16,17,18):
+    if mode in (14,15,16,17,18,19):
         from importlib.util import spec_from_file_location,module_from_spec
         spec=spec_from_file_location('engine_inventory',Path(__file__).parent.parent/'ownership/inventory.py')
         module=module_from_spec(spec);spec.loader.exec_module(module)
         module.decode(page,nonce,seq,phase)
-        if mode in (15,16,17,18):
-            spec=spec_from_file_location('qlogic_config',Path(__file__).parent.parent/('ownership/qlogic_config.py' if mode==15 else ('ownership/qlogic_chip.py' if mode==17 else ('ownership/qlogic_pause.py' if mode==18 else 'ownership/qlogic_queue.py'))))
+        if mode in (15,16,17,18,19):
+            spec=spec_from_file_location('qlogic_config',Path(__file__).parent.parent/('ownership/qlogic_config.py' if mode==15 else ('ownership/qlogic_chip.py' if mode==17 else ('ownership/qlogic_dma_bank.py' if mode==19 else 'ownership/qlogic_pause.py' if mode in (18,19) else 'ownership/qlogic_queue.py'))))
             module=module_from_spec(spec);spec.loader.exec_module(module)
             module.decode(page,nonce,seq,phase)
     return dict(sequence=seq,phase=phase,ticks=w[167],handoffs=w[168],owned=True)
