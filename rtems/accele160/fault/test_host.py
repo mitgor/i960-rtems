@@ -141,3 +141,16 @@ for index,mask in ((151,1),(152,8),(153,0x80000000),(154,8),(155,1),(160,1),(163
     except AssertionError:pass
     else:raise AssertionError(('NMI resume evidence tamper accepted',index))
 print('NMI resume: vector, source, arm, acknowledgement and mask required')
+
+# Refusal preserves both exhausted bounds and rejects a corrected retry.
+w=w+[0]*16;w[25]=12;w[208:224]=[1]+[0]*15
+w[224]=w[204]=w[192]=w[235]=0x1234;w[225]=0x1235
+w[205]=w[193]=w[236]=0x5678;w[226:229]=[1,1,10000000]
+w[229:235]=w[186:192];w[237:239]=[1,1]
+host.validate_dma_observation(tuple(w))
+for index in tuple(range(208,239)):
+    bad=w[:];bad[index]^=1
+    try:host.validate_dma_observation(tuple(bad))
+    except AssertionError:pass
+    else:raise AssertionError(('refusal evidence tamper accepted',index))
+print('refusal: no enable/completion, original evidence restored, retry latched, second timeout required')

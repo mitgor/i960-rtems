@@ -1,0 +1,8 @@
+{
+  "gate": "c0712c00",
+  "first_gate_call": "c07131b8",
+  "corrected_retry_call": "c07131e4",
+  "second_csr_loop": "c0713208",
+  "poll_bound": 10000000,
+  "scope": "Reviewed evidence-only fingerprint flip/restore, both real gate calls and second bounded observer; hardware result separate"
+}

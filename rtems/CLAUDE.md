@@ -1,3 +1,28 @@
+**Latest Accele160 DMA refusal qualification — 2026-10-19:**
+Profile 12 passed real fault entry, evidence-only source-fingerprint corruption,
+actual gate refusal, corrected-but-latched retry and a second full 10000000-poll
+timeout. CE stayed clear, CSR active, BCR 64872 unchanged; the partial 664-byte
+payload had no marker. Ownership/guards/peers/fingerprints and post-owner-exit
+retention pass. [Evidence](../artifacts/current/accele160-dma-refusal-20261019/README.md)
+and [design](accele160/fault/DMA-REFUSAL.md). AT_WORDS=240 within the original
+4 KiB page; 224–238 hold original/invalid evidence, refusal/retry and second
+observer state. Original word 204 is restored; latch 208 remains 1. Modes 6–11
+still replay. No source or descriptor bytes are intentionally corrupted.
+
+Live normal bundle `/home/mit/i960-owned-runtime-20261018/bundle`, session
+`20261019T035012Z`, boot `9cbbb969-28b2-4bd2-94c7-eb266f112a87`, original kernel
+`55dc845a43b53fe0e84aba8ed180f28e0331999b74857c96d5e8ff2bb2d5d002`.
+Recovery passed fresh paired firmware reads, 64 frames, 5045 WAD reads and
+709 external console exchanges with zero errors. Prompt/gateway 8088 are
+restored at verified idle. Leave that owner running. Never force-unload, unbind
+or adopt retained diagnostic sessions; release remains reset-only. Admission
+module/source changes belong to a separate task.
+
+Next: NMI-specific refusal with invalid recorded source/acknowledgement evidence,
+leaving actual MU acknowledgement intact and DMA disabled; then reset recovery.
+Generic abort, reclaim, arbitrary corruption/task/PCI-error recovery and full
+stock SCSI/cache exclusion remain open. Historical sessions follow.
+
 **Latest Accele160 NMI DMA resume qualification — 2026-10-19:**
 Profile 11 passed real vector-248 NMI, exact source/acknowledgement gate, preserved
 10000000-poll timeout and one CE resume; completion followed after 1843607 polls.

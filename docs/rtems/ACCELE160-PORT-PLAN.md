@@ -410,3 +410,26 @@ same outstanding transfer stays retained through timeout and host exit, then
 reset and restore normal service. Generic PCI retry/error recovery, arbitrary
 NMI/task recovery, abort, memory reclamation and broader stock-engine exclusion
 remain separate work.
+
+### P3g — refused resume and corrected retry (2026-10-19)
+
+Profile 12 now exercises the refusal side of the actual resume gate on the card.
+After deliberate suspension, real fault entry and the first 10000000-poll timeout,
+it flips only the expected source fingerprint in diagnostic evidence. The gate
+refuses. Restoring that fingerprint and calling again also refuses because the
+attempt stays latched. A second 10000000-poll observer confirms the same active,
+disabled DMA state, outstanding descriptor and remaining bytes. Host payload
+stays partial, no marker appears, and source/chain, guards, peers, allocator
+ownership and post-owner-exit retention checks pass.
+
+[Design](../../rtems/accele160/fault/DMA-REFUSAL.md) and
+[evidence](../../artifacts/current/accele160-dma-refusal-20261019/README.md).
+The record is 240 words within its existing 4 KiB page; earlier profiles retain
+their field meanings and modes 6–11 still replay. No live DMA memory is corrupted
+and no resources are reclaimed. Normal service remains original profile 5.
+
+Next: qualify an NMI-specific refusal (invalid recorded source/acknowledgement
+evidence after a real NMI), preserving the actual MU acknowledgement and disabled
+DMA, then reset and restore normal service. Generic corruption recovery, arbitrary
+PCI retry/errors, DMA abort, task restart, release without reset and broader
+stock SCSI/cache exclusion remain separate gaps.

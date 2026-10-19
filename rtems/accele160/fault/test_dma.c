@@ -8,7 +8,7 @@ static unsigned regs[4096],cfg[16],logwords[32],record[1024];
 static unsigned char storage[131072] __attribute__((aligned(4096)));
 static unsigned char *image_base=storage+16;
 static unsigned claimed=1,ticks,reads,finish_after=~0u,forced_error;
-#if ACCELE_TERMINAL_TEST == 10 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
 static unsigned switch_fault,resume_complete,resume_reads;
 static unsigned at_guard(void){return 1;}
 #endif
@@ -22,7 +22,7 @@ static unsigned *reg(unsigned a){
 #endif
   regs[a/4]=++reads<finish_after?0x400:0;
   regs[a/4]|=forced_error;
-#if ACCELE_TERMINAL_TEST == 10 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
   if(record[208]==2 && regs[0x1400/4] && resume_complete && ++resume_reads==3){
    regs[a/4]=0;regs[0x140c/4]=record[180]+32768;
    regs[0x1410/4]=regs[0x1420/4]=0;
@@ -76,7 +76,7 @@ int main(void){
 #if ACCELE_TERMINAL_TEST >= 8
  assert(at[195]==1 && at[203]==4096 && at[197]==0);
 #endif
-#if ACCELE_TERMINAL_TEST == 10 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
  #if ACCELE_TERMINAL_TEST == 11
  at[160]=2;at[20]=0x7d004;at[163]=248;
  at[151]=0x100;at[152]=0xb;at[153]=0x80000000;at[154]=0x73;
@@ -84,6 +84,15 @@ int main(void){
 #else
  at[160]=1;at[20]=0x7d003;
 #endif
+#if ACCELE_TERMINAL_TEST == 12
+ at_dma_finish();assert(at[175]==10000000 && at[228]==10000000);
+ assert(at[208]==1 && at[226]==1 && at[227]==1 && regs[0x1400/4]==0);
+ assert(at[224]==at[192] && at[204]==at[224] && at[225]==(at[224]^1));
+ for(i=209;i<224;i++)assert(!at[i]);
+ for(i=0;i<6;i++)assert(at[229+i]==at[186+i]);
+ assert(at[235]==at[204] && at[236]==at[205] && at[237] && at[238]);
+ puts("actual refusal: evidence-only corruption, corrected retry refused, second 10M timeout and unchanged hardware (simulated)");
+#else
  /* First: actual timeout followed by another bounded resume timeout. */
  at_dma_finish();assert(at[175]==10000000 && at[208]==2 && at[210]==10000000);
  assert(regs[0x1400/4]==1 && at[211]==0x400);
@@ -116,6 +125,7 @@ int main(void){
  assert(at[175]==10000000 && at[186]==0x400 && at[187]==0);
  assert(at[217]==at[204] && at[218]==at[205] && at[219] && at[220]);
  puts("actual CE resume: gates reject, retries blocked, bounded re-timeout and completion retain original evidence (simulated)");
+#endif
 #else
  /* A stuck active engine exhausts a finite bound and stays enabled/retained. */
  at_dma_finish();assert(at[175]==10000000 && at[186]==0x400 && at[187]==(ACCELE_TERMINAL_TEST>=8?0:1));

@@ -1,0 +1,34 @@
+{
+  "first_timeout": {
+    "polls": 10000000,
+    "csr": "0x400",
+    "ccr": 0,
+    "dar": "0xc0821000",
+    "ndar": "0xc0821020",
+    "bcr": 64872,
+    "dcr": 7
+  },
+  "injection": {
+    "original_expected_fnv": "0xdb369dc5",
+    "invalid_expected_fnv": "0xdb369dc4",
+    "restored_expected_fnv": "0xdb369dc5",
+    "first_attempt": 1,
+    "corrected_retry": 1,
+    "final_attempt": 1,
+    "resume_fields_zero": true
+  },
+  "second_timeout": {
+    "polls": 10000000,
+    "csr": "0x400",
+    "ccr": 0,
+    "dar": "0xc0821000",
+    "ndar": "0xc0821020",
+    "bcr": 64872,
+    "dcr": 7
+  },
+  "source_fnv": "0xdb369dc5",
+  "descriptor_fnv": "0xac7fd2ff",
+  "peers": 1,
+  "owned_guards": 1,
+  "partial_payload_bytes": 664
+}

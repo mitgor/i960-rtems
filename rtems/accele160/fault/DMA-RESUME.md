@@ -78,3 +78,7 @@ Native tests reject incorrect vector, source, arm state, acknowledgement and
 mask, in addition to the shared gate and bounded observer cases. Hardware results
 and recovery are recorded in the NMI resume artifact batch. The normal service
 continues to use the previously qualified profile-5 bundle.
+
+The separate [profile 12 diagnostic](DMA-REFUSAL.md) qualifies refusal after
+an invalid expected fingerprint and a corrected retry. Its record uses 240
+words; fields documented here keep their existing meanings.

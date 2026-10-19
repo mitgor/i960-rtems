@@ -1,3 +1,29 @@
+## Accele160 P3g — resume refusal and corrected retry qualified
+
+Profile 12 passed on the card. After real fault entry and 10000000 suspended
+polls, the recorded expected fingerprint was changed from 0xdb369dc5 to
+0xdb369dc4; the actual resume gate refused. Restoring it and calling again
+still refused through the one-shot latch. A second 10000000-poll observer
+recorded unchanged CSR=0x400, CCR=0, DAR/NDAR=0xc0821000/0xc0821020 and BCR=64872.
+The 664-byte partial payload stayed stable with no marker. Source/descriptors,
+owned stacks, host guards, peer registers, allocator ownership and post-owner-exit
+retention all passed; admission stayed `done=0 released=0`.
+
+Fresh paired firmware reads close reset recovery. Normal profile 5 is restored
+in session `20261019T035012Z`, boot `9cbbb969-28b2-4bd2-94c7-eb266f112a87`,
+under `/home/mit/i960-owned-runtime-20261018`. It passed 64 frames, 5045 WAD
+reads and 709 external console exchanges with zero errors. The prompt is
+at verified idle with no zone loan; the streaming gateway 8088 is restored.
+No flash writes, live-memory corruption or physical reset help was needed.
+
+[Evidence](artifacts/current/accele160-dma-refusal-20261019/README.md) and
+[design](rtems/accele160/fault/DMA-REFUSAL.md). The record now uses 240 words
+in its existing page; modes 6–11 still replay. This qualifies one evidence-only
+mismatch and latched retry through the fault path, not arbitrary corruption
+recovery. Next: NMI-specific refusal. DMA abort, reclamation without reset,
+arbitrary task/PCI error recovery and broader stock-engine exclusion remain open.
+Earlier live-session references below are historical.
+
 ## Accele160 P3f — controlled NMI-path DMA resume qualified
 
 Profile 11 passed on the card: real vector 248, NISR=0x100, preserved original

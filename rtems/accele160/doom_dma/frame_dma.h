@@ -79,7 +79,7 @@ static void dma_kick(unsigned gen,unsigned slot,const void *source,unsigned hash
 }
 
 #if ACCELE_TERMINAL_TEST >= 6
-#if ACCELE_TERMINAL_TEST == 10 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
 /* One-shot diagnostic CE resume, never generic fault recovery. Preserve the
  * timeout record, recheck its exact suspended state, then observe a new bound.
  * No descriptor reload, chain-resume bit, completion publication or release. */
@@ -142,7 +142,24 @@ static void at_dma_finish(void){unsigned i,ch,csr=0;
   for(ch=1;ch<3u;ch++)for(i=0;i<8u;i++)
    if(REG(0x1400u+ch*64u+dma_offsets[i])!=dma_peers[ch-1u][i])at[194]=0u;
  }
-#if ACCELE_TERMINAL_TEST == 10 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST == 12
+ /* Corrupt only the recorded expected fingerprint, never live DMA memory.
+  * Restore that evidence after refusal and prove the one-shot latch refuses
+  * a retry too. Preserve both values and observe a second full timeout. */
+ at[224]=at[204];at[204]^=1u;at[225]=at[204];DMA_SYNC();
+ at_dma_resume();at[226]=at[208];
+ at[204]=at[224];DMA_SYNC();at_dma_resume();at[227]=at[208];
+ for(i=0;i<10000000u;i++){
+  csr=REG(0x1404u);if(!(csr&0x400u)||(csr&0x2du))break;
+ }
+ at[228]=i;at[229]=csr;at[230]=REG(0x1400u);at[231]=REG(0x140cu);
+ at[232]=REG(0x1410u);at[233]=REG(0x1420u);at[234]=REG(0x1424u);
+ at[235]=byte_fnv((const void*)at[181],65536u);
+ at[236]=byte_fnv((const void*)at[180],32800u);at[237]=1u;
+ for(ch=1;ch<3u;ch++)for(i=0;i<8u;i++)
+  if(REG(0x1400u+ch*64u+dma_offsets[i])!=dma_peers[ch-1u][i])at[237]=0u;
+ at[238]=at_guard()&&at_owned_valid();
+#elif ACCELE_TERMINAL_TEST == 10 || ACCELE_TERMINAL_TEST == 11
  at_dma_resume();
 #endif
 }
@@ -169,7 +186,7 @@ static void at_dma_test(void){
  for(i=0;i<8u;i++)dma_marker[i]=0x444d4100u+i;
  at[180]=desc;at[181]=(unsigned int)source;at[182]=dma_bus[0];
  at[183]=1024u;at[185]=(unsigned int)dma_marker;
-#if ACCELE_TERMINAL_TEST == 10 || ACCELE_TERMINAL_TEST == 11
+#if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 12
  at[204]=byte_fnv(source,65536u);at[205]=byte_fnv((const void*)desc,32800u);
 #endif
 #if ACCELE_TERMINAL_TEST == 7 || ACCELE_TERMINAL_TEST == 9 || ACCELE_TERMINAL_TEST == 11
@@ -200,7 +217,7 @@ static void at_dma_test(void){
   at[195]=1u;DMA_SYNC();
  }
 #endif
-#if ACCELE_TERMINAL_TEST == 6 || ACCELE_TERMINAL_TEST == 8 || ACCELE_TERMINAL_TEST == 10
+#if ACCELE_TERMINAL_TEST == 6 || ACCELE_TERMINAL_TEST == 8 || ACCELE_TERMINAL_TEST == 10 || ACCELE_TERMINAL_TEST == 12
  accele_raise_fault();
 #else
  at[155]=1u;DMA_SYNC(); /* Host may now issue the actual doorbell NMI. */

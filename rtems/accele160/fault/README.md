@@ -139,3 +139,6 @@ reset-only resource lifetime.
 
 Profile 11 extends the [controlled DMA resume](DMA-RESUME.md) to the real
 NMI path with source/acknowledgement gating and independent PCI MU checks.
+
+See [profile 12 resume refusal](DMA-REFUSAL.md) for evidence-only corruption,
+a refused corrected retry and a second bounded timeout with resources retained.

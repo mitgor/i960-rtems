@@ -41,6 +41,13 @@ def validate_dma_observation(w):
         assert w[152]&8 and w[153]&0x80000000 and not w[154]&8
         assert w[221:224]==(w[152]&~8,w[153]&~0x80000000,w[154]|8)
 
+    if w[25]==12:
+        assert w[208:224]==(1,)+(0,)*15
+        assert w[224]==w[204]==w[192]==w[235]
+        assert w[225]==w[224]^1 and w[205]==w[193]==w[236]
+        assert w[226:229]==(1,1,10000000)
+        assert w[229:235]==w[186:192] and w[237:239]==(1,1)
+
 def validate_dma_frame(data,slot,stalled):
     assert len(data)==77824 and data[:4096]==bytes([0xa5])*4096
     assert data[69664:]==bytes([0xa5])*8160
@@ -62,7 +69,7 @@ def initialize(write):
 
 def decode(page):
     assert len(page)==4096
-    return struct.unpack_from('<224I',page)
+    return struct.unpack_from('<240I',page)
 
 def validate(page,nonce,mode,terminal):
     w=decode(page)
@@ -77,7 +84,7 @@ def validate(page,nonce,mode,terminal):
         assert w[33]==0xc0779040 and w[34]==w[149]
         assert w[80:144]==(w[148],0)*32
         if terminal:
-            if mode in (3,6,8,10):
+            if mode in (3,6,8,10,12):
                 assert w[160]==1 and w[163]&0xffffff==0x00050001
                 assert 0xc0710000<=w[164]<0xc0724000
             else:
@@ -101,7 +108,7 @@ def validate(page,nonce,mode,terminal):
     return w
 
 def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,frame_read=None,deny_release=None):
-    assert mode in (1,2,3,4,6,7,8,9,10,11)
+    assert mode in (1,2,3,4,6,7,8,9,10,11,12)
     out=Path(out);out.mkdir(exist_ok=True)
     pin_before=pin_status()
     assert pin_before.get('guard_changes')=='0' and status().get('done')=='0'
@@ -153,7 +160,7 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,f
     state=status();pin=pin_status()
     assert state.get('done')=='0' and pin.get('guard_changes')=='0' and pin==pin_before
     result=dict(schema=1,terminal_seconds=terminal_seconds,nonce=nonce,mode=mode,stable=True,retained=True,
-        admission=state,pin=pin,code=w[20],ticks=w[27],hardware_fault_tested=mode in (3,6,8,10),nmi_hardware_tested=mode in (4,7,9,11),
+        admission=state,pin=pin,code=w[20],ticks=w[27],hardware_fault_tested=mode in (3,6,8,10,12),nmi_hardware_tested=mode in (4,7,9,11),
         nmi_owned=mode>=3,scsi_excluded=False)
     if mode>=6:
         assert frame_read and deny_release
@@ -162,7 +169,7 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,f
         expected=bytes((i^(i>>8)^0x69)&255 for i in range(65536))
         for slot in (0,1):
             data=frame_read(slot);(out/f'frame{slot}.bin').write_bytes(data)
-            validate_dma_frame(data,slot,mode in (8,9))
+            validate_dma_frame(data,slot,mode in (8,9,12))
             if mode>=8:
                 time.sleep(1)
                 delayed=frame_read(slot);(out/f'delayed-frame{slot}.bin').write_bytes(delayed)
@@ -183,7 +190,7 @@ def exercise(snap,write,nonce,mode,out,status,pin_status,nmi=None,mu_read=None,f
         denied=deny_release();(out/'release-denied.json').write_text(json.dumps(denied,indent=2)+'\n')
         assert denied['returncode']!=0 and pin_status()==pin_before and status().get('done')=='0'
         assert snap(ADDRESS)==page
-        result.update(active_dma_at_entry=True,finite_bytes=1024*65536,drained_after_terminal=mode<8 or mode in (10,11),stalled_timeout=mode>=8,resumed_after_timeout=mode in (10,11),
+        result.update(active_dma_at_entry=True,finite_bytes=1024*65536,drained_after_terminal=mode<8 or mode in (10,11),stalled_timeout=mode>=8,resumed_after_timeout=mode in (10,11),resume_refused=mode==12,
             dma_source_retained=True,dma_destination_retained=True,completion_not_synthesized=True)
     (out/'result.json').write_text(json.dumps(result,indent=2)+'\n')
     return result

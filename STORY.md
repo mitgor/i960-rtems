@@ -6375,3 +6375,36 @@ kernel ran sixty-four frames and 5,045 WAD requests, and the prompt passed
 held. We left the game at verified idle, with its workspace loan returned,
 and restored the streaming gateway. The NMI experiment had its own complete
 capture and a verified route back to the normal prompt.
+
+
+A gate that lets a good transfer resume also has to say no. For the next run
+we changed only the expected fingerprint in the diagnostic record, after the
+channel had been suspended and the fault handler had exhausted its first ten
+million polls. The source bytes and descriptor chain stayed intact. The gate
+saw the mismatch and refused to enable DMA.
+
+Then we put the expected fingerprint back. That made the evidence consistent
+again, but it did not erase the attempt. A second call returned at the latch.
+We kept both values and both refusal results in the record, then watched the
+channel for another ten million status reads.
+
+It was still active, disabled and unfinished. The current descriptor, next
+descriptor and remaining count had not moved. The host still held only the
+partial prefix from before suspension, without a completion marker. The
+source and descriptor fingerprints, peer registers, stack guards and allocator
+ownership agreed with the earlier state. After STOP, refused buffer-module
+unload and the host owner's exit, the same resources were still retained.
+
+This gave the refusal path physical evidence of its own. Correcting diagnostic
+evidence did not silently authorize another attempt. We had not damaged live
+DMA memory or recovered from arbitrary corruption; we had tested one precise
+mismatch through the fault path and kept its unfinished transfer owned until
+reset.
+
+The reset returned without physical intervention. Two full firmware reads
+matched, and the original owned-handler kernel ran sixty-four frames and 5,045
+WAD requests. The prompt passed 709 external exchanges without errors.
+Its ownership snapshots and guards held, the game returned its workspace loan,
+and we left the prompt at verified idle with the streaming gateway restored.
+The refusal test now had both its physical capture and a verified path back
+to ordinary operation.

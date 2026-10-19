@@ -172,3 +172,10 @@ is live in session `20261019T033558Z`, boot `cfb5e186-651a-4666-bb83-a8e52779a87
 `/home/mit/i960-owned-runtime-20261018`. The prompt and gateway 8088 are restored
 at verified idle after 64 frames and 709 accepted external console exchanges.
 See [evidence](../../../artifacts/current/accele160-nmi-dma-resume-20261019/README.md).
+
+
+Latest restoration after profile-12 resume refusal (2026-10-19): original profile 5
+is live in session `20261019T035012Z`, boot `9cbbb969-28b2-4bd2-94c7-eb266f112a87`, under
+`/home/mit/i960-owned-runtime-20261018`. Prompt and gateway 8088 are restored at
+verified idle after 64 frames and 709 accepted external console exchanges.
+See [evidence](../../../artifacts/current/accele160-dma-refusal-20261019/README.md).
