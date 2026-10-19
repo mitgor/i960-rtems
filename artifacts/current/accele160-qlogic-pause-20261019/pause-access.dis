@@ -1,0 +1,216 @@
+00001750 <_at_qlogic_pause>:
+    1750:	00 30 a0 90 	ld	1440 <L317+0x1c>,g4
+    1754:	40 14 00 00
+			1754: R_960_32	.bss
+    1758:	10 16 20 5c 	mov	g0,r4
+    175c:	12 16 30 5c 	mov	g2,r6
+    1760:	13 16 28 5c 	mov	g3,r5
+    1764:	0c 20 05 32 	cmpobe	0,g4,1770 <L360>
+    1768:	8c 26 91 9a 	stl	g2,0x68c(r4)
+    176c:	00 00 00 0a 	ret
+
+00001770 <L360>:
+    1770:	01 1e a0 5c 	mov	1,g4
+    1774:	00 30 a0 92 	st	g4,1440 <L317+0x1c>
+    1778:	40 14 00 00
+			1778: R_960_32	.bss
+    177c:	05 5e b3 59 	shlo	5,13,g6
+    1780:	Address 0x0000000000001780 is out of bounds.
+
+
+00001784 <L365>:
+    1784:	16 1d f1 92 	st	g14,(r4)[g6*4]
+    1788:	16 50 b0 59 	addo	g6,1,g6
+    178c:	f8 9f a5 33 	cmpobge	g4,g6,1784 <L365>
+    1790:	00 30 a0 8c 	lda	31535051 <L1439+0x3152e4f1>,g4
+    1794:	51 50 53 31
+    1798:	80 26 a1 92 	st	g4,0x680(r4)
+    179c:	01 1e a0 5c 	mov	1,g4
+    17a0:	84 26 a1 92 	st	g4,0x684(r4)
+    17a4:	88 26 89 92 	st	g1,0x688(r4)
+    17a8:	8c 26 31 92 	st	r6,0x68c(r4)
+    17ac:	90 26 29 92 	st	r5,0x690(r4)
+    17b0:	94 26 a1 92 	st	g4,0x694(r4)
+    17b4:	98 26 a1 92 	st	g4,0x698(r4)
+    17b8:	9c 26 31 92 	st	r6,0x69c(r4)
+    17bc:	00 30 a0 90 	ld	1c <_lifetime_enter+0x1c>,g4
+    17c0:	1c 00 00 00
+			17c0: R_960_32	.bss
+    17c4:	dc 26 a1 92 	st	g4,0x6dc(r4)
+    17c8:	80 62 04 32 	cmpobe	0,g1,1a48 <L359>
+    17cc:	04 16 80 5c 	mov	r4,g0
+    17d0:	00 30 00 86 	callx	0 <_lifetime_enter>
+    17d4:	00 00 00 00
+			17d4: R_960_32	_at_qp_ready
+    17d8:	70 22 04 32 	cmpobe	0,g0,1a48 <L359>
+    17dc:	02 1e a0 5c 	mov	2,g4
+    17e0:	94 26 a1 92 	st	g4,0x694(r4)
+    17e4:	64 a2 09 35 	cmpobne	1,r6,1a48 <L359>
+    17e8:	60 62 01 35 	cmpobne	0,r5,1a48 <L359>
+    17ec:	03 1e a0 5c 	mov	3,g4
+    17f0:	94 26 a1 92 	st	g4,0x694(r4)
+    17f4:	00 30 a0 88 	ldos	8bf00006 <L1439+0x8bef94a6>,g4
+    17f8:	06 00 f0 8b
+    17fc:	08 de a8 59 	shlo	8,3,g5
+    1800:	10 0e a5 59 	shlo	16,g4,g4
+    1804:	10 0c a5 59 	shro	16,g4,g4
+    1808:	a0 26 a1 92 	st	g4,0x6a0(r4)
+    180c:	00 30 a0 88 	ldos	8bf00008 <L1439+0x8bef94a8>,g4
+    1810:	08 00 f0 8b
+    1814:	10 0e a5 59 	shlo	16,g4,g4
+    1818:	10 0c a5 59 	shro	16,g4,g4
+    181c:	a4 26 a1 92 	st	g4,0x6a4(r4)
+    1820:	a0 26 a1 90 	ld	0x6a0(r4),g4
+    1824:	95 00 a5 58 	and	g5,g4,g4
+    1828:	20 22 05 35 	cmpobne	0,g4,1a48 <L359>
+    182c:	a4 26 a1 90 	ld	0x6a4(r4),g4
+    1830:	18 22 05 37 	bbs	0,g4,1a48 <L359>
+    1834:	00 30 a0 88 	ldos	8bf000c0 <L1439+0x8bef9560>,g4
+    1838:	c0 00 f0 8b
+    183c:	e0 04 a8 8c 	lda	0x4e0,g5
+    1840:	10 0e a5 59 	shlo	16,g4,g4
+    1844:	10 0c a5 59 	shro	16,g4,g4
+    1848:	a8 26 a1 92 	st	g4,0x6a8(r4)
+    184c:	a8 26 a1 90 	ld	0x6a8(r4),g4
+    1850:	95 00 a5 58 	and	g5,g4,g4
+    1854:	f4 21 05 35 	cmpobne	0,g4,1a48 <L359>
+    1858:	04 1e a0 5c 	mov	4,g4
+    185c:	94 26 a1 92 	st	g4,0x694(r4)
+    1860:	bc 26 31 92 	st	r6,0x6bc(r4)
+    1864:	8d 19 a0 58 	setbit	13,0,g4
+    1868:	00 30 a0 8a 	stos	g4,8bf000c0 <L1439+0x8bef9560>
+    186c:	c0 00 f0 8b
+    1870:	80 3f 00 66 	syncf
+    1874:	00 1e b0 5c 	mov	0,g6
+    1878:	00 30 b8 8c 	lda	270f <L634+0x1b>,g7
+    187c:	0f 27 00 00
+
+00001880 <L379>:
+    1880:	00 30 a0 88 	ldos	8bf000c0 <L1439+0x8bef9560>,g4
+    1884:	c0 00 f0 8b
+    1888:	16 50 a8 59 	addo	g6,1,g5
+    188c:	10 0e a5 59 	shlo	16,g4,g4
+    1890:	15 16 b0 5c 	mov	g5,g6
+    1894:	10 0c a5 59 	shro	16,g4,g4
+    1898:	ac 26 a1 9a 	stl	g4,0x6ac(r4)
+    189c:	08 20 2d 37 	bbs	5,g4,18a4 <L375>
+    18a0:	e0 5f bd 33 	cmpobge	g7,g5,1880 <L379>
+
+000018a4 <L375>:
+    18a4:	ac 26 a1 90 	ld	0x6ac(r4),g4
+    18a8:	1f 58 a8 59 	addo	31,1,g5
+    18ac:	94 40 a5 58 	and	g4,g5,g4
+    18b0:	98 21 05 32 	cmpobe	0,g4,1a48 <L359>
+    18b4:	ac 26 a1 90 	ld	0x6ac(r4),g4
+    18b8:	a8 26 a9 90 	ld	0x6a8(r4),g5
+    18bc:	05 0e a5 58 	clrbit	5,g4,g4
+    18c0:	10 00 ad 32 	cmpobe	g5,g4,18d0 <L381>
+    18c4:	06 1e a0 5c 	mov	6,g4
+    18c8:	94 26 a1 92 	st	g4,0x694(r4)
+    18cc:	00 00 00 0a 	ret
+
+000018d0 <L381>:
+    18d0:	05 1e a0 5c 	mov	5,g4
+    18d4:	94 26 a1 92 	st	g4,0x694(r4)
+    18d8:	02 1e a0 5c 	mov	2,g4
+    18dc:	bc 26 a1 92 	st	g4,0x6bc(r4)
+    18e0:	0c de a0 59 	shlo	12,3,g4
+    18e4:	00 30 a0 8a 	stos	g4,8bf000c0 <L1439+0x8bef9560>
+    18e8:	c0 00 f0 8b
+    18ec:	80 3f 00 66 	syncf
+    18f0:	00 1e b0 5c 	mov	0,g6
+    18f4:	00 30 b8 8c 	lda	270f <L634+0x1b>,g7
+    18f8:	0f 27 00 00
+
+000018fc <L388>:
+    18fc:	00 30 a0 88 	ldos	8bf000c0 <L1439+0x8bef9560>,g4
+    1900:	c0 00 f0 8b
+    1904:	16 50 a8 59 	addo	g6,1,g5
+    1908:	10 0e a5 59 	shlo	16,g4,g4
+    190c:	15 16 b0 5c 	mov	g5,g6
+    1910:	10 0c a5 59 	shro	16,g4,g4
+    1914:	b4 26 a1 9a 	stl	g4,0x6b4(r4)
+    1918:	08 20 2d 30 	bbc	5,g4,1920 <L384>
+    191c:	e0 5f bd 33 	cmpobge	g7,g5,18fc <L388>
+
+00001920 <L384>:
+    1920:	b4 26 a1 90 	ld	0x6b4(r4),g4
+    1924:	1f 58 a8 59 	addo	31,1,g5
+    1928:	94 40 a5 58 	and	g4,g5,g4
+    192c:	1c 21 05 35 	cmpobne	0,g4,1a48 <L359>
+    1930:	06 1e a0 5c 	mov	6,g4
+    1934:	94 26 a1 92 	st	g4,0x694(r4)
+    1938:	00 30 a0 88 	ldos	8bf00006 <L1439+0x8bef94a6>,g4
+    193c:	06 00 f0 8b
+    1940:	08 de a8 59 	shlo	8,3,g5
+    1944:	10 0e a5 59 	shlo	16,g4,g4
+    1948:	10 0c a5 59 	shro	16,g4,g4
+    194c:	c0 26 a1 92 	st	g4,0x6c0(r4)
+    1950:	00 30 a0 88 	ldos	8bf00008 <L1439+0x8bef94a8>,g4
+    1954:	08 00 f0 8b
+    1958:	10 0e a5 59 	shlo	16,g4,g4
+    195c:	10 0c a5 59 	shro	16,g4,g4
+    1960:	c4 26 a1 92 	st	g4,0x6c4(r4)
+    1964:	c0 26 a1 90 	ld	0x6c0(r4),g4
+    1968:	95 00 a5 58 	and	g5,g4,g4
+    196c:	dc 20 05 35 	cmpobne	0,g4,1a48 <L359>
+    1970:	c4 26 a1 90 	ld	0x6c4(r4),g4
+    1974:	d4 20 05 37 	bbs	0,g4,1a48 <L359>
+    1978:	00 30 a0 88 	ldos	8bf000c0 <L1439+0x8bef9560>,g4
+    197c:	c0 00 f0 8b
+    1980:	10 0e a5 59 	shlo	16,g4,g4
+    1984:	10 0c a5 59 	shro	16,g4,g4
+    1988:	c8 26 a1 92 	st	g4,0x6c8(r4)
+    198c:	00 30 a0 88 	ldos	8bf0000a <L1439+0x8bef94aa>,g4
+    1990:	0a 00 f0 8b
+    1994:	10 0e a5 59 	shlo	16,g4,g4
+    1998:	10 0c a5 59 	shro	16,g4,g4
+    199c:	cc 26 a1 92 	st	g4,0x6cc(r4)
+    19a0:	00 30 a0 88 	ldos	8bf0000c <L1439+0x8bef94ac>,g4
+    19a4:	0c 00 f0 8b
+    19a8:	10 0e a5 59 	shlo	16,g4,g4
+    19ac:	10 0c a5 59 	shro	16,g4,g4
+    19b0:	d0 26 a1 92 	st	g4,0x6d0(r4)
+    19b4:	00 30 a0 88 	ldos	8bf00078 <L1439+0x8bef9518>,g4
+    19b8:	78 00 f0 8b
+    19bc:	10 0e a5 59 	shlo	16,g4,g4
+    19c0:	10 0c a5 59 	shro	16,g4,g4
+    19c4:	d4 26 a1 92 	st	g4,0x6d4(r4)
+    19c8:	00 30 a0 88 	ldos	8bf0007a <L1439+0x8bef951a>,g4
+    19cc:	7a 00 f0 8b
+    19d0:	10 0e a5 59 	shlo	16,g4,g4
+    19d4:	10 0c a5 59 	shro	16,g4,g4
+    19d8:	d8 26 a1 92 	st	g4,0x6d8(r4)
+    19dc:	00 30 a0 90 	ld	1c <_lifetime_enter+0x1c>,g4
+    19e0:	1c 00 00 00
+			19e0: R_960_32	.bss
+    19e4:	e0 26 a1 92 	st	g4,0x6e0(r4)
+    19e8:	c0 26 a9 90 	ld	0x6c0(r4),g5
+    19ec:	a0 26 a1 90 	ld	0x6a0(r4),g4
+    19f0:	58 40 a5 35 	cmpobne	g4,g5,1a48 <L359>
+    19f4:	c4 26 a9 90 	ld	0x6c4(r4),g5
+    19f8:	a4 26 a1 90 	ld	0x6a4(r4),g4
+    19fc:	4c 40 a5 35 	cmpobne	g4,g5,1a48 <L359>
+    1a00:	b4 26 a9 90 	ld	0x6b4(r4),g5
+    1a04:	a8 26 a1 90 	ld	0x6a8(r4),g4
+    1a08:	40 40 a5 35 	cmpobne	g4,g5,1a48 <L359>
+    1a0c:	c8 26 a9 90 	ld	0x6c8(r4),g5
+    1a10:	a8 26 a1 90 	ld	0x6a8(r4),g4
+    1a14:	34 40 a5 35 	cmpobne	g4,g5,1a48 <L359>
+    1a18:	cc 26 a1 90 	ld	0x6cc(r4),g4
+    1a1c:	2c 20 05 35 	cmpobne	0,g4,1a48 <L359>
+    1a20:	d0 26 a9 90 	ld	0x6d0(r4),g5
+    1a24:	24 26 a1 90 	ld	0x624(r4),g4
+    1a28:	20 40 a5 35 	cmpobne	g4,g5,1a48 <L359>
+    1a2c:	d4 26 a9 90 	ld	0x6d4(r4),g5
+    1a30:	28 26 a1 90 	ld	0x628(r4),g4
+    1a34:	14 40 a5 35 	cmpobne	g4,g5,1a48 <L359>
+    1a38:	d8 26 a9 90 	ld	0x6d8(r4),g5
+    1a3c:	2c 26 a1 90 	ld	0x62c(r4),g4
+    1a40:	08 40 a5 35 	cmpobne	g4,g5,1a48 <L359>
+    1a44:	Address 0x0000000000001a44 is out of bounds.
+
+
+00001a48 <L359>:
+    1a48:	00 00 00 0a 	ret
+    1a4c:	00 00 00 00 	.word	0x00000000

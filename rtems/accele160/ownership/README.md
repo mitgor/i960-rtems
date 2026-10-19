@@ -1,6 +1,11 @@
 # Accele160 engine-ownership audit (P3i)
 
-Latest: [profile 17](PROFILE17.md) compares two fixed 16-bit chip-index samples
+Latest: [profile 18](PROFILE18.md) qualifies one-shot RISC pause/release with
+identity/queue/control gates and bounded polling. The
+[stop/isolation contract](STOP-CONTRACT.md) separates this from SXP/DMA drain
+and preserves all firmware allocations.
+
+Prior: [profile 17](PROFILE17.md) compares two fixed 16-bit chip-index samples
 with checked firmware RAM, behind physical PCI identity and mapping gates.
 It preserves status evidence and grants no ownership.
 

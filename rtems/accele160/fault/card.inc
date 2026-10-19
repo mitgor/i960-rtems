@@ -127,22 +127,28 @@ void accele_terminal_record(void){
  AT_SYNC();at[31]=AT_DONE;
  AT_PARK();
 }
-#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17)
+#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18)
 /* Host requests use words 3/4; ack 166 publishes a complete immutable sample.
  * No injection token is accepted by this profile. */
-#if ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17
+#if ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18
 #include "../ownership/inventory.h"
-#if ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17
+#if ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18
 #define QR_READ(a) REG(a)
 #include "../ownership/qlogic_queue.h"
 #endif
-#if ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 17
+#if ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18
 #define Q_READ(a) REG(a)
 #define Q_WRITE(a,v) do { REG(a)=(v); AT_SYNC(); } while(0)
 #include "../ownership/qlogic_config.h"
-#if ACCELE_TERMINAL_TEST == 17
+#if ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18
 #define QC_READ16(a) (*(volatile unsigned short *)(unsigned long)(a))
 #include "../ownership/qlogic_chip.h"
+#if ACCELE_TERMINAL_TEST == 18
+#define QP_READ16(a) QC_READ16(a)
+#define QP_WRITE16(a,v) do { (*(volatile unsigned short *)(unsigned long)(a))=(v); AT_SYNC(); } while(0)
+#define QP_TICKS() ticks
+#include "../ownership/qlogic_pause.h"
+#endif
 #endif
 #endif
 #endif
@@ -151,15 +157,18 @@ static void at_runtime_snapshot(unsigned int phase){
  at[167]=ticks;at[168]=handoffs;at[169]=switch_fault;
  at[170]=at_owned_valid();at[171]=phase;
  if(!at[170]||!at[26]||at[169])accele_terminal_enter(0x7d019u);
-#if ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17
+#if ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18
  at_engine_snapshot(at,at_nonce,at[4],phase);
-#if ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17
+#if ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18
  at_qlogic_queue(at,at_nonce,at[4],phase);
 #endif
-#if ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 17
+#if ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18
  at_qlogic_snapshot(at,at_nonce,at[4],phase);
-#if ACCELE_TERMINAL_TEST == 17
+#if ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18
  at_qlogic_chip(at,at_nonce,at[4],phase);
+#if ACCELE_TERMINAL_TEST == 18
+ at_qlogic_pause(at,at_nonce,at[4],phase);
+#endif
 #endif
 #endif
 #endif
@@ -170,7 +179,7 @@ static void at_runtime_snapshot(unsigned int phase){
 static void at_dma_test(void);
 #endif
 static void at_poll(void){
-#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17)
+#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18)
  if(at[3]==at_nonce && at_nonce && at[4] && at[4]!=at[166])
   at_runtime_snapshot(0u);
 #endif

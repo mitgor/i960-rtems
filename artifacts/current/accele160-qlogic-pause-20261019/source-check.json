@@ -1,0 +1,18 @@
+{
+  "captured_sources_match_current": true,
+  "sources": {
+    "inventory.h": "eb4aa96bc5a2530ea1f3fc7b6551a8833cf20da7073f67c246e5fd11211245d4",
+    "inventory.py": "8ff3945c1d3624cb277381fe723b3088a841e6d09978f37c65aca32762b8474f",
+    "qlogic_config.h": "a276a303a109698b3a354f5cfa2ed64f339e69111d74658e3972e39fc3ac93d8",
+    "qlogic_config.py": "3dd3eb5d10bfd7db492ea019644d5fa112272c0d6c132cc208983e0aa652a291",
+    "qlogic_queue.h": "d9bc40db2b0bcbb4debf94947744e49ea269cc31fc271c5fd3e9ec9bcbee30d5",
+    "qlogic_queue.py": "235b363e4fd67e827cac2e955a4adefb25f0716c80eddbae9b55cc3c67d07878",
+    "qlogic_chip.h": "ea57cd74aa7c7469ae8b87c9202250a45c4a82f6d40f2d9159a796703109b13e",
+    "qlogic_chip.py": "d78714d618f2914e2d3631244cf250f73448908fd3265a961ad89079f64ea285",
+    "qlogic_pause.h": "59c6c971e47dbb572482014106bf102f0b9285f0dc51751422310b4a1600ebd8",
+    "qlogic_pause.py": "59d12ca105ca5debe2f5def564b49322686990e73f5d46bf12e7f0e2cfeabc18"
+  },
+  "kernel_sha256": "59590ebc1acc41527f24e7ee098617278a82c8f4fad6db6bcc122b1f284f07c8",
+  "admit_source_sha256": "7f9a6334a95e923edb4e35e125740e5884a674e7b390a80164a5ff3173105167",
+  "admit_module_sha256": "313af2acae9e740dfb90e10e053beeca47efe9cfd5d0bfa74c1cdd07abd28c15"
+}

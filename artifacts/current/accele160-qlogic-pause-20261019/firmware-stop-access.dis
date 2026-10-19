@@ -1,0 +1,77 @@
+Firmware addresses c006b18c..c006b258
+c006b18c:	28 60 a1 90 	ld	0x28(r5),g4
+c006b190:	0a 1e 80 5c 	mov	10,g0
+c006b194:	08 20 ad 88 	ldos	0x8(g4),g5
+c006b198:	01 1e 90 5c 	mov	1,g2
+c006b19c:	08 20 95 8a 	stos	g2,0x8(g4)
+c006b1a0:	00 83 fe 09 	call	0xc00534a0
+c006b1a4:	28 60 a1 90 	ld	0x28(r5),g4
+c006b1a8:	0a 1e 80 5c 	mov	10,g0
+c006b1ac:	c0 20 ad 88 	ldos	0xc0(g4),g5
+c006b1b0:	8c 19 90 58 	setbit	12,0,g2
+c006b1b4:	c0 20 95 8a 	stos	g2,0xc0(g4)
+c006b1b8:	e8 82 fe 09 	call	0xc00534a0
+c006b1bc:	28 60 a1 90 	ld	0x28(r5),g4
+c006b1c0:	0c de 20 59 	shlo	12,3,r4
+c006b1c4:	0a 1e 80 5c 	mov	10,g0
+c006b1c8:	c0 20 ad 88 	ldos	0xc0(g4),g5
+c006b1cc:	c0 20 25 8a 	stos	r4,0xc0(g4)
+c006b1d0:	d0 82 fe 09 	call	0xc00534a0
+c006b1d4:	28 60 a1 90 	ld	0x28(r5),g4
+c006b1d8:	0a 1e 80 5c 	mov	10,g0
+c006b1dc:	c0 20 ad 88 	ldos	0xc0(g4),g5
+c006b1e0:	8d 19 90 58 	setbit	13,0,g2
+c006b1e4:	c0 20 95 8a 	stos	g2,0xc0(g4)
+c006b1e8:	b8 82 fe 09 	call	0xc00534a0
+c006b1ec:	28 60 a1 90 	ld	0x28(r5),g4
+c006b1f0:	00 30 80 8c 	lda	0xc006b0d0,g0
+c006b1f4:	d0 b0 06 c0
+c006b1f8:	ac 20 8d 88 	ldos	0xac(g4),g1
+c006b1fc:	74 f1 f9 09 	call	0xc000a370
+c006b200:	0a 1e 80 5c 	mov	10,g0
+c006b204:	9c 82 fe 09 	call	0xc00534a0
+c006b208:	28 60 a1 90 	ld	0x28(r5),g4
+c006b20c:	0a 1e 80 5c 	mov	10,g0
+c006b210:	06 20 ad 88 	ldos	0x6(g4),g5
+c006b214:	08 de 90 59 	shlo	8,3,g2
+c006b218:	06 20 95 8a 	stos	g2,0x6(g4)
+c006b21c:	84 82 fe 09 	call	0xc00534a0
+c006b220:	28 60 a1 90 	ld	0x28(r5),g4
+c006b224:	0a 1e 80 5c 	mov	10,g0
+c006b228:	80 20 a5 88 	ldos	0x80(g4),g4
+c006b22c:	74 82 fe 09 	call	0xc00534a0
+c006b230:	28 60 a1 90 	ld	0x28(r5),g4
+c006b234:	0a 1e 80 5c 	mov	10,g0
+c006b238:	06 20 ad 88 	ldos	0x6(g4),g5
+c006b23c:	06 20 f5 8a 	stos	g14,0x6(g4)
+c006b240:	60 82 fe 09 	call	0xc00534a0
+c006b244:	28 60 a1 90 	ld	0x28(r5),g4
+c006b248:	0a 1e 80 5c 	mov	10,g0
+c006b24c:	c0 20 ad 88 	ldos	0xc0(g4),g5
+c006b250:	c0 20 25 8a 	stos	r4,0xc0(g4)
+c006b254:	4c 82 fe 09 	call	0xc00534a0
+Firmware addresses c006bc80..c006bce0
+c006bc80:	c0 60 a1 88 	ldos	0xc0(r5),g4
+c006bc84:	07 2f 05 5a 	chkbit	7,g4
+c006bc88:	00 30 20 8c 	lda	0x2710,r4
+c006bc8c:	10 27 00 00
+c006bc90:	34 00 00 10 	bno	0xc006bcc4
+c006bc94:	04 16 a0 5c 	mov	r4,g4
+c006bc98:	94 30 00 5a 	cmpi	g4,0
+c006bc9c:	01 09 21 59 	subo	1,r4,r4
+c006bca0:	18 07 00 12 	be	0xc006c3b8
+c006bca4:	08 60 a1 88 	ldos	0x8(r5),g4
+c006bca8:	08 60 69 8a 	stos	r13,0x8(r5)
+c006bcac:	0a 1e 80 5c 	mov	10,g0
+c006bcb0:	08 60 a1 88 	ldos	0x8(r5),g4
+c006bcb4:	08 60 f1 8a 	stos	g14,0x8(r5)
+c006bcb8:	e8 77 fe 09 	call	0xc00534a0
+c006bcbc:	c0 60 a1 88 	ldos	0xc0(r5),g4
+c006bcc0:	d4 3f 3d 37 	bbs	7,g4,0xc006bc94
+c006bcc4:	01 89 a3 59 	subo	1,r14,g4
+c006bcc8:	d0 20 3d 34 	cmpobl	7,g4,0xc006bd98
+c006bccc:	14 39 a0 90 	ld	0xc006bcd8[g4*4],g4
+c006bcd0:	d8 bc 06 c0
+c006bcd4:	00 10 05 84 	bx	(g4)
+c006bcd8:	8c bd 06 c0 	ldib	0xc006bd80(g10)[r12*8],pfp
+c006bcdc:	80 bd 06 c0

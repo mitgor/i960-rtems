@@ -1,0 +1,8 @@
+{
+  "quiescent": true,
+  "stop_ack": true,
+  "callback_retained": true,
+  "pins_retained": true,
+  "guard_changes": 0,
+  "sha256": "c03cf4d6bccea8588c196c7d8c8e4b51904851ad107d41083b313f96ee98b533"
+}

@@ -1,0 +1,461 @@
+{
+  "samples": [
+    {
+      "label": "sessions/20261019T131024Z/run/owned-ready.bin",
+      "pause": {
+        "one_shot": true,
+        "origin_sequence": 1,
+        "conf1": 116,
+        "icr": 6,
+        "hccr_before": 0,
+        "hccr_paused": 32,
+        "hccr_released": 0,
+        "pause_polls": 1,
+        "release_polls": 1,
+        "chip_writes": 2,
+        "after": {
+          "conf1": 116,
+          "icr": 6,
+          "hccr": 0,
+          "isr": 0,
+          "semaphore": 2,
+          "request_consumer": 37,
+          "response_producer": 22
+        },
+        "ticks_before": 10,
+        "ticks_after": 10,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "fresh_chip_sample": {
+        "config": {
+          "selector_before": "0x1000c",
+          "selector_after": "0x1000c",
+          "config": {
+            "0x00": "0x10161077",
+            "0x04": "0x02b00006",
+            "0x08": "0x01000006",
+            "0x10": "0x00000001",
+            "0x14": "0xfff00000"
+          },
+          "device_config_writes": false,
+          "ownership_proven": false
+        },
+        "software": {
+          "registers": {
+            "0xc0600d28": "0x8bf00000",
+            "0xc0600d2c": "0x00000000",
+            "0xc0600d30": "0x00000000",
+            "0xc0600d34": "0xc0600df0",
+            "0xc0600d38": "0x00000100",
+            "0xc0600d3c": "0xc0604df0",
+            "0xc0600d40": "0x00000080",
+            "0xc0600d44": "0xc0601730",
+            "0xc0600d48": "0xc0605370",
+            "0xc0600d4c": "0x00000025",
+            "0xc0600d50": "0x00160016",
+            "0xc0498280": "0x00000000",
+            "0xc0498284": "0x00000000",
+            "0xc049828c": "0x00000242"
+          },
+          "expected_layout": true,
+          "ring_pointers_in_range": true,
+          "indices_in_range": true,
+          "request_indices": [
+            37,
+            0
+          ],
+          "response_indices": [
+            22,
+            22
+          ],
+          "pending_head": "0x0",
+          "pending_tail": "0x0",
+          "channel0_counters": [
+            0,
+            0,
+            578
+          ],
+          "software_indices_equal": false,
+          "atomic": false,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "raw_samples": [
+          [
+            0,
+            2,
+            37,
+            22,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            37,
+            22,
+            0,
+            2
+          ]
+        ],
+        "stable": true,
+        "status_zero": false,
+        "chip_request_consumer": 37,
+        "chip_response_producer": 22,
+        "indices_in_range": true,
+        "request_consumer_matches_cache": false,
+        "response_producer_matches_cache": true,
+        "request_ring_equal_observed": true,
+        "response_ring_equal_observed": true,
+        "atomic": false,
+        "hardware_drained": false,
+        "ownership_proven": false
+      }
+    },
+    {
+      "label": "sessions/20261019T131024Z/run/owned-game-1-frame32.bin",
+      "pause": {
+        "one_shot": true,
+        "origin_sequence": 1,
+        "conf1": 116,
+        "icr": 6,
+        "hccr_before": 0,
+        "hccr_paused": 32,
+        "hccr_released": 0,
+        "pause_polls": 1,
+        "release_polls": 1,
+        "chip_writes": 2,
+        "after": {
+          "conf1": 116,
+          "icr": 6,
+          "hccr": 0,
+          "isr": 0,
+          "semaphore": 2,
+          "request_consumer": 37,
+          "response_producer": 22
+        },
+        "ticks_before": 10,
+        "ticks_after": 10,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "fresh_chip_sample": {
+        "config": {
+          "selector_before": "0x1000c",
+          "selector_after": "0x1000c",
+          "config": {
+            "0x00": "0x10161077",
+            "0x04": "0x02b00006",
+            "0x08": "0x01000006",
+            "0x10": "0x00000001",
+            "0x14": "0xfff00000"
+          },
+          "device_config_writes": false,
+          "ownership_proven": false
+        },
+        "software": {
+          "registers": {
+            "0xc0600d28": "0x8bf00000",
+            "0xc0600d2c": "0x00000000",
+            "0xc0600d30": "0x00000000",
+            "0xc0600d34": "0xc0600df0",
+            "0xc0600d38": "0x00000100",
+            "0xc0600d3c": "0xc0604df0",
+            "0xc0600d40": "0x00000080",
+            "0xc0600d44": "0xc0601730",
+            "0xc0600d48": "0xc0605370",
+            "0xc0600d4c": "0x00000025",
+            "0xc0600d50": "0x00160016",
+            "0xc0498280": "0x00000000",
+            "0xc0498284": "0x00000000",
+            "0xc049828c": "0x00000242"
+          },
+          "expected_layout": true,
+          "ring_pointers_in_range": true,
+          "indices_in_range": true,
+          "request_indices": [
+            37,
+            0
+          ],
+          "response_indices": [
+            22,
+            22
+          ],
+          "pending_head": "0x0",
+          "pending_tail": "0x0",
+          "channel0_counters": [
+            0,
+            0,
+            578
+          ],
+          "software_indices_equal": false,
+          "atomic": false,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "raw_samples": [
+          [
+            0,
+            2,
+            37,
+            22,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            37,
+            22,
+            0,
+            2
+          ]
+        ],
+        "stable": true,
+        "status_zero": false,
+        "chip_request_consumer": 37,
+        "chip_response_producer": 22,
+        "indices_in_range": true,
+        "request_consumer_matches_cache": false,
+        "response_producer_matches_cache": true,
+        "request_ring_equal_observed": true,
+        "response_ring_equal_observed": true,
+        "atomic": false,
+        "hardware_drained": false,
+        "ownership_proven": false
+      }
+    },
+    {
+      "label": "sessions/20261019T131024Z/run/owned-game-1-idle.bin",
+      "pause": {
+        "one_shot": true,
+        "origin_sequence": 1,
+        "conf1": 116,
+        "icr": 6,
+        "hccr_before": 0,
+        "hccr_paused": 32,
+        "hccr_released": 0,
+        "pause_polls": 1,
+        "release_polls": 1,
+        "chip_writes": 2,
+        "after": {
+          "conf1": 116,
+          "icr": 6,
+          "hccr": 0,
+          "isr": 0,
+          "semaphore": 2,
+          "request_consumer": 37,
+          "response_producer": 22
+        },
+        "ticks_before": 10,
+        "ticks_after": 10,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "fresh_chip_sample": {
+        "config": {
+          "selector_before": "0x1000c",
+          "selector_after": "0x1000c",
+          "config": {
+            "0x00": "0x10161077",
+            "0x04": "0x02b00006",
+            "0x08": "0x01000006",
+            "0x10": "0x00000001",
+            "0x14": "0xfff00000"
+          },
+          "device_config_writes": false,
+          "ownership_proven": false
+        },
+        "software": {
+          "registers": {
+            "0xc0600d28": "0x8bf00000",
+            "0xc0600d2c": "0x00000000",
+            "0xc0600d30": "0x00000000",
+            "0xc0600d34": "0xc0600df0",
+            "0xc0600d38": "0x00000100",
+            "0xc0600d3c": "0xc0604df0",
+            "0xc0600d40": "0x00000080",
+            "0xc0600d44": "0xc0601730",
+            "0xc0600d48": "0xc0605370",
+            "0xc0600d4c": "0x00000025",
+            "0xc0600d50": "0x00160016",
+            "0xc0498280": "0x00000000",
+            "0xc0498284": "0x00000000",
+            "0xc049828c": "0x00000242"
+          },
+          "expected_layout": true,
+          "ring_pointers_in_range": true,
+          "indices_in_range": true,
+          "request_indices": [
+            37,
+            0
+          ],
+          "response_indices": [
+            22,
+            22
+          ],
+          "pending_head": "0x0",
+          "pending_tail": "0x0",
+          "channel0_counters": [
+            0,
+            0,
+            578
+          ],
+          "software_indices_equal": false,
+          "atomic": false,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "raw_samples": [
+          [
+            0,
+            2,
+            37,
+            22,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            37,
+            22,
+            0,
+            2
+          ]
+        ],
+        "stable": true,
+        "status_zero": false,
+        "chip_request_consumer": 37,
+        "chip_response_producer": 22,
+        "indices_in_range": true,
+        "request_consumer_matches_cache": false,
+        "response_producer_matches_cache": true,
+        "request_ring_equal_observed": true,
+        "response_ring_equal_observed": true,
+        "atomic": false,
+        "hardware_drained": false,
+        "ownership_proven": false
+      }
+    },
+    {
+      "label": "final STOP",
+      "pause": {
+        "one_shot": true,
+        "origin_sequence": 1,
+        "conf1": 116,
+        "icr": 6,
+        "hccr_before": 0,
+        "hccr_paused": 32,
+        "hccr_released": 0,
+        "pause_polls": 1,
+        "release_polls": 1,
+        "chip_writes": 2,
+        "after": {
+          "conf1": 116,
+          "icr": 6,
+          "hccr": 0,
+          "isr": 0,
+          "semaphore": 2,
+          "request_consumer": 37,
+          "response_producer": 22
+        },
+        "ticks_before": 10,
+        "ticks_after": 10,
+        "hardware_drained": false,
+        "ownership_proven": false
+      },
+      "fresh_chip_sample": {
+        "config": {
+          "selector_before": "0x1000c",
+          "selector_after": "0x1000c",
+          "config": {
+            "0x00": "0x10161077",
+            "0x04": "0x02b00006",
+            "0x08": "0x01000006",
+            "0x10": "0x00000001",
+            "0x14": "0xfff00000"
+          },
+          "device_config_writes": false,
+          "ownership_proven": false
+        },
+        "software": {
+          "registers": {
+            "0xc0600d28": "0x8bf00000",
+            "0xc0600d2c": "0x00000000",
+            "0xc0600d30": "0x00000000",
+            "0xc0600d34": "0xc0600df0",
+            "0xc0600d38": "0x00000100",
+            "0xc0600d3c": "0xc0604df0",
+            "0xc0600d40": "0x00000080",
+            "0xc0600d44": "0xc0601730",
+            "0xc0600d48": "0xc0605370",
+            "0xc0600d4c": "0x00000025",
+            "0xc0600d50": "0x00160016",
+            "0xc0498280": "0x00000000",
+            "0xc0498284": "0x00000000",
+            "0xc049828c": "0x00000242"
+          },
+          "expected_layout": true,
+          "ring_pointers_in_range": true,
+          "indices_in_range": true,
+          "request_indices": [
+            37,
+            0
+          ],
+          "response_indices": [
+            22,
+            22
+          ],
+          "pending_head": "0x0",
+          "pending_tail": "0x0",
+          "channel0_counters": [
+            0,
+            0,
+            578
+          ],
+          "software_indices_equal": false,
+          "atomic": false,
+          "hardware_drained": false,
+          "ownership_proven": false
+        },
+        "raw_samples": [
+          [
+            0,
+            2,
+            37,
+            22,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            37,
+            22,
+            0,
+            2
+          ]
+        ],
+        "stable": true,
+        "status_zero": false,
+        "chip_request_consumer": 37,
+        "chip_response_producer": 22,
+        "indices_in_range": true,
+        "request_consumer_matches_cache": false,
+        "response_producer_matches_cache": true,
+        "request_ring_equal_observed": true,
+        "response_ring_equal_observed": true,
+        "atomic": false,
+        "hardware_drained": false,
+        "ownership_proven": false
+      }
+    }
+  ],
+  "transaction_payload_retained": true,
+  "repeat_attempt": false,
+  "physical_timeout_tested": false,
+  "dma_stop_proven": false,
+  "memory_reclaimed": false
+}

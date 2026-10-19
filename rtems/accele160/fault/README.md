@@ -1,5 +1,9 @@
 > Deliberate hardware suspension is now covered by profiles 8/9: actual
 
+Profile 18 adds a one-shot, ready-only QLogic pause/release transaction with
+bounded polls and retry refusal. It retains normal fault/NMI handling and all
+resources; [contract](../ownership/PROFILE18.md). DMA stop remains unproved.
+
 Profile 17 adds identity-gated ISP10160 halfword queue/status observations during
 normal runtime; see [its contract](../ownership/PROFILE17.md). It keeps the normal
 exception entry and does not enable diagnostic injection or reclaim memory.

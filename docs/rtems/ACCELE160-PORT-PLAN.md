@@ -1,5 +1,35 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Accele160 P3n — one-shot QLogic RISC pause/release qualified
+
+Profile 18 passed 64 frames, 5045 WAD reads and 713 external console
+exchanges after one gated pause/release transaction. HCCR changed
+**`0000 → 0020 → 0000`**, with 1 read for pause acknowledgement and
+1 for release. CONF1 stayed `0074`, ICR `0006`, ISR zero,
+semaphore 2 and chip indices 37/22. Ready/frame32/idle/STOP preserve the same
+transaction payload; no second attempt occurs. Final STOP retains resources.
+
+This establishes RISC control on the observed quiet workload, **not SXP/DMA
+shutdown or RAM ownership**. Native tests cover both 10,000-poll timeout paths,
+initial-state refusals, changed-state failures and retry blocking. A stalled bus
+transaction still has no guaranteed wall-clock bound. Uncertainty retains
+buffers, descriptors and the pending firmware callback for reset.
+
+[Profile and protocol](../../rtems/accele160/ownership/PROFILE18.md),
+[stop/isolation contract](../../rtems/accele160/ownership/STOP-CONTRACT.md),
+[complete evidence](../../artifacts/current/accele160-qlogic-pause-20261019/README.md).
+Next: qualify a minimal paused, banked command/data-DMA read-only snapshot and
+unconditional CONF1 restoration. HCCR aliases a DMA register in the DMA bank;
+restore the normal bank before release. Establish SXP/DMA active/FIFO/status
+semantics before a drain or disable experiment. Keep all stock ranges reserved.
+
+Normal profile 5 is restored at `/home/mit/i960-owned-runtime-20261018/bundle`,
+session `20261019T131711Z`, boot `4cdd0e35-4d6a-4430-bbe9-be167070673e`. Paired full
+flash reads, 64 frames, 5045 WAD reads and 709 external exchanges
+passed. `~/rtems-console` is working at idle, zone loan zero; gateway 8088 returns
+HTTP 200. No physical intervention was needed. Earlier session claims are historical.
+
+
 ## Accele160 P3m — actual chip indices resolve the stale cache
 
 Profile 17 passed 64 frames, 5045 WAD reads and 709 external console

@@ -68,7 +68,7 @@ def main():
             modules['admit']=fps_manifest['admit_module_sha256']
         terminal_schema=fps_manifest.get('terminal_schema',0)
         terminal_test=fps_manifest.get('terminal_test',0)
-        need(terminal_schema in (0,1) and terminal_test in (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17) and (terminal_schema or not terminal_test),'terminal profile')
+        need(terminal_schema in (0,1) and terminal_test in (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18) and (terminal_schema or not terminal_test),'terminal profile')
         if terminal_schema:
             need(set(fps_manifest['terminal_sources'])=={'policy.h','card.inc','terminal.S','host.py'},'terminal source set')
             for name,digest in fps_manifest['terminal_sources'].items():
@@ -76,8 +76,8 @@ def main():
             import importlib.util
             spec=importlib.util.spec_from_file_location('accele_terminal',Path(__file__).parent.parent/'fault/host.py')
             terminal=importlib.util.module_from_spec(spec);spec.loader.exec_module(terminal)
-        if terminal_test in (14,15,16,17):
-            need(set(fps_manifest['engine_inventory_sources'])==({'inventory.h','inventory.py'} | ({'qlogic_config.h','qlogic_config.py'} if terminal_test==15 else ({'qlogic_queue.h','qlogic_queue.py'} if terminal_test==16 else ({'qlogic_config.h','qlogic_config.py','qlogic_queue.h','qlogic_queue.py','qlogic_chip.h','qlogic_chip.py'} if terminal_test==17 else set())))),'inventory source set')
+        if terminal_test in (14,15,16,17,18):
+            need(set(fps_manifest['engine_inventory_sources'])==({'inventory.h','inventory.py'} | ({'qlogic_config.h','qlogic_config.py'} if terminal_test==15 else ({'qlogic_queue.h','qlogic_queue.py'} if terminal_test==16 else (({'qlogic_config.h','qlogic_config.py','qlogic_queue.h','qlogic_queue.py','qlogic_chip.h','qlogic_chip.py'} | ({'qlogic_pause.h','qlogic_pause.py'} if terminal_test==18 else set())) if terminal_test in (17,18) else set())))),'inventory source set')
             for name,digest in fps_manifest['engine_inventory_sources'].items():
                 need(sha((Path(__file__).parent.parent/'ownership'/name).read_bytes())==digest,'inventory source identity')
         service_schema=fps_manifest.get('service_schema',0)
@@ -319,7 +319,7 @@ def main():
         need(ready and status('ram-admit').get('done')=='0',
              'RTEMS READY missing or early completion; retain grant')
         active_owner=True
-        if a.port and terminal_test in (0,5,14,15,16,17):
+        if a.port and terminal_test in (0,5,14,15,16,17,18):
             need(1024<=a.port<=65535,'browser port range')
             browser=BrowserSession(a.port,runtime_flat=bool(engine_manifest.get('runtime_flat')),
                 keyboard_mode=a.keyboard_mode,keyboard_fifo=bool(keyboard_fifo_schema),keyboard_test=a.keyboard_selftest)
@@ -370,7 +370,7 @@ def main():
         runtime_seq=0;runtime_samples=[]
         def runtime_audit(label,phase=0):
             nonlocal runtime_seq
-            if terminal_test not in (5,14,15,16,17):return
+            if terminal_test not in (5,14,15,16,17,18):return
             if not phase:runtime_seq+=1
             row=terminal.runtime_sample(snap,write,terminal_nonce,runtime_seq,
                 a.out/('owned-'+label+'.bin'),phase,terminal_test)

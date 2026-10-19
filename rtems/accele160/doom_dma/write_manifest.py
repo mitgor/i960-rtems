@@ -15,14 +15,16 @@ m['terminal_schema']=json.loads((build/'build.json').read_text()).get('terminal_
 m['terminal_test']=json.loads((build/'build.json').read_text()).get('terminal_test',0)
 if m['terminal_schema']:
  m['terminal_sources']={name:sha(src.parent/'fault'/name) for name in ('policy.h','card.inc','terminal.S','host.py')}
-if m['terminal_test'] in (14,15,16,17):
+if m['terminal_test'] in (14,15,16,17,18):
  m['engine_inventory_sources']={n:sha(src.parent/'ownership'/n) for n in ('inventory.h','inventory.py')}
 if m['terminal_test']==15:
  m['engine_inventory_sources'].update({n:sha(src.parent/'ownership'/n) for n in ('qlogic_config.h','qlogic_config.py')})
 if m['terminal_test']==16:
  m['engine_inventory_sources'].update({n:sha(src.parent/'ownership'/n) for n in ('qlogic_queue.h','qlogic_queue.py')})
-if m['terminal_test']==17:
+if m['terminal_test'] in (17,18):
  m['engine_inventory_sources'].update({n:sha(src.parent/'ownership'/n) for n in ('qlogic_config.h','qlogic_config.py','qlogic_queue.h','qlogic_queue.py','qlogic_chip.h','qlogic_chip.py')})
+if m['terminal_test']==18:
+ m['engine_inventory_sources'].update({n:sha(src.parent/'ownership'/n) for n in ('qlogic_pause.h','qlogic_pause.py')})
 m['service_schema']=json.loads((build/'build.json').read_text()).get('service_schema',0)
 if m['service_schema']:
  m['service_sources']={name:sha(src.parent/'service'/name) for name in ('protocol.h','card.inc','host.py')}

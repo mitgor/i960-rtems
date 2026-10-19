@@ -6567,3 +6567,30 @@ The normal kernel completed another sixty-four frames and 713 external
 exchanges. We left the prompt at verified idle, the memory loan returned and
 the streaming gateway restored. The next boundary was still an explicit stop
 and isolation contract for the SCSI processor, its engines and its callbacks.
+
+The next step finally changed the SCSI processor's state, briefly. We first
+separated a RISC pause from a DMA stop. Both the old firmware and the driver
+sources used pause and release, but reset sequences dealt with the DMA engines
+separately. Equal queue indices still gave us no reason to erase their state.
+
+There was another trap in the register map. Selecting the DMA bank changed what
+the HCCR address meant: the same address could name a data-DMA configuration
+register. The probe checked the bank before touching HCCR and never changed it.
+Only the known device, checked queue context and quiet observed state could
+reach the two writes. It tried once; an uncertain acknowledgement would preserve
+the record, block another attempt and leave all allocations for reset.
+
+The chip acknowledged pause on the first read, setting HCCR from zero to 0x20.
+Release cleared it on the first read as well. Configuration stayed at 0x74,
+interrupt control at six, and the queue indices at thirty-seven and twenty-two.
+The transaction record stayed unchanged through the later snapshots and final
+STOP. The card completed sixty-four frames, 5,045 WAD reads and 713 external
+prompt exchanges. Timeout and changed-state paths passed the native tests;
+we did not deliberately stall the physical chip to exercise those failures.
+
+After reset, two full firmware reads matched again, and the ordinary kernel
+completed another sixty-four frames with 709 external exchanges. We left
+its prompt at verified idle and restored the streaming gateway. RISC control
+was now demonstrated on this workload. The remaining boundary was the DMA and
+SCSI machinery beside it: inspect those banks under a confirmed pause, restore
+the bank unconditionally, and establish completion before claiming more RAM.

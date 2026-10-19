@@ -1,0 +1,8 @@
+{
+  "kernel_sha256": "59590ebc1acc41527f24e7ee098617278a82c8f4fad6db6bcc122b1f284f07c8",
+  "exception_object_sha256": "c58a50215e82dd1602d112651b59d9f26e065523a97246f8c3fa2506c060f507",
+  "normal_exception_object_equal": true,
+  "chip_writes": "two stos, both HCCR 8bf000c0, values 2000 and 3000",
+  "poll_limit": 10000,
+  "chip_source_sha256": "59c6c971e47dbb572482014106bf102f0b9285f0dc51751422310b4a1600ebd8"
+}

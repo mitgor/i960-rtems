@@ -1,3 +1,12 @@
+**2026-10-19 Accele160 RISC control:** Profile 18 qualified one-shot pause/release:
+HCCR 0000→0020→0000, one poll each, controls/indices unchanged. It does not prove
+SXP/DMA drain or new RAM ownership. CONF1 bank bits must be clear before HCCR;
+its address aliases DDMA_CONF in the DMA bank. No timeout retry or speculative
+rollback; retain all resources for reset on uncertainty. Normal profile 5 and
+prompt/gateway are restored. Read the [current checkpoint](docs/rtems/ACCELE160-PORT-PLAN.md),
+[profile 18](rtems/accele160/ownership/PROFILE18.md) and
+[stop contract](rtems/accele160/ownership/STOP-CONTRACT.md) before card work.
+
 **2026-10-19 Accele160 chip/cache comparison:** Profile 17 confirms chip request
 consumer 37 versus cached 0, with software producer 37; response indices are 22.
 All four phases/eight passes agree. ISR is zero, semaphore is 2 (STATUS set,

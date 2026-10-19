@@ -26,7 +26,7 @@ static unsigned int *reg(unsigned int addr){
 #define ACCELE_TERMINAL_TEST 3
 #endif
 static unsigned int vector0,drop_vector;
-#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17)
+#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18)
 static unsigned int handoffs=12;
 #endif
 #define AT_SET_VECTOR0(v) (drop_vector?vector0:(vector0=(v)))
@@ -71,7 +71,7 @@ int main(void){unsigned int i,b;
  assert(at_owned_valid());
 #if ACCELE_TERMINAL_TEST == 3
  if(!setjmp(parked)){at_poll();assert(!"real fault dispatch missed");}
-#elif (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17)
+#elif (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14 || ACCELE_TERMINAL_TEST == 15 || ACCELE_TERMINAL_TEST == 16 || ACCELE_TERMINAL_TEST == 17 || ACCELE_TERMINAL_TEST == 18)
  at_poll();assert(!code&&!record[166]); /* injection is never accepted */
  record[3]=124;record[4]=1;at_poll();assert(!record[166]);
  record[3]=123;at_poll();assert(record[166]==1&&record[170]==1&&record[167]==42);
