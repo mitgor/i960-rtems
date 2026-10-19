@@ -1,0 +1,21 @@
+{
+  "source_sha256": {
+    "rtems/accele160/ownership/collect.py": "d49b618c6a2f0f4102e01752e20c95cfdedd70f5c1701022ce046b69b1608ae2",
+    "rtems/accele160/ownership/audit.py": "41612f7921a62a069f02bb0bc91e86af8550e6408a47d3c8e54ae57bb3739a67",
+    "rtems/accele160/ownership/test_audit.py": "6b77084969ceab527544d85d07a300ff3f248de58847e600265c0328af8e9c2d"
+  },
+  "manual": {
+    "title": "Intel 80303 I/O Processor Developer's Manual",
+    "document": "273353-001",
+    "pdf_sha256": "8cdbbfad674b5995a5604522564233ee8767162e7983fc036cecb5c370805f9f",
+    "sections": [
+      "14.15 BCR table 14-45",
+      "17.6.1 SACR",
+      "17.6.2 IACR",
+      "20.11.1 ACR",
+      "20.11.2 ASR",
+      "20.11.3 ADAR"
+    ]
+  },
+  "kernel_changed": false
+}

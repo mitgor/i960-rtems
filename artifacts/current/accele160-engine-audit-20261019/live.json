@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "samples": [
+    {
+      "boot_id": "bbefd6d3-016a-4c9e-8388-36a164e78fd4",
+      "monotonic": 8206.372613538,
+      "devices": {
+        "0000:37:09.0": {
+          "config": "86806229070080020200040610208100000000000000000037383820f0008022f0ff0000f0ff0000000000000000000000000000680000000000000000000202",
+          "sacr": "54150000",
+          "driver": null
+        },
+        "0000:37:09.1": {
+          "config": "69105000060090020200040110208000080000f40000000000000000000000000000000000000000000000006910540000000000800000000000000005010000",
+          "sacr": null,
+          "driver": "myrsread"
+        }
+      },
+      "apps": "run=1\nrunning=0\nidle=1\nframes=64",
+      "mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.",
+      "uptime": "ticks=809985\ntick_ms=10",
+      "services": "active\nactive"
+    },
+    {
+      "boot_id": "bbefd6d3-016a-4c9e-8388-36a164e78fd4",
+      "monotonic": 8207.938193523,
+      "devices": {
+        "0000:37:09.0": {
+          "config": "86806229070080020200040610208100000000000000000037383820f0008022f0ff0000f0ff0000000000000000000000000000680000000000000000000202",
+          "sacr": "54150000",
+          "driver": null
+        },
+        "0000:37:09.1": {
+          "config": "69105000060090020200040110208000080000f40000000000000000000000000000000000000000000000006910540000000000800000000000000005010000",
+          "sacr": null,
+          "driver": "myrsread"
+        }
+      },
+      "apps": "run=1\nrunning=0\nidle=1\nframes=64",
+      "mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.",
+      "uptime": "ticks=810117\ntick_ms=10",
+      "services": "active\nactive"
+    },
+    {
+      "boot_id": "bbefd6d3-016a-4c9e-8388-36a164e78fd4",
+      "monotonic": 8209.263686192,
+      "devices": {
+        "0000:37:09.0": {
+          "config": "86806229070080020200040610208100000000000000000037383820f0008022f0ff0000f0ff0000000000000000000000000000680000000000000000000202",
+          "sacr": "54150000",
+          "driver": null
+        },
+        "0000:37:09.1": {
+          "config": "69105000060090020200040110208000080000f40000000000000000000000000000000000000000000000006910540000000000800000000000000005010000",
+          "sacr": null,
+          "driver": "myrsread"
+        }
+      },
+      "apps": "run=1\nrunning=0\nidle=1\nframes=64",
+      "mem": "workspace_bytes=196608\narena_bytes=8257536\nfixed_allocations=7\nzone_loaned=0\nNo dynamic heap walk; values are observational.",
+      "uptime": "ticks=810251\ntick_ms=10",
+      "services": "active\nactive"
+    }
+  ]
+}

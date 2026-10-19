@@ -1,0 +1,64 @@
+{
+  "boot_id": "bbefd6d3-016a-4c9e-8388-36a164e78fd4",
+  "samples": [
+    {
+      "bridge_control": "0x202",
+      "secondary_reset_asserted": false,
+      "primary_bus": 55,
+      "secondary_bus": 56,
+      "subordinate_bus": 56,
+      "secondary_arbiter": "0x1554",
+      "external_grants_disabled": false,
+      "external_priorities": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "endpoint_bus_master_enabled": true
+    },
+    {
+      "bridge_control": "0x202",
+      "secondary_reset_asserted": false,
+      "primary_bus": 55,
+      "secondary_bus": 56,
+      "subordinate_bus": 56,
+      "secondary_arbiter": "0x1554",
+      "external_grants_disabled": false,
+      "external_priorities": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "endpoint_bus_master_enabled": true
+    },
+    {
+      "bridge_control": "0x202",
+      "secondary_reset_asserted": false,
+      "primary_bus": 55,
+      "secondary_bus": 56,
+      "subordinate_bus": 56,
+      "secondary_arbiter": "0x1554",
+      "external_grants_disabled": false,
+      "external_priorities": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "endpoint_bus_master_enabled": true
+    }
+  ],
+  "prompt_preserved": true,
+  "permanent_scsi_exclusion_proven": false,
+  "aau_ownership_proven": false,
+  "new_ram_grant": false,
+  "core_engine_state_measured": false
+}

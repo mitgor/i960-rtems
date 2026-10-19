@@ -6441,3 +6441,22 @@ without errors. Its owned-state checks passed, the workspace loan came back,
 and we left the ordinary prompt at verified idle with the streaming gateway
 restored. The NMI refusal capture now had its own checked route back to normal
 operation as well.
+
+The next question was quieter: what else could still touch memory while our
+CPU was running RTEMS? Owning the fault table did not answer that. We read the
+identified bridge's configuration without writing it and asked the existing
+prompt for its state between samples. Secondary reset was not asserted. All
+six external arbitration slots were still enabled. That did not tell us which
+slots held devices, but it did tell us we had not excluded their bus access.
+
+The older DMA snapshots needed the same care. Zero enable, next-descriptor and
+byte-count fields did not erase the stock descriptor seen in a fuller channel-1
+inventory. The 80303 also had a separate application accelerator, whose ownership
+we had not measured. Invalidating the CPU cache was no substitute for stopping
+that engine or transferring the firmware's cache-buffer allocations.
+
+We left the prompt and gateway running. The audit made no register writes and
+needed no reset. Its result was a concrete boundary: inventory the remaining
+core engines, identify the board's private SCSI path, and prove isolation before
+calling more firmware memory ours. The read-only collector and raw captures
+went into the repository alongside that plan.

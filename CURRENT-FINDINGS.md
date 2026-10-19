@@ -1,3 +1,25 @@
+## Accele160 P3i — stock engine isolation is not established
+
+The new fixed-device, read-only PCI/console audit found BCR=0x202 (secondary
+reset deasserted), SACR=0x1554 (all six external arbitration slots enabled),
+and secondary/subordinate bus 0x38. These are permissions for bus activity,
+not proof of populated devices or current transfers. The AAU and DMA1 stock
+dependencies remain unowned. Prior zero CCR/NDAR/BCR snapshots omit descriptor
+and accelerator state and cannot justify reclaiming firmware cache RAM.
+
+[Ownership matrix and next implementation](rtems/accele160/ownership/README.md);
+[evidence](artifacts/current/accele160-engine-audit-20261019/README.md).
+Collector/decoder run passed on the card, with identity/boot/health rejection
+and no-promotion tests. No register writes, new firmware callback, kernel change
+or reboot. Normal profile 5 remains live in session `20261019T041732Z`, boot
+`bbefd6d3-016a-4c9e-8388-36a164e78fd4`, with prompt idle, no zone loan and
+HTTP 200 from gateway 8088.
+
+Next: an opt-in non-status core-engine inventory and offline SCSI metadata audit,
+then board-specific drain/isolation. Preserve primary ATU/MU, DMA0 and BIU.
+Do not copy the DAC960PG secondary-reset sequence or promote quiet samples into
+ownership. P4 task cancellation and new RAM reclamation remain gated.
+
 ## Accele160 P3h — real NMI resume refusal qualified
 
 Profile 13 passed real vector-248 NMI, acknowledged source 0x100, saved-source

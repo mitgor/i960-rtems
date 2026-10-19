@@ -1,0 +1,91 @@
+{
+  "archive": "artifacts/current/accele160-nmi-dma-refusal-20261019/restored-live.tar.xz",
+  "archive_sha256": "8661b4d26552a515e1bd90d960e842ecbaea6617e5c298756a92652011c4e5ea",
+  "historical": true,
+  "samples": [
+    {
+      "member": "sessions/20261019T041732Z/run/owned-ready.bin",
+      "sha256": "e5167f450179a02187b41b488077b35ba5cea28aa18633bc06f060c78fc3e0f7",
+      "profile": 5,
+      "ticks": 8,
+      "handoffs": 8,
+      "owned_valid": 1,
+      "dma": [
+        {
+          "channel": 0,
+          "ccr": "0x0",
+          "ndar": "0x0",
+          "bcr": 0
+        },
+        {
+          "channel": 1,
+          "ccr": "0x0",
+          "ndar": "0x0",
+          "bcr": 0
+        },
+        {
+          "channel": 2,
+          "ccr": "0x0",
+          "ndar": "0x0",
+          "bcr": 0
+        }
+      ]
+    },
+    {
+      "member": "sessions/20261019T041732Z/run/owned-game-1-idle.bin",
+      "sha256": "10bbd703999093c1ea794c1e68661ad9be4a58f3a8675f34b4d29f743ba30e9f",
+      "profile": 5,
+      "ticks": 9837,
+      "handoffs": 8686,
+      "owned_valid": 1,
+      "dma": [
+        {
+          "channel": 0,
+          "ccr": "0x0",
+          "ndar": "0x0",
+          "bcr": 0
+        },
+        {
+          "channel": 1,
+          "ccr": "0x0",
+          "ndar": "0x0",
+          "bcr": 0
+        },
+        {
+          "channel": 2,
+          "ccr": "0x0",
+          "ndar": "0x0",
+          "bcr": 0
+        }
+      ]
+    },
+    {
+      "member": "sessions/20261019T041732Z/run/owned-game-1-frame32.bin",
+      "sha256": "79efdf003e82cd0dbd1f7f5ef9eeaab3653bd394513b5ee1844110ca182a1b53",
+      "profile": 5,
+      "ticks": 9482,
+      "handoffs": 8610,
+      "owned_valid": 1,
+      "dma": [
+        {
+          "channel": 0,
+          "ccr": "0x0",
+          "ndar": "0x0",
+          "bcr": 0
+        },
+        {
+          "channel": 1,
+          "ccr": "0x0",
+          "ndar": "0x0",
+          "bcr": 0
+        },
+        {
+          "channel": 2,
+          "ccr": "0x0",
+          "ndar": "0x0",
+          "bcr": 0
+        }
+      ]
+    }
+  ]
+}
