@@ -11,6 +11,23 @@ cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=4 "
 "$work/nmi"
 cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=5 "$src/test_owned.c" -o "$work/runtime"
 "$work/runtime"
+cc -Wall -Wextra -Werror -fsanitize=address,undefined -DACCELE_TERMINAL_TEST=14 "$src/test_owned.c" -o "$work/inventory-runtime"
+"$work/inventory-runtime"
+cc -Wall -Wextra -Werror -fsanitize=address,undefined "$src/../ownership/test_inventory.c" -o "$work/inventory"
+"$work/inventory"
+python3 "$src/../ownership/test_inventory.py"
+for mode in 5 13 14; do
+ cc -E -P -x assembler-with-cpp -DACCELE_TERMINAL=1 -DACCELE_TERMINAL_TEST=$mode "$src/terminal.S" > "$work/entry-$mode.S"
+done
+cmp "$work/entry-5.S" "$work/entry-14.S"
+python3 - "$work" <<'CHECK_ENTRY'
+from pathlib import Path
+import sys
+p=Path(sys.argv[1])
+assert 'ld 0x1404' not in (p/'entry-14.S').read_text()
+assert 'ld 0x1404' in (p/'entry-13.S').read_text()
+print('profile 14 exception entry equals profile 5; diagnostic CSR read restricted to 6..13')
+CHECK_ENTRY
 python3 "$src/test_host.py"
 
 # The actual DMA diagnostic uses 32-bit card addresses. Linux non-PIE gives

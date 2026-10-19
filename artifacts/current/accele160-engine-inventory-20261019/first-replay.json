@@ -1,0 +1,303 @@
+{
+  "external_exchanges": 709,
+  "external_errors": 0,
+  "boot_id": "4c3a2c03-e037-448d-b27c-9e3823d79fbe",
+  "kernel_sha256": "0dfb8e25d5d6e4b4ad13e871b985d385b4a7d7b88e8a1767ea1ef11553f68adf",
+  "owned_samples": [
+    {
+      "sequence": 1,
+      "phase": 0,
+      "ticks": 26,
+      "handoffs": 26,
+      "owned": true,
+      "label": "ready"
+    },
+    {
+      "sequence": 2,
+      "phase": 0,
+      "ticks": 9530,
+      "handoffs": 8660,
+      "owned": true,
+      "label": "game-1-frame32"
+    },
+    {
+      "sequence": 3,
+      "phase": 0,
+      "ticks": 9883,
+      "handoffs": 8736,
+      "owned": true,
+      "label": "game-1-idle"
+    }
+  ],
+  "frames": 64,
+  "wad_reads": 5045,
+  "console_replies": 710,
+  "max_console_latency_ms": 3179.9009490000003,
+  "owned_vectors_and_guards": true,
+  "global_stop": false,
+  "session_left_running": true,
+  "profile": 14,
+  "engine_samples": [
+    {
+      "registers": {
+        "0x1400": "0x00000000",
+        "0x140c": "0x00000000",
+        "0x1410": "0x00000000",
+        "0x1414": "0x00000000",
+        "0x1418": "0x00000000",
+        "0x141c": "0x00000000",
+        "0x1420": "0x00000000",
+        "0x1424": "0x00000000",
+        "0x1440": "0x00000000",
+        "0x144c": "0xc0611320",
+        "0x1450": "0x00000000",
+        "0x1454": "0xffd10000",
+        "0x1458": "0x00000000",
+        "0x145c": "0xc0790000",
+        "0x1460": "0x00000000",
+        "0x1464": "0x0000003f",
+        "0x1480": "0x00000000",
+        "0x148c": "0x00000000",
+        "0x1490": "0x00000000",
+        "0x1494": "0x00000000",
+        "0x1498": "0x00000000",
+        "0x149c": "0x00000000",
+        "0x14a0": "0x00000000",
+        "0x14a4": "0x00000000",
+        "0x1600": "0x00000000",
+        "0x104c": "0x00001554",
+        "0x1800": "0x00000000",
+        "0x1808": "0x00000000",
+        "0x180c": "0x00000000",
+        "0x1820": "0x00000000",
+        "0x1824": "0x00000000",
+        "0x1828": "0x00000000",
+        "0xc0384b6c": "0x00000000",
+        "0xc0384b70": "0x00000001",
+        "0xc0384b8c": "0x8bf00000",
+        "0xc0384b90": "0xfff00000",
+        "0xc0384b94": "0x00000000",
+        "0xc0384b98": "0x00000000",
+        "0xc0384b9c": "0x00000000",
+        "0xc0384ba0": "0x00000010",
+        "0xc0384ba4": "0x00000000",
+        "0xc0384ba8": "0xff000000",
+        "0xc0384bac": "0xfe000000",
+        "0xc0384e78": "0x10161077",
+        "0xc0384e7c": "0x00000000",
+        "0xc049b7cc": "0x00000000",
+        "0xc049b7d0": "0x00000000",
+        "0xc049b7d4": "0x00000000"
+      },
+      "atomic": false,
+      "csr_asr_read": false,
+      "ownership_proven": false,
+      "member": "sessions/20261019T073836Z/run/owned-ready.bin",
+      "sequence": 1,
+      "ticks": 26
+    },
+    {
+      "registers": {
+        "0x1400": "0x00000000",
+        "0x140c": "0xc071c1a0",
+        "0x1410": "0x00000000",
+        "0x1414": "0xfff71020",
+        "0x1418": "0x00000000",
+        "0x141c": "0xc071c200",
+        "0x1420": "0x00000000",
+        "0x1424": "0x00000007",
+        "0x1440": "0x00000000",
+        "0x144c": "0xc0611320",
+        "0x1450": "0x00000000",
+        "0x1454": "0xffd10000",
+        "0x1458": "0x00000000",
+        "0x145c": "0xc0790000",
+        "0x1460": "0x00000000",
+        "0x1464": "0x0000003f",
+        "0x1480": "0x00000000",
+        "0x148c": "0x00000000",
+        "0x1490": "0x00000000",
+        "0x1494": "0x00000000",
+        "0x1498": "0x00000000",
+        "0x149c": "0x00000000",
+        "0x14a0": "0x00000000",
+        "0x14a4": "0x00000000",
+        "0x1600": "0x00000000",
+        "0x104c": "0x00001554",
+        "0x1800": "0x00000000",
+        "0x1808": "0x00000000",
+        "0x180c": "0x00000000",
+        "0x1820": "0x00000000",
+        "0x1824": "0x00000000",
+        "0x1828": "0x00000000",
+        "0xc0384b6c": "0x00000000",
+        "0xc0384b70": "0x00000001",
+        "0xc0384b8c": "0x8bf00000",
+        "0xc0384b90": "0xfff00000",
+        "0xc0384b94": "0x00000000",
+        "0xc0384b98": "0x00000000",
+        "0xc0384b9c": "0x00000000",
+        "0xc0384ba0": "0x00000010",
+        "0xc0384ba4": "0x00000000",
+        "0xc0384ba8": "0xff000000",
+        "0xc0384bac": "0xfe000000",
+        "0xc0384e78": "0x10161077",
+        "0xc0384e7c": "0x00000000",
+        "0xc049b7cc": "0x00000000",
+        "0xc049b7d0": "0x00000000",
+        "0xc049b7d4": "0x00000000"
+      },
+      "atomic": false,
+      "csr_asr_read": false,
+      "ownership_proven": false,
+      "member": "sessions/20261019T073836Z/run/owned-game-1-frame32.bin",
+      "sequence": 2,
+      "ticks": 9530
+    },
+    {
+      "registers": {
+        "0x1400": "0x00000000",
+        "0x140c": "0xc071c1a0",
+        "0x1410": "0x00000000",
+        "0x1414": "0xfff51020",
+        "0x1418": "0x00000000",
+        "0x141c": "0xc071c200",
+        "0x1420": "0x00000000",
+        "0x1424": "0x00000007",
+        "0x1440": "0x00000000",
+        "0x144c": "0xc0611320",
+        "0x1450": "0x00000000",
+        "0x1454": "0xffd10000",
+        "0x1458": "0x00000000",
+        "0x145c": "0xc0790000",
+        "0x1460": "0x00000000",
+        "0x1464": "0x0000003f",
+        "0x1480": "0x00000000",
+        "0x148c": "0x00000000",
+        "0x1490": "0x00000000",
+        "0x1494": "0x00000000",
+        "0x1498": "0x00000000",
+        "0x149c": "0x00000000",
+        "0x14a0": "0x00000000",
+        "0x14a4": "0x00000000",
+        "0x1600": "0x00000000",
+        "0x104c": "0x00001554",
+        "0x1800": "0x00000000",
+        "0x1808": "0x00000000",
+        "0x180c": "0x00000000",
+        "0x1820": "0x00000000",
+        "0x1824": "0x00000000",
+        "0x1828": "0x00000000",
+        "0xc0384b6c": "0x00000000",
+        "0xc0384b70": "0x00000001",
+        "0xc0384b8c": "0x8bf00000",
+        "0xc0384b90": "0xfff00000",
+        "0xc0384b94": "0x00000000",
+        "0xc0384b98": "0x00000000",
+        "0xc0384b9c": "0x00000000",
+        "0xc0384ba0": "0x00000010",
+        "0xc0384ba4": "0x00000000",
+        "0xc0384ba8": "0xff000000",
+        "0xc0384bac": "0xfe000000",
+        "0xc0384e78": "0x10161077",
+        "0xc0384e7c": "0x00000000",
+        "0xc049b7cc": "0x00000000",
+        "0xc049b7d0": "0x00000000",
+        "0xc049b7d4": "0x00000000"
+      },
+      "atomic": false,
+      "csr_asr_read": false,
+      "ownership_proven": false,
+      "member": "sessions/20261019T073836Z/run/owned-game-1-idle.bin",
+      "sequence": 3,
+      "ticks": 9883
+    }
+  ],
+  "firmware_dependencies": {
+    "firmware_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+    "runtime_sha256": "09e84895223627edeff8f1a6902d2a9a573c2c3e7769a5ea16caaa32cf07e3db",
+    "anchors": {
+      "qlogic_1016_dispatch": {
+        "address": "0xc005182c",
+        "bytes": "0030e88c161000009842a73a"
+      },
+      "qlogic_1016_init_call": {
+        "address": "0xc0051af8",
+        "bytes": "28cf0109"
+      },
+      "qlogic_1016_init_branch": {
+        "address": "0xc006ea20",
+        "bytes": "70feff08"
+      },
+      "qlogic_callback_install": {
+        "address": "0xc006e8cc",
+        "bytes": "0034a492284b38c00034ac92244b38c0"
+      },
+      "dma1_descriptor_register": {
+        "address": "0xc004f6d4",
+        "bytes": "0030208c50140000"
+      },
+      "dma1_submit_and_enable": {
+        "address": "0xc004f6e4",
+        "bytes": "0010a9920034a192f0ffffff"
+      },
+      "aau_next_descriptor_register": {
+        "address": "0xc00822b0",
+        "bytes": "0030a88c0c180000"
+      },
+      "aau_submit_and_enable": {
+        "address": "0xc00822c0",
+        "bytes": "005085920074b592f4ffffff"
+      },
+      "aau_completion_control": {
+        "address": "0xc0082550",
+        "bytes": "0030f09200180000"
+      },
+      "channel_stride": {
+        "address": "0xc0053ba0",
+        "bytes": "dc03988c"
+      },
+      "channel_vendor_store": {
+        "address": "0xc0053bb0",
+        "bytes": "0034818a784e38c0"
+      },
+      "channel_device_store": {
+        "address": "0xc0053bbc",
+        "bytes": "0034a18a7a4e38c0"
+      },
+      "channel_script_pointer_store": {
+        "address": "0xc005e7b0",
+        "bytes": "2ca08d92"
+      },
+      "secondary_config_selector": {
+        "address": "0xc0053d58",
+        "bytes": "0030a08ca8120000"
+      },
+      "primary_config_selector": {
+        "address": "0xc0053d94",
+        "bytes": "0030a08ca4120000"
+      }
+    },
+    "dma1_descriptor_pointer": "0xc0494a20",
+    "aau_queue": [
+      "0xc049b7cc",
+      "0xc049b7d0",
+      "0xc049b7d4"
+    ],
+    "channel_stride": "0x3dc",
+    "channel0_vendor_device": "0xc0384e78",
+    "channel0_revision": "0xc0384e7c",
+    "channel0_core_register_mapping": "0xc0384b8c",
+    "channel0_pci_register_bar": "0xc0384b90",
+    "channel0_pci_script_bar": "0xc0384b94",
+    "channel0_core_script_mapping": "0xc0384b98",
+    "symbios_alternate_script_start_offset": "0x2c",
+    "qlogic_setup": "0xc006e890",
+    "qlogic_callback_table": "0xc0384b24..0xc0384b64",
+    "live_chip_identity_proven": false,
+    "all_callers_audited": false
+  },
+  "memory_reclaimed": false,
+  "engines_disabled": false,
+  "scsi_config_independently_read": false
+}

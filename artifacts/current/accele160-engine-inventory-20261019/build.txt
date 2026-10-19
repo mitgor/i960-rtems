@@ -1,0 +1,41 @@
+0dfb8e25d5d6e4b4ad13e871b985d385b4a7d7b88e8a1767ea1ef11553f68adf  /home/mit/i960-engine-inventory-v2-20261019/bundle/kernel/kernel.bin
+3abdf1ee264da6cf1fd30c5d2db40b46df1515ed8c0ce7bb6baf414a3d1f7d69  /home/mit/i960-engine-inventory-v2-20261019/bundle/kernel/image.bin
+e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6  /home/mit/i960-engine-inventory-v2-20261019/bundle/project/rtems/accele160/doom_dma/fnv_host.so
+{
+  "reusable": true,
+  "frames": 0,
+  "persistent": true,
+  "card_profile": "accele160",
+  "source_sha256": "58c078071d9ac54150fb84fff6e2dfb72a6f1564ba6e65efdbc116135c415ea3",
+  "kernel_sha256": "0dfb8e25d5d6e4b4ad13e871b985d385b4a7d7b88e8a1767ea1ef11553f68adf",
+  "image_sha256": "3abdf1ee264da6cf1fd30c5d2db40b46df1515ed8c0ce7bb6baf414a3d1f7d69",
+  "image_fnv": "0xf90cf8ad",
+  "engine_manifest_sha256": "6acc78fd90a1a423c5cb8cc75a5472762651ccf623125320269e745fe30e730a",
+  "dma_module_sha256": "df48f83d1f303c69a55ffd9d4bf46e82c3e51bc3ad45b709140f0f04ab9dd1b6",
+  "terminal_schema": 1,
+  "terminal_test": 14,
+  "terminal_sources": {
+    "policy.h": "dcd451ae1238c01b0a6572de1e79ebab0ed6c3afc49f199ce79bc43737d64313",
+    "card.inc": "d01e2a8fe432edf0aeac899d510594c69d252c7530e0959efae438c05cf78bd9",
+    "terminal.S": "ff8b27d3338385b9f0ffbd868048da7c7b6d31874317322f1816bd1987908984",
+    "host.py": "e6e72b9e6f4e11e248c6f93df3fbba0e0e18705b45949d393f1bf573c24c0b58"
+  },
+  "engine_inventory_sources": {
+    "inventory.h": "eb4aa96bc5a2530ea1f3fc7b6551a8833cf20da7073f67c246e5fd11211245d4",
+    "inventory.py": "8ff3945c1d3624cb277381fe723b3088a841e6d09978f37c65aca32762b8474f"
+  },
+  "service_schema": 1,
+  "service_sources": {
+    "protocol.h": "a844e3bbddb51eda1c7e8e006243bdf4b889facd940362e0d9968a036197226f",
+    "card.inc": "a775032964276335211746daad0c8a3a25e0102965815611abe7deee189c36eb",
+    "host.py": "348938ab39d51f79821eee220d4522738c9c6cdd8de01373873247145d0a9a4b"
+  },
+  "keyboard_fifo_schema": 1,
+  "key_fifo_sha256": "d84474b69d3f458bfe99155510588334f0af2d1fc6abeeb26f807863c02cef9b",
+  "admit_module_sha256": "313af2acae9e740dfb90e10e053beeca47efe9cfd5d0bfa74c1cdd07abd28c15",
+  "admit_source_sha256": "7f9a6334a95e923edb4e35e125740e5884a674e7b390a80164a5ff3173105167",
+  "native_fnv_sha256": "e948a5363f354246f3cea670873ea89a5601089d7982312ff5b88354dc5f9af6",
+  "dma_source_sha256": "667fda5cc85ebd0ae36c1f4ee135525dc8d9e0df86222ff9cec5991629408123",
+  "copy_sha256": "136d0fe0670d73848cf5831ecf4cd26077accbcbb45168c45ac34a072106254c",
+  "engine_identity_sha256": "bca3cad30e240112ef7216c3b1be282b65403b75f4aec686592890c25959a6ba"
+}

@@ -6460,3 +6460,35 @@ needed no reset. Its result was a concrete boundary: inventory the remaining
 core engines, identify the board's private SCSI path, and prove isolation before
 calling more firmware memory ours. The read-only collector and raw captures
 went into the repository alongside that plan.
+
+The fuller inventory gave the quiet registers some context. DMA1 still had its
+stock descriptor at c0611320, a local address at c0790000 and a host PCI address.
+Its enable, next-descriptor and remaining-count words could all be zero while
+that history and its firmware dependencies remained. The internal arbiter had
+not excluded any agents. The application accelerator's sampled registers and
+three queue pointers were zero, but we had not read its event status or proved
+that stock code could never submit more work.
+
+The SCSI identity was more decisive. Firmware channel zero recorded vendor
+1077 and device 1016: a QLogic ISP10160. Its register mapping was 8bf00000 and
+its PCI BAR fff00000. The SCRIPT fields were empty. The Symbios routines in the
+same firmware were an alternative we needed to preserve as evidence, not a
+recipe for this card. The 1016 branch instead led to a QLogic callback table;
+we also found the secondary configuration helper and the code that started
+stock DMA1 and application-accelerator descriptors.
+
+A source review caught an overbroad diagnostic condition in the exception
+assembly. The old build wrapper had already kept that code out of this binary,
+but a current wrapper would not. We narrowed the condition and checked that an
+explicit profile-14 compile produced exactly the ordinary owned-handler entry
+object. A second fresh-boot run repeated the first: sixty-four frames, 5,045
+WAD reads and 709 external prompt exchanges. Both runs and their final STOP
+records were kept, with the correction explained alongside them.
+
+After the final reset, paired full firmware reads matched again. The original
+normal kernel completed another sixty-four frames and 717 external console
+exchanges without errors. We left its prompt at verified idle and restored the
+streaming gateway. The inventory had not claimed more memory or stopped the
+SCSI processor. It had replaced a generic question about unused engines with a
+specific next job: corroborate the QLogic device, trace its queues and mailbox
+callbacks, and establish a stop contract for this board.

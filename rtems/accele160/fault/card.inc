@@ -103,7 +103,7 @@ static void at_init(void){unsigned int i;
  at_snapshot();at[26]=at_guard();
  AT_SYNC();at[31]=AT_READY;
 }
-#if ACCELE_TERMINAL_TEST >= 6
+#if ACCELE_TERMINAL_TEST >= 6 && ACCELE_TERMINAL_TEST <= 13
 static void at_dma_finish(void);
 #endif
 void accele_terminal_record(void){
@@ -119,7 +119,7 @@ void accele_terminal_record(void){
 #endif
  }
 #endif
-#if ACCELE_TERMINAL_TEST >= 6
+#if ACCELE_TERMINAL_TEST >= 6 && ACCELE_TERMINAL_TEST <= 13
  at_dma_finish();at[26]=at_guard();at[147]=at_irq_guard();
 #endif
  claim_report[6]=0xf0000000u|at[20];
@@ -127,22 +127,28 @@ void accele_terminal_record(void){
  AT_SYNC();at[31]=AT_DONE;
  AT_PARK();
 }
-#if ACCELE_TERMINAL_TEST == 5
+#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14)
 /* Host requests use words 3/4; ack 166 publishes a complete immutable sample.
  * No injection token is accepted by this profile. */
+#if ACCELE_TERMINAL_TEST == 14
+#include "../ownership/inventory.h"
+#endif
 static void at_runtime_snapshot(unsigned int phase){
  at_snapshot();at[26]=at_guard();at[147]=at_irq_guard();
  at[167]=ticks;at[168]=handoffs;at[169]=switch_fault;
  at[170]=at_owned_valid();at[171]=phase;
  if(!at[170]||!at[26]||at[169])accele_terminal_enter(0x7d019u);
+#if ACCELE_TERMINAL_TEST == 14
+ at_engine_snapshot(at,at_nonce,at[4],phase);
+#endif
  AT_SYNC();at[166]=at[4];
 }
 #endif
-#if ACCELE_TERMINAL_TEST >= 6
+#if ACCELE_TERMINAL_TEST >= 6 && ACCELE_TERMINAL_TEST <= 13
 static void at_dma_test(void);
 #endif
 static void at_poll(void){
-#if ACCELE_TERMINAL_TEST == 5
+#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14)
  if(at[3]==at_nonce && at_nonce && at[4] && at[4]!=at[166])
   at_runtime_snapshot(0u);
 #endif
@@ -151,7 +157,7 @@ static void at_poll(void){
 #if ACCELE_TERMINAL_TEST >= 3
   if(!at_owned_valid())accele_terminal_enter(0x7d018u);
 #endif
-#if ACCELE_TERMINAL_TEST >= 6
+#if ACCELE_TERMINAL_TEST >= 6 && ACCELE_TERMINAL_TEST <= 13
   if(!at[184])at_dma_test();
   return;
 #endif

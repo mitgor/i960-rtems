@@ -16,7 +16,9 @@ static unsigned int *reg(unsigned int addr){
  if(addr==0x1700u)return &regs[220];
  if(addr==4)return &regs[130];
  if(addr==0xff000300u||addr==0xff000304u||addr==0xff000310u||addr==0xff000314u)return &regs[160+(addr-0xff000300u)/4];
- if(addr>=0x1400u&&addr<0x14c0u){unsigned int off=(addr-0x1400u)%64;assert(off==0||off==16||off==32);return &regs[192+(addr-0x1400u)/4];}
+ if(addr>=0x1400u&&addr<0x14c0u){unsigned int off=(addr-0x1400u)%64;assert(off==0||off==12||off==16||off==20||off==24||off==28||off==32||off==36);return &regs[192+(addr-0x1400u)/4];}
+ if(addr==0x1600u||addr==0x104cu||addr==0x1800u||addr==0x1808u||addr==0x180cu||addr==0x1820u||addr==0x1824u||addr==0x1828u)return &regs[300+(addr&63)/4];
+ if((addr>=0xc0384b6cu&&addr<=0xc0384e7cu)||(addr>=0xc049b7ccu&&addr<=0xc049b7d4u))return &regs[400+(addr&255)/4];
  assert(!"unreviewed MMIO read");return 0;
 }
 #define REG(a) (*reg(a))
@@ -24,7 +26,7 @@ static unsigned int *reg(unsigned int addr){
 #define ACCELE_TERMINAL_TEST 3
 #endif
 static unsigned int vector0,drop_vector;
-#if ACCELE_TERMINAL_TEST == 5
+#if (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14)
 static unsigned int handoffs=12;
 #endif
 #define AT_SET_VECTOR0(v) (drop_vector?vector0:(vector0=(v)))
@@ -69,7 +71,7 @@ int main(void){unsigned int i,b;
  assert(at_owned_valid());
 #if ACCELE_TERMINAL_TEST == 3
  if(!setjmp(parked)){at_poll();assert(!"real fault dispatch missed");}
-#elif ACCELE_TERMINAL_TEST == 5
+#elif (ACCELE_TERMINAL_TEST == 5 || ACCELE_TERMINAL_TEST == 14)
  at_poll();assert(!code&&!record[166]); /* injection is never accepted */
  record[3]=124;record[4]=1;at_poll();assert(!record[166]);
  record[3]=123;at_poll();assert(record[166]==1&&record[170]==1&&record[167]==42);

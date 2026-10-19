@@ -146,3 +146,8 @@ a refused corrected retry and a second bounded timeout with resources retained.
 [Profile 13](DMA-REFUSAL.md#profile-13-nmi-source-evidence-refusal) qualifies
 the NMI refusal path using saved source evidence, with real MU acknowledgement
 and DMA ownership preserved.
+
+
+[Profile 14 core-engine inventory](../ownership/PROFILE14.md) extends normal
+owned-handler operation without injection. Profile 5 remains the default; 14
+adds the fixed 48-read report extension and preserves the same terminal entry.

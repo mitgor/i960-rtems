@@ -1,5 +1,9 @@
 # Accele160 engine-ownership audit (P3i)
 
+Follow-up: [profile 14](PROFILE14.md) now supplies live core-engine and firmware
+metadata captures, identifies the QLogic ISP10160 path and records stock DMA1/AAU
+dependencies. The P3i audit below is historical; permanent exclusion remains open.
+
 The 2026-10-19 observational audit finds **no established permanent SCSI or AAU
 exclusion**. It preserves normal profile 5 and the prompt. It grants no RAM and
 performs no PCI configuration writes, BAR mappings, new firmware callbacks,

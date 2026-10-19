@@ -1,0 +1,12 @@
+Only difference from current repository build wrapper; explicit profile-14 object equivalence is in entry-object-check.txt.
+--- captured-wrapper
++++ repository-wrapper
+@@ -8,7 +8,7 @@
+ python3 "$repo/card_profiles/check.py" --card-profile "${CARD_PROFILE:-accele160}" --workflow rtems_accele160 >/dev/null
+ mkdir -p "$3"
+ out=$(cd "$3" && pwd)
+-"$tools_bin/i960-coff-gcc" -mrp -DACCELE_TERMINAL="${ACCELE_TERMINAL:-0}" -c "$src/../fault/terminal.S" -o "$out/terminal.o"
++"$tools_bin/i960-coff-gcc" -mrp -DACCELE_TERMINAL="${ACCELE_TERMINAL:-0}" -DACCELE_TERMINAL_TEST="${ACCELE_TERMINAL_TEST:-0}" -c "$src/../fault/terminal.S" -o "$out/terminal.o"
+ for item in start timer_isr cache; do
+   "$tools_bin/i960-coff-gcc" -mrp -c "$src/$item.S" -o "$out/$item.o"
+ done

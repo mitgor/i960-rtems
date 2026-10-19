@@ -15,6 +15,8 @@ m['terminal_schema']=json.loads((build/'build.json').read_text()).get('terminal_
 m['terminal_test']=json.loads((build/'build.json').read_text()).get('terminal_test',0)
 if m['terminal_schema']:
  m['terminal_sources']={name:sha(src.parent/'fault'/name) for name in ('policy.h','card.inc','terminal.S','host.py')}
+if m['terminal_test']==14:
+ m['engine_inventory_sources']={n:sha(src.parent/'ownership'/n) for n in ('inventory.h','inventory.py')}
 m['service_schema']=json.loads((build/'build.json').read_text()).get('service_schema',0)
 if m['service_schema']:
  m['service_sources']={name:sha(src.parent/'service'/name) for name in ('protocol.h','card.inc','host.py')}

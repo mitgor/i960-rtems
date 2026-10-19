@@ -1,0 +1,6 @@
+{
+  "quiescent": true,
+  "stop_ack": true,
+  "session": "20261019T041732Z",
+  "full_live_replay": "../accele160-nmi-dma-refusal-20261019/restored-replay.json"
+}

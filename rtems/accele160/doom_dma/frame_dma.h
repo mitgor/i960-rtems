@@ -78,7 +78,7 @@ static void dma_kick(unsigned gen,unsigned slot,const void *source,unsigned hash
  REG(0x1410u)=desc;REG(0x1400u)=1u;
 }
 
-#if ACCELE_TERMINAL_TEST >= 6
+#if ACCELE_TERMINAL_TEST >= 6 && ACCELE_TERMINAL_TEST <= 13
 #if ACCELE_TERMINAL_TEST >= 10 && ACCELE_TERMINAL_TEST <= 13
 /* One-shot diagnostic CE resume, never generic fault recovery. Preserve the
  * timeout record, recheck its exact suspended state, then observe a new bound.

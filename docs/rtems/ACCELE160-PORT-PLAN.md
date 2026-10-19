@@ -1,5 +1,36 @@
 # DAC960PG → AcceleRAID 160 RTEMS feature port
 
+## Accele160 P3j — core inventory and QLogic firmware dependencies qualified
+
+Opt-in profile 14 passed two fresh-boot 64-frame runs, each with 5045 WAD reads
+and 709 external console exchanges. The final repeat's live and STOP captures
+pass owned vectors/ISP/guards, report identity/stability and retained callback/pins.
+The inventory uses 48 fixed reads within the existing report page; no CSR/ASR,
+private configuration transaction or chip-control write. A source guard now
+keeps profile 14 out of diagnostic exception-entry CSR reads; its compiled entry
+object matches normal profile 5 exactly, including explicit profile compilation.
+
+DMA1 retains DAR `c0611320`, LADR `c0790000`, DCR `3f` despite zero
+CCR/NDAR/BCR. IACR is 0 and SACR 1554: grants are not excluded. Sampled AAU
+control/descriptor/count and software queue words are zero, not proof of drain.
+Firmware channel-0 metadata identifies `1077:1016` (QLogic ISP10160), mapping
+`8bf00000`, PCI BAR `fff00000`, selector `10`; SCRIPT fields are zero. The
+pinned firmware dispatch selects the QLogic callback setup, not the alternate
+Symbios path. Stock DMA1 and AAU submission/callback dependencies are traced.
+
+[Protocol, dependencies and next step](../../rtems/accele160/ownership/PROFILE14.md)
+and [raw artifacts/replays](../../artifacts/current/accele160-engine-inventory-20261019/README.md).
+Next: corroborate this one secondary device by bounded configuration reads;
+audit QLogic request/response queues and mailbox/interrupt callbacks, then design
+identity-gated stop/isolation. No extra RAM or permanent engine ownership granted.
+
+Normal profile 5 is restored at `/home/mit/i960-owned-runtime-20261018/bundle`,
+session `20261019T075249Z`, boot `49c4d3c5-df8d-438f-810a-82a343636e52`. Fresh paired firmware reads,
+64 frames, 5045 WAD reads and 717 external console exchanges passed. Leave
+this prompt owner live at verified idle; gateway 8088 is active. Earlier session
+and next-step statements below are historical.
+
+
 ## Accele160 P3i — stock engine isolation is not established
 
 The new fixed-device, read-only PCI/console audit found BCR=0x202 (secondary
