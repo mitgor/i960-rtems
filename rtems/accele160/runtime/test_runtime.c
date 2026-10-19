@@ -4,6 +4,8 @@
 #include "runtime.h"
 static unsigned char memory[AR_BYTES+4096] __attribute__((aligned(16)));
 static struct arena parent;
+static unsigned char zone[6*1024*1024+32] __attribute__((aligned(16)));
+static struct arena zp;static struct ar_loan loan;
 static struct ar_runtime r;
 static int sync_ok(void *p,unsigned int n){return p!=0&&n!=0;}
 int main(void){
@@ -30,5 +32,17 @@ int main(void){
  assert(ar_close(&r)&&r.epoch==10&&arena_valid(&parent));
  assert(ar_reserve(&r,&parent));h=ar_alloc(&r,32);p=ar_pin(&r,h);p[32]^=1;
  assert(!ar_valid(&r)&&!ar_close(&r)&&r.reservation&&parent.slot[0].pins==1);
+ assert(arena_init(&zp,zone,sizeof(zone)));h=arena_alloc(&zp,6*1024*1024);assert(arena_pin(&zp,h));
+ ar_loan_init(&loan);assert(!ar_loan_attach(&loan,&zp,h,123,1));
+ assert(ar_loan_attach(&loan,&zp,h,6*1024*1024,17));
+ assert(!ar_loan_alloc(&loan,18,16)&&!ar_loan_cancel(&loan,18));
+ for(i=0;i<200;i++){unsigned phase=ar_loan_proof(&loan);assert(phase);if(phase==3)break;}
+ assert(i==191&&loan.cancelled&&zp.slot[0].pins==2);
+ assert(ar_loan_release(&loan,17)&&zp.slot[0].pins==1&&arena_valid(&zp));
+ assert(!ar_loan_attach(&loan,&zp,h,6*1024*1024,17));
+ assert(ar_loan_attach(&loan,&zp,h,6*1024*1024,18));
+ h2=ar_loan_alloc(&loan,18,32);p=ar_loan_pin(&loan,18,h2);assert(p);p[32]^=1;
+ assert(!ar_loan_cancel(&loan,18)&&loan.poisoned&&!ar_loan_release(&loan,18)&&zp.slot[0].pins==2);
+ puts("6 MiB loan: full pattern, cancelled pinned retention, wrong owner, drained release, guard quarantine passed");
  puts("Accele runtime: bounded partitions, exact board/base, two segmented reloads, BSS zero, pinned cancellation retention, stale handles, busy close and poisoned guard retention passed");return 0;
 }

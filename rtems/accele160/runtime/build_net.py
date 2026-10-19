@@ -4,13 +4,18 @@ import argparse,subprocess,tarfile,sys,json,zlib,hashlib
 from pathlib import Path
 here=Path(__file__).resolve().parent;root=here.parents[2]
 sys.path.insert(0,str(root/'rtems'));from lwip_patches import apply
-p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--tools',type=Path);p.add_argument('--newlib',type=Path);p.add_argument('--hello',action='store_true');p.add_argument('--base',type=lambda s:int(s,0),default=0xc0f50ca0);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--tools',type=Path);p.add_argument('--newlib',type=Path);p.add_argument('--ipv6',type=str);p.add_argument('--hello',action='store_true');p.add_argument('--base',type=lambda s:int(s,0),default=0xc0f50ca0);a=p.parse_args()
 a.out.mkdir(parents=True,exist_ok=True)
 with tarfile.open(root/'artifacts/rtems-20261011/sources/lwip-2.1.3.tar.gz') as t:t.extractall(a.out,filter='data')
 lw=a.out/'lwip-STABLE-2_1_3_RELEASE';apply(lw)
 sources=sum((sorted((lw/'src/core'/d).glob('*.c')) for d in ('','ipv4','ipv6')),[])+[root/'rtems/net/network.c',root/'rtems/net/http.c',here/'net_module.c']
 if a.hello:sources=[here/'hello_module.c']
 flags=['-Os','-fno-builtin','-ffreestanding','-DACCELE_NET','-DI960_BACKGROUND_NET','-I'+str(root/'rtems/net'),'-I'+str(root/'rtems/transport'),'-I'+str(lw/'src/include')]
+if a.ipv6:
+ import ipaddress
+ address=ipaddress.IPv6Address(a.ipv6)
+ if not address.is_global:p.error('--ipv6 requires a global unicast address')
+ flags+=['-DACCELE_PUBLIC_IPV6="'+str(address)+'"']
 if not a.tools:
  subprocess.run(['cc','-shared','-fPIC',*flags,*map(str,sources),'-o',str(a.out/'network.so')],check=True);sys.exit(0)
 if not a.newlib:p.error('--newlib include path required for i960')

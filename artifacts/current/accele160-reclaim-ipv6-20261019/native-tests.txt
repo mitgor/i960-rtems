@@ -1,0 +1,16 @@
+6 MiB loan: full pattern, cancelled pinned retention, wrong owner, drained release, guard quarantine passed
+Accele runtime: bounded partitions, exact board/base, two segmented reloads, BSS zero, pinned cancellation retention, stale handles, busy close and poisoned guard retention passed
+actual application card adapter: idle gate, epochs, upload chunks, incremental verification, cache sync, busy retention, bounded timer catch-up, packet reply, duplicate and close passed
+owner RPC: bounded publication, exact reply payload, uncertain timeout quarantine, no release writes after uncertainty passed
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.005s
+
+OK
+production audit pump: original page preserved, recursion excluded, selftest exclusion, exception reset PASS
+PASS: 6 MiB allocation, 128 slots, fragmentation, 10000 operations, stale handles, pins/cancel, segmented load/BSS/checksum/cache failure
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.003s
+
+OK

@@ -1,0 +1,48 @@
+{
+  "external_exchanges": 949,
+  "external_errors": 0,
+  "boot_id": "8cdab7ff-48a3-481f-bb54-0924025016c0",
+  "kernel_sha256": "26b916dfd1c85a986d24b4bac17c7972b8b5108fed5bb56e9d0028afbed6bc80",
+  "owned_samples": [
+    {
+      "sequence": 1,
+      "phase": 0,
+      "ticks": 10,
+      "handoffs": 10,
+      "owned": true,
+      "label": "ready"
+    },
+    {
+      "sequence": 2,
+      "phase": 0,
+      "ticks": 9472,
+      "handoffs": 8598,
+      "owned": true,
+      "label": "game-1-frame32"
+    },
+    {
+      "sequence": 3,
+      "phase": 0,
+      "ticks": 9828,
+      "handoffs": 8676,
+      "owned": true,
+      "label": "game-1-idle"
+    }
+  ],
+  "frames": 64,
+  "wad_reads": 5045,
+  "console_replies": 1004,
+  "max_console_latency_ms": 3622.0296950000093,
+  "owned_vectors_and_guards": true,
+  "global_stop": false,
+  "session_left_running": true,
+  "loan_bytes": 6291456,
+  "pattern_bytes": 6291424,
+  "two_reference_cancel_retention": true,
+  "loan_steps": 192,
+  "max_loan_rpc_ms": 206.3558330000319,
+  "global_ipv6_lan_http": true,
+  "internet_reachability_verified": false,
+  "new_stock_ram_reclaimed": false,
+  "unrestricted_task_cancellation": false
+}

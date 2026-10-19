@@ -1,3 +1,53 @@
+## Accele160 idle-zone reclamation and global IPv6 — 2026-10-19
+
+Live bundle: `/home/mit/i960-reclaim-ipv6-20261019/bundle`, session
+`20261019T175819Z`, boot `8cdab7ff-48a3-481f-bb54-0924025016c0`.
+Kernel SHA256 `26b916dfd1c85a986d24b4bac17c7972b8b5108fed5bb56e9d0028afbed6bc80`.
+The original prompt and card-side network service remain the intended final state.
+
+The idle Doom zone now has a guarded, generation-owned loan API. The hardware
+qualification wrote and verified **6,291,424 bytes** inside the existing 6 MiB
+parent allocation, over 192 bounded calls. It cancelled while two pins remained,
+refused new access, premature release and module close, then drained both pins
+and returned the loan. Maximum observed RPC was **206.356 ms**, not an interrupt
+latency bound. Networking timer calls advanced from 178 to 1666 through the test.
+The ordinary baseline passed 64 frames / 5,045 WAD reads; 949 external prompt
+exchanges passed. Hello plus two network loads and the existing heap proofs passed.
+
+This makes the retired zone available through a kernel loan API and test wire,
+not yet through module imports or RTEMS malloc/workspace. The qualification
+returns the loan at the end. No new stock memory was taken, and 10–12 MiB total
+ownership is still gated on SXP/DMA exclusion and firmware allocation analysis.
+See `rtems/accele160/runtime/RECLAMATION-CANCELLATION.md`.
+
+**Unrestricted task cancellation remains unimplemented.** The module still runs
+inside Init and the ISR has exactly four owned contexts. The new cancellation
+code revokes allocation access and retains outstanding references; it does not
+kill arbitrary tasks, release held RTEMS locks or invent DMA completion. The
+contract records the separate application-task/context, supervisor channel,
+dependency tracking and fault-test gates required next.
+
+Card global address: **`2a02:8106:40:9000::960`**, HTTP port 80. The global-address
+module preserves `10.196.0.2` and `fd96:196:960::2`. Host routing/proxy NDP is
+implemented by the corrected **root-level** script
+`/home/mit/i960-reclaim-ipv6-20261019/public_ipv6.py`; use it for removal/reapply,
+not the earlier helper frozen inside the bundle. The first helper enabled only
+interface forwarding; LAN SYNs reached the host but were not forwarded. Linux's
+IPv6 forwarding path also requires the global switch. The corrected helper
+saves/restores global and interface settings, preserves unrelated interfaces,
+and restricts newly enabled IPv6 forwarding to the card. It also enables global
+proxy NDP for unicast neighbor refresh. IPv4 forwarding policy is untouched.
+
+Twenty HTTP requests from the Mac passed against the global address; public
+TCP/9600 was blocked. Host IPv4/IPv6 ping and HTTP passed. No host HTTP proxy is
+involved. Internet reachability is **unverified**: the external fetch tool could
+not test an IPv6-literal URL. The upstream router may need an inbound IPv6 HTTP
+rule for the card address. Do not call LAN success an Internet test. Routing is
+explicit, temporary and prefix-specific; remove it before stopping the TUN relay.
+
+Evidence: `artifacts/current/accele160-reclaim-ipv6-20261019/`. Earlier immutable
+runtime bundles and the stock/coexistence option remain preserved.
+
 ## Latest Accele160 state — 2026-10-19 resident applications/network
 
 Read `docs/rtems/ACCELE160-PORT-PLAN.md` and `rtems/accele160/runtime/README.md`

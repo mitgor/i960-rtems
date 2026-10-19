@@ -6,6 +6,8 @@
 #define STOP 0x504f5453u
 static unsigned ticks,game_idle,engine_running,control[4],wire[1024],cache_syncs;
 static struct arena doom_arena;
+static unsigned zone_loaned,zone_handle;
+#define ZONE_BYTES (6u*1024u*1024u)
 static unsigned char storage[AR_BYTES+64] __attribute__((aligned(16)));
 static unsigned little_word(const unsigned char *p){return p[0]|p[1]<<8|p[2]<<16|(unsigned)p[3]<<24;}
 static unsigned mock(unsigned op,unsigned ms,const unsigned char*in,unsigned n,unsigned char*out,unsigned cap);

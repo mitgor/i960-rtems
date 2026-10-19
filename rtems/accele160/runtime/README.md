@@ -114,3 +114,24 @@ exchange through the owner channel on the physical card.
 See the [evidence batch](../../../artifacts/current/accele160-runtime-port-20261019/README.md)
 for the hardware qualification state. Do not infer card success from a native
 run or a successful cross-compile.
+
+## Further reclamation and public IPv6
+
+See [loan/cancellation contract](RECLAMATION-CANCELLATION.md) for the idle 6 MiB
+zone heap and wire operation 9. Forced non-cooperative task termination remains
+unqualified; cancellation revokes access and retains outstanding references.
+
+`build_net.py --ipv6 GLOBAL_ADDRESS` adds a third, global IPv6 address while
+keeping both private addresses. Rebuild/reload the module when the ISP prefix
+changes. `public_ipv6.py apply --address GLOBAL_ADDRESS` checks the current LAN
+prefix, performs duplicate-address detection, installs a host /128 route through
+`accele0`, proxy NDP on `enp1s0`, RA-preserving forwarding and a dedicated nftables
+table. Forwarded ingress permits card HTTP/80, ICMPv6 and established/related
+traffic; echo-test TCP/9600 and UDP/9601 are not public. Local host-to-card tests
+remain available. This is routing to card-side lwIP, not a host HTTP proxy.
+
+Run `public_ipv6.py remove` **before stopping the TUN relay** to restore saved
+sysctls, route, proxy and table. State is `/run/i960-public-ipv6.json`; setup is
+explicit and not persistent across reboot. The script does not alter the router.
+An upstream IPv6 firewall may still need an inbound HTTP rule for the dedicated
+card address. LAN access alone does not establish Internet reachability.

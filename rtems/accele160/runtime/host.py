@@ -42,7 +42,7 @@ class Runtime:
                 return
             req=json.loads(self.data);op=req['op'];payload=bytes.fromhex(req.get('data',''))
             if self.disabled:raise ValueError('runtime quarantined')
-            if type(op)!=int or not 1<=op<=8 or len(payload)>1500:raise ValueError('request bounds')
+            if type(op)!=int or not 1<=op<=9 or len(payload)>1500:raise ValueError('request bounds')
             if self.epoch is None:
                 page=snap(ADDRESS);w=struct.unpack_from('<11I',page,416*4)
                 if w[0]!=0x31525041 or not w[3] or w[1]:raise ValueError('runtime identity/owner')

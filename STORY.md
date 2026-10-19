@@ -6675,3 +6675,47 @@ kernel workspace did not move, and no stock DMA or SCSI allocation became ours.
 Those boundaries remained the next work: general shared application lifetimes,
 more flexible memory loans, longer networking runs, and a demonstrated stop for
 the engines before taking their RAM.
+
+
+### Six megabytes that were already ours
+
+The next memory gain did not require persuading the SCSI chip to surrender an
+unknown allocation. Doom had finished, but its six-megabyte zone was still
+reserved. We could lend that space to another owner while keeping the original
+reservation pinned and refusing any attempt to start the game over it.
+
+We added a guarded child heap inside the zone. Its owner acquired a new token
+for each loan, so an old handle could not silently become valid again. Cancelling
+the owner closed admission to new allocations and references. It did not erase
+the references that already existed.
+
+On the card, the test filled 6,291,424 bytes, cancelled with two references still
+held, and read the bytes back. It took 192 bounded calls. Releasing the first
+reference still could not free the allocation; releasing the second finally
+allowed it. Closing the module while the loan existed was refused too. The
+network module kept ticking throughout, and the prompt continued answering.
+The largest observed test request took about 206 milliseconds. That was a host
+round trip, not a claim about worst-case interrupt latency.
+
+This made the cancellation boundary more precise without making it disappear.
+The loaded application still ran inside Init, and the interrupt code knew four
+specific task contexts. Killing that task would kill part of the supervisor.
+We recorded the separate application context and resource-dependency work still
+needed, rather than treating a timeout as permission to reuse somebody's stack
+or DMA buffer. The larger heap was a kernel loan API, not yet an extension of
+RTEMS malloc or the module's imports.
+
+Then we gave the card a global IPv6 address of its own. The first host setup
+looked plausible: a /128 route, proxy NDP and forwarding enabled on the two
+interfaces. Local curl worked, but packets from the Mac stopped at the host.
+The kernel's IPv6 forwarding path checked the global switch as well. We corrected
+the setup, saved the previous settings for rollback, and confined the newly
+enabled forwarding to the card's traffic.
+
+The Mac then fetched Darth Vader directly from `2a02:8106:40:9000::960` twenty
+times. The diagnostic TCP echo port stayed closed to forwarded traffic. The
+HTTP connection terminated in lwIP on the i960; the host carried packets.
+That proved the routed LAN path to a global address. It did not prove that the
+upstream router admitted connections from the Internet, and our external fetch
+tool could not test an IPv6-literal URL. We kept that distinction in the record,
+along with the binaries, full memory-test replies and routing rollback evidence.

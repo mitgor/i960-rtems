@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Exercise actual Accele module entry with raw IPv4/IPv6, no host HTTP server."""
-import ctypes,ipaddress,struct,sys,json
+import os,ctypes,ipaddress,struct,sys,json
 rpc=sys.argv[1]=='--rpc'
 if rpc:
  from client import Client
@@ -28,7 +28,7 @@ def checksum(b):
  while n>>16:n=(n&65535)+(n>>16)
  return (~n)&65535
 def addresses(v):
- return tuple(ipaddress.ip_address(s).packed for s in (('10.196.0.1','10.196.0.2') if v==4 else ('fd96:196:960::1','fd96:196:960::2')))
+ return tuple(ipaddress.ip_address(s).packed for s in (('10.196.0.1','10.196.0.2') if v==4 else (os.getenv('ACCELE_TEST_SOURCE6','fd96:196:960::1'),os.getenv('ACCELE_TEST_DEST6','fd96:196:960::2'))))
 def pseudo(v,src,dst,proto,n):return src+dst+(struct.pack('!BBH',0,proto,n) if v==4 else struct.pack('!I3xB',n,proto))
 def ip(v,proto,data):
  src,dst=addresses(v)

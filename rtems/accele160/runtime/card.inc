@@ -6,6 +6,7 @@
 #endif
 #include "../runtime/runtime.h"
 static struct ar_runtime app_runtime;
+static struct ar_loan app_loan;
 static unsigned int app_sequence,app_started,app_tick;
 #ifndef AR_WIRE
 #define AR_WIRE ((volatile unsigned int*)0xc077b000u)
@@ -36,7 +37,7 @@ static unsigned int app_call(unsigned int op,const unsigned char *in,unsigned in
 }
 static void app_init(unsigned int epoch){unsigned int i;
  for(i=0;i<1024u;i++)app_wire[i]=0;
- ar_init(&app_runtime,epoch);app_sequence=app_started=0;app_tick=ticks;
+ ar_loan_init(&app_loan);ar_init(&app_runtime,epoch);app_sequence=app_started=0;app_tick=ticks;
  app_wire[416]=0x31525041u;app_wire[419]=epoch;
 }
 static void app_poll(void){
@@ -80,9 +81,17 @@ static void app_poll(void){
  }else if(op==3){if(n){status=3;goto reply;}value=seg_prepare(&app_runtime.image,app_cache_sync);if(!value)status=9;
  }else if(op==4){if(n||app_started){status=10;goto reply;}app_tick=ticks;value=app_call(0,0,0,0,0);if(value)status=10;else app_started=1;
  }else if(op==5){if(!app_started){status=11;goto reply;}value=app_call(2,input,n,out,2048);if(value>2048){status=11;value=0;}
- }else if(op==6){if(n){status=3;goto reply;}if(!ar_close(&app_runtime))status=12;else app_started=0;
+ }else if(op==6){if(n){status=3;goto reply;}if(app_loan.handle||!ar_close(&app_runtime))status=12;else app_started=0;
  }else if(op==7){if(n){status=3;goto reply;}if(app_started){value=app_call(3,0,0,out,2048);if(value>2048){status=11;value=0;}}
  }else if(op==8){if(n){status=3;goto reply;}value=ar_heap_proof(&app_runtime);if(value!=255u)status=14;
+ }else if(op==9){ /* idle-zone guarded loan qualification, bounded steps */
+  if(n!=4u||zone_loaned||engine_running){status=15;goto reply;}
+  i=little_word(input);
+  if(i==0){if(!ar_loan_attach(&app_loan,&doom_arena,zone_handle,ZONE_BYTES,app_sequence))status=15;else value=app_loan.heap.bytes;}
+  else if(i==1){value=ar_loan_proof(&app_loan);if(!value)status=15;}
+  else if(i==2){if(!ar_loan_release(&app_loan,app_loan.owner))status=15;}
+  else if(i==3){value=app_loan.phase;}
+  else status=15;
  }else status=13;
  app_sequence=seq;
 reply:
