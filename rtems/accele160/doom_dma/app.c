@@ -160,7 +160,7 @@ static unsigned int preflight(void){
 #ifndef ACCELE_TERMINAL_TEST
 #define ACCELE_TERMINAL_TEST 0
 #endif
-#if ACCELE_TERMINAL_TEST < 0 || ACCELE_TERMINAL_TEST > 10
+#if ACCELE_TERMINAL_TEST < 0 || ACCELE_TERMINAL_TEST > 11
 #error terminal profile must be 0..9 (5 is owned runtime, no injection)
 #endif
 #if ACCELE_TERMINAL_TEST && !ACCELE_TERMINAL

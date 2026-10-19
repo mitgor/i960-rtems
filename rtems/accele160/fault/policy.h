@@ -15,7 +15,7 @@
 static unsigned int at_request(unsigned int nonce,unsigned int seq,
  unsigned int token,unsigned int expected,unsigned int build_test){
  return expected && nonce==expected && seq==1u && token==AT_TRIGGER &&
-        ((build_test>=1u&&build_test<=4u)||(build_test>=6u&&build_test<=10u));
+        ((build_test>=1u&&build_test<=4u)||(build_test>=6u&&build_test<=11u));
 }
 /* Non-destructive DMA register offsets; CSR(+4) is deliberately absent. */
 static const unsigned int at_dma_offsets[3]={0u,0x10u,0x20u};

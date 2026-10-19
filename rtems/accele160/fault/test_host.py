@@ -130,3 +130,14 @@ try:host.validate_dma_observation(tuple(bad))
 except AssertionError:pass
 else:raise AssertionError('resume timeout accepted as completion')
 print('resume: distinct timeout/completion, fingerprints and guard evidence required')
+
+# NMI resume additionally requires actual vector/source and acknowledged MU.
+w[25]=11;w[151:156]=[0x100,0xb,0x80000000,0x73,1]
+w[160]=2;w[163]=248;w[221:224]=[3,0,0x7b]
+host.validate_dma_observation(tuple(w))
+for index,mask in ((151,1),(152,8),(153,0x80000000),(154,8),(155,1),(160,1),(163,1),(221,8),(222,0x80000000),(223,8)):
+    bad=w[:];bad[index]^=mask
+    try:host.validate_dma_observation(tuple(bad))
+    except AssertionError:pass
+    else:raise AssertionError(('NMI resume evidence tamper accepted',index))
+print('NMI resume: vector, source, arm, acknowledgement and mask required')

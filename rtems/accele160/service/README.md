@@ -165,3 +165,10 @@ normal profile 5 is live in session `20261019T031433Z`, boot `f191f6f8-c1ae-4ce3
 under `/home/mit/i960-owned-runtime-20261018`. The prompt and gateway 8088
 are restored at verified idle after 64 frames and 685 accepted external
 console exchanges. See [evidence](../../../artifacts/current/accele160-dma-resume-20261019/README.md).
+
+
+Latest restoration after profile-11 NMI DMA resume (2026-10-19): normal profile 5
+is live in session `20261019T033558Z`, boot `cfb5e186-651a-4666-bb83-a8e52779a87a`, under
+`/home/mit/i960-owned-runtime-20261018`. The prompt and gateway 8088 are restored
+at verified idle after 64 frames and 709 accepted external console exchanges.
+See [evidence](../../../artifacts/current/accele160-nmi-dma-resume-20261019/README.md).

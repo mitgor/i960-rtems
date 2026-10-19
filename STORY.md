@@ -6341,3 +6341,37 @@ loan. We left the normal prompt at verified idle and restored the streaming
 gateway. The new capture showed that a suspended transfer could finish later;
 it also kept the boundary clear between finishing DMA and safely releasing
 the controller's resources.
+
+
+The next run approached the same suspended transfer through the NMI doorbell.
+The host waited for the card to arm the test, checked that both sides agreed
+on the message-unit registers, and rang the doorbell once. This time the
+processor arrived at vector 248 rather than the fault entry.
+
+The handler had another obligation before it could restart DMA. It had to
+show that the interrupt belonged to our test and that the source had been
+masked and acknowledged. We saved the original source registers, then checked
+that only the doorbell status had cleared and only its mask had changed. The
+host read the PCI aliases afterward and independently saw the same result.
+Masking an interrupt alone would not have been enough.
+
+The transfer still spent ten million status reads suspended. That evidence
+stayed in the record when the new gate enabled the channel and the finite
+chain reached its final descriptor. The pattern and marker arrived intact;
+the unused destination, source, descriptors and guards kept their expected
+contents. Even after the owner process ended, the buffers stayed pinned and
+the firmware callback stayed pending. Successful DMA did not make the whole
+controller safe to release.
+
+We now had separate physical captures for controlled resume through both the
+fault and NMI paths. Both began with a healthy engine that we had deliberately
+suspended. Neither established recovery from an arbitrary NMI or a PCI target
+that had stopped answering. Those distinctions remained in the findings beside
+the binaries and raw captures.
+
+After reset, both full firmware reads matched again. The ordinary owned-handler
+kernel ran sixty-four frames and 5,045 WAD requests, and the prompt passed
+709 external exchanges without errors. Its ownership snapshots and guards
+held. We left the game at verified idle, with its workspace loan returned,
+and restored the streaming gateway. The NMI experiment had its own complete
+capture and a verified route back to the normal prompt.

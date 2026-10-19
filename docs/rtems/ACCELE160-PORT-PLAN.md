@@ -388,3 +388,25 @@ NMI entry, preserving its source acknowledgement and original timeout record.
 After that, qualify hardware gate rejection without changing CE and retain the
 reset-only ownership policy. Generic PCI errors/retries, abort, arbitrary task
 restart, SCSI/cache exclusion and memory reclamation remain separate gaps.
+
+### P3f — controlled DMA resume through real NMI (2026-10-19)
+
+Profile 11 extends P3e with the actual PCI doorbell NMI, owned vector 248 and
+an additional source/acknowledgement gate before DMA0 CE. Core snapshots and
+independent PCI MU reads agree that the injected doorbell was cleared and
+masked. The original 10000000-poll suspended timeout remains intact beside the
+new finite-chain completion evidence. Host payload, marker, guards, ownership,
+peer-register and post-owner-exit retention checks pass on the card.
+
+[Evidence](../../artifacts/current/accele160-nmi-dma-resume-20261019/README.md)
+and [implementation](../../rtems/accele160/fault/DMA-RESUME.md). The normal
+service remains the original profile 5; reset is still required to release the
+diagnostic's resources. Native tests also cover invalid NMI sources, vector,
+arm state, acknowledgement/mask, retry rejection and a second timeout.
+
+Next is hardware qualification of a refused resume gate: deliberately invalidate
+only diagnostic evidence after suspension, confirm CE remains clear and the
+same outstanding transfer stays retained through timeout and host exit, then
+reset and restore normal service. Generic PCI retry/error recovery, arbitrary
+NMI/task recovery, abort, memory reclamation and broader stock-engine exclusion
+remain separate work.

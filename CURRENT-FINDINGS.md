@@ -1,3 +1,29 @@
+## Accele160 P3f — controlled NMI-path DMA resume qualified
+
+Profile 11 passed on the card: real vector 248, NISR=0x100, preserved original
+10000000-poll suspended timeout, then a single gated CE resume and completion
+after 1843607 further polls. The timeout retained BCR=65032; completion had
+CSR=0, final DAR=0xc0829000 and NDAR/BCR=0. Core and independent PCI MU reads
+agree on acknowledgement: IISR 0xb→3, IDR 0x80000000→0, IIMR 0x73→0x7b.
+Payload/marker, guards, source/chain fingerprints and visible pages, peer
+registers and allocator ownership pass. STOP/unload refusal/host exit preserve
+pins and the pending firmware callback (`done=0 released=0`).
+
+Fresh paired firmware reads close reset recovery. The original qualified
+profile-5 kernel is restored in session `20261019T033558Z`, boot
+`cfb5e186-651a-4666-bb83-a8e52779a87a`, under `/home/mit/i960-owned-runtime-20261018`.
+It passed 64 frames, 5045 WAD reads and 709 external console exchanges with
+zero errors. Owned-state snapshots pass; the prompt is at verified idle and
+the streaming gateway 8088 is active. No flash writes or physical reset help.
+
+[Evidence](artifacts/current/accele160-nmi-dma-resume-20261019/README.md) and
+[design](rtems/accele160/fault/DMA-RESUME.md). This qualifies deliberate healthy
+DMA suspension/resume through NMI, not arbitrary NMI or PCI failure recovery.
+Next is hardware qualification of a refused resume gate. Native rejection and
+second-timeout coverage exists; abort, reclamation without reset, arbitrary task
+restart and broader SCSI/cache exclusion remain open. Earlier live sessions
+below are historical.
+
 ## Accele160 P3e — controlled fault-path DMA resume qualified
 
 Profile 10 preserves the deliberate suspension and real fault-path timeout,

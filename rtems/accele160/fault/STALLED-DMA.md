@@ -47,5 +47,5 @@ MMIO polls, not a hard wall-clock deadline when the bus itself stops responding.
 No resume, abort, or memory reclamation without reboot is claimed. Broader
 stock SCSI/cache exclusion remains separate work.
 
-The separate [profile 10 diagnostic](DMA-RESUME.md) investigates CE resume
+The separate [profiles 10/11](DMA-RESUME.md) qualify controlled CE resume
 after this timeout. Profiles 8/9 continue to park with CE clear.

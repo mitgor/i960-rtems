@@ -1,0 +1,9 @@
+{
+  "function": "c0712ca0",
+  "ce_write": "c0712f90",
+  "csr_loop": "c0712fa8",
+  "poll_bound": 10000000,
+  "nmi_source_and_ack_checks_before_ce": true,
+  "manual": "Intel 80303 273353-001 sections 16.4.2, 16.8.3\u20135, 19.14.1",
+  "scope": "Compiled diagnostic reviewed; hardware result separate"
+}

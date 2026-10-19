@@ -11,14 +11,16 @@ def verify(path):
     for n,h in obj('bundle/bundle.json')['files'].items():assert sha(read('bundle/'+n))==h,n
     result,=[n for n in files if n.endswith('/run/terminal/result.json')]
     terminal=result[:-11];session=terminal[:-13];r=obj(result);mode=r['mode'];nonce=r['nonce']
-    assert mode in (6,7,8,9,10)
-    assert r['hardware_fault_tested']==(mode in (6,8,10)) and r['nmi_hardware_tested']==(mode in (7,9))
+    assert mode in (6,7,8,9,10,11)
+    assert r['hardware_fault_tested']==(mode in (6,8,10)) and r['nmi_hardware_tested']==(mode in (7,9,11))
     ready=read(terminal+'ready.bin');validate(ready,nonce,mode,False)
     assert read(terminal+'stale.bin')[64:]==ready[64:]
     raw=read(terminal+'terminal.bin');w=validate(raw,nonce,mode,True)
     assert raw==read(terminal+'stable.bin')==read(terminal+'after-stop.bin')
     validate_dma_observation(w)
-    if mode in (7,9):assert validate(read(terminal+'armed.bin'),nonce,mode,False)[155]==1
+    if mode==11:
+        assert obj(terminal+'mu-after.json')==dict(idr=w[222],iisr=w[221],iimr=w[223])
+    if mode in (7,9,11):assert validate(read(terminal+'armed.bin'),nonce,mode,False)[155]==1
     expected=bytes((i^(i>>8)^0x69)&255 for i in range(65536))
     assert w[192]==dma_fnv(expected) and w[194]==1
     for off in range(0,65536,8192):
@@ -37,9 +39,9 @@ def verify(path):
     assert int(r['pin']['bus0'],16)==w[182]
     assert all(r[k] for k in ('retained','active_dma_at_entry',
         'dma_source_retained','dma_destination_retained','completion_not_synthesized'))
-    assert r['drained_after_terminal']==(mode<8 or mode==10)
+    assert r['drained_after_terminal']==(mode<8 or mode in (10,11))
     if mode>=8:assert r['stalled_timeout']
-    if mode==10:assert r['resumed_after_timeout']
+    if mode in (10,11):assert r['resumed_after_timeout']
     if mode>=8:
         exit_state=obj(session+'run/post-owner-exit.json')
         assert exit_state['boot_id']==obj(session+'run/result.json')['boot_id']
@@ -64,7 +66,7 @@ def verify(path):
     assert boots[0]==boots[1]==obj(session+'run/result.json')['boot_id']
     return dict(mode=mode,boot_id=boots[0],kernel_sha256=m['kernel_sha256'],paired_firmware=True,
         entry_csr=hex(w[176]),entry_ccr=hex(w[177]),post_owner_exit_verified=mode>=8,entry_next_descriptor=hex(w[178]),entry_byte_count=w[179],
-        resumed_after_timeout=mode==10,resume_polls=w[210] if mode==10 else None,stalled_timeout=mode>=8,terminal_seconds=r.get('terminal_seconds'),drain_polls=w[175],drain_csr=hex(w[186]),finite_bytes=1024*65536,
+        resumed_after_timeout=mode in (10,11),resume_polls=w[210] if mode in (10,11) else None,stalled_timeout=mode>=8,terminal_seconds=r.get('terminal_seconds'),drain_polls=w[175],drain_csr=hex(w[186]),finite_bytes=1024*65536,
         fault_or_nmi_record=[hex(v) for v in w[161:165]],source_chain_fnv_and_visible_page_checks=True,
         guards_intact=True,second_target_untouched=True,release_denied=True,retained=True,
         post_test_reset_verified=False)

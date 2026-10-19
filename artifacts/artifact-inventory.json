@@ -17521,6 +17521,106 @@
       "path": "artifacts/current/accele160-dma-resume-20261019/tested.tar.xz",
       "size": 8730320,
       "sha256": "b8ed9f6e5823a21702608841bb9c572bee970d43e0113f797dbead9f4e1ea480"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/README.md",
+      "size": 5255,
+      "sha256": "a4949d96f4613969fabdc7e08032b2de922fab98d75dcb1bfca942c2f2527a30"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/SHA256SUMS",
+      "size": 2622,
+      "sha256": "164eb330126fdc79c189626773e1ecd53e0a9c6c0f54768358ade5150ca6a6aa"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/build.txt",
+      "size": 2365,
+      "sha256": "cb66d0434262e535abfb251194aaa9dd871e77dbe06af0bdd2040aeca1f81c16"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/entry-and-loop-audit.json",
+      "size": 301,
+      "sha256": "6c341a5e36a1fbc513755d843f553fdeb90118ce96758d1608d85a4bf2b40fb6"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/final-bundle-validation.txt",
+      "size": 3373,
+      "sha256": "2d4acf2b438aadcd00daefa8097bee82c2bc02409411a7f93c37c4f52461dd83"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/hardware-state.json",
+      "size": 943,
+      "sha256": "304ba116fc0b6e27cd15e6f8c0395d36f6d23799c416daaad9f6a969a624c4b1"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/native-tests-linux.txt",
+      "size": 1424,
+      "sha256": "168e9f4baca95c94d7857301192f257c6e59ce52290fc8938e8ce46b6850d45f"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/native-tests.txt",
+      "size": 938,
+      "sha256": "e55a7c6e6ee0b40a7c9cac10f7b40d993ef0ebe8e5401e4cf6edec766aa5e50b"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/prepared.tar.xz",
+      "size": 8630660,
+      "sha256": "46589cf775cbbb5a174cff916db09497290e05240afb318ca3d1fa75773d375a"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/previous-final-replay.json",
+      "size": 771,
+      "sha256": "a8b4ad8583ad853c02950517775b05c0b1813b17c3e88ee049f18a440e853a9e"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/previous-final.tar.xz",
+      "size": 9740500,
+      "sha256": "89b0a0f0312654155f090ae7d0c9025cc3e9927b33192687df1b587f90977175"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/previous-modes-replay.json",
+      "size": 4767,
+      "sha256": "08ca8d60b5836a0f7d02feb76f9708357ec8a4d6ccc3705afb106e0ffe3ccdd6"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/recovery.json",
+      "size": 857,
+      "sha256": "c3630594ca2ba500f67b82d24e901454790d788267a631c9ae01f87752ed3175"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/restored-live.tar.xz",
+      "size": 9744124,
+      "sha256": "c6c99952afdf67e537f2a97c65361342fe1f9cb51ca1f964a53487954a49d760"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/restored-prompt.txt",
+      "size": 245,
+      "sha256": "782b5b0a7c2733a1475e86c42df692220e85f0f62a816992310d71009c82ee01"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/restored-replay.json",
+      "size": 855,
+      "sha256": "8e1304189ae9df1d055128acab45449b0e78f0220030989e80b5c745d0ab01da"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/restored-services.txt",
+      "size": 101,
+      "sha256": "a8779804b958e893793947212c0a6d572ee16dac6169d53cae3737f8a4fd102b"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/resume-disassembly.txt",
+      "size": 13647,
+      "sha256": "c374408cd4845eacafb2bbe0fa80dff667ecb6728b8fba7b757154fc34f7cce3"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/tested-replay.json",
+      "size": 820,
+      "sha256": "dea10c8095b05194d0dd46086bc377610463feea5256e5b97a0825a9c79cb8af"
+    },
+    {
+      "path": "artifacts/current/accele160-nmi-dma-resume-20261019/tested.tar.xz",
+      "size": 8733584,
+      "sha256": "f3f3a7e6e0dfe40b7b0de6a9d4dce10da79b71563deb81058d9eb431578e90d4"
     }
   ],
   "updated_date": "2026-10-18"

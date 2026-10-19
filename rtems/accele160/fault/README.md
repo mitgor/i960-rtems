@@ -136,3 +136,6 @@ existing PG coexistence profile stays unchanged.
 
 See [DMA resume after timeout](DMA-RESUME.md) for isolated profile 10 and its
 reset-only resource lifetime.
+
+Profile 11 extends the [controlled DMA resume](DMA-RESUME.md) to the real
+NMI path with source/acknowledgement gating and independent PCI MU checks.

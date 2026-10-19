@@ -1,0 +1,51 @@
+{
+  "nmi": {
+    "vector": 248,
+    "nisr": "0x100",
+    "iisr_before": "0xb",
+    "idr_before": "0x80000000",
+    "iimr_before": "0x73",
+    "iisr_after": "0x3",
+    "idr_after": "0x0",
+    "iimr_after": "0x7b",
+    "pci_mu": {
+      "idr": 0,
+      "iisr": 3,
+      "iimr": 123
+    }
+  },
+  "suspended": {
+    "csr": "0x400",
+    "ccr": 0,
+    "dar": "0xc0821000",
+    "ndar": "0xc0821020",
+    "bcr": 65032,
+    "dcr": 7,
+    "settle_iterations": 4098,
+    "stable_iterations": 4096
+  },
+  "timeout": {
+    "polls": 10000000,
+    "csr": "0x400",
+    "ccr": 0,
+    "dar": "0xc0821000",
+    "ndar": "0xc0821020",
+    "bcr": 65032,
+    "dcr": 7
+  },
+  "resume": {
+    "attempt": 3,
+    "csr_before": "0x400",
+    "polls": 1843607,
+    "csr": "0x0",
+    "ccr": 1,
+    "dar": "0xc0829000",
+    "ndar": 0,
+    "bcr": 0,
+    "dcr": 7,
+    "source_fnv": "0xdb369dc5",
+    "descriptor_fnv": "0x80e89b9f",
+    "peers": 1,
+    "owned_guards": 1
+  }
+}

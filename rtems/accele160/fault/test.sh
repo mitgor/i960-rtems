@@ -28,4 +28,8 @@ if [[ $(uname -s) == Linux && $(uname -m) == x86_64 ]]; then
   -Wno-unused-function -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast \
   -DACCELE_TERMINAL_TEST=10 -I"$src/../doom_dma" "$src/test_dma.c" -o "$work/resume"
  "$work/resume"
+ cc -O1 -no-pie -fsanitize=undefined -Wall -Wextra -Werror \
+  -Wno-unused-function -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast \
+  -DACCELE_TERMINAL_TEST=11 -I"$src/../doom_dma" "$src/test_dma.c" -o "$work/nmi-resume"
+ "$work/nmi-resume"
 fi
