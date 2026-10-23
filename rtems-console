@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 # Connect to the installed AcceleRAID service owner; never starts/replaces it.
-exec ssh -t "${I960_HOST:-mit@192.168.2.75}" \
+exec ssh -t "${I960_HOST:-mit@192.168.2.80}" \
   '/home/mit/rtems-console'

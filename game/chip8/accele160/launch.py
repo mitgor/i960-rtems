@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Launch the pinned CHIP-8 card owner and its independent browser gateway."""
-import argparse,json,hashlib,subprocess,sys,time
+import argparse,json,hashlib,os,subprocess,sys,time
 from pathlib import Path
 
 def main():
@@ -31,5 +31,5 @@ def main():
  if subprocess.run(['systemctl','is-active','--quiet',service]).returncode:
   vendor=Path('/home/mit/i960-doom-stream-20261018/vendor')
   subprocess.run(['systemd-run','--unit=i960-chip8-stream','--collect','--setenv=PYTHONPATH='+str(vendor),sys.executable,str(b/'project/game/chip8/stream/server.py'),'--backend','card','--bind','0.0.0.0','--port','8096','--journal',str(b.parent/'transport.jsonl')],check=True)
- print('CHIP-8: http://192.168.2.75:8096/ (Stop parks the guest; Start new game reuses RTEMS)')
+ print('CHIP-8: http://'+os.environ.get('I960_BROWSER_HOST','192.168.2.80')+':8096/ (Stop parks the guest; Start new game reuses RTEMS)')
 if __name__=='__main__':main()

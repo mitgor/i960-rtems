@@ -58,7 +58,7 @@ def profile(project):
         s=s.replace('assert len(payload)==65536','assert len(payload)==512').replace('0x31424644,1,self.epoch,generation,320,200,65536,0','0x31424643,1,self.epoch,generation,64,32,512,0')
         return s.replace('Doom','CHIP-8')
     change('rtems/accele160/doom_dma/browser.py',browser)
-    (src/'index.html').write_text("<!doctype html><title>CHIP-8 card owner</title><p>Audited CHIP-8 owner. Open the <a href='http://192.168.2.75:8096/'>streaming game</a>.</p><script>const token='__TOKEN__';</script>")
+    (src/'index.html').write_text("<!doctype html><title>CHIP-8 card owner</title><p>Audited CHIP-8 owner. Open the <a href='http://192.168.2.80:8096/'>streaming game</a>.</p><script>const token='__TOKEN__';</script>")
     def bridge(s):
         s=once(s,'from presentation_profile import decode as decode_profile',"sys.path.insert(0,str(ROOT/'game/chip8/stream'))\nfrom codec import validate_payload\nfrom oracle import Oracle\ndef decode_profile(raw,g,options=None):return validate_payload(raw,g)")
         s=s.replace("'relocations','wad','out'","'relocations','out'")

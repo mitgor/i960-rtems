@@ -20,14 +20,16 @@ Ctrl-C ends the native server.
 
 The tested reusable build is staged at
 `/home/mit/i960-chip8-upgrade-20261018/build-g8/bundle`.
-Do not start while Doom's exclusive resources remain pinned. A PC reset is
-required when switching workloads, although guest Stop/Start within one owning
-CHIP-8 RTEMS session is designed to reuse the session.
+Do not start while Doom's exclusive resources remain pinned. As inspected on
+2026-10-23, the combined Doom/RTEMS owner occupies the card, even though its
+game is parked. A PC reset and a fresh, verified CHIP-8 admission are required
+to switch workloads; guest Stop/Start within one owning CHIP-8 RTEMS session
+can then reuse that session.
 
 From a fresh boot, or to reuse its existing owning session:
 
 ```sh
-ssh -t mit@192.168.2.75 sudo -n python3 \
+ssh -t mit@192.168.2.80 sudo -n python3 \
  /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle/project/game/chip8/accele160/launch.py \
  --bundle /home/mit/i960-chip8-upgrade-20261018/build-g8/bundle start
 ```
@@ -36,10 +38,9 @@ The root `./chip8` command targets this tested build: it starts/restarts the own
 `./chip8 stop` parks the guest, and `./chip8 status` reports its owner.
 `./chip8 shutdown` ends RTEMS globally and requires a PC reset before reuse.
 Four games, three restarts, full FIFO batches, stalled video and a three-second
-host pause passed on the card. The session is currently idle: click **Start new
-game** on the page or run `./chip8` to play.
+host pause passed on the card in the archived CHIP-8 acceptance session.
 
-Open <http://192.168.2.75:8096/> for the card gateway. Port 8095 is the private
+Open <http://192.168.2.80:8096/> for the card gateway. Port 8095 is the private
 owner's diagnostic HTTP endpoint; normal play uses 8096.
 
 ## Controls

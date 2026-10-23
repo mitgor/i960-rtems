@@ -10,7 +10,7 @@ import time
 import urllib.request
 
 p=argparse.ArgumentParser(description=__doc__)
-p.add_argument('--url',default='http://192.168.2.75:8087')
+p.add_argument('--url',default='http://192.168.2.80:8087')
 p.add_argument('--out',type=Path,required=True)
 p.add_argument('--frames',type=int,default=1024)
 p.add_argument('--input',action='store_true')

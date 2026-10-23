@@ -83,7 +83,7 @@ def main():
         active=subprocess.run(['systemctl','is-active','--quiet','i960-doom.service']).returncode==0
         if active:
             game_control('start')
-            print(f'Doom is already running. Open http://192.168.2.75:{a.port}/');return 0
+            print(f'Doom is already running. Open http://{os.environ.get("I960_BROWSER_HOST", "192.168.2.80")}:{a.port}/');return 0
     for name in ('dma_frames','admit_command','reserve_command','copy_command','digest_command','release_command'):
         if Path('/sys/module',name).exists():
             raise RuntimeError('Previous card resources are retained. Reset/power-cycle the PC before starting again; never force-unload.')
@@ -101,7 +101,7 @@ def main():
         if a.capture_all:command+=['--capture-all']
         if a.keyboard_selftest:command+=['--keyboard-selftest']
         subprocess.run(command,check=True)
-        print(f'Doom is starting. Open http://192.168.2.75:{a.port}/')
+        print(f'Doom is starting. Open http://{os.environ.get("I960_BROWSER_HOST", "192.168.2.80")}:{a.port}/')
         print('Startup takes a few minutes. Logs: sudo journalctl -fu i960-doom')
         return 0
     lock=open('/run/lock/i960-doom-start.lock','w')

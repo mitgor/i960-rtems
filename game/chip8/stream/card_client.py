@@ -3,7 +3,7 @@
 import argparse,asyncio,json,re,time,statistics,urllib.request
 from websockets.asyncio.client import connect
 from codec import validate_frame,validate_payload
-p=argparse.ArgumentParser(description=__doc__);p.add_argument('--url',default='http://192.168.2.75:8096');p.add_argument('--out');p.add_argument('--games',type=int,default=3);p.add_argument('--frames',type=int,default=150);a=p.parse_args()
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('--url',default='http://192.168.2.80:8096');p.add_argument('--out');p.add_argument('--games',type=int,default=3);p.add_argument('--frames',type=int,default=150);a=p.parse_args()
 def get(path):
  with urllib.request.urlopen(a.url+path,timeout=3) as r:return r.read()
 async def main():

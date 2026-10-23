@@ -3,9 +3,13 @@
 See [doom_commands.md](../../../../doom_commands.md) for all installed launcher
 variants, commands, options, browser controls and reset boundaries. The default
 is the flat-enabled reusable wrapper, compatible with the old card removed.
+The 2026-10-23 [installed-script snapshot](../../../../host/deployments/accele160-20261023/README.md)
+records the present gateway and bundle selectors. The live owner at inspection
+used the later packet-DMA bundle and was parked after 64 frames; starting a
+game against that owner does not replace its image with the wrapper's default.
 
 From the repository on the Mac, run **`./doom`**, then open
-**http://192.168.2.75:8088/**. The installed Linux command is
+**http://192.168.2.80:8088/**. The installed Linux command is
 `/home/mit/.local/bin/i960-doom-flat`. It starts a systemd service, checks the exact
 card/profile and pinned bundle, loads the exact BDF-gated reader driver on a
 fresh unbound card, performs two guarded complete stock-flash
@@ -51,7 +55,7 @@ The reusable path makes browser Stop/menu Quit park the game, adds Start new
 game, and makes a second `./doom` request restart from the same daemon.
 `./doom shutdown` retains the reset-only global STOP behavior.
 
-Live logs: `ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom'`.
+Live logs: `ssh mit@192.168.2.80 'sudo journalctl -fu i960-doom'`.
 Default captures are under `/home/mit/i960-flat-accele160-20261018/sessions/`;
 the sibling `latest-session.txt` points
 to the current session. Every frame gets complete buffer guards, native host
@@ -139,7 +143,7 @@ The default installed wrapper is `i960-doom-flat`. After the acceptance reset:
 ./doom
 ```
 
-Open `http://192.168.2.75:8088/`. F6 is debounced, and pressing it again returns
+Open `http://192.168.2.80:8088/`. F6 is debounced, and pressing it again returns
 to textures without rebuilding, reloading the level or reallocating buffers.
 Sky, walls, sprites, HUD and sector lighting remain; flat planes remove texture
 detail and distance shading. Half-height is independent and remains on hold.

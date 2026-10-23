@@ -7,6 +7,7 @@ retained resources nor changes its audited inputs. Stop parks only the game.
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import time
@@ -66,7 +67,8 @@ def main():
         if time.monotonic()>ready_deadline:
             raise RuntimeError('stream gateway not ready; owner is unchanged, inspect i960-doom-stream.service')
         time.sleep(.2)
-    print(f'Persistent input and pushed frames: http://192.168.2.75:{args.stream_port}/',flush=True)
+    browser_host=os.environ.get('I960_BROWSER_HOST','192.168.2.80')
+    print(f'Persistent input and pushed frames: http://{browser_host}:{args.stream_port}/',flush=True)
     return 0
 
 

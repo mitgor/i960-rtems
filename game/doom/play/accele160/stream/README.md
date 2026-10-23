@@ -1,7 +1,7 @@
 # Persistent keyboard input and pushed browser frames
 
 From the Mac repository, run `./doom`, then open
-[http://192.168.2.75:8088/](http://192.168.2.75:8088/).
+[http://192.168.2.80:8088/](http://192.168.2.80:8088/).
 Textured rendering is the initial mode; F6 toggles flat floors/ceilings.
 The installed flat launcher starts both the original owning daemon and this
 gateway. Stop parks only Doom. Start new game reuses RTEMS after fresh image/WAD
@@ -54,13 +54,13 @@ system package changes or modification of the owner's accepted bundle.
 From the Mac, with the accepted flat launcher already installed:
 
 ```sh
-ssh mit@192.168.2.75 'mkdir -p /home/mit/i960-doom-stream-20261018/source'
+ssh mit@192.168.2.80 'mkdir -p /home/mit/i960-doom-stream-20261018/source'
 scp game/doom/play/accele160/stream/*.py \
   game/doom/play/accele160/stream/index.html \
   game/doom/play/accele160/stream/requirements.txt \
   artifacts/current/doom-stream-20261018/dependencies/*.whl \
-  mit@192.168.2.75:/home/mit/i960-doom-stream-20261018/source/
-ssh mit@192.168.2.75 'python3 /home/mit/i960-doom-stream-20261018/source/install.py --root /home/mit/i960-doom-stream-20261018 --wrapper /home/mit/.local/bin/i960-doom-flat --wheel /home/mit/i960-doom-stream-20261018/source/websockets-15.0.1-py3-none-any.whl'
+  mit@192.168.2.80:/home/mit/i960-doom-stream-20261018/source/
+ssh mit@192.168.2.80 'python3 /home/mit/i960-doom-stream-20261018/source/install.py --root /home/mit/i960-doom-stream-20261018 --wrapper /home/mit/.local/bin/i960-doom-flat --wheel /home/mit/i960-doom-stream-20261018/source/websockets-15.0.1-py3-none-any.whl'
 ./doom
 ```
 
@@ -78,9 +78,9 @@ The textured-only reusable and legacy wrapper selections remain unchanged.
 Logs and rollback:
 
 ```sh
-ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom-stream'
-ssh mit@192.168.2.75 'sudo systemctl stop i960-doom-stream.service'
-ssh mit@192.168.2.75 'cp /home/mit/i960-doom-stream-20261018/owner-launcher /home/mit/.local/bin/i960-doom-flat'
+ssh mit@192.168.2.80 'sudo journalctl -fu i960-doom-stream'
+ssh mit@192.168.2.80 'sudo systemctl stop i960-doom-stream.service'
+ssh mit@192.168.2.80 'cp /home/mit/i960-doom-stream-20261018/owner-launcher /home/mit/.local/bin/i960-doom-flat'
 ```
 
 Stopping the gateway alone does not park the game. Use `./doom stop` or the
@@ -98,7 +98,7 @@ tamper rejection. Run them in an environment containing the pinned dependency.
 `benchmark.py` runs HTTP / stream / stream / HTTP F6 comparisons, eight pulses
 per run. It validates delivered binary frame telemetry and records every image
 hash. Run on the host with its private `vendor/` in `PYTHONPATH`, or on the Mac
-with `--host 192.168.2.75`. `lifecycle.py` exercises the live card's stalled-viewer,
+with `--host 192.168.2.80`. `lifecycle.py` exercises the live card's stalled-viewer,
 stale-input, disconnect-release, sequence-gap and STOP gates; it ends in live
 idle. These scripts inject input and require no human keyboard controller.
 

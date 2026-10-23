@@ -30,6 +30,12 @@ these programs.
 The two `serve*.sh` wrappers now require `I960_BDF` after the relay gained an
 explicit card selector. Set it to the freshly discovered DAC960PG BDF before
 invoking either wrapper; the old card is currently removed from the test PC.
+The present Linux host is `mit@192.168.2.80`; `.75` in the chronological
+DAC960PG examples below is its former address. The current AcceleRAID services
+are `i960-doom`, `i960-doom-stream`, `i960-combined` and `i960-rtems-ip`.
+Their [installed-script snapshot](../host/deployments/accele160-20261023/README.md)
+identifies the exact running host-side source and the public-route interface
+discrepancy found without disturbing the owner.
 
 **Second-board milestone (2026-10-17):** the [AcceleRAID 160 bounded profile](accele160/README.md) ran RTEMS 4.6.6 tasks twice from a stock-owned 512 KiB grant, woke a worker after five synchronous software ticks, returned normally, and passed full flash/owner audits. Later [sideband STOP](../artifacts/current/accele160-stop-20261017/README.md) and [guarded cached-vector/timer-mode](../artifacts/current/accele160-vector-20261017/README.md) probes passed on the card. A hardware timer for RTEMS, persistent runtime, networking and Doom on that board remain pending. See [why new-board bring-up used repeated flashes](accele160/OLD-NEW-DIFFERENCES.md) and the reusable RAM-admission path.
 

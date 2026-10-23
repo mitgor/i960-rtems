@@ -1,8 +1,13 @@
 # Doom launcher commands
 
 Run these commands from the repository root on the Mac. They use SSH key
-authentication to `mit@192.168.2.75`; the installed Linux wrappers supply the
+authentication to `mit@192.168.2.80`; the installed Linux wrappers supply the
 pinned bundle and run the privileged launcher. Launching does not flash firmware.
+On the 2026-10-23 inspection, the existing combined AcceleRAID owner was
+parked after a 64-frame packet-DMA run. `./doom` reaches that owner; it does
+not replace its running kernel with the installed wrapper's fresh-session
+bundle. The [exact host launchers](host/deployments/accele160-20261023/README.md)
+are archived separately from the source tree.
 
 ## Choose the installed version
 
@@ -75,13 +80,13 @@ on this PC; warm reboots have repeatedly stalled. The launchers never reboot
 automatically. `stop` falls back to stopping the service if no valid reusable
 control record exists, so use it only with a live reusable owner for soft STOP.
 
-The latest flat-plane acceptance batch ended in planned global shutdown; a
-power cycle and final paired flash reads are still required to close that batch.
+The older flat-plane acceptance batch and its reset boundary are documented in
+its [dated evidence](artifacts/current/accele160-flat-20261018/README.md).
 
 ## Browser connection and controls
 
 With the default flat launcher, open
-[http://192.168.2.75:8088/](http://192.168.2.75:8088/) for persistent keyboard input
+[http://192.168.2.80:8088/](http://192.168.2.80:8088/) for persistent keyboard input
 and pushed frames. Close other Doom keyboard tabs first. Port 8087 remains the
 original polling page and is still used by the textured-only/legacy wrappers.
 Click the game image to focus it. Refresh reconnects to the existing game.
@@ -159,7 +164,7 @@ runner selects modes at idle, admits a fresh engine per game, and owns input:
 ```sh
 /tmp/i960-doom-stream-venv/bin/python \
   game/doom/play/accele160/stream/benchmark_fifo.py \
-  --host 192.168.2.75 --out NEW_RESULTS_DIRECTORY
+  --host 192.168.2.80 --out NEW_RESULTS_DIRECTORY
 ```
 
 The full-ring probe requires a fresh acceptance owner started explicitly with
@@ -194,10 +199,10 @@ it is not an interactive-play FPS guarantee. The accepted comparison measured
 ## Logs, captures and direct SSH
 
 ```sh
-ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom'
-ssh mit@192.168.2.75 'sudo journalctl -fu i960-doom-stream'
-ssh mit@192.168.2.75 'sudo journalctl -b -u i960-doom --no-pager'
-ssh mit@192.168.2.75 'cat /home/mit/i960-key-fifo-20261018/latest-session.txt'
+ssh mit@192.168.2.80 'sudo journalctl -fu i960-doom'
+ssh mit@192.168.2.80 'sudo journalctl -fu i960-doom-stream'
+ssh mit@192.168.2.80 'sudo journalctl -b -u i960-doom --no-pager'
+ssh mit@192.168.2.80 'cat /home/mit/i960-key-fifo-20261018/latest-session.txt'
 ```
 
 Session roots by wrapper:
@@ -215,10 +220,10 @@ An inactive service may make `status` return a nonzero exit code.
 Equivalent commands without the Mac wrapper:
 
 ```sh
-ssh mit@192.168.2.75 '/home/mit/.local/bin/i960-doom-flat start'
-ssh mit@192.168.2.75 '/home/mit/.local/bin/i960-doom-flat status'
-ssh mit@192.168.2.75 '/home/mit/.local/bin/i960-doom-flat stop'
-ssh mit@192.168.2.75 '/home/mit/.local/bin/i960-doom-flat shutdown'
+ssh mit@192.168.2.80 '/home/mit/.local/bin/i960-doom-flat start'
+ssh mit@192.168.2.80 '/home/mit/.local/bin/i960-doom-flat status'
+ssh mit@192.168.2.80 '/home/mit/.local/bin/i960-doom-flat stop'
+ssh mit@192.168.2.80 '/home/mit/.local/bin/i960-doom-flat shutdown'
 ```
 
 The gateway journal is `/home/mit/i960-doom-stream-20261018/transport.jsonl`.
@@ -235,7 +240,7 @@ conditions. Interrupting the owner ends the session; use normal `start` for play
 `I960_HOST` overrides the SSH destination, for example:
 
 ```sh
-I960_HOST=mit@192.168.2.75 \
+I960_HOST=mit@192.168.2.80 \
 I960_DOOM_LAUNCHER=/home/mit/.local/bin/i960-doom-flat ./doom status
 ```
 
