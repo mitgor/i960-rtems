@@ -8,6 +8,8 @@ Linux supplies the loader, display/input transport and network gateway.
 Start with [stock card to applications](docs/reproduce.md). Read
 [the story](STORY.md) for how we discovered and built it, or use the
 [subproject index](subprojects/README.md) to work on one component.
+The [Linux host guide](host/README.md) locates the versioned launchers, routing
+code and required deployment inputs.
 
 ## Subprojects
 

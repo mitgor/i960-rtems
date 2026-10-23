@@ -3,6 +3,8 @@
 Start with [current status](../CURRENT-FINDINGS.md), then the
 [stock-card-to-applications guide](../docs/reproduce.md) and [subprojects](../subprojects/README.md).
 Source code lives in those subprojects; this directory holds inputs and evidence.
+The [current evidence index](current/README.md) groups the accepted board,
+application, networking and performance batches without copying their binaries.
 
 | Area | What to use |
 | --- | --- |

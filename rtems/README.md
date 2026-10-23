@@ -1,4 +1,35 @@
-# RTEMS on the DAC960PG
+# RTEMS on Mylex i960 cards
+
+## Choose the board and runtime first
+
+The original DAC960PG and the newer AcceleRAID 160 have different firmware
+commands, RAM grants, PCI ownership and kernel images. Do not transfer a
+binary or a reboot-only ownership claim between them. The chronological
+DAC960PG experiments below remain useful for reproduction, but their early
+"pending" statements describe the stage at which they were written.
+
+| Path | Current entry point | Host transport |
+| --- | --- | --- |
+| DAC960PG cooperative/autonomous web | [autonomous RTEMS](autonomous/README.md) | [packet relay and routing](transport/relay.py), [web wrapper](serve-autonomous.sh) |
+| DAC960PG exclusive RTEMS/Doom | [resident RTEMS](residentnet/README.md) | [Doom play](../game/doom/play/README.md) |
+| AcceleRAID 160 exclusive RTEMS and Doom | [board port](accele160/README.md), [current runtime](accele160/runtime/COMBINED-SERVICE.md) | [Doom commands](../doom_commands.md), [host guide](../host/README.md) |
+
+On the AcceleRAID, Doom STOP/Quit can park the game and rearm it within the
+same verified owning session. Global shutdown, owner loss or uncertain DMA
+state remains reset-only. The current combined runtime can serve IPv4/IPv6
+through a host TUN relay while exposing bounded applications and a diagnostic
+console; it does not establish simultaneous arbitrary Doom play and network
+module execution. Check the actual card owner before selecting a profile.
+
+The Linux-side routing, NAT setup, forwarding-state journal and cleanup live in
+`transport/` for the cooperative profile and `accele160/runtime/` for the
+exclusive board profile. The scripts and their required deployment layout are
+indexed in [host/README.md](../host/README.md). No visitor log, session
+capture or machine-specific firewall snapshot is required in Git to build
+these programs.
+The two `serve*.sh` wrappers now require `I960_BDF` after the relay gained an
+explicit card selector. Set it to the freshly discovered DAC960PG BDF before
+invoking either wrapper; the old card is currently removed from the test PC.
 
 **Second-board milestone (2026-10-17):** the [AcceleRAID 160 bounded profile](accele160/README.md) ran RTEMS 4.6.6 tasks twice from a stock-owned 512 KiB grant, woke a worker after five synchronous software ticks, returned normally, and passed full flash/owner audits. Later [sideband STOP](../artifacts/current/accele160-stop-20261017/README.md) and [guarded cached-vector/timer-mode](../artifacts/current/accele160-vector-20261017/README.md) probes passed on the card. A hardware timer for RTEMS, persistent runtime, networking and Doom on that board remain pending. See [why new-board bring-up used repeated flashes](accele160/OLD-NEW-DIFFERENCES.md) and the reusable RAM-admission path.
 

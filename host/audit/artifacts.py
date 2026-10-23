@@ -14,6 +14,14 @@ ROOT = Path(__file__).resolve().parents[2]
 ARTIFACTS = ROOT / 'artifacts'
 INVENTORY = ARTIFACTS / 'artifact-inventory.json'
 SUMS = ARTIFACTS / 'SHA256SUMS'
+# Four historical flash readback aliases are intentionally tracked as links to
+# one guarded stock image. They are not separate inventory payloads.
+READBACK_ALIAS = '../../accele160-preempt-20261017/live/after-accept1-flash-0/data.bin'
+ALLOWED_SYMLINKS = {
+    f'artifacts/current/{batch}/post-{index}/data.bin': READBACK_ALIAS
+    for batch in ('accele160-flat-20261018', 'doom-key-fifo-20261018')
+    for index in (0, 1)
+}
 
 
 def digest(path):
@@ -41,7 +49,10 @@ def rows(tracked_only=False):
         if tracked is not None and p.relative_to(ROOT).as_posix() not in tracked:
             continue
         if p.is_symlink():
-            raise ValueError(f'Unexpected artifact symlink: {p}')
+            name = p.relative_to(ROOT).as_posix()
+            if ALLOWED_SYMLINKS.get(name) != p.readlink().as_posix() or not p.exists():
+                raise ValueError(f'Unexpected or broken artifact symlink: {p}')
+            continue
         result.append(dict(path=p.relative_to(ROOT).as_posix(),
                            size=p.stat().st_size, sha256=digest(p)))
     return result
@@ -59,6 +70,11 @@ def indexed_rows(entries=None):
         meta, raw_path = entry.split(b'\t', 1)
         mode, oid, stage = meta.split()
         name = raw_path.decode()
+        if mode == b'120000' and stage == b'0' and name in ALLOWED_SYMLINKS:
+            target = subprocess.check_output(['git', 'cat-file', '-p', oid], cwd=ROOT).decode()
+            if target != ALLOWED_SYMLINKS[name]:
+                raise ValueError('Changed artifact symlink: ' + name)
+            continue
         if stage != b'0' or mode not in (b'100644', b'100755'):
             raise ValueError('Unmerged/nonregular indexed artifact: ' + name)
         if name in ('artifacts/SHA256SUMS', 'artifacts/artifact-inventory.json'):
