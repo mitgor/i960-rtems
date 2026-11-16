@@ -14,7 +14,10 @@
  *  - the messaging-unit masking (seq 66..72) runs before the EBCR release
  *    instead of directly after it, so that the release is the last store;
  *  - SISR is written as an aligned 16-bit store (stock uses an unaligned
- *    32-bit store at 0x1042 that also zeroes the low half of PBISR);
+ *    32-bit store at 0x1042 whose upper half lands on PBISR, where writing
+ *    zeros has no effect because that register is write-one-to-clear);
+ *  - SDER keeps the bridge error interrupts masked (0xfffe, stock 0x0004)
+ *    because this image has no NMI handler;
  *  - ERLR may be forced to zero to hide the x86 option ROM.
  * Values that stock derives from board model 32 / subsystem 0x0054 are fixed
  * here; this routine is only for that board.
@@ -72,7 +75,11 @@ static const struct {
     {0x1026, 2, PLAIN, 0x0000},      /* PMLR */
     {0x1058, 2, PLAIN, 0xfe00},      /* SMBR */
     {0x105a, 2, PLAIN, 0xffff},      /* SMLR */
-    {0x105c, 2, PLAIN, 0x0004},      /* SDER */
+    /* SDER: stock writes 0x0004, which besides Private Memory Space Enable
+     * (bit 2) clears every bridge error interrupt mask; a master abort on
+     * the secondary bus then raises an NMI that stock services. This image
+     * installs no NMI handler, so all mask bits stay set (0xfffe). */
+    {0x105c, 2, PLAIN, 0xfffe},
     {0x101b, 1, PLAIN, 0x40},        /* SLTR */
     {0x101a, 1, PLAIN, 0x00},        /* SUBBNR */
     {0x1004, 2, RESTORE_BRIDGE_COMMAND, 0x0000},
@@ -104,6 +111,7 @@ accele160_u32 accele160_pci_release(const accele160_mmr *mmr,
                     !(options & ACCELE160_PCI_HIDE_OPTION_ROM);
     accele160_u32 bridge_command = 0, count = 0, i, value;
 
+    report->marker = 0; /* a record left by an earlier boot is not ours */
     report->ebcr_before = mmr->read(ACCELE160_EBCR, 2, mmr->context);
     report->flags = (rom ? 0u : 1u) | (rom_signature == 0xaa55u ? 2u : 0u);
     for (i = 0; i < sizeof writes / sizeof writes[0]; ++i) {

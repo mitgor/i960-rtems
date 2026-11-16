@@ -24,6 +24,7 @@ WRITE = re.compile(
 RELEASE = re.compile(
     r'^checkpoint config-retry (released|reasserted) cycle=(\d+) '
     r'ip=([0-9a-f]{8}) ebcr=([0-9a-f]{4})$')
+WIDE = re.compile(r'^checkpoint pci-reg-write-wide ')
 SUMMARY = re.compile(
     r'^checkpoint config-retry-summary released=([01]) ebcr=([0-9a-f]{4}) '
     r'release-cycle=(\d+) release-ip=([0-9a-f]{8}) pci-reg-writes=(\d+)$')
@@ -64,8 +65,8 @@ MU_INIT_STOCK_WRITES = 7
 # Not compared, with the reason. Kept explicit so an omission is a decision.
 EXCLUDED = {
     0x1206: 'ATUSR is write-one-to-clear status; the model stores the raw word',
-    0x1044: 'PBISR is write-one-to-clear status (stock also clobbers its low '
-            'half through an unaligned 32-bit SISR store)',
+    0x1044: 'PBISR is write-one-to-clear status; the zeros that stock\'s '
+            'unaligned 32-bit SISR store puts there have no effect',
     0x1048: 'SBISR is write-one-to-clear status',
     0x12a8: 'SOCCAR is only the secondary-scan address selector',
 }
@@ -75,6 +76,9 @@ def parse(text):
     """Return (writes, events, summary) from emulator stdout."""
     writes, events, summary = [], [], None
     for line in text.splitlines():
+        if WIDE.match(line):
+            raise RuntimeError('store wider than 4 bytes into a traced register '
+                               'block; not modeled: ' + line)
         match = WRITE.match(line)
         if match:
             seq, cycle, origin, ip, addr, size, value = match.groups()

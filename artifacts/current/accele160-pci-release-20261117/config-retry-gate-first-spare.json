@@ -1,7 +1,7 @@
 {
  "gate": "accele160 offline PCI configuration-retry release",
  "model_assumption": "EBCR resets to 0x000c (Intel 80303 mode 3); physical RETRY strap not measured",
- "emulator_sha256": "d7877fd98733a7d48e44f4587b3d6321d24c0926d0292cc937b6090c7780455c",
+ "emulator_sha256": "3f658f674e21e8dc948b0c9572c0dbc34a3fbb7b15d5ef491ef4a41256dad2a4",
  "stock": {
   "image_sha256": "fadd2b0f6ed9bb88d7c846edd235e5e222cbe3a990b694115c5fa66170e7a816",
   "summary": {
@@ -68,6 +68,7 @@
   },
   "stop": "stop cycle=80000000 reason=budget ip=c001044c"
  },
+ "window": "candidates run 4000000 instructions with no host activity; code that only runs after host events is not exercised",
  "must_hang": [
   {
    "image": "native-rom-spare-prototype.bin",
@@ -80,18 +81,19 @@
     "pci_reg_writes": 0
    },
    "stop": "stop cycle=1608278 reason=self-loop ip=c0010030",
+   "rtems_reached_pass": true,
    "retry_never_released": true
   }
  ],
  "candidates": [
   {
    "image": "native-passive-pci-release-first-spare.bin",
-   "image_sha256": "9b1f0ce3340b531880e21bbab9760b1c66e3595f105bf22eeae6385a6ca20753",
+   "image_sha256": "842dc04f866fb949a8531f8517eb2109c08aebbedbc19996e33e66a09fd79e17",
    "option_rom_hidden": true,
    "summary": {
     "released": true,
     "ebcr": 72,
-    "release_cycle": 1355952,
+    "release_cycle": 1355953,
     "release_ip": "c000a190",
     "pci_reg_writes": 55
    },
@@ -99,7 +101,7 @@
    "events": [
     {
      "event": "released",
-     "cycle": 1355952,
+     "cycle": 1355953,
      "ip": "c000a190",
      "ebcr": 72
     }
@@ -147,7 +149,7 @@
     "1055": 0,
     "1058": 65024,
     "105a": 65535,
-    "105c": 4
+    "105c": 65534
    },
    "mu_state_at_release": {
     "1310": 0,
@@ -186,7 +188,7 @@
     "ffffffff",
     "00000000"
    ],
-   "stop": "stop cycle=4000000 reason=budget ip=c0010134",
+   "stop": "stop cycle=4000000 reason=budget ip=c0010130",
    "problems": [],
    "stock_release_cycle": 49602106
   }

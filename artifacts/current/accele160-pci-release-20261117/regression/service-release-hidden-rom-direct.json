@@ -5,7 +5,7 @@
   "sixth_mailbox_dma": 102330368,
   "ring_slot_sha256": "99417e5c16863b97091f2716cc632ce51762e227c826d593bec2608cbfe13343",
   "ring_digest_fnv1a32": 1282712260,
-  "image_sha256": "6b10ffcc0514e293e301a224026f4b060dba4583de658d6f5d56e4769e5aabe7",
+  "image_sha256": "07ba2e2d5223919c554439b87dc66ef4a5984a2e905196ba0b831b72e88e2057",
   "scope": "exploratory i960 model first three ring replies; no guest mirror",
   "physical_card_tested": false,
   "safe_to_flash": false

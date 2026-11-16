@@ -22,12 +22,18 @@ def main():
     p.add_argument('--mirror-followups', action='store_true')
     p.add_argument('--next-observe', action='store_true')
     p.add_argument('--next-mirror', action='store_true')
+    p.add_argument('--model-config-retry', action='store_true',
+                   help='run with the 80303 configuration-retry model on both sides')
+    p.add_argument('--prerun-cycles', type=int, default=60000000,
+                   help='i960 instructions executed before the host starts')
     args = p.parse_args()
     with tempfile.TemporaryDirectory(prefix='accele160-native-card-') as temp:
         bridge = Path(temp) / 'bridge.sock'
         command = [str(args.emulator.resolve()), str(args.image.resolve()),
-                   '60000000', '--board-id=11', '--quiet-trace',
+                   str(args.prerun_cycles), '--board-id=11', '--quiet-trace',
                    f'--bridge-socket={bridge}', '--explore-native-ring-dma1']
+        if args.model_config_retry:
+            command.append('--model-config-retry')
         if args.health_dma1:
             command.append('--explore-native-ring-health-dma1')
         if args.pdev_dma1:
@@ -59,6 +65,8 @@ def main():
                        '--explore-native-ring-observe',
                        '--explore-native-ring-mirror',
                        '--explore-native-followup-observe', '--trace-live-reply']
+                if args.model_config_retry:
+                    rom.append('--model-config-retry')
                 if args.mirror_followups:
                     rom.append('--explore-native-followup-mirror')
                 if args.next_observe:

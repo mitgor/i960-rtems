@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/Users/mit/Documents/!Projects/i960-ebcr-release/rtems/accele160/emulator/qemu/test_native_card.py", line 98, in <module>
+    main()
+    ~~~~^^
+  File "/Users/mit/Documents/!Projects/i960-ebcr-release/rtems/accele160/emulator/qemu/test_native_card.py", line 83, in main
+    raise RuntimeError(result.stderr[-3000:])
+RuntimeError: Traceback (most recent call last):
+  File "/Users/mit/Documents/!Projects/i960-ebcr-release/rtems/accele160/emulator/qemu/run_pci_rom.py", line 453, in main
+    qmp_command(stream, 'stop')
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/mit/Documents/!Projects/i960-ebcr-release/rtems/accele160/emulator/qemu/run_pci_rom.py", line 68, in qmp_command
+    stream.flush()
+    ~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.2/Frameworks/Python.framework/Versions/3.15/lib/python3.15/socket.py", line 756, in write
+    return self._sock.send(b)
+           ~~~~~~~~~~~~~~~^^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mit/Documents/!Projects/i960-ebcr-release/rtems/accele160/emulator/qemu/run_pci_rom.py", line 537, in <module>
+    main()
+    ~~~~^^
+  File "/Users/mit/Documents/!Projects/i960-ebcr-release/rtems/accele160/emulator/qemu/run_pci_rom.py", line 418, in main
+    with conn.makefile('rwb') as stream:
+         ~~~~~~~~~~~~~^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.2/Frameworks/Python.framework/Versions/3.15/lib/python3.15/socket.py", line 756, in write
+    return self._sock.send(b)
+           ~~~~~~~~~~~~~~~^^^
+BrokenPipeError: [Errno 32] Broken pipe
+

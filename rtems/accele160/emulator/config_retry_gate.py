@@ -56,11 +56,14 @@ def check_candidate(candidate, stock, hidden_rom):
         return ['configuration retry is never released: host enumeration would stall']
     if summary['ebcr'] != 0x48:
         problems.append(f"EBCR is {summary['ebcr']:#06x}, stock releases with 0x0048")
+    if candidate['release_seq'] is None:
+        return ['retry bit cleared by a store the trace did not record']
     if int(summary['release_ip'], 16) not in STAGE2:
         problems.append(f"release at ip {summary['release_ip']} is not in stage two")
     if any(event['event'] == 'reasserted' for event in candidate['events']):
         problems.append('configuration retry was set again after release')
     expected = dict(stock['state_at_release'])
+    expected['105c'] = 0xfffe     # SDER: bridge error interrupts stay masked
     if hidden_rom:
         expected['1274'] = 0      # ERLR: stock's own no-ROM value
         expected['1278'] = None   # ERTVR is not written on that path
@@ -69,6 +72,15 @@ def check_candidate(candidate, stock, hidden_rom):
         if actual.get(key) != expected[key]:
             problems.append(f'register {key}: candidate {actual.get(key)!r} '
                             f'stock {expected[key]!r}')
+    # A store before release to an address stock never writes would escape
+    # the register comparison above.
+    stock_addresses = {w['addr'] for w in stock['writes']}
+    stray = sorted({w['addr'] for w in candidate['writes']
+                    if w['origin'] == 'i960' and w['seq'] <= candidate['release_seq']
+                    and w['addr'] not in stock_addresses})
+    if stray:
+        problems.append('stores before release to registers stock does not write: ' +
+                        ' '.join(f'{addr:#06x}' for addr in stray))
     # Stock masks the messaging unit right after its release; the candidate
     # must have the same values in place by the time it releases.
     if candidate['mu_state_at_release'] != stock['mu_state_after_stock_mu_init']:
@@ -126,19 +138,27 @@ def main():
         'stock': {key: stock[key] for key in
                   ('image_sha256', 'summary', 'release_seq', 'state_at_release',
                    'mu_state_after_stock_mu_init', 'stop')},
+        'window': f'candidates run {args.candidate_cycles} instructions with no host '
+                  'activity; code that only runs after host events is not exercised',
         'must_hang': [], 'candidates': [],
     }
     for image in args.must_hang:
-        result = trace.run(args.emulator, image, args.candidate_cycles)
-        hangs = not result['summary']['released']
+        result = run_candidate(args.emulator, image, args.candidate_cycles)
+        # A reference must run its whole diagnostic and still not release;
+        # an image that merely faults early or has not got there yet is not
+        # evidence of anything.
+        reached_pass = result['report'][7] == PASS
+        hangs = not result['summary']['released'] and reached_pass
         receipt['must_hang'].append({
             'image': image.name, 'image_sha256': result['image_sha256'],
             'summary': result['summary'], 'stop': result['stop'],
+            'rtems_reached_pass': reached_pass,
             'retry_never_released': hangs})
         print(f"must-hang {image.name}: retry_never_released={int(hangs)} "
               f"pci_reg_writes={result['summary']['pci_reg_writes']}")
         if not hangs:
-            failures.append(f'{image.name} released retry but is a must-hang reference')
+            failures.append(f'{image.name} is not a valid must-hang reference: it '
+                            'released retry or did not reach RTEMS PASS')
     for image, hidden in ([(p, True) for p in args.candidate] +
                           [(p, False) for p in args.candidate_keeps_rom]):
         result = run_candidate(args.emulator, image, args.candidate_cycles)

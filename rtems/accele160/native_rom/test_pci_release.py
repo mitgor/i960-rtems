@@ -50,7 +50,8 @@ class PciRelease(unittest.TestCase):
                 writes.append({'seq': len(writes) + 1, 'origin': 'i960',
                                'addr': int(parts[1], 16), 'size': int(parts[2]),
                                'value': int(parts[3], 16),
-                               'retry_before': parts[4] == 'retry-before=1'})
+                               'retry_before': parts[4] == 'retry-before=1',
+                               'marker': int(parts[5].split('=')[1], 16)})
             elif parts[0] == 'REPORT':
                 report = [int(x, 16) for x in parts[1:8]] + [int(parts[8]), int(parts[9])]
             else:
@@ -67,7 +68,15 @@ class PciRelease(unittest.TestCase):
                          ['c004e494', 'c004e49c', 'c004e4a4', 'c004e4d0',
                           'c004e4dc', 'c004e4ec', 'c004e508'])
         ordered = before + mu_init + [w for w in keep if w['seq'] == release]
-        return [(w['addr'], w['size'], w['value']) for w in ordered]
+        sequence = [(w['addr'], w['size'], w['value']) for w in ordered]
+        # Documented differences: aligned 16-bit SISR store instead of the
+        # stock unaligned 32-bit one, and SDER with the bridge error
+        # interrupts left masked because the image has no NMI handler.
+        for stock, native in (((0x1042, 4, 0x3ff), (0x1042, 2, 0x3ff)),
+                              ((0x105c, 2, 0x0004), (0x105c, 2, 0xfffe))):
+            self.assertEqual(sequence.count(stock), 1)
+            sequence[sequence.index(stock)] = native
+        return sequence
 
     def test_stock_trace_fixture_is_the_expected_capture(self):
         self.assertEqual(self.stock['image_sha256'],
@@ -80,12 +89,7 @@ class PciRelease(unittest.TestCase):
     def test_rom_kept_matches_stock_write_for_write(self):
         writes, _ = self.run_driver(0, 0xaa55)
         native = [(w['addr'], w['size'], w['value']) for w in writes]
-        expected = self.stock_sequence()
-        # Only documented difference: aligned 16-bit SISR store instead of the
-        # stock unaligned 32-bit store at 0x1042.
-        self.assertIn((0x1042, 4, 0x3ff), expected)
-        expected[expected.index((0x1042, 4, 0x3ff))] = (0x1042, 2, 0x3ff)
-        self.assertEqual(native, expected)
+        self.assertEqual(native, self.stock_sequence())
 
     def test_release_is_last_and_only_then_clears_retry(self):
         for options, signature in ((0, 0xaa55), (1, 0xaa55), (0, 0xaa00)):
@@ -110,17 +114,25 @@ class PciRelease(unittest.TestCase):
         writes, _ = self.run_driver(1, 0xaa55)
         native = trace.compared_state(writes)
         expected = dict(self.stock['state_at_release'])
+        expected['105c'] = 0xfffe     # SDER: bridge error interrupts masked
+        kept = dict(expected)
         expected['1274'] = 0          # ERLR: option ROM deliberately hidden
         expected['1278'] = None       # ERTVR untouched on the no-ROM path
         self.assertEqual(native, expected)
         writes, _ = self.run_driver(0, 0xaa55)
-        self.assertEqual(trace.compared_state(writes), self.stock['state_at_release'])
+        self.assertEqual(trace.compared_state(writes), kept)
 
     def test_messaging_unit_is_masked_before_release(self):
         writes, _ = self.run_driver(1, 0xaa55)
         self.assertEqual(trace.mu_state(writes),
                          self.stock['mu_state_after_stock_mu_init'])
         self.assertEqual(trace.mu_state(writes)['1334'], 0xffffffff)   # OIMR
+
+    def test_stale_record_is_invalidated_before_any_store(self):
+        # The driver pre-loads a PCI0 marker, as a warm reset would leave.
+        writes, report = self.run_driver(1, 0xaa55)
+        self.assertTrue(all(w['marker'] == 0 for w in writes))
+        self.assertEqual(report[0], 0x30494350)
 
     def test_bridge_command_is_saved_and_restored(self):
         writes, report = self.run_driver(1, 0xaa55, command=0x0147)

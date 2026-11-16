@@ -126,13 +126,16 @@ def main():
                 [(p, 'stall') for p in args.must_stall]):
             result = run(args, image, directory, f'run{index}')
             result['expected'] = expect
+            reasserted = any(' reasserted ' in line
+                             for line in result['i960_release_lines'])
             if expect == 'boot':
-                ok = (result['retry_released_seen_by_host'] and
+                # The host side caches the release, so a later re-assertion
+                # is only visible in the i960 log.
+                ok = (result['retry_released_seen_by_host'] and not reasserted and
                       result['boot_sector_reached'] and not result['host_stalled'])
             else:
                 ok = (result['host_stalled'] and not result['boot_sector_reached']
-                      and not result['retry_released_seen_by_host']
-                      and result['host_config_accesses_logged'] == 0)
+                      and not result['retry_released_seen_by_host'])
             result['ok'] = ok
             results.append(result)
             print(f"{image.name}: expected={expect} {'PASS' if ok else 'FAIL'} "

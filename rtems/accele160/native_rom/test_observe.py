@@ -13,13 +13,14 @@ class ObserveTest(unittest.TestCase):
         return data
 
     def test_pci_release_record(self):
-        # Words as written by the emulator run of the passive release image.
+        # Words as written by the emulator run of the passive release image
+        # (config-retry-gate.json, pci0).
         record = decode_pci_release((0x30494350, 0xc, 0x48, 0x3, 0x00501069,
-                                     0x00541069, 0x0, 48))
+                                     0x00541069, 0x0, 55))
         self.assertTrue(record["config_cycle_retry_was_set_at_reset"])
         self.assertTrue(record["config_cycle_retry_released"])
         self.assertTrue(record["option_rom_hidden"])
-        self.assertEqual(record["register_writes"], 48)
+        self.assertEqual(record["register_writes"], 55)
         # A board strapped RETRY low would report it rather than assume.
         self.assertFalse(decode_pci_release(
             (0x30494350, 0x18, 0x48, 0x2, 0, 0, 0, 49)

@@ -2,11 +2,11 @@
 08d9866a472e5f13864faf121b5d457154f3c4f88352b2dae0df49720ed2b0af  /out/control-passive/stage2.bin
 5aeb7a4bb994967106b3a65e9dd059cd7ff0128694079adf3e9dcb4c223708a4  /out/control-passive/rtems.bin
 == passive-release
-e80a068f4eb7f80ff5c56d43df7f0ceeee629476834e7812ad6b67006a56d5df  /out/passive-release/stage2.bin
+e92ec1fb8a405a3d64f37f1a09227d593ecd84bc17151e5c935594212c0de0b1  /out/passive-release/stage2.bin
 5aeb7a4bb994967106b3a65e9dd059cd7ff0128694079adf3e9dcb4c223708a4  /out/passive-release/rtems.bin
 == service-release
-a2d991fcf6332cb2e63ea869213ab06a8c87867f2cb5270ea156d6345fa40f75  /out/service-release/stage2.bin
+4282f5a458193b4c1862081e52a45144c17c845dda6dbcd052c34fbe9aeedf4e  /out/service-release/stage2.bin
 2f31a1559640794b39b88e98db43713242fa07ff58fc530f4da165b3525e73b9  /out/service-release/rtems.bin
 == service-release-hidden-rom
-e80a068f4eb7f80ff5c56d43df7f0ceeee629476834e7812ad6b67006a56d5df  /out/service-release-hidden-rom/stage2.bin
+e92ec1fb8a405a3d64f37f1a09227d593ecd84bc17151e5c935594212c0de0b1  /out/service-release-hidden-rom/stage2.bin
 2f31a1559640794b39b88e98db43713242fa07ff58fc530f4da165b3525e73b9  /out/service-release-hidden-rom/rtems.bin

@@ -1,5 +1,5 @@
 bd0c204c5f12b049a78258dc3db1c6a049d458504ff1ed61bfb0c20043f01a97  control-passive-no-release-second-spare.bin
-9b1f0ce3340b531880e21bbab9760b1c66e3595f105bf22eeae6385a6ca20753  native-passive-pci-release-first-spare.bin
-9b69e9ca285090bf8159895cedd2947588ef1ea2534683bf4c883ae98c404648  native-passive-pci-release-second-spare.bin
-6b10ffcc0514e293e301a224026f4b060dba4583de658d6f5d56e4769e5aabe7  native-service-pci-release-hidden-rom-second-spare.bin
-0d90fa59e9fa57734d449d23c16f215448ac70906403fb4eecd8643fed3b3329  native-service-pci-release-second-spare.bin
+842dc04f866fb949a8531f8517eb2109c08aebbedbc19996e33e66a09fd79e17  native-passive-pci-release-first-spare.bin
+a29ed071522e8f34b6e0d6d18b8e7c5a57d9f1ae149a60bedc1aad0d2b02d8b3  native-passive-pci-release-second-spare.bin
+07ba2e2d5223919c554439b87dc66ef4a5984a2e905196ba0b831b72e88e2057  native-service-pci-release-hidden-rom-second-spare.bin
+8edb06a4f3099c5213d26b0e3395250ca6818e44abe2abf62b968fe89ed0da17  native-service-pci-release-second-spare.bin

@@ -1,0 +1,848 @@
+ibr entry=feffc000 prcb=feffdd20
+checkpoint firmware-path-count menu=0 mu-setup=0 mu-mask-set=0 mu-mask-clear=0 init-entry=0 board-callback=0 mu-init=0
+checkpoint config-retry-summary released=0 ebcr=000c release-cycle=0 release-ip=00000000 pci-reg-writes=0
+audit first-unmodeled-write=00001508
+audit first-unmodeled-read=e0400000
+stop cycle=1000 reason=budget ip=feffc26c
+checkpoint bridge-ready path=/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/accele160-native-card-_z1vvkz3/bridge.sock
+checkpoint cpu-interrupt-state prcb=feffdd20 table=feffd910 priority=0 enabled=0
+checkpoint bridge-step count=1000000 ip=feffc5e4 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=feffc5e4 count=9759
+checkpoint bridge-sample ip=feffd0c4 count=1049
+checkpoint bridge-sample ip=feffd0b4 count=1049
+checkpoint bridge-sample ip=feffd0cc count=1049
+checkpoint bridge-sample ip=feffd0d4 count=1048
+checkpoint bridge-sample ip=feffd0bc count=1048
+checkpoint bridge-step count=1000000 ip=c001178c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=feffc5e4 count=2529
+checkpoint bridge-sample ip=feffc590 count=768
+checkpoint bridge-sample ip=feffc5a0 count=768
+checkpoint bridge-sample ip=feffc598 count=768
+checkpoint bridge-sample ip=c0011a98 count=569
+checkpoint bridge-sample ip=c0011a9c count=569
+checkpoint bridge-step count=1000000 ip=c0011220 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011784 count=111
+checkpoint bridge-step count=1000000 ip=c0011224 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c001170c count=111
+checkpoint bridge-step count=1000000 ip=c0011210 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=777
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011cb8 count=111
+checkpoint bridge-step count=1000000 ip=c00116e0 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c00117b8 count=111
+checkpoint bridge-step count=1000000 ip=c0011784 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011624 count=111
+checkpoint bridge-step count=1000000 ip=c001121c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011cd8 count=111
+checkpoint bridge-step count=1000000 ip=c0011220 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011764 count=111
+checkpoint bridge-step count=1000000 ip=c0011638 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=777
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011cd4 count=111
+checkpoint bridge-step count=1000000 ip=c00116dc fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011638 count=111
+checkpoint bridge-step count=1000000 ip=c001177c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011d10 count=111
+checkpoint bridge-step count=1000000 ip=c0011218 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001177c count=111
+checkpoint bridge-step count=1000000 ip=c001121c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011ca4 count=111
+checkpoint bridge-step count=1000000 ip=c0011630 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=777
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011cd4 count=111
+checkpoint bridge-step count=1000000 ip=c00116d8 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c001171c count=111
+checkpoint bridge-step count=1000000 ip=c0011778 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011c90 count=111
+checkpoint bridge-step count=1000000 ip=c0011210 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011778 count=111
+checkpoint bridge-step count=1000000 ip=c0011218 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011ca4 count=111
+checkpoint bridge-step count=1000000 ip=c001162c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=777
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011770 count=111
+checkpoint bridge-step count=1000000 ip=c00116d4 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011748 count=111
+checkpoint bridge-step count=1000000 ip=c0011770 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001175c count=111
+checkpoint bridge-step count=1000000 ip=c0011ca4 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011658 count=111
+checkpoint bridge-step count=1000000 ip=c0011210 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011720 count=111
+checkpoint bridge-step count=1000000 ip=c0011d50 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=777
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011ce8 count=111
+checkpoint bridge-step count=1000000 ip=c00116cc fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011790 count=111
+checkpoint bridge-step count=1000000 ip=c0011768 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011744 count=111
+checkpoint bridge-step count=1000000 ip=c0011c9c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011768 count=111
+checkpoint bridge-step count=1000000 ip=c0011ce0 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011620 count=111
+checkpoint bridge-step count=1000000 ip=c0011d4c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011ce0 count=111
+checkpoint bridge-step count=1000000 ip=c00116c8 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011cf8 count=111
+checkpoint bridge-step count=1000000 ip=c0011764 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011cb8 count=111
+checkpoint bridge-step count=1000000 ip=c0011c98 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011764 count=111
+checkpoint bridge-step count=1000000 ip=c0011cd8 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011c98 count=111
+checkpoint bridge-step count=1000000 ip=c0011d48 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011cd8 count=111
+checkpoint bridge-step count=1000000 ip=c00116c4 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c00117c0 count=111
+checkpoint bridge-step count=1000000 ip=c001175c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001174c count=111
+checkpoint bridge-step count=1000000 ip=c0011c94 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001175c count=111
+checkpoint bridge-step count=1000000 ip=c0011cd4 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011c94 count=111
+checkpoint bridge-step count=1000000 ip=c0011d44 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c00117a4 count=111
+checkpoint bridge-step count=1000000 ip=c00116bc fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011ca4 count=111
+checkpoint bridge-step count=1000000 ip=c0011754 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c001170c count=111
+checkpoint bridge-step count=1000000 ip=c0011c90 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=777
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011754 count=111
+checkpoint bridge-step count=1000000 ip=c0011cd0 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011c90 count=111
+checkpoint bridge-step count=1000000 ip=c0011d40 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011624 count=111
+checkpoint bridge-step count=1000000 ip=c00116b8 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011cd8 count=111
+checkpoint bridge-step count=1000000 ip=c0011750 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011c98 count=111
+checkpoint bridge-step count=1000000 ip=c0011624 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=777
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011750 count=111
+checkpoint bridge-step count=1000000 ip=c0011224 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011624 count=111
+checkpoint bridge-step count=1000000 ip=c0011d30 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=777
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011d10 count=111
+checkpoint bridge-step count=1000000 ip=c00116b0 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001177c count=111
+checkpoint bridge-step count=1000000 ip=c001174c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c001178c count=111
+checkpoint bridge-step count=1000000 ip=c0011620 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=777
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001174c count=111
+checkpoint bridge-step count=1000000 ip=c0011220 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011d44 count=111
+checkpoint bridge-step count=1000000 ip=c0011d20 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=777
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011764 count=111
+checkpoint bridge-step count=1000000 ip=c0011690 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011778 count=111
+checkpoint bridge-step count=1000000 ip=c0011748 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011640 count=111
+checkpoint bridge-step count=1000000 ip=c0011618 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=777
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011660 count=111
+checkpoint bridge-step count=1000000 ip=c001121c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011748 count=111
+checkpoint bridge-step count=1000000 ip=c0011d14 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=777
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001175c count=111
+checkpoint bridge-step count=1000000 ip=c0011688 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c00117c0 count=111
+checkpoint bridge-step count=1000000 ip=c0011744 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011738 count=111
+checkpoint bridge-step count=1000000 ip=c0011614 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=777
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c001172c count=111
+checkpoint bridge-step count=1000000 ip=c0011218 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001174c count=111
+checkpoint bridge-step count=1000000 ip=c0011d10 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=777
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011744 count=111
+checkpoint bridge-step count=1000000 ip=c0011664 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011d10 count=111
+checkpoint bridge-step count=1000000 ip=c0011740 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011ca8 count=111
+checkpoint bridge-step count=1000000 ip=c00117f0 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011ce0 count=111
+checkpoint bridge-step count=1000000 ip=c0011210 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011704 count=111
+checkpoint bridge-step count=1000000 ip=c0011d0c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=777
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011cb8 count=111
+checkpoint bridge-step count=1000000 ip=c0011660 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011cf8 count=111
+checkpoint bridge-step count=1000000 ip=c001173c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011658 count=111
+checkpoint bridge-step count=1000000 ip=c00117e8 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011cd8 count=111
+checkpoint bridge-step count=1000000 ip=c0011ccc fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011790 count=111
+checkpoint bridge-step count=1000000 ip=c0011d08 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001178c count=111
+checkpoint bridge-step count=1000000 ip=c0011658 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011d20 count=111
+checkpoint bridge-step count=1000000 ip=c0011738 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011658 count=111
+checkpoint bridge-step count=1000000 ip=c00117e0 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011660 count=111
+checkpoint bridge-step count=1000000 ip=c0011cc4 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011ca4 count=111
+checkpoint bridge-step count=1000000 ip=c0011d04 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011cc4 count=111
+checkpoint bridge-step count=1000000 ip=c0011224 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011754 count=111
+checkpoint bridge-step count=1000000 ip=c0011734 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011764 count=111
+checkpoint bridge-step count=1000000 ip=c00117dc fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011624 count=111
+checkpoint bridge-step count=1000000 ip=c0011cc0 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011cd8 count=111
+checkpoint bridge-step count=1000000 ip=c0011d00 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001178c count=111
+checkpoint bridge-step count=1000000 ip=c0011220 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c00117dc count=111
+checkpoint bridge-step count=1000000 ip=c0011730 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011624 count=111
+checkpoint bridge-step count=1000000 ip=c00117d4 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=777
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011658 count=111
+checkpoint bridge-step count=1000000 ip=c0011cbc fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001177c count=111
+checkpoint bridge-step count=1000000 ip=c0011cfc fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c001178c count=111
+checkpoint bridge-step count=1000000 ip=c001121c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001174c count=111
+checkpoint bridge-step count=1000000 ip=c001172c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011d44 count=111
+checkpoint bridge-step count=1000000 ip=c00117cc fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=777
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011764 count=111
+checkpoint bridge-step count=1000000 ip=c0011224 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c00117cc count=111
+checkpoint bridge-step count=1000000 ip=c0011cf8 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011624 count=111
+checkpoint bridge-step count=1000000 ip=c0011218 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011cf8 count=111
+checkpoint bridge-step count=1000000 ip=c0011728 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011748 count=111
+checkpoint bridge-step count=1000000 ip=c00117c8 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=777
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011618 count=111
+checkpoint bridge-step count=1000000 ip=c0011220 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011798 count=111
+checkpoint bridge-step count=1000000 ip=c0011224 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011738 count=111
+checkpoint bridge-step count=1000000 ip=c0011210 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=777
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c001172c count=111
+checkpoint bridge-step count=1000000 ip=c0011724 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001174c count=111
+checkpoint bridge-step count=1000000 ip=c00117c0 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=777
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c00117e0 count=111
+checkpoint bridge-step count=1000000 ip=c001121c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011d10 count=111
+checkpoint bridge-step count=1000000 ip=c0011220 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c00117cc count=111
+checkpoint bridge-step count=1000000 ip=c0011650 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=777
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011640 count=111
+checkpoint bridge-step count=1000000 ip=c0011720 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001170c count=111
+checkpoint bridge-step count=1000000 ip=c00117b8 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=777
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011cb8 count=111
+checkpoint bridge-step count=1000000 ip=c0011218 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c00117b8 count=111
+checkpoint bridge-step count=1000000 ip=c001121c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011ce4 count=111
+checkpoint bridge-step count=1000000 ip=c001164c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=777
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011cd8 count=111
+checkpoint bridge-step count=1000000 ip=c001171c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011764 count=111
+checkpoint bridge-step count=1000000 ip=c00117b4 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011cd4 count=111
+checkpoint bridge-step count=1000000 ip=c0011210 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c001175c count=111
+checkpoint bridge-step count=1000000 ip=c0011218 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011d10 count=111
+checkpoint bridge-step count=1000000 ip=c0011644 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=777
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011220 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c0011620 count=111
+checkpoint bridge-step count=1000000 ip=c0011718 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011c90 count=111
+checkpoint bridge-step count=1000000 ip=c00117ac fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c0011224 count=775
+checkpoint bridge-sample ip=c001170c count=111
+checkpoint bridge-step count=1000000 ip=c0011cb8 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011210 count=776
+checkpoint bridge-sample ip=c0011218 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=775
+checkpoint bridge-sample ip=c0011754 count=111
+checkpoint bridge-step count=1000000 ip=c0011210 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=776
+checkpoint bridge-sample ip=c0011220 count=776
+checkpoint bridge-sample ip=c001121c count=776
+checkpoint bridge-sample ip=c0011218 count=775
+checkpoint bridge-sample ip=c0011210 count=775
+checkpoint bridge-sample ip=c00117b8 count=111

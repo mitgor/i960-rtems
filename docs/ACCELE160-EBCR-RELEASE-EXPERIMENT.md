@@ -6,7 +6,7 @@ Branch `experiment/accele160-ebcr-release`, written 2026-11-17. This is a parall
 
 The first spare, flashed with the native RTEMS image on 2026-10-25, stopped the HP Z400 before its POST beep. The flash contents were later proven byte-exact, and disabling the Slot 6 option ROM did not help. This experiment tests one explanation and builds the fix for it:
 
-- **Hypothesis.** The 80303 on this board starts in Intel initialization mode 3, where the primary PCI interface answers every host configuration cycle with Retry until firmware clears one bit. Stock firmware clears it in its runtime. Every native image so far replaces that runtime and never clears it, so the host BIOS retries forever during PCI enumeration.
+- **Hypothesis.** The 80303 on this board starts in Intel initialization mode 3, where the primary PCI interface answers every host configuration cycle with Retry until firmware clears one bit. Stock firmware clears it in its runtime. Every native image so far replaces that runtime and never clears it, so the host BIOS never gets a completed configuration cycle from the card. How the HP firmware reacts to that has not been observed; a freeze before the beep is consistent with it.
 - **Result in the offline model.** With retry modeled, the exact image that froze the PC stalls the emulated host on its first configuration read. So do the two 2026-11-16 diagnostic images and the staged second-spare no-ROM image. Stock boots. New images that release retry at stage-two entry boot.
 - **Not established.** The board's actual RETRY strap has not been measured. The hypothesis rests on Intel documentation plus stock firmware behaviour, and the model encodes it as an assumption. A physical confirmation is cheap and read-only; see [Physical confirmation](#physical-confirmation-and-next-test).
 
@@ -53,7 +53,11 @@ The i960 interpreter treated `0x1040` as plain memory, and the QEMU device answe
 
 ### Cross-check against the real card
 
-The saved live PCI dump of the working original card, [live-readonly-state.txt](../artifacts/current/accele160-startup-20261016/live-readonly-state.txt), holds the ATU function's configuration space. Every ATU value stock wrote in the interpreter trace matches that dump: subsystem `1069:0054`, PIALR `ffffe000`, PIATVR `c0000000`, SIABAR `fe000008`, SIALR `ff000000`, SIATVR `c0000000`, SOMWVR `fc000000`, ERLR `ffff8000`, ERTVR `fef30000`, ATUCR `00000106`, SATUCMD `0016`, PATUIMR and SATUIMR `000000fc`. This shows the stock routines above ran on real hardware and that the interpreter reproduces their values. No bridge-function dump was saved, so the bridge-block values and EBCR itself are not cross-checked.
+The saved live PCI dump of the working original card, [live-readonly-state.txt](../artifacts/current/accele160-startup-20261016/live-readonly-state.txt), holds the ATU function's configuration space. Every ATU value stock wrote in the interpreter trace matches that dump: subsystem `1069:0054`, PIALR `ffffe000`, PIATVR `c0000000`, SIABAR `fe000008`, SIALR `ff000000`, SIATVR `c0000000`, SOMWVR `fc000000`, ERLR `ffff8000`, ERTVR `fef30000`, ATUCR `00000106`, SATUCMD `0016`, PATUIMR and SATUIMR `000000fc`. The one difference is the ATU latency timer: stock writes `0x40` and the dump holds `0x20`, a field the host rewrites. This shows the stock routines above ran on real hardware and that the interpreter reproduces their values.
+
+For the bridge function only the 64-byte header is saved, in [live-pci-identities.txt](../artifacts/current/accele160-qemu-multifunction-20261025/live-pci-identities.txt). It agrees with stock's cache line size `0x10` and with bridge control bit 9 (`0x0202` is stock's `0x0200` plus the host's SERR enable). Offsets `0x34`/`0x36` read `0x68`/`0`, so stock's stores to local `0x1034`/`0x1036` are not visible there; the table copies them anyway. EBCR at offset `0x40` is beyond that header and is not cross-checked.
+
+An older note for the previous DAC960PG card, `docs/firmware/MODE0.md`, read EBCR `0x0018` on a running card and concluded that RETRY is strapped low. A read after boot cannot show the strap, because firmware has cleared the bit by then; that conclusion should not be carried over to this board.
 
 ## What this branch adds
 
@@ -71,7 +75,7 @@ Both flags are opt-in. Without them the interpreter output is unchanged, and the
 
 ### QEMU card model (`rtems/accele160/emulator/qemu`)
 
-`accele160.c` gains `model-config-retry=on` and `config-retry-limit=N`. While the i960 has not released retry, each host configuration access to either function advances the i960 by one million instructions and asks again. A real host bridge retries indefinitely; here `N` attempts stand in for that, after which QEMU prints a `config-retry STALL` line and exits with status 66. [test_config_retry_post.py](../rtems/accele160/emulator/qemu/test_config_retry_post.py) boots SeaBIOS to a marker boot sector under this model.
+`accele160.c` gains `model-config-retry=on` and `config-retry-limit=N`. While the i960 has not released retry, each host configuration access to either function advances the i960 by one million instructions and asks again. A host bridge that keeps re-issuing a retried cycle never completes it; here `N` attempts stand in for that, after which QEMU prints a `config-retry STALL` line and exits with status 66. [test_config_retry_post.py](../rtems/accele160/emulator/qemu/test_config_retry_post.py) boots SeaBIOS to a marker boot sector under this model.
 
 The modified model needs its own QEMU binary. This run compiled only `accele160.c` and relinked against the objects of the existing QEMU 6.2.0 build tree, writing the result outside that tree; the exact link command is saved in the artifact directory.
 
@@ -79,13 +83,13 @@ The modified model needs its own QEMU binary. This run compiled only `accele160.
 
 | File | Content |
 | --- | --- |
-| [pci_release.h](../rtems/accele160/native_rom/pci_release.h), [pci_release.c](../rtems/accele160/native_rom/pci_release.c) | `accele160_pci_release()`: 55 register stores copied in order from the stock trace, ending with EBCR = `0x48`. |
+| [pci_release.h](../rtems/accele160/native_rom/pci_release.h), [pci_release.c](../rtems/accele160/native_rom/pci_release.c) | `accele160_pci_release()`: a 56-entry table copied in order from the stock trace, ending with EBCR = `0x48`. It issues 55 stores with the option ROM hidden and 56 with it kept. |
 | [stage2.c](../rtems/accele160/native_rom/stage2.c) | Calls the release as the first action after the `SGT2` marker when built with `ACCELE160_PCI_RELEASE`. |
 | [build.sh](../rtems/accele160/native_rom/build.sh) | `ACCELE160_PCI_RELEASE=1` enables it; `ACCELE160_PCI_HIDE_OPTION_ROM=1` additionally writes ERLR = 0. |
 | [observe.py](../rtems/accele160/native_rom/observe.py) | Decodes the new `PCI0` record through the host BAR after a boot. |
 | [test_pci_release.py](../rtems/accele160/native_rom/test_pci_release.py) | Host unit tests against the stock trace. |
 
-**Why stage two and not the stock-equivalent point in RTEMS.** Stage two is the first native code after the stock reset block. Releasing there means a bad payload digest, an RTEMS fault or a park can no longer hold the host in retry: the PC boots and the DRAM markers stay readable through the BAR. In the interpreter the release happens at instruction 1,355,952, against 49,602,106 for stock. The stage-two binary grows from 480 to 1,536 bytes; the loader window is 24 KiB.
+**Why stage two and not the stock-equivalent point in RTEMS.** Stage two is the first native code after the stock reset block. Releasing there means a bad payload digest, an RTEMS fault or a park can no longer hold the host in retry: the PC boots and the DRAM markers stay readable through the BAR. In the interpreter the release happens at instruction 1,355,953, against 49,602,106 for stock. The stage-two binary grows from 480 to 1,536 bytes; the loader window is 24 KiB.
 
 **The `PCI0` record** is eight words at local `0xc0001ee0`, BAR offset `0x1ee0`: marker, EBCR before any write, EBCR after, flags (bit 0 ROM hidden, bit 1 ROM signature seen), ATU vendor/device readback, ATU subsystem readback, bridge command before, store count. `ebcr_before` will be the first physical observation of the board's reset strap.
 
@@ -95,7 +99,8 @@ The modified model needs its own QEMU binary. This run compiled only `accele160.
 | --- | --- |
 | The secondary-bus scan is not run. In the trace it is 16 SOCCAR selects; with the interpreter's QLogic model enabled stock also sets the QLogic BAR to `fff00000` and its command register to `0116` through SOCCAR/SOCCDR. | The diagnostic does not use SCSI. PIRSR, SISR and SACR are still set to the stock values for this board, and the compared register state at release is the same with or without the QLogic model. |
 | The seven messaging-unit stores run before the EBCR write, not after. | The release is then the last store, and the host never sees unmasked outbound interrupts. |
-| SISR is written as an aligned 16-bit store. | Stock uses an unaligned 32-bit store at `0x1042` that also zeroes the low half of PBISR. |
+| SISR is written as an aligned 16-bit store. | Stock uses an unaligned 32-bit store at `0x1042`. Its upper half lands on PBISR, which is write-one-to-clear, so the zeros written there do nothing. |
+| SDER is `0xfffe`, not stock's `0x0004`. | Stock's value sets Private Memory Space Enable and clears every bridge error interrupt mask (developer's manual, table 14-55). An error such as a master abort on the secondary bus then raises an NMI, which stock services. The native image installs no NMI handler, so the masks stay set; bit 2 is kept. The saved stock bridge header shows secondary status `0x2280`, Received Master Abort set, so such events do occur on this board. |
 | ERLR = 0 when `ACCELE160_PCI_HIDE_OPTION_ROM` is set. | This is stock's own no-ROM path. The host then never runs the Mylex x86 ROM, which polls a controller that the passive image does not emulate. |
 | Board-model-dependent values are constants. | The routine is for board model 32, subsystem `0x0054`, only. |
 | BIUCR (`0x1640`) is not written. | Stock sets it to 3 just before the ATU routine (`c0051170`). Per the developer's manual, table 12-8, the two bits enable instruction prefetch and write merging; they do not affect what the host sees. |
@@ -113,11 +118,13 @@ All from [artifacts/current/accele160-pci-release-20261117](../artifacts/current
 | Second spare stock | yes, instruction 49,602,106 | reference |
 | First-spare image that froze the HP Z400 | never | — |
 | Passive diagnostic rebuilt without the flag | never | — |
-| Passive diagnostic with release, ROM hidden | yes, instruction 1,355,952 | equals stock except ERLR/ERTVR |
-| Service diagnostic with release, ROM hidden | yes, instruction 1,355,952 | equals stock except ERLR/ERTVR |
-| Service diagnostic with release, ROM kept | yes, instruction 1,355,966 | equals stock |
+| Passive diagnostic with release, ROM hidden | yes, instruction 1,355,953 | equals stock except SDER and ERLR/ERTVR |
+| Service diagnostic with release, ROM hidden | yes, instruction 1,355,953 | equals stock except SDER and ERLR/ERTVR |
+| Service diagnostic with release, ROM kept | yes, instruction 1,355,967 | equals stock except SDER |
 
-The gate also checks that the release IP is inside stage two, that no bridge/ATU store follows it, that the messaging-unit masks equal stock's, that the `PCI0` record is complete, and that the RTEMS diagnostic still reaches `PASS`. Offering the non-releasing images as candidates makes the gate fail, as intended.
+The gate also checks that the release IP is inside stage two, that no bridge/ATU store follows it, that no store before it goes to a register stock never writes, that the messaging-unit masks equal stock's, that the `PCI0` record is complete, and that the RTEMS diagnostic still reaches `PASS`. A must-hang reference counts only if it reaches `PASS` without releasing. Offering the non-releasing images as candidates makes the gate fail, as intended.
+
+The gate's window is 4,000,000 instructions with no host activity. Code that runs only after a host event is outside it, so a later re-assertion of retry or rewrite of ATU registers from such a handler would not be seen. The current images contain no such code.
 
 **Host-side reproduction, interpreter coupled to QEMU/SeaBIOS** ([config-retry-post.json](../artifacts/current/accele160-pci-release-20261117/config-retry-post.json)), option ROM omitted in every run:
 
@@ -137,7 +144,8 @@ The gate also checks that the release IP is inside stage two, that no bridge/ATU
 - The existing direct service gate gives the same result for the old service image and both new service images.
 - The readiness-negative test passes on the new service image.
 - The new service image with the ROM kept passes the existing coupled Debian guest gate with the same six ROM IOCTLs.
-- The 27 native-ROM tests and 5 return-kit tests pass.
+- The same guest gate with the retry model on and the host started after only 1,000 i960 instructions: the new service image releases after two retried attempts and passes; the 2026-11-16 service image stalls on the first configuration read.
+- The 28 native-ROM tests and 5 return-kit tests pass.
 
 One pre-existing problem was seen and left alone: `candidate_scheduler_gate.py` fails in the main checkout as well, because it expects a 9-word report line and the interpreter now prints 16 words.
 
@@ -147,10 +155,10 @@ Built from each card's own stock capture. None is tested on hardware; every pack
 
 | Image | Base | SHA-256 |
 | --- | --- | --- |
-| `native-passive-pci-release-second-spare.bin` | second spare stock `0ca0f4b6…` | `9b69e9ca285090bf8159895cedd2947588ef1ea2534683bf4c883ae98c404648` |
-| `native-passive-pci-release-first-spare.bin` | first spare stock `fadd2b0f…` | `9b1f0ce3340b531880e21bbab9760b1c66e3595f105bf22eeae6385a6ca20753` |
-| `native-service-pci-release-hidden-rom-second-spare.bin` | second spare stock | `6b10ffcc0514e293e301a224026f4b060dba4583de658d6f5d56e4769e5aabe7` |
-| `native-service-pci-release-second-spare.bin` | second spare stock | `0d90fa59e9fa57734d449d23c16f215448ac70906403fb4eecd8643fed3b3329` |
+| `native-passive-pci-release-second-spare.bin` | second spare stock `0ca0f4b6…` | `a29ed071522e8f34b6e0d6d18b8e7c5a57d9f1ae149a60bedc1aad0d2b02d8b3` |
+| `native-passive-pci-release-first-spare.bin` | first spare stock `fadd2b0f…` | `842dc04f866fb949a8531f8517eb2109c08aebbedbc19996e33e66a09fd79e17` |
+| `native-service-pci-release-hidden-rom-second-spare.bin` | second spare stock | `07ba2e2d5223919c554439b87dc66ef4a5984a2e905196ba0b831b72e88e2057` |
+| `native-service-pci-release-second-spare.bin` | second spare stock | `8edb06a4f3099c5213d26b0e3395250ca6818e44abe2abf62b968fe89ed0da17` |
 | `control-passive-no-release-second-spare.bin` | second spare stock | `bd0c204c5f12b049a78258dc3db1c6a049d458504ff1ed61bfb0c20043f01a97` |
 
 Passive images use `ACCELE160_EARLY_ENTRY_MARKER`, `ACCELE160_OBSERVE_HOST_EVENTS` and `ACCELE160_READ_ROM_MAILBOX`. Service images use the full flag list from `service-flags.env` of the 2026-11-16 package.
@@ -212,9 +220,11 @@ Ordered from cheapest. Steps 1 and 2 are read-only.
 ## Limits and open questions
 
 - **The strap is inferred.** No measurement shows EBCR bit 2 set at reset on this board. If the board straps RETRY low, this experiment explains nothing, although the release code would still be harmless. `ebcr_before` in the `PCI0` record settles it at the first successful boot.
-- **Bridge-block values are unverified on hardware.** They come from the interpreter trace with the hypothetical board selector 11. The ATU values agree with a live dump; no bridge-function dump exists yet.
+- **Bridge-block values are mostly unverified on hardware.** They come from the interpreter trace with the hypothetical board selector 11. The ATU values agree with a live dump; for the bridge function only the first 64 bytes are saved. Stock reaches its release in the model only with selector 11, so no other selector offers a competing set of values.
+- **No NMI or fault handler.** The image masks the bridge and ATU error interrupts, but an NMI from another source would run whatever the boot block's interrupt table holds. The host would still boot; the diagnostic could stop updating its markers.
+- **Stores wider than four bytes are not traced.** The interpreter flags one into the traced blocks and the trace tool then refuses the run. The current code has none.
 - **Read-modify-write registers.** Stock derives a few values from registers it reads. The trace records what it wrote with modeled zero reset values. The bridge command register is handled as save/restore, as in stock.
-- **SeaBIOS is not the HP BIOS.** The coupled run shows that a host which retries until completion stalls. It does not show how HP firmware 786G3 v03.15 behaves, and the QEMU device still presents a fixed PCI identity rather than the values the i960 programmed.
+- **SeaBIOS is not the HP BIOS.** The stall in the coupled run is the model's own bounded-retry exit, not an observed BIOS behaviour. It shows what follows if the host never gets a completed configuration cycle. It does not show how HP firmware 786G3 v03.15 behaves, and the QEMU device still presents a fixed PCI identity rather than the values the i960 programmed.
 - **Early release changes timing.** The host can now configure the card and set its command bits before RTEMS starts. The passive image only observes this. Later service work should check that nothing depends on the old ordering.
 - **No secondary-bus setup.** SATUCMD is enabled with the stock value while the QLogic chip is left unconfigured, which is the state stock passes through just before its scan. A long-lived image should either complete the scan or justify leaving it.
 - **A second failure may hide behind this one.** Releasing retry makes the next failure observable rather than guaranteeing a boot. With the ROM kept, the HP BIOS would run the Mylex option ROM against the native service handlers, which is validated only in QEMU.
@@ -237,6 +247,7 @@ rtems/accele160/emulator/config_retry_gate.py        new
 rtems/accele160/emulator/README.md                   new section
 rtems/accele160/emulator/qemu/accele160.c            host-side retry model
 rtems/accele160/emulator/qemu/test_config_retry_post.py   new
+rtems/accele160/emulator/qemu/run_pci_rom.py, test_native_card.py   opt-in retry-model switch
 rtems/accele160/native_rom/pci_release.c, pci_release.h   new
 rtems/accele160/native_rom/stage2.c, build.sh        opt-in release
 rtems/accele160/native_rom/observe.py, test_observe.py    PCI0 record

@@ -917,7 +917,14 @@ namespace {
     }
     template<typename T>
     void notePciRegisterWrite(Address address, T value) noexcept {
-        if constexpr (std::is_integral_v<T> && sizeof(T) <= 4) {
+        if constexpr (!(std::is_integral_v<T> && sizeof(T) <= 4)) {
+            // stl/stq and friends: flag rather than silently miss them.
+            if (pciRegisterTrace && pciConfigRegister(address))
+                std::cout << std::hex << std::setfill('0')
+                          << "checkpoint pci-reg-write-wide ip=" << std::setw(8)
+                          << pciTraceIp << " addr=" << std::setw(4) << address
+                          << std::dec << " size=" << sizeof(T) << "\n" << std::flush;
+        } else {
             if (!pciConfigRegister(address)) return;
             ++pciRegisterWrites;
             if (!pciRegisterTrace) return;

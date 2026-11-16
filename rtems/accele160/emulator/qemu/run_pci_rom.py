@@ -196,6 +196,11 @@ def main():
                         help='negative test: corrupt reused guest output before slot 3 mirror')
     parser.add_argument('--explore-stock-scsi-observe', action='store_true',
                         help='forward stock SCSI inquiry slot 4 without guest completion')
+    parser.add_argument('--model-config-retry', action='store_true',
+                        help='hold host configuration cycles in Retry until the '
+                             'i960 clears EBCR bit 2 (needs a QEMU built with '
+                             'the retry model and an emulator started with '
+                             '--model-config-retry)')
     parser.add_argument('--explore-native-poll', action='store_true',
                         help='allow bounded native polling firmware to answer the first five ROM IOCTLs')
     parser.add_argument('--explore-native-set-mbox', action='store_true',
@@ -319,6 +324,8 @@ def main():
             device += f',bridge-socket={args.bridge_socket.resolve()}'
         if args.step_on_ack:
             device += ',step-on-ack=on'
+        if args.model_config_retry:
+            device += ',model-config-retry=on'
         if args.explore_rom_ioctls:
             device += ',explore-rom-ioctls=on'
         if args.explore_live_firmware:

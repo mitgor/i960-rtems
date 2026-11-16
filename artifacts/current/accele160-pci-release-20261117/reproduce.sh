@@ -37,8 +37,14 @@ python3 $emu/pci_register_trace.py --image $failed --cycles 3000000 \
   --out "$out/failed-first-spare-pci-reg-writes.json"
 
 echo "== 3. host unit tests"
+# The whole native-ROM suite needs the older saved artifacts; without them
+# only the release test runs.
+pattern='test_pci_release.py'
+if [ -e artifacts/current/accele160-second-spare-20261026/native-rom-second-spare.bin ]; then
+  pattern='test_*.py'
+fi
 STOCK_PCI_TRACE="$out/stock-pci-reg-writes.json" \
-  python3 -m unittest discover -s $native -p 'test_pci_release.py' 2>&1 | tee "$out/unit-tests.txt"
+  python3 -m unittest discover -s $native -p "$pattern" 2>&1 | tee "$out/unit-tests.txt"
 ( cd host/accele160/offline_return && python3 -m unittest test_collect ) 2>&1 | tee -a "$out/unit-tests.txt"
 
 echo "== 4. cross-build (container, archived toolchain mounted read-only)"
@@ -136,6 +142,30 @@ if [ -e "$direct" ]; then
       --emulator-output "$coupled/emu.log" --qemu-stderr-output "$coupled/qemu.log" \
       > "$coupled/run.txt" 2>&1
     tail -1 "$coupled/run.txt"
+    echo "-- same guest harness, retry model on, host started cold (1000 i960 instructions)"
+    for pair in "service-release-coupled-retry-model:$out/native-service-pci-release-second-spare.bin:pass" \
+                "old-service-coupled-retry-model:artifacts/current/accele160-minimal-diagnostic-20261116/native-service-marker-second-spare.bin:stall"; do
+      name=${pair%%:*}; rest=${pair#*:}; img=${rest%:*}; want=${rest##*:}
+      coupled="$out/regression/$name"
+      mkdir -p "$coupled"
+      status=0
+      python3 $emu/qemu/test_native_card.py --emulator $emu/build/accele160-emu \
+        --image "$img" --qemu "$QEMU" --bios "$BIOS" \
+        --kernel "$guest/vmlinuz-6.1.0-55-amd64" \
+        --initrd "$guest/initramfs-myrs.cpio.gz" --memory-mb 512 --seconds 65 \
+        --health-dma1 --pdev-dma1 --mirror-followups --next-observe --next-mirror \
+        --model-config-retry --prerun-cycles 1000 \
+        --rom-output "$coupled/rom.json" --serial-output "$coupled/serial.log" \
+        --emulator-output "$coupled/emu.log" --qemu-stderr-output "$coupled/qemu.log" \
+        > "$coupled/run.txt" 2>&1 || status=$?
+      retry=$(grep -h "config-retry" "$coupled/qemu.log" | head -1)
+      echo "$name: exit=$status $retry"
+      case "$want:$status:$retry" in
+        pass:0:*released*) ;;
+        stall:[1-9]*:*STALL*) ;;
+        *) echo "unexpected outcome for $name" >&2; exit 1 ;;
+      esac
+    done
   fi
 else
   echo "== 8. skipped (older saved artifacts are not linked into this worktree)"

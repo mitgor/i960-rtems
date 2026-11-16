@@ -74,7 +74,15 @@ class CollectorGateTests(unittest.TestCase):
             self.assertEqual(result["ebcr"]["0000:37:04.0"],
                              {"available": True, "raw": "0x0048",
                               "config_cycle_retry_set": False,
-                              "equals_stock_write_0x0048": True})
+                              "low_byte_equals_stock_write_0x48": True})
+        with tempfile.TemporaryDirectory() as temp:
+            # Pin-dependent bits 8..11 set: still the stock value.
+            result = self.ebcr_capture(Path(temp), bridge(0x0348))
+            self.assertEqual(result["gate"], "PASS")
+        with tempfile.TemporaryDirectory() as temp:
+            # Zero is neither stock's value nor retry: flagged, not passed.
+            result = self.ebcr_capture(Path(temp), bridge(0x0000))
+            self.assertEqual(result["gate"], "REVIEW_REQUIRED")
         with tempfile.TemporaryDirectory() as temp:
             # Non-root sysfs read: 64 bytes, EBCR not reachable. Not a failure,
             # but the measurement is reported as incomplete.

@@ -37,9 +37,14 @@ def ebcr_measurement(directory, inventory):
             continue
         value = int.from_bytes(data[EBCR_OFFSET:EBCR_OFFSET + 2], "little")
         retry = bool(value & EBCR_CONFIG_RETRY)
+        # Bits 8..11 reflect pins, so only the low byte is comparable.
+        low_matches = value & 0xff == EBCR_STOCK_WRITE
         result[bdf] = {"available": True, "raw": f"0x{value:04x}",
                        "config_cycle_retry_set": retry,
-                       "equals_stock_write_0x0048": value == EBCR_STOCK_WRITE}
+                       "low_byte_equals_stock_write_0x48": low_matches}
+        if not low_matches and not retry:
+            findings.append(f"{bdf}: EBCR low byte {value & 0xff:#04x} is not the 0x48 "
+                            "that stock firmware writes")
         if retry:
             findings.append(f"{bdf}: EBCR {value:#06x} has Configuration Cycle Retry "
                             "set on an enumerated card; the register model is wrong")
