@@ -1,0 +1,27 @@
+--- a/src/optionroms.c
++++ b/src/optionroms.c
+@@ -62,7 +62,23 @@
+ void
+ call_bcv(u16 seg, u16 ip)
+ {
+-    __callrom(MAKE_FLATPTR(seg, 0), ip, 0);
++    struct rom_header *rom = MAKE_FLATPTR(seg, 0);
++    u16 bdf = 0;
++
++    /* AcceleRAID 160's legacy BCV checks AX against the result of PCI
++     * BIOS B102. SeaBIOS normally supplies zero to legacy BCVs, which
++     * makes this ROM return before touching the controller. Restrict the
++     * experimental override to the exact Mylex PCI identity. */
++    struct pci_data *pd = NULL;
++    if ((u32)rom->pcioffset + sizeof(*pd) <= (u32)rom->size * 512)
++        pd = (void*)((u32)rom + rom->pcioffset);
++    if (pd && pd->signature == PCI_ROM_SIGNATURE &&
++        pd->vendor == 0x1069 && pd->device == 0x0050) {
++        struct pci_device *pci = pci_find_device(0x1069, 0x0050);
++        if (pci)
++            bdf = pci->bdf;
++    }
++    __callrom(rom, ip, bdf);
+ }
+ 
+ // Verify that an option rom looks valid
