@@ -10,7 +10,8 @@ opt-in retry model and checks, for a candidate:
   2. it is released before the RTEMS payload is entered (stage two), so a
      later failure cannot hold the host in retry;
   3. the bridge/ATU register state at release equals stock's state at its
-     own release, except for documented differences;
+     own release, except for documented differences, and the messaging-unit
+     masks equal what stock sets directly after its release;
   4. the PCI0 report record in the host-visible page is complete;
   5. the RTEMS diagnostic still reaches PASS.
 
@@ -68,16 +69,22 @@ def check_candidate(candidate, stock, hidden_rom):
         if actual.get(key) != expected[key]:
             problems.append(f'register {key}: candidate {actual.get(key)!r} '
                             f'stock {expected[key]!r}')
+    # Stock masks the messaging unit right after its release; the candidate
+    # must have the same values in place by the time it releases.
+    if candidate['mu_state_at_release'] != stock['mu_state_after_stock_mu_init']:
+        problems.append(f"messaging-unit setup at release {candidate['mu_state_at_release']}"
+                        f" differs from stock {stock['mu_state_after_stock_mu_init']}")
     late = [w for w in candidate['writes']
-            if w['origin'] == 'i960' and w['seq'] > candidate['release_seq']]
+            if w['origin'] == 'i960' and w['seq'] > candidate['release_seq']
+            and w['addr'] < 0x1300]
     if late:
         problems.append(f'{len(late)} bridge/ATU writes after release; first at '
                         f"{late[0]['addr']:#06x}")
     pci0 = candidate['pci0']
     want_flags = 3 if hidden_rom else 2
-    if (pci0[0] != PCI0 or pci0[1] != 4 or pci0[2] != 0x48 or pci0[3] != want_flags
+    if (pci0[0] != PCI0 or pci0[1] != 0x0c or pci0[2] != 0x48 or pci0[3] != want_flags
             or pci0[4] != 0x00501069 or pci0[5] != 0x00541069
-            or pci0[7] != len(candidate['writes'])):
+            or pci0[7] != candidate['release_seq']):
         problems.append('PCI0 report record mismatch: ' +
                         ' '.join(f'{word:08x}' for word in pci0))
     report = candidate['report']
@@ -113,11 +120,12 @@ def main():
         failures.append(f"stock reference did not release as expected: {stock['summary']}")
     receipt = {
         'gate': 'accele160 offline PCI configuration-retry release',
-        'model_assumption': 'EBCR resets to 0x0004 (Intel 80303 mode 3); '
+        'model_assumption': 'EBCR resets to 0x000c (Intel 80303 mode 3); '
                             'physical RETRY strap not measured',
         'emulator_sha256': hashlib.sha256(args.emulator.read_bytes()).hexdigest(),
         'stock': {key: stock[key] for key in
-                  ('image_sha256', 'summary', 'release_seq', 'state_at_release', 'stop')},
+                  ('image_sha256', 'summary', 'release_seq', 'state_at_release',
+                   'mu_state_after_stock_mu_init', 'stop')},
         'must_hang': [], 'candidates': [],
     }
     for image in args.must_hang:
@@ -140,6 +148,7 @@ def main():
             'option_rom_hidden': hidden, 'summary': result['summary'],
             'release_seq': result['release_seq'], 'events': result['events'],
             'state_at_release': result['state_at_release'],
+            'mu_state_at_release': result['mu_state_at_release'],
             'pci0': [f'{word:08x}' for word in result['pci0']],
             'report': [f'{word:08x}' for word in result['report']],
             'stop': result['stop'], 'problems': problems,

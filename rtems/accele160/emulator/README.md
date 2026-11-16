@@ -176,3 +176,36 @@ defines `intdis` and the `dcctl` function used here. The adapter currently
 models their state transitions without cache timing or external interrupts.
 The [80303 initialization guide](https://www.bitsavers.org/components/intel/i960/80303/273395-005_80303_IO_Processor_Prog_Guide_and_Initialization_200104.pdf)
 names the reset register addresses used in the write audit.
+
+## PCI configuration-retry model (experiment, 2026-11-17)
+
+Background: [experiment document](../../../docs/ACCELE160-EBCR-RELEASE-EXPERIMENT.md). Intel's 80303 in initialization mode 3 answers every host configuration cycle with Retry until firmware clears EBCR, local `0x1040`, bit 2. Stock firmware clears it at `c0052df4`. Until this section the model had no such behaviour, so no gate could notice an image that never releases the host.
+
+Two opt-in interpreter flags:
+
+- `--trace-pci-registers` logs each store into the bridge (`0x1000`), ATU (`0x1200`) and messaging-unit (`0x1300`) blocks:
+  `checkpoint pci-reg-write seq=N cycle=N origin=i960|host ip=… addr=… size=… value=…`.
+  Stores made on behalf of the host through the bridge socket are tagged `origin=host`.
+- `--model-config-retry` sets EBCR to the assumed reset value `0x000c` after the core reset, prints `checkpoint config-retry released|reasserted …` when bit 2 changes, and prints `checkpoint config-retry-summary …` on every exit path.
+
+The bridge socket answers `Y` with the retry state: bit 0 modeled, bit 1 released, bits 16–31 EBCR.
+
+Tools:
+
+```sh
+# Save an image's register write list and its state at release.
+python3 rtems/accele160/emulator/pci_register_trace.py --image IMAGE --out trace.json
+
+# Gate candidates against their card's stock image and known non-releasing images.
+python3 rtems/accele160/emulator/config_retry_gate.py --stock STOCK \
+  --candidate CANDIDATE_WITH_HIDDEN_ROM --candidate-keeps-rom CANDIDATE_WITH_ROM \
+  --must-hang IMAGE_THAT_NEVER_RELEASES --output receipt.json
+
+# Host side: SeaBIOS must reach a marker boot sector, or stall, as expected.
+python3 rtems/accele160/emulator/qemu/test_config_retry_post.py --qemu QEMU --bios BIOS \
+  --must-boot IMAGE --must-stall IMAGE --output receipt.json
+```
+
+The QEMU run needs a binary built with this directory's `qemu/accele160.c`, which adds the device properties `model-config-retry` and `config-retry-limit`. While retry is held, each configuration access to either function advances the i960 by one million instructions and repeats; after the limit QEMU prints `accele160 config-retry STALL …` and exits with status 66.
+
+Limits: the reset value is Intel's documented mode 3, not a measurement of this board; pin-dependent EBCR bits 8–11 are not modeled; SeaBIOS is not the HP BIOS; the QEMU device keeps a fixed PCI identity instead of the one the i960 programs. Saved results: [artifact directory](../../../artifacts/current/accele160-pci-release-20261117/README.md).

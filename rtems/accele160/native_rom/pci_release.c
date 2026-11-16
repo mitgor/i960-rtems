@@ -1,6 +1,7 @@
 /* See pci_release.h. The table is the ordered list of stores the stock
- * 6.00-05 runtime makes into the bridge/ATU blocks between its entry and the
- * EBCR release, captured offline with
+ * 6.00-05 runtime makes into the bridge, ATU and messaging-unit blocks from
+ * its entry through the EBCR release and the MU masking that follows it,
+ * captured offline with
  *   rtems/accele160/emulator/pci_register_trace.py
  * (artifacts/current/accele160-pci-release-20261117/stock-pci-reg-writes.json,
  * "seq" below). Stock routines: ATU c0051190, secondary ATU c00513f0, bridge
@@ -10,6 +11,8 @@
  *
  * Deliberate differences from stock, all listed in the experiment document:
  *  - the secondary-bus scan (16 SOCCAR selects, seq 46..61) is not run;
+ *  - the messaging-unit masking (seq 66..72) runs before the EBCR release
+ *    instead of directly after it, so that the release is the last store;
  *  - SISR is written as an aligned 16-bit store (stock uses an unaligned
  *    32-bit store at 0x1042 that also zeroes the low half of PBISR);
  *  - ERLR may be forced to zero to hide the x86 option ROM.
@@ -78,6 +81,16 @@ static const struct {
     {0x1050, 4, PLAIN, 0x0000000e},  /* PIRSR: S_INTA# to the core */
     {0x1042, 2, PLAIN, 0x03ff},      /* SISR: hide secondary devices */
     {0x104c, 4, PLAIN, 0x00001554},  /* SACR */
+    /* Messaging unit, stock c004e450 (seq 66..72). Stock runs this directly
+     * after the release; here it runs before, so the host never sees the
+     * unmasked reset state. The host driver later unmasks OIMR itself. */
+    {0x1324, 4, PLAIN, 0xffffffff},  /* IISR: clear inbound status */
+    {0x1328, 4, PLAIN, 0xffffffff},  /* IIMR: mask inbound interrupts */
+    {0x1334, 4, PLAIN, 0xffffffff},  /* OIMR: no P_INTA# from the MU */
+    {0x1310, 4, PLAIN, 0x00000000},  /* IMR0 */
+    {0x1314, 4, PLAIN, 0x00000000},  /* IMR1 */
+    {0x1318, 4, PLAIN, 0x00000000},  /* OMR0 */
+    {0x131c, 4, PLAIN, 0x00000000},  /* OMR1 */
     /* stock c0052df4 (seq 65): clear Configuration Cycle Retry. Last. */
     {ACCELE160_EBCR, 2, PLAIN, ACCELE160_EBCR_STOCK_RELEASE},
 };

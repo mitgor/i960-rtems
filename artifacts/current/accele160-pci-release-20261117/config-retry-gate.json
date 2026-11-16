@@ -1,7 +1,7 @@
 {
  "gate": "accele160 offline PCI configuration-retry release",
- "model_assumption": "EBCR resets to 0x0004 (Intel 80303 mode 3); physical RETRY strap not measured",
- "emulator_sha256": "bd88583dab63ff9469277cbc5aad6695501d6654a85fc9530918112ab360bd54",
+ "model_assumption": "EBCR resets to 0x000c (Intel 80303 mode 3); physical RETRY strap not measured",
+ "emulator_sha256": "d7877fd98733a7d48e44f4587b3d6321d24c0926d0292cc937b6090c7780455c",
  "stock": {
   "image_sha256": "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943",
   "summary": {
@@ -9,7 +9,7 @@
    "ebcr": 72,
    "release_cycle": 49602106,
    "release_ip": "c0052e00",
-   "pci_reg_writes": 65
+   "pci_reg_writes": 72
   },
   "release_seq": 65,
   "state_at_release": {
@@ -57,6 +57,15 @@
    "105a": 65535,
    "105c": 4
   },
+  "mu_state_after_stock_mu_init": {
+   "1310": 0,
+   "1314": 0,
+   "1318": 0,
+   "131c": 0,
+   "1324": 4294967295,
+   "1328": 4294967295,
+   "1334": 4294967295
+  },
   "stop": "stop cycle=80000000 reason=budget ip=c001044c"
  },
  "must_hang": [
@@ -65,7 +74,7 @@
    "image_sha256": "6f16d71310d75937b5f3961b1faae81eab3258a29371c8505d788c50c545e3bd",
    "summary": {
     "released": false,
-    "ebcr": 4,
+    "ebcr": 12,
     "release_cycle": 0,
     "release_ip": "00000000",
     "pci_reg_writes": 0
@@ -78,7 +87,7 @@
    "image_sha256": "bd0c204c5f12b049a78258dc3db1c6a049d458504ff1ed61bfb0c20043f01a97",
    "summary": {
     "released": false,
-    "ebcr": 4,
+    "ebcr": 12,
     "release_cycle": 0,
     "release_ip": "00000000",
     "pci_reg_writes": 0
@@ -90,20 +99,20 @@
  "candidates": [
   {
    "image": "native-passive-pci-release-second-spare.bin",
-   "image_sha256": "157278e3bfcd025709181c9bffeb4ac1e4e650057034bb9cb65ded01d5a88d5a",
+   "image_sha256": "9b69e9ca285090bf8159895cedd2947588ef1ea2534683bf4c883ae98c404648",
    "option_rom_hidden": true,
    "summary": {
     "released": true,
     "ebcr": 72,
-    "release_cycle": 1355777,
+    "release_cycle": 1355952,
     "release_ip": "c000a190",
-    "pci_reg_writes": 48
+    "pci_reg_writes": 55
    },
-   "release_seq": 48,
+   "release_seq": 55,
    "events": [
     {
      "event": "released",
-     "cycle": 1355777,
+     "cycle": 1355952,
      "ip": "c000a190",
      "ebcr": 72
     }
@@ -153,15 +162,24 @@
     "105a": 65535,
     "105c": 4
    },
+   "mu_state_at_release": {
+    "1310": 0,
+    "1314": 0,
+    "1318": 0,
+    "131c": 0,
+    "1324": 4294967295,
+    "1328": 4294967295,
+    "1334": 4294967295
+   },
    "pci0": [
     "30494350",
-    "00000004",
+    "0000000c",
     "00000048",
     "00000003",
     "00501069",
     "00541069",
     "00000000",
-    "00000030"
+    "00000037"
    ],
    "report": [
     "32544753",
@@ -181,26 +199,26 @@
     "ffffffff",
     "00000000"
    ],
-   "stop": "stop cycle=4000000 reason=budget ip=c0010128",
+   "stop": "stop cycle=4000000 reason=budget ip=c0010134",
    "problems": [],
    "stock_release_cycle": 49602106
   },
   {
    "image": "native-service-pci-release-hidden-rom-second-spare.bin",
-   "image_sha256": "2a00d02893c8d76498dd9a266811c0c6574b1410421dda7d8b4ded38a2212193",
+   "image_sha256": "6b10ffcc0514e293e301a224026f4b060dba4583de658d6f5d56e4769e5aabe7",
    "option_rom_hidden": true,
    "summary": {
     "released": true,
     "ebcr": 72,
-    "release_cycle": 1355777,
+    "release_cycle": 1355952,
     "release_ip": "c000a190",
-    "pci_reg_writes": 48
+    "pci_reg_writes": 55
    },
-   "release_seq": 48,
+   "release_seq": 55,
    "events": [
     {
      "event": "released",
-     "cycle": 1355777,
+     "cycle": 1355952,
      "ip": "c000a190",
      "ebcr": 72
     }
@@ -250,15 +268,24 @@
     "105a": 65535,
     "105c": 4
    },
+   "mu_state_at_release": {
+    "1310": 0,
+    "1314": 0,
+    "1318": 0,
+    "131c": 0,
+    "1324": 4294967295,
+    "1328": 4294967295,
+    "1334": 4294967295
+   },
    "pci0": [
     "30494350",
-    "00000004",
+    "0000000c",
     "00000048",
     "00000003",
     "00501069",
     "00541069",
     "00000000",
-    "00000030"
+    "00000037"
    ],
    "report": [
     "32544753",
@@ -278,26 +305,26 @@
     "ffffffff",
     "00000000"
    ],
-   "stop": "stop cycle=4000000 reason=budget ip=c00117a0",
+   "stop": "stop cycle=4000000 reason=budget ip=c00116d8",
    "problems": [],
    "stock_release_cycle": 49602106
   },
   {
    "image": "native-service-pci-release-second-spare.bin",
-   "image_sha256": "d8ffe12fc1acd3fd83dc54e5223cfb4914b933ae26b8aa63a44b769fc91bdc20",
+   "image_sha256": "0d90fa59e9fa57734d449d23c16f215448ac70906403fb4eecd8643fed3b3329",
    "option_rom_hidden": false,
    "summary": {
     "released": true,
     "ebcr": 72,
-    "release_cycle": 1355791,
+    "release_cycle": 1355966,
     "release_ip": "c000a190",
-    "pci_reg_writes": 49
+    "pci_reg_writes": 56
    },
-   "release_seq": 49,
+   "release_seq": 56,
    "events": [
     {
      "event": "released",
-     "cycle": 1355791,
+     "cycle": 1355966,
      "ip": "c000a190",
      "ebcr": 72
     }
@@ -347,15 +374,24 @@
     "105a": 65535,
     "105c": 4
    },
+   "mu_state_at_release": {
+    "1310": 0,
+    "1314": 0,
+    "1318": 0,
+    "131c": 0,
+    "1324": 4294967295,
+    "1328": 4294967295,
+    "1334": 4294967295
+   },
    "pci0": [
     "30494350",
-    "00000004",
+    "0000000c",
     "00000048",
     "00000002",
     "00501069",
     "00541069",
     "00000000",
-    "00000031"
+    "00000038"
    ],
    "report": [
     "32544753",
@@ -375,7 +411,7 @@
     "ffffffff",
     "00000000"
    ],
-   "stop": "stop cycle=4000000 reason=budget ip=c0011748",
+   "stop": "stop cycle=4000000 reason=budget ip=c0011220",
    "problems": [],
    "stock_release_cycle": 49602106
   }

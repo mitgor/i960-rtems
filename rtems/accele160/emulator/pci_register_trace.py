@@ -2,7 +2,8 @@
 """Capture and compare 80303 bridge/ATU register writes in the offline i960 model.
 
 Runs `accele160-emu --trace-pci-registers --model-config-retry` on a saved
-1 MiB flash image and records every store into local 0x1000..0x12ff, plus
+1 MiB flash image and records every store into the host-facing register
+blocks (bridge 0x1000, ATU 0x1200, messaging unit 0x1300), plus
 whether and when EBCR (0x1040) bit 2, Configuration Cycle Retry, was cleared.
 Offline only: no card, PCI device or flash is touched.
 
@@ -52,6 +53,14 @@ COMPARED = (
     (0x1050, 4, 'PIRSR'), (0x1054, 1, 'SIOBR'), (0x1055, 1, 'SIOLR'),
     (0x1058, 2, 'SMBR'), (0x105a, 2, 'SMLR'), (0x105c, 2, 'SDER'),
 )
+# Messaging-unit setup. Stock performs these seven stores (routine c004e450)
+# immediately after its release; the native routine performs them before.
+MU_INIT = (
+    (0x1310, 4, 'IMR0'), (0x1314, 4, 'IMR1'), (0x1318, 4, 'OMR0'),
+    (0x131c, 4, 'OMR1'), (0x1324, 4, 'IISR (write-one-to-clear)'),
+    (0x1328, 4, 'IIMR'), (0x1334, 4, 'OIMR'),
+)
+MU_INIT_STOCK_WRITES = 7
 # Not compared, with the reason. Kept explicit so an omission is a decision.
 EXCLUDED = {
     0x1206: 'ATUSR is write-one-to-clear status; the model stores the raw word',
@@ -119,9 +128,19 @@ def release_seq(writes):
 
 def compared_state(writes):
     seq = release_seq(writes)
-    image = state_at(writes, seq, {0x1040: 4, 0x1041: 0})
+    image = state_at(writes, seq, {0x1040: 0x0c, 0x1041: 0})
     return {f'{addr:04x}': register(image, addr, size)
             for addr, size, _name in COMPARED}
+
+
+def mu_state(writes, after_release=0):
+    """MU setup registers as written up to release (+ N following stores)."""
+    seq = release_seq(writes)
+    if seq is None:
+        return None
+    image = state_at(writes, seq + after_release)
+    return {f'{addr:04x}': register(image, addr, size)
+            for addr, size, _name in MU_INIT}
 
 
 def run(emulator, image, cycles, board_id=11, extra=()):
@@ -139,13 +158,16 @@ def run(emulator, image, cycles, board_id=11, extra=()):
         'command': command[2:], 'returncode': done.returncode,
         'stop': stop[-1] if stop else None,
         'model': {
-            'ebcr_reset_value': '0x0004 (assumed Intel mode 3, RETRY strapped high)',
+            'ebcr_reset_value': '0x000c (assumed Intel mode 3: RETRY strapped high, '
+                                'bit 3 at its documented default)',
             'board_id': board_id,
             'note': 'offline interpreter; register reads use modeled values',
         },
         'summary': summary, 'events': events, 'writes': writes,
         'release_seq': release_seq(writes),
         'state_at_release': compared_state(writes),
+        'mu_state_at_release': mu_state(writes),
+        'mu_state_after_stock_mu_init': mu_state(writes, MU_INIT_STOCK_WRITES),
     }
 
 

@@ -24,6 +24,10 @@ The critical gap is host-visible controller startup. In the exploratory i960 rep
 | 14 | Prepare read-only measurements for the next visit to `192.168.2.80`. | A single script/guide records card IDs, ROM settings, PCI state, and two optional guarded full-flash reads without programming. | [Runbook and collector](../host/accele160/offline_return/RUNBOOK.md) pass local tests/fake-`/sys` dry run; live execution pending. HP F10 settings require manual photo. MU BAR reads are not automated because physical read side effects are unproven. |
 | 15 | Prepare a later flash decision package for one spare only. | Recovery image and programmer readback exist; candidate preflight, hashes, physical test plan, rollback, and explicit remaining uncertainty are documented. Flash only after a separate decision. | [Passive/service diagnostic package](../artifacts/current/accele160-minimal-diagnostic-package-20261116/README.md) passes offline repack and runtime gates; first-spare recovery remains pinned. Physical pre-beep cause and entry observation are pending; neither image is flash-qualified. |
 
+## Parallel experiment: configuration retry (2026-11-17)
+
+Branch `experiment/accele160-ebcr-release` tests a specific cause for the pre-beep failure that none of the rows above cover: the native images never clear the 80303 Configuration Cycle Retry bit (EBCR `0x1040` bit 2), which stock clears before it prints `BIOS Cfg Wait...`. With that behaviour added to the offline model, the failed first-spare image and both 2026-11-16 diagnostic images stall the emulated host on its first configuration read, while stock and new images that release retry at stage-two entry boot. This bears on tasks 5, 7, 12, 14 and 15. It is offline evidence only; the board's strap is not measured. Details, images and the read-only confirmation step are in the [experiment document](ACCELE160-EBCR-RELEASE-EXPERIMENT.md).
+
 ## Gates and limits
 
 1. A clean local build and a QEMU boot improve confidence in the image and host protocol, but QEMU does not emulate this HP BIOS or all i960/80303 reset behavior.

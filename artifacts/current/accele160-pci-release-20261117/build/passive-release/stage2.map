@@ -8,7 +8,7 @@ Linker script and memory map
 
                 0x00000000c000a000                . = 0xc000a000
 
-.text           0x00000000c000a000      0x5d0
+.text           0x00000000c000a000      0x600
  *(.entry)
  .entry         0x00000000c000a000        0x4 /out/passive-release/stage2_start.o
                 0x00000000c000a000                _stage2_entry
@@ -18,19 +18,19 @@ Linker script and memory map
  .text          0x00000000c000a010      0x2c0 /out/passive-release/stage2.o
                 0x00000000c000a010                _stage2_copy
                 0x00000000c000a200                _stage2
- .text          0x00000000c000a2d0      0x300 /out/passive-release/pci_release.o
-                0x00000000c000a460                _accele160_pci_release
+ .text          0x00000000c000a2d0      0x330 /out/passive-release/pci_release.o
+                0x00000000c000a490                _accele160_pci_release
  *(.rodata*)
  *(.data*)
- .data          0x00000000c000a5d0        0x0 /out/passive-release/stage2_start.o
- .data          0x00000000c000a5d0        0x0 /out/passive-release/stage2.o
- .data          0x00000000c000a5d0        0x0 /out/passive-release/pci_release.o
+ .data          0x00000000c000a600        0x0 /out/passive-release/stage2_start.o
+ .data          0x00000000c000a600        0x0 /out/passive-release/stage2.o
+ .data          0x00000000c000a600        0x0 /out/passive-release/pci_release.o
 
-.bss            0x00000000c000a5d0        0x0
+.bss            0x00000000c000a600        0x0
  *(.bss*)
- .bss           0x00000000c000a5d0        0x0 /out/passive-release/stage2_start.o
- .bss           0x00000000c000a5d0        0x0 /out/passive-release/stage2.o
- .bss           0x00000000c000a5d0        0x0 /out/passive-release/pci_release.o
+ .bss           0x00000000c000a600        0x0 /out/passive-release/stage2_start.o
+ .bss           0x00000000c000a600        0x0 /out/passive-release/stage2.o
+ .bss           0x00000000c000a600        0x0 /out/passive-release/pci_release.o
  *(COMMON)
                 0x0000000000000001                ASSERT ((. <= 0xc0010000), stage-two loader exceeds stock loader window)
 LOAD /out/passive-release/stage2_start.o

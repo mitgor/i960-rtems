@@ -10,7 +10,7 @@
  "returncode": 0,
  "stop": "stop cycle=80000000 reason=budget ip=c001044c",
  "model": {
-  "ebcr_reset_value": "0x0004 (assumed Intel mode 3, RETRY strapped high)",
+  "ebcr_reset_value": "0x000c (assumed Intel mode 3: RETRY strapped high, bit 3 at its documented default)",
   "board_id": 11,
   "note": "offline interpreter; register reads use modeled values"
  },
@@ -19,7 +19,7 @@
   "ebcr": 72,
   "release_cycle": 49602106,
   "release_ip": "c0052e00",
-  "pci_reg_writes": 65
+  "pci_reg_writes": 72
  },
  "events": [
   {
@@ -614,6 +614,69 @@
    "addr": 4160,
    "size": 2,
    "value": 72
+  },
+  {
+   "seq": 66,
+   "cycle": 49613849,
+   "origin": "i960",
+   "ip": "c004e494",
+   "addr": 4900,
+   "size": 4,
+   "value": 4294967295
+  },
+  {
+   "seq": 67,
+   "cycle": 49613850,
+   "origin": "i960",
+   "ip": "c004e49c",
+   "addr": 4904,
+   "size": 4,
+   "value": 4294967295
+  },
+  {
+   "seq": 68,
+   "cycle": 49613851,
+   "origin": "i960",
+   "ip": "c004e4a4",
+   "addr": 4916,
+   "size": 4,
+   "value": 4294967295
+  },
+  {
+   "seq": 69,
+   "cycle": 49613857,
+   "origin": "i960",
+   "ip": "c004e4d0",
+   "addr": 4880,
+   "size": 4,
+   "value": 0
+  },
+  {
+   "seq": 70,
+   "cycle": 49613859,
+   "origin": "i960",
+   "ip": "c004e4dc",
+   "addr": 4884,
+   "size": 4,
+   "value": 0
+  },
+  {
+   "seq": 71,
+   "cycle": 49613861,
+   "origin": "i960",
+   "ip": "c004e4ec",
+   "addr": 4888,
+   "size": 4,
+   "value": 0
+  },
+  {
+   "seq": 72,
+   "cycle": 49613867,
+   "origin": "i960",
+   "ip": "c004e508",
+   "addr": 4892,
+   "size": 4,
+   "value": 0
   }
  ],
  "release_seq": 65,
@@ -661,5 +724,23 @@
   "1058": 65024,
   "105a": 65535,
   "105c": 4
+ },
+ "mu_state_at_release": {
+  "1310": null,
+  "1314": null,
+  "1318": null,
+  "131c": null,
+  "1324": null,
+  "1328": null,
+  "1334": null
+ },
+ "mu_state_after_stock_mu_init": {
+  "1310": 0,
+  "1314": 0,
+  "1318": 0,
+  "131c": 0,
+  "1324": 4294967295,
+  "1328": 4294967295,
+  "1334": 4294967295
  }
 }

@@ -39,6 +39,55 @@ class CollectorGateTests(unittest.TestCase):
             (out / f"pci-{SPARE}-config.bin").write_bytes(b"changed")
             self.assertEqual(review(out)["gate"], "REVIEW_REQUIRED")
 
+    def ebcr_capture(self, out, bridge_config):
+        pci, metadata = {}, {}
+        for bdf in ("0000:37:04.0", SPARE, "0000:37:09.0", ORIGINAL):
+            config = bytearray(bridge_config if bdf.endswith(".0") else bytes(256))
+            if not bdf.endswith(".0"):
+                for offset, value in ((0, 0x1069), (2, 0x0050),
+                                      (0x2c, 0x1069), (0x2e, 0x0054)):
+                    config[offset:offset + 2] = value.to_bytes(2, "little")
+            files = {}
+            for name, data in (("config", bytes(config)), ("resource", b"0 0 0\n" * 7)):
+                path = out / f"pci-{bdf}-{name}{'.bin' if name == 'config' else '.txt'}"
+                path.write_bytes(data)
+                files[name] = {"file": path.name, "bytes": len(data),
+                               "sha256": hashlib.sha256(data).hexdigest()}
+            metadata[bdf] = files
+            pci[bdf] = dict(zip(EXPECTED_KEYS, EXPECTED_IDS))
+            pci[bdf].update(present=True, block_paths=[])
+        (out / "inventory.json").write_text(json.dumps({
+            "boot_id": "local-test", "pci": pci, "pci_static_files": metadata,
+            "readimage_executed": False,
+            "commands": [{"output_file": "lspci-all.txt", "exit_code": 0}]}))
+        return review(out)
+
+    def test_review_decodes_ebcr_from_bridge_config(self):
+        def bridge(value, size=256):
+            config = bytearray(256)
+            config[0x40:0x42] = value.to_bytes(2, "little")
+            return bytes(config[:size])
+        with tempfile.TemporaryDirectory() as temp:
+            result = self.ebcr_capture(Path(temp), bridge(0x0048))
+            self.assertEqual(result["gate"], "PASS")
+            self.assertTrue(result["ebcr_measured_on_both_bridges"])
+            self.assertEqual(result["ebcr"]["0000:37:04.0"],
+                             {"available": True, "raw": "0x0048",
+                              "config_cycle_retry_set": False,
+                              "equals_stock_write_0x0048": True})
+        with tempfile.TemporaryDirectory() as temp:
+            # Non-root sysfs read: 64 bytes, EBCR not reachable. Not a failure,
+            # but the measurement is reported as incomplete.
+            result = self.ebcr_capture(Path(temp), bridge(0x0048, 64))
+            self.assertEqual(result["gate"], "PASS")
+            self.assertFalse(result["ebcr_measured_on_both_bridges"])
+            self.assertIn("as root", result["ebcr"]["0000:37:09.0"]["reason"])
+        with tempfile.TemporaryDirectory() as temp:
+            # Retry still set on a card Linux enumerated contradicts the model.
+            result = self.ebcr_capture(Path(temp), bridge(0x004c))
+            self.assertEqual(result["gate"], "REVIEW_REQUIRED")
+            self.assertTrue(result["ebcr"]["0000:37:04.0"]["config_cycle_retry_set"])
+
     def test_static_pci_capture_reads_config_and_rom_resource_row(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

@@ -1,7 +1,7 @@
 import struct
 import unittest
 
-from observe import check_config, decode
+from observe import check_config, decode, decode_pci_release
 
 
 class ObserveTest(unittest.TestCase):
@@ -11,6 +11,22 @@ class ObserveTest(unittest.TestCase):
         struct.pack_into("<2H", data, 0x2c, 0x1069, 0x0054)
         struct.pack_into("<2I", data, 0x40, 0xffffe000, 0xc0000000)
         return data
+
+    def test_pci_release_record(self):
+        # Words as written by the emulator run of the passive release image.
+        record = decode_pci_release((0x30494350, 0xc, 0x48, 0x3, 0x00501069,
+                                     0x00541069, 0x0, 48))
+        self.assertTrue(record["config_cycle_retry_was_set_at_reset"])
+        self.assertTrue(record["config_cycle_retry_released"])
+        self.assertTrue(record["option_rom_hidden"])
+        self.assertEqual(record["register_writes"], 48)
+        # A board strapped RETRY low would report it rather than assume.
+        self.assertFalse(decode_pci_release(
+            (0x30494350, 0x18, 0x48, 0x2, 0, 0, 0, 49)
+        )["config_cycle_retry_was_set_at_reset"])
+        self.assertIsNone(decode_pci_release((0,) * 8))   # image without it
+        with self.assertRaises(ValueError):
+            decode_pci_release((0x30494350,) * 7)
 
     def test_exact_identity_and_aperture(self):
         resource = "ee002000 ee003fff 00000200\n"

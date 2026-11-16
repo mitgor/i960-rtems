@@ -15,7 +15,8 @@ void resetBoardMemoryAudit() noexcept;
 BoardMemoryAudit getBoardMemoryAudit() noexcept;
 void setExploratoryBoardSelector(int value) noexcept;
 
-// 80303 primary-PCI configuration retry (Intel 273395-005, mode 3). With the
+// 80303 primary-PCI configuration retry (Intel 273395-005 mode 3; register
+// layout in developer's manual 273353-001, table 14-46). With the
 // RETRY pin strapped high the bridge answers every host configuration cycle
 // with Retry until the i960 clears EBCR (local 0x1040) bit 2. The model is
 // opt-in because this board's strap is inferred from stock firmware (it
@@ -26,14 +27,15 @@ struct ConfigRetryState {
     uint16_t ebcr = 0;
     uint64_t release_cycle = 0;   // cycle of the first releasing write
     uint32_t release_ip = 0;
-    uint32_t register_writes = 0; // stores into 0x1000..0x12ff, any origin
+    uint32_t register_writes = 0; // traced stores, any origin
 };
-// Call after the core reset; sets the assumed strap value EBCR=0x0004.
+// Call after the core reset; sets the assumed mode-3 reset value EBCR=0x000c.
 void applyExploratoryConfigRetryStrap(bool enabled) noexcept;
 ConfigRetryState exploratoryConfigRetryState() noexcept;
-// Log every store into the bridge/ATU register blocks 0x1000..0x12ff as
-// "checkpoint pci-reg-write ...". Values are what firmware wrote; read-
-// modify-write results depend on modeled (zero) reset values.
+// Log every store into the host-facing register blocks (bridge 0x1000..0x10ff,
+// ATU 0x1200..0x12ff, messaging unit 0x1300..0x13ff) as "checkpoint
+// pci-reg-write ...". Values are what firmware wrote; read-modify-write
+// results depend on modeled (zero) reset values.
 void setExploratoryPciRegisterTrace(bool enabled) noexcept;
 void noteExploratoryTraceCycle(uint64_t cycle, uint32_t ip) noexcept;
 // Mark stores issued on behalf of the host through the diagnostic bridge.

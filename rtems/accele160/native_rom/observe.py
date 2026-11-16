@@ -122,6 +122,34 @@ def decode(words):
     return result
 
 
+PCI_RELEASE_BAR_OFFSET = 0x1ee0   # local 0xc0001ee0, see pci_release.h
+PCI_RELEASE_WORDS = 8
+
+
+def decode_pci_release(words):
+    """Decode the stage-two PCI0 record, or None when the image lacks it.
+
+    ebcr_before is the first physical observation of the card's reset value
+    of EBCR: bit 2 set means the board straps RETRY high (Intel mode 3).
+    """
+    if len(words) != PCI_RELEASE_WORDS:
+        raise ValueError("PCI0 record is eight words")
+    if words[0] != 0x30494350:
+        return None
+    return {
+        "ebcr_before": f"0x{words[1]:04x}",
+        "config_cycle_retry_was_set_at_reset": bool(words[1] & 4),
+        "ebcr_after": f"0x{words[2]:04x}",
+        "config_cycle_retry_released": not words[2] & 4,
+        "option_rom_hidden": bool(words[3] & 1),
+        "option_rom_signature_seen": bool(words[3] & 2),
+        "atu_vendor_device": f"0x{words[4]:08x}",
+        "atu_subsystem": f"0x{words[5]:08x}",
+        "bridge_command_before": f"0x{words[6]:04x}",
+        "register_writes": words[7],
+    }
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--bdf", required=True, help="explicit PCI BDF of the test card")
@@ -136,11 +164,15 @@ def main():
         with mmap.mmap(f.fileno(), BAR_BYTES, access=mmap.ACCESS_READ) as bar:
             first = bar[STATUS_BAR_OFFSET:STATUS_BAR_OFFSET + WORDS * 4]
             second = bar[STATUS_BAR_OFFSET:STATUS_BAR_OFFSET + WORDS * 4]
-    if first != second:
+            release = [bar[PCI_RELEASE_BAR_OFFSET:
+                           PCI_RELEASE_BAR_OFFSET + PCI_RELEASE_WORDS * 4]
+                       for _ in range(2)]
+    if first != second or release[0] != release[1]:
         raise ValueError("status changed during two reads; retry without claiming a result")
     record = {"bdf": a.bdf, "identity": identity,
               "snapshot_sha256": hashlib.sha256(first).hexdigest(),
-              **decode(struct.unpack("<25I", first))}
+              **decode(struct.unpack("<25I", first)),
+              "pci_release": decode_pci_release(struct.unpack("<8I", release[0]))}
     if a.out.exists():
         raise FileExistsError(a.out)
     a.out.write_text(json.dumps(record, indent=2) + "\n")

@@ -41,9 +41,9 @@ namespace {
     int exploratoryBoardSelector = -1;
     bool exploratoryBoardSelectorWritten = false;
     bool exploratoryQlogicPci = false;
-    // Intel 80303 mode 3 (273395-005 section 2.3): with RETRY strapped high
-    // the primary PCI interface retries every configuration cycle until the
-    // core clears EBCR (0x1040) bit 2. The AcceleRAID strap is inferred from
+    // Intel 80303 mode 3 (273395-005 section 2.3, 273353-001 table 14-46):
+    // with RETRY strapped high the primary PCI interface retries every
+    // configuration cycle until the core clears EBCR (0x1040) bit 2. The AcceleRAID strap is inferred from
     // stock firmware behaviour, not measured, so the model is opt-in.
     bool pciRegisterTrace = false;
     bool configRetryModel = false;
@@ -55,7 +55,9 @@ namespace {
     uint32_t configRetryReleaseIp = 0;
     uint32_t pciRegisterWrites = 0;
     constexpr bool pciConfigRegister(Address address) noexcept {
-        return address >= 0x1000 && address < 0x1300; // bridge + ATU blocks
+        // Host-facing 80303 blocks: bridge 0x1000, ATU 0x1200, MU 0x1300.
+        return (address >= 0x1000 && address < 0x1100) ||
+               (address >= 0x1200 && address < 0x1400);
     }
     bool exploratoryIspMailbox = false;
     bool exploratoryIspExecuteAck = false;
@@ -559,10 +561,12 @@ void applyExploratoryConfigRetryStrap(bool enabled) noexcept {
     configRetryReleased = false;
     configRetryReleaseCycle = 0;
     configRetryReleaseIp = 0;
-    // Assumed mode-3 reset value: only the retry bit set. Other EBCR reset
-    // bits are not modeled; firmware always writes the whole register.
+    // Assumed mode-3 reset value 0x000c: Configuration Cycle Retry (bit 2,
+    // from the RETRY pin) plus Upstream Prefetchable Memory Enable (bit 3,
+    // documented default 1). Intel 273353-001 table 14-46. Pin-dependent
+    // bits 8..11 are not modeled; firmware writes the whole register.
     if (enabled && physicalMemory) {
-        physicalMemory[0x1040] = 4;
+        physicalMemory[0x1040] = 0x0c;
         physicalMemory[0x1041] = 0;
     }
 }

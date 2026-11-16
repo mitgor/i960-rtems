@@ -16,7 +16,10 @@ ROOT = HERE.parents[2]
 sys.path.insert(0, str(HERE.parent / 'emulator'))
 import pci_register_trace as trace  # noqa: E402
 
-STOCK = ROOT / 'artifacts/current/accele160-pci-release-20261117/stock-pci-reg-writes.json'
+import os  # noqa: E402
+
+STOCK = Path(os.environ.get('STOCK_PCI_TRACE') or ROOT /
+             'artifacts/current/accele160-pci-release-20261117/stock-pci-reg-writes.json')
 SCAN_SELECTOR = 0x12a8   # stock secondary scan, deliberately not reproduced
 
 
@@ -36,7 +39,7 @@ class PciRelease(unittest.TestCase):
     def tearDownClass(cls):
         cls.tmp.cleanup()
 
-    def run_driver(self, options, signature, ebcr=4, command=0):
+    def run_driver(self, options, signature, ebcr=0x0c, command=0):
         out = subprocess.run([str(self.binary), f'{options:x}', f'{signature:x}',
                               f'{ebcr:x}', f'{command:x}'],
                              text=True, capture_output=True, check=True).stdout
@@ -55,15 +58,24 @@ class PciRelease(unittest.TestCase):
         return writes, report
 
     def stock_sequence(self):
-        return [(w['addr'], w['size'], w['value']) for w in self.stock['writes']
-                if w['addr'] != SCAN_SELECTOR]
+        """Stock stores, reordered only so that the EBCR release comes last."""
+        release = self.stock['release_seq']
+        keep = [w for w in self.stock['writes'] if w['addr'] != SCAN_SELECTOR]
+        before = [w for w in keep if w['seq'] < release]
+        mu_init = [w for w in keep if release < w['seq'] <= release + 7]
+        self.assertEqual([w['ip'] for w in mu_init],
+                         ['c004e494', 'c004e49c', 'c004e4a4', 'c004e4d0',
+                          'c004e4dc', 'c004e4ec', 'c004e508'])
+        ordered = before + mu_init + [w for w in keep if w['seq'] == release]
+        return [(w['addr'], w['size'], w['value']) for w in ordered]
 
     def test_stock_trace_fixture_is_the_expected_capture(self):
         self.assertEqual(self.stock['image_sha256'],
                          '0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943')
         self.assertTrue(self.stock['summary']['released'])
         self.assertEqual(self.stock['summary']['release_ip'], 'c0052e00')
-        self.assertEqual(len(self.stock['writes']), 65)
+        self.assertEqual(self.stock['release_seq'], 65)
+        self.assertEqual(len(self.stock['writes']), 72)
 
     def test_rom_kept_matches_stock_write_for_write(self):
         writes, _ = self.run_driver(0, 0xaa55)
@@ -82,7 +94,7 @@ class PciRelease(unittest.TestCase):
                               writes[-1]['value']), (0x1040, 2, 0x48))
             self.assertTrue(all(w['retry_before'] for w in writes))
             self.assertEqual(trace.release_seq(writes), len(writes))
-            self.assertEqual(report[1:3], [4, 0x48])   # EBCR before, after
+            self.assertEqual(report[1:3], [0x0c, 0x48])   # EBCR before, after
 
     def test_hidden_rom_uses_the_stock_no_rom_path(self):
         for options, signature, flags in ((1, 0xaa55, 3), (0, 0xaa00, 1), (1, 0, 1)):
@@ -103,6 +115,12 @@ class PciRelease(unittest.TestCase):
         self.assertEqual(native, expected)
         writes, _ = self.run_driver(0, 0xaa55)
         self.assertEqual(trace.compared_state(writes), self.stock['state_at_release'])
+
+    def test_messaging_unit_is_masked_before_release(self):
+        writes, _ = self.run_driver(1, 0xaa55)
+        self.assertEqual(trace.mu_state(writes),
+                         self.stock['mu_state_after_stock_mu_init'])
+        self.assertEqual(trace.mu_state(writes)['1334'], 0xffffffff)   # OIMR
 
     def test_bridge_command_is_saved_and_restored(self):
         writes, report = self.run_driver(1, 0xaa55, command=0x0147)

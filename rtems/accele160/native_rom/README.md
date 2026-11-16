@@ -111,6 +111,27 @@ The [second ten-step batch](../../../docs/ACCELE160-NEXT-TEN-OFFLINE-STEPS-2.md)
 
 Each new handler is behind a separate build feature gate and packed against the second spare's own 1 MiB stock dump. The guest mirror copies only an observed native model reply after strict slot, DMA, status, doorbell and payload checks. None of these gates establish physical 80303 DMA, HP POST, or cold-boot behavior. The first spare's pre-beep failure remains unexplained; no current image is cleared for flashing.
 
+## Host PCI identity and configuration-retry release (experiment, 2026-11-17)
+
+The images described above never clear the 80303 Configuration Cycle Retry bit, EBCR local `0x1040` bit 2. If the board straps RETRY high, as Intel's default mode 3 and stock firmware's behaviour indicate, the host cannot complete a configuration cycle to such an image. Background and evidence: [experiment document](../../../docs/ACCELE160-EBCR-RELEASE-EXPERIMENT.md).
+
+`ACCELE160_PCI_RELEASE=1` makes stage two call `accele160_pci_release()` from [pci_release.c](pci_release.c) immediately after the `SGT2` marker. It replays the stock runtime's ATU, bridge, interrupt-routing and messaging-unit stores for board model 32 and ends with EBCR = `0x48`. `ACCELE160_PCI_HIDE_OPTION_ROM=1` additionally writes ERLR = 0, stock's own no-ROM path, so the host does not run the x86 option ROM. Both are off by default; without them stage two is the unchanged 480-byte binary.
+
+The routine writes an eight-word `PCI0` record at local `0xc0001ee0`, BAR offset `0x1ee0`:
+
+| Word | Meaning |
+| --- | --- |
+| 0 | `PCI0` marker, written last |
+| 1 | EBCR before any store: the board's reset value |
+| 2 | EBCR readback after the release |
+| 3 | bit 0 option ROM hidden, bit 1 `aa55` signature present |
+| 4 | readback of `0x1200`: device and vendor ID |
+| 5 | readback of `0x122c`: subsystem IDs |
+| 6 | bridge command register before the sequence |
+| 7 | number of register stores issued |
+
+`observe.py` decodes it as `pci_release`. `test_pci_release.py` builds the routine for the host and checks it store for store against the saved stock trace; `emulator/config_retry_gate.py` checks a packed image in the interpreter. Offline results and images are in [the artifact directory](../../../artifacts/current/accele160-pci-release-20261117/README.md). Not tested on hardware.
+
 ## Build and verification
 
 On the i960 build host, using a separate directory:

@@ -8,6 +8,44 @@ from pathlib import Path
 from collect import EXPECTED_IDS, EXPECTED_KEYS, ORIGINAL, SPARE
 
 
+BRIDGES = ("0000:37:04.0", "0000:37:09.0")
+EBCR_OFFSET = 0x40          # 80303 bridge function, Extended Bridge Control
+EBCR_CONFIG_RETRY = 0x0004  # Configuration Cycle Retry (Intel 273395-005)
+EBCR_STOCK_WRITE = 0x0048   # value stock 6.00-05 writes before "BIOS Cfg Wait"
+
+
+def ebcr_measurement(directory, inventory):
+    """Decode EBCR from the saved bridge-function config captures.
+
+    On a running stock card the retry bit must already be clear, otherwise
+    Linux could not have enumerated it. The useful facts are that the
+    register is where the firmware analysis says it is and reads back the
+    stock value. Root is needed: non-root sysfs config reads stop at 64 bytes.
+    """
+    result, findings = {}, []
+    for bdf in BRIDGES:
+        record = inventory.get("pci_static_files", {}).get(bdf, {}).get("config", {})
+        path = directory / f"pci-{bdf}-config.bin"
+        if record.get("file") != path.name or not path.exists():
+            result[bdf] = {"available": False, "reason": "no config capture"}
+            continue
+        data = path.read_bytes()
+        if len(data) < EBCR_OFFSET + 2:
+            result[bdf] = {"available": False,
+                           "reason": f"config capture is {len(data)} bytes; rerun "
+                                     "the collector as root to reach offset 0x40"}
+            continue
+        value = int.from_bytes(data[EBCR_OFFSET:EBCR_OFFSET + 2], "little")
+        retry = bool(value & EBCR_CONFIG_RETRY)
+        result[bdf] = {"available": True, "raw": f"0x{value:04x}",
+                       "config_cycle_retry_set": retry,
+                       "equals_stock_write_0x0048": value == EBCR_STOCK_WRITE}
+        if retry:
+            findings.append(f"{bdf}: EBCR {value:#06x} has Configuration Cycle Retry "
+                            "set on an enumerated card; the register model is wrong")
+    return result, findings
+
+
 def review(directory):
     inventory = json.loads((directory / "inventory.json").read_text())
     findings = []
@@ -58,8 +96,12 @@ def review(directory):
                   if row.get("output_file") == "lspci-all.txt"), None)
     if not lspci or lspci.get("exit_code") != 0:
         findings.append("full lspci inventory missing or failed")
+    ebcr, ebcr_findings = ebcr_measurement(directory, inventory)
+    findings += ebcr_findings
     return {
         "gate": "PASS" if not findings else "REVIEW_REQUIRED",
+        "ebcr": ebcr,
+        "ebcr_measured_on_both_bridges": all(row["available"] for row in ebcr.values()),
         "boot_id": inventory.get("boot_id"),
         "spare_bdf": SPARE,
         "original_bdf": ORIGINAL,

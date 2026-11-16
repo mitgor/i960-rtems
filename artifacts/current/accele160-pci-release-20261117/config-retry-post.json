@@ -2,7 +2,7 @@
  "gate": "accele160 offline host-side configuration-retry reproduction",
  "limits": "SeaBIOS/QEMU, not the HP BIOS; EBCR reset strap assumed; bounded retry stands in for an indefinite host retry; option ROM omitted in every run; fixed QEMU PCI identity",
  "qemu_sha256": "6603753b62729fd3d662a1a9f219d5a96c7eb1c44323d8b7c71856b9357013a9",
- "emulator_sha256": "bd88583dab63ff9469277cbc5aad6695501d6654a85fc9530918112ab360bd54",
+ "emulator_sha256": "d7877fd98733a7d48e44f4587b3d6321d24c0926d0292cc937b6090c7780455c",
  "bios_sha256": "8c484e1baeede956ea585e1d96217263a892881b21eded2b6cda90615191248f",
  "retry_limit": 120,
  "results": [
@@ -25,7 +25,7 @@
   },
   {
    "image": "native-passive-pci-release-second-spare.bin",
-   "image_sha256": "157278e3bfcd025709181c9bffeb4ac1e4e650057034bb9cb65ded01d5a88d5a",
+   "image_sha256": "9b69e9ca285090bf8159895cedd2947588ef1ea2534683bf4c883ae98c404648",
    "qemu_exit_code": 0,
    "host_stalled": false,
    "retry_released_seen_by_host": true,
@@ -35,14 +35,14 @@
     "accele160 config-retry released ebcr=0x0048 retried-attempts=2 first-access=bridge-read offset=0x00"
    ],
    "i960_release_lines": [
-    "checkpoint config-retry released cycle=1355777 ip=c000a190 ebcr=0048"
+    "checkpoint config-retry released cycle=1355952 ip=c000a190 ebcr=0048"
    ],
    "expected": "boot",
    "ok": true
   },
   {
    "image": "native-service-pci-release-hidden-rom-second-spare.bin",
-   "image_sha256": "2a00d02893c8d76498dd9a266811c0c6574b1410421dda7d8b4ded38a2212193",
+   "image_sha256": "6b10ffcc0514e293e301a224026f4b060dba4583de658d6f5d56e4769e5aabe7",
    "qemu_exit_code": 0,
    "host_stalled": false,
    "retry_released_seen_by_host": true,
@@ -52,14 +52,14 @@
     "accele160 config-retry released ebcr=0x0048 retried-attempts=2 first-access=bridge-read offset=0x00"
    ],
    "i960_release_lines": [
-    "checkpoint config-retry released cycle=1355777 ip=c000a190 ebcr=0048"
+    "checkpoint config-retry released cycle=1355952 ip=c000a190 ebcr=0048"
    ],
    "expected": "boot",
    "ok": true
   },
   {
    "image": "native-service-pci-release-second-spare.bin",
-   "image_sha256": "d8ffe12fc1acd3fd83dc54e5223cfb4914b933ae26b8aa63a44b769fc91bdc20",
+   "image_sha256": "0d90fa59e9fa57734d449d23c16f215448ac70906403fb4eecd8643fed3b3329",
    "qemu_exit_code": 0,
    "host_stalled": false,
    "retry_released_seen_by_host": true,
@@ -69,7 +69,7 @@
     "accele160 config-retry released ebcr=0x0048 retried-attempts=2 first-access=bridge-read offset=0x00"
    ],
    "i960_release_lines": [
-    "checkpoint config-retry released cycle=1355791 ip=c000a190 ebcr=0048"
+    "checkpoint config-retry released cycle=1355966 ip=c000a190 ebcr=0048"
    ],
    "expected": "boot",
    "ok": true
@@ -83,7 +83,7 @@
    "boot_sector_reached": false,
    "host_config_accesses_logged": 0,
    "config_retry_lines": [
-    "accele160 config-retry STALL ebcr=0x0004 retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
+    "accele160 config-retry STALL ebcr=0x000c retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
    ],
    "i960_release_lines": [],
    "expected": "stall",
@@ -98,7 +98,7 @@
    "boot_sector_reached": false,
    "host_config_accesses_logged": 0,
    "config_retry_lines": [
-    "accele160 config-retry STALL ebcr=0x0004 retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
+    "accele160 config-retry STALL ebcr=0x000c retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
    ],
    "i960_release_lines": [],
    "expected": "stall",
@@ -113,7 +113,7 @@
    "boot_sector_reached": false,
    "host_config_accesses_logged": 0,
    "config_retry_lines": [
-    "accele160 config-retry STALL ebcr=0x0004 retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
+    "accele160 config-retry STALL ebcr=0x000c retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
    ],
    "i960_release_lines": [],
    "expected": "stall",
@@ -128,7 +128,7 @@
    "boot_sector_reached": false,
    "host_config_accesses_logged": 0,
    "config_retry_lines": [
-    "accele160 config-retry STALL ebcr=0x0004 retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
+    "accele160 config-retry STALL ebcr=0x000c retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
    ],
    "i960_release_lines": [],
    "expected": "stall",

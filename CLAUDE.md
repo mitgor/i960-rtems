@@ -1,3 +1,43 @@
+## EXPERIMENT BRANCH `experiment/accele160-ebcr-release` — 2026-11-17 (offline only)
+
+**This worktree is a parallel experiment, not the main line.** Read
+`docs/ACCELE160-EBCR-RELEASE-EXPERIMENT.md` first. Commit `a17db352` is an
+unmodified copy of files that are untracked in the main checkout; diff against
+it to see what the experiment changed. Do not merge blindly: main's untracked
+copies may have moved on.
+
+Hypothesis for the first spare's pre-beep HP Z400 freeze: the 80303 starts in
+Intel mode 3, where the primary PCI interface retries every configuration
+cycle until firmware clears EBCR (local `0x1040`, bridge PCI offset `0x40`)
+bit 2. Stock 6.00-05 clears it in its runtime (`c0052df4`, EBCR=`0x48`, then
+`BIOS Cfg Wait...`). No native image on main ever writes EBCR. **The board's
+RETRY strap is not measured; this is inferred from Intel documents and stock
+firmware.**
+
+Added here: interpreter flags `--trace-pci-registers` / `--model-config-retry`,
+QEMU device property `model-config-retry`, `pci_register_trace.py`,
+`config_retry_gate.py`, `qemu/test_config_retry_post.py`, and native
+`pci_release.c` enabled by `ACCELE160_PCI_RELEASE=1` (optional
+`ACCELE160_PCI_HIDE_OPTION_ROM=1`). The release runs at stage-two entry so any
+later failure no longer holds the host in retry. All new behaviour is opt-in;
+the control build is byte-identical to the 2026-11-16 passive image.
+
+Offline result: with retry modeled, the failed first-spare image, the staged
+second-spare no-ROM image and both 2026-11-16 diagnostic images stall the
+emulated host on its first configuration read; stock and the new images boot.
+New images and receipts: `artifacts/current/accele160-pci-release-20261117/`.
+**None is tested on hardware or cleared for flashing.** Each image is built
+from one card's own stock capture; never write it to another card.
+
+Cheapest physical check, read-only: `sudo setpci -s 37:04.0 40.w` on the stock
+spare, expected `0048`. A native image's `PCI0` record (`0xc0001ee0`, decoded
+by `observe.py`) reports the reset value of EBCR after its first boot.
+
+To run the older gates in this worktree, first run
+`artifacts/current/accele160-pci-release-20261117/link-main-checkout-artifacts.sh
+/path/to/main/checkout`. The private QEMU binary is built outside the shared
+QEMU tree; never rebuild inside `~/Library/Caches/i960/qemu-6.2.0`.
+
 ## Accele160 faster polling / reply DMA — 2026-10-19 (one-hour qualification passed)
 
 Current owner is now `/home/mit/i960-packet-dma-20261019/bundle`, boot

@@ -20,6 +20,19 @@ python3 host/accele160/offline_return/review_inventory.py \
 
 Save both directories/files and the BIOS/card photos together. The collector records PCI identities, driver and storage state, up to 256 bytes of config per function, resource tables and ROM BAR metadata, `lspci`, `dmesg`, boot ID and BIOS version where readable. It does **not** enable or read the expansion ROM, or touch BAR0. The review's `PASS` means those captured files are internally consistent, full `lspci` succeeded, and the two RAID identities match; it does not prove the HP executed or skipped an option ROM during POST, and it does not authorize READIMAGE. If the review says `REVIEW_REQUIRED`, inspect its findings before any further measurement.
 
+## 2a. EBCR on the stock bridge function (read-only)
+
+Added 2026-11-17 by the [configuration-retry experiment](../../../docs/ACCELE160-EBCR-RELEASE-EXPERIMENT.md). The 80303's Extended Bridge Control Register is at PCI configuration offset `0x40` of the bridge function. Its bit 2, Configuration Cycle Retry, makes the card answer every host configuration cycle with Retry until firmware clears it. Stock firmware writes `0x48` there; the native image that stopped the PC never wrote it.
+
+Run the collector as **root** so the bridge-function captures reach offset `0x40`; a non-root sysfs read stops at 64 bytes. `review_inventory.py` then reports an `ebcr` entry for `0000:37:04.0` and `0000:37:09.0` and sets `ebcr_measured_on_both_bridges`. The expected raw value is `0x0048`, possibly with the pin-dependent bits 8–11 set. A manual equivalent is:
+
+```sh
+sudo setpci -s 37:04.0 40.w
+sudo setpci -s 37:09.0 40.w
+```
+
+Both are configuration-space reads and change nothing. On a running stock card bit 2 is necessarily clear, since Linux could not otherwise have enumerated it; the review flags a set bit as a contradiction of the register model. This measurement confirms the register location and stock's value. It does not show the reset strap, which only a native image's `PCI0` record or a bus trace can.
+
 ## 3. Optional two guarded stock reads
 
 This is a separate operation after the inventory. Run it only if the previously reviewed `myrsread.ko` is already bound solely to the Slot 6 spare, `read_bdf=0000:37:04.1`, the original is unbound, neither card exposes storage, and the exact pinned `rawreader.ko` is available. The wrapper and underlying reader check identities, module hashes, selector 9, 1 MiB length, idle descriptor, status/residual/guard changes, peer selection and DMA release. They do not bind a driver for you.

@@ -1,9 +1,13 @@
 /* Stock-equivalent host PCI identity and configuration-retry release.
  *
  * Intel 80303 initialization mode 3 (application note 273395-005, section
- * 2.3): with RETRY strapped high the primary PCI interface answers every
- * configuration cycle with Retry until the core clears the Configuration
- * Cycle Retry bit, EBCR (local 0x1040) bit 2. Stock firmware 6.00-05 programs
+ * 2.3; developer's manual 273353-001, table 14-46): with RETRY strapped high
+ * the primary PCI interface answers every configuration cycle with Retry
+ * until the core clears the Configuration Cycle Retry bit, EBCR (local
+ * 0x1040, PCI offset 0x40 of the bridge function) bit 2. EBCR bits: 0 posting
+ * disable, 1 core processor reset, 2 configuration cycle retry, 3 upstream
+ * prefetchable memory enable, 5 reset internal bus, 6 secondary DAC medium
+ * decode enable. Stock's 0x48 is therefore bits 3 and 6 with retry clear. Stock firmware 6.00-05 programs
  * the ATU and bridge identity, then writes EBCR = 0x48 and prints
  * "BIOS Cfg Wait...". A native image that never does this leaves the host
  * BIOS retrying forever. See docs/ACCELE160-EBCR-RELEASE-EXPERIMENT.md.

@@ -3,7 +3,7 @@ checkpoint firmware-path-count menu=0 mu-setup=0 mu-mask-set=0 mu-mask-clear=0 i
 audit first-unmodeled-write=00001508
 audit first-unmodeled-read=e0400000
 stop cycle=3000000 reason=budget ip=c00117f0
-checkpoint bridge-ready path=/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/accele160-native-set-mbox-k25g3bon/bridge.sock
+checkpoint bridge-ready path=/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/accele160-native-set-mbox-nb1hcgtr/bridge.sock
 checkpoint cpu-interrupt-state prcb=feffdd20 table=feffd910 priority=31 enabled=0
 checkpoint host-pci-command local=00001004 value=00000107
 checkpoint host-pci-command local=00001204 value=00000107

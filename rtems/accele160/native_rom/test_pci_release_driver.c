@@ -11,7 +11,7 @@ static accele160_u32 mmr_read(accele160_u32 a, accele160_u32 size, void *c)
 {
     accele160_u32 value = 0, i;
     (void)c;
-    if (a < 0x1000 || a + size > 0x1300) { printf("BAD-READ %x\n", a); exit(2); }
+    if (a < 0x1000 || a + size > 0x1400) { printf("BAD-READ %x\n", a); exit(2); }
     for (i = 0; i < size; ++i) value |= (accele160_u32)regs[a + i] << (8 * i);
     return value;
 }
@@ -20,7 +20,7 @@ static void mmr_write(accele160_u32 a, accele160_u32 size, accele160_u32 v, void
 {
     accele160_u32 i;
     (void)c;
-    if (a < 0x1000 || a + size > 0x1300 || (size != 1 && size != 2 && size != 4) ||
+    if (a < 0x1000 || a + size > 0x1400 || (size != 1 && size != 2 && size != 4) ||
         (a & (size - 1))) { printf("BAD-WRITE %x %u\n", a, size); exit(2); }
     printf("W %04x %u %x retry-before=%u\n", a, size, v, (regs[0x1040] >> 2) & 1u);
     for (i = 0; i < size; ++i) regs[a + i] = (unsigned char)(v >> (8 * i));
