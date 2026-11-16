@@ -45,7 +45,7 @@ Every gate receipt carries `physical_boot_tested: false` and `safe_to_flash: fal
 ## Scripts
 
 - [reproduce.sh](reproduce.sh) regenerates everything into a new directory; see its header for the environment variables.
-- [link-main-checkout-artifacts.sh](link-main-checkout-artifacts.sh) links the saved artifacts that are untracked in the main checkout into this worktree and hides the links from git. The older gates and tests need them.
+- [link-main-checkout-artifacts.sh](link-main-checkout-artifacts.sh) links the saved artifacts that are untracked in the main checkout into this worktree. The older gates and tests need them. The links are hidden by a self-ignoring `artifacts/current/.gitignore` local to the worktree, never by the shared `.git/info/exclude`.
 
 ## The private QEMU binary
 

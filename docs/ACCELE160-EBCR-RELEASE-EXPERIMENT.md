@@ -175,7 +175,7 @@ FIRST_SPARE_STOCK=artifacts/current/accele160-spare-rom-20261025/rawflash-0/data
 sh artifacts/current/accele160-pci-release-20261117/reproduce.sh /path/to/new/output
 ```
 
-The first command links the saved artifacts that are untracked in the main checkout into this worktree and hides the links from git; nothing is copied or committed. Without `QEMU` and `BIOS` the script skips the coupled runs. The cross-build needs Docker with a linux/amd64 image that has bash and python3, and the archived toolchain cache described in the 2026-11-15 offline build record. The [artifact README](../artifacts/current/accele160-pci-release-20261117/README.md) lists what each step writes and how the private QEMU binary was built.
+The first command links the saved artifacts that are untracked in the main checkout into this worktree; nothing is copied or committed. It hides the links through a self-ignoring `artifacts/current/.gitignore` that stays local to the worktree. The shared `.git/info/exclude` must not be used for this, because it would hide the same directories in the main checkout. Without `QEMU` and `BIOS` the script skips the coupled runs. The cross-build needs Docker with a linux/amd64 image that has bash and python3, and the archived toolchain cache described in the 2026-11-15 offline build record. The [artifact README](../artifacts/current/accele160-pci-release-20261117/README.md) lists what each step writes and how the private QEMU binary was built.
 
 ## How this relates to the main checkout
 
