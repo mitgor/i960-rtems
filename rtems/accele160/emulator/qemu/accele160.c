@@ -49,6 +49,11 @@ typedef struct Accele160State {
     unsigned native_followup_mirror_mask;
     unsigned ring_followup_events;
     bool step_on_ack;
+    /* Intel 80303 mode 3: every configuration cycle is retried until the
+     * i960 clears EBCR bit 2. Opt-in; needs the i960 bridge socket. */
+    bool model_config_retry;
+    bool config_retry_released;
+    uint32_t config_retry_limit;
     bool explore_rom_ioctls;
     bool explore_live_firmware;
     bool explore_set_mbox_trace;
@@ -96,6 +101,47 @@ static Accele160State *accele160_raid_sibling(PCIDevice *bridge)
                                       bridge->devfn | 1);
     return raid && object_dynamic_cast(OBJECT(raid), TYPE_ACCELE160)
                ? ACCELE160(raid) : NULL;
+}
+
+/* A host bridge re-issues a retried configuration cycle indefinitely, so a
+ * card that never clears Configuration Cycle Retry stalls the BIOS. Model
+ * that by advancing the i960 between retried attempts; a bounded number of
+ * attempts stands in for "forever", after which QEMU exits with status 66 and
+ * a marker instead of hanging the test. Once released the state is cached:
+ * firmware re-asserting retry later is not modeled on the host side. */
+static void accele160_config_retry(Accele160State *s, const char *function,
+                                   uint32_t offset)
+{
+    if (!s || !s->model_config_retry || s->config_retry_released) {
+        return;
+    }
+    if (s->bridge_fd < 0) {
+        fprintf(stderr, "accele160 config-retry model needs bridge-socket\n");
+        exit(1);
+    }
+    for (uint32_t attempt = 0; ; ++attempt) {
+        uint32_t state = accele160_bridge_request(s, "Y\n");
+        if (!(state & 1u)) {
+            fprintf(stderr, "accele160 config-retry model: the i960 emulator "
+                    "was not started with --model-config-retry\n");
+            exit(1);
+        }
+        if (state & 2u) {
+            s->config_retry_released = true;
+            fprintf(stderr, "accele160 config-retry released ebcr=0x%04x "
+                    "retried-attempts=%u first-access=%s offset=0x%02x\n",
+                    state >> 16, attempt, function, offset);
+            return;
+        }
+        if (attempt >= s->config_retry_limit) {
+            fprintf(stderr, "accele160 config-retry STALL ebcr=0x%04x "
+                    "retried-attempts=%u first-access=%s offset=0x%02x: the "
+                    "host configuration cycle never completes\n",
+                    state >> 16, attempt, function, offset);
+            exit(66);
+        }
+        accele160_bridge_request(s, "S 1000000\n");
+    }
 }
 
 static void accele160_mirror_command(Accele160State *raid,
@@ -2095,7 +2141,10 @@ static uint32_t accele160_config_read(PCIDevice *pci_dev, uint32_t addr,
                                      int size)
 {
     Accele160State *s = ACCELE160(pci_dev);
-    uint32_t value = pci_default_read_config(pci_dev, addr, size);
+    uint32_t value;
+
+    accele160_config_retry(s, "raid-read", addr);
+    value = pci_default_read_config(pci_dev, addr, size);
 
     if (s->config_access_count < s->trace_limit) {
         fprintf(stderr, "accele160 config R offset=0x%02x size=%d "
@@ -2110,6 +2159,7 @@ static void accele160_config_write(PCIDevice *pci_dev, uint32_t addr,
 {
     Accele160State *s = ACCELE160(pci_dev);
 
+    accele160_config_retry(s, "raid-write", addr);
     if (s->config_access_count < s->trace_limit) {
         fprintf(stderr, "accele160 config W offset=0x%02x size=%d "
                 "value=0x%0*x\n", addr, size, size * 2, value);
@@ -2123,10 +2173,19 @@ static void accele160_config_write(PCIDevice *pci_dev, uint32_t addr,
         s->piatvr = pci_get_long(pci_dev->config + 0x44);
 }
 
+static uint32_t accele160_pci_bridge_read_config(PCIDevice *pci_dev,
+                                                 uint32_t addr, int size)
+{
+    /* Both functions sit behind the same primary interface. */
+    accele160_config_retry(accele160_raid_sibling(pci_dev), "bridge-read", addr);
+    return pci_default_read_config(pci_dev, addr, size);
+}
+
 static void accele160_pci_bridge_write_config(PCIDevice *pci_dev,
                                                uint32_t addr, uint32_t value,
                                                int size)
 {
+    accele160_config_retry(accele160_raid_sibling(pci_dev), "bridge-write", addr);
     pci_bridge_write_config(pci_dev, addr, value, size);
     if (addr < PCI_COMMAND + 2 && addr + size > PCI_COMMAND)
         accele160_mirror_command(accele160_raid_sibling(pci_dev), 0x1004,
@@ -2211,6 +2270,10 @@ static Property accele160_properties[] = {
     DEFINE_PROP_STRING("aperture-file", Accele160State, aperture_file),
     DEFINE_PROP_STRING("bridge-socket", Accele160State, bridge_socket),
     DEFINE_PROP_BOOL("step-on-ack", Accele160State, step_on_ack, false),
+    DEFINE_PROP_BOOL("model-config-retry", Accele160State,
+                     model_config_retry, false),
+    DEFINE_PROP_UINT32("config-retry-limit", Accele160State,
+                       config_retry_limit, 120),
     DEFINE_PROP_BOOL("explore-rom-ioctls", Accele160State,
                      explore_rom_ioctls, false),
     DEFINE_PROP_BOOL("explore-live-firmware", Accele160State,
@@ -2300,6 +2363,7 @@ static void accele160_pci_bridge_class_init(ObjectClass *klass, void *data)
     DeviceClass *dc = DEVICE_CLASS(klass);
     pc->realize = accele160_pci_bridge_realize;
     pc->exit = accele160_pci_bridge_exit;
+    pc->config_read = accele160_pci_bridge_read_config;
     pc->config_write = accele160_pci_bridge_write_config;
     pc->vendor_id = 0x8086;
     pc->device_id = 0x2962;

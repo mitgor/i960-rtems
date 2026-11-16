@@ -1,0 +1,142 @@
+{
+ "gate": "accele160 offline host-side configuration-retry reproduction",
+ "limits": "SeaBIOS/QEMU, not the HP BIOS; EBCR reset strap assumed; bounded retry stands in for an indefinite host retry; option ROM omitted in every run; fixed QEMU PCI identity",
+ "qemu_sha256": "6603753b62729fd3d662a1a9f219d5a96c7eb1c44323d8b7c71856b9357013a9",
+ "emulator_sha256": "bd88583dab63ff9469277cbc5aad6695501d6654a85fc9530918112ab360bd54",
+ "bios_sha256": "8c484e1baeede956ea585e1d96217263a892881b21eded2b6cda90615191248f",
+ "retry_limit": 120,
+ "results": [
+  {
+   "image": "data.bin",
+   "image_sha256": "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943",
+   "qemu_exit_code": 0,
+   "host_stalled": false,
+   "retry_released_seen_by_host": true,
+   "boot_sector_reached": true,
+   "host_config_accesses_logged": 47,
+   "config_retry_lines": [
+    "accele160 config-retry released ebcr=0x0048 retried-attempts=50 first-access=bridge-read offset=0x00"
+   ],
+   "i960_release_lines": [
+    "checkpoint config-retry released cycle=49602106 ip=c0052e00 ebcr=0048"
+   ],
+   "expected": "boot",
+   "ok": true
+  },
+  {
+   "image": "native-passive-pci-release-second-spare.bin",
+   "image_sha256": "157278e3bfcd025709181c9bffeb4ac1e4e650057034bb9cb65ded01d5a88d5a",
+   "qemu_exit_code": 0,
+   "host_stalled": false,
+   "retry_released_seen_by_host": true,
+   "boot_sector_reached": true,
+   "host_config_accesses_logged": 47,
+   "config_retry_lines": [
+    "accele160 config-retry released ebcr=0x0048 retried-attempts=2 first-access=bridge-read offset=0x00"
+   ],
+   "i960_release_lines": [
+    "checkpoint config-retry released cycle=1355777 ip=c000a190 ebcr=0048"
+   ],
+   "expected": "boot",
+   "ok": true
+  },
+  {
+   "image": "native-service-pci-release-hidden-rom-second-spare.bin",
+   "image_sha256": "2a00d02893c8d76498dd9a266811c0c6574b1410421dda7d8b4ded38a2212193",
+   "qemu_exit_code": 0,
+   "host_stalled": false,
+   "retry_released_seen_by_host": true,
+   "boot_sector_reached": true,
+   "host_config_accesses_logged": 47,
+   "config_retry_lines": [
+    "accele160 config-retry released ebcr=0x0048 retried-attempts=2 first-access=bridge-read offset=0x00"
+   ],
+   "i960_release_lines": [
+    "checkpoint config-retry released cycle=1355777 ip=c000a190 ebcr=0048"
+   ],
+   "expected": "boot",
+   "ok": true
+  },
+  {
+   "image": "native-service-pci-release-second-spare.bin",
+   "image_sha256": "d8ffe12fc1acd3fd83dc54e5223cfb4914b933ae26b8aa63a44b769fc91bdc20",
+   "qemu_exit_code": 0,
+   "host_stalled": false,
+   "retry_released_seen_by_host": true,
+   "boot_sector_reached": true,
+   "host_config_accesses_logged": 47,
+   "config_retry_lines": [
+    "accele160 config-retry released ebcr=0x0048 retried-attempts=2 first-access=bridge-read offset=0x00"
+   ],
+   "i960_release_lines": [
+    "checkpoint config-retry released cycle=1355791 ip=c000a190 ebcr=0048"
+   ],
+   "expected": "boot",
+   "ok": true
+  },
+  {
+   "image": "native-rom-spare-prototype.bin",
+   "image_sha256": "6f16d71310d75937b5f3961b1faae81eab3258a29371c8505d788c50c545e3bd",
+   "qemu_exit_code": 66,
+   "host_stalled": true,
+   "retry_released_seen_by_host": false,
+   "boot_sector_reached": false,
+   "host_config_accesses_logged": 0,
+   "config_retry_lines": [
+    "accele160 config-retry STALL ebcr=0x0004 retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
+   ],
+   "i960_release_lines": [],
+   "expected": "stall",
+   "ok": true
+  },
+  {
+   "image": "control-passive-no-release-second-spare.bin",
+   "image_sha256": "bd0c204c5f12b049a78258dc3db1c6a049d458504ff1ed61bfb0c20043f01a97",
+   "qemu_exit_code": 66,
+   "host_stalled": true,
+   "retry_released_seen_by_host": false,
+   "boot_sector_reached": false,
+   "host_config_accesses_logged": 0,
+   "config_retry_lines": [
+    "accele160 config-retry STALL ebcr=0x0004 retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
+   ],
+   "i960_release_lines": [],
+   "expected": "stall",
+   "ok": true
+  },
+  {
+   "image": "native-service-marker-second-spare.bin",
+   "image_sha256": "126e7aaf4efd78e833a18e4d55b1c7c04daa1a928505dd33b61de22dd77eb6e3",
+   "qemu_exit_code": 66,
+   "host_stalled": true,
+   "retry_released_seen_by_host": false,
+   "boot_sector_reached": false,
+   "host_config_accesses_logged": 0,
+   "config_retry_lines": [
+    "accele160 config-retry STALL ebcr=0x0004 retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
+   ],
+   "i960_release_lines": [],
+   "expected": "stall",
+   "ok": true
+  },
+  {
+   "image": "native-rom-second-spare-no-x86-rom.bin",
+   "image_sha256": "33f7a5585c41850690ee0fa05a56382c626e75cd17c8e5185a764f57f741f221",
+   "qemu_exit_code": 66,
+   "host_stalled": true,
+   "retry_released_seen_by_host": false,
+   "boot_sector_reached": false,
+   "host_config_accesses_logged": 0,
+   "config_retry_lines": [
+    "accele160 config-retry STALL ebcr=0x0004 retried-attempts=120 first-access=bridge-read offset=0x00: the host configuration cycle never completes"
+   ],
+   "i960_release_lines": [],
+   "expected": "stall",
+   "ok": true
+  }
+ ],
+ "result": "PASS",
+ "failures": [],
+ "physical_boot_tested": false,
+ "safe_to_flash": false
+}
