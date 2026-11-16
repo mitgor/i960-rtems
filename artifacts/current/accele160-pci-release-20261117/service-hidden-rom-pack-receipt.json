@@ -1,0 +1,13 @@
+{
+  "stock_sha256": "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943",
+  "candidate_sha256": "2a00d02893c8d76498dd9a266811c0c6574b1410421dda7d8b4ded38a2212193",
+  "stage2_sha256": "71fca3f675144b0306423a231c7fb5b38b339fc5bf312988e8be3e07c27bde0a",
+  "rtems_sha256": "2f31a1559640794b39b88e98db43713242fa07ff58fc530f4da165b3525e73b9",
+  "stage2_size": 1488,
+  "rtems_size": 26832,
+  "stock_reset_block_unchanged": true,
+  "stock_x86_option_rom_unchanged": true,
+  "stock_diagnostics_and_descriptor_unchanged": true,
+  "physical_boot_tested": false,
+  "safe_to_flash": false
+}

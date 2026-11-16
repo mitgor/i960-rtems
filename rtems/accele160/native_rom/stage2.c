@@ -42,10 +42,48 @@ u32 stage2_copy(const u32 *source, u32 *dest, u32 max_payload, u32 *detail)
 }
 
 #ifndef STAGE2_NATIVE_TEST
+#ifdef ACCELE160_PCI_RELEASE
+#include "pci_release.h"
+#ifndef ACCELE160_PCI_RELEASE_OPTIONS
+#define ACCELE160_PCI_RELEASE_OPTIONS 0u
+#endif
+/* Same access widths as the stock runtime (stob/stos/st) on the local
+ * 80303 register blocks. */
+static accele160_u32 mmr_read(accele160_u32 address, accele160_u32 size, void *context)
+{
+    (void)context;
+    if (size == 1) return *(volatile unsigned char *)address;
+    if (size == 2) return *(volatile unsigned short *)address;
+    return *(volatile u32 *)address;
+}
+static void mmr_write(accele160_u32 address, accele160_u32 size,
+                      accele160_u32 value, void *context)
+{
+    (void)context;
+    if (size == 1) *(volatile unsigned char *)address = (unsigned char)value;
+    else if (size == 2) *(volatile unsigned short *)address = (unsigned short)value;
+    else *(volatile u32 *)address = value;
+}
+/* First native code after the stock reset block. Program the stock host
+ * identity and clear EBCR Configuration Cycle Retry here, before anything
+ * that can fail, so that a bad payload, an RTEMS fault or a park no longer
+ * leaves the host BIOS retrying configuration cycles forever. */
+static void release_host_pci(void)
+{
+    static const accele160_mmr mmr = {mmr_read, mmr_write, 0};
+    accele160_pci_release(&mmr, ACCELE160_PCI_RELEASE_OPTIONS,
+                          *(volatile unsigned short *)0xfef30000u,
+                          (accele160_pci_release_report *)ACCELE160_PCI_RELEASE_REPORT);
+    __asm__ volatile("syncf" ::: "memory");
+}
+#endif
 void stage2(const u32 *source, u32 *dest)
 {
     u32 result, detail = 0;
     STATUS[0] = 0x32544753u; /* SGT2: entered stage two */
+#ifdef ACCELE160_PCI_RELEASE
+    release_host_pci();
+#endif
     if ((u32)source != FLASH_SOURCE || (u32)dest != RAM_DEST) {
         STATUS[1] = 0x1001u;
         for (;;) __asm__ volatile("syncf");

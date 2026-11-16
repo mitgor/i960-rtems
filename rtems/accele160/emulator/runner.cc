@@ -27,9 +27,20 @@ static uint32_t word(const std::vector<char>& image, size_t offset) {
            static_cast<uint32_t>(static_cast<uint8_t>(image.at(offset + 3))) << 24;
 }
 
+// Instruction count shared by the direct loop and bridge-driven stepping,
+// used only to timestamp PCI register trace lines.
+static uint64_t g_trace_cycle = 0;
+
 static void printAudit() {
     const auto audit = getBoardMemoryAudit();
     std::cout << std::hex << std::setfill('0');
+    if (const auto retry = exploratoryConfigRetryState(); retry.modeled)
+        std::cout << "checkpoint config-retry-summary released="
+                  << (retry.released ? 1 : 0) << " ebcr=" << std::setw(4)
+                  << retry.ebcr << " release-cycle=" << std::dec
+                  << retry.release_cycle << std::hex << " release-ip="
+                  << std::setw(8) << retry.release_ip << " pci-reg-writes="
+                  << std::dec << retry.register_writes << std::hex << "\n";
     if (audit.unknown_write)
         std::cout << "audit first-unmodeled-write=" << std::setw(8)
                   << audit.first_write << "\n";
@@ -644,6 +655,7 @@ static void serveBridge(Core& core, const std::string& path,
                 if ((i & 63u) == 0) ++samples[core.currentIP()];
                 previous_step_ip = core.currentIP();
                 const auto priority_before = trace_priority ? core.currentPriority() : 0;
+                noteExploratoryTraceCycle(++g_trace_cycle, core.currentIP());
                 core.cycle();
                 const auto priority_after = trace_priority ? core.currentPriority() : 0;
                 if (trace_priority && priority_before != priority_after &&
@@ -821,11 +833,20 @@ static void serveBridge(Core& core, const std::string& path,
         } else if (line[0] == 'H' &&
                    std::sscanf(line, "H %x %x", &addr, &value) == 2 &&
                    (addr == 0x1004 || addr == 0x1204)) {
+            setExploratoryPciWriteFromHost(true);
             core.write32(addr, value);
+            setExploratoryPciWriteFromHost(false);
             std::cout << std::hex << std::setfill('0')
                       << "checkpoint host-pci-command local=" << std::setw(8) << addr
                       << " value=" << std::setw(8) << value << "\n" << std::flush;
             std::fprintf(stream, "%08x\n", core.read32(addr));
+        } else if (line[0] == 'Y' && (line[1] == '\n' || line[1] == '\0')) {
+            // Primary PCI configuration-retry state for the host model:
+            // bit 0 modeled, bit 1 released, bits 16..31 current EBCR.
+            const auto retry = exploratoryConfigRetryState();
+            std::fprintf(stream, "%08x\n",
+                         (retry.modeled ? 1u : 0u) | (retry.released ? 2u : 0u) |
+                         (static_cast<unsigned>(retry.ebcr) << 16));
         } else if (line[0] == 'Q' && (line[1] == '\n' || line[1] == '\0')) {
             // Diagnostic only: pending MU status after the local mask. The
             // 80303 interrupt router and i960 service path remain unmodeled.
@@ -874,7 +895,11 @@ static void serveBridge(Core& core, const std::string& path,
                                    addr == 0xff008524 || addr == 0xff008528 ||
                                    (addr >= 0xff000300 && addr <= 0xff000318 &&
                                     (addr & 3u) == 0))))) {
-            if (op == 'C') core.write32(addr, value);
+            if (op == 'C') {
+                setExploratoryPciWriteFromHost(true);
+                core.write32(addr, value);
+                setExploratoryPciWriteFromHost(false);
+            }
             std::fprintf(stream, "%08x\n", core.read32(addr));
         } else if (std::sscanf(line, "%c %x %u %x", &op, &addr, &size, &value) != 4 ||
             (op != 'R' && op != 'W') || (size != 1 && size != 2 && size != 4) ||
@@ -906,7 +931,7 @@ static void serveBridge(Core& core, const std::string& path,
 
 int main(int argc, char** argv) {
     if (argc < 2) {
-        std::cerr << "usage: accele160-emu IMAGE [MAX_CYCLES] [--strict] [--board-id=N] [--diagnose-loader] [--quiet-trace] [--trace-board-context] [--dump-aperture=PATH] [--bridge-socket=PATH] [--watch-mailbox] [--explore-timer-clock] [--explore-timer-interrupt] [--explore-qlogic-pci] [--explore-isp-mailbox] [--explore-isp-execute-ack] [--explore-isp-about-ack] [--explore-isp-queue-ack] [--explore-isp-retry-ack] [--explore-isp-reset-delay-ack] [--explore-isp-active-negation-ack] [--explore-isp-feature-ack] [--explore-isp-status-zero] [--explore-isp-init-id-ack] [--explore-isp-bus-reset-ack] [--explore-isp-target0-ack] [--explore-isp-target-sweep] [--explore-native-ring-dma1] [--explore-native-ring-health-dma1]\n";
+        std::cerr << "usage: accele160-emu IMAGE [MAX_CYCLES] [--strict] [--board-id=N] [--diagnose-loader] [--quiet-trace] [--trace-board-context] [--dump-aperture=PATH] [--bridge-socket=PATH] [--watch-mailbox] [--explore-timer-clock] [--explore-timer-interrupt] [--explore-qlogic-pci] [--explore-isp-mailbox] [--explore-isp-execute-ack] [--explore-isp-about-ack] [--explore-isp-queue-ack] [--explore-isp-retry-ack] [--trace-pci-registers] [--model-config-retry] [--explore-isp-reset-delay-ack] [--explore-isp-active-negation-ack] [--explore-isp-feature-ack] [--explore-isp-status-zero] [--explore-isp-init-id-ack] [--explore-isp-bus-reset-ack] [--explore-isp-target0-ack] [--explore-isp-target-sweep] [--explore-native-ring-dma1] [--explore-native-ring-health-dma1]\n";
         return 2;
     }
     bool strict = false;
@@ -921,6 +946,8 @@ int main(int argc, char** argv) {
     bool exploratory_isp_about_ack = false;
     bool exploratory_isp_queue_ack = false;
     bool exploratory_isp_retry_ack = false;
+    bool trace_pci_registers = false;
+    bool model_config_retry = false;
     bool exploratory_isp_reset_delay_ack = false;
     bool exploratory_isp_active_negation_ack = false;
     bool exploratory_isp_feature_ack = false;
@@ -980,6 +1007,10 @@ int main(int argc, char** argv) {
             exploratory_isp_queue_ack = true;
         else if (std::strcmp(argv[i], "--explore-isp-retry-ack") == 0)
             exploratory_isp_retry_ack = true;
+        else if (std::strcmp(argv[i], "--trace-pci-registers") == 0)
+            trace_pci_registers = true;
+        else if (std::strcmp(argv[i], "--model-config-retry") == 0)
+            model_config_retry = true;
         else if (std::strcmp(argv[i], "--explore-isp-reset-delay-ack") == 0)
             exploratory_isp_reset_delay_ack = true;
         else if (std::strcmp(argv[i], "--explore-isp-active-negation-ack") == 0)
@@ -1124,6 +1155,8 @@ int main(int argc, char** argv) {
     // The real reset block establishes its own FP and SP in its first two
     // instructions. sim5's generic Kx start() uses a different boot record.
     core.resetAt(entry, prcb);
+    setExploratoryPciRegisterTrace(trace_pci_registers);
+    applyExploratoryConfigRetryStrap(model_config_retry);
     // Control-table prefetch is a reset-time hardware action, not a firmware
     // MMIO access for the exploratory unknown-peripheral audit.
     resetBoardMemoryAudit();
@@ -1144,6 +1177,8 @@ int main(int argc, char** argv) {
     for (uint64_t n = 0; n < max_cycles; ++n) {
         const auto ip = core.currentIP();
         const auto prior_ip = previous_ip;
+        g_trace_cycle = n;
+        noteExploratoryTraceCycle(n, ip);
         same_ip_count = ip == previous_ip ? same_ip_count + 1 : 0;
         previous_ip = ip;
         if (same_ip_count == 256) {

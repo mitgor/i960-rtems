@@ -41,6 +41,22 @@ namespace {
     int exploratoryBoardSelector = -1;
     bool exploratoryBoardSelectorWritten = false;
     bool exploratoryQlogicPci = false;
+    // Intel 80303 mode 3 (273395-005 section 2.3): with RETRY strapped high
+    // the primary PCI interface retries every configuration cycle until the
+    // core clears EBCR (0x1040) bit 2. The AcceleRAID strap is inferred from
+    // stock firmware behaviour, not measured, so the model is opt-in.
+    bool pciRegisterTrace = false;
+    bool configRetryModel = false;
+    bool configRetryReleased = false;
+    bool pciWriteFromHost = false;
+    uint64_t pciTraceCycle = 0;
+    uint32_t pciTraceIp = 0;
+    uint64_t configRetryReleaseCycle = 0;
+    uint32_t configRetryReleaseIp = 0;
+    uint32_t pciRegisterWrites = 0;
+    constexpr bool pciConfigRegister(Address address) noexcept {
+        return address >= 0x1000 && address < 0x1300; // bridge + ATU blocks
+    }
     bool exploratoryIspMailbox = false;
     bool exploratoryIspExecuteAck = false;
     bool exploratoryIspAboutAck = false;
@@ -534,6 +550,39 @@ void enableExploratoryNativeRingPdevDma1() noexcept {
 void enableExploratoryStockFollowupDma1() noexcept {
     exploratoryStockFollowupDma1 = true;
 }
+void setExploratoryPciRegisterTrace(bool enabled) noexcept {
+    pciRegisterTrace = enabled;
+    pciRegisterWrites = 0;
+}
+void applyExploratoryConfigRetryStrap(bool enabled) noexcept {
+    configRetryModel = enabled;
+    configRetryReleased = false;
+    configRetryReleaseCycle = 0;
+    configRetryReleaseIp = 0;
+    // Assumed mode-3 reset value: only the retry bit set. Other EBCR reset
+    // bits are not modeled; firmware always writes the whole register.
+    if (enabled && physicalMemory) {
+        physicalMemory[0x1040] = 4;
+        physicalMemory[0x1041] = 0;
+    }
+}
+void noteExploratoryTraceCycle(uint64_t cycle, uint32_t ip) noexcept {
+    pciTraceCycle = cycle;
+    pciTraceIp = ip;
+}
+void setExploratoryPciWriteFromHost(bool host) noexcept { pciWriteFromHost = host; }
+ConfigRetryState exploratoryConfigRetryState() noexcept {
+    ConfigRetryState state;
+    state.modeled = configRetryModel;
+    state.released = configRetryReleased;
+    state.ebcr = physicalMemory
+        ? static_cast<uint16_t>(physicalMemory[0x1040] | physicalMemory[0x1041] << 8)
+        : 0;
+    state.release_cycle = configRetryReleaseCycle;
+    state.release_ip = configRetryReleaseIp;
+    state.register_writes = pciRegisterWrites;
+    return state;
+}
 void setExploratoryBoardSelector(int value) noexcept {
     exploratoryBoardSelector = value;
     exploratoryBoardSelectorWritten = false;
@@ -863,7 +912,49 @@ namespace {
         return getMemoryReference<T>(address);
     }
     template<typename T>
+    void notePciRegisterWrite(Address address, T value) noexcept {
+        if constexpr (std::is_integral_v<T> && sizeof(T) <= 4) {
+            if (!pciConfigRegister(address)) return;
+            ++pciRegisterWrites;
+            if (!pciRegisterTrace) return;
+            std::cout << std::hex << std::setfill('0')
+                      << "checkpoint pci-reg-write seq=" << std::dec
+                      << pciRegisterWrites << " cycle=" << pciTraceCycle
+                      << " origin=" << (pciWriteFromHost ? "host" : "i960")
+                      << std::hex << " ip=" << std::setw(8) << pciTraceIp
+                      << " addr=" << std::setw(4) << address << std::dec
+                      << " size=" << sizeof(T) << std::hex << " value="
+                      << std::setw(static_cast<int>(sizeof(T) * 2))
+                      << (static_cast<Ordinal>(value) &
+                          (sizeof(T) == 4 ? 0xffffffffu
+                                          : ((Ordinal{1} << (sizeof(T) * 8)) - 1u)))
+                      << "\n" << std::flush;
+        }
+    }
+    void noteEbcrAfterWrite(Address address, std::size_t size) noexcept {
+        // Only the low EBCR byte holds the Configuration Cycle Retry bit.
+        if (!configRetryModel || address > 0x1040 || address + size <= 0x1040)
+            return;
+        const bool retry = physicalMemory[0x1040] & 4u;
+        if (!retry && !configRetryReleased) {
+            configRetryReleased = true;
+            configRetryReleaseCycle = pciTraceCycle;
+            configRetryReleaseIp = pciTraceIp;
+        } else if (retry && configRetryReleased) {
+            configRetryReleased = false;
+        } else {
+            return;
+        }
+        std::cout << std::hex << std::setfill('0') << "checkpoint config-retry "
+                  << (retry ? "reasserted" : "released") << " cycle=" << std::dec
+                  << pciTraceCycle << std::hex << " ip=" << std::setw(8)
+                  << pciTraceIp << " ebcr=" << std::setw(4)
+                  << (physicalMemory[0x1040] | physicalMemory[0x1041] << 8)
+                  << "\n" << std::flush;
+    }
+    template<typename T>
     void store(Address address, T value, TreatAs<T>) {
+        notePciRegisterWrite(address, value);
         if (hostDmaRingSlot.valid &&
             address >= hostDmaRingSlot.base &&
             uint64_t{address} + sizeof(T) <=
@@ -918,6 +1009,7 @@ namespace {
         auditWrite(address, value);
         if (address == 0xe0400000) exploratoryBoardSelectorWritten = true;
         getMemoryReference<T>(address) = value;
+        noteEbcrAfterWrite(address, sizeof(T));
         if constexpr (std::is_integral_v<T> && sizeof(T) <= 4) {
             if (exploratoryMuDmaTrace && address == 0x1440 &&
                 sizeof(T) == 4 && (value & 1u) &&

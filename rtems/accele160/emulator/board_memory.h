@@ -14,6 +14,30 @@ struct BoardMemoryAudit {
 void resetBoardMemoryAudit() noexcept;
 BoardMemoryAudit getBoardMemoryAudit() noexcept;
 void setExploratoryBoardSelector(int value) noexcept;
+
+// 80303 primary-PCI configuration retry (Intel 273395-005, mode 3). With the
+// RETRY pin strapped high the bridge answers every host configuration cycle
+// with Retry until the i960 clears EBCR (local 0x1040) bit 2. The model is
+// opt-in because this board's strap is inferred from stock firmware (it
+// writes EBCR=0x48 and then prints "BIOS Cfg Wait..."), not measured.
+struct ConfigRetryState {
+    bool modeled = false;
+    bool released = false;        // meaningful only when modeled
+    uint16_t ebcr = 0;
+    uint64_t release_cycle = 0;   // cycle of the first releasing write
+    uint32_t release_ip = 0;
+    uint32_t register_writes = 0; // stores into 0x1000..0x12ff, any origin
+};
+// Call after the core reset; sets the assumed strap value EBCR=0x0004.
+void applyExploratoryConfigRetryStrap(bool enabled) noexcept;
+ConfigRetryState exploratoryConfigRetryState() noexcept;
+// Log every store into the bridge/ATU register blocks 0x1000..0x12ff as
+// "checkpoint pci-reg-write ...". Values are what firmware wrote; read-
+// modify-write results depend on modeled (zero) reset values.
+void setExploratoryPciRegisterTrace(bool enabled) noexcept;
+void noteExploratoryTraceCycle(uint64_t cycle, uint32_t ip) noexcept;
+// Mark stores issued on behalf of the host through the diagnostic bridge.
+void setExploratoryPciWriteFromHost(bool host) noexcept;
 // Opt-in secondary PCI configuration readback for the physically captured
 // channel-0 QLogic ISP10160. Writes only select SOCCAR; no chip behavior.
 void setExploratoryQlogicPci(bool enabled) noexcept;

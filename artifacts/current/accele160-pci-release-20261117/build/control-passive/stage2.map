@@ -1,0 +1,34 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x00000000c000a000                . = 0xc000a000
+
+.text           0x00000000c000a000      0x1e0
+ *(.entry)
+ .entry         0x00000000c000a000        0x4 /out/control-passive/stage2_start.o
+                0x00000000c000a000                _stage2_entry
+ *(.text*)
+ .text          0x00000000c000a004        0x0 /out/control-passive/stage2_start.o
+ *fill*         0x00000000c000a004        0xc 
+ .text          0x00000000c000a010      0x1d0 /out/control-passive/stage2.o
+                0x00000000c000a010                _stage2_copy
+                0x00000000c000a120                _stage2
+ *(.rodata*)
+ *(.data*)
+ .data          0x00000000c000a1e0        0x0 /out/control-passive/stage2_start.o
+ .data          0x00000000c000a1e0        0x0 /out/control-passive/stage2.o
+
+.bss            0x00000000c000a1e0        0x0
+ *(.bss*)
+ .bss           0x00000000c000a1e0        0x0 /out/control-passive/stage2_start.o
+ .bss           0x00000000c000a1e0        0x0 /out/control-passive/stage2.o
+ *(COMMON)
+                0x0000000000000001                ASSERT ((. <= 0xc0010000), stage-two loader exceeds stock loader window)
+LOAD /out/control-passive/stage2_start.o
+LOAD /out/control-passive/stage2.o
+OUTPUT(/out/control-passive/stage2.elf elf32-i960)

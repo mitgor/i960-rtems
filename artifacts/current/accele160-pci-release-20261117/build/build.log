@@ -1,0 +1,12 @@
+== control-passive
+08d9866a472e5f13864faf121b5d457154f3c4f88352b2dae0df49720ed2b0af  /out/control-passive/stage2.bin
+5aeb7a4bb994967106b3a65e9dd059cd7ff0128694079adf3e9dcb4c223708a4  /out/control-passive/rtems.bin
+== passive-release
+71fca3f675144b0306423a231c7fb5b38b339fc5bf312988e8be3e07c27bde0a  /out/passive-release/stage2.bin
+5aeb7a4bb994967106b3a65e9dd059cd7ff0128694079adf3e9dcb4c223708a4  /out/passive-release/rtems.bin
+== service-release
+7754b7d6acce8623bc8d5e3b07a500bf612b8994633ba9c7267ec4042ad2cffe  /out/service-release/stage2.bin
+2f31a1559640794b39b88e98db43713242fa07ff58fc530f4da165b3525e73b9  /out/service-release/rtems.bin
+== service-release-hidden-rom
+71fca3f675144b0306423a231c7fb5b38b339fc5bf312988e8be3e07c27bde0a  /out/service-release-hidden-rom/stage2.bin
+2f31a1559640794b39b88e98db43713242fa07ff58fc530f4da165b3525e73b9  /out/service-release-hidden-rom/rtems.bin

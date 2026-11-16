@@ -130,11 +130,28 @@ if [[ ${ACCELE160_EMULATOR_RING_REPEAT_INFO_REPLY:-0} == 1 ]]; then
   fi
   app_flags+=(-DACCELE160_EMULATOR_RING_REPEAT_INFO_REPLY)
 fi
+# Opt-in: program the stock host PCI identity and clear the 80303
+# Configuration Cycle Retry bit (EBCR 0x1040 bit 2) at stage-two entry.
+# Without it the existing stage-two bytes are unchanged.
+stage2_flags=()
+stage2_objects=()
+if [[ ${ACCELE160_PCI_RELEASE:-0} == 1 ]]; then
+  options=0
+  if [[ ${ACCELE160_PCI_HIDE_OPTION_ROM:-0} == 1 ]]; then options=1; fi
+  stage2_flags+=(-DACCELE160_PCI_RELEASE "-DACCELE160_PCI_RELEASE_OPTIONS=${options}u")
+  "$tools_bin/i960-coff-gcc" -mrp -Os -fno-builtin -ffreestanding \
+    -c "$src/pci_release.c" -o "$out/pci_release.o"
+  stage2_objects+=("$out/pci_release.o")
+elif [[ ${ACCELE160_PCI_HIDE_OPTION_ROM:-0} == 1 ]]; then
+  echo "ACCELE160_PCI_HIDE_OPTION_ROM requires ACCELE160_PCI_RELEASE" >&2
+  exit 2
+fi
 "$tools_bin/i960-coff-gcc" -mrp -Os -fno-builtin -ffreestanding \
-  -c "$src/stage2.c" -o "$out/stage2.o"
+  "${stage2_flags[@]}" -c "$src/stage2.c" -o "$out/stage2.o"
 "$tools_bin/i960-coff-gcc" -mrp -c "$src/stage2_start.S" -o "$out/stage2_start.o"
 "$tools_bin/i960-elf-ld" -T "$src/stage2.ld" -Map "$out/stage2.map" \
-  -o "$out/stage2.elf" "$out/stage2_start.o" "$out/stage2.o"
+  -o "$out/stage2.elf" "$out/stage2_start.o" "$out/stage2.o" \
+  "${stage2_objects[@]}"
 "$tools_bin/i960-elf-objcopy" -O binary "$out/stage2.elf" "$out/stage2.bin"
 "$tools_bin/i960-elf-nm" -n "$out/stage2.elf" > "$out/stage2.symbols"
 "$tools_bin/i960-coff-gcc" -mrp "${start_flags[@]}" -c "$src/start.S" -o "$out/start.o"
