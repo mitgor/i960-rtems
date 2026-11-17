@@ -1,0 +1,746 @@
+{
+ "image_sha256": "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943",
+ "command": [
+  "80000000",
+  "--board-id=11",
+  "--quiet-trace",
+  "--trace-pci-registers",
+  "--model-config-retry"
+ ],
+ "returncode": 0,
+ "stop": "stop cycle=80000000 reason=budget ip=c001044c",
+ "model": {
+  "ebcr_reset_value": "0x000c (assumed Intel mode 3: RETRY strapped high, bit 3 at its documented default)",
+  "board_id": 11,
+  "note": "offline interpreter; register reads use modeled values"
+ },
+ "summary": {
+  "released": true,
+  "ebcr": 72,
+  "release_cycle": 49602106,
+  "release_ip": "c0052e00",
+  "pci_reg_writes": 72
+ },
+ "events": [
+  {
+   "event": "released",
+   "cycle": 49602106,
+   "ip": "c0052e00",
+   "ebcr": 72
+  }
+ ],
+ "writes": [
+  {
+   "seq": 1,
+   "cycle": 48716633,
+   "origin": "i960",
+   "ip": "c00511d8",
+   "addr": 4608,
+   "size": 2,
+   "value": 4201
+  },
+  {
+   "seq": 2,
+   "cycle": 48716635,
+   "origin": "i960",
+   "ip": "c00511e0",
+   "addr": 4610,
+   "size": 2,
+   "value": 80
+  },
+  {
+   "seq": 3,
+   "cycle": 48716637,
+   "origin": "i960",
+   "ip": "c00511e8",
+   "addr": 4652,
+   "size": 2,
+   "value": 4201
+  },
+  {
+   "seq": 4,
+   "cycle": 48716643,
+   "origin": "i960",
+   "ip": "c0051214",
+   "addr": 4654,
+   "size": 2,
+   "value": 84
+  },
+  {
+   "seq": 5,
+   "cycle": 48716647,
+   "origin": "i960",
+   "ip": "c005124c",
+   "addr": 4618,
+   "size": 1,
+   "value": 4
+  },
+  {
+   "seq": 6,
+   "cycle": 48716649,
+   "origin": "i960",
+   "ip": "c0051254",
+   "addr": 4619,
+   "size": 1,
+   "value": 1
+  },
+  {
+   "seq": 7,
+   "cycle": 48716652,
+   "origin": "i960",
+   "ip": "c0051264",
+   "addr": 4620,
+   "size": 1,
+   "value": 16
+  },
+  {
+   "seq": 8,
+   "cycle": 48716654,
+   "origin": "i960",
+   "ip": "c005126c",
+   "addr": 4621,
+   "size": 1,
+   "value": 64
+  },
+  {
+   "seq": 9,
+   "cycle": 48716674,
+   "origin": "i960",
+   "ip": "c00512f4",
+   "addr": 4672,
+   "size": 4,
+   "value": 4294959104
+  },
+  {
+   "seq": 10,
+   "cycle": 48716676,
+   "origin": "i960",
+   "ip": "c00512fc",
+   "addr": 4676,
+   "size": 4,
+   "value": 3221225472
+  },
+  {
+   "seq": 11,
+   "cycle": 48716679,
+   "origin": "i960",
+   "ip": "c0051310",
+   "addr": 4614,
+   "size": 2,
+   "value": 65535
+  },
+  {
+   "seq": 12,
+   "cycle": 48716686,
+   "origin": "i960",
+   "ip": "c0051338",
+   "addr": 4724,
+   "size": 4,
+   "value": 4294934528
+  },
+  {
+   "seq": 13,
+   "cycle": 48716687,
+   "origin": "i960",
+   "ip": "c0051340",
+   "addr": 4728,
+   "size": 4,
+   "value": 4277338112
+  },
+  {
+   "seq": 14,
+   "cycle": 48716696,
+   "origin": "i960",
+   "ip": "c0051374",
+   "addr": 4744,
+   "size": 4,
+   "value": 262
+  },
+  {
+   "seq": 15,
+   "cycle": 48716698,
+   "origin": "i960",
+   "ip": "c0051380",
+   "addr": 4796,
+   "size": 4,
+   "value": 252
+  },
+  {
+   "seq": 16,
+   "cycle": 48716701,
+   "origin": "i960",
+   "ip": "c00513f0",
+   "addr": 4760,
+   "size": 2,
+   "value": 0
+  },
+  {
+   "seq": 17,
+   "cycle": 48717236,
+   "origin": "i960",
+   "ip": "c00514b0",
+   "addr": 4684,
+   "size": 4,
+   "value": 4278190080
+  },
+  {
+   "seq": 18,
+   "cycle": 48717239,
+   "origin": "i960",
+   "ip": "c00514c0",
+   "addr": 4688,
+   "size": 4,
+   "value": 3221225472
+  },
+  {
+   "seq": 19,
+   "cycle": 48717243,
+   "origin": "i960",
+   "ip": "c00514d4",
+   "addr": 4680,
+   "size": 4,
+   "value": 4261412872
+  },
+  {
+   "seq": 20,
+   "cycle": 48717247,
+   "origin": "i960",
+   "ip": "c00514ec",
+   "addr": 4712,
+   "size": 4,
+   "value": 4227858432
+  },
+  {
+   "seq": 21,
+   "cycle": 48717249,
+   "origin": "i960",
+   "ip": "c00514f4",
+   "addr": 4760,
+   "size": 2,
+   "value": 22
+  },
+  {
+   "seq": 22,
+   "cycle": 48717251,
+   "origin": "i960",
+   "ip": "c00514fc",
+   "addr": 4614,
+   "size": 2,
+   "value": 65535
+  },
+  {
+   "seq": 23,
+   "cycle": 48717253,
+   "origin": "i960",
+   "ip": "c0051508",
+   "addr": 4800,
+   "size": 4,
+   "value": 252
+  },
+  {
+   "seq": 24,
+   "cycle": 48717957,
+   "origin": "i960",
+   "ip": "c005157c",
+   "addr": 4100,
+   "size": 2,
+   "value": 0
+  },
+  {
+   "seq": 25,
+   "cycle": 48717959,
+   "origin": "i960",
+   "ip": "c0051584",
+   "addr": 4164,
+   "size": 4,
+   "value": 4294967295
+  },
+  {
+   "seq": 26,
+   "cycle": 48717960,
+   "origin": "i960",
+   "ip": "c0051588",
+   "addr": 4168,
+   "size": 4,
+   "value": 4294967295
+  },
+  {
+   "seq": 27,
+   "cycle": 48717963,
+   "origin": "i960",
+   "ip": "c005159c",
+   "addr": 4148,
+   "size": 2,
+   "value": 4201
+  },
+  {
+   "seq": 28,
+   "cycle": 48717971,
+   "origin": "i960",
+   "ip": "c00515c0",
+   "addr": 4150,
+   "size": 2,
+   "value": 80
+  },
+  {
+   "seq": 29,
+   "cycle": 48717973,
+   "origin": "i960",
+   "ip": "c00515cc",
+   "addr": 4128,
+   "size": 2,
+   "value": 0
+  },
+  {
+   "seq": 30,
+   "cycle": 48717974,
+   "origin": "i960",
+   "ip": "c00515d0",
+   "addr": 4130,
+   "size": 2,
+   "value": 0
+  },
+  {
+   "seq": 31,
+   "cycle": 48717975,
+   "origin": "i960",
+   "ip": "c00515d4",
+   "addr": 4124,
+   "size": 1,
+   "value": 0
+  },
+  {
+   "seq": 32,
+   "cycle": 48717976,
+   "origin": "i960",
+   "ip": "c00515dc",
+   "addr": 4125,
+   "size": 1,
+   "value": 0
+  },
+  {
+   "seq": 33,
+   "cycle": 48717977,
+   "origin": "i960",
+   "ip": "c00515e4",
+   "addr": 4180,
+   "size": 1,
+   "value": 0
+  },
+  {
+   "seq": 34,
+   "cycle": 48717978,
+   "origin": "i960",
+   "ip": "c00515e8",
+   "addr": 4181,
+   "size": 1,
+   "value": 0
+  },
+  {
+   "seq": 35,
+   "cycle": 48717980,
+   "origin": "i960",
+   "ip": "c00515f0",
+   "addr": 4108,
+   "size": 1,
+   "value": 16
+  },
+  {
+   "seq": 36,
+   "cycle": 48717982,
+   "origin": "i960",
+   "ip": "c00515fc",
+   "addr": 4109,
+   "size": 1,
+   "value": 64
+  },
+  {
+   "seq": 37,
+   "cycle": 48717983,
+   "origin": "i960",
+   "ip": "c0051604",
+   "addr": 4132,
+   "size": 2,
+   "value": 0
+  },
+  {
+   "seq": 38,
+   "cycle": 48717985,
+   "origin": "i960",
+   "ip": "c0051610",
+   "addr": 4134,
+   "size": 2,
+   "value": 0
+  },
+  {
+   "seq": 39,
+   "cycle": 48717989,
+   "origin": "i960",
+   "ip": "c0051620",
+   "addr": 4184,
+   "size": 2,
+   "value": 65024
+  },
+  {
+   "seq": 40,
+   "cycle": 48717990,
+   "origin": "i960",
+   "ip": "c0051624",
+   "addr": 4186,
+   "size": 2,
+   "value": 65535
+  },
+  {
+   "seq": 41,
+   "cycle": 48717991,
+   "origin": "i960",
+   "ip": "c0051628",
+   "addr": 4188,
+   "size": 2,
+   "value": 4
+  },
+  {
+   "seq": 42,
+   "cycle": 48717992,
+   "origin": "i960",
+   "ip": "c005162c",
+   "addr": 4123,
+   "size": 1,
+   "value": 64
+  },
+  {
+   "seq": 43,
+   "cycle": 48717993,
+   "origin": "i960",
+   "ip": "c0051634",
+   "addr": 4122,
+   "size": 1,
+   "value": 0
+  },
+  {
+   "seq": 44,
+   "cycle": 48717994,
+   "origin": "i960",
+   "ip": "c005163c",
+   "addr": 4100,
+   "size": 2,
+   "value": 0
+  },
+  {
+   "seq": 45,
+   "cycle": 48717996,
+   "origin": "i960",
+   "ip": "c0051648",
+   "addr": 4158,
+   "size": 2,
+   "value": 512
+  },
+  {
+   "seq": 46,
+   "cycle": 49601280,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 65536
+  },
+  {
+   "seq": 47,
+   "cycle": 49601301,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 131072
+  },
+  {
+   "seq": 48,
+   "cycle": 49601322,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 262144
+  },
+  {
+   "seq": 49,
+   "cycle": 49601343,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 524288
+  },
+  {
+   "seq": 50,
+   "cycle": 49601364,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 1048576
+  },
+  {
+   "seq": 51,
+   "cycle": 49601385,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 2097152
+  },
+  {
+   "seq": 52,
+   "cycle": 49601406,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 4194304
+  },
+  {
+   "seq": 53,
+   "cycle": 49601427,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 8388608
+  },
+  {
+   "seq": 54,
+   "cycle": 49601448,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 16777216
+  },
+  {
+   "seq": 55,
+   "cycle": 49601469,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 33554432
+  },
+  {
+   "seq": 56,
+   "cycle": 49601490,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 67108864
+  },
+  {
+   "seq": 57,
+   "cycle": 49601511,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 134217728
+  },
+  {
+   "seq": 58,
+   "cycle": 49601532,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 268435456
+  },
+  {
+   "seq": 59,
+   "cycle": 49601553,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 536870912
+  },
+  {
+   "seq": 60,
+   "cycle": 49601574,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 1073741824
+  },
+  {
+   "seq": 61,
+   "cycle": 49601595,
+   "origin": "i960",
+   "ip": "c0051efc",
+   "addr": 4776,
+   "size": 4,
+   "value": 2147483648
+  },
+  {
+   "seq": 62,
+   "cycle": 49601619,
+   "origin": "i960",
+   "ip": "c0051b7c",
+   "addr": 4176,
+   "size": 4,
+   "value": 14
+  },
+  {
+   "seq": 63,
+   "cycle": 49601635,
+   "origin": "i960",
+   "ip": "c0051c3c",
+   "addr": 4162,
+   "size": 4,
+   "value": 1023
+  },
+  {
+   "seq": 64,
+   "cycle": 49601637,
+   "origin": "i960",
+   "ip": "c0051c48",
+   "addr": 4172,
+   "size": 4,
+   "value": 5460
+  },
+  {
+   "seq": 65,
+   "cycle": 49602106,
+   "origin": "i960",
+   "ip": "c0052e00",
+   "addr": 4160,
+   "size": 2,
+   "value": 72
+  },
+  {
+   "seq": 66,
+   "cycle": 49613849,
+   "origin": "i960",
+   "ip": "c004e494",
+   "addr": 4900,
+   "size": 4,
+   "value": 4294967295
+  },
+  {
+   "seq": 67,
+   "cycle": 49613850,
+   "origin": "i960",
+   "ip": "c004e49c",
+   "addr": 4904,
+   "size": 4,
+   "value": 4294967295
+  },
+  {
+   "seq": 68,
+   "cycle": 49613851,
+   "origin": "i960",
+   "ip": "c004e4a4",
+   "addr": 4916,
+   "size": 4,
+   "value": 4294967295
+  },
+  {
+   "seq": 69,
+   "cycle": 49613857,
+   "origin": "i960",
+   "ip": "c004e4d0",
+   "addr": 4880,
+   "size": 4,
+   "value": 0
+  },
+  {
+   "seq": 70,
+   "cycle": 49613859,
+   "origin": "i960",
+   "ip": "c004e4dc",
+   "addr": 4884,
+   "size": 4,
+   "value": 0
+  },
+  {
+   "seq": 71,
+   "cycle": 49613861,
+   "origin": "i960",
+   "ip": "c004e4ec",
+   "addr": 4888,
+   "size": 4,
+   "value": 0
+  },
+  {
+   "seq": 72,
+   "cycle": 49613867,
+   "origin": "i960",
+   "ip": "c004e508",
+   "addr": 4892,
+   "size": 4,
+   "value": 0
+  }
+ ],
+ "release_seq": 65,
+ "state_at_release": {
+  "1200": 4201,
+  "1202": 80,
+  "120a": 4,
+  "120b": 1,
+  "120c": 16,
+  "120d": 64,
+  "122c": 4201,
+  "122e": 84,
+  "1240": 4294959104,
+  "1244": 3221225472,
+  "1248": 4261412872,
+  "124c": 4278190080,
+  "1250": 3221225472,
+  "1268": 4227858432,
+  "1274": 4294934528,
+  "1278": 4277338112,
+  "1288": 262,
+  "1298": 22,
+  "12bc": 252,
+  "12c0": 252,
+  "1004": 0,
+  "100c": 16,
+  "100d": 64,
+  "101a": 0,
+  "101b": 64,
+  "101c": 0,
+  "101d": 0,
+  "1020": 0,
+  "1022": 0,
+  "1024": 0,
+  "1026": 0,
+  "1034": 4201,
+  "1036": 80,
+  "103e": 512,
+  "1040": 72,
+  "1042": 1023,
+  "104c": 5460,
+  "1050": 14,
+  "1054": 0,
+  "1055": 0,
+  "1058": 65024,
+  "105a": 65535,
+  "105c": 4
+ },
+ "mu_state_at_release": {
+  "1310": null,
+  "1314": null,
+  "1318": null,
+  "131c": null,
+  "1324": null,
+  "1328": null,
+  "1334": null
+ },
+ "mu_state_after_stock_mu_init": {
+  "1310": 0,
+  "1314": 0,
+  "1318": 0,
+  "131c": 0,
+  "1324": 4294967295,
+  "1328": 4294967295,
+  "1334": 4294967295
+ }
+}

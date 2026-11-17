@@ -1,0 +1,15 @@
+Stock second-spare image (0ca0f4b6...), interpreter with --model-config-retry,
+80,000,000 instructions per run, board selector (--board-id) 0..31.
+Question: do the stock register values at release depend on the hypothetical
+selector value 11 used by every other run?
+
+selector 11            : retry released at instruction 49,602,106, EBCR 0x0048
+                         (the reference run)
+selectors 0..10, 12..31: retry not released within the budget; stock stops in
+                         other paths (final IP c0010418..c001044c, c000a234,
+                         c0050564 or feffc26c depending on the value)
+
+So selector 11 is the only value for which this stock image reaches its
+release in the model, and the ATU values it then writes match the saved live
+PCI dump of the working card. No alternative selector yields a different
+released register state. Generated with pci_register_trace.run(board_id=N).

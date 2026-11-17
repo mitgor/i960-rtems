@@ -1,0 +1,1 @@
+native=PASS image=8edb06a4f3099c5213d26b0e3395250ca6818e44abe2abf62b968fe89ed0da17 ioctls=[1, 17, 21, 208, 45, 142] rom_blocks=403

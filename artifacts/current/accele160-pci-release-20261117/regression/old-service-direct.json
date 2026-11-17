@@ -1,0 +1,12 @@
+{
+  "gate": "PASS",
+  "sixth_state": "observed-next",
+  "sixth_request_sha256": "ff2d5237cb3c5095e54b6cc7005f68f543bc756b7b401816217f4b0b46f0b091",
+  "sixth_mailbox_dma": 102330368,
+  "ring_slot_sha256": "99417e5c16863b97091f2716cc632ce51762e227c826d593bec2608cbfe13343",
+  "ring_digest_fnv1a32": 1282712260,
+  "image_sha256": "126e7aaf4efd78e833a18e4d55b1c7c04daa1a928505dd33b61de22dd77eb6e3",
+  "scope": "exploratory i960 model first three ring replies; no guest mirror",
+  "physical_card_tested": false,
+  "safe_to_flash": false
+}

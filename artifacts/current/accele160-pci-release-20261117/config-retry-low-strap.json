@@ -1,0 +1,45 @@
+{
+ "gate": "accele160 offline host-side configuration-retry reproduction",
+ "limits": "SeaBIOS/QEMU, not the HP BIOS; EBCR reset strap assumed; bounded retry stands in for an indefinite host retry; option ROM omitted in every run; fixed QEMU PCI identity",
+ "qemu_sha256": "6603753b62729fd3d662a1a9f219d5a96c7eb1c44323d8b7c71856b9357013a9",
+ "emulator_sha256": "2543855caef9261c892ae463f2a49414425d57580db8e25003ad83b45625317d",
+ "bios_sha256": "8c484e1baeede956ea585e1d96217263a892881b21eded2b6cda90615191248f",
+ "retry_limit": 120,
+ "results": [
+  {
+   "image": "native-rom-spare-prototype.bin",
+   "image_sha256": "6f16d71310d75937b5f3961b1faae81eab3258a29371c8505d788c50c545e3bd",
+   "qemu_exit_code": 0,
+   "host_stalled": false,
+   "retry_released_seen_by_host": true,
+   "boot_sector_reached": true,
+   "host_config_accesses_logged": 47,
+   "config_retry_lines": [
+    "accele160 config-retry released ebcr=0x0008 retried-attempts=0 first-access=bridge-read offset=0x00"
+   ],
+   "i960_release_lines": [],
+   "expected": "boot",
+   "ok": true
+  },
+  {
+   "image": "control-passive-no-release-second-spare.bin",
+   "image_sha256": "bd0c204c5f12b049a78258dc3db1c6a049d458504ff1ed61bfb0c20043f01a97",
+   "qemu_exit_code": 0,
+   "host_stalled": false,
+   "retry_released_seen_by_host": true,
+   "boot_sector_reached": true,
+   "host_config_accesses_logged": 47,
+   "config_retry_lines": [
+    "accele160 config-retry released ebcr=0x0008 retried-attempts=0 first-access=bridge-read offset=0x00"
+   ],
+   "i960_release_lines": [],
+   "expected": "boot",
+   "ok": true
+  }
+ ],
+ "retry_strap_low_assumed": true,
+ "result": "PASS",
+ "failures": [],
+ "physical_boot_tested": false,
+ "safe_to_flash": false
+}

@@ -1,0 +1,194 @@
+ibr entry=feffc000 prcb=feffdd20
+checkpoint firmware-path-count menu=0 mu-setup=0 mu-mask-set=0 mu-mask-clear=0 init-entry=0 board-callback=0 mu-init=0
+audit first-unmodeled-write=00001508
+audit first-unmodeled-read=e0400000
+stop cycle=3000000 reason=budget ip=c0011cfc
+checkpoint bridge-ready path=/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/accele160-native-set-mbox-cl873tk3/bridge.sock
+checkpoint cpu-interrupt-state prcb=feffdd20 table=feffd910 priority=31 enabled=0
+checkpoint host-pci-command local=00001004 value=00000107
+checkpoint host-pci-command local=00001204 value=00000107
+checkpoint exploratory-host-doorbell bits=00000002 state=00000002
+checkpoint routed-interrupt pin=7 vector=00 ip=c0011cfc ipnd=00000000 imsk=00000000 imap0=00004444 imap1=00006754 pirsr=0000000e isp-isr=0000 isp-sem=0000 priority=31
+checkpoint mailbox-submission dma=000000000009f120 id=007f opcode=20 ioctl=01 completion=unmodeled
+checkpoint mailbox-bytes 7f0020100002000096f309000000000000000040400100000000000000000000e0f3090000000000000200000000000000000000000000000000000000000000
+checkpoint exploratory-host-doorbell bits=00000001 state=00000003
+checkpoint mu-host-address-read address=0009f120 size=4 backed=1
+checkpoint mu-host-address-read address=0009f121 size=4 backed=1
+checkpoint mu-host-address-read address=0009f122 size=4 backed=1
+checkpoint mu-host-address-read address=0009f123 size=4 backed=1
+checkpoint mu-host-address-read address=0009f124 size=4 backed=1
+checkpoint mu-host-address-read address=0009f125 size=4 backed=1
+checkpoint mu-host-address-read address=0009f126 size=4 backed=1
+checkpoint mu-host-address-read address=0009f127 size=4 backed=1
+checkpoint mu-host-address-read address=0009f128 size=4 backed=1
+checkpoint mu-host-address-read address=0009f129 size=4 backed=1
+checkpoint mu-host-address-read address=0009f12a size=4 backed=1
+checkpoint mu-host-address-read address=0009f12b size=4 backed=1
+checkpoint mu-host-address-read address=0009f12c size=4 backed=1
+checkpoint mu-host-address-read address=0009f12d size=4 backed=1
+checkpoint mu-host-address-read address=0009f12e size=4 backed=1
+checkpoint mu-host-address-read address=0009f12f size=4 backed=1
+checkpoint mu-host-address-read address=0009f130 size=4 backed=1
+checkpoint mu-host-address-read address=0009f131 size=4 backed=1
+checkpoint mu-host-address-read address=0009f132 size=4 backed=1
+checkpoint mu-host-address-read address=0009f133 size=4 backed=1
+checkpoint mu-host-address-read address=0009f134 size=4 backed=1
+checkpoint mu-host-address-read address=0009f135 size=4 backed=1
+checkpoint mu-host-address-read address=0009f136 size=4 backed=1
+checkpoint mu-host-address-read address=0009f137 size=4 backed=1
+checkpoint mu-host-address-read address=0009f138 size=4 backed=1
+checkpoint mu-host-address-read address=0009f139 size=4 backed=1
+checkpoint mu-host-address-read address=0009f13a size=4 backed=1
+checkpoint mu-host-address-read address=0009f13b size=4 backed=1
+checkpoint mu-host-address-read address=0009f13c size=4 backed=1
+checkpoint mu-host-address-read address=0009f13d size=4 backed=1
+checkpoint mu-host-address-read address=0009f13e size=4 backed=1
+checkpoint mu-host-address-read address=0009f13f size=4 backed=1
+checkpoint mu-primary-dma-write register=1450 size=4 value=c001eb20
+checkpoint mu-dma1-host-copy descriptor=c001eb20 local=c001e900 host=0009f3e0 bytes=512
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000001
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000000
+checkpoint bridge-step count=100000 ip=c0011cc4 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=68
+checkpoint bridge-sample ip=c0011220 count=67
+checkpoint bridge-sample ip=c001121c count=67
+checkpoint bridge-sample ip=c0011218 count=66
+checkpoint bridge-sample ip=c0011210 count=65
+checkpoint bridge-sample ip=c0010370 count=57
+checkpoint exploratory-host-doorbell bits=00000002 state=00000002
+checkpoint mailbox-submission dma=000000000009f120 id=007f opcode=20 ioctl=11 completion=unmodeled
+checkpoint mailbox-bytes 7f0020108000000096f309000000000000000040401100000000000000000000e0f3090000000000800000000000000000000000000000000000000000000000
+checkpoint exploratory-host-doorbell bits=00000001 state=00000003
+checkpoint mu-primary-dma-write register=1450 size=4 value=c001eb20
+checkpoint mu-dma1-host-copy descriptor=c001eb20 local=c001e900 host=0009f3e0 bytes=128
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000001
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000000
+checkpoint bridge-step count=100000 ip=c0011224 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=74
+checkpoint bridge-sample ip=c0011218 count=74
+checkpoint bridge-sample ip=c0011220 count=73
+checkpoint bridge-sample ip=c001121c count=72
+checkpoint bridge-sample ip=c0011210 count=72
+checkpoint bridge-sample ip=c0011d14 count=12
+checkpoint exploratory-host-doorbell bits=00000002 state=00000002
+checkpoint mailbox-submission dma=000000000009f120 id=007f opcode=20 ioctl=15 completion=unmodeled
+checkpoint mailbox-bytes 7f0020104000000096f309000000000000000040401500000000000000000000e0f3090000000000400000000000000000000000000000000000000000000000
+checkpoint exploratory-host-doorbell bits=00000001 state=00000003
+checkpoint mu-primary-dma-write register=1450 size=4 value=c001eb20
+checkpoint mu-dma1-host-copy descriptor=c001eb20 local=c001e900 host=0009f3e0 bytes=64
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000001
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000000
+checkpoint bridge-step count=100000 ip=c0011708 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=76
+checkpoint bridge-sample ip=c001121c count=74
+checkpoint bridge-sample ip=c0011210 count=73
+checkpoint bridge-sample ip=c0011218 count=72
+checkpoint bridge-sample ip=c0011220 count=72
+checkpoint bridge-sample ip=c00117cc count=12
+checkpoint exploratory-host-doorbell bits=00000002 state=00000002
+checkpoint mailbox-submission dma=000000000009f120 id=007f opcode=20 ioctl=d0 completion=unmodeled
+checkpoint mailbox-bytes 7f0020108000000096f30900000000000000004040d000000000000000000000e0f3090000000000800000000000000000000000000000000000000000000000
+checkpoint exploratory-host-doorbell bits=00000001 state=00000003
+checkpoint mu-primary-dma-write register=1450 size=4 value=c001eb20
+checkpoint mu-dma1-host-copy descriptor=c001eb20 local=c001e900 host=0009f3e0 bytes=128
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000001
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000000
+checkpoint bridge-step count=100000 ip=c001177c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=74
+checkpoint bridge-sample ip=c0011220 count=74
+checkpoint bridge-sample ip=c0011210 count=73
+checkpoint bridge-sample ip=c001121c count=72
+checkpoint bridge-sample ip=c0011224 count=71
+checkpoint bridge-sample ip=c0011688 count=12
+checkpoint exploratory-host-doorbell bits=00000002 state=00000002
+checkpoint mailbox-submission dma=000000000009f120 id=007f opcode=20 ioctl=2d completion=unmodeled
+checkpoint mailbox-bytes 7f0020100002000096f309000000000000000040402d0e000000000000000000e0f3090000000000000200000000000000000000000000000000000000000000
+checkpoint exploratory-host-doorbell bits=00000001 state=00000003
+checkpoint mu-primary-dma-write register=1450 size=4 value=c001eb20
+checkpoint mu-dma1-host-copy descriptor=c001eb20 local=c001e900 host=0009f3e0 bytes=512
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000001
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000000
+checkpoint bridge-step count=100000 ip=c00116dc fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011220 count=69
+checkpoint bridge-sample ip=c0011218 count=69
+checkpoint bridge-sample ip=c0011224 count=69
+checkpoint bridge-sample ip=c001121c count=67
+checkpoint bridge-sample ip=c0011210 count=66
+checkpoint bridge-sample ip=c0012bcc count=32
+checkpoint exploratory-host-doorbell bits=00000002 state=00000002
+checkpoint mailbox-submission dma=0000000006197000 id=0001 opcode=20 ioctl=8e completion=unmodeled
+checkpoint mailbox-bytes 0100204020040000000000000000000000000000008e010000e0300600000000000034060000000000f030060000000000000000000000000000000000000000
+checkpoint exploratory-host-doorbell bits=00000001 state=00000003
+checkpoint bridge-step count=100000 ip=c001170c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=87
+checkpoint bridge-sample ip=c0011220 count=86
+checkpoint bridge-sample ip=c0011210 count=66
+checkpoint bridge-sample ip=c001121c count=64
+checkpoint bridge-sample ip=c0011224 count=63
+checkpoint bridge-sample ip=c001172c count=22
+checkpoint memory-mailbox-slot dma=0000000006340000 bytes=01002050ec03000000000000000000000000000000010000000000000000000000c8110600000000ec0300000000000000000000000000000000000000000000 staged=1 completion=unmodeled
+checkpoint host-guest-window kind=S dma=000000000630f000 bytes=40
+checkpoint host-guest-window kind=H dma=000000000630e000 bytes=128
+checkpoint host-guest-window kind=O dma=000000000611c800 bytes=1004
+checkpoint exploratory-host-doorbell bits=00000010 state=00000010
+checkpoint mu-primary-dma-write register=1450 size=4 value=c001eb20
+checkpoint mu-dma1-native-ring-output descriptor=c001eb20 local=c001eb8c host=0611c800 bytes=1004 eoc=1
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000001
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000000
+checkpoint bridge-step count=100000 ip=c001121c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=292
+checkpoint bridge-sample ip=c0011690 count=145
+checkpoint bridge-sample ip=c001121c count=145
+checkpoint bridge-sample ip=c0011d24 count=145
+checkpoint bridge-sample ip=c0011778 count=145
+checkpoint bridge-sample ip=c0011728 count=145
+checkpoint memory-mailbox-slot dma=0000000006340040 bytes=020020508000000000000000000000000000000000110000000000000000000000e0300600000000800000000000000000000000000000000000000000000000 staged=1 completion=unmodeled
+checkpoint exploratory-host-doorbell bits=00000010 state=00000010
+checkpoint mu-primary-dma-write register=1450 size=4 value=c001eb20
+checkpoint mu-dma1-native-ring-health descriptor=c001eb20 local=c001eb8c host=0630e000 bytes=128 eoc=1
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000001
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000000
+checkpoint bridge-step count=100000 ip=c0011cd0 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011614 count=169
+checkpoint bridge-sample ip=c0011cb0 count=169
+checkpoint bridge-sample ip=c001164c count=169
+checkpoint bridge-sample ip=c001178c count=168
+checkpoint bridge-sample ip=c0011734 count=168
+checkpoint bridge-sample ip=c0011cd0 count=168
+checkpoint memory-mailbox-slot dma=0000000006340080 bytes=010020500002000000000000000000000000000000050000000000000000000000ae000500000000000200000000000000000000000000000000000000000000 staged=1 completion=unmodeled
+checkpoint host-guest-window kind=P dma=000000000500ae00 bytes=512
+checkpoint exploratory-host-doorbell bits=00000010 state=00000010
+checkpoint mu-primary-dma-write register=1450 size=4 value=c001eb20
+checkpoint mu-dma1-native-ring-pdev descriptor=c001eb20 local=c001eb8c host=0500ae00 bytes=512 eoc=1
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000001
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000000
+checkpoint bridge-step count=100000 ip=c0011224 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011224 count=330
+checkpoint bridge-sample ip=c0011c98 count=166
+checkpoint bridge-sample ip=c001162c count=166
+checkpoint bridge-sample ip=c00117b4 count=166
+checkpoint bridge-sample ip=c001174c count=165
+checkpoint bridge-sample ip=c001121c count=165
+checkpoint memory-mailbox-slot dma=00000000063400c0 bytes=01002050ec03000000000000000000000000000000010000000000000000000000c8110600000000ec0300000000000000000000000000000000000000000000 staged=1 completion=unmodeled
+checkpoint host-guest-window kind=T dma=000000000611c800 bytes=1004
+checkpoint exploratory-host-doorbell bits=00000010 state=00000010
+checkpoint mu-primary-dma-write register=1450 size=4 value=c001eb20
+checkpoint mu-dma1-native-ring-output descriptor=c001eb20 local=c001eb8c host=0611c800 bytes=1004 eoc=1
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000001
+checkpoint mu-primary-dma-write register=1440 size=4 value=00000000
+checkpoint bridge-step count=100000 ip=c0011210 fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c001121c count=312
+checkpoint bridge-sample ip=c0011d1c count=156
+checkpoint bridge-sample ip=c00117d4 count=156
+checkpoint bridge-sample ip=c0011210 count=156
+checkpoint bridge-sample ip=c0011670 count=156
+checkpoint bridge-sample ip=c0011cec count=155
+checkpoint memory-mailbox-slot dma=0000000006340100 bytes=03010210240000000010180600000000000000550e06120000002400000000000083180600000000240000000000000000000000000000000000000000000000 staged=1 completion=unmodeled
+checkpoint exploratory-host-doorbell bits=00000010 state=00000010
+checkpoint bridge-step count=100000 ip=c001171c fault=ffffffff gate-loops=0 gate-exits=0 unmask=0 command-dispatch=0 mu-setup=0 mu-poll=0 mu-dispatch=0 mu-receive=0 mmbox-bit4=0 mmbox-ring-scan=0 console-return=0 boot-marker=0 next-wait=0 next-stage=0 init-entry=0 board-callback=0 mu-init=0 startup-monitor-init=0 startup-monitor-tick=0 isp-service=0 isp-response-worker=0 isp-status-entry=0 scan-init=0 scan-tick=0 controller-scan-tick=0 scan-worker-schedule=0 qlogic-discovery=0 qlogic-setup=0 qlogic-delay=0 qlogic-delay-calls=0 isp-mailbox-completions=0 timer0-events=0 timer0-interrupts=0 priority-changes=0 below8-transitions=0
+checkpoint bridge-sample ip=c0011218 count=85
+checkpoint bridge-sample ip=c0011220 count=84
+checkpoint bridge-sample ip=c0011210 count=65
+checkpoint bridge-sample ip=c0011224 count=65
+checkpoint bridge-sample ip=c001121c count=65
+checkpoint bridge-sample ip=c0011d30 count=23

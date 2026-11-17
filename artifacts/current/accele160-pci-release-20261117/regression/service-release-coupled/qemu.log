@@ -1,0 +1,383 @@
+accele160 pci-bridge-ready 8086:2962 rev=02
+accele160 pci-ready 1069:0050 rev=02 subsystem=1069:0054 bar0=8192 aperture=zero-initialized bridge=/private/var/folders/zd/49wccq6x4nj75cmwv7d1dksr0000gn/T/accele160-native-card-x4pcnucm/bridge.sock
+accele160 config R offset=0x00 size=2 value=0x1069
+accele160 config R offset=0x0a size=2 value=0x0104
+accele160 config R offset=0x00 size=2 value=0x1069
+accele160 config R offset=0x0a size=2 value=0x0104
+accele160 config R offset=0x00 size=2 value=0x1069
+accele160 config R offset=0x00 size=4 value=0x00501069
+accele160 config R offset=0x08 size=4 value=0x01040002
+accele160 config R offset=0x0e size=1 value=0x00
+accele160 config R offset=0x10 size=4 value=0x00000008
+accele160 config W offset=0x10 size=4 value=0xffffffff
+accele160 config R offset=0x10 size=4 value=0xffffe008
+accele160 config W offset=0x10 size=4 value=0x00000008
+accele160 config R offset=0x14 size=4 value=0x00000000
+accele160 config W offset=0x14 size=4 value=0xffffffff
+accele160 config R offset=0x14 size=4 value=0x00000000
+accele160 config W offset=0x14 size=4 value=0x00000000
+accele160 config R offset=0x18 size=4 value=0x00000000
+accele160 config W offset=0x18 size=4 value=0xffffffff
+accele160 config R offset=0x18 size=4 value=0x00000000
+accele160 config W offset=0x18 size=4 value=0x00000000
+accele160 config R offset=0x1c size=4 value=0x00000000
+accele160 config W offset=0x1c size=4 value=0xffffffff
+accele160 config R offset=0x1c size=4 value=0x00000000
+accele160 config W offset=0x1c size=4 value=0x00000000
+accele160 config R offset=0x20 size=4 value=0x00000000
+accele160 config W offset=0x20 size=4 value=0xffffffff
+accele160 config R offset=0x20 size=4 value=0x00000000
+accele160 config W offset=0x20 size=4 value=0x00000000
+accele160 config R offset=0x24 size=4 value=0x00000000
+accele160 config W offset=0x24 size=4 value=0xffffffff
+accele160 config R offset=0x24 size=4 value=0x00000000
+accele160 config W offset=0x24 size=4 value=0x00000000
+accele160 config R offset=0x30 size=4 value=0x00000000
+accele160 config W offset=0x30 size=4 value=0xfffff800
+accele160 config R offset=0x30 size=4 value=0xffff8000
+accele160 config W offset=0x30 size=4 value=0x00000000
+accele160 config W offset=0x30 size=4 value=0xfea70000
+accele160 config W offset=0x10 size=4 value=0xfe000000
+accele160 pci-command local=0x1004 value=0x0103
+accele160 config R offset=0x3d size=1 value=0x01
+accele160 config W offset=0x3c size=1 value=0x0a
+accele160 config R offset=0x04 size=2 value=0x0000
+accele160 config W offset=0x04 size=2 value=0x0103
+accele160 pci-command local=0x1204 value=0x0103
+accele160 config R offset=0x3d size=1 value=0x01
+accele160 config R offset=0x3c size=1 value=0x0a
+accele160 config R offset=0x30 size=4 value=0xfea70000
+accele160 config W offset=0x30 size=4 value=0xfffffffe
+accele160 config R offset=0x30 size=4 value=0xffff8000
+accele160 config W offset=0x30 size=4 value=0xfea70001
+accele160 config W offset=0x30 size=4 value=0xfea70000
+accele160 config R offset=0x00 size=2 value=0x1069
+accele160 config R offset=0x00 size=4 value=0x00501069
+accele160 config R offset=0x00 size=2 value=0x1069
+accele160 config R offset=0x08 size=4 value=0x01040002
+accele160 config R offset=0x00 size=4 value=0x00501069
+accele160 config R offset=0x04 size=4 value=0x00000103
+accele160 config R offset=0x08 size=4 value=0x01040002
+accele160 config R offset=0x0c size=4 value=0x00000000
+accele160 config R offset=0x10 size=4 value=0xfe000008
+accele160 config R offset=0x14 size=4 value=0x00000000
+accele160 config R offset=0x18 size=4 value=0x00000000
+accele160 config R offset=0x1c size=4 value=0x00000000
+accele160 config R offset=0x20 size=4 value=0x00000000
+accele160 config R offset=0x24 size=4 value=0x00000000
+accele160 config R offset=0x28 size=4 value=0x00000000
+accele160 config R offset=0x2c size=4 value=0x00541069
+accele160 config R offset=0x30 size=4 value=0xfea70000
+accele160 config R offset=0x34 size=4 value=0x00000000
+accele160 config R offset=0x38 size=4 value=0x00000000
+accele160 config R offset=0x3c size=4 value=0x0000010a
+accele160 config W offset=0x04 size=1 value=0x07
+accele160 pci-command local=0x1204 value=0x0107
+accele160 pci-command local=0x1004 value=0x0107
+accele160 config W offset=0x0d size=1 value=0x08
+accele160 config R offset=0x00 size=2 value=0x1069
+accele160 config R offset=0x08 size=4 value=0x01040002
+accele160 bar0 W offset=0x0034 size=1 value=0xff
+accele160 bar0 W offset=0x0010 size=4 value=0x00000000
+accele160 bar0 W offset=0x0014 size=4 value=0x00000000
+accele160 bar0 W offset=0x0018 size=4 value=0x00000000
+accele160 bar0 W offset=0x0020 size=1 value=0x02
+accele160 lp ack-status posted to i960 doorbell bit 1
+accele160 bar0 R offset=0x002e size=1 value=0x00
+accele160 bar0 R offset=0x0020 size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x00
+accele160 bar0 R offset=0x0020 size=1 value=0x00
+accele160 bar0 W offset=0x0034 size=1 value=0xff
+accele160 bar0 R offset=0x0020 size=4 value=0x00000000
+accele160 bar0 W offset=0x0034 size=1 value=0xff
+accele160 bar0 R offset=0x0020 size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x00
+accele160 bar0 W offset=0x0010 size=4 value=0x0009f120
+accele160 bar0 W offset=0x0014 size=4 value=0x00000000
+accele160 bar0 W offset=0x0018 size=4 value=0x00000000
+accele160 bar0 W offset=0x001c size=4 value=0x00000000
+accele160 bar0 W offset=0x0020 size=1 value=0x01
+accele160 lp mailbox submitted dma=0x000000000009f120 id=127 opcode=0x20 ioctl=0x01 pending=1
+accele160 lp mailbox bytes=7f0020100002000096f309000000000000000040400100000000000000000000e0f3090000000000000200000000000000000000000000000000000000000000
+accele160 EXPLORE live reply ioctl=0x01 id=127 bytes=512 hex=0003200021002050000000000000000050434900000000000000000000000000416363656c65524149442031363020200000000000000000000000000000000006000500050a1400000000000000000000000000000000001010200020000000313031313235303437373200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000801010000000000000100000000000000000201020202101010000000000000000000000000000000000000000000000000001000080000000000000000004200208400000000000000000000000000000000040000000000000000000000420020840000000000000000000000000000000064000701000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100a08601000000000000000000000000000000000000000000000000003232003200000000000400000004000000020000ff01000000080000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE native firmware completion ioctl=0x01 id=127 status=0x0000 residual=0xfffffe00 dma=0x0009f3e0 bytes=512
+accele160 bar0 R offset=0x002e size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x01
+accele160 bar0 R offset=0x0018 size=4 value=0x0000007f
+accele160 bar0 W offset=0x002c size=1 value=0x01
+accele160 lp hardware mailbox status acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x02
+accele160 lp ack-status posted to i960 doorbell bit 1
+accele160 bar0 W offset=0x0034 size=1 value=0xfb
+accele160 bar0 W offset=0x0034 size=1 value=0xff
+accele160 bar0 R offset=0x0020 size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x00
+accele160 bar0 W offset=0x0010 size=4 value=0x0009f120
+accele160 bar0 W offset=0x0014 size=4 value=0x00000000
+accele160 bar0 W offset=0x0018 size=4 value=0x00000000
+accele160 bar0 W offset=0x001c size=4 value=0x00000000
+accele160 bar0 W offset=0x0020 size=1 value=0x01
+accele160 lp mailbox submitted dma=0x000000000009f120 id=127 opcode=0x20 ioctl=0x11 pending=1
+accele160 lp mailbox bytes=7f0020108000000096f309000000000000000040401100000000000000000000e0f3090000000000800000000000000000000000000000000000000000000000
+accele160 EXPLORE live reply ioctl=0x11 id=127 bytes=128 hex=0000000000000000000000000000000001000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE native firmware completion ioctl=0x11 id=127 status=0x0000 residual=0x00000000 dma=0x0009f3e0 bytes=128
+accele160 bar0 R offset=0x002e size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x01
+accele160 bar0 R offset=0x0018 size=4 value=0x0000007f
+accele160 bar0 W offset=0x002c size=1 value=0x01
+accele160 lp hardware mailbox status acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x02
+accele160 lp ack-status posted to i960 doorbell bit 1
+accele160 bar0 W offset=0x0034 size=1 value=0xfb
+accele160 bar0 W offset=0x0034 size=1 value=0xff
+accele160 bar0 R offset=0x0020 size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x00
+accele160 bar0 W offset=0x0010 size=4 value=0x0009f120
+accele160 bar0 W offset=0x0014 size=4 value=0x00000000
+accele160 bar0 W offset=0x0018 size=4 value=0x00000000
+accele160 bar0 W offset=0x001c size=4 value=0x00000000
+accele160 bar0 W offset=0x0020 size=1 value=0x01
+accele160 lp mailbox submitted dma=0x000000000009f120 id=127 opcode=0x20 ioctl=0x15 pending=1
+accele160 lp mailbox bytes=7f0020104000000096f309000000000000000040401500000000000000000000e0f3090000000000400000000000000000000000000000000000000000000000
+accele160 EXPLORE live reply ioctl=0x15 id=127 bytes=64 hex=00000000050000001c00000000000000000000000000000070000900000000070000000081ab0000000000000000000000000000000000000000000000000000
+accele160 EXPLORE native firmware completion ioctl=0x15 id=127 status=0x0000 residual=0x00000000 dma=0x0009f3e0 bytes=64
+accele160 bar0 R offset=0x002e size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x01
+accele160 bar0 R offset=0x0018 size=4 value=0x0000007f
+accele160 bar0 W offset=0x002c size=1 value=0x01
+accele160 lp hardware mailbox status acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x02
+accele160 lp ack-status posted to i960 doorbell bit 1
+accele160 bar0 W offset=0x0034 size=1 value=0xfb
+accele160 bar0 W offset=0x0034 size=1 value=0xff
+accele160 bar0 R offset=0x0020 size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x00
+accele160 bar0 W offset=0x0010 size=4 value=0x0009f120
+accele160 bar0 W offset=0x0014 size=4 value=0x00000000
+accele160 bar0 W offset=0x0018 size=4 value=0x00000000
+accele160 bar0 W offset=0x001c size=4 value=0x00000000
+accele160 bar0 W offset=0x0020 size=1 value=0x01
+accele160 lp mailbox submitted dma=0x000000000009f120 id=127 opcode=0x20 ioctl=0xd0 pending=1
+accele160 lp mailbox bytes=7f0020108000000096f30900000000000000004040d000000000000000000000e0f3090000000000800000000000000000000000000000000000000000000000
+accele160 EXPLORE live reply ioctl=0xd0 id=127 bytes=128 hex=4024000066320500000206000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000010400020154000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE native firmware completion ioctl=0xd0 id=127 status=0x0000 residual=0x00000000 dma=0x0009f3e0 bytes=128
+accele160 bar0 R offset=0x002e size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x01
+accele160 bar0 R offset=0x0018 size=4 value=0x0000007f
+accele160 bar0 W offset=0x002c size=1 value=0x01
+accele160 lp hardware mailbox status acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x02
+accele160 lp ack-status posted to i960 doorbell bit 1
+accele160 bar0 W offset=0x0034 size=1 value=0xfb
+accele160 bar0 W offset=0x0034 size=1 value=0xff
+accele160 bar0 R offset=0x0020 size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x00
+accele160 bar0 W offset=0x0010 size=4 value=0x0009f120
+accele160 bar0 W offset=0x0014 size=4 value=0x00000000
+accele160 bar0 W offset=0x0018 size=4 value=0x00000000
+accele160 bar0 W offset=0x001c size=4 value=0x00000000
+accele160 bar0 W offset=0x0020 size=1 value=0x01
+accele160 lp mailbox submitted dma=0x000000000009f120 id=127 opcode=0x20 ioctl=0x2d pending=1
+accele160 lp mailbox bytes=7f0020100002000096f309000000000000000040402d0e000000000000000000e0f3090000000000000200000000000000000000000000000000000000000000
+accele160 EXPLORE live reply ioctl=0x2d id=127 bytes=512 hex=584c594d0000000001000500000000000000000000000000000000000000000000000f000000010001010000060003300814d007001ac60700000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000080002020000060005300905d007001ac60700000000000000000000000000000000000000000000000000000000000000000000000000000000000003000070000003010800060100300a1bd007001ac6070000000000000000000000000000000000000000000000000000000000000000000000000000000000000000df82020004020800020200300a0fd007001ac6070000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0000fc000005010000011800300b07d007001ac6070000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE native firmware completion ioctl=0x2d id=127 status=0x0000 residual=0x00000000 dma=0x0009f3e0 bytes=512
+accele160 bar0 R offset=0x002e size=1 value=0x00
+accele160 bar0 R offset=0x002c size=1 value=0x01
+accele160 bar0 R offset=0x0018 size=4 value=0x0000007f
+accele160 bar0 W offset=0x002c size=1 value=0x01
+accele160 lp hardware mailbox status acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x02
+accele160 lp ack-status posted to i960 doorbell bit 1
+accele160 bar0 W offset=0x0034 size=1 value=0xfb
+accele160 bar0 W offset=0x0034 size=1 value=0xff
+accele160 config R offset=0x08 size=4 value=0x01040002
+accele160 config R offset=0x0e size=1 value=0x00
+accele160 config R offset=0x0a size=2 value=0x0104
+accele160 config R offset=0x00 size=2 value=0x1069
+accele160 config R offset=0x02 size=2 value=0x0050
+accele160 config R offset=0x0e size=1 value=0x00
+accele160 config R offset=0x08 size=4 value=0x01040002
+accele160 config R offset=0x0e size=1 value=0x00
+accele160 pci-command local=0x1004 value=0x0507
+accele160 pci-command local=0x1004 value=0x0107
+accele160 pci-command local=0x1004 value=0x0104
+accele160 pci-command local=0x1004 value=0x0107
+accele160 pci-command local=0x1004 value=0x0104
+accele160 pci-command local=0x1004 value=0x0107
+accele160 pci-command local=0x1004 value=0x0104
+accele160 pci-command local=0x1004 value=0x0107
+accele160 config R offset=0x00 size=4 value=0x00501069
+accele160 config R offset=0x0e size=1 value=0x00
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x08 size=4 value=0x01040002
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config W offset=0x04 size=2 value=0x0507
+accele160 pci-command local=0x1204 value=0x0507
+accele160 config R offset=0x04 size=2 value=0x0507
+accele160 config W offset=0x04 size=2 value=0x0107
+accele160 pci-command local=0x1204 value=0x0107
+accele160 config R offset=0x3d size=1 value=0x01
+accele160 config R offset=0x3c size=1 value=0x0a
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config W offset=0x04 size=2 value=0x0104
+accele160 pci-command local=0x1204 value=0x0104
+accele160 config R offset=0x10 size=4 value=0xfe000008
+accele160 config W offset=0x10 size=4 value=0xffffffff
+accele160 config R offset=0x10 size=4 value=0xffffe008
+accele160 config W offset=0x10 size=4 value=0xfe000008
+accele160 config W offset=0x04 size=2 value=0x0107
+accele160 pci-command local=0x1204 value=0x0107
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config W offset=0x04 size=2 value=0x0104
+accele160 pci-command local=0x1204 value=0x0104
+accele160 config R offset=0x14 size=4 value=0x00000000
+accele160 config W offset=0x14 size=4 value=0xffffffff
+accele160 config R offset=0x14 size=4 value=0x00000000
+accele160 config W offset=0x14 size=4 value=0x00000000
+accele160 config W offset=0x04 size=2 value=0x0107
+accele160 pci-command local=0x1204 value=0x0107
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config W offset=0x04 size=2 value=0x0104
+accele160 pci-command local=0x1204 value=0x0104
+accele160 config R offset=0x18 size=4 value=0x00000000
+accele160 config W offset=0x18 size=4 value=0xffffffff
+accele160 config R offset=0x18 size=4 value=0x00000000
+accele160 config W offset=0x18 size=4 value=0x00000000
+accele160 config W offset=0x04 size=2 value=0x0107
+accele160 pci-command local=0x1204 value=0x0107
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config W offset=0x04 size=2 value=0x0104
+accele160 pci-command local=0x1204 value=0x0104
+accele160 config R offset=0x1c size=4 value=0x00000000
+accele160 config W offset=0x1c size=4 value=0xffffffff
+accele160 config R offset=0x1c size=4 value=0x00000000
+accele160 config W offset=0x1c size=4 value=0x00000000
+accele160 config W offset=0x04 size=2 value=0x0107
+accele160 pci-command local=0x1204 value=0x0107
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config W offset=0x04 size=2 value=0x0104
+accele160 pci-command local=0x1204 value=0x0104
+accele160 config R offset=0x20 size=4 value=0x00000000
+accele160 config W offset=0x20 size=4 value=0xffffffff
+accele160 config R offset=0x20 size=4 value=0x00000000
+accele160 config W offset=0x20 size=4 value=0x00000000
+accele160 config W offset=0x04 size=2 value=0x0107
+accele160 pci-command local=0x1204 value=0x0107
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config W offset=0x04 size=2 value=0x0104
+accele160 pci-command local=0x1204 value=0x0104
+accele160 config R offset=0x24 size=4 value=0x00000000
+accele160 config W offset=0x24 size=4 value=0xffffffff
+accele160 config R offset=0x24 size=4 value=0x00000000
+accele160 config W offset=0x24 size=4 value=0x00000000
+accele160 config W offset=0x04 size=2 value=0x0107
+accele160 pci-command local=0x1204 value=0x0107
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config W offset=0x04 size=2 value=0x0104
+accele160 pci-command local=0x1204 value=0x0104
+accele160 config R offset=0x30 size=4 value=0xfea70000
+accele160 config W offset=0x30 size=4 value=0xfffff800
+accele160 config R offset=0x30 size=4 value=0xffff8000
+accele160 config W offset=0x30 size=4 value=0xfea70000
+accele160 config W offset=0x04 size=2 value=0x0107
+accele160 pci-command local=0x1204 value=0x0107
+accele160 config R offset=0x2c size=2 value=0x1069
+accele160 config R offset=0x2e size=2 value=0x0054
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x06 size=2 value=0x0000
+accele160 config R offset=0x0e size=1 value=0x00
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config R offset=0x0c size=1 value=0x00
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 config R offset=0x3d size=1 value=0x01
+accele160 config R offset=0x04 size=2 value=0x0107
+accele160 bar0 W offset=0x0034 size=1 value=0xff
+accele160 bar0 W offset=0x0020 size=1 value=0x02
+accele160 lp ack-status posted to i960 doorbell bit 1
+accele160 bar0 R offset=0x0020 size=1 value=0x00
+accele160 bar0 R offset=0x0020 size=1 value=0x00
+accele160 bar0 W offset=0x0010 size=4 value=0x0619a000
+accele160 bar0 W offset=0x0014 size=4 value=0x00000000
+accele160 bar0 W offset=0x0020 size=1 value=0x01
+accele160 lp mailbox submitted dma=0x000000000619a000 id=1 opcode=0x20 ioctl=0x8e pending=1
+accele160 lp mailbox bytes=0100204020040000000000000000000000000000008e010000d0190600000000000034060000000000c019060000000000000000000000000000000000000000
+accele160 EXPLORE native set-mbox completion id=1 status=0x0000 data=0x00000420 no-dma=1
+accele160 bar0 R offset=0x002c size=1 value=0x01
+accele160 bar0 R offset=0x001a size=2 value=0x0000
+accele160 bar0 W offset=0x002c size=1 value=0x01
+accele160 lp hardware mailbox status acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x02
+accele160 lp ack-status posted to i960 doorbell bit 1
+accele160 bar0 W offset=0x0034 size=1 value=0xfb
+accele160 bar0 W offset=0x0020 size=1 value=0x10
+accele160 EXPLORE memory-mailbox slot dma=0x0000000006340000 hex=01002050ec03000000000000000000000000000000010000000000000000000000d0110600000000ec0300000000000000000000000000000000000000000000
+accele160 EXPLORE memory-mailbox i960 inbound=0x00000002 mask=0x00000007 outbound=0x00000000 cpu=0x0000001f
+accele160 EXPLORE ring guest phase=before-idb10 status=0000000000000000 health-first=0000000000000000 output-sha256=fa16c3b03c75c0d2a74b01ab8bd3806b53f82abc36bbcc29ae987898f56f5544
+accele160 EXPLORE ring model phase=before-idb10 slot-word0=0x50200001 status=0000000000000000 output-sha256=fa16c3b03c75c0d2a74b01ab8bd3806b53f82abc36bbcc29ae987898f56f5544
+accele160 EXPLORE native ring staged dma=0x06340000 output=0x0611d000 local-idb=0x00000012 no-completion=1
+accele160 EXPLORE native ring observer marker=0x31474e52 state=0x00000003 digest=0xaf32941c cursor=0x06340040 output=0x0611d000 length=1004 id=1 seen-idb=0x00000010 completions=1 output-digest=0x9c224f25 dma-status=0x00000002 status-id=1 residual=0xffffffec
+accele160 EXPLORE ring model phase=after-5m slot-word0=0x00000000 status=00000001ffffffec output-sha256=a3f72f98e18667d7c80eebac996b77f465bce5d5024a8b3ec3c70d2a285572f8
+accele160 EXPLORE ring model output-hex=0003200021002050000000000000000050434900000000000000000000000000416363656c65524149442031363020200000000000000000000000000000000006000500050a1400000000000000000000000000000000001010200020000000313031313235303437373200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000801010000000000000100000000000000000201020202101010000000000000000000000000000000000000000000000000001000080000000000000000004200208400000000000000000000000000000000040000000000000000000000420020840000000000000000000000000000000064000701000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100a08601000000000000000000000000000000000000000000000000003232003200000000000400000004000000020000ff01000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE ring guest phase=after-5m status=0000000000000000 health-first=0000000000000000 output-sha256=fa16c3b03c75c0d2a74b01ab8bd3806b53f82abc36bbcc29ae987898f56f5544
+accele160 EXPLORE native ring outbound=0x00000002 no-guest-mirror=1
+accele160 EXPLORE native ring mirrored output=0x0611d000 bytes=1004 sha256=a3f72f98e18667d7c80eebac996b77f465bce5d5024a8b3ec3c70d2a285572f8 status=01000000ecffffff slot-word0=0 outbound=0x02 irq=1
+accele160 EXPLORE ring guest phase=after-mirror status=01000000ecffffff health-first=0000000000000000 output-sha256=a3f72f98e18667d7c80eebac996b77f465bce5d5024a8b3ec3c70d2a285572f8
+accele160 bar0 W offset=0x002c size=1 value=0x03
+accele160 lp memory ring interrupt acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x10
+accele160 EXPLORE ring followup event=1 status=0000000000000000 lp-outbound=0x00
+accele160 EXPLORE ring followup event=1 slot=1 dma=0x06340040 hex=020020508000000000000000000000000000000000110000000000000000000000d0190600000000800000000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=1 slot=2 dma=0x06340080 hex=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=1 slot=3 dma=0x063400c0 hex=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=1 slot=4 dma=0x06340100 hex=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE native followup event=1 local-idb=0x00000012 marker=0x32474e52 events=1 slot-index=1 slot-dma=0x06340040 digest=0x6135c53b state=0x00000002 id=2 ioctl=0x11 output=0x0619d000 length=128 status-cursor=0x0619c010 completions=2 outbound=0x00000002 reply-state=3 dma-eoc=2 status-word0=0x00000002
+accele160 EXPLORE native followup model event=1 status1=0000000200000000 status2=0000000000000000 health-sha256=67dc9bba5de17ef407a77f5e3382a7d89fcc4e7f7b4f287d7e682baece59ff32 pdev-sha256=none outbound=0x00000002 no-guest-copy=1
+accele160 EXPLORE native followup mirrored event=1 output=0x0619d000 bytes=128 sha256=67dc9bba5de17ef407a77f5e3382a7d89fcc4e7f7b4f287d7e682baece59ff32 status=0200000000000000 slot-word0=0 outbound=0x02 irq=1
+accele160 EXPLORE native followup guest-mirror accepted event=1
+accele160 bar0 W offset=0x002c size=1 value=0x03
+accele160 lp memory ring interrupt acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x10
+accele160 EXPLORE ring followup event=2 status=0000000000000000 lp-outbound=0x00
+accele160 EXPLORE ring followup event=2 slot=1 dma=0x06340040 hex=000000008000000000000000000000000000000000110000000000000000000000d0190600000000800000000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=2 slot=2 dma=0x06340080 hex=010020500002000000000000000000000000000000050000000000000000000000a4000500000000000200000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=2 slot=3 dma=0x063400c0 hex=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=2 slot=4 dma=0x06340100 hex=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE native followup event=2 local-idb=0x00000012 marker=0x32474e52 events=2 slot-index=2 slot-dma=0x06340080 digest=0x9c153e50 state=0x00000002 id=1 ioctl=0x05 output=0x0500a400 length=512 status-cursor=0x0619c018 completions=3 outbound=0x00000002 reply-state=3 dma-eoc=2 status-word0=0x00000001
+accele160 EXPLORE native followup model event=2 status1=0000000200000000 status2=0000000100000000 health-sha256=67dc9bba5de17ef407a77f5e3382a7d89fcc4e7f7b4f287d7e682baece59ff32 pdev-sha256=9e17de7358c0c4cb07a8a7a511c00157a17a38656412e778b69a80ca6b501a41 outbound=0x00000002 no-guest-copy=1
+accele160 EXPLORE native followup mirrored event=2 output=0x0500a400 bytes=512 sha256=9e17de7358c0c4cb07a8a7a511c00157a17a38656412e778b69a80ca6b501a41 status=0100000000000000 slot-word0=0 outbound=0x02 irq=1
+accele160 EXPLORE native followup guest-mirror accepted event=2
+accele160 bar0 W offset=0x002c size=1 value=0x03
+accele160 lp memory ring interrupt acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x10
+accele160 EXPLORE ring followup event=3 status=0000000000000000 lp-outbound=0x00
+accele160 EXPLORE ring followup event=3 slot=1 dma=0x06340040 hex=000000008000000000000000000000000000000000110000000000000000000000d0190600000000800000000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=3 slot=2 dma=0x06340080 hex=000000000002000000000000000000000000000000050000000000000000000000a4000500000000000200000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=3 slot=3 dma=0x063400c0 hex=01002050ec03000000000000000000000000000000010000000000000000000000d0110600000000ec0300000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=3 slot=4 dma=0x06340100 hex=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+accele160 EXPLORE native next event=3 local-idb=0x00000012 marker=0x32474e52 events=3 slot-index=3 slot-dma=0x063400c0 digest=0xaf32941c state=0x00000002 id=1 opcode=0x01 output=0x0611d000 length=1004 status-cursor=0x0619c020 completions=4 outbound=0x00000002 no-guest-copy=1
+accele160 EXPLORE native next mirrored event=3 output=0x0611d000 bytes=1004 sha256=a3f72f98e18667d7c80eebac996b77f465bce5d5024a8b3ec3c70d2a285572f8 status=01000000ecffffff slot-word0=0 outbound=0x02 irq=1
+accele160 EXPLORE native next guest-mirror accepted event=3
+accele160 bar0 W offset=0x002c size=1 value=0x03
+accele160 lp memory ring interrupt acknowledged
+accele160 bar0 W offset=0x0020 size=1 value=0x10
+accele160 EXPLORE ring followup event=4 status=0000000000000000 lp-outbound=0x00
+accele160 EXPLORE ring followup event=4 slot=1 dma=0x06340040 hex=000000008000000000000000000000000000000000110000000000000000000000d0190600000000800000000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=4 slot=2 dma=0x06340080 hex=000000000002000000000000000000000000000000050000000000000000000000a4000500000000000200000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=4 slot=3 dma=0x063400c0 hex=00000000ec03000000000000000000000000000000010000000000000000000000d0110600000000ec0300000000000000000000000000000000000000000000
+accele160 EXPLORE ring followup event=4 slot=4 dma=0x06340100 hex=03000210240000000000180600000000000000550e06120000002400000000000075180600000000240000000000000000000000000000000000000000000000
+accele160 EXPLORE native next event=4 local-idb=0x00000012 marker=0x32474e52 events=4 slot-index=4 slot-dma=0x06340100 digest=0xe258a936 state=0x00000002 id=3 opcode=0x02 output=0x06187500 length=36 status-cursor=0x0619c020 completions=4 outbound=0x00000000 no-guest-copy=1
+accele160 bar0 W offset=0x0020 size=1 value=0x10
+accele160 bar0 W offset=0x0020 size=1 value=0x08
+accele160 lp reset requested; unmodeled
+accele160 bar0 W offset=0x0020 size=1 value=0x08
+accele160 lp reset requested; unmodeled
+qemu-system-x86_64: terminating on signal 15 from pid 72102 (<unknown process>)
