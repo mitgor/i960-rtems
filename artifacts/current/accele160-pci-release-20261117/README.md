@@ -28,12 +28,18 @@ The control image is byte-identical to `native-passive-marker-second-spare.bin` 
 | `config-retry-gate-first-spare.json` | The same gate for the first-spare image against that card's stock. `PASS`. |
 | `config-retry-gate-negative.json` | Non-releasing images offered as candidates. `FAIL`, as intended. |
 | `config-retry-post.json` | Coupled QEMU/SeaBIOS run: four images reach the boot sector, four stall on the first configuration read. `PASS`. |
+| `config-retry-low-strap.json` | Counterfactual mode-2 model: the failed first-spare image and the no-release control reach the boot sector with EBCR initially `0x0008`; neither firmware image writes EBCR to release retry. `PASS`. This establishes that the modeled stall depends on the unmeasured RETRY strap. |
+| `config-retry-payload-fault.json` | Temporary first-spare image with the stored RTEMS payload digest corrupted: stage two reports `0x1003`, while the modeled host reaches the boot sector after early PCI release. `PASS`. The temporary image is deleted after the run. |
 | `regression/` | Existing gates re-run: direct service gate for the old and both new service images, readiness-negative, and the coupled Debian guest run for the new service image with the ROM kept. The two `*-retry-model` directories repeat that guest run with the retry model on and the host started cold: the new service image passes, the 2026-11-16 service image stalls. |
 | `board-selector-sweep.txt` | Stock reaches its release only with the interpreter's board selector 11; no other selector gives a different released state. |
 | `unit-tests.txt` | Output of the native-ROM suite (28 tests when the older artifacts are linked) and the 5 return-kit tests. |
 | `image-sha256.txt`, `emulator-sha256.txt`, `qemu-build/binary-sha256.txt` | Hashes of the images and of the binaries that produced the receipts. |
 
 Every gate receipt carries `physical_boot_tested: false` and `safe_to_flash: false`.
+The two counterfactual/fault receipts were produced after adding the selectable
+low RETRY strap to the interpreter. Their embedded emulator SHA-256 differs
+from the earlier receipts; `reproduce.sh` regenerates the full set with one
+binary when run into a fresh output directory.
 
 ## Model assumptions behind every receipt
 

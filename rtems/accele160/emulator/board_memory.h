@@ -29,8 +29,9 @@ struct ConfigRetryState {
     uint32_t release_ip = 0;
     uint32_t register_writes = 0; // traced stores, any origin
 };
-// Call after the core reset; sets the assumed mode-3 reset value EBCR=0x000c.
-void applyExploratoryConfigRetryStrap(bool enabled) noexcept;
+// Call after the core reset. A high RETRY strap starts at EBCR=0x000c;
+// a low strap starts at 0x0008 with configuration cycles already accepted.
+void applyExploratoryConfigRetryStrap(bool enabled, bool retry_pin_high = true) noexcept;
 ConfigRetryState exploratoryConfigRetryState() noexcept;
 // Log every store into the host-facing register blocks (bridge 0x1000..0x10ff,
 // ATU 0x1200..0x12ff, messaging unit 0x1300..0x13ff) as "checkpoint

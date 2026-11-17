@@ -948,6 +948,7 @@ int main(int argc, char** argv) {
     bool exploratory_isp_retry_ack = false;
     bool trace_pci_registers = false;
     bool model_config_retry = false;
+    bool retry_pin_high = true;
     bool exploratory_isp_reset_delay_ack = false;
     bool exploratory_isp_active_negation_ack = false;
     bool exploratory_isp_feature_ack = false;
@@ -1011,6 +1012,10 @@ int main(int argc, char** argv) {
             trace_pci_registers = true;
         else if (std::strcmp(argv[i], "--model-config-retry") == 0)
             model_config_retry = true;
+        else if (std::strcmp(argv[i], "--model-config-retry-low") == 0) {
+            model_config_retry = true;
+            retry_pin_high = false;
+        }
         else if (std::strcmp(argv[i], "--explore-isp-reset-delay-ack") == 0)
             exploratory_isp_reset_delay_ack = true;
         else if (std::strcmp(argv[i], "--explore-isp-active-negation-ack") == 0)
@@ -1156,7 +1161,7 @@ int main(int argc, char** argv) {
     // instructions. sim5's generic Kx start() uses a different boot record.
     core.resetAt(entry, prcb);
     setExploratoryPciRegisterTrace(trace_pci_registers);
-    applyExploratoryConfigRetryStrap(model_config_retry);
+    applyExploratoryConfigRetryStrap(model_config_retry, retry_pin_high);
     // Control-table prefetch is a reset-time hardware action, not a firmware
     // MMIO access for the exploratory unknown-peripheral audit.
     resetBoardMemoryAudit();

@@ -137,6 +137,24 @@ The gate's window is 4,000,000 instructions with no host activity. Code that run
 | `native-service-marker-second-spare.bin` from 2026-11-16 | stall |
 | `native-rom-second-spare-no-x86-rom.bin`, staged 2026-10-26 | stall |
 
+**Counterfactual and fault gates.** With the model's RETRY strap set low,
+EBCR starts at `0x0008`; the failed first-spare image and a no-release control
+both let SeaBIOS reach the boot sector, with no firmware release write. This
+shows the modeled stall depends on the unmeasured strap, rather than proving
+the strap's physical state. Separately, changing only the stored RTEMS payload
+digest in a temporary copy of the first-spare candidate makes stage two report
+`0x1003`; early PCI release still lets the modeled host reach the boot sector.
+The receipts are [low-strap](../artifacts/current/accele160-pci-release-20261117/config-retry-low-strap.json)
+and [payload-fault](../artifacts/current/accele160-pci-release-20261117/config-retry-payload-fault.json).
+
+Intel's [80303 initialization guide](https://www.bitsavers.org/components/intel/i960/80303/273395-005_80303_IO_Processor_Prog_Guide_and_Initialization_200104.pdf),
+section 4.4, initializes the ATUs before the bridge and writes EBCR last to
+allow host BIOS configuration. Its address definitions match the bridge-block
+offsets used here, including EBCR `0x1040`, SISR `0x1042`, and SDER `0x105c`.
+The guide does not validate the Mylex-specific values or the native routine's
+earlier timing; those remain based on the stock trace and are not hardware
+qualified.
+
 **Regression.**
 
 - The control build without the new flag is byte-identical to the existing `native-passive-marker-second-spare.bin`, SHA-256 `bd0c204c…01a97`; its stage two is the unchanged 480-byte `08d9866a…b0af`.

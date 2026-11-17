@@ -110,6 +110,20 @@ if [ -n "${QEMU:-}" ] && [ -n "${BIOS:-}" ]; then
   done
   python3 $emu/qemu/test_config_retry_post.py --qemu "$QEMU" --bios "$BIOS" \
     ${QEMU_DATA:+--qemu-data "$QEMU_DATA"} "$@" --output "$out/config-retry-post.json"
+  echo "-- counterfactual: RETRY strapped low, old images enumerate without a release"
+  python3 $emu/qemu/test_config_retry_post.py --qemu "$QEMU" --bios "$BIOS" \
+    ${QEMU_DATA:+--qemu-data "$QEMU_DATA"} --retry-strap-low \
+    --must-boot $failed \
+    --must-boot "$out/control-passive-no-release-second-spare.bin" \
+    --output "$out/config-retry-low-strap.json"
+  echo "-- corrupted RTEMS payload: stage two rejects it after PCI release"
+  fault_image="$out/native-passive-pci-release-second-spare.bin"
+  if [ -n "${FIRST_SPARE_STOCK:-}" ]; then
+    fault_image="$out/native-passive-pci-release-first-spare.bin"
+  fi
+  python3 $emu/qemu/test_config_retry_fault.py --qemu "$QEMU" --bios "$BIOS" \
+    ${QEMU_DATA:+--qemu-data "$QEMU_DATA"} --emulator $emu/build/accele160-emu \
+    --image "$fault_image" --output "$out/config-retry-payload-fault.json"
 else
   echo "== 7. skipped (set QEMU and BIOS for the coupled host-side run)"
 fi

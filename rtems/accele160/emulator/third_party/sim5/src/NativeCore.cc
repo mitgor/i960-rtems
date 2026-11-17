@@ -556,17 +556,15 @@ void setExploratoryPciRegisterTrace(bool enabled) noexcept {
     pciRegisterTrace = enabled;
     pciRegisterWrites = 0;
 }
-void applyExploratoryConfigRetryStrap(bool enabled) noexcept {
+void applyExploratoryConfigRetryStrap(bool enabled, bool retry_pin_high) noexcept {
     configRetryModel = enabled;
-    configRetryReleased = false;
+    configRetryReleased = enabled && !retry_pin_high;
     configRetryReleaseCycle = 0;
     configRetryReleaseIp = 0;
-    // Assumed mode-3 reset value 0x000c: Configuration Cycle Retry (bit 2,
-    // from the RETRY pin) plus Upstream Prefetchable Memory Enable (bit 3,
-    // documented default 1). Intel 273353-001 table 14-46. Pin-dependent
-    // bits 8..11 are not modeled; firmware writes the whole register.
+    // Configuration Cycle Retry (bit 2) follows the RETRY pin. Bit 3 has
+    // documented default 1. Pin-dependent bits 8..11 are not modeled.
     if (enabled && physicalMemory) {
-        physicalMemory[0x1040] = 0x0c;
+        physicalMemory[0x1040] = retry_pin_high ? 0x0c : 0x08;
         physicalMemory[0x1041] = 0;
     }
 }

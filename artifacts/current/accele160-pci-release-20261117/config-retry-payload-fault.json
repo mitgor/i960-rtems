@@ -1,0 +1,28 @@
+{
+ "gate": "invalid native payload after early PCI release",
+ "result": "PASS",
+ "base_image_sha256": "842dc04f866fb949a8531f8517eb2109c08aebbedbc19996e33e66a09fd79e17",
+ "temporary_fault_image_sha256": "205da7075ddb24470cdcdd703592cde31fe99040f181ccb79c3721f4657c00bb",
+ "mutation": "flip bit 0 of stored payload FNV at flash offset 0x47008",
+ "stage2_status": "0x1003",
+ "i960_release_lines": [
+  "checkpoint config-retry released cycle=1355953 ip=c000a190 ebcr=0048"
+ ],
+ "host": {
+  "image": "corrupt-payload.bin",
+  "image_sha256": "205da7075ddb24470cdcdd703592cde31fe99040f181ccb79c3721f4657c00bb",
+  "qemu_exit_code": 0,
+  "host_stalled": false,
+  "retry_released_seen_by_host": true,
+  "boot_sector_reached": true,
+  "host_config_accesses_logged": 47,
+  "config_retry_lines": [
+   "accele160 config-retry released ebcr=0x0048 retried-attempts=2 first-access=bridge-read offset=0x00"
+  ],
+  "i960_release_lines": [
+   "checkpoint config-retry released cycle=1355953 ip=c000a190 ebcr=0048"
+  ]
+ },
+ "physical_boot_tested": false,
+ "safe_to_flash": false
+}

@@ -39,7 +39,8 @@ def run(args, image, directory, label):
     disk = directory / 'boot.img'
     disk.write_bytes(boot_sector())
     emu_command = [str(args.emulator), str(image), '1000', '--board-id=11',
-                   '--quiet-trace', '--model-config-retry',
+                   '--quiet-trace', ('--model-config-retry-low'
+                                     if args.retry_strap_low else '--model-config-retry'),
                    f'--bridge-socket={socket}']
     qemu_command = [str(args.qemu), '-machine', 'pc,accel=tcg', '-m', '64',
                     '-display', 'none', '-serial', 'none', '-monitor', 'none',
@@ -114,8 +115,13 @@ def main():
     parser.add_argument('--seconds', type=float, default=120)
     parser.add_argument('--retry-limit', type=int, default=120,
                         help='retried attempts (1M i960 instructions each) before STALL')
+    parser.add_argument('--retry-strap-low', action='store_true',
+                        help='counterfactual: model RETRY pin low at reset; '
+                             'the host must enumerate without any firmware release')
     parser.add_argument('--output', required=True, type=Path)
     args = parser.parse_args()
+    if args.retry_strap_low and args.must_stall:
+        parser.error('--must-stall is incompatible with --retry-strap-low')
     if args.output.exists():
         raise FileExistsError(args.output)
     failures, results = [], []
@@ -131,8 +137,15 @@ def main():
             if expect == 'boot':
                 # The host side caches the release, so a later re-assertion
                 # is only visible in the i960 log.
-                ok = (result['retry_released_seen_by_host'] and not reasserted and
-                      result['boot_sector_reached'] and not result['host_stalled'])
+                if args.retry_strap_low:
+                    ok = (result['boot_sector_reached'] and not result['host_stalled']
+                          and result['host_config_accesses_logged'] > 0
+                          and not result['i960_release_lines']
+                          and any('ebcr=0x0008 retried-attempts=0' in line
+                                  for line in result['config_retry_lines']))
+                else:
+                    ok = (result['retry_released_seen_by_host'] and not reasserted and
+                          result['boot_sector_reached'] and not result['host_stalled'])
             else:
                 ok = (result['host_stalled'] and not result['boot_sector_reached']
                       and not result['retry_released_seen_by_host'])
@@ -153,6 +166,7 @@ def main():
         'emulator_sha256': hashlib.sha256(args.emulator.read_bytes()).hexdigest(),
         'bios_sha256': hashlib.sha256(args.bios.read_bytes()).hexdigest(),
         'retry_limit': args.retry_limit, 'results': results,
+        'retry_strap_low_assumed': args.retry_strap_low,
         'result': 'PASS' if not failures else 'FAIL', 'failures': failures,
         'physical_boot_tested': False, 'safe_to_flash': False,
     }
