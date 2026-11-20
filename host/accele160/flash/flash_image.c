@@ -2,9 +2,15 @@
 /* Explicit one-shot FLASHIMAGE on the new AcceleRAID 160 only.
  * No command is submitted merely by loading this module. A pending command
  * pins the module and the reviewed myrsread parent; never force-unload it.
+ *
+ * Auto-sense is requested. Stock 6.00-05 completion (0xc004e940) turns every
+ * non-zero internal status into host status 2; the internal code survives
+ * only in sense bytes 12/13 (0x80|code>>8, code&0xff). Expect 80/16 when the
+ * erase/program writer failed and 81/05 when no image was staged.
  */
 #include <linux/module.h>
 #include <linux/pci.h>
+#include <linux/dma-mapping.h>
 #include <linux/debugfs.h>
 #include <linux/completion.h>
 #include <linux/workqueue.h>
@@ -24,6 +30,10 @@ static DEFINE_MUTEX(lock);
 static bool started, done, released;
 static int status = -1, residual = -1;
 static unsigned long start_jiffies, end_jiffies;
+static u8 *sense;
+static dma_addr_t sense_dma;
+static u8 sense_copy[MYRS_SENSE_SIZE];
+static int sense_len = -1;
 
 static void worker(struct work_struct *unused)
 {
@@ -36,7 +46,9 @@ static void worker(struct work_struct *unused)
  cmd->status = 0; cmd->residual = 0; cmd->sense_len = 0;
  cmd->mbox.common.id = MYRS_DCMD_TAG;
  cmd->mbox.common.opcode = MYRS_CMD_OP_IOCTL;
- cmd->mbox.common.control.no_autosense = true;
+ memset(sense, 0, MYRS_SENSE_SIZE);
+ cmd->mbox.common.sense_addr = sense_dma;
+ cmd->mbox.common.sense_len = MYRS_SENSE_SIZE;
  cmd->mbox.common.dma_size = 0;
  cmd->mbox.common.ioctl_opcode = 0x2e;
  cmd->mbox.common.rsvd2[0] = 9; /* exact staged whole-flash selector */
@@ -53,9 +65,11 @@ static void worker(struct work_struct *unused)
  wait_for_completion(&completed);
  spin_lock_irqsave(&cs->queue_lock, flags);
  status = cmd->status; residual = cmd->residual;
+ sense_len = cmd->sense_len;
  spin_unlock_irqrestore(&cs->queue_lock, flags);
  mutex_unlock(&cs->dcmd_mutex);
  mutex_lock(&lock);
+ memcpy(sense_copy, sense, sizeof(sense_copy));
  end_jiffies = jiffies;
  done = true;
  mutex_unlock(&lock);
@@ -64,13 +78,13 @@ static void worker(struct work_struct *unused)
 static ssize_t status_read(struct file *f, char __user *out,
                            size_t n, loff_t *pos)
 {
- char buf[160]; int len;
+ char buf[224]; int len;
  mutex_lock(&lock);
  len = scnprintf(buf, sizeof(buf),
-  "started=%d done=%d status=%d residual=%d elapsed_ms=%u released=%d\n",
+  "started=%d done=%d status=%d residual=%d elapsed_ms=%u released=%d sense_len=%d sense=%*phN\n",
   started, done, status, residual,
   started ? jiffies_to_msecs((done ? end_jiffies : jiffies) - start_jiffies) : 0,
-  released);
+  released, sense_len, (int)sizeof(sense_copy), sense_copy);
  mutex_unlock(&lock);
  return simple_read_from_buffer(out, n, pos, buf, len);
 }
@@ -134,8 +148,13 @@ static int __init init_flash(void)
  if (!cs || cs->pdev != pdev || !cs->ctlr_info || !cs->next_cmd_mbox) {
   module_put(parent); goto wrong;
  }
+ sense = dma_alloc_coherent(&pdev->dev, MYRS_SENSE_SIZE, &sense_dma, GFP_KERNEL);
+ if (!sense) { module_put(parent); pci_dev_put(pdev); return -ENOMEM; }
  dir = debugfs_create_dir("accele-flashimage", NULL);
- if (IS_ERR(dir)) { module_put(parent); pci_dev_put(pdev); return PTR_ERR(dir); }
+ if (IS_ERR(dir)) {
+  dma_free_coherent(&pdev->dev, MYRS_SENSE_SIZE, sense, sense_dma);
+  module_put(parent); pci_dev_put(pdev); return PTR_ERR(dir);
+ }
  debugfs_create_file("status", 0400, dir, NULL, &status_ops);
  debugfs_create_file("start", 0200, dir, NULL, &start_ops);
  debugfs_create_file("release", 0200, dir, NULL, &release_ops);
@@ -147,6 +166,7 @@ static void __exit stop_flash(void)
 {
  if (started) flush_work(&work);
  debugfs_remove_recursive(dir);
+ dma_free_coherent(&pdev->dev, MYRS_SENSE_SIZE, sense, sense_dma);
  module_put(parent); pci_dev_put(pdev);
 }
 module_init(init_flash); module_exit(stop_flash); MODULE_LICENSE("GPL");
