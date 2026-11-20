@@ -1,20 +1,3 @@
-## EXPERIMENT BRANCH `experiment/accele160-flash-status2` — 2026-11-21 (offline only)
-
-**Parallel experiment, not the main line.** Commit `e4098dae` is an unmodified
-copy of the untracked `docs/hardware/ACCELE160-FLASH-STATUS-2-INVESTIGATION.md`
-from the main checkout; diff against it. Main's copy may have moved on.
-
-Finding: stock 6.00-05 maps every non-zero internal status to host status 2,
-so the 2026-11-20 FLASHIMAGE "status 2" does not mean rejection before the
-writer. The staged image is never validated and the staged pointer was set,
-so the erase loop ran and every block erase failed at the chip (VPP, lock
-bits or a different part). Read the corrected note above first.
-
-Changed here: `host/accele160/flash/flash_image.c` requests auto-sense and
-prints `sense_len=`/`sense=`; new offline `audit_flash_status.py` pins the
-traced instruction bytes. **The module is not compiled or run; its SHA is not
-pinned in `flash_native_spare.py`. No card was touched.**
-
 ## EXPERIMENT BRANCH `experiment/accele160-ebcr-release` — 2026-11-17 (offline only)
 
 **This worktree is a parallel experiment, not the main line.** Read

@@ -36,40 +36,42 @@ stock dump. It is disassembly only; nothing here was observed on hardware.
   writes sense byte 12 = `0x80 | code >> 8` and byte 13 = `code & 0xff`:
   `80/16` for a writer failure, `81/05` for no staged image. The pinned
   `flash_image.ko` set `no_autosense`, so the 2026-11-20 attempt discarded it.
-- **The staged image is never inspected.** IOCTL `0x2e` dispatches through
+- **The traced handler does not inspect the staged image.** IOCTL `0x2e` dispatches through
   `0xc0023694` to the continuation `0xc0050750`, which requeues the command
   while the controller is not quiescent and otherwise calls board method
   `0xf8`, the handler at `0xc00509f0`. That handler tests only that the
   staged-image pointer `0xc0494cf0` is non-null, then calls the writer at
-  `0xc0055410`. There is no checksum, header or descriptor check, so the
-  contents of the native candidate cannot cause a rejection.
+  `0xc0055410`. No checksum, header or descriptor check appears in this
+  handler; a check elsewhere in the command path has not been ruled out.
 - **The staged pointer was set.** It is cleared in one place, the free routine
   at `0xc0051040`, called only by READIMAGE when that read allocated its own
   buffer, by FLASHIMAGE after the writer, and by the `WrongFl` method. A
   STOREIMAGE followed by a READIMAGE that returned the candidate leaves it
-  set, which excludes the `0x105` path for this attempt.
-- **So the writer ran and reported failure.** It erases all sixteen 64 KiB
+  set, assuming no untraced command changed it before FLASHIMAGE.
+- **If the handler reached the writer, its failure path fits the result.** The
+  writer attempts to erase all sixteen 64 KiB
   blocks (the boot block too after a selector-9 STOREIMAGE), ORs the results
   without stopping early, and programs only if every erase succeeded.
 - **How an erase fails.** `0xc0055240` issues `FF 50 20 D0`, polls status with
   no timeout until bit 7 is set, then fails the block if status bit 3 (VPP
   low) or bit 4 is set, or if the block is not blank afterward. A locked block
-  takes the last route. Each returns in microseconds with the data intact.
+  takes the last route. A prompt status failure could leave data intact.
 
-This fits the observations: completion inside one jiffy, and a cold read with
-no changed byte. Because no block was erased, the condition is chip-wide. The
-commands did reach the flash: block 0 begins with `0x50` in array mode (bit 7
-clear), so a missing write strobe would have left the unbounded poll spinning
-and the command would never have completed.
+This route fits the observations: completion inside one jiffy, and a cold read
+with no changed byte. The readback proves no persistent data change; it does
+not establish whether erase commands reached the chip. If the erase poll ran,
+block 0 begins with `0x50` in array mode (bit 7 clear), so an ineffective write
+strobe would likely leave that unbounded poll spinning. This conditional clue
+does not prove the live path entered the poll.
 
-Candidates, in order of fit: VPP not reaching the chip during the gated
-window (board control bit 3 at `0xe0500000`, a jumper, or a failed part);
-lock bits or the master lock set on this chip; a different flash part. The
-scheduler that invokes the `0x2e` continuation was not traced, so a generic
-rejection outside this handler is unlikely but not excluded.
+If sense data later confirms internal writer status 22, candidates include VPP
+not reaching the chip during the gated window (board control bit 3 at
+`0xe0500000`, a jumper, or a failed part), lock bits or the master lock set on
+this chip, or a different flash part. The scheduler that invokes the `0x2e`
+continuation was not traced, so rejection outside this handler remains open.
 
-Two consequences for the experimental native writer. It uses the same gate
-and chip, so native APPLY would meet the same condition on this card. And
+Two implications for the experimental native writer. It uses the same gate
+and chip, so native APPLY may meet the same condition on this card. Also,
 `flash_backend.c` reads `0xe0500000` back, whereas stock never reads that
 register and keeps a shadow at board context `+0x50`; if the latch is
 write-only, the native gate check is unreliable.
@@ -96,8 +98,7 @@ first call. That read-only payload is now the next executable check.
 2. If the board can be instrumented, read the Intel flash ID and block-lock
    bits, then measure the chip's VPP during a controlled stock flash attempt.
    ID/lock reads do not establish VPP or that the PCI write path works.
-3. Build the auto-sense `flash_image.c` from branch
-   `experiment/accele160-flash-status2`, review it, and pin its new SHA-256
+3. Build and review the auto-sense `flash_image.c`, then pin its new SHA-256
    in `flash_native_spare.py` (the old pin rejects it, by design). Any later
    failure then reports the internal code in `sense=`. The firmware's
    auto-sense copy for this IOCTL is untested on hardware.
