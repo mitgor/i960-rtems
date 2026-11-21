@@ -86,22 +86,35 @@ neither descriptor difference alone is an established cause.
 A new [volatile stock-RAM route](../../artifacts/current/accele160-stock-ram-route-20261120/README.md)
 ran a 28-byte marker under IOCTL `0x8f` without flashing. The host restored
 the dispatch word and loader page, and a full flash read remained stock.
-Because i960 cache visibility after host restoration is not established,
-the prepared Intel ID/lock payload requires a cold power cycle before its
-first call. That read-only payload is now the next executable check.
+After a cold boot on 2026-11-21, two fresh full READIMAGE captures matched the
+stock SHA-256 `0ca0f4b6...6e943`. The prepared Intel ID/lock payload then ran
+once through the volatile RAM route. It reported Intel manufacturer `0x89`,
+device `0xa6` (28F008S3), master lock `0`, and a zero lock mask for the six
+mutable blocks at flash offsets `0x40000..0xbffff`. The RAM dispatch word and
+loader page were restored; a subsequent full READIMAGE still matched stock.
+The result does not report lock state for the other ten blocks or measure VPP.
+The full local evidence is in
+`artifacts/current/accele160-flash-id-live-20261121/` (local, untracked).
+
+The auto-sense `flash_image.c` also compiled against the remote's
+`6.8.0-138-generic` headers. The resulting module's SHA-256 is
+`1ba32738d7d055349db23d4bb17257364cd279f3ed048800f0b4c7c7b6d59bd3`.
+It was not loaded or used for FLASHIMAGE, and its hash is not pinned in
+`flash_native_spare.py`.
 
 1. With power off, compare JP3 position, flash chip part number, and
    visible rework/damage on card 10112504772 against the known successful
    first spare. Record photos before changing a jumper. The AcceleRAID 160
    installation guide labels JP3 "Maintenance Mode" but does not describe
    it as a flash write-protect switch.
-2. If the board can be instrumented, read the Intel flash ID and block-lock
-   bits, then measure the chip's VPP during a controlled stock flash attempt.
-   ID/lock reads do not establish VPP or that the PCI write path works.
-3. Build and review the auto-sense `flash_image.c`, then pin its new SHA-256
-   in `flash_native_spare.py` (the old pin rejects it, by design). Any later
-   failure then reports the internal code in `sense=`. The firmware's
-   auto-sense copy for this IOCTL is untested on hardware.
+2. If the board can be instrumented, measure the chip's VPP during a
+   controlled stock flash attempt. The ID/lock reads do not establish VPP or
+   that the PCI write path works. A later RAM-only probe could also read the
+   lock state at the remaining ten block offsets after a separate cold boot,
+   once the relevant identifier-mode addresses are verified.
+3. Review the compiled auto-sense `flash_image.ko`, then pin its new SHA-256
+   in `flash_native_spare.py` only as part of a reviewed later flash attempt.
+   Its firmware auto-sense copy for this IOCTL is untested on hardware.
 4. Rebuild a card-specific candidate only after a measured cause or changed
    condition. Require new same-boot full stock reads, STOREIMAGE, independent
    staged readback, and preflight. A rejected or pending command gets no
