@@ -124,8 +124,10 @@ It was not loaded or used for FLASHIMAGE, and its hash is not pinned in
    proof, a successful same-boot sense probe, fresh paired stock reads,
    STOREIMAGE, and independent staged readback. It returned host status 2
    with sense suffix `80/16`, confirming internal writer-failure status 22.
-   The command module was retained and no retry occurred. The PC is off;
-   cold full-flash readback is still required before deciding what persisted.
+   The command module was retained and no retry occurred. After a cold power
+   cycle, the PC beeped and booted Linux. Two independent full reads were
+   byte-identical to the pre-attempt stock image: no flash byte was
+   persistently changed.
 5. All sixteen lock bits were clear before the attempt. The writer-failure
    code does not distinguish low VPP, an erase status error, a bus write fault,
    or another board condition. The next discriminating measurement is VPP at

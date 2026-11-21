@@ -25,7 +25,14 @@ inspection and did not retry. A persistent one-attempt marker was written
 before the command. The PCI endpoint and stock descriptor still responded.
 The PC was then told to power off.
 
-**Cold full-flash readback is pending.** Do not infer unchanged flash from
-the fast failure or from the pre-attempt reads. Full `live/` captures and
-kernel logs are retained locally outside Git. No further FLASHIMAGE should
-be issued on this card without a new measured cause and a reviewed plan.
+After a cold power cycle, the PC beeped and booted Linux with this same sole
+Slot 5 card. On boot `941d7063-c96b-41a7-950e-7c01f0fb49bd`, the read-only
+driver first bind passed. Two independent full selector-9 READIMAGE captures
+completed with status 0, residual 0, and unchanged DMA guards. Both have SHA-256
+`0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943`
+and compare byte for byte with the pre-attempt stock capture. **No flash byte
+was persistently changed.** The card remains stock and responds normally.
+
+Full `live/` and `post-cold-941d/` captures and kernel logs are retained
+locally outside Git. No further FLASHIMAGE should be issued on this card
+without a new measured cause and a reviewed plan.
