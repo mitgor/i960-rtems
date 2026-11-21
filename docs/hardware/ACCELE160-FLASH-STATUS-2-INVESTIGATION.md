@@ -107,11 +107,12 @@ It was not loaded or used for FLASHIMAGE, and its hash is not pinned in
    first spare. Record photos before changing a jumper. The AcceleRAID 160
    installation guide labels JP3 "Maintenance Mode" but does not describe
    it as a flash write-protect switch.
-2. If the board can be instrumented, measure the chip's VPP during a
-   controlled stock flash attempt. The ID/lock reads do not establish VPP or
-   that the PCI write path works. A later RAM-only probe could also read the
-   lock state at the remaining ten block offsets after a separate cold boot,
-   once the relevant identifier-mode addresses are verified.
+2. Run the prepared [all-sixteen-block lock probe](../../artifacts/current/accele160-stock-flash-locks-20261121/README.md)
+   once after a separate cold power cycle. Intel's
+   [S3 datasheet](https://datasheet4u.com/pdf/1183856/28F008S3.pdf) identifies
+   the lock code at offset `0xXX0002` within each 64 KiB block. This read-only
+   probe does not establish VPP or that the PCI flash-write path works. If the
+   board can be instrumented, measure VPP during a controlled later attempt.
 3. Review the compiled auto-sense `flash_image.ko`, then pin its new SHA-256
    in `flash_native_spare.py` only as part of a reviewed later flash attempt.
    Its firmware auto-sense copy for this IOCTL is untested on hardware.
