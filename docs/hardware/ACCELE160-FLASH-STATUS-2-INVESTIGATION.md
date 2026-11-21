@@ -96,11 +96,11 @@ The result does not report lock state for the other ten blocks or measure VPP.
 The full local evidence is in
 `artifacts/current/accele160-flash-id-live-20261121/` (local, untracked).
 
-The auto-sense `flash_image.c` also compiled against the remote's
+The auto-sense `flash_image.c` compiled against the remote's
 `6.8.0-138-generic` headers. The resulting module's SHA-256 is
 `1ba32738d7d055349db23d4bb17257364cd279f3ed048800f0b4c7c7b6d59bd3`.
-It was not loaded or used for FLASHIMAGE, and its hash is not pinned in
-`flash_native_spare.py`.
+It was used for the one diagnostic FLASHIMAGE attempt below and has not been
+approved for another attempt.
 
 1. With power off, compare JP3 position, flash chip part number, and
    visible rework/damage on card 10112504772 against the known successful
@@ -138,6 +138,16 @@ It was not loaded or used for FLASHIMAGE, and its hash is not pinned in
 `flash_native_spare.py` still quarantines this stock image by default. The
 diagnostic exception has a persistent one-attempt marker; it cannot be used
 for another ordinary invocation.
+
+## Flashless development path, 2026-11-21
+
+The stock card now executed the previously accepted RAM admission handler
+through a two-stage *volatile* `0x8f` entry. Its handler ping, a 15-page
+bounded RTEMS run, and a 40-frame RTEMS Doom run passed without any flash
+command. [Evidence and exact limits](../../artifacts/current/accele160-volatile-stock-20261121/README.md).
+The Doom owner remains reboot-only quiescent, so post-run full flash reads
+must wait for a cold power cycle. This result bypasses the card's failing
+flash writer for development; it does not identify that writer's fault.
 
 Evidence: `artifacts/current/accele160-live-stock-20261120-48e3bca2/`,
 `artifacts/current/accele160-post-rejected-flash-20261120-1648696d/`,

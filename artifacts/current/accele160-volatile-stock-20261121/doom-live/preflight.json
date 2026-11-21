@@ -1,0 +1,33 @@
+{
+  "boot_id": "941d7063-c96b-41a7-950e-7c01f0fb49bd",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old": {
+    "bdf": "0000:37:04.1",
+    "profile": "dac960pg",
+    "present": false,
+    "ids": null,
+    "driver": null
+  },
+  "firmware_sha256": "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943",
+  "handler_sha256": "8d8c79c3b8c206608ef7221000991c0d75eb101ce06581fedc2a74522648ad34",
+  "image_sha256": "948f6470ab8a475fe1570c0b353cd542f44b26cb9bda1a83af6ddb6a62c79f02",
+  "kernel_sha256": "8f3b61c3100f96b9eee24d3487bc53553982e4f22c9fb11a2e9abdeb6ce7f185",
+  "fnv": "0xe7b54349",
+  "modules": {
+    "reserve": "d5dc1cf2dddba559ea4ff5ebf7bac1ae32f462f27dd968b8964f0cd20b47c945",
+    "release": "bbfbe079b86ba1503efcfcce4c0c7ee5e1ad2fc662ded669766bdb7d38a3ecfa",
+    "copy": "6dd7dc40be4c51e65dce65978b3fdda3256e54928034d7acfe451a946caf1ec6",
+    "digest": "db97abc60007d96017c4aaed6f86f5f155988b2948993f2f5b3f81cc964ad6b1",
+    "admit": "313af2acae9e740dfb90e10e053beeca47efe9cfd5d0bfa74c1cdd07abd28c15"
+  }
+}

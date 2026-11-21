@@ -1,0 +1,7 @@
+{
+  "boot_id": "941d7063-c96b-41a7-950e-7c01f0fb49bd",
+  "stage": "handler-accepted",
+  "volatile_handler_entry": "0xc000e1ec",
+  "flash_commands": 0,
+  "cold_reset_required_to_remove_handler": true
+}

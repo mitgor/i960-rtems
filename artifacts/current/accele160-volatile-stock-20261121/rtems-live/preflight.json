@@ -1,0 +1,33 @@
+{
+  "boot_id": "941d7063-c96b-41a7-950e-7c01f0fb49bd",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_card": {
+    "bdf": "0000:37:04.1",
+    "profile": "accele160",
+    "present": false,
+    "ids": null,
+    "driver": null
+  },
+  "image_sha256": "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943",
+  "module_sha256": {
+    "reserve": "d5dc1cf2dddba559ea4ff5ebf7bac1ae32f462f27dd968b8964f0cd20b47c945",
+    "release": "bbfbe079b86ba1503efcfcce4c0c7ee5e1ad2fc662ded669766bdb7d38a3ecfa",
+    "copy": "6dd7dc40be4c51e65dce65978b3fdda3256e54928034d7acfe451a946caf1ec6",
+    "digest": "db97abc60007d96017c4aaed6f86f5f155988b2948993f2f5b3f81cc964ad6b1",
+    "rtems": "bac9412aa8a635479a09cf5dbf13b9908ed1dedae74d7de919743c53bc23b9f3"
+  },
+  "readbacks": [
+    "/home/mit/i960-volatile-handler-20261121/read0",
+    "/home/mit/i960-volatile-handler-20261121/read1"
+  ]
+}
