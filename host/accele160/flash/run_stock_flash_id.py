@@ -26,6 +26,7 @@ STOCK_SHA = "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943"
 PAYLOAD_SHA = "f2d1352e01e7d69f9277623bb8d89047970df27312330121cb4b9b89f4809623"
 MODULE_SHA = "e0c72c756efd6222bbcd6a74d21b1fe14b6621225c84670eb3534bc42df1cef1"
 PREVIOUS_PROBE_BOOT = "9f2952ee-924f-4d27-af7e-83598ae24ba5"
+USED = Path("/run/i960-stock-8f-called")  # tmpfs: one 0x8f call per boot
 
 
 def sha(data):
@@ -56,8 +57,19 @@ def check_read(path, boot):
          "same-boot stock read is incomplete")
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+def decode_flash_id(words):
+    identification = dict(zip(("magic", "manufacturer", "device",
+        "master_lock", "all_block_locks", "array_byte",
+        "return_code", "gate_before", "gate_after"), words))
+    qualified = (words[:7] == (MAGIC, 0x89, 0xA6, 0, 0, 0x50, 0)
+                 and words[7] == words[8])
+    return {"identification": identification,
+            "expected_id_and_locks": qualified}, qualified
+
+
+def main(payload_sha=PAYLOAD_SHA, timeout=5, decode=decode_flash_id,
+         description=__doc__):
+    parser = argparse.ArgumentParser(description=description)
     for name in ("module", "payload", "read0", "read1", "out"):
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--cold-power-cycle-observed", action="store_true")
@@ -72,8 +84,10 @@ def main():
         check_read(args.read1, boot)
         need(args.read0 != args.read1, "reads must be independent")
         marker = args.payload.read_bytes()
-        need(sha(marker) == PAYLOAD_SHA and len(marker) == 356,
-             "wrong all-block flash-ID payload")
+        need(sha(marker) == payload_sha and len(marker) <= 0x600,
+             "wrong pinned RAM payload")
+        need(not USED.exists(),
+             "0x8f already called on this boot; cold power cycle first")
         need(sha(args.module.read_bytes()) == MODULE_SHA and
              args.module.name == "ping_probe.ko", "wrong command module")
         need(not PEER.exists() and
@@ -88,7 +102,7 @@ def main():
         args.out.mkdir(parents=True)
         (args.out / "preflight.json").write_text(json.dumps({
             "boot_id": boot, "bdf": BDF, "stock_sha256": STOCK_SHA,
-            "flash_id_payload_sha256": PAYLOAD_SHA, "module_sha256": MODULE_SHA,
+            "flash_id_payload_sha256": payload_sha, "module_sha256": MODULE_SHA,
             "flash_program_erase_commands": 0,
         }, indent=2) + "\n")
 
@@ -135,13 +149,16 @@ def main():
             module_loaded = True
             need(fields(DEBUG / "status").get("started") == "0",
                  "command module already started")
+            USED.touch()
+            started_at = time.monotonic()
             (DEBUG / "start").write_text("ping\n")
             command_started = True
-            deadline = time.monotonic() + 5
+            deadline = started_at + timeout
             while time.monotonic() < deadline:
                 status = fields(DEBUG / "status")
                 if status.get("done") == "1":
                     command_completed = True
+                    seconds = round(time.monotonic() - started_at, 2)
                     break
                 time.sleep(0.02)
             (args.out / "status.txt").write_text((DEBUG / "status").read_text())
@@ -149,16 +166,11 @@ def main():
             map_page(CODE)
             code_after = page_bytes()
             (args.out / "loader-after-call.bin").write_bytes(code_after)
-            words = struct.unpack_from("<9I", code_after, 0x834)
-            identification = dict(zip(("magic", "manufacturer", "device",
-                "master_lock", "all_block_locks", "array_byte",
-                "return_code", "gate_before", "gate_after"), words))
-            marker_seen = words[0] == MAGIC
-            qualified = (words[:7] == (MAGIC, 0x89, 0xA6, 0, 0, 0x50, 0)
-                         and words[7] == words[8])
+            record, qualified = decode(
+                struct.unpack_from("<9I", code_after, 0x834))
             (args.out / "result.json").write_text(json.dumps({
-                "boot_id": boot, "status": status,
-                "identification": identification, "expected_id_and_locks": qualified,
+                "boot_id": boot, "status": status, **record,
+                "command_seconds": seconds,
                 "flash_program_erase_commands": 0,
             }, indent=2) + "\n")
         finally:
@@ -186,8 +198,7 @@ def main():
             elif module_loaded and not command_started:
                 subprocess.run(["rmmod", "ping_probe"], check=True)
         need(status["status"] == "2" and status["residual"] == "0" and
-             marker_seen and qualified,
-             "flash ID/lock diagnostic or stock fallback differed")
+             qualified, "RAM diagnostic or stock fallback differed")
 
 
 if __name__ == "__main__":
