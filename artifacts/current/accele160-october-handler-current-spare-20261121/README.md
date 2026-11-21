@@ -39,5 +39,23 @@ a card-specific write-path problem but would not alone identify its component.
 Success requires a cold boot, two full matching reads of the candidate, and a
 working persistent handler ping before running RTEMS or Doom.
 
-Status: candidate built and copied to the remote host for the next cold boot; no
-FLASHIMAGE of this candidate has been issued yet.
+## Result, 2026-11-21
+
+After a cold boot into Linux, the same sole Slot 5 card passed two independent
+full stock READIMAGE checks, the same-boot sense probe, STOREIMAGE, an
+independent staged READIMAGE matching `candidate.bin` byte for byte, and the
+flash tool's preflight. One FLASHIMAGE was issued on boot ID
+`81182258-15c8-4513-963c-d6cc688802f3`. It returned immediately with
+`done=1 status=2 residual=0 elapsed_ms=0`, auto-sense `80/16`. The tool's
+one-attempt marker was created and no retry was made. Two full READIMAGE
+checks on the still-running card after this failure both matched the exact
+stock SHA-256 above. Their byte-for-byte comparison with the preflash stock
+capture found no change.
+
+This reproduces the writer failure with the October handler image, so the
+native writer candidate's contents do not explain the rejection. It does not
+yet prove an electrical cause, nor does a warm READIMAGE prove the card will
+cold boot. Full live captures are retained locally under `live-8118/` and on
+the remote host under `/home/mit/i960-october-handler-test-20261121/live-8118/`.
+The immediate next check is a physical power cycle with this same card, then
+two more full READIMAGE checks if Linux boots.

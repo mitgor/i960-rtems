@@ -1,0 +1,39 @@
+{
+  "boot_id": "81182258-15c8-4513-963c-d6cc688802f3",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "original_card": {
+    "bdf": "0000:37:04.1",
+    "profile": "accele160",
+    "present": false,
+    "ids": null,
+    "driver": null
+  },
+  "stock_sha256": "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943",
+  "candidate_sha256": "ce3e632c80df475d4fa372cad61255c73b5438aad76c2022308889c10c5c9af4",
+  "flash_module_sha256": "1ba32738d7d055349db23d4bb17257364cd279f3ed048800f0b4c7c7b6d59bd3",
+  "diagnostic_retry_proof": null,
+  "october_handler_test": {
+    "boot_id": "81182258-15c8-4513-963c-d6cc688802f3",
+    "candidate_sha256": "ce3e632c80df475d4fa372cad61255c73b5438aad76c2022308889c10c5c9af4",
+    "october_accepted_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+    "same_handler_sha256": "8d8c79c3b8c206608ef7221000991c0d75eb101ce06581fedc2a74522648ad34",
+    "sense_probe": {
+      "boot_id": "81182258-15c8-4513-963c-d6cc688802f3",
+      "sense_probe_module_sha256": "4ce5a04f03e1aaac521896f0d94573f40e40ab9af2522a016e879c25604d1e67",
+      "internal_status": "0x104"
+    }
+  },
+  "stage_dir": "/home/mit/i960-october-handler-test-20261121/live-8118/stage",
+  "readback_dir": "/home/mit/i960-october-handler-test-20261121/live-8118/staged-read",
+  "command": "FLASHIMAGE 0x2e selector 9 zero DMA"
+}
