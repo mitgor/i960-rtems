@@ -114,28 +114,28 @@ It was not loaded or used for FLASHIMAGE, and its hash is not pinned in
    the lock code at offset `0xXX0002` within each 64 KiB block. This read-only
    result does not establish VPP or that the PCI flash-write path works. If
    the board can be instrumented, measure VPP during a controlled later attempt.
-3. A separate `sense_probe.ko` now sends only stock unsupported IOCTL `0x8f`
-   with a sense buffer. On a new cold boot, after two fresh stock reads, run
-   `run_sense_probe.py` once. It must report internal `0x104` as sense suffix
-   `81/04`, complete, and unload before any staging. This tests the host sense
-   path without invoking FLASHIMAGE; it does not guarantee sense on IOCTL
-   `0x2e`.
-4. The diagnostic FLASHIMAGE retry path is restricted to this card's exact
+3. On a new cold boot, the separate `sense_probe.ko` sent only stock
+   unsupported IOCTL `0x8f` with a sense buffer. It completed with internal
+   `0x104` as suffix `81/04` and unloaded. This validated the host sense path
+   without invoking FLASHIMAGE. A post-probe full read still matched stock.
+4. The [one diagnostic FLASHIMAGE retry](../../artifacts/current/accele160-diagnostic-flash-20261121/README.md)
+   was restricted to this card's exact
    stock and native-writer candidate hashes, the completed all-block lock
    proof, a successful same-boot sense probe, fresh paired stock reads,
-   STOREIMAGE, and independent staged readback. It pins the new auto-sense
-   module and writes a persistent one-attempt marker before loading it.
-   If sense is absent or any gate fails, do not issue FLASHIMAGE. A failed or
-   pending command gets no same-boot retry.
-5. Cold readback is required after any accepted flash. If a retry fails, retain
-   the module and diagnostic status for inspection, then cold-read the full
-   image before any further action. If it succeeds, the candidate is still
-   experimentally unqualified at the emulator's board-model boundary; keep
-   the external programmer available for recovery.
+   STOREIMAGE, and independent staged readback. It returned host status 2
+   with sense suffix `80/16`, confirming internal writer-failure status 22.
+   The command module was retained and no retry occurred. The PC is off;
+   cold full-flash readback is still required before deciding what persisted.
+5. All sixteen lock bits were clear before the attempt. The writer-failure
+   code does not distinguish low VPP, an erase status error, a bus write fault,
+   or another board condition. The next discriminating measurement is VPP at
+   the actual chip during a controlled attempt, or a read-only circuit check
+   of the board's write-enable path. Do not issue another FLASHIMAGE until a
+   measured cause changes the plan.
 
-`flash_native_spare.py` still quarantines this stock image by default. Its
-diagnostic exception requires the pinned lock and sense evidence above and
-permits a single new-boot attempt; ordinary use cannot bypass the quarantine.
+`flash_native_spare.py` still quarantines this stock image by default. The
+diagnostic exception has a persistent one-attempt marker; it cannot be used
+for another ordinary invocation.
 
 Evidence: `artifacts/current/accele160-live-stock-20261120-48e3bca2/`,
 `artifacts/current/accele160-post-rejected-flash-20261120-1648696d/`,
