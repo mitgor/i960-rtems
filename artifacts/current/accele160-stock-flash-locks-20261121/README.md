@@ -19,7 +19,18 @@ confirmed cold power cycle before touching the volatile dispatch word.
 
 Offline validation: the payload's C logic passed the S3 model tests with
 locks set on blocks 0, 6 and 15; the i960 build passed its entry, fallback,
-and size checks. The live card has **not** run this revised payload. After a
-successful call, the launcher restores the dispatch word and loader page; a
-full READIMAGE should then confirm flash remains stock. If the command is
-pending, the RAM hook must remain in place until a cold reset.
+and size checks.
+
+On the next cold boot `e56a1655-ee74-45d3-b844-07d66b52640b`, the sole
+Slot 5 card passed first bind and two fresh full selector-9 stock reads.
+The revised RAM probe completed once and reported Intel `89/A6`, master lock
+`0`, and **all sixteen block lock bits clear** (`all_block_locks=0`). The
+launcher restored the volatile dispatch word and loader page, then a third
+full READIMAGE again matched stock SHA-256
+`0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943`.
+No FLASHIMAGE, erase, program, or lock-configuration command was issued.
+The full `live/` captures are local and not included in Git.
+
+The next test cannot reuse this boot for another `0x8f` call: i960 cache
+visibility after restoring a RAM hook is unproven. If a command remains
+pending in a future run, leave the hook intact until a cold reset.

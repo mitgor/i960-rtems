@@ -1,3 +1,4 @@
 obj-m += stage_image.o
 obj-m += flash_image.o
+obj-m += sense_probe.o
 obj-m += ping_probe.o

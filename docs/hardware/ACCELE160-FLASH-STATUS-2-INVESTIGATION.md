@@ -107,23 +107,35 @@ It was not loaded or used for FLASHIMAGE, and its hash is not pinned in
    first spare. Record photos before changing a jumper. The AcceleRAID 160
    installation guide labels JP3 "Maintenance Mode" but does not describe
    it as a flash write-protect switch.
-2. Run the prepared [all-sixteen-block lock probe](../../artifacts/current/accele160-stock-flash-locks-20261121/README.md)
-   once after a separate cold power cycle. Intel's
+2. The [all-sixteen-block lock probe](../../artifacts/current/accele160-stock-flash-locks-20261121/README.md)
+   completed on a separate cold boot: all block lock bits and the master lock
+   were clear. Intel's
    [S3 datasheet](https://datasheet4u.com/pdf/1183856/28F008S3.pdf) identifies
    the lock code at offset `0xXX0002` within each 64 KiB block. This read-only
-   probe does not establish VPP or that the PCI flash-write path works. If the
-   board can be instrumented, measure VPP during a controlled later attempt.
-3. Review the compiled auto-sense `flash_image.ko`, then pin its new SHA-256
-   in `flash_native_spare.py` only as part of a reviewed later flash attempt.
-   Its firmware auto-sense copy for this IOCTL is untested on hardware.
-4. Rebuild a card-specific candidate only after a measured cause or changed
-   condition. Require new same-boot full stock reads, STOREIMAGE, independent
-   staged readback, and preflight. A rejected or pending command gets no
-   same-boot retry. Cold readback is required after any accepted flash.
+   result does not establish VPP or that the PCI flash-write path works. If
+   the board can be instrumented, measure VPP during a controlled later attempt.
+3. A separate `sense_probe.ko` now sends only stock unsupported IOCTL `0x8f`
+   with a sense buffer. On a new cold boot, after two fresh stock reads, run
+   `run_sense_probe.py` once. It must report internal `0x104` as sense suffix
+   `81/04`, complete, and unload before any staging. This tests the host sense
+   path without invoking FLASHIMAGE; it does not guarantee sense on IOCTL
+   `0x2e`.
+4. The diagnostic FLASHIMAGE retry path is restricted to this card's exact
+   stock and native-writer candidate hashes, the completed all-block lock
+   proof, a successful same-boot sense probe, fresh paired stock reads,
+   STOREIMAGE, and independent staged readback. It pins the new auto-sense
+   module and writes a persistent one-attempt marker before loading it.
+   If sense is absent or any gate fails, do not issue FLASHIMAGE. A failed or
+   pending command gets no same-boot retry.
+5. Cold readback is required after any accepted flash. If a retry fails, retain
+   the module and diagnostic status for inspection, then cold-read the full
+   image before any further action. If it succeeds, the candidate is still
+   experimentally unqualified at the emulator's board-model boundary; keep
+   the external programmer available for recovery.
 
-`flash_native_spare.py` now quarantines this exact stock image for an actual
-FLASHIMAGE request. `--preflight-only` remains available. Remove or replace
-the quarantine only as part of a reviewed fix supported by new evidence.
+`flash_native_spare.py` still quarantines this stock image by default. Its
+diagnostic exception requires the pinned lock and sense evidence above and
+permits a single new-boot attempt; ordinary use cannot bypass the quarantine.
 
 Evidence: `artifacts/current/accele160-live-stock-20261120-48e3bca2/`,
 `artifacts/current/accele160-post-rejected-flash-20261120-1648696d/`,
