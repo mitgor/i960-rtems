@@ -17,7 +17,7 @@ from card_select import select, require_unbound_or_absent
 from preflight import (verify_pair, SECOND_SPARE_PCI_RELEASE_SHA,
                        SLOT5_LIVE_PCI_RELEASE_SHA, RESTORED_SLOT5_UPDATER_SHA,
                        ORIGINAL_RAM_LOADER_SHA, SECOND_SPARE_RAM_LOADER_SHA,
-                       SECOND_SPARE_WRITER_SHA,
+                       SECOND_SPARE_WRITER_SHA, SECOND_SPARE_OCTOBER_HANDLER_SHA,
                        FLASH_SIZE)
 
 SPARE = "0000:37:04.1"
@@ -34,6 +34,40 @@ REJECTED_STOCK_SHA = "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9
 LOCK_PROBE_BOOT = "e56a1655-ee74-45d3-b844-07d66b52640b"
 LOCK_PROBE_PAYLOAD_SHA = "f2d1352e01e7d69f9277623bb8d89047970df27312330121cb4b9b89f4809623"
 SENSE_PROBE_MODULE_SHA = "4ce5a04f03e1aaac521896f0d94573f40e40ab9af2522a016e879c25604d1e67"
+OCTOBER_HANDLER_SHA = "8d8c79c3b8c206608ef7221000991c0d75eb101ce06581fedc2a74522648ad34"
+OCTOBER_ACCEPTED_SHA = "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd"
+
+
+def verify_october_handler_test(directory, boot, stock_sha, candidate_sha):
+    """One explicitly requested comparison against the October handler image."""
+    audit = json.loads((directory / "audit.json").read_text())
+    expected = {
+        "stock_sha256": REJECTED_STOCK_SHA,
+        "candidate_sha256": SECOND_SPARE_OCTOBER_HANDLER_SHA,
+        "october_candidate_sha256": OCTOBER_ACCEPTED_SHA,
+        "handler_sha256": OCTOBER_HANDLER_SHA,
+        "changed_bytes": 4277,
+        "loader_hook_offset": 276940,
+        "handler_offset": 283096,
+        "loader_checksum": "0x4436ed70",
+        "trailer_checksum": "0x44440277",
+        "serial_preserved": True,
+        "only_serial_diff_from_october_candidate": True,
+        "runtime_unchanged": True,
+        "boot_block_unchanged": True,
+        "known_checksums_pass": True,
+        "flash_command_issued": False,
+    }
+    if (stock_sha != REJECTED_STOCK_SHA or
+            candidate_sha != SECOND_SPARE_OCTOBER_HANDLER_SHA or
+            audit != expected or
+            hashlib.sha256((directory / "candidate.bin").read_bytes()).hexdigest()
+            != candidate_sha or
+            (directory / "october-handler-attempt.json").exists()):
+        raise ValueError("October handler test image, audit, or one-attempt gate differs")
+    return {"boot_id": boot, "candidate_sha256": candidate_sha,
+            "october_accepted_sha256": OCTOBER_ACCEPTED_SHA,
+            "same_handler_sha256": OCTOBER_HANDLER_SHA}
 
 
 def verify_diagnostic_retry(directory, boot, stock_sha, candidate_sha):
@@ -112,6 +146,7 @@ def main():
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--preflight-only", action="store_true")
     parser.add_argument("--diagnostic-retry-proof", type=Path)
+    parser.add_argument("--october-handler-proof", type=Path)
     parser.add_argument("--sense-proof", type=Path)
     parser.add_argument("--spare-bdf", choices=("0000:37:04.1", "0000:37:09.1"), default=SPARE)
     args = parser.parse_args()
@@ -119,7 +154,10 @@ def main():
     peer_bdf = ORIGINAL if spare_bdf == SPARE else SPARE
     lock = open("/run/lock/i960-loadrun.lock", "w")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    expected_flash_module = (DIAGNOSTIC_FLASH_MODULE_SHA if args.diagnostic_retry_proof
+    if args.diagnostic_retry_proof and args.october_handler_proof:
+        raise ValueError("choose one experimental flash mode")
+    expected_flash_module = (DIAGNOSTIC_FLASH_MODULE_SHA if
+                             (args.diagnostic_retry_proof or args.october_handler_proof)
                              else FLASH_MODULE_SHA)
     if args.module.name != "flash_image.ko" or hashlib.sha256(args.module.read_bytes()).hexdigest() != expected_flash_module:
         raise ValueError("wrong FLASHIMAGE module")
@@ -127,6 +165,7 @@ def main():
     boot = Path("/proc/sys/kernel/random/boot_id").read_text().strip()
     proof = verify_pair(image, (args.stock0, args.stock1), spare_bdf, boot)
     diagnostic = None
+    october_test = None
     if args.diagnostic_retry_proof:
         if args.sense_proof is None:
             raise ValueError("diagnostic retry requires same-boot sense proof")
@@ -137,14 +176,22 @@ def main():
         diagnostic["sense_probe"] = verify_sense_probe(args.sense_proof, boot)
         if (args.diagnostic_retry_proof / "diagnostic-flash-attempt.json").exists():
             raise RuntimeError("diagnostic FLASHIMAGE was already attempted; no retry")
+    elif args.october_handler_proof:
+        if spare_bdf != "0000:37:09.1" or args.sense_proof is None:
+            raise ValueError("October comparison requires Slot 5 and same-boot sense proof")
+        october_test = verify_october_handler_test(
+            args.october_handler_proof, boot,
+            proof["stock_sha256"], proof["candidate_sha256"])
+        october_test["sense_probe"] = verify_sense_probe(args.sense_proof, boot)
     elif args.sense_proof is not None:
-        raise ValueError("sense proof is only used for the diagnostic retry")
+        raise ValueError("sense proof requires an experimental flash mode")
     if proof["candidate_sha256"] not in (SECOND_SPARE_PCI_RELEASE_SHA,
                                           SLOT5_LIVE_PCI_RELEASE_SHA,
                                           RESTORED_SLOT5_UPDATER_SHA,
                                           ORIGINAL_RAM_LOADER_SHA,
                                           SECOND_SPARE_RAM_LOADER_SHA,
-                                          SECOND_SPARE_WRITER_SHA):
+                                          SECOND_SPARE_WRITER_SHA,
+                                          SECOND_SPARE_OCTOBER_HANDLER_SHA):
         raise ValueError("this flash command accepts only a pinned candidate")
     spare = select(spare_bdf, "accele160", driver="myrsread")
     original = require_unbound_or_absent(peer_bdf, "accele160")
@@ -208,19 +255,22 @@ def main():
         "candidate_sha256": proof["candidate_sha256"],
         "flash_module_sha256": expected_flash_module,
         "diagnostic_retry_proof": diagnostic,
+        "october_handler_test": october_test,
         "stage_dir": str(args.stage), "readback_dir": str(args.readback),
         "command": "FLASHIMAGE 0x2e selector 9 zero DMA",
     }
     if args.preflight_only:
         print(json.dumps(record, indent=2))
         return
-    if proof["stock_sha256"] == REJECTED_STOCK_SHA and diagnostic is None:
+    if proof["stock_sha256"] == REJECTED_STOCK_SHA and diagnostic is None and october_test is None:
         raise RuntimeError(
             "FLASHIMAGE is quarantined for this stock card: the identical "
             "staged/readback-verified request returned immediate status 2 on "
             "2026-11-20; diagnose the card-specific rejection before retrying")
     attempt_marker = (args.diagnostic_retry_proof / "diagnostic-flash-attempt.json"
-                      if diagnostic is not None else None)
+                      if diagnostic is not None else
+                      args.october_handler_proof / "october-handler-attempt.json"
+                      if october_test is not None else None)
     args.out.mkdir(parents=True, exist_ok=False)
     with (args.out / "preflight.json").open("w") as output:
         json.dump(record, output, indent=2)

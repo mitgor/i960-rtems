@@ -5,7 +5,8 @@ import tempfile
 import unittest
 
 from flash_native_spare import (SENSE_PROBE_MODULE_SHA, REJECTED_STOCK_SHA,
-                                verify_sense_probe)
+                                SECOND_SPARE_OCTOBER_HANDLER_SHA,
+                                verify_sense_probe, verify_october_handler_test)
 
 
 class SenseProofTests(unittest.TestCase):
@@ -51,6 +52,32 @@ class SenseProofTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             verify_sense_probe(self.path, self.boot)
 
+
+class OctoberHandlerGateTests(unittest.TestCase):
+    def test_exact_candidate_and_single_attempt(self):
+        source = Path(__file__).resolve().parents[3] / (
+            'artifacts/current/accele160-october-handler-current-spare-20261121')
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            (directory / 'audit.json').write_bytes((source / 'audit.json').read_bytes())
+            (directory / 'candidate.bin').write_bytes((source / 'candidate.bin').read_bytes())
+            proof = verify_october_handler_test(directory, 'cold-boot',
+                                                REJECTED_STOCK_SHA,
+                                                SECOND_SPARE_OCTOBER_HANDLER_SHA)
+            self.assertEqual(proof['boot_id'], 'cold-boot')
+            audit = json.loads((directory / 'audit.json').read_text())
+            audit['serial_preserved'] = False
+            (directory / 'audit.json').write_text(json.dumps(audit))
+            with self.assertRaises(ValueError):
+                verify_october_handler_test(directory, 'cold-boot',
+                                            REJECTED_STOCK_SHA,
+                                            SECOND_SPARE_OCTOBER_HANDLER_SHA)
+            (directory / 'audit.json').write_bytes((source / 'audit.json').read_bytes())
+            (directory / 'october-handler-attempt.json').write_text('{}')
+            with self.assertRaises(ValueError):
+                verify_october_handler_test(directory, 'cold-boot',
+                                            REJECTED_STOCK_SHA,
+                                            SECOND_SPARE_OCTOBER_HANDLER_SHA)
 
 if __name__ == "__main__":
     unittest.main()
