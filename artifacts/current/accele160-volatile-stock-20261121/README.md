@@ -1,4 +1,7 @@
-# Volatile stock-card RTEMS and Doom, 2026-11-21
+# Ram injection v1: stock-card RTEMS and Doom, 2026-11-21
+
+The [firmware experiment names](../../../docs/hardware/ACCELE160-FIRMWARE-NAMES.md)
+distinguish this flashless route from the persistent and native images.
 
 Card `0000:37:09.1` (serial `10112504772`) booted Linux with its original
 stock flash SHA-256

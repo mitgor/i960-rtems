@@ -1,4 +1,7 @@
-# AcceleRAID 160 reusable RAM admission acceptance
+# Firmware injection v1: reusable RAM admission acceptance
+
+This is the persistent October handler image in the
+[firmware experiment names](../../../docs/hardware/ACCELE160-FIRMWARE-NAMES.md).
 
 Accepted on 2026-10-17 on new card `0000:37:09.1`, with exact `myrsread`
 bound and old DAC960PG `0000:37:04.1` unbound. Operation 13 adds

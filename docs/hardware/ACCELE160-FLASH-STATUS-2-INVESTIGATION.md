@@ -141,7 +141,7 @@ for another ordinary invocation.
 
 ## Flashless development path, 2026-11-21
 
-The stock card now executed the previously accepted RAM admission handler
+The **Ram injection v1** path ran the previously accepted RAM admission handler
 through a two-stage *volatile* `0x8f` entry. Its handler ping, a 15-page
 bounded RTEMS run, and a 40-frame RTEMS Doom run passed without any flash
 command. [Evidence and exact limits](../../artifacts/current/accele160-volatile-stock-20261121/README.md).

@@ -1,5 +1,9 @@
 # Persistent AcceleRAID Doom acceptance
 
+This Doom run used **Firmware injection v1**: the handler was flashed, while
+RTEMS and Doom were uploaded to RAM. See the
+[firmware experiment names](../../../docs/hardware/ACCELE160-FIRMWARE-NAMES.md).
+
 The new card now runs a persistent, browser-controlled Doom session through
 the same owned two-buffer DMA transport. From the Mac repository, run
 **`./doom`** and open **http://192.168.2.75:8087/**. The installed remote

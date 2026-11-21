@@ -1,5 +1,9 @@
 # AcceleRAID 160 RTEMS native-ROM prototype
 
+In the [firmware experiment names](../../../docs/hardware/ACCELE160-FIRMWARE-NAMES.md),
+the build without an on-card writer is **native firmware handler v1**. The
+proposed build with an on-card writer is **native firmware with flash tool**.
+
 This directory starts the native firmware path. It does **not** initialize the
 80303 from reset yet: the original 64 KiB Mylex reset block still brings up
 DRAM and PCI, finds selector 2, checks its trailer and loader checksum, copies

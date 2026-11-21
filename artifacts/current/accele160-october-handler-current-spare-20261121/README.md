@@ -1,4 +1,7 @@
-# One-attempt October handler comparison on the current stock spare
+# Firmware injection v1: one-attempt comparison on the current stock spare
+
+The [firmware experiment names](../../../docs/hardware/ACCELE160-FIRMWARE-NAMES.md)
+distinguish this persistent handler image from the flashless and native paths.
 
 Card `0000:37:09.1` (serial `10112504772`) has stock full-flash SHA-256
 `0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943`.
