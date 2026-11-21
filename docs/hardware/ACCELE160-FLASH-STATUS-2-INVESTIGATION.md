@@ -149,6 +149,19 @@ The Doom owner remains reboot-only quiescent, so post-run full flash reads
 must wait for a cold power cycle. This result bypasses the card's failing
 flash writer for development; it does not identify that writer's fault.
 
+## Firmware injection v1 comparison, 2026-11-21
+
+The same sole Slot 5 card then staged the exact October RAM admission handler
+image rebased onto its serial, with independent full staged readback. One
+FLASHIMAGE returned host status 2 and sense suffix `80/16`, the same writer
+failure as the native-writer diagnostic candidate. Two full reads immediately
+afterward matched stock byte for byte. The HP Z400 then beeped and booted
+Linux after a physical power cycle; two more full reads on the new boot
+again matched stock. The comparison rules out the native candidate's image
+contents as a sufficient explanation, but no VPP or flash write signal was
+measured. The full [card-specific handoff](ACCELE160-CARD-10112504772-FLASH-HANDOFF.md)
+records both attempts, exact identities and recommended next steps.
+
 Evidence: `artifacts/current/accele160-live-stock-20261120-48e3bca2/`,
 `artifacts/current/accele160-post-rejected-flash-20261120-1648696d/`,
 `artifacts/current/accele160-spare-rom-20261025/flash/`, and

@@ -42,7 +42,9 @@ The PCI card remained enumerated and the Linux host remained reachable.
 
 The full local captures are `install-live/`, `rtems-live/`, and `doom-live/`.
 Only the small result/status records need to be tracked in Git; the complete
-frame and memory captures can remain local. A cold power cycle and two new
-full READIMAGE captures are still needed to establish the post-run flash
-identity. Until then, do not issue another card command or unload the retained
-DMA/admission modules.
+frame and memory captures can remain local. A later cold power cycle and two
+full READIMAGE captures on boot `81182258-15c8-4513-963c-d6cc688802f3`
+matched the exact stock SHA-256 above. The separate Firmware injection v1
+flash experiment then failed with writer status `80/16`; another cold boot and
+two complete reads again matched stock. See the
+[card-specific flash handoff](../../../docs/hardware/ACCELE160-CARD-10112504772-FLASH-HANDOFF.md).

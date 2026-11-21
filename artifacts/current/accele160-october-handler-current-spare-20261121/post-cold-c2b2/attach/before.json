@@ -1,0 +1,24 @@
+{
+  "boot_id": "c2b26a79-7b7b-4451-bfd1-454ae9a86316",
+  "spare": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": null
+  },
+  "peer": {
+    "bdf": "0000:37:04.1",
+    "profile": "accele160",
+    "present": false,
+    "ids": null,
+    "driver": null
+  },
+  "bridge_ebcr": 840,
+  "lp_idb": 0,
+  "module_sha256": "7bf5ae04045de781c2233e14a947adcdc8d7ff81059f9913fa90226cb2020edf"
+}

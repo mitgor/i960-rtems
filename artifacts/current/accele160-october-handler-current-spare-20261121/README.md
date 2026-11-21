@@ -54,8 +54,14 @@ capture found no change.
 
 This reproduces the writer failure with the October handler image, so the
 native writer candidate's contents do not explain the rejection. It does not
-yet prove an electrical cause, nor does a warm READIMAGE prove the card will
-cold boot. Full live captures are retained locally under `live-8118/` and on
-the remote host under `/home/mit/i960-october-handler-test-20261121/live-8118/`.
-The immediate next check is a physical power cycle with this same card, then
-two more full READIMAGE checks if Linux boots.
+prove an electrical cause. Full live captures are retained locally under
+`live-8118/` and on the remote host under
+`/home/mit/i960-october-handler-test-20261121/live-8118/`.
+
+After a physical power cycle, the PC beeped and booted Linux with the same
+sole Slot 5 card. On boot ID `c2b26a79-7b7b-4451-bfd1-454ae9a86316`,
+read-only first bind passed, and two independent full READIMAGE captures both
+had status/residual/guard changes zero. Both matched the exact preflash stock
+SHA-256 byte for byte. The candidate did not persist and no flash byte changed.
+The card remains usable with stock firmware. See
+`post-cold-c2b2/` for local captures and the matching remote directory.
