@@ -61,9 +61,14 @@ All three requests reported status 0, residual 0 and unchanged DMA guards.
 The 1 MiB readbacks also passed byte-for-byte `cmp` against the candidate.
 Compact [live receipts](live-stage/) are committed; complete bytes and the
 candidate remain on the remote under `/home/mit/i960-writer-stage-20261122/`.
-No `FLASHIMAGE 0x2e` was issued. The host was then sent a power-off request
-to clear the staged RAM image; cold boot and post-power-cycle reads are still
-unverified.
+No `FLASHIMAGE 0x2e` was issued. After a power cycle, the PC booted Linux
+again on boot `725fcfca-e805-493b-8987-80d981674be3`. The exact pinned
+read-only driver was loaded for card `0000:37:09.1`, and two independent
+full reads returned the installed Firmware injection v1 SHA-256
+`1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd`.
+Both had status 0, residual 0 and unchanged DMA guards. The
+[post-cycle receipts](postcold-725f/) show that RAM staging left the flash
+unchanged; they do not test a physical flash write.
 
 The emulator runs remain software results, and RAM staging verifies transport
 only. No physical UPD1 transfer, VPP measurement,
