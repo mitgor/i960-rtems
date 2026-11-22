@@ -41,6 +41,68 @@ namespace {
     int exploratoryBoardSelector = -1;
     bool exploratoryBoardSelectorWritten = false;
     bool exploratoryQlogicPci = false;
+    extern std::unique_ptr<uint8_t[]> physicalMemory;
+    struct S3FlashModel {
+        bool enabled = false;
+        unsigned fault = 0;
+        enum class Mode { Array, Id, Status } mode = Mode::Array;
+        enum class Setup { None, Erase, Program } setup = Setup::None;
+        Address setup_address = 0;
+        ByteOrdinal status = 0x80;
+        ByteOrdinal control = 0;
+    } s3Flash;
+    constexpr Address s3Base = 0xfef00000u;
+    constexpr Address s3End = 0xff000000u;
+    constexpr Address s3Control = 0xe0500000u;
+    ByteOrdinal s3ReadByte(Address address) noexcept {
+        const Address offset = address - s3Base;
+        if (s3Flash.mode == S3FlashModel::Mode::Status) return s3Flash.status;
+        if (s3Flash.mode == S3FlashModel::Mode::Id) {
+            if (offset == 0) return 0x89;
+            if (offset == 1) return s3Flash.fault == 3 ? 0u : 0xa6;
+            if (offset == 3) return 0;
+            if ((offset & 0xffffu) == 2)
+                return s3Flash.fault == 4 && offset == 0xb0002u ? 1u : 0u;
+            return 0xff;
+        }
+        return physicalMemory[address];
+    }
+    void s3WriteByte(Address address, ByteOrdinal value) noexcept {
+        if (s3Flash.setup != S3FlashModel::Setup::None) {
+            const auto setup = s3Flash.setup;
+            s3Flash.setup = S3FlashModel::Setup::None;
+            if (setup == S3FlashModel::Setup::Erase && value == 0xd0 &&
+                (address >> 16) == (s3Flash.setup_address >> 16)) {
+                if ((s3Flash.control & 8u) && s3Flash.fault != 2) {
+                    std::memset(physicalMemory.get() + (address & ~Address{0xffffu}),
+                                0xff, 0x10000);
+                    s3Flash.status = 0x80;
+                } else s3Flash.status = 0xa8;
+            } else if (setup == S3FlashModel::Setup::Program &&
+                       address == s3Flash.setup_address) {
+                if ((s3Flash.control & 8u) && s3Flash.fault != 2) {
+                    if (s3Flash.fault != 5) physicalMemory[address] &= value;
+                    s3Flash.status = 0x80;
+                } else s3Flash.status = 0x9a;
+            } else s3Flash.status = 0xb0;
+            s3Flash.mode = S3FlashModel::Mode::Status;
+            return;
+        }
+        if (value == 0xff) s3Flash.mode = S3FlashModel::Mode::Array;
+        else if (value == 0x90) s3Flash.mode = S3FlashModel::Mode::Id;
+        else if (value == 0x70) s3Flash.mode = S3FlashModel::Mode::Status;
+        else if (value == 0x50) {
+            s3Flash.status = 0x80;
+            s3Flash.mode = S3FlashModel::Mode::Status;
+        } else if (value == 0x20 || value == 0x40) {
+            s3Flash.setup = value == 0x20 ? S3FlashModel::Setup::Erase :
+                                            S3FlashModel::Setup::Program;
+            s3Flash.setup_address = address;
+        } else {
+            s3Flash.status = 0xb0;
+            s3Flash.mode = S3FlashModel::Mode::Status;
+        }
+    }
     // Intel 80303 mode 3 (273395-005 section 2.3, 273353-001 table 14-46):
     // with RETRY strapped high the primary PCI interface retries every
     // configuration cycle until the core clears EBCR (0x1040) bit 2. The AcceleRAID strap is inferred from
@@ -589,6 +651,11 @@ void setExploratoryBoardSelector(int value) noexcept {
     exploratoryBoardSelector = value;
     exploratoryBoardSelectorWritten = false;
 }
+void setExploratoryS3Flash(bool enabled) noexcept {
+    s3Flash = {};
+    s3Flash.enabled = enabled;
+}
+void setExploratoryS3FlashFault(unsigned fault) noexcept { s3Flash.fault = fault; }
 void setExploratoryQlogicPci(bool enabled) noexcept {
     exploratoryQlogicPci = enabled;
     secondaryPciSelector = 0;
@@ -863,6 +930,20 @@ namespace {
         // The observed board has no live UART: the startup presence probe
         // writes 1 to 0xe0600007 but reads back 0.
         if (address == 0xe0600007) return static_cast<T>(0);
+        if constexpr (std::is_integral_v<T> && sizeof(T) <= 4) {
+            if (s3Flash.enabled && address == s3Control)
+                return static_cast<T>(s3Flash.control);
+        }
+        if constexpr (std::is_integral_v<T> && sizeof(T) <= 4) {
+            // sim5 implements ldob through an ordinal load at the byte address.
+            if (s3Flash.enabled && address >= s3Base &&
+                uint64_t{address} + sizeof(T) <= s3End) {
+                Ordinal result = 0;
+                for (unsigned i = 0; i < sizeof(T); ++i)
+                    result |= Ordinal{s3ReadByte(address + i)} << (8 * i);
+                return static_cast<T>(result);
+            }
+        }
         if (hostDmaMailbox.valid &&
             address >= hostDmaMailbox.base &&
             uint64_t{address} + sizeof(T) <=
@@ -964,6 +1045,17 @@ namespace {
     template<typename T>
     void store(Address address, T value, TreatAs<T>) {
         notePciRegisterWrite(address, value);
+        if constexpr (std::is_integral_v<T> && sizeof(T) == 1) {
+            if (s3Flash.enabled && address == s3Control) {
+                s3Flash.control = static_cast<ByteOrdinal>(value);
+                if (s3Flash.fault == 1) s3Flash.control &= ~ByteOrdinal{8};
+                return;
+            }
+            if (s3Flash.enabled && address >= s3Base && address < s3End) {
+                s3WriteByte(address, static_cast<ByteOrdinal>(value));
+                return;
+            }
+        }
         if (hostDmaRingSlot.valid &&
             address >= hostDmaRingSlot.base &&
             uint64_t{address} + sizeof(T) <=

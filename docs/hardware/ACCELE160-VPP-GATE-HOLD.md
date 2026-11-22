@@ -70,7 +70,7 @@ host-observed command time and `register_reads_back_bit3`.
 | VPP stays near 0 V during the hold | The gate path on this card does not deliver VPP. Trace the switch between the `0xe0500000` latch and the pin. |
 | VPP rises to a level the S3 datasheet accepts for erase | The steady supply path works. Remaining suspects: the chip, a strobe during erase, or a VPP rise too slow for the stock writer, which erases within microseconds of setting the gate. A meter cannot see that; a scope can. |
 | VPP rises but sags or sits between lockout and the valid range | Marginal supply. Do not issue FLASHIMAGE: a partial all-block erase can take the boot block. |
-| `register_reads_back_bit3` false while `held` is true | The latch is write-only, so the native writer's gate readback check in `flash_backend.c` cannot be relied on. |
+| `register_reads_back_bit3` false while `held` is true | Readback cannot confirm the latch. A split input/write port is plausible, but this result alone does not prove that the latch or VPP switched. Measure VPP at the pin. |
 
 ## Why the readback flag matters (added 2026-11-22)
 
@@ -83,7 +83,8 @@ So the address is probably an input port on read and a latch on write. The
 native `flash_backend.c` and the emulator both assume a read returns the
 latch. Against a split-port model the backend returns result 8 with no flash
 command, and writes the input bits into the latch. `register_reads_back_bit3`
-is the measurement that settles this.
+tests the readback assumption only; the VPP pin measurement tests whether
+the requested gate supplied programming voltage.
 
 The worktree copy of `flash_backend.c` no longer depends on it: it writes the
 constants 8 and 0 and reports the read in UPD1 word 15 without judging it.

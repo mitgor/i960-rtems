@@ -2,6 +2,37 @@
  * and read-only host-startup sample. Explicit offline flags add mailbox
  * ingestion, local reply composition, and an emulator-only DMA1 prototype. */
 #include "host_startup.h"
+#ifdef ACCELE160_UPDATER_STAGING
+#ifdef ACCELE160_FLASH_WRITER_EXPERIMENTAL
+#include "flash_writer.h"
+extern accele160_s3_io accele160_flash_backend;
+extern int accele160_flash_backend_write_block(unsigned int,
+    const unsigned char *, unsigned int, void *);
+#endif
+#include "updater_service.h"
+#ifndef ACCELE160_OBSERVE_HOST_EVENTS
+#error Native updater staging requires host-event observation
+#endif
+static accele160_update_service update_service;
+#endif
+#ifdef ACCELE160_RAM_LOADER
+#include "../ram_loader/service.h"
+#ifndef ACCELE160_UPDATER_STAGING
+#error RAM loader requires the observed UPD1 transport build
+#endif
+static accele160_ram_service ram_service;
+static unsigned int ram_run(unsigned int entry, volatile unsigned int *control,
+                            void *context)
+{
+    unsigned int scratch = 0u;
+    unsigned int (*payload)(volatile unsigned int *) =
+        (unsigned int (*)(volatile unsigned int *))entry;
+    (void)context;
+    __asm__ volatile("syncf" ::: "memory");
+    __asm__ volatile("icctl 2,0,%0" : "=r"(scratch) :: "memory");
+    return payload(control);
+}
+#endif
 #ifdef ACCELE160_READ_ROM_MAILBOX
 #include "host_mailbox.h"
 #ifndef ACCELE160_OBSERVE_HOST_EVENTS
@@ -857,6 +888,9 @@ static void observe_host_events(void)
     accele160_host_snapshot previous, current;
     unsigned int previous_message0 = ~0u, previous_message1 = ~0u;
     unsigned int message0, message1;
+#ifdef ACCELE160_UPDATER_STAGING
+    unsigned int update_poll_ticks=0u, cache_scratch=0u;
+#endif
     previous.bridge_pci_command = ~0u;
     previous.raid_pci_command = ~0u;
     previous.inbound_doorbell = ~0u;
@@ -864,6 +898,35 @@ static void observe_host_events(void)
     previous.inbound_mask = ~0u;
     previous.ready_flags = ~0u;
     for (;;) {
+#ifdef ACCELE160_UPDATER_STAGING
+        if (++update_poll_ticks==1000u) {
+            update_poll_ticks=0u;
+            /* External PCI writes do not snoop the i960 D-cache. */
+            __asm__ volatile("dcctl 2,0,%0" : "=r"(cache_scratch) :: "memory");
+#ifdef ACCELE160_RAM_LOADER
+            if (ram_service.loader.state == 0u)
+#endif
+            accele160_update_service_poll(&update_service,
+                (volatile unsigned int *)ACCELE160_UPDATE_CONTROL_ADDRESS,
+                (const volatile unsigned char *)ACCELE160_UPDATE_DATA_ADDRESS,
+                (unsigned char *)ACCELE160_UPDATE_BUFFER_ADDRESS,
+                (const volatile unsigned char *)ACCELE160_UPDATE_FLASH_ADDRESS,
+#ifdef ACCELE160_FLASH_WRITER_EXPERIMENTAL
+                accele160_flash_backend_write_block, &accele160_flash_backend);
+#else
+                0, 0);
+#endif
+#ifdef ACCELE160_RAM_LOADER
+            if (update_service.updater.state == 0u)
+            accele160_ram_service_poll(&ram_service,
+                (volatile unsigned int *)ACCELE160_RAM_CONTROL_ADDRESS,
+                (const volatile unsigned char *)ACCELE160_RAM_DATA_ADDRESS,
+                (unsigned char *)ACCELE160_RAM_LOAD_ADDRESS,
+                ram_run, 0);
+#endif
+            __asm__ volatile("syncf" ::: "memory");
+        }
+#endif
         current = accele160_sample_host_startup(local_read32, 0);
         message0 = local_read32(0x1310u, 0);
         message1 = local_read32(0x1314u, 0);
@@ -985,6 +1048,19 @@ static void Init(rtems_task_argument arg)
 #ifdef ACCELE160_OBSERVE_HOST_EVENTS
     if (done == 1 && worker_count == 64) {
         report[8] = 0u;
+#ifdef ACCELE160_UPDATER_STAGING
+        accele160_update_service_init(&update_service,
+            (volatile unsigned int *)ACCELE160_UPDATE_CONTROL_ADDRESS);
+#ifdef ACCELE160_FLASH_WRITER_EXPERIMENTAL
+        ((volatile unsigned int *)ACCELE160_UPDATE_CONTROL_ADDRESS)[11] =
+            ACCELE160_UPDATE_CAP_WRITER;
+#endif
+#ifdef ACCELE160_RAM_LOADER
+        accele160_ram_service_init(&ram_service,
+            (volatile unsigned int *)ACCELE160_RAM_CONTROL_ADDRESS);
+#endif
+        __asm__ volatile("syncf" ::: "memory");
+#endif
         observe_host_events();
     }
 #endif

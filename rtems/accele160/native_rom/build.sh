@@ -13,6 +13,44 @@ out=$(cd "$3" && pwd)
 app_flags=()
 start_flags=()
 mailbox_objects=()
+updater_objects=()
+ram_objects=()
+if [[ ${ACCELE160_UPDATER_STAGING:-0} == 1 ]]; then
+  if [[ ${ACCELE160_OBSERVE_HOST_EVENTS:-0} != 1 ]]; then
+    echo "ACCELE160_UPDATER_STAGING requires ACCELE160_OBSERVE_HOST_EVENTS" >&2
+    exit 2
+  fi
+  app_flags+=(-DACCELE160_UPDATER_STAGING)
+  for item in updater updater_service; do
+    "$tools_bin/i960-coff-gcc" -mrp -Os -fno-builtin -ffreestanding \
+      -c "$src/$item.c" -o "$out/$item.o"
+    updater_objects+=("$out/$item.o")
+  done
+fi
+if [[ ${ACCELE160_FLASH_WRITER_EXPERIMENTAL:-0} == 1 ]]; then
+  if [[ ${ACCELE160_UPDATER_STAGING:-0} != 1 ]]; then
+    echo "ACCELE160_FLASH_WRITER_EXPERIMENTAL requires ACCELE160_UPDATER_STAGING" >&2
+    exit 2
+  fi
+  app_flags+=(-DACCELE160_FLASH_WRITER_EXPERIMENTAL)
+  for item in flash_writer flash_backend; do
+    "$tools_bin/i960-coff-gcc" -mrp -Os -fno-builtin -ffreestanding \
+      -c "$src/$item.c" -o "$out/$item.o"
+    updater_objects+=("$out/$item.o")
+  done
+fi
+if [[ ${ACCELE160_RAM_LOADER:-0} == 1 ]]; then
+  if [[ ${ACCELE160_UPDATER_STAGING:-0} != 1 ]]; then
+    echo "ACCELE160_RAM_LOADER requires ACCELE160_UPDATER_STAGING" >&2
+    exit 2
+  fi
+  app_flags+=(-DACCELE160_RAM_LOADER)
+  for item in loader service; do
+    "$tools_bin/i960-coff-gcc" -mrp -Os -fno-builtin -ffreestanding \
+      -c "$src/../ram_loader/$item.c" -o "$out/ram_$item.o"
+    ram_objects+=("$out/ram_$item.o")
+  done
+fi
 if [[ ${ACCELE160_EARLY_ENTRY_MARKER:-0} == 1 ]]; then
   start_flags+=(-DACCELE160_EARLY_ENTRY_MARKER)
 fi
@@ -164,6 +202,8 @@ fi
 "$tools_bin/i960-elf-ld" -T "$src/link.ld" -Map "$out/rtems.map" \
   -o "$out/rtems.elf" "$out/start.o" "$out/app.o" "$out/host_startup.o" \
   "${mailbox_objects[@]}" \
+  "${updater_objects[@]}" \
+  "${ram_objects[@]}" \
   "$rtems_build/context.o" "$rtems_build/libc.o" \
   "$rtems_build/librtems-bounded.a"
 "$tools_bin/i960-elf-objcopy" -O binary "$out/rtems.elf" "$out/rtems.bin"

@@ -95,6 +95,8 @@ def run(args, image, directory, label):
         'host_config_accesses_logged': sum(
             line.startswith(('accele160 config R ', 'accele160 config W '))
             for line in lines),
+        'qemu_stderr_tail': qemu_text[-2000:],
+        'emulator_tail': emu_text[-2000:],
         'config_retry_lines': retry,
         'i960_release_lines': [line for line in emu_text.splitlines()
                                if line.startswith('checkpoint config-retry ')],

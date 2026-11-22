@@ -49,6 +49,7 @@ typedef struct Accele160State {
     unsigned native_followup_mirror_mask;
     unsigned ring_followup_events;
     bool step_on_ack;
+    bool step_on_upd1;
     /* Intel 80303 mode 3: every configuration cycle is retried until the
      * i960 clears EBCR bit 2. Opt-in; needs the i960 bridge socket. */
     bool model_config_retry;
@@ -1511,6 +1512,28 @@ static void accele160_write(void *opaque, hwaddr addr, uint64_t value,
     accele160_trace(s, 'W', addr, value, size);
     if (s->bridge_fd >= 0 && addr >= 0x1000) {
         accele160_bridge(s, 'W', s->piatvr + addr, size, value);
+        if (s->step_on_upd1 && s->piatvr == 0xc0800000u &&
+            addr < 0x1008u && addr + size > 0x1004u) {
+            uint32_t seq = accele160_bridge(s, 'R', 0xc0801004u, 4, 0);
+            uint32_t ack = accele160_bridge(s, 'R', 0xc0801008u, 4, 0);
+            /* Test-only synchronous clock. SHA-256 can need hundreds of
+             * millions of interpreted instructions; the guest waits here
+             * until the device publishes this command's response. A Python
+             * mmap may implement pack_into as several intermediate writes;
+             * only a fully published next sequence starts the clock. */
+            if (seq && seq == ack + 1u) {
+                for (unsigned step = 0; step < 600; ++step) {
+                    accele160_bridge_request(s, "S 1000000\n");
+                    ack = accele160_bridge(s, 'R', 0xc0801008u, 4, 0);
+                    if (ack == seq) break;
+                }
+                if (ack != seq) {
+                    fprintf(stderr, "accele160 UPD1 command timed out seq=%u ack=%u\n",
+                            seq, ack);
+                    exit(67);
+                }
+            }
+        }
         return;
     }
     if (s->bridge_fd >= 0 && size == 1) {
@@ -2169,8 +2192,13 @@ static void accele160_config_write(PCIDevice *pci_dev, uint32_t addr,
     if (addr < PCI_COMMAND + 2 && addr + size > PCI_COMMAND)
         accele160_mirror_command(s, 0x1204,
                                  pci_get_word(pci_dev->config + PCI_COMMAND));
-    if (addr < 0x48 && addr + size > 0x44)
+    if (addr < 0x48 && addr + size > 0x44) {
+        uint32_t before = s->piatvr;
         s->piatvr = pci_get_long(pci_dev->config + 0x44);
+        if (s->step_on_upd1)
+            fprintf(stderr, "accele160 UPD1 PIATVR %08x -> %08x\n",
+                    before, s->piatvr);
+    }
 }
 
 static uint32_t accele160_pci_bridge_read_config(PCIDevice *pci_dev,
@@ -2270,6 +2298,7 @@ static Property accele160_properties[] = {
     DEFINE_PROP_STRING("aperture-file", Accele160State, aperture_file),
     DEFINE_PROP_STRING("bridge-socket", Accele160State, bridge_socket),
     DEFINE_PROP_BOOL("step-on-ack", Accele160State, step_on_ack, false),
+    DEFINE_PROP_BOOL("step-on-upd1", Accele160State, step_on_upd1, false),
     DEFINE_PROP_BOOL("model-config-retry", Accele160State,
                      model_config_retry, false),
     DEFINE_PROP_UINT32("config-retry-limit", Accele160State,

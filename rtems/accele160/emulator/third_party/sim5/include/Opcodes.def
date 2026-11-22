@@ -222,7 +222,7 @@
                                            // we do IAC instructions. The format of the sysctl
                                            // "packet" is nearly identical to an IAC with the order of
                                            // fields in the first 32-bit being reversed
-    REGOperation(iccctl, 0x65b, NewCore)
+    REGOperation(icctl, 0x65b, NewCore)
     REGOperation(dcctl, 0x65c, NewCore)
 
     REGOperation(halt, 0x65d, NewCore) // page missing from the Hx manual but in the Jx manual...oops

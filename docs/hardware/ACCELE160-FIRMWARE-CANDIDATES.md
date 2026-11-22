@@ -21,6 +21,7 @@ for that card. Never use an image made for one serial on another card.
 | **Native updater, receiver only**, first-spare image `17804234…3acca790f` | Native RTEMS plus UPD1 receive/seal/abort service; **no linked Intel writer** | Flashed restored first spare, cold booted and ran RTEMS `PASS`; UPD1 interface not physically exercised | Best proven native boot base, not a proven update path |
 | **Native updater, receiver only**, verified image `2aa1d5a8…2a620289a3dab9fe2` | Corrected UPD1 v2 and post-write verification logic, with no writer linked | Offline interpreter/QEMU/Linux-guest tests only | Do not treat as hardware-qualified |
 | **Native firmware with flash tool**, experimental image `867f7320…e2a6453` | Native RTEMS, UPD1 v2, **linked Intel 28F008S3 erase/program/readback routine** | Built and tested in an S3 software model; **never flashed or booted on hardware** | **Prepared, but unqualified for physical flashing or APPLY** |
+| **Native firmware with flash tool**, corrected card `10112500320` image `b35b1e83…4662c695` | Same service with the split-port gate correction and this card's exact descriptor | Reproducible cross-build; compiled i960 normal APPLY and gate-off fault passed in the model; **never flashed or booted on hardware** | **Latest offline candidate; not qualified for physical flashing or APPLY** |
 | **Firmware injection v1**, failed comparison image `ce3e632c…10c5c9af4` | October handler rebased onto serial `10112504772` | STOREIMAGE/readback passed; FLASHIMAGE failed `80/16`; cold reads stayed stock | Do not retry blindly on that card |
 
 Short hashes above are labels only. The full hashes and evidence below are the
@@ -43,15 +44,21 @@ preparing a candidate or recovery image.
 
 ## The native image with the on-card flash tool
 
-This is the candidate the phrase **native firmware with flash tool** refers to:
-local file `artifacts/current/accele160-experimental-writer-unqualified-20261120/candidate.bin`,
+The first offline candidate in the **native firmware with flash tool** family
+is local file `artifacts/current/accele160-experimental-writer-unqualified-20261120/candidate.bin`,
 SHA-256 `867f7320d5f8cc2623cd6b024cecf988df754eaa92dd3eaf6452fecb8e2a6453`.
 The binary and large test captures remain local; the documentation is tracked.
-It is a complete 1 MiB image built from original-card stock SHA-256
+That image is a complete 1 MiB build from original-card stock SHA-256
 `0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a`.
 It is **only** appropriate as a binary for a card whose two fresh full reads
 match that base exactly. In particular, it is not a binary for current Slot 5
 serial `10112500320`, former Slot 5 serial `10112504772`, or the restored first spare.
+
+For current Slot 5 card `10112500320`, the newer
+[corrected per-card build](../../artifacts/current/accele160-writer-gate-corrected-offline-20261122/README.md)
+has SHA-256 `b35b1e8312336532fae9175fdc3d0d0be7b80b14281434f42af1db294662c695`.
+It replaces the gate readback assumption and is reproducible, but remains
+offline-only. The older `867f…` image is not the binary to test on this card.
 
 The build uses `ACCELE160_UPDATER_STAGING=1` and
 `ACCELE160_FLASH_WRITER_EXPERIMENTAL=1`. Its UPD1 v2 service receives 256

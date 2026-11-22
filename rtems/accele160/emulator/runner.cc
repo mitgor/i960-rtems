@@ -147,7 +147,8 @@ static void serveBridge(Core& core, const std::string& path,
                         bool exploratory_timer_interrupt,
                         bool exploratory_isp_no_device_auto,
                         bool trace_scan_state3,
-                        bool trace_priority) {
+                        bool trace_priority,
+                        bool model_s3_flash) {
     if (path.empty()) return;
     if (path.size() >= sizeof(sockaddr_un::sun_path))
         throw std::runtime_error("bridge socket path too long");
@@ -199,7 +200,30 @@ static void serveBridge(Core& core, const std::string& path,
     while (fgets(line, sizeof(line), stream)) {
         char op = 0;
         unsigned addr = 0, size = 0, value = 0;
-        if (line[0] == 'M' || line[0] == 'N') {
+        if (line[0] == 'B') {
+            /* Offline-only bounded DRAM upload. One bridge request writes
+             * exactly 64 bytes; the host must still step the i960 CPU. */
+            char hex[129]{};
+            bool valid = std::sscanf(line, "B %x %128s", &addr, hex) == 2 &&
+                         std::strlen(hex) == 128 &&
+                         (addr & 63u) == 0u &&
+                         addr >= 0xc0000000u && addr <= 0xc0ffffc0u;
+            for (unsigned i = 0; valid && i < 128; ++i)
+                valid = std::isxdigit(static_cast<unsigned char>(hex[i]));
+            if (!valid) {
+                std::fputs("ERR\n", stream);
+            } else {
+                for (unsigned i = 0; i < 16; ++i) {
+                    unsigned byte[4];
+                    for (unsigned j = 0; j < 4; ++j)
+                        std::sscanf(hex + i * 8 + j * 2, "%2x", &byte[j]);
+                    core.write32(addr + i * 4,
+                        byte[0] | (byte[1] << 8) | (byte[2] << 16) |
+                        (byte[3] << 24));
+                }
+                std::fputs("00000000\n", stream);
+            }
+        } else if (line[0] == 'M' || line[0] == 'N') {
             const bool ring_slot = line[0] == 'N';
             unsigned long long dma = 0;
             char hex[129]{};
@@ -904,6 +928,10 @@ static void serveBridge(Core& core, const std::string& path,
         } else if (std::sscanf(line, "%c %x %u %x", &op, &addr, &size, &value) != 4 ||
             (op != 'R' && op != 'W') || (size != 1 && size != 2 && size != 4) ||
             !((addr >= 0xc0000000u && addr <= 0xc0ffffffu - size + 1) ||
+              (model_s3_flash && op == 'R' && size == 4 &&
+               addr >= 0xfef00000u && addr <= 0xff000000u - 4u) ||
+              (model_s3_flash && op == 'R' && size == 4 &&
+               addr == 0xe0500000u) ||
               exploratoryHostGuestWindowContains(addr, size) ||
               (addr >= 0x8bf00000u && addr <= 0x8bf000ffu - size + 1 &&
                size == 2 && !(addr & 1u))) ||
@@ -948,6 +976,8 @@ int main(int argc, char** argv) {
     bool exploratory_isp_retry_ack = false;
     bool trace_pci_registers = false;
     bool model_config_retry = false;
+    bool model_s3_flash = false;
+    unsigned model_s3_fault = 0;
     bool retry_pin_high = true;
     bool exploratory_isp_reset_delay_ack = false;
     bool exploratory_isp_active_negation_ack = false;
@@ -1012,6 +1042,18 @@ int main(int argc, char** argv) {
             trace_pci_registers = true;
         else if (std::strcmp(argv[i], "--model-config-retry") == 0)
             model_config_retry = true;
+        else if (std::strcmp(argv[i], "--model-s3-flash") == 0)
+            model_s3_flash = true;
+        else if (std::strcmp(argv[i], "--model-s3-fault=gate-stuck-off") == 0)
+            model_s3_fault = 1;
+        else if (std::strcmp(argv[i], "--model-s3-fault=low-vpp") == 0)
+            model_s3_fault = 2;
+        else if (std::strcmp(argv[i], "--model-s3-fault=wrong-id") == 0)
+            model_s3_fault = 3;
+        else if (std::strcmp(argv[i], "--model-s3-fault=locked-block") == 0)
+            model_s3_fault = 4;
+        else if (std::strcmp(argv[i], "--model-s3-fault=program-stuck") == 0)
+            model_s3_fault = 5;
         else if (std::strcmp(argv[i], "--model-config-retry-low") == 0) {
             model_config_retry = true;
             retry_pin_high = false;
@@ -1132,6 +1174,10 @@ int main(int argc, char** argv) {
         return 2;
     }
     Core core;
+    if (model_s3_fault && !model_s3_flash) {
+        std::cerr << "S3 fault requires --model-s3-flash\n";
+        return 2;
+    }
     core.begin();
     installToMainMemory(rom_base, image.data(), image.size());
     resetBoardMemoryAudit();
@@ -1143,6 +1189,8 @@ int main(int argc, char** argv) {
         enableExploratoryNativeRingPdevDma1();
     resetExploratoryTimer0();
     setExploratoryBoardSelector(board_id);
+    setExploratoryS3Flash(model_s3_flash);
+    setExploratoryS3FlashFault(model_s3_fault);
     setExploratoryQlogicPci(exploratory_qlogic_pci);
     setExploratoryIspMailbox(exploratory_isp_mailbox);
     setExploratoryIspExecuteAck(exploratory_isp_execute_ack);
@@ -1195,7 +1243,7 @@ int main(int argc, char** argv) {
             serveBridge(core, bridge_path, exploratory_timer_clock,
                         exploratory_timer_interrupt, exploratory_isp_no_device_auto,
                         trace_scan_state3,
-                        trace_priority);
+                        trace_priority, model_s3_flash);
             return 1;
         }
         const bool in_rom = ip >= rom_base && ip < rom_base + image.size();
@@ -1454,6 +1502,6 @@ int main(int argc, char** argv) {
     serveBridge(core, bridge_path, exploratory_timer_clock,
                 exploratory_timer_interrupt, exploratory_isp_no_device_auto,
                 trace_scan_state3,
-                trace_priority);
+                trace_priority, model_s3_flash);
     return 0;
 }

@@ -449,6 +449,13 @@ Core::doDispatchInternal() noexcept {
             if (!pc_.inSupervisorMode()) return typeMismatchFault();
             interruptsEnabled_ = true;
             break;
+        case Opcodes::icctl:
+            if (!pc_.inSupervisorMode()) return typeMismatchFault();
+            // The interpreter has no instruction cache. The loader uses
+            // subcommand 2 to invalidate it before entering uploaded code.
+            if (!_regInstruction.getM1() || _regInstruction.getSrc1() != 2)
+                return unimplementedFault();
+            break;
         case Opcodes::dcctl:
             if (!pc_.inSupervisorMode()) return typeMismatchFault();
             // Main memory is the sole backing store in this interpreter, so a

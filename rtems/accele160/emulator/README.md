@@ -1,5 +1,20 @@
 # AcceleRAID 160 controller emulator, first executable slice
 
+The bridge socket accepts offline-only `B ADDRESS HEX` commands that write
+exactly 64 bytes to aligned controller DRAM. The native updater gate uses
+this bounded transport to test a full 1 MiB upload against compiled RTEMS
+firmware. See the
+[corrected native-writer run](../../../artifacts/current/accele160-writer-gate-corrected-offline-20261122/README.md).
+`--model-s3-flash` enables an exploratory Intel 28F008S3 command model and
+the stock-derived `0xe0500000` bit-3 gate. The compiled RAM1 ID probe and
+UPD1 APPLY pass against this model. It completes erase/program immediately
+and assumes the gate enables writes; it does not model VPP, bus timing, or
+other board electrical behavior. A model pass is not flash qualification.
+`--model-s3-fault=gate-stuck-off|low-vpp|wrong-id|locked-block|program-stuck`
+injects one fault when `--model-s3-flash` is enabled. The compiled UPD1 fault
+matrix and receipts are in
+`artifacts/current/accele160-s3-fault-matrix-20261120/README.md`.
+
 This runs the actual 1 MiB stock or candidate flash image in a bounded i960
 interpreter. It is a diagnostic harness, **not yet a validated 80303 emulator or
 a clearance to flash**. The [QEMU PCI probe](qemu/README.md) presents the

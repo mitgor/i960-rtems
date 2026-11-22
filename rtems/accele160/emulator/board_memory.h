@@ -14,6 +14,12 @@ struct BoardMemoryAudit {
 void resetBoardMemoryAudit() noexcept;
 BoardMemoryAudit getBoardMemoryAudit() noexcept;
 void setExploratoryBoardSelector(int value) noexcept;
+// Opt-in byte-command model for the 28F008S3 and stock e0500000 bit-3 gate.
+// Operations complete immediately; voltage, bus timing, and wear are absent.
+void setExploratoryS3Flash(bool enabled) noexcept;
+// 0=none, 1=gate stuck off, 2=low VPP, 3=wrong ID, 4=locked mutable
+// block, 5=program operation leaves its target byte unchanged.
+void setExploratoryS3FlashFault(unsigned fault) noexcept;
 
 // 80303 primary-PCI configuration retry (Intel 273395-005 mode 3; register
 // layout in developer's manual 273353-001, table 14-46). With the
