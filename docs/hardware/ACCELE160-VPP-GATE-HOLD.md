@@ -68,9 +68,22 @@ host-observed command time and `register_reads_back_bit3`.
 | Observation | Meaning |
 | --- | --- |
 | VPP stays near 0 V during the hold | The gate path on this card does not deliver VPP. Trace the switch between the `0xe0500000` latch and the pin. |
-| VPP rises to a level the S3 datasheet accepts for erase | The supply path works; the chip itself, or a strobe during erase, is the suspect. |
+| VPP rises to a level the S3 datasheet accepts for erase | The steady supply path works. Remaining suspects: the chip, a strobe during erase, or a VPP rise too slow for the stock writer, which erases within microseconds of setting the gate. A meter cannot see that; a scope can. |
 | VPP rises but sags or sits between lockout and the valid range | Marginal supply. Do not issue FLASHIMAGE: a partial all-block erase can take the boot block. |
 | `register_reads_back_bit3` false while `held` is true | The latch is write-only, so the native writer's gate readback check in `flash_backend.c` cannot be relied on. |
+
+## Why the readback flag matters (added 2026-11-22)
+
+Stock code never reads its own gate write back. It reads `0xe0500000` as
+input pins: bit 1 in the boot block (`feffc0fc`) and in a 10 s polled wait
+(`c0082d6c`, `c0082db4`), bit 0 in the loader (`fef43e8c`) and runtime
+(`c0052f64`). Every stock write is the constant 8 or 0 (boot block
+`feff18a0`/`feff18dc`, diagnostics `fefcb0b4`/`fefcb0e0`) or the RAM shadow.
+So the address is probably an input port on read and a latch on write. The
+native `flash_backend.c` and the emulator both assume a read returns the
+latch. Against a split-port model the backend returns result 8 with no flash
+command, and writes the input bits into the latch. `register_reads_back_bit3`
+is the measurement that settles this.
 
 ## Limits
 
