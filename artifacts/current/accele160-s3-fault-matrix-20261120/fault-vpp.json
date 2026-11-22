@@ -1,0 +1,75 @@
+{
+  "gate": "native-updater-interpreter-protocol-v2",
+  "protocol_version": 2,
+  "image_sha256": "867f7320d5f8cc2623cd6b024cecf988df754eaa92dd3eaf6452fecb8e2a6453",
+  "target_sha256": "01ed56f51152a4c9f62ce227431ad429a8386dc0d05cdffd1c3b476e6dabcf23",
+  "rtems_pass": true,
+  "updater_magic": "31445055",
+  "results": {
+    "before_begin": {
+      "status": 2,
+      "state": 0,
+      "next_chunk": 0,
+      "cycles": 1000000
+    },
+    "begin": {
+      "status": 0,
+      "state": 1,
+      "next_chunk": 0,
+      "cycles": 179000000
+    },
+    "out_of_order": {
+      "status": 3,
+      "state": 1,
+      "next_chunk": 0,
+      "cycles": 1000000
+    },
+    "bad_chunk_hash": {
+      "status": 4,
+      "state": 1,
+      "next_chunk": 0,
+      "cycles": 1000000
+    },
+    "protected_change": {
+      "status": 6,
+      "state": 1,
+      "next_chunk": 0,
+      "cycles": 1000000
+    },
+    "seal": {
+      "status": 0,
+      "state": 2,
+      "next_chunk": 256,
+      "cycles": 355000000
+    },
+    "apply": {
+      "status": 9,
+      "state": 4,
+      "next_chunk": 256,
+      "cycles": 360000000
+    },
+    "abort_after_failure": {
+      "status": 2,
+      "state": 4,
+      "next_chunk": 256,
+      "cycles": 1000000
+    },
+    "apply_after_failure": {
+      "status": 2,
+      "state": 4,
+      "next_chunk": 256,
+      "cycles": 1000000
+    }
+  },
+  "accepted_chunks": 256,
+  "chunk_cycles": 256000000,
+  "sample_flash_offset": 720896,
+  "sample_staged_word": "fffffffe",
+  "fault": "low-vpp",
+  "writer_result": 5,
+  "s3_status": 168,
+  "s3_offset": 720896,
+  "flash_programmed": false,
+  "simulated_flash_programmed": false,
+  "result": "PASS"
+}

@@ -10,6 +10,10 @@ Start with [stock card to applications](docs/reproduce.md). Read
 [subproject index](subprojects/README.md) to work on one component.
 The [Linux host guide](host/README.md) locates the versioned launchers, routing
 code and required deployment inputs.
+For the AcceleRAID 160 native firmware work, start with the
+[firmware candidate index](docs/hardware/ACCELE160-FIRMWARE-CANDIDATES.md).
+It separates flashed and booted images from the experimental native image
+that includes an on-card flash writer.
 
 ## Subprojects
 
