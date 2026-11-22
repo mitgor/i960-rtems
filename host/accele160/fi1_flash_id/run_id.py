@@ -8,7 +8,7 @@ from card_select import select, require_unbound_or_absent
 BDF, OLD = '0000:37:09.1', '0000:37:04.1'
 IMAGE_SHA = '1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd'
 HANDLER_SHA = '8d8c79c3b8c206608ef7221000991c0d75eb101ce06581fedc2a74522648ad34'
-PROBE_SHA = '400a269688b991ddfefc8fafef6d41c5b900d13f992da3b794131c85d63f6634'
+PROBE_SHA = '048e32f7f8af97744df4ba87bd3e647ed61e2c4d88a4962242078340ddbca72c'
 MODULE_SHA = {
     'reserve': 'd5dc1cf2dddba559ea4ff5ebf7bac1ae32f462f27dd968b8964f0cd20b47c945',
     'release': 'bbfbe079b86ba1503efcfcce4c0c7ee5e1ad2fc662ded669766bdb7d38a3ecfa',
@@ -118,6 +118,8 @@ def main():
         (a.out/'owner-before.bin').write_bytes(owner)
         tail=a.handler.read_bytes()[0xf000-0xe1d8:]
         need(before==tail+b'\xff'*(PAGE-len(tail)),'loader code tail/page preflight')
+        need(before[0xa60:0xa78] == b'\xff'*24,
+             'ID report space is not erased')
         for name in ('reserve','release','copy','digest','admit'):
             insmod(name,getattr(a,name+'_module'))
         write(0xc000e000,0x820,b'\xa5'*16)
@@ -210,26 +212,22 @@ def main():
             expected[0x820:0x830]=before[0x820:0x830]
             expected[0xa00:0xa20]=good
             expected[0xa20:0xa3c]=page[0xa20:0xa3c]
+            expected[0xa60:0xa78]=page[0xa60:0xa78]
             need(page==expected,'admission wrote outside manifest/report')
             need(after_owner[0x2a0:0xaa0]==owned[0x2a0:0xaa0],
                  'owner drift after admission')
             words=struct.unpack_from('<7I',page,0xa20)
             need(words[:6]==(0x314e5552,NONCE,0x31454e4f,ptr,1,digest)
                  and words[6] == 0, 'payload/report mismatch')
-            grant_after=snap(ptr)
-            record=struct.unpack_from('<6I',grant_after,0x100)
-            need(record==(0x32444953,0x89,0xa6,0,0,a.image.read_bytes()[0]),
-                 'S3 ID, lock state or read-array byte differed')
-            expected_payload=bytearray(payload)
-            struct.pack_into('<6I',expected_payload,0x100,*record)
-            need(grant_after==expected_payload,
-                 'ID payload changed grant outside record')
-            (run/'grant-after.bin').write_bytes(grant_after)
+            record=struct.unpack_from('<6I',page,0xa60)
+            qualified=(record==(0x32444953,0x89,0xa6,0,0,
+                                a.image.read_bytes()[0]))
             identification=dict(manufacturer=record[1],device=record[2],
                 master_lock=record[3],block_lock_mask=record[4],
-                array_byte=record[5])
+                array_byte=record[5],record_magic=record[0],qualified=qualified)
             write(0xc000e000,0xa00,before[0xa00:0xa20])
             write(0xc000e000,0xa20,before[0xa20:0xa3c])
+            write(0xc000e000,0xa60,before[0xa60:0xa78])
             need(snap(0xc000e000)==reserved[:0x820]+before[0x820:0x830]+reserved[0x830:],
                  'loader page not restored under grant')
             translate(original);release('ram-admit');rmmod('admit')
@@ -255,6 +253,8 @@ def main():
              owners_restored=True,staging_restored=True,
              card_after=select(BDF,'accele160'),
              old_after=require_unbound_or_absent(OLD,'accele160')))
+        need(outcomes[0]['flash_id']['qualified'],
+             'S3 ID, lock state or read-array byte differed')
         print(json.dumps(outcomes,indent=2))
     finally:
         translate(original);bar.close();resource.close();cfg.close()

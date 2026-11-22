@@ -7,7 +7,7 @@ import re
 import sys
 
 HERE = Path(__file__).resolve().parent
-SHA = "400a269688b991ddfefc8fafef6d41c5b900d13f992da3b794131c85d63f6634"
+SHA = "048e32f7f8af97744df4ba87bd3e647ed61e2c4d88a4962242078340ddbca72c"
 
 
 def audit(disassembly: Path) -> dict:
@@ -23,14 +23,14 @@ def audit(disassembly: Path) -> dict:
     assert instructions.count("lda\t0x90,r4") == 1
     assert sum(item.startswith("lda\tfef00000 ") and item.endswith(",r8")
                for item in instructions) == 1
-    assert sum("c0710100" in item for item in instructions) == 1
+    assert sum("c000fa60" in item for item in instructions) == 1
     assert not any("e0500000" in item for item in instructions)
     assert not any(re.search(r"\b(?:erase|program|lock)\b", item, re.I)
                    for item in instructions)
     return {"payload_sha256": SHA, "bytes": len(image),
             "flash_command_values": ["0xff", "0x90", "0xff"],
             "flash_command_stores": 3, "board_gate_stores": 0,
-            "erase_program_commands": 0, "result_record": "0xc0710100"}
+            "erase_program_commands": 0, "result_record": "0xc000fa60"}
 
 
 if __name__ == "__main__":

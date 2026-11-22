@@ -1,6 +1,7 @@
 /* FI1 operation-13 returning Intel 28F008S3 identification probe.
  * Only FF, 90, FF are written to the flash command port. No erase, program,
- * lock or board-gate command. Record is written into the granted RAM page.
+ * lock or board-gate command. Record is written beside the operation-13
+ * control report, which is host-visible on the BAR mapping after return.
  */
  .text
  .globl _start
@@ -38,7 +39,7 @@ next:
  stob r4,(r8)
  syncf
  ldob (r8),r15
- lda 0xc0710100,r12
+ lda 0xc000fa60,r12
  lda 0x32444953,r4
  st r4,(r12)
  st r5,4(r12)
