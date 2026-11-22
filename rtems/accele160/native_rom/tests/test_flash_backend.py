@@ -41,7 +41,9 @@ class BackendTests(unittest.TestCase):
 
     def setUp(self):
         self.chip = S3Flash()
-        self.control = 0x20
+        # Split port, as stock uses it: reads are input pins, writes a latch.
+        self.inputs = 0x03
+        self.latch = 0
         self.gate_writes = []
         self.flash_writes = []
         self.connect_vpp = True
@@ -57,13 +59,13 @@ class BackendTests(unittest.TestCase):
             self.chip.write(address, value)
 
         def gate_read():
-            return self.control
+            return self.inputs
 
         def gate_write(value):
             self.gate_writes.append(value)
-            self.control = value & ~8 if self.gate_stuck_off else value
+            self.latch = value & ~8 if self.gate_stuck_off else value
             if self.connect_vpp:
-                self.chip.vpp_enabled = bool(self.control & 8)
+                self.chip.vpp_enabled = bool(self.latch & 8)
 
         self.callbacks = (FLASH_READ(flash_read), FLASH_WRITE(flash_write),
                           GATE_READ(gate_read), GATE_WRITE(gate_write))
@@ -76,30 +78,19 @@ class BackendTests(unittest.TestCase):
         return self.lib.accele160_flash_backend_write_block(
             offset, buf, len(data), None)
 
-    def test_gate_enabled_then_restored_after_program(self):
+    def test_gate_is_stock_constants_and_needs_no_readback(self):
         self.assertEqual(self.program(), 0)
-        self.assertEqual(self.gate_writes, [0x28, 0x20])
-        self.assertEqual(self.control, 0x20)
+        self.assertEqual(self.gate_writes, [0x08, 0x00])
         self.assertFalse(self.chip.vpp_enabled)
         self.assertEqual(self.chip.array[FIRST], 0)
 
-    def test_low_vpp_fails_and_restores_gate(self):
-        self.connect_vpp = False
-        self.assertEqual(self.program(), 5)
-        self.assertEqual(self.gate_writes, [0x28, 0x20])
-        self.assertEqual(self.chip.array[FIRST], 0xff)
-
-    def test_unexpected_enabled_gate_refuses_write(self):
-        self.control = 0x28
-        self.assertEqual(self.program(), 8)
-        self.assertEqual(self.gate_writes, [])
-        self.assertEqual(self.flash_writes, [])
-
-    def test_gate_readback_failure_refuses_erase(self):
-        self.gate_stuck_off = True
-        self.assertEqual(self.program(), 8)
-        self.assertEqual(self.gate_writes, [0x28, 0x20])
-        self.assertEqual(self.flash_writes, [])
+    def test_missing_vpp_fails_in_chip_status_before_any_erase(self):
+        for fault in ("connect_vpp", "gate_stuck_off"):
+            self.setUp()
+            setattr(self, fault, fault == "gate_stuck_off")
+            self.assertEqual(self.program(), 5)
+            self.assertEqual(self.gate_writes, [0x08, 0x00])
+            self.assertEqual(self.chip.array[FIRST], 0xff)
 
     def test_protected_offset_does_not_touch_gate(self):
         self.assertEqual(self.program(offset=0), 1)

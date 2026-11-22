@@ -1,7 +1,15 @@
 #include "flash_writer.h"
 
 /* Stock 6.00-05 sets e0500000 bit 3 before its erase/program loop and clears
- * it afterward. The physical voltage and write strobe still need measurement. */
+ * it afterward. The physical voltage and write strobe still need measurement.
+ *
+ * Stock never reads its gate write back. It reads this address as input pins
+ * (boot block feffc0fc bit 1, loader fef43e8c bit 0, runtime c0052f64 and
+ * c0082d6c) and writes only the constants 8 and 0 (boot block feff18a0 and
+ * feff18dc, diagnostics fefcb0b4 and fefcb0e0) or a RAM shadow. So the gate
+ * value is not built from a read, and a read is not a pass/fail condition.
+ * With VPP below lockout the chip itself refuses the erase and sets SR.3,
+ * which the writer returns as ACCELE160_S3_STATUS. */
 #define FLASH_GATE_BIT 0x08u
 #define FIRST_BLOCK 0x40000u
 #define LAST_BLOCK 0xc0000u
@@ -63,7 +71,8 @@ accele160_s3_io accele160_flash_backend = {
     flash_read8, flash_write8, 0, 100000000u, 0u, 0u
 };
 
-static void report_result(unsigned int result)
+/* UPD1 word 15 is report only: e0500000 as read while the gate was requested. */
+static void report_result(unsigned int result, unsigned int gate_seen)
 {
 #ifndef ACCELE160_FLASH_BACKEND_TEST
     volatile unsigned int *control =
@@ -71,40 +80,32 @@ static void report_result(unsigned int result)
     control[12] = result;
     control[13] = accele160_flash_backend.last_status;
     control[14] = accele160_flash_backend.failed_offset;
+    control[15] = gate_seen;
     __asm__ volatile("syncf" ::: "memory");
 #else
     (void)result;
+    (void)gate_seen;
 #endif
 }
 
 int accele160_flash_backend_write_block(unsigned int offset,
     const unsigned char *bytes, unsigned int length, void *context)
 {
-    unsigned char initial;
+    unsigned int gate_seen;
     int result;
     (void)context;
     accele160_flash_backend.last_status = 0u;
     accele160_flash_backend.failed_offset = offset;
     if (!bytes || length != BLOCK_BYTES || offset < FIRST_BLOCK ||
         offset >= LAST_BLOCK || (offset & (BLOCK_BYTES - 1u))) {
-        report_result(ACCELE160_S3_ARGUMENT);
+        report_result(ACCELE160_S3_ARGUMENT, 0u);
         return ACCELE160_S3_ARGUMENT;
     }
-    initial = control_read();
-    if (initial & FLASH_GATE_BIT) {
-        report_result(ACCELE160_S3_GATE);
-        return ACCELE160_S3_GATE;
-    }
-    control_write(initial | FLASH_GATE_BIT);
-    if (!(control_read() & FLASH_GATE_BIT)) {
-        control_write(initial);
-        report_result(ACCELE160_S3_GATE);
-        return ACCELE160_S3_GATE;
-    }
+    control_write(FLASH_GATE_BIT);
+    gate_seen = control_read();
     result = accele160_s3_write_block(offset, bytes, length,
                                       &accele160_flash_backend);
-    control_write(initial);
-    if (control_read() & FLASH_GATE_BIT) result = ACCELE160_S3_GATE;
-    report_result((unsigned int)result);
+    control_write(0u);
+    report_result((unsigned int)result, gate_seen);
     return result;
 }

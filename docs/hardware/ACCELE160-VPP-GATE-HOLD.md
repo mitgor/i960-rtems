@@ -85,6 +85,15 @@ latch. Against a split-port model the backend returns result 8 with no flash
 command, and writes the input bits into the latch. `register_reads_back_bit3`
 is the measurement that settles this.
 
+The worktree copy of `flash_backend.c` no longer depends on it: it writes the
+constants 8 and 0 and reports the read in UPD1 word 15 without judging it.
+Cross-built with the archived toolchain (`rtems.bin`
+`e903a46a…c433a5`; the unmodified sources reproduce Codex's `ad07d3b0…4b5d`),
+it passes the emulator APPLY run. With that change the emulator's
+`gate-stuck-off` case ends as writer result 5, S3 status `0xa8`, not 8/0, so
+`test_native_updater_gate.py` in the main checkout needs that expectation
+updated when the fix is taken. Not run on hardware.
+
 ## Limits
 
 - The launcher pins this card's stock image and PCI address. The restored
