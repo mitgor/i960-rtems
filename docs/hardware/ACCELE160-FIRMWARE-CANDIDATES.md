@@ -21,7 +21,7 @@ for that card. Never use an image made for one serial on another card.
 | **Native updater, receiver only**, first-spare image `17804234…3acca790f` | Native RTEMS plus UPD1 receive/seal/abort service; **no linked Intel writer** | Flashed restored first spare, cold booted and ran RTEMS `PASS`; UPD1 interface not physically exercised | Best proven native boot base, not a proven update path |
 | **Native updater, receiver only**, verified image `2aa1d5a8…2a620289a3dab9fe2` | Corrected UPD1 v2 and post-write verification logic, with no writer linked | Offline interpreter/QEMU/Linux-guest tests only | Do not treat as hardware-qualified |
 | **Native firmware with flash tool**, experimental image `867f7320…e2a6453` | Native RTEMS, UPD1 v2, **linked Intel 28F008S3 erase/program/readback routine** | Built and tested in an S3 software model; **never flashed or booted on hardware** | **Prepared, but unqualified for physical flashing or APPLY** |
-| **Firmware injection v1**, current-card image `ce3e632c…10c5c9af4` | October handler rebased onto serial `10112504772` | STOREIMAGE/readback passed; FLASHIMAGE failed `80/16`; cold reads stayed stock | Do not retry blindly on that card |
+| **Firmware injection v1**, failed comparison image `ce3e632c…10c5c9af4` | October handler rebased onto serial `10112504772` | STOREIMAGE/readback passed; FLASHIMAGE failed `80/16`; cold reads stayed stock | Do not retry blindly on that card |
 
 Short hashes above are labels only. The full hashes and evidence below are the
 identities used for any automated gate.
@@ -30,7 +30,9 @@ identities used for any automated gate.
 
 | Card | Stock full-flash SHA-256 | Latest established state |
 | --- | --- | --- |
-| Current Slot 5 card, serial `10112504772` | `0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943` | Stock after two `80/16` FLASHIMAGE refusals; cold boot and paired full reads passed on 2026-11-21 |
+| Current Slot 5 card, serial `10112500320` | `93faf91f553822665cd4125d90b1066370c4bca0da76af8336daf98bc2dae094` | [Accepted Firmware injection v1](../../artifacts/current/accele160-working-injection-return-20261122/README.md) `1c4995ad…a74b89bd`; Linux boot and two matching full reads on 2026-11-22 |
+| Previous Slot 5 card, serial `10112504772` | `0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943` | Stock after two `80/16` FLASHIMAGE refusals; cold boot and paired full reads passed on 2026-11-21 |
+| Unidentified spare tried on 2026-11-22 | Unknown; no full read yet | HP Z400 did not reach beep with it installed; it was removed without our software accessing or flashing it |
 | Restored first spare | `fadd2b0f6ed9bb88d7c846edd235e5e222cbe3a990b694115c5fa66170e7a816` | Native UPD1 receiver image `17804234…3acca790f` flashed and booted; no linked writer |
 | Former Slot 5 card, serial `10112502260` | `1ee91ea1c172069dd0c98ec68fdf7ebae45e7477466f90b94e36e160f20f3f65` | Passive native image `4cdfbf29…a974c00edc5b` flashed and booted; no UPD1 endpoint |
 | Original-card base used by the experimental writer build | `0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a` | Build input only for image `867f7320…e2a6453`; do not assume the physical card is in the PC |
@@ -49,7 +51,7 @@ It is a complete 1 MiB image built from original-card stock SHA-256
 `0a951782a7ccd1855746ffeb3a1b64563287bc56e0dce77d63b79c71ec3b502a`.
 It is **only** appropriate as a binary for a card whose two fresh full reads
 match that base exactly. In particular, it is not a binary for current Slot 5
-serial `10112504772` or the restored first spare.
+serial `10112500320`, former Slot 5 serial `10112504772`, or the restored first spare.
 
 The build uses `ACCELE160_UPDATER_STAGING=1` and
 `ACCELE160_FLASH_WRITER_EXPERIMENTAL=1`. Its UPD1 v2 service receives 256
@@ -155,10 +157,11 @@ the stable references.
 | 2026-11-20 | Corrected UPD1 v2 receiver-only image and separate Intel-writer image passed offline gates | Protocol and model behavior advanced; no physical on-card update was proven |
 | 2026-11-21 | Card `10112504772` rejected both a native-writer diagnostic image and the October handler image with `80/16`; cold reads stayed stock | Its stock flash writer path is the immediate hardware blocker |
 | 2026-11-21 | The same stock card ran Ram injection v1, bounded RTEMS, and 40 Doom frames | RTEMS/Doom work can proceed without another flash write |
+| 2026-11-22 | An unidentified spare stopped HP POST before beep; the user replaced it with working Firmware injection v1 card `10112500320`, whose exact accepted image was confirmed by two full reads | The no-beep spare needs its own offline chip/board diagnosis; the working card provides a known-good baseline |
 
-## Current card and next decision
+## Card-specific failure and next decision
 
-Card `10112504772` currently contains exact stock SHA-256
+Card `10112504772` last read as exact stock SHA-256
 `0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943`.
 It has twice staged and independently read back different complete images,
 then returned stock writer sense `80/16` immediately. Each failed attempt
@@ -168,8 +171,10 @@ lock read clear; VPP and write-enable waveforms remain unmeasured. See the
 
 The practical next split is:
 
-1. Continue RTEMS/Doom development on the stock card through **Ram injection
-   v1**. It already runs without touching flash.
+1. Keep the current working Firmware injection v1 card `10112500320` as a
+   known-good RTEMS/Doom baseline. The former stock card `10112504772` can
+   continue RTEMS/Doom development through **Ram injection v1** without
+   touching its flash.
 2. Investigate serial `10112504772` as a separate write-path problem: compare
    its board and jumper state to a successful card, then measure VPP and chip
    control signals during a reviewed, instrumented attempt if needed. A third
@@ -180,6 +185,10 @@ The practical next split is:
    boot evidence. Repack any future candidate from that card's exact base;
    keep its own programmer recovery image ready. Qualify the on-card writer
    separately before relying on host-only future updates.
+4. Label the unidentified no-beep spare, read its chip twice with the
+   external programmer, and compare its bytes with a card-specific stock
+   reference before deciding whether its problem is image, board or slot
+   interaction. Its identity is not established by its appearance alone.
 
 The directory name `artifacts/current/` is an archive location, not a
 statement that an image is installed, newest, or approved. Prefer the exact
