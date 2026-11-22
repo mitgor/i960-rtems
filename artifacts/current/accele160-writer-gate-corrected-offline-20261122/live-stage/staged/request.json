@@ -1,0 +1,55 @@
+{
+  "boot_id": "4b10bf1b-7fcb-4d07-b52d-88c62a334a3c",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "original_card": {
+    "bdf": "0000:37:04.1",
+    "profile": "accele160",
+    "present": false,
+    "ids": null,
+    "driver": null
+  },
+  "candidate_sha256": "b35b1e8312336532fae9175fdc3d0d0be7b80b14281434f42af1db294662c695",
+  "module_sha256": "6ec76357ca5b22635d63d07a88c9f2675f01903684dbf5bd17c4e407a22dd3b8",
+  "stock_preflight": {
+    "bdf": "0000:37:09.1",
+    "boot_id": "4b10bf1b-7fcb-4d07-b52d-88c62a334a3c",
+    "card": {
+      "bdf": "0000:37:09.1",
+      "profile": "accele160",
+      "ids": [
+        4201,
+        80,
+        4201,
+        84
+      ],
+      "driver": "myrsread"
+    },
+    "candidate_sha256": "b35b1e8312336532fae9175fdc3d0d0be7b80b14281434f42af1db294662c695",
+    "stock_sha256": "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd",
+    "stock_reads": [
+      "/home/mit/i960-working-injection-20261122-4b10/read0",
+      "/home/mit/i960-working-injection-20261122-4b10/read1"
+    ],
+    "reader_module_sha256": [
+      "e199134ddf539ed8c651393494278ed23be29a9fbd922445270f91f4cc6515a1",
+      "e199134ddf539ed8c651393494278ed23be29a9fbd922445270f91f4cc6515a1"
+    ],
+    "read_only_preflight": true,
+    "storeimage_issued": false,
+    "flashimage_issued": false
+  },
+  "command": "STOREIMAGE 0x2c",
+  "selector": 9,
+  "offset_kib": 0,
+  "bytes": 1048576
+}

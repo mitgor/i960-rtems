@@ -1,4 +1,4 @@
-# Corrected native writer image for card 10112500320: offline only
+# Corrected native writer image for card 10112500320
 
 Prepared 2026-11-22 on branch `codex/accele160-writer-integration`. This is
 **native firmware with flash tool**, built with UPD1 v2 and the linked Intel
@@ -50,7 +50,23 @@ returned status 9/state 4, the S3 writer reported result 5/status `0xa8`,
 and later ABORT/APPLY were refused. The two complete emulator receipts are
 `emulator-apply-normal.json` and `emulator-gate-stuck-off.json`.
 
-These are software results. No physical UPD1 transfer, VPP measurement,
+On 2026-11-22, the current card passed a **RAM-only transfer test** on boot
+`4b10bf1b-7fcb-4d07-b52d-88c62a334a3c`. An exact-image preflight accepted
+two independent full reads of the installed Firmware injection v1 image,
+the pinned `stage_image.ko` issued `STOREIMAGE 0x2c` for the corrected
+candidate, and two separate pinned `rawreader.ko` full `READIMAGE 0x2d`
+requests each returned exactly the candidate SHA-256
+`b35b1e8312336532fae9175fdc3d0d0be7b80b14281434f42af1db294662c695`.
+All three requests reported status 0, residual 0 and unchanged DMA guards.
+The 1 MiB readbacks also passed byte-for-byte `cmp` against the candidate.
+Compact [live receipts](live-stage/) are committed; complete bytes and the
+candidate remain on the remote under `/home/mit/i960-writer-stage-20261122/`.
+No `FLASHIMAGE 0x2e` was issued. The host was then sent a power-off request
+to clear the staged RAM image; cold boot and post-power-cycle reads are still
+unverified.
+
+The emulator runs remain software results, and RAM staging verifies transport
+only. No physical UPD1 transfer, VPP measurement,
 write strobe, on-card erase/program, or cold boot of this image has occurred.
 The corrected gate writes constants `8` and `0`, but the stock writer also
 uses a RAM shadow; whether other latch bits must be preserved in native mode
