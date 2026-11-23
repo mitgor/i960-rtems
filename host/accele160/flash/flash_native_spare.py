@@ -18,6 +18,7 @@ from preflight import (verify_pair, SECOND_SPARE_PCI_RELEASE_SHA,
                        SLOT5_LIVE_PCI_RELEASE_SHA, RESTORED_SLOT5_UPDATER_SHA,
                        ORIGINAL_RAM_LOADER_SHA, SECOND_SPARE_RAM_LOADER_SHA,
                        SECOND_SPARE_WRITER_SHA, SECOND_SPARE_OCTOBER_HANDLER_SHA,
+                       OCTOBER_CARD_INSTALLED_SHA, OCTOBER_CARD_CORRECTED_WRITER_SHA,
                        FLASH_SIZE)
 
 SPARE = "0000:37:04.1"
@@ -36,6 +37,7 @@ LOCK_PROBE_PAYLOAD_SHA = "f2d1352e01e7d69f9277623bb8d89047970df27312330121cb4b9b
 SENSE_PROBE_MODULE_SHA = "4ce5a04f03e1aaac521896f0d94573f40e40ab9af2522a016e879c25604d1e67"
 OCTOBER_HANDLER_SHA = "8d8c79c3b8c206608ef7221000991c0d75eb101ce06581fedc2a74522648ad34"
 OCTOBER_ACCEPTED_SHA = "1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd"
+CURRENT_NATIVE_ATTEMPT = Path("/home/mit/i960-current-native-flash-attempt-20261123.json")
 
 
 def verify_october_handler_test(directory, boot, stock_sha, candidate_sha):
@@ -191,8 +193,14 @@ def main():
                                           ORIGINAL_RAM_LOADER_SHA,
                                           SECOND_SPARE_RAM_LOADER_SHA,
                                           SECOND_SPARE_WRITER_SHA,
-                                          SECOND_SPARE_OCTOBER_HANDLER_SHA):
+                                          SECOND_SPARE_OCTOBER_HANDLER_SHA,
+                                          OCTOBER_CARD_CORRECTED_WRITER_SHA):
         raise ValueError("this flash command accepts only a pinned candidate")
+    current_native = proof["candidate_sha256"] == OCTOBER_CARD_CORRECTED_WRITER_SHA
+    if current_native and (spare_bdf != "0000:37:09.1" or
+                           proof["stock_sha256"] != OCTOBER_CARD_INSTALLED_SHA or
+                           CURRENT_NATIVE_ATTEMPT.exists()):
+        raise ValueError("current native attempt requires the exact FI1 card and unused marker")
     spare = select(spare_bdf, "accele160", driver="myrsread")
     original = require_unbound_or_absent(peer_bdf, "accele160")
     if spare != proof["card"] or original["driver"] is not None:
@@ -256,6 +264,7 @@ def main():
         "flash_module_sha256": expected_flash_module,
         "diagnostic_retry_proof": diagnostic,
         "october_handler_test": october_test,
+        "current_native_one_shot": current_native,
         "stage_dir": str(args.stage), "readback_dir": str(args.readback),
         "command": "FLASHIMAGE 0x2e selector 9 zero DMA",
     }
@@ -270,7 +279,8 @@ def main():
     attempt_marker = (args.diagnostic_retry_proof / "diagnostic-flash-attempt.json"
                       if diagnostic is not None else
                       args.october_handler_proof / "october-handler-attempt.json"
-                      if october_test is not None else None)
+                      if october_test is not None else
+                      CURRENT_NATIVE_ATTEMPT if current_native else None)
     args.out.mkdir(parents=True, exist_ok=False)
     with (args.out / "preflight.json").open("w") as output:
         json.dump(record, output, indent=2)
