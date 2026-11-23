@@ -1,0 +1,54 @@
+{
+  "boot_id": "389400bd-0a35-4695-adc8-cdb65d5e9b3a",
+  "grant": 3228631040,
+  "runs": [
+    {
+      "ordinal": 1,
+      "probe_sha256": "048e32f7f8af97744df4ba87bd3e647ed61e2c4d88a4962242078340ddbca72c",
+      "page_sha256": "e552dc68448da1973eb8da40e06df6410251cca3cf49af6c455a644bc8a05616",
+      "fnv": "0x7047cd0b",
+      "elapsed_ms": 20.875,
+      "report": [
+        827217234,
+        370544849,
+        826625615,
+        3228631040,
+        1,
+        1883753739,
+        0
+      ],
+      "flash_id": {
+        "manufacturer": 137,
+        "device": 166,
+        "master_lock": 0,
+        "block_lock_mask": 0,
+        "array_byte": 80,
+        "record_magic": 843336019,
+        "qualified": true
+      }
+    }
+  ],
+  "flash_program_erase_commands": 0,
+  "full_audits": true,
+  "page_restored": true,
+  "owners_restored": true,
+  "staging_restored": true,
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "old_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "accele160",
+    "present": false,
+    "ids": null,
+    "driver": null
+  }
+}

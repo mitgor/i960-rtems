@@ -22,5 +22,18 @@ After the next boot, take two independent full reads before another RAM run.
 
 The revised ID payload `048e32f7…ca72c` writes its record beside the
 host-visible operation-13 report and restores that region before releasing
-the grant. This revision is built and statically audited, but not yet run on
-the card.
+the grant. On boot `389400bd-0a35-4695-adc8-cdb65d5e9b3a`, after two
+independent baseline full reads, this revision ran successfully. It reported
+Intel manufacturer `0x89`, device `0xa6`, master lock 0, block-lock mask 0,
+and array byte `0x50`. The operation-13 command returned status 0; the host
+audited and restored the RAM page, owner table, staging page and BAR mapping,
+then unloaded its command modules. Two further independent full `READIMAGE`
+requests returned the unchanged Firmware injection v1 SHA-256
+`1c4995ada54f944265c11f346177708351b4ff5a1003ba232f7e39b6a74b89bd`,
+each with status/residual/guard changes zero. Compact [receipts](live-v2/)
+are committed; complete image data remains on the remote under
+`/home/mit/i960-writer-stage-20261122/`.
+
+This establishes the live Intel read-command path and lock state on this
+card. It does not test VPP, erase/program, the native writer, or native
+cold boot.

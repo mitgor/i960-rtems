@@ -47,4 +47,8 @@ card-cache visibility issue, but that is an inference, not a chip-ID result.
 The revised payload above writes the record into `0xc000fa60`, adjacent to
 the host-visible operation-13 report. The launcher audits and restores that
 control-page region, then releases resources even if the recorded ID differs
-from expectation. It is a new image and has **not** run on hardware.
+from expectation. It passed on card `10112500320` on boot
+`389400bd-0a35-4695-adc8-cdb65d5e9b3a`: `0x89/0xa6`, master lock 0,
+block-lock mask 0 and array byte `0x50`. The command and cleanup completed;
+two post-run full flash reads matched the installed Firmware injection v1
+image. See the [live receipts](../../../artifacts/current/accele160-fi1-flash-id-20261122/README.md).
