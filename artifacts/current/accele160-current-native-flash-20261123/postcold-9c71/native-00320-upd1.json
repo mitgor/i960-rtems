@@ -1,0 +1,24 @@
+{
+  "boot_id": "9c7104a9-660d-4db9-8b41-3308111f06d5",
+  "uptime_s": 302.34,
+  "control_words": [
+    "0x31445055",
+    "0x00000000",
+    "0x00000000",
+    "0x00000000",
+    "0x00000000",
+    "0x00000000",
+    "0x00000000",
+    "0x00000000",
+    "0x00000000",
+    "0x00000000",
+    "0x00000002"
+  ],
+  "magic_ok": true,
+  "version_ok": true,
+  "idle": true,
+  "piatvr_restored": true,
+  "pci_identity_after": "6910500006019002",
+  "bar_writes": 0,
+  "flash_writes": 0
+}

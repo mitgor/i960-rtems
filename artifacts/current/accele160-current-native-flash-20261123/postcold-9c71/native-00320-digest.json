@@ -1,0 +1,27 @@
+{
+  "boot_id": "9c7104a9-660d-4db9-8b41-3308111f06d5",
+  "expected_sha256": "b35b1e8312336532fae9175fdc3d0d0be7b80b14281434f42af1db294662c695",
+  "commands": [
+    {
+      "name": "BEGIN",
+      "result": 0,
+      "state": 1,
+      "next_chunk": 0,
+      "sequence": 1,
+      "acknowledged": 1
+    },
+    {
+      "name": "ABORT",
+      "result": 0,
+      "state": 0,
+      "next_chunk": 0,
+      "sequence": 2,
+      "acknowledged": 2
+    }
+  ],
+  "flash_writes": 0,
+  "bar_data_writes": 0,
+  "card_digest_matched": true,
+  "piatvr_restored": true,
+  "pci_identity_after": "6910500006019002"
+}
