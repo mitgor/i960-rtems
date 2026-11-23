@@ -1,0 +1,31 @@
+{
+  "command_completed": true,
+  "elapsed_s": 34.431813729,
+  "status": {
+    "started": "1",
+    "done": "1",
+    "status": "0",
+    "residual": "0",
+    "elapsed_ms": "34324",
+    "released": "0"
+  },
+  "card_after": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": "myrsread"
+  },
+  "original_after": {
+    "bdf": "0000:37:04.1",
+    "profile": "accele160",
+    "present": false,
+    "ids": null,
+    "driver": null
+  },
+  "post_cold_boot_full_readback_required": true
+}

@@ -19,4 +19,14 @@ partial erase recoverable. On failure the module and command storage are
 retained for inspection. On success, a cold power cycle and two full reads
 are required before treating the write as persistent.
 
-No physical flash command had been sent when this note was created.
+On boot `3937ce9f-bdeb-4f8a-8787-a77cc0f6ba8b`, two guarded full reads
+matched the installed Firmware injection v1 image. STOREIMAGE completed
+status 0 and an independent full staged READIMAGE matched the native
+candidate byte for byte. The single FLASHIMAGE request then completed in
+34.324 seconds with host status 0 and residual 0; the flash module was
+released and unloaded. The [compact preboot receipts](preboot/) are archived
+here, while complete 1 MiB reads remain on the remote under
+`/home/mit/i960-writer-stage-20261122/fi1-native-3937/`. The PC was sent a
+power-off request to force the next test to start from a cold boot. The
+candidate's persistent flash bytes, native startup and updater are **not yet
+verified** by this command status alone.
