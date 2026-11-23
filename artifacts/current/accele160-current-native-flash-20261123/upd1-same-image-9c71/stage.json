@@ -1,0 +1,18 @@
+{
+  "target_sha256": "b35b1e8312336532fae9175fdc3d0d0be7b80b14281434f42af1db294662c695",
+  "base_sha256": "b35b1e8312336532fae9175fdc3d0d0be7b80b14281434f42af1db294662c695",
+  "mode": "live-ram-staged-and-sealed",
+  "flash_programmed": false,
+  "boot_id": "9c7104a9-660d-4db9-8b41-3308111f06d5",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": null
+  }
+}

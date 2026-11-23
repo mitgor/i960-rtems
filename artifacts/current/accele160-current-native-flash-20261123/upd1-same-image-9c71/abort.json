@@ -1,0 +1,25 @@
+{
+  "mode": "live-ram-session-aborted",
+  "card": {
+    "bdf": "0000:37:09.1",
+    "profile": "accele160",
+    "ids": [
+      4201,
+      80,
+      4201,
+      84
+    ],
+    "driver": null
+  },
+  "before": {
+    "sequence": 260,
+    "state": 2,
+    "next_chunk": 256
+  },
+  "after": {
+    "sequence": 261,
+    "state": 0,
+    "next_chunk": 0
+  },
+  "flash_programmed": false
+}

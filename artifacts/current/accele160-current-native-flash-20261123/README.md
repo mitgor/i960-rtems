@@ -59,3 +59,24 @@ service on card `10112500320`. The card-computed whole-image digest is strong
 evidence that the candidate persisted, but it is not an independent bytewise
 host readback. The on-card Intel S3 writer remains untested on physical flash;
 the next physical update must be separately qualified before sending APPLY.
+
+## Same-image UPD1 RAM transfer and abort
+
+On the same boot, with only `10112500320` in Slot 5 and no driver bound,
+the existing host staging tool sent the installed candidate back to the
+card as its own target. Both manifest digests were
+`b35b1e8312336532fae9175fdc3d0d0be7b80b14281434f42af1db294662c695`;
+the manifest listed zero changed 64 KiB blocks and did not qualify a
+hardware write. UPD1 accepted all 256 verified 4 KiB chunks and sealed the
+1 MiB RAM image. The staging receipt reports `live-ram-staged-and-sealed`.
+The separate abort tool observed sequence 260, state 2, next chunk 256,
+then acknowledged ABORT at sequence 261, state 0, next chunk 0.
+
+A fresh UPD1 BEGIN after the abort again accepted the candidate SHA-256 as
+the whole-flash base digest, then ABORT returned the updater to idle at
+sequence 263. A separate status read at uptime 1278 seconds still reported
+stage-two `0x2000` and RTEMS `PASS`, with all 46 following PCI samples
+responding normally. The compact [same-image receipts](upd1-same-image-9c71/)
+contain the manifest, stage, abort, digest, and status records. No APPLY
+command or on-card erase/program operation was sent. The physical flash
+writer remains unqualified on this card.
