@@ -1,0 +1,24 @@
+{
+  "stock_sha256": "0ca0f4b6dd08d2f71102c6dbb174dfd1b151bce53f943bc571f66a85c9d6e943",
+  "candidate_sha256": "a56b4a1b84a8ef452be094ecc803c9f26d449c066eb023ad895c78828b9e1e68",
+  "bytes": 1048576,
+  "changed_bytes": 510899,
+  "first_change": "0x41000",
+  "last_change": "0xbffdf",
+  "outside_mutable_unchanged": true,
+  "writer_region_equals_current_card_candidate": true,
+  "current_card_candidate_sha256": "b35b1e8312336532fae9175fdc3d0d0be7b80b14281434f42af1db294662c695",
+  "descriptor_region_sha256": "af0869bbe16ae072f16393c29064118423a300f92a6a72adb0c952617d9716ea",
+  "descriptor_matches_own_stock": true,
+  "reset_block_matches_own_stock": true,
+  "changed_blocks": [
+    "0x40000",
+    "0x50000",
+    "0x60000",
+    "0x70000",
+    "0x80000",
+    "0x90000",
+    "0xa0000",
+    "0xb0000"
+  ]
+}
