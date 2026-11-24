@@ -1,4 +1,11 @@
-# Browser Doom on the i960
+# Archived browser Doom setup on the DAC960PG
+
+This is the earlier DAC960PG play runner and bounded transfer experiments.
+It is retained for reproduction. The optimized AcceleRAID 160 setup and
+default `./doom` launcher are documented in the [current Doom commands](../../../doom_commands.md).
+The old FPS figures and port 8087 instructions below are historical; they do
+not describe the accepted optimized AcceleRAID build or the card now running
+native RTEMS diagnostic firmware.
 
 The qualified exact divide is now enabled by default. Use
 `--no-fast-fixed-div` to build the original arithmetic for comparison.
@@ -127,7 +134,7 @@ tests; the exact dated commands below establish the physical build's provenance.
 Build-directory paths appear in Doom assertion strings, so a different workspace
 produces its own engine/kernel/module hashes rather than reusing an old identity.
 
-The dated [batch](../../../artifacts/doom-play-20261013/) preserves the exact
+The dated [batch](../../../artifacts/notes/doom-play-20261013.md) preserves the exact
 `build.sh` and `live.sh`, source/binary identities and physical findings.
 The build needs the pinned DoomGeneric source, Newlib, RTEMS/lwIP, cross tools,
 Linux kernel headers and accepted loader artifacts. See
@@ -202,7 +209,7 @@ copy and hash-check them locally, then reboot to release the retained resident
 module. Do not force-unload it. After Linux returns, confirm the card has no
 bound driver before starting the existing autonomous web profile from
 `/home/mit/i960-rtems-web-20261011` with a **new output directory**. The historical
-[restore recipe](../../../artifacts/doom-visible-20261013/restore.sh) records the
+[restore recipe](../../../artifacts/notes/doom-visible-20261013.md) records the
 matching payload, system-info module and IPv6 relay options; adapt its dated
 output paths rather than overwriting an old result. Verify HTTP and outbound
 IPv6 again. No automatic reboot or web restoration is scheduled during play.
@@ -264,7 +271,7 @@ hides the quality button. In explicit `--pipeline-test` runtime-detail acceptanc
 it injects two F5 presses itself and checks the actual low/high/low transitions;
 CPU/frame profiling is required for that test. It is not an interactive play session.
 Normal interactive builds must omit the test-only ping-pong/WAD-profile options.
-See [quality validation](../../../artifacts/columns-20261015/QUALITY.md).
+See [quality validation](../../../artifacts/notes/columns-20261015.md).
 
 Future quality-reducing experiments must have independent switches and preserve
 the normal renderer. Exact `--fast-render` and `--fast-columns` optimizations are

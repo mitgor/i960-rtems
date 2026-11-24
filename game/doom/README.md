@@ -1,12 +1,24 @@
-# DoomGeneric milestone 1: i960 compile and host memory profile
+# Doom on i960: current setup and development record
 
-**AcceleRAID 160 persistent play:** run `./doom` from the repository on the
-Mac and open http://192.168.2.75:8087/. The [single-command play guide](play/accele160/README.md)
-covers startup, controls, STOP, reset boundaries and reproducible provisioning.
-The card completed 1,058 frames with browser input, full audits and clean
-shutdown; [captures and replay](../../artifacts/current/doom-persistent-20261018/README.md)
-include paired pre/post-reset firmware reads. Old-card play uses its separate
-runner below.
+The [current Doom setup](../../doom_commands.md) selects the optimized
+AcceleRAID 160 build through `./doom`: low-detail renderer, private cache,
+wide copy, owned DMA, card keyboard FIFO, and pushed browser frames on port
+8088. Its physical persistent run measured 17.59 card FPS over matched steady
+frames, and the Mac streaming comparison measured 20.40 received FPS. See the
+[play guide](play/accele160/README.md) and [physical results](../../artifacts/current/doom-persistent-20261018/README.md).
+
+The card installed on 2026-11-24 runs the native RTEMS diagnostic/updater image.
+The optimized Doom launcher still requires Firmware injection v1's stock
+mailbox and guarded flash-read service. It remains the current software
+profile, but it cannot run on the installed native-firmware card yet.
+
+## Historical development record
+
+The older DAC960PG browser runner and the early, unoptimized AcceleRAID
+captures are preserved below for reproduction. Their launch instructions and
+FPS values are not the current optimized default. The dated
+[command archive](../../docs/games/archive/doom-commands-20261023.md) retains
+the previous launcher guide.
 
 Open follow-up work: [Doom backlog](BACKLOG.md), including private memcpy/memset
 and renderer copy/fill profiling candidates.
@@ -15,31 +27,31 @@ upstream techniques, architecture guidance and potential FPS impact.
 
 Low-detail benchmark: **2.481 → 3.178 FPS (+28.09%)**, 52 frames and all 14
 full audit pairs/STOP/drain pass. Renderer ~210 ms wall / ~105 ms timer-sampled
-Doom CPU. [Results, images, limitations and reproduction](../../artifacts/doom-detail-20261014/README.md).
+Doom CPU. [Results, images, limitations and reproduction](../../artifacts/notes/doom-detail-20261014.md).
 
 Presentation profiling: optional FNV and removal of the second framebuffer copy
 passed 52 card frames, 14 full audit pairs and STOP/drain: **1.965 → 2.474 FPS**
 (+25.94%, instrumented same-run comparison). Renderer remains ~317 ms/frame.
-[Measurements, limits and exact artifacts](../../artifacts/doom-present-20261014/README.md). Features remain opt-in.
+[Measurements, limits and exact artifacts](../../artifacts/notes/doom-present-20261014.md). Features remain opt-in.
 
 Bulk host-to-card WAD DMA now passes full physical acceptance: **27m 23s → 5m 18s**
 for initial level loading (**5.16×**), and **10.29s → 3.07s** for a warm restart.
 All 52 frames match mailbox exactly; full audits and STOP/drain pass.
-Use `--pipeline --no-crc --wad-dma`; see [measurements and artifacts](../../artifacts/wad-dma-20261014/README.md).
+Use `--pipeline --no-crc --wad-dma`; see [measurements and artifacts](../../artifacts/notes/wad-dma-20261014.md).
 
 
-The opt-in [two-buffer binary pipeline](../../artifacts/doom-pipeline-20261014/README.md) now passes 52 frames,
+The opt-in [two-buffer binary pipeline](../../artifacts/notes/doom-pipeline-20261014.md) now passes 52 frames,
 29 full audit pairs and STOP/drain. CRC-on delivers **1.396095 FPS**; explicit
 CRC-off **2.070201 FPS (+48.285%)**. Ownership and full system audits remain;
 CRC defaults on. WAD service during DMA waits and network-failure STOP handling
 are included. This is bounded acceptance, not a long-session gameplay claim.
 
 For the current playable RTEMS profile, use the [browser play guide](play/README.md).
-The [October 14 bulk-transfer batch](../../artifacts/doom-bulk-20261014/README.md)
+The [October 14 bulk-transfer batch](../../artifacts/notes/doom-bulk-20261014.md)
 measured 0.999 FPS with full audits. Later DMA comparisons measured about
-1.38 FPS. The [frame stress test](../../artifacts/frame-dma-stress-20261014/README.md)
+1.38 FPS. The [frame stress test](../../artifacts/notes/frame-dma-stress-20261014.md)
 now fixes a reproduced isolation-check halt during owned DMA, with 512-frame
-physical acceptance. The [fixed Doom repeat](../../artifacts/doom-dma-fixed-20261014/README.md)
+physical acceptance. The [fixed Doom repeat](../../artifacts/notes/doom-dma-fixed-20261014.md)
 passed 28 frames and 29 full audit pairs at 1.376781 FPS with DMA versus
 0.972816 FPS with mailbox (+41.525%). Keep DMA opt-in pending longer interactive
 lifecycle acceptance.

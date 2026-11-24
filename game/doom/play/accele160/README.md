@@ -1,14 +1,20 @@
 # Persistent Doom on AcceleRAID 160
 
-See [doom_commands.md](../../../../doom_commands.md) for all installed launcher
-variants, commands, options, browser controls and reset boundaries. The default
-is the flat-enabled reusable wrapper, compatible with the old card removed.
-The 2026-10-23 [installed-script snapshot](../../../../host/deployments/accele160-20261023/README.md)
-records the present gateway and bundle selectors. The live owner at inspection
-used the later packet-DMA bundle and was parked after 64 frames; starting a
-game against that owner does not replace its image with the wrapper's default.
+The [current setup](../../../../doom_commands.md) selects the optimized
+flat-enabled reusable wrapper. The old unoptimized command variants are in
+the [dated archive](../../../../docs/games/archive/doom-commands-20261023.md).
+This guide describes the Firmware injection v1 deployment, which uses the
+stock mailbox and READIMAGE service. The sole card installed on 2026-11-24
+boots native RTEMS diagnostic/updater firmware and does not provide those
+interfaces; do not launch this Doom profile on that card. The optimized
+launcher remains the repository default for a compatible FI1 card.
 
-From the repository on the Mac, run **`./doom`**, then open
+The 2026-10-23 [installed-script snapshot](../../../../host/deployments/accele160-20261023/README.md)
+records that day's gateway and bundle selectors. Its live owner used the
+packet-DMA bundle and was parked after 64 frames; starting a game against an
+existing owner does not replace its image with the wrapper's default.
+
+With a compatible FI1 card installed, run **`./doom`** from the repository on the Mac, then open
 **http://192.168.2.80:8088/**. The installed Linux command is
 `/home/mit/.local/bin/i960-doom-flat`. It starts a systemd service, checks the exact
 card/profile and pinned bundle, loads the exact BDF-gated reader driver on a
@@ -49,8 +55,8 @@ path now passes [physical STOP / reload / menu Quit / reload / STOP](../../../..
 with 173 frames, 96 full PIO comparisons and unchanged pinned mappings.
 Both final post-reset flash reads pass. A later real CLI idle restart also passed;
 real browser idle restart now also passes.
-The flat-enabled reusable bundle is now the Mac default by user request; its
-final post-reset flash pair remains pending. Build with `--reusable`.
+The flat-enabled reusable bundle is the Mac default. Later FIFO and gateway
+acceptance includes the closing post-reset flash pair. Build with `--reusable`.
 The reusable path makes browser Stop/menu Quit park the game, adds Start new
 game, and makes a second `./doom` request restart from the same daemon.
 `./doom shutdown` retains the reset-only global STOP behavior.

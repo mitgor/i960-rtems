@@ -34,15 +34,13 @@ transport experiments that informed Doom.
 
 The ROM patch and postboot execution are accepted. Tetris passed a 30-minute
 SSH run at 19.91 updates/s. RTEMS/lwIP serve IPv6 HTTP through the host and the
-resident runtime owns a 12 MiB region with an 8 MiB Doom arena. Doom has
-produced fully verified bounded frames and now has an opt-in persistent browser
-profile. The opt-in mailbox bulk reader improves same-run delivery from
-0.167 to 0.999 frames/s, with all 30 full audit pairs and STOP/drain passing.
-See the [play guide](game/doom/play/README.md) and
-[measured results](artifacts/notes/doom-bulk-20261014.md) for reproduction,
-controls and remaining limitations. Startup still takes roughly 23 minutes;
-a small native/card pixel discrepancy remains. The test session has ended
-and the public IPv6 web service is restored.
+resident runtime owns a 12 MiB region with an 8 MiB Doom arena. The optimized
+AcceleRAID Doom profile has completed persistent browser play with guarded DMA,
+FIFO input and pushed frames. See the [current Doom setup](doom_commands.md)
+for its measured 17.59–19.33 card FPS and 20.40 Mac-received stream FPS.
+The earlier DAC960PG and 2.33 FPS AcceleRAID experiments are historical.
+The installed AcceleRAID card now runs native RTEMS diagnostic/updater firmware;
+the FI1-based Doom launcher needs a compatible card or a native Doom port.
 
 [Latest findings](CURRENT-FINDINGS.md) and the relevant dated evidence report
 establish acceptance; an old milestone's “next step” is historical context.

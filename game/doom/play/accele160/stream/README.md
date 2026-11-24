@@ -1,6 +1,12 @@
 # Persistent keyboard input and pushed browser frames
 
-From the Mac repository, run `./doom`, then open
+This gateway is part of the [optimized Doom default](../../../../../doom_commands.md).
+It requires the FI1-based AcceleRAID owner bundle. The card installed on
+2026-11-24 runs native RTEMS diagnostic/updater firmware, so this deployment
+cannot be launched on the present card until native Doom support exists or a
+compatible FI1 card is installed.
+
+With the compatible card, run `./doom` from the Mac repository, then open
 [http://192.168.2.80:8088/](http://192.168.2.80:8088/).
 Textured rendering is the initial mode; F6 toggles flat floors/ceilings.
 The installed flat launcher starts both the original owning daemon and this

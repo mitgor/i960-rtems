@@ -5,17 +5,27 @@ DoomGeneric with Freedoom Phase 1 data, an 8 MiB arena runtime and host-backed
 WAD access. The Linux host supplies browser display/input transport; the
 engine executes on the card.
 
-- [Interactive browser build/run and controls](../../game/doom/play/README.md)
+The [current optimized AcceleRAID setup](../../doom_commands.md) is the
+default `./doom` profile: low-detail renderer, cached arena, wide copy,
+owned DMA, FIFO keyboard and pushed frames on port 8088. The 2.33 FPS early
+AcceleRAID run and the original DAC960PG runner are archived experiments.
+The installed card currently runs native RTEMS diagnostic firmware, so this
+FI1-based Doom profile needs a compatible card or a native port before launch.
+
+- [Current AcceleRAID build/run and controls](../../game/doom/play/accele160/README.md)
+- [Archived DAC960PG browser runner](../../game/doom/play/README.md)
 - [Build and source pins](../../game/doom/README.md)
 - [Runtime and libc](../../game/doom/runtime/README.md)
 - [RAM contract](../../game/doom/RAM-CONTRACT.md) and [OS integration plan](../../game/doom/OS-PLAN.md)
 - [Startup/visible-frame implementation](../../game/doom/runtime/startup/README.md)
-- [Accepted visible baseline](../../artifacts/doom-visible-20261013/README.md), including exact build/live/replay scripts and binaries
+- [Historical visible baseline](../../artifacts/notes/doom-visible-20261013.md), including exact build/live/replay scripts and binaries
 - [Research progression](../../docs/research.md#doom-progression)
+
+## Historical baseline
 
 The accepted baseline delivers two identical visible 320×200 frames and exits.
 Its static browser gallery is a capture viewer, not gameplay. The new persistent
-[play profile](../../artifacts/doom-play-20261013/README.md) passed a six-frame
+[play profile](../../artifacts/notes/doom-play-20261013.md) passed a six-frame
 physical forward/release/STOP run, delivering about 0.169 frames/s. Its subsequent 305-frame user session confirmed browser turning/firing and
 completed cleanly. The old port 8088 keyboard bridge is no longer running;
 new sessions use the ordinary play runner on port 8087. The user has chosen playability first, then profiling
@@ -25,7 +35,7 @@ Keep the accepted compiler workaround (`--point-side-o0`) and pinned source,
 WAD and runtime dependencies when reproducing the baseline. Full audit and
 native replay captures distinguish real execution results from static assets.
 
-The [October 14 mailbox bulk acceptance](../../artifacts/doom-bulk-20261014/README.md)
+The [October 14 mailbox bulk acceptance](../../artifacts/notes/doom-bulk-20261014.md)
 raises measured delivery from 0.167 to 0.999 FPS, retaining all full audits.
 Use the play wrapper's `--bulk` option with the matching rebuilt kernel/module.
 Startup and the small native/card renderer discrepancy remain open.
